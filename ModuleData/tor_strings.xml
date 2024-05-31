@@ -1086,10 +1086,10 @@
 	<string id="Hireling.EnlistingArmy" text="is part of: {ENLISTING_ARMY}" />
 	
 	<string id="HirelingActivity0.ImperialMagister" text="Focus on your studies" />
-	<string id="HirelingActivity1.ImperialMagister" text="is part of: {ENLISTING_ARMY}" />
-	<string id="HirelingActivity2.ImperialMagister" text="is part of: {ENLISTING_ARMY}" />
-	<string id="HirelingActivity3.ImperialMagister" text="is part of: {ENLISTING_ARMY}" />
-	<string id="HirelingActivity4.ImperialMagister" text="is part of: {ENLISTING_ARMY}" />
+	<string id="HirelingActivity1.ImperialMagister" text="Assist your lord with accounting tasks" />
+	<string id="HirelingActivity2.ImperialMagister" text="Train with the troops" />
+	<string id="HirelingActivity3.ImperialMagister" text="Care for the wounded troops" />
+	<string id="HirelingActivity4.ImperialMagister" text="Discuss with your lord combat strategies" />
 	
 	<!--Meadow ! -->
 	<string id="inky_Meadow.IsNight_True" text="{=inky_Meadow_is_night_true_str}Silver moonlight" />

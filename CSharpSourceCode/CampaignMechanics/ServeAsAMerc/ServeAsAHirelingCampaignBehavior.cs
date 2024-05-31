@@ -42,6 +42,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private float _entryServiceTimeStamp;
 
         private SkillObject _currentTrainedSkill;
+        private int _currentActivityIndex;
 
 
         public float DurationInDays
@@ -71,6 +72,25 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, BattleMenuOpened);
             CampaignEvents.GameMenuOptionSelectedEvent.AddNonSerializedListener(this, ContinueTimeAfterLeftSettlementWhileEnlisted);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this,DailyRenownGain);
+            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this,SkillGain);
+        }
+
+        private void SkillGain()
+        {
+            if (_hirelingEnlisted)
+            {
+                if (_currentTrainedSkill == null)
+                {
+                    _currentTrainedSkill = CareerHelper.GetHirelingActivities()[0];
+                    _currentActivityIndex = 0;
+                }
+                
+                if (_currentTrainedSkill != null)
+                {
+                    Hero.MainHero.AddSkillXp(_currentTrainedSkill,25);
+                }
+                
+            }
         }
 
         private void DailyRenownGain()
@@ -196,37 +216,41 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
            var activity3 = new TextObject("{HIRELINGACTIVITYTEXT3}");
            var activity4 = new TextObject("{HIRELINGACTIVITYTEXT4}");
            
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity0_option",activity0.Value, null, _ => ToggleActivity(0));
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity1_option",activity1.Value, null, _ => ToggleActivity(1));
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity2_option",activity2.Value, null,_ => ToggleActivity(2));
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity3_option",activity3.Value, null, _ => ToggleActivity(3));
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity4_option",activity4.Value, null, _ => ToggleActivity(4));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity0_option",activity0.Value, null, args   => ToggleActivity(0, args));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity1_option",activity1.Value, null, args => ToggleActivity(1, args));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity2_option",activity2.Value, null,args => ToggleActivity(2, args));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity3_option",activity3.Value, null, args => ToggleActivity(3, args ));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity4_option",activity4.Value, null, args => ToggleActivity(4, args));
         }
 
-        private static void SetActivities()
+        private void SetActivities()
         {
             var career = Hero.MainHero.GetCareer();
             for (var i = 0; i < 5; i++)
             {
                 if (GameTexts.TryGetText("HirelingActivity" + i, out var text, career.StringId))
                 {
+                    if (_currentActivityIndex==i)
+                    {
+                        text = new TextObject($"[{text.Value}]");
+                    }
                     GameTexts.SetVariable("HIRELINGACTIVITYTEXT"+i,text);
                 } 
             }
         }
-
-        private void ResetAllTexts()
+        
+        private void ToggleActivity(int i, MenuCallbackArgs args)
         {
+            var career = Hero.MainHero.GetCareer();
+            _currentActivityIndex = i;
+            SetActivities();
             
-        }
-        private void ToggleActivity(int i)
-        {
-            ResetAllTexts();
             var activities = CareerHelper.GetHirelingActivities();
-            GameTexts.TryGetText("HIRELINGACTIVITYTEXT" + i,out var textObject);
-            GameTexts.SetVariable("HIRELINGACTIVITYTEXT", $"[{textObject}])");
-            
+           
             _currentTrainedSkill = activities[i];
+            args.MenuContext.Refresh();
+
+            
         }
 
         private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
@@ -258,7 +282,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             {
 
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
-                TORCommon.Say((_hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement != null).ToString());
+           
 
                 return _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement != null;
             }, delegate (MenuCallbackArgs args)
