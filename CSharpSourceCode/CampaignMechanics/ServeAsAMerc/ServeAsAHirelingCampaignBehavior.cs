@@ -14,6 +14,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -39,6 +40,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private bool _hirelingWaitMenuShown;
 
         private float _entryServiceTimeStamp;
+
+        private SkillObject _currentTrainedSkill;
 
 
         public float DurationInDays
@@ -154,13 +157,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                         if (flag2)
                         {
                             ChangeRelationAction.ApplyPlayerRelation(clan.Leader, -10, true, true);
-                            foreach (Hero lord in clan.Heroes)
-                            {
-                                bool isLord = lord.IsLord;
-                                if (isLord)
-                                {
-                                }
-                            }
                         }
                     }
                 }
@@ -194,8 +190,45 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
            GameTexts.SetVariable("PAUSE_ONOFF_TEXT", pauseText);
 
+           var activity0 = new TextObject("{HIRELINGACTIVITYTEXT0}");
+           var activity1 = new TextObject("{HIRELINGACTIVITYTEXT1}");
+           var activity2 = new TextObject("{HIRELINGACTIVITYTEXT2}");
+           var activity3 = new TextObject("{HIRELINGACTIVITYTEXT3}");
+           var activity4 = new TextObject("{HIRELINGACTIVITYTEXT4}");
+           
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity0_option",activity0.Value, null, _ => ToggleActivity(0));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity1_option",activity1.Value, null, _ => ToggleActivity(1));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity2_option",activity2.Value, null,_ => ToggleActivity(2));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity3_option",activity3.Value, null, _ => ToggleActivity(3));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity4_option",activity4.Value, null, _ => ToggleActivity(4));
+        }
 
-        } 
+        private static void SetActivities()
+        {
+            var career = Hero.MainHero.GetCareer();
+            for (var i = 0; i < 5; i++)
+            {
+                if (GameTexts.TryGetText("HirelingActivity" + i, out var text, career.StringId))
+                {
+                    GameTexts.SetVariable("HIRELINGACTIVITYTEXT"+i,text);
+                } 
+            }
+        }
+
+        private void ResetAllTexts()
+        {
+            
+        }
+        private void ToggleActivity(int i)
+        {
+            ResetAllTexts();
+            var activities = CareerHelper.GetHirelingActivities();
+            GameTexts.TryGetText("HIRELINGACTIVITYTEXT" + i,out var textObject);
+            GameTexts.SetVariable("HIRELINGACTIVITYTEXT", $"[{textObject}])");
+            
+            _currentTrainedSkill = activities[i];
+        }
+
         private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
         {
             InitializeDialogs(campaignGameStarter);
@@ -386,7 +419,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         // Token: 0x0600015C RID: 348 RVA: 0x000119BC File Offset: 0x0000FBBC   
         private bool wait_on_condition(MenuCallbackArgs args)
         {
-            TORCommon.Say("WAIT ON CONDITION");
+            //TORCommon.Say("WAIT ON CONDITION");
             return true;
         }
         
@@ -615,6 +648,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             while (Campaign.Current.CurrentMenuContext != null)
                 GameMenu.ExitToLast();
             _hirelingEnlisted = true;
+
+            SetActivities();
 
              _entryServiceTimeStamp = Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow;
             GameMenu.ActivateGameMenu("hireling_menu");

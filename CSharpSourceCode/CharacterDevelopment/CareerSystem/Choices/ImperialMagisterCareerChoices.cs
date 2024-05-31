@@ -393,5 +393,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             return false;
         }
+
+
+        public override List<SkillObject> EnlistedActivities()
+        {
+            return new List<SkillObject>()
+            {
+                TORSkills.SpellCraft,
+                DefaultSkills.Steward,
+                DefaultSkills.OneHanded,
+                DefaultSkills.Medicine,
+                DefaultSkills.Tactics
+            };
+        }
     }
 }

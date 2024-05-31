@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System.Collections.Generic;
+using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -80,6 +81,12 @@ namespace TOR_Core.CampaignMechanics.Choices
         public virtual void InitialCareerSetup()
         {
             
+        }
+        
+        
+        public virtual List<SkillObject> EnlistedActivities()
+        {
+            return new List<SkillObject>();
         }
     }
 }

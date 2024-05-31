@@ -466,6 +466,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         }
 
+        public static List<SkillObject> GetHirelingActivities()
+        {
+            var choices =TORCareerChoices.Instance.GetCareerChoices(Hero.MainHero.GetCareer());
+            if (choices != null)
+            {
+                return choices.EnlistedActivities();
+            }
+
+            return new List<SkillObject>();
+        }
+
         public static void RemoveCareerRelatedTroopAttributes(MobileParty mobileParty, string troopId,
             MobilePartyExtendedInfo mobilePartyinfo)
         {
