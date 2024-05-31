@@ -445,8 +445,8 @@
   	</StatusEffectTemplate>
 	<StatusEffectTemplate
 		id="frost_bite_mov_90"
-		particle_id="breath_of_darkness"
-		particle_intensity="Low"
+		particle_id="freeze"
+		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="false"
     	base_effect_value="-0.9"
 		type="MovementManipulation"

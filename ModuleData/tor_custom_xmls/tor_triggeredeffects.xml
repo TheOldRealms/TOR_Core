@@ -1191,7 +1191,7 @@
             HasShockWave="false" 
             DoNotAlignParticleEffectPrefabOnImpact="true"
             TargetType="Enemy" 
-            ImbuedStatusEffectDuration="0" 
+            ImbuedStatusEffectDuration="6" 
             DamageVariance="0.2" 
             ScriptNameToTrigger="none">
       </TriggeredEffectTemplate>
