@@ -180,13 +180,6 @@ namespace TOR_Core.Models
                                     resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
                             }
                             
-                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("TeachingsOfTheWinterFatherPassive3") && !agent.Character.IsMounted)
-                            {
-                                var choice = TORCareerChoices.GetChoice("TeachingsOfTheWinterFatherPassive3");
-                                if(choice.Passive!=null)
-                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
-                            }
-                            
                             if (skill == DefaultSkills.Polearm&&choices.Contains("EnhancedHorseCombatPassive4") && agent.Character.IsKnightUnit())
                             {
                                 var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive4");
