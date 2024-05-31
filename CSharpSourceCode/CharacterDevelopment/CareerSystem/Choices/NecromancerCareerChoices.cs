@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 
@@ -229,6 +233,27 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _booksOfNagashPassive2.Initialize(CareerID, "Increases Party size by 100.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.PartySize));
             _booksOfNagashPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 25.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
             _booksOfNagashPassive4.Initialize(CareerID, "Dark Energy cost for undead troop upgrades is reduced by 50%.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-50, PassiveEffectType.CustomResourceUpgradeCostModifier,true));
+        }
+        
+        
+        public override void InitialCareerSetup()
+        {
+            var religions = ReligionObject.All.FindAll(x => x.Affinity == ReligionAffinity.Order);
+
+            foreach (var religion in religions)
+            {
+                Hero.MainHero.AddReligiousInfluence(religion,-100,true);
+            }
+            
+            ReligionObject nagash= ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
+            if (nagash != null)
+            {
+                Hero.MainHero.AddReligiousInfluence(nagash,25,true);
+            }
+            
+            
+            CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
+            Hero.MainHero.Culture = mousillonCulture;
         }
 
         private static bool isUndeadTroop(Agent agent)

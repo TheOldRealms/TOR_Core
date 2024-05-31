@@ -41,7 +41,7 @@ namespace TOR_Core.CampaignMechanics.Chaos
         {
             if (CampaignTime.Now.ToDays > _lastUprisingTime + _minimumElapsedDaysBetweenUprisings && !_hasTriggered)
             {
-                var mostPowerfulKingdom = Kingdom.All.WhereQ(x => (x.Culture.StringId == "empire" || x.Culture.StringId == "vlandia") && x.Fiefs.Count > 1).MaxBy(x => x.TotalStrength);
+                var mostPowerfulKingdom = Kingdom.All.WhereQ(x => (x.Culture.StringId == TORConstants.EMPIRE_CULTURE || x.Culture.StringId == TORConstants.BRETONNIA_CULTURE) && x.Fiefs.Count > 1).MaxBy(x => x.TotalStrength);
 
                 var eligibleSettlements = Settlement.All.WhereQ(x=>x.OwnerClan != null && x.OwnerClan.Kingdom != null && 
                 x.OwnerClan.Kingdom == mostPowerfulKingdom &&

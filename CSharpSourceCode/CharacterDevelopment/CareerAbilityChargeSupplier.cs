@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.MountAndBlade;
@@ -287,12 +287,15 @@ namespace TOR_Core.CharacterDevelopment
         {
             if (mask != AttackTypeMask.Melee) return 0;
             if (chargeType == ChargeType.NumberOfKills) return 0;
+            if (affectingAgent.Team == affectedAgent.Team) return 0;
             var explainedNumber = new ExplainedNumber();
+            
             if ((chargeType != ChargeType.DamageTaken && affectedAgent.IsMainAgent) || (affectingAgent.IsMainAgent &&
                     Hero.MainHero.HasCareerChoice("BookOfSigmarKeyStone")))
             {
                 if (affectingAgent.IsMainAgent && chargeType == ChargeType.DamageDone)
                 {
+                    if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield) return 0;
                     explainedNumber.Add(chargeValue);
                 }
                 else

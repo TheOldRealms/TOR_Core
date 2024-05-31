@@ -103,6 +103,16 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _runesOfTheWhiteWolf;
         private CareerChoiceGroupObject _furyOfWar;
         private CareerChoiceGroupObject _flameOfUlric;
+        
+        //Imperial Magister
+        private CareerChoiceGroupObject _studyAndPractise;
+        private CareerChoiceGroupObject _teclisTeachings;
+        private CareerChoiceGroupObject _imperialEnchantment;
+        private CareerChoiceGroupObject _collegeOrders;
+        private CareerChoiceGroupObject _magicCombatTraining;
+        private CareerChoiceGroupObject _ancientScrolls;
+        private CareerChoiceGroupObject _arcaneKnowledge;
+
 
 
         public TORCareerChoiceGroups()
@@ -213,6 +223,15 @@ namespace TOR_Core.CharacterDevelopment
             _runesOfTheWhiteWolf = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_runesOfTheWhiteWolf).UnderscoreFirstCharToUpper()));
             _furyOfWar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_furyOfWar).UnderscoreFirstCharToUpper()));
             _flameOfUlric = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_flameOfUlric).UnderscoreFirstCharToUpper()));
+            
+            //Imperial Magister
+            _studyAndPractise = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_studyAndPractise).UnderscoreFirstCharToUpper()));
+            _teclisTeachings = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_teclisTeachings).UnderscoreFirstCharToUpper()));
+            _imperialEnchantment = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_imperialEnchantment).UnderscoreFirstCharToUpper()));
+            _collegeOrders = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_collegeOrders).UnderscoreFirstCharToUpper()));
+            _magicCombatTraining = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_magicCombatTraining).UnderscoreFirstCharToUpper()));
+            _ancientScrolls = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_ancientScrolls).UnderscoreFirstCharToUpper()));
+            _arcaneKnowledge = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_arcaneKnowledge).UnderscoreFirstCharToUpper()));
         }
 
         private void InitializeAll()
@@ -653,6 +672,52 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 4;
             });
             _flameOfUlric.Initialize("Flame of Ulric", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            
+            //Imperial College Magister
+            _studyAndPractise.Initialize("Study and Practise", TORCareers.ImperialMagister, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _teclisTeachings.Initialize("Teclis' Teachings", TORCareers.ImperialMagister, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _imperialEnchantment.Initialize("Imperial Enchantment", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = "Unlocks Greater Powerstones";
+                return hero.Clan.Tier >= 2;
+            });
+            _collegeOrders.Initialize("College Orders", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            
+            _magicCombatTraining.Initialize("Magic Combat Training", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _ancientScrolls.Initialize("Ancient Scrolls", TORCareers.ImperialMagister, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = "Unlocks Mighty Powerstones";
+                return hero.Clan.Tier >= 2;
+            });
+            _arcaneKnowledge.Initialize("Arcane Knowledge", TORCareers.ImperialMagister, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;

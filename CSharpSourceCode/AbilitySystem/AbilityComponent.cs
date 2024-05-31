@@ -92,7 +92,7 @@ namespace TOR_Core.AbilitySystem
                             }
                         }
                     }
-                    else if(hero.Culture?.StringId == "empire")
+                    else if(hero.Culture?.StringId == TORConstants.EMPIRE_CULTURE)
                     {
                         var ability1 = (ItemBoundAbility)AbilityFactory.CreateNew("GreatCannonSpawner", agent);
                         if (ability1 != null)
@@ -112,7 +112,7 @@ namespace TOR_Core.AbilitySystem
                             _knownAbilitySystem.Add(ability2);
                         }
                     }
-                    else if (hero.Culture?.StringId == "vlandia")
+                    else if (hero.Culture?.StringId == TORConstants.BRETONNIA_CULTURE)
                     {
                         var ability3 = (ItemBoundAbility)AbilityFactory.CreateNew("FieldTrebuchetSpawner", agent);
                         if (ability3 != null)
@@ -129,7 +129,7 @@ namespace TOR_Core.AbilitySystem
                 else if(Game.Current.GameType is CustomGame)
                 {
                     var heroChar = Agent.Character;
-                    if (heroChar.Culture?.StringId == "empire")
+                    if (heroChar.Culture?.StringId == TORConstants.EMPIRE_CULTURE)
                     {
                         var ability1 = (ItemBoundAbility)AbilityFactory.CreateNew("GreatCannonSpawner", agent);
                         if (ability1 != null)
@@ -149,7 +149,7 @@ namespace TOR_Core.AbilitySystem
                             _knownAbilitySystem.Add(ability2);
                         }
                     }
-                    else if (heroChar.Culture?.StringId == "vlandia")
+                    else if (heroChar.Culture?.StringId == TORConstants.BRETONNIA_CULTURE)
                     {
                         var ability3 = (ItemBoundAbility)AbilityFactory.CreateNew("FieldTrebuchetSpawner", agent);
                         if (ability3 != null)

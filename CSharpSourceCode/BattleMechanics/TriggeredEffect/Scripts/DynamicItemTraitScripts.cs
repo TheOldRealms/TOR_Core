@@ -39,6 +39,233 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
         }
     }
     
+    public class ApplyLesserFlamingItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Fire;
+                additionalDamage.Percent = 0.15f;
+                
+                trait.ItemTraitName = "Lesser Flaming Sword";
+                trait.ItemTraitDescription = "This sword is on fire. It deals additional fire damage.";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_flaming_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyLesserLightItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Magical;
+                additionalDamage.Percent = 0.25f;
+                
+                trait.ItemTraitName = "Hysh infused Sword";
+                trait.ItemTraitDescription = "This sword is guided by Hysh. It deals magical damage.";
+                trait.ImbuedStatusEffectId = "powerstone_light_mov_debuff";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyLightItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Magical;
+                additionalDamage.Percent = 0.4f;
+                
+                trait.ItemTraitName = "Hysh infused Sword";
+                trait.ItemTraitDescription = "This sword is guided by Hysh. It deals magical damage.";
+                trait.ImbuedStatusEffectId = "none";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyLesserHeavensItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Lightning;
+                additionalDamage.Percent = 0.2f;
+                
+                trait.ItemTraitName = "Azyr infused weapon";
+                trait.ItemTraitDescription = "This weapon is guided by Azyr. It deals lightning damage.";
+                trait.ImbuedStatusEffectId = "none";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_heavens_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyHeavensItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Lightning;
+                additionalDamage.Percent = 0.4f;
+                
+                trait.ItemTraitName = "Azyr infused weapon";
+                trait.ItemTraitDescription = "This sword is guided by Azyr. It deals electrical damage.";
+                trait.ImbuedStatusEffectId = "none";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_heavens_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyGreaterHeavensItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Lightning;
+                additionalDamage.Percent = 0.3f;
+                
+                additionalDamage.DamageType = DamageType.Frost;
+                additionalDamage.Percent = 0.3f;
+                
+                trait.ItemTraitName = "Azyr infused weapon";
+                trait.ItemTraitDescription = "This sword is guided by Azyr. It deals electrical damage.";
+                trait.ImbuedStatusEffectId = "powerstone_heavens_debuff";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_heavens_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyMetalItemTraitScript : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var trait2 = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+                var additionalDamage2 = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Fire;
+                additionalDamage.Percent = 0.2f;
+                
+                additionalDamage2.DamageType = DamageType.Magical;
+                additionalDamage2.Percent = 0.2f;
+                
+                trait.ItemTraitName = "Azyr infused weapon";
+                trait.ItemTraitDescription = "This weapon is guided by chamon. It deals lightning damage.";
+                trait.ImbuedStatusEffectId = "none";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_metal_sparks_weapon" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+                
+                trait2.AdditionalDamageTuple  = additionalDamage2;
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                        comp.AddTraitToWieldedWeapon(trait2,duration);
+                    }
+                }
+            }
+        }
+    }
+    
     public class ApplyQuickSilverWeaponItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)

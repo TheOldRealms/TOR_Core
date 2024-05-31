@@ -101,7 +101,7 @@ namespace TOR_Core.Extensions
                     return true;
                 if (choices.Contains("CommanderPassive3"))
                     return true;
-                if (choices.Contains("QuestingVowPassive4"))
+                if (choices.Contains("MonsterSlayerPassive4"))
                     return true;
                 if (choices.Contains("BlackGrailVowPassive2"))
                     return true;
@@ -164,14 +164,11 @@ namespace TOR_Core.Extensions
         {
             if (!(MissionGameModels.Current.AgentApplyDamageModel is TORAgentApplyDamageModel damageModel))
             {
-                return new AgentPropertyContainer();
+                return AgentPropertyContainer.InitNew();
             }
             
             return damageModel.CreateAgentPropertyContainer(agent, propertyMask, attackTypeMask);
         }
-        
-        
-        
 
         public static Ability GetCurrentAbility(this Agent agent)
         {

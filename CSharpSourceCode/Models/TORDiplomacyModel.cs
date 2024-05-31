@@ -40,7 +40,7 @@ namespace TOR_Core.Models
                 {
                     if (baseValue > 0)
                     {
-                        if (conversationHero != null && conversationHero.Culture.StringId == "vlandia")
+                        if (conversationHero != null && conversationHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
                         {
                             var choice = TORCareerChoices.GetChoice("JustCausePassive4");
                             if (choice != null)
@@ -100,12 +100,12 @@ namespace TOR_Core.Models
             if (kingdom == null) return score;
             if (mercenaryClan == null) return score;
 
-            if (kingdom.Culture.StringId == "vlandia" && mercenaryClan.Culture.StringId != "vlandia")
+            if (kingdom.Culture.StringId == TORConstants.BRETONNIA_CULTURE && mercenaryClan.Culture.StringId != TORConstants.BRETONNIA_CULTURE)
             {
                 score = -10000;
             }
 
-            if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && kingdom.Culture.StringId == "khuzait" || kingdom.Culture.StringId == "mousillon" || kingdom.Culture.StringId == "vlandia")
+            if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && kingdom.Culture.StringId == TORConstants.SYLVANIA_CULTURE || kingdom.Culture.StringId == "mousillon" || kingdom.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
             {
                 score = -10000;
             }

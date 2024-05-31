@@ -782,6 +782,7 @@
   <string id="tor_religion_blessing_name.cult_of_manaan" text="{=tor_religion_blessing_name_cult_of_ulric_str}Blessing of Manaan." />
 
   <!-- Career related -->
+  
   <string id="career_title.WarriorPriest" text="{=tor_career_title_warrior_priest_str}Warrior Priest of Sigmar" />
   <string id="career_title.WarriorPriestUlric" text="{=tor_career_title_warrior_priest_str}Warrior Priest of Ulric" />
   <string id="career_title.WitchHunter" text="{=tor_career_title_warrior_priest_str}Witch Hunter" />
@@ -791,8 +792,46 @@
   <string id="career_title.BloodKnight" text="{=tor_career_title_blood_knight_str}Blood Knight" />
   <string id="career_title.Mercenary" text="{=tor_career_title_mercenary_str}Mercenary" />
   <string id="career_title.Necromancer" text="{=tor_career_title_necromancer_str}Necromancer" />
+  <string id="career_title.ImperialMagister" text="{=tor_career_title_necromancer_str}Imperial College Magister" />
   <string id="career_title.BlackGrailKnight" text="{=tor_career_title_black_grail_knight_str}Knight of Mousillon" />
   <string id="career_title.Necrarch" text="{=tor_career_title_necrarch_str}Necrarch" />
+  
+  
+  <string id="career_switch_title.MinorVampire" text="{=tor_career_switch_title_necrarch_str}Become a Carstein Vampire" />
+  <string id="career_switch_title.BloodKnight" text="{=tor_career_switch_title_necrarch_str}Become a Blood Knight" />
+  <string id="career_switch_title.BlackGrailKnight" text="{=tor_career_switch_title_necrarch_str}Become a Knight of Mousillon" />
+  
+  <string id="career_switch_explaination.MinorVampire" text="{=tor_career_switch_title_necrarch_str}
+  By accepting you are becoming a Vampire, this decision is permanent and can't be changed back for the rest of your playthrough.{newline}
+  {newline}
+  By Becoming a vampire, you will be stripped of your magic(beside Minor Magic ) and faith skill.{newline}
+  Beside that you will gain Vampire powers.... {newline}
+  See more in the Wiki for more information.{newline}
+  {newline}
+  The Dialog can be restarted if you decline.
+  " />
+	
+  <string id="career_switch_explaination.BloodKnight" text="{=tor_career_switch_title_necrarch_str}
+  By accepting you are becoming a Blood Knight Vampire, this decision is permanent and can't be changed back for the rest of your playthrough.{newline}
+  {newline}
+  By Becoming a Blood Knight Vampire, you will be stripped completly of your  spellcraft and faith skill, and will not be able to perform magic. {newline}
+  {newline}
+  Beside that you will switch to the melee focused Bloodknight Career{newline}
+  See more in the Wiki for more information.{newline}
+  {newline}
+  The Dialog can be restarted if you decline.
+  " />
+
+  <string id="career_switch_explaination.BlackGrailKnight" text="{=tor_career_switch_title_necrarch_str}
+  By accepting you are becoming a Mousillon Knight, this decision is permanent and can't be changed back for the rest of your playthrough.{newline}
+  {newline}
+  By Becoming a Knight of Mousillon, you will be stripped of your faith skill. {newline}
+  {newline}
+  See more in the Wiki for more information.{newline}
+  {newline}
+  The Dialog can be restarted if you decline.
+  " />  
+  
   
   <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_witch_hunter_str}Witch Hunter Initiate" />
   <string id="career_choicegroup2_name.WitchHunter" text="{=career_choicegroup2_witch_hunter_str}Witch Hunter Captain" />
@@ -838,6 +877,10 @@
   <string id="career_choicegroup2_name.Necrarch" text="{=career_choicegroup2_necrarch_str}Seeker" />
   <string id="career_choicegroup3_name.Necrarch" text="{=career_choicegroup3_necrarch_str}Ascended" />
   
+  <string id="career_choicegroup1_name.ImperialMagister" text="{=career_choicegroup1_imperialmagister_str}Apprentise Magister" />
+  <string id="career_choicegroup2_name.ImperialMagister" text="{=career_choicegroup2_imperialmagister_str}Battle Wizard" />
+  <string id="career_choicegroup3_name.ImperialMagister" text="{=career_choicegroup3_imperialmagister_str}Lord Magister" />
+  
   <!--Career related related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
   <string id="career_description.WarriorPriestUlric" text="{=career_description_warriorpriest_ulric_str}To be a Wolf Priest is to be one of Ulrics champions, powerful, zealous, and blessed by the feral god himself. The battleground is where the word of Ulric is spread, and it is through bloodshed that he is honoured in worship." />
@@ -870,6 +913,7 @@
   <string id="tor_damagetype.Magical" text="{=tor_damagetype_magical_str}Magical"/>
   <string id="tor_damagetype.Fire" text="{=tor_damagetype_fire_str}Fire"/>
   <string id="tor_damagetype.Holy" text="{=tor_damagetype_holy_str}Holy"/>
+  <string id="tor_damagetype.Frost" text="{=tor_damagetype_frost_str}Frost"/>
   <string id="tor_damagetype.Lightning" text="{=tor_damagetype_lightning_str}Lightning"/>
   
   <string id="tor_attacktype.Melee" text="{=tor_damagetype_lightning_str}Melee"/>

@@ -12,6 +12,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics
 {
@@ -35,7 +36,7 @@ namespace TOR_Core.CampaignMechanics
             //Seems only to happen when a hero joins the player not anywhere else
             if (hero.IsWanderer)
             {
-                if (hero.Culture.StringId == "khuzait" || hero.Culture.StringId == "mousillon")
+                if (hero.Culture.StringId == TORConstants.SYLVANIA_CULTURE || hero.Culture.StringId == "mousillon")
                 {
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60, false);
                 }

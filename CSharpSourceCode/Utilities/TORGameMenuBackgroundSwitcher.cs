@@ -34,13 +34,13 @@ namespace TOR_Core.Utilities
 
             switch (settlement.Culture.StringId)
             {
-                case "empire":
+                case TORConstants.EMPIRE_CULTURE:
                     args.MenuContext.SetBackgroundMeshName("empire_looted_village");
                     return;
-                case "khuzait":
+                case TORConstants.SYLVANIA_CULTURE:
                     args.MenuContext.SetBackgroundMeshName("vampire_looted_village");
                     return;
-                case "vlandia":
+                case TORConstants.BRETONNIA_CULTURE:
                     args.MenuContext.SetBackgroundMeshName("bretonnia_looted_village");
                     return;
                 default:
@@ -64,12 +64,12 @@ namespace TOR_Core.Utilities
                     args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
                     return;
                 }
-                if(settlement.Culture.StringId == "vlandia")
+                if(settlement.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
                 {
                     args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
                     return;
                 }
-                else if (settlement.Culture.StringId == "khuzait")
+                else if (settlement.Culture.StringId == TORConstants.SYLVANIA_CULTURE)
                 {
                     args.MenuContext.SetBackgroundMeshName("vampire_arena");
                     return;
@@ -100,13 +100,13 @@ namespace TOR_Core.Utilities
 
             switch (culture.StringId)
             {
-                case "empire":
+                case TORConstants.EMPIRE_CULTURE:
                     args.MenuContext.SetBackgroundMeshName("empire_captive");
                     return;
-                case "khuzait":
+                case TORConstants.SYLVANIA_CULTURE:
                     args.MenuContext.SetBackgroundMeshName("vampire_captive");
                     return;
-                case "vlandia":
+                case TORConstants.BRETONNIA_CULTURE:
                     args.MenuContext.SetBackgroundMeshName("bretonnia_captive");
                     return;
                 case "mousillon":

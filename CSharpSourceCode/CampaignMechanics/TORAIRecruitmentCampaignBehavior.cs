@@ -44,7 +44,7 @@ namespace TOR_Core.Models
                 recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
             }
 
-            if (recruiter.IsLord && troop.Culture.StringId == "mousillon" && recruiter.Culture.StringId == "vlandia")
+            if (recruiter.IsLord && troop.Culture.StringId == "mousillon" && recruiter.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
             {
                 var mousillonEquivalent = TorRecruitmentHelpers.GetMousillonEquivalent(troop);
                 if (mousillonEquivalent != null)
@@ -54,7 +54,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (recruiter.IsLord && troop.Culture.StringId == "vlandia" && recruiter.Culture.StringId == "mousillon")
+            if (recruiter.IsLord && troop.Culture.StringId == TORConstants.BRETONNIA_CULTURE && recruiter.Culture.StringId == "mousillon")
             {
                 var bretonniaEquivalent = TorRecruitmentHelpers.GetBretonnianEquivalent(troop);
                 if (bretonniaEquivalent != null)

@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -24,6 +27,23 @@ namespace TOR_Core.Models
             return list;
         }
 
+        public override void GetTraitLevelForTraitXp(Hero hero, TraitObject trait, int xpValue, out int traitLevel, out int clampedTraitXp)
+        {
+            base.GetTraitLevelForTraitXp(hero, trait, xpValue, out traitLevel, out clampedTraitXp);
+            
+            if(xpValue<-500) return; //fail save -1500 traitvalue for killing lords is a bit much :)
+            if (hero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            {
+                if (trait.StringId == "Valor" && xpValue < 0)
+                {
+                    return;
+                } 
+                if (trait.StringId == "Mercy" || trait.StringId == "Honor" || trait.StringId == "Valor")
+                {
+                    hero.AddCustomResource("Chivalry",xpValue);
+                }
+            }
+        }
         public override int AttributePointsAtStart => base.AttributePointsAtStart + 3;
     }
 }
