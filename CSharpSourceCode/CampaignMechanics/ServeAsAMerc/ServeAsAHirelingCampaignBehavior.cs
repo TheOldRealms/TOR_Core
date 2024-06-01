@@ -218,6 +218,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
            var activity3 = new TextObject("{HIRELINGACTIVITYTEXT3}");
            var activity4 = new TextObject("{HIRELINGACTIVITYTEXT4}");
            
+           campaignGameStarter.AddGameMenuOption("hireling_menu","","",null,null,false);
+           
            campaignGameStarter.AddGameMenuOption("hireling_menu","activity0_option",activity0.Value, null, args   => ToggleActivity(0, args));
            campaignGameStarter.AddGameMenuOption("hireling_menu","activity1_option",activity1.Value, null, args => ToggleActivity(1, args));
            campaignGameStarter.AddGameMenuOption("hireling_menu","activity2_option",activity2.Value, null,args => ToggleActivity(2, args));
@@ -448,7 +450,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         
         private void wait_on_tick(MenuCallbackArgs args, CampaignTime time)
         {
-            bool flag = _hirelingEnlistingLord == null || !_hirelingEnlisted;
+            bool flag = _hirelingEnlistingLord == null || _hirelingEnlistingLord.PartyBelongedTo==null || !_hirelingEnlisted;
             if (flag)
             {
                 while (Campaign.Current.CurrentMenuContext != null)
@@ -614,8 +616,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 
                 if (!_hirelingWaitMenuShown)
                 {
+                    
                     GameMenu.ActivateGameMenu("hireling_menu");
                     _hirelingWaitMenuShown = true;
+                    SetActivities();
+                    Campaign.Current.CurrentMenuContext.Refresh();
                 }
 
 

@@ -390,20 +390,6 @@ namespace TOR_Core.Extensions
             return false;
         }
 
-        public static bool IsHeroEnlisted(this Hero hero)
-        {
-            if (hero != Hero.MainHero) return false;
-            
-            var hirelingBehavior = Campaign.Current.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
-
-            if (hirelingBehavior != null)
-            {
-                return hirelingBehavior.IsEnlisted();
-            }
-
-            return false;
-        }
-
         public static List<string> GetAllCareerChoices(this Hero hero)
         {
             if (!hero.HasAnyCareer())
