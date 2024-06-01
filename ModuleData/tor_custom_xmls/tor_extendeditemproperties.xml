@@ -435,6 +435,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_we_head_hood_ranger_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_head_helm_phoenix_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_head_helm_whitelion_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_head_helm_spearmen_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_head_helmet_infantry_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -729,6 +738,15 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_ranger_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_shoulder_cape_phoenix_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_shoulder_cape_whitelion_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_shoulder_pauldrons_infantry_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_shoulder_pauldrons_infantry_001">
@@ -1123,6 +1141,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_ancient_treeman_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_body_armour_phoenix_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_body_armour_whitelion_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_body_armour_spearmen_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_infantry_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1390,6 +1417,15 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_bracers_gor_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_arm_bracers_phoenix_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_arm_bracers_whitelion_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_arm_bracers_infantry_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_arm_bracers_infantry_001">
@@ -1698,6 +1734,15 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_leg_legs_ancient_treeman_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_leg_boots_phoenix_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_leg_boots_whitelion_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_leg_boots_spearmen_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_legs_gor_001">
@@ -2046,6 +2091,12 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_weapon_sword_002">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_weapon_sword_001">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -2574,6 +2625,18 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_weapon_spear_004">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_weapon_spear_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_de_weapon_spear_002">
     <ItemTraits />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />

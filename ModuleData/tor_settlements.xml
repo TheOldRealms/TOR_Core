@@ -4728,7 +4728,7 @@
   </Settlement>
   <!-- Bretonnia -->
   <!-- Couronne -->
-  <Settlement id="town_CO1" name="{=Settlements.Settlement.name.town_CO1}Coronne" owner="Faction.couronne_clan_1" posX="981.31" posY="1225.16" culture="Culture.vlandia" gate_posX="974.014" gate_posY="1228.307" text="{=Settlements.Settlement.text.town_CO1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
+  <Settlement id="town_CO1" name="{=Settlements.Settlement.name.town_CO1}Couronne" owner="Faction.couronne_clan_1" posX="981.31" posY="1225.16" culture="Culture.vlandia" gate_posX="974.014" gate_posY="1228.307" text="{=Settlements.Settlement.text.town_CO1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
     <Components>
       <Town id="town_comp_CO1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -5933,7 +5933,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_PA2_1" name="{=Settlements.Settlement.name.village_PA2_1}Clemenceau" posX="1226.417" posY="941.058" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
+  <Settlement id="village_PA2_1" name="{=Settlements.Settlement.name.village_PA2_1}Clemenceau" posX="1226.417" posY="941.058" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_PA2_1}Clemenceau is a village located halfway between Grunere Castle and the Forest of Athel Loren.">
     <Components>
       <Village id="village_comp_PA2_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_PA2" bound="Settlement.town_PA2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -6818,7 +6818,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AQ2_2" name="{=Settlements.Settlement.name.village_AQ2_2}Pessac" posX="989.817" posY="925.341" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AQ2_2}Eilhart remains its mark on the map for one reason; the popularity of its vintage of white wine. Eilhart wine is one of the aquitaines best wines, valued for its crisp light flavours and its mild hangovers. Eilhart is a destination for riverboat cruises, where wealthy merchants and nobles from Altdorf often come up the river to taste the various local vintages and foods. Many of the people here are said to have bretonnian heritage, visitors often comment on the similar bone structure shared by many of the inhabitants.">
+  <Settlement id="village_AQ2_2" name="{=Settlements.Settlement.name.village_AQ2_2}Pessac" posX="989.817" posY="925.341" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_AQ2_2}Pessac remains its mark on the map for a reason; the popularity of its white wine vintage. Pessac wine is one of the best Aquitaine wines, valued for its light, crisp flavors and smooth undertows.">
     <Components>
       <Village id="village_comp_AQ2_2" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AQ2" bound="Settlement.town_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -6867,7 +6867,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_AQ1_2" name="{=Settlements.Settlement.name.castle_village_AQ1_2}Wainfleet" posX="913.525" posY="911.794" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ1_2}Perched on  the northern outskirts of Castle Libourne, the village of Wainfleet presents a clear break in societal norms compared to the rest of Aquitaine. Wainfleet is where the pesant Grail Knight Ser Geg makes his court, and where numerous peasants flock to to become his... 'Squights.'">
+  <Settlement id="castle_village_AQ1_2" name="{=Settlements.Settlement.name.castle_village_AQ1_2}Wainfleet" posX="913.525" posY="911.794" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ1_2}Perched on the northern outskirts of Castle Libourne, the village of Wainfleet presents a clear break in societal norms compared to the rest of Aquitaine. Wainfleet is where the pesant Grail Knight Ser Geg makes his court, and where numerous peasants flock to to become his... 'Squights.'">
     <Components>
       <Village id="castle_village_comp_AQ1_2" village_type="VillageType.swine_farm" hearth="200" trade_bound="Settlement.castle_AQ1" bound="Settlement.castle_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -6890,7 +6890,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AQ2_1" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Biarritz" posX="996.135" posY="857.921" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ2_1}Teufelfeuer is a rural village outside of Kemperbad. The village is truly only notable for being the scene where one hundred years ago the forces of the aquitaine Clashed with one of the largest hordes of Beastmen to emerge from the Reikwald Forest. The story goes that when the battle wizards through their magical fire towards the monstrosities, the trees around them burst into a devil’s fire with hues not natural to this world. The people here are proud of this story and often hawk the ‘relics’ of this historic battle.">
+  <Settlement id="castle_village_AQ2_1" name="{=Settlements.Settlement.name.castle_village_AQ2_2}Biarritz" posX="996.135" posY="857.921" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ2_1}Biarritz is a town south of Aquitaine Castle, near the border with Brionne.">
     <Components>
       <Village id="castle_village_comp_AQ2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.castle_AQ2" bound="Settlement.castle_AQ2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
