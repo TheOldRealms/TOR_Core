@@ -624,7 +624,7 @@
              short_name="{=!}Quenelles"
              title="{=!}Quenelles"
              ruler_title="{=!}Duke"
-             text="">
+             text="The people of Quenelles are fanatically dedicated to the complete destruction of Greenskins, particularly those who come down out of Massif Orcal to pillage their lands. Their questing knights are particularly renowned amongst the dwarfs, as many of them use their grail quest to venture into the mountains and badlands of the Old World. Despite this, the greenskins remain an ever present threat to the Dukedom, despite centuries of attempted extermination and colonisation of Massif Orcal. It remains a mystery as to why Quenelles suffers so much from the greenskins compared to their neighbours; some suspect that the descendents of Cuileux may have been cursed.">
         <relationships />
         <policies>
             <policy id="policy_senate" />
