@@ -2264,8 +2264,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_conscript_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -2273,8 +2272,7 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -2284,8 +2282,8 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_bleaksword_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -2293,8 +2291,8 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -2304,8 +2302,8 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_dreadspear_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -2313,8 +2311,26 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_002" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_002" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -2324,8 +2340,10 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_darkshard_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.crossbow_a" />
+      <Equipment slot="Item2" id="Item.bolt_b" />
+      <Equipment slot="Item3" id="Item.bolt_b" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -2333,8 +2351,10 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
+      <Equipment slot="Item1" id="Item.crossbow_a" />
+      <Equipment slot="Item2" id="Item.bolt_b" />
+      <Equipment slot="Item3" id="Item.bolt_b" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
@@ -2344,25 +2364,51 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_darkrider_template" culture="Culture.druchii">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
+      <Equipment slot="Item2" id="Item.tor_de_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
       <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-      <Equipment slot="Horse" id="Item.empire_horse_tournament" />
+      <Equipment slot="Horse" id="Item.vlandia_horse_tournament" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_de_weapon_shield_001" />
-      <Equipment slot="Item1" id="Item.cleaver_sword_t3" />
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_001" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
+      <Equipment slot="Item2" id="Item.tor_de_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
       <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
       <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
       <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
-      <Equipment slot="Horse" id="Item.empire_horse_tournament" />
+      <Equipment slot="Horse" id="Item.vlandia_horse_tournament" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_002" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
+      <Equipment slot="Item2" id="Item.tor_de_weapon_sword_001" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+      <Equipment slot="Horse" id="Item.vlandia_horse_tournament" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_de_weapon_spear_002" />
+      <Equipment slot="Item1" id="Item.tor_de_weapon_shield_001" />
+      <Equipment slot="Item2" id="Item.tor_de_weapon_sword_001" />
+      <Equipment slot="Head" id="Item.tor_de_head_helmet_infantry_001" />
+      <Equipment slot="Body" id="Item.tor_de_body_armor_infantry_001" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+      <Equipment slot="Horse" id="Item.vlandia_horse_tournament" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
