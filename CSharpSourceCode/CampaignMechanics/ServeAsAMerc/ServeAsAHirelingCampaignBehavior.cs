@@ -5,7 +5,6 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
-using TaleWorlds.CampaignSystem.GameState;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Overlay;
 using TaleWorlds.CampaignSystem.Party;
@@ -22,17 +21,19 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 {
     public class ServeAsAHirelingCampaignBehavior : CampaignBehaviorBase
     {
-        private int _manuallyFoughtBattles;
-        private const float _minimumServeDays = 20;
+ 
+        private const float MinimumServeDays = 20;
+        private const float RatioPartyAgainstEnemyStrength = 0.30f;
+        
         private float _durationInDays;
         private bool _hirelingEnlisted;
         private Hero _hirelingEnlistingLord;
         private bool _hirelingEnlistingLordIsAttacking;
         private bool _hirelingLordIsFightingWithoutPlayer;
-        private float _ratioPartyAgainstEnemyStrength = 0;
-        private readonly float _percentageOfBalanceRequiredToAvoidFight = 0.30f;
+       
         private bool debugSkipBattles = false;
         private bool _pauseModeToggle;
+        private int _manuallyFoughtBattles;
 
         private bool _startBattle;
         private bool _siegeBattleMissionStarted;
@@ -85,7 +86,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                     _currentActivityIndex = 0;
                 }
                 
-                if (_currentTrainedSkill != null)
+                if (_currentTrainedSkill != null && Hero.MainHero.IsHealthFull())
                 {
                     Hero.MainHero.AddSkillXp(_currentTrainedSkill,25);
                 }
@@ -156,17 +157,18 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private void LeaveEnlistingParty(string menuToReturn)
         {
-            var desertion = _durationInDays < _minimumServeDays;
-            var damage = new TextObject("");
+            var desertion = _durationInDays < MinimumServeDays;
+            var damage = new TextObject();
             if (desertion)
             {
                 damage = new TextObject("This will harm your relations with the entire faction.");
             }
-            TextObject titleText = new TextObject("{=FLT0000044}Abandon Party", null);
-            TextObject text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party? "+ damage, null);
-            TextObject affrimativeText = new TextObject("{=FLT0000047}Yes", null);
-            TextObject negativeText = new TextObject("{=FLT0000048}No", null);
-            InformationManager.ShowInquiry(new InquiryData(titleText.ToString(), text.ToString(), true, true, affrimativeText.ToString(), negativeText.ToString(), delegate ()
+
+            var titleText = new TextObject("{=FLT0000044}Abandon Party", null);
+            var text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party? " + damage, null);
+            var affirmativeText = new TextObject("{=FLT0000047}Yes", null);
+            var negativeText = new TextObject("{=FLT0000048}No", null);
+            InformationManager.ShowInquiry(new InquiryData(titleText.ToString(), text.ToString(), true, true, affirmativeText.ToString(), negativeText.ToString(), delegate ()
             {
                 if (desertion)
                 {
@@ -258,8 +260,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             InitializeDialogs(campaignGameStarter);
             TextObject infotext = new TextObject("{ENLISTING_TEXT}", null);
             
-        
-            
             campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
                     null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
             TextObject textObjectHirelingEnterSettlement = new TextObject("Enter the settlement", null);
@@ -268,8 +268,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", "Desert", delegate (MenuCallbackArgs args)
             {
                 TextObject text = new TextObject("{=FLT0000045}This will damage your reputation with the {FACTION}", null);
-                string faction_name = (_hirelingEnlistingLord != null) ? _hirelingEnlistingLord.MapFaction.Name.ToString() : "DATA CORRUPTION ERROR";
-                text.SetTextVariable("FACTION", faction_name);
+                string factionName = (_hirelingEnlistingLord != null) ? _hirelingEnlistingLord.MapFaction.Name.ToString() : "DATA CORRUPTION ERROR";
+                text.SetTextVariable("FACTION", factionName);
                 args.Tooltip = text;
                 args.optionLeaveType = GameMenuOption.LeaveType.Escape;
                 return true;
@@ -423,9 +423,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             
             var partyStrength = GetEnlistingLordEventStrengthRatio(lordEvent);
            
-            var combatstregthThreshold  = partyStrength > _ratioPartyAgainstEnemyStrength;// || ennemy is 30% of our balance;
-
-            _ratioPartyAgainstEnemyStrength = 0.3f;
+            var combatstregthThreshold  = partyStrength > RatioPartyAgainstEnemyStrength;// || ennemy is 30% of our balance;
+            
             return hitPointsHero < maxHitPointsHero * 0.2 || combatstregthThreshold; 
         }
         

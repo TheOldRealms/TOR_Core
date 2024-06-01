@@ -86,6 +86,19 @@ namespace TOR_Core.Models
             float basefoodConsumptionForRoster =  ((float)count / NumberOfMenOnMapToEatOneFood);
             return basefoodConsumptionForRoster * effectMagnitude;
         }
+
+
+        public override bool DoesPartyConsumeFood(MobileParty mobileParty)
+        {
+            var value =  base.DoesPartyConsumeFood(mobileParty);
+
+            if (MobileParty.MainParty== mobileParty && Hero.MainHero.IsEnlisted())
+            {
+                return false;
+            }
+
+            return value;
+        }
     }
     
   
