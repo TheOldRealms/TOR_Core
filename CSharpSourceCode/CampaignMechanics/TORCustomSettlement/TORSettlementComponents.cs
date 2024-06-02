@@ -133,7 +133,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
     public class SlaverCampComponent : BaseRaiderSpawnerComponent
     {
-        public override string BattleSceneName => "TOR_beastmen_herdstone_001";
+        public override string BattleSceneName => "TOR_slaver_bay_001";
 
         public override string RewardItemId => "tor_empire_weapon_sword_runefang_001";
 
