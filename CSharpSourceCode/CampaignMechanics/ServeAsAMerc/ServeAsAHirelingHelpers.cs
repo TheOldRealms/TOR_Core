@@ -121,6 +121,8 @@ public static class ServeAsAHirelingHelpers
             var career = Hero.MainHero.GetCareer();
             if (career == TORCareers.Necromancer || career == TORCareers.MinorVampire)
                 return false;
+
+            return true;
         }
         
         if (dialogPartner.Culture.StringId == TORConstants.Cultures.SYLVANIA)

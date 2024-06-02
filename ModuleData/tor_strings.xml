@@ -1088,13 +1088,15 @@
 	<string id="HirelingLordResult.empire" text="Pack your gear. The Empire needs you." />
     <string id="HirelingLordResult.vlandia" text="A welcome decision. There is no higher duty than serving the Land of the Lady" />
     <string id="HirelingLordResult.khuzait" text="Get out of my sight there is work to do!" />
-	<string id="HirelingLordResult.mousillon" text="Get out of my sight there is work to do!!" />
+	<string id="HirelingLordResult.mousillon" text="Get out of my sight there is work to do!" />
+
+	<string id="Hireling.PromptTitle" text="Serve as a Hireling." />
+	<string id="Hireling.PromptText" text="You are about to serve as a Hireling, following a Lord instead of leading your own warband. All your troops will be removed (your companions stay). Do you want to continue?" />
 
 	
 	
-	
 	<string id="Hireling.MainText" text="{=inky_duel_denied_before2_false_str} You are enlisted by {ENLISTING_LORD} {new_line} 
-	You are serving  for {ENLISTING_DURATION} days. You fought so far in {HIRELING_BATTLE_COUNT} battles. {ENLISTING_ARMY}." />
+	You are serving  for {ENLISTING_DURATION} days. You fought so far in {HIRELING_BATTLE_COUNT} battles. {ENLISTING_ARMY}" />
 	
 	<string id="Hireling.PauseTime" text="Pause on entering the next settlement: {PAUSE_ONOFF}" />
 		

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Helpers;
@@ -15,6 +16,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -101,7 +103,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private void DailyRenownGain()
         {
-            var gain = 3;
+            var gain = 1;
             
             var clanTier = Hero.MainHero.Clan.Tier;
 
@@ -201,27 +203,37 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private void InitializeDialogs(CampaignGameStarter campaignGameStarter)
         {
-            var explainText = new TextObject("HIRELING_EXPLAIN_TEXT");
-            var positiveDecisionText = new TextObject("HIRELING_DECISION_TEXT");
+            var explainText = new TextObject("{HIRELING_EXPLAIN_TEXT}");
+            var positiveDecisionText = new TextObject("{HIRELING_DECISION_TEXT}");
             
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_explain", "I am hereby offering my sword.", ServeAsAHirelingHelpers.HirelingServiceConditions, null);
             campaignGameStarter.AddDialogLine("payedsword_explain", "payedsword_explain", "hireling_decide_player", explainText.Value, null, null, 200, null);
-            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "hireling_prompt", "I accept my Lord.", ServeAsAHirelingHelpers.HirelingServiceConditions, StartEnlistPrompt);
+            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "hireling_prompt", "I accept my Lord.", ServeAsAHirelingHelpers.HirelingServiceConditions, () => DisplayPrompt(EnlistPlayer));
             
-            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "payedsword_explain", "I need to think about this", ServeAsAHirelingHelpers.HirelingServiceConditions, EnlistPlayer);
+            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "lord_pretalk", "I need to think about this", null, null);
             
-            campaignGameStarter.AddDialogLine("hireling_prompt", "hireling_prompt", "black_grail_player_ready", "...", null, null);
+            campaignGameStarter.AddDialogLine("hireling_prompt", "hireling_prompt", "hireling_decision", "...", null, null);
             
-            campaignGameStarter.AddPlayerLine("hireling_decision", "hireling_decision", "lord_talk_speak_diplomacy_2", "I need to think about this", () => enlistInquiryDeclined, null);
+            campaignGameStarter.AddPlayerLine("hireling_decision", "hireling_decision", "lord_pretalk", "I need to think about this", () => enlistInquiryDeclined, null);
             
             
             campaignGameStarter.AddDialogLine("hireling_decision", "hireling_decision", "end", positiveDecisionText.Value, null, null);
 
         }
-
-        void StartEnlistPrompt()
+        
+        private void DisplayPrompt(Action enlistPlayer)
         {
-            
+            var title = GameTexts.FindText("Hireling", "PromptTitle");
+            var explaination = GameTexts.FindText("Hireling", "PromptText");
+            enlistInquiryDeclined = false;
+            var inquiry = new InquiryData(title.ToString(),
+                explaination.ToString(),
+                true, 
+                true, 
+                "Accept", "Decline",
+                enlistPlayer,
+                () => enlistInquiryDeclined=true);
+            InformationManager.ShowInquiry(inquiry);
         }
 
         private void SetupButtonTexts(CampaignGameStarter campaignGameStarter)
