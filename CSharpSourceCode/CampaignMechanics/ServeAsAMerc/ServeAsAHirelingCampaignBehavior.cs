@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Helpers;
+using Messages.FromLobbyServer.ToClient;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
@@ -13,6 +14,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -227,6 +229,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
            campaignGameStarter.AddGameMenuOption("hireling_menu","activity4_option",activity4.Value, null, args => ToggleActivity(4, args));
         }
 
+
         private void SetActivities()
         {
             var career = Hero.MainHero.GetCareer();
@@ -332,8 +335,16 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                         }
                         else
                         {
+
+                            var eventparty = _hirelingEnlistingLord.PartyBelongedTo;
+                            if (_hirelingEnlistingLord.PartyBelongedTo.Army != null && _hirelingEnlistingLord.PartyBelongedTo.Army.LeaderParty != eventparty)
+                            {
+                                eventparty = _hirelingEnlistingLord.PartyBelongedTo.Army.LeaderParty;
+                            }
                             TORCommon.Say("defend!");
-                            StartBattleAction.Apply(_hirelingEnlistingLord.PartyBelongedTo.MapEvent.AttackerSide.LeaderParty, PartyBase.MainParty);
+                            
+                            StartBattleAction.Apply( PartyBase.MainParty,eventparty.MapEvent.AttackerSide.LeaderParty); //changing the direction fixed the sole defender bug for the player.
+                                                                                                                        //It seems the defense has in joining no meaning
                         }
                         _startBattle = true;
                     }
@@ -358,6 +369,18 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
                }
                , false, 4, false);
+        }
+
+        private void ApplyStartBattleDelayed(float tick)
+        {
+            if (!_hirelingEnlisted) return;
+            if(!_siegeBattleMissionStarted) return;
+            if(MobileParty.MainParty==null) return;
+            
+            if (_hirelingEnlistingLord.PartyBelongedTo == null || _hirelingEnlistingLord.PartyBelongedTo.MapEvent.StringId == null) return;
+            var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
+            StartBattleAction.Apply( mapEvent.AttackerSide.LeaderParty,PartyBase.MainParty);
+            Game.Current.AfterTick -= ApplyStartBattleDelayed;  
         }
 
         private void PauseModeToggle(MenuCallbackArgs args)
@@ -594,18 +617,19 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         // ON TICKS HANDLERS
         private void OnTick(float dt)
         {
-            if (_hirelingLordIsFightingWithoutPlayer)
-            {
-                if (!MobileParty.MainParty.ShouldBeIgnored)
-                {
-                    // This part has not been tested, but it should work.
-                    MobileParty.MainParty.IgnoreForHours(1);
-                }
-
-            }
+            
 
             if (_hirelingEnlisted && _hirelingEnlistingLord != null)
             {
+                
+                if (_hirelingLordIsFightingWithoutPlayer || _hirelingEnlistingLord.PartyBelongedTo?.BesiegerCamp!=null)
+                {
+                    if (!MobileParty.MainParty.ShouldBeIgnored)
+                    {
+                        // This part has not been tested, but it should work.
+                        MobileParty.MainParty.IgnoreForHours(1);
+                    }
+                }
                 
                 var menu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
                 _durationInDays = Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;

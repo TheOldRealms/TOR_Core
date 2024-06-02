@@ -49,10 +49,11 @@ namespace TOR_Core.Models
 
             if (buyerHero.IsEnlisted())
             {
-                return 0;
+                return -1;
             }
             
             return value;
         }
+        
     }
 }
