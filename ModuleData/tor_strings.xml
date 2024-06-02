@@ -1078,8 +1078,23 @@
 	
 	
 	<!--Serve as a Hireling!-->
+	<string id="HirelingLordExplain.default" text="A hireling? Surely I have use for you. Just note that I am not accepting any additional troops." />
+	<string id="HirelingLordExplain.empire" text="The Empire needs fresh blood, surely I have use for you. Just note that I am not accepting any additional troops." />
+	<string id="HirelingLordExplain.vlandia" text="Serving the country in the knightly Service is the highest duty among Bretones. Just note that I am not accepting any additional troops." />
+	<string id="HirelingLordExplain.khuzait" text="Arrr Freshblood. Sure I have use for you. Just note you will serve me and I tolerate no further sheep in my warband." />
+	<string id="HirelingLordExplain.mousillion" text="A hired sword? How convienient. Just note you are serving me, and I have no use for more peasants." />
+	
+	<string id="HirelingLordResult.default" text="Pack your gear. I expect you in my rows Immediately" />
+	<string id="HirelingLordResult.empire" text="Pack your gear. The Empire needs you." />
+    <string id="HirelingLordResult.vlandia" text="A welcome decision. There is no higher duty than serving the Land of the Lady" />
+    <string id="HirelingLordResult.khuzait" text="Get out of my sight there is work to do!" />
+	<string id="HirelingLordResult.mousillon" text="Get out of my sight there is work to do!!" />
+
+	
+	
+	
 	<string id="Hireling.MainText" text="{=inky_duel_denied_before2_false_str} You are enlisted by {ENLISTING_LORD} {new_line} 
-	You are serving  for {ENLISTING_DURATION} days. {ENLISTING_ARMY}" />
+	You are serving  for {ENLISTING_DURATION} days. You fought so far in {HIRELING_BATTLE_COUNT} battles. {ENLISTING_ARMY}." />
 	
 	<string id="Hireling.PauseTime" text="Pause on entering the next settlement: {PAUSE_ONOFF}" />
 		

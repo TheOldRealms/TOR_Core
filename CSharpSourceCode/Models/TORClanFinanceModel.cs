@@ -29,7 +29,7 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.IsEnlisted())
                 {
-                    ServeAsAHirelingScripts.AddHirelingWage(Hero.MainHero, ref num);
+                    ServeAsAHirelingHelpers.AddHirelingWage(Hero.MainHero, ref num);
                 }
             }
             
@@ -53,7 +53,7 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.IsEnlisted())
                 {
-                    ServeAsAHirelingScripts.AddHirelingWage(Hero.MainHero, ref income);
+                    ServeAsAHirelingHelpers.AddHirelingWage(Hero.MainHero, ref income);
                 }
             }
             

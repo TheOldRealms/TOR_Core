@@ -46,6 +46,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private SkillObject _currentTrainedSkill;
         private int _currentActivityIndex;
+        
+        
+        private bool enlistInquiryDeclined;
 
 
         public float DurationInDays
@@ -198,8 +201,27 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private void InitializeDialogs(CampaignGameStarter campaignGameStarter)
         {
-            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword", "I am hereby offering my sword.", null, EnlistPlayer);
-            campaignGameStarter.AddDialogLine("payedsword", "payedsword", "end", "As you wish.", null, null, 200, null);
+            var explainText = new TextObject("HIRELING_EXPLAIN_TEXT");
+            var positiveDecisionText = new TextObject("HIRELING_DECISION_TEXT");
+            
+            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_explain", "I am hereby offering my sword.", ServeAsAHirelingHelpers.HirelingServiceConditions, null);
+            campaignGameStarter.AddDialogLine("payedsword_explain", "payedsword_explain", "hireling_decide_player", explainText.Value, null, null, 200, null);
+            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "hireling_prompt", "I accept my Lord.", ServeAsAHirelingHelpers.HirelingServiceConditions, StartEnlistPrompt);
+            
+            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "payedsword_explain", "I need to think about this", ServeAsAHirelingHelpers.HirelingServiceConditions, EnlistPlayer);
+            
+            campaignGameStarter.AddDialogLine("hireling_prompt", "hireling_prompt", "black_grail_player_ready", "...", null, null);
+            
+            campaignGameStarter.AddPlayerLine("hireling_decision", "hireling_decision", "lord_talk_speak_diplomacy_2", "I need to think about this", () => enlistInquiryDeclined, null);
+            
+            
+            campaignGameStarter.AddDialogLine("hireling_decision", "hireling_decision", "end", positiveDecisionText.Value, null, null);
+
+        }
+
+        void StartEnlistPrompt()
+        {
+            
         }
 
         private void SetupButtonTexts(CampaignGameStarter campaignGameStarter)
@@ -256,8 +278,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
            
             _currentTrainedSkill = activities[i];
             args.MenuContext.Refresh();
-
-            
         }
 
         private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
@@ -371,18 +391,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                , false, 4, false);
         }
 
-        private void ApplyStartBattleDelayed(float tick)
-        {
-            if (!_hirelingEnlisted) return;
-            if(!_siegeBattleMissionStarted) return;
-            if(MobileParty.MainParty==null) return;
-            
-            if (_hirelingEnlistingLord.PartyBelongedTo == null || _hirelingEnlistingLord.PartyBelongedTo.MapEvent.StringId == null) return;
-            var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
-            StartBattleAction.Apply( mapEvent.AttackerSide.LeaderParty,PartyBase.MainParty);
-            Game.Current.AfterTick -= ApplyStartBattleDelayed;  
-        }
-
         private void PauseModeToggle(MenuCallbackArgs args)
         {
             _pauseModeToggle = !_pauseModeToggle;
@@ -490,6 +498,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 
                 var days = $"{_durationInDays:0.0}";
                 text2.SetTextVariable("ENLISTING_DURATION", days);
+                text2.SetTextVariable("HIRELING_BATTLE_COUNT", _manuallyFoughtBattles);
+                
                 var armyInfo = "";
                 if(_hirelingEnlistingLord.PartyBelongedTo.Army!=null)
                 {
@@ -549,13 +559,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private void OnPartyLeavesSettlement(MobileParty mobileParty, Settlement settlement)
         {
-
             if (!_hirelingEnlisted || _hirelingEnlistingLord == null) return;
            
             if (_hirelingEnlistingLord.PartyBelongedTo == mobileParty || (MobileParty.MainParty == mobileParty && mobileParty.CurrentSettlement == null))
             {
-
-
                 while (Campaign.Current.CurrentMenuContext != null)
                     GameMenu.ExitToLast();
                 GameMenu.ActivateGameMenu("hireling_menu");
@@ -634,9 +641,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 var menu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
                 _durationInDays = Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;
                 menu.RunOnTick(Campaign.Current.CurrentMenuContext,dt);
-
-
-             
                 
                 if (!_hirelingWaitMenuShown)
                 {
@@ -646,8 +650,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                     SetActivities();
                     Campaign.Current.CurrentMenuContext.Refresh();
                 }
-
-
+                
                 HidePlayerParty();
                 PartyBase.MainParty.MobileParty.Position2D = _hirelingEnlistingLord.PartyBelongedTo.Position2D;
                 if (_hirelingEnlistingLord.PartyBelongedTo.MapEvent != null && MobileParty.MainParty.MapEvent == null)
@@ -677,10 +680,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 
             }
         }
-
-
+        
         // ACTIONS
-
         private void UndoDiplomacy()
         {
             ChangeKingdomAction.ApplyByLeaveKingdomAsMercenary(Hero.MainHero.Clan, false);
@@ -695,7 +696,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             _hirelingEnlistingLord = CharacterObject.OneToOneConversationCharacter.HeroObject;
             ChangeKingdomAction.ApplyByJoinFactionAsMercenary(Hero.MainHero.Clan, _hirelingEnlistingLord.Clan.Kingdom, 25, false);
             MBTextManager.SetTextVariable("ENLISTINGLORDNAME", _hirelingEnlistingLord.EncyclopediaLinkWithName);
-
             
             while (Campaign.Current.CurrentMenuContext != null)
                 GameMenu.ExitToLast();
@@ -705,8 +705,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
              _entryServiceTimeStamp = Campaign.Current.CampaignStartTime.ElapsedDaysUntilNow;
             GameMenu.ActivateGameMenu("hireling_menu");
-
-
         }
 
         private void ShowPlayerParty()

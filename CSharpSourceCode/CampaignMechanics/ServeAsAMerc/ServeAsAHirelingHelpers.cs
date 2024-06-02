@@ -1,12 +1,14 @@
 ﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.ServeAsAMerc;
 
-public static class ServeAsAHirelingScripts
+public static class ServeAsAHirelingHelpers
 {
     public static void AddHirelingCustomResourceBenefits(Hero hero, ref ExplainedNumber number)
     {
@@ -83,5 +85,73 @@ public static class ServeAsAHirelingScripts
         wage.AddFactor(multiplier);
         
         number.Add(wage.ResultNumber ,new TextObject("Hireling Wage"));
+    }
+
+
+
+
+    public static bool HirelingServiceConditions()
+    {
+        var dialogPartner = Campaign.Current.ConversationManager.OneToOneConversationCharacter;
+        
+
+        if (GameTexts.TryGetText("HirelingLordExplain", out var explainText, dialogPartner.Culture.StringId))
+        {
+            GameTexts.SetVariable("HIRELING_EXPLAIN_TEXT",explainText);
+        }
+        else
+        {
+            var text= GameTexts.FindText("HirelingLordExplain", "default");
+            GameTexts.SetVariable("HIRELING_EXPLAIN_TEXT",text);
+        }
+        
+        if (GameTexts.TryGetText("HirelingLordResult", out var resultText, dialogPartner.Culture.StringId))
+        {
+            GameTexts.SetVariable("HIRELING_DECISION_TEXT",resultText);
+        }
+        else
+        {
+            var text= GameTexts.FindText("HirelingLordResult", "default");
+            GameTexts.SetVariable("HIRELING_DECISION_TEXT",text);
+        }
+        
+        
+        if (dialogPartner.Culture.StringId == TORConstants.Cultures.EMPIRE)
+        {
+            var career = Hero.MainHero.GetCareer();
+            if (career == TORCareers.Necromancer || career == TORCareers.MinorVampire)
+                return false;
+        }
+        
+        if (dialogPartner.Culture.StringId == TORConstants.Cultures.SYLVANIA)
+        {
+            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.BRETONNIA ||
+                Hero.MainHero.Culture.StringId != TORConstants.Cultures.MOUSILLON || 
+                Hero.MainHero.Culture.StringId != TORConstants.Cultures.SYLVANIA || 
+                Hero.MainHero.Culture.StringId != TORConstants.Cultures.EMPIRE)
+                return false;
+            
+            var career = Hero.MainHero.GetCareer();
+            if (career == TORCareers.GrailKnight || career == TORCareers.GrailDamsel)
+                return false;
+            
+            if (career == TORCareers.WitchHunter || 
+                career == TORCareers.WarriorPriest||
+                career == TORCareers.WarriorPriestUlric||
+                career == TORCareers.ImperialMagister)
+                return false;
+
+            return true;
+        }
+
+        if (dialogPartner.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+        {
+            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.BRETONNIA)
+                return false;
+            
+        }
+        
+        
+        return false;
     }
 }
