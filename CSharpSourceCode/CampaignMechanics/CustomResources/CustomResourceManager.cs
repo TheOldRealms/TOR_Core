@@ -195,10 +195,11 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     }
                 }
                 
-                if (Hero.MainHero.Culture.StringId == "empire")
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE)
                 {
+                    
                     var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f,
-                        x => x.IsTown && x.Culture.StringId=="empire");
+                        x => x.IsTown && x.Culture.StringId==TORConstants.Cultures.EMPIRE);
 
                     if (settlement != null)
                     {
