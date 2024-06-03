@@ -15,11 +15,10 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.CampaignMechanics.ServeAsAMerc
+namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 {
     public class ServeAsAHirelingCampaignBehavior : CampaignBehaviorBase
     {

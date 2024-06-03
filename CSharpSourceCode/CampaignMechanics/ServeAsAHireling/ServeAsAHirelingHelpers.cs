@@ -1,7 +1,6 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.ServeAsAMerc;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -60,20 +59,20 @@ public static class ServeAsAHirelingHelpers
         var battles = hirelingCampaignBehavior.ManuallyFoughtBattles;
         var wage = new ExplainedNumber(25 * hero.Level);
 
-        var cultureID = hero.Culture.StringId;
+        var cultureId = hero.Culture.StringId;
 
-        if (cultureID == TORConstants.Cultures.EMPIRE || cultureID == TORConstants.Cultures.SYLVANIA)
+        if (cultureId == TORConstants.Cultures.EMPIRE || cultureId == TORConstants.Cultures.SYLVANIA)
         {
             wage.AddFactor((0.1f * battles));
             wage.AddFactor(-0.5f+duration/20);
 
-            if (cultureID == TORConstants.Cultures.SYLVANIA)
+            if (cultureId == TORConstants.Cultures.SYLVANIA)
             {
                 wage.AddFactor(0.2f);   //vampires pay better ;)
             }
         }
 
-        if (cultureID == TORConstants.Cultures.BRETONNIA)
+        if (cultureId == TORConstants.Cultures.BRETONNIA)
         {
             wage.AddFactor((0.1f * battles));       //payment in bretonnia is bad
             var malus = 3 - ((int)hero.GetChivalryLevel());     //from level 3 on you increase your wage

@@ -4,7 +4,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
-using TOR_Core.CampaignMechanics.ServeAsAMerc;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;

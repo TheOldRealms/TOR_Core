@@ -2,7 +2,6 @@
 using SandBox.ViewModelCollection.Nameplate;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
-using TOR_Core.CampaignMechanics.ServeAsAMerc;
 
 namespace TOR_Core.Extensions.UI
 {
