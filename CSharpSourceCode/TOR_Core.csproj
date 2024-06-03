@@ -504,6 +504,7 @@
     <Compile Include="CampaignMechanics\Religion\ReligionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionEncyclopediaPage.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionObject.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAMerc\ServeAsAHirelingActivities.cs" />
     <Compile Include="CampaignMechanics\ServeAsAMerc\ServeAsAHirelingHelpers.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />

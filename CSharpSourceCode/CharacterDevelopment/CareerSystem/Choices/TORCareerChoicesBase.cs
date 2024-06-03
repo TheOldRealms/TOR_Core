@@ -82,11 +82,5 @@ namespace TOR_Core.CampaignMechanics.Choices
         {
             
         }
-        
-        
-        public virtual List<SkillObject> EnlistedActivities()
-        {
-            return new List<SkillObject>();
-        }
     }
 }

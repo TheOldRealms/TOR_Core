@@ -5,6 +5,7 @@ using Helpers;
 using Messages.FromLobbyServer.ToClient;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -25,7 +26,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 {
     public class ServeAsAHirelingCampaignBehavior : CampaignBehaviorBase
     {
- 
+        private ServeAsAHirelingActivities _activities;
         private const float MinimumServeDays = 20;
         private const float RatioPartyAgainstEnemyStrength = 0.30f;
         
@@ -71,7 +72,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         public override void RegisterEvents()
         {
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, ServeAsAMercDialog);
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, Initialize);
             CampaignEvents.TickEvent.AddNonSerializedListener(this, OnTick);
             CampaignEvents.SettlementEntered.AddNonSerializedListener(this, EnlistingLordPartyEntersSettlement);
             CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, OnPartyLeavesSettlement);
@@ -81,6 +82,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             CampaignEvents.GameMenuOptionSelectedEvent.AddNonSerializedListener(this, ContinueTimeAfterLeftSettlementWhileEnlisted);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this,DailyRenownGain);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this,SkillGain);
+            CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this,LeaveKingdomEvent);
+        }
+
+        private void LeaveKingdomEvent(Clan clan, Kingdom kingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail arg4, bool arg5)
+        {
+            if (clan == Clan.PlayerClan&& IsEnlisted())
+            {
+                LeaveLordPartyAction();
+            }
         }
 
         private void SkillGain()
@@ -89,7 +99,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             {
                 if (_currentTrainedSkill == null)
                 {
-                    _currentTrainedSkill = CareerHelper.GetHirelingActivities()[0];
+                    _currentTrainedSkill = _activities.GetHirelingActivities(Hero.MainHero.GetCareer())[0];
                     _currentActivityIndex = 0;
                 }
                 
@@ -203,10 +213,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
         private void InitializeDialogs(CampaignGameStarter campaignGameStarter)
         {
+            var quitText = new TextObject("{HIRELING_QUIT_TEXT}");
             var explainText = new TextObject("{HIRELING_EXPLAIN_TEXT}");
             var positiveDecisionText = new TextObject("{HIRELING_DECISION_TEXT}");
             
-            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_explain", "I am hereby offering my sword.", ServeAsAHirelingHelpers.HirelingServiceConditions, null);
+            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_quit", "I would like to quit my service.", QuitCondition, LeaveLordPartyAction);
+            campaignGameStarter.AddDialogLine("payedsword_quit", "payedsword_quit", "end", positiveDecisionText.Value, null, null);
+
+            
+            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_explain", "I am hereby offering my sword.", () => !IsEnlisted() && ServeAsAHirelingHelpers.HirelingServiceConditions(), null);
             campaignGameStarter.AddDialogLine("payedsword_explain", "payedsword_explain", "hireling_decide_player", explainText.Value, null, null, 200, null);
             campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "hireling_prompt", "I accept my Lord.", ServeAsAHirelingHelpers.HirelingServiceConditions, () => DisplayPrompt(EnlistPlayer));
             
@@ -219,6 +234,17 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             
             campaignGameStarter.AddDialogLine("hireling_decision", "hireling_decision", "end", positiveDecisionText.Value, null, null);
 
+        }
+
+        private bool QuitCondition()
+        {
+            var culture = Campaign.Current.ConversationManager.OneToOneConversationCharacter.Culture.StringId;
+            if (GameTexts.TryGetText("HirelingLordQuit", out var text, culture))
+            {
+                GameTexts.SetVariable("HIRELING_QUIT_TEXT",text.Value);
+            }
+
+            return IsEnlisted() && _durationInDays > MinimumServeDays;
         }
         
         private void DisplayPrompt(Action enlistPlayer)
@@ -236,31 +262,83 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             InformationManager.ShowInquiry(inquiry);
         }
 
-        private void SetupButtonTexts(CampaignGameStarter campaignGameStarter)
+        private void SetupHirelingMenu(CampaignGameStarter campaignGameStarter)
         {
+            TextObject infotext = new TextObject("{ENLISTING_TEXT}", null);
+            
+            campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
+                null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
+            
+            TextObject textObjectHirelingEnterSettlement = new TextObject("Enter the settlement", null);
+            campaignGameStarter.AddGameMenuOption("hireling_menu", "enter_town", textObjectHirelingEnterSettlement.ToString(), delegate (MenuCallbackArgs args)
+            {
+                if (!_hirelingEnlisted)
+                {
+                    return false;
+                }
+                args.optionLeaveType = GameMenuOption.LeaveType.Continue;
+                
+                return _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement != null;
+            }, delegate (MenuCallbackArgs args)
+            {
+                while (Campaign.Current.CurrentMenuContext != null)
+                {
+                    GameMenu.ExitToLast();
+                }
+               
+                EncounterManager.StartSettlementEncounter(MobileParty.MainParty.Party.MobileParty, _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement);
+                EnterSettlementAction.ApplyForParty(MobileParty.MainParty.Party.MobileParty, _hirelingEnlistingLord.CurrentSettlement);
+            }, true, -1, false, null);
+            
+            
+            
             var text = new TextObject("{PAUSE_ONOFF_TEXT}");
             campaignGameStarter.AddGameMenuOption("hireling_menu","pause_time_option",text.Value, null, new GameMenuOption.OnConsequenceDelegate(PauseModeToggle));
-            
             TextObject pauseText = GameTexts.FindText("Hireling","PauseTime");
-            
-            
             pauseText.SetTextVariable("PAUSE_ONOFF", "off");
-
            GameTexts.SetVariable("PAUSE_ONOFF_TEXT", pauseText);
-
+           
+           TextObject lordTalkText = GameTexts.FindText("Hireling","TalkToLord");
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity0_option",lordTalkText.Value, null, args   => StartDialog());
+           
+           campaignGameStarter.AddGameMenuOption("hireling_menu","empty","", args => { args.IsEnabled = false; return true;
+           },null,false);
+           
            var activity0 = new TextObject("{HIRELINGACTIVITYTEXT0}");
            var activity1 = new TextObject("{HIRELINGACTIVITYTEXT1}");
            var activity2 = new TextObject("{HIRELINGACTIVITYTEXT2}");
            var activity3 = new TextObject("{HIRELINGACTIVITYTEXT3}");
            var activity4 = new TextObject("{HIRELINGACTIVITYTEXT4}");
-           
-           campaignGameStarter.AddGameMenuOption("hireling_menu","","",null,null,false);
-           
            campaignGameStarter.AddGameMenuOption("hireling_menu","activity0_option",activity0.Value, null, args   => ToggleActivity(0, args));
            campaignGameStarter.AddGameMenuOption("hireling_menu","activity1_option",activity1.Value, null, args => ToggleActivity(1, args));
            campaignGameStarter.AddGameMenuOption("hireling_menu","activity2_option",activity2.Value, null,args => ToggleActivity(2, args));
            campaignGameStarter.AddGameMenuOption("hireling_menu","activity3_option",activity3.Value, null, args => ToggleActivity(3, args ));
            campaignGameStarter.AddGameMenuOption("hireling_menu","activity4_option",activity4.Value, null, args => ToggleActivity(4, args));
+           
+           campaignGameStarter.AddGameMenuOption("hireling_menu","empty","", args => { args.IsEnabled = false; return true;
+           },null,false);
+           
+           campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", "Desert", delegate (MenuCallbackArgs args)
+           {
+               TextObject text = new TextObject("{=FLT0000045}This will damage your reputation with the {FACTION}", null);
+               string factionName = (_hirelingEnlistingLord != null) ? _hirelingEnlistingLord.MapFaction.Name.ToString() : "DATA CORRUPTION ERROR";
+               text.SetTextVariable("FACTION", factionName);
+               args.Tooltip = text;
+               args.optionLeaveType = GameMenuOption.LeaveType.Escape;
+               return true;
+           }, delegate (MenuCallbackArgs args)
+           {
+               LeaveEnlistingParty("hireling_menu");
+           }, true, -1, false, null);
+        }
+        
+
+        private void StartDialog()
+        {
+            ConversationCharacterData characterData = new ConversationCharacterData(_hirelingEnlistingLord.CharacterObject, _hirelingEnlistingLord.PartyBelongedTo.Party);
+            ConversationCharacterData playerData = new ConversationCharacterData(Hero.MainHero.CharacterObject,Hero.MainHero.PartyBelongedTo.Party);
+            Campaign.Current.CurrentConversationContext = ConversationContext.Default;
+            Campaign.Current.ConversationManager.OpenMapConversation(playerData,characterData);
         }
 
 
@@ -285,56 +363,20 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             var career = Hero.MainHero.GetCareer();
             _currentActivityIndex = i;
             SetActivities();
-            
-            var activities = CareerHelper.GetHirelingActivities();
+
+            var activities = _activities.GetHirelingActivities(career);
            
             _currentTrainedSkill = activities[i];
             args.MenuContext.Refresh();
         }
 
-        private void ServeAsAMercDialog(CampaignGameStarter campaignGameStarter)
+        private void Initialize(CampaignGameStarter campaignGameStarter)
         {
+            _activities = new ServeAsAHirelingActivities();
+            
             InitializeDialogs(campaignGameStarter);
-            TextObject infotext = new TextObject("{ENLISTING_TEXT}", null);
             
-            campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), new OnConditionDelegate(this.wait_on_condition),
-                    null, new OnTickDelegate(this.wait_on_tick), GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 0f, GameMenu.MenuFlags.None, null);
-            TextObject textObjectHirelingEnterSettlement = new TextObject("Enter the settlement", null);
-
-
-            campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", "Desert", delegate (MenuCallbackArgs args)
-            {
-                TextObject text = new TextObject("{=FLT0000045}This will damage your reputation with the {FACTION}", null);
-                string factionName = (_hirelingEnlistingLord != null) ? _hirelingEnlistingLord.MapFaction.Name.ToString() : "DATA CORRUPTION ERROR";
-                text.SetTextVariable("FACTION", factionName);
-                args.Tooltip = text;
-                args.optionLeaveType = GameMenuOption.LeaveType.Escape;
-                return true;
-            }, delegate (MenuCallbackArgs args)
-            {
-                LeaveEnlistingParty("hireling_menu");
-            }, true, -1, false, null);
-
-            campaignGameStarter.AddGameMenuOption("hireling_menu", "enter_town", textObjectHirelingEnterSettlement.ToString(), delegate (MenuCallbackArgs args)
-            {
-
-                args.optionLeaveType = GameMenuOption.LeaveType.Continue;
-           
-
-                return _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement != null;
-            }, delegate (MenuCallbackArgs args)
-            {
-                while (Campaign.Current.CurrentMenuContext != null)
-                {
-                    GameMenu.ExitToLast();
-                }
-               
-                EncounterManager.StartSettlementEncounter(MobileParty.MainParty.Party.MobileParty, _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement);
-                EnterSettlementAction.ApplyForParty(MobileParty.MainParty.Party.MobileParty, _hirelingEnlistingLord.CurrentSettlement);
-            }, true, -1, false, null);
-            
-            
-            SetupButtonTexts(campaignGameStarter);
+            SetupHirelingMenu(campaignGameStarter);
             
             
             TextObject hirelingBattleTextMenu = new TextObject("This is a test of Hireling BattleMenu", null);
@@ -638,7 +680,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
             
 
-            if (_hirelingEnlisted && _hirelingEnlistingLord != null)
+            if (_hirelingEnlisted && _hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo!=null)
             {
                 
                 if (_hirelingLordIsFightingWithoutPlayer || _hirelingEnlistingLord.PartyBelongedTo?.BesiegerCamp!=null)

@@ -151,6 +151,7 @@ public static class ServeAsAHirelingHelpers
             if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.BRETONNIA)
                 return false;
             
+            return true;
         }
         
         
