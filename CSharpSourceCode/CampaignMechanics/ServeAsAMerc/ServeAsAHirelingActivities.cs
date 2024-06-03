@@ -9,7 +9,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc;
 
 public class ServeAsAHirelingActivities
 {
-    private Dictionary<CareerObject, List<SkillObject>> _activitySets;
+    private readonly Dictionary<CareerObject, List<SkillObject>> _activitySets;
     public ServeAsAHirelingActivities()
     {
         _activitySets = new Dictionary<CareerObject, List<SkillObject>>();

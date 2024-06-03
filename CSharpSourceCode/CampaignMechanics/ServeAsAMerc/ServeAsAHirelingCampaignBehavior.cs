@@ -32,7 +32,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private bool _hirelingEnlistingLordIsAttacking;
         private bool _hirelingLordIsFightingWithoutPlayer;
        
-        private bool debugSkipBattles = false;
+        private readonly bool _debugSkipBattles = false;
         private bool _pauseModeToggle;
         private int _manuallyFoughtBattles;
 
@@ -47,7 +47,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private int _currentActivityIndex;
         
         
-        private bool enlistInquiryDeclined;
+        private bool _enlistInquiryDeclined;
         
         public float DurationInDays
         {
@@ -151,13 +151,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         private void BattleMenuOpened(MenuCallbackArgs obj)
         {
 
-            if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && !debugSkipBattles)
+            if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && !_debugSkipBattles)
             {
                 _startBattle = false;
                 
                 MenuHelper.EncounterAttackConsequence(obj);
             }
-            if (debugSkipBattles && _hirelingEnlistingLordIsAttacking)
+            if (_debugSkipBattles && _hirelingEnlistingLordIsAttacking)
             {
                 _startBattle = false;
             }
@@ -185,7 +185,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             var titleText = new TextObject("{=FLT0000044}Abandon Party");
             var text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party? {HIRELING_DESERT_TEXT}");
             var affirmativeText = new TextObject("{=FLT0000047}Yes");
-            var negativeText = new TextObject("{=FLT0000048}No", null);
+            var negativeText = new TextObject("{=FLT0000048}No");
             InformationManager.ShowInquiry(new InquiryData(titleText.ToString(), text.ToString(), true, true, affirmativeText.ToString(), negativeText.ToString(), delegate ()
             {
                 if (desertion)
@@ -222,7 +222,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "hireling_prompt", "I accept my Lord.", ServeAsAHirelingHelpers.HirelingServiceConditions, () => DisplayPrompt(EnlistPlayer));
             campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "lord_pretalk", "I need to think about this", null, null);
             campaignGameStarter.AddDialogLine("hireling_prompt", "hireling_prompt", "hireling_decision", "...", null, null);
-            campaignGameStarter.AddPlayerLine("hireling_decision", "hireling_decision", "lord_pretalk", "I need to think about this", () => enlistInquiryDeclined, null);
+            campaignGameStarter.AddPlayerLine("hireling_decision", "hireling_decision", "lord_pretalk", "I need to think about this", () => _enlistInquiryDeclined, null);
             campaignGameStarter.AddDialogLine("hireling_decision", "hireling_decision", "end", positiveDecisionText.Value, null, null);
         }
 
@@ -247,14 +247,14 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
             var title = GameTexts.FindText("Hireling", "PromptTitle");
             var explaination = GameTexts.FindText("Hireling", "PromptText");
-            enlistInquiryDeclined = false;
+            _enlistInquiryDeclined = false;
             var inquiry = new InquiryData(title.ToString(),
                 explaination.ToString(),
                 true, 
                 true, 
                 "Accept", "Decline",
                 enlistPlayer,
-                () => enlistInquiryDeclined=true);
+                () => _enlistInquiryDeclined=true);
             InformationManager.ShowInquiry(inquiry);
         }
 
@@ -400,7 +400,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
                             if (mapEvent.IsSiegeAssault)
                             {
-                                Game.Current.AfterTick += InitializeSiegeBattle;    //deliberate waiting until all information is copied over, atleast that's what I assume is happening?
+                                Game.Current.AfterTick += InitializeSiegeBattle;
                                 _siegeBattleMissionStarted = true;
                             }
                         }
@@ -430,11 +430,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                }
                , false, 4);
 
-            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_flee", "Desert",
+            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_flee", "Flee",
                hireling_battle_menu_desert_on_condition,
                delegate (MenuCallbackArgs args)
                {
-                   LeaveEnlistingParty("hireling_battle_menu");
+                   LeaveEnlistingParty("hireling_battle_menu",true);
                }
                , false, 4);
         }
