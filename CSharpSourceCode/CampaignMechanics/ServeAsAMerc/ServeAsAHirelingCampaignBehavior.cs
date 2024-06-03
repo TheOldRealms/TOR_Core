@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Helpers;
-using Messages.FromLobbyServer.ToClient;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation;
@@ -16,9 +15,6 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
-using TOR_Core.CharacterDevelopment;
-using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -137,7 +133,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
             var t = mapEvent.GetMapEventSide(BattleSideEnum.Attacker);
             BattleSideEnum side;
-            if(t.Parties.Where(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party).Any())
+            if(t.Parties.Any(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party))
             {
                 side = BattleSideEnum.Attacker;
             }
@@ -172,18 +168,27 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         }
 
 
-        private void LeaveEnlistingParty(string menuToReturn)
+        private void LeaveEnlistingParty(string menuToReturn, bool desertion =false)
         {
-            var desertion = _durationInDays < MinimumServeDays;
+            if (!desertion)
+            {
+                desertion = _durationInDays < MinimumServeDays;
+            }
+            
             var damage = new TextObject();
             if (desertion)
             {
                 damage = new TextObject("This will harm your relations with the entire faction.");
+                GameTexts.SetVariable("HIRELING_DESERT_TEXT",damage);
+            }
+            else
+            {
+                GameTexts.SetVariable("HIRELING_DESERT_TEXT","");
             }
 
-            var titleText = new TextObject("{=FLT0000044}Abandon Party", null);
-            var text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party? " + damage, null);
-            var affirmativeText = new TextObject("{=FLT0000047}Yes", null);
+            var titleText = new TextObject("{=FLT0000044}Abandon Party");
+            var text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party? {HIRELING_DESERT_TEXT}");
+            var affirmativeText = new TextObject("{=FLT0000047}Yes");
             var negativeText = new TextObject("{=FLT0000048}No", null);
             InformationManager.ShowInquiry(new InquiryData(titleText.ToString(), text.ToString(), true, true, affirmativeText.ToString(), negativeText.ToString(), delegate ()
             {
@@ -218,7 +223,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             var positiveDecisionText = new TextObject("{HIRELING_DECISION_TEXT}");
             
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_quit", "I would like to quit my service.", QuitCondition, LeaveLordPartyAction);
-            campaignGameStarter.AddDialogLine("payedsword_quit", "payedsword_quit", "end", positiveDecisionText.Value, null, null);
+            campaignGameStarter.AddDialogLine("payedsword_quit", "payedsword_quit", "end", quitText.Value, null, null);
 
             
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_explain", "I am hereby offering my sword.", () => !IsEnlisted() && ServeAsAHirelingHelpers.HirelingServiceConditions(), null);
@@ -242,6 +247,14 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             if (GameTexts.TryGetText("HirelingLordQuit", out var text, culture))
             {
                 GameTexts.SetVariable("HIRELING_QUIT_TEXT",text.Value);
+            }
+            else
+            {
+                if (GameTexts.TryGetText("HirelingLordQuit", out var defaultText, default))
+                {
+                    GameTexts.SetVariable("HIRELING_QUIT_TEXT",defaultText.Value);
+                }
+                
             }
 
             return IsEnlisted() && _durationInDays > MinimumServeDays;
@@ -517,7 +530,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         
         private bool hireling_battle_menu_desert_on_condition(MenuCallbackArgs args)
         {
-            return true;
+            return _hirelingEnlistingLord.CurrentSettlement == null;
         }
 
         private bool hireling_battle_menu_avoid_combat_on_condition(MenuCallbackArgs args)
@@ -660,7 +673,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             if(_hirelingEnlistingLord == null|| !IsEnlisted()) return; 
         
             
-            if (_hirelingEnlistingLord != null && !mapEvent.IsPlayerMapEvent && getEnlistingLordisInMapEvent(mapEvent))
+            if (_hirelingEnlistingLord != null && !mapEvent.IsPlayerMapEvent && GetEnlistingLordisInMapEvent(mapEvent))
             {
                 
                 GameMenu.SwitchToMenu("hireling_menu");
@@ -794,7 +807,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
 
         // GETTERS 
-        public bool getEnlistingLordisInMapEvent(MapEvent mapEvent)
+        private bool GetEnlistingLordisInMapEvent(MapEvent mapEvent)
         {
 
             var lordIsInMapEvent = false;
