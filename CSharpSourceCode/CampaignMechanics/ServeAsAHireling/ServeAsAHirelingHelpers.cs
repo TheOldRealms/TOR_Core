@@ -1,12 +1,12 @@
 ﻿using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.ServeAsAMerc;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
-using TOR_Core.Models;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.CampaignMechanics.ServeAsAMerc;
+namespace TOR_Core.CampaignMechanics.ServeAsAHireling;
 
 public static class ServeAsAHirelingHelpers
 {

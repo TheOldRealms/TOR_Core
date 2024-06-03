@@ -3,7 +3,7 @@ using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 
-namespace TOR_Core.CampaignMechanics.ServeAsAMerc;
+namespace TOR_Core.CampaignMechanics.ServeAsAHireling;
 
 public class ServeAsAHirelingActivities
 {
