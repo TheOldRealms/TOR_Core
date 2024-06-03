@@ -400,7 +400,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                         if (_hirelingEnlistingLordIsAttacking)
                         {
                             var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
-                            TORCommon.Say("attack!"); 
                             StartBattleAction.Apply(PartyBase.MainParty, mapEvent.DefenderSide.LeaderParty);
                             
                             MobileParty.MainParty.CurrentSettlement= _hirelingEnlistingLord.PartyBelongedTo.MapEvent.MapEventSettlement;
@@ -419,7 +418,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                             {
                                 eventparty = _hirelingEnlistingLord.PartyBelongedTo.Army.LeaderParty;
                             }
-                            TORCommon.Say("defend!");
                             
                             StartBattleAction.Apply( PartyBase.MainParty,eventparty.MapEvent.AttackerSide.LeaderParty); //changing the direction fixed the sole defender bug for the player.
                                                                                                                         //It seems the defense has in joining no meaning
@@ -501,7 +499,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             return hitPointsHero > maxHitPointsHero * 0.2;
         }
         
-        private bool hireling_battle_menu_avoid_battle_on_condition(MenuCallbackArgs args)
+        private bool hireling_battle_menu_desert_on_condition(MenuCallbackArgs args)
+        {
+            return _hirelingEnlistingLord.CurrentSettlement == null;
+        }
+
+        private bool hireling_battle_menu_avoid_combat_on_condition(MenuCallbackArgs args)
         {
             var maxHitPointsHero = Hero.MainHero.MaxHitPoints;
             var hitPointsHero = Hero.MainHero.HitPoints;
@@ -517,19 +520,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             return hitPointsHero < maxHitPointsHero * 0.2 || combatstregthThreshold; 
         }
         
-        private bool hireling_battle_menu_desert_on_condition(MenuCallbackArgs args)
-        {
-            return _hirelingEnlistingLord.CurrentSettlement == null;
-        }
-
-        private bool hireling_battle_menu_avoid_combat_on_condition(MenuCallbackArgs args)
-        {
-            return hireling_battle_menu_avoid_battle_on_condition(args);
-        }
-        
         private bool wait_on_condition(MenuCallbackArgs args)
         {
-            //TORCommon.Say("WAIT ON CONDITION");
             return true;
         }
         
@@ -564,7 +556,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 
                 TextObject variable = text2;
                 text1.SetTextVariable("ENLISTING_TEXT", variable);
-                
                 
                 args.MenuContext.SetBackgroundMeshName(_hirelingEnlistingLord.MapFaction.Culture.EncounterBackgroundMesh);
             }
