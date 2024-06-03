@@ -202,6 +202,12 @@ namespace TOR_Core.Quests
                 CampaignEvents.MissionTickEvent.AddNonSerializedListener(this, MissionTick);
             }
 
+            protected override void OnFinalize()
+            {
+                CampaignEvents.AfterSettlementEntered.ClearListeners(this);
+                CampaignEvents.MissionTickEvent.ClearListeners(this);
+            }
+
             private void MissionTick(float dt)
             {
                 if (Mission.Current.SceneName == "TOR_nurgle_lair_001" && _madeDeal)

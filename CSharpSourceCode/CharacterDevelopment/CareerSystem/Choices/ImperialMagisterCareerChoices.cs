@@ -352,7 +352,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _teclisTeachingsPassive3.Initialize(CareerID, "Increases max Winds of Magic by 10.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _teclisTeachingsPassive4.Initialize(CareerID, "Powerstones cost 35% less Prestige", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             
-            _imperialEnchantmentPassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic));
+            _imperialEnchantmentPassive1.Initialize(CareerID, "Increases max Winds of Magic by 20.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.WindsOfMagic));
             _imperialEnchantmentPassive2.Initialize(CareerID, "Friendly fire damage is reduced by 30%", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.Special,true));
             _imperialEnchantmentPassive3.Initialize(CareerID, "Buffs and healing duration is increased by 50%.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.BuffDuration,true));
             _imperialEnchantmentPassive4.Initialize(CareerID, "Power stones reserve 25% less Winds.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
