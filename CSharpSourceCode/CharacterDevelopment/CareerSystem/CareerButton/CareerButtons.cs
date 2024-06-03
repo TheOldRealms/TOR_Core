@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.Library;
-using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton

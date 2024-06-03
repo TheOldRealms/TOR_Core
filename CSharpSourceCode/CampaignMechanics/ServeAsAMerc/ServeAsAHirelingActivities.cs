@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.ServeAsAMerc;
 
@@ -20,149 +18,137 @@ public class ServeAsAHirelingActivities
             
             if (career == TORCareers.BlackGrailKnight)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.Roguery,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Athletics,
                     DefaultSkills.Tactics
-                });
+                ]);
             }
 
             if (career == TORCareers.GrailKnight)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     DefaultSkills.Charm,
                     DefaultSkills.Riding,
                     DefaultSkills.TwoHanded,
                     TORSkills.Faith,
                     DefaultSkills.Steward
-                });
+                ]);
 
             }
             
             if (career == TORCareers.GrailDamsel)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     TORSkills.SpellCraft,
                     TORSkills.Faith,
                     DefaultSkills.Charm,
                     DefaultSkills.Steward,
                     DefaultSkills.Medicine
-                });
+                ]);
             }
             
             if (career == TORCareers.Necromancer)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     TORSkills.SpellCraft,
                     DefaultSkills.Tactics,
                     DefaultSkills.Engineering,
                     DefaultSkills.Medicine,
                     DefaultSkills.Steward
-                });
+                ]);
             }
 
             if (career == TORCareers.BloodKnight)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Athletics,
                     DefaultSkills.Trade,
                     DefaultSkills.Medicine
-                });
+                ]);
             }
             
             if (career == TORCareers.MinorVampire)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
                     TORSkills.SpellCraft,
                     DefaultSkills.Athletics,
                     DefaultSkills.Trade,
                     DefaultSkills.Medicine
-                });
+                ]);
             }
             
             if (career == TORCareers.Necrarch)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     TORSkills.SpellCraft,
                     DefaultSkills.Tactics,
                     DefaultSkills.Engineering,
                     DefaultSkills.Medicine,
                     DefaultSkills.Steward
-                });
+                ]);
             }
             
             
             //Empire careers
             if (career == TORCareers.Mercenary)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Athletics,
                     DefaultSkills.Trade,
                     DefaultSkills.Medicine
-                });
+                ]);
             }
             
             if (career == TORCareers.ImperialMagister)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     TORSkills.SpellCraft,
                     DefaultSkills.Steward,
                     DefaultSkills.OneHanded,
                     DefaultSkills.Medicine,
                     DefaultSkills.Tactics
-                });
+                ]);
             }
             
             if (career == TORCareers.WitchHunter)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     TORSkills.GunPowder,
                     TORSkills.Faith,
                     DefaultSkills.Roguery,
                     DefaultSkills.Scouting,
                     DefaultSkills.Tactics
-                });
+                ]);
             }
             
             if (career == TORCareers.WarriorPriest)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
                     TORSkills.Faith,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Athletics,
                     DefaultSkills.Tactics
-                });
+                ]);
             }
             
             if (career == TORCareers.WarriorPriestUlric)
             {
-                _activitySets.Add(career,new List<SkillObject>()
-                {
+                _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
                     TORSkills.Faith,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Athletics,
                     DefaultSkills.Tactics
-                });
+                ]);
             }
         }
     }
