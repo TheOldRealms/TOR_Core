@@ -48,8 +48,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         
         
         private bool enlistInquiryDeclined;
-
-
+        
         public float DurationInDays
         {
             get => _durationInDays;
@@ -118,8 +117,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             
             Hero.MainHero.Clan.AddRenown(gain);
         }
-
-
+        
         private void ContinueTimeAfterLeftSettlementWhileEnlisted(GameMenuOption obj)
         {
             if (_hirelingEnlisted && obj.IdString =="town_leave")
@@ -166,8 +164,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             }
 
         }
-
-
+        
         private void LeaveEnlistingParty(string menuToReturn, bool desertion =false)
         {
             if (!desertion)
@@ -213,9 +210,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             }, "", 0f, null, null, null), false, false);
         }
         
-        // INIT PHASE
-
-
         private void InitializeDialogs(CampaignGameStarter campaignGameStarter)
         {
             var quitText = new TextObject("{HIRELING_QUIT_TEXT}");
@@ -303,8 +297,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 EnterSettlementAction.ApplyForParty(MobileParty.MainParty.Party.MobileParty, _hirelingEnlistingLord.CurrentSettlement);
             }, true, -1, false, null);
             
-            
-            
             var text = new TextObject("{PAUSE_ONOFF_TEXT}");
             campaignGameStarter.AddGameMenuOption("hireling_menu","pause_time_option",text.Value, null, new GameMenuOption.OnConsequenceDelegate(PauseModeToggle));
             TextObject pauseText = GameTexts.FindText("Hireling","PauseTime");
@@ -391,7 +383,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             
             SetupHirelingMenu(campaignGameStarter);
             
-            
             TextObject hirelingBattleTextMenu = new TextObject("This is a test of Hireling BattleMenu", null);
             campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, new OnInitDelegate(this.party_wait_talk_to_other_members_on_init), GameOverlays.MenuOverlayType.Encounter, GameMenu.MenuFlags.None, null);
 
@@ -472,7 +463,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             TextObject text2 = GameTexts.FindText("Hireling","PauseTime");
             text2.SetTextVariable("PAUSE_ONOFF", onOffText);
             
-           // GameTexts.SetVariable("PAUSE_ONOFF",onOffText);
             GameTexts.SetVariable("PAUSE_ONOFF_TEXT", text2);
             args.Text = text2;
             args.MenuContext.Refresh();
@@ -489,7 +479,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
             _durationInDays = 0;
             _manuallyFoughtBattles = 0;
-
         }
         
         private void InitializeSiegeBattle(float tick)
@@ -537,9 +526,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
             return hireling_battle_menu_avoid_battle_on_condition(args);
         }
-
-
-        // Token: 0x0600015C RID: 348 RVA: 0x000119BC File Offset: 0x0000FBBC   
+        
         private bool wait_on_condition(MenuCallbackArgs args)
         {
             //TORCommon.Say("WAIT ON CONDITION");
@@ -583,7 +570,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             }
         }
         
-
         public override void SyncData(IDataStore dataStore)
         {
             dataStore.SyncData<bool>("_enlisted", ref _hirelingEnlisted);
@@ -597,11 +583,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
 
         }
-
-
-        // BATTLE HANDLERS
-
-
+        
         private void controlPlayerLoot(MapEvent mapEvent)
         {
             if (mapEvent.PlayerSide == mapEvent.WinningSide && IsEnlisted())
@@ -619,11 +601,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
 
             _hirelingWaitMenuShown = false;
         }
-
-
-
-        // SETTLEMENTS HANDLERS
-
+        
         private void OnPartyLeavesSettlement(MobileParty mobileParty, Settlement settlement)
         {
             if (!_hirelingEnlisted || _hirelingEnlistingLord == null) return;
@@ -651,23 +629,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                     GameMenu.ActivateGameMenu("hireling_menu");
                     Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
                 }
-
-                //EnterSettlementAction.ApplyForParty(PartyBase.MainParty.MobileParty, settlement);
             }
         }
-
-
-        // CAMPAIGN HANDLERS
-
-
-
-
-
-        // MAP EVENT AND ENCOUNTERS
-
-        // If the enlisted lord is fighting (in a map event) without us, we should fight with him
-
-        // If the player is concerned by the end of a map event, we should start displaying the menu.
+        
         private void mapEventEnded(MapEvent mapEvent)
         {
             if(_hirelingEnlistingLord == null|| !IsEnlisted()) return; 
@@ -683,12 +647,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             {
                 GameMenu.SwitchToMenu("hireling_menu");
             }
-            // TODO: Refining this part
         }
-
-
-
-        // ON TICKS HANDLERS
+        
         private void OnTick(float dt)
         {
             
@@ -700,7 +660,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 {
                     if (!MobileParty.MainParty.ShouldBeIgnored)
                     {
-                        // This part has not been tested, but it should work.
                         MobileParty.MainParty.IgnoreForHours(1);
                     }
                 }
@@ -748,13 +707,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
             }
         }
         
-        // ACTIONS
         private void UndoDiplomacy()
         {
             ChangeKingdomAction.ApplyByLeaveKingdomAsMercenary(Hero.MainHero.Clan, false);
         }
-
-
+        
         private void EnlistPlayer()
         {
             HidePlayerParty();
@@ -784,8 +741,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
         {
             PartyBase.MainParty.MobileParty.IsVisible = false;
         }
-
-
+        
         private void DisbandParty()
         {
             if (MobileParty.MainParty.MemberRoster.TotalManCount <= 1)
@@ -800,13 +756,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAMerc
                 return;
             foreach (TroopRosterElement troopRosterElement in troopRosterElementList)
             {
-                //Test.followingHero.PartyBelongedTo.MemberRoster.AddToCounts(troopRosterElement.Character, troopRosterElement.Number);
                 MobileParty.MainParty.MemberRoster.AddToCounts(troopRosterElement.Character, -1 * troopRosterElement.Number);
             }
         }
-
-
-        // GETTERS 
+        
         private bool GetEnlistingLordisInMapEvent(MapEvent mapEvent)
         {
 
