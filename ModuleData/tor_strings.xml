@@ -1104,7 +1104,7 @@
 	<string id="Hireling.TalkToLord" text="Talk to the Lord" />
 	<string id="Hireling.PauseTime" text="Pause on entering the next settlement: {PAUSE_ONOFF}" />
 		
-	<string id="Hireling.EnlistingArmy" text="is part of: {ENLISTING_ARMY}" />
+	<string id="Hireling.EnlistingArmy" text="Party is part of: {ENLISTING_ARMY}" />
 	
 	<string id="HirelingActivity0.ImperialMagister" text="Focus on your studies" />
 	<string id="HirelingActivity1.ImperialMagister" text="Assist your lord with accounting tasks" />
