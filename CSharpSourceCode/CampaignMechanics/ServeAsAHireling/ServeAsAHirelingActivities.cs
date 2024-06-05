@@ -20,21 +20,21 @@ public class ServeAsAHirelingActivities
             {
                 _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
-                    DefaultSkills.Roguery,
-                    DefaultSkills.TwoHanded,
-                    DefaultSkills.Athletics,
-                    DefaultSkills.Tactics
+                    DefaultSkills.Charm,
+                    DefaultSkills.Riding,
+                    DefaultSkills.Polearm,
+                    DefaultSkills.Roguery
                 ]);
             }
 
             if (career == TORCareers.GrailKnight)
             {
                 _activitySets.Add(career, [
+                    DefaultSkills.OneHanded,
                     DefaultSkills.Charm,
                     DefaultSkills.Riding,
-                    DefaultSkills.TwoHanded,
-                    TORSkills.Faith,
-                    DefaultSkills.Steward
+                    DefaultSkills.Steward,
+                    TORSkills.Faith
                 ]);
 
             }
@@ -42,9 +42,9 @@ public class ServeAsAHirelingActivities
             if (career == TORCareers.GrailDamsel)
             {
                 _activitySets.Add(career, [
+                    DefaultSkills.Riding,
                     TORSkills.SpellCraft,
                     TORSkills.Faith,
-                    DefaultSkills.Charm,
                     DefaultSkills.Steward,
                     DefaultSkills.Medicine
                 ]);
@@ -54,9 +54,9 @@ public class ServeAsAHirelingActivities
             {
                 _activitySets.Add(career, [
                     TORSkills.SpellCraft,
-                    DefaultSkills.Tactics,
-                    DefaultSkills.Engineering,
+                    DefaultSkills.Roguery,
                     DefaultSkills.Medicine,
+                    DefaultSkills.Scouting,
                     DefaultSkills.Steward
                 ]);
             }
@@ -66,9 +66,9 @@ public class ServeAsAHirelingActivities
                 _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.TwoHanded,
-                    DefaultSkills.Athletics,
-                    DefaultSkills.Trade,
-                    DefaultSkills.Medicine
+                    DefaultSkills.Riding,
+                    DefaultSkills.Tactics,
+                    DefaultSkills.Leadership
                 ]);
             }
             
@@ -76,10 +76,10 @@ public class ServeAsAHirelingActivities
             {
                 _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
+                    DefaultSkills.Charm,
                     TORSkills.SpellCraft,
-                    DefaultSkills.Athletics,
-                    DefaultSkills.Trade,
-                    DefaultSkills.Medicine
+                    DefaultSkills.Roguery,
+                    DefaultSkills.Leadership,
                 ]);
             }
             
@@ -87,9 +87,9 @@ public class ServeAsAHirelingActivities
             {
                 _activitySets.Add(career, [
                     TORSkills.SpellCraft,
-                    DefaultSkills.Tactics,
-                    DefaultSkills.Engineering,
+                    DefaultSkills.Roguery,
                     DefaultSkills.Medicine,
+                    DefaultSkills.Engineering,
                     DefaultSkills.Steward
                 ]);
             }
@@ -99,11 +99,11 @@ public class ServeAsAHirelingActivities
             if (career == TORCareers.Mercenary)
             {
                 _activitySets.Add(career, [
-                    DefaultSkills.OneHanded,
                     DefaultSkills.TwoHanded,
-                    DefaultSkills.Athletics,
+                    DefaultSkills.Bow,
+                    TORSkills.GunPowder,
                     DefaultSkills.Trade,
-                    DefaultSkills.Medicine
+                    DefaultSkills.Tactics,
                 ]);
             }
             
@@ -121,11 +121,11 @@ public class ServeAsAHirelingActivities
             if (career == TORCareers.WitchHunter)
             {
                 _activitySets.Add(career, [
+                    DefaultSkills.TwoHanded,
+                    DefaultSkills.Crossbow,
                     TORSkills.GunPowder,
                     TORSkills.Faith,
-                    DefaultSkills.Roguery,
-                    DefaultSkills.Scouting,
-                    DefaultSkills.Tactics
+                    DefaultSkills.OneHanded
                 ]);
             }
             
@@ -133,21 +133,21 @@ public class ServeAsAHirelingActivities
             {
                 _activitySets.Add(career, [
                     DefaultSkills.OneHanded,
-                    TORSkills.Faith,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Athletics,
-                    DefaultSkills.Tactics
+                    DefaultSkills.Medicine,
+                    TORSkills.Faith,
                 ]);
             }
             
             if (career == TORCareers.WarriorPriestUlric)
             {
                 _activitySets.Add(career, [
-                    DefaultSkills.OneHanded,
-                    TORSkills.Faith,
+                    DefaultSkills.Scouting,
                     DefaultSkills.TwoHanded,
                     DefaultSkills.Athletics,
-                    DefaultSkills.Tactics
+                    DefaultSkills.Leadership,
+                    TORSkills.Faith,
                 ]);
             }
         }

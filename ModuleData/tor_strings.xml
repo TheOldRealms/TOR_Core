@@ -1108,15 +1108,77 @@
 	
 	<string id="HirelingActivity0.ImperialMagister" text="Focus on your studies" />
 	<string id="HirelingActivity1.ImperialMagister" text="Assist your lord with accounting tasks" />
-	<string id="HirelingActivity2.ImperialMagister" text="Train with the troops" />
+	<string id="HirelingActivity2.ImperialMagister" text="Join the sparring soldiers" />
 	<string id="HirelingActivity3.ImperialMagister" text="Care for the wounded troops" />
-	<string id="HirelingActivity4.ImperialMagister" text="Discuss with your lord combat strategies" />
+	<string id="HirelingActivity4.ImperialMagister" text="Advise the commander" />
 	
-	<string id="HirelingActivity0.GrailKnight" text="Talk to other nobles" />
-	<string id="HirelingActivity1.GrailKnight" text="Inspect the horses" />
-	<string id="HirelingActivity2.GrailKnight" text="Train with the Sword" />
-	<string id="HirelingActivity3.GrailKnight" text="Pray to the Lady" />
-	<string id="HirelingActivity4.GrailKnight" text="Delegate the Peasants" />
+	<string id="HirelingActivity0.GrailKnight" text="Practice sword-fighting" /> 
+	<string id="HirelingActivity1.GrailKnight" text="Socialize with other nobles" /> 
+	<string id="HirelingActivity2.GrailKnight" text="Ride ahead of the army" /> 
+	<string id="HirelingActivity3.GrailKnight" text="Assist the commander" /> 
+	<string id="HirelingActivity4.GrailKnight" text="Pray to the Lady of the Lake" /> 
+	
+	
+	<string id="HirelingActivity0.GrailDamsel" text="Converse with the stabled horses" /> 
+	<string id="HirelingActivity1.GrailDamsel" text="Prepare warding rituals" /> 
+	<string id="HirelingActivity2.GrailDamsel" text="Bless the troops in the name of The Lady" />
+	<string id="HirelingActivity3.GrailDamsel" text="Advise the army commander" /> 
+	<string id="HirelingActivity4.GrailDamsel" text="Mediate the quarreling nobles" /> 
+	
+	<string id="HirelingActivity0.WarriorPriestUlric" text="Scour the wilds" />
+	<string id="HirelingActivity1.WarriorPriestUlric" text="Train with a battleaxe" />
+	<string id="HirelingActivity2.WarriorPriestUlric" text="Help with firewood" /> 
+	<string id="HirelingActivity3.WarriorPriestUlric" text="Inspire the troops to drive away weakness" /> 
+	<string id="HirelingActivity4.WarriorPriestUlric" text="Preach the teachings of Ulric" /> 
+	
+	<string id="HirelingActivity0.Mercenary" text="Discuss techniques with shock troops" />
+	<string id="HirelingActivity1.Mercenary" text="Target practice with archer regiments" /> 
+	<string id="HirelingActivity2.Mercenary" text="Maintain gunpowder weapons " /> 
+	<string id="HirelingActivity3.Mercenary" text="Barter and haggle with the quartermaster" /> 
+	<string id="HirelingActivity4.Mercenary" text="Eavesdrop by the commander's tent" /> 
+	
+	<string id="HirelingActivity0.BlackGrailKnight" text="Practice sword-fighting" /> 
+	<string id="HirelingActivity1.BlackGrailKnight" text="Spread The Lady's Lie among the nobles" />
+	<string id="HirelingActivity2.BlackGrailKnight" text="Ride ahead of the army" /> 
+	<string id="HirelingActivity3.BlackGrailKnight" text="Saddle up and joust with other nobles" />
+	<string id="HirelingActivity4.BlackGrailKnight" text="Discipline the peasantry" /> 
+	
+	<string id="HirelingActivity0.BloodKnight" text="Train with a sword" />
+	<string id="HirelingActivity4.BloodKnight" text="Train with a great sword" />
+	<string id="HirelingActivity1.BloodKnight" text="Ride in the vanguard" /> 
+	<string id="HirelingActivity2.BloodKnight" text="Participate in strategy meetings" /> 
+	<string id="HirelingActivity3.BloodKnight" text="Seperate the weak from the strong" /> 
+	
+	<string id="HirelingActivity0.MinorVampire" text="Spar with the troops" /> 
+	<string id="HirelingActivity4.MinorVampire" text="Curry favor with the commander" /> 
+	<string id="HirelingActivity1.MinorVampire" text="Focus on the vile energies in the area" />
+	<string id="HirelingActivity2.MinorVampire" text="Search for prey to feed on" /> 
+	<string id="HirelingActivity3.MinorVampire" text="Command the sheep" />
+	
+	<string id="HirelingActivity1.Necrarch" text="Hone your Witchsight" /> 
+	<string id="HirelingActivity2.Necrarch" text="Search for prey to feed on" /> 
+	<string id="HirelingActivity3.Necrarch" text="Dissect test subjects" /> 
+	<string id="HirelingActivity3.Necrarch" text="Study arcane blueprints" /> 
+	<string id="HirelingActivity3.Necrarch" text="Issue orders to your servants" />  
+	
+	<string id="HirelingActivity0.Necromancer" text="Study tomes of knowledge" /> 
+	<string id="HirelingActivity1.Necromancer" text="Raid nearby cemeteries" /> 
+	<string id="HirelingActivity2.Necromancer" text="Experiment on dead bodies" /> 
+	<string id="HirelingActivity2.Necromancer" text="Send your minions ahead of the army" />  
+	<string id="HirelingActivity2.Necromancer" text="Assist the vampire lieutenants" /> 
+	
+	<string id="HirelingActivity0.WitchHunter" text="Great sword sparring" />  
+	<string id="HirelingActivity1.WitchHunter" text="Target practice with crossbows" /> 
+	<string id="HirelingActivity2.WitchHunter" text="Maintain gunpowder weapons" /> 
+	<string id="HirelingActivity3.WitchHunter" text="Lecture on the dangers of Corruption" /> 
+	<string id="HirelingActivity4.WitchHunter" text="Practice with a rapier" />  
+	
+	<string id="HirelingActivity0.WarriorPriest" text="Spar with the troops" />
+	<string id="HirelingActivity1.WarriorPriest" text="Train with a warhammer" />
+	<string id="HirelingActivity2.WarriorPriest" text="Help set up tents" />
+	<string id="HirelingActivity3.WarriorPriest" text="Assist the priestesses of Shallya" />
+	<string id="HirelingActivity4.WarriorPriest" text="Preach about Sigmar Heldenhammer" />
+
 	
 	<!--Meadow ! -->
 	<string id="inky_Meadow.IsNight_True" text="{=inky_Meadow_is_night_true_str}Silver moonlight" />
