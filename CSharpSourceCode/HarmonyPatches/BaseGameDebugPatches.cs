@@ -39,6 +39,19 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
+        [HarmonyFinalizer]
+        [HarmonyPatch(typeof(MobilePartyAi), "GetBehaviors")]
+        public static Exception GetBehaviorsFinalizer(Exception __exception, MobileParty ____mobileParty, ref AiBehavior bestAiBehavior, ref PartyBase behaviorParty, ref Vec2 bestTargetPoint)
+        {
+            if(__exception != null)
+            {
+                bestAiBehavior = AiBehavior.Hold;
+                behaviorParty = null;
+                bestTargetPoint = ____mobileParty.Position2D;
+            }
+            return null;
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(TroopRoster), "WoundNumberOfTroopsRandomly")]
         public static bool PreventDeadlock(int numberOfMen, TroopRoster __instance, int ____totalRegulars, int ____totalWoundedRegulars)
