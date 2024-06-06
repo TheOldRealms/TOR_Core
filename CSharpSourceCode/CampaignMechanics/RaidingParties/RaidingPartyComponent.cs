@@ -75,7 +75,6 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
                     ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 0.8f);
                     thinkParams.AddBehaviorScore(valueTuple);
                 }
-                
 
                 if ((bool)!Clan?.IsAtWarWith(Target?.MapFaction)) DeclareWarAction.ApplyByDefault(Clan, Target.MapFaction);
             }
