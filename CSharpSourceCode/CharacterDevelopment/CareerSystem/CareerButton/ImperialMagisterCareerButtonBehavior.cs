@@ -45,10 +45,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 {
                     return GetStoneIcon(stone.LoreId, false);
                 }
-                
 
-
-                return "CareerSystem\\grail";
             }
         }
 
@@ -97,11 +94,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     attributes.Add(first.Id);
                     return first;
                 }
-         
-                
-         
             }
-
+            
             return null;
         }
 
@@ -135,7 +129,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             var list = new List<PowerStone>()
             {
-                new PowerStone("fire_dmg_10", new TextObject("Lesser Sparkling Fire Ruby"),new TextObject("+15% Fire damage"),
+                new("fire_dmg_10", new TextObject("Lesser Sparkling Fire Ruby"),new TextObject("+15% Fire damage"),
                     "powerstone_fire_trait", 15, 10, "LoreOfFire", PowerSize.Lesser),
                 new PowerStone("fire_amp_50", new TextObject("Lesser Nourishing Fire Ruby"), new TextObject("+50% Fire amplification "), "powerstone_fire_amp", 15,
                     10, "LoreOfFire", PowerSize.Lesser),
@@ -299,9 +293,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             var MaximumWinds = Hero.MainHero.GetExtendedInfo().MaxWindsOfMagic;
             
-            var displayedStones = stones.Where(x =>
-                Hero.MainHero.HasKnownLore(x.LoreId) && x.Price <= availablePrestige &&
-                x.Upkeep < MaximumWinds).ToList();
+            var fittingStones = stones.Where(
+                x =>
+                Hero.MainHero.HasKnownLore(x.LoreId) 
+                && x.Price <= availablePrestige 
+                && x.Upkeep < MaximumWinds).ToList();
 
             if (Hero.MainHero.HasCareerChoice("CollegeOrdersPassive4"))
             {
@@ -314,18 +310,21 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     var lores = LoreObject.GetAll();
 
                     foreach (var lore in lores.Where(lore => hero.HasKnownLore(lore.ID)))
-                        displayedStones.AddRange(stones.Where(x =>
+                        fittingStones.AddRange(stones.Where(x =>
                             x.LoreId == lore.ID && x.Price <= availablePrestige));
                 }
 
-                displayedStones = displayedStones.Distinct().ToList();
+                fittingStones.Distinct().ToList();
             }
-
-
+            
+            var displayedStones = fittingStones.Where(x => x.StoneLevel == PowerSize.Lesser).ToList();
+            
+            
+            
             if (Hero.MainHero.HasUnlockedCareerChoiceTier(1))
-                displayedStones.Select(x => x.StoneLevel == PowerSize.Lesser).ToList();
+                displayedStones.AddRange(fittingStones.Where(x => x.StoneLevel == PowerSize.Greater).ToList());
             else if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
-                displayedStones.Select(x => x.StoneLevel == PowerSize.Lesser && x.StoneLevel == PowerSize.Greater);
+                displayedStones.AddRange(fittingStones.Where(x => x.StoneLevel == PowerSize.Mighty).ToList());
 
             var getAllStones = GetAllPowerstones();
 
