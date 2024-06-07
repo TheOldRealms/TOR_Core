@@ -230,8 +230,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 }
             }
         }
-
-
+        
         private void CalculateCustomResourceGainFromBattles(MapEvent mapEvent)
         {
             mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out var renownChange, out _, out _, out _, out _);

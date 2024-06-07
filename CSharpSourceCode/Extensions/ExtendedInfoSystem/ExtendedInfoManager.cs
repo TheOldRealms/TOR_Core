@@ -97,7 +97,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (hero.IsVampire() || hero.IsNecromancer())
                 {
-                    var upkeep = hero.GetCalculatedCustomResourceUpkeep("DarkEnergy").ResultNumber;
+                    var upkeep = hero.GetCalculatedCustomResourceUpkeep("DarkEnergy");
                     hero.AddWindsOfMagic(upkeep * 3); //takes winds
                 }
             }
@@ -113,7 +113,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     var id = resource.StringId;
                     var resourceChange = hero.GetCultureSpecificCustomResourceChange();
-                    entry.Value.AddCustomResource(id, resourceChange.ResultNumber);
+                    entry.Value.AddCustomResource(id, resourceChange);
                 }
             }
 

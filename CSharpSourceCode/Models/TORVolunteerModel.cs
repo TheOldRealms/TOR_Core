@@ -39,5 +39,17 @@ namespace TOR_Core.Models
                     sellerHero.Occupation == Occupation.Headman ||
                     sellerHero.Occupation == Occupation.RuralNotable;
         }
+        
+        public override int MaximumIndexHeroCanRecruitFromHero(Hero buyerHero, Hero sellerHero, int useValueAsRelation = -101)
+        {
+            var value = base.MaximumIndexHeroCanRecruitFromHero(buyerHero, sellerHero, useValueAsRelation);
+
+            if (buyerHero.IsEnlisted())
+            {
+                return -1;
+            }
+            
+            return value;
+        }
     }
 }

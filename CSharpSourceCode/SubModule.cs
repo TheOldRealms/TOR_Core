@@ -45,6 +45,7 @@ using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -152,6 +153,7 @@ namespace TOR_Core
                 starter.AddBehavior(new CareerDialogOptionsCampaignBehavior());
                 starter.AddBehavior(new TORFactionDiscontinuationCampaignBehavior());
                 starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
+                starter.AddBehavior(new ServeAsAHirelingCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -197,6 +199,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORPersuasionModel());
                 gameStarterObject.AddModel(new TORVoiceOverModel());
                 gameStarterObject.AddModel(new TORFaithModel());
+                gameStarterObject.AddModel(new TORCustomResourceModel());
                 gameStarterObject.AddModel(new TORClanPoliticsModel());
                 gameStarterObject.AddModel(new TORMapVisibilityModel());
                 gameStarterObject.AddModel(new TORTournamentModel());

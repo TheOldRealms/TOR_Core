@@ -50,7 +50,10 @@ namespace TOR_Core.CampaignMechanics
 	        var value = hero.GetCustomResourceValue(resource.StringId).ToString("0");
 	        var icon = resource.GetCustomResourceIconAsText();
 	        var description = resource.Description;
-	        var change = Hero.MainHero.GetCultureSpecificCustomResourceChange();
+
+	        var model = Campaign.Current.Models.GetCustomResourceModel();
+	        if (model == null) return new List<TooltipProperty>();
+	        var change = model.GetCultureSpecificCustomResourceChange(hero);
 
 	        var customDescription = resource.GetCustomTooltipDescription();
 

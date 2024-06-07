@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 
@@ -23,6 +24,15 @@ namespace TOR_Core.Models
             {
                 AdjustIncomeForAI(ref num);
             }
+            
+            if (Hero.MainHero.Clan == clan)
+            {
+                if (Hero.MainHero.IsEnlisted())
+                {
+                    ServeAsAHirelingHelpers.AddHirelingWage(Hero.MainHero, ref num);
+                }
+            }
+            
             return num;
         }
 
@@ -37,6 +47,16 @@ namespace TOR_Core.Models
             {
                 income.Add(cheat.FirstOrDefault().number, new TextObject(_cheatGoldAdjustmentName));
             }
+
+
+            if (Hero.MainHero.Clan == clan)
+            {
+                if (Hero.MainHero.IsEnlisted())
+                {
+                    ServeAsAHirelingHelpers.AddHirelingWage(Hero.MainHero, ref income);
+                }
+            }
+            
             return income;
         }
 

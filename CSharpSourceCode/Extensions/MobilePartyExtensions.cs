@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -59,6 +59,11 @@ namespace TOR_Core.Extensions
 
         public static bool IsAffectedByCurse(this MobileParty party)
         {
+            if (party.IsMainParty)
+            {
+                if (party.LeaderHero.IsEnlisted())
+                    return false;   // optional, might be better to make here a more deliberate check for enlisting lord check
+            }
             if (!party.IsLordParty) return false;
 
             var settlementFound = TORCommon.FindNearestSettlement(party, TORConstants.DEFAULT_CURSE_RADIUS, x => x.SettlementComponent is CursedSiteComponent);

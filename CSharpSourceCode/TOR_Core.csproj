@@ -467,6 +467,7 @@
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CampaignEventHelpers.cs" />
     <Compile Include="CampaignMechanics\Careers\CareerDialogOptionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
@@ -503,6 +504,8 @@
     <Compile Include="CampaignMechanics\Religion\ReligionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionEncyclopediaPage.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionObject.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingActivities.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingHelpers.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
@@ -588,9 +591,11 @@
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
+    <Compile Include="Extensions\UI\PartyNameplateItemVMExtension.cs" />
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingCampaignBehavior.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
@@ -666,6 +671,7 @@
     <Compile Include="Models\TORCombatXpModel.cs" />
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
+    <Compile Include="Models\TORCustomResourceModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TOREncounterModel.cs" />
