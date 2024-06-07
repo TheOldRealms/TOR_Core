@@ -367,7 +367,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void SetupBattleMenu(CampaignGameStarter campaignGameStarter)
         {
-             TextObject hirelingBattleTextMenu = new TextObject("This is a test of Hireling BattleMenu");
+             TextObject hirelingBattleTextMenu = new TextObject("Your Lord engages in a battle.");
             campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, this.party_wait_talk_to_other_members_on_init, GameOverlays.MenuOverlayType.Encounter);
 
             campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_join_battle", "Join battle",
