@@ -27,6 +27,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _necrarch;
         private CareerObject _warriorPriestUlric;
         private CareerObject _imperialMagister;
+        private CareerObject _waywatcher;
 
         public TORCareers()
         {
@@ -62,6 +63,8 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject WarriorPriestUlric => Instance._warriorPriestUlric;
 
         public static CareerObject ImperialMagister => Instance._imperialMagister;
+        
+        public static CareerObject Waywatcher => Instance._imperialMagister;
 
         private void RegisterAll()
         {
@@ -78,6 +81,7 @@ namespace TOR_Core.CharacterDevelopment
             _necrarch = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Necrarch"));
             _warriorPriestUlric = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WarriorPriestUlric"));
             _imperialMagister = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("ImperialMagister"));
+            _waywatcher = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Waywatcher"));
 
             _allCareers.Add(_grailKnight);
             _allCareers.Add(_warriorPriest);
@@ -107,6 +111,7 @@ namespace TOR_Core.CharacterDevelopment
             _necrarch.Initialize("Necrarch", null, "BlastOfAgony", CareerAbilityChargeSupplier.NecrarchCareerCharge, 1500, typeof(BlastOfAgonyScript));
             _warriorPriestUlric.Initialize("Warrior Priest of Ulric", null, "AxeOfUlric", CareerAbilityChargeSupplier.WarriorPriestUlricCharge, 400, typeof(AxeOfUlricScript));
             _imperialMagister.Initialize("Imperial Magister", null, "ArcaneConduit", null, 120, typeof(ArcaneConduit));
+            _waywatcher.Initialize("Waywatcher", null, "LetThemHaveIt" );
         }
     }
 }

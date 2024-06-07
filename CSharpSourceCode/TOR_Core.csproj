@@ -556,6 +556,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestUlricCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\WaywatcherCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WitchHunterCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\SpecialScripts\GrailDamselEnvoyOfTheLadyPerkDialog.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />

@@ -62,6 +62,7 @@ namespace TOR_Core.CharacterDevelopment
             NecrarchCareerChoices = new NecrarchCareerChoices(TORCareers.Necrarch);
             WarriorPriestUlricCareerChoices = new WarriorPriestUlricCareerChoices(TORCareers.WarriorPriestUlric);
             ImperialMagisterCareerChoices = new ImperialMagisterCareerChoices(TORCareers.ImperialMagister);
+            WaywatcherCareerChoices = new WaywatcherCareerChoices(TORCareers.Waywatcher);
             
             _allCareers.Add(WarriorPriestCareerChoices);
             _allCareers.Add(WitchHunterCareerChoices);
