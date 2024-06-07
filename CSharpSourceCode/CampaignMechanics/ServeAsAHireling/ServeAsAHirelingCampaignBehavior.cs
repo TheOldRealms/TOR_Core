@@ -654,12 +654,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 if (_hirelingEnlistingLord.PartyBelongedTo.MapEvent != null && MobileParty.MainParty.MapEvent == null)
                 {
                     var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
-
-                    
-                    // TODO: CHECK THE DEFENDING PART
                     _hirelingEnlistingLordIsAttacking = false;
-
-                    TORCommon.Say("Lord starts encounter");
+                    
                     foreach (var party in mapEvent.AttackerSide.Parties)
                     {
                         if (party.Party == _hirelingEnlistingLord.PartyBelongedTo.Party)
