@@ -43,8 +43,10 @@ namespace TOR_Core.CharacterDevelopment
         public WarriorPriestUlricCareerChoices WarriorPriestUlricCareerChoices { get; private set; }
         
         public ImperialMagisterCareerChoices ImperialMagisterCareerChoices { get; private set; }
+        
+        public WaywatcherCareerChoices WaywatcherCareerChoices { get; }
 
-        private List<TORCareerChoicesBase> _allCareers =new List<TORCareerChoicesBase>();
+        private List<TORCareerChoicesBase> _allCareers = new();
 
         public TORCareerChoices()
         {
@@ -76,6 +78,7 @@ namespace TOR_Core.CharacterDevelopment
             _allCareers.Add(BlackGrailKnightCareerChoices);
             _allCareers.Add(WarriorPriestUlricCareerChoices);
             _allCareers.Add(ImperialMagisterCareerChoices);
+            _allCareers.Add(WaywatcherCareerChoices);
         }
 
 

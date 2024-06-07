@@ -1,6 +1,9 @@
 ﻿using TaleWorlds.Core;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
@@ -102,7 +105,28 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializePassives()
     {
-        _archerByNaturePassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "CrusherOfTheWeak", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _archerByNaturePassive1.Initialize(CareerID, "Extra ranged damage (10%).", "EndsJustifiesMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
+        _archerByNaturePassive2.Initialize(CareerID,"PLACEHOLDER","TEST",false,ChoiceType.Passive);
+        _archerByNaturePassive3.Initialize(CareerID, "5 extra ammo", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
+        _archerByNaturePassive4.Initialize(CareerID, "All ranged troops wages are reduced by 20%", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true, 
+            characterObject => !characterObject.IsHero && characterObject.IsRanged));
+        
+        _trackerPassive1.Initialize(CareerID, "{=vivid_visions_passive4_str}The Spotting range of the party is increased by 20%.", "Tracking", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+        _trackerPassive2.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 1.", "VividVisions", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
+        _trackerPassive3.Initialize(CareerID, "Extra ranged damage (10%).", "EndsJustifiesMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
+        _trackerPassive4.Initialize(CareerID,"WEIGHT REDUCTION","TEST",false,ChoiceType.Passive);
+        
+        _survivalPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "CrusherOfTheWeak", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _survivalPassive2.Initialize(CareerID, "Increases range damage resistance of melee troops by 10%.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
+        _survivalPassive3.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged, 
+            (attacker, victim, mask) => !victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& !victim.IsRangedCached &&  mask == AttackTypeMask.Melee ));
+        _survivalPassive4.Initialize(CareerID, "Weapon swing speed increased by 15%.", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SwingSpeed,true)); 
+        
+        _hagbaneTipsPassive1.Initialize(CareerID, "5 extra ammo", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
+        _hagbaneTipsPassive2.Initialize(CareerID,"WEIGHT REDUCTION","TEST",false,ChoiceType.Passive);
+        
 
+        
+        
     }
 }
