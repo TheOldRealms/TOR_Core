@@ -102,11 +102,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         private void DailyRenownGain()
         {
             var gain = 1;
-            
             var clanTier = Hero.MainHero.Clan.Tier;
-
             gain += clanTier;
-            
             
             Hero.MainHero.Clan.AddRenown(gain);
         }
@@ -144,7 +141,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         
         private void BattleMenuOpened(MenuCallbackArgs obj)
         {
-
             if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && !_debugSkipBattles)
             {
                 _startBattle = false;
@@ -155,7 +151,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             {
                 _startBattle = false;
             }
-
         }
         
         private void LeaveEnlistingParty(string menuToReturn, bool desertion =false)
@@ -208,8 +203,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             var explainText = new TextObject("{HIRELING_EXPLAIN_TEXT}");
             var positiveDecisionText = new TextObject("{HIRELING_DECISION_TEXT}");
             
-            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_quit", "I would like to quit my service.", QuitCondition, LeaveLordPartyAction);
-            campaignGameStarter.AddDialogLine("payedsword_quit", "payedsword_quit", "end", quitText.Value, null, null);
+            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_quit_sure", "I would like to quit my service.", QuitCondition, null);
+            campaignGameStarter.AddDialogLine("payedsword_quit_sure", "payedsword_quit_sure", "payedsword_quit_choice", "Are you sure?", null,null );
+            campaignGameStarter.AddPlayerLine("payedsword_quit_choice", "payedsword_quit_choice", "payedsword_quit", "Yes i want to leave", null,null );
+            campaignGameStarter.AddPlayerLine("payedsword_quit_choice", "payedsword_quit_choice", "lord_pretalk", "I have to think about this.", null, null);
+            campaignGameStarter.AddDialogLine("payedsword_quit", "payedsword_quit", "end", quitText.Value, null, LeaveLordPartyAction);
+            
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_explain", "I am hereby offering my sword.", () => !IsEnlisted() && ServeAsAHirelingHelpers.HirelingServiceConditions(), null);
             campaignGameStarter.AddDialogLine("payedsword_explain", "payedsword_explain", "hireling_decide_player", explainText.Value, null, null, 200);
             campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "hireling_prompt", "I accept my Lord.", ServeAsAHirelingHelpers.HirelingServiceConditions, () => DisplayPrompt(EnlistPlayer));
@@ -221,6 +220,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private bool QuitCondition()
         {
+            if (Campaign.Current.ConversationManager.OneToOneConversationHero != _hirelingEnlistingLord)
+                return false;
             var culture = Campaign.Current.ConversationManager.OneToOneConversationCharacter.Culture.StringId;
             if (GameTexts.TryGetText("HirelingLordQuit", out var text, culture))
             {

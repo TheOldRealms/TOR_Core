@@ -115,5 +115,16 @@ namespace TOR_Core.HarmonyPatches
 				MBTextManager.SetTextVariable("ROBBERY_THREAT", text, false);
 			}
 		}
+		
+		[HarmonyPostfix]
+		[HarmonyPatch(typeof(LordConversationsCampaignBehavior), "conversation_player_want_to_end_service_as_mercenary_on_condition")]
+		public static void EndMercenaryContract(ref bool __result)
+		{
+			if (Hero.MainHero.IsEnlisted())
+			{
+				__result = false;
+			}
+		}
+		
 	}
 }
