@@ -31,6 +31,10 @@ namespace TOR_Core.Models
         public override void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
         {
             base.InitializeAgentStats(agent, spawnEquipment, agentDrivenProperties, agentBuildData);
+
+            var equipmentEncumbrance = GetTOREffectiveEquipmentEncumbrance(agent, agentDrivenProperties.WeaponsEncumbrance);
+            agentDrivenProperties.WeaponsEncumbrance = equipmentEncumbrance;
+            
             UpdateAgentDrivenProperties(agent, agentDrivenProperties);
         }
 
@@ -416,6 +420,19 @@ namespace TOR_Core.Models
             }
 
             return base.GetMaxCameraZoom(agent);
+        }
+        
+        //The moment you realize they forget to add an override statement. if they do it needs to be moved on the EffectiveArmorEncumbrance
+        public float GetTOREffectiveEquipmentEncumbrance(Agent agent, float value)
+        {
+            var number =  new ExplainedNumber(value);
+            if (agent.Character.IsHero && agent.GetHero() == Hero.MainHero)
+            {
+                CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref number, PassiveEffectType.EquipmentWeightReduction);
+            }
+  
+
+            return number.ResultNumber;
         }
 
         public AgentPropertyContainer AddPerkEffectsToAgentPropertyContainer(Agent agent, PropertyMask mask, AttackTypeMask attackMask, AgentPropertyContainer container)

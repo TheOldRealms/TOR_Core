@@ -64,7 +64,7 @@ namespace TOR_Core.CharacterDevelopment
 
         public static CareerObject ImperialMagister => Instance._imperialMagister;
         
-        public static CareerObject Waywatcher => Instance._imperialMagister;
+        public static CareerObject Waywatcher => Instance._waywatcher;
 
         private void RegisterAll()
         {
@@ -95,6 +95,7 @@ namespace TOR_Core.CharacterDevelopment
             _allCareers.Add(_necrarch);
             _allCareers.Add(_warriorPriestUlric);
             _allCareers.Add(_imperialMagister);
+            _allCareers.Add(_waywatcher);
         }
 
         private void InitializeAll()

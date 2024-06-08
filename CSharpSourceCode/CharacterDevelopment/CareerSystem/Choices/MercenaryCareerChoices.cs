@@ -119,7 +119,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _mercenaryRootNode.Initialize(CareerID, "The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
+                    new()
                     {
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "righteous_fury_effect",

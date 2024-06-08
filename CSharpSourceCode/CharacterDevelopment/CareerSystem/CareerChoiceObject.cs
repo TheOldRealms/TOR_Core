@@ -274,6 +274,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         TroopWages,
         TroopUpgradeCost,
         Ammo,               //Player ammo , flat number
-        SwingSpeed
+        SwingSpeed,
+        EquipmentWeightReduction
     }
 }
