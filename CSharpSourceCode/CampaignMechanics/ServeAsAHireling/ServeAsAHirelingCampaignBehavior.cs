@@ -72,6 +72,18 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this,DailyRenownGain);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this,SkillGain);
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this,LeaveKingdomEvent);
+            CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnMobilePartyDestroyed);
+        }
+
+        private void OnMobilePartyDestroyed(MobileParty destroyedParty, PartyBase attackingParty)
+        {
+            if (_hirelingEnlisted)
+            {
+                if (destroyedParty.LeaderHero == _hirelingEnlistingLord || destroyedParty == MobileParty.MainParty)
+                {
+                    LeaveLordPartyAction();
+                }
+            }
         }
 
         private void LeaveKingdomEvent(Clan clan, Kingdom kingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail arg4, bool arg5)
@@ -628,7 +640,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (_hirelingEnlisted && _hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo!=null)
             {
                 
-                if (_hirelingLordIsFightingWithoutPlayer || _hirelingEnlistingLord.PartyBelongedTo?.BesiegerCamp!=null)
+                if (_hirelingLordIsFightingWithoutPlayer || _hirelingEnlistingLord.PartyBelongedTo?.BesiegerCamp!=null || _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement!=null)
                 {
                     if (!MobileParty.MainParty.ShouldBeIgnored)
                     {
@@ -673,6 +685,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 }
                 
             }
+            
         }
         
         private void UndoDiplomacy()
