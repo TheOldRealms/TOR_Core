@@ -72,6 +72,18 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this,DailyRenownGain);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this,SkillGain);
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this,LeaveKingdomEvent);
+            CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnMobilePartyDestroyed);
+        }
+
+        private void OnMobilePartyDestroyed(MobileParty destroyedParty, PartyBase attackingParty)
+        {
+            if (_hirelingEnlisted)
+            {
+                if (destroyedParty.LeaderHero == _hirelingEnlistingLord || destroyedParty == MobileParty.MainParty)
+                {
+                    LeaveLordPartyAction();
+                }
+            }
         }
 
         private void LeaveKingdomEvent(Clan clan, Kingdom kingdom, Kingdom newKingdom, ChangeKingdomAction.ChangeKingdomActionDetail arg4, bool arg5)
@@ -367,7 +379,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void SetupBattleMenu(CampaignGameStarter campaignGameStarter)
         {
-             TextObject hirelingBattleTextMenu = new TextObject("This is a test of Hireling BattleMenu");
+             TextObject hirelingBattleTextMenu = new TextObject("Your Lord engages in a battle.");
             campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, this.party_wait_talk_to_other_members_on_init, GameOverlays.MenuOverlayType.Encounter);
 
             campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_join_battle", "Join battle",
@@ -628,7 +640,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (_hirelingEnlisted && _hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo!=null)
             {
                 
-                if (_hirelingLordIsFightingWithoutPlayer || _hirelingEnlistingLord.PartyBelongedTo?.BesiegerCamp!=null)
+                if (_hirelingLordIsFightingWithoutPlayer || _hirelingEnlistingLord.PartyBelongedTo?.BesiegerCamp!=null || _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement!=null)
                 {
                     if (!MobileParty.MainParty.ShouldBeIgnored)
                     {
@@ -654,12 +666,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 if (_hirelingEnlistingLord.PartyBelongedTo.MapEvent != null && MobileParty.MainParty.MapEvent == null)
                 {
                     var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
-
-                    
-                    // TODO: CHECK THE DEFENDING PART
                     _hirelingEnlistingLordIsAttacking = false;
-
-                    TORCommon.Say("Lord starts encounter");
+                    
                     foreach (var party in mapEvent.AttackerSide.Parties)
                     {
                         if (party.Party == _hirelingEnlistingLord.PartyBelongedTo.Party)
@@ -677,6 +685,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 }
                 
             }
+            
         }
         
         private void UndoDiplomacy()
