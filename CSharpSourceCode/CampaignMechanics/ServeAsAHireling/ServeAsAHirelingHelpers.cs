@@ -86,13 +86,9 @@ public static class ServeAsAHirelingHelpers
         number.Add(wage.ResultNumber ,new TextObject("Hireling Wage"));
     }
 
-
-
-
     public static bool HirelingServiceConditions()
     {
-        var dialogPartner = Campaign.Current.ConversationManager.OneToOneConversationCharacter;
-        
+        var dialogPartner = Campaign.Current.ConversationManager.OneToOneConversationHero;
 
         if (GameTexts.TryGetText("HirelingLordExplain", out var explainText, dialogPartner.Culture.StringId))
         {

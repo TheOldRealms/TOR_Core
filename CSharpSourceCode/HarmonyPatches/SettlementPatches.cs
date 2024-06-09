@@ -168,6 +168,13 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PlayerTownVisitCampaignBehavior), "game_menu_town_town_leave_on_condition")]
+        public static void DisableEnlistedLeaveTown(ref bool __result)
+        {
+            if (Hero.MainHero.IsEnlisted()) __result = false;
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(PlayerTownVisitCampaignBehavior), "SetIntroductionText")]
         public static bool AddRoRtoIntroductionText(Settlement settlement, bool fromKeep)
