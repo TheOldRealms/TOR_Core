@@ -120,40 +120,40 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializePassives()
     {
         _protectorOfTheWoodsPassive1.Initialize(CareerID, "Extra ranged damage (10%).", "ProtectorOfTheWoods", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
-        _protectorOfTheWoodsPassive2.Initialize(CareerID,"PLACEHOLDER","ProtectorOfTheWoods",false,ChoiceType.Passive);
-        _protectorOfTheWoodsPassive3.Initialize(CareerID, "5 extra ammo", "ProtectorOfTheWoods", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
-        _protectorOfTheWoodsPassive4.Initialize(CareerID, "All ranged troops wages are reduced by 20%", "ProtectorOfTheWoods", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true, 
+        _protectorOfTheWoodsPassive2.Initialize(CareerID, "5 extra ammo", "ProtectorOfTheWoods", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
+        _protectorOfTheWoodsPassive3.Initialize(CareerID, "All ranged troops wages are reduced by 20%", "ProtectorOfTheWoods", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true, 
             characterObject => !characterObject.IsHero && characterObject.IsRanged));
+        _protectorOfTheWoodsPassive4.Initialize(CareerID, "Reduce range Accuracy movement penalty by 15%.", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.RangedMovementPenalty, true));  
         
         _pathfinderPassive1.Initialize(CareerID, "{=vivid_visions_passive4_str}The Spotting range of the party is increased by 20%.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
         _pathfinderPassive2.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 1.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
         _pathfinderPassive3.Initialize(CareerID, "Extra ranged damage (10%).", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
-        _pathfinderPassive4.Initialize(CareerID, "TRAVEL THROUGH SNOW.", "ForestStalker", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SwingSpeed,true)); 
+        _pathfinderPassive4.Initialize(CareerID, "TRAVEL THROUGH SNOW.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SwingSpeed,true)); 
         
         _forestStalkerPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "ForestStalker", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
         _forestStalkerPassive2.Initialize(CareerID, "Gain 20% range resistance.", "ForestStalker", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged));
         _forestStalkerPassive3.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "ForestStalker", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged, 
             (attacker, victim, mask) => !victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& !victim.IsRangedCached &&  mask == AttackTypeMask.Melee ));
-        _forestStalkerPassive4.Initialize(CareerID,"20% Equipment weight Reduction","Pathfinder",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
+        _forestStalkerPassive4.Initialize(CareerID,"20% Equipment weight Reduction","ForestStalker",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         
-        _shiftshiverShardsPassive1.Initialize(CareerID, "10 extra ammo", "HagbaneTips", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo));
-        _shiftshiverShardsPassive2.Initialize(CareerID,"Daily XP GAIN","ShiftshiverShards",false,ChoiceType.Passive);
-        _shiftshiverShardsPassive3.Initialize(CareerID,"STEALTH KILL","ShiftshiverShards",false,ChoiceType.Passive);
-        _shiftshiverShardsPassive4.Initialize(CareerID,"Additonal magic damage","ShiftshiverShards",false,ChoiceType.Passive);
+        _shiftshiverShardsPassive1.Initialize(CareerID, "10 extra ammo", "ShiftshiverShards", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo));
+        _shiftshiverShardsPassive2.Initialize(CareerID,"Ranged troops gain 25XP daily ","ShiftshiverShards", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
+        _shiftshiverShardsPassive3.Initialize(CareerID,"Attacking unaware enemies adds 50% extra damage","ShiftshiverShards",false,ChoiceType.Passive);
+        _shiftshiverShardsPassive4.Initialize(CareerID,"PLACEHOLDER","ShiftshiverShards",false,ChoiceType.Passive);
         
         _hagbaneTipsPassive1.Initialize(CareerID, "10 extra ammo", "HagbaneTips", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo)); 
-        _hagbaneTipsPassive2.Initialize(CareerID,"20% Equipment weight Reduction","Pathfinder",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
+        _hagbaneTipsPassive2.Initialize(CareerID,"20% Equipment weight Reduction","HagbaneTips",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         _hagbaneTipsPassive3.Initialize(CareerID,"SPECIAL Headshots double the fill","HagbaneTips",false,ChoiceType.Passive);
         _hagbaneTipsPassive4.Initialize(CareerID,"FOURTH ARROW","HagbaneTips",false,ChoiceType.Passive);
         
-        _starfireShaftsPassive1.Initialize(CareerID, "10 extra ammo", "HagbaneTips", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo)); 
+        _starfireShaftsPassive1.Initialize(CareerID, "10 extra ammo", "StarfireShafts", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo)); 
         _starfireShaftsPassive2.Initialize(CareerID, "15% swing speed", "StarfireShafts", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed));
         _starfireShaftsPassive3.Initialize(CareerID,"PENETRATE SHIELDS","StarfireShafts",false,ChoiceType.Passive);
         _starfireShaftsPassive4.Initialize(CareerID,"explosive arrow","StarfireShafts",false,ChoiceType.Passive);
         
-        _eyeOfTheHunterPassive1.Initialize(CareerID,"WEIGHT","EyeOfTheHunter",false,ChoiceType.Passive);
+        _eyeOfTheHunterPassive1.Initialize(CareerID,"20% Equipment weight Reduction","EyeOfTheHunter",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         _eyeOfTheHunterPassive2.Initialize(CareerID,"Multiple targets","EyeOfTheHunter",false,ChoiceType.Passive);
-        _eyeOfTheHunterPassive3.Initialize(CareerID,"50 Archer skill points","EyeOfTheHunter",false,ChoiceType.Passive);
+        _eyeOfTheHunterPassive3.Initialize(CareerID,"50 Archer skill points","EyeOfTheHunter",false,ChoiceType.Passive , null, new CareerChoiceObject.PassiveEffect(50));
         _eyeOfTheHunterPassive4.Initialize(CareerID,"ALL ARROW EFFECTS DOUBLE","EyeOfTheHunter",false,ChoiceType.Passive);
         
     }

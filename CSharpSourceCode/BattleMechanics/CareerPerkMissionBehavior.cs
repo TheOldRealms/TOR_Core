@@ -47,6 +47,34 @@ namespace TOR_Core.BattleMechanics
             }
         }
 
+        public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
+        {
+            base.OnMissileHit(attacker, victim, isCanceled, collisionData);
+
+            if (victim == null) return;
+            if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("ShiftshiverShardsPassive3"))
+            {
+                var agentDirection = victim.LookDirection;
+                var attackerDirection = collisionData.WeaponBlowDir.NormalizedCopy();
+                var isStealthAttack = false;
+                if (agentDirection.Length != 0 && attackerDirection.Length != 0)
+                {
+                    var degree = Vec3.AngleBetweenTwoVectors(agentDirection,attackerDirection).ToDegrees();
+
+
+                    isStealthAttack = degree < 90;
+                    TORCommon.Say(degree+"");
+                }
+                
+                
+                if(isStealthAttack || !victim.AIStateFlags.HasFlag(Agent.AIStateFlag.Alarmed))
+                {
+                    InformationManager.DisplayMessage(new InformationMessage("Stealth Attack!", new TaleWorlds.Library.Color(255, 165, 85)));
+                    victim.ApplyDamage((int)(collisionData.InflictedDamage*0.5f),victim.Position);
+                }
+            }
+        }
+
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
@@ -61,6 +89,8 @@ namespace TOR_Core.BattleMechanics
             {
                 affectorAgent.ApplyDamage((int)(blow.InflictedDamage*0.25f),affectedAgent.Position);
             }
+
+        
         }
 
         private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)

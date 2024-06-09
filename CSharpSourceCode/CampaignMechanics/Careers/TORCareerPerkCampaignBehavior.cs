@@ -174,6 +174,23 @@ namespace TOR_Core.CampaignMechanics
                 }
             }
             
+            if (choices.Contains("ShiftshiverShardsPassive2"))
+            {
+                var memberList = mobileParty.MemberRoster.GetTroopRoster();
+                for (var index = 0; index < memberList.Count; index++)
+                {
+                    var member = memberList[index];
+                    if (!member.Character.IsKnightUnit())
+                    {
+                        var choice = TORCareerChoices.GetChoice("ShiftshiverShardsPassive2");
+                        if (choice != null)
+                        {
+                            mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
+                        }
+                    }
+                }
+            }
+            
             if (choices.Contains("CurseOfMousillonPassive4"))
             {
                 var heroes = mobileParty.GetMemberHeroes();

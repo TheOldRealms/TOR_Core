@@ -211,6 +211,13 @@ namespace TOR_Core.Models
                                 if(choice.Passive!=null)
                                     resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
                             }
+                            
+                            if (skill == DefaultSkills.Bow && choices.Contains("EyeOfTheHunterPassive3"))
+                            {
+                                var choice = TORCareerChoices.GetChoice("EyeOfTheHunterPassive3");
+                                if(choice.Passive!=null)
+                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            }
                         }
                     }
                 }
