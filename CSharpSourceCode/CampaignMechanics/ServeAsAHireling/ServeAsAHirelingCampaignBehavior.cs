@@ -684,6 +684,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     }
                 }
                 
+            } 
+            else if(_hirelingEnlisted && _hirelingEnlistingLord?.PartyBelongedTo == null)
+            {
+                LeaveLordPartyAction();
             }
             
         }
