@@ -120,7 +120,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _forestStalker;
         private CareerChoiceGroupObject _hailOfArrows;
         private CareerChoiceGroupObject _hawkeyed;
-        private CareerChoiceGroupObject _starfireShafts;
+        private CareerChoiceGroupObject _starfireEssence;
         private CareerChoiceGroupObject _eyeOfTheHunter;
 
 
@@ -249,7 +249,7 @@ namespace TOR_Core.CharacterDevelopment
             _protectorOfTheWoods = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_protectorOfTheWoods).UnderscoreFirstCharToUpper()));
             _hailOfArrows = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_hailOfArrows).UnderscoreFirstCharToUpper()));
             _hawkeyed = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_hawkeyed).UnderscoreFirstCharToUpper()));
-            _starfireShafts = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_starfireShafts).UnderscoreFirstCharToUpper()));
+            _starfireEssence = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_starfireEssence).UnderscoreFirstCharToUpper()));
             _eyeOfTheHunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_eyeOfTheHunter).UnderscoreFirstCharToUpper()));
             
         }
@@ -775,7 +775,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _starfireShafts.Initialize("Starfire shafts", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
+            _starfireEssence.Initialize("Starfire Essence", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;

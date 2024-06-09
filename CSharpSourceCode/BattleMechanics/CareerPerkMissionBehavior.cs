@@ -118,6 +118,8 @@ namespace TOR_Core.BattleMechanics
             if (victim == null) return;
             if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Agent.Main!=null)
             {
+                CareerMissionVariables[2] = 0;
+                
                 if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
                 {
                     var agentDirection = victim.LookDirection;

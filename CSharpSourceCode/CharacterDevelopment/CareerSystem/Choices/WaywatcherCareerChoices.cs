@@ -42,11 +42,11 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     private CareerChoiceObject _hawkeyedPassive3;
     private CareerChoiceObject _hawkeyedPassive4;
     
-    private CareerChoiceObject _starfireShaftsKeystone;
-    private CareerChoiceObject _starfireShaftsPassive1;
-    private CareerChoiceObject _starfireShaftsPassive2;
-    private CareerChoiceObject _starfireShaftsPassive3;
-    private CareerChoiceObject _starfireShaftsPassive4;
+    private CareerChoiceObject _starfireEssenceKeystone;
+    private CareerChoiceObject _starfireEssencePassive1;
+    private CareerChoiceObject _starfireEssencePassive2;
+    private CareerChoiceObject _starfireEssencePassive3;
+    private CareerChoiceObject _starfireEssencePassive4;
     
     private CareerChoiceObject _eyeOfTheHunterKeystone;
     private CareerChoiceObject _eyeOfTheHunterPassive1;
@@ -88,11 +88,11 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _hawkeyedPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hawkeyedPassive3).UnderscoreFirstCharToUpper()));
         _hawkeyedPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hawkeyedPassive4).UnderscoreFirstCharToUpper()));
 
-        _starfireShaftsKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireShaftsKeystone).UnderscoreFirstCharToUpper()));
-        _starfireShaftsPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireShaftsPassive1).UnderscoreFirstCharToUpper()));
-        _starfireShaftsPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireShaftsPassive2).UnderscoreFirstCharToUpper()));
-        _starfireShaftsPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireShaftsPassive3).UnderscoreFirstCharToUpper()));
-        _starfireShaftsPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireShaftsPassive4).UnderscoreFirstCharToUpper()));
+        _starfireEssenceKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireEssenceKeystone).UnderscoreFirstCharToUpper()));
+        _starfireEssencePassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireEssencePassive1).UnderscoreFirstCharToUpper()));
+        _starfireEssencePassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireEssencePassive2).UnderscoreFirstCharToUpper()));
+        _starfireEssencePassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireEssencePassive3).UnderscoreFirstCharToUpper()));
+        _starfireEssencePassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireEssencePassive4).UnderscoreFirstCharToUpper()));
 
         _eyeOfTheHunterKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_eyeOfTheHunterKeystone).UnderscoreFirstCharToUpper()));
         _eyeOfTheHunterPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_eyeOfTheHunterPassive1).UnderscoreFirstCharToUpper()));
@@ -146,10 +146,10 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _hawkeyedPassive3.Initialize(CareerID,"While Zoomed in, the time is slowed down","Hawkeyed",false,ChoiceType.Passive);
         _hawkeyedPassive4.Initialize(CareerID,"FOURTH ARROW","Hawkeyed",false,ChoiceType.Passive);
         
-        _starfireShaftsPassive1.Initialize(CareerID, "15 extra ammo", "StarfireShafts", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Ammo)); 
-        _starfireShaftsPassive2.Initialize(CareerID, "15% swing speed", "StarfireShafts", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed));
-        _starfireShaftsPassive3.Initialize(CareerID,"PENETRATE SHIELDS","StarfireShafts",false,ChoiceType.Passive);
-        _starfireShaftsPassive4.Initialize(CareerID,"explosive arrow","StarfireShafts",false,ChoiceType.Passive);
+        _starfireEssencePassive1.Initialize(CareerID, "15 extra ammo", "StarfireEssence", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Ammo)); 
+        _starfireEssencePassive2.Initialize(CareerID, "15% swing speed", "StarfireEssence", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed));
+        _starfireEssencePassive3.Initialize(CareerID,"PENETRATE SHIELDS","StarfireEssence",false,ChoiceType.Passive);
+        _starfireEssencePassive4.Initialize(CareerID,"explosive arrow","StarfireEssence",false,ChoiceType.Passive);
         
         _eyeOfTheHunterPassive1.Initialize(CareerID,"20% Equipment weight Reduction","EyeOfTheHunter",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         _eyeOfTheHunterPassive2.Initialize(CareerID,"Multiple targets","EyeOfTheHunter",false,ChoiceType.Passive);
