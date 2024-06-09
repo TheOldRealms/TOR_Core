@@ -443,6 +443,7 @@
 		type="DamageOverTime"
 		damage_type="Physical">
   	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate
 		id="frost_bite_mov_90"
 		particle_id="freeze"
@@ -1375,6 +1376,27 @@
 		type="TemporaryAttributeOnly"
 		damage_type="Physical">
 		<temporary_attribute>Piercing</temporary_attribute>	
+	</StatusEffectTemplate>
+	
+	
+	<StatusEffectTemplate
+		id="hawkeyed_debuff"
+		particle_id="summer_heat"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.60"
+		applies_for_attack_type="All"
+		type="MovementManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="hawkeyed_debuff2"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.60"
+		applies_for_attack_type="All"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
 	</StatusEffectTemplate>
 	
 </StatusEffects>

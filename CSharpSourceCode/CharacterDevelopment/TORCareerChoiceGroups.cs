@@ -119,7 +119,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _pathfinder;
         private CareerChoiceGroupObject _forestStalker;
         private CareerChoiceGroupObject _shiftshiverShards;
-        private CareerChoiceGroupObject _hagbaneTips;
+        private CareerChoiceGroupObject _hawkeyed;
         private CareerChoiceGroupObject _starfireShafts;
         private CareerChoiceGroupObject _eyeOfTheHunter;
 
@@ -248,7 +248,7 @@ namespace TOR_Core.CharacterDevelopment
             _pathfinder = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_pathfinder).UnderscoreFirstCharToUpper()));
             _protectorOfTheWoods = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_protectorOfTheWoods).UnderscoreFirstCharToUpper()));
             _shiftshiverShards = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_shiftshiverShards).UnderscoreFirstCharToUpper()));
-            _hagbaneTips = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_hagbaneTips).UnderscoreFirstCharToUpper()));
+            _hawkeyed = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_hawkeyed).UnderscoreFirstCharToUpper()));
             _starfireShafts = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_starfireShafts).UnderscoreFirstCharToUpper()));
             _eyeOfTheHunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_eyeOfTheHunter).UnderscoreFirstCharToUpper()));
             
@@ -770,7 +770,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 2;
             });
             
-            _hagbaneTips.Initialize("Hagbane Tipps", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
+            _hawkeyed.Initialize("Hawkeyed", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;

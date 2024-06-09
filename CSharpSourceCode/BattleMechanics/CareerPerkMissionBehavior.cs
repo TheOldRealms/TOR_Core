@@ -1,3 +1,4 @@
+using System.Windows.Input;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -18,7 +19,20 @@ namespace TOR_Core.BattleMechanics
     {
         private float _currentTime;
         private readonly float _frequency=1f;
-        
+        private bool _zoomKeyEventStarted;
+        private const int _timeRequestID =10001;
+
+        private float[] _careerMissionVariables = new float[5];
+
+
+
+        public override void AfterStart()
+        {
+            _careerMissionVariables = new float[5];
+            
+            base.AfterStart();
+        }
+
         public override void OnMissionTick(float dt)
         {
             _currentTime += dt;
@@ -27,8 +41,48 @@ namespace TOR_Core.BattleMechanics
                 _currentTime = 0f;
                 TickEvents();
             }
+
+            if (this.Mission.InputManager.IsGameKeyDown(24))
+            {
+                ZoomKeyDownEvents();
+            }
+            
+            if(_zoomKeyEventStarted&&this.Mission.InputManager.IsGameKeyReleased(24))
+            {
+                ZoomKeyUpEvents();
+            }
         }
-    
+
+        private void ZoomKeyDownEvents()
+        {
+            if(_zoomKeyEventStarted) return;
+            
+        
+            
+            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HawkeyedPassive3"))
+            {
+           
+                var timeRequest = new Mission.TimeSpeedRequest (0.60f,_timeRequestID);
+                Mission.Current.AddTimeSpeedRequest (timeRequest);
+            }
+            
+            _zoomKeyEventStarted = true;
+        }
+
+        private void ZoomKeyUpEvents()
+        {
+            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                if (Mission.Current.GetRequestedTimeSpeed(_timeRequestID, out float _))
+                {
+                    Mission.Current.RemoveTimeSpeedRequest(_timeRequestID);
+                }
+            }
+
+
+            _zoomKeyEventStarted = false;
+        }
+
 
         private void TickEvents()
         {
@@ -45,6 +99,11 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
             }
+
+            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                _careerMissionVariables[2] ++;
+            }
         }
 
         public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
@@ -52,25 +111,37 @@ namespace TOR_Core.BattleMechanics
             base.OnMissileHit(attacker, victim, isCanceled, collisionData);
 
             if (victim == null) return;
-            if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("ShiftshiverShardsPassive3"))
+            if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
-                var agentDirection = victim.LookDirection;
-                var attackerDirection = collisionData.WeaponBlowDir.NormalizedCopy();
-                var isStealthAttack = false;
-                if (agentDirection.Length != 0 && attackerDirection.Length != 0)
+                if (Hero.MainHero.HasCareerChoice("ShiftshiverShardsPassive3"))
                 {
-                    var degree = Vec3.AngleBetweenTwoVectors(agentDirection,attackerDirection).ToDegrees();
+                    var agentDirection = victim.LookDirection;
+                    var attackerDirection = collisionData.WeaponBlowDir.NormalizedCopy();
+                    var isStealthAttack = false;
+                    if (agentDirection.Length != 0 && attackerDirection.Length != 0)
+                    {
+                        var degree = Vec3.AngleBetweenTwoVectors(agentDirection, attackerDirection).ToDegrees();
+                        isStealthAttack = degree < 90;
+                        TORCommon.Say(degree + "");
+                    }
 
 
-                    isStealthAttack = degree < 90;
-                    TORCommon.Say(degree+"");
+                    if (isStealthAttack || !victim.AIStateFlags.HasFlag(Agent.AIStateFlag.Alarmed))
+                    {
+                        InformationManager.DisplayMessage(new InformationMessage("Stealth Attack!", new TaleWorlds.Library.Color(255, 165, 85)));
+                        victim.ApplyDamage((int)(collisionData.InflictedDamage * 0.5f), victim.Position);
+                    }
                 }
-                
-                
-                if(isStealthAttack || !victim.AIStateFlags.HasFlag(Agent.AIStateFlag.Alarmed))
+
+                if (Hero.MainHero.HasCareerChoice("HawkeyedPassive4") && Agent.Main!=null)
                 {
-                    InformationManager.DisplayMessage(new InformationMessage("Stealth Attack!", new TaleWorlds.Library.Color(255, 165, 85)));
-                    victim.ApplyDamage((int)(collisionData.InflictedDamage*0.5f),victim.Position);
+                    _careerMissionVariables[2]++;
+                    if (_careerMissionVariables[2] >= 4)
+                    {
+                        victim.ApplyStatusEffect("hawkeyed_debuff",Agent.Main,6,false);
+                        victim.ApplyStatusEffect("hawkeyed_debuff2",Agent.Main,6,false);
+                        _careerMissionVariables[2] = 0;
+                    }
                 }
             }
         }

@@ -36,11 +36,11 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     private CareerChoiceObject _shiftshiverShardsPassive3;
     private CareerChoiceObject _shiftshiverShardsPassive4;
     
-    private CareerChoiceObject _hagbaneTipsKeystone;
-    private CareerChoiceObject _hagbaneTipsPassive1;
-    private CareerChoiceObject _hagbaneTipsPassive2;
-    private CareerChoiceObject _hagbaneTipsPassive3;
-    private CareerChoiceObject _hagbaneTipsPassive4;
+    private CareerChoiceObject _hawkeyedKeystone;
+    private CareerChoiceObject _hawkeyedPassive1;
+    private CareerChoiceObject _hawkeyedPassive2;
+    private CareerChoiceObject _hawkeyedPassive3;
+    private CareerChoiceObject _hawkeyedPassive4;
     
     private CareerChoiceObject _starfireShaftsKeystone;
     private CareerChoiceObject _starfireShaftsPassive1;
@@ -82,11 +82,11 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _shiftshiverShardsPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_shiftshiverShardsPassive3).UnderscoreFirstCharToUpper()));
         _shiftshiverShardsPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_shiftshiverShardsPassive4).UnderscoreFirstCharToUpper()));
 
-        _hagbaneTipsKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hagbaneTipsKeystone).UnderscoreFirstCharToUpper()));
-        _hagbaneTipsPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hagbaneTipsPassive1).UnderscoreFirstCharToUpper()));
-        _hagbaneTipsPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hagbaneTipsPassive2).UnderscoreFirstCharToUpper()));
-        _hagbaneTipsPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hagbaneTipsPassive3).UnderscoreFirstCharToUpper()));
-        _hagbaneTipsPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hagbaneTipsPassive4).UnderscoreFirstCharToUpper()));
+        _hawkeyedKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hawkeyedKeystone).UnderscoreFirstCharToUpper()));
+        _hawkeyedPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hawkeyedPassive1).UnderscoreFirstCharToUpper()));
+        _hawkeyedPassive2 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hawkeyedPassive2).UnderscoreFirstCharToUpper()));
+        _hawkeyedPassive3 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hawkeyedPassive3).UnderscoreFirstCharToUpper()));
+        _hawkeyedPassive4 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_hawkeyedPassive4).UnderscoreFirstCharToUpper()));
 
         _starfireShaftsKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireShaftsKeystone).UnderscoreFirstCharToUpper()));
         _starfireShaftsPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_starfireShaftsPassive1).UnderscoreFirstCharToUpper()));
@@ -141,10 +141,10 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _shiftshiverShardsPassive3.Initialize(CareerID,"Attacking unaware enemies adds 50% extra damage","ShiftshiverShards",false,ChoiceType.Passive);
         _shiftshiverShardsPassive4.Initialize(CareerID,"PLACEHOLDER","ShiftshiverShards",false,ChoiceType.Passive);
         
-        _hagbaneTipsPassive1.Initialize(CareerID, "10 extra ammo", "HagbaneTips", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo)); 
-        _hagbaneTipsPassive2.Initialize(CareerID,"20% Equipment weight Reduction","HagbaneTips",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
-        _hagbaneTipsPassive3.Initialize(CareerID,"SPECIAL Headshots double the fill","HagbaneTips",false,ChoiceType.Passive);
-        _hagbaneTipsPassive4.Initialize(CareerID,"FOURTH ARROW","HagbaneTips",false,ChoiceType.Passive);
+        _hawkeyedPassive1.Initialize(CareerID,"20% Equipment weight Reduction","Hawkeyed",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
+        _hawkeyedPassive2.Initialize(CareerID,"SPECIAL Headshots double the fill","Hawkeyed",false,ChoiceType.Passive);
+        _hawkeyedPassive3.Initialize(CareerID,"While Zoomed in, the time is slowed down","Hawkeyed",false,ChoiceType.Passive);
+        _hawkeyedPassive4.Initialize(CareerID,"FOURTH ARROW","Hawkeyed",false,ChoiceType.Passive);
         
         _starfireShaftsPassive1.Initialize(CareerID, "10 extra ammo", "StarfireShafts", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo)); 
         _starfireShaftsPassive2.Initialize(CareerID, "15% swing speed", "StarfireShafts", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed));
