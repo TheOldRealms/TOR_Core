@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.BattleMechanics.TriggeredEffect;
@@ -201,7 +202,17 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
-           
+            if (attackTypeMask == AttackTypeMask.Ranged && attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
+                {
+                    CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                    if (careerPerkBehavior != null)
+                    {
+                        damageProportions[(int)DamageType.Magical] += 0.01f*careerPerkBehavior.CareerMissionVariables[0];
+                    }  
+                }
+            }
 
             //calculating non-spell damage
             for (int i = 0; i < damageCategories.Length - 1; i++)

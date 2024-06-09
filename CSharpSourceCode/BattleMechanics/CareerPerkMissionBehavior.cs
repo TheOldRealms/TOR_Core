@@ -22,13 +22,13 @@ namespace TOR_Core.BattleMechanics
         private bool _zoomKeyEventStarted;
         private const int _timeRequestID =10001;
 
-        private float[] _careerMissionVariables = new float[5];
+        public float[] CareerMissionVariables = new float[5];
 
 
 
         public override void AfterStart()
         {
-            _careerMissionVariables = new float[5];
+            CareerMissionVariables = new float[5];
             
             base.AfterStart();
         }
@@ -102,7 +102,12 @@ namespace TOR_Core.BattleMechanics
 
             if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
-                _careerMissionVariables[2] ++;
+                CareerMissionVariables[2] ++;
+            }
+            
+            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                CareerMissionVariables[0] = Mathf.Max(0, CareerMissionVariables[0] - 0.10f);
             }
         }
 
@@ -111,9 +116,9 @@ namespace TOR_Core.BattleMechanics
             base.OnMissileHit(attacker, victim, isCanceled, collisionData);
 
             if (victim == null) return;
-            if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Agent.Main!=null)
             {
-                if (Hero.MainHero.HasCareerChoice("ShiftshiverShardsPassive3"))
+                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
                 {
                     var agentDirection = victim.LookDirection;
                     var attackerDirection = collisionData.WeaponBlowDir.NormalizedCopy();
@@ -122,7 +127,6 @@ namespace TOR_Core.BattleMechanics
                     {
                         var degree = Vec3.AngleBetweenTwoVectors(agentDirection, attackerDirection).ToDegrees();
                         isStealthAttack = degree < 90;
-                        TORCommon.Say(degree + "");
                     }
 
 
@@ -135,13 +139,18 @@ namespace TOR_Core.BattleMechanics
 
                 if (Hero.MainHero.HasCareerChoice("HawkeyedPassive4") && Agent.Main!=null)
                 {
-                    _careerMissionVariables[2]++;
-                    if (_careerMissionVariables[2] >= 4)
+                    CareerMissionVariables[1]++;
+                    if (CareerMissionVariables[1] >= 4)
                     {
                         victim.ApplyStatusEffect("hawkeyed_debuff",Agent.Main,6,false);
                         victim.ApplyStatusEffect("hawkeyed_debuff2",Agent.Main,6,false);
-                        _careerMissionVariables[2] = 0;
+                        CareerMissionVariables[1] = 0;
                     }
+                }
+                
+                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4") && Agent.Main!=null)
+                {
+                    CareerMissionVariables[0]++;
                 }
             }
         }

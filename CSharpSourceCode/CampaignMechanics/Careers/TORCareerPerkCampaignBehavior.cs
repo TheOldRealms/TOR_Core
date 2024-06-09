@@ -174,7 +174,7 @@ namespace TOR_Core.CampaignMechanics
                 }
             }
             
-            if (choices.Contains("ShiftshiverShardsPassive2"))
+            if (choices.Contains("HailOfArrowsPassive2"))
             {
                 var memberList = mobileParty.MemberRoster.GetTroopRoster();
                 for (var index = 0; index < memberList.Count; index++)

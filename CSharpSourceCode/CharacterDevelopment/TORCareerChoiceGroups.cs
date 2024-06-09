@@ -118,7 +118,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _protectorOfTheWoods;
         private CareerChoiceGroupObject _pathfinder;
         private CareerChoiceGroupObject _forestStalker;
-        private CareerChoiceGroupObject _shiftshiverShards;
+        private CareerChoiceGroupObject _hailOfArrows;
         private CareerChoiceGroupObject _hawkeyed;
         private CareerChoiceGroupObject _starfireShafts;
         private CareerChoiceGroupObject _eyeOfTheHunter;
@@ -247,7 +247,7 @@ namespace TOR_Core.CharacterDevelopment
             _forestStalker =  Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_forestStalker).UnderscoreFirstCharToUpper()));
             _pathfinder = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_pathfinder).UnderscoreFirstCharToUpper()));
             _protectorOfTheWoods = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_protectorOfTheWoods).UnderscoreFirstCharToUpper()));
-            _shiftshiverShards = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_shiftshiverShards).UnderscoreFirstCharToUpper()));
+            _hailOfArrows = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_hailOfArrows).UnderscoreFirstCharToUpper()));
             _hawkeyed = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_hawkeyed).UnderscoreFirstCharToUpper()));
             _starfireShafts = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_starfireShafts).UnderscoreFirstCharToUpper()));
             _eyeOfTheHunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_eyeOfTheHunter).UnderscoreFirstCharToUpper()));
@@ -764,7 +764,7 @@ namespace TOR_Core.CharacterDevelopment
                 unlockText = "Shifshiver shards upgrade for troops";
                 return true;
             });
-            _shiftshiverShards.Initialize("Shiftshiver Shards", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
+            _hailOfArrows.Initialize("Hail of Arrows", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
