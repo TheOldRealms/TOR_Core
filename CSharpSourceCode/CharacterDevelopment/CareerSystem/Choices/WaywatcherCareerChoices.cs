@@ -127,8 +127,8 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         
         _pathfinderPassive1.Initialize(CareerID, "{=vivid_visions_passive4_str}The Spotting range of the party is increased by 20%.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
         _pathfinderPassive2.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 1.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
-        _pathfinderPassive3.Initialize(CareerID, "Extra ranged damage (10%).", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
-        _pathfinderPassive4.Initialize(CareerID, "TRAVEL THROUGH SNOW.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SwingSpeed,true)); 
+        _pathfinderPassive3.Initialize(CareerID,"Party travels unhindered through snow","Pathfinder",false,ChoiceType.Passive);
+        _pathfinderPassive4.Initialize(CareerID,"Ranged damage is shrugged off","Pathfinder",false,ChoiceType.Passive);
         
         _forestStalkerPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "ForestStalker", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
         _forestStalkerPassive2.Initialize(CareerID, "Gain 20% range resistance.", "ForestStalker", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged));
@@ -148,8 +148,8 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         
         _starfireEssencePassive1.Initialize(CareerID, "15 extra ammo", "StarfireEssence", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Ammo)); 
         _starfireEssencePassive2.Initialize(CareerID, "15% swing speed", "StarfireEssence", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed));
-        _starfireEssencePassive3.Initialize(CareerID,"PENETRATE SHIELDS","StarfireEssence",false,ChoiceType.Passive);
-        _starfireEssencePassive4.Initialize(CareerID,"explosive arrow","StarfireEssence",false,ChoiceType.Passive);
+        _starfireEssencePassive3.Initialize(CareerID,"Your arrows can penetrate shields","StarfireEssence",false,ChoiceType.Passive);
+        _starfireEssencePassive4.Initialize(CareerID,"Not shooting an arrows increase the chance your next arrow explode on impact.","StarfireEssence",false,ChoiceType.Passive);
         
         _eyeOfTheHunterPassive1.Initialize(CareerID,"20% Equipment weight Reduction","EyeOfTheHunter",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         _eyeOfTheHunterPassive2.Initialize(CareerID,"Multiple targets","EyeOfTheHunter",false,ChoiceType.Passive);

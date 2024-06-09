@@ -867,6 +867,10 @@
   <string id="career_choicegroup2_name.ImperialMagister" text="{=career_choicegroup2_imperialmagister_str}Battle Wizard" />
   <string id="career_choicegroup3_name.ImperialMagister" text="{=career_choicegroup3_imperialmagister_str}Lord Magister" />
   
+    <string id="career_choicegroup1_name.Waywatcher" text="{=career_choicegroup1_waywatcher_str}Scout" />
+  <string id="career_choicegroup2_name.Waywatcher" text="{=career_choicegroup2_waywatcher_str}Waywatcher" />
+  <string id="career_choicegroup3_name.Waywatcher" text="{=career_choicegroup3_waywatcher_str}Waystalker" />
+  
   <!--Career related related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
   <string id="career_description.WarriorPriestUlric" text="{=career_description_warriorpriest_ulric_str}To be a Wolf Priest is to be one of Ulrics champions, powerful, zealous, and blessed by the feral god himself. The battleground is where the word of Ulric is spread, and it is through bloodshed that he is honoured in worship." />
