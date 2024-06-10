@@ -112,6 +112,21 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             {
                 new()
                 {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "ArrowOfKurnous",
+                    PropertyName = "SeekerParameters",
+                    PropertyValue = (choice, originalValue, agent) =>
+                    {
+                        var seeker = new SeekerParameters();
+                        seeker.Derivative = 0;
+                        seeker.Proportional = 0.5f;
+                        seeker.DisableDistance = 2f;
+                        return seeker;
+                    },
+                    MutationType = OperationType.Replace
+                },
+                new()
+                {
                     MutationTargetType = typeof(TriggeredEffectTemplate),
                     MutationTargetOriginalId = "apply_arrow_of_kurnous",
                     PropertyName = "Radius",

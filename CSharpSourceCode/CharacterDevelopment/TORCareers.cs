@@ -112,7 +112,7 @@ namespace TOR_Core.CharacterDevelopment
             _necrarch.Initialize("Necrarch", null, "BlastOfAgony", CareerAbilityChargeSupplier.NecrarchCareerCharge, 1500, typeof(BlastOfAgonyScript));
             _warriorPriestUlric.Initialize("Warrior Priest of Ulric", null, "AxeOfUlric", CareerAbilityChargeSupplier.WarriorPriestUlricCharge, 400, typeof(AxeOfUlricScript));
             _imperialMagister.Initialize("Imperial Magister", null, "ArcaneConduit", null, 120, typeof(ArcaneConduit));
-            _waywatcher.Initialize("Waywatcher", null, "ArrowOfKurnous",CareerAbilityChargeSupplier.WaywatcherCareerCharge, 800);
+            _waywatcher.Initialize("Waywatcher", null, "ArrowOfKurnous",CareerAbilityChargeSupplier.WaywatcherCareerCharge, 800, typeof(ArrowOfKurnousScript));
         }
     }
 }
