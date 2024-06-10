@@ -148,7 +148,7 @@ namespace TOR_Core.CharacterDevelopment
         
         public static float GrailDamselCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            if (chargeType != ChargeType.DamageDone || chargeType != ChargeType.Healed) return 0;
+            if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
 
             if (mask != AttackTypeMask.Spell) return 0;
 
