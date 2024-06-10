@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.Core;
+using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -106,15 +110,86 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _wayWatcherRoot.Initialize(CareerID, "The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
-                new CareerChoiceObject.MutationObject()
+                new()
                 {
-                    MutationTargetType = typeof(StatusEffectTemplate),
-                    MutationTargetOriginalId = "righteous_fury_effect",
-                    PropertyName = "TemporaryAttributes",
-                    PropertyValue = (choice, originalValue, agent) => new List<string> { "Unstoppable", "Unbreakable" },
-                    MutationType = OperationType.Replace
-                },
-            });   
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_arrow_of_kurnous",
+                    PropertyName = "Radius",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Bow}, 0.06f,true),
+                    MutationType = OperationType.Add
+                }
+            });  
+            
+            _protectorOfTheWoodsKeystone.Initialize(CareerID, "Reduces the amount of ranged damage to unlock ability. Ability starts charged.", "ProtectorOfTheWoods", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                });     //special
+            
+            _pathfinderKeystone.Initialize(CareerID, "The range of Eye of Kournous is doubled. Ability scales with Scouting", "Pathfinder", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new()
+                    {
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArrowOfKurnous",
+                        PropertyName = "MaxDistance",
+                        PropertyValue = (choice, originalValue, agent) => 2,
+                        MutationType = OperationType.Multiply
+                    },
+                    new()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arrow_of_kurnous",
+                        PropertyName = "Radius",
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Scouting}, 0.06f,true),
+                        MutationType = OperationType.Add
+                    }
+                });
+            _forestStalkerKeystone.Initialize(CareerID, "All enemies in the affected area suffer 50% more magical damage for 10 seconds", "ForestStalker", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arrow_of_kurnous",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] {"arrow_of_kurnous_debuff_res" }).ToList(),
+                        MutationType = OperationType.Replace
+                    }
+                });
+            _hailOfArrowsKeystone.Initialize(CareerID, "Your reload speed is increased for 4 seconds for every affected enemy", "HailOfArrows", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                });     //special
+            _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact.\n", "Hawkeyed", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arrow_of_kurnous",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] {"arrow_of_kurnous_debuff_mov" }).ToList(),
+                        MutationType = OperationType.Replace
+                    }
+                });
+            _starfireEssenceKeystone.Initialize(CareerID, "Enemies suffer from a dot on impact.\n", "StarfireEssence", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arrow_of_kurnous",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] {"arrow_of_kurnous_debuff_mov" }).ToList(),
+                        MutationType = OperationType.Replace
+                    }
+                });
+  
+            _eyeOfTheHunterKeystone.Initialize(CareerID, "A second use is provided for Arrow of Kurnous.", "EyeOfTheHunter", false,
+                ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                {
+                });     //special
     }
 
     protected override void InitializePassives()
@@ -123,7 +198,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _protectorOfTheWoodsPassive2.Initialize(CareerID, "5 extra ammo", "ProtectorOfTheWoods", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
         _protectorOfTheWoodsPassive3.Initialize(CareerID, "All ranged troops wages are reduced by 20%", "ProtectorOfTheWoods", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true, 
             characterObject => !characterObject.IsHero && characterObject.IsRanged));
-        _protectorOfTheWoodsPassive4.Initialize(CareerID, "Reduce range Accuracy movement penalty by 15%.", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.RangedMovementPenalty, true));  
+        _protectorOfTheWoodsPassive4.Initialize(CareerID, "Reduce range Accuracy movement penalty by 15%.", "ProtectorOfTheWoods", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.RangedMovementPenalty, true));  
         
         _pathfinderPassive1.Initialize(CareerID, "{=vivid_visions_passive4_str}The Spotting range of the party is increased by 20%.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
         _pathfinderPassive2.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 1.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));

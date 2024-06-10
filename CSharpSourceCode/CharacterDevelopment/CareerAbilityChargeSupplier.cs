@@ -319,6 +319,12 @@ namespace TOR_Core.CharacterDevelopment
             if (affectingAgent.Team == affectedAgent.Team) return 0;
             
             var explainedNumber = new ExplainedNumber(chargeValue);
+
+            if (Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone"))
+            {
+                explainedNumber.AddFactor(0.25f);
+            }
+            
             
             if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot&& Hero.MainHero.HasCareerChoice("HawkeyedPassive2"))
             {

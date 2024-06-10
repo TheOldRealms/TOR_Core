@@ -1181,6 +1181,22 @@
 			<ImbuedStatusEffect>let_them_have_it_unbreakable</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="apply_arrow_of_kurnous" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Self" 
+            ImbuedStatusEffectDuration="10" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+      </TriggeredEffectTemplate>
+	  
+	  
+	  
 	  <TriggeredEffectTemplate StringID="ulric_smash" 
             BurstParticleEffectPrefab="treeman_smash" 
             SoundEffectId="none" 
@@ -1353,6 +1369,7 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>fire_cloak_phy_res</ImbuedStatusEffect>
 			<ImbuedStatusEffect>fire_cloak_fire_res</ImbuedStatusEffect>
+			<ImbuedStatusEffect>fire_cloak_thorns</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       
 	  <TriggeredEffectTemplate StringID="ward_of_arrows" 

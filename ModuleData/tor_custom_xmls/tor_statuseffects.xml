@@ -716,7 +716,7 @@
 		<temporary_attribute>ClearBloodBurst</temporary_attribute>
 	</StatusEffectTemplate>
 	<StatusEffectTemplate 
-		id="" 
+		id="fire_cloak_thorns" 
 		particle_id="firecloak"
 		do_not_attach_to_agent_skeleton="true"
 		particle_intensity="High"
@@ -725,6 +725,7 @@
 		type="TemporaryAttributeOnly">
 		<temporary_attribute>Thorns</temporary_attribute>
 	</StatusEffectTemplate>
+	
 	<StatusEffectTemplate 
 		id="ward_of_arrows" 
 		particle_id="psys_energy_sphere"
@@ -1017,6 +1018,43 @@
 		damage_type="Physical">
 		<temporary_attribute>ClearBloodBurst</temporary_attribute>		
 	</StatusEffectTemplate>
+	
+	
+	<StatusEffectTemplate
+		id="arrow_of_kurnous_buff_rel"
+		particle_id=""
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="0.25"
+		type="ReloadSpeedManipulation"
+		damage_type="Magical"/>
+	
+	<StatusEffectTemplate
+		id="arrow_of_kurnous_debuff_res"
+		particle_id="curse_of_years"
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.5"
+		type="Resistance"
+		damage_type="Magical"/>
+		
+	<StatusEffectTemplate
+		id="arrow_of_kurnous_debuff_mov"
+		particle_id="summer_heat"
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+    	base_effect_value="-0.5"
+		type="Resistance"
+		damage_type="Magical"/>
+		
+	<StatusEffectTemplate
+		id="arrow_of_kurnous_debuff_dot"
+		particle_id="torch_fire_sparks"
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="false"
+    	base_effect_value="5"
+		type="DamageOverTime"
+		damage_type="Magical"/>
 	
 	
 	<!-- powerstones -->

@@ -3483,6 +3483,48 @@
 	<TriggeredEffect>apply_arcaneconduit</TriggeredEffect>
 	</AbilityTemplate>
 	
+	<AbilityTemplate StringID="ArrowOfKurnous" 
+      Name="Blast of Agony" 
+      SpriteName="blastofagony_icon" 
+      CoolDown="30" 
+      WindsOfMagicCost="0" 
+      BaseMisCastChance="0.05" 
+      Duration="3" 
+      Radius="0.4" 
+      AbilityType="CareerAbility" 
+      AbilityEffectType="CareerAbilityEffect" 
+      BaseMovementSpeed="50" 
+      TickInterval="-1" 
+      TriggerType="OnCollision" 
+      HasLight="true" 
+      LightIntensity="50" 
+      LightRadius="10"
+	  MaxDistance="120"
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="blast_of_agony_prefab" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="fireball" 
+      ShouldSoundLoopOverDuration="true" 
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.5"
+      CrosshairType="SingleTarget"
+      AbilityTargetType="WorldPosition"
+      SpellTier="3"
+      TooltipDescription="{=fireball_description_str}Launch a devastating homing arrow.">
+		<LightColorRGB x="177" y="0" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_arrow_of_kurnous</TriggeredEffect>
+		<SeekerParameters Proportional="0.5" Derivative="1" DisableDistance="4"/>
+	</AbilityTemplate> <!-- Needs arrow release animation -->
+	
 	
 	<AbilityTemplate StringID="FeyPaths" 
       Name="Fey Paths" 
