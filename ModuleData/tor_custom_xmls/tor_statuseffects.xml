@@ -716,6 +716,16 @@
 		<temporary_attribute>ClearBloodBurst</temporary_attribute>
 	</StatusEffectTemplate>
 	<StatusEffectTemplate 
+		id="" 
+		particle_id="firecloak"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="0.7"
+		damage_type="Fire"
+		type="TemporaryAttributeOnly">
+		<temporary_attribute>Thorns</temporary_attribute>
+	</StatusEffectTemplate>
+	<StatusEffectTemplate 
 		id="ward_of_arrows" 
 		particle_id="psys_energy_sphere"
 		particle_intensity="Low"
