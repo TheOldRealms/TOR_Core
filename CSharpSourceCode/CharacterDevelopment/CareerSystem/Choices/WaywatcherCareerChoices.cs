@@ -139,12 +139,12 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _hailOfArrowsPassive1.Initialize(CareerID, "15 extra ammo", "HailOfArrows", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Ammo));
         _hailOfArrowsPassive2.Initialize(CareerID,"Ranged troops gain 25XP daily ","HailOfArrows", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
         _hailOfArrowsPassive3.Initialize(CareerID,"Attacking unaware enemies adds 50% extra damage","HailOfArrows",false,ChoiceType.Passive);
-        _hailOfArrowsPassive4.Initialize(CareerID,"PLACEHOLDER","HailOfArrows",false,ChoiceType.Passive);
+        _hailOfArrowsPassive4.Initialize(CareerID,"For every hit arrow, your magic damage increase. Bonus slowly decrease.","HailOfArrows",false,ChoiceType.Passive);
         
         _hawkeyedPassive1.Initialize(CareerID,"20% Equipment weight Reduction","Hawkeyed",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         _hawkeyedPassive2.Initialize(CareerID,"SPECIAL Headshots double the fill","Hawkeyed",false,ChoiceType.Passive);
         _hawkeyedPassive3.Initialize(CareerID,"While Zoomed in, the time is slowed down","Hawkeyed",false,ChoiceType.Passive);
-        _hawkeyedPassive4.Initialize(CareerID,"FOURTH ARROW","Hawkeyed",false,ChoiceType.Passive);
+        _hawkeyedPassive4.Initialize(CareerID,"Every sixth arrow, applies a slow down effect on impact","Hawkeyed",false,ChoiceType.Passive);
         
         _starfireEssencePassive1.Initialize(CareerID, "15 extra ammo", "StarfireEssence", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Ammo)); 
         _starfireEssencePassive2.Initialize(CareerID, "15% swing speed", "StarfireEssence", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed));
@@ -154,7 +154,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _eyeOfTheHunterPassive1.Initialize(CareerID,"20% Equipment weight Reduction","EyeOfTheHunter",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         _eyeOfTheHunterPassive2.Initialize(CareerID,"Multiple targets","EyeOfTheHunter",false,ChoiceType.Passive);
         _eyeOfTheHunterPassive3.Initialize(CareerID,"50 Archer skill points","EyeOfTheHunter",false,ChoiceType.Passive , null, new CareerChoiceObject.PassiveEffect(50));
-        _eyeOfTheHunterPassive4.Initialize(CareerID,"ALL ARROW EFFECTS DOUBLE","EyeOfTheHunter",false,ChoiceType.Passive);
+        _eyeOfTheHunterPassive4.Initialize(CareerID,"Special shot efficiency is doubled","EyeOfTheHunter",false,ChoiceType.Passive);
         
     }
 }

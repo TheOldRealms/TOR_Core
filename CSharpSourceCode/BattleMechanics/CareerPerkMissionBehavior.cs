@@ -100,12 +100,17 @@ namespace TOR_Core.BattleMechanics
                 }
             }
 
-            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("StarfireEssencePassive4"))
             {
                 CareerMissionVariables[2] ++;
+                
+                if (Hero.MainHero.HasCareerChoice("_eyeOfTheHunterPassive4"))
+                {
+                    CareerMissionVariables[2] ++;
+                }
             }
             
-            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
             {
                 CareerMissionVariables[0] = Mathf.Max(0, CareerMissionVariables[0] - 0.10f);
             }
@@ -142,7 +147,15 @@ namespace TOR_Core.BattleMechanics
                 if (Hero.MainHero.HasCareerChoice("HawkeyedPassive4") && Agent.Main!=null)
                 {
                     CareerMissionVariables[1]++;
-                    if (CareerMissionVariables[1] >= 4)
+
+                    var hitCount = 6;
+
+                    if (Hero.MainHero.HasCareerChoice("_eyeOfTheHunterPassive4"))
+                    {
+                        hitCount /= 2;
+                    }
+                    
+                    if (CareerMissionVariables[1] >= hitCount)
                     {
                         victim.ApplyStatusEffect("hawkeyed_debuff",Agent.Main,6,false);
                         victim.ApplyStatusEffect("hawkeyed_debuff2",Agent.Main,6,false);
@@ -153,6 +166,11 @@ namespace TOR_Core.BattleMechanics
                 if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4") && Agent.Main!=null)
                 {
                     CareerMissionVariables[0]++;
+                    
+                    if (Hero.MainHero.HasCareerChoice("_eyeOfTheHunterPassive4"))
+                    {
+                        CareerMissionVariables[0] ++;
+                    }
                 }
             }
         }
