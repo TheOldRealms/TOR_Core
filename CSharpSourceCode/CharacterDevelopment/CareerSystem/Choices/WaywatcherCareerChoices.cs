@@ -176,7 +176,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 });     //special
-            _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact.\n", "Hawkeyed", false,
+            _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact. The damage is increased by 60%", "Hawkeyed", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -186,9 +186,17 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                         PropertyName = "ImbuedStatusEffects",
                         PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] {"arrow_of_kurnous_debuff_mov" }).ToList(),
                         MutationType = OperationType.Replace
+                    },
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arrow_of_kurnous",
+                        PropertyName = "DamageAmount",
+                        PropertyValue = (choice, originalValue, agent) => 1.6f,
+                        MutationType = OperationType.Multiply
                     }
                 });
-            _starfireEssenceKeystone.Initialize(CareerID, "Enemies suffer from a dot on impact.\n", "StarfireEssence", false,
+            _starfireEssenceKeystone.Initialize(CareerID, "Enemies suffer from a dot on impact.", "StarfireEssence", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
