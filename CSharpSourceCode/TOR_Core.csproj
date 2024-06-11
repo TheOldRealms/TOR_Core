@@ -532,6 +532,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\NecrarchCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\WaywatcherCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\WitchHunterCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObjectVM.cs" />

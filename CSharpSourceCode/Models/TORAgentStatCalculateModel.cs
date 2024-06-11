@@ -432,6 +432,7 @@ namespace TOR_Core.Models
         //The moment you realize they forget to add an override statement. if they do it needs to be moved on the EffectiveArmorEncumbrance
         public float GetTOREffectiveEquipmentEncumbrance(Agent agent, float value)
         {
+            if (agent.IsMount) return 0;
             var number =  new ExplainedNumber(value);
             if (agent.Character.IsHero && agent.GetHero() == Hero.MainHero)
             {
