@@ -119,7 +119,7 @@ namespace TOR_Core.Extensions
         {
             if (characterObject.Culture.IsBandit)
             {
-                if (characterObject.IsBeastman() || characterObject.IsCultist())
+                if (characterObject.IsBeastman() || characterObject.IsCultist() || characterObject.IsElf())
                     return false;
                 else
                 {
@@ -134,6 +134,11 @@ namespace TOR_Core.Extensions
                    characterObject.Culture.StringId == "mousillon" &&
                    !(characterObject.IsVampire() || characterObject.IsUndead());
             
+        }
+        
+        public static bool IsElf(this CharacterObject characterObject)     
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("elf");
         }
 
         public static bool IsKnightUnit(this BasicCharacterObject characterObject)
