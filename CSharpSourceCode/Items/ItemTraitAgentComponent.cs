@@ -132,6 +132,9 @@ namespace TOR_Core.Items
                         _dynamicTraits.Add(new Tuple<MissionWeapon, ItemTrait, float>(weapon, trait, duration));
                         UpdatePresets();
                     }
+                }else if (weapon.CurrentUsageItem.IsRangedWeapon)
+                {
+                    
                 }
             }
         }

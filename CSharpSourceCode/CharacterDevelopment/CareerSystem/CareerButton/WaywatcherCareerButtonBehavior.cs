@@ -41,7 +41,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
     {
         _shiftshiverShards = new ArrowType() { Id="shift",  Name = "Shiftshiver Shards", Description = "adds 25% Magical damage", Effect = "test", Symbol = _shiftshiverShardsIcon, };
         _hagbaneTipps = new ArrowType() {Id="hagbane", Name = "Hagbane Tipps", Description = "adds a 25% chance for 40% movement speed slowdown", Effect = "test", Symbol = _hagbaneTippsIcon, };
-        _starfireShafts = new ArrowType() {Id="starfire", Name = "Starfire Shafts", Description = "Adds 25% armor penetration" ,Effect = "test", Symbol = _starfireShaftsIcon };
+        _starfireShafts = new ArrowType() {Id="starfire", Name = "Starfire Shafts", Description = "Adds 25% armor penetration" ,Effect = "powerstone_fire_trait", Symbol = _starfireShaftsIcon };
         _allArrows.Add(_shiftshiverShards);
         _allArrows.Add(_hagbaneTipps);
         _allArrows.Add(_starfireShafts);

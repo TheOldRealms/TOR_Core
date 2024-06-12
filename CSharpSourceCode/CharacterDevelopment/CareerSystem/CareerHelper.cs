@@ -376,43 +376,56 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
             if (statuseffectComponent != null && button!=null)
             {
-                var powerstones = button.AvailablePowerStones;
 
 
                 var powerstone = button.GetPowerstone(agent.Character as CharacterObject);
 
                 if (powerstone!=null)
                 {
-                    var template = TriggeredEffectManager.GetTemplateWithId(powerstone.EffectId);
-                    
-                    if(template==null) return;
-                    
-                    foreach (var effect in template.ImbuedStatusEffects)
-                    {
-                        agent.ApplyStatusEffect(effect,Agent.Main,99999);
-                    }
-
-                    var position = agent.Position;
-                    
-
-                    if (template!=null&&template.ScriptNameToTrigger != "none")
-                    {
-                        try
-                        {
-                            var obj = Activator.CreateInstance(Type.GetType(template.ScriptNameToTrigger));
-                            if (obj is ITriggeredScript)
-                            {
-                                var script = obj as ITriggeredScript;
-                                script.OnTrigger(agent.Position, Agent.Main, new List<Agent>(){agent}, 9999);
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            TORCommon.Log("Tried to spawn TriggeredScript: " + template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
-                        }
-                    }
+                    AddMissionPermanentEffect(agent, powerstone.EffectId);
                 }
                 
+            }
+        }
+
+        public static void RegularOptions(Agent agent, string effectID)
+        {
+            var statuseffectComponent = agent.GetComponent<StatusEffectComponent>();
+            
+            if (statuseffectComponent != null)
+            {
+                AddMissionPermanentEffect(agent, effectID);
+                
+            }
+        }
+        
+
+        private static void AddMissionPermanentEffect(Agent agent, string effectID)
+        {
+            var template = TriggeredEffectManager.GetTemplateWithId(effectID);
+                    
+            if(template==null) return;
+                    
+            foreach (var effect in template.ImbuedStatusEffects)
+            {
+                agent.ApplyStatusEffect(effect,Agent.Main,99999);
+            }
+
+            if (template!=null&&template.ScriptNameToTrigger != "none")
+            {
+                try
+                {
+                    var obj = Activator.CreateInstance(Type.GetType(template.ScriptNameToTrigger));
+                    if (obj is ITriggeredScript)
+                    {
+                        var script = obj as ITriggeredScript;
+                        script.OnTrigger(agent.Position, Agent.Main, new List<Agent>(){agent}, 9999);
+                    }
+                }
+                catch (Exception)
+                {
+                    TORCommon.Log("Tried to spawn TriggeredScript: " + template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
+                }
             }
         }
         
