@@ -254,6 +254,10 @@ namespace TOR_Core.Models
             if ( baseCharacter.HeroObject != null&& baseCharacter.HeroObject.PartyBelongedTo!=null&&  baseCharacter.HeroObject.PartyBelongedTo.IsMainParty )
             {
                 CareerHelper.ApplyBasicCareerPassives(baseCharacter.HeroObject, ref explainedNumber, PassiveEffectType.WindsRegeneration, false);
+
+                var weightmalus = baseCharacter.Equipment.GetTotalWeightOfArmor(true) / 25;
+                
+                explainedNumber.AddFactor(-weightmalus);
             }
                     
             return explainedNumber.ResultNumber;
