@@ -28,8 +28,8 @@ namespace TOR_Core.AbilitySystem.SpellBook
         public SpellBookVM(Action closeAction, List<Hero> heroes, bool isTrainerMode, string trainerCulture)
         {
             _closeAction = closeAction;
-            _stats = new MBBindingList<StatItemVM>();
-            _lores = new MBBindingList<LoreObjectVM>();
+            _stats = [];
+            _lores = [];
             _heroes = heroes;
             _isTrainerMode = isTrainerMode;
             _trainerCulture = trainerCulture;
@@ -42,9 +42,9 @@ namespace TOR_Core.AbilitySystem.SpellBook
             _currentHero = _heroes[_currentHeroIndex];
             CurrentCharacter = new HeroViewModel();
             CurrentCharacter.FillFrom(_currentHero);
-            CurrentCharacter.SetEquipment(EquipmentIndex.ArmorItemEndSlot, default(EquipmentElement));
-            CurrentCharacter.SetEquipment(EquipmentIndex.HorseHarness, default(EquipmentElement));
-            CurrentCharacter.SetEquipment(EquipmentIndex.NumAllWeaponSlots, default(EquipmentElement));
+            CurrentCharacter.SetEquipment(EquipmentIndex.ArmorItemEndSlot, default);
+            CurrentCharacter.SetEquipment(EquipmentIndex.HorseHarness, default);
+            CurrentCharacter.SetEquipment(EquipmentIndex.NumAllWeaponSlots, default);
 
             var info = _currentHero.GetExtendedInfo();
             StatItems.Clear();
