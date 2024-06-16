@@ -1354,6 +1354,74 @@
       <EquipmentSet id="tor_we_ancient_treeman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_we_caravan_guard" default_group="infantry" level="21" name="{=str_tor_we_caravan_guard}Asrai Trader" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_caravan_captain" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_militia_template" />
+      <EquipmentSet id="tor_we_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_we_caravan_ranged}Asrai Trader Guard" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_we_caravan_elite_ranged" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_we_militia_template" />
+      <EquipmentSet id="tor_we_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_we_caravan_elite_ranged}Asrai Elite Trader Guard" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_militia_template" />
+      <EquipmentSet id="tor_we_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_caravan_captain" default_group="infantry" level="26" name="{=str_tor_we_caravan_captain}Asrai Master Trader" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_we_militia_template" />
+      <EquipmentSet id="tor_we_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_de_conscript" default_group="infantry" level="6" name="{=str_tor_de_conscript}Druchii Conscript" occupation="Soldier" culture="Culture.druchii" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />

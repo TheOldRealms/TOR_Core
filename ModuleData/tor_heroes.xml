@@ -346,6 +346,7 @@
   <Hero id="tor_m_lord_mousillon_first_7" faction="Faction.mousillon_clan_1" text="Although not as fearsome as his brother Ser Agravain the Shadow, Ser Gaheris the Dreaded is all the more cruel, and far more cunning. Being a Black grail knight himself, Ser Gaheris prefers tactics and strategy. Many raids from Ser Agravain the Shadow were led by by Ser Gaheris, and even many battles led by the Serpent of Mousillon himself. Ser Gaheris is a valiant warrior but is ever the more dangerous when on the sideline." />
   <Hero id="tor_m_lord_mousillon_first_8" faction="Faction.mousillon_clan_1" text="Pitre Fonce, also known as the Madman of Mousillon, the very same who commanded the Nightguard, has returned from the dead to serve the Serpent of Mousillon on his Black Crusade against the noblemen of fair Bretonnia." />
   <Hero id="tor_m_lord_mousillon_first_9" faction="Faction.mousillon_clan_1" text="Commanded by Pitre Fonce, the Black Duke led the army of the Restless Dead against all of his master's enemies. With Pitre now under service of the Serpent of Mousillon, the Black Duke commands the undead forces under the Serpents command." />
+  <Hero id="tor_we_lord_athel_loren_factionleader" faction="Faction.athel_loren_clan_1" />
   <Hero id="tor_chaos_lord_factionleader" faction="Faction.chaos_clan_1" text="The Everchosen." />
   <Hero id="tor_chaos_lord_brasskeep_factionleader" faction="Faction.brasskeep_clan_1" text="Description text missing." />
   <Hero id="tor_de_lord_factionleader" faction="Faction.druchii_clan_1" text="Description text missing." />
