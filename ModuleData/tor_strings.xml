@@ -1183,6 +1183,11 @@
 	<string id="HirelingActivity3.WarriorPriest" text="Assist the priestesses of Shallya" />
 	<string id="HirelingActivity4.WarriorPriest" text="Preach about Sigmar Heldenhammer" />
 
+	<string id="HirelingActivity0.Waywatcher" text="Target practice in solitude" />
+	<string id="HirelingActivity1.Waywatcher" text="Climb trees and scout the area" />
+	<string id="HirelingActivity2.Waywatcher" text="Cover the perimeter and set up traps" />
+	<string id="HirelingActivity3.Waywatcher" text="Advanced sparring sessions" />
+	<string id="HirelingActivity4.Waywatcher" text="Gather medical herbs" />
 	
 	<!--Meadow ! -->
 	<string id="inky_Meadow.IsNight_True" text="{=inky_Meadow_is_night_true_str}Silver moonlight" />
