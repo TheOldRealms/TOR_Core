@@ -203,12 +203,13 @@
   <string id="str_faction_formal_name_for_culture.empire" text="{=!}Empire" />
   <string id="str_faction_formal_name_for_culture.vlandia" text="{=!}Bretonnia" />
   <string id="str_faction_formal_name_for_culture.mousillon" text="{=!}Mousillon" />
-  <string id="str_faction_formal_name_for_culture.mousillon" text="{=!}Mousillon" />
+  <string id="str_faction_formal_name_for_culture.battania" text="{=!}Athel Loren" />
 
   <string id="str_faction_informal_name_for_culture.khuzait" text="{=!}Sylvania" />
-  <string id="str_faction_informal_name_for_culture.mousillon" text="{=!}Mousillon" />
   <string id="str_faction_informal_name_for_culture.empire" text="{=!}the Empire" />
-  <string id="str_faction_informal_name_for_culture.battania" text="{=!}Asrai" />
+  <string id="str_faction_informal_name_for_culture.vlandia" text="{=!}Bretonnia" />
+  <string id="str_faction_informal_name_for_culture.mousillon" text="{=!}Mousillon" />
+  <string id="str_faction_informal_name_for_culture.battania" text="{=!}Athel Loren" />
 
   <string id="str_adjective_for_culture.khuzait" text="{=!}vampire" />
   <string id="str_adjective_for_culture.empire" text="{=!}imperial" />
