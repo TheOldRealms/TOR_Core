@@ -634,7 +634,7 @@
             DamageAmount="30" 
             Radius="8" 
             HasShockWave="true" 
-            TargetType="Enemy" 
+            TargetType="All" 
             DamageVariance="0.0" 
 		ImbuedStatusEffectDuration="10" 
             ScriptNameToTrigger="none">
@@ -665,7 +665,7 @@
             DamageAmount="0" 
             Radius="5" 
             HasShockWave="false" 
-            TargetType="Friendly" 
+            TargetType="Enemy" 
             DamageVariance="0.0" 
 		ImbuedStatusEffectDuration="10" 
             ScriptNameToTrigger="none">

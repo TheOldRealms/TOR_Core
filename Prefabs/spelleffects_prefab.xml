@@ -1089,5 +1089,29 @@
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>
+	<game_entity name="apotheosis_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{1F9B4564-D2D8-4DBF-A343-E3EEC701E8F5}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="soul_quench" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{D3ADC8E8-2734-43C7-B7BF-730B4250AFC7}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="tempest" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{3197366C-EC8D-4FD2-9F6E-CF0B7F84AECA}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
 </prefabs>
 

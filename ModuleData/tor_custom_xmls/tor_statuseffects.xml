@@ -460,8 +460,6 @@
 		applies_for_attack_type="Ranged"
 		type="Resistance"/>
 	
-		
-	
 	<StatusEffectTemplate
 		id="white_wolf_dot"
 		particle_id="breath_of_darkness"
