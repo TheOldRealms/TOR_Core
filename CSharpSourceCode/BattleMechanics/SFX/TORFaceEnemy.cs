@@ -18,7 +18,7 @@ namespace TOR_Core.BattleMechanics.SFX
         private void Init()
         {
             var teams = Mission.Current.Teams;
-            var alliedTeam = teams.FirstOrDefault(x => x.Leader.Character.Culture.StringId.ToString() == CultureId);
+            var alliedTeam = teams.FirstOrDefault(x => x.Leader?.Character.Culture.StringId.ToString() == CultureId);
             if(alliedTeam==null) return;
             var enemyTeam =  Mission.Current.GetEnemyTeamsOf(alliedTeam).FirstOrDefault();
             if (enemyTeam == null) return;

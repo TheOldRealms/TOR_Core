@@ -42,45 +42,45 @@ namespace TOR_Core.CharacterDevelopment
             _faithWardSave = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("FaithWardSave"));
             _blessingDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("BlessingDuration"));
 
-            _gunReloadSpeed.Initialize(new TextObject("{=tor_skills_gun_reload_speed_str}Gunpowder firearms reload speed: +{a0} %", null), new SkillObject[]
-            {
+            _gunReloadSpeed.Initialize(new TextObject("{=tor_skills_gun_reload_speed_str}Gunpowder firearms reload speed: +{a0} %", null),
+            [
                 TORSkills.GunPowder
-            }, SkillEffect.PerkRole.Personal, 0.07f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            ], SkillEffect.PerkRole.Personal, 0.07f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
 
-            _gunAccuracy.Initialize(new TextObject("{=tor_skills_gun_accuracy_str}Gunpowder firearms accuracy: +{a0} %", null), new SkillObject[]
-            {
+            _gunAccuracy.Initialize(new TextObject("{=tor_skills_gun_accuracy_str}Gunpowder firearms accuracy: +{a0} %", null),
+            [
                 TORSkills.GunPowder
-            }, SkillEffect.PerkRole.Personal, 0.05f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            ], SkillEffect.PerkRole.Personal, 0.05f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
 
-            _spellEffectiveness.Initialize(new TextObject("{=tor_skills_spell_effectiveness_str}Spell effectiveness: +{a0} %", null), new SkillObject[]
-            {
+            _spellEffectiveness.Initialize(new TextObject("{=tor_skills_spell_effectiveness_str}Spell effectiveness: +{a0} %", null),
+            [
                 TORSkills.SpellCraft
-            }, SkillEffect.PerkRole.Personal, 0.05f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            ], SkillEffect.PerkRole.Personal, 0.05f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
 
-            _spellDuration.Initialize(new TextObject("{=tor_skills_spell_duration_str}Spell duration: +{a0} %", null), new SkillObject[]
-            {
+            _spellDuration.Initialize(new TextObject("{=tor_skills_spell_duration_str}Spell duration: +{a0} %", null),
+            [
                 TORSkills.SpellCraft
-            }, SkillEffect.PerkRole.Personal, 0.05f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            ], SkillEffect.PerkRole.Personal, 0.05f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
 
-            _windsRechargeRate.Initialize(new TextObject("{=!}Winds of magic recharge rate: +{a0} / hour", null), new SkillObject[]
-            {
+            _windsRechargeRate.Initialize(new TextObject("{=!}Winds of magic recharge rate: +{a0} / hour", null),
+            [
                 TORSkills.SpellCraft
-            }, SkillEffect.PerkRole.Personal, 0.0075f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.Add, 0f, 0f);
+            ], SkillEffect.PerkRole.Personal, 0.0075f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.Add, 0f, 0f);
 
-            _maxWinds.Initialize(new TextObject("{=!}Maximum winds of magic: +{a0}", null), new SkillObject[]
-            {
+            _maxWinds.Initialize(new TextObject("{=!}Maximum winds of magic: +{a0}", null),
+            [
                 TORSkills.SpellCraft
-            }, SkillEffect.PerkRole.Personal, 0.3f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.Add, 0f, 0f);
+            ], SkillEffect.PerkRole.Personal, 0.3f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.Add, 0f, 0f);
 
-            _faithWardSave.Initialize(new TextObject("{=tor_skills_ward_save_str}Ward save: +{a0} %", null), new SkillObject[]
-            {
+            _faithWardSave.Initialize(new TextObject("{=tor_skills_ward_save_str}Ward save: +{a0} %", null),
+            [
                 TORSkills.Faith
-            }, SkillEffect.PerkRole.Personal, 0.08f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            ], SkillEffect.PerkRole.Personal, 0.08f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
 
-            _blessingDuration.Initialize(new TextObject("{=tor_skills_blessing_duration_str}Blessing duration increase: +{a0} %", null), new SkillObject[]
-            {
+            _blessingDuration.Initialize(new TextObject("{=tor_skills_blessing_duration_str}Blessing duration increase: +{a0} %", null),
+            [
                 TORSkills.Faith
-            }, SkillEffect.PerkRole.PartyLeader, 1f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
+            ], SkillEffect.PerkRole.PartyLeader, 1f, SkillEffect.PerkRole.None, 0f, SkillEffect.EffectIncrementType.AddFactor, 0f, 0f);
         }
     }
 }

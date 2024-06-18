@@ -19,11 +19,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
     {
         private string _religionId;
         public Clan OwnerClan { get; set; }
-
         public ReligionObject Religion { get; protected set; }
         public bool IsActive { get; set; }
-
-        public static object GetIsActive(object o) => ((TORBaseSettlementComponent)o).IsActive;
 
         public override void OnInit()
         {

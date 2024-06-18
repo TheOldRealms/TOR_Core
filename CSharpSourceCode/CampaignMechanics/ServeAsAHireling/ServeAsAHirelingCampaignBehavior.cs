@@ -613,6 +613,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         private void EnlistingLordPartyEntersSettlement(MobileParty mobileParty, Settlement settlement, Hero arg3)
         {
             if (!_hirelingEnlisted || !settlement.IsTown) return;
+            if (MobileParty.MainParty.CurrentSettlement == settlement && PlayerEncounter.EncounterSettlement == settlement) return;
             if ( _hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo == mobileParty)
             {
                 EnterSettlementAction.ApplyForParty(MobileParty.MainParty, _hirelingEnlistingLord.CurrentSettlement);
@@ -725,14 +726,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             // Currently not working ??
             PartyBase.MainParty.MobileParty.IsVisible = true;
-            MobileParty.MainParty.IsActive = true;
             PartyBase.MainParty.UpdateVisibilityAndInspected(0);
         }
 
         private void HidePlayerParty()
         {
             PartyBase.MainParty.MobileParty.IsVisible = false;
-            MobileParty.MainParty.IsActive = false;
             PartyBase.MainParty.UpdateVisibilityAndInspected(0);
         }
         

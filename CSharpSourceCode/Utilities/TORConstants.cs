@@ -37,7 +37,7 @@ namespace TOR_Core.Utilities
             public const string BRETONNIA = "vlandia";
             public const string SYLVANIA = "khuzait";
             public const string MOUSILLON = "mousillon";
-            public const string WOODELF = "battania";
+            public const string ASRAI = "battania";
             public const string DRUCHII =  "druchii";
             public const string CHAOS = "chaos_culture";
         }

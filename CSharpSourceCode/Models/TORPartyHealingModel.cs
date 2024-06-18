@@ -93,8 +93,6 @@ namespace TOR_Core.Models
             return result;
         }
 
-
-
         private void AddCareerPassivesForTroopRegeneration(MobileParty party, ref ExplainedNumber explainedNumber)
         {
             if (party.LeaderHero.HasAnyCareer())

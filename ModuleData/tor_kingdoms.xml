@@ -24,7 +24,6 @@
                           isAtWar="true" />
         </relationships>
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -48,7 +47,6 @@
              text="{=!}The Grand County of Stirland is a major and founding Imperial Province that lies within the eastern territories of the Empire. Stirland is a rugged highland province famous for its rural backwater society and the province's close affiliation with death. Such attitude stems from the province close association with the province of Sylvania, a land perpetrated with misty forests and ancient castles resting on the craggy peaks like circling vultures. Ever since the end of the Vampire Wars, the province of Stirland has been given the rights to all the lands of eastern Sylvania. This essentially doubled the size of the province, but did little to improve the province's fortunes. Indeed, the province of Stirland is a relatively poor country in comparison to its surrounding southern neighbours such as Averland or Wissenland. The citizenry of Stirland are a conservative and superstitious lot, known for their backwards outlook and religious intolerance. The Banner of Stirland shows a skeleton sounding a hunting horn, signifying a call to battle. The skeleton itself is a common symbol of the lands, an expression of both the Stirlander battle cry -Victory or Death- and a grim reminder of the lands of Sylvania that they share borders with.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -72,7 +70,6 @@
              text="{=!}The Grand County of Wissenland is a major and founding Imperial Province that lies at the most southern territories of the Empire. The province of Wissenland is considered the armory of the Empire, for it holds within its borders the city-state of Nuln, the largest industrial city within the Old World. From its workshops and factories, the city of Nuln churns out some of the most devastating black-powder weaponry known to Mankind. Wissenland's territories was originally confined between the Grey Mountains and the River Soll, but following the destruction of Solland in 1707 IC, the territories of Solland were given to Wissenland. Ever since then, the people of Wissenland have expressed a degree of sorrow and remembrance for their neighbors, going as far as to add the flag of Solland upon their own banners as a sign of respect for their fallen countrymen.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -96,7 +93,6 @@
              text="{=!}The Grand Duchy of Talabecland is a major and founding Imperial Province that is located in the geographic centre of the Empire. The province of Talabecland is perhaps one of the largest of the Imperial provinces, and its dominant features include its dominion over the River Stir and the River Talabec, as well political control over nearly all of the Great Forest. Much of the province's trade flows along these rivers, as well as trade that flows through to the north and south along the Great Forest Road.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -124,7 +120,6 @@
                           isAtWar="true" />
         </relationships>
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -148,7 +143,6 @@
              text="{=!}Middenland, officially the Grand Duchies of Middenland and Middenheim, is a founding Electoral Province of the Empire that lies in the north-central region of that realm. Towering above the gloomy canopies of the Drakwald Forest is a sheer-sided pinnacle of white rock atop which sits the fortress city-state of Middenheim, capital of Middenland and the sacred City of the White Wolf. The White Wolf is the holy symbol of Ulric, the Imperial god of war, winter and wolves.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -172,7 +166,6 @@
              text="{=!}Ostermark, officially the League of Ostermark, but sometimes called the East March, is an Electoral Province of the Empire that was formally founded only very late in Imperial history. It lies at the far north-eastern corner of the Empire.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -196,7 +189,6 @@
              text="{=!}Hochland, officially the Grand Barony of Hochland, is one of the founding Electoral Provinces of the Empire. It  lies between the northern provinces of Middenland, Ostland and the borders of Talabecland. Hochlanders are therefore known among the friendliest and most tolerant people of the Empire. Besides the Cities Hergig and Krudenwald, there is the untamed wilderness of forests and mountains and very limited ground for agriculture.  The people of Hochland are famous for their love for guns and the best archers and marksmen regiments of the empire originate from this state. It is said that Hochlanders love their guns more than their wives.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -220,7 +212,6 @@
              text="{=!}Nordland, officially the Grand Barony of Nordland, is an Electoral Province of the Empire that lies on the northwestern shores of that realm. Since its incorporation as a province, Nordland has become famous for hosting the Second Fleet of the Imperial Navy and its heavily tolled coastal roads, which provide both safe passage for rich merchants heading towards the city of Marienburg and the main source of income for its provincial government. Many sea fortresses and watch-towers line the coast of Nordland, as Norscan raiders from across the Sea of Claws are an all-too-common threat that can't be ignored without dire consequences.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -244,7 +235,6 @@
              text="{=!}Ostland, formally the Grand Principality of Ostland, is a founding Electoral Province of the Empire that makes up much of the northern border of that nation. Ostland is a realm of damp, creeping mists and shifting shadows, and is covered almost entirely by the dark canopy of the Forest of Shadows. The people of this land have learned to live out a rugged life among the ancient trees, clearing patches of land for their farms and settlements, and keeping a watchful eye on the dark depths of the forest.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -266,10 +256,6 @@
              title="{=!}Brass Keep"
              ruler_title="{=!}Chaos Champion"
              text="{=!}The Brass Keep is an abandoned, derelict Imperial fortress located deep within the Middle Mountains of the Empire's northern borders. Since the time of Sigmar Heldenhammer, Brass Keep has ever been a home to both Imperial and evil forces alike. In its earliest years, Brass Keep was home to a dreadful Necromancer known as Morath, a man who survived the fall of Mourkain and held within his possession the legendary Crown of Sorcery. During the Age of Three Emperors, Brass Keep was in the hands of Ostland before falling to a Greenskin Waaagh!. The Reikland Emperor sent his son Mordrek in 1882 IC to retake Brass Keep. Mordrek's rule was troubled and under unclear circumstances, he embraced the Ruinous Powers, becoming Count Mordrek the Damned. The remaining Imperial forces were routed by Undra Kul during the Great War Against Chaos. The Chaos troops unleashed a great plague by invoking Nurgle, but the plague also claimed the lives of all non-Nurglite forces in the Chaos army. The survivors became the Putrid Blightkings. The Brass Keep at present is known as a hideout for the Warriors of Chaos. Despite numerous attempts from the Empire to root them out, the latest in 2370 IC, the Brass Keep stands defiant, offering the servants of Chaos a safe haven.">
-        <policies>
-            <policy id="policy_grazing_rights" />
-            <policy id="policy_sacred_majesty" />
-        </policies>
     </Kingdom>
     <Kingdom id="wasteland"
              owner="Hero.tor_emp_lord_wasteland_factionleader"
@@ -291,7 +277,6 @@
              text="{=!}The Wasteland, formerly the Electoral Province of the Empire of Man known as the Barony of Westerland, or just the Westerland, is the coastal region of moors and swamps that surrounds the mouth of the River Reik and is the homeland of the prosperous commercial city-state of Marienburg. The Wasteland was for centuries a part of the Empire, first conquered in 501 IC by Emperor Sigismund II, until the Westerland seceded during the reign of Emperor Dieter IV in 2429 IC by providing the emperor with a hefty bribe. Thereafter, the region is simply known as The Wasteland.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -315,7 +300,6 @@
              text="{=!}The Grand County of the Mootland, commonly referred to as The Moot, is a province of The Empire and homeland of the Halflings. Its capital is the town of Eicheschatten. Its symbol is a Fighting Cockerel and its colours are red and green.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -339,7 +323,6 @@
              text="{=!}The Dukedom of Couronne is a founding dukedom of Bretonnia that lies upon the northern shores of that realm and is the current seat of power of the king's Royal Court, located in the dukedom, and the kingdom's capital, Castle Couronne.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -363,7 +346,6 @@
              text="{=!}L'Anguille, formally the Dukedom of L'Anguille, is a dukedom of Bretonnia that lies at the northern shores of that kingdom. Known far and wide for having some of the busiest ports in all of Bretonnia, L'Anguille is a rich dukedom that relies heavily on sea-trade for their fortunes. As such, there is a large number of merchants and middle-class commoners amongst the peasant population of the capital.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -387,7 +369,6 @@
              text="{=!}Lyonesse, formally the Dukedom of Lyonesse, is one of the founding dukedoms of Bretonnia that lies upon the north-western shores of that kingdom. One of the larger dukedoms, the lands of Lyonesse are infamously known for their rivalry not with the other Bretonnian dukedoms, but amongst their own nobility, even in comparison to the feudal conflicts which plague the other realms of Bretonnia. People blame the unusual geography of the dukedom for the prevalence of the internecine strife, particularly the profusion of excellent sites for fortifications, which deters rival dukedoms from waging war or pursuing feuds with the lords of Lyonesse.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -411,7 +392,6 @@
              text="{=!}Artois, formally the Dukedom of Artois, is a founding dukedom of Bretonnia that lies at the heart of the northern lands of that kingdom. Unlike the lush meadows of Bretonnia's other dukedoms, Artois is famous for being the only dukedom that is covered entirely by forested wilderness, known by the Bretonnians as the Forest of Arden. Due to this, the dukedom is in a constant state of warfare against tribes of Beastmen that have made the forest their new dark home.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -435,7 +415,6 @@
              text="{=!}Gisoreux, formally the Dukedom of Gisoreux, is a founding dukedom of Bretonnia that lies within the treacherous slopes of the Pale Sisters and upon the low woodlands of the Forest of Arden. Unlike in other parts of Bretonnia, where much of the land is either one type of landscape and of one type of people, the diversity in geography of this Dukedom has also created a diversity in cultures and customs. Those living within the arable plains to the south contain the typical farmers and peasants that is universal within all the realms. To the east, the lands are filled with harsh woodlands, where a different people live life as expert trappers and wild woodsmen. Finally, to the north, those people that can eke out a living within the Pale Sisters are seasoned mountaineers who can brave harsh conditions. The Dukedom also contains the Gisoreux Gap, one of only three locations within the entire Grey Mountains that allow passage between Bretonnia and the Empire.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -459,7 +438,6 @@
              text="{=!}Upon the southern reaches of the Grey Mountains lies the Bretonnian Dwelling of Parravon. Parravon controls one of the 3 routes leading directly into the Empire from the Grey Mountains, that being Grey Lady Pass. Due to the duchy being situated both at the base and in the Grey Mountains, the Parravoners have an affinity with the resident Pegasi that reside within the mountain tops. Indeed, Duke Cassyon de ‘Parravon has befriended the lord of all Pegasi, Glorfinal.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -483,7 +461,6 @@
              text="{=!}North of the southern province of Parravon, and in the east of Bretonnia, the castles of Montfort reside. Like Parravon, the duchy of Montfort resides within the Grey mountains and below. Within Montfort lies one of the three passes into the Empire from the Grey Mountains, that being Axe Bite Pass. Being situated into the Mountainous regions, the Montfort peoples are hardy mountaineers themselves and due to constant raids, the Montfortians have developed a prejudice to any outsiders that are not Human, such as dwarfs, halflings, or elves.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -507,7 +484,6 @@
              text="{=!}At the very heart of Bretonnia lies the Duchy of Bastonne. Indeed located at the heart, but many believe that Bastonne is the Heart of Bretonnia. Founded by Gilles le Breton, the Cathedral for the Cult of the Lady is housed within Castle Bastonne’s walls. Indeed, just in the Forest of Chȃlons is said to be where Gilles and the Companions first met The Lady. Because Bastonne is the Heart of Bretonnia, the people of Bastonne are the most haughty and cocky of the Bretonnians. Bastonne holds in its service most of Bretonnia’s grail Knights, and rightly claims to be the most important of all Duchies.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -531,7 +507,6 @@
              text="{=!}The company kept by Duke Alberic is an interesting one. None but the most stalwart and talented knights are long permitted to fight alongside the Bordelen duke. As such, the men who are entrusted with the security of the realm are some of the most capable fighters, and outlandish nobles, in the whole of Bretonnia.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -555,7 +530,6 @@
              text="{=!}A highly martial Dukedom, Carcassonne heavily focuses on militarization, and puts a heavy focus on the eradication of the Greenskin tribes in the Irrana mountains. Almost every person in Carcassonne, from the lowest of peasant to the highest of noble, is a warrior. Carcassonne has a strong bond to Brionne, due to the Carcassonne people’s fondness of poetry and music. They often remark with regards to Brionne that “We fight so the Brionnians don’t have to”">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -579,7 +553,6 @@
              text="{=!}One of the founding dukedoms of Bretonnia, Aquitaine dwells on the western coast of Bretonnia, just south of Bordeleaux. Known for having some of the most serene lands in Bretonnia, Aquitaine is renowned for its cultivable farmlands and smooth sandy shores. Because of its isolation from many outside threats, much of the violence that occurs is in fact from petty squabbles between dukes, or peasant uprisings and revolts.Ruler Description: Inheriting the Duchy of Aquitaine after his elder brother had passed, Duke Armand d’ Aquitaine was the current standard bearer of Bretonnia, after his questing knight ventures led him to become a grail knight. After hearing the news of his brother's death, he was bidden by decree that he take the throne of Aquitaine. He now leads the duchy both as an administrator and as a Marshall.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -603,7 +576,6 @@
              text="Brionne is often called the Jewel of Bretonnia… by Brionnians. It genuinely is a remarkably beautiful city, set on a peninsula linked to the mainland by a narrow neck. The peninsula forms a hill, and the city winds up the side, built with the local white stone or, for peasant buildings, white plaster. The sand of the bay is extremely good for making glass, so virtually every window inthe city is glazed, and they sparkle in the sunlight. Castle Brionne is at the centre of the city and the peak of the island. It is what other Brionnian castles want to be: the perfect merging of fanciful form and flawless functionality. The many small turrets might appear to be haphazard, but they provide excellent fields of fire. Similarly, the tall, slender towers hold watchposts that can be defended by one man against an army and command much of the area around. The many courtyard gardens can be sealed and turned into killing rooms to dispose of invaders. The Hall of Minstrels in Brionne is the most important centre for those entertainers in the world. It stands on a small prominence in the southern quarter of the city, and is surrounded by a garden. The building itself is circular, built of white stone, and home to an auditorium with flawless acoustics. Minstrels can be found performing there at any time of the day or night.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -627,7 +599,6 @@
              text="The people of Quenelles are fanatically dedicated to the complete destruction of Greenskins, particularly those who come down out of Massif Orcal to pillage their lands. Their questing knights are particularly renowned amongst the dwarfs, as many of them use their grail quest to venture into the mountains and badlands of the Old World. Despite this, the greenskins remain an ever present threat to the Dukedom, despite centuries of attempted extermination and colonisation of Massif Orcal. It remains a mystery as to why Quenelles suffers so much from the greenskins compared to their neighbours; some suspect that the descendents of Cuileux may have been cursed.">
         <relationships />
         <policies>
-            <policy id="policy_senate" />
             <policy id="policy_feudal_inheritance" />
         </policies>
     </Kingdom>
@@ -654,10 +625,6 @@
                           value="-1"
                           isAtWar="true" />
         </relationships>
-        <policies>
-            <policy id="policy_grazing_rights" />
-            <policy id="policy_sacred_majesty" />
-        </policies>
     </Kingdom>
     <Kingdom id="blooddragons"
              owner="Hero.tor_vc_lord_blooddragons_factionleader"
@@ -677,10 +644,6 @@
              title="{=!}Blood Keep"
              ruler_title="{=!}Grand Master"
              text="{=!}Blood Keep was once the home of a valiant order of Knights known as the Order of the Blood Dragon, or the Ordo Draconis. One fateful night, a Vampire known as Walach Harkon challenged every Knight to single combat, eventually turning all who he deemed worthy into Vampires. The death of the Ordo Draconis was followed by their rebirth in blood; ever since then these terrifying warriors have been known as the Blood Dragons. The Imperials suffered under their attacks and depravations for sixty years, before they amassed a force to raze the Keep. That was almost six centuries ago, for all that time the ruins of the keep lay undisturbed. Now, the keep rises again, built by the silent undead, and the men of the Empire will again know fear.">
-        <policies>
-            <policy id="policy_grazing_rights" />
-            <policy id="policy_sacred_majesty" />
-        </policies>
     </Kingdom>
     <Kingdom id="mousillon"
              owner="Hero.tor_m_lord_mousillon_factionleader"
@@ -705,9 +668,24 @@
                           value="-1"
                           isAtWar="true" />
         </relationships>
-        <policies>
-            <policy id="policy_grazing_rights" />
-            <policy id="policy_sacred_majesty" />
-        </policies>
+    </Kingdom>
+    <Kingdom id="athel_loren"
+             owner="Hero.tor_we_lord_athel_loren_factionleader"
+             banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0"
+             primary_banner_color="0xff284E19"
+             secondary_banner_color="0xffB4F0F1"
+             label_color="FF55831A"
+             color="FF2D3F1D"
+             color2="FFBFCBB0"
+             alternative_color="FFD69516"
+             alternative_color2="FF55831A"
+             culture="Culture.battania"
+             settlement_banner_mesh="encounter_flag_a"
+             flag_mesh="info_screen_flags_b"
+             name="{=!}Realms of Athel Loren"
+             short_name="{=!}Athel Loren"
+             title="{=!}Athel Loren"
+             ruler_title="{=!}Highborn"
+             text="{=!}missing... ">
     </Kingdom>
 </Kingdoms>

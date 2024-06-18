@@ -81,18 +81,9 @@ namespace TOR_Core.HarmonyPatches
             else
             {
                 master = culture.CaravanMaster;
-                if(master == null)
-                {
-                    master = CharacterObject.All.FirstOrDefault(x => x.Occupation == Occupation.CaravanGuard && x.IsInfantry && x.Level == 26 && x.Culture == culture);
-                }
-                if (master == null)
-                {
-                    master = CharacterObject.All.FirstOrDefault(x => x.Occupation == Occupation.CaravanGuard && x.Culture == culture);
-                }
-                if (master == null)
-                {
-                    master = CharacterObject.All.FirstOrDefault(x => x.Occupation == Occupation.CaravanGuard);
-                }
+                master ??= CharacterObject.All.FirstOrDefault(x => x.Occupation == Occupation.CaravanGuard && x.IsInfantry && x.Level == 26 && x.Culture == culture);
+                master ??= CharacterObject.All.FirstOrDefault(x => x.Occupation == Occupation.CaravanGuard && x.Culture == culture);
+                master ??= CharacterObject.All.FirstOrDefault(x => x.Occupation == Occupation.CaravanGuard);
             }
             return master;
         }
