@@ -234,7 +234,7 @@ namespace TOR_Core.HarmonyPatches
             if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsDamageShruggedOff(b.InflictedDamage)))
             {
                 b.BlowFlag |= BlowFlags.ShrugOff;
-            } else if (victim.IsMainAgent && attackTypeMask == AttackTypeMask.Ranged && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            } else if (Campaign.Current!=null && victim.IsMainAgent && attackTypeMask == AttackTypeMask.Ranged && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
                 if (Hero.MainHero.HasCareerChoice("PathfinderPassive4"))
                 {
