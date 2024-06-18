@@ -2016,20 +2016,20 @@
 	CoolDown="10"
 	WindsOfMagicCost="6"
 	BaseMisCastChance="0.05"
-	Duration="0"
+	Duration="12"
 	Radius="3"
 	AbilityType="Spell"
 	AbilityEffectType="Augment"
 	BaseMovementSpeed="0"
-	TickInterval="-1"
-	TriggerType="TickOnce"
+	TickInterval="2"
+	TriggerType="EveryTick"
 	HasLight="false"
 	LightIntensity="0"
 	LightRadius="0"
 	LightFlickeringMagnitude="0"
 	LightFlickeringInterval="0"
 	ShadowCastEnabled="true"
-	ParticleEffectPrefab=""
+	ParticleEffectPrefab="apotheosis"
 	ParticleEffectSizeModifier="0"
 	SoundEffectToPlay=""
 	ShouldSoundLoopOverDuration="false"
@@ -2051,7 +2051,7 @@
 				<z>255</z>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>regrowth_heal</TriggeredEffect>
+		<TriggeredEffect>apotheosis_heal</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="FieryConvocation"
@@ -2094,7 +2094,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>snow_king_decree</TriggeredEffect>
+		<TriggeredEffect>fiery_convocation</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="SoulQuench" 
@@ -2116,7 +2116,7 @@
       LightFlickeringMagnitude="3" 
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
-      ParticleEffectPrefab="gehennas_golden_globe" 
+      ParticleEffectPrefab="soul_quench" 
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="fireball" 
       ShouldSoundLoopOverDuration="true" 
@@ -2149,15 +2149,15 @@
       AbilityType="Prayer"
       AbilityEffectType="Augment"
       BaseMovementSpeed="0"
-      TickInterval="2"
-      TriggerType="EveryTick"
+      TickInterval="-1"
+      TriggerType="TickOnce"
       HasLight="false"
       LightIntensity="0"
       LightRadius="0"
       LightFlickeringMagnitude="0"
       LightFlickeringInterval="0"
       ShadowCastEnabled="false"
-      ParticleEffectPrefab="ladys_favour"
+      ParticleEffectPrefab=""
       ParticleEffectSizeModifier="0"
       SoundEffectToPlay=""
       ShouldSoundLoopOverDuration="false"
@@ -2178,7 +2178,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>ladys_favour</TriggeredEffect>
+		<TriggeredEffect>courage_of_aenarion</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="CurseOfArrowAttraction"
@@ -2221,7 +2221,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>curse_of_years_hex</TriggeredEffect>
+		<TriggeredEffect>curse_of_arrows</TriggeredEffect>
 	</AbilityTemplate>
 	
 	
@@ -2251,7 +2251,7 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      Offset="3"
+      Offset="0.5"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
       MinDistance="3"

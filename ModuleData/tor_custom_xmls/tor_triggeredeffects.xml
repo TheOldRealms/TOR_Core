@@ -625,8 +625,52 @@
 			<ImbuedStatusEffect>curse_of_anraheir_mv_debuff</ImbuedStatusEffect>
 			<ImbuedStatusEffect>curse_of_anraheir_dot</ImbuedStatusEffect>
 	</TriggeredEffectTemplate>
-
-
+	
+	<TriggeredEffectTemplate StringID="fiery_convocation" 
+            BurstParticleEffectPrefab="fiery_convocation" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Fire" 
+            DamageAmount="30" 
+            Radius="8" 
+            HasShockWave="true" 
+            TargetType="Enemy" 
+            DamageVariance="0.0" 
+		ImbuedStatusEffectDuration="10" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+	
+	<TriggeredEffectTemplate StringID="courage_of_aenarion" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+		ImbuedStatusEffectDuration="10" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>courage_of_aenarion_ats</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
+	  
+	<TriggeredEffectTemplate StringID="curse_of_arrows" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+		ImbuedStatusEffectDuration="10" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>curse_of_arrows</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
 			
 <!-- Necromancy -->
       <TriggeredEffectTemplate StringID="nagashgaze_explosion" 
@@ -774,6 +818,24 @@
             ScriptNameToTrigger="none">
                   <ImbuedStatusEffect>soulstealer</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+
+<!-- High Magic  -->
+
+      <TriggeredEffectTemplate StringID="apotheosis_heal" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="3" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>apotheosis_heal</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+
 
 <!-- Artillery -->
       <TriggeredEffectTemplate StringID="place_mortar" 

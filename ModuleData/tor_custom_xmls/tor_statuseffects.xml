@@ -15,7 +15,7 @@
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
 		id="healing_regeneration" 
-		particle_id="healing_regeneration"
+		particle_id="holy_healing_regeneration"
 		particle_intensity="High"
 		base_effect_value="20"
 		type="HealthOverTime"/>
@@ -434,6 +434,33 @@
 		type="MovementManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="apotheosis_heal" 
+		particle_id="apotheosis_buff"
+		particle_intensity="High"
+		base_effect_value="5"
+		type="HealthOverTime"
+		do_not_attach_to_agent_skeleton="true"/>
+
+	<StatusEffectTemplate
+		id="courage_of_aenarion_ats" 
+		particle_id="courage_of_aenarion"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="AttackSpeedManipulation"
+		damage_type="Holy"/>
+	
+	<StatusEffectTemplate 
+		id="curse_of_arrows" 
+		particle_id="curse_of_arrow"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.5"
+		damage_type="Physical"
+		applies_for_attack_type="Ranged"
+		type="Resistance"/>
+	
+		
 	
 	<StatusEffectTemplate
 		id="white_wolf_dot"
