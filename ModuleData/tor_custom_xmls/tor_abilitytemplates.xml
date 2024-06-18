@@ -3904,7 +3904,7 @@
       TargetCapturingRadius="8"
       SpellTier="3"
       BelongsToLoreID="PowerOfLady"
-      TooltipDescription="{=aerial_shield_description_str}Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+      TooltipDescription="{=aerial_shield_description_str}Power of the Lady causes enemy missiles to vanish mid-air. Grants 90% ranged physical resistance in a radius.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3948,7 +3948,7 @@
       TargetCapturingRadius="8"
       SpellTier="1"
       BelongsToLoreID="PowerOfLady"
-      TooltipDescription="{=aura_of_the_lady_description_str}Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+      TooltipDescription="{=aura_of_the_lady_description_str}The Lady protects Damsels and their followers from harm. Grants 80% magic, lightning and fire resistance in a radius.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3992,7 +3992,7 @@
       TargetCapturingRadius="8"
       SpellTier="2"
       BelongsToLoreID="PowerOfLady"
-      TooltipDescription="{=shield_of_combat_description_str}Adds 40% physical resistance against ranged damage for 15 seconds to the caster.">
+      TooltipDescription="{=shield_of_combat_description_str}The Lady's divine power causes allies' armor to deflect enemy blows. Grants 50% physical resistance in a radius.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -4036,7 +4036,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="PowerOfLady"
-      TooltipDescription="{=ladys_favour_description_str}Allies in a 3 meter radius gain 20% physical resistance for 15 seconds.">
+      TooltipDescription="{=ladys_favour_description_str}The Damsel conjures a vision of the Lady of the Lake to guide Bretonnians into the frey. Grants 25% attack speed bonus in a radius.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
