@@ -2258,8 +2258,8 @@
       MaxDistance="45"
       TargetCapturingRadius="6"
       MaxRandomDeviation="2"
-      ShouldRotateVisuals="false"
-      VisualsRotationVelocity="0"
+      ShouldRotateVisuals="true"
+      VisualsRotationVelocity="30"
       SpellTier="4"
       BelongsToLoreID="HighMagic"
       TooltipDescription="{=black_horror_description_str}The caster tears down the walls between realities, and a black cloud of roiling energy sweeps across the battlefield. As the darkness travels, slimy tentacles lash out from its depths, draggin unfortunate victims screaming to an unknown fate.">
