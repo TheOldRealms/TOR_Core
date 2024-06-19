@@ -1317,6 +1317,53 @@
 		</LightColorRGB>
 		<TriggeredEffect>net_of_amyntok_hex</TriggeredEffect>
 	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="BironasTimewarp"
+      Name="{=bironas_timewarp_label_str}Birona's Timewarp"
+      SpriteName="healinglight_icon"
+      CoolDown="30"
+      WindsOfMagicCost="12"
+      BaseMisCastChance="0.05"
+      Duration="15"
+      Radius="15"
+      AbilityType="Spell"
+      AbilityEffectType="TimeWarpEffect"
+      BaseMovementSpeed="0"
+      TickInterval="2"
+      TriggerType="EveryTick"
+      HasLight="false"
+      LightIntensity="0"
+      LightRadius="0"
+      LightFlickeringMagnitude="0"
+      LightFlickeringInterval="0"
+      ShadowCastEnabled="true"
+      ParticleEffectPrefab="timewarp_ground"
+      ParticleEffectSizeModifier="0"
+      SoundEffectToPlay=""
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant"
+      CastTime="0.5"
+      AnimationActionName="act_release_heavy_thrown"
+      Offset="0.5"
+      AbilityTargetType="Self"
+      TargetCapturingRadius="15"
+      MaxDistance="20"
+      CrosshairType="Self"
+      SpellTier="4"
+      BelongsToLoreID="LoreOfLight"
+      TooltipDescription="{=bironas_timewarp_description_str}Slows down time, while units around you move unhindered.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_bironas_timewarp</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	
+	
 	<!-- Necromancy -->
 	<AbilityTemplate StringID="NagashGaze" 
       Name="{=nagash_gaze_label_str}Gaze of Nagash" 
@@ -2135,7 +2182,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>golden_globe_explosion</TriggeredEffect>
+		<TriggeredEffect>soul_quench_explosion</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="CourageOfAenarion"

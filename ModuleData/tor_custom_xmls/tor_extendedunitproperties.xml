@@ -5210,6 +5210,7 @@
       <string>RadiancePillar</string>
       <string>RadiantGaze</string>
       <string>NetOfAmyntok</string>
+	  <string>BironasTimewarp</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>

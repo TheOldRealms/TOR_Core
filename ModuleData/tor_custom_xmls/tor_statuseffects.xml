@@ -368,7 +368,7 @@
 		type="AttackSpeedManipulation"/>
 
 	<StatusEffectTemplate
-		id="net_amyn_movementimpair__100"
+		id="net_amyn_movementimpair_100"
 		particle_id="net_of_amyntok"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
@@ -376,12 +376,44 @@
 		type="MovementManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="bironas_timewarp_mov"
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="0.4"
+		type="MovementManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="bironas_timewarp_ats"
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="0.4"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="bironas_timewarp_rls"
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="0.4"
+		type="ReloadSpeedManipulation"
+		damage_type="Physical">
+  	</StatusEffectTemplate>
+	
+	
 	<StatusEffectTemplate
 		id="attackspeed_bonus_20"
 		particle_id="berzerk_effect"
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
-    	base_effect_value="1"
+    	base_effect_value="0.2"
 		type="AttackSpeedManipulation"
 		damage_type="Physical">
   	</StatusEffectTemplate>

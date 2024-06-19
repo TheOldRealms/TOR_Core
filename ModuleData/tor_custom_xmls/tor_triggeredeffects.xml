@@ -329,9 +329,26 @@
             ImbuedStatusEffectDuration="15" 
             DamageVariance="0" 
             ScriptNameToTrigger="none" >
-            <ImbuedStatusEffect>net_amyn_movementimpair__100</ImbuedStatusEffect>
+            <ImbuedStatusEffect>net_amyn_movementimpair_100</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  
+	  <TriggeredEffectTemplate StringID="apply_bironas_timewarp" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="20" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="3" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="none" >
+            <ImbuedStatusEffect>bironas_timewarp_mov</ImbuedStatusEffect>
+			<ImbuedStatusEffect>bironas_timewarp_ats</ImbuedStatusEffect>
+			<ImbuedStatusEffect>bironas_timewarp_rls</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 	  
 <!--LoreOfMetal-->
 
@@ -834,6 +851,21 @@
 			ImbuedStatusEffectDuration="3" 
             ScriptNameToTrigger="none">
 			<ImbuedStatusEffect>apotheosis_heal</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+	
+	<TriggeredEffectTemplate StringID="soul_quench_explosion" 
+            BurstParticleEffectPrefab="soul_quench_explosion" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="3" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
 	</TriggeredEffectTemplate>
 
 
