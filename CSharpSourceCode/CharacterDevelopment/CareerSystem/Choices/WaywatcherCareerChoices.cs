@@ -227,8 +227,8 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _pathfinderPassive2.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 1.", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
         _pathfinderPassive3.Initialize(CareerID,"Party travels unhindered through snow","Pathfinder",false,ChoiceType.Passive);
         _pathfinderPassive4.Initialize(CareerID,"Ranged damage is shrugged off","Pathfinder",false,ChoiceType.Passive);
-        
-        _forestStalkerPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "ForestStalker", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+
+        _forestStalkerPassive1.Initialize(CareerID, "Once per day, go for a hunt.", "ForestStalker", false, ChoiceType.Passive);
         _forestStalkerPassive2.Initialize(CareerID, "Gain 20% range resistance.", "ForestStalker", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged));
         _forestStalkerPassive3.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "ForestStalker", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged, 
             (attacker, victim, mask) => !victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& !victim.IsRangedCached &&  mask == AttackTypeMask.Melee ));

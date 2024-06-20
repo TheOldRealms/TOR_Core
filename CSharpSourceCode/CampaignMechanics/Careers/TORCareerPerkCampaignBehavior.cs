@@ -124,7 +124,7 @@ namespace TOR_Core.CampaignMechanics
             if (!MobileParty.MainParty.LeaderHero.HasAnyCareer()) return;
             var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
 
-            if (choices.Contains("SurvivalistPassive4"))
+            if (choices.Contains("SurvivalistPassive4") || choices.Contains("ForestStalkerPassive1"))
             {
                 LaunchHuntingEvent(mobileParty);
             }
