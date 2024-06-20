@@ -286,6 +286,7 @@ namespace TOR_Core
                 game.ObjectManager.RegisterType<CareerChoiceGroupObject>("CareerChoiceGroup", "CareerChoiceGroups", 105U, true);
                 game.ObjectManager.RegisterType<ReligionObject>("Religion", "Religions", 106U, true);
                 game.ObjectManager.RegisterType<SlaverCampComponent>("SlaverCamp", "Components", 107U, true);
+                game.ObjectManager.RegisterType<OakOfAgesComponent>("OakOfAges", "Components", 108U, true);
                 _ = new TORCareers();
                 _ = new TORCareerChoiceGroups();
                 _ = new TORCareerChoices();

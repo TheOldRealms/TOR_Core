@@ -97,6 +97,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
     public class ShrineComponent : TORBaseSettlementComponent { }
 
+    public class OakOfAgesComponent : TORBaseSettlementComponent { }
+
     public class ChaosPortalComponent : BaseRaiderSpawnerComponent
     {
         public override string BattleSceneName => "TOR_chaos_portal_001_forceatmo";
