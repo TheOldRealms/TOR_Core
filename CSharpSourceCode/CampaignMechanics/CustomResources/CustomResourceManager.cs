@@ -55,9 +55,14 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 new CustomResource("DarkEnergy", "Dark Energy",
                     "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.",
                     "darkenergy_icon_45", new[] { TORConstants.Cultures.SYLVANIA, "mousillon" }));
+            Instance._resources.Add("ForestBinding",
+                new CustomResource("ForestBinding", "Forest Binding",
+                    "Forest Binding is used to upgrade and maintain troops of the woodelves, as well as retrieve upgrades at the Oak of Ages.", "chivalry_icon_45", TORConstants.Cultures.ASRAI, ForestBindingHelper.GetForestBindingInfo));
             Instance._resources.Add("WindsOfMagic",
                 new CustomResource("WindsOfMagic", "Winds of Magic",
                     "Winds of Magic is used by spellcasters to cast spells.", "winds_icon_45"));
+            
+ 
         }
 
         public static CustomResource GetResourceObject(string id)
