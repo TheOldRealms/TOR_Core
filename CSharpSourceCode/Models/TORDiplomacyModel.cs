@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -138,9 +139,11 @@ namespace TOR_Core.Models
             
             if (kingdomCandidates.Count > 0 && distanceModel != null)
             {
+                
                 var kingdomListByDistance = kingdomCandidates.SelectQ(x => new Tuple<Kingdom, float>(x, distanceModel.GetDistance(consideringKingdom.FactionMidSettlement, x.FactionMidSettlement))).ToListQ();
                 var kingdomListByStrength = kingdomCandidates.SelectQ(x => new Tuple<Kingdom, float>(x, x.TotalStrength)).ToListQ();
-                var hostileReligionKingdoms = kingdomCandidates.SelectQ(x => new Tuple<Kingdom, float>(x, x.Leader.GetDominantReligion().GetSimilarityScore(consideringKingdom.Leader.GetDominantReligion()))).ToListQ();
+                var hostileReligionKingdoms = kingdomCandidates.SelectQ(x => 
+                    new Tuple<Kingdom, float>(x, ReligionObjectHelper.CalculateSimilarityScore(x.Leader.GetDominantReligion(), consideringKingdom.Leader.GetDominantReligion()))).ToListQ();
 
                 Dictionary<Kingdom, float> candidateScores = [];
                 float minDistance = kingdomListByDistance.MinBy(x => x.Item2).Item2;
