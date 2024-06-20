@@ -356,6 +356,7 @@
     <Compile Include="AbilitySystem\Scripts\SummonChampionScript.cs" />
     <Compile Include="AbilitySystem\Scripts\SummoningScript.cs" />
     <Compile Include="AbilitySystem\Scripts\TeleportScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\TimeWarpScript.cs" />
     <Compile Include="AbilitySystem\Scripts\VortexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\WindScript.cs" />
     <Compile Include="AbilitySystem\SeekerController.cs" />

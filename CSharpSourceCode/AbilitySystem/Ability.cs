@@ -560,6 +560,9 @@ namespace TOR_Core.AbilitySystem
                 case AbilityEffectType.ArtilleryPlacement:
                     AddExactBehaviour<ArtilleryPlacementScript>(entity, casterAgent);
                     break;
+                case AbilityEffectType.TimeWarpEffect:
+                    AddExactBehaviour<TimeWarpScript>(entity, casterAgent);
+                    break;
             }
 
             if (IsSingleTarget)
