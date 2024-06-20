@@ -1121,5 +1121,13 @@
 			</particle_system_instanced_component>
 		</components>
 	</game_entity>
+	<game_entity name="curse_of_midnight_wind" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{DD89957F-D6EB-4152-9B31-31902F98C906}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
 </prefabs>
 

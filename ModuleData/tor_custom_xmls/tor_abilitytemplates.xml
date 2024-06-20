@@ -941,6 +941,7 @@
 		</LightColorRGB>
 		<TriggeredEffect>comet_explosion</TriggeredEffect>
 	</AbilityTemplate>
+	
 	<AbilityTemplate StringID="Thunderbolt" 
       Name="{=thunderbolt_label_str}Urannon's Thunderbolt" 
       SpriteName="thunderbolt_icon" 
@@ -984,6 +985,52 @@
 		</LightColorRGB>
 		<TriggeredEffect>thunderbolt_explosion</TriggeredEffect>
 	</AbilityTemplate>
+	<AbilityTemplate StringID="CurseOfMidnightWind"
+   Name="{=curse_of_anraheir_label_str}Curse Of the Midnight Wind"
+   SpriteName="curseofanraheir_icon"
+   CoolDown="20"
+   WindsOfMagicCost="15"
+   BaseMisCastChance="0.05"
+   Duration="11"
+   Radius="10"
+   AbilityType="Spell"
+   AbilityEffectType="Hex"
+   BaseMovementSpeed="0"
+   TickInterval="2"
+   TriggerType="EveryTick"
+   HasLight="false"
+   LightIntensity="0"
+   LightRadius="0"
+   LightFlickeringMagnitude="0"
+   LightFlickeringInterval="0"
+   ShadowCastEnabled="true"
+   ParticleEffectPrefab="curse_of_midnight_wind"
+   ParticleEffectSizeModifier="0"
+   SoundEffectToPlay=""
+   ShouldSoundLoopOverDuration="false"
+   CastType="Instant"
+   CastTime="0.5"
+   AnimationActionName="act_release_heavy_thrown"
+   Offset="0.5"
+   AbilityTargetType="EnemiesInAOE"
+   TargetCapturingRadius="15"
+   MaxDistance="75"
+   CrosshairType="TargetedAOE"
+   SpellTier="4"
+	BelongsToLoreID="LoreOfHeavens"
+	TooltipDescription="{=curse_of_anraheir_description_str}Woodland sprites hinder all enemies caught in an area for 11 seconds, reducing movement (35%) and attack speed (50%) and causing 3 damage per second.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>curse_of_midnight</TriggeredEffect>
+	</AbilityTemplate>
+	
+	
+	
+	
 	<!-- Lore of Light -->
 	<AbilityTemplate StringID="ShemGaze" 
       Name="{=shem_gaze_label_str}Shem's Burning Gaze" 
@@ -1025,46 +1072,7 @@
 		</LightColorRGB>
 		<TriggeredEffect>shemgaze_explosion</TriggeredEffect>
 	</AbilityTemplate>
-	<AbilityTemplate StringID="StoneAssault" 
-      Name="{=stone_assault_label_str}Assault of Stone" 
-      SpriteName="assaultofstone_icon" 
-      CoolDown="20" 
-      WindsOfMagicCost="8" 
-      BaseMisCastChance="0.05" 
-      Duration="10" 
-      Radius="0.4" 
-      AbilityType="Spell" 
-      AbilityEffectType="Missile" 
-      BaseMovementSpeed="25" 
-      TickInterval="-1" 
-      TriggerType="OnCollision" 
-      HasLight="false" 
-      LightIntensity="50" 
-      LightRadius="10" 
-      LightFlickeringMagnitude="3" 
-      LightFlickeringInterval="0.7" 
-      ShadowCastEnabled="true" 
-      ParticleEffectPrefab="stone_assault" 
-      ParticleEffectSizeModifier="1" 
-      SoundEffectToPlay="rocks_grinding" 
-      ShouldSoundLoopOverDuration="true" 
-      CastType="WindUp" 
-      CastTime="0.5" 
-      AnimationActionName="act_release_heavy_thrown" 
-      Offset="0.5"
-      CrosshairType="Missile"
-      AbilityTargetType="WorldPosition"
-      SpellTier="2"
-      BelongsToLoreID="LoreOfLight"
-      TooltipDescription="{=stone_assault_description_str}Launch a small number of stones at the enemy - Monthy Python style.">
-		<LightColorRGB x="255" y="170" z="0" w="-1">
-			<AsVec2>
-				<x>255</x>
-				<y>170</y>
-			</AsVec2>
-		</LightColorRGB>
-		<TriggeredEffect>cinderblast_explosion</TriggeredEffect>
-	</AbilityTemplate>
+	
 	<AbilityTemplate StringID="HealingLight"
       Name="{=healing_light_label_str}Healing Light"
       SpriteName="healinglight_icon"
@@ -1320,7 +1328,7 @@
 	
 	<AbilityTemplate StringID="BironasTimewarp"
       Name="{=bironas_timewarp_label_str}Birona's Timewarp"
-      SpriteName="healinglight_icon"
+      SpriteName="bironastimewarp_icon"
       CoolDown="30"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"

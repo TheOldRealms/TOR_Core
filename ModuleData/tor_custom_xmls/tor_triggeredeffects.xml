@@ -282,6 +282,22 @@
             TargetType="All" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none"/>
+			
+	  <TriggeredEffectTemplate StringID="curse_of_midnight" 
+            BurstParticleEffectPrefab="curse_of_midnight_wind" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+			ImbuedStatusEffectDuration="4" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="2" >
+			<ImbuedStatusEffect>curse_of_midnight_wind_phys</ImbuedStatusEffect>
+			<ImbuedStatusEffect>curse_of_midnight_wind_ats</ImbuedStatusEffect>
+			<ImbuedStatusEffect>curse_of_midnight_wind_mov</ImbuedStatusEffect>
+	   </TriggeredEffectTemplate>
 <!-- Lore of Light -->
       <TriggeredEffectTemplate StringID="shemgaze_explosion" 
             BurstParticleEffectPrefab="white_particle_explosion" 

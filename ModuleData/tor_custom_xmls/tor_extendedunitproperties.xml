@@ -5226,6 +5226,7 @@
       <string>Blizzard</string>
       <string>CometOfCasandora</string>
       <string>Thunderbolt</string>
+	  <string>CurseOfMidnightWind</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
