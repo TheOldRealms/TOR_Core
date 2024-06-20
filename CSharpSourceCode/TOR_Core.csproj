@@ -438,7 +438,6 @@
     <Compile Include="BattleMechanics\DualWield\DualWieldAgentComponent.cs" />
     <Compile Include="BattleMechanics\DualWield\DualWieldMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Firearms\MagicArrowMissionLogic.cs" />
     <Compile Include="BattleMechanics\Jousting\JoustLaneEndVolumeBox.cs" />
     <Compile Include="BattleMechanics\Jousting\JoustTournamentBehavior.cs" />
     <Compile Include="BattleMechanics\Jousting\JoustTournamentGame.cs" />

@@ -189,8 +189,6 @@ namespace TOR_Core.BattleMechanics
             {
                 affectorAgent.ApplyDamage((int)(blow.InflictedDamage*0.25f),affectedAgent.Position);
             }
-
-        
         }
 
         private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)
