@@ -12,16 +12,10 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
 {
-    public class ToRSettlementNameplateVM : SettlementNameplateVM
+    public class ToRSettlementNameplateVM(Settlement settlement, GameEntity entity, Camera mapCamera, Action<Vec2> fastMoveCameraToPosition) : SettlementNameplateVM(settlement, entity, mapCamera, fastMoveCameraToPosition)
     {
-        private bool _isRoRSettlement;
-        private bool _isShrine;
-
-        public ToRSettlementNameplateVM(Settlement settlement, GameEntity entity, Camera mapCamera, Action<Vec2> fastMoveCameraToPosition) : base(settlement, entity, mapCamera, fastMoveCameraToPosition)
-        {
-            _isRoRSettlement = settlement.IsRoRSettlement();
-            _isShrine = settlement.SettlementComponent is ShrineComponent;
-        }
+        private bool _isRoRSettlement = settlement.IsRoRSettlement();
+        private bool _isShrine = settlement.SettlementComponent is ShrineComponent;
 
         [DataSourceProperty]
         public bool IsRoRSettlement
