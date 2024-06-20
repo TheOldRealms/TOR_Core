@@ -4,9 +4,11 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -88,6 +90,21 @@ namespace TOR_Core.Models
             if (party != MobileParty.MainParty && party.LeaderHero != null && party.LeaderHero.IsVampire())
             {
                 result.AddFactor(0.2f);
+            }
+            
+            if (party.IsMainParty && party.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+            {
+                var level = Hero.MainHero.GetForestBindingLevel();
+                switch (level)
+                {
+                    case ForestBindingLevel.Symbiosis: break;
+                    case ForestBindingLevel.Unbound:
+                        result.AddFactor(ForestBindingHelper.HealthRegDebuffUnBound, new TextObject(ForestBindingLevel.Unbound.ToString()));
+                        break;
+                    case ForestBindingLevel.Bound:
+                        result.AddFactor(ForestBindingHelper.HealthRegDebuffBound,new TextObject(ForestBindingLevel.Bound.ToString()));
+                        break;
+                }
             }
             
             return result;

@@ -5,6 +5,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -142,6 +143,24 @@ namespace TOR_Core.Models
                     
                     
                 }
+
+                if (hero.PartyBelongedTo!=null && (hero.PartyBelongedTo.IsMainParty ||  hero == Hero.MainHero)  && hero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                {
+                    var level = hero.PartyBelongedTo.LeaderHero.GetForestBindingLevel();
+                    switch (level)
+                    {
+                        case ForestBindingLevel.Symbiosis: break;
+                        case ForestBindingLevel.Unbound:
+                            number.AddFactor(ForestBindingHelper.HealthDebuffUnBound, new TextObject(ForestBindingLevel.Unbound.ToString()));
+                            break;
+                        case ForestBindingLevel.Bound:
+                            number.AddFactor(ForestBindingHelper.HealthDebuffBound,new TextObject(ForestBindingLevel.Bound.ToString()));
+                            break;
+                        
+                    }
+                    
+                }
+                
 
                 if (hero.HasAttribute("GiftOfNurgle")) number.Add(20, new TextObject("Gift of Nurgle"));
             }

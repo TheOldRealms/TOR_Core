@@ -10,6 +10,12 @@ public class ForestBindingHelper
    
     private static readonly int MinimumBound = 750;
     private static readonly int MinimumSymbiosis = 1500;
+
+    public static readonly float HealthDebuffUnBound = -0.35f;
+    public static readonly float HealthDebuffBound = -0.15f;
+    
+    public static readonly float HealthRegDebuffUnBound = -0.35f;
+    public static readonly float HealthRegDebuffBound = -0.15f;
     
     public static ForestBindingLevel GetForestBindingLevelForResource(float level)
     {
@@ -59,12 +65,12 @@ public class ForestBindingHelper
         switch (forestBindingLevel)
         {
             case ForestBindingLevel.Unbound:
-                list.Add(new TooltipProperty("Maximum health reduced: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                list.Add(new TooltipProperty("Maximum health reduced: ", HealthDebuffUnBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Maximum health regeneration reduced: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Winds regeneration reduced: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 break;
             case ForestBindingLevel.Bound:
-                list.Add(new TooltipProperty("Maximum health reduced: ", "-25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                list.Add(new TooltipProperty("Maximum health reduced: ", HealthDebuffBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Maximum health regeneration reduced: ", "-25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Winds regeneration reduced: ", "-25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 break;
