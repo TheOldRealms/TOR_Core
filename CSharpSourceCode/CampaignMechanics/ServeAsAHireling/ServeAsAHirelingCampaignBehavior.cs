@@ -477,7 +477,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             _hirelingWaitMenuShown = false;
             //I am not sure why this was needed? Putting it in makes it crash if you leave service while in a town for example.
             //This makes PlayerEncounter.EncounterSettlement null which is accessed via vanilla gamemenu init methods
-            //PlayerEncounter.Finish(); 
+            //crash does not occur, and finishing encounter is important to not end in a invalid state, where parties try to engange with player but can't
+            PlayerEncounter.Finish();
             UndoDiplomacy();
             ShowPlayerParty();
             
