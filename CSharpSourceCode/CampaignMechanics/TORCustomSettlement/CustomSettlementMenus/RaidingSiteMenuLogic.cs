@@ -13,12 +13,15 @@ using TOR_Core.CampaignMechanics.RaidingParties;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
-public class RaidingSiteMenuLoigic(CampaignGameStarter starter) : TORBaseSettlementMenuLogic(starter)
-
-    
+public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlementMenuLogic(starter)
 {
+    protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
+    {
+        AddRaidingSiteMenus(campaignGameStarter);
+    }
 
-    public void AddRaidingSiteMenus(CampaignGameStarter starter) 
+    public void AddRaidingSiteMenus(CampaignGameStarter starter)
+    {
         starter.AddGameMenu("raidingsite_menu", "{LOCATION_DESCRIPTION}", RaidingSiteMenuInit);
         starter.AddGameMenuOption("raidingsite_menu", "dobattle", "{BATTLE_OPTION_TEXT}", RaidingSiteBattleCondition, RaidingSiteBattleConsequence);
         starter.AddGameMenuOption("raidingsite_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate(MenuCallbackArgs args)
@@ -57,9 +60,9 @@ public class RaidingSiteMenuLoigic(CampaignGameStarter starter) : TORBaseSettlem
     {
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
-        PartyTemplateObject template = settlement.Culture?.DefaultPartyTemplate;
+        var template = settlement.Culture?.DefaultPartyTemplate;
         template ??= MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_lordparty_template");
-        Clan ownerClan = settlement.OwnerClan;
+        var ownerClan = settlement.OwnerClan;
         ownerClan ??= Clan.FindFirst(x => x.StringId == "chaos_clan_1");
         template = ownerClan.DefaultPartyTemplate;
         var party = RaidingPartyComponent.CreateRaidingParty(settlement.StringId + "_defender_party", settlement, "Defenders", template, ownerClan, 250);
@@ -74,50 +77,5 @@ public class RaidingSiteMenuLoigic(CampaignGameStarter starter) : TORBaseSettlem
         CampaignMission.OpenBattleMission(component.BattleSceneName, false);
     }
 
-    private void OnMissionEnded(IMission obj)
-    {
-        var battleSettlement = Settlement.FindFirst(delegate(Settlement settlement)
-        {
-            if (settlement.SettlementComponent is BaseRaiderSpawnerComponent)
-            {
-                var comp = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
-                return comp.IsBattleUnderway;
-            }
-
-            return false;
-        });
-        if (battleSettlement != null)
-        {
-            var comp = battleSettlement.SettlementComponent as BaseRaiderSpawnerComponent;
-            comp.IsBattleUnderway = false;
-            var mission = obj as Mission;
-            if (mission.MissionResult != null && mission.MissionResult.BattleResolved && mission.MissionResult.PlayerVictory)
-            {
-                comp.IsActive = false;
-                var list = new List<InquiryElement>();
-                var item = MBObjectManager.Instance.GetObject<ItemObject>(comp.RewardItemId);
-                list.Add(new InquiryElement(item, item.Name.ToString(), new ImageIdentifier(item)));
-                var inq = new MultiSelectionInquiryData("Victory!", "{=tor_custom_settlement_chaos_portal_victory_str}You are Victorious! Claim your reward!", list, false, 1, 1, "OK", null, OnRewardClaimed, null);
-                MBInformationManager.ShowMultiSelectionInquiry(inq);
-            }
-            else
-            {
-                var inq = new InquiryData("Defeated!", "{=tor_custom_settlement_chaos_portal_lose_str}The enemy proved more than a match for you. Better luck next time!", true, false, "OK", null, null, null);
-                InformationManager.ShowInquiry(inq);
-            }
-        }
-    }
-
    
-
-    private void OnRewardClaimed(List<InquiryElement> obj)
-    {
-        var item = obj[0].Identifier as ItemObject;
-        Hero.MainHero.PartyBelongedTo.Party.ItemRoster.AddToCounts(item, 1);
-    }
-
-    protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
-    {
-        throw new System.NotImplementedException();
-    }
 }

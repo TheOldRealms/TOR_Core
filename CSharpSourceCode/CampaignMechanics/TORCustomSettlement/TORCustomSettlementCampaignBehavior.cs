@@ -31,13 +31,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement;
 
 public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 {
-
-    
-
-
     private List<TORBaseSettlementMenuLogic> _customSettlementMenus;
-
-
+    
     [SaveableField(0)] private Dictionary<string, bool> _customSettlementActiveStates = [];
     [SaveableField(1)] private Dictionary<string, int> _cursedSiteWardDurationLeft = [];
     [SaveableField(2)] private Dictionary<string, int> _lastGhostRecruitmentTime = [];
@@ -52,11 +47,9 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         {
             return value;
         }
-        else
-        {
-            _lastDefileTime.Add(hero.StringId, (int)CampaignTime.Now.ToDays);
-            return _lastDefileTime[hero.StringId];
-        }
+
+        _lastDefileTime.Add(hero.StringId, (int)CampaignTime.Now.ToDays);
+        return _lastDefileTime[hero.StringId];
     }
 
     public int LastGhostRecruitmentTimeTime(Hero hero)
@@ -87,8 +80,47 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         CampaignEvents.OnNewGameCreatedPartialFollowUpEndEvent.AddNonSerializedListener(this, OnNewGameStart);
         CampaignEvents.OnBeforeSaveEvent.AddNonSerializedListener(this, CollectSettlementData);
     }
+    
+    
+    private void OnMissionEnded(IMission obj)
+    {
+        var battleSettlement = Settlement.FindFirst(delegate(Settlement settlement)
+        {
+            if (settlement.SettlementComponent is BaseRaiderSpawnerComponent)
+            {
+                var comp = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
+                return comp.IsBattleUnderway;
+            }
 
+            return false;
+        });
+        if (battleSettlement != null)
+        {
+            var comp = battleSettlement.SettlementComponent as BaseRaiderSpawnerComponent;
+            comp.IsBattleUnderway = false;
+            var mission = obj as Mission;
+            if (mission.MissionResult != null && mission.MissionResult.BattleResolved && mission.MissionResult.PlayerVictory)
+            {
+                comp.IsActive = false;
+                var list = new List<InquiryElement>();
+                var item = MBObjectManager.Instance.GetObject<ItemObject>(comp.RewardItemId);
+                list.Add(new InquiryElement(item, item.Name.ToString(), new ImageIdentifier(item)));
+                var inq = new MultiSelectionInquiryData("Victory!", "{=tor_custom_settlement_chaos_portal_victory_str}You are Victorious! Claim your reward!", list, false, 1, 1, "OK", null, OnRewardClaimed, null);
+                MBInformationManager.ShowMultiSelectionInquiry(inq);
+            }
+            else
+            {
+                var inq = new InquiryData("Defeated!", "{=tor_custom_settlement_chaos_portal_lose_str}The enemy proved more than a match for you. Better luck next time!", true, false, "OK", null, null, null);
+                InformationManager.ShowInquiry(inq);
+            }
+        }
+    }
 
+    private void OnRewardClaimed(List<InquiryElement> obj)
+    {
+        var item = obj[0].Identifier as ItemObject;
+        Hero.MainHero.PartyBelongedTo.Party.ItemRoster.AddToCounts(item, 1);
+    }
 
     private void CollectSettlementData()
     {
@@ -97,25 +129,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         foreach (var settlement in customSettlements)
         {
             var comp = settlement.SettlementComponent as TORBaseSettlementComponent;
-            if (!_customSettlementActiveStates.ContainsKey(settlement.StringId))
-            {
-                _customSettlementActiveStates.Add(settlement.StringId, comp.IsActive);
-            }
-            else
-            {
-                _customSettlementActiveStates[settlement.StringId] = comp.IsActive;
-            }
+            _customSettlementActiveStates[settlement.StringId] = comp.IsActive;
 
             if (comp is CursedSiteComponent cursedSite)
             {
-                if (!_cursedSiteWardDurationLeft.ContainsKey(settlement.StringId))
-                {
-                    _cursedSiteWardDurationLeft.Add(settlement.StringId, cursedSite.WardHours);
-                }
-                else
-                {
-                    _cursedSiteWardDurationLeft[settlement.StringId] = cursedSite.WardHours;
-                }
+                _cursedSiteWardDurationLeft[settlement.StringId] = cursedSite.WardHours;
             }
         }
     }
@@ -211,11 +229,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         {
             new ShrineMenuLogic(starter), 
             new CursedSiteMenuLogic(starter),
-            new AddRaidingSiteMenuLogic(starter),
+            new RaidingSiteMenuLogic(starter),
+            new OakOfAgesMenuLogic(starter)
         };
-
-        AddRaidingSiteMenus(starter);
-        AddOakOfAgeMenus(starter);
+        
+  
         foreach (var entry in _customSettlementActiveStates)
         {
             var settlement = Settlement.Find(entry.Key);
@@ -274,24 +292,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
     #region OakOfAges
 
-    public void AddOakOfAgeMenus(CampaignGameStarter starter)
-    {
-        starter.AddGameMenu("oak_of_ages_menu", "{LOCATION_DESCRIPTION}", OakOfAgeMenuInit);
-        starter.AddGameMenuOption("oak_of_ages_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate(MenuCallbackArgs args)
-        {
-            args.optionLeaveType = GameMenuOption.LeaveType.Leave;
-            return true;
-        }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
-    }
 
-    private void OakOfAgeMenuInit(MenuCallbackArgs args)
-    {
-        var settlement = Settlement.CurrentSettlement;
-        var component = settlement.SettlementComponent as TORBaseSettlementComponent;
-        var text = component.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
-        MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
-        args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
-    }
 
     #endregion
 
