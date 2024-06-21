@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 
 namespace TOR_Core.Extensions
 {
@@ -54,6 +55,11 @@ namespace TOR_Core.Extensions
             }
             
             return false;
+        }
+
+        public static bool IsOakOfTheAges(this Settlement settlement)
+        {
+            return settlement.SettlementComponent is OakOfAgesComponent;
         }
     }
 }
