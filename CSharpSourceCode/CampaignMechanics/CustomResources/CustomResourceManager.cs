@@ -211,6 +211,18 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         explainedNumber.AddFactor(0.5f);
                     }
                 }
+                
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                {
+                    var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 500f,
+                        x =>  x.IsOakOfTheAges());
+
+                    if (settlement != null)
+                    {
+                        explainedNumber.AddFactor(2);
+                    }
+                }
+                
 
 
                 Hero.MainHero.AddCultureSpecificCustomResource(explainedNumber.ResultNumber);

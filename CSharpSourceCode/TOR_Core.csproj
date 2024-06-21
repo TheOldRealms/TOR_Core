@@ -514,6 +514,11 @@
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\OakOfAgesMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\RaidingSiteMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\CursedSiteMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\ShrineMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\TORBaseSettlementMenuLogic.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />

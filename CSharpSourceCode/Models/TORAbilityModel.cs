@@ -2,9 +2,11 @@
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
@@ -242,6 +244,24 @@ namespace TOR_Core.Models
                 var weightmalus = baseCharacter.Equipment.GetTotalWeightOfArmor(true) / 25;
 
                 explainedNumber.AddFactor(-weightmalus);
+            }
+            
+            
+            if (baseCharacter.HeroObject.PartyBelongedTo!=null && (baseCharacter.HeroObject.PartyBelongedTo.IsMainParty ||  baseCharacter.HeroObject == Hero.MainHero)  && baseCharacter.Culture.StringId == TORConstants.Cultures.ASRAI)
+            {
+                var level = Hero.MainHero.GetForestBindingLevel();
+                switch (level)
+                {
+                    case ForestBindingLevel.Symbiosis: break;
+                    case ForestBindingLevel.Unbound:
+                        explainedNumber.AddFactor(ForestBindingHelper.WindsDebuffUnbound, new TextObject(ForestBindingLevel.Unbound.ToString()));
+                        break;
+                    case ForestBindingLevel.Bound:
+                        explainedNumber.AddFactor(ForestBindingHelper.WindsDebuffBound,new TextObject(ForestBindingLevel.Bound.ToString()));
+                        break;
+                        
+                }
+                    
             }
 
             return explainedNumber.ResultNumber;

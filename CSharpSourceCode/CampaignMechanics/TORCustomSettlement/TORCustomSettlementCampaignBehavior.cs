@@ -289,13 +289,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             else site.HourlyTick();
         }
     }
-
-    #region OakOfAges
-
-
-
-    #endregion
-
+    
     public override void SyncData(IDataStore dataStore)
     {
         dataStore.SyncData("_customSettlementActiveStates", ref _customSettlementActiveStates);

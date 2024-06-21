@@ -3,8 +3,10 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Invasions;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -49,6 +51,23 @@ namespace TOR_Core.Models
             {
                 num.Add(1500, new TextObject("Invasion Force Bonus"));
             }
+            
+            if (party != null && party.LeaderHero != null && party.LeaderHero == Hero.MainHero && Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+            {
+                num.AddFactor(-0.5f);
+
+                foreach (var attribute in  OakOfAgesMenuLogic.PartyUpgradeAttributes)
+                {
+                    if(Hero.MainHero.HasAttribute(attribute))
+                    {
+                        num.AddFactor(0.1f);
+                    }
+                }
+
+               
+                
+            }
+            
             
             return num;
         }

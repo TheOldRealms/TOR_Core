@@ -19,10 +19,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
 public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 {
-    private const int _defilingDarkEnergyPerTick = 125;
-
-    private int numberOfTroopsFromInteraction;
-
+    private const int DefilingDarkEnergyPerTick = 125;
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
         AddShrineMenus(campaignGameStarter);
@@ -65,7 +62,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             PlayerEncounter.Current.IsPlayerWaiting = true;
             args.MenuContext.GameMenu.StartWait();
         }, null, DefileConsequence, DefilingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddGameMenu("shrine_menu_defile_result", "You sucessfully gathered " + _defilingDarkEnergyPerTick * 4 + " Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime.", DefileResultInit);
+        starter.AddGameMenu("shrine_menu_defile_result", "You sucessfully gathered " + DefilingDarkEnergyPerTick * 4 + " Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime.", DefileResultInit);
         starter.AddGameMenuOption("shrine_menu_defile_result", "return_to_root", "Continue", delegate(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
@@ -169,7 +166,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         if (diff > 0)
         {
             args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
-            if (args.MenuContext.GameMenu.Progress != progress) Hero.MainHero.AddCustomResource("DarkEnergy", _defilingDarkEnergyPerTick);
+            if (args.MenuContext.GameMenu.Progress != progress) Hero.MainHero.AddCustomResource("DarkEnergy", DefilingDarkEnergyPerTick);
         }
     }
 

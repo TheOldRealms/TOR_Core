@@ -129,6 +129,11 @@ public class TORCustomResourceModel : GameModel
                     }
                     
                 }
+
+                if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                {
+                    number.Add(15, new TextObject("Growth"));
+                }
             } 
             return number;
         }

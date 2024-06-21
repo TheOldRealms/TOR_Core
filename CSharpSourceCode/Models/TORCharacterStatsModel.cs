@@ -6,6 +6,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -156,9 +157,17 @@ namespace TOR_Core.Models
                         case ForestBindingLevel.Bound:
                             number.AddFactor(ForestBindingHelper.HealthDebuffBound,new TextObject(ForestBindingLevel.Bound.ToString()));
                             break;
-                        
                     }
-                    
+
+                    var upgrades = OakOfAgesMenuLogic.MaximumHealthUpgradeAttributes;
+                    foreach (var upgrade in upgrades)
+                    {
+                        if (Hero.MainHero.HasAttribute(upgrade))
+                        {
+                            number.AddFactor(0.1f);
+                        }
+                    }
+
                 }
                 
 
