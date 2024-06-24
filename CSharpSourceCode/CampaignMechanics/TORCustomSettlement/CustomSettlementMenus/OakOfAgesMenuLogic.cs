@@ -18,7 +18,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     private const int GainUpgradeCost = 150;
     
     private const int TroopUpkeepUpgradeCost = 200;
-    private const int TroopXPUpgradeCost = 175;
+    private const int TroopXpUpgradeCost = 175;
     
     public static readonly List<string> PartyUpgradeAttributes =
     [
@@ -53,24 +53,12 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         "WEUpkeepUpgrade2",
         "WEUpkeepUpgrade3",
     ];
-    
-    public static readonly List<string> DailyXPForTroops =
-    [
-        "WEXPUpgrade1",
-        "WEXPUpgrade2",
-        "WEXPUpgrade2",
-        "WEXPUpgrade2",
-        "WEXPUpgrade2"
-    ];
 
-    private List<List<string>> Upgrades;
+    private readonly List<List<string>> _upgrades;
     
     public OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : base(campaignGameStarter)
     {
-        Upgrades = new List<List<string>>()
-        {
-            PartyUpgradeAttributes, MaximumHealthUpgradeAttributes, CustomResourceGainUpgrades, DailyXPForTroops, UpkeepReductionUpgrades
-        };
+        _upgrades = [PartyUpgradeAttributes, MaximumHealthUpgradeAttributes, CustomResourceGainUpgrades, UpkeepReductionUpgrades];
     }
 
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
@@ -93,12 +81,24 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
         
         AddBranchesOfTheOakMenu(starter);
+       // AddWorldRootMenu(starter);
     }
+
+    /*private void AddWorldRootMenu(CampaignGameStarter starter)
+    {
+        starter.AddGameMenu("oak_of_ages_branches_menu", "World roots", OakOfAgeMenuInit);
+        
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "rootMenu_AUnlock", "Unlock Pathway to the Forest of Arden. {PARTYSIZEUPGRADECOST}{FORESTHARMONY}",args => 
+            BranchUpgradeCondition(args,PartySizeUpgradeCost, "WEPartySizeUpgrade"),_ => UpgradeConsequence(PartySizeUpgradeCost,"WEPartySizeUpgrade" ));
+
+    }*/
 
     private void OakOfAgeMenuInit(MenuCallbackArgs args)
     {
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as TORBaseSettlementComponent;
+        if (component == null) return;
+        
         var text = component.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
         MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
@@ -106,6 +106,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         
         MBTextManager.SetTextVariable("FORESTHARMONY", CustomResourceManager.GetResourceObject("ForestHarmony").GetCustomResourceIconAsText());
         MBTextManager.SetTextVariable("FORESTHARMONY1", CustomResourceManager.GetResourceObject("ForestHarmony").GetCustomResourceIconAsText());
+
     }
 
 
@@ -114,19 +115,16 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         starter.AddGameMenu("oak_of_ages_branches_menu", "Branches of The Oak", OakOfAgeMenuInit);
         
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_A", "Increase party Size. {PARTYSIZEUPGRADECOST}{FORESTHARMONY}",args => 
-            UpgradeCondition(args,PartySizeUpgradeCost, "WEPartySizeUpgrade"),_ => UpgradeConsequence(PartySizeUpgradeCost,"WEPartySizeUpgrade" ));
+            BranchUpgradeCondition(args,PartySizeUpgradeCost, "WEPartySizeUpgrade"),_ => UpgradeConsequence(PartySizeUpgradeCost,"WEPartySizeUpgrade" ));
         
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "WEHealthUpgrade", "Increase maximum health. {HEALTHUPGRADECOST}{FORESTHARMONY}",
-            args => UpgradeCondition(args,HealthUpgradeCost, "branchMenu_B"),_ => UpgradeConsequence(HealthUpgradeCost,"WEHealthUpgrade" ));
+            args => BranchUpgradeCondition(args,HealthUpgradeCost, "branchMenu_B"),_ => UpgradeConsequence(HealthUpgradeCost,"WEHealthUpgrade" ));
         
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_C", "Increase the daily harmony gain. {GAINUPGRADECOST}{FORESTHARMONY}",
-            args => UpgradeCondition(args,GainUpgradeCost,"WEGainUpgrade"),_ => UpgradeConsequence(GainUpgradeCost, "WEGainUpgrade"));
+            args => BranchUpgradeCondition(args,GainUpgradeCost,"WEGainUpgrade"),_ => UpgradeConsequence(GainUpgradeCost, "WEGainUpgrade"));
         
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_D", " Troop {FORESTHARMONY1} Upkeep  reduction. {UPKEEPUPGRADECOST}{FORESTHARMONY}", 
-            args => UpgradeCondition(args,TroopUpkeepUpgradeCost, "WEUpkeepUpgrade") ,_ => UpgradeConsequence(TroopUpkeepUpgradeCost, "WEGainUpgrade"));
-        
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_E", "Increase daily XP gain for troops. {XPUPGRADECOST}{FORESTHARMONY} ", 
-            args => UpgradeCondition(args,TroopXPUpgradeCost, "WEXPUpgrade") , _ => UpgradeConsequence(TroopXPUpgradeCost, "WEXPUpgrade"));
+            args => BranchUpgradeCondition(args,TroopUpkeepUpgradeCost, "WEUpkeepUpgrade") ,_ => UpgradeConsequence(TroopUpkeepUpgradeCost, "WEGainUpgrade"));
         
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_leave", "Leave...",
             delegate(MenuCallbackArgs args)
@@ -145,7 +143,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     {
 
         List<string> upgradeList = new List<string>();
-        foreach (var list in Upgrades)
+        foreach (var list in _upgrades)
         {
             if (list.Any(X => X.Contains(attributeID)))
             {
@@ -170,20 +168,19 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
 
 
-    private string GetTextVariableForUpgradeCost(string UpgradeID)
+    private string GetTextVariableForUpgradeCost(string upgradeId)
     {
-        return UpgradeID switch
+        return upgradeId switch
         {
             "WEPartySizeUpgrade" => "PARTYSIZEUPGRADECOST",
             "WEHealthUpgrade" => "HEALTHUPGRADECOST",
             "WEGainUpgrade" => "GAINUPGRADECOST",
             "WEUpkeepUpgrade" => "UPKEEPUPGRADECOST",
-            "WEXPUpgrade" => "XPUPGRADECOST",
             _ => ""
         };
     }
     
-    private bool UpgradeCondition(MenuCallbackArgs args, int cost, string id)
+    private bool BranchUpgradeCondition(MenuCallbackArgs args, int cost, string id)
     {
         var textVariable = GetTextVariableForUpgradeCost(id);
         MBTextManager.SetTextVariable("FORESTHARMONY", CustomResourceManager.GetResourceObject("ForestHarmony").GetCustomResourceIconAsText());
@@ -211,7 +208,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     private bool UnlockedAllUpgradesOfType( out int upgradeCount, string UpgradeType)
     {
         List<string> targetList = new List<string>();
-        foreach (var list in Upgrades)
+        foreach (var list in _upgrades)
         {
             if (list.Any(x => x.Contains(UpgradeType)))
             {

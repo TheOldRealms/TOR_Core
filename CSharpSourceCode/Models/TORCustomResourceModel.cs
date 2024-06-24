@@ -5,6 +5,7 @@ using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -34,11 +35,21 @@ public class TORCustomResourceModel : GameModel
                 if (hero == Hero.MainHero)
                 {
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGain, false);
-
-
+                    
                     if (hero.IsEnlisted())
                     {
                         ServeAsAHirelingHelpers.AddHirelingCustomResourceBenefits(hero,ref number);
+                    }
+
+                    if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                    {
+                        foreach (var attribute in  OakOfAgesMenuLogic.CustomResourceGainUpgrades)
+                        {
+                            if(Hero.MainHero.HasAttribute(attribute))
+                            {
+                                number.Add(10f);
+                            }
+                        }
                     }
                 }
                 
@@ -155,7 +166,15 @@ public class TORCustomResourceModel : GameModel
                     var unitUpkeet = new ExplainedNumber(resource.Item2*element.Number);
                     if (hero == Hero.MainHero)
                     {
-                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Character); 
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Character);
+
+                        if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                        {
+                            foreach (var attribute in OakOfAgesMenuLogic.CustomResourceGainUpgrades.Where(attribute => Hero.MainHero.HasAttribute(attribute)))
+                            {
+                                unitUpkeet.AddFactor(-0.1f);
+                            }
+                        }
                     }
                     
                     upkeep.Add(-unitUpkeet.ResultNumber,new TextObject("Upkeep"));
