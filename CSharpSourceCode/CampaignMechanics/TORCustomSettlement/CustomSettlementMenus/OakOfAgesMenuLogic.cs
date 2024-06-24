@@ -147,13 +147,13 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         
         
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_A_travel", "Reduce the travel cost. {ROOTTRAVELUPGRADE}{FORESTHARMONY}",
-            _ => Hero.MainHero.GetCultureSpecificCustomResourceValue()>=RootTravelCostReductionUpgradeCost,_ => RootUpgradeConsequence(RootTravelCostReductionUpgradeCost,"WETravelCostUpgrade"));
+            args => RootUpgradeCondition(args, RootTravelBackUpgradeCost,"WETravelCostUpgrade", true),_ => RootUpgradeConsequence(RootTravelCostReductionUpgradeCost,"WETravelCostUpgrade"));
         
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_A_travel", "Establish pathways back to the Oak of Ages. {ROOTRETURNUPGRADE}{FORESTHARMONY}",
-            args => RootUpgradeCondition(args, RootTravelBackUpgradeCost,"WETRavelBackUpgrade", true),_ => RootUpgradeConsequence(RootTravelBackUpgradeCost,"WETravelBackUpgrade"));
+            args => RootUpgradeCondition(args, RootTravelBackUpgradeCost,"WETravelBackUpgrade", true),_ => RootUpgradeConsequence(RootTravelBackUpgradeCost,"WETravelBackUpgrade"));
         
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_A_travel", "Allow that all troops and heroes are healed upon using the world roots. {ROOTHEALUPGRADE}{FORESTHARMONY}",
-            args => RootUpgradeCondition(args, RootTravelBackUpgradeCost,"WETRavelHealUpgrade", true),_ => RootUpgradeConsequence(RootHealUpgradeCost,"WETravelHealUpgrade"));
+            args => RootUpgradeCondition(args, RootTravelBackUpgradeCost,"WETravelHealUpgrade", true),_ => RootUpgradeConsequence(RootHealUpgradeCost,"WETravelHealUpgrade"));
         
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "branchMenu_leave", "Leave...",
             delegate(MenuCallbackArgs args)
@@ -170,8 +170,16 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
     private bool RootUpgradeCondition(MenuCallbackArgs args, int upgradeCost, string upgradeId, bool showAnyway=false)
     {
-        if (Hero.MainHero.HasAttribute(upgradeId)) return false;
-
+        if (Hero.MainHero.HasAttribute(upgradeId))
+        {
+            if (showAnyway)
+            {
+                args.IsEnabled = false;
+                args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Already unlocked.");
+                return true;
+            }
+            return false;
+        }
         if (Hero.MainHero.GetCultureSpecificCustomResourceValue() >= upgradeCost)
         {
             return true;
@@ -183,6 +191,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     
             return true;
         }
+        
     }
     
     private bool RootAcessibleCondition(MenuCallbackArgs args, int travelCost, string upgradeId)
