@@ -5,11 +5,11 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.CustomResources;
 
-public class ForestBindingHelper
+public class ForestHarmonyHelper
 {
    
     private static readonly int MinimumBound = 750;
-    private static readonly int MinimumSymbiosis = 1500;
+    private static readonly int MinimumHarmony = 1500;
 
     public static readonly float HealthDebuffUnBound = -0.35f;
     public static readonly float HealthDebuffBound = -0.15f;
@@ -21,26 +21,26 @@ public class ForestBindingHelper
     public static readonly float WindsDebuffBound = -0.25f;
 
     
-    public static ForestBindingLevel GetForestBindingLevelForResource(float level)
+    public static ForestHarmonyLevel GetForestBindingLevelForResource(float level)
     {
-        var result = ForestBindingLevel.Unbound;
+        var result = ForestHarmonyLevel.Dissonance;
 
         switch (level)
         {
  
             case var _ when level < MinimumBound:
             {
-                result = ForestBindingLevel.Unbound;
+                result = ForestHarmonyLevel.Dissonance;
                 break;
             }
-            case var _ when level > MinimumBound &&  level < MinimumSymbiosis:
+            case var _ when level > MinimumBound &&  level < MinimumHarmony:
             {
-                result = ForestBindingLevel.Bound;
+                result = ForestHarmonyLevel.Bound;
                 break;
             }
-            case var _ when level > MinimumSymbiosis:
+            case var _ when level > MinimumHarmony:
             {
-                result = ForestBindingLevel.Symbiosis;
+                result = ForestHarmonyLevel.Harmony;
                 break;
             }
         }
@@ -48,18 +48,18 @@ public class ForestBindingHelper
         return result;
     }
     
-    public static bool HasForestBindingLevel(Hero hero, ForestBindingLevel chivalryLevel)
+    public static bool HasForestBindingLevel(Hero hero, ForestHarmonyLevel chivalryLevel)
     {
-        return chivalryLevel == hero.GetForestBindingLevel();
+        return chivalryLevel == hero.GetForestHarmonyLevel();
     }
     
-    public static List<TooltipProperty> GetForestBindingInfo()
+    public static List<TooltipProperty> GetForestHarmonyInfo()
     {
         var list = new List<TooltipProperty>();
         var value = Hero.MainHero.GetCustomResourceValue("ForestBinding");
 
         var title = "Forest Binding";
-        var forestBindingLevel = Hero.MainHero.GetForestBindingLevel();
+        var forestBindingLevel = Hero.MainHero.GetForestHarmonyLevel();
 
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
@@ -68,23 +68,23 @@ public class ForestBindingHelper
 
         switch (forestBindingLevel)
         {
-            case ForestBindingLevel.Unbound:
+            case ForestHarmonyLevel.Dissonance:
                 list.Add(new TooltipProperty("Maximum health reduced: ", HealthDebuffUnBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Maximum health regeneration reduced: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Winds regeneration reduced: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 break;
-            case ForestBindingLevel.Bound:
+            case ForestHarmonyLevel.Bound:
                 list.Add(new TooltipProperty("Maximum health reduced: ", HealthDebuffBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Maximum health regeneration reduced: ", "-25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 list.Add(new TooltipProperty("Winds regeneration reduced: ", "-25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 break;
-            case ForestBindingLevel.Symbiosis:
+            case ForestHarmonyLevel.Harmony:
                 list.Add(new TooltipProperty("You are one with the forest", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 break;
         }
 
         list.Add(new TooltipProperty("", " ", 0, false, TooltipProperty.TooltipPropertyFlags.Cost)); //empty line
-        if (forestBindingLevel != ForestBindingLevel.Symbiosis)
+        if (forestBindingLevel != ForestHarmonyLevel.Harmony)
         {
             list.Add(new TooltipProperty("Next Rank: ", (forestBindingLevel + 1).ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
             var result = GetResourceMinimumForForestBindingRank(forestBindingLevel + 1) - value;
@@ -97,13 +97,13 @@ public class ForestBindingHelper
     }
     
     
-    public static float GetResourceMinimumForForestBindingRank(ForestBindingLevel level)
+    public static float GetResourceMinimumForForestBindingRank(ForestHarmonyLevel level)
     {
         switch (level)
         {
-            case ForestBindingLevel.Symbiosis:
-                return MinimumSymbiosis;
-            case ForestBindingLevel.Bound:
+            case ForestHarmonyLevel.Harmony:
+                return MinimumHarmony;
+            case ForestHarmonyLevel.Bound:
                 return MinimumBound;
             default:
                 return 0;
@@ -114,9 +114,9 @@ public class ForestBindingHelper
 
 
 
-public enum ForestBindingLevel
+public enum ForestHarmonyLevel
 {
-    Symbiosis = 2,
+    Harmony = 2,
     Bound = 1,
-    Unbound = 0
+    Dissonance = 0
 }

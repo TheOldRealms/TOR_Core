@@ -94,15 +94,15 @@ namespace TOR_Core.Models
             
             if (party.IsMainParty && party.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                var level = Hero.MainHero.GetForestBindingLevel();
+                var level = Hero.MainHero.GetForestHarmonyLevel();
                 switch (level)
                 {
-                    case ForestBindingLevel.Symbiosis: break;
-                    case ForestBindingLevel.Unbound:
-                        result.AddFactor(ForestBindingHelper.HealthRegDebuffUnBound, new TextObject(ForestBindingLevel.Unbound.ToString()));
+                    case ForestHarmonyLevel.Harmony: break;
+                    case ForestHarmonyLevel.Dissonance:
+                        result.AddFactor(ForestHarmonyHelper.HealthRegDebuffUnBound, new TextObject(ForestHarmonyLevel.Dissonance.ToString()));
                         break;
-                    case ForestBindingLevel.Bound:
-                        result.AddFactor(ForestBindingHelper.HealthRegDebuffBound,new TextObject(ForestBindingLevel.Bound.ToString()));
+                    case ForestHarmonyLevel.Bound:
+                        result.AddFactor(ForestHarmonyHelper.HealthRegDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
                         break;
                 }
             }

@@ -13,8 +13,12 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
 public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 {
-    private int PartySizeUpgradeCost = 100;
-    private int HealthUpgradeCost = 125;
+    private const int PartySizeUpgradeCost = 100;
+    private const int HealthUpgradeCost = 125;
+    private const int GainUpgradeCost = 150;
+    
+    private const int TroopUpkeepUpgradeCost = 200;
+    private const int TroopXPUpgradeCost = 175;
     
     public static readonly List<string> PartyUpgradeAttributes =
     [
@@ -34,8 +38,39 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         "WEHealthUpgrade5"
     ];
     
+    public static readonly List<string> CustomResourceGainUpgrades =
+    [
+        "WEGainUpgrade1",
+        "WEGainUpgrade2",
+        "WEGainUpgrade3",
+        "WEGainUpgrade4",
+        "WEGainUpgrade5"
+    ];
+    
+    public static readonly List<string> UpkeepReductionUpgrades =
+    [
+        "WEUpkeepUpgrade1",
+        "WEUpkeepUpgrade2",
+        "WEUpkeepUpgrade3",
+    ];
+    
+    public static readonly List<string> DailyXPForTroops =
+    [
+        "WEXPUpgrade1",
+        "WEXPUpgrade2",
+        "WEXPUpgrade2",
+        "WEXPUpgrade2",
+        "WEXPUpgrade2"
+    ];
+
+    private List<List<string>> Upgrades;
+    
     public OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : base(campaignGameStarter)
     {
+        Upgrades = new List<List<string>>()
+        {
+            PartyUpgradeAttributes, MaximumHealthUpgradeAttributes, CustomResourceGainUpgrades, DailyXPForTroops, UpkeepReductionUpgrades
+        };
     }
 
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
@@ -69,7 +104,8 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
         
         
-        MBTextManager.SetTextVariable("FORESTBINDING", CustomResourceManager.GetResourceObject("ForestBinding").GetCustomResourceIconAsText());
+        MBTextManager.SetTextVariable("FORESTHARMONY", CustomResourceManager.GetResourceObject("ForestHarmony").GetCustomResourceIconAsText());
+        MBTextManager.SetTextVariable("FORESTHARMONY1", CustomResourceManager.GetResourceObject("ForestHarmony").GetCustomResourceIconAsText());
     }
 
 
@@ -77,11 +113,20 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     {
         starter.AddGameMenu("oak_of_ages_branches_menu", "Branches of The Oak", OakOfAgeMenuInit);
         
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_A", "Increase party Size. ({PARTYSIZEUPGRADECOST}{FORESTBINDING})",PartySizeUpgradeCondition,PartySizeUpgradeConsequence);
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_B", "Increase maximum health. ({PARTYSIZEUPGRADECOST}{FORESTBINDING})",null,null);
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_C", "C",null,null);
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_D", "D", null,null);
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_D", "E", null,null);
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_A", "Increase party Size. {PARTYSIZEUPGRADECOST}{FORESTHARMONY}",args => 
+            UpgradeCondition(args,PartySizeUpgradeCost, "WEPartySizeUpgrade"),_ => UpgradeConsequence(PartySizeUpgradeCost,"WEPartySizeUpgrade" ));
+        
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "WEHealthUpgrade", "Increase maximum health. {HEALTHUPGRADECOST}{FORESTHARMONY}",
+            args => UpgradeCondition(args,HealthUpgradeCost, "branchMenu_B"),_ => UpgradeConsequence(HealthUpgradeCost,"WEHealthUpgrade" ));
+        
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_C", "Increase the daily harmony gain. {GAINUPGRADECOST}{FORESTHARMONY}",
+            args => UpgradeCondition(args,GainUpgradeCost,"WEGainUpgrade"),_ => UpgradeConsequence(GainUpgradeCost, "WEGainUpgrade"));
+        
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_D", " Troop {FORESTHARMONY1} Upkeep  reduction. {UPKEEPUPGRADECOST}{FORESTHARMONY}", 
+            args => UpgradeCondition(args,TroopUpkeepUpgradeCost, "WEUpkeepUpgrade") ,_ => UpgradeConsequence(TroopUpkeepUpgradeCost, "WEGainUpgrade"));
+        
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_E", "Increase daily XP gain for troops. {XPUPGRADECOST}{FORESTHARMONY} ", 
+            args => UpgradeCondition(args,TroopXPUpgradeCost, "WEXPUpgrade") , _ => UpgradeConsequence(TroopXPUpgradeCost, "WEXPUpgrade"));
         
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_leave", "Leave...",
             delegate(MenuCallbackArgs args)
@@ -96,84 +141,93 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             false, -1, false);
     }
     
-    
-    private void HealthUpgradeConsequence(MenuCallbackArgs args)
+    private void UpgradeConsequence(int cost, string attributeID)
     {
-        foreach (var attribute in MaximumHealthUpgradeAttributes.Where(attribute => !Hero.MainHero.HasAttribute(attribute)))
-        {
-            Hero.MainHero.AddAttribute(attribute);
-            return;
-        }
-    }
-    
-    private bool HealthUpgradeCondition(MenuCallbackArgs args)
-    {
-        if (UnlockedAllHealthUpgrades(out int upgradeCount))
-        {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}You can't increase your maximum health further.", null);
-            args.IsEnabled = false;
-        }
 
-        var cost = PartySizeUpgradeCost * (1+upgradeCount);
-        MBTextManager.SetTextVariable("HEALTHUPGRADECOST", cost);
-        if (cost > Hero.MainHero.GetCustomResourceValue("ForestBinding"))
+        List<string> upgradeList = new List<string>();
+        foreach (var list in Upgrades)
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Requires {HEALTHUPGRADECOST}{FORESTBINDING} for the next upgrade .", null);
-            args.IsEnabled = false;
-        }
-
-        return true;
-    }
-    
-    
-    
-    private void PartySizeUpgradeConsequence(MenuCallbackArgs args)
-    {
-        foreach (var attribute in PartyUpgradeAttributes.Where(attribute => !Hero.MainHero.HasAttribute(attribute)))
-        {
-            Hero.MainHero.AddAttribute(attribute);
-            return;
-        }
-    }
-    
-    private bool PartySizeUpgradeCondition(MenuCallbackArgs args)
-    {
-        if (UnlockedAllPartySizeModules(out int upgradeCount))
-        {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}You can't increase your party size further.", null);
-            args.IsEnabled = false;
-        }
-
-        var cost = PartySizeUpgradeCost * (1+upgradeCount);
-        MBTextManager.SetTextVariable("PARTYSIZEUPGRADECOST", cost);
-        if (cost > Hero.MainHero.GetCustomResourceValue("ForestBinding"))
-        {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Requires {PARTYSIZEUPGRADECOST}{FORESTBINDING} for the next upgrade .", null);
-            args.IsEnabled = false;
-        }
-
-        return true;
-    }
-    
-    private bool UnlockedAllPartySizeModules( out int upgradeCount)
-    {
-        upgradeCount = 0;
-        foreach (var attribute in PartyUpgradeAttributes)
-        {
-            if (!Hero.MainHero.HasAttribute(attribute))
+            if (list.Any(X => X.Contains(attributeID)))
             {
-                return false;
+                upgradeList = list;
+                break;
             }
-            upgradeCount++;
+        }
+
+        var attributeUnlocked = UnlockedAllUpgradesOfType(out var count, attributeID);
+        
+        if (attributeUnlocked) return;
+        
+        var attribute = upgradeList.FirstOrDefault(x => !Hero.MainHero.HasAttribute(x));
+        if (attribute == null) return;
+        
+        
+        Hero.MainHero.AddAttribute(attribute);
+        
+        Hero.MainHero.AddCultureSpecificCustomResource(-(cost*(1+count)));
+        GameMenu.SwitchToMenu("oak_of_ages_branches_menu");
+    }
+
+
+
+    private string GetTextVariableForUpgradeCost(string UpgradeID)
+    {
+        return UpgradeID switch
+        {
+            "WEPartySizeUpgrade" => "PARTYSIZEUPGRADECOST",
+            "WEHealthUpgrade" => "HEALTHUPGRADECOST",
+            "WEGainUpgrade" => "GAINUPGRADECOST",
+            "WEUpkeepUpgrade" => "UPKEEPUPGRADECOST",
+            "WEXPUpgrade" => "XPUPGRADECOST",
+            _ => ""
+        };
+    }
+    
+    private bool UpgradeCondition(MenuCallbackArgs args, int cost, string id)
+    {
+        var textVariable = GetTextVariableForUpgradeCost(id);
+        MBTextManager.SetTextVariable("FORESTHARMONY", CustomResourceManager.GetResourceObject("ForestHarmony").GetCustomResourceIconAsText());
+        if (UnlockedAllUpgradesOfType(out int upgradeCount, id))
+        {
+            args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}You reached the maximum number of branches", null);
+            MBTextManager.SetTextVariable(textVariable,  "");
+            MBTextManager.SetTextVariable("FORESTHARMONY",  "");
+            args.IsEnabled = false;
+            return true;
+        }
+
+        var totalCost = cost * (1 + upgradeCount);
+        MBTextManager.SetTextVariable(textVariable,  totalCost);
+        if (totalCost > Hero.MainHero.GetCustomResourceValue("ForestHarmony"))
+        {
+            var text = $"{{=tor_custom_settlement_we_party_size_info_str}}Requires {{{textVariable}}}{{FORESTBINDING}} for the next upgrade.";
+            args.Tooltip = new TextObject(text);
+            args.IsEnabled = false;
+        }
+
+        return true;
+    }
+    
+    private bool UnlockedAllUpgradesOfType( out int upgradeCount, string UpgradeType)
+    {
+        List<string> targetList = new List<string>();
+        foreach (var list in Upgrades)
+        {
+            if (list.Any(x => x.Contains(UpgradeType)))
+            {
+                targetList = list;
+                break;
+            }
+        }
+
+        if (targetList.Count == 0)
+        {
+            upgradeCount = 0;
+            return true;
         }
         
-        return true;
-    }
-    
-    private bool UnlockedAllHealthUpgrades( out int upgradeCount)
-    {
         upgradeCount = 0;
-        foreach (var attribute in PartyUpgradeAttributes)
+        foreach (var attribute in targetList)
         {
             if (!Hero.MainHero.HasAttribute(attribute))
             {

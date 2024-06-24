@@ -249,10 +249,10 @@ namespace TOR_Core.Extensions
             return ChivalryHelper.GetChivalryLevelForResource(customResource);
         }
         
-        public static ForestBindingLevel GetForestBindingLevel(this Hero hero)
+        public static ForestHarmonyLevel GetForestHarmonyLevel(this Hero hero)
         {
-            var customResource = GetCustomResourceValue(hero, "ForestBinding");
-            return ForestBindingHelper.GetForestBindingLevelForResource(customResource);
+            var customResource = GetCustomResourceValue(hero, "ForestHarmony");
+            return ForestHarmonyHelper.GetForestBindingLevelForResource(customResource);
         }
         
         public static bool HasChivalryLevel(this Hero hero, ChivalryLevel level)
