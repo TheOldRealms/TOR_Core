@@ -1,9 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
-  <Settlement id="oak_of_ages" name="{=!}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5001" culture="Culture.battania" text="{=!}Oak of Ages">
+  <Settlement id="oak_of_ages" name="{=!}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages">
     <Components>
       <OakOfAges id="oak_of_ages" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="worldroot_01" name="{=!}Arden Forest World Roots" owner="Faction.athel_loren_clan_1" posX="945.8004" posY="1109.638" culture="Culture.battania" text="{=!}Arden Forest World Roots">
+    <Components>
+      <WorldRoots id="worldroot_01" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="worldroot_02" name="{=!}Laurelorn World Roots" owner="Faction.athel_loren_clan_1" posX="1239.165" posY="1277.198" culture="Culture.battania" text="{=!}Laurelorn World Roots">
+    <Components>
+      <WorldRoots id="worldroot_02" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="worldroot_03" name="{=!}Gryphenwood World Roots" owner="Faction.athel_loren_clan_1" posX="1604.009" posY="1133" culture="Culture.battania" text="{=!}Gryphenwood World Roots">
+    <Components>
+      <WorldRoots id="worldroot_03" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="chaos_portal_01" name="{=!}Chaos Portal" owner="Faction.chaos_clan_1" posX="1421.178" posY="900.773" culture="Culture.chaos_culture" text="{=!}Chaos Portal">

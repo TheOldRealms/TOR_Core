@@ -107,7 +107,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     {
         var battleSettlement = Settlement.FindFirst(delegate(Settlement settlement)
         {
-            if (settlement.SettlementComponent is BaseRaiderSpawnerComponent)
+            AddWorldRootsMenus(starter);
             {
                 var comp = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
                 return comp.IsBattleUnderway;
@@ -143,6 +143,32 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         Hero.MainHero.PartyBelongedTo.Party.ItemRoster.AddToCounts(item, 1);
     }
 
+        #endregion
+
+        #region WorldRoots
+        public void AddWorldRootsMenus(CampaignGameStarter starter)
+        {
+            starter.AddGameMenu("worldroots_menu", "{LOCATION_DESCRIPTION}", WorldRootsMenuInit);
+            starter.AddGameMenuOption("worldroots_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Leave;
+                return true;
+            }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
+        }
+
+        private void WorldRootsMenuInit(MenuCallbackArgs args)
+        {
+            var settlement = Settlement.CurrentSettlement;
+            var component = settlement.SettlementComponent as TORBaseSettlementComponent;
+            var text = component.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
+            MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
+            args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
+        }
+
+        #endregion
+
+        #region ChaosPortal
+        public void AddRaidingSiteMenus(CampaignGameStarter starter)
     private void CollectSettlementData()
     {
         var customSettlements = Settlement.FindAll(x => x.SettlementComponent is TORBaseSettlementComponent);
