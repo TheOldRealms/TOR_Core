@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -197,7 +199,9 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             args => SelectTreeSymbolCondition(args,"WEWardenSymbol",TreeSymbolChangeCost,true), _ => SelectTreeSymbolConsequence("WEWardenSymbol",TreeSymbolChangeCost));
        
         starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_H", "Magical chalk. {TREESYMBOLFREEUPGRADE}{FORESTHARMONY}",
-            args => DefaultUnlockOakUpgradeCondition(args,"WESymbolReduceCosts",TreeSymbolUpgradeNoCost, new TextObject("Remove Symbol change costs.{newline}{UPGRADEFAILEDREASON}")),_ => UnlockOakUpgrade("WESymbolReduceCosts", TreeSymbolUpgradeNoCost));
+            args => DefaultUnlockOakUpgradeCondition(args,"WESymbolReduceCosts",TreeSymbolUpgradeNoCost,
+                new TextObject("Remove Symbol change costs.{newline}{UPGRADEFAILEDREASON}")),
+            _ => UnlockOakUpgrade("WESymbolReduceCosts", TreeSymbolUpgradeNoCost));
         starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_I", "Decorated Trunk. {TREESYMBOLCHANGEDAILY}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args,"WESymbolsChangeCycle",TreeSymbolUpgradeDaily, new TextObject("Tree signs can be changed every day instead of every week.{newline}{UPGRADEFAILEDREASON}")),_ => UnlockOakUpgrade("WESymbolsChangeCycle", TreeSymbolUpgradeDaily));
         
@@ -215,13 +219,19 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
     private bool DefaultUnlockOakUpgradeCondition(MenuCallbackArgs args, string upgrade, int cost, TextObject toolTipDescription = null , int minimumLevel=0)
     {
-        MBTextManager.SetTextVariable("UPGRADEFAILEDREASON","");
+        var toolTipText = toolTipDescription.Value;
+        var failreasonStringBuilder = new StringBuilder();
+
+        if (upgrade == "")
+        {
+            failreasonStringBuilder.Append("{newline}No further upgrades available");
+            args.IsEnabled = false;
+        }
+        args.Tooltip = toolTipDescription;
         if (HasUnlockedUpgrade(upgrade))
         {
-            MBTextManager.SetTextVariable("UPGRADEFAILEDREASON","Upgrade has been already unlocked");
+            failreasonStringBuilder.Append("{newline}Upgrade has been already unlocked");
             args.IsEnabled = false;
-            args.Tooltip = toolTipDescription;
-            return true;
         }
         
         
@@ -230,21 +240,23 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             if (Hero.MainHero.Level < minimumLevel)
             {
                 args.IsEnabled = false;
-                MBTextManager.SetTextVariable("UPGRADEFAILEDREASON","requires level " +minimumLevel);
-                args.Tooltip = new TextObject();
-                return true;
+                MBTextManager.SetTextVariable("UPGRADEFAILEDREASON","Requires level " +minimumLevel);
+                failreasonStringBuilder.Append("{newline}Requires level " +minimumLevel);
             }
         }
 
         if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < cost)
         {
             MBTextManager.SetTextVariable("UPGRADEFAILEDREASON","Not enough harmony");
+            failreasonStringBuilder.Append("{newline}Not enough harmony");
             args.IsEnabled = false;
-            args.Tooltip = toolTipDescription;
-            return true;
+            
         }
         
-        args.Tooltip = toolTipDescription;
+        
+        var resultText = new TextObject(toolTipText);
+        resultText.SetTextVariable("UPGRADEFAILEDREASON",failreasonStringBuilder.ToString());
+        args.Tooltip =  resultText;
         return true;
     }
     
@@ -260,7 +272,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     private static bool HasUnlockedUpgrade(string upgrade)
     {
         var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
-        return settlementBehavior.HasUnlockedOakUpgrade(upgrade);
+        return settlementBehavior.HasUnlockedOakUpgrade(upgrade); 
     }
     
 
@@ -380,10 +392,10 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             args => DefaultUnlockOakUpgradeCondition(args, "WETravelCostUpgrade", RootTravelCostReductionUpgradeCost, new TextObject("Reduce the travel cost.{newline}{UPGRADEFAILEDREASON}")),_ => UnlockOakUpgrade("WETravelCostUpgrade", RootTravelCostReductionUpgradeCost));
 
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_A_travel", "Establish pathways back to the Oak of Ages. {ROOTRETURNUPGRADE}{FORESTHARMONY}", args => 
-            DefaultUnlockOakUpgradeCondition(args, "WETravelBackUpgrade",RootTravelBackUpgradeCost, new TextObject("Return to the Oak from the root exit.{newline}{UPGRADEFAILEDREASON}") ), _ => UnlockOakUpgrade("WETravelBackUpgrade",RootTravelBackUpgradeCost));
+            DefaultUnlockOakUpgradeCondition(args, "WETravelBackUpgrade",RootTravelBackUpgradeCost, new TextObject("Return to the Oak from the root exit.{UPGRADEFAILEDREASON}") ), _ => UnlockOakUpgrade("WETravelBackUpgrade",RootTravelBackUpgradeCost));
         
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_A_travel", "Healing Aura of roots. {ROOTHEALUPGRADE}{FORESTHARMONY}",
-            args => DefaultUnlockOakUpgradeCondition(args,"WETravelHealUpgrade", RootTravelBackUpgradeCost, new TextObject("Allow that all troops and heroes are healed upon using the world roots{newline}{UPGRADEFAILEDREASON}")),_ => UnlockOakUpgrade("WETravelHealUpgrade",RootHealUpgradeCost));
+            args => DefaultUnlockOakUpgradeCondition(args,"WETravelHealUpgrade", RootTravelBackUpgradeCost, new TextObject("All troops and heroes are healed upon using the world roots{newline}{UPGRADEFAILEDREASON}")),_ => UnlockOakUpgrade("WETravelHealUpgrade",RootHealUpgradeCost));
         
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "branchMenu_leave", "Leave...",
             delegate(MenuCallbackArgs args)
@@ -449,7 +461,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
     }
     
-
     private void RootTravelConsequence(Vec2 location)
     {
         LeaveSettlementAction.ApplyForParty(MobileParty.MainParty);
@@ -480,28 +491,26 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
                 MobileParty.MainParty.MemberRoster.AddToCountsAtIndex(index, 0, -woundedNumber);
             }
         }
-
     }
     
-
-
-
-
     private void AddBranchesOfTheOakMenu(CampaignGameStarter starter)
     {
         starter.AddGameMenu("oak_of_ages_branches_menu", "Branches of The Oak", null);
         
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_A", "Increase party Size. {PARTYSIZEUPGRADECOST}{FORESTHARMONY}",args => 
-            BranchUpgradeCondition(args,PartySizeUpgradeCost, "WEPartySizeUpgrade"),_ => UpgradeConsequence(PartySizeUpgradeCost,"WEPartySizeUpgrade" ));
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_A", "Build Outposts.{PARTYSIZEUPGRADECOST}{FORESTHARMONY}",args => 
+            DefaultUnlockOakUpgradeCondition(args,GetCurrentUpdate("WEPartySizeUpgrade", out int numberOfUpgrades),PartySizeUpgradeCost, new TextObject("Increase party Size by 10%.{newline}{UPGRADEFAILEDREASON}"), 4*numberOfUpgrades),_ => UnlockOakUpgrade(GetCurrentUpdate("WEPartySizeUpgrade", out int numberOfUpgrades),PartySizeUpgradeCost * (1+numberOfUpgrades)));
         
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_B", "Increase maximum health. {HEALTHUPGRADECOST}{FORESTHARMONY}",
-            args => BranchUpgradeCondition(args,HealthUpgradeCost, "WEHealthUpgrade"),_ => UpgradeConsequence(HealthUpgradeCost,"WEHealthUpgrade" ));
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_B", "Strong branches. {HEALTHUPGRADECOST}{FORESTHARMONY}", 
+            args => DefaultUnlockOakUpgradeCondition(args,
+                GetCurrentUpdate("WEHealthUpgrade", out int numberOfUpgrades),HealthUpgradeCost, new TextObject("Increase maximum health by 10%.{newline}{UPGRADEFAILEDREASON}"), 4*numberOfUpgrades),
+            _ => UnlockOakUpgrade(GetCurrentUpdate("WEHealthUpgrade", out int numberOfUpgrades),HealthUpgradeCost * (1+numberOfUpgrades)));
         
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_C", "Increase the daily harmony gain. {GAINUPGRADECOST}{FORESTHARMONY}",
-            args => BranchUpgradeCondition(args,GainUpgradeCost,"WEGainUpgrade"),_ => UpgradeConsequence(GainUpgradeCost, "WEGainUpgrade"));
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_C", "Thriving Leaves. {GAINUPGRADECOST}{FORESTHARMONY}",args =>
+        DefaultUnlockOakUpgradeCondition(args,GetCurrentUpdate("WEGainUpgrade", out int numberOfUpgrades),PartySizeUpgradeCost, new TextObject("Increase the daily harmony gain by 15.{newline}{UPGRADEFAILEDREASON}"), 4*numberOfUpgrades),_ => UnlockOakUpgrade(GetCurrentUpdate("WEGainUpgrade", out int numberOfUpgrades),PartySizeUpgradeCost * (1+numberOfUpgrades)));
+
         
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_D", " Troop harmony upkeep  reduction. {UPKEEPUPGRADECOST}{FORESTHARMONY}", 
-            args => BranchUpgradeCondition(args,TroopUpkeepUpgradeCost, "WEUpkeepUpgrade") ,_ => UpgradeConsequence(TroopUpkeepUpgradeCost, "WEGainUpgrade"));
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_D", " Troop harmony upkeep  reduction. {UPKEEPUPGRADECOST}{FORESTHARMONY}", args => 
+        DefaultUnlockOakUpgradeCondition(args,GetCurrentUpdate("WEUpkeepUpgrade", out int numberOfUpgrades),PartySizeUpgradeCost, new TextObject("Increase the daily harmony gain by 15.{newline}{UPGRADEFAILEDREASON}"), 4*numberOfUpgrades),_ => UnlockOakUpgrade(GetCurrentUpdate("WEUpkeepUpgrade", out int numberOfUpgrades),PartySizeUpgradeCost * (1+numberOfUpgrades)));
         
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_leave", "Leave...",
             delegate(MenuCallbackArgs args)
@@ -514,6 +523,39 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
                 GameMenu.SwitchToMenu("oak_of_ages_menu");
             });
     }
+
+
+    private string GetCurrentUpdate(string upgradeCategory, out int upgradeCount)
+    {
+        List<string> targetList = new List<string>();
+        foreach (var list in _upgrades)
+        {
+            if (list.Any(x => x.Contains(upgradeCategory)))
+            {
+                targetList = list;
+                break;
+            }
+        }
+        upgradeCount = 0;
+        
+        foreach (var attribute in targetList)
+        {
+            if (!HasUnlockedUpgrade(attribute))
+            {
+                return attribute;
+            }
+            upgradeCount++;
+        }
+
+        if (targetList.Count == upgradeCount)
+        {
+            return "";
+        }
+
+        throw new Exception("Upgrade could not be found");
+        return "";
+    }
+    
     
     private void UpgradeConsequence(int cost, string attributeID)
     {
