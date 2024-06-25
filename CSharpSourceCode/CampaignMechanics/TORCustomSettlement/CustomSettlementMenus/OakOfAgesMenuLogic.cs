@@ -31,6 +31,9 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     private Vec2 LaurelornLocation = new Vec2(1239.391f, 1276.938f);
     private Vec2 GryphenWoodLocation = new Vec2(1606.698f, 1133.905f);
     
+    private const int TreeSymbolChangeCost = 100;
+    private const int TreeSymbolUnlockCosts = 500;
+    
     
     public static readonly List<string> PartyUpgradeAttributes =
     [
@@ -65,6 +68,19 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         "WEUpkeepUpgrade2",
         "WEUpkeepUpgrade3",
     ];
+
+    public static readonly List<string> TreeSymbols = 
+    [
+        "WEKithbandSymbol",
+        "WEWardancerSymbol",
+        "WETreekinSymbol",
+        "WEOrionSymbol",
+        "WEArielSymbol",
+        "WEDurthuSymbol",
+        "WEWardenSymbol"
+    ];
+    
+    
 
     private readonly List<List<string>> _upgrades;
     
@@ -108,6 +124,11 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             GameMenu.SwitchToMenu("oak_of_ages_roots_menu");
         }, false, 4, false);
         
+        starter.AddGameMenuOption("oak_of_ages_menu", "symbols", "Trunk Symbols",null, delegate
+        {
+            GameMenu.SwitchToMenu("oak_of_ages_tree_symbols_menu");
+        }, false, 4, false);
+        
         starter.AddGameMenuOption("oak_of_ages_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -116,11 +137,171 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         
         AddBranchesOfTheOakMenu(starter);
         AddWorldRootMenu(starter);
+        AddTreeSymbolMenu(starter);
+    }
+
+    private void AddTreeSymbolMenu(CampaignGameStarter starter)
+    {
+        starter.AddGameMenu("oak_of_ages_tree_symbols_menu", "Trunk Symbols: Choose one Symbol activated for your party. The Symbols provide strong enhancements, yet they will also provide strong disadvantages. Choose wisely, only one Symbol can be active at once.", OakOfAgeMenuInit);
+        
+        MBTextManager.SetTextVariable("TREESYMBOLCHANGECOST",TreeSymbolChangeCost);
+        MBTextManager.SetTextVariable("TREESYMBOLUNLOCKCOST",TreeSymbolUnlockCosts);
+        
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_A_unlock", "Sign of the Kithband. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}",
+            args => UnlockTreeSymbolCondition(args,"WEKithbandSymbol",200),_ => UnlockTreeSymbolConsequence("WEKithbandSymbol",TreeSymbolUnlockCosts));
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_B_unlock", "Sign of the Wardancers. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}",
+            args => UnlockTreeSymbolCondition(args,"WEWardancerSymbol",200),_ => UnlockTreeSymbolConsequence("WEWardancerSymbol",TreeSymbolUnlockCosts));
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_C_unlock", "Sign of the Treekin. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}",
+            args => UnlockTreeSymbolCondition(args,"WETreekinSymbol",200),_ => UnlockTreeSymbolConsequence("WETreekinSymbol",TreeSymbolUnlockCosts));
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_D_unlock", "Sign of the Orion. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}",
+            args => UnlockTreeSymbolCondition(args,"WEOrionSymbol",300, 15),_ => UnlockTreeSymbolConsequence("WEOrionSymbol",TreeSymbolUnlockCosts));
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_E_unlock", "Sign of the Ariel. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}",
+            args => UnlockTreeSymbolCondition(args,"WEArielSymbol",300,15),_ => UnlockTreeSymbolConsequence("WEArielSymbol",TreeSymbolUnlockCosts));
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_F_unlock", "Sign of Durthu. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}",
+            args => UnlockTreeSymbolCondition(args,"WEDurthuSymbol",500,20),_ => UnlockTreeSymbolConsequence("WEDurthuSymbol",TreeSymbolUnlockCosts));
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_G_unlock", "Sign of the Warden. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}",
+            args => UnlockTreeSymbolCondition(args,"WEWardenSymbol",500,20),_ => UnlockTreeSymbolConsequence("WEWardenSymbol",TreeSymbolUnlockCosts));
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_A", "Sign of the Kithband. {TREESYMBOLCHANGECOST}{FORESTHARMONY}",
+            args => SelectTreeSymbolCondition(args,"WEKithbandSymbol",TreeSymbolChangeCost,true),_ => SelectTreeSymbolConsequence("WEKithbandSymbol",TreeSymbolChangeCost));
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_B", "Sign of the Wardancers. {TREESYMBOLCHANGECOST}{FORESTHARMONY}",
+            args => SelectTreeSymbolCondition(args,"WEWardancerSymbol",TreeSymbolChangeCost,true),_ => SelectTreeSymbolConsequence("WEWardancerSymbol",TreeSymbolChangeCost));
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_C", "Sign of the Treekin. {TREESYMBOLCHANGECOST}{FORESTHARMONY}",
+            args => SelectTreeSymbolCondition(args,"WETreekinSymbol",TreeSymbolChangeCost,true),_ => SelectTreeSymbolConsequence("WETreekinSymbol",TreeSymbolChangeCost));
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_D", "Sign of the Orion. {TREESYMBOLCHANGECOST}{FORESTHARMONY}",
+            args => SelectTreeSymbolCondition(args,"WEOrionSymbol",TreeSymbolChangeCost,true),_ => SelectTreeSymbolConsequence("WEOrionSymbol",TreeSymbolChangeCost));
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_E", "Sign of the Ariel. {TREESYMBOLCHANGECOST}{FORESTHARMONY}",
+            args => SelectTreeSymbolCondition(args,"WEArielSymbol",TreeSymbolChangeCost,true),_ => SelectTreeSymbolConsequence("WEArielSymbol",TreeSymbolChangeCost));
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_F", "Sign of Durthu. {TREESYMBOLCHANGECOST}{FORESTHARMONY}",
+            args => SelectTreeSymbolCondition(args,"WEDurthuSymbol",TreeSymbolChangeCost,true),_ => SelectTreeSymbolConsequence("WEDurthuSymbol",TreeSymbolChangeCost));
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_G", "Sign of the Warden. {TREESYMBOLCHANGECOST}{FORESTHARMONY}",
+            args => SelectTreeSymbolCondition(args,"WEWardenSymbol",TreeSymbolChangeCost,true), _ => SelectTreeSymbolConsequence("WEWardenSymbol",TreeSymbolChangeCost));
+       
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_H", "Improvement: Remove change costs. {TREESYMBOLCHANGECOST}{FORESTHARMONY}",
+            args => UnlockTreeSymbolCondition(args,"SymbolReduceCosts",400),null);
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_I", "Improvement: Tree signs can be changed every day instead of every week. {TREESYMBOLCHANGECOST}{FORESTHARMONY}",
+            args => UnlockTreeSymbolCondition(args,"SymbolsChangeCycle",1000),null);
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_leave", "Leave...",
+            delegate(MenuCallbackArgs args)
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Leave;
+                return true;
+            },
+            delegate
+            {
+                GameMenu.SwitchToMenu("oak_of_ages_menu");
+            }, 
+            false, -1, false);
+    }
+
+
+    private bool UnlockTreeSymbolCondition(MenuCallbackArgs args, string upgrade, int upgradeCost, int minimumLevel=0)
+    {
+        if (HasUnlockedElement(upgrade))
+        {
+            return false;
+        }
+        if (minimumLevel > 0)
+        {
+            if (Hero.MainHero.Level < minimumLevel)
+                return false;
+        }
+        if (Hero.MainHero.HasAttribute(upgrade)) return false;
+
+        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() >= upgradeCost)
+        {
+            return true;
+        }
+        
+    
+  
+
+        args.IsEnabled = false;
+        args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Not enough Harmony.");
+        return true;
+    }
+
+    private void UnlockTreeSymbolConsequence(string upgrade, int cost)
+    {
+        var upgradeID = "Unlock";
+        upgradeID+=upgrade;
+        Hero.MainHero.AddAttribute(upgradeID);
+        Hero.MainHero.AddCultureSpecificCustomResource(-cost);
+    }
+    
+
+    private bool HasUnlockedElement(string upgrade)
+    {
+        foreach (var symbol in TreeSymbols)
+        {
+            if (Hero.MainHero.HasAttribute("Unlock"+symbol))
+            {
+                return true;
+            }
+
+           
+        }
+
+        return false;
+    }
+    
+    
+    private bool SelectTreeSymbolCondition(MenuCallbackArgs args, string upgrade, int upgradeCost, bool showAnyway)
+    {
+        if (Hero.MainHero.HasAttribute(upgrade))
+        {
+            if (showAnyway)
+            {
+                args.Tooltip = new TextObject("Treesymbol is currently active");
+                return true;
+            }
+
+            return false;
+        }
+
+        if (!HasUnlockedElement(upgrade))
+        {
+            return false;
+        }
+
+        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() >= upgradeCost)
+        {
+            return true;
+        }
+
+        args.IsEnabled = false;
+        args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Not enough Harmony.");
+        return true;
+    }
+
+    private void SelectTreeSymbolConsequence( string upgrade, int upgradeCost)
+    {
+        foreach (var element in TreeSymbols)
+        {
+            if(Hero.MainHero.HasAttribute(element))
+            {
+                Hero.MainHero.RemoveAttribute(element);
+            }
+        }
+        
+        Hero.MainHero.AddAttribute(upgrade);
+        
+        
+        Hero.MainHero.AddCultureSpecificCustomResource(-upgradeCost);
+        
     }
 
     private void AddWorldRootMenu(CampaignGameStarter starter)
     {
-        starter.AddGameMenu("oak_of_ages_roots_menu", "World roots of the Oak", OakOfAgeMenuInit);
+        starter.AddGameMenu("oak_of_ages_roots_menu", "World Roots : The world roots create a braid of pathways with the oaks Roots. With them the Asrai are allowed to travel world. Help to restablish the roots and travel to roots ends in the old World", OakOfAgeMenuInit);
         
         MBTextManager.SetTextVariable("ROOTUNLOCKCOST",RootUnlockCost);
         MBTextManager.SetTextVariable("ROOTTRAVELUPGRADE", RootTravelCostReductionUpgradeCost);
@@ -161,7 +342,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
                 args.optionLeaveType = GameMenuOption.LeaveType.Leave;
                 return true;
             },
-            delegate (MenuCallbackArgs args)
+            delegate
             {
                 GameMenu.SwitchToMenu("oak_of_ages_menu");
             }, 
