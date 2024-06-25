@@ -32,6 +32,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     private Vec2 ArdenLocation = new Vec2(945.4077f, 1111.009f);
     private Vec2 LaurelornLocation = new Vec2(1239.391f, 1276.938f);
     private Vec2 GryphenWoodLocation = new Vec2(1606.698f, 1133.905f);
+    private Vec2 AthelLorenLocation = new Vec2(1238.435f, 778.6498f);
     
     private const int TreeSymbolChangeCost = 100;
     private const int TreeSymbolUnlockCosts = 500;
@@ -81,32 +82,36 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
                 upgradeID = "WEKithbandSymbol",
                 cost = TreeSymbolUnlockCosts,
                 minimumLevel = 0,
-                UpgradeText =new TextObject("Decipher the Sign of the Kithband. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-                ApplyText = new TextObject("Apply the Sign of the Kithband. {TREESYMBOLCHANGECOST}{FORESTHARMONY}")
+                UpgradeText =new TextObject("Decipher the Symbol of the Kithband. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+                ApplyText = new TextObject("Apply the Symbol of the Kithband. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+                ToolTipText = new TextObject("Increase your party size by 50% , Forestharmony gain is decreased by 25% and wages are increased by 15%.{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
             upgradeID = "WEWardancerSymbol",
             cost = TreeSymbolUnlockCosts,
             minimumLevel = 0,
-            UpgradeText =new TextObject("Decipher the Sign of the Wardancer. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Sign of the Wardancer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}")
+            UpgradeText =new TextObject("Decipher the Symbol of the Wardancer. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = new TextObject("Apply the Symbol of the Wardancer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            ToolTipText = new TextObject("The Player and companion gain 25% additional health, and recover wounds 25% faster. All troops heal 25% slower and Forest Harmony is gained 25% slower.{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
             upgradeID = "WETreekinSymbol",
             cost = TreeSymbolUnlockCosts,
             minimumLevel = 0,
-            UpgradeText =new TextObject("Decipher the Sign of the Treekin. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Sign of the Treekin. {TREESYMBOLCHANGECOST}{FORESTHARMONY}")
+            UpgradeText =new TextObject("Decipher the Symbol of the Treekin. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = new TextObject("Apply the Symbol of the Treekin. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            ToolTipText = new TextObject("Treekin Forest Harmony upkeep is 50% lower. Wages of elves are 25% higher.{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
             upgradeID = "WEOrionSymbol",
             cost = TreeSymbolUnlockCosts,
             minimumLevel = 15,
-            UpgradeText =new TextObject("Decipher the Sign of Orion. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Sign of Orion. {TREESYMBOLCHANGECOST}{FORESTHARMONY}")
+            UpgradeText =new TextObject("Decipher the Symbol of Orion. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = new TextObject("Apply the Symbol of Orion. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            ToolTipText = new TextObject("Wages of elves are reduced by 50%. Forest Spirit unit upkeep is doubled.{UPGRADEFAILEDREASON}")
             
         },
         new TreeSymbol()
@@ -114,24 +119,27 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             upgradeID = "WEArielSymbol",
             cost = TreeSymbolUnlockCosts,
             minimumLevel = 15,
-            UpgradeText =new TextObject("Decipher the Sign of Ariel. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Sign of Ariel. {TREESYMBOLCHANGECOST}{FORESTHARMONY}")
+            UpgradeText =new TextObject("Decipher the Symbol of Ariel. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = new TextObject("Apply the Symbol of Ariel. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            ToolTipText = new TextObject("Winds capacity is increased by 25%. Regenerate +1 more Winds in Athel Loren. Upkeepcosts are increased by 50%.{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
             upgradeID = "WEWandererSymbol",
             cost = TreeSymbolUnlockCosts,
             minimumLevel = 15,
-            UpgradeText =new TextObject("Decipher the Sign of the Wanderer.{TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Sign of the Wanderer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}")
+            UpgradeText =new TextObject("Decipher the Symbol of the Wanderer.{TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = new TextObject("Apply the Symbol of the Wanderer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            ToolTipText = new TextObject("Low Forest Harmony has no negative Effect. Forest harmony gain is reduced by 50% and upkeep is increased by 50%.{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
             upgradeID = "WEDurthuSymbol",
             cost = TreeSymbolUnlockCosts,
             minimumLevel = 20,
-            UpgradeText =new TextObject("Decipher the Sign of Durthu.{TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Sign of Durthu. {TREESYMBOLCHANGECOST}{FORESTHARMONY}")
+            UpgradeText =new TextObject("Decipher the Symbol of Durthu.{TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = new TextObject("Apply the Symbol of Durthu. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            ToolTipText = new TextObject("Treeman capacity is increased by 50%. Health is increased by 25%. Party size is decreased by 25%. -20% Fire resistance.{UPGRADEFAILEDREASON}")
         }
     ];
     
@@ -200,6 +208,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         AddBranchesOfTheOakMenu(starter);
         AddWorldRootMenu(starter);
         AddTreeSymbolMenu(starter);
+        AddWorldRootsMenus(starter);
     }
 
     private void AddTreeSymbolMenu(CampaignGameStarter starter)
@@ -215,13 +224,14 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         foreach (var symbol in TreeSymbols)
         {
             starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", $"treeSymbolMenu_{index}_unlock", symbol.UpgradeText.Value,
-                args => UnlockTreeSymbolCondition(args,symbol.upgradeID,symbol.cost, symbol.minimumLevel),_ => UnlockOakUpgrade(symbol.upgradeID,symbol.cost));
+                args => UnlockTreeSymbolCondition(args,symbol.upgradeID,symbol.ToolTipText,symbol.cost, symbol.minimumLevel),_ => UnlockOakUpgrade(symbol.upgradeID,symbol.cost));
             
             starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", $"treeSymbolMenu_{index}", symbol.ApplyText.Value,
-                args => SelectTreeSymbolCondition(args,symbol.upgradeID,TreeSymbolChangeCost,true),_ => SelectTreeSymbolConsequence(symbol.upgradeID,TreeSymbolChangeCost));
+                args => SelectTreeSymbolCondition(args,symbol.upgradeID,symbol.ToolTipText,TreeSymbolChangeCost,true),_ => SelectTreeSymbolConsequence(symbol.upgradeID,TreeSymbolChangeCost));
             index++;
         }
-       
+        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_H", "Remove symbol",
+            _ => RemoveSymbolCondition(), _ => RemoveSymbolConsequence(true));
         starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_H", "Magical chalk. {TREESYMBOLFREEUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args,"WESymbolReduceCosts",TreeSymbolUpgradeNoCost,
                 new TextObject("Remove Symbol change costs.{newline}{UPGRADEFAILEDREASON}")),
@@ -241,6 +251,36 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             });
     }
 
+    private bool RemoveSymbolCondition()
+    {
+        foreach (var symbol in TreeSymbols)
+        {
+            if (Hero.MainHero.HasAttribute(symbol.upgradeID))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    private void RemoveSymbolConsequence(bool reload=false)
+    {
+        foreach (var element in TreeSymbols)
+        {
+            if(Hero.MainHero.HasAttribute(element.upgradeID))
+            {
+                Hero.MainHero.RemoveAttribute(element.upgradeID);
+            }
+        }
+
+        if (reload)
+        {
+            GameMenu.ActivateGameMenu(_currentMenu);
+        }
+        
+    }
+
     private bool DefaultUnlockOakUpgradeCondition(MenuCallbackArgs args, string upgrade, int cost, TextObject toolTipDescription = null , int minimumLevel=0)
     {
         var toolTipText = toolTipDescription.Value;
@@ -252,11 +292,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             args.IsEnabled = false;
         }
         args.Tooltip = toolTipDescription;
-        if (HasUnlockedUpgrade(upgrade))
-        {
-            failreasonStringBuilder.Append("{newline}Upgrade has been already unlocked");
-            args.IsEnabled = false;
-        }
+
         
         
         if (minimumLevel > 0)
@@ -271,10 +307,16 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
         if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < cost)
         {
-            MBTextManager.SetTextVariable("UPGRADEFAILEDREASON","Not enough harmony");
             failreasonStringBuilder.Append("{newline}Not enough harmony");
             args.IsEnabled = false;
             
+        }
+        
+        if (HasUnlockedUpgrade(upgrade))
+        {
+            failreasonStringBuilder.Clear();
+            failreasonStringBuilder.Append("{newline}Upgrade has been already unlocked");
+            args.IsEnabled = false;
         }
         
         
@@ -301,7 +343,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     
 
 
-    private bool UnlockTreeSymbolCondition(MenuCallbackArgs args, string upgrade, int upgradeCost, int minimumLevel=0)
+    private bool UnlockTreeSymbolCondition(MenuCallbackArgs args, string upgrade, TextObject toolTipText, int upgradeCost, int minimumLevel=0)
     {
         if (HasUnlockedUpgrade(upgrade))
         {
@@ -312,34 +354,36 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             if (Hero.MainHero.Level < minimumLevel)
                 return false;
         }
+        
+        var failreasonStringBuilder = new StringBuilder();
 
-        if (Hero.MainHero.HasAttribute(upgrade))
+        
+
+        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < upgradeCost)
         {
+            failreasonStringBuilder.Append("{newline}Not enough Harmony.");
             args.IsEnabled = false;
-            args.Tooltip = new TextObject("Currently active");
-            return true;
-        }
-
-        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() >= upgradeCost)
-        {
-            return true;
         }
         
-        args.IsEnabled = false;
-        args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Not enough Harmony.");
+        var resultText = toolTipText;
+        resultText.SetTextVariable("UPGRADEFAILEDREASON",failreasonStringBuilder.ToString());
+        args.Tooltip = resultText;
         return true;
     }
 
     
     
     
-    private bool SelectTreeSymbolCondition(MenuCallbackArgs args, string upgrade, int upgradeCost, bool showAnyway)
+    private bool SelectTreeSymbolCondition(MenuCallbackArgs args, string upgrade, TextObject toolTipText, int upgradeCost, bool showAnyway)
     {
+        var failreasonStringBuilder = new StringBuilder();
+        
         if (Hero.MainHero.HasAttribute(upgrade))
         {
             if (showAnyway)
             {
-                args.Tooltip = new TextObject("Treesymbol is currently active");
+                failreasonStringBuilder.Clear();
+                failreasonStringBuilder.Append("{newline}Treesymbol is currently activ");
                 args.IsEnabled = false;
                 return true;
             }
@@ -352,35 +396,25 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             return false;
         }
 
-        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() >= upgradeCost)
+        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < upgradeCost)
         {
-            return true;
+            args.IsEnabled = false;
+            failreasonStringBuilder.Append("{newline}Not enough Harmony.");
         }
+        
+        var resultText = toolTipText;
+        resultText.SetTextVariable("UPGRADEFAILEDREASON",failreasonStringBuilder.ToString());
+        args.Tooltip = resultText;
 
-        args.IsEnabled = false;
-        args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Not enough Harmony.");
         return true;
     }
 
     private void SelectTreeSymbolConsequence( string upgrade, int upgradeCost)
     {
-        foreach (var element in TreeSymbols)
-        {
-            if(Hero.MainHero.HasAttribute(element.upgradeID))
-            {
-                Hero.MainHero.RemoveAttribute(element.upgradeID);
-            }
-        }
-        
+        RemoveSymbolConsequence();
         Hero.MainHero.AddAttribute(upgrade); // needed
-        
-        
         Hero.MainHero.AddCultureSpecificCustomResource(-upgradeCost);
-        
         GameMenu.ActivateGameMenu(_currentMenu);
-        
-        
-        
     }
 
     private void AddWorldRootMenu(CampaignGameStarter starter)
@@ -485,18 +519,21 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
     }
     
-    private void RootTravelConsequence(Vec2 location)
+    private void RootTravelConsequence(Vec2 location, bool hasTravelCost= true)
     {
         LeaveSettlementAction.ApplyForParty(MobileParty.MainParty);
         GameMenu.ExitToLast();
         Campaign.Current.MainParty.Position2D =MobilePartyHelper.FindReachablePointAroundPosition(location,0f);
-
-        var cost = TravelCost;
-        if (HasUnlockedUpgrade("WETravelCostUpgrade"))
+        
+        if (hasTravelCost)
         {
-            cost /= 2;
+            var cost = TravelCost;
+            if (HasUnlockedUpgrade("WETravelCostUpgrade"))
+            {
+                cost /= 2;
+            }
+            Hero.MainHero.AddCultureSpecificCustomResource(-cost);
         }
-        Hero.MainHero.AddCultureSpecificCustomResource(-cost);
         
         if (HasUnlockedUpgrade("WETravelHealUpgrade"))
         {
@@ -648,6 +685,51 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         
         return true;
     }
+    
+    
+    
+    public void AddWorldRootsMenus(CampaignGameStarter starter)
+    {
+        
+        MBTextManager.SetTextVariable("ROOTRETURNUPGRADE",RootTravelBackUpgradeCost);
+        starter.AddGameMenu("worldroots_menu", "{LOCATION_DESCRIPTION}", WorldRootsMenuInit);
+        
+        starter.AddGameMenuOption("worldroots_menu", "travel_back", "{tor_custom_settlement_menu_leave_str}Travel back to Athel Loren...", args=> 
+            TravelBackCondition(args), (MenuCallbackArgs args) => RootTravelConsequence(AthelLorenLocation,false), true);
+        
+        starter.AddGameMenuOption("worldroots_menu", "rootMenu_A_travel", "Establish pathways back to the Oak of Ages. {ROOTRETURNUPGRADE}{FORESTHARMONY}", args => 
+            DefaultUnlockOakUpgradeCondition(args, "WETravelBackUpgrade",RootTravelBackUpgradeCost, new TextObject("Return to the Oak from the root exit.{UPGRADEFAILEDREASON}") ), _ => UnlockOakUpgrade("WETravelBackUpgrade",RootTravelBackUpgradeCost));
+
+        starter.AddGameMenuOption("worldroots_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
+        {
+            args.optionLeaveType = GameMenuOption.LeaveType.Leave;
+            return true;
+        }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
+    }
+
+    private bool TravelBackCondition(MenuCallbackArgs args)
+    {
+        if (HasUnlockedUpgrade("WETravelBackUpgrade"))
+        {
+            return true;
+        }
+        else
+        {
+            args.IsEnabled = false;
+            args.Tooltip = new TextObject("You can't travel back without the required enhancements");
+        }
+
+        return true;
+    }
+
+    private void WorldRootsMenuInit(MenuCallbackArgs args)
+    {
+        var settlement = Settlement.CurrentSettlement;
+        var component = settlement.SettlementComponent as TORBaseSettlementComponent;
+        var text = component.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
+        MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
+        args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
+    }
 
 
 
@@ -656,9 +738,11 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         public int cost { get; set; }
         public string upgradeID { get; set; }
         public int minimumLevel { get; set; }
+
+        public TextObject ToolTipText = new();
         
-        public TextObject UpgradeText= new TextObject();
+        public TextObject UpgradeText= new();
         
-        public TextObject ApplyText= new TextObject();
+        public TextObject ApplyText= new();
     }
 }

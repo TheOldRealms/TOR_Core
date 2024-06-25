@@ -324,6 +324,11 @@ namespace TOR_Core.Models
              {
                  //Hero item level attributes 
 
+                 if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+                 {
+                     damageResistances[(int)DamageType.Fire]-=0.2f;
+                 }
+
                  List<ItemTrait> itemTraits = new List<ItemTrait>();
                  List<ItemObject> items;
 
