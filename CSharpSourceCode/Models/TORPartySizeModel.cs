@@ -2,6 +2,7 @@
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
@@ -62,13 +63,21 @@ namespace TOR_Core.Models
                 var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WePartySizeUpgrade");
                 foreach (var attribute in  list)
                 {
-                    if(Hero.MainHero.HasAttribute(attribute))
+                    if(settlementBehavior.HasUnlockedOakUpgrade(attribute))
                     {
                         num.AddFactor(0.1f);
                     }
                 }
 
-               
+                if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
+                {
+                    num.AddFactor(0.5f, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
+                }
+                
+                if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+                {
+                    num.AddFactor(-0.25f, ForestHarmonyHelper.TreeSymbolText("WEDurthuSymbol"));
+                }
                 
             }
             

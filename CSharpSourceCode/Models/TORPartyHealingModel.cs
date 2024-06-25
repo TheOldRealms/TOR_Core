@@ -74,6 +74,13 @@ namespace TOR_Core.Models
             {
                 result = new ExplainedNumber(0, true, new TextObject("{=!}Inside a cursed region"));
             }
+            
+            
+            if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+            {
+                result.AddFactor(-0.25f);
+            }
+            
             return result;
         }
 
@@ -94,16 +101,24 @@ namespace TOR_Core.Models
             
             if (party.IsMainParty && party.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                var level = Hero.MainHero.GetForestHarmonyLevel();
-                switch (level)
+                if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
                 {
-                    case ForestHarmonyLevel.Harmony: break;
-                    case ForestHarmonyLevel.Dissonance:
-                        result.AddFactor(ForestHarmonyHelper.HealthRegDebuffUnBound, new TextObject(ForestHarmonyLevel.Dissonance.ToString()));
-                        break;
-                    case ForestHarmonyLevel.Bound:
-                        result.AddFactor(ForestHarmonyHelper.HealthRegDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
-                        break;
+                    var level = Hero.MainHero.GetForestHarmonyLevel();
+                    switch (level)
+                    {
+                        case ForestHarmonyLevel.Harmony: break;
+                        case ForestHarmonyLevel.Dissonance:
+                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffUnBound, new TextObject(ForestHarmonyLevel.Dissonance.ToString()));
+                            break;
+                        case ForestHarmonyLevel.Bound:
+                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                            break;
+                    }
+                }
+
+                if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+                {
+                    result.AddFactor(0.25f);
                 }
             }
             

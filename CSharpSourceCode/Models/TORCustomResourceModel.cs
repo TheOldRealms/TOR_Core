@@ -5,6 +5,7 @@ using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -43,13 +44,14 @@ public class TORCustomResourceModel : GameModel
 
                     if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
                     {
-                        foreach (var attribute in  OakOfAgesMenuLogic.CustomResourceGainUpgrades)
-                        {
-                            if(Hero.MainHero.HasAttribute(attribute))
-                            {
-                                number.Add(10f);
-                            }
-                        }
+                        
+                        var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+                        var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WEGainUpgrade");
+                        var harmonygain = 15f; 
+                        harmonygain += 10f * list.Count;
+
+                        harmonygain= ForestHarmonyHelper.CalculateForestGain(harmonygain);
+                        number.Add(harmonygain, new TextObject("Oak Growth"));
                     }
                 }
                 
@@ -140,11 +142,6 @@ public class TORCustomResourceModel : GameModel
                     }
                     
                 }
-
-                if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
-                {
-                    number.Add(15, new TextObject("Growth"));
-                }
             } 
             return number;
         }
@@ -173,6 +170,16 @@ public class TORCustomResourceModel : GameModel
                             foreach (var attribute in OakOfAgesMenuLogic.CustomResourceGainUpgrades.Where(attribute => Hero.MainHero.HasAttribute(attribute)))
                             {
                                 unitUpkeet.AddFactor(-0.1f);
+                            }
+                            
+                            if (Hero.MainHero.HasAttribute("WETreekinSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+                            {
+                                unitUpkeet.AddFactor(-0.5f, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
+                            }
+                            
+                            if (Hero.MainHero.HasAttribute("WEOrionSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+                            {
+                                unitUpkeet.AddFactor(1f, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
                             }
                         }
                     }

@@ -148,24 +148,38 @@ namespace TOR_Core.Models
 
                 if (hero.PartyBelongedTo!=null && (hero.PartyBelongedTo.IsMainParty ||  hero == Hero.MainHero)  && hero.Culture.StringId == TORConstants.Cultures.ASRAI)
                 {
-                    var level = hero.PartyBelongedTo.LeaderHero.GetForestHarmonyLevel();
-                    switch (level)
+
+                    if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
                     {
-                        case ForestHarmonyLevel.Harmony: break;
-                        case ForestHarmonyLevel.Dissonance:
-                            number.AddFactor(ForestHarmonyHelper.HealthDebuffUnBound, new TextObject(ForestHarmonyLevel.Dissonance.ToString()));
-                            break;
-                        case ForestHarmonyLevel.Bound:
-                            number.AddFactor(ForestHarmonyHelper.HealthDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
-                            break;
+                        var level = hero.PartyBelongedTo.LeaderHero.GetForestHarmonyLevel();
+                        switch (level)
+                        {
+                            case ForestHarmonyLevel.Harmony: break;
+                            case ForestHarmonyLevel.Dissonance:
+                                number.AddFactor(ForestHarmonyHelper.HealthDebuffUnBound, new TextObject(ForestHarmonyLevel.Dissonance.ToString()));
+                                break;
+                            case ForestHarmonyLevel.Bound:
+                                number.AddFactor(ForestHarmonyHelper.HealthDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                                break;
+                        }
                     }
-                    
                     
                     var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
                     var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WEHealthUpgrade");
                     foreach (var attribute in  list)
                     {
                         number.AddFactor(0.1f, new TextObject("Oak of Ages"));
+                    }
+
+
+                    if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+                    {
+                        number.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
+                    }
+                    
+                    if(hero == Hero.MainHero&& Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+                    {
+                        number.AddFactor(0.25f);
                     }
 
                 }

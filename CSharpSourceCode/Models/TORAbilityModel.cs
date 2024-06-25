@@ -1,6 +1,7 @@
 ﻿using Helpers;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -249,19 +250,31 @@ namespace TOR_Core.Models
             
             if (baseCharacter.HeroObject.PartyBelongedTo!=null && (baseCharacter.HeroObject.PartyBelongedTo.IsMainParty ||  baseCharacter.HeroObject == Hero.MainHero)  && baseCharacter.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                var level = Hero.MainHero.GetForestHarmonyLevel();
-                switch (level)
+                if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
                 {
-                    case ForestHarmonyLevel.Harmony: break;
-                    case ForestHarmonyLevel.Dissonance:
-                        explainedNumber.AddFactor(ForestHarmonyHelper.WindsDebuffUnbound, new TextObject(ForestHarmonyLevel.Dissonance.ToString()));
-                        break;
-                    case ForestHarmonyLevel.Bound:
-                        explainedNumber.AddFactor(ForestHarmonyHelper.WindsDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
-                        break;
+                    var level = Hero.MainHero.GetForestHarmonyLevel();
+                    switch (level)
+                    {
+                        case ForestHarmonyLevel.Harmony: break;
+                        case ForestHarmonyLevel.Dissonance:
+                            explainedNumber.AddFactor(ForestHarmonyHelper.WindsDebuffUnbound, new TextObject(ForestHarmonyLevel.Dissonance.ToString()));
+                            break;
+                        case ForestHarmonyLevel.Bound:
+                            explainedNumber.AddFactor(ForestHarmonyHelper.WindsDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                            break;
                         
+                    }
                 }
-                    
+
+                if (Hero.MainHero.HasAttribute("WEArielSymbol"))
+                {
+                    var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 500f, x => x.IsOakOfTheAges());
+
+                    if (settlement != null)
+                    {
+                        explainedNumber.AddFactor(1, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                    }
+                }
             }
 
             return explainedNumber.ResultNumber;
@@ -318,6 +331,14 @@ namespace TOR_Core.Models
                             }
                         }
                     }
+
+
+                    if (Hero.MainHero.HasAttribute("WEArielSymbol"))
+                    {
+                        explainedNumber.Add(25, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                    }
+                    
+                    
                 }
                 else if (baseCharacter.HeroObject.PartyBelongedTo != null && baseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
                 {
@@ -346,6 +367,7 @@ namespace TOR_Core.Models
                             var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive3");
                             explainedNumber.Add(choice.GetPassiveValue());
                         }
+                        
                     }
                 }
             }
