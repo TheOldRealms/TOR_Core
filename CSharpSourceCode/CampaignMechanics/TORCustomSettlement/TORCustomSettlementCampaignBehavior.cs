@@ -36,7 +36,9 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     [SaveableField(0)] private Dictionary<string, bool> _customSettlementActiveStates = [];
     [SaveableField(1)] private Dictionary<string, int> _cursedSiteWardDurationLeft = [];
     [SaveableField(2)] private Dictionary<string, int> _lastGhostRecruitmentTime = [];
-    [SaveableField(2)] private Dictionary<string, int> _lastDefileTime = [];
+    [SaveableField(3)] private Dictionary<string, int> _lastDefileTime = [];
+    [SaveableField(4)] private List<string> _unlockedOakUpgrades = [];
+
     private TORFaithModel _model;
 
     public static MBReadOnlyList<Settlement> AllCustomSettlements { get; private set; } = [];
@@ -79,6 +81,25 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         CampaignEvents.SettlementEntered.AddNonSerializedListener(this, OnSettlementEntered);
         CampaignEvents.OnNewGameCreatedPartialFollowUpEndEvent.AddNonSerializedListener(this, OnNewGameStart);
         CampaignEvents.OnBeforeSaveEvent.AddNonSerializedListener(this, CollectSettlementData);
+    }
+
+
+    public void UnlockOakUpgrade(string unlockedUpgrade)
+    {
+        if (!_unlockedOakUpgrades.Contains(unlockedUpgrade))
+        {
+            _unlockedOakUpgrades.Add(unlockedUpgrade);
+        }
+    }
+
+    public bool HasUnlockedOakUpgrade(string unlockedUpgrade)
+    {
+        return _unlockedOakUpgrades.Contains(unlockedUpgrade);
+    }
+    
+    public List<string> GetUnlockedOakUpgradeCategotry(string unlockedUpgradeCategory)
+    {
+        return _unlockedOakUpgrades.Where(x=> x.StartsWith(unlockedUpgradeCategory)).ToList();
     }
     
     
@@ -295,6 +316,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         dataStore.SyncData("_customSettlementActiveStates", ref _customSettlementActiveStates);
         dataStore.SyncData("_cursedSiteWardDurationLeft", ref _cursedSiteWardDurationLeft);
         dataStore.SyncData("_lastGhostRecruitmentTime", ref _lastGhostRecruitmentTime);
+        dataStore.SyncData("_unlockedOakUpgrades", ref _unlockedOakUpgrades);
     }
 
 

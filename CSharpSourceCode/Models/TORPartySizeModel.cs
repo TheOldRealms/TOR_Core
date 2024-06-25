@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Invasions;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -56,7 +57,10 @@ namespace TOR_Core.Models
             {
                 num.AddFactor(-0.5f);
 
-                foreach (var attribute in  OakOfAgesMenuLogic.PartyUpgradeAttributes)
+                
+                var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+                var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WePartySizeUpgrade");
+                foreach (var attribute in  list)
                 {
                     if(Hero.MainHero.HasAttribute(attribute))
                     {

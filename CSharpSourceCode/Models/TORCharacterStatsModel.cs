@@ -6,6 +6,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -158,14 +159,13 @@ namespace TOR_Core.Models
                             number.AddFactor(ForestHarmonyHelper.HealthDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
                             break;
                     }
-
-                    var upgrades = OakOfAgesMenuLogic.MaximumHealthUpgradeAttributes;
-                    foreach (var upgrade in upgrades)
+                    
+                    
+                    var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+                    var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WEHealthUpgrade");
+                    foreach (var attribute in  list)
                     {
-                        if (Hero.MainHero.HasAttribute(upgrade))
-                        {
-                            number.AddFactor(0.1f);
-                        }
+                        number.AddFactor(0.1f, new TextObject("Oak of Ages"));
                     }
 
                 }
