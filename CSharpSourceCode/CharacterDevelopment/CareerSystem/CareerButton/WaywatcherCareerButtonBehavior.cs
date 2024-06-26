@@ -59,7 +59,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 Id = "starfire",
                 Name = "Starfire Shafts",
                 Description = "Adds 25% armor penetration",
-                Effect = "powerstone_fire_trait",
+                Effect = "apply_flaming_sword_trait",
                 Symbol = _starfireShaftsIcon
             }
         };

@@ -71,10 +71,26 @@ namespace TOR_Core.Items
 
         public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
         {
+            if (attacker == victim)
+                return;
+            
             if (attacker != null)
             {
                 if (HasWeaponWithTrait(attacker, out var traits))
                 {
+                    
+                    if (traits != null && traits.Count() > 0 && victim!=null)
+                    {
+                        foreach (var trait in traits)
+                        {
+                            if (trait.ImbuedStatusEffectId != "none")
+                            {
+                                victim.ApplyStatusEffect(trait.ImbuedStatusEffectId, attacker, 5, false);
+                            }
+               
+                        }
+                    }
+                    
                     var missileIndex = collisionData.AffectorWeaponSlotOrMissileIndex;
                     var targetMissile = Mission.Current.Missiles.FirstOrDefault(x => x.Index == missileIndex);
                     targetMissile.Entity.RemoveAllParticleSystems();
