@@ -388,7 +388,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
-        public static void RegularOptions(Agent agent, string effectID)
+        public static void AddDefaultPermanentMissionEffect(Agent agent, string effectID)
         {
             var statuseffectComponent = agent.GetComponent<StatusEffectComponent>();
             

@@ -115,7 +115,7 @@ namespace TOR_Core.Items
             if (trait != null && duration > 0)
             {
                 var weapon = Agent.WieldedWeapon;
-                if(weapon.CurrentUsageItem != null && !weapon.CurrentUsageItem.IsRangedWeapon)
+                if(weapon.CurrentUsageItem != null)
                 {
                     if (_dynamicTraits.Any(x => x.Item1.Item == weapon.Item && x.Item2.Equals(trait)))
                     {
@@ -132,9 +132,6 @@ namespace TOR_Core.Items
                         _dynamicTraits.Add(new Tuple<MissionWeapon, ItemTrait, float>(weapon, trait, duration));
                         UpdatePresets();
                     }
-                }else if (weapon.CurrentUsageItem.IsRangedWeapon)
-                {
-                    
                 }
             }
         }
@@ -149,7 +146,7 @@ namespace TOR_Core.Items
                 _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(item.Item1, item.Item2, false);
             }
             var weapon = Agent.WieldedWeapon;
-            if (weapon.Item != null && weapon.Item.HasTrait(Agent))
+            if (weapon.Item != null && weapon.Item.HasTrait(Agent) && !weapon.CurrentUsageItem.IsRangedWeapon)
             {
                 var info = weapon.Item.GetTorSpecificData(Agent);
                 if (info != null)

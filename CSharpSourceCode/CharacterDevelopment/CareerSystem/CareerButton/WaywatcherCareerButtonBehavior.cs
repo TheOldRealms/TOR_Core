@@ -18,11 +18,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
     private string _hagbaneTippsIcon = "CareerSystem\\ghur";
     private string _starfireShaftsIcon = "CareerSystem\\aqshy";
 
-    private static ArrowType _shiftshiverShards;
-    private static ArrowType _hagbaneTipps;
-    private static ArrowType _starfireShafts;
-
-    private static List<ArrowType> _allArrows = new();
+    private static List<ArrowType> _allArrows;
     
     
     public override string CareerButtonIcon
@@ -39,12 +35,34 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
     
     public WaywatcherCareerButtonBehavior(CareerObject career) : base(career)
     {
-        _shiftshiverShards = new ArrowType() { Id="shift",  Name = "Shiftshiver Shards", Description = "adds 25% Magical damage", Effect = "test", Symbol = _shiftshiverShardsIcon, };
-        _hagbaneTipps = new ArrowType() {Id="hagbane", Name = "Hagbane Tipps", Description = "adds a 25% chance for 40% movement speed slowdown", Effect = "test", Symbol = _hagbaneTippsIcon, };
-        _starfireShafts = new ArrowType() {Id="starfire", Name = "Starfire Shafts", Description = "Adds 25% armor penetration" ,Effect = "powerstone_fire_trait", Symbol = _starfireShaftsIcon };
-        _allArrows.Add(_shiftshiverShards);
-        _allArrows.Add(_hagbaneTipps);
-        _allArrows.Add(_starfireShafts);
+
+        _allArrows = new List<ArrowType>()
+        {
+            new()
+            {
+                Id = "shift",
+                Name = "Shiftshiver Shards",
+                Description = "adds 25% Magical damage",
+                Effect = "test",
+                Symbol = _shiftshiverShardsIcon,
+            },
+            new()
+            {
+                Id = "hagbane",
+                Name = "Hagbane Tipps",
+                Description = "adds a 25% chance for 40% movement speed slowdown",
+                Effect = "test",
+                Symbol = _hagbaneTippsIcon
+            },
+            new()
+            {
+                Id = "starfire",
+                Name = "Starfire Shafts",
+                Description = "Adds 25% armor penetration",
+                Effect = "powerstone_fire_trait",
+                Symbol = _starfireShaftsIcon
+            }
+        };
         
         MBTextManager.SetTextVariable("SHIFTSHIVERSHARDS_ICON", string.Format("<img src=\"{0}\"/>",_shiftshiverShardsIcon));
         MBTextManager.SetTextVariable("HAGBANETIPPS_ICON", string.Format("<img src=\"{0}\"/>",_hagbaneTippsIcon));
@@ -163,6 +181,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
 
     public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
     {
+        if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
         if (characterObject.IsHero) return false;
         if (isPrisoner) return false;
 

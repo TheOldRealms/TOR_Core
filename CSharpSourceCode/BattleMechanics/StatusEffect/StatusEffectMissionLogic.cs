@@ -87,7 +87,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 var infos = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == agent.Character.StringId);
                 foreach (var id in infos.Value)
                 {
-                    CareerHelper.RegularOptions(agent,id);
+                    CareerHelper.AddDefaultPermanentMissionEffect(agent,id);
                 }
             }
             
