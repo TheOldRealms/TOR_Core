@@ -955,7 +955,49 @@
 			<ImbuedStatusEffect>healing_hand_tick</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
 	  
-	  
+
+
+		<TriggeredEffectTemplate StringID="apply_shift_shiver_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="20" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyShiftShiverTrait" />
+
+
+		<TriggeredEffectTemplate StringID="apply_hagbane_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="20" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyHagbaneTrait" />
+			
+			
+		<TriggeredEffectTemplate StringID="apply_starfire_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="20" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyStarFireTrait" />
+			
 		<TriggeredEffectTemplate StringID="apply_flaming_sword_trait" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

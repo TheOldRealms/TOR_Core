@@ -617,6 +617,26 @@
   	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
+		id="hagbane_debuff"
+		particle_id="hagbane_debuff"
+		particle_intensity="High"
+    	base_effect_value="-0.4"
+		type="MovementManipulation"
+		damage_type="Frost">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="starfire_debuff"
+		particle_id="torch_fire_sparks"
+		particle_intensity="High"
+    	base_effect_value="-3"
+		type="DamageOverTime"
+		damage_type="Fire"
+		temporary_attribute="Piercing">
+  	</StatusEffectTemplate>
+	
+	
+	<StatusEffectTemplate
 		id="arcane_conduit_slow"
 		particle_id="freeze"
 		particle_intensity="High"

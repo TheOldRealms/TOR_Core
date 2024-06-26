@@ -43,7 +43,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 Id = "shift",
                 Name = "Shiftshiver Shards",
                 Description = "adds 25% Magical damage",
-                Effect = "test",
+                Effect = "apply_shift_shiver_trait",
                 Symbol = _shiftshiverShardsIcon,
             },
             new()
@@ -51,7 +51,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 Id = "hagbane",
                 Name = "Hagbane Tipps",
                 Description = "adds a 25% chance for 40% movement speed slowdown",
-                Effect = "test",
+                Effect = "apply_hagbane_trait",
                 Symbol = _hagbaneTippsIcon
             },
             new()
@@ -59,7 +59,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 Id = "starfire",
                 Name = "Starfire Shafts",
                 Description = "Adds 25% armor penetration",
-                Effect = "apply_flaming_sword_trait",
+                Effect = "apply_starfire_trait",
                 Symbol = _starfireShaftsIcon
             }
         };

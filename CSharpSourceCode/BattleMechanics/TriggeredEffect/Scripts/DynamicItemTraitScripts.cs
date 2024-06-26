@@ -8,6 +8,95 @@ using TOR_Core.Items;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 {
+    
+    public class ApplyShiftShiverTrait : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait();
+                var additionalDamage = new DamageProportionTuple();
+
+                additionalDamage.DamageType = DamageType.Magical;
+                additionalDamage.Percent = 0.20f;
+                
+                trait.ItemTraitName = "Shiftshiver shards Trait";
+                trait.ItemTraitDescription = "The damage is increased by 20% Slows down enemies";
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_magic_trait" };
+                trait.AdditionalDamageTuple = additionalDamage;
+                trait.OnHitScriptName = "none";
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyHagbaneTrait : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait
+                {
+                    ItemTraitName = "Hagbane Trait",
+                    ItemTraitDescription = "The weapon has been poisoned. Slows down enemies",
+                    ImbuedStatusEffectId = "hagbane_debuff",
+                    WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_hagbane_trait" },
+                    OnHitScriptName = "none"
+                };
+
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
+    public class ApplyStarFireTrait : ITriggeredScript
+    {
+        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
+        {
+            if(triggeredAgents.Count() > 0)
+            {
+                var trait = new ItemTrait
+                {
+                    ItemTraitName = "Shiftshiver shards Trait",
+                    ItemTraitDescription = "Adds Armor penetration effect, fire damage and dot",
+                    ImbuedStatusEffectId = "starfire_debuff",
+                    WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_flaming_weapon" },
+                    AdditionalDamageTuple = new DamageProportionTuple
+                    {
+                        DamageType = DamageType.Fire, Percent = 0.20f
+                    },
+                    OnHitScriptName = "none"
+                };
+                
+                foreach (Agent agent in triggeredAgents)
+                {
+                    var comp = agent.GetComponent<ItemTraitAgentComponent>();
+                    if(comp != null)
+                    {
+                        comp.AddTraitToWieldedWeapon(trait, duration);
+                    }
+                }
+            }
+        }
+    }
+    
     public class ApplyFlamingItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
