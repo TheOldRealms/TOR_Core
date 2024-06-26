@@ -251,7 +251,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         
         _eyeOfTheHunterPassive1.Initialize(CareerID,"20% Equipment weight Reduction","EyeOfTheHunter",false,ChoiceType.Passive,null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         _eyeOfTheHunterPassive2.Initialize(CareerID,"Multiple targets","EyeOfTheHunter",false,ChoiceType.Passive);
-        _eyeOfTheHunterPassive3.Initialize(CareerID,"50 Archer skill points","EyeOfTheHunter",false,ChoiceType.Passive , null, new CareerChoiceObject.PassiveEffect(50));
+        _eyeOfTheHunterPassive3.Initialize(CareerID,"Your Archer units gain 50 points in bow skill","EyeOfTheHunter",false,ChoiceType.Passive , null, new CareerChoiceObject.PassiveEffect(50));
         _eyeOfTheHunterPassive4.Initialize(CareerID,"Special shot efficiency is doubled","EyeOfTheHunter",false,ChoiceType.Passive);
         
     }
