@@ -619,6 +619,7 @@
 	<StatusEffectTemplate
 		id="hagbane_debuff"
 		particle_id="hagbane_debuff"
+		do_not_attach_to_agent_skeleton="true"
 		particle_intensity="High"
     	base_effect_value="-0.4"
 		type="MovementManipulation"

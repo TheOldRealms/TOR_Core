@@ -74,7 +74,7 @@ namespace TOR_Core.Items
             if (attacker == victim)
                 return;
             
-            if (attacker != null)
+            if (attacker != null && !collisionData.AttackBlockedWithShield)
             {
                 if (HasWeaponWithTrait(attacker, out var traits))
                 {
@@ -85,7 +85,13 @@ namespace TOR_Core.Items
                         {
                             if (trait.ImbuedStatusEffectId != "none")
                             {
-                                victim.ApplyStatusEffect(trait.ImbuedStatusEffectId, attacker, 5, false);
+                                var chance = MBRandom.RandomFloat;
+
+                                if (chance <= trait.ImbuedStatusEffectChance)
+                                {
+                                    victim.ApplyStatusEffect(trait.ImbuedStatusEffectId, attacker, 5, false);
+                                }
+                              
                             }
                
                         }

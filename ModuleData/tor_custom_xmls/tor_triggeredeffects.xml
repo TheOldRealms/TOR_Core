@@ -980,7 +980,7 @@
             Radius="5" 
             HasShockWave="false" 
             TargetType="Friendly" 
-            ImbuedStatusEffectDuration="20" 
+            ImbuedStatusEffectDuration="3" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyHagbaneTrait" />
 			
@@ -994,7 +994,7 @@
             Radius="5" 
             HasShockWave="false" 
             TargetType="Friendly" 
-            ImbuedStatusEffectDuration="20" 
+            ImbuedStatusEffectDuration="6" 
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyStarFireTrait" />
 			

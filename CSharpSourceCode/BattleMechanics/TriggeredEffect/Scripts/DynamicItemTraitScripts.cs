@@ -15,17 +15,19 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
         {
             if(triggeredAgents.Count() > 0)
             {
-                var trait = new ItemTrait();
+  
                 var additionalDamage = new DamageProportionTuple();
 
                 additionalDamage.DamageType = DamageType.Magical;
                 additionalDamage.Percent = 0.20f;
-                
-                trait.ItemTraitName = "Shiftshiver shards Trait";
-                trait.ItemTraitDescription = "The damage is increased by 20% Slows down enemies";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_magic_trait" };
-                trait.AdditionalDamageTuple = additionalDamage;
-                trait.OnHitScriptName = "none";
+                var trait = new ItemTrait
+                {
+                    ItemTraitName = "Shiftshiver shards Trait",
+                    ItemTraitDescription = "The damage is increased by 20% extra magical damage",
+                    WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "magic_trait" },
+                    AdditionalDamageTuple = additionalDamage,
+                    OnHitScriptName = "none"
+                };
 
                 foreach (Agent agent in triggeredAgents)
                 {
@@ -50,7 +52,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     ItemTraitName = "Hagbane Trait",
                     ItemTraitDescription = "The weapon has been poisoned. Slows down enemies",
                     ImbuedStatusEffectId = "hagbane_debuff",
-                    WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_hagbane_trait" },
+                    WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "hagbane_trait" },
                     OnHitScriptName = "none"
                 };
 

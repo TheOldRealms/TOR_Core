@@ -3852,7 +3852,7 @@
 	
 	<AbilityTemplate StringID="ArrowOfKurnous" 
       Name="Arrow of Kurnous" 
-      SpriteName="blastofagony_icon" 
+      SpriteName="arrowofkurnous_icon" 
       CoolDown="30" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 
@@ -3870,7 +3870,7 @@
       LightFlickeringMagnitude="3" 
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
-      ParticleEffectPrefab="blast_of_agony_prefab" 
+      ParticleEffectPrefab="arrow_kurnous" 
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="fireball" 
       ShouldSoundLoopOverDuration="true" 

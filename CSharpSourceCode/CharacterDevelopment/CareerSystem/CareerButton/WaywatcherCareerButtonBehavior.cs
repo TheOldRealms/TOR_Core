@@ -122,6 +122,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
 
         if (elements[0].Identifier == "remove")
         {
+            
         }
         else
         {
@@ -189,8 +190,27 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
     }
 
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
-    {
-        displayText = new TextObject("select special Arrows this troop is shooting in combat)");
+    { 
+        displayText = new TextObject();
+        if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
+        if (characterObject.IsHero) return false;
+        if (isPrisoner) return false;
+
+        if (characterObject.IsElf() && characterObject.IsRanged)
+        {
+            _setCharacter = characterObject;
+            
+            var type = GetCurrentActiveArrowType(_setCharacter);
+            if (type != null)
+            {
+                displayText = new TextObject(type.Description);
+            }
+            else
+            {
+                displayText = new TextObject("select magical arrows for this unit");
+            }
+           
+        }
         return true;
     }
 
