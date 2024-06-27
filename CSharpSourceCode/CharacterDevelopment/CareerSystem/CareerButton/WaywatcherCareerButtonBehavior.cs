@@ -19,23 +19,21 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
     private string _starfireShaftsIcon = "CareerSystem\\aqshy";
 
     private static List<ArrowType> _allArrows;
-    
-    
+
+
     public override string CareerButtonIcon
     {
         get
         {
             var arrow = GetCurrentActiveArrowType(_setCharacter);
             if (arrow == null) return "winds_icon_45";
-            
-            return GetArrowIconAsText(arrow,true);
 
+            return GetArrowIconAsText(arrow, true);
         }
     }
-    
+
     public WaywatcherCareerButtonBehavior(CareerObject career) : base(career)
     {
-
         _allArrows = new List<ArrowType>()
         {
             new()
@@ -44,7 +42,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 Name = "Shiftshiver Shards",
                 Description = "adds 25% Magical damage",
                 Effect = "apply_shift_shiver_trait",
-                Symbol = _shiftshiverShardsIcon,
+                Symbol = _shiftshiverShardsIcon
             },
             new()
             {
@@ -63,86 +61,69 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 Symbol = _starfireShaftsIcon
             }
         };
-        
-        MBTextManager.SetTextVariable("SHIFTSHIVERSHARDS_ICON", string.Format("<img src=\"{0}\"/>",_shiftshiverShardsIcon));
-        MBTextManager.SetTextVariable("HAGBANETIPPS_ICON", string.Format("<img src=\"{0}\"/>",_hagbaneTippsIcon));
-        MBTextManager.SetTextVariable("STARFIRESHAFT_ICON", string.Format("<img src=\"{0}\"/>",_starfireShaftsIcon));
+
+        MBTextManager.SetTextVariable("SHIFTSHIVERSHARDS_ICON", string.Format("<img src=\"{0}\"/>", _shiftshiverShardsIcon));
+        MBTextManager.SetTextVariable("HAGBANETIPPS_ICON", string.Format("<img src=\"{0}\"/>", _hagbaneTippsIcon));
+        MBTextManager.SetTextVariable("STARFIRESHAFT_ICON", string.Format("<img src=\"{0}\"/>", _starfireShaftsIcon));
     }
 
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false)
     {
-       _setCharacter = characterObject;
+        _setCharacter = characterObject;
         var list = new List<InquiryElement>();
-        
-        for (int i = 0; i < _allArrows.Count; i++)
+
+        for (var i = 0; i < _allArrows.Count; i++)
         {
             var arrow = _allArrows[i];
             var icon = GetArrowIconAsText(arrow);
-            list.Add(new InquiryElement(arrow,new TextObject($"{{{icon}}} {arrow.Name}").ToString(),null,true,$"{arrow.Description}"));
+            list.Add(new InquiryElement(arrow, new TextObject($"{{{icon}}} {arrow.Name}").ToString(), null, true, $"{arrow.Description}"));
             if (!Hero.MainHero.HasUnlockedCareerChoiceTier(i + 1))
                 break;
         }
-        
+
         var arrowType = GetCurrentActiveArrowType(_setCharacter);
 
-        if (arrowType != null)
-        {
-            list.Add(new InquiryElement("remove", $"Remove {arrowType.Name}", null));
-        }
+        if (arrowType != null) list.Add(new InquiryElement("remove", $"Remove {arrowType.Name}", null));
 
-        var inquirydata = new MultiSelectionInquiryData("Choose special arrows",
-            "Empower your ranged Unit with a permanent magical effect.",
-            list, true, 1, 1, "Accept", "Cancel", OnSelectedOption, OnCancel, "", false);
+        var inquirydata = new MultiSelectionInquiryData("Choose special arrows", "Empower your ranged Unit with a permanent magical effect.", list,
+            true, 1, 1, "Accept", "Cancel", OnSelectedOption, OnCancel, "", false);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
     }
 
     private void OnCancel(List<InquiryElement> obj)
     {
-        
     }
-
 
 
     private void OnSelectedOption(List<InquiryElement> elements)
     {
         var arrow = elements[0].Identifier as ArrowType;
-    var partyExtendedInfo =
-            ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-        var attributes = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == _setCharacter.StringId)
-            .Value;
+        var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
+        var attributes = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == _setCharacter.StringId).Value;
 
 
         var arrowType = GetCurrentActiveArrowType(_setCharacter);
 
-        if (arrowType != null)
-        {
-            partyExtendedInfo.RemoveTroopAttribute(_setCharacter.StringId, arrowType.Effect);
-        }
+        if (arrowType != null) partyExtendedInfo.RemoveTroopAttribute(_setCharacter.StringId, arrowType.Effect);
 
 
         if (elements[0].Identifier == "remove")
         {
-            
         }
         else
         {
-
             partyExtendedInfo.AddTroopAttribute(_setCharacter, arrow.Effect);
         }
 
 
         ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
 
-        if (PartyVMExtension.ViewModelInstance != null)
-        {
-            PartyVMExtension.ViewModelInstance.RefreshValues();
-        }
+        if (PartyVMExtension.ViewModelInstance != null) PartyVMExtension.ViewModelInstance.RefreshValues();
     }
-    
+
     private string GetArrowIconAsText(ArrowType arrowType, bool asText = false)
     {
         if (asText)
-        {
             return arrowType.Id switch
             {
                 "shift" => _shiftshiverShardsIcon,
@@ -150,7 +131,6 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 "starfire" => _starfireShaftsIcon,
                 _ => ""
             };
-        }
         return arrowType.Id switch
         {
             "shift" => "SHIFTSHIVERSHARDS_ICON",
@@ -163,19 +143,16 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
     private ArrowType GetCurrentActiveArrowType(CharacterObject setCharacter)
     {
         if (setCharacter == null) return null;
-        var partyExtendedInfo =
-            ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
+        var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
 
         if (partyExtendedInfo.TroopAttributes.TryGetValue(setCharacter.StringId, out var attributes))
-        {
             if (attributes.Count > 0)
             {
-                var arrow = attributes.Select(attribute => _allArrows.Find( x => x.Effect == attribute ))
+                var arrow = attributes.Select(attribute => _allArrows.Find(x => x.Effect == attribute))
                     .FirstOrDefault(powerstone => powerstone != null);
 
                 return arrow;
             }
-        }
 
         return null;
     }
@@ -190,7 +167,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
     }
 
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
-    { 
+    {
         displayText = new TextObject();
         if (PartyScreenManager.Instance.CurrentMode != PartyScreenMode.Normal) return false;
         if (characterObject.IsHero) return false;
@@ -199,18 +176,14 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
         if (characterObject.IsElf() && characterObject.IsRanged)
         {
             _setCharacter = characterObject;
-            
+
             var type = GetCurrentActiveArrowType(_setCharacter);
             if (type != null)
-            {
                 displayText = new TextObject(type.Description);
-            }
             else
-            {
                 displayText = new TextObject("select magical arrows for this unit");
-            }
-           
         }
+
         return true;
     }
 

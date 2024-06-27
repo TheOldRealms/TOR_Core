@@ -90,8 +90,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     CareerHelper.AddDefaultPermanentMissionEffect(agent,id);
                 }
             }
-            
-           
         }
     }
 }

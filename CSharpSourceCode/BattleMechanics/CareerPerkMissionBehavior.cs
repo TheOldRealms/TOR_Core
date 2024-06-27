@@ -20,12 +20,9 @@ namespace TOR_Core.BattleMechanics
         private float _currentTime;
         private readonly float _frequency=1f;
         private bool _zoomKeyEventStarted;
-        private const int _timeRequestID =10001;
-
+        private const int TimeRequestId =10001;
         public float[] CareerMissionVariables = new float[5];
-
-
-
+        
         public override void AfterStart()
         {
             CareerMissionVariables = new float[5];
@@ -42,12 +39,12 @@ namespace TOR_Core.BattleMechanics
                 TickEvents();
             }
 
-            if (this.Mission.InputManager.IsGameKeyDown(24))
+            if (Mission.InputManager.IsGameKeyDown(24))
             {
                 ZoomKeyDownEvents();
             }
             
-            if(_zoomKeyEventStarted&&this.Mission.InputManager.IsGameKeyReleased(24))
+            if(_zoomKeyEventStarted && Mission.InputManager.IsGameKeyReleased(24))
             {
                 ZoomKeyUpEvents();
             }
@@ -62,7 +59,7 @@ namespace TOR_Core.BattleMechanics
             if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HawkeyedPassive3"))
             {
            
-                var timeRequest = new Mission.TimeSpeedRequest (0.60f,_timeRequestID);
+                var timeRequest = new Mission.TimeSpeedRequest (0.60f, TimeRequestId);
                 Mission.Current.AddTimeSpeedRequest (timeRequest);
             }
             
@@ -73,9 +70,9 @@ namespace TOR_Core.BattleMechanics
         {
             if (Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
-                if (Mission.Current.GetRequestedTimeSpeed(_timeRequestID, out float _))
+                if (Mission.Current.GetRequestedTimeSpeed(TimeRequestId, out float _))
                 {
-                    Mission.Current.RemoveTimeSpeedRequest(_timeRequestID);
+                    Mission.Current.RemoveTimeSpeedRequest(TimeRequestId);
                 }
             }
             
