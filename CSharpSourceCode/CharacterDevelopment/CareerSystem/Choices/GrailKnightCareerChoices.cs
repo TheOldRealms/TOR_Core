@@ -111,9 +111,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _grailKnightRoot.Initialize(CareerID, "The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs.", null,
+            _grailKnightRoot.Initialize(CareerID, "The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds, increasing the speed by 20%. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs.", null,
                 true, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
+                    new CareerChoiceObject.MutationObject()
+                    {
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_knightly_charge",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "knightly_charge_speed" }).ToList(),
+                        MutationType = OperationType.Replace
+                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(StatusEffectTemplate),
@@ -160,17 +168,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
-            _enhancedHorseCombatKeystone.Initialize(CareerID, "+20% speed during the ability, which now scales with the Polearm skill and starts recharged.", "EnhancedHorseCombat", false,
+            _enhancedHorseCombatKeystone.Initialize(CareerID, "Ability scales now  with the Polearm skill and starts recharged.", "EnhancedHorseCombat", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_knightly_charge",
-                        PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "knightly_charge_speed" }).ToList(),
-                        MutationType = OperationType.Replace
-                    },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(StatusEffectTemplate),

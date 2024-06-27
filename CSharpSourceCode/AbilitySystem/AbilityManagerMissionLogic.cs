@@ -242,7 +242,7 @@ namespace TOR_Core.AbilitySystem
                             float random = MBRandom.RandomFloatRanged(0, 1);
                             if (random < choice.GetPassiveValue())
                             {
-                                playerHero.AddWindsOfMagic(15);
+                                playerHero.AddWindsOfMagic(10);
                             }
                         }
                     }

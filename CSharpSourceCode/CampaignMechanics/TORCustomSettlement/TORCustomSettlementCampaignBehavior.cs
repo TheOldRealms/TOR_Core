@@ -170,6 +170,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             _model = Campaign.Current.Models.GetFaithModel();
             AddRaidingSiteMenus(starter);
             AddOakOfAgeMenus(starter);
+            AddWorldRootsMenus(starter);
             AddShrineMenus(starter);
             AddCursedSiteMenus(starter);
             foreach (var entry in _customSettlementActiveStates)
@@ -239,6 +240,28 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         }
 
         private void OakOfAgeMenuInit(MenuCallbackArgs args)
+        {
+            var settlement = Settlement.CurrentSettlement;
+            var component = settlement.SettlementComponent as TORBaseSettlementComponent;
+            var text = component.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
+            MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
+            args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
+        }
+
+        #endregion
+
+        #region WorldRoots
+        public void AddWorldRootsMenus(CampaignGameStarter starter)
+        {
+            starter.AddGameMenu("worldroots_menu", "{LOCATION_DESCRIPTION}", WorldRootsMenuInit);
+            starter.AddGameMenuOption("worldroots_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Leave;
+                return true;
+            }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
+        }
+
+        private void WorldRootsMenuInit(MenuCallbackArgs args)
         {
             var settlement = Settlement.CurrentSettlement;
             var component = settlement.SettlementComponent as TORBaseSettlementComponent;
