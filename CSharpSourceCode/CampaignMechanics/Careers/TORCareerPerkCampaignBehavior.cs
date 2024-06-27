@@ -182,7 +182,7 @@ namespace TOR_Core.CampaignMechanics
                     var member = memberList[index];
                     if (!member.Character.IsKnightUnit())
                     {
-                        var choice = TORCareerChoices.GetChoice("ShiftshiverShardsPassive2");
+                        var choice = TORCareerChoices.GetChoice("HailOfArrowsPassive2");
                         if (choice != null)
                         {
                             mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);

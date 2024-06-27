@@ -761,7 +761,7 @@ namespace TOR_Core.CharacterDevelopment
                 return true;
             }, (Hero hero, out string unlockText) =>
             {
-                unlockText = "Shifshiver shards upgrade for troops";
+                unlockText = "Swiftshiver shards upgrade for troops";
                 return true;
             });
             _hailOfArrows.Initialize("Hail of Arrows", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>

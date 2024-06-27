@@ -14,7 +14,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
 {
     private static CharacterObject _setCharacter;
-    private string _shiftshiverShardsIcon = "CareerSystem\\azyr";
+    private string _swiftshiverShardsIcon = "CareerSystem\\azyr";
     private string _hagbaneTippsIcon = "CareerSystem\\ghur";
     private string _starfireShaftsIcon = "CareerSystem\\aqshy";
 
@@ -39,10 +39,10 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             new()
             {
                 Id = "shift",
-                Name = "Shiftshiver Shards",
+                Name = "Swiftshiver Shards",
                 Description = "adds 25% Magical damage",
                 Effect = "apply_shift_shiver_trait",
-                Symbol = _shiftshiverShardsIcon
+                Symbol = _swiftshiverShardsIcon
             },
             new()
             {
@@ -62,7 +62,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             }
         };
 
-        MBTextManager.SetTextVariable("SHIFTSHIVERSHARDS_ICON", string.Format("<img src=\"{0}\"/>", _shiftshiverShardsIcon));
+        MBTextManager.SetTextVariable("SWIFTSHIVERSHARDS_ICON", string.Format("<img src=\"{0}\"/>", _swiftshiverShardsIcon));
         MBTextManager.SetTextVariable("HAGBANETIPPS_ICON", string.Format("<img src=\"{0}\"/>", _hagbaneTippsIcon));
         MBTextManager.SetTextVariable("STARFIRESHAFT_ICON", string.Format("<img src=\"{0}\"/>", _starfireShaftsIcon));
     }
@@ -126,14 +126,14 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
         if (asText)
             return arrowType.Id switch
             {
-                "shift" => _shiftshiverShardsIcon,
+                "shift" => _swiftshiverShardsIcon,
                 "hagbane" => _hagbaneTippsIcon,
                 "starfire" => _starfireShaftsIcon,
                 _ => ""
             };
         return arrowType.Id switch
         {
-            "shift" => "SHIFTSHIVERSHARDS_ICON",
+            "shift" => "SWIFTSHIVERSHARDS_ICON",
             "hagbane" => "HAGBANETIPPS_ICON",
             "starfire" => "STARFIRESHAFT_ICON",
             _ => ""
