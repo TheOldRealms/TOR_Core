@@ -78,8 +78,7 @@ namespace TOR_Core.BattleMechanics
                     Mission.Current.RemoveTimeSpeedRequest(_timeRequestID);
                 }
             }
-
-
+            
             _zoomKeyEventStarted = false;
         }
 

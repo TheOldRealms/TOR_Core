@@ -30,10 +30,6 @@ namespace TOR_Core.AbilitySystem.Scripts
                 _vortexPrefab.SetFrame(ref vortexFrame);
                 vortexFrame.origin = this.GameEntity.GlobalPosition;
             }
-            else
-            {
-                //_vortexPrefab.GetFrame() = this.GameEntity.GetFrame().origin;
-            }
         }
 
         protected override MatrixFrame GetNextGlobalFrame(MatrixFrame oldFrame, float dt)
