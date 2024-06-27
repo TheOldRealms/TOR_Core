@@ -74,12 +74,12 @@ namespace TOR_Core.Items
             if (attacker == victim)
                 return;
             
-            if (attacker != null && !collisionData.AttackBlockedWithShield)
+            if (attacker != null)
             {
                 if (HasWeaponWithTrait(attacker, out var traits))
                 {
                     
-                    if (traits != null && traits.Count() > 0 && victim!=null)
+                    if (traits != null && traits.Count() > 0 && victim!=null && !collisionData.MissileBlockedWithWeapon || collisionData.AttackBlockedWithShield)
                     {
                         foreach (var trait in traits)
                         {
@@ -91,7 +91,6 @@ namespace TOR_Core.Items
                                 {
                                     victim.ApplyStatusEffect(trait.ImbuedStatusEffectId, attacker, 5, false);
                                 }
-                              
                             }
                
                         }

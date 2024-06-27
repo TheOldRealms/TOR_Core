@@ -9,7 +9,7 @@ using TOR_Core.Items;
 namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 {
     
-    public class ApplyShiftShiverTrait : ITriggeredScript
+    public class ApplySwiftShiverTrait : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
@@ -22,7 +22,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 additionalDamage.Percent = 0.20f;
                 var trait = new ItemTrait
                 {
-                    ItemTraitName = "Shiftshiver shards Trait",
+                    ItemTraitName = "Swiftshiver shards Trait",
                     ItemTraitDescription = "The damage is increased by 20% extra magical damage",
                     WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "magic_trait" },
                     AdditionalDamageTuple = additionalDamage,
@@ -76,7 +76,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             {
                 var trait = new ItemTrait
                 {
-                    ItemTraitName = "Shiftshiver shards Trait",
+                    ItemTraitName = "Starfire shards Trait",
                     ItemTraitDescription = "Adds Armor penetration effect, fire damage and dot",
                     ImbuedStatusEffectId = "starfire_debuff",
                     WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_flaming_weapon" },
@@ -205,7 +205,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 
                 trait.ItemTraitName = "Hysh infused Sword";
                 trait.ItemTraitDescription = "This sword is guided by Hysh. It deals magical damage.";
-                trait.ImbuedStatusEffectId = "none";
+                trait.ImbuedStatusEffectId = "powerstone_light_mov_debuff";
                 trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
                 trait.AdditionalDamageTuple = additionalDamage;
                 trait.OnHitScriptName = "none";

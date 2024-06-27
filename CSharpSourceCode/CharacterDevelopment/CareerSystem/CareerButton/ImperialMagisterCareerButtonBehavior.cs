@@ -311,16 +311,17 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                             x.LoreId == lore.ID && x.Price <= availablePrestige));
                 }
 
-                fittingStones.Distinct().ToList();
+                fittingStones = fittingStones.Distinct().ToList();
             }
             
             var displayedStones = fittingStones.Where(x => x.StoneLevel == PowerSize.Lesser).ToList();
             
             
             
-            if (Hero.MainHero.HasUnlockedCareerChoiceTier(1))
-                displayedStones.AddRange(fittingStones.Where(x => x.StoneLevel == PowerSize.Greater).ToList());
-            else if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
+            if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
+                displayedStones.AddRange(fittingStones.Where(x => x.StoneLevel == PowerSize.Greater).ToList()); 
+            
+            if (Hero.MainHero.HasUnlockedCareerChoiceTier(3))
                 displayedStones.AddRange(fittingStones.Where(x => x.StoneLevel == PowerSize.Mighty).ToList());
 
             var getAllStones = GetAllPowerstones();
