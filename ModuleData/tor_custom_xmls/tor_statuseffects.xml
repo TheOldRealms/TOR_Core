@@ -647,6 +647,15 @@
   	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
+		id="arcane_conduit_slow_light"
+		particle_id=""
+		particle_intensity="High"
+    	base_effect_value="-0.25"
+		type="MovementManipulation"
+		damage_type="Frost">
+  	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
 		id="arcane_conduit_res_debuff"
 		particle_id=""
 		particle_intensity="High"

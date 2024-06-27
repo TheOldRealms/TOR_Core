@@ -91,7 +91,6 @@ namespace TOR_Core.Items
                                 {
                                     victim.ApplyStatusEffect(trait.ImbuedStatusEffectId, attacker, 5, false);
                                 }
-                              
                             }
                
                         }

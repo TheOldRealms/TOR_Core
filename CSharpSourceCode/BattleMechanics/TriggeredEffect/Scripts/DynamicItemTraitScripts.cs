@@ -205,7 +205,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 
                 trait.ItemTraitName = "Hysh infused Sword";
                 trait.ItemTraitDescription = "This sword is guided by Hysh. It deals magical damage.";
-                trait.ImbuedStatusEffectId = "none";
+                trait.ImbuedStatusEffectId = "powerstone_light_mov_debuff";
                 trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_light_weapon" };
                 trait.AdditionalDamageTuple = additionalDamage;
                 trait.OnHitScriptName = "none";
