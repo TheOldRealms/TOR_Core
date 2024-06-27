@@ -124,7 +124,7 @@ namespace TOR_Core.CampaignMechanics
             if (!MobileParty.MainParty.LeaderHero.HasAnyCareer()) return;
             var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
 
-            if (choices.Contains("SurvivalistPassive4"))
+            if (choices.Contains("SurvivalistPassive4") || choices.Contains("ForestStalkerPassive1"))
             {
                 LaunchHuntingEvent(mobileParty);
             }
@@ -166,6 +166,23 @@ namespace TOR_Core.CampaignMechanics
                     if (!member.Character.IsKnightUnit())
                     {
                         var choice = TORCareerChoices.GetChoice("JustCausePassive2");
+                        if (choice != null)
+                        {
+                            mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
+                        }
+                    }
+                }
+            }
+            
+            if (choices.Contains("HailOfArrowsPassive2"))
+            {
+                var memberList = mobileParty.MemberRoster.GetTroopRoster();
+                for (var index = 0; index < memberList.Count; index++)
+                {
+                    var member = memberList[index];
+                    if (!member.Character.IsKnightUnit())
+                    {
+                        var choice = TORCareerChoices.GetChoice("ShiftshiverShardsPassive2");
                         if (choice != null)
                         {
                             mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);

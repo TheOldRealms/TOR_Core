@@ -88,10 +88,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                         .Where(powerstone => powerstone != null).ToList();
                     
                     var first = stones[0];
-                
-                    attributes.Clear();
-                
-                    attributes.Add(first.Id);
+                    
                     return first;
                 }
             }
@@ -373,7 +370,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             var inquirydata = new MultiSelectionInquiryData("Choose Power stone",
                 "Empower your troop with a permanent magical effect of a Power stone. The effect will reduce your total amount of Winds while the stone is active.",
-                list, true, 1, 1, "Create Stone", "Cancel", OnSelectedOption, OnCancel, "", isSearchable);
+                list, true, 1, 1, "Accept", "Cancel", OnSelectedOption, OnCancel, "", isSearchable);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
         }
 

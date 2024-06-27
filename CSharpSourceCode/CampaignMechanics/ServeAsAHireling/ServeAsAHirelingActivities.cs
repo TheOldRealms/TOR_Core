@@ -150,6 +150,17 @@ public class ServeAsAHirelingActivities
                     TORSkills.Faith,
                 ]);
             }
+            
+            if (career == TORCareers.Waywatcher)
+            {
+                _activitySets.Add(career, [
+                    DefaultSkills.Bow,
+                    DefaultSkills.Scouting,
+                    DefaultSkills.Roguery,
+                    DefaultSkills.Athletics,
+                    DefaultSkills.Medicine
+                ]);
+            }
         }
     }
     

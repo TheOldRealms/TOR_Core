@@ -282,6 +282,22 @@
             TargetType="All" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none"/>
+			
+	  <TriggeredEffectTemplate StringID="curse_of_midnight" 
+            BurstParticleEffectPrefab="curse_of_midnight_wind" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+			ImbuedStatusEffectDuration="4" 
+            DamageAmount="0" 
+            Radius="15" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="2" >
+			<ImbuedStatusEffect>curse_of_midnight_wind_phys</ImbuedStatusEffect>
+			<ImbuedStatusEffect>curse_of_midnight_wind_ats</ImbuedStatusEffect>
+			<ImbuedStatusEffect>curse_of_midnight_wind_mov</ImbuedStatusEffect>
+	   </TriggeredEffectTemplate>
 <!-- Lore of Light -->
       <TriggeredEffectTemplate StringID="shemgaze_explosion" 
             BurstParticleEffectPrefab="white_particle_explosion" 
@@ -329,9 +345,26 @@
             ImbuedStatusEffectDuration="15" 
             DamageVariance="0" 
             ScriptNameToTrigger="none" >
-            <ImbuedStatusEffect>net_amyn_movementimpair__100</ImbuedStatusEffect>
+            <ImbuedStatusEffect>net_amyn_movementimpair_100</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  
+	  <TriggeredEffectTemplate StringID="apply_bironas_timewarp" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="20" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="3" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="none" >
+            <ImbuedStatusEffect>bironas_timewarp_mov</ImbuedStatusEffect>
+			<ImbuedStatusEffect>bironas_timewarp_ats</ImbuedStatusEffect>
+			<ImbuedStatusEffect>bironas_timewarp_rls</ImbuedStatusEffect>
+      </TriggeredEffectTemplate>
 	  
 <!--LoreOfMetal-->
 
@@ -625,8 +658,52 @@
 			<ImbuedStatusEffect>curse_of_anraheir_mv_debuff</ImbuedStatusEffect>
 			<ImbuedStatusEffect>curse_of_anraheir_dot</ImbuedStatusEffect>
 	</TriggeredEffectTemplate>
-
-
+	
+	<TriggeredEffectTemplate StringID="fiery_convocation" 
+            BurstParticleEffectPrefab="fiery_convocation" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Fire" 
+            DamageAmount="30" 
+            Radius="8" 
+            HasShockWave="true" 
+            TargetType="All" 
+            DamageVariance="0.0" 
+		ImbuedStatusEffectDuration="10" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+	
+	<TriggeredEffectTemplate StringID="courage_of_aenarion" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+		ImbuedStatusEffectDuration="10" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>courage_of_aenarion_ats</ImbuedStatusEffect>
+	  </TriggeredEffectTemplate>
+	  
+	  
+	<TriggeredEffectTemplate StringID="curse_of_arrows" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="0.0" 
+		ImbuedStatusEffectDuration="10" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>curse_of_arrows</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
 			
 <!-- Necromancy -->
       <TriggeredEffectTemplate StringID="nagashgaze_explosion" 
@@ -775,6 +852,39 @@
                   <ImbuedStatusEffect>soulstealer</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 
+<!-- High Magic  -->
+
+      <TriggeredEffectTemplate StringID="apotheosis_heal" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="3" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>apotheosis_heal</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+	
+	<TriggeredEffectTemplate StringID="soul_quench_explosion" 
+            BurstParticleEffectPrefab="soul_quench_explosion" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0.0" 
+			ImbuedStatusEffectDuration="3" 
+            ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+
+
 <!-- Artillery -->
       <TriggeredEffectTemplate StringID="place_mortar" 
             BurstParticleEffectPrefab="none" 
@@ -845,7 +955,49 @@
 			<ImbuedStatusEffect>healing_hand_tick</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
 	  
-	  
+
+
+		<TriggeredEffectTemplate StringID="apply_shift_shiver_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="20" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyShiftShiverTrait" />
+
+
+		<TriggeredEffectTemplate StringID="apply_hagbane_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="3" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyHagbaneTrait" />
+			
+			
+		<TriggeredEffectTemplate StringID="apply_starfire_trait" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            ImbuedStatusEffectDuration="6" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyStarFireTrait" />
+			
 		<TriggeredEffectTemplate StringID="apply_flaming_sword_trait" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -1181,6 +1333,22 @@
 			<ImbuedStatusEffect>let_them_have_it_unbreakable</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="apply_arrow_of_kurnous" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Physical" 
+            DamageAmount="35" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            ImbuedStatusEffectDuration="10" 
+            DamageVariance="0.0" 
+            ScriptNameToTrigger="none">
+      </TriggeredEffectTemplate>
+	  
+	  
+	  
 	  <TriggeredEffectTemplate StringID="ulric_smash" 
             BurstParticleEffectPrefab="treeman_smash" 
             SoundEffectId="none" 
@@ -1353,6 +1521,7 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>fire_cloak_phy_res</ImbuedStatusEffect>
 			<ImbuedStatusEffect>fire_cloak_fire_res</ImbuedStatusEffect>
+			<ImbuedStatusEffect>fire_cloak_thorns</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
       
 	  <TriggeredEffectTemplate StringID="ward_of_arrows" 

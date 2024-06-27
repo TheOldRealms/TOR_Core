@@ -28,11 +28,13 @@ namespace TOR_Core.AbilitySystem.Scripts
                 var vortexFrame = _vortexPrefab.GetFrame();
                 vortexFrame.rotation.RotateAboutUp(Ability.Template.VisualsRotationVelocity);
                 _vortexPrefab.SetFrame(ref vortexFrame);
+                vortexFrame.origin = this.GameEntity.GlobalPosition;
             }
         }
 
         protected override MatrixFrame GetNextGlobalFrame(MatrixFrame oldFrame, float dt)
         {
+            var frame = new MatrixFrame(oldFrame.rotation, oldFrame.origin);
             if (_counter >= 1)
             {
                 _counter = 0;
@@ -42,12 +44,13 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 _counter += dt;
             }
-            oldFrame.rotation.RotateAboutUp(_currentDeviation);
+            frame.rotation.RotateAboutUp(_currentDeviation);
             var distance = Ability.Template.BaseMovementSpeed * dt;
-            oldFrame.Advance(distance);
-            var heightAtPosition = Mission.Current.Scene.GetGroundHeightAtPosition(oldFrame.origin);
-            oldFrame.origin.z = heightAtPosition + Ability.Template.Offset;
-           // oldFrame.origin.z = heightAtPosition + _ability.Template.Radius / 2;
+            frame.Advance(distance);
+            var heightAtPosition = Mission.Current.Scene.GetGroundHeightAtPosition(frame.origin);
+            frame.origin.z = heightAtPosition + Ability.Template.Offset;
+
+            oldFrame.origin = frame.origin;
             return oldFrame;
         }
     }

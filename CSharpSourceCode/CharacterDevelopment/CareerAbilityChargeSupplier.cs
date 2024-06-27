@@ -311,5 +311,28 @@ namespace TOR_Core.CharacterDevelopment
 
             return explainedNumber.ResultNumber;
         }
+
+        public static float WaywatcherCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        {
+            if (mask != AttackTypeMask.Ranged) return 0;
+            if (chargeType == ChargeType.NumberOfKills) return 0;
+            if (affectingAgent.Team == affectedAgent.Team) return 0;
+            
+            var explainedNumber = new ExplainedNumber(chargeValue);
+
+            if (Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone"))
+            {
+                explainedNumber.AddFactor(0.25f);
+            }
+            
+            
+            if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot&& Hero.MainHero.HasCareerChoice("HawkeyedPassive2"))
+            {
+               explainedNumber.AddFactor(0.5f);
+            }
+            
+            
+            return explainedNumber.ResultNumber;
+        }
     }
 }

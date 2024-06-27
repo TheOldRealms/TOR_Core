@@ -966,6 +966,11 @@
   <string id="career_choicegroup1_name.ImperialMagister" text="{=career_choicegroup1_imperialmagister_str}Apprentise Magister" />
   <string id="career_choicegroup2_name.ImperialMagister" text="{=career_choicegroup2_imperialmagister_str}Battle Wizard" />
   <string id="career_choicegroup3_name.ImperialMagister" text="{=career_choicegroup3_imperialmagister_str}Lord Magister" />
+  
+    <string id="career_choicegroup1_name.Waywatcher" text="{=career_choicegroup1_waywatcher_str}Scout" />
+  <string id="career_choicegroup2_name.Waywatcher" text="{=career_choicegroup2_waywatcher_str}Waywatcher" />
+  <string id="career_choicegroup3_name.Waywatcher" text="{=career_choicegroup3_waywatcher_str}Waystalker" />
+  
 
   <!--Career related related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
@@ -1221,6 +1226,11 @@
   <string id="Hireling.PauseTime" text="Pause on entering the next settlement: {PAUSE_ONOFF}" />
 
   <string id="Hireling.EnlistingArmy" text="Party is part of: {ENLISTING_ARMY}" />
+	<string id="HirelingActivity0.Waywatcher" text="Target practice in solitude" />
+	<string id="HirelingActivity1.Waywatcher" text="Climb trees and scout the area" />
+	<string id="HirelingActivity2.Waywatcher" text="Cover the perimeter and set up traps" />
+	<string id="HirelingActivity3.Waywatcher" text="Advanced sparring sessions" />
+	<string id="HirelingActivity4.Waywatcher" text="Gather medical herbs" />
 
   <string id="HirelingActivity0.ImperialMagister" text="Focus on your studies" />
   <string id="HirelingActivity1.ImperialMagister" text="Assist your lord with accounting tasks" />
