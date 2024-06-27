@@ -5,7 +5,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
     public class CareerButtons
     {
-        private Dictionary<string, CareerButtonBehaviorBase> _careerButtons = new Dictionary<string, CareerButtonBehaviorBase>();
+        private readonly Dictionary<string, CareerButtonBehaviorBase> _careerButtons = new();
         private static CareerButtons _instance;
 
         public static CareerButtons Instance
@@ -30,6 +30,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             _careerButtons.Add(TORCareers.BlackGrailKnight.StringId, new BlackGrailKnightCareerButtonBehavior(TORCareers.BlackGrailKnight));
             _careerButtons.Add(TORCareers.Necrarch.StringId, new NecrarchCareerButtonBehavior(TORCareers.Necrarch));
             _careerButtons.Add(TORCareers.ImperialMagister.StringId, new ImperialMagisterCareerButtonBehavior(TORCareers.ImperialMagister));
+            _careerButtons.Add(TORCareers.Waywatcher.StringId, new WaywatcherCareerButtonBehavior(TORCareers.Waywatcher) );
         }
 
         public CareerButtonBehaviorBase GetCareerButton(CareerObject careerObject)

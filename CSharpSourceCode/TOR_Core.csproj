@@ -337,6 +337,7 @@
     <Compile Include="AbilitySystem\Scripts\AbilityScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AccusationScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArcaneConduit.cs" />
+    <Compile Include="AbilitySystem\Scripts\ArrowOfKurnousScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArtilleryPlacementScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AxeOfUlricScript.cs" />
@@ -355,6 +356,7 @@
     <Compile Include="AbilitySystem\Scripts\SummonChampionScript.cs" />
     <Compile Include="AbilitySystem\Scripts\SummoningScript.cs" />
     <Compile Include="AbilitySystem\Scripts\TeleportScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\TimeWarpScript.cs" />
     <Compile Include="AbilitySystem\Scripts\VortexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\WindScript.cs" />
     <Compile Include="AbilitySystem\SeekerController.cs" />
@@ -540,6 +542,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\NecrarchCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\WaywatcherCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\WitchHunterCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObjectVM.cs" />
@@ -565,6 +568,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestUlricCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\WaywatcherCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WitchHunterCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\SpecialScripts\GrailDamselEnvoyOfTheLadyPerkDialog.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />

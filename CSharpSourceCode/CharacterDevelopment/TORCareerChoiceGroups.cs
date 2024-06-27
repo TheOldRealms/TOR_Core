@@ -112,6 +112,16 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _magicCombatTraining;
         private CareerChoiceGroupObject _ancientScrolls;
         private CareerChoiceGroupObject _arcaneKnowledge;
+        
+        
+        //Waywatcher
+        private CareerChoiceGroupObject _protectorOfTheWoods;
+        private CareerChoiceGroupObject _pathfinder;
+        private CareerChoiceGroupObject _forestStalker;
+        private CareerChoiceGroupObject _hailOfArrows;
+        private CareerChoiceGroupObject _hawkeyed;
+        private CareerChoiceGroupObject _starfireEssence;
+        private CareerChoiceGroupObject _eyeOfTheHunter;
 
 
 
@@ -232,6 +242,16 @@ namespace TOR_Core.CharacterDevelopment
             _magicCombatTraining = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_magicCombatTraining).UnderscoreFirstCharToUpper()));
             _ancientScrolls = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_ancientScrolls).UnderscoreFirstCharToUpper()));
             _arcaneKnowledge = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_arcaneKnowledge).UnderscoreFirstCharToUpper()));
+            
+            //Waywatcher
+            _forestStalker =  Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_forestStalker).UnderscoreFirstCharToUpper()));
+            _pathfinder = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_pathfinder).UnderscoreFirstCharToUpper()));
+            _protectorOfTheWoods = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_protectorOfTheWoods).UnderscoreFirstCharToUpper()));
+            _hailOfArrows = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_hailOfArrows).UnderscoreFirstCharToUpper()));
+            _hawkeyed = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_hawkeyed).UnderscoreFirstCharToUpper()));
+            _starfireEssence = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_starfireEssence).UnderscoreFirstCharToUpper()));
+            _eyeOfTheHunter = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_eyeOfTheHunter).UnderscoreFirstCharToUpper()));
+            
         }
 
         private void InitializeAll()
@@ -721,6 +741,58 @@ namespace TOR_Core.CharacterDevelopment
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
+            });
+            
+            
+            //Waywatcher
+            _protectorOfTheWoods.Initialize("Protector of the Woods", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _pathfinder.Initialize("Pathfinder", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _forestStalker.Initialize("Forest Stalker", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = "Shifshiver shards upgrade for troops";
+                return true;
+            });
+            _hailOfArrows.Initialize("Hail of Arrows", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = "Hagbane Tipps upgrade for troops";
+                return true;
+            });
+            
+            _hawkeyed.Initialize("Hawkeyed", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            _starfireEssence.Initialize("Starfire Essence", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+          
+            _eyeOfTheHunter.Initialize("Eye of the Hunter", TORCareers.Waywatcher, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            }, (Hero hero, out string unlockText) =>
+            {
+                unlockText = "Unlocks Starfire shafts";
+                return hero.Clan.Tier >= 2;
             });
 
         }

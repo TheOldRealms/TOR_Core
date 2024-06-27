@@ -6,6 +6,7 @@ using SandBox.GameComponents;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
@@ -30,11 +31,32 @@ namespace TOR_Core.Models
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if (choices.Contains("MercenaryLordPassive4") || choices.Contains("EndsJustifiesMeansPassive4") )
+                    if (choices.Contains("MercenaryLordPassive4") || choices.Contains("EndsJustifiesMeansPassive4") || choices.Contains("EyeOfTheHunterPassive2") )
                     {
                         missileWeaponFlags |= WeaponFlags.MultiplePenetration;
                     }
+                    
+                    if (choices.Contains("StarfireEssencePassive3") )
+                    {
+                        missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                    }
+                    
+                    if ( Hero.MainHero.HasCareer(TORCareers.Waywatcher) && choices.Contains("StarfireEssencePassive4"))
+                    {
+                        CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                        if (careerPerkBehavior != null)
+                        {
+                            var value = careerPerkBehavior.CareerMissionVariables[2] *= 0.05f;
+                            if (MBRandom.RandomFloat < value)
+                            {
+                                missileWeaponFlags |= WeaponFlags.AffectsAreaBig;
+                            }
+                        }  
+                    }
                 }
+
+                
+                
 
                 if (attackerAgent.HasAttribute("ShieldPenetration"))
                 {

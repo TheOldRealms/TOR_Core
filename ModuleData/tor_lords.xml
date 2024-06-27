@@ -72,6 +72,24 @@
       <EquipmentSet id="tor_celestial_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_mw_lord" default_group="cavalry" name="{=str_tor_mw_lord}Metal Wizard" occupation="Lord" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="55" weight="0.5" build="1" key="001EB80787CC13D47C76442D90C98895A377866254C69643C4B647398C3BA0340077760307A7497300000000000000000000000000000000000000003AF47002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_balthazar_gelt_template" />
+      <EquipmentSet id="tor_balthazar_gelt_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_prophetess_lw" default_group="cavalry" name="{=str_tor_prophetess_lw}Prophetess(Life)" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
@@ -108,7 +126,7 @@
       <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_mw_lord" default_group="cavalry" name="{=str_tor_prophetess_bw}Metal wizard" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_hm_lord" default_group="cavalry" name="{=str_tor_hm_lord}High magic Wizard" occupation="Lord" culture="Culture.battania" voice="curt" age="30" skill_template="SkillSet.tor_custombattle_generic" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="35" weight="0.2" build="0.1" key="001B900000B430157279D168465B5B774BC879C47BA98A488748E8A9857B5A9801A136130A77758A00000000000000000000000000000000000000001F4C30C3" />
     </face>
@@ -122,8 +140,8 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_balthazar_gelt_template" />
-      <EquipmentSet id="tor_balthazar_gelt_template" civilian="true" />
+      <EquipmentSet id="tor_prophetess_template" />
+      <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_glade_lord" default_group="cavalry" name="{=str_tor_glade_lord}Glade Lord" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" race="elf" is_hero="true">

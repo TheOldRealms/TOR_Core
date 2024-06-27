@@ -12,6 +12,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
@@ -66,6 +67,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 return;
             }
             
+            if(!agent.BelongsToMainParty())
+            {
+                return;
+            }
+            
             if (agent.WieldedWeapon.IsEmpty) return;
 
             if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
@@ -74,9 +80,15 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 return;
             }
             
-            if(!agent.BelongsToMainParty())
+            if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
-                return;
+                var partyExtendedInfo = Hero.MainHero.PartyBelongedTo.GetPartyInfo();
+
+                var infos = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == agent.Character.StringId);
+                foreach (var id in infos.Value)
+                {
+                    CareerHelper.AddDefaultPermanentMissionEffect(agent,id);
+                }
             }
         }
     }

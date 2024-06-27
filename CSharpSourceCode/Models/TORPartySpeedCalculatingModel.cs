@@ -9,10 +9,12 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -52,6 +54,15 @@ namespace TOR_Core.Models
                         result.AddFactor(-0.2f, new TextObject("Suffering from sun light"));
                     }
                 }
+                
+                if (mobileParty.HasBlessing("cult_of_taal"))
+                {
+
+                    if (faceTerrainType == TerrainType.Forest)
+                    {
+                        result.AddFactor(0.1f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_taal"));
+                    }
+                }
 
                 if (MobileParty.MainParty.LeaderHero == Hero.MainHero)
                 {
@@ -59,27 +70,37 @@ namespace TOR_Core.Models
                     {
                         result.AddFactor(-0.9f,new TextObject("Burden of Dark Energy Costs is too high!") );
                     }
-                    
-                    if (Hero.MainHero.HasCareerChoice("FrostsBitePassive3"))
+
+                    var positionEvent = Campaign.Current.Models.MapWeatherModel.GetWeatherEventInPosition(mobileParty.Position2D);
+
+                    if (positionEvent == MapWeatherModel.WeatherEvent.Snowy || positionEvent == MapWeatherModel.WeatherEvent.Blizzard)
                     {
-                        var snowText = new TextObject("{=vLjgcdgB}Snow");
-                        if (Campaign.Current.Models.MapWeatherModel.GetWeatherEventInPosition(mobileParty.Position2D) == MapWeatherModel.WeatherEvent.Snowy ||
-                            Campaign.Current.Models.MapWeatherModel.GetWeatherEventInPosition(mobileParty.Position2D) == MapWeatherModel.WeatherEvent.Blizzard)
-                        {
-                            finalSpeed.AddFactor(0.1f, snowText);
-                        }
+                    
+                            CareerChoiceObject choice = null;
+                            if (Hero.MainHero.HasCareerChoice("FrostsBitePassive3"))
+                            {
+                                choice = TORCareerChoices.GetChoice("FrostBitePassive3");
+                            }
+                            else if(Hero.MainHero.HasCareerChoice("PathfinderPassive3"))
+                            { 
+                                choice = TORCareerChoices.GetChoice("PathfinderPassive3");
+                            }
+
+                            if (choice == null) return result;
+                            var snowText = new TextObject("{=vLjgcdgB}Snow");
+                            
+                            var t = result.GetLines().FirstOrDefaultQ(item => snowText.Value.Contains(item.name));
+                            if (t.name !=null)
+                            {
+                                result.Add(-t.number, choice.BelongsToGroup.Name);
+                            }
                     }
+                   
+                   
                 }
             }
 
-            if (mobileParty.HasBlessing("cult_of_taal"))
-            {
-                TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(mobileParty.CurrentNavigationFace);
-                if (faceTerrainType == TerrainType.Forest)
-                {
-                    result.AddFactor(0.1f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_taal"));
-                }
-            }
+            
 
             return result;
         }
