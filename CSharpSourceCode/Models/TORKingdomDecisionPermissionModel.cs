@@ -24,12 +24,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             Kingdom kingdom2,
             out TextObject reason)
         {
-            reason = new TextObject();
-            if (kingdom1?.Culture == null || kingdom2?.Culture == null)
-            {
-                return false;
-            }
-            
+            reason = TextObject.Empty;
             if (kingdom1.Culture.StringId == TORConstants.Cultures.CHAOS || kingdom2.Culture.StringId == TORConstants.Cultures.CHAOS) return false;
             return true;
         }
