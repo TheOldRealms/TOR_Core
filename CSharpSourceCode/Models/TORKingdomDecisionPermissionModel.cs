@@ -24,7 +24,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             Kingdom kingdom2,
             out TextObject reason)
         {
-            reason = TextObject.Empty;
+            reason = new TextObject();
             if (kingdom1?.Culture == null || kingdom2?.Culture == null)
             {
                 return false;
