@@ -435,7 +435,7 @@ namespace TOR_Core.Models
             if (agent == null) return 0;
             if (agent.IsMount) return 0;
             var number =  new ExplainedNumber(value);
-            if (agent.Character.IsHero && agent.GetHero() == Hero.MainHero)
+            if (agent.GetHero() == Hero.MainHero)
             {
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref number, PassiveEffectType.EquipmentWeightReduction);
             }
