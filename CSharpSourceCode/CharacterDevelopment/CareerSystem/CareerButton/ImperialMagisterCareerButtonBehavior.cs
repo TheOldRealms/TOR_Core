@@ -298,17 +298,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (Hero.MainHero.HasCareerChoice("CollegeOrdersPassive4"))
             {
-                foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
+                var lores = PowerstoneHelper.GetPartyLores(Hero.MainHero.PartyBelongedTo.GetMemberHeroes());
+                foreach (var lore in lores)
                 {
-                    if (hero == Hero.MainHero) continue;
-
-                    if (hero.Culture.StringId != "empire") continue;
-
-                    var lores = LoreObject.GetAll();
-
-                    foreach (var lore in lores.Where(lore => hero.HasKnownLore(lore.ID)))
-                        fittingStones.AddRange(stones.Where(x =>
-                            x.LoreId == lore.ID && x.Price <= availablePrestige));
+                    fittingStones.AddRange(stones.Where(x=> x.LoreId == lore.ID && x.Price <= availablePrestige));
                 }
 
                 fittingStones = fittingStones.Distinct().ToList();
@@ -374,6 +367,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 list, true, 1, 1, "Accept", "Cancel", OnSelectedOption, OnCancel, "", isSearchable);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
         }
+
+
+        
 
         private string GetStoneIcon(string stoneLoreId, bool asText=true)
         {
@@ -487,6 +483,33 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         }
     }
 
+
+    public static class PowerstoneHelper
+    {
+        public static List<LoreObject> GetPartyLores(List<Hero> heroes)
+        {
+            var result = new List<LoreObject>();
+            foreach (var hero in heroes)
+            {
+                if (hero == Hero.MainHero) continue;
+
+                if (hero.Culture.StringId != "empire") continue;
+                    
+                if(!hero.IsSpellCaster())continue;
+
+                var lores = LoreObject.GetAll();
+
+                foreach (var lore in lores.Where(lore => hero.HasKnownLore(lore.ID)).Where(lore => !result.Contains(lore)))
+                {
+                    result.Add(lore);
+                }
+            }
+
+            return result;
+
+        }
+    }
+
     public class PowerStone
     {
         public PowerStone(string id, TextObject text, TextObject hintText, string effect, int price, int upkeep, string loreID,
@@ -507,9 +530,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             get
             {
                 float upkeep = _upkeep;
-                if (Hero.MainHero.HasCareerChoice("ImperialEnchantmentPassive4")) upkeep -= upkeep * 0.25f;
-
-                if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive1")) upkeep -= upkeep * 0.25f;
+                var choiceEnchantment = TORCareerChoices.GetChoice("ImperialEnchantmentPassive4");
+                upkeep -= upkeep * choiceEnchantment.GetPassiveValue();
+                var ArcaneKnowledge = TORCareerChoices.GetChoice("ArcaneKnowledgePassive4");
+                if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive4"))
+                {
+                    var lores = PowerstoneHelper.GetPartyLores(Hero.MainHero.PartyBelongedTo.GetMemberHeroes());
+                    upkeep -= lores.Count * 0.05f;
+                }
 
                 return (int)upkeep;
             }
