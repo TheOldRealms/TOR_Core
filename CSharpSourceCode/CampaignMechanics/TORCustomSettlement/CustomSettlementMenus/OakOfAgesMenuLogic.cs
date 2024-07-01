@@ -606,7 +606,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_C", "Thriving Leaves. {GAINUPGRADECOST}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, GetCurrentUpdate("WEGainUpgrade", out var numberOfUpgrades), GainUpgradeCost,
-                new TextObject("Increase the daily harmony gain by 15.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades),
+                new TextObject("Increase the daily harmony gain from settlements by 20%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades),
             _ => UnlockOakUpgrade(GetCurrentUpdate("WEGainUpgrade", out var numberOfUpgrades), GainUpgradeCost * (1 + numberOfUpgrades)));
 
 

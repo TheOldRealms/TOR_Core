@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
@@ -44,14 +46,42 @@ public class TORCustomResourceModel : GameModel
 
                     if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
                     {
-                        
-                        var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
-                        var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WEGainUpgrade");
-                        var harmonygain = 15f; 
-                        harmonygain += 10f * list.Count;
+                        var weSettlements = Campaign.Current.Settlements.WhereQ(x => x.StringId.Contains("_AL")).ToList();
+                        var text = new TextObject("Athel Loren Harmony");
+                        foreach (var settlement in weSettlements)
+                        {
+                            if (settlement.IsRaided && settlement.Owner.Culture.StringId == TORConstants.Cultures.ASRAI)
+                            {
+                                number.Add(-15,text);
+                                continue;
+                            }
+                            if (settlement.Owner.Culture.StringId != TORConstants.Cultures.ASRAI)
+                            {
+                                number.Add(-5,text);
+                                continue;
+                            }
+                            if (settlement.IsVillage)
+                            {
+                                number.Add(1,text);
+                            }
 
-                        harmonygain= ForestHarmonyHelper.CalculateForestGain(harmonygain);
-                        number.Add(harmonygain, new TextObject("Oak Growth"));
+                            if (settlement.IsCastle || settlement.IsTown)
+                            {
+                                number.Add(3,text);
+                            }
+                        }
+
+                        if (number.ResultNumber > 0)
+                        {
+                            var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+                            var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WEGainUpgrade");
+                            var harmonyFactor = 0f; 
+                            harmonyFactor += 0.2f * list.Count;
+
+                            harmonyFactor= ForestHarmonyHelper.CalculateForestGain(harmonyFactor);
+                            number.AddFactor(harmonyFactor, new TextObject("Thriving Leaves"));
+                        }
+                        
                     }
                 }
                 
