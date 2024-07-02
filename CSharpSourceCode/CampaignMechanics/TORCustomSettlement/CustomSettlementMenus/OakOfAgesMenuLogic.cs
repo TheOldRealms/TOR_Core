@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -184,6 +185,14 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     public void AddOakOfAgeMenus(CampaignGameStarter starter)
     {
         starter.AddGameMenu("oak_of_ages_menu", "{LOCATION_DESCRIPTION}", OakOfAgeMenuInit);
+        
+        
+        starter.AddGameMenuOption("oak_of_ages_menu", "tree_spirits", "Tree Spirits", _ => IsAsrai(), delegate
+        {
+            _currentMenu = "oak_of_ages_tree_spirits_menu";
+            GameMenu.SwitchToMenu("oak_of_ages_tree_spirits_menu");
+        }, false, 4, false);
+        
         starter.AddGameMenuOption("oak_of_ages_menu", "branch", "Branches of the Oak", _ => IsAsrai(), delegate
         {
             _currentMenu = "oak_of_ages_branches_menu";
@@ -201,19 +210,79 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             _currentMenu = "oak_of_ages_tree_symbols_menu";
             GameMenu.SwitchToMenu("oak_of_ages_tree_symbols_menu");
         }, false, 4, false);
-
+        
+        
         starter.AddGameMenuOption("oak_of_ages_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate(MenuCallbackArgs args)
         {
             _currentMenu = "";
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, _ => PlayerEncounter.Finish(true), true);
+        
+        
+
 
         AddBranchesOfTheOakMenu(starter);
         AddWorldRootMenu(starter);
         AddTreeSymbolMenu(starter);
         AddWorldRootsMenus(starter);
+        AddTreeSpiritMenu(starter);
     }
+
+    private void AddTreeSpiritMenu(CampaignGameStarter starter)
+    {
+        
+        starter.AddGameMenu("oak_of_ages_tree_spirits_menu",
+            "Communicate with the Tree spirits around the oak.",
+            OakOfAgeMenuInit);
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_A", "Animate Dryads", null,
+            null);
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "Animate Treemen", null,
+            AddTreemen);
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_C", "Relief Treespirits",null, (args) 
+                => PartyScreenManager.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), new TextObject("Donated Spirits"),
+                    500,0,null,TranferCompleted, IsTransferableTreeSpirit,null),
+            false);
+        
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSymbolMenu_leave", "Leave...", delegate(MenuCallbackArgs args)
+        {
+            args.optionLeaveType = GameMenuOption.LeaveType.Leave;
+            return true;
+        }, delegate { GameMenu.SwitchToMenu("oak_of_ages_menu"); });
+        
+        void TranferCompleted(PartyBase leftownerparty, TroopRoster leftmemberroster, TroopRoster leftprisonroster, PartyBase rightownerparty,
+            TroopRoster rightmemberroster, TroopRoster rightprisonroster, bool fromcancel)
+        {
+            if(fromcancel) return;
+            var gainedSpiritHarmony = 0;
+            foreach (var element in leftmemberroster.GetTroopRoster())
+            {
+                gainedSpiritHarmony += 50 * element.Number;
+                //add condition to check what kind of spirit was transfered
+            }
+        
+            Hero.MainHero.AddCultureSpecificCustomResource(gainedSpiritHarmony);
+        }
+        
+        bool IsTransferableTreeSpirit(CharacterObject character, PartyScreenLogic.TroopType type, PartyScreenLogic.PartyRosterSide side, PartyBase leftownerparty)
+        {
+            if (type != PartyScreenLogic.TroopType.Member) return false;
+            if (character.IsHero) return false;
+            return character.Culture.StringId == TORConstants.Cultures.ASRAI && character.Race != FaceGen.GetRaceOrDefault("elf");
+        }
+
+        void AddTreemen(MenuCallbackArgs args)
+        {
+            
+        }
+    }
+
+    
+
+    
 
     private bool IsAsrai()
     {

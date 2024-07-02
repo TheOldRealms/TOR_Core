@@ -109,7 +109,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         {
             {
                 var comp = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
-                return comp.IsBattleUnderway;
+                if (comp != null)
+                {
+                    return comp.IsBattleUnderway;
+                }
+       
             }
 
             return false;
