@@ -133,7 +133,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
             
-            _studyAndPractiseKeystone.Initialize(CareerID, "Ability scaling adds  1% physical resistance per point. Reduced cooldown by 25%", "StudyAndPractise", false,
+            _studyAndPractiseKeystone.Initialize(CareerID, "Ability scaling adds  0.25% physical resistance per point.", "StudyAndPractise", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -142,14 +142,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetOriginalId = "ArcaneConduit",
                         PropertyName = "ScaleVariable1",
                         PropertyValue = (choice, originalValue, agent) => 1,
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_arcaneconduit",
-                        PropertyName = "CoolDown",
-                        PropertyValue = (choice, originalValue, agent) => -(float) originalValue * 0.25f ,
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -283,7 +275,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 });
             
             
-            _ancientScrollsKeystone.Initialize(CareerID, "Arcane Conduit increases 50% of total regained magic per tick. Cooldown reduction by 35%", "AncientScrolls", false,
+            _ancientScrollsKeystone.Initialize(CareerID, "Adds 2 additonal usages. Cooldown reduction by 50%", "AncientScrolls", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new()
@@ -291,23 +283,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "ArcaneConduit",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => 1,
+                        PropertyValue = (choice, originalValue, agent) => 3,
                         MutationType = OperationType.Add
                     },
                     new()
                     {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "arcane_conduit_winds_reg",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => 0.5f*(float)originalValue,
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_arcaneconduit",
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "ArcaneConduit",
                         PropertyName = "CoolDown",
-                        PropertyValue = (choice, originalValue, agent) => -(float) originalValue * 0.35f ,
+                        PropertyValue = (choice, originalValue, agent) => -((int)originalValue * 0.5f) ,
                         MutationType = OperationType.Add
                     },
                 });
@@ -325,10 +309,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                     new()
                     {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "ArcaneConduit",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) =>  0.5f ,
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_arcaneconduit",
+                        PropertyName = "ImbuedStatusEffectDuration",
+                        PropertyValue = (choice, originalValue, agent) => -0.5f,
                         MutationType = OperationType.Multiply
                     },
                     new()
@@ -336,8 +320,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "arcane_conduit_winds_reg",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => 2,
-                        MutationType = OperationType.Multiply
+                        PropertyValue = (choice, originalValue, agent) => (float)originalValue*2 ,
+                        MutationType = OperationType.Replace
                     },
                 });//special
 
@@ -355,7 +339,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _teclisTeachingsPassive1.Initialize(CareerID, "Increases fire spell damage by 10%.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
             _teclisTeachingsPassive2.Initialize(CareerID, "Increases electric spell damage by 10%.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
-            _teclisTeachingsPassive3.Initialize(CareerID, "Increases max Winds of Magic by 10.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+            _teclisTeachingsPassive3.Initialize(CareerID, "Increases max Winds of Magic by 5.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
             _teclisTeachingsPassive4.Initialize(CareerID, "Powerstones cost 35% less Prestige", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             
             _imperialEnchantmentPassive1.Initialize(CareerID, "Increases max Winds of Magic by 20.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
@@ -373,7 +357,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _magicCombatTrainingPassive3.Initialize(CareerID, "Increases Spell effectiveness by 15% if you wield an offhand staff.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SpellEffectiveness, true,
                 (CharacterObject character) => HasMagicStaff()));
             _magicCombatTrainingPassive4.Initialize(CareerID, "Extra 20% Wardsave if your armor weight does not exceed 11 weight.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.Spell,
-                (attacker, victim, attackmask) => HeroArmorWeightUndershootCheck(attacker)));
+                (attacker, victim, attackmask) => CareerChoicesHelper.ArmorWeightUndershootCheck(victim, 11) ));
             
             _ancientScrollsPassive1.Initialize(CareerID, "Increase hex durations by 50%.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50f, PassiveEffectType.DebuffDuration,true));
             _ancientScrollsPassive2.Initialize(CareerID, "Increases Windsregeneration by 1.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.WindsRegeneration));
@@ -399,14 +383,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
 
             return false;
-        }
-        
-        private static bool HeroArmorWeightUndershootCheck(Agent agent)
-        {
-            if (!agent.BelongsToMainParty()) return false;
-            if (!agent.IsMainAgent) return false;
-            var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
-            return weight <= 11;
         }
         
     }
