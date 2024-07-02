@@ -7,13 +7,16 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.Overlay;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -21,6 +24,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
 public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 {
+    private const int TreemanPrice = 800;
     private const int PartySizeUpgradeCost = 100;
     private const int HealthUpgradeCost = 125;
     private const int GainUpgradeCost = 150;
@@ -236,22 +240,43 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             "Communicate with the Tree spirits around the oak.",
             OakOfAgeMenuInit);
         
-        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_A", "Animate Dryads", null,
-            null);
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "{tor_custom_settlement_menu_cursed_site_ghost_str}Commune with the forest.", 
+             (_) => CanBindTreeSpirits(), (MenuCallbackArgs args) => GameMenu.SwitchToMenu("oak_of_ages_tree_spirits_menu_bind_dryads"));
+
         
-        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "Animate Treemen", null,
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "Rouse Treemen. 800 {FORESTHARMONY}", args => CanBindTreeSpirits()&& CanBindTreeman(args),
             AddTreemen);
         
         starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_C", "Relief Treespirits",null, (args) 
                 => PartyScreenManager.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), new TextObject("Donated Spirits"),
                     500,0,null,TranferCompleted, IsTransferableTreeSpirit,null),
             false);
+
+        starter.AddWaitGameMenu("oak_of_ages_tree_spirits_menu_bind_dryads", "{=tor_custom_settlement_cursed_site_ghosts_progress_str}Performing binding ritual...",
+            delegate (MenuCallbackArgs args)
+            {
+                _startWaitTime = CampaignTime.Now;
+                numberOfTroopsFromInteraction = 0;
+                PlayerEncounter.Current.IsPlayerWaiting = true;
+                args.MenuContext.GameMenu.StartWait();
+            }, null, DryadConsequence,
+            BindingTick,
+            GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameOverlays.MenuOverlayType.None, 8f, GameMenu.MenuFlags.None, null);
+        
         
         starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSymbolMenu_leave", "Leave...", delegate(MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, delegate { GameMenu.SwitchToMenu("oak_of_ages_menu"); });
+        
+        starter.AddGameMenu("dryads_result","You were able to bind {NUMBEROFTROOPS} dryads to your party",null);
+        starter.AddGameMenuOption("dryads_result", "dryads_result_leave", "back...", delegate(MenuCallbackArgs args)
+        {
+            args.optionLeaveType = GameMenuOption.LeaveType.Leave;
+            return true;
+        }, delegate { GameMenu.SwitchToMenu("oak_of_ages_tree_spirits_menu"); });
+        
         
         void TranferCompleted(PartyBase leftownerparty, TroopRoster leftmemberroster, TroopRoster leftprisonroster, PartyBase rightownerparty,
             TroopRoster rightmemberroster, TroopRoster rightprisonroster, bool fromcancel)
@@ -266,6 +291,20 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         
             Hero.MainHero.AddCultureSpecificCustomResource(gainedSpiritHarmony);
         }
+
+        bool CanBindTreeSpirits()
+        {
+            var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+
+            return heroes.Any(hero => hero.IsSpellSinger());
+        }
+
+        bool CanBindTreeman(MenuCallbackArgs args)
+        {
+            args.IsEnabled = Hero.MainHero.GetCultureSpecificCustomResourceValue() >= TreemanPrice;
+
+            return true;
+        }
         
         bool IsTransferableTreeSpirit(CharacterObject character, PartyScreenLogic.TroopType type, PartyScreenLogic.PartyRosterSide side, PartyBase leftownerparty)
         {
@@ -278,11 +317,46 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         {
             
         }
+        
+        void BindingTick(MenuCallbackArgs args, CampaignTime dt)
+        {
+            float progress = args.MenuContext.GameMenu.Progress;
+            int diff = (int)_startWaitTime.ElapsedHoursUntilNow;
+            if (diff > 0)
+            {
+                args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
+                if (args.MenuContext.GameMenu.Progress != progress)
+                {
+                    var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
+                    var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
+                    int raisePower = Math.Max(1, (int)Hero.MainHero.GetExtendedInfo().SpellCastingLevel);
+                    var count = MBRandom.RandomInt(1, 3);
+                    
+                    count *= raisePower;
+                    if (freeSlots > 0)
+                    {
+                        if (freeSlots < count) count = freeSlots;
+                        MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
+                        CampaignEventDispatcher.Instance.OnTroopRecruited(Hero.MainHero, Settlement.CurrentSettlement, null, troop, count);
+                        numberOfTroopsFromInteraction += count;
+                    }
+                    
+                    GameTexts.SetVariable("NUMBEROFTROOPS",numberOfTroopsFromInteraction);
+                }
+            }
+        }
+        
+        void DryadConsequence(MenuCallbackArgs args)
+        {
+            PlayerEncounter.Current.IsPlayerWaiting = false;
+            args.MenuContext.GameMenu.EndWait();
+            args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(0f);
+            GameMenu.SwitchToMenu("dryads_result");
+        }
     }
 
-    
+   
 
-    
 
     private bool IsAsrai()
     {
