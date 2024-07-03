@@ -16,6 +16,7 @@
 	<StatusEffectTemplate 
 		id="healing_regeneration" 
 		particle_id="holy_healing_regeneration"
+		do_not_attach_to_agent_skeleton="true"
 		particle_intensity="High"
 		base_effect_value="20"
 		type="HealthOverTime"/>

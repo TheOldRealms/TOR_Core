@@ -1043,6 +1043,18 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_dryad">
+    <Abilities />
+    <Attributes />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
+    </Resistances>
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="ForestHarmony" UpkeepCost="3" UpgradeCost="0" />
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_treeman">
     <Abilities />
     <Attributes>
@@ -1058,6 +1070,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="ForestHarmony" UpkeepCost="50" UpgradeCost="0" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_ancient_treeman">
     <Abilities />
@@ -1070,6 +1083,43 @@
       <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
     </Resistances>
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="ForestHarmony" UpkeepCost="75" UpgradeCost="200" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_caravan_guard">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_caravan_ranged">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_caravan_elite_ranged">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_we_caravan_captain">
+    <Abilities />
+    <Attributes />
+    <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -5203,14 +5253,13 @@
   <CharacterExtendedInfo id="tor_lw_lord">
     <Abilities>
       <string>ShemGaze</string>
-      <string>StoneAssault</string>
+      <string>BironasTimewarp</string>
       <string>HealingLight</string>
       <string>PhaProtection</string>
       <string>DeathlyShards</string>
       <string>RadiancePillar</string>
       <string>RadiantGaze</string>
       <string>NetOfAmyntok</string>
-	  <string>BironasTimewarp</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -5226,7 +5275,7 @@
       <string>Blizzard</string>
       <string>CometOfCasandora</string>
       <string>Thunderbolt</string>
-	  <string>CurseOfMidnightWind</string>
+      <string>CurseOfMidnightWind</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
