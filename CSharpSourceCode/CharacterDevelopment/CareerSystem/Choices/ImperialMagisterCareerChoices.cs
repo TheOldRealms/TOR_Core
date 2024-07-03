@@ -275,7 +275,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 });
             
             
-            _ancientScrollsKeystone.Initialize(CareerID, "Adds 2 additonal usages. Cooldown reduction by 50%", "AncientScrolls", false,
+            _ancientScrollsKeystone.Initialize(CareerID, "Cooldown reduction by 50%. Additional Usage", "AncientScrolls", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new()
@@ -283,7 +283,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "ArcaneConduit",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => 3,
+                        PropertyValue = (choice, originalValue, agent) => 2,
                         MutationType = OperationType.Add
                     },
                     new()
@@ -296,7 +296,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
             
-            _arcaneKnowledgeKeystone.Initialize(CareerID, "Arcane Conduit resets cooldowns of spells. Halves duration and doubles gain.", "ArcaneKnowledge", false,
+            _arcaneKnowledgeKeystone.Initialize(CareerID, "Arcane Conduit resets cooldowns of spells. Halves duration and doubles gain. Additional usage", "ArcaneKnowledge", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new()
@@ -304,7 +304,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "ArcaneConduit",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => 1,
+                        PropertyValue = (choice, originalValue, agent) => 2,
                         MutationType = OperationType.Add
                     },
                     new()
