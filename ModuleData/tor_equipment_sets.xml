@@ -2146,6 +2146,20 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_legs_treeman_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_we_dryad_template" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Head" id="Item.tor_we_head_dryad_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armour_dryad_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_arms_dryad_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_legs_dryad_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Head" id="Item.tor_we_head_dryad_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armour_dryad_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_arms_dryad_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_legs_dryad_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_we_ancient_treeman_template" culture="Culture.battania">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_treeman_fist" />
