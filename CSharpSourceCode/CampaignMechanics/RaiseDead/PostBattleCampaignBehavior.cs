@@ -26,7 +26,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         public override void RegisterEvents()
         {
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
-            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, RaiseDead);                //Those events are never executed when the player lose a battle!
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvent);                //Those events are never executed when the player lose a battle!
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, CheckWarriorPriestPerks);
         }
         
@@ -48,7 +48,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         }
 
 
-        private void RaiseDead(MapEvent mapEvent)
+        private void PostBattleEvent(MapEvent mapEvent)
         {
             
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)

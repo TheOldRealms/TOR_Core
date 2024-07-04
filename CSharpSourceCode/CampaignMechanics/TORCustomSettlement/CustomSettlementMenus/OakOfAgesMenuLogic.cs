@@ -327,7 +327,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
                 args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
                 if (args.MenuContext.GameMenu.Progress != progress)
                 {
-                    var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
+                    var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_we_dryad");
                     var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
                     int raisePower = Math.Max(1, (int)Hero.MainHero.GetExtendedInfo().SpellCastingLevel);
                     var count = MBRandom.RandomInt(1, 3);
