@@ -3821,7 +3821,7 @@
        AbilityType="CareerAbility"
        AbilityEffectType="CareerAbilityEffect"
        BaseMovementSpeed="0"
-       TickInterval="1"
+       TickInterval="-1"
        TriggerType="TickOnce"
        HasLight="false"
        LightIntensity="0"

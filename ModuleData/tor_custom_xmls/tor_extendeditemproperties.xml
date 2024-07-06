@@ -441,6 +441,18 @@
   <ExtendedItemObjectProperties ItemStringId="tor_we_head_hood_ranger_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_dryad_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_head_crown_exiled_wizard_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_accessories_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -748,6 +760,15 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_ranger_001">
     <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_shoulder_cape_exiled_wizard_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_he_shoulder_cape_phoenix_001">
     <ItemTraits />
@@ -1150,6 +1171,18 @@
   <ExtendedItemObjectProperties ItemStringId="tor_we_body_armor_ancient_treeman_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armour_dryad_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_body_armour_exiled_wizard_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_he_body_armour_phoenix_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1427,6 +1460,18 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_arm_arms_ancient_treeman_001">
     <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_arm_arms_dryad_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_arm_rings_exiled_wizard_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_beastmen_arm_hands_minotaur_001">
     <ItemTraits />
@@ -1750,6 +1795,18 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_leg_legs_ancient_treeman_001">
     <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_leg_legs_dryad_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_leg_boots_exiled_wizard_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_he_leg_boots_phoenix_001">
     <ItemTraits />
@@ -2812,6 +2869,19 @@
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_staff_bw_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.25" />
+      <DamageProportionTuple DamageType="Fire" Percent="0.75" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_we_weapon_staff_exiled_wizard_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
         <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>

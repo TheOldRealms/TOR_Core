@@ -291,7 +291,7 @@ namespace TOR_Core.Utilities
         public static string OpenTestMission(List<string> arguments)
         {
             var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_cultists");
-            TorMissionManager.OpenQuestMission("TOR_cultist_lair_001", template, 9);
+            TorMissionManager.OpenQuestMission("tor_test_scene_for_stuff", template, 9, null, false);
             return "Scene opened.";
         }
 

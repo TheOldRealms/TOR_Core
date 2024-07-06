@@ -119,7 +119,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _necrarchRoot.Initialize(CareerID, "Summoned out of the realm of the dead, a projectile spell is casted and deals X damage the radius of the netherball enlarges for every point in spellcraft. The Netherball can be modified with several upgrades from the career tree. The netherball is free of any cost.", null, true,
+            _necrarchRoot.Initialize(CareerID, "Summoned directly from the realm of the dead and cast by the Necrarch, this projectile spell deals 80 damage. The Blast of Agony grows in size for every point put into the Spellcraft skill, it can also be modified with several upgrades from the Career tree. It is free of any winds of magic cost to cast.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
