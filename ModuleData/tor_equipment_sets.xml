@@ -1102,13 +1102,13 @@
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.claw_off" />
-	  <Equipment slot="Item1" id="Item.claw_main" />
+	  <Equipment slot="Item0" id="Item.sword_offhand" />
+	  <Equipment slot="Item1" id="Item.sword_mainhand" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.claw_off" />
-	  <Equipment slot="Item1" id="Item.claw_main" />
+	  <Equipment slot="Item0" id="Item.sword_offhand" />
+	  <Equipment slot="Item1" id="Item.sword_mainhand" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet>
@@ -1122,13 +1122,13 @@
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.claw_off" />
-	  <Equipment slot="Item1" id="Item.claw_main" />
+	  <Equipment slot="Item0" id="Item.sword_offhand" />
+	  <Equipment slot="Item1" id="Item.sword_mainhand" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.claw_off" />
-	  <Equipment slot="Item1" id="Item.claw_main" />
+	  <Equipment slot="Item0" id="Item.sword_offhand" />
+	  <Equipment slot="Item1" id="Item.sword_mainhand" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -2160,12 +2160,16 @@
       <Equipment slot="Body" id="Item.tor_we_body_armour_dryad_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_arms_dryad_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_legs_dryad_001" />
+	  <Equipment slot="Item0" id="Item.claw_off" />
+	  <Equipment slot="Item1" id="Item.claw_main" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Head" id="Item.tor_we_head_dryad_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armour_dryad_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_arms_dryad_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_legs_dryad_001" />
+	  <Equipment slot="Item0" id="Item.claw_off" />
+	  <Equipment slot="Item1" id="Item.claw_main" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_ancient_treeman_template" culture="Culture.battania">
