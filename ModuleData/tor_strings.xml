@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
+  <!-- CC Options -->
+  <string id="str_tor_cc_growth.battania" text= "You spent most of your life venerating one of the Asrai deities..."/>
+<string id="str_tor_cc_profession.battania" text= "Choose your path..."/>
   <!--Rogue Engineer Quest-->
 
   <string id="str_quest_tor_engineer.rogueEngineerParty" text= "{ROGUE_ENGINEER_NAME}s Part Thieves"/>

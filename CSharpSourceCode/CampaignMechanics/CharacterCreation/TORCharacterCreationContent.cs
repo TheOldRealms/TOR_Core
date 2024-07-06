@@ -69,9 +69,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void AddMenus(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation characterCreation)
         {
             //stages
-            CharacterCreationMenu stage1Menu = new(new TextObject("{=tor_cc_origin_summary_str}Origin", null), new TextObject("{=tor_cc_origin_text_str}Choose your family's background...", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
-            CharacterCreationMenu stage2Menu = new(new TextObject("{=tor_cc_growth_summary_str}Growth", null), new TextObject("{=tor_cc_growth_text_str}Teenage years...", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
-            CharacterCreationMenu stage3Menu = new(new TextObject("{=tor_cc_profession_summary_str}Profession", null), new TextObject("{=tor_cc_profession_text_str}Your starting profession...", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
+            CharacterCreationMenu stage1Menu = new(new TextObject("{=tor_cc_origin_summary_str}Origin", null), new TextObject("{TOR_CC_ORIGIN}", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
+            CharacterCreationMenu stage2Menu = new(new TextObject("{=tor_cc_growth_summary_str}Growth", null), new TextObject("{TOR_CC_GROWTH}", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
+            CharacterCreationMenu stage3Menu = new(new TextObject("{=tor_cc_profession_summary_str}Profession", null), new TextObject("{TOR_CC_PROFESSION}", null), new CharacterCreationOnInit(OnMenuInit), CharacterCreationMenu.MenuTypes.MultipleChoice);
 
             for (int i = 1; i <= _maxStageNumber; i++)
             {
@@ -142,14 +142,48 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _originalRace = CharacterObject.PlayerCharacter.Race;
         }
 
+
+        
+
         private void OnMenuInit(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
         {
+            SetMenuLabelTexts();
             charInfo.IsPlayerAlone = true;
             charInfo.HasSecondaryCharacter = false;
             charInfo.ClearFaceGenMounts();
             _isFemale = CharacterObject.PlayerCharacter.IsFemale;
             _originalRace = CharacterObject.PlayerCharacter.Race;
             //if(Debugger.IsAttached) _originalRace = CharacterObject.PlayerCharacter.Race; //This is to allow becoming different races by selecting them at character creation for development purposes.
+        }
+        
+        private void SetMenuLabelTexts()
+        {
+            if (GameTexts.TryGetText("str_tor_cc_origin", out var stage1Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            {
+                GameTexts.SetVariable("TOR_CC_ORIGIN", stage1Text);
+            }
+            else
+            {
+                GameTexts.SetVariable("TOR_CC_ORIGIN", "Choose your family's background...");
+            }
+            
+            if (GameTexts.TryGetText("str_tor_cc_growth", out var stage2Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            {
+                GameTexts.SetVariable("TOR_CC_GROWTH", stage2Text);
+            }
+            else
+            {
+                GameTexts.SetVariable("TOR_CC_GROWTH", "Teenage years...");
+            }
+            
+            if (GameTexts.TryGetText("str_tor_cc_profession", out var stage3Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            {
+                GameTexts.SetVariable("TOR_CC_PROFESSION", stage3Text);
+            }
+            else
+            {
+                GameTexts.SetVariable("TOR_CC_PROFESSION", "Your starting profession...");
+            }
         }
 
         private void OnOptionSelected(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo, string optionId)
