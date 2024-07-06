@@ -112,7 +112,8 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             }
             _raiseableCharacters = characters.Where(character => character.IsUndead()&& !character.HasAttribute("NecromancerChampion") && character.IsBasicTroop && character.Race == TaleWorlds.Core.FaceGen.GetRaceOrDefault("skeleton")).ToList();
 
-            _treeSpiritUnits = characters.Where(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.Race != FaceGen.GetRaceOrDefault("elf") && x.Race != FaceGen.GetRaceOrDefault("human")).ToList();
+            //extension later
+            _treeSpiritUnits = characters.Where(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.StringId.Contains("dryad")).ToList();
         }
 
         private List<CharacterObject> CalculateBloodKnightsCandidates(MapEvent mapEvent, out int reduced)

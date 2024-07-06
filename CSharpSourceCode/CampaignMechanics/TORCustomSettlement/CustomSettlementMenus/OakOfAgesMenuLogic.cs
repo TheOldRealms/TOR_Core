@@ -285,7 +285,14 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             var gainedSpiritHarmony = 0;
             foreach (var element in leftmemberroster.GetTroopRoster())
             {
-                gainedSpiritHarmony += 50 * element.Number;
+                if (element.Character.StringId.Contains("dryad"))
+                {
+                    gainedSpiritHarmony += 10 * element.Number;
+                }
+                if (element.Character.StringId.Contains("treeman"))
+                {
+                    gainedSpiritHarmony += 100 * element.Number;
+                }
                 //add condition to check what kind of spirit was transfered
             }
         
