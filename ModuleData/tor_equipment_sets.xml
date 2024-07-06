@@ -1094,57 +1094,41 @@
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sword_offhand" />
 	  <Equipment slot="Item1" id="Item.sword_mainhand" />
-	  <Equipment slot="Item2" id="Item.sword_offhand" />
-	  <Equipment slot="Item3" id="Item.sword_offhand" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.sword_offhand" />
 	  <Equipment slot="Item1" id="Item.sword_mainhand" />
-	  <Equipment slot="Item2" id="Item.sword_offhand" />
-	  <Equipment slot="Item3" id="Item.sword_offhand" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.claw_off" />
+	  <Equipment slot="Item1" id="Item.claw_main" />
+      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.claw_off" />
+	  <Equipment slot="Item1" id="Item.claw_main" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sword_offhand" />
 	  <Equipment slot="Item1" id="Item.sword_mainhand" />
-	  <Equipment slot="Item2" id="Item.sword_offhand" />
-	  <Equipment slot="Item3" id="Item.sword_offhand" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.sword_offhand" />
 	  <Equipment slot="Item1" id="Item.sword_mainhand" />
-	  <Equipment slot="Item2" id="Item.sword_offhand" />
-	  <Equipment slot="Item3" id="Item.sword_offhand" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.sword_offhand" />
-	  <Equipment slot="Item1" id="Item.sword_mainhand" />
-	  <Equipment slot="Item2" id="Item.sword_offhand" />
-	  <Equipment slot="Item3" id="Item.sword_offhand" />
+      <Equipment slot="Item0" id="Item.claw_off" />
+	  <Equipment slot="Item1" id="Item.claw_main" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.sword_offhand" />
-	  <Equipment slot="Item1" id="Item.sword_mainhand" />
-	  <Equipment slot="Item2" id="Item.sword_offhand" />
-	  <Equipment slot="Item3" id="Item.sword_offhand" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
-    </EquipmentSet>
-    <EquipmentSet>
-      <Equipment slot="Item0" id="Item.sword_offhand" />
-	  <Equipment slot="Item1" id="Item.sword_mainhand" />
-	  <Equipment slot="Item2" id="Item.sword_offhand" />
-	  <Equipment slot="Item3" id="Item.sword_offhand" />
-      <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
-    </EquipmentSet>
-    <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.sword_offhand" />
-	  <Equipment slot="Item1" id="Item.sword_mainhand" />
-	  <Equipment slot="Item2" id="Item.sword_offhand" />
-	  <Equipment slot="Item3" id="Item.sword_offhand" />
+      <Equipment slot="Item0" id="Item.claw_off" />
+	  <Equipment slot="Item1" id="Item.claw_main" />
       <Equipment slot="Body" id="Item.tor_empire_flagellant_armor_001" />
     </EquipmentSet>
   </EquipmentRoster>
