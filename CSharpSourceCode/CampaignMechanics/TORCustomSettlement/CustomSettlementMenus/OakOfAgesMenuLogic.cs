@@ -293,7 +293,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
                 {
                     gainedSpiritHarmony += 100 * element.Number;
                 }
-                //add condition to check what kind of spirit was transfered
             }
         
             Hero.MainHero.AddCultureSpecificCustomResource(gainedSpiritHarmony);
