@@ -164,6 +164,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option11_label_str}Free Company Militiaman</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option11_text_str}Fighting and drinking, what more could one need in life? With sword in hand you marched with your rag-tag Free Company from battle to battle, earning your fair share of scars. You would serve any lord, for the right price.</OptionFlavourText>
 	</CharacterCreationOption>
 	
@@ -176,6 +177,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>{=tor_cc_option12_label_str}Magister Apprentice</OptionText>
+		<PositiveEffectText>"Imperial Magister" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option12_text_str}Your aptitude for the Winds of Magic earned you a place within the Colleges of Altdorf, with time you learned to harness the basics of your power and learn the nature of your aligned wind.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -188,6 +190,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>{=tor_cc_option13_label_str}Priest Acolyte</OptionText>
+		<PositiveEffectText>Choose a "Priest" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option13_text_str}Dedicating your life to the cult of your patron god, you seek the path of righteousness in line with your faith. To be an Acolyte is to temper yourself against evil, the unnatural and the monstrous. (Gains access to Prayers, but cannot learn Spells.)</OptionFlavourText>
 	</CharacterCreationOption> 
 
@@ -200,6 +203,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>{=tor_cc_option14_label_str}Witch Hunter Initiate</OptionText>
+		<PositiveEffectText>"Witch Hunter" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option14_text_str}Heresy was the bane of the good people of the Empire, a rot that needed to be removed. Learning the arts of the Witch Hunters you readied yourself to face all manner of unholy beasts and magicians, with faith and silver. </OptionFlavourText>
 	</CharacterCreationOption> 
 
@@ -212,6 +216,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>{=tor_cc_option15_label_str}Merchant</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option15_text_str}There are many trade goods within the Empire and you saw fit to take your place amongst its many Merchants, with the money you saved you set out to form your own caravan and make a name for yourself. </OptionFlavourText>
 	</CharacterCreationOption> 
 
@@ -348,6 +353,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option26_label_str}Vampiric Nobility</OptionText>
+		<PositiveEffectText>Choose a "Vampire Bloodline" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option26_text_str}At some point your lord recognised your qualities, lifting you out of poverty and revealing his true nature. After receiving the blood kiss you are reborn, immortal and more powerful.  -   Gains the the ability to learn spells and raise dead post-battle or in graveyards. Prompt to pick your bloodline will occur at game start.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -360,6 +366,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>{=tor_cc_option27_label_str}Novice Necromancer</OptionText>
+		<PositiveEffectText>"Necromancer" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option27_text_str}An unexpected opportunity presented itself and you were able steal an ancient tome of lore, and this beset you on the path of Necromancy  -   Gains access to summon skeleton spell and the ability to raise dead post-battle or in graveyards.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -372,6 +379,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>{=tor_cc_option28_label_str}Night Watchman</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option28_text_str}Mortals are often called upon to serve their undead masters. These professional soldiers are known to march into battle alongside the undead hordes of their masters. A more dour and superstitious folk you will never meet but they rarely break in the heat of battle. </OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -384,6 +392,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>{=tor_cc_option29_label_str}Strigany Donmu</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option29_text_str}While not as influential as the matriarchs of their clan, the Donmu are important members of Strigany society. They maintain familial cohesion and are the face of the clan when dealing with outsiders. While not professional warriors, their long years of leading the caravans through the old world make them nothing to scoff at.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -396,6 +405,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<OptionText>{=tor_cc_option30_label_str}Vagabond</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option30_text_str}The roads of Sylvania are dark and dangerous, you prey on its few travellers and hoard what little riches you can take with your blade. Yet you are not the only monster lurking within the dark swamps and forests, at times there is nothing left of the travellers to thieve from.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -531,6 +541,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option41_label_str}Knight Errant</OptionText>
+		<PositiveEffectText>"Knight of Bretonnia" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option41_text_str}You have chosen to set out on the path of a knight of Bretonnia. The trail of dutiful chivalry is a hard one - many foes and battles await you. But, if you are worthy, at the end of your quest you will receive the greatest blessing known to men; a sip from the Grail of the Lady.</OptionFlavourText>
 	</CharacterCreationOption>
 	
@@ -543,6 +554,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>{=tor_cc_option42_label_str}Damsel of the Lady</OptionText>
+		<PositiveEffectText>"Damsel of the Lady" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option42_text_str}Earlier in your life, the Fay Enchantress visited your family and took you away. She saw within you a great potential and you joined her other students. After years of training she has deemed you ready to ride out, to serve the will of the Lady.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -555,6 +567,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>{=tor_cc_option43_label_str}Yeoman Warden</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option43_text_str}You proved your worth to your lord and he rewarded you with the title of Yeoman. As such, you were at times placed in command of other peasants or expected to act as an outrider while on campaign.</OptionFlavourText>
 	</CharacterCreationOption> 
 
@@ -567,6 +580,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>{=tor_cc_option44_label_str}Freeman</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option44_text_str}With licence of movement and a sense to improve yourself, you found yourself free of a direct lord and able to make something of yourself. With some skill in craft or luck in trade, you may yet make yourself a peasant worthy of sumptuary exemptions.</OptionFlavourText>
 	</CharacterCreationOption> 
 
@@ -579,6 +593,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>{=tor_cc_option45_label_str}Wall Warden</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option45_text_str}You were the apprentice of a Wall Warden for some time. You helped him evaluate damage and maintain the castle of your lord. When your master was killed during an assault on the castle walls, you became the Wall Warden. After a small mistake however, your lord has released you from your bond to find someone with more expertise.</OptionFlavourText>
 	</CharacterCreationOption> 
 	
@@ -716,6 +731,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option56_label_str}Mousillan Errant Knight</OptionText>
+		<PositiveEffectText>"Knight of Mousillon" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option56_text_str} Nothing says that a man of Mousillon cannot walk the path of a Bretonnian Knight. Where that path leads is as always reliant on the will and purity of the individual who walks it.</OptionFlavourText>
 	</CharacterCreationOption>
 	
@@ -728,6 +744,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 		<OptionText>{=tor_cc_option57_label_str}Vampire of Mousillon</OptionText>
+		<PositiveEffectText>Choose a "Vampire Bloodline" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option57_text_str}The swamps prevent the land of chivalry from exerting their control over the cursed dukedom, as a result many nerdowells find a kind of sanctuary in Mousillon, even the lords of the night.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -740,6 +757,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>{=tor_cc_option58_label_str}Necromancer</OptionText>
+		<PositiveEffectText>"Necromancer" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option58_text_str}Witches and Warlocks, Hedgefolk and Daemonologists, Wisewomen and Strigany; In a nearly lawless and accursed land such as Mousillon, what's one more who defies the will of Morr?</OptionFlavourText>
 	</CharacterCreationOption> 
 
@@ -752,6 +770,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Social</AttributeToIncrease>
 		<OptionText>{=tor_cc_option59_label_str}Cordon Runner</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option59_text_str}Things arrive in Mousillon that would be confiscated in any other port of the Oldworld. Wyrdstone, strange drugs, slaves, stolen goods, pirated ships and much much more and far darker. Someone has to take these items to their arranged buyers, who are almost always located outside of Mousillon. That means, you need someone who can get these items past the Cordon Sanitaire</OptionFlavourText>
 	</CharacterCreationOption> 
 
@@ -764,6 +783,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>{=tor_cc_option60_label_str}Bog Pirate</OptionText>
+		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option60_text_str}The Foggy river heads and boggy bays of Mousillon make great hideouts for those of a less than legitimate profession. Bretonnian vessels are some of the best in the world, and are often laden with fabulous and valuable goods. That these vessels often have to ply the waters of the coast of Mousillon creates many opportunities for those willing to ‘seize’ them.</OptionFlavourText>
 	</CharacterCreationOption> 
 	
@@ -913,6 +933,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>{=tor_cc_option_3_we_waywatcher_label_str}Path of the Waywatcher</OptionText>
+		<PositiveEffectText>"Waywatcher" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option_3_we_waywatcher_text_str}You are a seasoned scout, protecting and watching out for the security of the forest. You become one with your bow with unmatched prowess.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -925,7 +946,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>{=tor_cc_option58_label_str}Path of the Spellsinger</OptionText>
-		<OptionFlavourText>{=tor_cc_option58_text_str}You are a spellsinger, who will study the high or dark magic. You will understand the nature of this magical wood and will protect it like the mage queen herself.</OptionFlavourText>
+		<OptionFlavourText>{=tor_cc_option_3_we_spellsinger_text_str}You are a spellsinger, who will study the high or dark magic. You will understand the nature of this magical wood and will protect it like the mage queen herself.</OptionFlavourText>
 	</CharacterCreationOption> 
 
 	<CharacterCreationOption Id="option_3_we_gladerider" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_cordon_runner_3">
@@ -937,7 +958,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>{=tor_cc_option59_label_str}Path of the Glade Rider</OptionText>
-		<OptionFlavourText>{=tor_cc_option59_text_str}Asrai live with their mounts in harmony like no other. You decided in your early years to become one with your horse.</OptionFlavourText>
+		<OptionFlavourText>{=tor_cc_option_3_we_gladerider_text_str}Asrai live with their mounts in harmony like no other. You decided in your early years to become one with your horse.</OptionFlavourText>
 	</CharacterCreationOption> 
 
 	<CharacterCreationOption Id="option_3_we_wildwood" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_bog_pirate_3">
@@ -948,7 +969,7 @@
 			<string>OneHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
-		<OptionText>{=tor_cc_option60_label_str}Path of the Wild Woodranger</OptionText>
+		<OptionText>{=tor_cc_option_3_we_wildwood_label_str}Path of the Wild Woodranger</OptionText>
 		<OptionFlavourText>{=tor_cc_option60_text_str}Athel Loren needs protection, even from within. As a Wildwood Ranger, you swear to protect the woods from any threat.</OptionFlavourText>
 	</CharacterCreationOption> 
 	

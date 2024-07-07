@@ -128,6 +128,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                             OnOptionFinalize(charInfo, option.Id);
                         },
                         new TextObject(option.OptionFlavourText));
+
+                        var optionD = category.CharacterCreationOptions[^1];
+                        optionD.PositiveEffectText = new TextObject(option.PositiveEffectText);
                     }
                 }
             }
