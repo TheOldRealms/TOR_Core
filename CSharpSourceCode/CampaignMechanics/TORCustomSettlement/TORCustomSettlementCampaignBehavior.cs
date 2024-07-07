@@ -129,12 +129,12 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 var list = new List<InquiryElement>();
                 var item = MBObjectManager.Instance.GetObject<ItemObject>(comp.RewardItemId);
                 list.Add(new InquiryElement(item, item.Name.ToString(), new ImageIdentifier(item)));
-                var inq = new MultiSelectionInquiryData("Victory!", "{=tor_custom_settlement_chaos_portal_victory_str}You are Victorious! Claim your reward!", list, false, 1, 1, "OK", null, OnRewardClaimed, null);
+                var inq = new MultiSelectionInquiryData("Victory!", new TextObject("{=tor_custom_settlement_chaos_portal_victory_str}You are Victorious! Claim your reward!").ToString(), list, false, 1, 1, "OK", null, OnRewardClaimed, null);
                 MBInformationManager.ShowMultiSelectionInquiry(inq);
             }
             else
             {
-                var inq = new InquiryData("Defeated!", "{=tor_custom_settlement_chaos_portal_lose_str}The enemy proved more than a match for you. Better luck next time!", true, false, "OK", null, null, null);
+                var inq = new InquiryData("Defeated!", new TextObject("{=tor_custom_settlement_chaos_portal_lose_str}The enemy proved more than a match for you. Better luck next time!").ToString(), true, false, "OK", null, null, null);
                 InformationManager.ShowInquiry(inq);
             }
         }
