@@ -1330,9 +1330,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_ancient_treeman" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_we_dryad_template" />
       <EquipmentSet id="tor_we_dryad_template" civilian="true" />
