@@ -5,6 +5,9 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -142,6 +145,45 @@ namespace TOR_Core.Models
                     
                     
                 }
+
+                if (hero.PartyBelongedTo!=null && (hero.PartyBelongedTo.IsMainParty ||  hero == Hero.MainHero)  && hero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                {
+
+                    if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                    {
+                        var level = hero.PartyBelongedTo.LeaderHero.GetForestHarmonyLevel();
+                        switch (level)
+                        {
+                            case ForestHarmonyLevel.Harmony: break;
+                            case ForestHarmonyLevel.Unbound:
+                                number.AddFactor(ForestHarmonyHelper.HealthDebuffUnBound, new TextObject(ForestHarmonyLevel.Unbound.ToString()));
+                                break;
+                            case ForestHarmonyLevel.Bound:
+                                number.AddFactor(ForestHarmonyHelper.HealthDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                                break;
+                        }
+                    }
+                    
+                    var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+                    var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WEHealthUpgrade");
+                    foreach (var attribute in  list)
+                    {
+                        number.AddFactor(0.1f, new TextObject("Oak of Ages"));
+                    }
+
+
+                    if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+                    {
+                        number.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
+                    }
+                    
+                    if(hero == Hero.MainHero&& Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+                    {
+                        number.AddFactor(0.25f);
+                    }
+
+                }
+                
 
                 if (hero.HasAttribute("GiftOfNurgle")) number.Add(20, new TextObject("Gift of Nurgle"));
             }

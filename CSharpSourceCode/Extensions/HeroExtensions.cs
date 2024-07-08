@@ -75,6 +75,38 @@ namespace TOR_Core.Extensions
 
             return chance.ResultNumber;
         }
+        
+        /// <summary>
+        /// Calculates the Raise dead chance based on the Spellcraft Skillvalue and applies Career Perks.
+        /// 0.005 would allow with 200 spell craft an 80% chance of raising dead.
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        public static float GetTreeSpiritChance(this Hero hero)
+        {
+            if (!hero.IsSpellCaster()) return 0f;
+            
+            var chance = new ExplainedNumber();
+            var skillValue = hero.GetSkillValue(TORSkills.SpellCraft);
+
+            var chanceValue = Mathf.Clamp(skillValue * 0.005f, 0.05f, 0.7f);
+            chance.Add(chanceValue);
+
+            if (hero.HasAnyCareer())
+            {
+                var choices = hero.GetAllCareerChoices();
+
+                if (choices.Contains("MasterOfDeadPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
+                    if(choice!=null)
+                        chance.AddFactor(choice.GetPassiveValue());
+                }
+            }
+
+            return chance.ResultNumber;
+        }
+        
 
         public static void AddCustomResource(this Hero hero, string id, float amount)
         {
@@ -249,6 +281,12 @@ namespace TOR_Core.Extensions
             return ChivalryHelper.GetChivalryLevelForResource(customResource);
         }
         
+        public static ForestHarmonyLevel GetForestHarmonyLevel(this Hero hero)
+        {
+            var customResource = GetCustomResourceValue(hero, "ForestHarmony");
+            return ForestHarmonyHelper.GetForestHarmonyLevelForResource(customResource);
+        }
+        
         public static bool HasChivalryLevel(this Hero hero, ChivalryLevel level)
         {
             return ChivalryHelper.HasChivalryLevel(hero, level);
@@ -289,6 +327,11 @@ namespace TOR_Core.Extensions
         public static bool IsNecromancer(this Hero hero)
         {
             return hero.HasAttribute("Necromancer");
+        }
+        
+        public static bool IsSpellSinger(this Hero hero)
+        {
+            return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute("SpellCaster");
         }
 
         public static bool IsUndead(this Hero hero)

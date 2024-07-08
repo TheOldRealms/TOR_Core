@@ -8,22 +8,25 @@ using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.CampaignMechanics.RaiseDead
 {
     public class PostBattleCampaignBehavior : CampaignBehaviorBase
     {
         private List<CharacterObject> _raiseableCharacters = new List<CharacterObject>();
+        private List<CharacterObject> _treeSpiritUnits = new();
 
         public override void RegisterEvents()
         {
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
-            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, RaiseDead);                //Those events are never executed when the player lose a battle!
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvent);                //Those events are never executed when the player lose a battle!
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, CheckWarriorPriestPerks);
         }
         
@@ -45,12 +48,42 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         }
 
 
-        private void RaiseDead(MapEvent mapEvent)
+        private void PostBattleEvent(MapEvent mapEvent)
         {
+            
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+            {
+                
+                var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+
+                if (!heroes.Any(x => x.IsSpellCaster() && x.HasKnownLore("LoreOfLife")))
+                {
+                    return;
+                }
+                var settlements = TORCommon.FindSettlementsAroundPosition(MobileParty.MainParty.Position2D, 200);
+                if (!settlements.AnyQ(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.StringId .Contains("_AL")))
+                {
+                       return;
+                }
+
+                var t = GetAthelLorenTreeSpiritUnits(mapEvent);
+
+                foreach (var character in t)
+                {
+                    PlayerEncounter.Current.RosterToReceiveLootMembers.AddToCounts(character,1);
+                }
+               
+
+            }
+            
             if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.CanRaiseDead())
             {
                 List<CharacterObject> troops = new List<CharacterObject>();
                 var reduction = 0;
+
+                
+                
+                
                 if (Hero.MainHero.HasAnyCareer())
                 {
                     if (Hero.MainHero.GetAllCareerChoices().Contains("DoomRiderPassive4"))
@@ -78,6 +111,9 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 var info = c.GetAttributes();
             }
             _raiseableCharacters = characters.Where(character => character.IsUndead()&& !character.HasAttribute("NecromancerChampion") && character.IsBasicTroop && character.Race == TaleWorlds.Core.FaceGen.GetRaceOrDefault("skeleton")).ToList();
+
+            //extension later
+            _treeSpiritUnits = characters.Where(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.StringId.Contains("dryad")).ToList();
         }
 
         private List<CharacterObject> CalculateBloodKnightsCandidates(MapEvent mapEvent, out int reduced)
@@ -131,6 +167,27 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                     elements.Add(_raiseableCharacters.GetRandomElement());
                 }
             }
+            return elements;
+        }
+        
+        private List<CharacterObject> GetAthelLorenTreeSpiritUnits(MapEvent mapEvent, int reduction = 0){
+            List<CharacterObject> elements = new List<CharacterObject>();
+
+    
+
+            var num = mapEvent.GetMapEventSide(mapEvent.PlayerSide).TroopCount;
+
+            var gainChance = 0.25f;
+           // var gainChance= Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
+            
+            for (int i = 0; i <= num; i++)
+            {
+                if(MBRandom.RandomFloat <= gainChance)
+                {
+                    elements.Add(_treeSpiritUnits.GetRandomElement());
+                }
+            }
+
             return elements;
         }
 

@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -107,6 +108,38 @@ namespace TOR_Core.Models
                                 break;
                         }
                         value.AddFactor(factor,new TextObject(level.ToString()));
+                    }
+
+                    if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                    {
+                        if (Hero.MainHero.HasAttribute("WEOrionSymbol"))
+                        {
+                            if (elementCopyAtIndex.Character.IsElf() && elementCopyAtIndex.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+                            {
+                                value.AddFactor(-0.5f, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
+                            }
+                        }
+
+                        if (Hero.MainHero.HasAttribute("WEArielSymbol"))
+                        {
+                            value.AddFactor(0.5f, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                        }
+                        
+                        if (Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                        {
+                            value.AddFactor(0.5f, ForestHarmonyHelper.TreeSymbolText("WEWandererSymbol"));
+                        }
+                        
+                        if (Hero.MainHero.HasAttribute("WETreekinSymbol") && elementCopyAtIndex.Character.IsElf() && elementCopyAtIndex.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+                        {
+                            value.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
+                        }
+                        
+                        
+                        if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
+                        {
+                            value.AddFactor(0.15f, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
+                        }
                     }
 
 

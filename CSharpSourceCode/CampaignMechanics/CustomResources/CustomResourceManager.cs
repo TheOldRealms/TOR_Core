@@ -55,9 +55,14 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 new CustomResource("DarkEnergy", "Dark Energy",
                     "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.",
                     "darkenergy_icon_45", new[] { TORConstants.Cultures.SYLVANIA, "mousillon" }));
+            Instance._resources.Add("ForestHarmony",
+                new CustomResource("ForestHarmony", "Forest Harmony",
+                    "Forest Binding is used to upgrade and maintain troops of the woodelves, as well as retrieve upgrades at the Oak of Ages.", "harmony_icon_45", TORConstants.Cultures.ASRAI, ForestHarmonyHelper.GetForestHarmonyInfo));
             Instance._resources.Add("WindsOfMagic",
                 new CustomResource("WindsOfMagic", "Winds of Magic",
                     "Winds of Magic is used by spellcasters to cast spells.", "winds_icon_45"));
+            
+ 
         }
 
         public static CustomResource GetResourceObject(string id)
@@ -206,6 +211,18 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         explainedNumber.AddFactor(0.5f);
                     }
                 }
+                
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                {
+                    var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 500f,
+                        x =>  x.IsOakOfTheAges());
+
+                    if (settlement != null)
+                    {
+                        explainedNumber.AddFactor(2);
+                    }
+                }
+                
 
 
                 Hero.MainHero.AddCultureSpecificCustomResource(explainedNumber.ResultNumber);

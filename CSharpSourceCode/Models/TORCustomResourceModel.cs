@@ -1,9 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -33,11 +38,50 @@ public class TORCustomResourceModel : GameModel
                 if (hero == Hero.MainHero)
                 {
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref number,PassiveEffectType.CustomResourceGain, false);
-
-
+                    
                     if (hero.IsEnlisted())
                     {
                         ServeAsAHirelingHelpers.AddHirelingCustomResourceBenefits(hero,ref number);
+                    }
+
+                    if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                    {
+                        var weSettlements = Campaign.Current.Settlements.WhereQ(x => x.StringId.Contains("_AL")).ToList();
+                        var text = new TextObject("Athel Loren Harmony");
+                        foreach (var settlement in weSettlements)
+                        {
+                            if (settlement.IsRaided && settlement.Owner.Culture.StringId == TORConstants.Cultures.ASRAI)
+                            {
+                                number.Add(-15,text);
+                                continue;
+                            }
+                            if (settlement.Owner.Culture.StringId != TORConstants.Cultures.ASRAI)
+                            {
+                                number.Add(-5,text);
+                                continue;
+                            }
+                            if (settlement.IsVillage)
+                            {
+                                number.Add(1,text);
+                            }
+
+                            if (settlement.IsCastle || settlement.IsTown)
+                            {
+                                number.Add(3,text);
+                            }
+                        }
+
+                        if (number.ResultNumber > 0)
+                        {
+                            var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+                            var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WEGainUpgrade");
+                            var harmonyFactor = 0f; 
+                            harmonyFactor += 0.2f * list.Count;
+
+                            harmonyFactor= ForestHarmonyHelper.CalculateForestGain(harmonyFactor);
+                            number.AddFactor(harmonyFactor, new TextObject("Thriving Leaves"));
+                        }
+                        
                     }
                 }
                 
@@ -149,7 +193,25 @@ public class TORCustomResourceModel : GameModel
                     var unitUpkeet = new ExplainedNumber(resource.Item2*element.Number);
                     if (hero == Hero.MainHero)
                     {
-                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Character); 
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref unitUpkeet,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Character);
+
+                        if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                        {
+                            foreach (var attribute in OakOfAgesMenuLogic.CustomResourceGainUpgrades.Where(attribute => Hero.MainHero.HasAttribute(attribute)))
+                            {
+                                unitUpkeet.AddFactor(-0.1f);
+                            }
+                            
+                            if (Hero.MainHero.HasAttribute("WETreekinSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+                            {
+                                unitUpkeet.AddFactor(-0.5f, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
+                            }
+                            
+                            if (Hero.MainHero.HasAttribute("WEOrionSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+                            {
+                                unitUpkeet.AddFactor(1f, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
+                            }
+                        }
                     }
                     
                     upkeep.Add(-unitUpkeet.ResultNumber,new TextObject("Upkeep"));

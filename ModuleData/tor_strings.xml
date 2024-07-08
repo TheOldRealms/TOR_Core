@@ -608,8 +608,15 @@
   <string id="str_customresource_trade_label" text="{=!}You will {?PAY_OR_GET}get{?}pay{\?} {TRADE_AMOUNT}" />
 
   <!--custom settlements e.g. chaos portal, shrines, herdstones -->
-  <string id="customsettlement_intro.oak_of_ages" text="{=!}Z3rca write me pls. Oak of Ages should probably never be inactive (unless beastmen raids it? could be a potential gameplay mechanic.)" />
+  <string id="customsettlement_intro.oak_of_ages" text="{=!}You arrive at the Oak of Ages. The Heart of Athel Loren" />
   <string id="customsettlement_disabled.oak_of_ages" text="{=!}Z3rca write me pls. Oak of Ages should probably never be inactive (unless beastmen raids it? could be a potential gameplay mechanic.)" />
+  
+  <string id="customsettlement_intro.worldroot_01" text="{=!}You found the world roots ends in the Arden forest." />
+  <string id="customsettlement_disabled.worldroot_01" text="{=!}You found the world roots ends in the Arden forest." />
+  <string id="customsettlement_intro.worldroot_02" text="{=!}You found the world roots ends in the Laurelorn forest." />
+  <string id="customsettlement_disabled.worldroot_02" text="{=!}You found the world roots ends in the Laurelorn forest." />
+  <string id="customsettlement_intro.worldroot_03" text="{=!}You found the world roots ends in the Gryphenwood." />
+  <string id="customsettlement_disabled.worldroot_03" text="{=!}You found the world roots ends in the Gryphenwood." />
 
   <string id="customsettlement_intro.darkelf_camp_01" text="{=!}You arrive at a druchii slaver camp. Ships are anchored in the bay and the cages are full of stock." />
   <string id="customsettlement_disabled.darkelf_camp_01" text="{=!}The slavers have left these shores. Come back at a later time." />

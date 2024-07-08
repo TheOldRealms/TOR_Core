@@ -481,8 +481,10 @@
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\MousillonTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\VampireTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\ChivalryHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResource.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResourceManager.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\ForestHarmonyHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
@@ -514,6 +516,11 @@
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\OakOfAgesMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\RaidingSiteMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\CursedSiteMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\ShrineMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\TORBaseSettlementMenuLogic.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
@@ -661,7 +668,6 @@
     <Compile Include="Missions\InkDuelFightMissionController.cs" />
     <Compile Include="Missions\JoustFightMissionController.cs" />
     <Compile Include="Missions\QuestFightMissionController.cs" />
-    <Compile Include="Models\ChivalryHelper.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
     <Compile Include="Models\TORAgentApplyDamageModel.cs" />
     <Compile Include="Models\TORAgentStatCalculateModel.cs" />
