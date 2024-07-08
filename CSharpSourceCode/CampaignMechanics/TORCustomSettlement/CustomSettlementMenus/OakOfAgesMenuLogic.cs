@@ -743,25 +743,48 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     {
         starter.AddGameMenu("oak_of_ages_branches_menu", "Branches of The Oak", null);
 
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_A", "Build Outposts.{PARTYSIZEUPGRADECOST}{FORESTHARMONY}",
-            args => DefaultUnlockOakUpgradeCondition(args, GetCurrentUpdate("WEPartySizeUpgrade", out var numberOfUpgrades), PartySizeUpgradeCost,
-                new TextObject("Increase party Size by 10%.{newline}{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades),
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_A", "Build Outposts. {PARTYSIZEUPGRADECOST}{FORESTHARMONY}",
+            args =>
+            {
+                var text = GetCurrentUpdate("WEPartySizeUpgrade", out var numberOfUpgrades);
+                GameTexts.SetVariable("PARTYSIZEUPGRADECOST",PartySizeUpgradeCost * (numberOfUpgrades +1) );
+                return DefaultUnlockOakUpgradeCondition(args, text , PartySizeUpgradeCost,
+                    new TextObject("Increase party Size by 10%.{newline}{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
+            },
             _ => UnlockOakUpgrade(GetCurrentUpdate("WEPartySizeUpgrade", out var numberOfUpgrades), PartySizeUpgradeCost * (1 + numberOfUpgrades)));
 
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_B", "Strong branches. {HEALTHUPGRADECOST}{FORESTHARMONY}",
-            args => DefaultUnlockOakUpgradeCondition(args, GetCurrentUpdate("WEHealthUpgrade", out var numberOfUpgrades), HealthUpgradeCost,
-                new TextObject("Increase maximum health by 10%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades),
+            args =>
+            {
+                var text = GetCurrentUpdate("WEHealthUpgrade", out var numberOfUpgrades);
+                GameTexts.SetVariable("HEALTHUPGRADECOST",HealthUpgradeCost *(numberOfUpgrades + 1) );
+                return DefaultUnlockOakUpgradeCondition(args, text, HealthUpgradeCost,
+                    new TextObject("Increase maximum health by 10%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
+            },
             _ => UnlockOakUpgrade(GetCurrentUpdate("WEHealthUpgrade", out var numberOfUpgrades), HealthUpgradeCost * (1 + numberOfUpgrades)));
 
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_C", "Thriving Leaves. {GAINUPGRADECOST}{FORESTHARMONY}",
-            args => DefaultUnlockOakUpgradeCondition(args, GetCurrentUpdate("WEGainUpgrade", out var numberOfUpgrades), GainUpgradeCost,
-                new TextObject("Increase the daily harmony gain from settlements by 20%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades),
+            args =>
+            {
+                var text = GetCurrentUpdate("WEGainUpgrade", out var numberOfUpgrades);
+                GameTexts.SetVariable("GAINUPGRADECOST",GainUpgradeCost * (numberOfUpgrades + 1) );
+                
+                
+                
+                return DefaultUnlockOakUpgradeCondition(args, text, GainUpgradeCost,
+                    new TextObject("Increase the daily harmony gain from settlements by 20%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
+            },
             _ => UnlockOakUpgrade(GetCurrentUpdate("WEGainUpgrade", out var numberOfUpgrades), GainUpgradeCost * (1 + numberOfUpgrades)));
 
 
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_D", " Troop harmony upkeep  reduction. {UPKEEPUPGRADECOST}{FORESTHARMONY}",
-            args => DefaultUnlockOakUpgradeCondition(args, GetCurrentUpdate("WEUpkeepUpgrade", out var numberOfUpgrades), TroopUpkeepUpgradeCost,
-                new TextObject("Increase the daily harmony gain by 15.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades),
+        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_D", "Troop harmony upkeep  reduction. {UPKEEPUPGRADECOST}{FORESTHARMONY}",
+            args =>
+            {
+                var text = GetCurrentUpdate("WEUpkeepUpgrade", out var numberOfUpgrades);
+                GameTexts.SetVariable("UPKEEPUPGRADECOST",TroopUpkeepUpgradeCost * (1+numberOfUpgrades));
+                return DefaultUnlockOakUpgradeCondition(args, text, TroopUpkeepUpgradeCost,
+                    new TextObject("Increase the daily harmony gain by 15.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
+            },
             _ => UnlockOakUpgrade(GetCurrentUpdate("WEUpkeepUpgrade", out var numberOfUpgrades), TroopUpkeepUpgradeCost * (1 + numberOfUpgrades)));
 
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_leave", "Leave...", delegate(MenuCallbackArgs args)
@@ -789,6 +812,9 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             if (!HasUnlockedUpgrade(attribute)) return attribute;
             upgradeCount++;
         }
+
+        
+        
 
         if (targetList.Count == upgradeCount) return "";
 

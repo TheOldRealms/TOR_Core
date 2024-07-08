@@ -284,7 +284,7 @@ namespace TOR_Core.Extensions
         public static ForestHarmonyLevel GetForestHarmonyLevel(this Hero hero)
         {
             var customResource = GetCustomResourceValue(hero, "ForestHarmony");
-            return ForestHarmonyHelper.GetForestBindingLevelForResource(customResource);
+            return ForestHarmonyHelper.GetForestHarmonyLevelForResource(customResource);
         }
         
         public static bool HasChivalryLevel(this Hero hero, ChivalryLevel level)

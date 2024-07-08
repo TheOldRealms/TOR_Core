@@ -22,15 +22,15 @@ public class ForestHarmonyHelper
     public static readonly float WindsDebuffBound = -0.25f;
 
     
-    public static ForestHarmonyLevel GetForestBindingLevelForResource(float level)
+    public static ForestHarmonyLevel GetForestHarmonyLevelForResource(float level)
     {
-        var result = ForestHarmonyLevel.Dissonance;
+        var result = ForestHarmonyLevel.Unbound;
 
         switch (level)
         {
             case var _ when level < MinimumBound:
             {
-                result = ForestHarmonyLevel.Dissonance;
+                result = ForestHarmonyLevel.Unbound;
                 break;
             }
             case var _ when level > MinimumBound &&  level < MinimumHarmony:
@@ -57,20 +57,21 @@ public class ForestHarmonyHelper
     {
         var list = new List<TooltipProperty>();
         var value = Hero.MainHero.GetCustomResourceValue("ForestBinding");
-
-        var title = "Forest Binding";
         var forestBindingLevel = Hero.MainHero.GetForestHarmonyLevel();
+
+        var text = forestBindingLevel.ToString();
+        var title = "Forest Harmony: "+text;
 
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
-        list.Add(new TooltipProperty(title, forestBindingLevel.ToString, 0, false,
+        list.Add(new TooltipProperty(title, "", 0, false,
             TooltipProperty.TooltipPropertyFlags.RundownResult));
-
+        
         if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
         {
             switch (forestBindingLevel)
             {
-                case ForestHarmonyLevel.Dissonance:
+                case ForestHarmonyLevel.Unbound:
                     list.Add(new TooltipProperty("Maximum health reduced: ", HealthDebuffUnBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Maximum health regeneration reduced: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     list.Add(new TooltipProperty("Winds regeneration reduced: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
@@ -156,5 +157,5 @@ public enum ForestHarmonyLevel
 {
     Harmony = 2,
     Bound = 1,
-    Dissonance = 0
+    Unbound = 0
 }
