@@ -288,6 +288,37 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 Hero.MainHero.AddCareer(TORCareers.BlackGrailKnight);
             }
+
+            if (id == "option_2_we_kurnous")
+            {
+                Hero.MainHero.AddAttribute("WEKithbandSymbol");
+                //Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
+            }
+            
+            if (id == "option_2_we_isha")
+            {
+                Hero.MainHero.AddAttribute("WETreekinSymbol");
+            }
+            
+            if (id == "option_2_we_loec")
+            {
+                Hero.MainHero.AddAttribute("WEWardancerSymbol");
+            }
+            
+            if (id == "option_2_we_vaul")
+            {
+                Hero.MainHero.AddAttribute("WEKithbandSymbol");
+            }
+            
+            if (id == "option_2_we_khaine")
+            {
+                Hero.MainHero.AddAttribute("WEKithbandSymbol");
+            }
+
+            if (id == "option_3_we_waywatcher")
+            {
+                Hero.MainHero.AddCareer(TORCareers.Waywatcher);
+            }
             
             if(IsDamselCharacterCreationID (id))
             {

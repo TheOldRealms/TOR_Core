@@ -858,6 +858,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Control</AttributeToIncrease>
 		<OptionText>{=tor_cc_option51_label_str}Kurnous, the Hunter</OptionText>
+		<PositiveEffectText>Unlocks Kithband Symbol</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option51_text_str}The god of the hunt and wild realms in the Elven Pantheon. All Elves revere him but Kurnous is dearest to the Wood Elves, who consider the god of the hunt the father of their race and believe their way of life is the most aligned with the ways of Kurnous.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -869,6 +870,7 @@
 			<string>Charm</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
+		<PositiveEffectText>Unlocks Treekin Symbol</PositiveEffectText>
 		<OptionText>{=tor_cc_option52_label_str}Isha, the Mother</OptionText>
 		<OptionFlavourText>{=tor_cc_option52_text_str}The Elven goddess of nature, fertility, bountiful harvest, and the protector of the all things natural. Wood Elves firmly believe the Asrai Mage-Queen Ariel is a living avatar of Isha, bringing her will into the realm of mortals.</OptionFlavourText>
 	</CharacterCreationOption>
@@ -881,6 +883,7 @@
 			<string>Faith</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<PositiveEffectText>Unlocks Wardancer Symbol</PositiveEffectText>
 		<OptionText>{=tor_cc_option_2_we_loec_label_str}Loec, the Shadow Dancer</OptionText>
 		<OptionFlavourText>{=tor_cc_option_2_we_loec_text_str}The god of trickery, laughter, and music, as well as a patron to Asrai Wardancers. Loec is a mysterious deity, as his servants guard the secrets of his rituals. The Trickster-God’s followers are famous for performing intricate dances that retell the history of Athel Loren. Loec also holds a darker side as the god of shadows, stealth, and vengeance. </OptionFlavourText>
 	</CharacterCreationOption>
@@ -895,6 +898,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<OptionText>{=tor_cc_option_2_we_vaul_label_str}Vaul, the Maker</OptionText>
+		<PositiveEffectText>Unlocks Kithband Symbol</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option_2_we_vaul_text_str}The Elven god of smiths, artisans, and craftsmen. Vaul was injured by Khaine during the ancient wars of the gods, which left him crippled and blind. But that doesn’t stop the tenacious Smith-God, for still he labours day and night to the benefit of his kin. Some of the mightiest artifacts ever wielded came from Vaul’s forge, including the dreaded Widowmaker – the Sword of Khaine.</OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -906,6 +910,7 @@
 			<string>Roguery</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
+		<PositiveEffectText>Unlocks Kithband Symbol</PositiveEffectText>
 		<OptionText>{=tor_cc_option_2_we_khaine_label_str}Khaine, the Bloody-Handed God</OptionText>
 		<OptionFlavourText>{=tor_cc_option_2_we_khaine_text_str}Also known as the Lord of Murder, Khaine is the Elven god of war, destruction, violence, and blood. It is not an uncommon sight to see Wood Elves offer prayers to Khaine during times of war. Khaine’s tenets are unique in a sense – the Lord of Murder denies his followers no acts. The only transgression would be to defy his will.</OptionFlavourText>
 	</CharacterCreationOption>
