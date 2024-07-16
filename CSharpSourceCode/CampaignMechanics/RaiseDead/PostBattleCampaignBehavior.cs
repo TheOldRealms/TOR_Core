@@ -66,7 +66,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                        return;
                 }
 
-                var t = GetAthelLorenTreeSpiritUnits();
+                var t = GetAthelLorenTreeSpiritUnits(mapEvent);
 
                 foreach (var character in t)
                 {
@@ -170,12 +170,14 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             return elements;
         }
         
-        private List<CharacterObject> GetAthelLorenTreeSpiritUnits(int reduction = 0){
+        private List<CharacterObject> GetAthelLorenTreeSpiritUnits(MapEvent mapEvent, int reduction = 0){
             List<CharacterObject> elements = new List<CharacterObject>();
 
-            var num = 5;
+    
 
-            var gainChance = 0.5f;
+            var num = mapEvent.GetMapEventSide(mapEvent.PlayerSide).TroopCount;
+
+            var gainChance = 0.25f;
            // var gainChance= Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
             
             for (int i = 0; i <= num; i++)

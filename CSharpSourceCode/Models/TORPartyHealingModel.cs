@@ -107,8 +107,8 @@ namespace TOR_Core.Models
                     switch (level)
                     {
                         case ForestHarmonyLevel.Harmony: break;
-                        case ForestHarmonyLevel.Dissonance:
-                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffUnBound, new TextObject(ForestHarmonyLevel.Dissonance.ToString()));
+                        case ForestHarmonyLevel.Unbound:
+                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffUnBound, new TextObject(ForestHarmonyLevel.Unbound.ToString()));
                             break;
                         case ForestHarmonyLevel.Bound:
                             result.AddFactor(ForestHarmonyHelper.HealthRegDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));

@@ -1,5 +1,8 @@
-﻿using TaleWorlds.MountAndBlade;
+﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
@@ -10,9 +13,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             if (agent == null) return false;
             if (!agent.BelongsToMainParty()) return false;
-            if (!agent.IsMainAgent) return false;
-            var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
-            return weight <= weightLimit;
+            if (!agent.IsHero) return false;
+            var model =  (TORAgentStatCalculateModel) MissionGameModels.Current.AgentStatCalculateModel;
+            var encumbrance = model?.GetEffectiveArmorEncumbrance(agent, agent.SpawnEquipment);
+            return encumbrance <= weightLimit;
         }
     }
 }

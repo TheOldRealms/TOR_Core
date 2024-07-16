@@ -563,6 +563,14 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_cape_kotww_011">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_pauldron_kobs_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -907,6 +915,14 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armour_kotww_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_body_armor_swadian_plate_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1236,6 +1252,14 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_bracers_kotww_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_bracers_bright_wizard_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
@@ -1543,6 +1567,14 @@
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_warrior_priest_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>
+        <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_kotww_001">
     <ItemTraits>
       <ItemTrait ItemTraitName="Holy Amplification" IconName="winds_icon_45">
         <ItemTraitDescription>This item provides its wearer 10% holy damage amplification</ItemTraitDescription>

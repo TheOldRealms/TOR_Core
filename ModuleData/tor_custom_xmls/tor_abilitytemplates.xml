@@ -1964,7 +1964,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="DarkMagic"
-      TooltipDescription="{=power_of_darkness_description_str}The caster draws unstable power from the Realm of Chaos to empower his minions. Grants 20% physical bonus damage for 15 seconds in an area.">
+      TooltipDescription="{=power_of_darkness_description_str}The caster draws unstable power from the Realm of Chaos to empower his allies. Grants 20% physical bonus damage for 15 seconds in an area.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
