@@ -342,10 +342,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _teclisTeachingsPassive3.Initialize(CareerID, "Increases max Winds of Magic by 5.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
             _teclisTeachingsPassive4.Initialize(CareerID, "Powerstones cost 35% less Prestige", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             
-            _imperialEnchantmentPassive1.Initialize(CareerID, "Increases max Winds of Magic by 20.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+            _imperialEnchantmentPassive1.Initialize(CareerID, "Increases max Winds of Magic by 5.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
             _imperialEnchantmentPassive2.Initialize(CareerID, "Friendly fire damage is reduced by 30%", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.Special,true));
             _imperialEnchantmentPassive3.Initialize(CareerID, "Buffs and healing duration is increased by 50%.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.BuffDuration,true));
-            _imperialEnchantmentPassive4.Initialize(CareerID, "Power stones reserve 15% less Winds.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));
+            _imperialEnchantmentPassive4.Initialize(CareerID, "Power stones reserve 25% less Winds.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
             
             _collegeOrdersPassive1.Initialize(CareerID, "Companion limit of party is increased by 5.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
             _collegeOrdersPassive2.Initialize(CareerID, "Magister Companions have 25 more Winds of Magic.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
@@ -356,7 +356,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _magicCombatTrainingPassive2.Initialize(CareerID, "{=tales_of_giles_passive4_str}25% spell cooldown reduction.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.WindsCooldownReduction, true)); 
             _magicCombatTrainingPassive3.Initialize(CareerID, "Increases Spell effectiveness by 15% if you wield an offhand staff.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SpellEffectiveness, true,
                 (CharacterObject character) => HasMagicStaff()));
-            _magicCombatTrainingPassive4.Initialize(CareerID, "Extra 20% Wardsave if your armor weight does not exceed 11 weight.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.Spell,
+            _magicCombatTrainingPassive4.Initialize(CareerID, "Extra 20% Wardsave if your armor weight does not exceed 11 weight.", "MagicCombatTraining", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All,
                 (attacker, victim, attackmask) => CareerChoicesHelper.ArmorWeightUndershootCheck(victim, 11) ));
             
             _ancientScrollsPassive1.Initialize(CareerID, "Increase hex durations by 50%.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50f, PassiveEffectType.DebuffDuration,true));

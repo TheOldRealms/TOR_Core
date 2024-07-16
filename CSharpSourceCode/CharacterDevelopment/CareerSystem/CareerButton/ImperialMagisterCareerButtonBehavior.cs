@@ -530,9 +530,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             get
             {
                 float upkeep = _upkeep;
-                var choiceEnchantment = TORCareerChoices.GetChoice("ImperialEnchantmentPassive4");
-                upkeep -= upkeep * choiceEnchantment.GetPassiveValue();
-                var ArcaneKnowledge = TORCareerChoices.GetChoice("ArcaneKnowledgePassive4");
+                if (Hero.MainHero.HasCareerChoice("ImperialEnchantmentPassive4"))
+                {
+                    var choiceEnchantment = TORCareerChoices.GetChoice("ImperialEnchantmentPassive4");
+                    upkeep -= upkeep * choiceEnchantment.GetPassiveValue();
+                }
+                
                 if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive4"))
                 {
                     var lores = PowerstoneHelper.GetPartyLores(Hero.MainHero.PartyBelongedTo.GetMemberHeroes());
