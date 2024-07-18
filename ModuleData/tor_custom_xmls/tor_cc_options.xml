@@ -722,7 +722,7 @@
 
 
 	<!--  Mousillon stage 3 -->
-	<CharacterCreationOption Id="option56" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_mousillon_knight_errant_3">
+	<CharacterCreationOption Id="option56" Culture="mousillon" StageNumber="3" EquipmentSetId="tor_cc_knight_errant_3">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Riding</string>
@@ -788,7 +788,7 @@
 	</CharacterCreationOption> 
 	
 		<!-- Asrai stage 1 -->
-	<CharacterCreationOption Id="option_1_we_daith" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_mousillon_nobility_1">
+	<CharacterCreationOption Id="option_1_we_daith" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_daith_apprentise_1">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Crafting</string>
@@ -800,7 +800,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_daith_text_str}You were taken under the wing of Daith, the master smith of the Asrai. Under his tutelage, you learned the secrets of forging enchanted weapons and armor. Your skills in crafting are matched only by your prowess in battle, making you a formidable warrior and a skilled artisan. </OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_we_forest" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_mousillon_yeoman_1">
+	<CharacterCreationOption Id="option_1_we_forest" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_forest_survivor_1">
 		<SkillsToIncrease>
 			<string>Spellcraft</string>
 			<string>Scouting</string>
@@ -812,7 +812,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_we_forest_text_str}You were raised by the forest. It took decades, until you got in touch with other Asrai. While you only slowly adapted to the Asrai society, you learned to speak to the forest itself.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_we_mountain" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_bog_smuggler_1">
+	<CharacterCreationOption Id="option_1_we_mountain" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_mountain_veteran_1">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Bow</string>
@@ -824,7 +824,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_we_mountain_text_str}You have faced the hardy Dwarfs in numerous skirmishes in the Grey Mountains surrounding Athel Loren. Your experiences in these rugged battles have honed your skills and resilience, making you a more endurant warrior of the forest than most.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_we_noble" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_peat_farmer_1">
+	<CharacterCreationOption Id="option_1_we_noble" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_we_noble_1">
 		<SkillsToIncrease>
 			<string>Charm</string>
 			<string>Polearm</string>
@@ -836,7 +836,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_we_noble_text_str}Born into a minor noble family of Athel Loren's halls, you were raised with the finest education and training under the Green Way. Your noble lineage afforded you the best tutors in both combat and diplomacy.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_we_emissary" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_outlaws_1">
+	<CharacterCreationOption Id="option_1_we_emissary" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_we_emissary_1">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Steward</string>
@@ -849,7 +849,7 @@
 	</CharacterCreationOption>
 
 	<!-- Asrai stage 2 -->
-	<CharacterCreationOption Id="option_2_we_kurnous" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_mousillon_courtier_2">
+	<CharacterCreationOption Id="option_2_we_kurnous" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_kurnous_2">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Bow</string>
@@ -862,7 +862,7 @@
 		<OptionFlavourText>{=tor_cc_option51_text_str}The god of the hunt and wild realms in the Elven Pantheon. All Elves revere him but Kurnous is dearest to the Wood Elves, who consider the god of the hunt the father of their race and believe their way of life is the most aligned with the ways of Kurnous.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_we_isha" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_student_of_witchcraft_2">
+	<CharacterCreationOption Id="option_2_we_isha" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_isha_2">
 		<SkillsToIncrease>
 			<string>Spellcraft</string>
 			<string>Faith</string>
@@ -875,7 +875,7 @@
 		<OptionFlavourText>{=tor_cc_option52_text_str}The Elven goddess of nature, fertility, bountiful harvest, and the protector of the all things natural. Wood Elves firmly believe the Asrai Mage-Queen Ariel is a living avatar of Isha, bringing her will into the realm of mortals.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_we_loec" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_man_at_arms_2">
+	<CharacterCreationOption Id="option_2_we_loec" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_loec_2">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Athletics</string>
@@ -889,7 +889,7 @@
 	</CharacterCreationOption>
 
 
-	<CharacterCreationOption Id="option_2_we_vaul" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_swampaire_2">
+	<CharacterCreationOption Id="option_2_we_vaul" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_vaul_2">
 		<SkillsToIncrease>
 			<string>Crafting</string>
 			<string>Crafting</string>
@@ -902,7 +902,7 @@
 		<OptionFlavourText>{=tor_cc_option_2_we_vaul_text_str}The Elven god of smiths, artisans, and craftsmen. Vaul was injured by Khaine during the ancient wars of the gods, which left him crippled and blind. But that doesn’t stop the tenacious Smith-God, for still he labours day and night to the benefit of his kin. Some of the mightiest artifacts ever wielded came from Vaul’s forge, including the dreaded Widowmaker – the Sword of Khaine.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_we_khaine" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_brigand_2">
+	<CharacterCreationOption Id="option_2_we_khaine" Culture="battania" StageNumber="2" EquipmentSetId="tor_cc_khaine_2">
 		<SkillsToIncrease>
 			<string>TwoHanded</string>
 			<string>Polearm</string>
@@ -917,7 +917,7 @@
 
 
 	<!--  Asrai stage 3 -->
-	<CharacterCreationOption Id="option_3_we_wardancer" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_mousillon_knight_errant_3">
+	<CharacterCreationOption Id="option_3_we_wardancer" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_wardancer_3">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>OneHanded</string>
@@ -929,7 +929,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_we_wardancer_text_str}You are a warrior, dancing on the path of Loec. As a Wardancer, your agility and grace in combat are unparalleled. You move with fluid precision, turning battle into a deadly dance.</OptionFlavourText>
 	</CharacterCreationOption>
 	
-	<CharacterCreationOption Id="option_3_we_waywatcher" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_vampire_of_mousillon_3">
+	<CharacterCreationOption Id="option_3_we_waywatcher" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_waywatcher_3">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Scouting</string>
@@ -942,7 +942,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_we_waywatcher_text_str}You are a seasoned scout, protecting and watching out for the security of the forest. You become one with your bow with unmatched prowess.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_3_we_spellsinger" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_necromancer_3">
+	<CharacterCreationOption Id="option_3_we_spellsinger" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_spellsinger_3">
 		<SkillsToIncrease>
 			<string>Spellcraft</string>
 			<string>Riding</string>
@@ -954,7 +954,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_we_spellsinger_text_str}You are a spellsinger, who will study the high or dark magic. You will understand the nature of this magical wood and will protect it like the mage queen herself.</OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option_3_we_gladerider" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_cordon_runner_3">
+	<CharacterCreationOption Id="option_3_we_gladerider" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_gladerider_3">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Polearm</string>
@@ -966,7 +966,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_we_gladerider_text_str}Asrai live with their mounts in harmony like no other. You decided in your early years to become one with your horse.</OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option_3_we_wildwood" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_bog_pirate_3">
+	<CharacterCreationOption Id="option_3_we_wildwood" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_wildwoold_3">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>TwoHanded</string>
