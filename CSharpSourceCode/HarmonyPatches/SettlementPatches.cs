@@ -80,6 +80,18 @@ namespace TOR_Core.HarmonyPatches
             __result = 3;
         }
 
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(CaravansCampaignBehavior), "GetTradeScoreForTown")]
+        public static bool NoValueForRestrictedSettlement(ref float __result, MobileParty caravanParty, Town town)
+        {
+            if (!caravanParty.IsSettlementRestricted(town.Settlement))
+            {
+                __result = 0;
+                return false;
+            }
+            return true;
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(PropertyBasedTooltipVM), "Refresh")]
         public static void AddExtrasToSettlementInfo(PropertyBasedTooltipVM __instance, Type ____invokedType, object[] ____invokedArgs)

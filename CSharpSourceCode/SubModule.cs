@@ -45,6 +45,7 @@ using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.RestrictionZone;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.SpellTrainers;
@@ -154,6 +155,7 @@ namespace TOR_Core
                 starter.AddBehavior(new TORFactionDiscontinuationCampaignBehavior());
                 starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
                 starter.AddBehavior(new ServeAsAHirelingCampaignBehavior());
+                starter.AddBehavior(new RestrictionZoneCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }

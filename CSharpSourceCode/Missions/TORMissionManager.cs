@@ -36,9 +36,9 @@ namespace TOR_Core.Missions
 			return MissionState.OpenNew("JoustFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.Town), delegate (Mission missionController)
 			{
 				JoustFightMissionController joustFightMissionController = new JoustFightMissionController(culture);
-				return new MissionBehavior[]
-				{
-					new CampaignMissionComponent(),
+				return
+                [
+                    new CampaignMissionComponent(),
 					new EquipmentControllerLeaveLogic(),
 					joustFightMissionController,
 					new JoustTournamentBehavior(tournamentGame, settlement, joustFightMissionController, isPlayerParticipating),
@@ -51,7 +51,7 @@ namespace TOR_Core.Missions
 					new MissionOptionsComponent(),
 					new HighlightsController(),
 					new SandboxHighlightsController()
-				};
+				];
 			}, true, true);
 		}
 

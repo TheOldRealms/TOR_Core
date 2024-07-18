@@ -4457,7 +4457,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_LL1_1" name="{=Settlements.Settlement.name.castle_village_LL1_1}Sarrielrein" posX="1239.964" posY="1352.936" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
+  <Settlement id="castle_village_LL1_1" name="{=Settlements.Settlement.name.castle_village_LL1_1}Sarrielrein" posX="1239.965" posY="1352.936" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
     <Components>
       <Village id="castle_village_comp_LL1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL1" bound="Settlement.castle_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>

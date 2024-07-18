@@ -1,3 +1,4 @@
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,9 +6,11 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.CampaignMechanics.RestrictionZone;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -34,10 +37,7 @@ namespace TOR_Core.Extensions
         public static void AddBlessingToParty(this MobileParty party, string blessingId)
         { 
             var model = Campaign.Current.Models.GetFaithModel();
-            if (model != null)
-            {
-                model.AddBlessingToParty(party,blessingId);
-            }
+            model?.AddBlessingToParty(party,blessingId);
         }
 
         public static bool HasAnyActiveBlessing(this MobileParty party)
@@ -69,8 +69,7 @@ namespace TOR_Core.Extensions
             var settlementFound = TORCommon.FindNearestSettlement(party, TORConstants.DEFAULT_CURSE_RADIUS, x => x.SettlementComponent is CursedSiteComponent);
             if (settlementFound == null) return false;
 
-            var cursedSite = settlementFound.SettlementComponent as CursedSiteComponent;
-            if (cursedSite == null) return false;
+            if (settlementFound.SettlementComponent is not CursedSiteComponent cursedSite) return false;
 
             if (party.LeaderHero?.GetDominantReligion() == cursedSite.Religion) return false;
 
@@ -79,8 +78,7 @@ namespace TOR_Core.Extensions
 
         public static List<ItemRosterElement> GetArtilleryItems(this MobileParty party)
         {
-            List<ItemRosterElement> list = new List<ItemRosterElement>();
-            list.AddRange(party.ItemRoster.Where(x => x.EquipmentElement.Item.StringId.Contains("artillery")).ToList());
+            List<ItemRosterElement> list = [.. party.ItemRoster.Where(x => x.EquipmentElement.Item.StringId.Contains("artillery")).ToList()];
             return list;
         }
 
@@ -104,7 +102,7 @@ namespace TOR_Core.Extensions
 
         public static List<Hero> GetMemberHeroes(this MobileParty party)
         {
-            List<Hero> heroes = new List<Hero>();
+            List<Hero> heroes = [];
             foreach (var member in party.MemberRoster.GetTroopRoster())
             {
                 if (member.Character.HeroObject != null)
@@ -181,6 +179,34 @@ namespace TOR_Core.Extensions
                 if (hero.HasKnownLore(lorename)) return true;
             }
             return false;
+        }
+
+        public static bool CanReachSettlement(this MobileParty party, Settlement settlement)
+        {
+            var path = new NavigationPath();
+            return Campaign.Current.MapSceneWrapper.GetPathBetweenAIFaces(party.CurrentNavigationFace, settlement.CurrentNavigationFace, party.Position2D, settlement.Position2D, 0.1f, path, party.GetExclusionFaceIds());
+        }
+
+        public static bool IsSettlementRestricted(this MobileParty party, Settlement settlement)
+        {
+            var behavior = Campaign.Current.GetCampaignBehavior<RestrictionZoneCampaignBehavior>();
+            if (behavior != null)
+            {
+                return behavior.IsNavMeshFaceIdRestrictedForParty(settlement.CurrentNavigationFace.FaceGroupIndex, party);
+            }
+            return false;
+        }
+
+        public static int[] GetExclusionFaceIds(this MobileParty party)
+        {
+            List<int> result = [];
+            var behavior = Campaign.Current.GetCampaignBehavior<RestrictionZoneCampaignBehavior>();
+            if(behavior != null)
+            {
+                result.AddRange(behavior.GetExclusionFaceIdsFor(party));
+            }
+            if (result.CountQ() > 0) return result.ToArray();
+            return null;
         }
     }
 }
