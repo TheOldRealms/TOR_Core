@@ -11,7 +11,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.DamageSystem;
-using TOR_Core.BattleMechanics.Jousting;
+using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -48,9 +48,8 @@ namespace TOR_Core.Models
         {
             var result = base.GetWeaponInaccuracy(agent, weapon, weaponSkill);
             ExplainedNumber accuracy = new ExplainedNumber(result, false, null);
-            var character = agent.Character as CharacterObject;
             var captain = agent.GetPartyLeaderCharacter();
-            if (character != null)
+            if (agent.Character is CharacterObject character)
             {
                 if (weapon.IsRangedWeapon && weapon.RelevantSkill == TORSkills.GunPowder)
                 {
@@ -143,8 +142,7 @@ namespace TOR_Core.Models
             var result = base.GetEffectiveSkill(agent, skill);
             ExplainedNumber resultNumber = new ExplainedNumber(result, false, null);
 
-            var partyBase = ((agent.Origin != null) ? agent.Origin.BattleCombatant : null) as PartyBase;
-            if (partyBase != null && partyBase.IsMobile)
+            if ((agent.Origin?.BattleCombatant) is PartyBase partyBase && partyBase.IsMobile)
             {
                 var mobileParty = partyBase.MobileParty;
                 if (mobileParty != null)
@@ -170,53 +168,53 @@ namespace TOR_Core.Models
                         {
                             var choices = Agent.Main.GetHero().GetAllCareerChoices();
 
-                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("ErrantryWarPassive3") && agent.Character.IsKnightUnit())
+                            if ((skill == DefaultSkills.OneHanded || skill == DefaultSkills.TwoHanded) && choices.Contains("ErrantryWarPassive3") && agent.Character.IsKnightUnit())
                             {
                                 var choice = TORCareerChoices.GetChoice("ErrantryWarPassive3");
-                                if(choice.Passive!=null)
-                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                                if (choice.Passive != null)
+                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                             }
-                            
-                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded)&& choices.Contains("SwampRiderPassive4") && agent.Character.IsKnightUnit())
+
+                            if ((skill == DefaultSkills.OneHanded || skill == DefaultSkills.TwoHanded) && choices.Contains("SwampRiderPassive4") && agent.Character.IsKnightUnit())
                             {
                                 var choice = TORCareerChoices.GetChoice("SwampRiderPassive4");
-                                if(choice.Passive!=null)
-                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                                if (choice.Passive != null)
+                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                             }
-                            
-                            if (skill == DefaultSkills.Polearm&&choices.Contains("EnhancedHorseCombatPassive4") && agent.Character.IsKnightUnit())
+
+                            if (skill == DefaultSkills.Polearm && choices.Contains("EnhancedHorseCombatPassive4") && agent.Character.IsKnightUnit())
                             {
                                 var choice = TORCareerChoices.GetChoice("EnhancedHorseCombatPassive4");
-                                if(choice.Passive!=null)
-                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                                if (choice.Passive != null)
+                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                             }
-                            
-                            if (skill == DefaultSkills.Polearm&&choices.Contains("CurseOfMousillonPassive2") && agent.Character.IsKnightUnit())
+
+                            if (skill == DefaultSkills.Polearm && choices.Contains("CurseOfMousillonPassive2") && agent.Character.IsKnightUnit())
                             {
                                 var choice = TORCareerChoices.GetChoice("CurseOfMousillonPassive2");
-                                if(choice.Passive!=null)
-                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                                if (choice.Passive != null)
+                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                             }
-                            
-                            if ((skill == DefaultSkills.OneHanded||skill == DefaultSkills.TwoHanded||skill == DefaultSkills.Polearm)&& choices.Contains("NightRider2") && (agent.Character.IsUndead()||agent.Character.IsVampire()))
+
+                            if ((skill == DefaultSkills.OneHanded || skill == DefaultSkills.TwoHanded || skill == DefaultSkills.Polearm) && choices.Contains("NightRider2") && (agent.Character.IsUndead() || agent.Character.IsVampire()))
                             {
                                 var choice = TORCareerChoices.GetChoice("NightRider2");
-                                if(choice.Passive!=null)
-                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                                if (choice.Passive != null)
+                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                             }
-                            
-                            if ((skill == DefaultSkills.Bow||skill == DefaultSkills.Throwing || skill == DefaultSkills.Crossbow || skill == TORSkills.GunPowder)&& choices.Contains("NoRestAgainstEvilPassive2"))
+
+                            if ((skill == DefaultSkills.Bow || skill == DefaultSkills.Throwing || skill == DefaultSkills.Crossbow || skill == TORSkills.GunPowder) && choices.Contains("NoRestAgainstEvilPassive2"))
                             {
                                 var choice = TORCareerChoices.GetChoice("NoRestAgainstEvilPassive2");
-                                if(choice.Passive!=null)
-                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                                if (choice.Passive != null)
+                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                             }
-                            
+
                             if (skill == DefaultSkills.Bow && choices.Contains("EyeOfTheHunterPassive3"))
                             {
                                 var choice = TORCareerChoices.GetChoice("EyeOfTheHunterPassive3");
-                                if(choice.Passive!=null)
-                                    resultNumber.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                                if (choice.Passive != null)
+                                    resultNumber.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                             }
                         }
                     }
@@ -416,10 +414,7 @@ namespace TOR_Core.Models
 
         public override float GetMaxCameraZoom(Agent agent)
         {
-            if (_crosshairBehavior == null)
-            {
-                _crosshairBehavior = Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();
-            }
+            _crosshairBehavior ??= Mission.Current.GetMissionBehavior<CustomCrosshairMissionBehavior>();
 
             if (_crosshairBehavior != null && _crosshairBehavior.CurrentCrosshair is SniperScope && _crosshairBehavior.CurrentCrosshair.IsVisible)
             {
@@ -446,13 +441,11 @@ namespace TOR_Core.Models
 
         public AgentPropertyContainer AddPerkEffectsToAgentPropertyContainer(Agent agent, PropertyMask mask, AttackTypeMask attackMask, AgentPropertyContainer container)
         {
-            
             var proportions = container.DamageProportions;
             var damageamps = container.DamagePercentages;
             var damagebonuses = container.AdditionalDamagePercentages;
             var resistances = container.ResistancePercentages;
 
-            var agentCharacter = agent.Character as CharacterObject;
             var agentCaptain = agent.GetCaptainCharacter();
             var agentLeader = agent.GetPartyLeaderCharacter();
             var agentParty = agent.GetOriginMobileParty();
@@ -467,7 +460,7 @@ namespace TOR_Core.Models
 
             var wieldedItem = agent.WieldedWeapon.Item;
 
-            if (agentCharacter != null)
+            if (agent.Character is CharacterObject agentCharacter)
             {
                 if (mask == PropertyMask.Attack || mask == PropertyMask.All)
                 {

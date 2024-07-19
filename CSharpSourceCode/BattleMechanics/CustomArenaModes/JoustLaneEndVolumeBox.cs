@@ -8,7 +8,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Missions;
 
-namespace TOR_Core.BattleMechanics.Jousting
+namespace TOR_Core.BattleMechanics.CustomArenaModes
 {
     public class JoustLaneEndVolumeBox : MissionObject
     {
@@ -30,7 +30,7 @@ namespace TOR_Core.BattleMechanics.Jousting
         {
             if(_missionController != null && _teamIndex >= 0 && _missionController.CurrentState == JoustFightMissionController.JoustFightState.MountedCombat)
             {
-                MBList<Agent> agents = new MBList<Agent>();
+                MBList<Agent> agents = [];
                 agents = Mission.Current.GetNearbyAgents(GameEntity.GetGlobalFrame().origin.AsVec2, 7, agents);
                 if (agents.Any(x => x.Team.TeamIndex == _teamIndex))
                 {

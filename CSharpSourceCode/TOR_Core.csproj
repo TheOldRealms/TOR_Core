@@ -432,15 +432,17 @@
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
     <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestAgentController.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestTournamentGame.cs" />
     <Compile Include="BattleMechanics\CustomCrosshairMissionBehavior.cs" />
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\DualWield\DualWieldAgentComponent.cs" />
     <Compile Include="BattleMechanics\DualWield\DualWieldMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Jousting\JoustLaneEndVolumeBox.cs" />
-    <Compile Include="BattleMechanics\Jousting\JoustTournamentBehavior.cs" />
-    <Compile Include="BattleMechanics\Jousting\JoustTournamentGame.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\JoustLaneEndVolumeBox.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\CustomTournamentBehaviors.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\JoustTournamentGame.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleMissionLogic.cs" />
     <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
@@ -664,6 +666,7 @@
     <Compile Include="Items\TorImageIdentifierWidget.cs" />
     <Compile Include="Items\TorItemTraitVM.cs" />
     <Compile Include="Items\WeaponEffectMissionLogic.cs" />
+    <Compile Include="Missions\ArcheryContestMissionController.cs" />
     <Compile Include="Missions\GraveyardFightMissionController.cs" />
     <Compile Include="Missions\InkDuelFightMissionController.cs" />
     <Compile Include="Missions\JoustFightMissionController.cs" />
@@ -734,6 +737,7 @@
     <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />
+    <Compile Include="Utilities\TOREntityRotator.cs" />
     <Compile Include="Utilities\TOREquipmentHelper.cs" />
     <Compile Include="Utilities\TORCampaignEvents.cs" />
     <Compile Include="Utilities\TORExtendedInfoHelper.cs" />
