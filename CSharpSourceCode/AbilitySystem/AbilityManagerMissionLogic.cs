@@ -769,8 +769,10 @@ namespace TOR_Core.AbilitySystem
                 }
 
                 if (!(Game.Current.GameType is Campaign)) return;
-                if (hero.HasAnyCareer() && hero.HasCareerChoice("ArchLectorPassive1")) return;
-                Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
+                if (hero.HasAnyCareer() && hero.HasCareerChoice("ArchLectorPassive1"))
+                {
+                    Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
+                }
             }
         }
 
