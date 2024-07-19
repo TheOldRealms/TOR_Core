@@ -847,10 +847,10 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 2;
             });
             
-            _magicOfAthelLoren.Initialize("Magic of Athel Loren", TORCareers.Spellsinger, 2, (Hero hero, out string text) =>
+            _magicOfAthelLoren.Initialize("Magic of Athel Loren", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 2";
-                return hero.Clan.Tier >= 2;
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
             });
           
             _furyOfTheForest.Initialize("Fury of the Forest", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>

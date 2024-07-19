@@ -124,7 +124,17 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
                 }
             });
         
-        _pathShapingKeystone.Initialize(CareerID, "Every spawned unit heals 1 HP for all heroes. Ability scales with Medicine", "PathShaping", true,
+        _pathShapingKeystone.Initialize(CareerID, "Upon casting, all forest spirits are moving faster for 10 seconds", "PathShaping", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+            },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
+        
+        _treeSingingKeystone.Initialize(CareerID, "Charge is increased by 50%. +5 base troops for summoning.", "TreeSinging", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+            },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
+        
+        _vitalSurgeKeystone.Initialize(CareerID, "Every spawned unit heals 1 HP for all heroes. Ability scales with Medicine", "VitalSurge", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -137,7 +147,7 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
                 }
             });
         
-        _vitalSurgeKeystone.Initialize(CareerID, "Every spawned unit heals 1 HP for all heroes. Ability scales with Medicine", "VitalSurge", true,
+        _heartOfTheTreeKeystone.Initialize(CareerID, "Treespirit attacks charge Career Ability. Ability scales with Leadership", "VitalSurge", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -145,10 +155,25 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "GreaterHarbinger",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Medicine}, 0.0005f),
+                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership}, 0.0005f),
                     MutationType = OperationType.Add
                 }
             });
+        
+        _arielsBlessingKeystone.Initialize(CareerID, "Treespirit attacks charge Career Ability. Ability scales with Leadership", "VitalSurge", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "GreaterHarbinger",
+                    PropertyName = "ScaleVariable1",
+                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith}, 0.0005f),
+                    MutationType = OperationType.Add
+                }
+            });
+        
+
     }
 
     protected override void InitializePassives()

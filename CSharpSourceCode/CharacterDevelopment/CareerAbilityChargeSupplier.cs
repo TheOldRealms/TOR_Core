@@ -339,6 +339,21 @@ namespace TOR_Core.CharacterDevelopment
         public static float SpellsingerCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
+            if (!affectingAgent.BelongsToMainParty()) return 0;
+            if (mask == AttackTypeMask.Ranged) return 0;
+
+            var isTreeSpirit = (affectingAgent.Character as CharacterObject).IsTreeSpirit();
+            
+            
+            if (!affectingAgent.IsHero && !isTreeSpirit) return 0;
+            
+            if (mask == AttackTypeMask.Melee && isTreeSpirit)
+            {
+                if(!Hero.MainHero.HasCareerChoice("HeartOfTheTreeKeystone"))
+                {
+                    return 0;
+                }
+            }
             
             var explainedNumber = new ExplainedNumber(chargeValue);
 
