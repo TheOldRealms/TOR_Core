@@ -359,6 +359,7 @@
     <Compile Include="AbilitySystem\Scripts\TimeWarpScript.cs" />
     <Compile Include="AbilitySystem\Scripts\VortexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\WindScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\WrathOfTheWoodScript.cs" />
     <Compile Include="AbilitySystem\SeekerController.cs" />
     <Compile Include="AbilitySystem\SeekerParameters.cs" />
     <Compile Include="AbilitySystem\CareerAbilityHUD_VM.cs" />

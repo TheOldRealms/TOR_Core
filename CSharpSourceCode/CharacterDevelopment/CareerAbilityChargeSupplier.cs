@@ -334,5 +334,20 @@ namespace TOR_Core.CharacterDevelopment
             
             return explainedNumber.ResultNumber;
         }
+        
+        
+        public static float SpellsingerCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        {
+            if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
+            
+            var explainedNumber = new ExplainedNumber(chargeValue);
+
+            if (Hero.MainHero.HasCareerChoice("TreeSingingKeystone"))
+            {
+                explainedNumber.AddFactor(0.5f);
+            }
+            
+            return explainedNumber.ResultNumber;
+        }
     }
 }

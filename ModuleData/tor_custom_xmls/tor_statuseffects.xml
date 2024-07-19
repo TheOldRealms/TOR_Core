@@ -347,6 +347,12 @@
 		base_effect_value="10"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate
+		id="path_shaping_buff" 
+		do_not_attach_to_agent_skeleton="true"
+		particle_id="regrowth_heal"
+		base_effect_value="0.5"
+		type="MovementManipulation"/>
+	<StatusEffectTemplate
 		id="drain_life_dot"
 		particle_id="drain_life"
 		do_not_attach_to_agent_skeleton="true"

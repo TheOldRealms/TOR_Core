@@ -783,6 +783,21 @@
 		<ImbuedStatusEffect>greater_harbinger_debuff</ImbuedStatusEffect>
 	  </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="summon_dryads" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="1" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0"
+		ImbuedStatusEffectDuration="1" 
+            TroopIdToSummon="tor_we_dryad"
+            NumberToSummon="3">
+	  </TriggeredEffectTemplate>
+	  
       <TriggeredEffectTemplate StringID="summon_kandorak" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 

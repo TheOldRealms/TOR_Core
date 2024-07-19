@@ -111,7 +111,7 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
 
     protected override void InitializeKeyStones()
     {
-        _spellSingerRoot.Initialize(CareerID, "Summon a champion that the necromancer take control of. The Champion loses every 2 seconds 5 health points. For every 3 points in spell casting skill the champion gains 1 health point. Charging: applying spell- damage or healing. Alternatively, Let undead units inflict damage.", null, true,
+        _spellSingerRoot.Initialize(CareerID, "Calls treespirits of the surouding forests. Every point in Spellcraft increases the chance by 0.05% additional treespirits join the combat.", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -119,7 +119,33 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "GreaterHarbinger",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.33f),
+                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.0005f),
+                    MutationType = OperationType.Add
+                }
+            });
+        
+        _pathShapingKeystone.Initialize(CareerID, "Every spawned unit heals 1 HP for all heroes. Ability scales with Medicine", "PathShaping", true,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "GreaterHarbinger",
+                    PropertyName = "ScaleVariable1",
+                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Medicine}, 0.0005f),
+                    MutationType = OperationType.Add
+                }
+            });
+        
+        _vitalSurgeKeystone.Initialize(CareerID, "Every spawned unit heals 1 HP for all heroes. Ability scales with Medicine", "VitalSurge", true,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "GreaterHarbinger",
+                    PropertyName = "ScaleVariable1",
+                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Medicine}, 0.0005f),
                     MutationType = OperationType.Add
                 }
             });
