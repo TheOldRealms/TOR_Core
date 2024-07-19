@@ -510,8 +510,6 @@
     <Compile Include="CampaignMechanics\Religion\ReligionEncyclopediaPage.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionObject.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionObjectHelper.cs" />
-    <Compile Include="CampaignMechanics\RestrictionZone\RestrictionZone.cs" />
-    <Compile Include="CampaignMechanics\RestrictionZone\RestrictionZoneCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingActivities.cs" />
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingHelpers.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />

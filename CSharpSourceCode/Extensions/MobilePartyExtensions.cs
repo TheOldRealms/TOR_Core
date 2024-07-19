@@ -1,16 +1,11 @@
-using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
-using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.RaidingParties;
-using TOR_Core.CampaignMechanics.RestrictionZone;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
@@ -179,34 +174,6 @@ namespace TOR_Core.Extensions
                 if (hero.HasKnownLore(lorename)) return true;
             }
             return false;
-        }
-
-        public static bool CanReachSettlement(this MobileParty party, Settlement settlement)
-        {
-            var path = new NavigationPath();
-            return Campaign.Current.MapSceneWrapper.GetPathBetweenAIFaces(party.CurrentNavigationFace, settlement.CurrentNavigationFace, party.Position2D, settlement.Position2D, 0.1f, path, party.GetExclusionFaceIds());
-        }
-
-        public static bool IsSettlementRestricted(this MobileParty party, Settlement settlement)
-        {
-            var behavior = Campaign.Current.GetCampaignBehavior<RestrictionZoneCampaignBehavior>();
-            if (behavior != null)
-            {
-                return behavior.IsNavMeshFaceIdRestrictedForParty(settlement.CurrentNavigationFace.FaceGroupIndex, party);
-            }
-            return false;
-        }
-
-        public static int[] GetExclusionFaceIds(this MobileParty party)
-        {
-            List<int> result = [];
-            var behavior = Campaign.Current.GetCampaignBehavior<RestrictionZoneCampaignBehavior>();
-            if(behavior != null)
-            {
-                result.AddRange(behavior.GetExclusionFaceIdsFor(party));
-            }
-            if (result.CountQ() > 0) return result.ToArray();
-            return null;
         }
     }
 }

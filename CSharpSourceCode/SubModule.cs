@@ -39,13 +39,11 @@ using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
 using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Diplomacy;
-using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.Religion;
-using TOR_Core.CampaignMechanics.RestrictionZone;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.SkillBooks;
 using TOR_Core.CampaignMechanics.SpellTrainers;
@@ -155,7 +153,6 @@ namespace TOR_Core
                 starter.AddBehavior(new TORFactionDiscontinuationCampaignBehavior());
                 starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
                 starter.AddBehavior(new ServeAsAHirelingCampaignBehavior());
-                starter.AddBehavior(new RestrictionZoneCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
