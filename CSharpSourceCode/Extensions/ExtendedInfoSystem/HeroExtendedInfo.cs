@@ -131,7 +131,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
-        public List<string> AllAbilites
+        public List<string> AllAbilities
         {
             get
             {
@@ -173,7 +173,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             get
             {
                 if (_selectedAbilities.Count > 0) return _selectedAbilities;
-                else return AllAbilites;
+                else return AllAbilities;
             }
         }
 
@@ -200,7 +200,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public void ToggleSelectedAbility(string abilityId)
         {
             if (IsAbilitySelected(abilityId)) RemoveSelectedAbility(abilityId);
-            else if(AllAbilites.Contains(abilityId)) AddSelectedAbility(abilityId);
+            else if(AllAbilities.Contains(abilityId)) AddSelectedAbility(abilityId);
         }
 
         public bool IsAbilitySelected(string abilityId)
@@ -222,7 +222,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         }
         public void RemoveAllPrayers()
         {
-            var prayers = AllAbilites.Where(x => AbilityFactory.GetTemplate(x).AbilityType == AbilityType.Prayer);
+            var prayers = AllAbilities.Where(x => AbilityFactory.GetTemplate(x).AbilityType == AbilityType.Prayer);
 
 
             foreach (var prayer in prayers)
@@ -235,7 +235,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             if (LoreObject.GetLore(loreId) != null && _knownLores.Contains(loreId))
             {
-                foreach (var abilityID in AllAbilites)
+                foreach (var abilityID in AllAbilities)
                 {
                     var ability = AbilityFactory.GetTemplate(abilityID);
                     if (ability.BelongsToLoreID!=loreId)continue;
@@ -268,7 +268,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private void EnsureKnownLores()
         {
             List<AbilityTemplate> list = [];
-            foreach(var abilityId in AllAbilites)
+            foreach(var abilityId in AllAbilities)
             {
                 var ability = AbilityFactory.GetTemplate(abilityId);
                 if (ability != null && ability.IsSpell) list.Add(ability);

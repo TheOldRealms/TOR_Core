@@ -28,6 +28,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _warriorPriestUlric;
         private CareerObject _imperialMagister;
         private CareerObject _waywatcher;
+        private CareerObject _spellsinger;
 
         public TORCareers()
         {
@@ -65,10 +66,12 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject ImperialMagister => Instance._imperialMagister;
         
         public static CareerObject Waywatcher => Instance._waywatcher;
+        
+        public static CareerObject Spellsinger => Instance._spellsinger;
 
         private void RegisterAll()
         {
-            _allCareers = new MBReadOnlyList<CareerObject>();
+            
             _grailDamsel = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailDamsel"));
             _grailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailKnight"));
             _minorVampire = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("MinorVampire"));
@@ -82,20 +85,25 @@ namespace TOR_Core.CharacterDevelopment
             _warriorPriestUlric = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("WarriorPriestUlric"));
             _imperialMagister = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("ImperialMagister"));
             _waywatcher = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Waywatcher"));
-
-            _allCareers.Add(_grailKnight);
-            _allCareers.Add(_warriorPriest);
-            _allCareers.Add(_minorVampire);
-            _allCareers.Add(_bloodKnight);
-            _allCareers.Add(_mercenary);
-            _allCareers.Add(_grailDamsel);
-            _allCareers.Add(_necromancer);
-            _allCareers.Add(_witchHunter);
-            _allCareers.Add(_blackGrailKnight);
-            _allCareers.Add(_necrarch);
-            _allCareers.Add(_warriorPriestUlric);
-            _allCareers.Add(_imperialMagister);
-            _allCareers.Add(_waywatcher);
+            _spellsinger = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Spellsinger"));
+            
+            _allCareers =
+            [
+                _grailKnight,
+                _warriorPriest,
+                _minorVampire,
+                _bloodKnight,
+                _mercenary,
+                _grailDamsel,
+                _necromancer,
+                _witchHunter,
+                _blackGrailKnight,
+                _necrarch,
+                _warriorPriestUlric,
+                _imperialMagister,
+                _waywatcher,
+                _spellsinger
+            ];
         }
 
         private void InitializeAll()
@@ -113,6 +121,7 @@ namespace TOR_Core.CharacterDevelopment
             _warriorPriestUlric.Initialize("Warrior Priest of Ulric", null, "AxeOfUlric", CareerAbilityChargeSupplier.WarriorPriestUlricCharge, 400, typeof(AxeOfUlricScript));
             _imperialMagister.Initialize("Imperial Magister", null, "ArcaneConduit", null, 120, typeof(ArcaneConduit));
             _waywatcher.Initialize("Waywatcher", null, "ArrowOfKurnous",CareerAbilityChargeSupplier.WaywatcherCareerCharge, 800, typeof(ArrowOfKurnousScript));
+            _spellsinger.Initialize("Spellsinger", null, "WrathOfTheWood",CareerAbilityChargeSupplier.SpellsingerCareerCharge, 1000, typeof(WrathOfTheWoodScript));
         }
     }
 }

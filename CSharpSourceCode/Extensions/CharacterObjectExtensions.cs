@@ -141,6 +141,11 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("elf");
         }
 
+        public static bool IsTreeSpirit(this CharacterObject characterObject)
+        {
+            return characterObject.Culture.StringId == TORConstants.Cultures.ASRAI  && !characterObject.IsElf();
+        }
+
         public static bool IsKnightUnit(this BasicCharacterObject characterObject)
         {
             return  !characterObject.IsHero&&characterObject.IsMounted&&IsEliteTroop(characterObject);

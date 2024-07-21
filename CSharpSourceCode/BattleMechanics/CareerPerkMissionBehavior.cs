@@ -377,6 +377,11 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
+                if (affectorAgent.HasAttribute("WindsLink"))
+                {
+                    Hero.MainHero.AddWindsOfMagic(1);
+                }
+
                 if (TORSpellBlowHelper.IsSpellBlow(blow))
                 {
                     if (Hero.MainHero.HasCareerChoice("FlameOfUlricPassive4"))

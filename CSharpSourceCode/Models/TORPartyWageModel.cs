@@ -23,6 +23,7 @@ namespace TOR_Core.Models
         public override int GetCharacterWage(CharacterObject character)
         {
             if (character.IsUndead()) return 0;
+            if (character.IsTreeSpirit()) return 0;
             var value = 0;
             value = GetWageForTier(character.Tier);
 

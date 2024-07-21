@@ -240,8 +240,12 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             "Communicate with the Tree spirits around the oak.",
             OakOfAgeMenuInit);
         
-        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "{tor_custom_settlement_menu_cursed_site_ghost_str}Commune with the forest.", 
-             (_) => CanBindTreeSpirits(), (MenuCallbackArgs args) => GameMenu.SwitchToMenu("oak_of_ages_tree_spirits_menu_bind_dryads"));
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "{tor_custom_settlement_menu_cursed_site_ghost_str}Commune with the forest. 100 {FORESTHARMONY}", 
+             (args) => CanBindTreeSpirits() && CanBindDryads(args), _ =>
+             {
+                 Hero.MainHero.AddCustomResource("ForestHarmony",-100);
+                 GameMenu.SwitchToMenu("oak_of_ages_tree_spirits_menu_bind_dryads");
+             });
 
         
         starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "Rouse Treemen. 800 {FORESTHARMONY}", args => CanBindTreeSpirits()&& CanBindTreeman(args),
@@ -301,13 +305,22 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         bool CanBindTreeSpirits()
         {
             var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-
+            
+            
+            
             return heroes.Any(hero => hero.IsSpellSinger());
         }
 
         bool CanBindTreeman(MenuCallbackArgs args)
         {
             args.IsEnabled = Hero.MainHero.GetCultureSpecificCustomResourceValue() >= TreemanPrice;
+
+            return true;
+        }
+        
+        bool CanBindDryads(MenuCallbackArgs args)
+        {
+            args.IsEnabled = Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 100;
 
             return true;
         }
