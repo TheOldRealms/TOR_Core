@@ -21,7 +21,16 @@ public class WrathOfTheWoodScript : CareerAbilityScript
     protected override void OnInit()
     {
         base.OnInit();
+
+
         
+        
+
+    }
+
+    protected override void OnBeforeTick(float dt)
+    {
+        if(spawned) return;
         
         var count = 1;
 
@@ -31,7 +40,9 @@ public class WrathOfTheWoodScript : CareerAbilityScript
         }
         while (count <= maximumSummons)
         {
-            if (MBRandom.RandomFloat < 0.25f)
+            var threshold = this.Ability.Template.ScaleVariable1;
+            TORCommon.Say(threshold.ToString());
+            if (MBRandom.RandomFloat < threshold)
             {
                 count++;
             }
@@ -56,21 +67,28 @@ public class WrathOfTheWoodScript : CareerAbilityScript
                 }
             }
         }
-    }
-
-    protected override void OnBeforeTick(float dt)
-    {
-        if(spawned) return;
 
         var spawnCounter = 0;
         var targetPosition = CasterAgent.Frame.Advance(-10).origin;
         foreach (var treeSpirit in treeSpiritUnitIds)
         {
-
-            for (int i = 0; i < treeSpirit.count; i++)
+            var unitCount = treeSpirit.count;
+            AgentBuildData data = null;
+            if (treeSpirit.id == treemanID &&  !Mission.Current.IsFieldBattle)
+            {
+                 data = TORSummonHelper.GetAgentBuildData(CasterAgent,dryadID);
+                 unitCount +=25;
+            }
+            else
+            { 
+                data = TORSummonHelper.GetAgentBuildData(CasterAgent, treeSpirit.id); 
+            }
+            
+            
+            for (int i = 0; i < unitCount; i++)
             {
                 targetPosition = Mission.Current.GetRandomPositionAroundPoint(targetPosition, 0.1f, 2.5f);
-                var data = TORSummonHelper.GetAgentBuildData(CasterAgent, treeSpirit.id); 
+                
                 TORSummonHelper.SpawnAgent(data, targetPosition);
                 spawnCounter++;
             }

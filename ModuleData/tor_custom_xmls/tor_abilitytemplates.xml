@@ -2156,7 +2156,7 @@
       Name="{=soul_quench_label_str}Soul Quench" 
       SpriteName="gehennasgoldenglobe_icon" 
       CoolDown="30" 
-      WindsOfMagicCost="8" 
+      WindsOfMagicCost="15" 
       BaseMisCastChance="0.05" 
       Duration="100" 
       Radius="0.4" 

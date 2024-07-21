@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TOR_Core.CampaignMechanics.Choices;
 using TaleWorlds.Core;
@@ -117,16 +118,24 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
                 new CareerChoiceObject.MutationObject()
                 {
                     MutationTargetType = typeof(AbilityTemplate),
-                    MutationTargetOriginalId = "GreaterHarbinger",
+                    MutationTargetOriginalId = "WrathOfTheWood",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.0005f),
+                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.001f),
                     MutationType = OperationType.Add
                 }
             });
         
-        _pathShapingKeystone.Initialize(CareerID, "Upon casting, all forest spirits are moving faster for 10 seconds", "PathShaping", false,
+        _pathShapingKeystone.Initialize(CareerID, "Upon casting, all forest spirits are moving faster for 10 seconds. Ability scales with Scouting", "PathShaping", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "WrathOfTheWood",
+                    PropertyName = "ScaleVariable1",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Scouting}, 0.001f),
+                    MutationType = OperationType.Add
+                }
             },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
         
         _treeSingingKeystone.Initialize(CareerID, "Charge is increased by 50%. +5 base troops for summoning.", "TreeSinging", false,
@@ -140,38 +149,52 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
                 new CareerChoiceObject.MutationObject()
                 {
                     MutationTargetType = typeof(AbilityTemplate),
-                    MutationTargetOriginalId = "GreaterHarbinger",
+                    MutationTargetOriginalId = "WrathOfTheWood",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Medicine}, 0.0005f),
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Medicine}, 0.001f),
                     MutationType = OperationType.Add
                 }
             });
         
-        _heartOfTheTreeKeystone.Initialize(CareerID, "Treespirit attacks charge Career Ability. Ability scales with Leadership", "VitalSurge", false,
+        _heartOfTheTreeKeystone.Initialize(CareerID, "Treespirit attacks charge Career Ability. Ability scales with Leadership", "HeartOfTheTree", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new()
+                {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "WrathOfTheWood",
+                    PropertyName = "ScaleVariable1",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership}, 0.001f),
+                    MutationType = OperationType.Add
+                }
+            });
+        
+        _arielsBlessingKeystone.Initialize(CareerID, "Ability starts charged. Ability scales with Faith", "ArielsBlessing", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
                 {
                     MutationTargetType = typeof(AbilityTemplate),
-                    MutationTargetOriginalId = "GreaterHarbinger",
+                    MutationTargetOriginalId = "WrathOfTheWood",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership}, 0.0005f),
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith}, 0.001f),
                     MutationType = OperationType.Add
                 }
             });
         
-        _arielsBlessingKeystone.Initialize(CareerID, "Treespirit attacks charge Career Ability. Ability scales with Leadership", "VitalSurge", false,
+        
+        _furyOfTheForestKeystone.Initialize(CareerID, "Call 1 Treeman with ability (or 10 dryads in close quarter Missions)", "FuryOfTheForest", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
                 {
-                    MutationTargetType = typeof(AbilityTemplate),
-                    MutationTargetOriginalId = "GreaterHarbinger",
-                    PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith}, 0.0005f),
-                    MutationType = OperationType.Add
-                }
-            });
+                MutationTargetType = typeof(AbilityTemplate),
+                MutationTargetOriginalId = "RighteousFury",
+                PropertyName = "TriggeredEffects",
+                PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"summon_treeman"}).ToList(),
+                MutationType = OperationType.Replace
+            },
+            },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
         
 
     }
@@ -189,7 +212,7 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
         _treeSingingPassive2.Initialize(CareerID, "Gain 25 Harmony daily.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CustomResourceGain));
         _treeSingingPassive3.Initialize(CareerID, "Upkeep for dryads units is reduced by 10%.", "TreeSinging", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.Culture.StringId == TORConstants.Cultures.ASRAI && !characterObject.IsElf()));
-        _treeSingingPassive4.Initialize(CareerID, "For every known spell increase party size by 5", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, false)); //TODO
+        _treeSingingPassive4.Initialize(CareerID, "For every known spell increase party size by 3", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, false));
         
         _vitalSurgePassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
         _vitalSurgePassive2.Initialize(CareerID, "Increases troop regeneration by 2.", "VitalSurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //TORAgentApplyDamage 29
@@ -203,7 +226,7 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
          _heartOfTheTreePassive3.Initialize(CareerID, "Upkeep for tree spirit units is reduced by 15%.", "HeartOfTheTree", false, ChoiceType.Passive, null,
              new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.Culture.StringId == TORConstants.Cultures.ASRAI && !characterObject.IsElf()));
          _heartOfTheTreePassive4.Initialize(CareerID, "Every joining friendly tree spirit unit has a 25% chance to provide 1 wind.", "HeartOfTheTree", false, ChoiceType.Passive,
-             null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); //TODO
+             null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
          
          _arielsBlessingPassive1.Initialize(CareerID, "20% extra magical melee damage.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Melee));
          _arielsBlessingPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "ArielsBlessing", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
@@ -218,10 +241,10 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
         _magicOfAthelLorenPassive4.Initialize(CareerID, "Increase hex durations by 35%.", "MagicOfAthelLoren", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35f, PassiveEffectType.DebuffDuration,true));
 
         
-        _furyOfTheForestPassive1.Initialize(CareerID, "A dark weaver provides 15% extra spell damage to all heroes.", "FuryOfTheForest", false, ChoiceType.Passive,
-            null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true)); //TODO
-        _furyOfTheForestPassive2.Initialize(CareerID, "A high weaver provides 25% extra wardsave to all heroes.", "FuryOfTheForest", false, ChoiceType.Passive,
-            null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); //TODO
+        _furyOfTheForestPassive1.Initialize(CareerID, "A Dark weaver provides 15% extra Maigcal damage to all heroes.", "FuryOfTheForest", false, ChoiceType.Passive,
+            null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Special, true));
+        _furyOfTheForestPassive2.Initialize(CareerID, "A High weaver provides 25% extra wardsave to all heroes.", "FuryOfTheForest", false, ChoiceType.Passive,
+            null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
         _furyOfTheForestPassive3.Initialize(CareerID, "Treeman Upkeep is reduced by 25%", "FuryOfTheForest", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.StringId.Contains("treeman") ));
         _furyOfTheForestPassive4.Initialize(CareerID, "35% Spell cooldown reduction.", "FuryOfTheForest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-35, PassiveEffectType.WindsCooldownReduction,true));

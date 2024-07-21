@@ -234,7 +234,7 @@ namespace TOR_Core.Extensions
         public static void AddAbility(this Hero hero, string ability)
         {
             var info = hero.GetExtendedInfo();
-            if (info != null && !info.AllAbilites.Contains(ability))
+            if (info != null && !info.AllAbilities.Contains(ability))
             {
                 info.AcquiredAbilities.Add(ability);
             }
@@ -270,7 +270,7 @@ namespace TOR_Core.Extensions
         {
             if (hero.GetExtendedInfo() != null)
             {
-                return hero.GetExtendedInfo().AllAbilites.Contains(ability);
+                return hero.GetExtendedInfo().AllAbilities.Contains(ability);
             }
             else return false;
         }

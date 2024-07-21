@@ -241,7 +241,7 @@ namespace TOR_Core.Extensions
             var character = agent.Character;
             if (hero != null)
             {
-                return hero.GetExtendedInfo().AllAbilites;
+                return hero.GetExtendedInfo().AllAbilities;
             }
             else if (character != null)
             {

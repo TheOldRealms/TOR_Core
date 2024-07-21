@@ -798,6 +798,21 @@
             NumberToSummon="3">
 	  </TriggeredEffectTemplate>
 	  
+	  <TriggeredEffectTemplate StringID="summon_treeman" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Invalid" 
+            DamageAmount="0" 
+            Radius="1" 
+            HasShockWave="false" 
+            TargetType="Friendly" 
+            DamageVariance="0"
+		ImbuedStatusEffectDuration="1" 
+            TroopIdToSummon="tor_we_treeman"
+            NumberToSummon="3">
+	  </TriggeredEffectTemplate>
+	  
       <TriggeredEffectTemplate StringID="summon_kandorak" 
             BurstParticleEffectPrefab="none" 
             SoundEffectId="none" 
@@ -888,11 +903,11 @@
             BurstParticleEffectPrefab="soul_quench_explosion" 
             SoundEffectId="none" 
             SoundEffectLength="0" 
-            DamageType="Invalid" 
-            DamageAmount="0" 
+            DamageType="Magical" 
+            DamageAmount="60" 
             Radius="5" 
             HasShockWave="false" 
-            TargetType="Friendly" 
+            TargetType="Enemy" 
             DamageVariance="0.0" 
 			ImbuedStatusEffectDuration="3" 
             ScriptNameToTrigger="none">

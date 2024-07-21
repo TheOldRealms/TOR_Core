@@ -122,7 +122,7 @@ namespace TOR_Core.Utilities
         public static string ListPlayerSpells(List<string> argumentNames) =>
             !CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType)
                 ? CampaignCheats.ErrorType
-                : AggregateOutput("Player got these spells:", Hero.MainHero.GetExtendedInfo().AllAbilites);
+                : AggregateOutput("Player got these spells:", Hero.MainHero.GetExtendedInfo().AllAbilities);
 
         [CommandLineFunctionality.CommandLineArgumentFunction("add_spells_to_player", "tor")]
         public static string AddSpells(List<string> arguments)

@@ -444,13 +444,9 @@ namespace TOR_Core.Models
             return number.ResultNumber;
         }
 
-        public AgentPropertyContainer AddPerkEffectsToAgentPropertyContainer(Agent agent, PropertyMask mask, AttackTypeMask attackMask, AgentPropertyContainer container)
+        public void AddPerkEffectsToAgentProperties(Agent agent, PropertyMask mask, AttackTypeMask attackMask, ref float[] propotions,ref  float[] damageAmps, ref float[]damageBonuses, ref float[]resistances)
         {
             
-            var proportions = container.DamageProportions;
-            var damageamps = container.DamagePercentages;
-            var damagebonuses = container.AdditionalDamagePercentages;
-            var resistances = container.ResistancePercentages;
 
             var agentCharacter = agent.Character as CharacterObject;
             var agentCaptain = agent.GetCaptainCharacter();
@@ -461,7 +457,7 @@ namespace TOR_Core.Models
             {
                 if (agentParty.HasBlessing("cult_of_manaan"))
                 {
-                    damagebonuses[(int)DamageType.Lightning] += 0.10f;
+                    damageBonuses[(int)DamageType.Lightning] += 0.10f;
                 }
             }
 
@@ -473,25 +469,25 @@ namespace TOR_Core.Models
                 {
                     if (agentCharacter.GetPerkValue(TORPerks.SpellCraft.Exchange))
                     {
-                        damagebonuses[(int)DamageType.Magical] += proportions[(int)DamageType.Physical];
+                        damageBonuses[(int)DamageType.Magical] += damageBonuses[(int)DamageType.Physical];
                     }
 
                     if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.SpellCraft.ArcaneLink))
                     {
-                        damagebonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus);
+                        damageBonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus);
                     }
 
                     if (agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Superstitious) && agentCharacter.IsReligiousUnit())
                     {
-                        damagebonuses[(int)DamageType.Physical] += (TORPerks.Faith.Superstitious.SecondaryBonus);
+                        damageBonuses[(int)DamageType.Physical] += (TORPerks.Faith.Superstitious.SecondaryBonus);
                     }
 
                     if (wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
                     {
                         if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
                         {
-                            proportions[(int)DamageType.Fire] = proportions[(int)DamageType.Physical];
-                            proportions[(int)DamageType.Physical] = 0;
+                            propotions[(int)DamageType.Fire] = propotions[(int)DamageType.Physical];
+                            propotions[(int)DamageType.Physical] = 0;
                         }
                     }
                 }
@@ -504,13 +500,18 @@ namespace TOR_Core.Models
                     }
                 }
             }
-
-            var result = new AgentPropertyContainer(proportions, damageamps, resistances, damagebonuses);
-            if (!Hero.MainHero.HasAnyCareer()) return result;
-            if (agent == Agent.Main)
+            
+            if (agent != Agent.Main)
             {
+                return;
+            }
+            
+            if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+            {
+                resistances[(int)DamageType.Fire]-=0.2f;
+            }
                 
-                var choices = Agent.Main.GetHero().GetAllCareerChoices();
+            var choices = Agent.Main.GetHero().GetAllCareerChoices();
                 
                 if(mask== PropertyMask.Attack&& attackMask == AttackTypeMask.Melee)
                 {
@@ -524,7 +525,7 @@ namespace TOR_Core.Models
                             {
                                 if (data.IsRangedWeapon)
                                 {
-                                    result.DamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                                    damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
                                 }
                             }
                         }
@@ -539,7 +540,7 @@ namespace TOR_Core.Models
                             {
                                 if (data.IsMeleeWeapon)
                                 {
-                                    result.DamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                                    damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
                                 }
                             }
                         }
@@ -556,16 +557,14 @@ namespace TOR_Core.Models
                         {
                             if (equipment[0].StringId.Contains("wolf"))
                             {
-                                result.ResistancePercentages[(int)DamageType.All] += choice.GetPassiveValue();
+                                resistances[(int)DamageType.All] += choice.GetPassiveValue();
                             }
                         }
                     }
                 }
-            }
             
             if (agent.Character.HasAttribute("NecromancerChampion"))
             {
-                var choices = Hero.MainHero.GetAllCareerChoices();
                 if(( attackMask == AttackTypeMask.Melee&& mask == PropertyMask.Attack))
                 {
                     if (agent.Controller == Agent.ControllerType.Player)
@@ -574,13 +573,13 @@ namespace TOR_Core.Models
                         if (mask == PropertyMask.Attack&&agent.Character.HasAttribute("NecromancerChampion")&&choices.Contains("LiberMortisKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("LiberMortisKeystone");
-                            result.AdditionalDamagePercentages[(int)DamageType.Physical] += choice.GetPassiveValue();
+                            damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
                         }
                 
                         if (mask == PropertyMask.Attack&&agent.Character.HasAttribute("NecromancerChampion")&&choices.Contains("BooksOfNagashKeystone"))
                         {
                             var choice = TORCareerChoices.GetChoice("BooksOfNagashKeystone");
-                            result.AdditionalDamagePercentages[(int)DamageType.Magical] += choice.GetPassiveValue();
+                            damageBonuses[(int)DamageType.Magical] += choice.GetPassiveValue();
                         }
                     }
                 }
@@ -588,13 +587,9 @@ namespace TOR_Core.Models
                 if (mask == PropertyMask.Defense&&choices.Contains("BookofWsoranKeystone"))
                 {
                     var choice = TORCareerChoices.GetChoice("BookofWsoranKeystone");
-                    result.ResistancePercentages[(int)DamageType.All]+= choice.GetPassiveValue();
+                    resistances[(int)DamageType.All]+= choice.GetPassiveValue();
                 }
             }
-            
-            
-
-            return result;
         }
     }
 }
