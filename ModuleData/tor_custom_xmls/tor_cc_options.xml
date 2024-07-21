@@ -974,8 +974,8 @@
 			<string>OneHanded</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
-		<OptionText>{=tor_cc_option_3_we_wildwood_label_str}Path of the Wild Woodranger</OptionText>
-		<OptionFlavourText>{=tor_cc_option60_text_str}Athel Loren needs protection, even from within. As a Wildwood Ranger, you swear to protect the woods from any threat.</OptionFlavourText>
+		<OptionText>{=tor_cc_option_3_we_wildwood_label_str}Path of the Warden</OptionText>
+		<OptionFlavourText>{=tor_cc_option60_text_str}Athel Loren needs protection, even from within. As a Warden, you swear to protect the woods from any threat.</OptionFlavourText>
 	</CharacterCreationOption> 
 	
 	
