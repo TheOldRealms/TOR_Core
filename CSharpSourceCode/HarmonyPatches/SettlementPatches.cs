@@ -20,6 +20,7 @@ using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -78,6 +79,18 @@ namespace TOR_Core.HarmonyPatches
         public static void SetWallLevel(ref int __result)
         {
             __result = 3;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(CaravansCampaignBehavior), "GetTradeScoreForTown")]
+        public static bool NoValueForRestrictedSettlement(ref float __result, MobileParty caravanParty, Town town)
+        {
+            if (caravanParty.Owner?.Culture?.StringId != town.Owner?.Culture?.StringId && town.Owner?.Culture?.StringId == TORConstants.Cultures.ASRAI)
+            {
+                __result = 0;
+                return false;
+            }
+            return true;
         }
 
         [HarmonyPostfix]

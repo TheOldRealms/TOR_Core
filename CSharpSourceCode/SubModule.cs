@@ -39,7 +39,6 @@ using TOR_Core.CampaignMechanics.CustomEncounterDialogs;
 using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Diplomacy;
-using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.Menagery;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <EquipmentRosters>
   <EquipmentRoster id="tor_empire_villager_template" culture="Culture.empire">
     <EquipmentSet>
@@ -2274,6 +2274,68 @@
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_asrai_tournament_template_one_participant_v1" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_asrai_tournament_template_two_participant_v1" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_asrai_tournament_template_four_participant_v1" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_conscript_template" culture="Culture.druchii">
@@ -15186,14 +15248,20 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_kurnous_2" culture="Culture.battania">
     <EquipmentSet>
-      <Equipment slot="Body" id="Item.merchants_fur_coat" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.khuzait_curved_boots" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_2h_axe_001" />
+      <Equipment slot="Body" id="Item.tor_we_head_mask_wildrider_001" />
+      <Equipment slot="Cape" id="Item.tor_we_body_armor_lord_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_shoulder_cape_lord_002" />
+      <Equipment slot="Leg" id="Item.tor_we_arm_bracers_ranger_001" />
+      <Equipment slot="Horse" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Body" id="Item.merchants_fur_coat" />
-      <Equipment slot="Gloves" id="Item.highland_gloves" />
-      <Equipment slot="Leg" id="Item.khuzait_curved_boots" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_2h_axe_001" />
+      <Equipment slot="Body" id="Item.tor_we_head_mask_wildrider_001" />
+      <Equipment slot="Cape" id="Item.tor_we_body_armor_lord_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_shoulder_cape_lord_002" />
+      <Equipment slot="Leg" id="Item.tor_we_arm_bracers_ranger_001" />
+      <Equipment slot="Horse" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_isha_2" culture="Culture.battania">

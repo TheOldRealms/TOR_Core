@@ -4,7 +4,7 @@ using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.BattleMechanics.Jousting;
+using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
@@ -41,12 +41,13 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(SlaverCampComponent), 19);
             AddClassDefinition(typeof(OakOfAgesComponent), 20);
             AddClassDefinition(typeof(WorldRootsComponent), 21);
+            AddClassDefinition(typeof(ArcheryContestTournamentGame), 22);
         }
 
         protected override void DefineEnumTypes()
         {
-            AddEnumDefinition(typeof(EngineerQuestStates), 22);
-            AddEnumDefinition(typeof(SpellCastingLevel), 23);
+            AddEnumDefinition(typeof(EngineerQuestStates), 23);
+            AddEnumDefinition(typeof(SpellCastingLevel), 24);
         }
 
         protected override void DefineContainerDefinitions()

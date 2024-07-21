@@ -1,9 +1,12 @@
-﻿using System;
+﻿using SandBox;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.Engine;
+using TaleWorlds.Library;
+using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Utilities
 {
@@ -11,12 +14,25 @@ namespace TOR_Core.Utilities
     {
         public Material SourceMaterial;
         public Material TargetMaterial;
+        public bool UseMaterialNamePatternMatching;
+        public int TextureScale;
+        public SimpleButton Reverse;
         public SimpleButton SwitchAll;
 
         protected override void OnEditorVariableChanged(string variableName)
         {
             base.OnEditorVariableChanged(variableName);
             if (variableName == "SwitchAll") DoSwap();
+            if (variableName == "Reverse") DoReverse();
+        }
+
+        private void DoReverse()
+        {
+            if (SourceMaterial == null || TargetMaterial == null) return;
+            var source = SourceMaterial;
+            var target = TargetMaterial;
+            SourceMaterial = target;
+            TargetMaterial = source;
         }
 
         private void DoSwap()
@@ -37,9 +53,10 @@ namespace TOR_Core.Utilities
                             {
                                 var mesh = multiMesh.GetMeshAtIndex(y);
                                 var mat = mesh.GetMaterial();
-                                if(mat == SourceMaterial || mat.Name.Contains(SourceMaterial.Name))
+                                if(mat == SourceMaterial || (UseMaterialNamePatternMatching && mat.Name.Contains(SourceMaterial.Name)))
                                 {
                                     mesh.SetMaterial(TargetMaterial);
+                                    mesh.SetVectorArgument2(TextureScale, TextureScale, 0, 0);
                                 }
                             }
                         }

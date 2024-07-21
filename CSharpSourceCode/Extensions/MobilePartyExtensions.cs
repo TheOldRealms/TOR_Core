@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -34,10 +32,7 @@ namespace TOR_Core.Extensions
         public static void AddBlessingToParty(this MobileParty party, string blessingId)
         { 
             var model = Campaign.Current.Models.GetFaithModel();
-            if (model != null)
-            {
-                model.AddBlessingToParty(party,blessingId);
-            }
+            model?.AddBlessingToParty(party,blessingId);
         }
 
         public static bool HasAnyActiveBlessing(this MobileParty party)
@@ -69,8 +64,7 @@ namespace TOR_Core.Extensions
             var settlementFound = TORCommon.FindNearestSettlement(party, TORConstants.DEFAULT_CURSE_RADIUS, x => x.SettlementComponent is CursedSiteComponent);
             if (settlementFound == null) return false;
 
-            var cursedSite = settlementFound.SettlementComponent as CursedSiteComponent;
-            if (cursedSite == null) return false;
+            if (settlementFound.SettlementComponent is not CursedSiteComponent cursedSite) return false;
 
             if (party.LeaderHero?.GetDominantReligion() == cursedSite.Religion) return false;
 
@@ -79,8 +73,7 @@ namespace TOR_Core.Extensions
 
         public static List<ItemRosterElement> GetArtilleryItems(this MobileParty party)
         {
-            List<ItemRosterElement> list = new List<ItemRosterElement>();
-            list.AddRange(party.ItemRoster.Where(x => x.EquipmentElement.Item.StringId.Contains("artillery")).ToList());
+            List<ItemRosterElement> list = [.. party.ItemRoster.Where(x => x.EquipmentElement.Item.StringId.Contains("artillery")).ToList()];
             return list;
         }
 
@@ -104,7 +97,7 @@ namespace TOR_Core.Extensions
 
         public static List<Hero> GetMemberHeroes(this MobileParty party)
         {
-            List<Hero> heroes = new List<Hero>();
+            List<Hero> heroes = [];
             foreach (var member in party.MemberRoster.GetTroopRoster())
             {
                 if (member.Character.HeroObject != null)

@@ -1,5 +1,8 @@
 ﻿using HarmonyLib;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.Library;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches;

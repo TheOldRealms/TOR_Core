@@ -1,11 +1,8 @@
 ﻿using SandBox;
 using SandBox.Tournaments;
-using SandBox.Tournaments.MissionLogics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
@@ -18,15 +15,14 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews;
-using TaleWorlds.ObjectSystem;
-using TOR_Core.BattleMechanics.Jousting;
+using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Missions
 {
-    public class JoustFightMissionController : MissionLogic, ITournamentGameBehavior
+    public class JoustFightMissionController(CultureObject culture) : MissionLogic, ITournamentGameBehavior
     {
-		private TournamentMatch _match;
+		private TournamentMatch _match = null;
 		private bool _isLastRound;
 		private BasicMissionTimer _endTimer;
 		private BasicMissionTimer _cheerTimer;
@@ -37,27 +33,18 @@ namespace TOR_Core.Missions
 		private GameEntity _team1FootSpawn;
 		private bool _isSimulated;
 		private bool _forceEndMatch;
-		private bool _cheerStarted;
-		private CultureObject _culture;
+		private bool _cheerStarted = false;
+		private CultureObject _culture = culture;
 		private List<TournamentParticipant> _aliveParticipants;
 		private List<TournamentTeam> _aliveTeams;
-		private List<Agent> _currentTournamentAgents;
-		private List<Agent> _currentTournamentMountAgents;
+		private List<Agent> _currentTournamentAgents = [];
+		private List<Agent> _currentTournamentMountAgents = [];
 		private MissionCameraFadeView _cameraView;
 		private JoustFightState _currentState = JoustFightState.MountedCombat;
 
 		public JoustFightState CurrentState => _currentState;
 
-		public JoustFightMissionController(CultureObject culture)
-		{
-			_match = null;
-			_culture = culture;
-			_cheerStarted = false;
-			_currentTournamentAgents = new List<Agent>();
-			_currentTournamentMountAgents = new List<Agent>();
-		}
-
-		public bool CanAgentRout(Agent agent) => false;
+        public bool CanAgentRout(Agent agent) => false;
 
 		public override void OnBehaviorInitialize()
 		{
