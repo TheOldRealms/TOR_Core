@@ -86,6 +86,11 @@ namespace TOR_Core.Extensions
         {
             return agent.GetAttributes().Contains("Undead");
         }
+        
+        public static bool IsTreeSpirit(this Agent agent)
+        {
+            return ((CharacterObject)agent.Character).IsTreeSpirit();
+        }
 
         public static bool IsDamageShruggedOff(this Agent agent, int inflictedDamge=0)
         {

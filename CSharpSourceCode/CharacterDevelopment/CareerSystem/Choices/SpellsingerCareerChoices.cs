@@ -182,6 +182,11 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
                 }
             });
         
+        _magicOfAthelLorenKeystone.Initialize(CareerID, "for 10 seconds after casting, dryad kills gain 1 Wind.", "MagicOfAthelLoren", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+            },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
+        
         
         _furyOfTheForestKeystone.Initialize(CareerID, "Call 1 Treeman with ability (or 10 dryads in close quarter Missions)", "FuryOfTheForest", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()

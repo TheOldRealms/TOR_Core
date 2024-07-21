@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -38,9 +39,14 @@ public class WrathOfTheWoodScript : CareerAbilityScript
         {
             count = 5;
         }
+
+
+        var choices = Hero.MainHero.GetAllCareerChoices().WhereQ(x => x.Contains("Keystone")).ToListQ();
+        var bonus = Mathf.Clamp(0.5f-(0.1f*choices.Count), 0f, 0.5f);
+        
         while (count <= maximumSummons)
         {
-            var threshold = this.Ability.Template.ScaleVariable1;
+            var threshold = this.Ability.Template.ScaleVariable1 + bonus;
             TORCommon.Say(threshold.ToString());
             if (MBRandom.RandomFloat < threshold)
             {
@@ -113,14 +119,21 @@ public class WrathOfTheWoodScript : CareerAbilityScript
     protected override void OnAfterTick(float dt)
     {
         base.OnAfterTick(dt);
-        
+        var treeSpirits = Mission.Current.Agents.WhereQ(x => x.Team == Agent.Main.Team && x.Character.StringId == dryadID);
         if (Hero.MainHero.HasCareerChoice("PathShapingKeystone"))
         {
-            var treespirits = Mission.Current.Agents.WhereQ(x => x.Team == Agent.Main.Team && (x.Character as CharacterObject).IsTreeSpirit());
-
-            foreach (var treespirit in treespirits)
+            foreach (var treespirit in treeSpirits)
             {
                 treespirit.ApplyStatusEffect("path_shaping_buff",null,10,true);
+                treespirit.ApplyStatusEffect("path_shaping_buff_ats",null,10,true);
+            }
+        }
+
+        if (Hero.MainHero.HasCareerChoice("MagicOfAthelLorenKeystone"))
+        {
+            foreach (var treeSpirit in treeSpirits)
+            {
+                treeSpirit.ApplyStatusEffect("magic_athel_loren_windslink",null,20,true);
             }
         }
     }

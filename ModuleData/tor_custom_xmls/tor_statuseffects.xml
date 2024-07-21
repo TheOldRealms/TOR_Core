@@ -346,12 +346,34 @@
 		particle_id="storm_of_renewal"
 		base_effect_value="10"
 		type="HealthOverTime"/>
+	
 	<StatusEffectTemplate
 		id="path_shaping_buff" 
 		do_not_attach_to_agent_skeleton="true"
 		particle_id="regrowth_heal"
-		base_effect_value="0.5"
+		base_effect_value="0.4"
 		type="MovementManipulation"/>
+		
+	<StatusEffectTemplate
+		id="path_shaping_buff_ats" 
+		do_not_attach_to_agent_skeleton="true"
+		particle_id=""
+		base_effect_value="0.3"
+		type="AttackSpeedManipulation"/>
+		
+	<StatusEffectTemplate
+		id="magic_athel_loren_windslink"
+		particle_id="breath_of_darkness"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+    	base_effect_value="0"
+		type="TemporaryAttributeOnly"
+		damage_type="Fire"
+		temporary_attribute="WindsLink">
+  	</StatusEffectTemplate>
+		
+
+		
 	<StatusEffectTemplate
 		id="drain_life_dot"
 		particle_id="drain_life"
