@@ -4713,7 +4713,7 @@
              militia_bonus="1"
              villager_party_template="PartyTemplate.we_villager_template"
              default_party_template="PartyTemplate.we_lordparty_template"
-             encounter_background_mesh="encounter_battania"
+             encounter_background_mesh="we_encounter"
              faction_banner_key="11.2.2.6296.6296.764.764.1.0.0.460.3.3.457.457.764.764.1.0.0"
              elite_caravan_party_template="PartyTemplate.we_elite_caravan_template"
              caravan_party_template="PartyTemplate.we_caravan_template"

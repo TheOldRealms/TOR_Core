@@ -6192,6 +6192,456 @@
       <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_first_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_first_2}Scarloc the Wanderer" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_second_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_1}Lady Tevaril" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_second_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_2}Lady Delynna" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_third_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_third_1}Lord Sceolan of the Hooked Blade" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_third_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_third_2}Nemeru the Spear" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_fourth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_fourth_1}Lord Thalandor Doomstar" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_fourth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_fourth_2}Lord Beldeas of Locrimere" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_fifth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_fifth_1}Lord Amadri Dawnspear" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_fifth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_fifth_2}Lord Thuralin" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_sixth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_sixth_1}Lord Edrael of Equos" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_sixth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_sixth_2}Valarion" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_seventh_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_seventh_1}Lady Draya the Nighthawk" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_seventh_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_seventh_2}Zeylin" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_eighth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_eighth_1}Lady Heggria of the Masque" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_eighth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_eighth_2}Wychewethyl the Wild" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_ninth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_ninth_1}Lord Arias" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_ninth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_ninth_2}Lady Morlanna" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_tenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_tenth_1}Lady Arda of the Parted Veil" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_tenth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_tenth_2}Naieth the Prophetess" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_eleventh_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_eleventh_1}Lord Daith" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_eleventh_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_eleventh_2}Calanoth" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_twelfth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_twelfth_1}Lord Findol" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_twelfth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_twelfth_2}Lady Evelyne" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_1}Naestra" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_1}Arahan" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0278" build="0.9769" key="00000C0FC00000007C195E719169887A6A87866254C6964354E465C93A8AC75801FF06130F627CB7000000000000000000000000000000000000000003FC0000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_lord_template" />
+      <EquipmentSet id="tor_we_glade_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Archaon" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />

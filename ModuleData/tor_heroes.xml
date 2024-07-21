@@ -347,6 +347,31 @@
   <Hero id="tor_m_lord_mousillon_first_8" faction="Faction.mousillon_clan_1" text="Pitre Fonce, also known as the Madman of Mousillon, the very same who commanded the Nightguard, has returned from the dead to serve the Serpent of Mousillon on his Black Crusade against the noblemen of fair Bretonnia." />
   <Hero id="tor_m_lord_mousillon_first_9" faction="Faction.mousillon_clan_1" text="Commanded by Pitre Fonce, the Black Duke led the army of the Restless Dead against all of his master's enemies. With Pitre now under service of the Serpent of Mousillon, the Black Duke commands the undead forces under the Serpents command." />
   <Hero id="tor_we_lord_athel_loren_factionleader" faction="Faction.athel_loren_clan_1" />
+  <Hero id="tor_we_lord_athel_loren_first_2" faction="Faction.athel_loren_clan_1" />
+  <Hero id="tor_we_lord_athel_loren_second_1" faction="Faction.athel_loren_clan_2" />
+  <Hero id="tor_we_lord_athel_loren_second_2" faction="Faction.athel_loren_clan_2" />
+  <Hero id="tor_we_lord_athel_loren_third_1" faction="Faction.athel_loren_clan_3" />
+  <Hero id="tor_we_lord_athel_loren_third_2" faction="Faction.athel_loren_clan_3" />
+  <Hero id="tor_we_lord_athel_loren_fourth_1" faction="Faction.athel_loren_clan_4" />
+  <Hero id="tor_we_lord_athel_loren_fourth_2" faction="Faction.athel_loren_clan_4" />
+  <Hero id="tor_we_lord_athel_loren_fifth_1" faction="Faction.athel_loren_clan_5" />
+  <Hero id="tor_we_lord_athel_loren_fifth_2" faction="Faction.athel_loren_clan_5" />
+  <Hero id="tor_we_lord_athel_loren_sixth_1" faction="Faction.athel_loren_clan_6" />
+  <Hero id="tor_we_lord_athel_loren_sixth_2" faction="Faction.athel_loren_clan_6" />
+  <Hero id="tor_we_lord_athel_loren_seventh_1" faction="Faction.athel_loren_clan_7" />
+  <Hero id="tor_we_lord_athel_loren_seventh_2" faction="Faction.athel_loren_clan_7" />
+  <Hero id="tor_we_lord_athel_loren_eighth_1" faction="Faction.athel_loren_clan_8" />
+  <Hero id="tor_we_lord_athel_loren_eighth_2" faction="Faction.athel_loren_clan_8" />
+  <Hero id="tor_we_lord_athel_loren_ninth_1" faction="Faction.athel_loren_clan_9" />
+  <Hero id="tor_we_lord_athel_loren_ninth_2" faction="Faction.athel_loren_clan_9" />
+  <Hero id="tor_we_lord_athel_loren_tenth_1" faction="Faction.athel_loren_clan_10" />
+  <Hero id="tor_we_lord_athel_loren_tenth_2" faction="Faction.athel_loren_clan_10" />
+  <Hero id="tor_we_lord_athel_loren_eleventh_1" faction="Faction.athel_loren_clan_11" />
+  <Hero id="tor_we_lord_athel_loren_eleventh_2" faction="Faction.athel_loren_clan_11" />
+  <Hero id="tor_we_lord_athel_loren_twelfth_1" faction="Faction.athel_loren_clan_12" />
+  <Hero id="tor_we_lord_athel_loren_twelfth_2" faction="Faction.athel_loren_clan_12" />
+  <Hero id="tor_we_lord_athel_loren_thirteenth_1" faction="Faction.athel_loren_clan_13" />
+  <Hero id="tor_we_lord_athel_loren_thirteenth_1" faction="Faction.athel_loren_clan_13" />
   <Hero id="tor_chaos_lord_factionleader" faction="Faction.chaos_clan_1" text="The Everchosen." />
   <Hero id="tor_chaos_lord_brasskeep_factionleader" faction="Faction.brasskeep_clan_1" text="Description text missing." />
   <Hero id="tor_de_lord_factionleader" faction="Faction.druchii_clan_1" text="Description text missing." />

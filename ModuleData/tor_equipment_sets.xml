@@ -15172,20 +15172,22 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_forest_survivor_1" culture="Culture.battania">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_008" />
-      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item0" id="Item.longbow_recurve_desert_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.seax" />
-      <Equipment slot="Head" id="Item.pilgrim_hood" />
-      <Equipment slot="Body" id="Item.nordic_sloven_leather" />
+      <Equipment slot="Head" id="Item.aserai_civil_f_cape" />
+      <Equipment slot="Body" id="Item.bandit_fur_a" />
+      <Equipment slot="Cape" id="Item.battania_civil_cape" />
       <Equipment slot="Gloves" id="Item.armwraps" />
       <Equipment slot="Leg" id="Item.leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_008" />
-      <Equipment slot="Item1" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item0" id="Item.longbow_recurve_desert_bow" />
+      <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.seax" />
-      <Equipment slot="Head" id="Item.pilgrim_hood" />
-      <Equipment slot="Body" id="Item.nordic_sloven_leather" />
+      <Equipment slot="Head" id="Item.aserai_civil_f_cape" />
+      <Equipment slot="Body" id="Item.bandit_fur_a" />
+      <Equipment slot="Cape" id="Item.battania_civil_cape" />
       <Equipment slot="Gloves" id="Item.armwraps" />
       <Equipment slot="Leg" id="Item.leather_boots" />
     </EquipmentSet>

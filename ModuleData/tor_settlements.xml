@@ -7625,7 +7625,7 @@
   <!-- Athel Loren -->
   <Settlement id="town_AL1" name="{=Settlements.Settlement.name.town_AL1}Yn Edryl Koiran" owner="Faction.athel_loren_clan_1" is_unwalled_settlement="true" posX="1245.354" posY="777.931" culture="Culture.battania" gate_posX="1249.011" gate_posY="781.6984" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
-      <Town id="town_comp_AL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
+      <Town id="town_comp_AL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001" />
@@ -7695,9 +7695,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL2" name="{=Settlements.Settlement.name.town_AL2}Crag Halls of Findol" owner="Faction.athel_loren_clan_1" posX="1262.822" posY="854.329" culture="Culture.battania" gate_posX="1265.584" gate_posY="849.8639" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+  <Settlement id="town_AL2" name="{=Settlements.Settlement.name.town_AL2}Crag Halls of Findol" owner="Faction.athel_loren_clan_12" posX="1262.822" posY="854.329" culture="Culture.battania" gate_posX="1265.584" gate_posY="849.8639" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
-      <Town id="town_comp_AL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
+      <Town id="town_comp_AL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001" />
@@ -7741,9 +7741,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL3" name="{=Settlements.Settlement.name.town_AL3}Coeth-Mara" owner="Faction.athel_loren_clan_1" posX="1234.948" posY="747.238" culture="Culture.battania" gate_posX="1231.414" gate_posY="747.0751" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
+  <Settlement id="town_AL3" name="{=Settlements.Settlement.name.town_AL3}Coeth-Mara" owner="Faction.athel_loren_clan_3" posX="1234.948" posY="747.238" culture="Culture.battania" gate_posX="1231.414" gate_posY="747.0751" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
     <Components>
-      <Town id="town_comp_AL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
+      <Town id="town_comp_AL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001" />
@@ -7800,9 +7800,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL4" name="{=Settlements.Settlement.name.town_AL4}Halls of Anaereth" owner="Faction.athel_loren_clan_1" posX="1179.949" posY="847.234" culture="Culture.battania" gate_posX="1176.415" gate_posY="847.0711" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
+  <Settlement id="town_AL4" name="{=Settlements.Settlement.name.town_AL4}Halls of Anaereth" owner="Faction.athel_loren_clan_2" posX="1179.949" posY="847.234" culture="Culture.battania" gate_posX="1176.415" gate_posY="847.0711" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
     <Components>
-      <Town id="town_comp_AL4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
+      <Town id="town_comp_AL4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001">
@@ -7873,9 +7873,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL5" name="{=Settlements.Settlement.name.town_AL5}Feast Halls of the Wardance" owner="Faction.athel_loren_clan_1" posX="1208.055" posY="883.018" culture="Culture.battania" gate_posX="1211.531" gate_posY="883.678" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
+  <Settlement id="town_AL5" name="{=Settlements.Settlement.name.town_AL5}Feast Halls of the Wardance" owner="Faction.athel_loren_clan_8" posX="1208.055" posY="883.018" culture="Culture.battania" gate_posX="1211.531" gate_posY="883.678" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
     <Components>
-      <Town id="town_comp_AL5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
+      <Town id="town_comp_AL5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001">
@@ -7907,9 +7907,9 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL6" name="{=Settlements.Settlement.name.town_AL6}Glade of Eternal Midnight" owner="Faction.athel_loren_clan_1" posX="1172.491" posY="773.884" culture="Culture.battania" gate_posX="1171.744" gate_posY="770.4256" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
+  <Settlement id="town_AL6" name="{=Settlements.Settlement.name.town_AL6}Glade of Eternal Midnight" owner="Faction.athel_loren_clan_9" posX="1172.491" posY="773.884" culture="Culture.battania" gate_posX="1171.744" gate_posY="770.4256" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
     <Components>
-      <Town id="town_comp_AL6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="4500" />
+      <Town id="town_comp_AL6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001" />
@@ -7953,7 +7953,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL1" name="{=Settlements.Settlement.name.castle_AL1}Vaul’s Anvil" owner="Faction.athel_loren_clan_1" posX="1190.534" posY="816.302" culture="Culture.battania" gate_posX="1191.019" gate_posY="815.0869" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_AL1" name="{=Settlements.Settlement.name.castle_AL1}Vaul’s Anvil" owner="Faction.athel_loren_clan_11" posX="1190.534" posY="816.302" culture="Culture.battania" gate_posX="1191.019" gate_posY="815.0869" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_AL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -7976,7 +7976,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL2" name="{=Settlements.Settlement.name.castle_AL2}The Halls of Equos" owner="Faction.athel_loren_clan_1" posX="1208.041" posY="767.413" culture="Culture.battania" gate_posX="1208.335" gate_posY="768.6879" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  <Settlement id="castle_AL2" name="{=Settlements.Settlement.name.castle_AL2}The Halls of Equos" owner="Faction.athel_loren_clan_6" posX="1208.041" posY="767.413" culture="Culture.battania" gate_posX="1208.335" gate_posY="768.6879" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_AL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -7999,7 +7999,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL3" name="{=Settlements.Settlement.name.castle_AL3}Tal Enda Varian" owner="Faction.athel_loren_clan_1" posX="1222.013" posY="925.652" culture="Culture.battania" gate_posX="1221.036" gate_posY="924.7819" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  <Settlement id="castle_AL3" name="{=Settlements.Settlement.name.castle_AL3}Tal Enda Varian" owner="Faction.athel_loren_clan_4" posX="1222.013" posY="925.652" culture="Culture.battania" gate_posX="1221.036" gate_posY="924.7819" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_AL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8035,7 +8035,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL4" name="{=Settlements.Settlement.name.castle_AL4}Tal Esth" owner="Faction.athel_loren_clan_1" posX="1276.777" posY="906.647" culture="Culture.battania" gate_posX="1278.028" gate_posY="907.0313" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
+  <Settlement id="castle_AL4" name="{=Settlements.Settlement.name.castle_AL4}Tal Esth" owner="Faction.athel_loren_clan_5" posX="1276.777" posY="906.647" culture="Culture.battania" gate_posX="1278.028" gate_posY="907.0313" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
     <Components>
       <Town id="castle_comp_AL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8058,7 +8058,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL5" name="{=Settlements.Settlement.name.castle_AL5}Tal Driacha" owner="Faction.athel_loren_clan_1" posX="1188.035" posY="936.892" culture="Culture.battania" gate_posX="1188.989" gate_posY="935.9965" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
+  <Settlement id="castle_AL5" name="{=Settlements.Settlement.name.castle_AL5}Tal Driacha" owner="Faction.athel_loren_clan_2" posX="1188.035" posY="936.892" culture="Culture.battania" gate_posX="1188.989" gate_posY="935.9965" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
     <Components>
       <Town id="castle_comp_AL5" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8094,7 +8094,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL6" name="{=Settlements.Settlement.name.castle_AL6}Tyr Vanna" owner="Faction.athel_loren_clan_1" posX="1282.847" posY="752.887" culture="Culture.battania" gate_posX="1283.712" gate_posY="753.8683" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
+  <Settlement id="castle_AL6" name="{=Settlements.Settlement.name.castle_AL6}Tyr Vanna" owner="Faction.athel_loren_clan_7" posX="1282.847" posY="752.887" culture="Culture.battania" gate_posX="1283.712" gate_posY="753.8683" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
     <Components>
       <Town id="castle_comp_AL6" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>

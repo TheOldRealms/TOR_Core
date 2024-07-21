@@ -966,7 +966,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_we_gladerider_text_str}Asrai live with their mounts in harmony like no other. You decided in your early years to become one with your horse.</OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option_3_we_wildwood" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_wildwoold_3">
+	<CharacterCreationOption Id="option_3_we_warden_3" Culture="battania" StageNumber="3" EquipmentSetId="tor_cc_we_warden_3">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>TwoHanded</string>
