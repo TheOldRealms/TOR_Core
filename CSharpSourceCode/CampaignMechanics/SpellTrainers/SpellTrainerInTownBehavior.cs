@@ -115,6 +115,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             if (settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA&& settlement.StringId == "town_BA1") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
             if (settlement.Culture.StringId == TORConstants.Cultures.SYLVANIA || settlement.Culture.StringId == TORConstants.Cultures.MOUSILLON) template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
             if(settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
+            if(settlement.Culture.StringId == TORConstants.Cultures.ASRAI) template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
 
 
             if (template != null)
@@ -188,17 +189,68 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private void SpellsingerDialogs(CampaignGameStarter obj)
         { 
-            obj.AddDialogLine("trainer_spellsinger_start", "start", "choices_prophetesse", "{=tor_spelltrainer_prophetesse_start_str}I welcome you child of Athel Loren.", isSpellsingerTrainer, null, 200, null);
-            obj.AddDialogLine("trainer_spellsinger_start", "hub_spellsinger", "choices_prophetesse", "{=tor_spelltrainer_prophetesse_choices_str}Is there more you seek? Speak your desires.", isSpellsingerTrainer, null, 200, null);
-            obj.AddPlayerLine("trainer_spellsinger_learnspells", "choices_spellsinger", "openbook_prophetesse", "{=tor_spelltrainer_prophetesse_open_book_str}I seek further knowledge of Athel Loren's Magic.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), null, 200, null);
-            obj.AddPlayerLine("trainer_spellsinger_spellweaver", "choices_spellsinger", "openbook_prophetesse", "{=tor_spelltrainer_prophetesse_open_book_str}I want to become a spellweaver.", () => MobileParty.MainParty.HasSpellCasterMember()&& spellsingerCondition() && SpellweaverCondition() , () => spellweaverPrompt(), 200, null);
-            obj.AddPlayerLine("trainer_spellsinger_learnlore", "choices_spellsinger", "openbook_prophetesse", "{=tor_spelltrainer_prophetesse_open_book_str}Teach me one of Ariels many pathways.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_start", "start", "choices_spellsinger", "{=tor_spelltrainer_prophetesse_start_str}I welcome you child of Athel Loren.", isSpellsingerTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_start", "hub_spellsinger", "choices_spellsinger", "{=tor_spelltrainer_prophetesse_choices_str}Is there more you seek? Speak your desires.", isSpellsingerTrainer, null, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_learnspells", "choices_spellsinger", "openbook_spellsinger", "{=tor_spelltrainer_prophetesse_open_book_str}I seek further knowledge of Athel Loren's Magic.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), null, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_spellweaver", "choices_spellsinger", "spellweaver_choice_dialog", "{=tor_spelltrainer_prophetesse_open_book_str}I want to become a spellweaver.", () => MobileParty.MainParty.HasSpellCasterMember()&& spellsingerCondition() && SpellweaverCondition() , null, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_learnlore", "choices_spellsinger", "spellweaver_choice_lores", "{=tor_spelltrainer_prophetesse_open_book_str}Teach me one of Ariels many pathways.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition() && SpellsingerAdditonalLoreCondition(), null, 200, null);
 
-            obj.AddPlayerLine("trainer_spellsinger_scrollShop", "choices_spellsinger", "hub_prophetesse", "{=tor_spelltrainer_prophetesse_damselsecond_lore_str} I feel that {SPELLSINGERNAME} has reached  a new level of magical potential, it is time for a new Spellweaver", ()=> MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition()&&damselSecondLoreCondition(), damselSecondLoreConsequence, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "spellweaver_choice_player", "{=tor_spelltrainer_prophetesse_goodbye_str}A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely", isSpellsingerTrainer, null, 200, null);
+            obj.AddPlayerLine("spellweaver_choice_player", "spellweaver_choice_player", "choices_spellsinger", "{=tor_spelltrainer_prophetesse_open_book_str}Let me choose.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), spellweaverPrompt, 200, null);
+            
+            obj.AddDialogLine("trainer_spellsinger_lores", "spellweaver_choice_lores", "spellweaver_choice_lores_player", "{=tor_spelltrainer_prophetesse_goodbye_str}You can learn additional aspects of the magic of the forest. Choose wisely (not more than 2 additional lores, 6 in total)", isSpellsingerTrainer, null, 200, null);
+            obj.AddPlayerLine("spellweaver_choice_lores_player", "spellweaver_choice_lores_player", "choices_spellsinger", "{=tor_spelltrainer_prophetesse_open_book_str}Let me choose.", () => MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition(), additionalLoresPrompt, 200, null);
+
+            
+            
+            obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "close_window", "{=tor_spelltrainer_prophetesse_goodbye_str}May Ariel guide you on all your paths through her garden.", isSpellsingerTrainer, null, 200, null);
+
+            
+            obj.AddPlayerLine("trainer_spellsinger_scrollShop", "choices_spellsinger", "hub_spellsinger", "{=tor_spelltrainer_prophetesse_damselsecond_lore_str} I feel that {SPELLSINGERNAME} has reached  a new level of magical potential, it is time for a new Spellweaver", ()=> MobileParty.MainParty.HasSpellCasterMember()&&spellsingerCondition()&&damselSecondLoreCondition(), damselSecondLoreConsequence, 200, null);
             obj.AddPlayerLine("trainer_spellsinger_playergoodbye", "choices_spellsinger", "saygoodbye", "{=tor_spelltrainer_prophetesse_player_goodbye_str}Ariel with you. ", null, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_goodbye", "saygoodbye", "close_window", "{=tor_spelltrainer_prophetesse_goodbye_str}May Ariel guide you on all your paths through her garden.", isSpellsingerTrainer, null, 200, null);
-            obj.AddDialogLine("trainer_spellsinger_afterlearnspells", "openbook_spellsinger", "hub_prophetesse", "{=tor_spelltrainer_prophetesse_close_book_str}A new Facette of Ariels infinte knowledge.", null, openbookconsequence, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_afterlearnspells", "openbook_spellsinger", "hub_spellsinger", "{=tor_spelltrainer_prophetesse_close_book_str}A new Facette of Ariels infinte knowledge.", null, openbookconsequence, 200, null);
 
+            bool SpellsingerAdditonalLoreCondition()
+            {
+                if (!Hero.MainHero.HasUnlockedCareerChoiceTier(3))
+                    return false;
+                
+                if (!Hero.MainHero.HasKnownLore("HighMagic") && !Hero.MainHero.HasKnownLore("DarkMagic"))
+                {
+                    return false;
+                }
+                var count = Hero.MainHero.GetKnownLoreCount();
+
+                if (count >= 6)
+                {
+                    return false;
+                }
+            
+                return true;
+            }
+
+            void additionalLoresPrompt()
+            {
+                List<InquiryElement> list = new List<InquiryElement>();
+                var lores = LoreObject.GetAll();
+
+                var additionalLores = lores.WhereQ(x => !x.DisabledForCultures.Contains(TORConstants.Cultures.ASRAI)).ToList();
+        
+
+                var model = Campaign.Current.Models.GetAbilityModel();
+                foreach (var item in additionalLores)
+                {
+                    
+                    if(Hero.MainHero.HasKnownLore(item.ID))
+                        continue;
+            
+                    list.Add(new InquiryElement(item, item.Name, null));
+                }
+                var inquirydata = new MultiSelectionInquiryData(new TextObject("{=tor_magic_lore_prompt_label_str}Choose Lore").ToString(), new TextObject("{=tor_magic_lore_prompt_description_str}Choose a lore to specialize in.").ToString(), list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
+                MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+            }
+            
             bool SpellweaverCondition()
             {
                 if (Hero.MainHero.HasKnownLore("HighMagic") || Hero.MainHero.HasKnownLore("DarkMagic"))
@@ -354,35 +406,6 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             }
             return false;
         }
-
-
-        private bool spellsingerAdditonalLoreConsequence()
-        {
-            var extraLores = 0;
-            if(Hero.MainHero.HasUnlockedCareerChoiceTier(1))
-            {
-                extraLores ++;
-            }
-
-            if (Hero.MainHero.HasUnlockedCareerChoiceTier(3))
-            {
-                extraLores += 2;
-            }
-            
-            
-            return false;
-            
-        }
-        
-        private void spellsingerThiirdLoreConsequence()
-        {
-            TextObject text = new TextObject("{DAMSELNAME}");
-
-            var hero= Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Where(x => x.Name.ToString() == text.ToString() && x.IsSpellCaster()).FirstOrDefault();
-            if(hero==null)return;
-            hero.AddKnownLore("LoreOfBeasts");
-        }
-        
         
         private void damselSecondLoreConsequence()
         {

@@ -951,6 +951,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>{=tor_cc_option58_label_str}Path of the Spellsinger</OptionText>
+		<PositiveEffectText>"Spellsinger" Career</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option_3_we_spellsinger_text_str}You are a spellsinger, who will study the high or dark magic. You will understand the nature of this magical wood and will protect it like the mage queen herself.</OptionFlavourText>
 	</CharacterCreationOption> 
 

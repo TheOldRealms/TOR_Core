@@ -313,6 +313,16 @@ namespace TOR_Core.Extensions
             }
             else return false;
         }
+        
+        public static int GetKnownLoreCount(this Hero hero)
+        {
+            if (hero.GetExtendedInfo() != null)
+            {
+                return hero.GetExtendedInfo().GetKnownLoreCount();
+            }
+
+            return 0;
+        }
 
         public static bool IsSpellCaster(this Hero hero)
         {

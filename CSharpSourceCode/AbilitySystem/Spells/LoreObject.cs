@@ -32,7 +32,7 @@ namespace TOR_Core.AbilitySystem.Spells
         {
             if (_lores.Count == 0)
             {
-                _lores.Add("MinorMagic", new LoreObject("MinorMagic", "Minor Magic", "minormagic_symbol", new List<string>() { "none" }));
+                _lores.Add("MinorMagic", new LoreObject("MinorMagic", "Minor Magic", "minormagic_symbol", new List<string>() { TORConstants.Cultures.ASRAI}));
                 _lores.Add("LoreOfFire", new LoreObject("LoreOfFire", "Lore of Fire", "firemagic_symbol", new List<string>() { TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.BRETONNIA, TORConstants.Cultures.MOUSILLON }));
                 _lores.Add("LoreOfLight", new LoreObject("LoreOfLight", "Lore of Light", "lightmagic_symbol", new List<string>() { TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.BRETONNIA, TORConstants.Cultures.MOUSILLON }));
                 _lores.Add("LoreOfHeavens", new LoreObject("LoreOfHeavens", "Lore of Heavens", "celestial_symbol", new List<string>() { TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.BRETONNIA, TORConstants.Cultures.MOUSILLON }));

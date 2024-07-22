@@ -264,6 +264,11 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             return _knownLores.Contains(loreId);
         }
+        
+        public int GetKnownLoreCount()
+        {
+            return _knownLores.Count;
+        }
 
         private void EnsureKnownLores()
         {
