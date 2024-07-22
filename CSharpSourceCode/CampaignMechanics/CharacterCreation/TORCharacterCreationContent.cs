@@ -274,6 +274,19 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.ImperialMagister);
             }
 
+            if (id == "option_3_we_spellsinger")
+            {
+                Hero.MainHero.AddCareer(TORCareers.Spellsinger);
+                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.AddKnownLore("LoreOfLife");
+                Hero.MainHero.AddKnownLore("LoreOfBeasts");
+                Hero.MainHero.AddAbility("SummerHeat");
+                Hero.MainHero.AddAbility("AmberSpear");
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+            }
+
             if (IsWitchHunterCharacterCreationID(id))
             {
                 Hero.MainHero.AddCareer(TORCareers.WitchHunter);
