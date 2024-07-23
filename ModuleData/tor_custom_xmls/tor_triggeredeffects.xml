@@ -810,7 +810,7 @@
             DamageVariance="0"
 		ImbuedStatusEffectDuration="1" 
             TroopIdToSummon="tor_we_treeman"
-            NumberToSummon="3">
+            NumberToSummon="1">
 	  </TriggeredEffectTemplate>
 	  
       <TriggeredEffectTemplate StringID="summon_kandorak" 
