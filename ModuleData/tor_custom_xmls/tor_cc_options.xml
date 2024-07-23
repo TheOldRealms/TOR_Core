@@ -836,7 +836,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_we_noble_text_str}Born into a minor noble family of Athel Loren's halls, you were raised with the finest education and training under the Green Way. Your noble lineage afforded you the best tutors in both combat and diplomacy.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_we_guardian_anmyr" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_we_emissary_1">
+	<CharacterCreationOption Id="option_1_we_guardian_anmyr" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_we_guardian_anmyr_1">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Steward</string>

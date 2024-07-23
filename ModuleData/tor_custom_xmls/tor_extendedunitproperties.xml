@@ -5184,7 +5184,10 @@
       <string>CurseOfArrowAttraction</string>
       <string>ShieldOfSaphery</string>
     </Abilities>
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_second_2">
     <Abilities>
@@ -5195,7 +5198,10 @@
       <string>CurseOfArrowAttraction</string>
       <string>ShieldOfSaphery</string>
     </Abilities>
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_third_1">
     <Abilities />
@@ -5267,7 +5273,10 @@
       <string>Tempest</string>
       <string>DwellersBelow</string>
     </Abilities>
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_eleventh_1">
     <Abilities />

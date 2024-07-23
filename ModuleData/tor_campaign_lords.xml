@@ -6210,7 +6210,7 @@
       <EquipmentSet id="tor_we_scarloc_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_second_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_1}Lady Tevaril" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_second_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_1}Lady Tevaril" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0" build="0.9642" key="001B68054E58100A156FD30672C96A5B87B0B8676836B608C3285418264DE864D6A746030BCB3356E0B809B844826648000000000000000B00000000377C3003" />
     </face>
@@ -6228,7 +6228,7 @@
       <EquipmentSet id="tor_we_sister_thorne_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_second_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_2}Lady Delynna" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_second_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_2}Lady Delynna" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
     </face>
@@ -6390,7 +6390,7 @@
       <EquipmentSet id="tor_we_wildrider_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_seventh_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_seventh_1}Lady Draya the Nighthawk" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_seventh_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_seventh_1}Lady Draya the Nighthawk" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4213" build="0.2634" key="001018000B58000AD37C879FE8E0F947EC2542D6C69B5F050FA9014EA73BB873899A66030DCAFB594686784878BABB9A000000000000000D000000003FAC4043" />
     </face>
@@ -6426,7 +6426,7 @@
       <EquipmentSet id="tor_we_wildwood_lord_2_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_eighth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_eighth_1}Lady Heggria of the Masque" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_eighth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_eighth_1}Lady Heggria of the Masque" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0" build="0.3743" key="001568060658000ABA8CDBBFA110A1709E78A233D9AC6B13B15920F09BA7D767889706030EE98B4A604A6D62C9975458000000000000000E0000000029CC3043" />
     </face>
@@ -6480,7 +6480,7 @@
       <EquipmentSet id="tor_we_glade_lord_5_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_ninth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_ninth_2}Lady Morlanna" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_ninth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_ninth_2}Lady Morlanna" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7198" build="0.5301" key="0002600E405820059892A94347113995CCC2AA8285BC67178CE775DA5A6584C8893A06030985487A8B91A5A77538B9930000000000000009000000004B3C1003" />
     </face>
@@ -6498,7 +6498,7 @@
       <EquipmentSet id="tor_we_spellweaver_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_tenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_tenth_1}Lady Arda of the Parted Veil" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_tenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_tenth_1}Lady Arda of the Parted Veil" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4788" build="0.0768" key="000A70028458100190CFF9FC738246B9845CA96597A8752E8077199B9641CD64BD6D56030B953235171887B458DDBB77000000000000000B0000000025841043" />
     </face>
@@ -6516,7 +6516,7 @@
       <EquipmentSet id="tor_we_glade_lord_female_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_tenth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_tenth_2}Naieth the Prophetess" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_tenth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_tenth_2}Naieth the Prophetess" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.1836" build="0.4727" key="000D400B83A0300286687B8D4D709C77B5EC68C9C7BB7958977CA64CAA2A75A4739806030966FCD673B725AC39A782BB0000000000000009000000003B3C4003" />
     </face>
@@ -6588,7 +6588,7 @@
       <EquipmentSet id="tor_we_glade_lord_5_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_twelfth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_twelfth_2}Lady Evelyne" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_twelfth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_twelfth_2}Lady Evelyne" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0" build="0.5749" key="0015500B8758300866885396977479B85B26577487A3463A886475B28A788B17DBE416030CA4364C904C94B469A87884000000000000000C0000000035A44003" />
     </face>
@@ -6606,7 +6606,7 @@
       <EquipmentSet id="tor_we_glade_lord_female_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_1}Naestra" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_1}Naestra" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="25" weight="0.0015" build="0.2855" key="0008740F14FC0004167986995571B8982BC666CEAB58070F96565C659E934173434426130822633340000140120230440000000000000018000000007F0C1003" />
     </face>
@@ -6624,7 +6624,7 @@
       <EquipmentSet id="tor_we_sisters_twilight_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_1}Arahan" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_1}Arahan" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="25" weight="0.0015" build="0.2855" key="000810001470300216A9869957B3B8982BC666CEAB58070F9BA6676A9E934173434426130722633340000140120230440000000000000017000000007EF41003" />
     </face>
