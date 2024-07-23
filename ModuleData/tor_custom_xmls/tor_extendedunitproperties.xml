@@ -5176,11 +5176,25 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_second_1">
-    <Abilities />
+    <Abilities>
+      <string>AmberSpear</string>
+      <string>Regrowth</string>
+      <string>Apotheosis</string>
+      <string>SoulQuench</string>
+      <string>CurseOfArrowAttraction</string>
+      <string>ShieldOfSaphery</string>
+    </Abilities>
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_second_2">
-    <Abilities />
+    <Abilities>
+      <string>AmberSpear</string>
+      <string>Regrowth</string>
+      <string>Apotheosis</string>
+      <string>SoulQuench</string>
+      <string>CurseOfArrowAttraction</string>
+      <string>ShieldOfSaphery</string>
+    </Abilities>
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_third_1">
@@ -5244,7 +5258,15 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_tenth_2">
-    <Abilities />
+    <Abilities>
+      <string>AmberSpear</string>
+      <string>Regrowth</string>
+      <string>Apotheosis</string>
+      <string>SoulQuench</string>
+      <string>CurseOfArrowAttraction</string>
+      <string>Tempest</string>
+      <string>DwellersBelow</string>
+    </Abilities>
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_eleventh_1">

@@ -698,7 +698,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}The Heart of the Athel Loren, Talsyn forms the largest, most prosperous and realm with the highest population of Asrai. Not only the King’s Glade, the residence of Ariel and Orion, but also the Oak of Ages can be found here. In this realm the tree spirits and the Asrai form the strongest bond. Since the realm includes the very heart of the wood elves, it is their most holy refugium."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_2"
              name="{=!}Anmyr"
@@ -707,7 +707,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}When Morghur was defeated in the high realm Anmyr, his blood corrupted the forest slowly but steadily. Anmyr, also known as the Witherhold. Every year the beastmen tribes grew stronger, - every year more forest spirits fell into chaos and corruption. While all other realms are aware and send their help to cleanse the corruption, the ruinous forces are grewing inevitable stronger."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_3"
              name="{=!}Atylwyth"
@@ -716,7 +716,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}Atylwyth, also known as the Winterheart, is the coldest part of Athel Loren. The harsh climate conditions   made the inhabitants of this part of the forest more enduring and stronger. The harsh conditions make it almost impossible for nature spirits to fulfill this place with magic which make the defense of this region solely dependent on the protection of the elves.  It is no wonder that the Eternal Guards are most numerous in the Halls of this region."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_4"
              name="{=!}Argwylon"
@@ -725,7 +725,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}Also known as the Moonspring Glades, is  known for its wonders and powerful magic. Other than in most other realms, the inhabitants still follow the traditions, norms and values of the Asur once settled over from Ulthuan. A strict bureaucracy is still maintained in the realm. Following from this, it is no wonder that the inhabitants of Argwylon also kept the arrogance which the Asur are infamous for. "
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_5"
              name="{=!}Arranoc"
@@ -734,7 +734,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}The summerstrand, as some refer to Arranoc, forms a high realm of Athel Loren, where winter is ever absent, nights are short and sun is shining all year. The realm is famous for their feasts, and their hospitality - even for foreigners visiting in a peaceful manner. Overall the realm feels peaceful and friendly, yet especially some mean tree spirits could use the inattentiveness that is following from wine and joy for their advantage."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_6"
              name="{=!}Cavaroc"
@@ -743,7 +743,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}Caravoc, also known as the Skymark Reaches can be found at the  most south western end of Athel Loren, and is because of the quite sparse tree population and many glades plagued by foreigners of the wood. The Bretones of Carcasonne build their settlements dangerously close or even inside the territory of Cavaroc. Also beastmen often try to find their entry into the woods via the glades of this High Realm. However the kin of Cavaroc are exceptional horse riders that  know how to protect their land."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_7"
              name="{=!}Cythral"
@@ -752,7 +752,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}Not all Tree spirits seek harmony with the elves. For them the elves created a prison, the Cythral also known as the Wildwood. The Borders to the Cythral are protected with a fence of waystones and the people of the high realm. While the waystones in theory should hinder the evil tree spirits, the Asrai of Cythral have to actively defend and maintain the waystones in order to keep the spirits from escaping."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_8"
              name="{=!}Fyr Darric"
@@ -761,7 +761,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!} The Highrealm of Fyr Darric, is also known as the Trickster Wood, dedicated to the god of music Revelry, Joy and Trickery,  Loec. It is no mystery that in these Woods the Wardancers found a safe haven. They come here to express their fighting skills, train and fight duels. While their acrobatics impress, the daily practices are brutal, and the arena floors are stained with blood. For many, the arena fights end in death."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_9"
              name="{=!}Modryn"
@@ -770,7 +770,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}Night glades, Modryn, is the High Realm of Athel Loren that resides in eternal darkness of the night. The forest spirits, as well as elven inhabitants are more spiteful than in other areas of Athel Loren. The people of Modryn are aligned to the Cytharai, the gods usually worshiped by the Druchii. Mordryn is known for their practitioners of Dark Magic, which are nowhere as numerous anywhere else in Athel loren. "
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_10"
              name="{=!}Tirsyth"
@@ -779,7 +779,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}It is said that in Tirsityth, no joyful song is ever played, just the dirges of Elves who live under the shadow of death. However the inhabitants of  Ashenhall as the High realm is also called, are in fact not any more fatalistic than other realms, they do however respect life's end as they respect its start. The realm is decorated with moonstones that were placed in honor of departed. Even the nature spirits respect these gestures, and grow groves around beloved wood elves. Anybody who comes to disturb the peace of the dead, will evoke the wrath of these kin."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_11"
              name="{=!}Torgovann"
@@ -788,7 +788,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}Also known as the Forges of Starlight,  Torgovann is  famous for Asrai Artisans and craftsmanship. Blessed by Vaul's Anvil, the forge-temple of Torgovann  is the origin of the most exquisite weaponry, upon the realm of the Asrai. The central position of Torgovann inside the forest makes it easily reachable for other realms, and with that a central exchange post with other kin bands in the forest."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_12"
              name="{=!}Wydrioth"
@@ -797,7 +797,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}The Realm of Wydrioth, is bordering the western parts of the Grey mountains. In the past, many invaders, among these men, greenskins and dwarfs were trying to pass the realm unsuccessfully. The inhabitants are masterful ambushers, their terrain is covered with several hideouts, secret outposts, and hidden pathways to execute ambushes. While the Kin of Wydrioth are severely outnumbered, they are able to survive and withstand any intruder to the realm of the wood elves."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
 	<Faction id="athel_loren_clan_13"
              name="{=!}Sisters of Twilight"
@@ -806,7 +806,7 @@
              culture="Culture.battania"
              super_faction="Kingdom.athel_loren"
              is_noble="true"
-             text="{=!}missing..."
+             text="{=!}The twins Naestra and Arahan, are as night and day, yet no day passed one have seen them separated from each other. While Naestrais usually favoring diplomacy over the sword, Arahanis seeking for the confrontation where she could. While their disputes seem heated, their differences lead to a perfect symbiosis, making them legendary protectors of Athel Loren."
              banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
     <!-- Chaos faction -->
     <Faction id="chaos_clan_1"

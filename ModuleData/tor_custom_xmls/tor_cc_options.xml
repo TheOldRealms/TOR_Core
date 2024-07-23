@@ -836,7 +836,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_we_noble_text_str}Born into a minor noble family of Athel Loren's halls, you were raised with the finest education and training under the Green Way. Your noble lineage afforded you the best tutors in both combat and diplomacy.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_we_emissary" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_we_emissary_1">
+	<CharacterCreationOption Id="option_1_we_guardian_anmyr" Culture="battania" StageNumber="1" EquipmentSetId="tor_cc_we_emissary_1">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Steward</string>
@@ -844,8 +844,8 @@
 			<string>Leadership</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
-		<OptionText>{=tor_cc_option_1_we_emissary_label_str}Emissary of Ulthuan</OptionText>
-		<OptionFlavourText>{=tor_cc_option_1_we_emissary_text_str} You were chosen to serve as an emissary to the High Elves of Ulthuan, a position that demands both diplomatic acumen and natural charisma. Your time among the Asur has granted you unique insights and connections. </OptionFlavourText>
+		<OptionText>{=tor_option_1_we_guardian_anmyr_label_str}Guardian of Anmyr</OptionText>
+		<OptionFlavourText>{=tor_option_1_we_guardian_anmyr_text_str} Anmyr, the Witherhold, is a blighted and festering realm, tainted by Morghur’s foul blood. As a result, Beastmen raiding parties flock to Anmyr like a moth to a flame. You are one of the Asrai that always responded to Anmyr’s call to arms with zeal and a strong sense of duty. Witherhold will not fall to vile beasts! </OptionFlavourText>
 	</CharacterCreationOption>
 
 	<!-- Asrai stage 2 -->
