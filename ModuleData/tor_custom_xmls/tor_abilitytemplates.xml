@@ -2156,7 +2156,7 @@
       Name="{=soul_quench_label_str}Soul Quench" 
       SpriteName="gehennasgoldenglobe_icon" 
       CoolDown="30" 
-      WindsOfMagicCost="8" 
+      WindsOfMagicCost="15" 
       BaseMisCastChance="0.05" 
       Duration="100" 
       Radius="0.4" 
@@ -3891,6 +3891,50 @@
 		<TriggeredEffect>apply_arrow_of_kurnous</TriggeredEffect>
 		<SeekerParameters Proportional="0.5" Derivative="1" DisableDistance="2"/>
 	</AbilityTemplate> <!-- Needs arrow release animation -->
+	
+	
+		<AbilityTemplate StringID="WrathOfTheWood" 
+      Name="Wrath of the Wood" 
+      SpriteName="theharbinger_icon" 
+      CoolDown="5" 
+      BaseMisCastChance="0.3" 
+      Duration="0" 
+      Radius="2" 
+      AbilityType="CareerAbility" 
+      AbilityEffectType="CareerAbilityEffect" 
+      BaseMovementSpeed="0" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="0" 
+      LightRadius="0" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="Instant" 
+      CastTime="0" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="10"
+      AbilityTargetType="Self"
+      CrosshairType="Self"
+      MinDistance="1"
+      MaxDistance="60"
+      TargetCapturingRadius="1"
+      SpellTier="2"
+      TooltipDescription="Summon dryads on the target location.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+	   <TriggeredEffect>summon_dryads</TriggeredEffect>
+	</AbilityTemplate>
+	
 	
 	
 	<AbilityTemplate StringID="FeyPaths" 

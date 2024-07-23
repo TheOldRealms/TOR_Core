@@ -148,6 +148,11 @@ public static class ServeAsAHirelingHelpers
             
             return true;
         }
+
+        if (dialogPartner.Culture.StringId == Hero.MainHero.Culture.StringId)
+        {
+            return true;
+        }
         
         
         return false;

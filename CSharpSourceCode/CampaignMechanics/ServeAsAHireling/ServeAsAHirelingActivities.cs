@@ -161,6 +161,17 @@ public class ServeAsAHirelingActivities
                     DefaultSkills.Medicine
                 ]);
             }
+            
+            if (career == TORCareers.Spellsinger)
+            {
+                _activitySets.Add(career, [
+                    TORSkills.SpellCraft,
+                    DefaultSkills.Scouting,
+                    DefaultSkills.Riding,
+                    DefaultSkills.Athletics,
+                    DefaultSkills.Medicine
+                ]);
+            }
         }
     }
     

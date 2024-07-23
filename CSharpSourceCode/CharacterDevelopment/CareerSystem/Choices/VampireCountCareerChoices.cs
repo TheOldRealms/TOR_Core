@@ -256,7 +256,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _newBloodPassive4.Initialize(CareerID, "Immune to sunlight speed malus.", "NewBlood", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
 
             _feralPassive1.Initialize(CareerID, "10% extra melee damage.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-            _feralPassive2.Initialize(CareerID, "Increases health regeneration on the campaign map by 5.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));
+            _feralPassive2.Initialize(CareerID, "Increases health regeneration on the campaign map by 3.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));
             _feralPassive3.Initialize(CareerID, "Party movement speed is increased by 1.5.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed,false));
             _feralPassive4.Initialize(CareerID, "Increases Hitpoints by 25.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             

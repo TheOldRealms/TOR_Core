@@ -20,6 +20,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public string AttributeToIncrease;
         public string OptionText;
         public string OptionFlavourText;
+        public string PositiveEffectText = "";
         [XmlAttribute]
         public string EquipmentSetId;
     }

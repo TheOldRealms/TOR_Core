@@ -50,7 +50,10 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         private void PostBattleEvent(MapEvent mapEvent)
         {
-            
+            if (Hero.MainHero.IsEnlisted())
+            {
+                return;
+            }
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
                 

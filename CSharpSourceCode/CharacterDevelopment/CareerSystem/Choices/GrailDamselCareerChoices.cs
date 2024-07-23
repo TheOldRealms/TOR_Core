@@ -184,7 +184,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _inspirationOfTheLadyPassive3.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.TroopWages, true, 
                 characterObject => !characterObject.IsHero && characterObject.IsKnightUnit()));
             _inspirationOfTheLadyPassive4.Initialize(CareerID, "10% Ward save if your armor weight does not exceed 11 weight.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, 
-                 (attacker, victim, attackmask) => HeroArmorWeightUndershootCheck(attacker) ));
+                 (attacker, victim, attackmask) => attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightUndershootCheck(attacker,11)));
 
             _talesOfGilesPassive1.Initialize(CareerID, "{=tales_of_giles_passive1_str}Increases max Winds of Magic by 10.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _talesOfGilesPassive2.Initialize(CareerID, "{=tales_of_giles_passive2_str}Bretonnian units receive 10% Ward save.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
@@ -200,7 +200,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _justCausePassive1.Initialize(CareerID, "Upgrade costs are halved.", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.5f, PassiveEffectType.TroopUpgradeCost));
             _justCausePassive2.Initialize(CareerID, "Non-knight units in the party gain 100 XP every day.", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false)); //CareerPerkCampaign Behavior 101
             _justCausePassive3.Initialize(CareerID, "Extra 15% Wardsave if your armor weight does not exceed 11 weight.", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.Spell,
-                (attacker, victim, attackmask) => HeroArmorWeightUndershootCheck(attacker)));
+                (attacker, victim, attackmask) => attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightUndershootCheck(attacker,11)));
             _justCausePassive4.Initialize(CareerID, "Increases positive Relation gains by 20%.", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorDiplomacy model 23
             
             _secretsOfTheGrailPassive1.Initialize(CareerID, "{=secrets_of_the_grail_Passive1_str}Increases lightning spell damage by 30%.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 30), AttackTypeMask.Spell));
@@ -212,14 +212,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _envoyOfTheLadyPassive2.Initialize(CareerID, "{=ambassador_of_the_lady_Passive2_str}Knight Companion health points are doubled.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, true));
             _envoyOfTheLadyPassive3.Initialize(CareerID, "{=ambassador_of_the_lady_Passive3_str}Damsel Companion have 25 more Winds of Magic.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, false)); //AbilityMissionLogic, OnCastComplete
             _envoyOfTheLadyPassive4.Initialize(CareerID, "{=ambassador_of_the_lady_Passive4_str}Diplomatic force options for all Brettonnian Leaders.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true));
-        }
-        
-        private static bool HeroArmorWeightUndershootCheck(Agent agent)
-        {
-            if (!agent.BelongsToMainParty()) return false;
-            if (!agent.IsMainAgent) return false;
-            var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
-            return weight <= 11;
         }
 
         private static bool IsBretonnianUnit(Agent agent)

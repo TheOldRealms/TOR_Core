@@ -6,6 +6,7 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -93,6 +94,18 @@ namespace TOR_Core.Models
             if (playerHero.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize,false);
+            }
+
+
+            if (playerHero.HasCareer(TORCareers.Spellsinger))
+            {
+                if (Hero.MainHero.HasCareerChoice("TreeSingingPassive4"))
+                {
+                    var info = playerHero.GetExtendedInfo();
+                    var abilities = info.AllAbilities;
+                    
+                    number.Add(3*abilities.Count);
+                }
             }
         }
     }

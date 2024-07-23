@@ -86,6 +86,11 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
+                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.Spellsinger) && Hero.MainHero.HasKnownLore(lore.ID) &&
+                         CharacterObject.OneToOneConversationCharacter != null)
+                {
+                    LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
+                }
             }
             CurrentLore = LoreObjects[0];
         }

@@ -20,7 +20,7 @@ namespace TOR_Core.Models
             {
                 return false;
             }
-            if (agent.IsUndead() || agent.IsUnbreakable() || agent.Origin is SummonedAgentOrigin) return false;
+            if (agent.IsUndead() || agent.IsUnbreakable() || agent.IsTreeSpirit() || agent.Origin is SummonedAgentOrigin) return false;
             else return base.CanPanicDueToMorale(agent);
         }
 
