@@ -892,6 +892,7 @@
   <string id="career_title.BlackGrailKnight" text="{=tor_career_title_black_grail_knight_str}Knight of Mousillon" />
   <string id="career_title.Necrarch" text="{=tor_career_title_necrarch_str}Necrarch" />
   <string id="career_title.Waywatcher" text="{=tor_career_title_waywatcher_str}Waywatcher" />
+  <string id="career_title.Spellsinger" text="{=tor_career_title_waywatcher_str}Spellsinger" />
 
 
   <string id="career_switch_title.MinorVampire" text="{=tor_career_switch_title_necrarch_str}Become a Carstein Vampire" />
@@ -978,9 +979,13 @@
   <string id="career_choicegroup2_name.ImperialMagister" text="{=career_choicegroup2_imperialmagister_str}Battle Wizard" />
   <string id="career_choicegroup3_name.ImperialMagister" text="{=career_choicegroup3_imperialmagister_str}Lord Magister" />
   
-    <string id="career_choicegroup1_name.Waywatcher" text="{=career_choicegroup1_waywatcher_str}Scout" />
+  <string id="career_choicegroup1_name.Waywatcher" text="{=career_choicegroup1_waywatcher_str}Scout" />
   <string id="career_choicegroup2_name.Waywatcher" text="{=career_choicegroup2_waywatcher_str}Waywatcher" />
   <string id="career_choicegroup3_name.Waywatcher" text="{=career_choicegroup3_waywatcher_str}Waystalker" />
+  
+  <string id="career_choicegroup1_name.Spellsinger" text="{=career_choicegroup1_waywatcher_str}Spellsinger" />
+  <string id="career_choicegroup2_name.Spellsinger" text="{=career_choicegroup2_waywatcher_str}Spellweaver" />
+  <string id="career_choicegroup3_name.Spellsinger" text="{=career_choicegroup3_waywatcher_str}Ascended Spellweaver" />
   
 
   <!--Career related related !-->
@@ -1241,11 +1246,18 @@
   <string id="Hireling.PauseTime" text="Pause on entering the next settlement: {PAUSE_ONOFF}" />
 
   <string id="Hireling.EnlistingArmy" text="Party is part of: {ENLISTING_ARMY}" />
-	<string id="HirelingActivity0.Waywatcher" text="Target practice in solitude" />
-	<string id="HirelingActivity1.Waywatcher" text="Climb trees and scout the area" />
-	<string id="HirelingActivity2.Waywatcher" text="Cover the perimeter and set up traps" />
-	<string id="HirelingActivity3.Waywatcher" text="Advanced sparring sessions" />
-	<string id="HirelingActivity4.Waywatcher" text="Gather medical herbs" />
+  
+  <string id="HirelingActivity0.Waywatcher" text="Target practice in solitude" />
+  <string id="HirelingActivity1.Waywatcher" text="Climb trees and scout the area" />
+  <string id="HirelingActivity2.Waywatcher" text="Cover the perimeter and set up traps" />
+  <string id="HirelingActivity3.Waywatcher" text="Advanced sparring sessions" />
+  <string id="HirelingActivity4.Waywatcher" text="Gather medical herbs" />
+
+  <string id="HirelingActivity0.Spellsinger" text="Target practice in solitude" />
+  <string id="HirelingActivity1.Spellsinger" text="Climb trees and scout the area" />
+  <string id="HirelingActivity2.Spellsinger" text="Cover the perimeter and set up traps" />
+  <string id="HirelingActivity3.Spellsinger" text="Advanced sparring sessions" />
+  <string id="HirelingActivity4.Spellsinger" text="Gather medical herbs" />
 
   <string id="HirelingActivity0.ImperialMagister" text="Focus on your studies" />
   <string id="HirelingActivity1.ImperialMagister" text="Assist your lord with accounting tasks" />
