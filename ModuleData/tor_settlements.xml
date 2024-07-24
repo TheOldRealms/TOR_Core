@@ -4447,7 +4447,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL1" name="{=Settlements.Settlement.name.castle_LL1}Tower of Se-Athil" owner="Faction.parravon_clan_1" posX="1215.219" posY="1363.92" culture="Culture.vlandia" gate_posX="1214.353" gate_posY="1364.901" text="{=Settlements.Settlement.name.castle_LL1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
+  <Settlement id="castle_LL1" name="{=Settlements.Settlement.name.castle_LL1}Tower of Se-Athil" owner="Faction.laurelorn_clan_3" posX="1215.219" posY="1363.92" culture="Culture.vlandia" gate_posX="1214.353" gate_posY="1364.901" text="{=Settlements.Settlement.name.castle_LL1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
     <Components>
       <Town id="castle_comp_LL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4483,7 +4483,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL2" name="{=Settlements.Settlement.name.castle_LL2}Aroth Loren" owner="Faction.parravon_clan_1" posX="1280.787" posY="1315.303" culture="Culture.vlandia" gate_posX="1281.352" gate_posY="1316.483" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_LL2" name="{=Settlements.Settlement.name.castle_LL2}Aroth Loren" owner="Faction.laurelorn_clan_4" posX="1280.787" posY="1315.303" culture="Culture.vlandia" gate_posX="1281.352" gate_posY="1316.483" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_LL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4506,7 +4506,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL3" name="{=Settlements.Settlement.name.castle_LL2}Aroth Hanor" owner="Faction.parravon_clan_1" posX="1274.939" posY="1276.186" culture="Culture.vlandia" gate_posX="1275.504" gate_posY="1277.366" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_LL3" name="{=Settlements.Settlement.name.castle_LL2}Aroth Hanor" owner="Faction.laurelorn_clan_2" posX="1274.939" posY="1276.186" culture="Culture.vlandia" gate_posX="1275.504" gate_posY="1277.366" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_LL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>

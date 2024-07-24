@@ -701,9 +701,9 @@
              culture="Culture.eonir"
              settlement_banner_mesh="encounter_flag_a"
              flag_mesh="info_screen_flags_b"
-             name="{=!}Realms of Athel Loren"
-             short_name="{=!}Athel Loren"
-             title="{=!}Athel Loren"
+             name="{=!}Wards of Laurelorn"
+             short_name="{=!}Laurelorn"
+             title="{=!}Laurelorn"
              ruler_title="{=!}Highborn"
              text="{=!}Once a proud colony of the Phoenix King, the Eonir of Laurelorn are the last remains of the High elves in the Old World, however, they assert their complete independence from Ulthuan after thousands of years of separation. In the Tragic events of the War of the Beards against the Dwarves, All colonies were either dissolved or burned down by the Dwarfs, leading to most of the remaining elves searching for shelter in the most northern province in Tor Lithanel. Though they called for support from the Phoenix Throne, Tor Lithanel did not receive any response and had a long-lasting fight for their survival as a result of these events, Laurelorn declared their independence. Today, the relationship between Ulthuan and Laurelorn has improved again. Yet, the Eonir do not believe anymore in the cause of the Asur. Instead, they arranged their situation in the middle of the empire of men. ">
     </Kingdom>
