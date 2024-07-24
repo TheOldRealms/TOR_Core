@@ -13802,7 +13802,7 @@
       <Equipment slot="HorseHarness" id="Item.tor_vc_mountarmor_horsearmor_black_knight_001" />
     </EquipmentSet>
   </EquipmentRoster>
-  <EquipmentRoster id="tor_queen_marrisith_template" culture="Culture.battania">
+  <EquipmentRoster id="tor_queen_marrisith_template" culture="Culture.eonir">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_weapon_spear_004" />
       <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />

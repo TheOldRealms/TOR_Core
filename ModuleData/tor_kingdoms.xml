@@ -688,4 +688,23 @@
              ruler_title="{=!}Highborn"
              text="{=!}missing... ">
     </Kingdom>
+	<Kingdom id="athel_loren"
+             owner="Hero.tor_we_lord_athel_loren_factionleader"
+             banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0"
+             primary_banner_color="0xff284E19"
+             secondary_banner_color="0xffB4F0F1"
+             label_color="FF55831A"
+             color="FF2D3F1D"
+             color2="FFBFCBB0"
+             alternative_color="FFD69516"
+             alternative_color2="FF55831A"
+             culture="Culture.battania"
+             settlement_banner_mesh="encounter_flag_a"
+             flag_mesh="info_screen_flags_b"
+             name="{=!}Realms of Athel Loren"
+             short_name="{=!}Athel Loren"
+             title="{=!}Athel Loren"
+             ruler_title="{=!}Highborn"
+             text="{=!}missing... ">
+    </Kingdom>
 </Kingdoms>
