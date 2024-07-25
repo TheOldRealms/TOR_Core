@@ -76,7 +76,14 @@ namespace TOR_Core.Models
             var defenderCaptain = attackInformation.VictimCaptainCharacter as CharacterObject;
 
             var resultDamage = new ExplainedNumber(result);
-            if (attacker != null && defender != null && !weapon.IsEmpty)
+
+            if (attacker == null)
+            {
+                return resultDamage.ResultNumber;
+            }
+
+            
+            if (defender != null && !weapon.IsEmpty)
             {
                 if (attacker.GetPerkValue(TORPerks.GunPowder.CloseQuarters) && weapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge)
                 {
@@ -129,7 +136,7 @@ namespace TOR_Core.Models
                 resultDamage.AddFactor(3f);
             }
 
-            if (collisionData.IsHorseCharge && attacker != null && attacker.IsMounted && attacker.IsPlayerCharacter && attacker.HeroObject.HasAnyCareer())
+            if ( collisionData.IsHorseCharge && attacker.IsMounted && attacker.IsPlayerCharacter && attacker.HeroObject.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultDamage, PassiveEffectType.HorseChargeDamage);
             }

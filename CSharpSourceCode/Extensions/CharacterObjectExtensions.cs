@@ -143,10 +143,6 @@ namespace TOR_Core.Extensions
 
         public static bool IsTreeSpirit(this CharacterObject characterObject)
         {
-            if (characterObject?.Culture == null)
-            {
-                return false;
-            }
             return characterObject.Culture.StringId == TORConstants.Cultures.ASRAI  && !characterObject.IsElf();
         }
 
