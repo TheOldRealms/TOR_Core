@@ -1449,7 +1449,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_militia" />
+      <upgrade_target id="NPCCharacter.tor_eo_militia" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_forestborn_template" />
@@ -1467,8 +1467,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
-      <upgrade_target id="NPCCharacter.tor_we_glade_guard" />
+      <upgrade_target id="NPCCharacter.tor_eo_kithband_aspirant" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_militia_template" />
@@ -1486,7 +1485,8 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_deepwood_scout" />
+      <upgrade_target id="NPCCharacter.tor_eo_kithband_warrior" />
+      <upgrade_target id="NPCCharacter.tor_eo_kithband_sentinel" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_kithband_aspirant_template" />
@@ -1504,7 +1504,8 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_deepwood_scout" />
+      <upgrade_target id="NPCCharacter.tor_eo_mounted_kithband_warrior" />
+      <upgrade_target id="NPCCharacter.tor_eo_veteran_kithband_warrior" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_kithband_warrior_template" />
@@ -1521,9 +1522,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_deepwood_scout" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_eo_mounted_kithband_warrior_template" />
       <EquipmentSet id="tor_eo_mounted_kithband_warrior_template" civilian="true" />
@@ -1539,9 +1538,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_deepwood_scout" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_eo_veteran_kithband_warrior_template" />
       <EquipmentSet id="tor_eo_veteran_kithband_warrior_template" civilian="true" />
@@ -1558,7 +1555,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_deepwood_scout" />
+      <upgrade_target id="NPCCharacter.tor_eo_ranger" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_kithband_sentinel_template" />
@@ -1576,7 +1573,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_deepwood_scout" />
+      <upgrade_target id="NPCCharacter.tor_eo_mounted_ranger" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_ranger_template" />
@@ -1593,9 +1590,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_deepwood_scout" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_eo_mounted_ranger_template" />
       <EquipmentSet id="tor_eo_mounted_ranger_template" civilian="true" />
@@ -1612,8 +1607,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
-      <upgrade_target id="NPCCharacter.tor_we_glade_guard" />
+      <upgrade_target id="NPCCharacter.tor_eo_cityborn_guard" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_cityborn_militia_template" />
@@ -1631,8 +1625,8 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
-      <upgrade_target id="NPCCharacter.tor_we_glade_guard" />
+      <upgrade_target id="NPCCharacter.tor_eo_cityborn_council_guard" />
+      <upgrade_target id="NPCCharacter.tor_eo_cityborn_council_sentinel" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_cityborn_guard_template" />
@@ -1650,8 +1644,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
-      <upgrade_target id="NPCCharacter.tor_we_glade_guard" />
+      <upgrade_target id="NPCCharacter.tor_eo_queens_guard" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_cityborn_council_guard_template" />
@@ -1669,8 +1662,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
-      <upgrade_target id="NPCCharacter.tor_we_glade_guard" />
+      <upgrade_target id="NPCCharacter.tor_eo_envoy_guard" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_cityborn_council_sentinel_template" />
@@ -1687,10 +1679,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
-      <upgrade_target id="NPCCharacter.tor_we_glade_guard" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_eo_queens_guard_template" />
       <EquipmentSet id="tor_eo_queens_guard_template" civilian="true" />
@@ -1706,10 +1695,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_eternal_guard" />
-      <upgrade_target id="NPCCharacter.tor_we_glade_guard" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_eo_envoy_guard_template" />
       <EquipmentSet id="tor_eo_envoy_guard_template" civilian="true" />
@@ -1726,7 +1712,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_caravan_captain" />
+      <upgrade_target id="NPCCharacter.tor_eo_caravan_ranged" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_caravan_guard_template" />
@@ -1744,7 +1730,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_we_caravan_elite_ranged" />
+      <upgrade_target id="NPCCharacter.tor_eo_caravan_elite_ranged" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_caravan_ranged_template" />
