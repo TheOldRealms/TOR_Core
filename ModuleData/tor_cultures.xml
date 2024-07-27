@@ -4600,7 +4600,7 @@
             armed_trader="NPCCharacter.tor_m_caravan_ranged"
             caravan_guard="NPCCharacter.tor_eo_caravan_guard"
             veteran_caravan_guard="NPCCharacter.tor_eo_caravan_elite_ranged"
-            prison_guard="NPCCharacter.tor_eo_cityborn_guard_template"
+            prison_guard="NPCCharacter.tor_eo_cityborn_guard"
             guard="NPCCharacter.tor_eo_cityborn_guard"
             blacksmith="NPCCharacter.blacksmith_vlandia"
             weaponsmith="NPCCharacter.weaponsmith_vlandia"

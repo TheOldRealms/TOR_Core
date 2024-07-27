@@ -1960,9 +1960,9 @@
   
   
     <!-- URBAN CHARACTERS OF eonir -->
-  <NPCCharacter id="spc_notable_eonir_merch1" name="{=!}Ironic eonir merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Merchant">
+  <NPCCharacter id="spc_notable_eonir_merch1" name="{=!}Ironic eonir merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Valor" value="-1" />
@@ -1973,9 +1973,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_merch2" name="{=!}curt eonir merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Merchant">
+  <NPCCharacter id="spc_notable_eonir_merch2" name="{=!}curt eonir merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Commander" value="2" />
@@ -1988,9 +1988,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_merch3" name="{=!}Daring eonir merchant" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Merchant">
+  <NPCCharacter id="spc_notable_eonir_merch3" name="{=!}Daring eonir merchant" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Commander" value="3" />
@@ -2002,9 +2002,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_merch4" name="{=!}Softspoken eonir merchant" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Merchant">
+  <NPCCharacter id="spc_notable_eonir_merch4" name="{=!}Softspoken eonir merchant" voice="softspoken" is_template="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.eonir" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Commander" value="1" />
@@ -2016,9 +2016,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_merch5" name="{=!}{FIRSTNAME} the Manciple" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Merchant">
+  <NPCCharacter id="spc_notable_eonir_merch5" name="{=!}{FIRSTNAME} the Manciple" voice="softspoken" is_template="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.eonir" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Commander" value="2" />
@@ -2030,9 +2030,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_1" name="{=!}{FIRSTNAME} the Warehouser" voice="ironic" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Merchant">
+  <NPCCharacter id="spc_notable_eonir_1" name="{=!}{FIRSTNAME} the Warehouser" voice="ironic" is_template="true" is_female="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.eonir" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.townswoman_vlandia" />
+      <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
       <Trait id="Valor" value="-1" />
@@ -2043,9 +2043,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_1b" name="{=!}{FIRSTNAME} the Heiress" voice="ironic" is_template="true" is_female="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Merchant">
+  <NPCCharacter id="spc_notable_eonir_1b" name="{=!}{FIRSTNAME} the Heiress" voice="ironic" is_template="true" is_female="true" default_group="Infantry" race ="elf" is_hero="false" culture="Culture.eonir" occupation="Merchant">
     <face>
-      <face_key_template value="BodyProperty.townswoman_vlandia" />
+      <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
       <Trait id="Commander" value="2" />
@@ -2057,7 +2057,7 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_2" name="{=!}Puritan male preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Preacher">
+  <NPCCharacter id="spc_notable_eonir_2" name="{=!}Puritan male preacher" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Preacher">
     <face>
       <face_key_template value="BodyProperty.villager_vlandia" />
     </face>
@@ -2070,9 +2070,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_3" name="{=!}Rebellious female preacher" voice="earnest" is_template="true" default_group="Infantry" is_female="true" culture="Culture.eonir" occupation="Preacher">
+  <NPCCharacter id="spc_notable_eonir_3" name="{=!}Rebellious female preacher" voice="earnest" is_template="true" default_group="Infantry" is_female="true" race ="elf" culture="Culture.eonir" occupation="Preacher">
     <face>
-      <face_key_template value="BodyProperty.townswoman_vlandia" />
+      <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
     <Traits>
       <Trait id="Generosity" value="1" />
@@ -2083,9 +2083,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_eonir_gangleader_1" name="{=!}Standard male gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="GangLeader">
+  <NPCCharacter id="spc_eonir_gangleader_1" name="{=!}Standard male gang leader" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="GangLeader">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Valor" value="1" />
@@ -2096,9 +2096,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_eonir_gangleader_2" name="{=!}Female gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" culture="Culture.eonir" occupation="GangLeader">
+  <NPCCharacter id="spc_eonir_gangleader_2" name="{=!}Female gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" race ="elf" culture="Culture.eonir" occupation="GangLeader">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Valor" value="1" />
@@ -2109,9 +2109,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_eonir_gangleader_3" name="{=!}Male gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" culture="Culture.eonir" occupation="GangLeader">
+  <NPCCharacter id="spc_eonir_gangleader_3" name="{=!}Male gang leader" voice="ironic" is_template="true" default_group="Infantry" is_female="true" race ="elf" culture="Culture.eonir" occupation="GangLeader">
     <face>
-      <face_key_template value="BodyProperty.fighter_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Valor" value="1" />
@@ -2124,9 +2124,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_artisan_1" name="{=!}eonirn artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.eonir" occupation="Artisan">
+  <NPCCharacter id="spc_notable_eonir_artisan_1" name="{=!}eonirn artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.eonir" race ="elf" occupation="Artisan">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Generosity" value="1" />
@@ -2136,9 +2136,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_artisan_2" name="{=!}eonirn artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.eonir" occupation="Artisan">
+  <NPCCharacter id="spc_notable_eonir_artisan_2" name="{=!}eonirn artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.eonir" race ="elf" occupation="Artisan">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Calculating" value="1" />
@@ -2148,9 +2148,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_rural_1" name="{=!}eonirn yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.eonir" occupation="RuralNotable">
+  <NPCCharacter id="spc_notable_eonir_rural_1" name="{=!}eonirn yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.eonir" race ="elf" occupation="RuralNotable">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Generosity" value="1" />
@@ -2160,9 +2160,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_eonir_rural_2" name="{=!}eonirn yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.eonir" occupation="RuralNotable">
+  <NPCCharacter id="spc_notable_eonir_rural_2" name="{=!}eonirn yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.eonir" race ="elf" occupation="RuralNotable">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="Calculating" value="1" />
@@ -2173,9 +2173,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_eonir_headman_1" name="{=!}eonirn rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Headman">
+  <NPCCharacter id="spc_eonir_headman_1" name="{=!}eonirn rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" race ="elf" occupation="Headman">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="FrankishHair" value="1" />
@@ -2187,9 +2187,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_eonir_headman_2" name="{=!}eonirn conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Headman">
+  <NPCCharacter id="spc_eonir_headman_2" name="{=!}eonirn conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir"  race ="elf" occupation="Headman">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="FrankishHair" value="1" />
@@ -2201,9 +2201,9 @@
       <EquipmentSet id="npc_wanderer_equipment_template_vlandia" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_eonir_headman_3" name="{=!}eonirn devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" occupation="Headman">
+  <NPCCharacter id="spc_eonir_headman_3" name="{=!}eonirn devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.eonir" race ="elf" occupation="Headman">
     <face>
-      <face_key_template value="BodyProperty.villager_vlandia" />
+      <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
       <Trait id="FrankishHair" value="1" />
