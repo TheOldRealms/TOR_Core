@@ -1165,7 +1165,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
-		<OptionText>{=tor_cc_option_3_eo_eonir_expatriate_label_str}Path of the Warden</OptionText>
+		<OptionText>{=tor_cc_option_3_eo_eonir_expatriate_label_str}Eonir Expatriate</OptionText>
 		<OptionFlavourText>{=tor_cc_option_3_eo_eonir_expatriate_text_str}You think the cause of the Eonir is lost. Instead, you call the provinces of the humans your home. As a mercenary or trader, you are making a living for yourself.</OptionFlavourText>
 	</CharacterCreationOption> 
 	

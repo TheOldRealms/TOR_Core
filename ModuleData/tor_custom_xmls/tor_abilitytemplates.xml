@@ -3812,7 +3812,7 @@
 	
 	<AbilityTemplate StringID="ArcaneConduit"
        Name="{=red_fury_label_str}Arcane Conduit"
-       SpriteName="redfury_icon"
+       SpriteName="arcaneconduit_icon"
        CoolDown="120"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"

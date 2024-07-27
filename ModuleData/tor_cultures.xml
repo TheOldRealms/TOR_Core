@@ -4736,25 +4736,25 @@
       </possible_clan_banner_icon_ids>
       <notable_and_wanderer_templates>
         <template name="NPCCharacter.tor_wanderer_mousillon_0" />
-        <template name="NPCCharacter.spc_notable_mousillon_merch1" />
-        <template name="NPCCharacter.spc_notable_mousillon_merch2" />
-        <template name="NPCCharacter.spc_notable_mousillon_merch3" />
-        <template name="NPCCharacter.spc_notable_mousillon_merch4" />
-        <template name="NPCCharacter.spc_notable_mousillon_merch5" />
-        <template name="NPCCharacter.spc_notable_mousillon_1" />
-        <template name="NPCCharacter.spc_notable_mousillon_1b" />
-        <template name="NPCCharacter.spc_notable_mousillon_2" />
-        <template name="NPCCharacter.spc_notable_mousillon_3" />
-        <template name="NPCCharacter.spc_mousillon_gangleader_1" />
-        <template name="NPCCharacter.spc_mousillon_gangleader_2" />
-        <template name="NPCCharacter.spc_mousillon_gangleader_3" />
-        <template name="NPCCharacter.spc_notable_mousillon_artisan_1" />
-        <template name="NPCCharacter.spc_notable_mousillon_artisan_2" />
-        <template name="NPCCharacter.spc_notable_mousillon_rural_1" />
-        <template name="NPCCharacter.spc_notable_mousillon_rural_2" />
-        <template name="NPCCharacter.spc_mousillon_headman_1" />
-        <template name="NPCCharacter.spc_mousillon_headman_2" />
-        <template name="NPCCharacter.spc_mousillon_headman_3" />
+        <template name="NPCCharacter.spc_notable_eonir_merch1" />
+        <template name="NPCCharacter.spc_notable_eonir_merch2" />
+        <template name="NPCCharacter.spc_notable_eonir_merch3" />
+        <template name="NPCCharacter.spc_notable_eonir_merch4" />
+        <template name="NPCCharacter.spc_notable_eonir_merch5" />
+        <template name="NPCCharacter.spc_notable_eonir_1" />
+        <template name="NPCCharacter.spc_notable_eonir_1b" />
+        <template name="NPCCharacter.spc_notable_eonir_2" />
+        <template name="NPCCharacter.spc_notable_eonir_3" />
+        <template name="NPCCharacter.spc_eonir_gangleader_1" />
+        <template name="NPCCharacter.spc_eonir_gangleader_2" />
+        <template name="NPCCharacter.spc_eonir_gangleader_3" />
+        <template name="NPCCharacter.spc_notable_eonir_artisan_1" />
+        <template name="NPCCharacter.spc_notable_eonir_artisan_2" />
+        <template name="NPCCharacter.spc_notable_eonir_rural_1" />
+        <template name="NPCCharacter.spc_notable_eonir_rural_2" />
+        <template name="NPCCharacter.spc_eonir_headman_1" />
+        <template name="NPCCharacter.spc_eonir_headman_2" />
+        <template name="NPCCharacter.spc_eonir_headman_3" />
       </notable_and_wanderer_templates>
       <lord_templates>
         <template name="NPCCharacter.tor_m_rogue_lord_0" />
