@@ -4657,54 +4657,40 @@
         <policy id="policy_feudal_inheritance" />
         <policy id="policy_castle_charters" />
       </default_policies>
-      <male_names>
-        <name name="{=bretonnia_male_name_1}Jean" />
-		<name name="{=bretonnia_male_name_2}Michel" />
-		<name name="{=bretonnia_male_name_3}Philippe" />
-		<name name="{=bretonnia_male_name_4}Pierre" />
-		<name name="{=bretonnia_male_name_5}Alain" />
-		<name name="{=bretonnia_male_name_6}Bernard" />
-		<name name="{=bretonnia_male_name_7}Jacques" />
-		<name name="{=bretonnia_male_name_8}Thierry" />
-		<name name="{=bretonnia_male_name_9}Laurent" />
-		<name name="{=bretonnia_male_name_10}Rene" />
-		<name name="{=bretonnia_male_name_11}Olivier" />
-		<name name="{=bretonnia_male_name_12}Robert" />
-		<name name="{=bretonnia_male_name_13}Guy" />
-		<name name="{=bretonnia_male_name_14}Yves" />
-		<name name="{=bretonnia_male_name_15}Georges" />
-		<name name="{=bretonnia_male_name_16}Julien" />
-		<name name="{=bretonnia_male_name_17}Henri" />
-		<name name="{=bretonnia_male_name_18}Vincent" />
-		<name name="{=bretonnia_male_name_19}Louis" />
-		<name name="{=bretonnia_male_name_20}Frederic" />
-		<name name="{=bretonnia_male_name_21}Sebastien" />
-		<name name="{=bretonnia_male_name_22}Gilles" />
-		<name name="{=bretonnia_male_name_23}Guillaume" />
-		<name name="{=bretonnia_male_name_24}Gerard" />
-		<name name="{=bretonnia_male_name_25}Charles" />
-		<name name="{=bretonnia_male_name_26}Arnaud" />
-		<name name="{=bretonnia_male_name_27}Gilbert" />
-		<name name="{=bretonnia_male_name_28}Cyril" />
-		<name name="{=bretonnia_male_name_29}Bertrand" />
-		<name name="{=bretonnia_male_name_30}Cedric" />
-		<name name="{=bretonnia_male_name_31}Luc" />
-      </male_names>
-      <female_names>
-        <name name="{=bretonnia_female_name_1}Marie" />
-		<name name="{=bretonnia_female_name_2}Nathalie" />
-		<name name="{=bretonnia_female_name_3}Isabelle" />
-		<name name="{=bretonnia_female_name_4}Catherine" />
-		<name name="{=bretonnia_female_name_5}Sylvie" />
-		<name name="{=bretonnia_female_name_6}Monique" />
-		<name name="{=bretonnia_female_name_7}Christine" />
-		<name name="{=bretonnia_female_name_8}Anne" />
-		<name name="{=bretonnia_female_name_9}Sophie" />
-		<name name="{=bretonnia_female_name_10}Jacqueline" />
-		<name name="{=bretonnia_female_name_11}Brigitte" />
-		<name name="{=bretonnia_female_name_12}Stephanie" />
-		<name name="{=bretonnia_female_name_13}Celine" />
-      </female_names>
+		<male_names>
+            <name name="{=wood_elf_male_name_1}Athelwyn" />
+			<name name="{=wood_elf_male_name_2}Aldarin" />
+			<name name="{=wood_elf_male_name_3}Aerendil" />
+			<name name="{=wood_elf_male_name_4}Caelith" />
+			<name name="{=wood_elf_male_name_5}Caelen" />
+			<name name="{=wood_elf_male_name_6}Daertoc" />
+			<name name="{=wood_elf_male_name_7}Dhalsyth" />
+			<name name="{=wood_elf_male_name_8}Tevaril" />
+			<name name="{=wood_elf_male_name_9}Eldrith" />
+			<name name="{=wood_elf_male_name_10}Eldarian" />
+			<name name="{=wood_elf_male_name_11}Faerandor" />
+			<name name="{=wood_elf_male_name_12}Faelor" />
+			<name name="{=wood_elf_male_name_13}Iarac" />
+			<name name="{=wood_elf_male_name_14}Thalendil" />
+			<name name="{=wood_elf_male_name_15}Kholis" />
+			<name name="{=wood_elf_male_name_16}Maelorn" />
+			<name name="{=wood_elf_male_name_17}Larethorn" />
+			<name name="{=wood_elf_male_name_18}Theronis" />
+			<name name="{=wood_elf_male_name_19}Haldirion" />
+			<name name="{=wood_elf_male_name_20}Wydnoth" />
+        </male_names>
+        <female_names>
+            <name name="{=wood_elf_female_name_1}Aerisil" />
+			<name name="{=wood_elf_female_name_2}Aelwen" />
+			<name name="{=wood_elf_female_name_3}Elowyn" />
+			<name name="{=wood_elf_female_name_4}Elessa" />
+			<name name="{=wood_elf_female_name_5}Lunara" />
+			<name name="{=wood_elf_female_name_6}Caladwen" />
+			<name name="{=wood_elf_female_name_7}Althea" />
+			<name name="{=wood_elf_female_name_8}Miriath" />
+			<name name="{=wood_elf_female_name_9}Lyraelle" />
+			<name name="{=wood_elf_female_name_10}Thalassa" />
+        </female_names>
       <clan_names>
         <name name="{=!}de {ORIGIN_SETTLEMENT}" />
       </clan_names>
