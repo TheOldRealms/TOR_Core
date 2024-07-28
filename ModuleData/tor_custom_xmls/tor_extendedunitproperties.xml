@@ -5500,14 +5500,7 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_second_3">
-    <Abilities>
-      <string>AmberSpear</string>
-      <string>Regrowth</string>
-      <string>Apotheosis</string>
-      <string>SoulQuench</string>
-      <string>CurseOfArrowAttraction</string>
-      <string>ShieldOfSaphery</string>
-    </Abilities>
+    <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_third_1">
@@ -5526,25 +5519,11 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_third_2">
-    <Abilities>
-      <string>AmberSpear</string>
-      <string>Regrowth</string>
-      <string>Apotheosis</string>
-      <string>SoulQuench</string>
-      <string>CurseOfArrowAttraction</string>
-      <string>ShieldOfSaphery</string>
-    </Abilities>
+    <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_third_3">
-    <Abilities>
-      <string>AmberSpear</string>
-      <string>Regrowth</string>
-      <string>Apotheosis</string>
-      <string>SoulQuench</string>
-      <string>CurseOfArrowAttraction</string>
-      <string>ShieldOfSaphery</string>
-    </Abilities>
+    <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_third_4">
@@ -5562,14 +5541,7 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_fourth_1">
-    <Abilities>
-      <string>AmberSpear</string>
-      <string>Regrowth</string>
-      <string>Apotheosis</string>
-      <string>SoulQuench</string>
-      <string>CurseOfArrowAttraction</string>
-      <string>ShieldOfSaphery</string>
-    </Abilities>
+    <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_lord_laurelorn_fourth_2">
