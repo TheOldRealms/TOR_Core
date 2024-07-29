@@ -124,6 +124,8 @@
   <string id="str_faction_official.battania_f" text="{=!}a lady" />
   <string id="str_faction_ruler.battania" text="{=!}Highborn" />
   <string id="str_faction_ruler.battania_f" text="{=!}Highborn" />
+    <string id="str_faction_ruler.eonir" text="{=!}Highborn" />
+  <string id="str_faction_ruler.eonir_f" text="{=!}Highborn" />
 
   <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME}" />
@@ -141,6 +143,8 @@
   <string id="str_faction_noble_name_with_title.mousillon" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_name_with_title.battania" text="{=!}{RULER.NAME}" />
   <string id="str_faction_noble_name_with_title.battania" text="{=!}{RULER.NAME}" />
+    <string id="str_faction_ruler_name_with_title.eonir" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.eonir" text="{=!}{RULER.NAME}" />
 
   <string id="str_adjective_for_faction.averland" text="{=!}imperial" />
   <string id="str_adjective_for_faction.stirland" text="{=!}imperial" />
@@ -171,6 +175,7 @@
   <string id="str_adjective_for_faction.sylvania" text="{=!}vampire" />
   <string id="str_adjective_for_faction.blooddragons" text="{=!}vampire" />
   <string id="str_adjective_for_faction.athel_loren" text="{=!}asrai" />
+  <string id="str_adjective_for_faction.laurelorn" text="{=!}eonir" />
 
   <string id="str_short_term_for_faction.averland" text="{=!}Averland" />
   <string id="str_short_term_for_faction.stirland" text="{=!}Stirland" />
@@ -219,12 +224,15 @@
   <string id="str_adjective_for_culture.vlandia" text="{=!}bretonnian" />
   <string id="str_adjective_for_culture.mousillon" text="{=!}mousillan" />
   <string id="str_adjective_for_culture.battania" text="{=!}asrai" />
+  <string id="str_adjective_for_culture.eonir" text="{=!}eonir" />
 
   <string id="str_neutral_term_for_culture.khuzait" text="{=!}sylvanians" />
   <string id="str_neutral_term_for_culture.empire" text="{=!}imperials" />
   <string id="str_neutral_term_for_culture.vlandia" text="{=!}bretonnians" />
   <string id="str_neutral_term_for_culture.mousillon" text="{=!}mousillans" />
   <string id="str_neutral_term_for_culture.battania" text="{=!}asrai" />
+  <string id="str_neutral_term_for_culture.battania" text="{=!}eonir" />
+
 
   <string id="tor_feudal_oath_line1.averland" text="{=!}I hereby swear to serve the Grand County of Averland." />
   <string id="tor_feudal_oath_line2.averland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
@@ -370,6 +378,16 @@
   <string id="str_liege_title_female.battania" text="{=!}Highborn of Athel Loren">
     <tags>
       <tag tag_name="AsraiTag" />
+    </tags>
+  </string>
+  <string id="str_liege_title.eonir" text="{=!}Highborn of Laurelorn">
+    <tags>
+      <tag tag_name="EonirTag" />
+    </tags>
+  </string>
+  <string id="str_liege_title_female.eonir" text="{=!}Highborn of Laurelorn">
+    <tags>
+      <tag tag_name="EonirTag" />
     </tags>
   </string>
 
