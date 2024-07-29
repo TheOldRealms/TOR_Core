@@ -816,7 +816,7 @@
              super_faction="Kingdom.laurelorn"
              is_noble="true"
              text="{=!}The Ward of Sun contains mostly ‘Toriour’, the city-born Kindred of the Eonir. Through the fallback of the Asur following the Events of the War of Beard, many Asur throughout the Empire searched for refuge in the elves' Last Bastion."
-             banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
+             banner_key="11.126.8.1616.1594.767.728.1.0.0.435.15.96.871.1156.767.756.0.0.180.506.126.126.216.140.769.828.0.0.-91.505.126.96.157.230.775.1152.0.1.90.506.126.126.393.830.768.457.0.0.0.504.35.96.377.1525.767.1213.0.0.0.505.35.96.146.258.767.999.0.0.0.513.35.96.244.366.767.912.0.0.0.506.15.96.122.140.764.958.0.0.0.506.73.96.90.103.764.958.0.0.0.506.104.96.26.29.771.938.0.0.0.504.121.96.72.707.762.451.0.0.0.504.121.96.51.454.716.445.0.0.-23.504.121.96.90.81.663.565.0.1.70.504.121.96.51.433.701.377.0.0.-50.504.121.96.90.76.609.456.0.1.49.504.121.96.50.389.710.317.0.0.-87.504.121.96.90.81.862.547.0.0.-68.504.121.96.51.454.807.429.0.1.25.504.121.96.51.433.821.369.0.1.50.504.121.96.90.76.919.448.0.0.-49.504.121.96.50.389.814.313.0.1.88.504.121.96.89.75.924.317.0.0.-13.503.121.96.150.150.762.335.0.1.180.504.121.96.73.54.595.335.0.0.-130" />
 	<Faction id="laurelorn_clan_2"
              name="{=!}Wardens of the Rains"
              tier="6"
@@ -825,7 +825,7 @@
              super_faction="Kingdom.laurelorn"
              is_noble="true"
              text="{=!}The Ward of the Rain mostly covers the marshes that are hugged by the forest of Laurelorn. Its direct connection to Tor Lithanel makes it the quickest route to the Wasteland and Marienburg, where the Eonir from now and then keep business and political exchange with local High Elf Enclave. The Protection of these uninviting marshes is therefore crucial for the fragile Elven province."
-             banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
+             banner_key="11.113.8.1616.1594.767.728.1.0.0.435.15.96.871.1156.767.756.0.0.180.506.113.126.273.126.769.828.0.0.-91.505.113.96.157.230.775.1152.0.1.90.506.113.126.393.830.768.457.0.0.0.504.35.96.377.1525.767.1213.0.0.0.505.35.96.146.258.767.999.0.0.0.513.35.96.244.366.767.912.0.0.0.506.15.96.122.140.764.958.0.0.0.506.145.96.90.103.764.958.0.0.0.506.48.96.31.35.770.943.0.0.0.504.74.96.79.161.765.595.0.0.0.503.74.96.89.89.765.659.0.0.0.504.74.96.79.161.871.421.0.0.0.503.74.96.89.89.871.485.0.0.0.504.74.96.79.161.664.421.0.0.0.503.74.96.89.89.664.484.0.0.0" />
 	<Faction id="laurelorn_clan_3"
              name="{=!}Wardens of the Storms"
              tier="6"
@@ -834,7 +834,7 @@
              super_faction="Kingdom.laurelorn"
              is_noble="true"
              text="{=!}The Ward of the Storm protects the northern part of the Laurelorn forest and possesses Laurelorns only access to the coast enabling trade with far reaching factions all over the world. While its inhabitants are protective like any of the other wardens, they are also more communicative and diplomatic towards the people they are bordering or cross their ways on the seas. It is not unlikely that a confrontation does not need to end in bloodshed, but a trade - as long the warden benefits from it. "
-             banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
+             banner_key="11.12.8.1616.1594.767.728.1.0.0.435.15.96.871.1156.767.756.0.0.180.506.12.126.273.126.769.828.0.0.-91.505.12.96.157.230.775.1152.0.1.90.506.12.126.393.830.768.457.0.0.0.504.35.96.377.1525.767.1213.0.0.0.505.35.96.146.258.767.999.0.0.0.513.35.96.244.366.767.912.0.0.0.506.15.96.122.140.764.958.0.0.0.506.129.96.90.103.764.958.0.0.0.506.120.96.31.35.770.943.0.0.0.524.84.96.304.343.594.414.0.0.0.524.84.96.304.343.922.414.0.1.0.427.84.96.135.98.763.551.0.0.180.427.84.96.135.98.763.572.0.1.0.506.84.96.43.58.763.564.0.1.0.510.84.96.50.71.704.491.0.1.-55.510.84.96.50.81.765.477.0.1.270.510.84.96.50.69.823.491.0.0.54.510.84.96.50.71.704.635.0.0.234.510.84.96.50.81.765.649.0.0.-90.510.84.96.50.69.823.635.0.1.125" />
 	<Faction id="laurelorn_clan_4"
              name="{=!}Wardens of the Frosts"
              tier="6"
@@ -843,7 +843,7 @@
              super_faction="Kingdom.laurelorn"
              is_noble="true"
              text="{=!}The Ward of the Storm protects the northern part of the Laurelorn forest and possesses Laurelorns only access to the coast enabling trade with far reaching factions all over the world. While its inhabitants are protective like any of the other wardens, they are also more communicative and diplomatic towards the people they are bordering or cross their ways on the seas. It is not unlikely that a confrontation does not need to end in bloodshed, but a trade - as long the warden benefits from it. "
-             banner_key="11.126.126.8000.8000.764.764.0.1.0.213.2.116.789.789.764.764.1.0.0.133.47.116.296.296.764.832.0.0.0" />
+             banner_key="11.2.8.1616.1594.767.728.1.0.0.435.15.96.871.1156.767.756.0.0.180.506.2.126.273.126.769.828.0.0.-91.505.2.96.157.230.775.1152.0.1.90.504.2.126.367.1303.769.576.0.0.-181.504.35.96.377.1525.767.1213.0.0.0.505.35.96.146.258.767.999.0.0.0.513.35.96.244.366.767.912.0.0.0.506.15.96.122.140.764.958.0.0.0.506.4.96.90.103.764.958.0.0.0.506.85.96.31.35.770.943.0.0.0.518.3.96.222.236.768.506.0.0.28.518.2.96.165.175.768.506.0.0.28.510.3.96.375.92.766.505.0.1.120.511.3.96.83.100.697.389.0.0.211.511.3.96.83.100.835.624.0.0.31.510.3.96.375.92.765.505.0.0.240.511.3.96.83.100.834.389.0.1.148.511.3.96.83.100.696.624.0.1.328.510.3.96.375.92.765.505.0.1.180.511.3.96.83.100.630.509.0.0.270.511.3.96.83.100.903.504.0.0.92" />
     <!-- Chaos faction -->
     <Faction id="chaos_clan_1"
              name="{=!}Chaos"

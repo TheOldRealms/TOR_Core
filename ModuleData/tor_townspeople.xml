@@ -1961,7 +1961,22 @@
   
     <!-- URBAN CHARACTERS OF eonir -->
 	
-	<NPCCharacter id="spc_notable_eonir_smith" default_group="Infantry" is_hero="false" occupation="Blacksmith" culture="Culture.eonir" race ="elf" name="{=!}Eonir Weapon Smith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="spc_eonir_weponsmith" default_group="Infantry" is_hero="false" occupation="Weaponsmith" culture="Culture.eonir" race ="elf" name="{=!}Eonir Weaponsmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<face>
+		<face_key_template value="BodyProperty.male_wood_elf" />
+	</face>
+	<Traits>
+	  <Trait id="Valor" value="-1" />
+	  <Trait id="Calculating" value="1" />
+	</Traits>
+	<Equipments>
+		<EquipmentSet id="tor_we_people_notable_artisan_smith" />
+		<EquipmentSet id="tor_we_people_notable_artisan_smith" civilian="true" />
+	</Equipments>
+	</NPCCharacter>
+	
+	
+	<NPCCharacter id="spc_notable_eonir_armorer" default_group="Infantry" is_hero="false" occupation="Armorer" culture="Culture.eonir" race ="elf" name="{=!}Eonir Armorer" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2004,7 +2019,7 @@
 	</NPCCharacter>
 	
 	
-	<NPCCharacter id="spc_notable_eonir_townsman" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.eonir" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="spc_notable_eonir_villager" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.eonir" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2018,7 +2033,7 @@
 	</Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_townswoman" default_group="Infantry" is_hero="false"  is_female="true" occupation="Villager" culture="Culture.eonir" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="spc_notable_eonir_villager_female" default_group="Infantry" is_hero="false"  is_female="true" occupation="Villager" culture="Culture.eonir" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.female_wood_elf" />
 	</face>
@@ -2058,6 +2073,22 @@
     <Equipments>
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+    </Equipments>
+	</NPCCharacter>
+	
+	
+	
+	<NPCCharacter id="spc_notable_eonir_rogue" name="{=!}Eonir merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Merchant">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_rogue" />
+      <EquipmentSet id="tor_we_people_notable_rogue" civilian="true" />
     </Equipments>
 	</NPCCharacter>
 	
