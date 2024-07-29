@@ -2080,7 +2080,7 @@
 	</NPCCharacter>
 	
 	
-	<NPCCharacter id="spc_notable_eonir_tavernkeeper" name="{=!}Eonir Tavernkeeper" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Merchant">
+	<NPCCharacter id="spc_notable_eonir_tavernkeeper" name="{=!}Eonir Tavernkeeper" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Tavernkeeper">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2137,7 +2137,7 @@
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_merchant_notary" name="{=!}Eonir Merchant notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="HorseTrader">
+	<NPCCharacter id="spc_notable_eonir_merchant_notary" name="{=!}Eonir Merchant notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Townsfolk">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2151,7 +2151,7 @@
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_artisan_notary" name="{=!}Eonir Artisan notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="HorseTrader">
+	<NPCCharacter id="spc_notable_eonir_artisan_notary" name="{=!}Eonir Artisan notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Townsfolk">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2165,7 +2165,7 @@
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_rural_notary" name="{=!}Eonir Rural Notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="HorseTrader">
+	<NPCCharacter id="spc_notable_eonir_rural_notary" name="{=!}Eonir Rural Notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="RuralNotable">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
