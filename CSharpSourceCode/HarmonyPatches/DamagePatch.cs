@@ -47,10 +47,8 @@ namespace TOR_Core.HarmonyPatches
             var friendlyFire = attacker.Team == victim.Team;
             var damageProportions = new float[7];
             //attack properties;
-            if (!friendlyFire)
-            {
-                damageProportions = attackerPropertyContainer.DamageProportions;
-            } 
+            
+            damageProportions = attackerPropertyContainer.DamageProportions;
             
             var damageAmplifications = attackerPropertyContainer.DamagePercentages;
             var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
