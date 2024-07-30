@@ -1,4 +1,4 @@
-﻿using Helpers;
+using Helpers;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
