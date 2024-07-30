@@ -5046,25 +5046,26 @@
             <template name="NPCCharacter.spc_wanderer_battania_7" />
             <template name="NPCCharacter.spc_wanderer_battania_8" />
             <template name="NPCCharacter.spc_wanderer_battania_9" />
-            <template name="NPCCharacter.spc_notable_battania_merchant_1" />
-            <template name="NPCCharacter.spc_notable_battania_0b" />
-            <template name="NPCCharacter.spc_notable_battania_0c" />
-            <template name="NPCCharacter.spc_notable_battania_0d" />
-            <template name="NPCCharacter.spc_notable_battania_0e" />
-            <template name="NPCCharacter.spc_notable_battania_1" />
-            <template name="NPCCharacter.spc_notable_battania_1b" />
-            <template name="NPCCharacter.spc_notable_battania_2" />
-            <template name="NPCCharacter.spc_notable_battania_3" />
-            <template name="NPCCharacter.spc_notable_battania_4" />
-            <template name="NPCCharacter.spc_notable_battania_5" />
+            <template name="NPCCharacter.spc_notable_asrai_merch1" />
+			<template name="NPCCharacter.spc_notable_asrai_merch2" />
+			<template name="NPCCharacter.spc_notable_asrai_merch3" />
+			<template name="NPCCharacter.spc_notable_asrai_merch4" />
+			<template name="NPCCharacter.spc_notable_asrai_merch5" />
+            <template name="NPCCharacter.spc_notable_asrai_1" />
+            <template name="NPCCharacter.spc_asrai_gangleader_1" />
+            <template name="NPCCharacter.spc_asrai_gangleader_2" />
+            <template name="NPCCharacter.spc_asrai_gangleader_3" />
+            <template name="NPCCharacter.spc_notable_asrai_artisan_1" />
+			 <template name="NPCCharacter.spc_notable_asrai_artisan_1" />
             <template name="NPCCharacter.spc_battania_artisan_1" />
             <template name="NPCCharacter.spc_battania_artisan_2" />
             <template name="NPCCharacter.spc_battania_artisan_3" />
-            <template name="NPCCharacter.spc_notable_rural_notable_1" />
-            <template name="NPCCharacter.spc_battania_rural_notable_2" />
-            <template name="NPCCharacter.spc_battania_headman_1" />
-            <template name="NPCCharacter.spc_battania_headman_2" />
-            <template name="NPCCharacter.spc_battania_headman_3" />
+			
+            <template name="NPCCharacter.spc_notable_asrai_rural_1" />
+            <template name="NPCCharacter.spc_notable_asrai_rural_2" />
+            <template name="NPCCharacter.spc_asrai_headman_1" />
+            <template name="NPCCharacter.spc_asrai_headman_2" />
+            <template name="NPCCharacter.spc_asrai_headman_3" />
         </notable_and_wanderer_templates>
         <lord_templates>
             <template name="NPCCharacter.spc_wolfskins_leader_0" />

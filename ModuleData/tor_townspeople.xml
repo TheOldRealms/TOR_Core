@@ -2036,7 +2036,7 @@
 	</NPCCharacter>
 	
 	
-	<NPCCharacter id="spc_notable_asrai_villager" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.battania" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="spc_notable_asrai_villager" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.battania" race ="elf" name="{=!}Asrai Villager" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2050,7 +2050,7 @@
 	</Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="village_woman_woodelf" default_group="Infantry" is_hero="false"  is_female="true" occupation="Villager" culture="Culture.battania" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="village_woman_woodelf" default_group="Infantry" is_hero="false"  is_female="true" occupation="Villager" culture="Culture.battania" race ="elf" name="{=!}Asrai Villager" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.female_wood_elf" />
 	</face>
@@ -2064,7 +2064,7 @@
 	</Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="shop_worker_woodelf" default_group="Infantry" is_hero="false"  is_female="false" occupation="ShopWorker" culture="Culture.battania" race ="elf" name="{=!}asrai Shopworker" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="shop_worker_woodelf" default_group="Infantry" is_hero="false"  is_female="false" occupation="ShopWorker" culture="Culture.battania" race ="elf" name="{=!}Asrai Shopworker" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2092,7 +2092,7 @@
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="musician_woodelf" default_group="Infantry" is_hero="false"  is_female="false" occupation="Musician" culture="Culture.battania" race ="elf" name="{=!}asrai Musician" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="musician_woodelf" default_group="Infantry" is_hero="false"  is_female="false" occupation="Musician" culture="Culture.battania" race ="elf" name="{=!}Asrai Musician" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2218,7 +2218,7 @@
       <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_asrai_merch2" name="{=!}curt asrai merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Merchant">
+  <NPCCharacter id="spc_notable_asrai_merch2" name="{=!}Curt asrai merchant" voice="curt" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="Merchant">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2369,7 +2369,7 @@
       <EquipmentSet id="tor_we_people_notable_rogue_leader" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_asrai_artisan_1" name="{=!}asrain artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Artisan">
+  <NPCCharacter id="spc_notable_asrai_artisan_1" name="{=!}Asrai Artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Artisan">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2377,11 +2377,11 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" />
-      <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_notary" />
+      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_asrai_artisan_2" name="{=!}asrain artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Artisan">
+  <NPCCharacter id="spc_notable_asrai_artisan_2" name="{=!}asrai artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Artisan">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2393,7 +2393,7 @@
       <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_asrai_rural_1" name="{=!}asrain yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="RuralNotable">
+  <NPCCharacter id="spc_notable_asrai_rural_1" name="{=!}asrain yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Townsfolk">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2405,7 +2405,7 @@
       <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_asrai_rural_2" name="{=!}asrai yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="RuralNotable">
+  <NPCCharacter id="spc_notable_asrai_rural_2" name="{=!}asrai yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Townsfolk">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
