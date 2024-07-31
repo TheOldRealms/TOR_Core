@@ -2036,20 +2036,6 @@
 	</NPCCharacter>
 	
 	
-	<NPCCharacter id="spc_notable_asrai_villager" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.battania" race ="elf" name="{=!}Asrai Villager" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
-	<face>
-		<face_key_template value="BodyProperty.male_wood_elf" />
-	</face>
-	<Traits>
-	  <Trait id="Valor" value="-1" />
-	  <Trait id="Calculating" value="1" />
-	</Traits>
-	<Equipments>
-		<EquipmentSet id="tor_we_people_notable_townsman" />
-		<EquipmentSet id="tor_we_people_notable_townsman" civilian="true" />
-	</Equipments>
-	</NPCCharacter>
-	
 	<NPCCharacter id="village_woman_woodelf" default_group="Infantry" is_hero="false"  is_female="true" occupation="Villager" culture="Culture.battania" race ="elf" name="{=!}Asrai Villager" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.female_wood_elf" />
@@ -2466,7 +2452,7 @@
 	
 	
 	
-	<NPCCharacter id="spc_eonir_blacksmith" default_group="Infantry" is_hero="false" occupation="Blacksmith" culture="Culture.eonir" race ="elf" name="{=!}Eonir Blacksmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="blacksmith_eonir" default_group="Infantry" is_hero="false" occupation="Blacksmith" culture="Culture.eonir" race ="elf" name="{=!}Eonir Blacksmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2480,7 +2466,7 @@
 	</Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_eonir_weponsmith" default_group="Infantry" is_hero="false" occupation="Weaponsmith" culture="Culture.eonir" race ="elf" name="{=!}Eonir Weaponsmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="weaponsmith_eonir" default_group="Infantry" is_hero="false" occupation="Weaponsmith" culture="Culture.eonir" race ="elf" name="{=!}Eonir Weaponsmith" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2495,7 +2481,7 @@
 	</NPCCharacter>
 	
 	
-	<NPCCharacter id="spc_notable_eonir_armorer" default_group="Infantry" is_hero="false" occupation="Armorer" culture="Culture.eonir" race ="elf" name="{=!}Eonir Armorer" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="armorer_eonir" default_group="Infantry" is_hero="false" occupation="Armorer" culture="Culture.eonir" race ="elf" name="{=!}Eonir Armorer" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2509,7 +2495,7 @@
 	</Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_townsman" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.eonir" race ="elf" name="{=!}Toriour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="townsman_eonir" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.eonir" race ="elf" name="{=!}Toriour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2523,7 +2509,7 @@
 	</Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_townswoman" default_group="Infantry" is_hero="false"  is_female="true" occupation="Townsfolk" culture="Culture.eonir" race ="elf" name="{=!}Toriour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="townswoman_eonir" default_group="Infantry" is_hero="false"  is_female="true" occupation="Townsfolk" culture="Culture.eonir" race ="elf" name="{=!}Toriour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.female_wood_elf" />
 	</face>
@@ -2538,7 +2524,7 @@
 	</NPCCharacter>
 	
 	
-	<NPCCharacter id="spc_notable_eonir_villager" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.eonir" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="villager_eonir" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.eonir" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2552,7 +2538,7 @@
 	</Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_villager_female" default_group="Infantry" is_hero="false"  is_female="true" occupation="Villager" culture="Culture.eonir" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="village_woman_eonir" default_group="Infantry" is_hero="false"  is_female="true" occupation="Villager" culture="Culture.eonir" race ="elf" name="{=!}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.female_wood_elf" />
 	</face>
@@ -2566,7 +2552,21 @@
 	</Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_shopworker" default_group="Infantry" is_hero="false"  is_female="false" occupation="ShopWorker" culture="Culture.eonir" race ="elf" name="{=!}Eonir Shopworker" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="barber_eonir" default_group="Infantry" is_hero="false"  is_female="false" occupation="Townsfolk" culture="Culture.eonir" race ="elf" name="{=!}Eonir Hairdresser" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<face>
+		<face_key_template value="BodyProperty.male_wood_elf" />
+	</face>
+	<Traits>
+	  <Trait id="Valor" value="-1" />
+	  <Trait id="Calculating" value="1" />
+	</Traits>
+	<Equipments>
+		<EquipmentSet id="tor_we_people_notable_artisan_merchant" />
+		<EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+	</Equipments>
+	</NPCCharacter>
+	
+	<NPCCharacter id="shop_worker_eonir" default_group="Infantry" is_hero="false"  is_female="false" occupation="ShopWorker" culture="Culture.eonir" race ="elf" name="{=!}Eonir Shopworker" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2580,7 +2580,7 @@
 	</Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_tavernkeeper" name="{=!}Eonir Tavernkeeper" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Tavernkeeper">
+	<NPCCharacter id="tavernkeeper_eonir" name="{=!}Eonir Tavernkeeper" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Tavernkeeper">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2594,7 +2594,7 @@
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_musician" default_group="Infantry" is_hero="false"  is_female="false" occupation="Musician" culture="Culture.eonir" race ="elf" name="{=!}Eonir Musician" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<NPCCharacter id="musician_eonir" default_group="Infantry" is_hero="false"  is_female="false" occupation="Musician" culture="Culture.eonir" race ="elf" name="{=!}Eonir Musician" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
 	<face>
 		<face_key_template value="BodyProperty.male_wood_elf" />
 	</face>
@@ -2609,7 +2609,36 @@
 	</NPCCharacter>
 	
 	
-	<NPCCharacter id="spc_notable_eonir_merchant" name="{=!}Eonir merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Merchant">
+		<NPCCharacter id="wench_eonir" default_group="Infantry" is_hero="false"  is_female="true" occupation="Musician" culture="Culture.eonir" race ="elf" name="{=!}Eonir Dan" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<face>
+		<face_key_template value="BodyProperty.female_wood_elf" />
+	</face>
+	<Traits>
+	  <Trait id="Valor" value="-1" />
+	  <Trait id="Calculating" value="1" />
+	</Traits>
+	<Equipments>
+		<EquipmentSet id="tor_we_people_notable_townswoman" />
+		<EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+	</Equipments>
+	</NPCCharacter>
+	
+	<NPCCharacter id="dancer_eonir" default_group="Infantry" is_hero="false"  is_female="true" occupation="Musician" culture="Culture.eonir" race ="elf" name="{=!}Eonir Dan" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+	<face>
+		<face_key_template value="BodyProperty.female_wood_elf" />
+	</face>
+	<Traits>
+	  <Trait id="Valor" value="-1" />
+	  <Trait id="Calculating" value="1" />
+	</Traits>
+	<Equipments>
+		<EquipmentSet id="tor_we_people_notable_townswoman" />
+		<EquipmentSet id="tor_we_people_notable_townswoman" civilian="true" />
+	</Equipments>
+	</NPCCharacter>
+	
+	
+	<NPCCharacter id="merchant_eonir" name="{=!}Eonir merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Merchant">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2623,7 +2652,7 @@
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_horse_merchant" name="{=!}Eonir Horse merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="HorseTrader">
+	<NPCCharacter id="horseMerchant_eonir" name="{=!}Eonir Horse merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="HorseTrader">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2632,26 +2661,12 @@
       <Trait id="Calculating" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" />
-      <EquipmentSet id="tor_we_people_notable_artisan_merchant" civilian="true" />
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" />
+      <EquipmentSet id="tor_we_people_notable_artisan_smith" civilian="true" />
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_merchant_notary" name="{=!}Eonir Merchant notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Townsfolk">
-    <face>
-      <face_key_template value="BodyProperty.male_wood_elf" />
-    </face>
-    <Traits>
-      <Trait id="Valor" value="-1" />
-      <Trait id="Calculating" value="1" />
-    </Traits>
-    <Equipments>
-      <EquipmentSet id="tor_we_people_notable_notary" />
-      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
-    </Equipments>
-	</NPCCharacter>
-	
-	<NPCCharacter id="spc_notable_eonir_artisan_notary" name="{=!}Eonir Artisan notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Townsfolk">
+	<NPCCharacter id="merchant_notary_eonir" name="{=!}Eonir Merchant notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Townsfolk">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2665,7 +2680,7 @@
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_rural_notary" name="{=!}Eonir Rural Notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="RuralNotable">
+	<NPCCharacter id="artisan_notary_eonir" name="{=!}Eonir Artisan notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Townsfolk">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2679,7 +2694,21 @@
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="spc_notable_eonir_ransombroker" name="{=!}Eonir Ransombroker" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="RansomBroker">
+	<NPCCharacter id="rural_notable_notary_eonir" name="{=!}Eonir Rural Notary" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="RuralNotable">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_people_notable_notary" />
+      <EquipmentSet id="tor_we_people_notable_notary" civilian="true" />
+    </Equipments>
+	</NPCCharacter>
+	
+	<NPCCharacter id="ransom_broker_eonir" name="{=!}Eonir Ransombroker" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="RansomBroker">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2693,7 +2722,7 @@
     </Equipments>
 	</NPCCharacter>	
 
-	<NPCCharacter id="spc_notable_eonir_rogue" name="{=!}Eonir merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Gangster">
+	<NPCCharacter id="gangleader_bodyguard_eonir" name="{=!}Eonir merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Gangster">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
