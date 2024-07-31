@@ -2036,7 +2036,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_metal_dmg1</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_metal_dmg2" 
@@ -2050,7 +2050,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_metal_dmg2</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_metal_res_less" 

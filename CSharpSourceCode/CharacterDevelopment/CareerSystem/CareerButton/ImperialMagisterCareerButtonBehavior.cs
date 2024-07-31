@@ -171,7 +171,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     15, 
                     10,
                     "LoreOfMetal", PowerSize.Lesser),
-                new PowerStone("metal_res_30_debuff", new TextObject("Lesser Burdening Goldstone"),new TextObject("+30% physical resistance, 20% reduced speed"), "powerstone_metal_res_less", 
+                new PowerStone("metal_res_30_debuff", new TextObject("Lesser Burdening Goldstone"),new TextObject("+30% physical resistance, 35% reduced speed"), "powerstone_metal_res_less", 
                     15,
                     10,
                     "LoreOfMetal", PowerSize.Lesser)
@@ -189,7 +189,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     25, 
                     20, "LoreOfFire", PowerSize.Greater),
                 new PowerStone("fire_amp_50", new TextObject("Greater Nourishing Fire Ruby"),new TextObject("Fire amplification, +20% speed"), "powerstone_fire_amp_mov", 15,
-                    4, "LoreOfFire", PowerSize.Greater),
+                    20, "LoreOfFire", PowerSize.Greater),
 
                 new PowerStone("light_res_phys_magic_40",
                     new TextObject("Greater Protecting Lumenstone"),new TextObject("+40% physical, 40% magical resistance"), "powerstone_light_res2", 
@@ -221,7 +221,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     "powerstone_heavens_res2", 25, 20,
                     "LoreOfHeavens", PowerSize.Greater),
 
-                new PowerStone("metal_dmg_20", new TextObject("Greater Goldstone of Disintegration"),new TextObject("+20% magical damage, 20% fire damage"), "powerstone_metal_dmg2",
+                new PowerStone("metal_dmg_20", new TextObject("Greater Goldstone of Disintegration"),new TextObject("+20% magical damage, 20% fire damage"), "powerstone_metal_trait",
                     20, 4,
                     "LoreOfMetal", PowerSize.Greater),
                 new PowerStone("metal_magic_dmg_20", new TextObject("Greater Goldstone of Sharpening"),new TextObject("+50% Armor penetration"), "powerstone_metal_pen", 20, 4,

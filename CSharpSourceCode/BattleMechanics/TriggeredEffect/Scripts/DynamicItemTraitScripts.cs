@@ -335,10 +335,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 additionalDamage2.DamageType = DamageType.Magical;
                 additionalDamage2.Percent = 0.2f;
                 
-                trait.ItemTraitName = "Azyr infused weapon";
+                trait.ItemTraitName = "Chamon infused weapon";
                 trait.ItemTraitDescription = "This weapon is guided by chamon. It deals lightning damage.";
                 trait.ImbuedStatusEffectId = "none";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_metal_sparks_weapon" };
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_flaming_weapon" };
                 trait.AdditionalDamageTuple = additionalDamage;
                 trait.OnHitScriptName = "none";
                 

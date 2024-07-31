@@ -1523,7 +1523,7 @@
 	
 	<StatusEffectTemplate
 		id="powerstone_metal_dmg1"
-		particle_id="general_heavens_buff"
+		particle_id="general_metal_buff"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.15"
 		applies_for_attack_type="All"
@@ -1546,7 +1546,7 @@
 		particle_id="general_metal_buff"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.30"
-		applies_for_attack_type="All"
+		applies_for_attack_type="Physical"
 		type="DamageAmplification"
 		damage_type="Physical">
 	</StatusEffectTemplate>
@@ -1555,7 +1555,7 @@
 		id="powerstone_metal_res_debuff"
 		particle_id="general_metal_buff"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="-0.20"
+		base_effect_value="-0.35"
 		applies_for_attack_type="All"
 		type="MovementManipulation"
 		damage_type="Physical">

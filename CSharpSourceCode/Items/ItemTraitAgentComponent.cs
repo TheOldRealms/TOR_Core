@@ -190,7 +190,11 @@ namespace TOR_Core.Items
                 {
                     foreach(var ps in item.Item2)
                     {
-                        ps.SetEnable(true);
+                        if (ps != null)
+                        {
+                            ps.SetEnable(true);
+                        }
+                
                     }
                 }
             }
