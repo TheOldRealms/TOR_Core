@@ -1421,6 +1421,16 @@
 	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
+		id="powerstone_beast_res2"
+		particle_id="general_beast_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.5"
+		applies_for_attack_type="Ranged"
+		type="Resistance"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
 		id="powerstone_beast_dmg_range"
 		particle_id="general_beast_buff"
 		do_not_attach_to_agent_skeleton="true"
@@ -1451,6 +1461,17 @@
 		<temporary_attribute>Unstoppable</temporary_attribute>
 		<temporary_attribute>Unbreakable</temporary_attribute>		
 	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="powerstone_beast_mov"
+		particle_id="general_beast_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.5"
+		applies_for_attack_type="Ranged"
+		type="MovementManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
 	
 	<StatusEffectTemplate
 		id="powerstone_heavens_dmg_range"
@@ -1546,7 +1567,7 @@
 		particle_id="general_metal_buff"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.30"
-		applies_for_attack_type="Physical"
+		applies_for_attack_type="All"
 		type="DamageAmplification"
 		damage_type="Physical">
 	</StatusEffectTemplate>

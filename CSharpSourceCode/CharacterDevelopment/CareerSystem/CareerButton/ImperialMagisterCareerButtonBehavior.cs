@@ -244,7 +244,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     "LoreOfLight", PowerSize.Mighty),
 
                 new PowerStone("beast_res_50", new TextObject("Mighty Ghost Amber"),
-                    new TextObject("+50% speed, +50% physical resistance"), "beast_range_res2", 50, 50,
+                    new TextObject("+50% speed, +50% physical resistance"), "powerstone_beast_range_res2", 50, 50,
                     "LoreOfBeasts", PowerSize.Mighty),
 
                 new PowerStone("life_reg",new TextObject("Mighty Vitalleum"), new TextObject("Regenerate 1 HP every second"), "powerstone_life_reg",

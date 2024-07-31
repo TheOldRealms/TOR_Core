@@ -1824,7 +1824,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_beast_wild</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_beast_range_res_hunt" 
@@ -1853,7 +1853,8 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>armour_of_the_righteous</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_beast_res2</ImbuedStatusEffect>
+				  <ImbuedStatusEffect>powerstone_beast_mov</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_life_res" 
