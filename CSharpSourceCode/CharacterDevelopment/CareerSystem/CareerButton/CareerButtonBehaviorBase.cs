@@ -6,6 +6,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
     public abstract class CareerButtonBehaviorBase
     {
+        
+        public virtual bool isDialogStart { get; protected set; }
+
+        public virtual void DeactivateDialog()
+        {
+            isDialogStart = false;
+        }
+
         public delegate void OnCareerButtonClickedEvent(CharacterObject troopID, bool isPrisoner);
 
         public delegate bool OnShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner);

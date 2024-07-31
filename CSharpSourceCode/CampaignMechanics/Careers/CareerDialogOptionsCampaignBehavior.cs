@@ -12,6 +12,7 @@ namespace TOR_Core.CampaignMechanics.Careers
         public void RegisterDialogs(CampaignGameStarter obj)
         {
             var grailDamselEnvoyOfTheLadyPerkDialog = new GrailDamselEnvoyOfTheLadyPerkDialog(obj);
+            CareerButtonDialogs.OnSessionLaunched(obj);
         }
 
         public override void SyncData(IDataStore dataStore)
