@@ -5056,10 +5056,7 @@
             <template name="NPCCharacter.spc_asrai_gangleader_2" />
             <template name="NPCCharacter.spc_asrai_gangleader_3" />
             <template name="NPCCharacter.spc_notable_asrai_artisan_1" />
-			 <template name="NPCCharacter.spc_notable_asrai_artisan_1" />
-            <template name="NPCCharacter.spc_battania_artisan_1" />
-            <template name="NPCCharacter.spc_battania_artisan_2" />
-            <template name="NPCCharacter.spc_battania_artisan_3" />
+			<template name="NPCCharacter.spc_notable_asrai_artisan_2" />
 			
             <template name="NPCCharacter.spc_notable_asrai_rural_1" />
             <template name="NPCCharacter.spc_notable_asrai_rural_2" />
