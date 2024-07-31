@@ -4421,7 +4421,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LL1_2" name="{=Settlements.Settlement.name.village_LL1_2}Verdan Lithridrom" posX="1263.966" posY="1295.874" culture="Culture.eonir" text="{=Settlements.Settlement.text.village_LL1_2}Not far from the Grey Mountains lies Gentiane, a small village with a main focus on Iron mining within the Grey Mountains. Heavily patrolled due to its strategic nature, Gentiane holds Paravon’s economy by the pillars.">
+  <Settlement id="village_LL1_2" name="{=Settlements.Settlement.name.village_LL1_2}Verdan Lithridrom" posX="1264.948" posY="1295.435" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LL1_2}Not far from the Grey Mountains lies Gentiane, a small village with a main focus on Iron mining within the Grey Mountains. Heavily patrolled due to its strategic nature, Gentiane holds Paravon’s economy by the pillars.">
     <Components>
       <Village id="village_comp_LL1_2" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_LL1" bound="Settlement.town_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4434,7 +4434,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LL1_3" name="{=Settlements.Settlement.name.village_LL1_3}Fountain of Lebin" posX="1243.821" posY="1302.86" culture="Culture.eonir" text="{=Settlements.Settlement.text.village_LL1_3}Near the Grey Lady Pass, Goyarde holds a decent size of villagers, and militia alike. Being the first village into Bretonnia from Grey Lady pass, it is quite defensible and strategic in nature.">
+  <Settlement id="village_LL1_3" name="{=Settlements.Settlement.name.village_LL1_3}Fountain of Lebin" posX="1239.922" posY="1302.168" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LL1_3}Near the Grey Lady Pass, Goyarde holds a decent size of villagers, and militia alike. Being the first village into Bretonnia from Grey Lady pass, it is quite defensible and strategic in nature.">
     <Components>
       <Village id="village_comp_LL1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_LL1" bound="Settlement.town_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4470,7 +4470,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_LL1_2" name="{=Settlements.Settlement.name.castle_village_LL1_2}Farisar's Rock" posX="1261.369" posY="1353.524" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
+  <Settlement id="castle_village_LL1_2" name="{=Settlements.Settlement.name.castle_village_LL1_2}Farisar's Rock" posX="1263.029" posY="1354.347" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
     <Components>
       <Village id="castle_village_comp_LL1_2" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL1" bound="Settlement.castle_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4493,7 +4493,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_LL2_1" name="{=Settlements.Settlement.name.castle_village_LL2_1}Kor Immarmor" posX="1299.184" posY="1327.656" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL2_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
+  <Settlement id="castle_village_LL2_1" name="{=Settlements.Settlement.name.castle_village_LL2_1}Kor Immarmor" posX="1300.108" posY="1328.272" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL2_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
     <Components>
       <Village id="castle_village_comp_LL2_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL2" bound="Settlement.castle_LL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4516,7 +4516,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_LL3_1" name="{=Settlements.Settlement.name.castle_village_LL3_1}Lathain" posX="1258.844" posY="1275.613" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL3_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
+  <Settlement id="castle_village_LL3_1" name="{=Settlements.Settlement.name.castle_village_LL3_1}Lathain" posX="1258.727" posY="1274.999" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL3_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
     <Components>
       <Village id="castle_village_comp_LL3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL2" bound="Settlement.castle_LL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4827,7 +4827,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO2_1" name="{=Settlements.Settlement.name.village_CO2_1}Euresbourg" posX="1027.213" posY="1282.026" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
+  <Settlement id="village_CO2_1" name="{=Settlements.Settlement.name.village_CO2_1}Euresbourg" posX="1027.224" posY="1282.06" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_1}Holthusen is a town in western Reikland on the river Schilder. By road it lies between Eilhart and Schilderheim. The town's primary trade good is the Holthusen Hogshead barrel which is used across the empire to age or ferment their products before shipment. The barrels are said to be so sturdy as to be able to protect their contents even from direct cannon fire. Every year Holthusen hosts the Weinfest, a great gathering for wine tasting that requires an invite to enter. Of course the lack of invite does not stop the horde of wastrels and rogues who wish to drink the free wine provided by the festival. Weinfest also marks the only time of year during which the Golden Cask is brought out, which is said to contain the best wine in the Empire if not the entire Old World. Due to the town's forested location, it is frequently attacked by beastmen. The palisades and guards are normally strong enough to see the monsters off, but the townspeople fear the day this defence falls short. As such, some of the townspeople have been leaving casks of cheap wine at the edge of the woods in an attempt to appease the beastmen with tribute. This dubious practice likely will not be allowed to continue much longer.">
     <Components>
       <Village id="village_comp_CO2_1" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO2" bound="Settlement.town_CO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4840,7 +4840,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO2_2" name="{=Settlements.Settlement.name.village_CO2_2}Entrammes" posX="1011.243" posY="1250.728" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_2}The small mining village of Vettard resides due south of the City of Grunere, past the Hills of the Dead. They are destitute and have learned to fend for their own when things get  perilous.">
+  <Settlement id="village_CO2_2" name="{=Settlements.Settlement.name.village_CO2_2}Entrammes" posX="1011.245" posY="1250.728" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_2}The small mining village of Vettard resides due south of the City of Grunere, past the Hills of the Dead. They are destitute and have learned to fend for their own when things get  perilous.">
     <Components>
       <Village id="village_comp_CO2_2" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO2" bound="Settlement.town_CO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4886,7 +4886,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO3_2" name="{=Settlements.Settlement.name.village_CO2_2}Caen" posX="921.494" posY="1272.124" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_2}The small mining village of Vettard resides due south of the City of Grunere, past the Hills of the Dead. They are destitute and have learned to fend for their own when things get  perilous.">
+  <Settlement id="village_CO3_2" name="{=Settlements.Settlement.name.village_CO2_2}Caen" posX="921.183" posY="1272.344" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO2_2}The small mining village of Vettard resides due south of the City of Grunere, past the Hills of the Dead. They are destitute and have learned to fend for their own when things get  perilous.">
     <Components>
       <Village id="village_comp_CO3_2" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO2" bound="Settlement.town_CO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4922,7 +4922,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_CO1_1" name="{=Settlements.Settlement.name.castle_village_CO1_1}Caudebec" posX="976.532" posY="1285.619" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CO1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
+  <Settlement id="castle_village_CO1_1" name="{=Settlements.Settlement.name.castle_village_CO1_1}Caudebec" posX="976.525" posY="1285.619" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CO1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
     <Components>
       <Village id="castle_village_comp_CO1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_CO1" bound="Settlement.castle_CO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4968,7 +4968,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_CO3_1" name="{=Settlements.Settlement.name.castle_village_CO3_1}Hautville" posX="1106.904" posY="1256.377" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CO3_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
+  <Settlement id="castle_village_CO3_1" name="{=Settlements.Settlement.name.castle_village_CO3_1}Hautville" posX="1106.927" posY="1256.976" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_CO3_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
     <Components>
       <Village id="castle_village_comp_CO3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_CO2" bound="Settlement.castle_CO2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -6874,7 +6874,7 @@
       <Location id="prison" scene_name="vlandia_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AQ1_1" name="{=Settlements.Settlement.name.castle_village_AQ1_1}Nérac" posX="937.151" posY="926.925" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ1_1}Known for its vast vineyards, Nérac once flourished as a centre of winemaking, but now the toil of its remaining inhabitants is relentless. Under the watchful eye of the ruling lord of Castle Libourne, the villagers of Nérac endure, their spirits tested by the harsh realities of their existence.">
+  <Settlement id="castle_village_AQ1_1" name="{=Settlements.Settlement.name.castle_village_AQ1_1}Nérac" posX="937.87" posY="927.14" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_AQ1_1}Known for its vast vineyards, Nérac once flourished as a centre of winemaking, but now the toil of its remaining inhabitants is relentless. Under the watchful eye of the ruling lord of Castle Libourne, the villagers of Nérac endure, their spirits tested by the harsh realities of their existence.">
     <Components>
       <Village id="castle_village_comp_AQ1_1" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.castle_AQ1" bound="Settlement.castle_AQ1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7623,7 +7623,7 @@
     </Locations>
   </Settlement>
   <!-- Athel Loren -->
-  <Settlement id="town_AL1" name="{=Settlements.Settlement.name.town_AL1}Yn Edryl Koiran" owner="Faction.athel_loren_clan_1" is_unwalled_settlement="true" posX="1245.354" posY="777.931" culture="Culture.battania" gate_posX="1249.011" gate_posY="781.6984" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_AL1" name="{=Settlements.Settlement.name.town_AL1}Yn Edryl Koiran" owner="Faction.athel_loren_clan_1" is_unwalled_settlement="true" posX="1243.703" posY="776.5873" culture="Culture.battania" gate_posX="1244.014" gate_posY="777.4093" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
       <Town id="town_comp_AL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7695,7 +7695,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL2" name="{=Settlements.Settlement.name.town_AL2}Crag Halls of Findol" owner="Faction.athel_loren_clan_12" posX="1262.822" posY="854.329" culture="Culture.battania" gate_posX="1265.584" gate_posY="849.8639" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+  <Settlement id="town_AL2" name="{=Settlements.Settlement.name.town_AL2}Crag Halls of Findol" owner="Faction.athel_loren_clan_12" posX="1262.822" posY="854.329" culture="Culture.battania" gate_posX="1265.754" gate_posY="850.9516" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
       <Town id="town_comp_AL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7741,7 +7741,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL3" name="{=Settlements.Settlement.name.town_AL3}Coeth-Mara" owner="Faction.athel_loren_clan_3" posX="1234.948" posY="747.238" culture="Culture.battania" gate_posX="1231.414" gate_posY="747.0751" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
+  <Settlement id="town_AL3" name="{=Settlements.Settlement.name.town_AL3}Coeth-Mara" owner="Faction.athel_loren_clan_3" posX="1231.251" posY="747.509" culture="Culture.battania" gate_posX="1230.85" gate_posY="748.0477" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
     <Components>
       <Town id="town_comp_AL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7800,7 +7800,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL4" name="{=Settlements.Settlement.name.town_AL4}Halls of Anaereth" owner="Faction.athel_loren_clan_2" posX="1179.949" posY="847.234" culture="Culture.battania" gate_posX="1176.415" gate_posY="847.0711" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
+  <Settlement id="town_AL4" name="{=Settlements.Settlement.name.town_AL4}Halls of Anaereth" owner="Faction.athel_loren_clan_2" posX="1180.634" posY="845.1246" culture="Culture.battania" gate_posX="1180.412" gate_posY="844.491" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
     <Components>
       <Town id="town_comp_AL4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7873,7 +7873,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL5" name="{=Settlements.Settlement.name.town_AL5}Feast Halls of the Wardance" owner="Faction.athel_loren_clan_8" posX="1208.055" posY="883.018" culture="Culture.battania" gate_posX="1211.531" gate_posY="883.678" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
+  <Settlement id="town_AL5" name="{=Settlements.Settlement.name.town_AL5}Feast Halls of the Wardance" owner="Faction.athel_loren_clan_8" posX="1208.055" posY="883.018" culture="Culture.battania" gate_posX="1208.68" gate_posY="883.2646" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
     <Components>
       <Town id="town_comp_AL5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7907,7 +7907,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL6" name="{=Settlements.Settlement.name.town_AL6}Glade of Eternal Midnight" owner="Faction.athel_loren_clan_9" posX="1172.491" posY="773.884" culture="Culture.battania" gate_posX="1171.744" gate_posY="770.4256" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
+  <Settlement id="town_AL6" name="{=Settlements.Settlement.name.town_AL6}Glade of Eternal Midnight" owner="Faction.athel_loren_clan_9" posX="1172.255" posY="775.2383" culture="Culture.battania" gate_posX="1172.584" gate_posY="774.6534" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
     <Components>
       <Town id="town_comp_AL6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
