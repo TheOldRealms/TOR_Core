@@ -150,9 +150,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 new PowerStone("life_magical_fire_res_25", new TextObject("Lesser Dampening Vitaellum"),new TextObject("Add 25% magical and fire resistance"),
                     "powerstone_life_res_mag", 15, 10,
                     "LoreOfLife", PowerSize.Lesser),
-                new PowerStone("life_res_20", new TextObject("Lesser Protecting Vitaellum"), new TextObject("Add 20% physical resistance"),"powerstone_life_res_phy", 15, 10,
+                new PowerStone("life_res_20", new TextObject("Lesser Protecting Vitaellum"), new TextObject("Add 20% physical resistance"),"powerstone_life_res_phys", 15, 10,
                     "LoreOfLife", PowerSize.Lesser),
-                new PowerStone("life_res_40_debuff",new TextObject("Lesser Heavy Vitaellum"), new TextObject("Add 40% physical resistance -30% reduced speed"), "powerstone_life_res_debuff", 15, 10,
+                new PowerStone("life_res_40_debuff",new TextObject("Lesser Heavy Vitaellum"), new TextObject("Add 35% physical resistance -35% reduced speed"), "powerstone_life_res_debuff", 15, 10,
                     "LoreOfLife", PowerSize.Lesser),
 
                 new PowerStone("heavens_dmg_raged_20", new TextObject("Lesser Wind Saphire"),new TextObject("+20% physical ranged damage amplification"), "powerstone_heavens_dmg_range", 

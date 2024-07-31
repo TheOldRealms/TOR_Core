@@ -1350,8 +1350,39 @@
 	
 	
 	<StatusEffectTemplate
+		id="powerstone_life_res_fire"
+		particle_id="general_life_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.35"
+		applies_for_attack_type="All"
+		type="Resistance"
+		damage_type="Fire">
+	</StatusEffectTemplate>
+	
+	
+	<StatusEffectTemplate
+		id="powerstone_life_res_mag"
+		particle_id="general_life_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.35"
+		applies_for_attack_type="All"
+		type="Resistance"
+		damage_type="Magical">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
 		id="powerstone_life_res_phys"
-		particle_id="general_light_buff"
+		particle_id="general_life_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.20"
+		applies_for_attack_type="All"
+		type="Resistance"
+		damage_type="All">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="powerstone_life_res_phys2"
+		particle_id="general_life_buff"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.35"
 		applies_for_attack_type="All"
@@ -1359,11 +1390,12 @@
 		damage_type="All">
 	</StatusEffectTemplate>
 	
+	
 	<StatusEffectTemplate
 		id="powerstone_life_mov_debuff"
-		particle_id="general_light_debuff"
+		particle_id="general_life_buff"
 		do_not_attach_to_agent_skeleton="false"
-		base_effect_value="-0.3"
+		base_effect_value="-0.35"
 		applies_for_attack_type="Ranged"
 		type="MovementManipulation"
 		damage_type="Physical">
@@ -1371,7 +1403,7 @@
 	
 	<StatusEffectTemplate
 		id="powerstone_life_res_ward"
-		particle_id="general_light_buff"
+		particle_id="general_life_buff"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.35"
 		applies_for_attack_type="All"
@@ -1381,7 +1413,7 @@
 	
 	<StatusEffectTemplate
 		id="powerstone_life_reg"
-		particle_id="general_light_buff"
+		particle_id="general_life_buff"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="1"
 		applies_for_attack_type="All"
