@@ -106,6 +106,21 @@
 			<PartyTemplateStack min_value="1" max_value="2" troop="NPCCharacter.tor_m_knight_of_the_black_grail" />
 		</stacks>
 	</MBPartyTemplate>
+	<MBPartyTemplate id="eonir_lordparty_template" >
+		<stacks>
+			<PartyTemplateStack min_value="20" max_value="26" troop="NPCCharacter.tor_eo_kithband_aspirant" />
+			<PartyTemplateStack min_value="10" max_value="20" troop="NPCCharacter.tor_eo_kithband_sentinel" />
+			<PartyTemplateStack min_value="10" max_value="20" troop="NPCCharacter.tor_eo_kithband_warrior" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_eo_cityborn_council_sentinel" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_eo_envoy_guard" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_eo_veteran_kithband_warrior" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_eo_cityborn_guard" />
+			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_eo_mounted_kithband_warrior" />
+			<PartyTemplateStack min_value="3" max_value="10" troop="NPCCharacter.tor_eo_mounted_ranger" />
+			<PartyTemplateStack min_value="5" max_value="15" troop="NPCCharacter.tor_eo_ranger" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_eo_queens_guard" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="chaos_lordparty_template" >
 		<stacks>
 			<PartyTemplateStack min_value="20" max_value="26" troop="NPCCharacter.tor_chaos_norscan_tribesman" />
@@ -180,6 +195,13 @@
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_we_caravan_captain" />
 		</stacks>
 	</MBPartyTemplate>
+	<MBPartyTemplate id="eo_caravan_template" >
+		<stacks>
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_eo_caravan_guard" />
+			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_eo_caravan_ranged" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_eo_caravan_captain" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="sylvanian_caravan_template" >
 		<stacks>
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_vc_caravan_ranged" />
@@ -226,6 +248,14 @@
 			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_we_caravan_captain" />
 		</stacks>
 	</MBPartyTemplate>
+	<MBPartyTemplate id="eo_elite_caravan_template" >
+		<stacks>
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_eo_caravan_guard" />
+			<PartyTemplateStack min_value="4" max_value="4" troop="NPCCharacter.tor_eo_caravan_ranged" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_eo_caravan_elite_ranged" />
+			<PartyTemplateStack min_value="2" max_value="2" troop="NPCCharacter.tor_eo_caravan_captain" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="sylvanian_elite_caravan_template" >
 		<stacks>
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_vc_caravan_ranged" />
@@ -256,6 +286,11 @@
 	<MBPartyTemplate id="we_villager_template" >
 		<stacks>
 		  <PartyTemplateStack min_value="15" max_value="30" troop="NPCCharacter.tor_we_servant" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="eo_villager_template" >
+		<stacks>
+		  <PartyTemplateStack min_value="15" max_value="30" troop="NPCCharacter.tor_eo_forestborn" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="vc_villager_template" >
@@ -292,6 +327,13 @@
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_we_militia" />
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_we_glade_guard" />
 			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_we_eternal_guard" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="eo_militia_template" >
+		<stacks>
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_eo_kithband_aspirant" />
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_eo_kithband_warrior" />
+			<PartyTemplateStack min_value="8" max_value="8" troop="NPCCharacter.tor_eo_kithband_sentinel" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="sylvania_militia_template" >

@@ -1438,6 +1438,337 @@
       <EquipmentSet id="tor_we_militia_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_eo_forestborn" default_group="infantry" level="1" name="{=str_tor_eo_forestborn}Eonir Forestborn" occupation="Villager" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level1" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_militia" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_forestborn_template" />
+      <EquipmentSet id="tor_eo_forestborn_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_militia" default_group="infantry" level="6" name="{=str_tor_eo_militia}Eonir Militia" occupation="Villager" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_kithband_aspirant" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_militia_template" />
+      <EquipmentSet id="tor_eo_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_kithband_aspirant" default_group="ranged" level="16" name="{=str_tor_eo_kithband_aspirant}Eonir Kithband Aspirant" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_kithband_warrior" />
+      <upgrade_target id="NPCCharacter.tor_eo_kithband_sentinel" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_kithband_aspirant_template" />
+      <EquipmentSet id="tor_eo_kithband_aspirant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_kithband_warrior" default_group="ranged" level="26" name="{=str_tor_eo_kithband_warrior}Eonir Kithband Warrior" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_mounted_kithband_warrior" />
+      <upgrade_target id="NPCCharacter.tor_eo_veteran_kithband_warrior" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_kithband_warrior_template" />
+      <EquipmentSet id="tor_eo_kithband_warrior_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_mounted_kithband_warrior" default_group="ranged" level="31" name="{=str_tor_eo_mounted_kithband_warrior}Eonir Mounted Kithband Warrior" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_eo_mounted_kithband_warrior_template" />
+      <EquipmentSet id="tor_eo_mounted_kithband_warrior_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_veteran_kithband_warrior" default_group="ranged" level="31" name="{=str_tor_eo_veteran_kithband_warrior}Eonir Veteran Kithband Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_eo_veteran_kithband_warrior_template" />
+      <EquipmentSet id="tor_eo_veteran_kithband_warrior_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_kithband_sentinel" default_group="ranged" level="26" name="{=str_tor_eo_kithband_sentinel}Eonir Waywatcher" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_ranger" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_kithband_sentinel_template" />
+      <EquipmentSet id="tor_eo_kithband_sentinel_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_ranger" default_group="ranged" level="31" name="{=str_tor_eo_ranger}Eonir Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_mounted_ranger" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_ranger_template" />
+      <EquipmentSet id="tor_eo_ranger_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_mounted_ranger" default_group="horsearcher" level="46" name="{=str_tor_eo_mounted_ranger}Eonir Mounted Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level46" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_eo_mounted_ranger_template" />
+      <EquipmentSet id="tor_eo_mounted_ranger_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_cityborn_militia" default_group="infantry" level="16" name="{=str_tor_eo_cityborn_militia}Eonir Cityborn Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_cityborn_guard" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_cityborn_militia_template" />
+      <EquipmentSet id="tor_eo_cityborn_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_cityborn_guard" default_group="infantry" level="26" name="{=str_tor_eo_cityborn_guard}Eonir Tor Lithanel Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_cityborn_council_guard" />
+      <upgrade_target id="NPCCharacter.tor_eo_cityborn_council_sentinel" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_cityborn_guard_template" />
+      <EquipmentSet id="tor_eo_cityborn_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_cityborn_council_guard" default_group="infantry" level="31" name="{=str_tor_eo_cityborn_council_guard}Eonir Council Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_queens_guard" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_cityborn_council_guard_template" />
+      <EquipmentSet id="tor_eo_cityborn_council_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_cityborn_council_sentinel" default_group="ranged" level="31" name="{=str_tor_eo_cityborn_council_sentinel}Eonir Council Sentinel" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_envoy_guard" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_cityborn_council_sentinel_template" />
+      <EquipmentSet id="tor_eo_cityborn_council_sentinel_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_queens_guard" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard}Eonir Queens Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_eo_queens_guard_template" />
+      <EquipmentSet id="tor_eo_queens_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_envoy_guard" default_group="ranged" level="46" name="{=str_tor_eo_envoy_guard}Eonir Envoy Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_eo_envoy_guard_template" />
+      <EquipmentSet id="tor_eo_envoy_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_caravan_guard" default_group="infantry" level="21" name="{=str_tor_eo_caravan_guard}Eonir Trader" occupation="CaravanGuard" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_caravan_ranged" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_caravan_guard_template" />
+      <EquipmentSet id="tor_eo_caravan_guard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_eo_caravan_ranged}Eonir Trader Guard" occupation="CaravanGuard" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_caravan_elite_ranged" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_caravan_ranged_template" />
+      <EquipmentSet id="tor_eo_caravan_ranged_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_eo_caravan_elite_ranged}Eonir Elite Trader Guard" occupation="CaravanGuard" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_eo_caravan_elite_ranged_template" />
+      <EquipmentSet id="tor_eo_caravan_elite_ranged_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_caravan_captain" default_group="infantry" level="26" name="{=str_tor_eo_caravan_captain}Eonir Master Trader" occupation="CaravanGuard" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_eo_caravan_captain_template" />
+      <EquipmentSet id="tor_eo_caravan_captain_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_de_conscript" default_group="infantry" level="6" name="{=str_tor_de_conscript}Druchii Conscript" occupation="Soldier" culture="Culture.druchii" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />

@@ -68,7 +68,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, MapEventEnded);
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, MenuOpened);
             CampaignEvents.GameMenuOptionSelectedEvent.AddNonSerializedListener(this, ContinueTimeAfterLeftSettlementWhileEnlisted);
-            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this,DailyRenownGain);
+            CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this,DailyRenownGain);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this,SkillGain);
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this,LeaveKingdomEvent);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnMobilePartyDestroyed);

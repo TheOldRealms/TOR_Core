@@ -6210,7 +6210,7 @@
       <EquipmentSet id="tor_we_scarloc_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_second_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_1}Lady Tevaril" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_second_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_1}Lady Tevaril" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0" build="0.9642" key="001B68054E58100A156FD30672C96A5B87B0B8676836B608C3285418264DE864D6A746030BCB3356E0B809B844826648000000000000000B00000000377C3003" />
     </face>
@@ -6228,7 +6228,7 @@
       <EquipmentSet id="tor_we_sister_thorne_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_second_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_2}Lady Delynna" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_second_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_second_2}Lady Delynna" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
     </face>
@@ -6516,7 +6516,7 @@
       <EquipmentSet id="tor_we_glade_lord_female_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_tenth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_tenth_2}Naieth the Prophetess" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
+  <NPCCharacter id="tor_we_lord_athel_loren_tenth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_tenth_2}Naieth the Prophetess" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.1836" build="0.4727" key="000D400B83A0300286687B8D4D709C77B5EC68C9C7BB7958977CA64CAA2A75A4739806030966FCD673B725AC39A782BB0000000000000009000000003B3C4003" />
     </face>
@@ -6640,6 +6640,240 @@
     <Equipments>
       <EquipmentSet id="tor_we_sisters_twilight_lord_2_template" />
       <EquipmentSet id="tor_we_sisters_twilight_lord_2_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_factionleader" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_factionleader}Queen Marrisith of Laurelorn" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0" build="0.5749" key="0015500B8758300866885396977479B85B26577487A3463A886475B28A788B17DBE416030CA4364C904C94B469A87884000000000000000C0000000035A44003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_marrisith_template" />
+      <EquipmentSet id="tor_eo_marrisith_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_first_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_first_2}Prince Aesryn of the Laurelorn" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_aesryn_template" />
+      <EquipmentSet id="tor_eo_aesryn_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_first_3" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_first_3}Yadoh" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_champion_lord_template" />
+      <EquipmentSet id="tor_eo_champion_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_second_1" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_second_1}Lord Galenstra of House Cloudwalker" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_ranger_lord_1_template" />
+      <EquipmentSet id="tor_eo_ranger_lord_1_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_second_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_second_2}Elora" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_ranger_lord_axe_template" />
+      <EquipmentSet id="tor_eo_ranger_lord_axe_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_second_3" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_second_3}Garelion" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_ranger_lord_2_template" />
+      <EquipmentSet id="tor_eo_ranger_lord_2_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_third_1" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_third_1}Kaia Stormwitch Fanmaris of House Everglade" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_stormwitch_template" />
+      <EquipmentSet id="tor_eo_stormwitch_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_third_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_third_2}Lord  Adon of House Tide Strider" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_cityborn_sentinel_lord_template" />
+      <EquipmentSet id="tor_eo_cityborn_sentinel_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_third_3" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_third_3}Prince Fylson of House Seaborn" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_cityborn_sentinel_lord_template" />
+      <EquipmentSet id="tor_eo_cityborn_sentinel_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_third_4" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_third_4}Greylord  Wizard Altharion of House of Caledor" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_greylord_template" />
+      <EquipmentSet id="tor_eo_greylord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_fourth_1" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_fourth_1}Lord Lindialoc of House Elwyn" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_ranger_lord_1_template" />
+      <EquipmentSet id="tor_eo_ranger_lord_1_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_fourth_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_fourth_2}&quot;Athanoc, the Guardian Mage&quot;" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_female="false" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_sister_thorne_lord_2_template" />
+      <EquipmentSet id="tor_we_sister_thorne_lord_2_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_lord_laurelorn_fourth_3" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_fourth_3}Lady Iyana of House Holran" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_ranger_lord_2_template" />
+      <EquipmentSet id="tor_eo_ranger_lord_2_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Archaon" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">

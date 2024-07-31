@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=!}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages">
@@ -4388,7 +4388,7 @@
     </Locations>
   </Settlement>
   <!-- Laurelorn -->
-  <Settlement id="town_LL1" name="{=Settlements.Settlement.name.town_LL1}Tor Lithanel" owner="Faction.parravon_clan_1" posX="1256.181" posY="1308.093" culture="Culture.vlandia" gate_posX="1247.593" gate_posY="1305.775" text="{=Settlements.Settlement.text.town_LL1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
+  <Settlement id="town_LL1" name="{=Settlements.Settlement.name.town_LL1}Tor Lithanel" owner="Faction.laurelorn_clan_1" posX="1256.181" posY="1308.093" culture="Culture.eonir" gate_posX="1252.883" gate_posY="1304.008" text="{=Settlements.Settlement.text.town_LL1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
     <Components>
       <Town id="town_comp_LL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4408,7 +4408,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LL1_1" name="{=Settlements.Settlement.name.village_LL1_1}Ystin Vaul Menluith Qhaysh" posX="1225.745" posY="1304.227" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LL1_1}The village of Allobroges is a renowned settlement for its particular horse breeders, even among Paravon which sees use of mainly Pegusi. Allobroges has a fair population and sees many visits by Nobles and Travelers alike.">
+  <Settlement id="village_LL1_1" name="{=Settlements.Settlement.name.village_LL1_1}Ystin Vaul Menluith Qhaysh" posX="1232.662" posY="1303.852" culture="Culture.eonir" text="{=Settlements.Settlement.text.village_LL1_1}The village of Allobroges is a renowned settlement for its particular horse breeders, even among Paravon which sees use of mainly Pegusi. Allobroges has a fair population and sees many visits by Nobles and Travelers alike.">
     <Components>
       <Village id="village_comp_LL1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_LL1" bound="Settlement.town_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4421,7 +4421,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LL1_2" name="{=Settlements.Settlement.name.village_LL1_2}Verdan Lithridrom" posX="1264.948" posY="1295.435" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LL1_2}Not far from the Grey Mountains lies Gentiane, a small village with a main focus on Iron mining within the Grey Mountains. Heavily patrolled due to its strategic nature, Gentiane holds Paravon’s economy by the pillars.">
+  <Settlement id="village_LL1_2" name="{=Settlements.Settlement.name.village_LL1_2}Verdan Lithridrom" posX="1264.948" posY="1295.435" culture="Culture.eonir" text="{=Settlements.Settlement.text.village_LL1_2}Not far from the Grey Mountains lies Gentiane, a small village with a main focus on Iron mining within the Grey Mountains. Heavily patrolled due to its strategic nature, Gentiane holds Paravon’s economy by the pillars.">
     <Components>
       <Village id="village_comp_LL1_2" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_LL1" bound="Settlement.town_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4434,7 +4434,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LL1_3" name="{=Settlements.Settlement.name.village_LL1_3}Fountain of Lebin" posX="1239.922" posY="1302.168" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_LL1_3}Near the Grey Lady Pass, Goyarde holds a decent size of villagers, and militia alike. Being the first village into Bretonnia from Grey Lady pass, it is quite defensible and strategic in nature.">
+  <Settlement id="village_LL1_3" name="{=Settlements.Settlement.name.village_LL1_3}Fountain of Lebin" posX="1239.922" posY="1302.168" culture="Culture.eonir" text="{=Settlements.Settlement.text.village_LL1_3}Near the Grey Lady Pass, Goyarde holds a decent size of villagers, and militia alike. Being the first village into Bretonnia from Grey Lady pass, it is quite defensible and strategic in nature.">
     <Components>
       <Village id="village_comp_LL1_3" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_LL1" bound="Settlement.town_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4447,7 +4447,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL1" name="{=Settlements.Settlement.name.castle_LL1}Tower of Se-Athil" owner="Faction.parravon_clan_1" posX="1215.219" posY="1363.92" culture="Culture.vlandia" gate_posX="1213.686" gate_posY="1363.364" text="{=Settlements.Settlement.name.castle_LL1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
+  <Settlement id="castle_LL1" name="{=Settlements.Settlement.name.castle_LL1}Tower of Se-Athil" owner="Faction.laurelorn_clan_3" posX="1215.219" posY="1363.92" culture="Culture.eonir" gate_posX="1214.353" gate_posY="1364.901" text="{=Settlements.Settlement.name.castle_LL1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
     <Components>
       <Town id="castle_comp_LL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4457,7 +4457,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_LL1_1" name="{=Settlements.Settlement.name.castle_village_LL1_1}Sarrielrein" posX="1239.965" posY="1352.936" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
+  <Settlement id="castle_village_LL1_1" name="{=Settlements.Settlement.name.castle_village_LL1_1}Sarrielrein" posX="1239.965" posY="1352.936" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
     <Components>
       <Village id="castle_village_comp_LL1_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL1" bound="Settlement.castle_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4470,7 +4470,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_LL1_2" name="{=Settlements.Settlement.name.castle_village_LL1_2}Farisar's Rock" posX="1263.029" posY="1354.347" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
+  <Settlement id="castle_village_LL1_2" name="{=Settlements.Settlement.name.castle_village_LL1_2}Farisar's Rock" posX="1263.029" posY="1354.347" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL1_1} In the west of Parravon, near the borders of Montfort, Laval holds a tight knit relationship with its neighbour, Etoy. They often trade goods, such as raw materials for leather and hides. During the Lily Day, the two villages have many weddings and hold a small festival.">
     <Components>
       <Village id="castle_village_comp_LL1_2" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL1" bound="Settlement.castle_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4483,7 +4483,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL2" name="{=Settlements.Settlement.name.castle_LL2}Aroth Loren" owner="Faction.parravon_clan_1" posX="1280.787" posY="1315.303" culture="Culture.vlandia" gate_posX="1284.384" gate_posY="1318.902" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_LL2" name="{=Settlements.Settlement.name.castle_LL2}Aroth Loren" owner="Faction.laurelorn_clan_4" posX="1280.787" posY="1315.303" culture="Culture.eonir" gate_posX="1281.352" gate_posY="1316.483" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_LL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4493,7 +4493,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_LL2_1" name="{=Settlements.Settlement.name.castle_village_LL2_1}Kor Immarmor" posX="1300.108" posY="1328.272" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL2_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
+  <Settlement id="castle_village_LL2_1" name="{=Settlements.Settlement.name.castle_village_LL2_1}Kor Immarmor" posX="1300.108" posY="1328.272" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL2_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
     <Components>
       <Village id="castle_village_comp_LL2_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL2" bound="Settlement.castle_LL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4506,7 +4506,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL3" name="{=Settlements.Settlement.name.castle_LL2}Aroth Hanor" owner="Faction.parravon_clan_1" posX="1274.939" posY="1276.186" culture="Culture.vlandia" gate_posX="1275.201" gate_posY="1276.275" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_LL3" name="{=Settlements.Settlement.name.castle_LL2}Aroth Hanor" owner="Faction.laurelorn_clan_2" posX="1274.939" posY="1276.186" culture="Culture.eonir" gate_posX="1275.504" gate_posY="1277.366" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_LL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4516,7 +4516,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_LL3_1" name="{=Settlements.Settlement.name.castle_village_LL3_1}Lathain" posX="1258.727" posY="1274.999" culture="Culture.vlandia" text="{=Settlements.Settlement.text.castle_village_LL3_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
+  <Settlement id="castle_village_LL3_1" name="{=Settlements.Settlement.name.castle_village_LL3_1}Lathain" posX="1258.727" posY="1274.999" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL3_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
     <Components>
       <Village id="castle_village_comp_LL3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL2" bound="Settlement.castle_LL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
