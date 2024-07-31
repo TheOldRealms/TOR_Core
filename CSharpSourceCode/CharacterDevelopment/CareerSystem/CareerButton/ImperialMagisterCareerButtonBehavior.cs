@@ -530,18 +530,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             get
             {
                 float upkeep = _upkeep;
+                var factor = 1f;
                 if (Hero.MainHero.HasCareerChoice("ImperialEnchantmentPassive4"))
                 {
                     var choiceEnchantment = TORCareerChoices.GetChoice("ImperialEnchantmentPassive4");
-                    upkeep -= upkeep * choiceEnchantment.GetPassiveValue();
+                    factor -= choiceEnchantment.GetPassiveValue();
                 }
                 
-                if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive4"))
+                if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
                 {
+                    
                     var lores = PowerstoneHelper.GetPartyLores(Hero.MainHero.PartyBelongedTo.GetMemberHeroes());
-                    upkeep -= lores.Count * 0.05f;
+                    factor -= lores.Count * 0.05f;
                 }
 
+                upkeep = factor * upkeep;
+                
                 return (int)upkeep;
             }
         }
@@ -551,7 +555,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             get
             {
                 var reduction = 0.4f;
-                if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4")) reduction += 0.4f;
+                if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4")) reduction += 0.8f;
 
                 return Price * reduction;
             }

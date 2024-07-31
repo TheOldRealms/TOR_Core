@@ -13,7 +13,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
 {
     public class MercenaryCareerButtonBehavior : CareerButtonBehaviorBase
     {
-        private bool _mercenaryCompanionDialogBegins;
         private CharacterObject _currentTemplate;
         private int _price = 50000;
         
@@ -21,34 +20,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
         {
             if(career != TORCareers.Mercenary) return;
             
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
         
         public override string CareerButtonIcon => "CareerSystem\\ghal_maraz";
-
-        private void OnSessionLaunched(CampaignGameStarter starter)
-        {
-            starter.AddDialogLine("mercenaryCompanion_bodyguard_start", "start", "mercenaryCompanion_bodyguard_1", new TextObject("Aye what can I do for you?").ToString(), mercenaryCompanionCondition, disableDialogCondition, 200,null);
-            starter.AddPlayerLine("mercenaryCompanion_bodyguard_1", "mercenaryCompanion_bodyguard_1", "mercenaryCompanion_bodyguard_2",new TextObject("Your employment has gone quite well and I want to bring you on as a partner").ToString(), null, null,200, null);
-            starter.AddDialogLine("mercenaryCompanion_bodyguard_2", "mercenaryCompanion_bodyguard_2", "mercenaryCompanion_bodyguard_3", new TextObject("As a partner?").ToString(), null, null, 200,null);
-            starter.AddPlayerLine("mercenaryCompanion_bodyguard_3", "mercenaryCompanion_bodyguard_3", "mercenaryCompanion_bodyguard_4",new TextObject("You get part of the share and need to accomplish a few advanced organisational matters. I will however not pay your wage anymore.").ToString(), null, null,200, null);
-            starter.AddDialogLine("mercenaryCompanion_bodyguard_4", "mercenaryCompanion_bodyguard_4", "mercenaryCompanion_bodyguard_5", "First I want to see some hard coin. I am not playing Babysitter or 'Partner' without seeing some money first. You pay me {MERCCOMPANIONPRICE}{GOLD_ICON}", null,null);
-            starter.AddPlayerLine("mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_paymentSuccess",new TextObject("Of course, consider this a forward on your upcoming shares.").ToString(), _playerHasMoney, null,200, null);
-            starter.AddPlayerLine("mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_paymentFail",new TextObject("I don’t have that in hand right now.").ToString(), null,null);
-            starter.AddDialogLine("mercenaryCompanion_bodyguard_paymentSuccess", "mercenaryCompanion_bodyguard_paymentSuccess", "mercenaryCompanion_bodyguard_end_success", new TextObject("Thats a good deal, I am looking foward into this partnership").ToString(), null,MakeMercenaryCompanion);
-            starter.AddDialogLine("mercenaryCompanion_bodyguard_paymentSuccess", "mercenaryCompanion_bodyguard_paymentFail", "mercenaryCompanion_bodyguard_end_fail", new TextObject("Well then I stay with my current wage then.").ToString(), null,null);
-            starter.AddPlayerLine("mercenaryCompanion_bodyguard_end_success", "mercenaryCompanion_bodyguard_end_success", "close_window", new TextObject("What a wise decision!").ToString(), null,null);
-            starter.AddPlayerLine("mercenaryCompanion_bodyguard_end_fail", "mercenaryCompanion_bodyguard_end_fail", "close_window", new TextObject("Fine.").ToString(), null,null);
-        }
         
-        private bool _playerHasMoney()
+        public bool PlayerHasMoney()
         {
             return Hero.MainHero.Gold > _price;
         }
         
         private void  InitiateDialog(string troopID)
         {
-            _mercenaryCompanionDialogBegins=true;
+            isDialogStart = true;
             
             var characterTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(troopID);
             Game.Current.GameStateManager.PopState(0);
@@ -69,23 +52,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
            
         }
         
-        private void MakeMercenaryCompanion()
+        public void MakeMercenaryCompanion()
         {
             var hero = HeroCreator.CreateSpecialHero(_currentTemplate, Campaign.Current.MainParty.CurrentSettlement, null, null, 40);
             GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, null, _price);
             AddCompanionAction.Apply(MobileParty.MainParty.ActualClan, hero);
             AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
             MobileParty.MainParty.MemberRoster.AddToCountsAtIndex(MobileParty.MainParty.MemberRoster.FindIndexOfTroop(_currentTemplate),-1);
-        }
-
-        private bool mercenaryCompanionCondition()
-        {
-            return _mercenaryCompanionDialogBegins;
-        }
-
-        private void  disableDialogCondition()
-        {
-            _mercenaryCompanionDialogBegins=false;
         }
 
         public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false)
@@ -119,7 +92,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
                 return false;
             }
             
-            if (characterObject.Level<=26)
+            if (characterObject.Level<=21)
             {
                 displayText = new TextObject("Unit needs to reach tier 5 and higher.");
                 return false;
@@ -127,5 +100,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             
             return true;
         }
+        
     }
 }
