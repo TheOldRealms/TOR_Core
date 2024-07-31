@@ -35,10 +35,10 @@
             Radius="4" 
             HasShockWave="false" 
             TargetType="Friendly" 
-            ImbuedStatusEffectDuration="5" 
+            ImbuedStatusEffectDuration="7" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none">
-            <ImbuedStatusEffect>healing_regeneration</ImbuedStatusEffect>
+            <ImbuedStatusEffect>minor_healing_regeneration</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  <TriggeredEffectTemplate StringID="apply_minor_healing_statuseffect" 
             BurstParticleEffectPrefab="none" 

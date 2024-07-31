@@ -202,15 +202,15 @@ namespace TOR_Core.CharacterDevelopment
                 SkillEffect.PerkRole.PartyLeader, 5f, SkillEffect.EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _overCaster.Initialize("{=tor_perk_overcaster_label_str}Overcaster", TORSkills.SpellCraft, 150, _efficientSpellCaster,
-                "{=tor_perk_overcaster_1_str}Your damaging spells do 20% more damage but cost 10% more winds of magic.",
+                "{=tor_perk_overcaster_1_str}Your damaging spells do 20% more damage but cost 30% more winds of magic.",
                 SkillEffect.PerkRole.Personal, 0.2f, SkillEffect.EffectIncrementType.AddFactor,
                 string.Empty,
-                SkillEffect.PerkRole.None, 0.1f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                SkillEffect.PerkRole.None, 0.15f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _efficientSpellCaster.Initialize("{=tor_perk_effective_spellcaster_label_str}Efficient Spellcaster", TORSkills.SpellCraft, 150, _overCaster,
                 "{=tor_perk_effective_spellcaster_1_str}Your damaging spells do 20% less damage, but cost 30% less winds of magic.",
                 SkillEffect.PerkRole.Personal, -0.2f, SkillEffect.EffectIncrementType.AddFactor,
                 string.Empty,
-                SkillEffect.PerkRole.None, -0.3f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                SkillEffect.PerkRole.None, -0.15f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _improvision.Initialize("{=tor_perk_improvision_label_str}Improvision", TORSkills.SpellCraft, 200, _catalyst,
                 "{=tor_perk_improvision_1_str}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle.",
