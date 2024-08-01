@@ -1697,8 +1697,8 @@
             HasShockWave="false" 
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
-            ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>powerstone_fire_amp_3</ImbuedStatusEffect>
+            ScriptNameToTrigger="ApplyLesserFlamingItemTraitScript" >
+                  <ImbuedStatusEffect>powerstone_fire_amp3</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_light_res" 

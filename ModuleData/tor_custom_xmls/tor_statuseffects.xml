@@ -1226,7 +1226,7 @@
 	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
-		id="powerstone_fire_amp_3"
+		id="powerstone_fire_amp3"
 		particle_id="general_fire_buff"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="1.50"
