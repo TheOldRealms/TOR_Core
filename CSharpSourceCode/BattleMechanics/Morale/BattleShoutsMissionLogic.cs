@@ -19,6 +19,7 @@ namespace TOR_Core.BattleMechanics.Morale
         private readonly List<ResponseEvent> _orderResponseEventsToRemove = [];
         private int _ignoreFirstFewEventsNum = -1;
         private int _ignoreEventCurrentCount = 0;
+        private bool _battleEnded;
 
         public override void OnTeamDeployed(Team team)
         {
@@ -38,6 +39,11 @@ namespace TOR_Core.BattleMechanics.Morale
                 _playerOrderController.OnOrderIssued -= OnOrderIssued;
                 _playerOrderController.OnSelectedFormationsChanged -= OnSelectedFormationsChanged;
             }
+            _battleEnded = true;
+            foreach(var responseEvent in _orderResponseEvents)
+            {
+                responseEvent.CancelEarly();
+            }
         }
 
         public override void OnMissionTick(float dt)
@@ -51,6 +57,7 @@ namespace TOR_Core.BattleMechanics.Morale
 
         private void OnSelectedFormationsChanged()
         {
+            if (_battleEnded) return;
             if(_ignoreEventCurrentCount > _ignoreFirstFewEventsNum)
             {
                 foreach (var formation in _playerOrderController.SelectedFormations)
@@ -80,7 +87,8 @@ namespace TOR_Core.BattleMechanics.Morale
 
         private void OnOrderIssued(OrderType orderType, TaleWorlds.Library.MBReadOnlyList<Formation> appliedFormations, OrderController orderController, params object[] delegateParams)
         {
-            if(_ignoreEventCurrentCount > _ignoreFirstFewEventsNum)
+            if (_battleEnded) return;
+            if (_ignoreEventCurrentCount > _ignoreFirstFewEventsNum)
             {
                 foreach (var formation in appliedFormations)
                 {
@@ -251,7 +259,7 @@ namespace TOR_Core.BattleMechanics.Morale
                             _selectionResponseTriggered = true;
                             RespondingFormation.ApplyActionOnEachAttachedUnit(agent =>
                             {
-                                if (agent.IsHuman)
+                                if (agent != null && agent.IsActive() && agent.IsHuman && !agent.IsUndead() && agent.CurrentlyUsedGameObject == null)
                                 {
                                     agent.MakeVoice(OrderVoiceType, CombatVoiceNetworkPredictionType.NoPrediction);
                                 }
@@ -278,7 +286,7 @@ namespace TOR_Core.BattleMechanics.Morale
                             _orderResponseTriggered = true;
                             RespondingFormation.ApplyActionOnEachAttachedUnit(agent =>
                             {
-                                if (agent.IsHuman)
+                                if (agent != null && agent.IsActive() && agent.IsHuman && !agent.IsUndead() && agent.CurrentlyUsedGameObject == null)
                                 {
                                     agent.MakeVoice((OrderType == OrderType.Charge || OrderType == OrderType.ChargeWithTarget) ? VoiceType.Yell : VoiceType.HorseStop, CombatVoiceNetworkPredictionType.NoPrediction);
                                 }
