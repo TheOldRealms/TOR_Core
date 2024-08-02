@@ -253,6 +253,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
             mission.AddMissionBehavior(new DualWieldMissionLogic());
+            mission.AddMissionBehavior(new BattleShoutsMissionLogic());
 
 
             if (Game.Current.GameType is Campaign)

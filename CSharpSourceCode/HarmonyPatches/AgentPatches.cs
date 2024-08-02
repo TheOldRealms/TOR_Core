@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterDeveloper;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -17,6 +18,39 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class AgentPatches
     {
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Equipment), nameof(Equipment.GetRandomEquipmentElements))]
+        public static bool FixEquipments(ref Equipment __result, BasicCharacterObject character, bool randomEquipmentModifier, bool isCivilianEquipment = false, int seed = -1)
+        {
+            Equipment equipment = new Equipment(isCivilianEquipment);
+            List<Equipment> list = (from eq in character.AllEquipments
+                                    where eq.IsCivilian == isCivilianEquipment && !eq.IsEmpty()
+                                    select eq).ToList();
+            if (list.IsEmpty())
+            {
+                __result = equipment;
+                return false;
+            }
+            int count = list.Count;
+            Random random = new Random(seed);
+            int setNum = MBRandom.RandomInt(count);
+            for (int i = 0; i < 12; i++)
+            {
+                equipment[i] = list[setNum].GetEquipmentFromSlot((EquipmentIndex)i);
+                if (randomEquipmentModifier)
+                {
+                    var modifier = equipment[i].Item?.ItemComponent?.ItemModifierGroup?.GetRandomItemModifierProductionScoreBased();
+                    if(modifier != null)
+                    {
+                        equipment[i].SetModifier(modifier);
+                    }
+                }
+            }
+            __result = equipment;
+            return false;
+        }
+
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Agent), "GetBattleImportance")]
         public static void BattleImportancePatch(ref float __result, Agent __instance)

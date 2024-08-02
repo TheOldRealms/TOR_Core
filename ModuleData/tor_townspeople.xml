@@ -2379,7 +2379,7 @@
       <EquipmentSet id="tor_we_people_notable_artisan_shopworker" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_asrai_rural_1" name="{=!}asrain yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Townsfolk">
+  <NPCCharacter id="spc_notable_asrai_rural_1" name="{=!}asrain yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="RuralNotable">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2391,7 +2391,7 @@
       <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_asrai_rural_2" name="{=!}asrai yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="Townsfolk">
+  <NPCCharacter id="spc_notable_asrai_rural_2" name="{=!}asrai yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="RuralNotable">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
