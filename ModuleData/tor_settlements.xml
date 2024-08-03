@@ -4518,7 +4518,7 @@
   </Settlement>
   <Settlement id="castle_village_LL3_1" name="{=Settlements.Settlement.name.castle_village_LL3_1}Lathain" posX="1258.727" posY="1274.999" culture="Culture.eonir" text="{=Settlements.Settlement.text.castle_village_LL3_1}Just south west of Castle Paravon lies the village of Lesevre, which hosts large deposits of Wood. Lesevre is very rich in wealth due to Castle Paravon needing coal to fuel the smithies for production of weapons and armour.">
     <Components>
-      <Village id="castle_village_comp_LL3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL2" bound="Settlement.castle_LL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_LL3_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_LL1" bound="Settlement.castle_LL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_bretonnia_village_006" />
