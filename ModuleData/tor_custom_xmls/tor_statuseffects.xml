@@ -1226,7 +1226,7 @@
 	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
-		id="powerstone_fire_amp_3"
+		id="powerstone_fire_amp3"
 		particle_id="general_fire_buff"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="1.50"
@@ -1299,7 +1299,7 @@
 		id="powerstone_light_mov"
 		particle_id="general_light_buff"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.2"
+		base_effect_value="0.25"
 		applies_for_attack_type="Ranged"
 		type="MovementManipulation"
 		damage_type="Magical">
@@ -1329,8 +1329,8 @@
 		id="powerstone_light_mov_debuff"
 		particle_id="general_light_debuff"
 		do_not_attach_to_agent_skeleton="false"
-		base_effect_value="-0.4"
-		applies_for_attack_type="Ranged"
+		base_effect_value="-0.6"
+		applies_for_attack_type="All"
 		type="MovementManipulation"
 		damage_type="Physical">
 	</StatusEffectTemplate>

@@ -157,7 +157,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
                 new PowerStone("heavens_dmg_raged_20", new TextObject("Lesser Wind Saphire"),new TextObject("+20% physical ranged damage amplification"), "powerstone_heavens_dmg_range", 
                     15, 10, "LoreOfHeavens", PowerSize.Lesser),
-                new PowerStone("heavens_dmg_20", new TextObject("Lesser Conductive Saphire"), new TextObject("+20% lightning melee damage"), "powerstone_heavens_dmg_melee",
+                new PowerStone("heavens_dmg_20", new TextObject("Lesser Conductive Saphire"), new TextObject("+20% lightning melee damage"), "powerstone_heavens_trait",
                     15, 10, "LoreOfHeavens", PowerSize.Lesser),
                 
                 new PowerStone("heavens_res_25", new TextObject("Lesser Dissipation  Saphire"), new TextObject("+25% lightning resistance, + 25% magical resistance"),"powerstone_heavens_res",
@@ -236,7 +236,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var list = new List<PowerStone>()
             {
                 new PowerStone("fire_amp_150", new TextObject("Mighty Fire Ruby"),new TextObject("+150% Fire amp., 15% Fire dmg."),
-                    "PLACEHOLDER", 50,
+                    "powerstone_fire_amp3", 50,
                     50, "LoreOfFire", PowerSize.Mighty),
 
                 new PowerStone("light_mov_trait", new TextObject("Mighty Lumen Stone"),new TextObject("40% magical dmg., slows enemies on hit"),

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -237,7 +238,8 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 trait.ItemTraitName = "Azyr infused weapon";
                 trait.ItemTraitDescription = "This weapon is guided by Azyr. It deals lightning damage.";
                 trait.ImbuedStatusEffectId = "none";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_heavens_weapon" };
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "electric_weapon" };
+                
                 trait.AdditionalDamageTuple = additionalDamage;
                 trait.OnHitScriptName = "none";
 
@@ -268,7 +270,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 trait.ItemTraitName = "Azyr infused weapon";
                 trait.ItemTraitDescription = "This sword is guided by Azyr. It deals electrical damage.";
                 trait.ImbuedStatusEffectId = "none";
-                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "psys_heavens_weapon" };
+                trait.WeaponParticlePreset = new WeaponParticlePreset { ParticlePrefab = "electric_weapon" };
                 trait.AdditionalDamageTuple = additionalDamage;
                 trait.OnHitScriptName = "none";
 

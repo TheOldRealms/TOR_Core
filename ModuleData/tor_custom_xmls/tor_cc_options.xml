@@ -1049,7 +1049,7 @@
 			<string>Leadership</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
-		<OptionText>{=tor_cc_option_2_eo_council_guard_label_str}Captain of the Council Guard</OptionText>
+		<OptionText>{=tor_cc_option_2_eo_council_guard_label_str}Council Guard</OptionText>
 		<OptionFlavourText>{=tor_option_2_eo_council_guard_text_str}You were involved in matters of security of the Council. Over the years you made a name for yourself as a Captain.</OptionFlavourText>
 	</CharacterCreationOption>
 

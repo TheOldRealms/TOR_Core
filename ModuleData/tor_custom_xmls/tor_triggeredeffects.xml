@@ -1697,8 +1697,8 @@
             HasShockWave="false" 
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
-            ScriptNameToTrigger="none" >
-                  <ImbuedStatusEffect>powerstone_fire_amp_3</ImbuedStatusEffect>
+            ScriptNameToTrigger="ApplyLesserFlamingItemTraitScript" >
+                  <ImbuedStatusEffect>powerstone_fire_amp3</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_light_res" 
@@ -1755,7 +1755,7 @@
             TargetType="Friendly" 
             ImbuedStatusEffectDuration="8" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyLesserLightItemTraitScript" >
-                  <ImbuedStatusEffect>powerstone_light_ats</ImbuedStatusEffect>
+                  <ImbuedStatusEffect>powerstone_light_mov</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  <TriggeredEffectTemplate StringID="powerstone_light_trait2" 
