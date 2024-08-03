@@ -980,7 +980,7 @@
 	</CharacterCreationOption> 
 	
 			<!-- Eonir stage 1 -->
-	<CharacterCreationOption Id="option_1_eo_toriour" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_daith_apprentise_1">
+	<CharacterCreationOption Id="option_1_eo_toriour" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_toriour_1">
 		<SkillsToIncrease>
 			<string>Steward</string>
 			<string>Crafting</string>
@@ -992,7 +992,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_eo_toriour_text_str}As a city-born, you lived most of the time in Tor Lithanel, where you learned the traditions and craftsmen-ship preserved long before the separation of your kin.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_eo_faniour" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_forest_survivor_1">
+	<CharacterCreationOption Id="option_1_eo_faniour" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_faniour_1">
 		<SkillsToIncrease>
 			<string>Riding</string>
 			<string>Polearm</string>
@@ -1004,7 +1004,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_eo_faniour_text_str}Your family survived the war of the beards, and escaped to the forest of Laurelorn as the last bastion of the surviving Asur in the old World. As Forestborn you spend most of your young ages in the wards of the Laurelorn forest.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_eo_harioth" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_forest_survivor_1">
+	<CharacterCreationOption Id="option_1_eo_harioth" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_harioth_1">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Bow</string>
@@ -1016,7 +1016,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_eo_harioth_text_str}Your Family entered the Laurelorn forest in the last millennia, long after the separation of the Eonir. You as a second generation barely survived the rite for your acceptance. You spend most of your young ages close the border of the Eonir territory, in caves and improvised shelters..</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_eo_diplomat" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_we_noble_1">
+	<CharacterCreationOption Id="option_1_eo_diplomat" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_diplomat_1">
 		<SkillsToIncrease>
 			<string>Charm</string>
 			<string>Leadership</string>
@@ -1028,7 +1028,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_eo_diplomat_text_str}You originate from a family that till to this day has a high renown in Ulthuan as well as among the Eonir. Diplomats from the far Asur continent as well as todays council, often listen carefully when they hear your name.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_eo_druchii_foundling" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_we_guardian_anmyr_1">
+	<CharacterCreationOption Id="option_1_eo_druchii_foundling" Culture="eonir" StageNumber="1" EquipmentSetId="tor_cc_eo_druchii_foundling_1">
 		<SkillsToIncrease>
 			<string>Roguery</string>
 			<string>OneHanded</string>
@@ -1041,7 +1041,7 @@
 	</CharacterCreationOption>
 
 	<!-- Eonir stage 2 -->
-	<CharacterCreationOption Id="option_2_eo_council_guard" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_kurnous_2">
+	<CharacterCreationOption Id="option_2_eo_council_guard" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_council_guard_2">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Athletics</string>
@@ -1053,7 +1053,7 @@
 		<OptionFlavourText>{=tor_option_2_eo_council_guard_text_str}You were involved in matters of security of the Council. Over the years you made a name for yourself as a Captain.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_eo_trader_empire" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_isha_2">
+	<CharacterCreationOption Id="option_2_eo_trader_empire" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_trader_empire_2">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Charm</string>
@@ -1065,7 +1065,7 @@
 		<OptionFlavourText>{=tor_cc_option52_text_str}As a traveling trader, you know probably more humans than your own kin. You nevertheless learned how to make a name for yourself and for this you are respected by both men and elves. </OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_eo_witch_king_envoy" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_loec_2">
+	<CharacterCreationOption Id="option_2_eo_witch_king_envoy" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_witch_king_envoy_2">
 		<SkillsToIncrease>
 			<string>Roguery</string>
 			<string>Roguery</string>
@@ -1078,7 +1078,7 @@
 	</CharacterCreationOption>
 
 
-	<CharacterCreationOption Id="option_2_eo_senat_member" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_vaul_2">
+	<CharacterCreationOption Id="option_2_eo_senat_member" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_senat_member_2">
 		<SkillsToIncrease>
 			<string>Steward</string>
 			<string>Tactics</string>
@@ -1090,7 +1090,7 @@
 		<OptionFlavourText>{=tor_cc_option_2_eo_senat_member_text_str}Your competence as a Warrior brought you a seat in the Senat, you learned the ways of diplomacy and how to enforce your policies in the Politics through the manner of speech. </OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_eo_protector_wards" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_khaine_2">
+	<CharacterCreationOption Id="option_2_eo_protector_wards" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_protector_wards_2">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Polearm</string>
@@ -1104,7 +1104,7 @@
 
 
 	<!--  eonir stage 3 -->
-	<CharacterCreationOption Id="option_3_eo_envoy" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_we_wardancer_3">
+	<CharacterCreationOption Id="option_3_eo_envoy" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_envoy_3">
 		<SkillsToIncrease>
 			<string>Charm</string>
 			<string>Tactics</string>
@@ -1117,7 +1117,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_eo_envoy_text_str}As Envoy you are serving the Eonir outside the woods, handling trade and relations with foreign kingdoms and elector states.</OptionFlavourText>
 	</CharacterCreationOption>
 	
-	<CharacterCreationOption Id="option_3_eo_ghost_strider" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_we_waywatcher_3">
+	<CharacterCreationOption Id="option_3_eo_ghost_strider" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_ghost_strider_3">
 		<SkillsToIncrease>
 			<string>Bow</string>
 			<string>Scouting</string>
@@ -1130,7 +1130,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_we_waywatcher_text_str}The silent hunters of the forest are feared by anybody who is a foe of the woods. You decided to go the path of such a deadly warrior. You decided to become a Ghost Strider.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_3_eo_kithband_warrior" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_we_spellsinger_3">
+	<CharacterCreationOption Id="option_3_eo_kithband_warrior" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_kithband_warrior_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>TwoHanded</string>
@@ -1143,7 +1143,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_we_spellsinger_text_str}You fight alongside your kin, for the protection for the forest, no matter what it costs. While Kithband warriors lack a certain elegance, compared to other elves, the inventiveness and their practicality make them excellent warriors of the forest.</OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option_3_eo_greylord_apprentice" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_we_gladerider_3">
+	<CharacterCreationOption Id="option_3_eo_greylord_apprentice" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_greylord_apprentice_3">
 		<SkillsToIncrease>
 			<string>Spellcraft</string>
 			<string>Spellcraft</string>
@@ -1156,7 +1156,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_eo_greylord_apprentice_text_str}You decided to join the teachings of one of the Exiled Magic lords of Ulthuan, while they know everything of the this world, and beyond, the magicians follow a high interest in the control of dragons, no matter the cost. </OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option_3_eo_eonir_expatriate" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_we_warden_3">
+	<CharacterCreationOption Id="option_3_eo_eonir_expatriate" Culture="eonir" StageNumber="3" EquipmentSetId="tor_cc_eo_eonir_expatriate_3">
 		<SkillsToIncrease>
 			<string>Trade</string>
 			<string>Bow</string>

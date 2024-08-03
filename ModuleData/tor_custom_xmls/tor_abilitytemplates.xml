@@ -2067,7 +2067,7 @@
 	
 	<AbilityTemplate StringID="Apotheosis" 
 	Name="{=apotheosis_label_str}Apotheosis"
-	SpriteName="regrowth_icon"
+	SpriteName="apoteosis_icon"
 	CoolDown="10"
 	WindsOfMagicCost="6"
 	BaseMisCastChance="0.05"
