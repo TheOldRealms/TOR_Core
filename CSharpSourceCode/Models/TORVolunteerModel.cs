@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.Extensions;
@@ -25,8 +26,37 @@ namespace TOR_Core.Models
                 var template = RORManager.GetTemplateFor(settlement.StringId);
                 if(template != null)
                 {
+                    
                     var troop = MBObjectManager.Instance.GetObject<CharacterObject>(template.BaseTroopId);
-                    if(troop != null) return troop;
+                    
+                    if (troop != null)
+                    {
+                        if (troop.IsUndead())
+                        {
+                            var count = 0;
+
+                            var undeadRoRMaximum = 3;
+                            if (settlement.IsVillage)
+                            {
+                                undeadRoRMaximum = 1;
+                            }
+
+                            for (int i = 0; i < settlement.Notables.Count; i++)
+                            {
+                                count++;
+                                if (settlement.Notables[i] == sellerHero)
+                                {
+                                    if (count <= undeadRoRMaximum)
+                                    {
+                                        return troop;
+                                    }
+
+                                    return base.GetBasicVolunteer(sellerHero);
+                                }
+                            }
+                        }
+                        return troop;
+                    }
                 }
             }
 
@@ -56,6 +86,14 @@ namespace TOR_Core.Models
         
         public override int MaximumIndexHeroCanRecruitFromHero(Hero buyerHero, Hero sellerHero, int useValueAsRelation = -101)
         {
+            if (GetBasicVolunteer(sellerHero).IsUndead())
+            {
+                if (!buyerHero.IsNecromancer() || !buyerHero.PartyBelongedTo.GetMemberHeroes().Any(x=> x.IsNecromancer()))
+                {
+                    return -1;
+                }
+            }
+            
             var value = base.MaximumIndexHeroCanRecruitFromHero(buyerHero, sellerHero, useValueAsRelation);
 
             if (buyerHero.IsEnlisted())
