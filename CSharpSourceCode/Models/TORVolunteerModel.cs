@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -26,6 +27,19 @@ namespace TOR_Core.Models
                 {
                     var troop = MBObjectManager.Instance.GetObject<CharacterObject>(template.BaseTroopId);
                     if(troop != null) return troop;
+                }
+            }
+
+            if (settlement.Culture.StringId == TORConstants.Cultures.EONIR)
+            {
+                if (settlement.IsTown)
+                {
+                    return settlement.Culture.EliteBasicTroop;
+                }
+
+                if (settlement.IsVillage)
+                {
+                    return settlement.Culture.BasicTroop;
                 }
             }
             

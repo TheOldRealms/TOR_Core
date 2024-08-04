@@ -27,6 +27,15 @@ namespace TOR_Core.Models
                     //result.Add(10f,new TextObject("Blood Keep bonus"));
                     return result;
                 }
+
+                if (settlement.StringId == "castle_BK2")
+                {
+                    if (settlement.Militia < 2000)
+                    {
+                        result.LimitMin(10);
+                    }
+                }
+                
                 switch (settlement.OwnerClan.Culture.StringId)
                 {
                     case TORConstants.Cultures.SYLVANIA:

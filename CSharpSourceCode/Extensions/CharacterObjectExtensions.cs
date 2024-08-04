@@ -225,6 +225,11 @@ namespace TOR_Core.Extensions
         {
             return characterObject.GetAttributes().Contains("BloodDragon");
         }
+        
+        public static bool IsBrassKeepLord(this BasicCharacterObject characterObject)
+        {
+            return characterObject.GetAttributes().Contains("BrassKeep");
+        }
 
         public static bool IsReligiousUnit(this CharacterObject characterObject)
         {

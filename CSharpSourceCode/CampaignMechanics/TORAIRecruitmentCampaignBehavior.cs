@@ -38,11 +38,27 @@ namespace TOR_Core.Models
                         recruiter.PartyBelongedTo.Party.AddMember(bloodKnightInitate, 1);
                     }
                 }
-
-                if (recruitmentSource != null)
-                    recruitmentSource.SetPersonalRelation(recruiter, recruitmentSource.GetBaseHeroRelation(recruiter) - 1);
+                
                 recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
             }
+
+            if (recruiter.CharacterObject.IsBrassKeepLord())
+            {
+                recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+
+                if (troop.IsEliteTroop())
+                {
+                    var chaosKnight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_nurgle_warrior");
+                    recruiter.PartyBelongedTo.Party.AddMember(chaosKnight,amount);
+                }
+                else
+                {
+                    var raider = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_norscan_raider");
+                    recruiter.PartyBelongedTo.Party.AddMember(raider,amount);
+                }
+            }
+            
+            
 
             if (recruiter.IsLord && troop.Culture.StringId == TORConstants.Cultures.MOUSILLON && recruiter.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
