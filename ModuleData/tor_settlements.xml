@@ -4768,7 +4768,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_CO1_1" name="{=Settlements.Settlement.name.village_CO1_1}Rennesse" posX="939.387" posY="1240.93" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO1_1}Rennesse is a big village bound to castle couronne. It is said they breed one of the finest Brettonian war horses. Many noble's from couronne travel to Rennesse to get a horse for their childeren so they may learn to ride on the finest horses of the land."
+  <Settlement id="village_CO1_1" name="{=Settlements.Settlement.name.village_CO1_1}Rennesse" posX="939.387" posY="1240.93" culture="Culture.vlandia" text="{=Settlements.Settlement.text.village_CO1_1}Rennesse is a big village bound to castle couronne. It is said they breed one of the finest Brettonian war horses. Many noble's from couronne travel to Rennesse to get a horse for their childeren so they may learn to ride on the finest horses of the land.">
     <Components>
       <Village id="village_comp_CO1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_CO1" bound="Settlement.town_CO1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
