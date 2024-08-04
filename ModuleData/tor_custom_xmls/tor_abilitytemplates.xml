@@ -2330,7 +2330,7 @@
 	
 	<AbilityTemplate StringID="ShieldOfSaphery" 
       Name="{=shield_of_saphery_label_str}Shield of Saphery" 
-      SpriteName="aerial_shield_icon" 
+      SpriteName="ShieldOfSaphery_icon" 
       CoolDown="120" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 

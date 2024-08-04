@@ -6894,9 +6894,9 @@
       <EquipmentSet id="tor_archaon_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_brasskeep_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_factionleader}Magox Rotbringer" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_brasskeep_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_factionleader}Pyucius the Dung Tongued" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
     <face>
-      <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
+      <BodyProperties version="4" age="43" weight="0.5463" build="0.4738" key="0015F8001CE4000000E11FCD0C0F470F10010F6008115E0059F07051851FFC01EFFFF6030975FEFF78D8EB6CFFEB0FFE000000000000000900000000293C0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -6908,8 +6908,98 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_archaon_template" />
-      <EquipmentSet id="tor_archaon_template" civilian="true" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_2" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_2}Squalm the Rabid" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="26" weight="0.5185" build="0.4414" key="0015B8001C000680107664876753888A0101866111011011010010108C95A0AB0077F6030790110078000000000000000000000000000007000000003AF48002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_3" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_3}The Glop-helm" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="22" weight="0.4911" build="0.7987" key="0015D8029CA000006F4C958D997B67E47983C626E57163E8FEF1EFEEB45488C593829603030EEEDFC7D3C65235B08883000000000000000300000000365C5002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_4" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_4}Malarius of Obelstein" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="33" weight="0.9704" build="0.9617" key="001554055CE4064754765338A95D6A935697439886B8B859EE28A82AB7468964FFEFC60301EB736DEF354A74FFFFFFEF000000000000000100000000462C1002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_5" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_5}Bleboth the Blighted Apothecary" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="21" weight="0.408" build="0.6188" key="0015CC079CCC09C0B887A36A93773A665D8B78773535569A5A88936D894B23B966B796030B9679DA965156748797B79D000000000000000B00000000337C1002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_lord_brasskeep_first_6" default_group="cavalry" name="{=str_tor_chaos_lord_brasskeep_first_6}Woerot the tainted" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="27" weight="0.4573" build="0.665" key="001548015CA0004039879AA94A3968D7D81374753427675749786583D87194986A4436030DDA98BAA78862895A888A47000000000000000D000000001FAC8002" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_de_lord_factionleader" default_group="cavalry" name="{=str_tor_de_lord_factionleader}Draxor Bloodscar" occupation="Lord" culture="Culture.druchii" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
