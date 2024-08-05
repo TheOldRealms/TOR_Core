@@ -272,7 +272,7 @@ namespace TOR_Core.CharacterDevelopment
             _vitalSurge = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_vitalSurge).UnderscoreFirstCharToUpper()));
             _heartOfTheTree = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_heartOfTheTree).UnderscoreFirstCharToUpper()));
             _arielsBlessing = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_arielsBlessing).UnderscoreFirstCharToUpper()));
-            _magicOfAthelLoren = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_arielsBlessing).UnderscoreFirstCharToUpper()));
+            _magicOfAthelLoren = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_magicOfAthelLoren).UnderscoreFirstCharToUpper()));
             _furyOfTheForest = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_furyOfTheForest).UnderscoreFirstCharToUpper()));
 
         }
@@ -849,8 +849,8 @@ namespace TOR_Core.CharacterDevelopment
             
             _magicOfAthelLoren.Initialize("Fey Magic", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
             {
-                text = "Required clan renown: 4";
-                return hero.Clan.Tier >= 4;
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
             });
           
             _furyOfTheForest.Initialize("Fury of the Forest", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
