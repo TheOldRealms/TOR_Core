@@ -132,7 +132,7 @@ namespace TOR_Core.Items
             list = new List<ItemTrait>();
             if (agent.IsHuman)
             {
-                for (int i = 0; i < 4; i++)
+                /*for (int i = 0; i < 4; i++)
                 {
                     var weapon = agent.Equipment[i];
                     if (weapon.Item != null)
@@ -141,6 +141,19 @@ namespace TOR_Core.Items
                         if (magiceffect != null)
                         {
                             list = magiceffect;
+                            return true;
+                        }
+                    }
+                }*/
+                var weapon = agent.WieldedWeapon;
+                if (!weapon.IsEmpty)
+                {
+                    if (weapon.Item != null)
+                    {
+                        var effects = weapon.Item.GetTraits();
+                        if (effects != null)
+                        {
+                            list = effects;
                             return true;
                         }
                     }
