@@ -954,7 +954,7 @@
              color2="FFAC5F2E"
              alternative_color="FFAC5F2E"
              alternative_color2="FFAC5F2E"
-             text="{=!}Lead by Luka Braganza the Braganza's Besiegers are a famous band of Dogs of War mercenaries that hails from the Tilean city-state of Miragliano, trained and maintained as heavily armored Crossbowmen.">
+             text="{=!}Bertrand had no desire to push his claim and become a knight, nor did he wish to join the ranks of the nobility and his followers were thoroughly fed up with paying feudal dues. They liked the idea of keeping everything they grew to themselves. If Bertrand took the vows of chivalry he would also have to forsake his beloved longbow as a dishonourable weapon, and that was something he would never do. Instead, Bertrand and his folk took to wandering through the wilderness regions of Bretonnia, righting wrongs and sticking up for the peasants wherever the need may be. Most often this means fighting against raiders and orcs, but sometimes there is a corrupt Baron or Knight, lacking in honour, who needs to be defeated.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_br_bergerac_lord" />
         </minor_faction_character_templates>
