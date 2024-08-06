@@ -460,6 +460,7 @@
     <!-- Brass Keep faction -->
     <Faction id="brasskeep_clan_1"
              name="{=!}The Repugnauts"
+			 default_party_template="PartyTemplate.brasskeep_lordparty_template"
              tier="6"
              owner="Hero.tor_chaos_lord_brasskeep_factionleader"
              culture="Culture.chaos_culture"

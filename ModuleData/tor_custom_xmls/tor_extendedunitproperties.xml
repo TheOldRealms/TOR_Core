@@ -5635,7 +5635,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_leader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Bergerac</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_2">
     <Abilities />
@@ -5651,7 +5653,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_wainfleet_leader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>PeasantKnight</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_troubadour_leader">
     <Abilities />

@@ -42,14 +42,43 @@ namespace TOR_Core.Models
                 recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
             }
 
+            if (troop.IsEliteTroop() && recruiter.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            {
+                CharacterObject replacement = null;
+               if(recruiter.HasAttribute("Bergerac"))
+               {
+                   replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_bergerac_ranger");
+               }
+               
+               if(recruiter.HasAttribute("PeasantKnight"))
+               {
+                   replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_peasant_squight");
+               }
+
+               if (replacement != null)
+               {
+                   recruiter.PartyBelongedTo.Party.AddMember(replacement,amount);
+                   recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+               }
+
+            }
+
             if (recruiter.CharacterObject.IsBrassKeepLord())
             {
                 recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
 
                 if (troop.IsEliteTroop())
                 {
-                    var chaosKnight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_nurgle_warrior");
-                    recruiter.PartyBelongedTo.Party.AddMember(chaosKnight,amount);
+                    var random = MBRandom.RandomFloat;
+                    var chaosKnight = random > 0.5f
+                        ? MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_nurgle_warrior")
+                        : MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_pugulist");
+                    if (chaosKnight != null)
+                    {
+                        recruiter.PartyBelongedTo.Party.AddMember(chaosKnight,amount);
+                        recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+                    }
+              
                 }
                 else
                 {
