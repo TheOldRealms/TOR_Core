@@ -10052,6 +10052,28 @@
       <Equipment slot="HorseHarness" id="Item.chain_barding" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_peasant_knight_leader_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.woodland_axe_t3" />
+      <Equipment slot="Item1" id="Item.old_kite_sparring_shield" />
+      <Equipment slot="Item3" id="Item.tor_empire_weapon_lance_knight_007" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_001" />
+      <Equipment slot="Body" id="Item.rough_fur_over_chain" />
+      <Equipment slot="Cape" id="Item.battania_cloak_b" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.battania_woodland_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.woodland_axe_t3" />
+      <Equipment slot="Item1" id="Item.old_kite_sparring_shield" />
+      <Equipment slot="Item3" id="Item.tor_empire_weapon_lance_knight_007" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_001" />
+      <Equipment slot="Body" id="Item.rough_fur_over_chain" />
+      <Equipment slot="Cape" id="Item.battania_cloak_b" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.battania_woodland_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_kragsburg_retainer_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />

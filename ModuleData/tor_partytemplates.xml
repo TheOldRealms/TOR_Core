@@ -462,6 +462,23 @@
 
 
 	<!--Dogs Of War Parties -->
+	
+	<MBPartyTemplate id="bergerac_01" >
+		<stacks>
+			<PartyTemplateStack min_value="7" max_value="20" troop="NPCCharacter.tor_ror_bergerac_herrimault" />
+			<PartyTemplateStack min_value="7" max_value="20" troop="NPCCharacter.tor_ror_bergerac_ranger" />
+			<PartyTemplateStack min_value="7" max_value="20" troop="NPCCharacter.tor_ror_bergerac_bowman" />
+		</stacks>
+	</MBPartyTemplate>
+	
+	<MBPartyTemplate id="peasant_knight_01" >
+		<stacks>
+			<PartyTemplateStack min_value="7" max_value="20" troop="NPCCharacter.tor_ror_peasant_squire" />
+			<PartyTemplateStack min_value="7" max_value="20" troop="NPCCharacter.tor_ror_peasant_squight" />
+			<PartyTemplateStack min_value="7" max_value="20" troop="NPCCharacter.tor_ror_peasant_knight" />
+		</stacks>
+	</MBPartyTemplate>
+	
 	<MBPartyTemplate id="dog_01" >
 		<stacks>
 			<PartyTemplateStack min_value="7" max_value="20" troop="NPCCharacter.tor_dog_braganza_01" />

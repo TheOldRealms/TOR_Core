@@ -917,7 +917,7 @@
 	
 	<!-- Bretonnian Freeroamers-->
     <Faction id="troubadours_clan_1"
-             default_party_template="PartyTemplate.dog_01"
+             default_party_template="PartyTemplate.bretonnia_lordparty_template"
              name="{=!}de Troubadour"
              tier="3"
              is_minor_faction="true"
@@ -934,12 +934,12 @@
              alternative_color2="FFAC5F2E"
              text="{=!}Lead by Luka Braganza the Braganza's Besiegers are a famous band of Dogs of War mercenaries that hails from the Tilean city-state of Miragliano, trained and maintained as heavily armored Crossbowmen.">
         <minor_faction_character_templates>
-            <template id="NPCCharacter.tor_bretonnian_generic_lord_template_quest_1" />
-            <template id="NPCCharacter.tor_bretonnian_generic_lord_template_quest_2" />
+            <template id="NPCCharacter.tor_br_troubadour_questing_knight_1" />
+			<template id="NPCCharacter.tor_br_troubadour_questing_knight_2" />
         </minor_faction_character_templates>
     </Faction>
 	<Faction id="bowmen_bergerac_clan_1"
-             default_party_template="PartyTemplate.dog_01"
+             default_party_template="PartyTemplate.bergerac_01"
              name="{=!}The Bowmen of Bergerac"
              tier="3"
              is_minor_faction="true"
@@ -956,13 +956,11 @@
              alternative_color2="FFAC5F2E"
              text="{=!}Lead by Luka Braganza the Braganza's Besiegers are a famous band of Dogs of War mercenaries that hails from the Tilean city-state of Miragliano, trained and maintained as heavily armored Crossbowmen.">
         <minor_faction_character_templates>
-            <template id="NPCCharacter.tor_bertrand_bergerac_template" />
-            <template id="NPCCharacter.tor_guy_le_gros_template" />
-            <template id="NPCCharacter.tor_hugo_le_petit_template" />
+            <template id="NPCCharacter.tor_br_bergerac_lord" />
         </minor_faction_character_templates>
     </Faction>
 	<Faction id="pesant_knight_clan_1"
-             default_party_template="PartyTemplate.dog_01"
+             default_party_template="PartyTemplate.peasant_knight_01"
              name="{=!}The Fellowship of the Peasant Knight"
              tier="3"
              is_minor_faction="true"
@@ -979,7 +977,7 @@
              alternative_color2="FFAC5F2E"
              text="{=!}Lead by Luka Braganza the Braganza's Besiegers are a famous band of Dogs of War mercenaries that hails from the Tilean city-state of Miragliano, trained and maintained as heavily armored Crossbowmen.">
         <minor_faction_character_templates>
-            <template id="NPCCharacter.tor_peasant_knight_lord_template" />
+            <template id="NPCCharacter.tor_br_peasantknight_lord" />
         </minor_faction_character_templates>
     </Faction>
     <Faction id="dog_clan_2"
