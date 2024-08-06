@@ -664,7 +664,7 @@
              ruler_title="{=!}Duke"
              text="{=!}The dukedom of Mousillon is a haggard and dreaded land, full of swamps and cursed bogs. An impoverished land constantly plagued by disease, which many of its inhabitants have grown accustomed to. As such, many Mousillians are considered to be mutants and freaks compared to normal Bretonnian peasants. The villages and castles are at the point of collapse, while the nights are haunted by apparitions and vile beasts. Only fools and deadmen leave their homes at night. ">
         <relationships>
-            <relationship kingdom="Kingdom.bordeleaux"
+            <relationship kingdom="Kingdom.lyonesse"
                           value="-1"
                           isAtWar="true" />
         </relationships>

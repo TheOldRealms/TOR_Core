@@ -2061,7 +2061,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_undivided_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -5482,7 +5484,7 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_we_lord_athel_loren_thirteenth_1">
+  <CharacterExtendedInfo id="tor_we_lord_athel_loren_thirteenth_2">
     <Abilities />
     <Attributes>
       <string>AICompanion</string>
@@ -5582,6 +5584,7 @@
       <string>FlameStorm</string>
     </Abilities>
     <Attributes>
+      <string>Everchosen</string>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
     </Attributes>
@@ -5629,6 +5632,36 @@
   <CharacterExtendedInfo id="tor_ungor_chief_factionleader">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_bergerac_leader">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_bergerac_2">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_bergerac_3">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_wainfleet_leader">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_troubadour_leader">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_troubadour_2">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_clan_hero_braganza">
     <Abilities />
