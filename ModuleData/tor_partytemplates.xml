@@ -131,7 +131,7 @@
 			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_chaos_aspiring_warrior" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_chaos_pit_fighter" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_chaos_undivided_warrior" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_chaos_nobletree_t6_3" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_chaos_gladiator" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_chaos_slaanesh_warrior" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_chaos_khorne_warrior" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_chaos_nurgle_warrior" />

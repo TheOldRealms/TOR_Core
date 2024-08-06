@@ -1456,7 +1456,7 @@
       <EquipmentSet id="tor_eo_forestborn_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_militia" default_group="infantry" level="6" name="{=str_tor_eo_militia}Eonir Militia" occupation="Villager" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
+  <NPCCharacter id="tor_eo_militia" default_group="infantry" level="6" name="{=str_tor_eo_militia}Eonir Forestborn Militia" occupation="Villager" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1474,7 +1474,7 @@
       <EquipmentSet id="tor_eo_militia_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_kithband_aspirant" default_group="ranged" level="16" name="{=str_tor_eo_kithband_aspirant}Eonir Kithband Aspirant" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level16" race="elf">
+  <NPCCharacter id="tor_eo_kithband_aspirant" default_group="ranged" level="16" name="{=str_tor_eo_kithband_aspirant}Eonir Kithband Aspirant" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level16" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1493,7 +1493,7 @@
       <EquipmentSet id="tor_eo_kithband_aspirant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_kithband_warrior" default_group="ranged" level="26" name="{=str_tor_eo_kithband_warrior}Eonir Kithband Warrior" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_eo_kithband_warrior" default_group="cavalry" level="26" name="{=str_tor_eo_kithband_warrior}Eonir Kithband Warrior" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1512,7 +1512,7 @@
       <EquipmentSet id="tor_eo_kithband_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_mounted_kithband_warrior" default_group="ranged" level="31" name="{=str_tor_eo_mounted_kithband_warrior}Eonir Mounted Kithband Warrior" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" race="elf">
+  <NPCCharacter id="tor_eo_mounted_kithband_warrior" default_group="ranged" level="31" name="{=str_tor_eo_mounted_kithband_warrior}Eonir Mounted Kithband Warrior" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1528,7 +1528,7 @@
       <EquipmentSet id="tor_eo_mounted_kithband_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_veteran_kithband_warrior" default_group="ranged" level="31" name="{=str_tor_eo_veteran_kithband_warrior}Eonir Veteran Kithband Guard" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" race="elf">
+  <NPCCharacter id="tor_eo_veteran_kithband_warrior" default_group="infantry" level="31" name="{=str_tor_eo_veteran_kithband_warrior}Eonir Veteran Kithband Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1544,7 +1544,7 @@
       <EquipmentSet id="tor_eo_veteran_kithband_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_kithband_sentinel" default_group="ranged" level="26" name="{=str_tor_eo_kithband_sentinel}Eonir Waywatcher" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_eo_kithband_sentinel" default_group="ranged" level="26" name="{=str_tor_eo_kithband_sentinel}Eonir Waywatcher" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1562,7 +1562,7 @@
       <EquipmentSet id="tor_eo_kithband_sentinel_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_ranger" default_group="ranged" level="31" name="{=str_tor_eo_ranger}Eonir Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level31" race="elf">
+  <NPCCharacter id="tor_eo_ranger" default_group="ranged" level="31" name="{=str_tor_eo_ranger}Eonir Ranger" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1580,7 +1580,7 @@
       <EquipmentSet id="tor_eo_ranger_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_mounted_ranger" default_group="horsearcher" level="46" name="{=str_tor_eo_mounted_ranger}Eonir Mounted Ranger" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level46" race="elf">
+  <NPCCharacter id="tor_eo_mounted_ranger" default_group="horsearcher" level="46" name="{=str_tor_eo_mounted_ranger}Eonir Mounted Ranger" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1596,7 +1596,7 @@
       <EquipmentSet id="tor_eo_mounted_ranger_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_cityborn_militia" default_group="infantry" level="16" name="{=str_tor_eo_cityborn_militia}Eonir Cityborn Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="elf">
+  <NPCCharacter id="tor_eo_cityborn_militia" default_group="infantry" level="16" name="{=str_tor_eo_cityborn_militia}Eonir Cityborn Militia" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1614,7 +1614,7 @@
       <EquipmentSet id="tor_eo_cityborn_militia_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_cityborn_guard" default_group="infantry" level="26" name="{=str_tor_eo_cityborn_guard}Eonir Tor Lithanel Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_eo_cityborn_guard" default_group="ranged" level="26" name="{=str_tor_eo_cityborn_guard}Eonir Tor Lithanel Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1633,7 +1633,7 @@
       <EquipmentSet id="tor_eo_cityborn_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_cityborn_council_guard" default_group="infantry" level="31" name="{=str_tor_eo_cityborn_council_guard}Eonir Council Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
+  <NPCCharacter id="tor_eo_cityborn_council_guard" default_group="infantry" level="31" name="{=str_tor_eo_cityborn_council_guard}Eonir Council Warden" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1669,7 +1669,7 @@
       <EquipmentSet id="tor_eo_cityborn_council_sentinel_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_queens_guard" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard}Eonir Queens Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
+  <NPCCharacter id="tor_eo_queens_guard" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard}Eonir Queens Champion" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -2439,46 +2439,21 @@
       <EquipmentSet id="tor_chaos_norscan_horsemaster_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_aspiring_warrior" default_group="infantry" level="26" name="{=str_tor_chaos_aspiring_warrior}Aspiring Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_aspiring_warrior" default_group="infantry" level="26" name="{=str_tor_chaos_aspiring_warrior}Aspiring Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_pit_fighter" />
-      <upgrade_target id="NPCCharacter.tor_chaos_undivided_warrior" />
-      <upgrade_target id="NPCCharacter.tor_chaos_nobletree_t6_3" />
+      <upgrade_target id="NPCCharacter.tor_chaos_pugulist" />
+      <upgrade_target id="NPCCharacter.tor_chaos_gladiator" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_empire_villager_template" />
-      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_aspiring_warrior_template" />
+      <EquipmentSet id="tor_chaos_aspiring_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_pit_fighter" default_group="infantry" level="31" name="{=str_tor_chaos_pit_fighter}Chaos Pit Fighter" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="chaos_ud_cultist">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_chaos_slaanesh_warrior" />
-      <upgrade_target id="NPCCharacter.tor_chaos_khorne_warrior" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_empire_villager_template" />
-      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_chaos_undivided_warrior" default_group="infantry" level="31" name="{=str_tor_chaos_undivided_warrior}Undivided Chaos Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="chaos_ud_cultist">
-    <face>
-      <face_key_template value="BodyProperty.undivided_cultist" />
-    </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_chaos_undivided_knight" />
-    </upgrade_targets>
-    <Equipments>
-      <EquipmentSet id="tor_empire_villager_template" />
-      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nobletree_t6_3" default_group="infantry" level="31" name="{=str_tor_chaos_nobletree_t6_3}Chaos Placeholder" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_pit_fighter" default_group="infantry" level="31" name="{=str_tor_chaos_pit_fighter}Chaos Pit Fighter" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -2487,61 +2462,98 @@
       <upgrade_target id="NPCCharacter.tor_chaos_tzeench_warrior" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_empire_villager_template" />
-      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_pit_fighter_template" />
+      <EquipmentSet id="tor_chaos_pit_fighter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_slaanesh_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_slaanesh_warrior}Chaos Warrior of Slaanesh" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_pugulist" default_group="infantry" level="31" name="{=str_tor_chaos_pugulist}Chaos Pugulist" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_undivided_warrior" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_pugulist_template" />
+      <EquipmentSet id="tor_chaos_pugulist_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_undivided_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_undivided_warrior}Undivided Chaos Warrior" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_undivided_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_undivided_warrior_template" />
+      <EquipmentSet id="tor_chaos_undivided_warrior_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_gladiator" default_group="infantry" level="31" name="{=str_tor_chaos_gladiator}Chaos Gladiator" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level31" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_slaanesh_warrior" />
+      <upgrade_target id="NPCCharacter.tor_chaos_khorne_warrior" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_gladiator_template" />
+      <EquipmentSet id="tor_chaos_gladiator_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_chaos_slaanesh_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_slaanesh_warrior}Chaos Warrior of Slaanesh" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_villager_template" />
-      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_slaanesh_warrior_template" />
+      <EquipmentSet id="tor_chaos_slaanesh_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_khorne_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_khorne_warrior}Chaos Warrior of Khorne" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_khorne_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_khorne_warrior}Chaos Warrior of Khorne" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_villager_template" />
-      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_khorne_warrior_template" />
+      <EquipmentSet id="tor_chaos_khorne_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_nurgle_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_nurgle_warrior}Chaos Warrior of Nurgle" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_nurgle_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_nurgle_warrior}Chaos Warrior of Nurgle" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_villager_template" />
-      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_nurgle_warrior_template" />
+      <EquipmentSet id="tor_chaos_nurgle_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_tzeench_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_tzeench_warrior}Chaos Warrior of Tzeench" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_tzeench_warrior" default_group="infantry" level="36" name="{=str_tor_chaos_tzeench_warrior}Chaos Warrior of Tzeench" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_villager_template" />
-      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_tzeench_warrior_template" />
+      <EquipmentSet id="tor_chaos_tzeench_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_undivided_knight" default_group="cavalry" level="36" name="{=str_tor_chaos_undivided_knight}Undivided Chaos Knight" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level36" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_undivided_knight" default_group="cavalry" level="46" name="{=str_tor_chaos_undivided_knight}Undivided Chaos Knight" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level46" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_empire_villager_template" />
-      <EquipmentSet id="tor_empire_villager_template" civilian="true" />
+      <EquipmentSet id="tor_chaos_undivided_knight_template" />
+      <EquipmentSet id="tor_chaos_undivided_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_ranged}Enthralled Caravan Bowman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_ranged}Enthralled Caravan Bowman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="marauder">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -2551,7 +2563,7 @@
       <EquipmentSet id="tor_br_peasant_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_caravan_guard" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_guard}Enthralled Caravan Guard" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_caravan_guard" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_guard}Enthralled Caravan Guard" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="marauder">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -2563,7 +2575,7 @@
       <EquipmentSet id="tor_br_hunter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_caravan_horseman" default_group="cavalry" level="26" name="{=str_tor_chaos_caravan_horseman}Enthralled Caravan Horseman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_caravan_horseman" default_group="cavalry" level="26" name="{=str_tor_chaos_caravan_horseman}Enthralled Caravan Horseman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="marauder">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -2573,7 +2585,7 @@
       <EquipmentSet id="tor_br_mounted_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_caravan_captain" default_group="infantry" level="26" name="{=str_tor_chaos_caravan_captain}Enthralled Caravan Master" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_caravan_captain" default_group="infantry" level="26" name="{=str_tor_chaos_caravan_captain}Enthralled Caravan Master" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="marauder">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -2583,7 +2595,7 @@
       <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_cultist_of_chaos" default_group="infantry" level="6" name="{=str_tor_chaos_cultist_of_chaos}Cultist Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_cultist_of_chaos" default_group="infantry" level="6" name="{=str_tor_chaos_cultist_of_chaos}Cultist Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -2595,7 +2607,7 @@
       <EquipmentSet id="tor_chaos_cult_acolyte_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_darksoul_of_chaos" default_group="infantry" level="11" name="{=str_tor_chaos_darksoul_of_chaos}Darksoul Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_darksoul_of_chaos" default_group="infantry" level="11" name="{=str_tor_chaos_darksoul_of_chaos}Darksoul Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -2607,7 +2619,7 @@
       <EquipmentSet id="tor_chaos_cult_darksoul_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_acolyte_of_chaos" default_group="infantry" level="16" name="{=str_tor_chaos_acolyte_of_chaos}Acolyte of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="chaos_ud_cultist">
+  <NPCCharacter id="tor_chaos_acolyte_of_chaos" default_group="infantry" level="16" name="{=str_tor_chaos_acolyte_of_chaos}Acolyte of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
