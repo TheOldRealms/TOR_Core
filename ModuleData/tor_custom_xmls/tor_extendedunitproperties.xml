@@ -1996,6 +1996,15 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_chaos_pugulist">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_undivided_warrior">
     <Abilities />
     <Attributes />
@@ -2005,7 +2014,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_chaos_nobletree_t6_3">
+  <CharacterExtendedInfo id="tor_chaos_gladiator">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -2052,7 +2061,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_undivided_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -5473,7 +5484,7 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_we_lord_athel_loren_thirteenth_1">
+  <CharacterExtendedInfo id="tor_we_lord_athel_loren_thirteenth_2">
     <Abilities />
     <Attributes>
       <string>AICompanion</string>
@@ -5573,33 +5584,46 @@
       <string>FlameStorm</string>
     </Abilities>
     <Attributes>
+      <string>Everchosen</string>
       <string>AbilityUser</string>
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_factionleader">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brasskeep</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_first_2">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brasskeep</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_first_3">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brasskeep</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_first_4">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brasskeep</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_first_5">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brasskeep</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_first_6">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Brasskeep</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_de_lord_factionleader">
     <Abilities />
@@ -5608,6 +5632,40 @@
   <CharacterExtendedInfo id="tor_ungor_chief_factionleader">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_bergerac_leader">
+    <Abilities />
+    <Attributes>
+      <string>Bergerac</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_bergerac_2">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_bergerac_3">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_wainfleet_leader">
+    <Abilities />
+    <Attributes>
+      <string>PeasantKnight</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_troubadour_leader">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_troubadour_2">
+    <Abilities />
+    <Attributes>
+      <string>AICompanion</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dog_clan_hero_braganza">
     <Abilities />
@@ -5936,6 +5994,22 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_rogue_lord_0">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_bergerac_lord">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_peasantknight_lord">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_troubadour_questing_knight_1">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_troubadour_questing_knight_2">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>

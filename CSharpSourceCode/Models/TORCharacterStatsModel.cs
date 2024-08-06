@@ -103,6 +103,11 @@ namespace TOR_Core.Models
                     number.Add(100, new TextObject("Vampire body"));
                 }
 
+                if (hero.HasAttribute("Everchosen"))
+                {
+                    number.Add(2000);
+                }
+
                 if (hero.HasAnyCareer())
                 {
                     CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.Health, false);

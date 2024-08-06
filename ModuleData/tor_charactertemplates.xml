@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
   <NPCCharacter id="tor_wanderer_empire_0" default_group="ranged" name="{=str_tor_wanderer_empire_0}{FIRSTNAME} the Bright Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="55" is_template="true" is_hero="false">
     <face>
@@ -418,8 +418,8 @@
       <Trait id="Valor" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_empire_deserter_leader_template" />
-      <EquipmentSet id="tor_empire_deserter_leader_template" civilian="true" />
+      <EquipmentSet id="tor_m_knight_of_misfortune_template" />
+      <EquipmentSet id="tor_m_knight_of_misfortune_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_m_rogue_lord_0" default_group="cavalry" name="{=str_tor_m_rogue_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.mousillon" voice="curt" age="30" is_template="true" is_hero="false">
@@ -434,8 +434,72 @@
       <Trait id="Valor" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_empire_deserter_leader_template" />
-      <EquipmentSet id="tor_empire_deserter_leader_template" civilian="true" />
+      <EquipmentSet id="tor_m_knight_of_misfortune_template" />
+      <EquipmentSet id="tor_m_knight_of_misfortune_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_bergerac_lord" default_group="ranged" name="{=str_tor_br_bergerac_lord}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_ror_bergerac_bowman_template" />
+      <EquipmentSet id="tor_ror_bergerac_bowman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_peasantknight_lord" default_group="cavalry" name="{=str_tor_br_peasantknight_lord}{DOESNTMATTER]" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_peasant_knight_leader_template" />
+      <EquipmentSet id="tor_peasant_knight_leader_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_troubadour_questing_knight_1" default_group="cavalry" name="{=str_tor_br_troubadour_questing_knight_1}{DOESNTMATTER]" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_troubadour_questing_knight_2" default_group="cavalry" name="{=str_tor_br_troubadour_questing_knight_2}{DOESNTMATTER]" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_2" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_dog1_lord_0" default_group="infantry" name="{=str_tor_empire_dog1_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">

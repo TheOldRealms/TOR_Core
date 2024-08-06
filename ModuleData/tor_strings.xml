@@ -1352,6 +1352,12 @@
   <string id="HirelingActivity2.WarriorPriest" text="Help set up tents" />
   <string id="HirelingActivity3.WarriorPriest" text="Assist the priestesses of Shallya" />
   <string id="HirelingActivity4.WarriorPriest" text="Preach about Sigmar Heldenhammer" />
+  
+  <string id="HirelingActivity0.Spellsinger" text="Converse with the stabled horses" /> 
+  <string id="HirelingActivity1.Spellsinger" text="Commune with forest spirits" /> 
+  <string id="HirelingActivity2.Spellsinger" text="Offer a prayer to Isha, the Mother" /> 
+  <string id="HirelingActivity3.Spellsinger" text="Discuss diplomatic matters with the commander" /> 
+  <string id="HirelingActivity4.Spellsinger" text="Gather medicinal herbs" /> 
 
 
   <!--Meadow ! -->

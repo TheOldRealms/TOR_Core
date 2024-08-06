@@ -6606,24 +6606,6 @@
       <EquipmentSet id="tor_we_glade_lord_female_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_1}Naestra" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
-    <face>
-      <BodyProperties version="4" age="25" weight="0.0015" build="0.2855" key="0008740F14FC0004167986995571B8982BC666CEAB58070F96565C659E934173434426130822633340000140120230440000000000000018000000007F0C1003" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="7" />
-      <Trait id="Commander" value="8" />
-      <Trait id="Politician" value="8" />
-      <Trait id="Manager" value="8" />
-      <Trait id="Honor" value="6" />
-      <Trait id="Mercy" value="-6" />
-      <Trait id="Generosity" value="0" />
-    </Traits>
-    <Equipments>
-      <EquipmentSet id="tor_we_sisters_twilight_lord_template" />
-      <EquipmentSet id="tor_we_sisters_twilight_lord_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_1" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_1}Arahan" occupation="Lord" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="25" weight="0.0015" build="0.2855" key="000810001470300216A9869957B3B8982BC666CEAB58070F9BA6676A9E934173434426130722633340000140120230440000000000000017000000007EF41003" />
@@ -6640,6 +6622,24 @@
     <Equipments>
       <EquipmentSet id="tor_we_sisters_twilight_lord_2_template" />
       <EquipmentSet id="tor_we_sisters_twilight_lord_2_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_2}Naestra" occupation="Special" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="25" weight="0.0015" build="0.2855" key="0008740F14FC0004167986995571B8982BC666CEAB58070F96565C659E934173434426130822633340000140120230440000000000000018000000007F0C1003" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="7" />
+      <Trait id="Commander" value="8" />
+      <Trait id="Politician" value="8" />
+      <Trait id="Manager" value="8" />
+      <Trait id="Honor" value="6" />
+      <Trait id="Mercy" value="-6" />
+      <Trait id="Generosity" value="0" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_sisters_twilight_lord_template" />
+      <EquipmentSet id="tor_we_sisters_twilight_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eo_lord_laurelorn_factionleader" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_factionleader}Queen Marrisith of Laurelorn" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="elf" is_hero="true">
@@ -6840,7 +6840,7 @@
       <EquipmentSet id="tor_eo_ranger_lord_1_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_lord_laurelorn_fourth_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_fourth_2}&quot;Athanoc, the Guardian Mage&quot;" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_female="false" race="elf" is_hero="true">
+  <NPCCharacter id="tor_eo_lord_laurelorn_fourth_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_fourth_2}Athanoc the Guardian Mage" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_female="false" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
     </face>
@@ -6854,8 +6854,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_we_sister_thorne_lord_2_template" />
-      <EquipmentSet id="tor_we_sister_thorne_lord_2_template" civilian="true" />
+      <EquipmentSet id="tor_eo_guardian_mage_template" />
+      <EquipmentSet id="tor_eo_guardian_mage_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eo_lord_laurelorn_fourth_3" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_fourth_3}Lady Iyana of House Holran" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
@@ -6876,7 +6876,7 @@
       <EquipmentSet id="tor_eo_ranger_lord_2_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Archaon" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Archaon" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" race="marauder" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
     </face>
@@ -7036,6 +7036,114 @@
     <Equipments>
       <EquipmentSet id="tor_beast_ungor_chief_template" />
       <EquipmentSet id="tor_beast_ungor_chief_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_bergerac_leader" default_group="ranged" name="{=str_tor_br_bergerac_leader}Bertrand the Brigand" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="43" weight="0.7" build="1" key="00235C0F170011CED72D7BBFEA8F0E068ABAE6D3A398040054C98B6C767C74DB00FEA6030F6F68AF00000000000000000000000000000000000000003BFC3142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bertrand_bergerac_template" />
+      <EquipmentSet id="tor_bertrand_bergerac_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_bergerac_2" default_group="ranged" name="{=str_tor_br_bergerac_2}Gui le Gros" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="43" weight="0.7" build="1" key="00235C0F170011CED72D7BBFEA8F0E068ABAE6D3A398040054C98B6C767C74DB00FEA6030F6F68AF00000000000000000000000000000000000000003BFC3142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_guy_le_gros_template" />
+      <EquipmentSet id="tor_guy_le_gros_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_bergerac_3" default_group="ranged" name="{=str_tor_br_bergerac_3}Hugo le Petit" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="43" weight="0.7" build="1" key="00235C0F170011CED72D7BBFEA8F0E068ABAE6D3A398040054C98B6C767C74DB00FEA6030F6F68AF00000000000000000000000000000000000000003BFC3142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_hugo_le_petit_template" />
+      <EquipmentSet id="tor_hugo_le_petit_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_wainfleet_leader" default_group="cavalry" name="{=str_tor_br_wainfleet_leader}Geg of Wainfleet" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="43" weight="0.7" build="1" key="00235C0F170011CED72D7BBFEA8F0E068ABAE6D3A398040054C98B6C767C74DB00FEA6030F6F68AF00000000000000000000000000000000000000003BFC3142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_peasant_knight_lord_template" />
+      <EquipmentSet id="tor_peasant_knight_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_troubadour_leader" default_group="ranged" name="{=str_tor_br_troubadour_leader}Sir Tristan the Troubadour" occupation="Lord" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="43" weight="0.7" build="1" key="00235C0F170011CED72D7BBFEA8F0E068ABAE6D3A398040054C98B6C767C74DB00FEA6030F6F68AF00000000000000000000000000000000000000003BFC3142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" />
+      <EquipmentSet id="tor_bretonnian_generic_lord_template_quest_1" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_br_troubadour_2" default_group="ranged" name="{=str_tor_br_troubadour_2}Jules the Jester" occupation="Special" culture="Culture.vlandia" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="43" weight="0.7" build="1" key="00235C0F170011CED72D7BBFEA8F0E068ABAE6D3A398040054C98B6C767C74DB00FEA6030F6F68AF00000000000000000000000000000000000000003BFC3142" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="jules_the_jester_template" />
+      <EquipmentSet id="jules_the_jester_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dog_clan_hero_braganza" default_group="ranged" name="{=str_tor_dog_clan_hero_braganza}Luka Braganza" occupation="Lord" culture="Culture.empire" voice="curt" age="53" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">

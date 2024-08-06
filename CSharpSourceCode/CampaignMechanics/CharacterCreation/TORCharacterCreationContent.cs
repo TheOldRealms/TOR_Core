@@ -387,6 +387,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 TORConstants.Cultures.BRETONNIA => new Vec2(998.96f, 830.02f),
                 TORConstants.Cultures.MOUSILLON => new Vec2(932.531f, 1049.944f),
                 TORConstants.Cultures.ASRAI => new Vec2(1153.082f, 846.777f),
+                TORConstants.Cultures.EONIR => new Vec2(1245.375f, 1292.193f),
                 _ => new Vec2(1420.97f, 981.37f),
             };
             MobileParty.MainParty.Position2D = position2D;

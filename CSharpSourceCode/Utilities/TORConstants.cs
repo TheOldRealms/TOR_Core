@@ -40,7 +40,7 @@ namespace TOR_Core.Utilities
             public const string ASRAI = "battania";
             public const string DRUCHII =  "druchii";
             public const string CHAOS = "chaos_culture";
-            public static string EONIR = "eonir";
+            public const string EONIR = "eonir";
         }
     }
 }
