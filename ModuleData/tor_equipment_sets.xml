@@ -15916,26 +15916,26 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_012" />
       <Equipment slot="Item2" id="Item.piercing_arrows" />
       <Equipment slot="Item3" id="Item.piercing_arrows" />
-      <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
+      <Equipment slot="Head" id="Item.tor_we_head_arahan_mask_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_sister_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_wildrider_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_sister_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-      <Equipment slot="Horse" id="Item.noble_horse_northern" />
-      <Equipment slot="HorseHarness" id="Item.steppe_harness" />
+      <Equipment slot="Horse" id="Item.noble_horse_eastern" />
+      <Equipment slot="HorseHarness" id="Item.stripped_leather_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_lord_sword_001" />
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_012" />
       <Equipment slot="Item2" id="Item.piercing_arrows" />
       <Equipment slot="Item3" id="Item.piercing_arrows" />
-      <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
+      <Equipment slot="Head" id="Item.tor_we_head_arahan_mask_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_sister_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_wildrider_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_sister_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-      <Equipment slot="Horse" id="Item.noble_horse_northern" />
-      <Equipment slot="HorseHarness" id="Item.steppe_harness" />
+      <Equipment slot="Horse" id="Item.noble_horse_eastern" />
+      <Equipment slot="HorseHarness" id="Item.stripped_leather_harness" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_sisters_twilight_lord_2_template" culture="Culture.battania">
@@ -15944,26 +15944,26 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_012" />
       <Equipment slot="Item2" id="Item.piercing_arrows" />
       <Equipment slot="Item3" id="Item.piercing_arrows" />
-      <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
+      <Equipment slot="Head" id="Item.tor_we_head_naestra_mask_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_sister_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_wildrider_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_sister_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-      <Equipment slot="Horse" id="Item.noble_horse_eastern" />
-      <Equipment slot="HorseHarness" id="Item.steppe_harness" />
+      <Equipment slot="Horse" id="Item.noble_horse_northern" />
+      <Equipment slot="HorseHarness" id="Item.stripped_leather_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_lord_sword_001" />
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_012" />
       <Equipment slot="Item2" id="Item.piercing_arrows" />
       <Equipment slot="Item3" id="Item.piercing_arrows" />
-      <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
+      <Equipment slot="Head" id="Item.tor_we_head_naestra_mask_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_sister_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_wildrider_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_sister_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
-      <Equipment slot="Horse" id="Item.noble_horse_eastern" />
-      <Equipment slot="HorseHarness" id="Item.steppe_harness" />
+      <Equipment slot="Horse" id="Item.noble_horse_northern" />
+      <Equipment slot="HorseHarness" id="Item.stripped_leather_harness" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_eo_marrisith_template" culture="Culture.eonir">
@@ -17864,24 +17864,22 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_eo_trader_empire_2" culture="Culture.eonir">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_002" />
+      <Equipment slot="Item0" id="Item.western_spear_1_t2" />
       <Equipment slot="Item1" id="Item.worn_horsemans_kite_shield" />
       <Equipment slot="Item2" id="Item.simple_sabre_sword_t2" />
-      <Equipment slot="Head" id="Item.ironlame_nasalhelm_over_imperial_cloth" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tunic_with_rolled_cloth" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
-      <Equipment slot="Gloves" id="Item.steppe_leather_vambraces" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
+      <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
+      <Equipment slot="Leg" id="Item.khuzait_curved_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_spear_002" />
+      <Equipment slot="Item0" id="Item.western_spear_1_t2" />
       <Equipment slot="Item1" id="Item.worn_horsemans_kite_shield" />
       <Equipment slot="Item2" id="Item.simple_sabre_sword_t2" />
-      <Equipment slot="Head" id="Item.ironlame_nasalhelm_over_imperial_cloth" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tunic_with_rolled_cloth" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
-      <Equipment slot="Gloves" id="Item.steppe_leather_vambraces" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
+      <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
+      <Equipment slot="Leg" id="Item.khuzait_curved_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_eo_witch_king_envoy_2" culture="Culture.eonir">
@@ -17939,16 +17937,16 @@
   <EquipmentRoster id="tor_cc_eo_envoy_3" culture="Culture.eonir">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sturgia_noble_sword_2_t5" />
-      <Equipment slot="Body" id="Item.tor_he_body_armour_spearmen_001" />
-      <Equipment slot="Gloves" id="Item.padded_vambrace" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_001" />
+      <Equipment slot="Cape" id="Item.pauldron_with_cape" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
       <Equipment slot="Horse" id="Item.empire_horse_tournament" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.sturgia_noble_sword_2_t5" />
-      <Equipment slot="Body" id="Item.tor_he_body_armour_spearmen_001" />
-      <Equipment slot="Gloves" id="Item.padded_vambrace" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_001" />
+      <Equipment slot="Cape" id="Item.pauldron_with_cape" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
       <Equipment slot="Horse" id="Item.empire_horse_tournament" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
@@ -18015,7 +18013,7 @@
       <Equipment slot="Item2" id="Item.glen_ranger_bow" />
       <Equipment slot="Item3" id="Item.barbed_arrows" />
       <Equipment slot="Head" id="Item.laced_coif" />
-      <Equipment slot="Body" id="Item.nordic_sloven_over_mail" />
+      <Equipment slot="Body" id="Item.belted_leather_cuirass" />
       <Equipment slot="Leg" id="Item.leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
@@ -18024,7 +18022,7 @@
       <Equipment slot="Item2" id="Item.glen_ranger_bow" />
       <Equipment slot="Item3" id="Item.barbed_arrows" />
       <Equipment slot="Head" id="Item.laced_coif" />
-      <Equipment slot="Body" id="Item.nordic_sloven_over_mail" />
+      <Equipment slot="Body" id="Item.belted_leather_cuirass" />
       <Equipment slot="Leg" id="Item.leather_boots" />
     </EquipmentSet>
   </EquipmentRoster>

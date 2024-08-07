@@ -158,6 +158,7 @@
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="chs_cult_3" />
+			<FollowerClan stringId="brasskeep_clan_1" />
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
