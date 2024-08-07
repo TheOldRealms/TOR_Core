@@ -89,6 +89,17 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch("ScriptingInterfaceOfIMBMission", "InitializeMission")]
+        public static void SetSceneAtmosphere(ref MissionInitializerRecord rec)
+        {
+            if (rec.SceneName.Contains("atmo_w_night"))
+            {
+                rec.PlayingInCampaignMode = false;
+                rec.AtmosphereOnCampaign = default;
+            }
+        }
+
+        [HarmonyPrefix]
         [HarmonyPatch(typeof(SandBoxMissions), "OpenSiegeMissionWithDeployment")]
         public static bool CreateExceptionForLeicheberg(ref Mission __result, string scene, float[] wallHitPointPercentages, bool hasAnySiegeTower, List<MissionSiegeWeapon> siegeWeaponsOfAttackers, List<MissionSiegeWeapon> siegeWeaponsOfDefenders, bool isPlayerAttacker, int sceneUpgradeLevel = 0, bool isSallyOut = false, bool isReliefForceAttack = false)
         {
