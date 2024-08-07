@@ -42,6 +42,25 @@ namespace TOR_Core.Models
                 recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
             }
 
+
+            if (recruiter.HasAttribute("Everchosen"))
+            {
+                CharacterObject replacement = null;
+   
+
+                if (troop.IsEliteTroop())
+                {
+                    replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_undivided_warrior");
+                }
+                else
+                {
+                    replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_aspiring_warrior");
+                }
+                
+                recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+                recruiter.PartyBelongedTo.Party.AddMember(replacement, amount );
+            }
+
             if (troop.IsEliteTroop() && recruiter.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 CharacterObject replacement = null;
