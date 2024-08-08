@@ -11,6 +11,7 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
+using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -72,6 +73,29 @@ namespace TOR_Core.Models
                 var skillEffect = GetRelevantSkillEffectForAbilityDamage(ability);
                 if (skillEffect != null) SkillHelper.AddSkillBonusForCharacter(skill, skillEffect, character, ref explainedNumber, skillValue, true, 0);
             }
+
+            if (character.IsHero && character.IsPlayerCharacter)
+            {
+                var playerHero = character.HeroObject;
+                
+                if(playerHero.HasCareer(TORCareers.GreyLord))
+                {
+                    if (Hero.MainHero.HasCareerChoice("SecretOfSunDragonPassive4"))
+                    {
+                        if (Agent.Main != null)
+                        {
+                            var comp = Agent.Main.GetComponent<AbilityComponent>();
+                            if (!CareerChoicesHelper.ContainsWrongSpellTypes(comp, Agent.Main.GetAbilities().Count,
+                                    [AbilityTargetType.AlliesInAOE, AbilityTargetType.EnemiesInAOE, AbilityTargetType.GroundAtPosition]))
+                            {
+                                explainedNumber.AddFactor(2);
+                            }
+                        }
+              
+                    }
+                }
+            }
+            
             return explainedNumber.ResultNumber;
         }
 
@@ -109,6 +133,22 @@ namespace TOR_Core.Models
             {
                 var player = character.HeroObject;
                 var explainedNumber = new ExplainedNumber(radius);
+                if (Agent.Main != null)
+                {
+                    if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
+                    {
+                        if (Hero.MainHero.HasCareerChoice("LegendsOfMalokPassive4"))
+                        {
+                            var count = Agent.Main.GetAbilities().Count;
+                            if (!CareerChoicesHelper.ContainsWrongSpellTypes(Agent.Main.GetComponent<AbilityComponent>(), count, AbilityEffectType.Hex))
+                            {
+                                explainedNumber.AddFactor(0.5f);
+                            }
+                        }
+                    }
+
+                }
+   
 
                 CareerHelper.ApplyBasicCareerPassives(player, ref explainedNumber, PassiveEffectType.SpellRadius, true);
 
@@ -137,6 +177,48 @@ namespace TOR_Core.Models
             if (character.GetPerkValue(TORPerks.SpellCraft.Selfish) && template.IsSpell)
             {
                 PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.Selfish, character, false, ref explainedNumber);
+            }
+
+            if (character.IsHero && character.HeroObject == Hero.MainHero)
+            {
+                if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
+                {
+                    if(template.AbilityEffectType == AbilityEffectType.Heal &&  Hero.MainHero.HasCareerChoice("SecretOfForestDragonPassive4"))
+                    {
+                        var comp = Agent.Main.GetComponent<AbilityComponent>();
+                        if (comp != null)
+                        {
+                            var count = Agent.Main.GetAbilities().Count;
+                            if(!CareerChoicesHelper.ContainsWrongSpellTypes(comp, count, AbilityEffectType.Projectile )){
+                                explainedNumber.AddFactor(0.5f);
+                            }
+                        }
+                    }
+                    
+                    if(template.AbilityEffectType == AbilityEffectType.Hex &&  Hero.MainHero.HasCareerChoice("SecretOfStarDragonPassive4"))
+                    {
+                        var comp = Agent.Main.GetComponent<AbilityComponent>();
+                        if (comp != null)
+                        {
+                            var count = Agent.Main.GetAbilities().Count;
+                            if(!CareerChoicesHelper.ContainsWrongSpellTypes(comp, count, AbilityEffectType.Heal )){
+                                explainedNumber.AddFactor(0.5f);
+                            }
+                        }
+                    }
+                    
+                    if(template.AbilityEffectType == AbilityEffectType.Vortex || template.AbilityEffectType == AbilityEffectType.Bombardment &&  Hero.MainHero.HasCareerChoice("SecretOfMoonDragonPassive4"))
+                    {
+                        var comp = Agent.Main.GetComponent<AbilityComponent>();
+                        if (comp != null)
+                        {
+                            var count = Agent.Main.GetAbilities().Count;
+                            if(!CareerChoicesHelper.ContainsWrongSpellTypes(comp, count, AbilityEffectType.Augment )){
+                                explainedNumber.AddFactor(0.5f);
+                            }
+                        }
+                    }
+                }
             }
             return explainedNumber.ResultNumber;
         }
