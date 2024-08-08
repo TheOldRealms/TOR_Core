@@ -6215,4 +6215,8 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_spelltrainer_woodelves_0">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>

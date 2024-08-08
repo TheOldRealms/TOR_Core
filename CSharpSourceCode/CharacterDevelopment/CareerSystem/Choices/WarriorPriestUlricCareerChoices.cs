@@ -227,7 +227,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _teachingsOfTheWinterFatherPassive2.Initialize(CareerID,"Praying at a shrine of ulric refills player health completely","TeachingsOfTheWinterfather",false,ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect()); 
             _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "{=night_rider_passive4_str}Attacks deal bonus damage against shields.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null);
             _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged, 
-                (attacker, victim, mask) => !victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& mask == AttackTypeMask.Melee ));
+                (attacker, victim, mask) => victim.BelongsToMainParty()&& !(victim.IsMainAgent || victim.IsHero)&& mask == AttackTypeMask.Melee ));
             
             _frostsBitePassive1.Initialize(CareerID, "Extra frost damage (10%).", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Frost, 10), AttackTypeMask.Melee));
             _frostsBitePassive2.Initialize(CareerID, "Add 10% frost damage to melee troops.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Frost, 10), AttackTypeMask.Melee));

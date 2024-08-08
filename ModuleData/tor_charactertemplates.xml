@@ -438,9 +438,9 @@
       <EquipmentSet id="tor_m_knight_of_misfortune_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bergerac_lord" default_group="ranged" name="{=str_tor_br_bergerac_lord}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_br_bergerac_lord" default_group="ranged" name="{=str_tor_br_bergerac_lord}{DOESNTMATTER]" occupation="Lord" culture="Culture.vlandia" voice="curt" age="30" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="8" />
@@ -1279,6 +1279,22 @@
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_spelltrainer_bretonnia_0" default_group="infantry" name="{=str_tor_spelltrainer_bretonnia_0}{=!}The Fay Enchantress" occupation="Special" culture="Culture.vlandia" voice="ironic" age="30" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.fey_enchantress" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-3" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_fay_enchantress_template" />
+      <EquipmentSet id="tor_fay_enchantress_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_spelltrainer_woodelves_0" default_group="infantry" name="{=str_tor_spelltrainer_woodelves_0}{=!}Wise Spellsinger" occupation="Special" culture="Culture.battania" voice="ironic" age="30" race="elf" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fey_enchantress" />
     </face>

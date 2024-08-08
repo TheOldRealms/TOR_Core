@@ -33,6 +33,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private readonly string _empireTrainerId = "tor_spelltrainer_empire_0";
         private readonly string _vampireTrainerId = "tor_spelltrainer_vc_0";
         private readonly string _prophetessTrainerId = "tor_spelltrainer_bretonnia_0";
+        private readonly string _woodelfTrainerId = "tor_spelltrainer_woodelves_0";
         private string _testResult = "";
         private Dictionary<string, string> _settlementToTrainerMap = new Dictionary<string, string>();
         private readonly float _testSuccessChance = 1f;
@@ -115,7 +116,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             if (settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA&& settlement.StringId == "town_BA1") template = MBObjectManager.Instance.GetObject<CharacterObject>(_prophetessTrainerId);
             if (settlement.Culture.StringId == TORConstants.Cultures.SYLVANIA || settlement.Culture.StringId == TORConstants.Cultures.MOUSILLON) template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
             if(settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
-            if(settlement.Culture.StringId == TORConstants.Cultures.ASRAI) template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
+            if(settlement.Culture.StringId == TORConstants.Cultures.ASRAI) template = MBObjectManager.Instance.GetObject<CharacterObject>(_woodelfTrainerId);
 
 
             if (template != null)
@@ -384,8 +385,9 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private bool isSpellsingerTrainer()
         {
             if(!spelltrainerstartcondition()) return false;
+            
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner.HeroObject!=null&& partner.HeroObject.Template.StringId == _empireTrainerId)
+            if (partner.HeroObject!=null&& partner.HeroObject.Template.StringId == _woodelfTrainerId)
             {
                 return true;
             }

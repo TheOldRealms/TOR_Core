@@ -880,12 +880,12 @@ namespace TOR_Core.CharacterDevelopment
             });
             
             //Grey lord 
-            _caelithsWisdom.Initialize("Caelith Wisdom", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            _caelithsWisdom.Initialize("Caelith's Wisdom", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _secretOfForestDragon.Initialize("Secret of the Forest Dragon", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            _secretOfForestDragon.Initialize("Secret of the{newline} Forest Dragon", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
@@ -895,19 +895,19 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _secretOfSunDragon.Initialize("Secret of the Sun Dragon", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            _secretOfSunDragon.Initialize("Secret of the{newline} Sun Dragons", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
             
-            _secretOfStarDragon.Initialize("Secret of the Star Dragon", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            _secretOfStarDragon.Initialize("Secret of the{newline} Star Dragons", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
             
-            _secretOfMoonDragon.Initialize("Secret of the Moon Dragon", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            _secretOfMoonDragon.Initialize("Secret of the{newline} Moon Dragons", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
