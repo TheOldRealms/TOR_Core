@@ -28,8 +28,44 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this, DailyCareerTickEvents);
             CampaignEvents.ItemsLooted.AddNonSerializedListener(this, RaidingPartyEvent);
             CampaignEvents.OnUnitRecruitedEvent.AddNonSerializedListener(this, PlayerRecruitmentEvent);
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvents);
         }
-        
+
+        private void PostBattleEvents(MapEvent mapEvent)
+        {
+            CheckWarriorPriestPerks(mapEvent);
+
+            if (Hero.MainHero.HasCareerChoice("SecretOfFellfangPassive3"))
+            {
+                var choice = TORCareerChoices.GetChoice("SecretOfFellfangPassive3");
+                var abilityModel = Campaign.Current.Models.GetAbilityModel();
+                var maximum = Hero.MainHero.AddWindsOfMagic(abilityModel.GetMaximumWindsOfMagic(Hero.MainHero.CharacterObject));
+
+                var postBattleBonus = maximum * choice.GetPassiveValue();
+
+                Hero.MainHero.AddWindsOfMagic(postBattleBonus);
+
+
+            }
+            
+        }
+
+
+        private void CheckWarriorPriestPerks(MapEvent mapEvent)
+        {
+            if (Hero.MainHero.HasCareerChoice("BookOfSigmarPassive3"))
+            {
+                var playerParty = mapEvent.PartiesOnSide(mapEvent.PlayerSide).FirstOrDefault(x => x.Party.LeaderHero == Hero.MainHero); //TODO Main party check might suffies
+                if (playerParty == null) return;
+                var heroes = playerParty.Party.MobileParty.GetMemberHeroes();
+                foreach (var hero in heroes.Where(hero => !hero.IsHealthFull())) 
+                {
+                    var choice =  TORCareerChoices.GetChoice("BookOfSigmarPassive3");
+                    
+                    hero.Heal((int) choice.GetPassiveValue(),false);
+                }
+            }
+        }
 
         private void PlayerRecruitmentEvent(CharacterObject characterObject, int amount)
         {

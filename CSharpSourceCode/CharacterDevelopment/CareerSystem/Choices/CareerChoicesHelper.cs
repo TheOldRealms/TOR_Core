@@ -23,7 +23,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         }
 
 
-        public static bool ContainsWrongSpellTypes(AbilityComponent component, int spellCount, AbilityEffectType excludedEffectType)
+        public static bool ContainsSpellType(AbilityComponent component, int spellCount, AbilityEffectType excludedEffectType)
         {
             var wrongSpell = false;
             for (int i = 0; i < spellCount; i++)
@@ -37,7 +37,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             return false;
         }
         
-        public static bool ContainsWrongSpellTypes(AbilityComponent component, int spellCount, AbilityTargetType excludedTargetType)
+        public static bool ContainsSpellType(AbilityComponent component, int spellCount, AbilityTargetType excludedTargetType)
         {
             var wrongSpell = false;
             if (component == null) return false;
@@ -53,7 +53,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             return false;
         }
         
-        public static bool ContainsWrongSpellTypes(AbilityComponent component, int spellCount, AbilityTargetType[] excludedTargetTypes)
+        public static bool ContainsSpellType(AbilityComponent component, int spellCount, AbilityTargetType[] excludedTargetTypes)
         {
             var wrongSpell = false;
             if (component == null) return false;

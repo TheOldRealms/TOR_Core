@@ -247,10 +247,10 @@ using TOR_Core.Utilities;
                 _secretOfMoonDragonPassive3.Initialize(CareerID, "Increases magic spell damage by 10%.", "SecretOfMoonDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
                 _secretOfMoonDragonPassive4.Initialize(CareerID, "PLACEHOLDER", "SecretOfMoonDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
                 
-                _secretOfFellfangPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-                _secretOfFellfangPassive2.Initialize(CareerID, "every selected magic damage spell adds 1% extra damage to non magic spells", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
+                _secretOfFellfangPassive1.Initialize(CareerID, "50% cooldown reduction if you wield less than 11 spells", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(11, PassiveEffectType.Special));
+                _secretOfFellfangPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
                 _secretOfFellfangPassive3.Initialize(CareerID, "After battle, 30% of your winds are regenerated.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
-                _secretOfFellfangPassive4.Initialize(CareerID, "For every spell dealing fire damage, 20% chance the used spell doesn't cost any winds", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
+                _secretOfFellfangPassive4.Initialize(CareerID, "For every spell dealing fire damage, 20% chance the used spell doesn't cost any winds", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special,true));
                 
 
             }

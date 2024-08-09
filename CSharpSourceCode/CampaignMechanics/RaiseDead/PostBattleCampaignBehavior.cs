@@ -27,25 +27,11 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvent);                //Those events are never executed when the player lose a battle!
-            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, CheckWarriorPriestPerks);
+  
         }
         
 
-        private void CheckWarriorPriestPerks(MapEvent mapEvent)
-        {
-            if (Hero.MainHero.HasCareerChoice("BookOfSigmarPassive3"))
-            {
-                var playerParty = mapEvent.PartiesOnSide(mapEvent.PlayerSide).FirstOrDefault(x => x.Party.LeaderHero == Hero.MainHero); //TODO Main party check might suffies
-                if (playerParty == null) return;
-                var heroes = playerParty.Party.MobileParty.GetMemberHeroes();
-                foreach (var hero in heroes.Where(hero => !hero.IsHealthFull())) 
-                {
-                    var choice =  TORCareerChoices.GetChoice("BookOfSigmarPassive3");
-                    
-                    hero.Heal((int) choice.GetPassiveValue(),false);
-                }
-            }
-        }
+       
 
 
         private void PostBattleEvent(MapEvent mapEvent)

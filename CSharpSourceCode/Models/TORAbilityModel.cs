@@ -85,7 +85,7 @@ namespace TOR_Core.Models
                         if (Agent.Main != null)
                         {
                             var comp = Agent.Main.GetComponent<AbilityComponent>();
-                            if (!CareerChoicesHelper.ContainsWrongSpellTypes(comp, Agent.Main.GetAbilities().Count,
+                            if (!CareerChoicesHelper.ContainsSpellType(comp, Agent.Main.GetAbilities().Count,
                                     [AbilityTargetType.AlliesInAOE, AbilityTargetType.EnemiesInAOE, AbilityTargetType.GroundAtPosition]))
                             {
                                 explainedNumber.AddFactor(2);
@@ -140,7 +140,7 @@ namespace TOR_Core.Models
                         if (Hero.MainHero.HasCareerChoice("LegendsOfMalokPassive4"))
                         {
                             var count = Agent.Main.GetAbilities().Count;
-                            if (!CareerChoicesHelper.ContainsWrongSpellTypes(Agent.Main.GetComponent<AbilityComponent>(), count, AbilityEffectType.Hex))
+                            if (!CareerChoicesHelper.ContainsSpellType(Agent.Main.GetComponent<AbilityComponent>(), count, AbilityEffectType.Hex))
                             {
                                 explainedNumber.AddFactor(0.5f);
                             }
@@ -189,7 +189,7 @@ namespace TOR_Core.Models
                         if (comp != null)
                         {
                             var count = Agent.Main.GetAbilities().Count;
-                            if(!CareerChoicesHelper.ContainsWrongSpellTypes(comp, count, AbilityEffectType.Projectile )){
+                            if(!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Projectile )){
                                 explainedNumber.AddFactor(0.5f);
                             }
                         }
@@ -201,7 +201,7 @@ namespace TOR_Core.Models
                         if (comp != null)
                         {
                             var count = Agent.Main.GetAbilities().Count;
-                            if(!CareerChoicesHelper.ContainsWrongSpellTypes(comp, count, AbilityEffectType.Heal )){
+                            if(!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Heal )){
                                 explainedNumber.AddFactor(0.5f);
                             }
                         }
@@ -213,7 +213,7 @@ namespace TOR_Core.Models
                         if (comp != null)
                         {
                             var count = Agent.Main.GetAbilities().Count;
-                            if(!CareerChoicesHelper.ContainsWrongSpellTypes(comp, count, AbilityEffectType.Augment )){
+                            if(!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Augment )){
                                 explainedNumber.AddFactor(0.5f);
                             }
                         }
