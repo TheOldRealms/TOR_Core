@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.Extensions;
@@ -77,7 +78,8 @@ namespace TOR_Core.Models
                if (replacement != null)
                {
                    recruiter.PartyBelongedTo.Party.AddMember(replacement,amount);
-                   recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+                   var currentNumber = recruiter.PartyBelongedTo.Party.MemberRoster.GetTroopCount(troop);
+                   recruiter.PartyBelongedTo.Party.AddMember(troop, MBMath.ClampInt(-amount,-currentNumber,0));
                }
 
             }

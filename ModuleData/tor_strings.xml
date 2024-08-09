@@ -1274,12 +1274,6 @@
   <string id="HirelingActivity3.Waywatcher" text="Advanced sparring sessions" />
   <string id="HirelingActivity4.Waywatcher" text="Gather medical herbs" />
 
-  <string id="HirelingActivity0.Spellsinger" text="Target practice in solitude" />
-  <string id="HirelingActivity1.Spellsinger" text="Climb trees and scout the area" />
-  <string id="HirelingActivity2.Spellsinger" text="Cover the perimeter and set up traps" />
-  <string id="HirelingActivity3.Spellsinger" text="Advanced sparring sessions" />
-  <string id="HirelingActivity4.Spellsinger" text="Gather medical herbs" />
-
   <string id="HirelingActivity0.ImperialMagister" text="Focus on your studies" />
   <string id="HirelingActivity1.ImperialMagister" text="Assist your lord with accounting tasks" />
   <string id="HirelingActivity2.ImperialMagister" text="Join the sparring soldiers" />
@@ -1358,6 +1352,12 @@
   <string id="HirelingActivity2.Spellsinger" text="Offer a prayer to Isha, the Mother" /> 
   <string id="HirelingActivity3.Spellsinger" text="Discuss diplomatic matters with the commander" /> 
   <string id="HirelingActivity4.Spellsinger" text="Gather medicinal herbs" /> 
+  
+  <string id="HirelingActivity0.GreyLord" text="Study manuscripts." /> 
+  <string id="HirelingActivity1.GreyLord" text="Engage in book keeping tasks" /> 
+  <string id="HirelingActivity2.GreyLord" text="Hold speeches about the dragons of Caledor" /> 
+  <string id="HirelingActivity3.GreyLord" text="Maintain Asurian etiquette" /> 
+  <string id="HirelingActivity4.GreyLord" text="Experiment with alchemistic substances" /> 
 
 
   <!--Meadow ! -->

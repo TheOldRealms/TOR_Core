@@ -332,6 +332,22 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 Hero.MainHero.AddCareer(TORCareers.Waywatcher);
             }
+
+            if (id == "option_3_eo_greylord_apprentice")
+            {
+                Hero.MainHero.AddCareer(TORCareers.GreyLord);
+                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.AddKnownLore("HighMagic");
+                Hero.MainHero.AddKnownLore("LoreOfFire");
+                Hero.MainHero.AddAbility("BoltOfAqshy");
+                
+                
+                
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                
+            }
             
             if(IsDamselCharacterCreationID (id))
             {

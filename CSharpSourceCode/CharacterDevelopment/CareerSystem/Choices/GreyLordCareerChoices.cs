@@ -3,14 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
-using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
-using TOR_Core.BattleMechanics.StatusEffect;
-using TOR_Core.BattleMechanics.TriggeredEffect;
-using TOR_Core.CampaignMechanics;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -198,7 +191,7 @@ using TOR_Core.Utilities;
                     ChoiceType.Passive);
                 _secretOfForestDragonKeystone.Initialize(CareerID, "Secret of the Forest Dragon enhances agility and resilience.", "SecretOfForestDragon", false,
                     ChoiceType.Passive);
-                _legendsOfMalokKeystone.Initialize(CareerID, "Legends of Malok imbue the bearer with ancient strength.", "LegendsOfMalok", true, ChoiceType.Passive);
+                _legendsOfMalokKeystone.Initialize(CareerID, "Legends of Malok imbue the bearer with ancient strength.", "LegendsOfMalok", false, ChoiceType.Passive);
                 _secretOfSunDragonKeystone.Initialize(CareerID, "Secret of the Sun Dragon bestows fiery power and endurance.", "SecretOfSunDragon", false,
                     ChoiceType.Passive);
                 _secretOfStarDragonKeystone.Initialize(CareerID, "Secret of the Star Dragon grants cosmic wisdom and clarity.", "SecretOfStarDragon", false,
