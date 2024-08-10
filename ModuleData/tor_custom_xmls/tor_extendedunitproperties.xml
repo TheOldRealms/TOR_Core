@@ -1174,7 +1174,25 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_eo_veteran_kithband_warrior">
+  <CharacterExtendedInfo id="tor_eo_armoured_kithband_warrior">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_eo_veteran_kithband_warrior_sword">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_eo_veteran_kithband_warrior_spear">
     <Abilities />
     <Attributes />
     <Resistances />
@@ -1246,10 +1264,27 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_eo_queens_guard">
+  <CharacterExtendedInfo id="tor_eo_queens_guard_axe">
     <Abilities />
-    <Attributes />
-    <Resistances />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
+    </Resistances>
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_eo_queens_guard_halberd">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1257,7 +1292,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_envoy_guard">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Piercing</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>

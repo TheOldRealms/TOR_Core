@@ -202,18 +202,23 @@ namespace TOR_Core.BattleMechanics
             
             if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
             {
-                if (!affectedAgent.BelongsToMainParty())
-                {
-                    if (affectedAgent.Health < blow.InflictedDamage)
-                    {
-                        if (affectedAgent.HasAttribute("WOMMark"))
-                        {
-                            Hero.MainHero.AddWindsOfMagic(0.25f);
-                        }
-                        affectedAgent.RemoveStatusEffect("WOMMark");
-                    }
-                }
+                AddWOMForKill(affectedAgent,blow.InflictedDamage);
                 
+            }
+        }
+
+        private void AddWOMForKill(Agent affectedAgent, int inflictedDamage)
+        {
+            if (!affectedAgent.BelongsToMainParty())
+            {
+                if (affectedAgent.Health < inflictedDamage)
+                {
+                    if (affectedAgent.HasAttribute("WOMMark"))
+                    {
+                        Hero.MainHero.AddWindsOfMagic(0.25f);
+                    }
+                    affectedAgent.RemoveStatusEffect("WOMMark");
+                }
             }
         }
 

@@ -113,12 +113,14 @@
 			<PartyTemplateStack min_value="10" max_value="20" troop="NPCCharacter.tor_eo_kithband_warrior" />
 			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_eo_cityborn_council_sentinel" />
 			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_eo_envoy_guard" />
-			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_eo_veteran_kithband_warrior" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_eo_veteran_kithband_warrior_sword" />
+			<PartyTemplateStack min_value="8" max_value="16" troop="NPCCharacter.tor_eo_veteran_kithband_warrior_spear" />
 			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_eo_cityborn_guard" />
 			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_eo_mounted_kithband_warrior" />
 			<PartyTemplateStack min_value="3" max_value="10" troop="NPCCharacter.tor_eo_mounted_ranger" />
 			<PartyTemplateStack min_value="5" max_value="15" troop="NPCCharacter.tor_eo_ranger" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_eo_queens_guard" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_eo_queens_guard_axe" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_eo_queens_guard_halberd" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="chaos_lordparty_template" >
