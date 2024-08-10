@@ -3768,11 +3768,10 @@
 	   <TriggeredEffect>summon_champion</TriggeredEffect>
 	</AbilityTemplate>
 	
-		<AbilityTemplate StringID="DragonFire" 
+	<AbilityTemplate StringID="DragonFire" 
       Name="Dragon Fire" 
 	  SpriteName="sear_icon" 
       CoolDown="30" 
-      WindsOfMagicCost="12" 
       BaseMisCastChance="0.05" 
       Duration="4" 
       Radius="1" 
@@ -3801,7 +3800,6 @@
       MaxDistance="2"
       TargetCapturingRadius="2"
       SpellTier="3"
-      BelongsToLoreID="LoreOfFire"
       TooltipDescription="{=sear_description_str}Blast the enemy with a short ranged searing flame attack that does medium damage.">
 		<LightColorRGB x="177" y="0" z="255" w="-1">
 			<AsVec2>
@@ -3809,7 +3807,7 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>apply_blastofagony</TriggeredEffect>
+		<TriggeredEffect>apply_dragonfire</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="BlastOfAgony" 

@@ -1273,6 +1273,7 @@
             ImbuedStatusEffectDuration="5" 
             DamageVariance="0.05" 
             ScriptNameToTrigger="none">
+			<ImbuedStatusEffect>dragonfire_dot</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
 	  

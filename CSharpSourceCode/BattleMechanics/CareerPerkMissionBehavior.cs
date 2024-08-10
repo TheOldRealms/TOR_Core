@@ -114,8 +114,6 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
         {
-            base.OnMissileHit(attacker, victim, isCanceled, collisionData);
-
             if (victim == null) return;
             if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Agent.Main!=null)
             {
@@ -169,6 +167,22 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
             }
+
+            if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
+            {
+                if (!victim.BelongsToMainParty())
+                {
+                    if (victim.Health < collisionData.InflictedDamage)
+                    {
+                        if (victim.HasAttribute("WOMMark"))
+                        {
+                            Hero.MainHero.AddWindsOfMagic(0.25f);
+                        }
+                        victim.RemoveStatusEffect("WOMMark");
+                    }
+                }
+                
+            }
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
@@ -184,6 +198,22 @@ namespace TOR_Core.BattleMechanics
             if(affectedAgent.HasAttribute("Thorns"))
             {
                 affectorAgent.ApplyDamage((int)(blow.InflictedDamage*0.25f),affectedAgent.Position);
+            }
+            
+            if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
+            {
+                if (!affectedAgent.BelongsToMainParty())
+                {
+                    if (affectedAgent.Health < blow.InflictedDamage)
+                    {
+                        if (affectedAgent.HasAttribute("WOMMark"))
+                        {
+                            Hero.MainHero.AddWindsOfMagic(0.25f);
+                        }
+                        affectedAgent.RemoveStatusEffect("WOMMark");
+                    }
+                }
+                
             }
         }
 

@@ -345,6 +345,7 @@
     <Compile Include="AbilitySystem\Scripts\BombardmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityMissleScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\DragonFireScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\KnightlyChargeScript.cs" />

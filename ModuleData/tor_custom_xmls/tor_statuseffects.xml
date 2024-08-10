@@ -226,7 +226,7 @@
 		id="fireball_dot" 
 		particle_id="torch_fire_sparks"
 		particle_intensity="High"
-		base_effect_value="10"
+		base_effect_value="5"
 		type="DamageOverTime"
 		damage_type="Fire">
 	</StatusEffectTemplate> 
@@ -1201,6 +1201,52 @@
     	base_effect_value="5"
 		type="DamageOverTime"
 		damage_type="Magical"/>
+		
+	<StatusEffectTemplate 
+		id="dragonfire_dot" 
+		particle_id="torch_fire_sparks"
+		particle_intensity="High"
+		base_effect_value="3"
+		type="DamageOverTime"
+		damage_type="Fire">
+	</StatusEffectTemplate> 
+
+	<StatusEffectTemplate
+		id="dragonfire_debuff_mov"
+		particle_id="ladysfavour"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.4"
+		type="MovementManipulation"
+		damage_type="Fire"/>
+		
+	<StatusEffectTemplate
+		id="dragonfire_debuff_ats"
+		particle_id="ladysfavour"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.4"
+		type="AttackSpeedManipulation"
+		damage_type="Fire"/>
+		
+	<StatusEffectTemplate
+		id="dragonfire_buff_dmg"
+		particle_id="general_heavens_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.03"
+		applies_for_attack_type="Spell"
+		type="DamageAmplification"
+		damage_type="Magical">
+	</StatusEffectTemplate>
+	
+	<StatusEffectTemplate
+		id="dragonfire_wom_mark"
+		particle_id="general_life_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="1.0"
+		applies_for_attack_type="Ranged"
+		type="TemporaryAttributeOnly"
+		damage_type="Physical">
+		<temporary_attribute>WOMMark</temporary_attribute>		
+	</StatusEffectTemplate>
 	
 	
 	<!-- powerstones -->

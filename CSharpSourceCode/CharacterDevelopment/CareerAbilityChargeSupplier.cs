@@ -341,8 +341,10 @@ namespace TOR_Core.CharacterDevelopment
             if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
             if (!affectingAgent.BelongsToMainParty()) return 0;
             if (mask == AttackTypeMask.Ranged) return 0;
-
+            if (affectingAgent.IsHero && mask == AttackTypeMask.Melee) return 0;
+            
             var isTreeSpirit = (affectingAgent.Character as CharacterObject).IsTreeSpirit();
+
             
             
             if (!affectingAgent.IsHero && !isTreeSpirit) return 0;
@@ -363,6 +365,58 @@ namespace TOR_Core.CharacterDevelopment
             }
             
             return explainedNumber.ResultNumber;
+        }
+        
+        public static float GreyLordCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        {
+            if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
+            if (!affectingAgent.BelongsToMainParty()) return 0;
+            
+            
+            var explainedNumber = new ExplainedNumber(chargeValue);
+            
+            if (affectingAgent.IsMainAgent)
+            {
+                switch (mask)
+                {
+                    case AttackTypeMask.Melee when Hero.MainHero.HasCareerChoice("CaelithsWisdomKeystone"):
+                        return explainedNumber.ResultNumber * 3;
+                    case AttackTypeMask.Melee:
+                        return 0;
+                    case AttackTypeMask.Ranged:
+                        break;
+                    case AttackTypeMask.Spell:
+                        return explainedNumber.ResultNumber;
+                        break;
+                    case AttackTypeMask.All:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(mask), mask, null);
+                }
+            }
+
+            if (affectingAgent.IsPlayerTroop)
+            {
+                if (affectingAgent.Character.IsEliteTroop() && Hero.MainHero.HasCareerChoice("LegendsOfMalokKeystone"))
+                {
+                    switch (mask)
+                    {
+                        case AttackTypeMask.Ranged:
+                            return explainedNumber.ResultNumber;
+                            break;
+                        case AttackTypeMask.Melee:
+                            return explainedNumber.ResultNumber;
+                            break;
+                        case AttackTypeMask.Spell:
+                            break;
+                        case AttackTypeMask.All:
+                            break;
+                    }
+                }
+            }
+
+
+            return 0;
         }
     }
 }

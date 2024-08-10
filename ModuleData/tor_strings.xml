@@ -914,6 +914,8 @@
   <string id="career_title.Necrarch" text="{=tor_career_title_necrarch_str}Necrarch" />
   <string id="career_title.Waywatcher" text="{=tor_career_title_waywatcher_str}Waywatcher" />
   <string id="career_title.Spellsinger" text="{=tor_career_title_waywatcher_str}Spellsinger" />
+  
+  <string id="career_title.GreyLord" text="{=tor_career_title_waywatcher_str}Grey Lord Wizard" />
 
 
   <string id="career_switch_title.MinorVampire" text="{=tor_career_switch_title_necrarch_str}Become a Carstein Vampire" />
@@ -996,7 +998,7 @@
   <string id="career_choicegroup2_name.Necrarch" text="{=career_choicegroup2_necrarch_str}Seeker" />
   <string id="career_choicegroup3_name.Necrarch" text="{=career_choicegroup3_necrarch_str}Ascended" />
 
-  <string id="career_choicegroup1_name.ImperialMagister" text="{=career_choicegroup1_imperialmagister_str}Apprentise Magister" />
+  <string id="career_choicegroup1_name.ImperialMagister" text="{=career_choicegroup1_imperialmagister_str}Apprentice Magister" />
   <string id="career_choicegroup2_name.ImperialMagister" text="{=career_choicegroup2_imperialmagister_str}Battle Wizard" />
   <string id="career_choicegroup3_name.ImperialMagister" text="{=career_choicegroup3_imperialmagister_str}Lord Magister" />
   
@@ -1004,10 +1006,14 @@
   <string id="career_choicegroup2_name.Waywatcher" text="{=career_choicegroup2_waywatcher_str}Waywatcher" />
   <string id="career_choicegroup3_name.Waywatcher" text="{=career_choicegroup3_waywatcher_str}Waystalker" />
   
-  <string id="career_choicegroup1_name.Spellsinger" text="{=career_choicegroup1_waywatcher_str}Spellsinger" />
-  <string id="career_choicegroup2_name.Spellsinger" text="{=career_choicegroup2_waywatcher_str}Spellweaver" />
+  <string id="career_choicegroup1_name.Spellsinger" text="{=career_choicegroup1_spellsinger_str}Spellsinger" />
+  <string id="career_choicegroup2_name.Spellsinger" text="{=career_choicegroup2_spellsinger_str}Spellweaver" />
   <string id="career_choicegroup3_name.Spellsinger" text="{=career_choicegroup3_waywatcher_str}Ascended Spellweaver" />
   
+  
+  <string id="career_choicegroup1_name.GreyLord" text="{=career_choicegroup1_greylord_str}Exile's Apprentice" />
+  <string id="career_choicegroup2_name.GreyLord" text="{=career_choicegroup2_greylord_str}Grey Mage" />
+  <string id="career_choicegroup3_name.GreyLord" text="{=career_choicegroup3_greylord_str}Grey Lord" />
 
   <!--Career related related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />

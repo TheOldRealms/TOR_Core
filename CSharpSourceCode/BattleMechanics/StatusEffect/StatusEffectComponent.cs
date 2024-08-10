@@ -57,7 +57,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _baseValues.AddOrReplace(DrivenProperty.MountDashAccelerationMultiplier, this.Agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier);
         }
 
-        public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated)
+        public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated, bool stack)
         {
             if (Agent == null) return;
             if(_disabled) return;
@@ -72,6 +72,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 else
                 {
                     effect.CurrentDuration = duration; 
+                }
+
+                if (stack)
+                {
+                    StatusEffectManager.CreateNewStatusEffect(effectId, applierAgent, isMutated);
+                    AddEffect(effect);
                 }
             }
             else

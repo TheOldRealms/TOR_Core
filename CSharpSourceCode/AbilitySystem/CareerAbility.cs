@@ -51,14 +51,14 @@ namespace TOR_Core.AbilitySystem
                 }
 
                 if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
-                    || Hero.MainHero.HasCareer(TORCareers.Spellsinger)
                     || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
                     || Hero.MainHero.HasCareerChoice("SwampRiderKeystone")
                     || Hero.MainHero.HasCareerChoice("LiberMortisKeystone")
                     || Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone")
                     || Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone")
-                    || Hero.MainHero.HasCareerChoice("ArielsBlessingKeystone"))
+                    || Hero.MainHero.HasCareerChoice("ArielsBlessingKeystone")
+                    || Hero.MainHero.HasCareerChoice("CaelithsWisdomKeystone"))
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
