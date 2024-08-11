@@ -4212,6 +4212,150 @@
       <EquipmentSet id="tor_blooddragon_templar_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_vc_lord_necrarch_first_factionleader" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_first_factionleader}Zacharias the Everliving" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="80" weight="0.5997" build="0.386" key="00005C0015001000B8692567495CA882E5D71799247422AA64A5B3634A8965BB00269603F2CD698A00000000000000000000000000000000000000006C5400C0" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lord_necrarch_first_2" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_first_2}Dieter Helsnich" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="80" weight="0.5997" build="0.386" key="00005C0015001000B8692567495CA882E5D71799247422AA64A5B3634A8965BB00269603F2CD698A00000000000000000000000000000000000000006C5400C0" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lord_necrarch_first_3" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_first_3}Hans Gräbe" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="80" weight="0.5997" build="0.386" key="00005C0015001000B8692567495CA882E5D71799247422AA64A5B3634A8965BB00269603F2CD698A00000000000000000000000000000000000000006C5400C0" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lord_necrarch_first_4" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_first_4}Ravenna Alterstuhl" occupation="Lord" culture="Culture.khuzait" voice="curt" age="22" skill_template="SkillSet.tor_skills_vampire_lord" is_female="true" race="vampire" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="19" weight="0.0509" build="0.4239" key="0000380FD4FC0001279587C843566938753B8A8C57A47C07898C83576424984B00F61603FFA4682700000000000000000000000000000000000000005DF430C3" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_vampire_axe_template" />
+      <EquipmentSet id="tor_generic_vampire_axe_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lord_necrarch_first_5" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_first_5}Alfred Grabräuber" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="80" weight="0.5997" build="0.386" key="00005C0015001000B8692567495CA882E5D71799247422AA64A5B3634A8965BB00269603F2CD698A00000000000000000000000000000000000000006C5400C0" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lord_necrarch_second_1" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_second_1}Dentomaz" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="80" weight="0.5997" build="0.386" key="00005C0015001000B8692567495CA882E5D71799247422AA64A5B3634A8965BB00269603F2CD698A00000000000000000000000000000000000000006C5400C0" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lord_necrarch_second_2" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_second_2}Nummersieben" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_skills_caster_lord" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="80" weight="0.5997" build="0.386" key="00005C0015001000B8692567495CA882E5D71799247422AA64A5B3634A8965BB00269603F2CD698A00000000000000000000000000000000000000006C5400C0" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="2" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="2" />
+      <Trait id="Honor" value="0" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_necromancer_template" />
+      <EquipmentSet id="tor_necromancer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_vc_lord_necrarch_second_3" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_second_3}Gertruda nagelkopf" occupation="Lord" culture="Culture.khuzait" voice="curt" age="22" skill_template="SkillSet.tor_skills_vampire_lord" is_female="true" race="vampire" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="19" weight="0.2766" build="0.5489" key="000038079400101527359947747A6968753B8A8C57A47C07898C83576424984B00884603F8A4682700000000000000000000000000000000000000005CFC30C3" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_generic_vampire_mace_template" />
+      <EquipmentSet id="tor_generic_vampire_mace_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_br_lord_parravon_factionleader" default_group="cavalry" name="{=str_tor_br_lord_parravon_factionleader}Duke Cassyon de Parravon" occupation="Lord" culture="Culture.vlandia" voice="curt" age="24" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4171" build="0.2463" key="0018A80800E406426878689A6A663846254B954647B16C6C62648798A27351340054860305A67A59000000000000000000000000000000000000000052A43142" />
@@ -6620,8 +6764,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_we_sisters_twilight_lord_2_template" />
-      <EquipmentSet id="tor_we_sisters_twilight_lord_2_template" civilian="true" />
+      <EquipmentSet id="tor_we_sisters_twilight_lord_template" />
+      <EquipmentSet id="tor_we_sisters_twilight_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_we_lord_athel_loren_thirteenth_2" default_group="cavalry" name="{=str_tor_we_lord_athel_loren_thirteenth_2}Naestra" occupation="Special" culture="Culture.battania" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" race="elf" is_hero="true">
@@ -6638,8 +6782,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_we_sisters_twilight_lord_template" />
-      <EquipmentSet id="tor_we_sisters_twilight_lord_template" civilian="true" />
+      <EquipmentSet id="tor_we_sisters_twilight_lord_2_template" />
+      <EquipmentSet id="tor_we_sisters_twilight_lord_2_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eo_lord_laurelorn_factionleader" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_factionleader}Queen Marrisith of Laurelorn" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" is_female="true" race="elf" is_hero="true">

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=!}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages">
@@ -4377,7 +4377,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Brass Keep-->
-  <Settlement id="castle_BK2" name="{=Settlements.Settlement.name.castle_BK2}Brass Keep" owner="Faction.brasskeep_clan_1" posX="1406.786" posY="1257.798" culture="Culture.chaos_culture" gate_posX="1408.676" gate_posY="1256.659" text="{=!}The Brass Keep is a very old fortress, indeed it's older than Sigmar himself. No one knows who built it, only that it has changed owners many times, until recently. During the Great War Against Chaos, the fortress was besieged by many Chaos warlords, many pledging their loyalty to Khorne, Slaanesh, Tzeentch, and Nurgle. While it was under siege, the followers of Nurgle corrupted the foundations, fermenting a plague within the fortress. The chaos forces would eventually succeed in taking the fortress, but were then cut off from reinforcements, sealing their doom within. The only survivors of such a glorious plague were the Nurgle devotees themselves, who now bask in the repugnant citadel.">
+  <Settlement id="castle_BK2" name="{=Settlements.Settlement.name.castle_BK2}Brass Keep" owner="Faction.brasskeep_clan_1" posX="1408.114" posY="1257.085" culture="Culture.chaos_culture" gate_posX="1408.906" gate_posY="1256.474" text="{=!}The Brass Keep is a very old fortress, indeed it's older than Sigmar himself. No one knows who built it, only that it has changed owners many times, until recently. During the Great War Against Chaos, the fortress was besieged by many Chaos warlords, many pledging their loyalty to Khorne, Slaanesh, Tzeentch, and Nurgle. While it was under siege, the followers of Nurgle corrupted the foundations, fermenting a plague within the fortress. The chaos forces would eventually succeed in taking the fortress, but were then cut off from reinforcements, sealing their doom within. The only survivors of such a glorious plague were the Nurgle devotees themselves, who now bask in the repugnant citadel.">
     <Components>
       <Town id="castle_comp_BK2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4387,8 +4387,19 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
+  <!-- Tower of Shadows -->
+  <Settlement id="castle_MT1" name="{=Settlements.Settlement.name.castle_MT1}Melkhior's tower" owner="Faction.necrarch_clan_1" posX="1574.624" posY="1103.105" culture="Culture.khuzait" gate_posX="1575.261" gate_posY="1100.877" text="{=!}The Brass Keep is a very old fortress, indeed it's older than Sigmar himself. No one knows who built it, only that it has changed owners many times, until recently. During the Great War Against Chaos, the fortress was besieged by many Chaos warlords, many pledging their loyalty to Khorne, Slaanesh, Tzeentch, and Nurgle. While it was under siege, the followers of Nurgle corrupted the foundations, fermenting a plague within the fortress. The chaos forces would eventually succeed in taking the fortress, but were then cut off from reinforcements, sealing their doom within. The only survivors of such a glorious plague were the Nurgle devotees themselves, who now bask in the repugnant citadel.">
+    <Components>
+      <Town id="castle_comp_MT1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
+    </Components>
+    <Locations complex_template="LocationComplexTemplate.castle_complex">
+      <Location id="center" scene_name="TOR_brass_keep_atmo_w_night" scene_name_1="TOR_brass_keep_atmo_w_night" scene_name_2="TOR_brass_keep_atmo_w_night" scene_name_3="TOR_brass_keep_atmo_w_night" />
+      <Location id="lordshall" scene_name_1="TOW_empire_keep_l1" scene_name_2="TOW_empire_keep_l2" scene_name_3="TOW_empire_keep_l2" />
+      <Location id="prison" scene_name="empire_dungeon_a" />
+    </Locations>
+  </Settlement>
   <!-- Laurelorn -->
-  <Settlement id="town_LL1" name="{=Settlements.Settlement.name.town_LL1}Tor Lithanel" owner="Faction.laurelorn_clan_1" posX="1256.181" posY="1308.093" culture="Culture.eonir" gate_posX="1252.883" gate_posY="1304.008" text="{=Settlements.Settlement.text.town_LL1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
+  <Settlement id="town_LL1" name="{=Settlements.Settlement.name.town_LL1}Tor Lithanel" owner="Faction.laurelorn_clan_1" posX="1256.181" posY="1308.093" culture="Culture.eonir" gate_posX="1247.593" gate_posY="1305.775" text="{=Settlements.Settlement.text.town_LL1}The city of Parravon, built by the elves long ago, was cut from a lone mountain, Les Monts Seuls, and runs directly along the Grismerie river. Surrounded by deep chasms, it is  a key fortress city in holding off any enemies from the Grey Mountains and beyond, from reaching central Bretonnia. Due to the location, many Dwarf families have flocked to Parravon. It is also notable for being the only place in Bretonnia where peasants can live in Stone houses. This is due to a trick of legal language; the homes the peasants carve out of the rock of Les Monts Seuls are considered ‘Caves’ and thus are not prohibited.">
     <Components>
       <Town id="town_comp_LL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -4408,7 +4419,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_LL1_1" name="{=Settlements.Settlement.name.village_LL1_1}Ystin Vaul Menluith Qhaysh" posX="1232.662" posY="1303.852" culture="Culture.eonir" text="{=Settlements.Settlement.text.village_LL1_1}The village of Allobroges is a renowned settlement for its particular horse breeders, even among Paravon which sees use of mainly Pegusi. Allobroges has a fair population and sees many visits by Nobles and Travelers alike.">
+  <Settlement id="village_LL1_1" name="{=Settlements.Settlement.name.village_LL1_1}Ystin Vaul Menluith Qhaysh" posX="1225.745" posY="1304.227" culture="Culture.eonir" text="{=Settlements.Settlement.text.village_LL1_1}The village of Allobroges is a renowned settlement for its particular horse breeders, even among Paravon which sees use of mainly Pegusi. Allobroges has a fair population and sees many visits by Nobles and Travelers alike.">
     <Components>
       <Village id="village_comp_LL1_1" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_LL1" bound="Settlement.town_LL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="bretonnia_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4447,7 +4458,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL1" name="{=Settlements.Settlement.name.castle_LL1}Tower of Se-Athil" owner="Faction.laurelorn_clan_3" posX="1215.219" posY="1363.92" culture="Culture.eonir" gate_posX="1214.353" gate_posY="1364.901" text="{=Settlements.Settlement.name.castle_LL1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
+  <Settlement id="castle_LL1" name="{=Settlements.Settlement.name.castle_LL1}Tower of Se-Athil" owner="Faction.laurelorn_clan_3" posX="1215.219" posY="1363.92" culture="Culture.eonir" gate_posX="1213.686" gate_posY="1363.364" text="{=Settlements.Settlement.name.castle_LL1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
     <Components>
       <Town id="castle_comp_LL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4483,7 +4494,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL2" name="{=Settlements.Settlement.name.castle_LL2}Aroth Loren" owner="Faction.laurelorn_clan_4" posX="1280.787" posY="1315.303" culture="Culture.eonir" gate_posX="1281.352" gate_posY="1316.483" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_LL2" name="{=Settlements.Settlement.name.castle_LL2}Aroth Loren" owner="Faction.laurelorn_clan_4" posX="1280.787" posY="1315.303" culture="Culture.eonir" gate_posX="1284.384" gate_posY="1318.902" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_LL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4506,7 +4517,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL3" name="{=Settlements.Settlement.name.castle_LL2}Aroth Hanor" owner="Faction.laurelorn_clan_2" posX="1274.939" posY="1276.186" culture="Culture.eonir" gate_posX="1275.504" gate_posY="1277.366" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_LL3" name="{=Settlements.Settlement.name.castle_LL2}Aroth Hanor" owner="Faction.laurelorn_clan_2" posX="1274.939" posY="1276.186" culture="Culture.eonir" gate_posX="1275.201" gate_posY="1276.275" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_LL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4707,7 +4718,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_WA2_1" name="{=Settlements.Settlement.name.castle_village_WA2_1}Halsdorph" posX="1124.482" posY="1142.021" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_WA1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_WA2_1" name="{=Settlements.Settlement.name.castle_village_WA2_1}Halsdorph" posX="1124.298" posY="1142.039" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_WA1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_WA2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_WA1" bound="Settlement.castle_WA1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7623,7 +7634,7 @@
     </Locations>
   </Settlement>
   <!-- Athel Loren -->
-  <Settlement id="town_AL1" name="{=Settlements.Settlement.name.town_AL1}Yn Edryl Koiran" owner="Faction.athel_loren_clan_1" is_unwalled_settlement="true" posX="1243.703" posY="776.5873" culture="Culture.battania" gate_posX="1244.014" gate_posY="777.4093" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
+  <Settlement id="town_AL1" name="{=Settlements.Settlement.name.town_AL1}Yn Edryl Koiran" owner="Faction.athel_loren_clan_1" is_unwalled_settlement="true" posX="1243.703" posY="776.587" culture="Culture.battania" gate_posX="1244.015" gate_posY="777.4089" text="{=!}Altdorf is at once perhaps the greatest city of the Empire and perhaps the entire known world, only rivaled in its size and importance by the likes of Marienburg, Nuln and Erengrad. Emperor Karl Franz rules both the Grand Principality of the Reikland and the Empire of Sigmar from this sprawling city, and what better a capital than the city founded by Sigmar himself two and a half millennia ago? Besides for its history, Altdorf is geographically the focal point of trade for three quarters of the Empire; for here all of the goods and travel from the states of Ostermark, Talabecland, Hochland, Stirland, Wissenland and Averland must go before they can move down the Reik to Marienburg and beyond. The city also hosts numerous knightly orders, the center of the Sigmarite church and the eight Imperial colleges of magic. Despite this prosperity and importance, Altdorf is a restless city: overpopulated and ripe for political violence, much of the fair city and its services have been pushed to their limits.">
     <Components>
       <Town id="town_comp_AL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7669,7 +7680,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL1_3" name="{=Settlements.Settlement.name.village_AL1_3}Tal Govorn" posX="1216.139" posY="831.084" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+  <Settlement id="village_AL1_3" name="{=Settlements.Settlement.name.village_AL1_3}Tal Govorn" posX="1216.139" posY="831.093" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
     <Components>
       <Village id="village_comp_AL1_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL1" bound="Settlement.town_AL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7682,7 +7693,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL1_4" name="{=Settlements.Settlement.name.village_AL1_4}Tal Merion" posX="1238.296" posY="813.5601" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
+  <Settlement id="village_AL1_4" name="{=Settlements.Settlement.name.village_AL1_4}Tal Merion" posX="1238.296" posY="813.569" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_3}Directly west of Altdorf, between the river Reik and the Weissbruck canal is the village of Hochloff. The town is known for the type of grain it raises the Hochloffkorn which is very well regarded for making a high quality flour.">
     <Components>
       <Village id="village_comp_AL1_4" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL1" bound="Settlement.town_AL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7695,7 +7706,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL2" name="{=Settlements.Settlement.name.town_AL2}Crag Halls of Findol" owner="Faction.athel_loren_clan_12" posX="1262.822" posY="854.329" culture="Culture.battania" gate_posX="1265.754" gate_posY="850.9516" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
+  <Settlement id="town_AL2" name="{=Settlements.Settlement.name.town_AL2}Crag Halls of Findol" owner="Faction.athel_loren_clan_12" posX="1262.822" posY="854.329" culture="Culture.battania" gate_posX="1265.753" gate_posY="850.9518" text="{=!}At the Confluence of the River Reik and the River Schilder sits the town of Schilderheim. Ruled by Graf Robert von Uhland, Schilderheim is an important river market down river from altdorf, being one of the last places that trade on the River Reik can stop before reaching Marienburg.">
     <Components>
       <Town id="town_comp_AL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7741,7 +7752,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL3" name="{=Settlements.Settlement.name.town_AL3}Coeth-Mara" owner="Faction.athel_loren_clan_3" posX="1231.251" posY="747.509" culture="Culture.battania" gate_posX="1230.85" gate_posY="748.0477" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
+  <Settlement id="town_AL3" name="{=Settlements.Settlement.name.town_AL3}Coeth-Mara" owner="Faction.athel_loren_clan_3" posX="1231.251" posY="747.509" culture="Culture.battania" gate_posX="1230.85" gate_posY="748.0479" text="{=!}At the head of the Axe Bite pass sits the town of Helmgart. Ruled by Margrave Reinhardt von Mackensen, the fortress town serves as both the economic and military border between Bretonnia and the Empire. Axe Bite is one of three mountain passes through the Grey mountains; as such the safety of passage through it is a primary concern. Helmgart itself is a market town, surrounded by several curtain walls. One of these walls traverses the entire width of the pass itself, meaning all travel must pass through its single gate or be stuck on either the Bretonnian or Imperial side of the border.">
     <Components>
       <Town id="town_comp_AL3" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7761,7 +7772,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL3_1" name="{=Settlements.Settlement.name.village_AL3_1}Tal Amere" posX="1255.24" posY="728.196" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">
+  <Settlement id="village_AL3_1" name="{=Settlements.Settlement.name.village_AL3_1}Tal Amere" posX="1257.16" posY="727.385" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">
     <Components>
       <Village id="village_comp_AL3_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL3" bound="Settlement.town_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7774,7 +7785,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL3_2" name="{=Settlements.Settlement.name.village_AL3_2}Tal Drost" posX="1262.34" posY="744.617" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
+  <Settlement id="village_AL3_2" name="{=Settlements.Settlement.name.village_AL3_2}Tal Drost" posX="1257.198" posY="743.944" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
     <Components>
       <Village id="village_comp_AL3_2" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL3" bound="Settlement.town_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7800,7 +7811,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL4" name="{=Settlements.Settlement.name.town_AL4}Halls of Anaereth" owner="Faction.athel_loren_clan_2" posX="1180.634" posY="845.1246" culture="Culture.battania" gate_posX="1180.412" gate_posY="844.491" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
+  <Settlement id="town_AL4" name="{=Settlements.Settlement.name.town_AL4}Halls of Anaereth" owner="Faction.athel_loren_clan_2" posX="1180.634" posY="845.125" culture="Culture.battania" gate_posX="1180.411" gate_posY="844.4915" text="{=!}Bögenhafen is a prominent market town that sits on either side of the River Bögen. It is midway between Altdorf and Montfort allowing the town to maintain its economic importance through nearly any hardship. The northside of the town, known as the Pit, is the smallest and poorest section of Bögenhafen. The Southside of the town is where most of the wealth and all of the town’s important institutions reside, including its religious temples and town hall. A town council rules in the name of Graf Wilhelm von Saponatheim.">
     <Components>
       <Town id="town_comp_AL4" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7847,7 +7858,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL4_3" name="{=Settlements.Settlement.name.village_AL4_3}Tal Valerin" posX="1164.719" posY="877.144" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL4_3}To the north northwest of Bögenhafen is the timber producing village of Herzhald. Situated deep in the Reikwald, Herzhald is known for the quality and lengths of its timber samples, much of which is sent to Bögenhafen and Grünburg for their boatbuilding.">
+  <Settlement id="village_AL4_3" name="{=Settlements.Settlement.name.village_AL4_3}Tal Valerin" posX="1164.743" posY="877.132" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL4_3}To the north northwest of Bögenhafen is the timber producing village of Herzhald. Situated deep in the Reikwald, Herzhald is known for the quality and lengths of its timber samples, much of which is sent to Bögenhafen and Grünburg for their boatbuilding.">
     <Components>
       <Village id="village_comp_AL4_3" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL4" bound="Settlement.town_AL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7860,7 +7871,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL4_4" name="{=Settlements.Settlement.name.village_AL4_3}Tal Rond" posX="1188.292" posY="930.929" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL4_4}To the north northwest of Bögenhafen is the timber producing village of Herzhald. Situated deep in the Reikwald, Herzhald is known for the quality and lengths of its timber samples, much of which is sent to Bögenhafen and Grünburg for their boatbuilding.">
+  <Settlement id="village_AL4_4" name="{=Settlements.Settlement.name.village_AL4_3}Tal Rond" posX="1183.224" posY="928.454" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL4_4}To the north northwest of Bögenhafen is the timber producing village of Herzhald. Situated deep in the Reikwald, Herzhald is known for the quality and lengths of its timber samples, much of which is sent to Bögenhafen and Grünburg for their boatbuilding.">
     <Components>
       <Village id="village_comp_AL4_4" village_type="VillageType.lumberjack" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL4" bound="Settlement.town_AL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7873,7 +7884,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL5" name="{=Settlements.Settlement.name.town_AL5}Feast Halls of the Wardance" owner="Faction.athel_loren_clan_8" posX="1208.055" posY="883.018" culture="Culture.battania" gate_posX="1208.68" gate_posY="883.2646" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
+  <Settlement id="town_AL5" name="{=Settlements.Settlement.name.town_AL5}Feast Halls of the Wardance" owner="Faction.athel_loren_clan_8" posX="1208.055" posY="883.018" culture="Culture.battania" gate_posX="1208.68" gate_posY="883.2648" text="{=!}Ubersreik is one of the most important trade centers in Reikland. It sits astride and important bridge on the road from from Bögenhafen to Dunkelburg. Trade flows along the road as well as downriver to Auerswald, Grünburg, Kemperbad, and Altdorf. In addition, because it is located near Grey Lady Pass, Ubersreik is the ideal location for merchants travelling over the Grey Mountains to move their wares from the river to overland transportation, and vice versa.">
     <Components>
       <Town id="town_comp_AL5" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7894,7 +7905,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL5_1" name="{=Settlements.Settlement.name.village_AL5_1}Threllock" posX="1248.675" posY="870.019" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL5_1}Geissbach is a forest village just north of Ubersreik. The people here carefully timber the woods nearby and grow what crops they can in the clearings around the village. For a long time there have been rumors and worries about a dark estate just east of the village, which is said to house great evil.">
+  <Settlement id="village_AL5_1" name="{=Settlements.Settlement.name.village_AL5_1}Threllock" posX="1249.041" posY="871.376" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL5_1}Geissbach is a forest village just north of Ubersreik. The people here carefully timber the woods nearby and grow what crops they can in the clearings around the village. For a long time there have been rumors and worries about a dark estate just east of the village, which is said to house great evil.">
     <Components>
       <Village id="village_comp_AL5_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL5" bound="Settlement.town_AL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7907,7 +7918,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL6" name="{=Settlements.Settlement.name.town_AL6}Glade of Eternal Midnight" owner="Faction.athel_loren_clan_9" posX="1172.255" posY="775.2383" culture="Culture.battania" gate_posX="1172.584" gate_posY="774.6534" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
+  <Settlement id="town_AL6" name="{=Settlements.Settlement.name.town_AL6}Glade of Eternal Midnight" owner="Faction.athel_loren_clan_9" posX="1172.255" posY="775.238" culture="Culture.battania" gate_posX="1172.585" gate_posY="774.6533" text="{=!}On the northern bank of the River Grissen is the market town of Dunkelburg. Dunkelburg benefits from being along the Stimmigen canal, which allows access to many of the market towns in Reikland’s southern region. The town is known for its rustic feel which seems to be preserved in the town despite its continued increase in size. Unfortunately, Dunkelburg’s proximity to the Grey Mountains has doomed it to be plagued by Goblins, who regularly raid the town. One of the results of these raids is that the town has a much higher population of Orphans than many other parts of the Empire. These orphans are provided for by the von Wallensteins however, as long as they work in the town’s several Bleachfields that is.">
     <Components>
       <Town id="town_comp_AL6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7927,7 +7938,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL6_1" name="{=Settlements.Settlement.name.village_AL6_1}Tal Stornos" posX="1168.125" posY="745.067" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL6_1}Barfsheim is a small village along the river Grissen near the Countess Emmanuelle canal. Its grain often is exported out of the Reikland to feed Grissenwald and Nuln.">
+  <Settlement id="village_AL6_1" name="{=Settlements.Settlement.name.village_AL6_1}Tal Stornos" posX="1168.403" posY="745.9" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL6_1}Barfsheim is a small village along the river Grissen near the Countess Emmanuelle canal. Its grain often is exported out of the Reikland to feed Grissenwald and Nuln.">
     <Components>
       <Village id="village_comp_AL6_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL6" bound="Settlement.town_AL6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7940,7 +7951,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL6_2" name="{=Settlements.Settlement.name.village_AL6_2}Talrennic" posX="1187.085" posY="749.572" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL6_2}Steindorf is a small village near the headwaters of the river Grissen. Its people refuse to travel into the Grey Mountains that often overshadow the village. Despite the fact that the minerals would bring great wealth to the village, the people here speak of a dread castle in the mountains above them, saying that they would rather remain in their vale with their grain.">
+  <Settlement id="village_AL6_2" name="{=Settlements.Settlement.name.village_AL6_2}Talrennic" posX="1186.952" posY="749.908" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL6_2}Steindorf is a small village near the headwaters of the river Grissen. Its people refuse to travel into the Grey Mountains that often overshadow the village. Despite the fact that the minerals would bring great wealth to the village, the people here speak of a dread castle in the mountains above them, saying that they would rather remain in their vale with their grain.">
     <Components>
       <Village id="village_comp_AL6_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL6" bound="Settlement.town_AL6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7953,7 +7964,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL1" name="{=Settlements.Settlement.name.castle_AL1}Vaul’s Anvil" owner="Faction.athel_loren_clan_11" posX="1190.534" posY="816.302" culture="Culture.battania" gate_posX="1191.019" gate_posY="815.0869" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
+  <Settlement id="castle_AL1" name="{=Settlements.Settlement.name.castle_AL1}Vaul’s Anvil" owner="Faction.athel_loren_clan_11" posX="1190.645" posY="816.5811" culture="Culture.battania" gate_posX="1191.301" gate_posY="816.7258" text="{=!}In the Suden Vorbergland of Reikland sits the market town of Stimmigen. Stimmigen sits on the river Ober, where the Stimmigen and Grey Lady canals meet. The town is especially famous for Ernwald, a variety of apples known for its sweet, yet tart taste, that the people of Stimmigen put into pies, pastries, crumbles and cider, as well as the infamous local dish ‘rat-apple stew.’ Stimmigen has a large population of Halflings, who specialise in the Ernwald cultivation as well as its derivative goods.">
     <Components>
       <Town id="castle_comp_AL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -7963,7 +7974,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL1_1" name="{=Settlements.Settlement.name.castle_village_AL1_1}Tal Dovar" posX="1213.059" posY="825.527" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_AL1_1" name="{=Settlements.Settlement.name.castle_village_AL1_1}Tal Dovar" posX="1210.524" posY="817.7141" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_AL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL6" bound="Settlement.castle_AL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7976,7 +7987,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL2" name="{=Settlements.Settlement.name.castle_AL2}The Halls of Equos" owner="Faction.athel_loren_clan_6" posX="1208.041" posY="767.413" culture="Culture.battania" gate_posX="1208.335" gate_posY="768.6879" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
+  <Settlement id="castle_AL2" name="{=Settlements.Settlement.name.castle_AL2}The Halls of Equos" owner="Faction.athel_loren_clan_6" posX="1208.409" posY="766.929" culture="Culture.battania" gate_posX="1207.738" gate_posY="766.899" text="{=!}The Grand Freistadt of Kemperbad is a major trade city that sits at the confluences of the rivers Riek and Stir. The city holds a commanding position over this portion of the river trade and is crucial to ensuring the southern empires continued economic prosperity. The city purchased its charter from Emperor Boris the Incompetent in 1066 IC, from then on being ruled directly by the Council of Thirteen which represents the largest merchants in town plus representatives from the local temples of Sigmar and Shallya.">
     <Components>
       <Town id="castle_comp_AL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -7986,7 +7997,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL2_1" name="{=Settlements.Settlement.name.castle_village_AL2_1}Tal Amara" posX="1213.803" posY="749.106" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
+  <Settlement id="castle_village_AL2_1" name="{=Settlements.Settlement.name.castle_village_AL2_1}Tal Amara" posX="1218.272" posY="748.741" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
     <Components>
       <Village id="castle_village_comp_AL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL5" bound="Settlement.castle_AL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7999,7 +8010,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL3" name="{=Settlements.Settlement.name.castle_AL3}Tal Enda Varian" owner="Faction.athel_loren_clan_4" posX="1222.013" posY="925.652" culture="Culture.battania" gate_posX="1221.036" gate_posY="924.7819" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  <Settlement id="castle_AL3" name="{=Settlements.Settlement.name.castle_AL3}Tal Enda Varian" owner="Faction.athel_loren_clan_4" posX="1216.944" posY="924.341" culture="Culture.battania" gate_posX="1217.577" gate_posY="924.5664" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_AL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8009,7 +8020,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL3_1" name="{=Settlements.Settlement.name.castle_village_AL3_1}Locrimere" posX="1234.686" posY="908.7581" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
+  <Settlement id="castle_village_AL3_1" name="{=Settlements.Settlement.name.castle_village_AL3_1}Locrimere" posX="1236.274" posY="907.936" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
     <Components>
       <Village id="castle_village_comp_AL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8022,7 +8033,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_AL3_2" name="{=Settlements.Settlement.name.castle_village_AL3_2}Waterfall Palace of the Naiad Court" posX="1254.332" posY="901.64" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_2}The town of Grünburg sits on the river Teufel. While trade flows through the town from the canals to itself and from the Reik to its north, Grünburg’s main source of wealth comes from its river boatyards, where many of the boats and barges that ply the rivers of the Reikland originate from. The town is also famous for the Battle of Grünburg where the advance of Orc Warlord Gorbad Ironclaw was finally halted around a half a millenia ago. The battle plains is valued particularly due to the fact that nearly all of the Imperial and orc forces present were mounted calvarymen, unusual for both the contemporary period and the modern era. As such an excavation site has been established by several interested parties and many come to look upon their work.">
+  <Settlement id="castle_village_AL3_2" name="{=Settlements.Settlement.name.castle_village_AL3_2}Waterfall Palace of the Naiad Court" posX="1254.59" posY="900.799" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_2}The town of Grünburg sits on the river Teufel. While trade flows through the town from the canals to itself and from the Reik to its north, Grünburg’s main source of wealth comes from its river boatyards, where many of the boats and barges that ply the rivers of the Reikland originate from. The town is also famous for the Battle of Grünburg where the advance of Orc Warlord Gorbad Ironclaw was finally halted around a half a millenia ago. The battle plains is valued particularly due to the fact that nearly all of the Imperial and orc forces present were mounted calvarymen, unusual for both the contemporary period and the modern era. As such an excavation site has been established by several interested parties and many come to look upon their work.">
     <Components>
       <Village id="castle_village_comp_AL3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8035,7 +8046,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL4" name="{=Settlements.Settlement.name.castle_AL4}Tal Esth" owner="Faction.athel_loren_clan_5" posX="1276.777" posY="906.647" culture="Culture.battania" gate_posX="1278.028" gate_posY="907.0313" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
+  <Settlement id="castle_AL4" name="{=Settlements.Settlement.name.castle_AL4}Tal Esth" owner="Faction.athel_loren_clan_5" posX="1277.316" posY="906.126" culture="Culture.battania" gate_posX="1276.976" gate_posY="906.7053" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
     <Components>
       <Town id="castle_comp_AL4" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8058,7 +8069,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL5" name="{=Settlements.Settlement.name.castle_AL5}Tal Driacha" owner="Faction.athel_loren_clan_2" posX="1188.035" posY="936.892" culture="Culture.battania" gate_posX="1188.989" gate_posY="935.9965" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
+  <Settlement id="castle_AL5" name="{=Settlements.Settlement.name.castle_AL5}Tal Driacha" owner="Faction.athel_loren_clan_2" posX="1193.16" posY="933.504" culture="Culture.battania" gate_posX="1192.492" gate_posY="933.4398" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
     <Components>
       <Town id="castle_comp_AL5" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8094,7 +8105,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL6" name="{=Settlements.Settlement.name.castle_AL6}Tyr Vanna" owner="Faction.athel_loren_clan_7" posX="1282.847" posY="752.887" culture="Culture.battania" gate_posX="1283.712" gate_posY="753.8683" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
+  <Settlement id="castle_AL6" name="{=Settlements.Settlement.name.castle_AL6}Tyr Vanna" owner="Faction.athel_loren_clan_7" posX="1283.237" posY="752.625" culture="Culture.battania" gate_posX="1282.737" gate_posY="753.0734" text="{=!}Castle Grauenburg is the seat of Graf Wilhelm von Saponatheim’s rule over the central Reikland and his barony. It is a fortress along the river Bogen that protects Bogenhafen and other nearby locations from attack.">
     <Components>
       <Town id="castle_comp_AL6" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8104,7 +8115,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL6_1" name="{=Settlements.Settlement.name.castle_village_AL6_1}Tyr Edrell" posX="1274.362" posY="738.912" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Weissbruck sits on the joining of the Weissbruck Canal and the river Bӧgen. The town once was a major source of coal and iron in the Reikland, the mining of which provided the Gruber family with enough funds to construct the Weissbruck Canal, which enabled easier transportation of the mined material to market. Now the mines have mostly been depleted and while the town continues to have prosperous ventures in trade thanks to the canal, the many former workers of the mine have found themselves unemployed and stuck in Weissbruck, where they spend their time drinking cheap alcohol and causing trouble.">
+  <Settlement id="castle_village_AL6_1" name="{=Settlements.Settlement.name.castle_village_AL6_1}Tyr Edrell" posX="1273.754" posY="738.092" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Weissbruck sits on the joining of the Weissbruck Canal and the river Bӧgen. The town once was a major source of coal and iron in the Reikland, the mining of which provided the Gruber family with enough funds to construct the Weissbruck Canal, which enabled easier transportation of the mined material to market. Now the mines have mostly been depleted and while the town continues to have prosperous ventures in trade thanks to the canal, the many former workers of the mine have found themselves unemployed and stuck in Weissbruck, where they spend their time drinking cheap alcohol and causing trouble.">
     <Components>
       <Village id="castle_village_comp_AL6_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
