@@ -6353,4 +6353,28 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_eonir_druchii_envoy_0">
+    <Abilities />
+    <Attributes>
+      <string>DruchiiEnvoy</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_eonir_asur_envoy_0">
+    <Abilities />
+    <Attributes>
+      <string>AsurEnvoy</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_eonir_empire_envoy_0">
+    <Abilities />
+    <Attributes>
+      <string>EmpireEnvoy</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_eonir_spellsinger_envoy_0">
+    <Abilities />
+    <Attributes>
+      <string>SpellsingerEnvoy</string>
+    </Attributes>
+  </CharacterExtendedInfo>
 </ArrayOfCharacterExtendedInfo>
