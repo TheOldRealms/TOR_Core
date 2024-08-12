@@ -2,9 +2,12 @@
 using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -48,24 +51,20 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     {
         campaignGameStarter.AddDialogLine("envoy_foreign", "start", "close_window", "You are not part of these people, begone.",
             () => !EonirEnvoyDialogCondition(), null, 200);
-
-        campaignGameStarter.AddDialogLine("envoy_missRank", "start", "close_window",
-            "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && !HasRenown2(),
-            null, 200);
-
+        
 
         campaignGameStarter.AddDialogLine("envoy_hub_intro_spellsinger", "start", "spellsinger_envoy_main_hub", "How can the Forestborn be of use?",
             () => IsSpellsingerEnvoy(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_prestige_to_favour", "spellsinger_envoy_main_hub", "close_window",
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_world_roots", "spellsinger_envoy_main_hub", "close_window",
             "I need to travel to roots of the Asrai, would you guide me over it?", () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_favour_to_prestige", "spellsinger_envoy_main_hub", "close_window",
-            "I would like to make the influence of my count for your people. If your people willing to ", () => IsSpellsingerEnvoy(), null, 200);
+            "I would like to make the influence of my clan count for your people. If your people willing to act in my favor ", () => IsSpellsingerEnvoy() && Clan.PlayerClan.Influence>0, null, 200);
 
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_peace", "spellsinger_envoy_main_hub", "close_window",
-            "I want to learn more magic can you help?", () => IsSpellsingerEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_magic", "spellsinger_envoy_main_hub", "back_to_main_hub_spellsinger", "{=tor_spelltrainer_eonir_open_book_str}I want to learn more magic can you help?.", () => MobileParty.MainParty.HasSpellCasterMember()&&Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && IsSpellsingerEnvoy(), openbookconsequence, 200, null);
+
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_whyareyouhere", "spellsinger_envoy_main_hub", "spellsinger_envoy_whyareyouhere",
             "Why are you here?", () => IsSpellsingerEnvoy(), null, 200);
@@ -91,7 +90,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere_3", "spellsinger_envoy_whyareyouhere_3", "back_to_main_hub_spellsinger",
             "Help us with your political power, and I will try to make it worth. I can assist you with some magic, like using the world roots of the Asrai, or can make your influence provide you power over the council. Apart, I can see what i can do for teaching you some magic", () => IsSpellsingerEnvoy(), null, 200);
 
-        
+
         campaignGameStarter.AddDialogLine("back_to_main_hub_spellsinger", "back_to_main_hub_spellsinger", "spellsinger_envoy_main_hub",
             "Is there something else I could do for you?", () => IsSpellsingerEnvoy(), null, 200);
         
@@ -113,7 +112,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => !EonirEnvoyDialogCondition(), null, 200);
 
         campaignGameStarter.AddDialogLine("envoy_missRank", "start", "close_window",
-            "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && !HasRenown2(),
+            "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && IsEmpireEnvoy() && !HasRenown2(),
             null, 200);
 
 
@@ -156,7 +155,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => !EonirEnvoyDialogCondition(), null, 200);
 
         campaignGameStarter.AddDialogLine("envoy_missRank", "start", "close_window",
-            "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && !HasRenown2(),
+            "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && IsDruchiiEnvoy() && !HasRenown2(),
             null, 200);
 
 
@@ -256,6 +255,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             return false;
         }
     }
+    
+    private void openbookconsequence()
+    {
+        var state = Game.Current.GameStateManager.CreateState<SpellBookState>();
+        state.IsTrainerMode = true;
+        state.TrainerCulture = CharacterObject.OneToOneConversationCharacter.Culture.StringId;
+        Game.Current.GameStateManager.PushState(state);
+    }
 
     private void AddAsurEnvoyDialogLines(CampaignGameStarter starter)
     {
@@ -263,7 +270,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => !EonirEnvoyDialogCondition(), null, 200);
 
         starter.AddDialogLine("envoy_missRank", "start", "close_window",
-            "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && !HasRenown2(),
+            "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && IsAsurianEnvoy()&&  !HasRenown2(),
             null, 200);
 
 
