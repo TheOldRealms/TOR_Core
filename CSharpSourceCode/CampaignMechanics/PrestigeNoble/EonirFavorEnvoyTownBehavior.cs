@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.SpellBook;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -19,6 +23,11 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private const string _asurEnvoyId = "tor_eonir_asur_envoy_0";
     private const string _empireEnvoyId = "tor_eonir_empire_envoy_0";
     private const string _spellsingerEnvoyId = "tor_eonir_spellsinger_envoy_0";
+
+
+    private int asur_favor_price1 = 100;
+    private int asur_favor_price2 = 500;
+    private int asur_favor_price3 = 1000;
 
     private Hero _druchiiEnvoy;
     private Hero _asurEnvoy;
@@ -45,7 +54,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         AddAsurEnvoyDialogLines(obj);
         AddEmpireEnvoyDialogLines(obj);
         AddSpellsingerEnvoyDialogLines(obj);
+        SetTextVariables();
     }
+
+    private void SetTextVariables()
+    {
+        GameTexts.SetVariable("EONIR_FAVOR",CustomResourceManager.GetResourceObject("CouncilFavor").GetCustomResourceIconAsText());
+    }
+    
 
     private void AddSpellsingerEnvoyDialogLines(CampaignGameStarter campaignGameStarter)
     {
@@ -285,7 +301,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => IsAsurianEnvoy(), null, 200);
 
         starter.AddPlayerLine("asur_envoy_main_hub_diplomacy", "asur_envoy_main_hub", "asur_envoy_diplomacy",
-            "Can you help the eonir to improve the relationship with the Kingdoms of Men?", () => IsAsurianEnvoy(), null, 200);
+            "Can you help the eonir to improve the relationship with the Kingdoms of Men?", () => IsAsurianEnvoy(), AsurDiplomacyPrompt, 200);
 
         starter.AddPlayerLine("asur_envoy_main_hub_whyareyouhere", "asur_envoy_main_hub", "asur_envoy_whyareyouhere", "Why are you here?", () => IsAsurianEnvoy(),
             null, 200);
@@ -298,11 +314,11 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         starter.AddDialogLine("asur_envoy_money", "asur_envoy_money", "asur_envoy_money_choice",
             "Nothing easier than this. How much do you need?", () => IsAsurianEnvoy(), null, 200);
         starter.AddPlayerLine("asur_envoy_money_choice_1", "asur_envoy_money_choice", "back_to_main_hub_asur",
-            "10000 for 100", () => IsAsurianEnvoy(), null, 200);
+            "{ASUR_MONEYRETURN1}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY1}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>asur_favor_price1, () => TransferMoney(1,asur_favor_price1), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_2", "asur_envoy_money_choice", "back_to_main_hub_asur",
-            "100000 for 500", () => IsAsurianEnvoy(), null, 200);
+            "{ASUR_MONEYRETURN2}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY2}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>asur_favor_price2, () => TransferMoney(10,asur_favor_price2), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_3", "asur_envoy_money_choice", "back_to_main_hub_asur",
-            "300000 for 1000", () => IsAsurianEnvoy(), null, 200);
+            "{ASUR_MONEYRETURN3}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY3}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>asur_favor_price3, () => TransferMoney(30,asur_favor_price3), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_quit", "asur_envoy_money_choice", "back_to_main_hub_asur",
             "I need to think about this.", () => IsAsurianEnvoy(), null, 200);
         
@@ -320,7 +336,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         starter.AddDialogLine("asur_envoy_whyareyouhere", "asur_envoy_whyareyouhere", "envoy_asur_wayh_reaction",
             "The Phoenix King, send his best regards, from the far Ulthuan. We are brothers, maybe even the same People, that should form an alliance. If there is anything the Asur can do for the Eonir, we are pleased to help where we can.", () => IsAsurianEnvoy(), null, 200);
         starter.AddPlayerLine("envoy_asur_wayh_reaction_displeased", "envoy_asur_wayh_reaction", "asur_envoy_whyareyouhere_2",
-            "You left us, descendants of your own kin, to die. We were on our own so long, that your words sound questionable at best.", () => IsAsurianEnvoy(), null, 200);
+            "You left us, descendants of your own kin, to die. We were on our own so long, that your words sound questionable at best.", () => IsAsurianEnvoy(), null,200);
         starter.AddPlayerLine("envoy_asur_wayh_reaction_undecided", "envoy_asur_wayh_reaction", "asur_envoy_whyareyouhere_2",
             "Be careful Asur, we did not forget your betrayal. I am however not here to maintain a grudge. What do you offer?", () => IsAsurianEnvoy(), null, 200);
         starter.AddPlayerLine("envoy_asur_wayh_reaction_agreement", "envoy_asur_wayh_reaction", "asur_envoy_whyareyouhere_2",
@@ -335,15 +351,87 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         starter.AddDialogLine("back_to_main_hub_asur", "back_to_main_hub_asur", "asur_envoy_main_hub",
             "Is there something else I could do for you?", () => IsAsurianEnvoy(), null, 200);
+
+
+        void SetupPrices()
+        {
+            GameTexts.SetVariable("ASUR_MONEYRETURN1",CalculateBasePrice());
+            GameTexts.SetVariable("ASUR_MONEYRETURN2",CalculateBasePrice()*10);
+            GameTexts.SetVariable("ASUR_MONEYRETURN3",CalculateBasePrice()*30);
+            GameTexts.SetVariable("ASUR_FAVORCOST_MONEY1",asur_favor_price1);
+            GameTexts.SetVariable("ASUR_FAVORCOST_MONEY2",asur_favor_price2);
+            GameTexts.SetVariable("ASUR_FAVORCOST_MONEY3",asur_favor_price3);
+        }
+
+        int CalculateBasePrice()
+        {
+            var moneyReturn = 1000;
+            var charm = Hero.MainHero.GetSkillValue(DefaultSkills.Charm);
+            moneyReturn += (int)(moneyReturn * ( (float)charm/100));
+            return moneyReturn;
+        }
+
+        void TransferMoney(int factor, int favorPrice)
+        {
+            var t = CalculateBasePrice();
+
+            var revenue = t * factor;
+            
+            Hero.MainHero.ChangeHeroGold(revenue);
+            Hero.MainHero.AddCultureSpecificCustomResource(-favorPrice);
+
+        }
         
-
-
         bool IsAsurianEnvoy()
         {
+            SetupPrices();
             var partner = CharacterObject.OneToOneConversationCharacter;
             if (partner != null) return partner.HeroObject.HasAttribute("AsurEnvoy");
 
             return false;
+        }
+
+
+
+        void AsurDiplomacyPrompt()
+        {
+            List<InquiryElement> list = [];
+
+            var humanKingdoms =
+                Campaign.Current.Kingdoms.WhereQ(X => X.Culture.StringId == TORConstants.Cultures.BRETONNIA || X.Culture.StringId == TORConstants.Cultures.EMPIRE).ToList();
+
+            foreach (var kingdom in humanKingdoms)
+            {
+                
+                list.Add(new InquiryElement(kingdom,kingdom.EncyclopediaTitle.ToString(),null,true,"Improve relationship"));
+            }
+            
+            if (list.IsEmpty()) return;
+            
+            var inquirydata = new MultiSelectionInquiryData("Improve Relationship with one faction", "Choose a faction, the relation of you will improve by 15, and the eonir faction aswell.", list, true, 1, 1, "Confirm", "Cancel", AddRelationship, null,"",true);
+            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+
+            void AddRelationship(List<InquiryElement> inquiryElements)
+            {
+                var eonirClans = Hero.MainHero.CurrentSettlement.OwnerClan.Kingdom.Clans;
+                
+                var kingdom = (Kingdom)inquiryElements[0].Identifier;
+                
+
+                var bonus = Hero.MainHero.GetSkillValue(DefaultSkills.Charm)/20;
+                float chance = (float)Hero.MainHero.GetSkillValue(DefaultSkills.Charm) / 300;
+                
+                foreach (var hero in kingdom.Heroes){
+                    foreach (var clan in eonirClans)
+                    {
+                        if (MBRandom.RandomFloat < chance)
+                        {
+                            ChangeRelationAction.ApplyRelationChangeBetweenHeroes(clan.Leader,hero, 15+bonus,false);
+                        }
+                    }
+                }
+                
+            }
         }
     }
 
@@ -354,7 +442,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
     private bool EonirEnvoyDialogCondition()
     {
-        return Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR;
+        return Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && Settlement.CurrentSettlement.StringId == "town_LL1";
     }
 
     private void OnNewGameStarted(CampaignGameStarter obj)
