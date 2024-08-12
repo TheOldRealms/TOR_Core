@@ -384,6 +384,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 {
                     _altdorf = settlement;
                     CreateNobleOfTheEmpire();
+                    break;
                 }
 
             void CreateNobleOfTheEmpire()
