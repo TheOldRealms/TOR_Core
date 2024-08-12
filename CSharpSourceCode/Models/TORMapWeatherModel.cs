@@ -13,7 +13,7 @@ namespace TOR_Core.Models
 		private readonly float _harshWeatherTreshhold = 0.95f;
 		private readonly float _mildWeatherTreshhold = 0.85f;
 
-		public override CampaignTime WeatherUpdatePeriod => CampaignTime.Minutes(30);
+		public override CampaignTime WeatherUpdatePeriod => CampaignTime.Hours(0.5f);
 
         public override AtmosphereInfo GetAtmosphereModel(Vec3 pos)
         {
