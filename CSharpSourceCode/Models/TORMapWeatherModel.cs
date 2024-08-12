@@ -15,6 +15,8 @@ namespace TOR_Core.Models
 
 		public override CampaignTime WeatherUpdatePeriod => CampaignTime.Hours(0.5f);
 
+        public override int DefaultWeatherNodeDimension => 256;
+
         public override AtmosphereInfo GetAtmosphereModel(Vec3 pos)
         {
             var atmo = base.GetAtmosphereModel(pos);
