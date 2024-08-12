@@ -27,7 +27,7 @@ namespace TOR_Core.Models
 
             if(missionType != MissionTypeEnum.Battle) return;
             
-            if(party != PartyBase.MainParty&&!MobileParty.MainParty.LeaderHero.HasAnyCareer()) return;
+            if(party==null || (party != PartyBase.MainParty&&!MobileParty.MainParty.LeaderHero.HasAnyCareer())) return;
             
             ExplainedNumber number = new ExplainedNumber();
             number.Add(xpAmount);

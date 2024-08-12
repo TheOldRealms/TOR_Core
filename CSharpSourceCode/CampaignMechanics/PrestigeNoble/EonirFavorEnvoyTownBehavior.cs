@@ -67,12 +67,35 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_peace", "spellsinger_envoy_main_hub", "close_window",
             "I want to learn more magic can you help?", () => IsSpellsingerEnvoy(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_whyareyouhere", "spellsinger_envoy_main_hub", "close_window",
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_whyareyouhere", "spellsinger_envoy_main_hub", "spellsinger_envoy_whyareyouhere",
             "Why are you here?", () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_close", "spellsinger_envoy_main_hub", "close_window", "That's all thank you.",
             () => IsSpellsingerEnvoy(), null, 200);
 
+        
+                //why are you here
+        
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere", "spellsinger_envoy_whyareyouhere", "envoy_spellsinger_wayh_reaction",
+            "I am representing a coven of Spellsingers dedicated to the defense of Laurelorn. While the Council is busy with politics, the Faniour, the forest born elves, are endagered by all the threads of the forest.", () => IsSpellsingerEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_displeased", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
+            "Why are you then not defending the forest?", () => IsSpellsingerEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_undecided", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
+            "What matters can the Council solve for you? What can you give me in turn?", () => IsSpellsingerEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_agreement", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
+            "The Faniour aswell as the Touriour are Eonir. Your matters, are also matters of the Touriour.", () => IsSpellsingerEnvoy(), null, 200);
+        
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere_2", "spellsinger_envoy_whyareyouhere_2", "spellsinger_envoy_whyareyouhere_3",
+            "I am not a man of politics. I am here to stand our case. I know that seemingly the Council, sometimes forgets about us. Thats why I am here, and standing for the forest people. I know that nothing works here, without giving something in return.", () => IsSpellsingerEnvoy(), null, 200);
+
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere_3", "spellsinger_envoy_whyareyouhere_3", "back_to_main_hub_spellsinger",
+            "Help us with your political power, and I will try to make it worth. I can assist you with some magic, like using the world roots of the Asrai, or can make your influence provide you power over the council. Apart, I can see what i can do for teaching you some magic", () => IsSpellsingerEnvoy(), null, 200);
+
+        
+        campaignGameStarter.AddDialogLine("back_to_main_hub_spellsinger", "back_to_main_hub_spellsinger", "spellsinger_envoy_main_hub",
+            "Is there something else I could do for you?", () => IsSpellsingerEnvoy(), null, 200);
+        
+        
 
         bool IsSpellsingerEnvoy()
         {
@@ -112,6 +135,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_close", "empire_envoy_main_hub", "close_window", "That's all thank you.",
             () => IsEmpireEnvoy(), null, 200);
+        
+        
+        
+
 
 
         bool IsEmpireEnvoy()
@@ -146,7 +173,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_slaver_tide", "druchii_envoy_main_hub", "druchii_envoy_slaver_tide",
             "I want you to adjust your slaver catchment areas", () => IsDruchiiEnvoy(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_whyareyouhere", "druchii_envoy_main_hub", "close_window", "Why are you here?",
+        campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_whyareyouhere", "druchii_envoy_main_hub", "druchii_envoy_whyareyouhere", "Why are you here?",
             () => IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_close", "druchii_envoy_main_hub", "close_window", "That's all thank you.",
@@ -158,10 +185,6 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddDialogLine("druchii_envoy_force_war", "druchii_envoy_force_war", "druchii_envoy_force_war_choice",
             "You would be surprised what trouble  the tip of a Khainite dagger could cause. If it finds the wrong throat to the wrong time, war can emerge.", () => IsDruchiiEnvoy(), null, 200);
         
-        campaignGameStarter.AddDialogLine("druchii_envoy_force_war", "druchii_envoy_force_war", "druchii_envoy_force_war_choice",
-            "You would be surprised what trouble  the tip of a Khainite dagger could cause. If it finds the wrong throat to the wrong time, war can emerge.", () => IsDruchiiEnvoy(), null, 200);
-
-       
         campaignGameStarter.AddPlayerLine("druchii_envoy_force_war_choice_1", "druchii_envoy_force_war_choice", "druchii_envoy_force_war_choice_result",
             "Let's do this.", () => IsDruchiiEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("druchii_envoy_force_war_choice_2", "druchii_envoy_force_war_choice", "back_to_main_hub_druchii",
@@ -190,6 +213,34 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         campaignGameStarter.AddDialogLine("druchii_envoy_slaver_tide_choice_result", "druchii_envoy_slaver_tide_choice_result", "back_to_main_hub_druchii",
             "Our slaver fleets will head towards there. I will pull a few strings to let it happen", () => IsDruchiiEnvoy(), null, 200);
+        
+        
+        
+        // why are you here?
+        
+        
+        
+        campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere", "druchii_envoy_whyareyouhere", "envoy_druchii_wayh_reaction",
+            "The Witchking, sends his best regards. I know we were not always on the best terms, yet we think both, the druchii and the Eonir, share undeniable commonalities.... we were both betrayed by the Asur..", () => IsDruchiiEnvoy(), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("envoy_druchii_wayh_reaction_displeased", "envoy_druchii_wayh_reaction", "druchii_envoy_whyareyouhere_2",
+            "You are raiding the coasts of the Eonir, enslaved and drugged our people and now have the audacity to come here and pretend this never happened?", () => IsDruchiiEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("envoy_druchii_wayh_reaction_undecided", "envoy_druchii_wayh_reaction", "druchii_envoy_whyareyouhere_2",
+            "I am skeptical, you come here without evil ambitions. What would be the benefit for the Eonir, letting you talk here?", () => IsDruchiiEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("envoy_druchii_wayh_reaction_agreement", "envoy_druchii_wayh_reaction", "druchii_envoy_whyareyouhere_2",
+            "The Asur betrayed us, left us to die. I might not share your sentiment, but in the end you also set yourself free from their reign", () => IsDruchiiEnvoy(), null, 200);
+        
+        campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere_2", "druchii_envoy_whyareyouhere_2", "druchii_envoy_whyareyouhere_3",
+            "Listen, I am not your enemy. The opposite is true, the witch king send me, to improve our relationship. there are many ways we could avoid harm on the eonir, and the druchii are one of it. Take our hand as long as it available, I am sure it will be for your best.", () => IsDruchiiEnvoy(), null, 200);
+
+        campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere_3", "druchii_envoy_whyareyouhere_3", "back_to_main_hub_druchii",
+            "We can take care of some of your problems, some of your darkest desires without any question being asked, and ensure the sea protection of your fleets... all we want is a little power within your council, do you think you can do that?", () => IsDruchiiEnvoy(), null, 200);
+
+        
+        campaignGameStarter.AddDialogLine("back_to_main_hub_druchii", "back_to_main_hub_druchii", "druchii_envoy_main_hub",
+            "Is there something else I could do for you?", () => IsDruchiiEnvoy(), null, 200);
+        
+        //back to hub
         
         campaignGameStarter.AddDialogLine("back_to_main_hub_druchii", "back_to_main_hub_druchii", "druchii_envoy_main_hub",
             "Is there something else the Witch king could do for you?", () => IsDruchiiEnvoy(), null, 200);
