@@ -1474,7 +1474,7 @@
       <EquipmentSet id="tor_eo_militia_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_kithband_aspirant" default_group="ranged" level="16" name="{=str_tor_eo_kithband_aspirant}Eonir Kithband Aspirant" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level16" race="elf">
+  <NPCCharacter id="tor_eo_kithband_aspirant" default_group="infantry" level="11" name="{=str_tor_eo_kithband_aspirant}Eonir Kithband Aspirant" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level11" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1493,7 +1493,7 @@
       <EquipmentSet id="tor_eo_kithband_aspirant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_kithband_warrior" default_group="cavalry" level="26" name="{=str_tor_eo_kithband_warrior}Eonir Kithband Warrior" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_eo_kithband_warrior" default_group="infantry" level="16" name="{=str_tor_eo_kithband_warrior}Eonir Kithband Warrior" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level16" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1505,14 +1505,14 @@
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_eo_mounted_kithband_warrior" />
-      <upgrade_target id="NPCCharacter.tor_eo_veteran_kithband_warrior" />
+      <upgrade_target id="NPCCharacter.tor_eo_armoured_kithband_warrior" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_kithband_warrior_template" />
       <EquipmentSet id="tor_eo_kithband_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_mounted_kithband_warrior" default_group="ranged" level="31" name="{=str_tor_eo_mounted_kithband_warrior}Eonir Mounted Kithband Warrior" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
+  <NPCCharacter id="tor_eo_mounted_kithband_warrior" default_group="cavalry" level="21" name="{=str_tor_eo_mounted_kithband_warrior}Eonir Mounted Kithband Warrior" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level21" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1528,7 +1528,26 @@
       <EquipmentSet id="tor_eo_mounted_kithband_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_veteran_kithband_warrior" default_group="infantry" level="31" name="{=str_tor_eo_veteran_kithband_warrior}Eonir Veteran Kithband Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
+  <NPCCharacter id="tor_eo_armoured_kithband_warrior" default_group="infantry" level="21" name="{=str_tor_eo_armoured_kithband_warrior}Eonir Armored Kithband Warrior" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_eo_veteran_kithband_warrior_sword" />
+      <upgrade_target id="NPCCharacter.tor_eo_veteran_kithband_warrior_spear" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_eo_armoured_kithband_warrior_template" />
+      <EquipmentSet id="tor_eo_armoured_kithband_warrior_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_veteran_kithband_warrior_sword" default_group="infantry" level="31" name="{=str_tor_eo_veteran_kithband_warrior_sword}Eonir Veteran Kithband Warrior (Sword)" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1540,11 +1559,27 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_eo_veteran_kithband_warrior_template" />
-      <EquipmentSet id="tor_eo_veteran_kithband_warrior_template" civilian="true" />
+      <EquipmentSet id="tor_eo_veteran_kithband_warrior_sword_template" />
+      <EquipmentSet id="tor_eo_veteran_kithband_warrior_sword_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_kithband_sentinel" default_group="ranged" level="26" name="{=str_tor_eo_kithband_sentinel}Eonir Waywatcher" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_eo_veteran_kithband_warrior_spear" default_group="infantry" level="31" name="{=str_tor_eo_veteran_kithband_warrior_spear}Eonir Veteran Kithband Warrior (Spear)" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level31" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_eo_veteran_kithband_warrior_spear_template" />
+      <EquipmentSet id="tor_eo_veteran_kithband_warrior_spear_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_kithband_sentinel" default_group="ranged" level="21" name="{=str_tor_eo_kithband_sentinel}Eonir Waywatcher" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level21" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1644,7 +1679,8 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_eo_queens_guard" />
+      <upgrade_target id="NPCCharacter.tor_eo_queens_guard_axe" />
+      <upgrade_target id="NPCCharacter.tor_eo_queens_guard_halberd" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_eo_cityborn_council_guard_template" />
@@ -1669,7 +1705,7 @@
       <EquipmentSet id="tor_eo_cityborn_council_sentinel_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_queens_guard" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard}Eonir Queens Champion" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
+  <NPCCharacter id="tor_eo_queens_guard_axe" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard_axe}Eonir Queens Champion (Axe)" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1681,8 +1717,24 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_eo_queens_guard_template" />
-      <EquipmentSet id="tor_eo_queens_guard_template" civilian="true" />
+      <EquipmentSet id="tor_eo_queens_guard_axe_template" />
+      <EquipmentSet id="tor_eo_queens_guard_axe_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_eo_queens_guard_halberd" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard_halberd}Eonir Queens Champion (Halberd)" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_eo_queens_guard_halberd_template" />
+      <EquipmentSet id="tor_eo_queens_guard_halberd_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eo_envoy_guard" default_group="ranged" level="46" name="{=str_tor_eo_envoy_guard}Eonir Envoy Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
