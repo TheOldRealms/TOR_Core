@@ -4674,15 +4674,15 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_sylvania_second_5">
     <Abilities>
-      <string>NagashGaze</string>
-      <string>SummonSkeleton</string>
-      <string>Shadowblood</string>
-      <string>Morkharn</string>
-      <string>WitheringWave</string>
-      <string>Kandorak</string>
-      <string>ScreamingSkull</string>
-      <string>WindOfDeath</string>
+      <string>Chillwind</string>
+      <string>DoomBolt</string>
+      <string>SoulRain</string>
+      <string>PowerOfDarkness</string>
+      <string>BlackHorror</string>
+      <string>SoulStealer</string>
       <string>GraveCall</string>
+      <string>Morkharn</string>
+      <string>WindOfDeath</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -4807,56 +4807,24 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_necrarch_first_factionleader">
     <Abilities>
-      <string>NagashGaze</string>
       <string>SummonSkeleton</string>
-      <string>Shadowblood</string>
       <string>Morkharn</string>
-      <string>WitheringWave</string>
-      <string>Kandorak</string>
-      <string>ScreamingSkull</string>
+      <string>VanHelsDanseMacabre</string>
       <string>WindOfDeath</string>
-      <string>GraveCall</string>
+      <string>CascadingFireCloak</string>
+      <string>ChainLightning</string>
+      <string>DeathSpasm</string>
+      <string>SoulRain</string>
+      <string>SoulStealer</string>
+      <string>PlagueOfRust</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
+      <string>Necrarch</string>
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_necrarch_first_2">
-    <Abilities>
-      <string>NagashGaze</string>
-      <string>SummonSkeleton</string>
-      <string>Shadowblood</string>
-      <string>Morkharn</string>
-      <string>WitheringWave</string>
-      <string>Kandorak</string>
-      <string>ScreamingSkull</string>
-      <string>WindOfDeath</string>
-      <string>GraveCall</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_vc_lord_necrarch_first_3">
-    <Abilities>
-      <string>NagashGaze</string>
-      <string>SummonSkeleton</string>
-      <string>Shadowblood</string>
-      <string>Morkharn</string>
-      <string>WitheringWave</string>
-      <string>Kandorak</string>
-      <string>ScreamingSkull</string>
-      <string>WindOfDeath</string>
-      <string>GraveCall</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_vc_lord_necrarch_first_4">
     <Abilities>
       <string>Chillwind</string>
       <string>DoomBolt</string>
@@ -4873,7 +4841,24 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_vc_lord_necrarch_first_5">
+  <CharacterExtendedInfo id="tor_vc_lord_necrarch_first_3">
+    <Abilities>
+      <string>Chillwind</string>
+      <string>DoomBolt</string>
+      <string>SoulRain</string>
+      <string>PowerOfDarkness</string>
+      <string>BlackHorror</string>
+      <string>SoulStealer</string>
+      <string>GraveCall</string>
+      <string>Morkharn</string>
+      <string>WindOfDeath</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_vc_lord_necrarch_first_4">
     <Abilities>
       <string>NagashGaze</string>
       <string>SummonSkeleton</string>
@@ -4890,9 +4875,41 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_vc_lord_necrarch_first_5">
+    <Abilities>
+      <string>Chillwind</string>
+      <string>DoomBolt</string>
+      <string>SoulRain</string>
+      <string>PowerOfDarkness</string>
+      <string>BlackHorror</string>
+      <string>SoulStealer</string>
+      <string>GraveCall</string>
+      <string>Morkharn</string>
+      <string>WindOfDeath</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_necrarch_second_1">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>SummonSkeleton</string>
+      <string>Morkharn</string>
+      <string>VanHelsDanseMacabre</string>
+      <string>WindOfDeath</string>
+      <string>CascadingFireCloak</string>
+      <string>ChainLightning</string>
+      <string>DeathSpasm</string>
+      <string>SoulRain</string>
+      <string>SoulStealer</string>
+      <string>PlagueOfRust</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>Necrarch</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_necrarch_second_2">
     <Abilities />
