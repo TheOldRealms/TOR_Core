@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
@@ -59,7 +60,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
     private void SetTextVariables()
     {
-        GameTexts.SetVariable("EONIR_FAVOR",CustomResourceManager.GetResourceObject("CouncilFavor").GetCustomResourceIconAsText());
+        GameTexts.SetVariable("EONIR_FAVOR",CustomResourceManager.GetResourceObject("CouncilFavor").GetCustomResourceIconAsText(false));
     }
     
 
@@ -301,7 +302,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => IsAsurianEnvoy(), null, 200);
 
         starter.AddPlayerLine("asur_envoy_main_hub_diplomacy", "asur_envoy_main_hub", "asur_envoy_diplomacy",
-            "Can you help the eonir to improve the relationship with the Kingdoms of Men?", () => IsAsurianEnvoy(), AsurDiplomacyPrompt, 200);
+            "Can you help the eonir to improve the relationship with the Kingdoms of Men?", () => IsAsurianEnvoy(), null, 200);
 
         starter.AddPlayerLine("asur_envoy_main_hub_whyareyouhere", "asur_envoy_main_hub", "asur_envoy_whyareyouhere", "Why are you here?", () => IsAsurianEnvoy(),
             null, 200);
@@ -314,22 +315,30 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         starter.AddDialogLine("asur_envoy_money", "asur_envoy_money", "asur_envoy_money_choice",
             "Nothing easier than this. How much do you need?", () => IsAsurianEnvoy(), null, 200);
         starter.AddPlayerLine("asur_envoy_money_choice_1", "asur_envoy_money_choice", "back_to_main_hub_asur",
-            "{ASUR_MONEYRETURN1}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY1}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>asur_favor_price1, () => TransferMoney(1,asur_favor_price1), 200);
+            "{ASUR_MONEYRETURN1}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY1}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>=asur_favor_price1, () => TransferMoney(1,asur_favor_price1), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_2", "asur_envoy_money_choice", "back_to_main_hub_asur",
-            "{ASUR_MONEYRETURN2}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY2}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>asur_favor_price2, () => TransferMoney(10,asur_favor_price2), 200);
+            "{ASUR_MONEYRETURN2}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY2}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>=asur_favor_price2, () => TransferMoney(10,asur_favor_price2), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_3", "asur_envoy_money_choice", "back_to_main_hub_asur",
-            "{ASUR_MONEYRETURN3}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY3}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>asur_favor_price3, () => TransferMoney(30,asur_favor_price3), 200);
+            "{ASUR_MONEYRETURN3}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY3}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>=asur_favor_price3, () => TransferMoney(30,asur_favor_price3), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_quit", "asur_envoy_money_choice", "back_to_main_hub_asur",
             "I need to think about this.", () => IsAsurianEnvoy(), null, 200);
         
         //troops
-        starter.AddDialogLine("asur_envoy_troops", "asur_envoy_troops", "back_to_main_hub_asur",
+        starter.AddDialogLine("asur_envoy_troops", "asur_envoy_troops", "asur_envoy_troops_choice",
             "Obviously we can help. A batch of our garrison in Marienburg can be made available.", () => IsAsurianEnvoy(), null, 200);
+        starter.AddPlayerLine("asur_envoy_troops_choice_1", "asur_envoy_troops_choice", "back_to_main_hub_asur",
+            "Sure I accept (150 {EONIR_FAVOR}).", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>=150, ShowTroopSelectionScreen, 200);
+        starter.AddPlayerLine("asur_envoy_troops_choice_2", "asur_envoy_troops_choice", "back_to_main_hub_asur",
+            "I need to think about this.", () => IsAsurianEnvoy(), null, 200);
         
         //diplomacy
-        starter.AddDialogLine("asur_envoy_diplomacy", "asur_envoy_diplomacy", "back_to_main_hub_asur",
+        starter.AddDialogLine("asur_envoy_diplomacy", "asur_envoy_diplomacy", "asur_envoy_diplomacy_choice",
             "The Asur have diplomatic embassies through out the Empire, and have an embassy in Coronne. We can help the Eonir, to improve their overall relationship as a mediator. What do you me to try?", () => IsAsurianEnvoy(), null, 200);
-        
+        starter.AddPlayerLine("asur_envoy_diplomacy_choice_1", "asur_envoy_diplomacy_choice", "back_to_main_hub_asur",
+            "Sure I accept (400 {EONIR_FAVOR}).", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>=400, AsurDiplomacyPrompt, 200);
+        starter.AddPlayerLine("asur_envoy_diplomacy_choice_2", "asur_envoy_diplomacy_choice", "back_to_main_hub_asur",
+            "I need to think about this.", () => IsAsurianEnvoy(), null, 200);
+
         
         //why are you here
         
@@ -391,7 +400,68 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             return false;
         }
 
+        void ShowTroopSelectionScreen()
+        {
+            var roster = TroopRoster.CreateDummyTroopRoster();
+            
+            
+            var asurBaseTroop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_he_seaelf_militia");
 
+            var skillValue = Hero.MainHero.GetSkillValue(DefaultSkills.Charm);
+            var finished = false;
+            var count = 3;
+            while (!finished || count>=25)
+            {
+                if (MBRandom.RandomFloat < ((float)skillValue -10) / 300)
+                {
+                    count++;
+                }
+                else
+                {
+                    finished = true;
+                }
+            }
+
+            var troop = asurBaseTroop;
+            for (int i = 0; i < count; i++)
+            {
+                var upgradeFailed = false;
+                while (!upgradeFailed )
+                {
+                    if (troop.UpgradeTargets == null || troop.UpgradeTargets.Length == 0)
+                    {
+                        if (MBRandom.RandomFloat < ((float)skillValue -150)/ 300)
+                        {
+                            troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_he_white_lion_chrace");
+                        }
+                        break;
+                    }
+                  
+                    if (MBRandom.RandomFloat < ((float)skillValue -50)/ 300)
+                    {
+                        troop = troop.UpgradeTargets.GetRandomElement();
+                    }
+                    else
+                    {
+                        upgradeFailed=true;
+                    }
+                }
+
+                roster.AddToCounts(troop, 1);
+            }
+            
+            PartyScreenManager.OpenScreenAsReceiveTroops(roster, new TextObject("Asur support"), OnscreenClosed);
+
+            void OnscreenClosed(PartyBase leftOwnerParty, TroopRoster leftMemberRoster, TroopRoster leftPrisonRoster, PartyBase rightOwnerParty, TroopRoster rightMemberRoster, TroopRoster rightPrisonRoster, bool fromCancel)
+            {
+                if(fromCancel) return;
+
+                if (leftMemberRoster.Count < count)
+                {
+                    Hero.MainHero.AddCultureSpecificCustomResource(-150);
+                }
+            }
+        }
 
         void AsurDiplomacyPrompt()
         {
@@ -430,7 +500,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                         }
                     }
                 }
-                
+                Hero.MainHero.AddCultureSpecificCustomResource(-400);
             }
         }
     }
