@@ -1821,6 +1821,109 @@
       <EquipmentSet id="tor_eo_caravan_captain_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_he_seaelf_militia" default_group="infantry" level="11" name="{=str_tor_he_seaelf_militia}Sea Elf Militia" occupation="Soldier" culture="Culture.asur" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_he_seaelf_archer" />
+      <upgrade_target id="NPCCharacter.tor_he_seaelf_spearman" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_he_seaelf_militia_template" />
+      <EquipmentSet id="tor_he_seaelf_militia_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_he_seaelf_archer" default_group="ranged" level="21" name="{=str_tor_he_seaelf_archer}Sea Elf Archer" occupation="Soldier" culture="Culture.asur" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_he_seaelf_hawkeye" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_he_seaelf_archer_template" />
+      <EquipmentSet id="tor_he_seaelf_archer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_he_seaelf_hawkeye" default_group="ranged" level="31" name="{=str_tor_he_seaelf_hawkeye}Sea Elf Hawk Eye" occupation="Soldier" culture="Culture.asur" skill_template="SkillSet.tor_skills_level31" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_he_seaelf_hawkeye_template" />
+      <EquipmentSet id="tor_he_seaelf_hawkeye_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_he_seaelf_spearman" default_group="infantry" level="21" name="{=str_tor_he_seaelf_spearman}Sea Elf Spearman" occupation="Soldier" culture="Culture.asur" skill_template="SkillSet.tor_skills_level21" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_he_seaelf_sentinel" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_he_seaelf_spearman_template" />
+      <EquipmentSet id="tor_he_seaelf_spearman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_he_seaelf_sentinel" default_group="infantry" level="31" name="{=str_tor_he_seaelf_sentinel}Sea Elf Sentinel" occupation="Soldier" culture="Culture.asur" skill_template="SkillSet.tor_skills_level31" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_he_seaelf_sentinel_template" />
+      <EquipmentSet id="tor_he_seaelf_sentinel_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_he_white_lion_chrace" default_group="infantry" level="46" name="{=str_tor_he_white_lion_chrace}White Lion of Chrace" occupation="Soldier" culture="Culture.asur" skill_template="SkillSet.tor_skills_level46" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+      <hair_tags>
+        <hair_tag name="ElfHair" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_he_white_lion_chrace_template" />
+      <EquipmentSet id="tor_he_white_lion_chrace_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_de_conscript" default_group="infantry" level="6" name="{=str_tor_de_conscript}Druchii Conscript" occupation="Soldier" culture="Culture.druchii" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
