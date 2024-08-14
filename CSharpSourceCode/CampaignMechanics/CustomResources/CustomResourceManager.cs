@@ -60,7 +60,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     "Forest Binding is used to upgrade and maintain troops of the woodelves, as well as retrieve upgrades at the Oak of Ages.", "harmony_icon_45", TORConstants.Cultures.ASRAI, ForestHarmonyHelper.GetForestHarmonyInfo));
             Instance._resources.Add("CouncilFavor",
                 new CustomResource("CouncilFavor", "Eonir Council Favor",
-                    "Retrieve power in the Eonir council and use it to your benefit.", "favor_icon_45", TORConstants.Cultures.EONIR));
+                    "Retrieve power in the Eonir council and use it to your benefit.", "favor_icon_45", TORConstants.Cultures.EONIR,FavorHelper.GetFavorInfo));
             
             Instance._resources.Add("WindsOfMagic",
                 new CustomResource("WindsOfMagic", "Winds of Magic",

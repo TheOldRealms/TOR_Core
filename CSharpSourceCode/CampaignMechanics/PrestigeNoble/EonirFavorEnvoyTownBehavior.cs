@@ -35,8 +35,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private bool _isDruchiiEnvoyTrade;
 
     private int druchii_force_war_price_base = 750;
-    
     private int druchii_slaver_tide_price_base = 1000;
+
+    private int empireCalculatedExchangeBack;
+    private int peaceCost = 750;
 
     private Hero _druchiiEnvoy;
     private Hero _asurEnvoy;
@@ -95,14 +97,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => !EonirEnvoyDialogCondition(), null, 200);
         
 
-        campaignGameStarter.AddDialogLine("envoy_hub_intro_spellsinger", "start", "spellsinger_envoy_main_hub", "How can the Forestborn be of use?",
+        campaignGameStarter.AddDialogLine("envoy_hub_intro_spellsinger", "start", "spellsinger_envoy_main_hub", "The forest told of me your coming, yet not why. What have you come to ask of me?",
             () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_world_roots", "spellsinger_envoy_main_hub", "close_window",
             "I need to travel to roots of the Asrai, would you guide me over it?", () => IsSpellsingerEnvoy(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_favour_to_prestige", "spellsinger_envoy_main_hub", "close_window",
-            "I would like to make the influence of my clan count for your people. If your people willing to act in my favor ", () => IsSpellsingerEnvoy() && Clan.PlayerClan.Influence>0, null, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_troop_refill", "spellsinger_envoy_main_hub", "spellsinger_envoy_troop_refill",
+            "We need the Forestborn, can you call for them?", () => IsSpellsingerEnvoy(), null, 200);
 
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_magic", "spellsinger_envoy_main_hub", "back_to_main_hub_spellsinger", "{=tor_spelltrainer_eonir_open_book_str}I want to learn more magic can you help?.", () => MobileParty.MainParty.HasSpellCasterMember()&&Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && IsSpellsingerEnvoy(), openbookconsequence, 200, null);
@@ -113,18 +115,54 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_close", "spellsinger_envoy_main_hub", "close_window", "That's all thank you.",
             () => IsSpellsingerEnvoy(), null, 200);
+        
+        //refill
+        
+        
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill_choice",
+            "Many Forestborn, are living as nomades far from our villages. You will only reach them if you call for them. You are willing me to do so?", () => IsSpellsingerEnvoy(), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "spellsinger_envoy_troop_refill_choice", "spellsinger_envoy_troop_refill_result",
+            "Thats kind. I am sure we will be able to pay that favor back one day.", () => IsSpellsingerEnvoy()&& 200<=Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
+        campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_2", "spellsinger_envoy_troop_refill_choice", "back_to_main_hub_spellsinger",
+            "I need to think about this.", () => IsSpellsingerEnvoy(), null, 200);
+            
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill_result", "spellsinger_envoy_troop_refill_result", "back_to_main_hub_spellsinger",
+            "I will see what I can do.", () => IsSpellsingerEnvoy(), RefillVillages, 200);
 
+
+        void RefillVillages()
+        {
+            foreach (var village in Settlement.All.WhereQ(x=> x.IsVillage && x.Culture.StringId == TORConstants.Cultures.EONIR))
+            {
+                foreach (var notable in village.Notables)
+                {
+                    var eonirCulture = village.Culture;
+                    for (int i = 0; i < notable.VolunteerTypes.Length; i++)
+                    {
+                        if (notable.VolunteerTypes[i] == null)
+                        {
+                            notable.VolunteerTypes[i] = eonirCulture.BasicTroop;
+                        }
+                        
+                    }
+                }
+            }
+            
+            Hero.MainHero.AddCultureSpecificCustomResource(-200);
+            Hero.MainHero.AddSkillXp(DefaultSkills.Charm,200f);
+        }
         
                 //why are you here
         
         campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere", "spellsinger_envoy_whyareyouhere", "envoy_spellsinger_wayh_reaction",
             "I am representing a coven of Spellsingers dedicated to the defense of Laurelorn. While the Council is busy with politics, the Faniour, the forest born elves, are endagered by all the threads of the forest.", () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_displeased", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
-            "Why are you then not defending the forest?", () => IsSpellsingerEnvoy(), null, 200);
+            "The forest is beset by destructive beasts and men alike, what then, are you protecting?", () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_undecided", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
             "What matters can the Council solve for you? What can you give me in turn?", () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_spellsinger_wayh_reaction_agreement", "envoy_spellsinger_wayh_reaction", "spellsinger_envoy_whyareyouhere_2",
-            "The Faniour aswell as the Touriour are Eonir. Your matters, are also matters of the Touriour.", () => IsSpellsingerEnvoy(), null, 200);
+            "The Faniour aswell as the Touriour follow the same people. Your matters, are my matters.", () => IsSpellsingerEnvoy(), null, 200);
         
         campaignGameStarter.AddDialogLine("spellsinger_envoy_whyareyouhere_2", "spellsinger_envoy_whyareyouhere_2", "spellsinger_envoy_whyareyouhere_3",
             "I am not a man of politics. I am here to stand our case. I know that seemingly the Council, sometimes forgets about us. Thats why I am here, and standing for the forest people. I know that nothing works here, without giving something in return.", () => IsSpellsingerEnvoy(), null, 200);
@@ -164,14 +202,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_prestige_to_favour", "empire_envoy_main_hub", "empire_envoy_prestige_to_favour",
             "I bring quality goods to trade and wish to build my reputation amongst the High Council. Are you interested?", () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("Prestige")> 3, null, 200);
 
-        campaignGameStarter.AddPlayerLine("empire_envoy_main_favour_to_prestige", "empire_envoy_main_hub", "close_window",
+        campaignGameStarter.AddPlayerLine("empire_envoy_main_favour_to_prestige", "empire_envoy_main_hub", "empire_envoy_favour_to_prestige",
             "I need a few prestigious goods of the empire, what does it take me to get them from you?", () => IsEmpireEnvoy(), null, 200);
 
 
         campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_empire_peace", "empire_envoy_main_hub", "empire_envoy_force_peace",
             "Our people need to make peace. What does it take to stop the war?", () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count>0, null, 200);
 
-        campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_whyareyouhere", "empire_envoy_main_hub", "close_window", "Why are you here?",
+        campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_whyareyouhere", "empire_envoy_main_hub", "empire_envoy_whyareyouhere", "Why are you here?",
             () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_close", "empire_envoy_main_hub", "close_window", "That's all thank you.",
@@ -180,14 +218,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         //force peace
         campaignGameStarter.AddDialogLine("empire_envoy_force_peace", "empire_envoy_force_peace", "empire_envoy_force_peace_choice",
-            "The Empire and the Council should make peace. Your people, neither ours will do this without hesitantion (750 Favour)", () => IsEmpireEnvoy(), null, 200);
+            "The Empire and the Council should make peace. Your people, neither ours will do this without hesitantion ({PEACE_COSTS}{EONIR_FAVOR})", () => IsEmpireEnvoy(), null, 200);
         
-        campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "empire_envoy_force_peace_choice", "druchii_envoy_force_war_choice_result",
-            "Let's do this.", () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count>0, null, 200);
+        campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "empire_envoy_force_peace_choice", "empire_envoy_force_peace_choice_result",
+            "Let's do this.", () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count>0 && peaceCost<=Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_2", "empire_envoy_force_peace_choice", "back_to_main_hub_empire",
             "I need to think about this.", () => IsEmpireEnvoy(), null, 200);
             
-        campaignGameStarter.AddDialogLine("druchii_envoy_force_war_choice_result", "druchii_envoy_force_war_choice_result", "back_to_main_hub_empire",
+        campaignGameStarter.AddDialogLine("empire_envoy_force_peace_choice_result", "empire_envoy_force_peace_choice_result", "back_to_main_hub_empire",
             "We will see what we can do.", () => IsEmpireEnvoy(), ForcePeacePrompt, 200);
 
 
@@ -229,6 +267,9 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 {
                     MakePeaceAction.Apply(kingdom,laurelorn,0);
                 }
+                
+                Hero.MainHero.AddCultureSpecificCustomResource(-peaceCost);
+                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, peaceCost);
             }
         }
         
@@ -236,29 +277,76 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //Exchange all Prestige to Council Favor
         
         campaignGameStarter.AddDialogLine("empire_envoy_prestige_to_favour", "empire_envoy_prestige_to_favour", "empire_envoy_prestige_to_favour_choice",
-            "Obviously your offering the empire can benefit the Council.", () => IsEmpireEnvoy(), null, 200);
+            "Obviously your offering the empire can benefit the Council.(Exchange {ORIGINAL_PRESTIGE} to {RETURN_FAVOR}{EONIR_FAVOR}) ", () => IsEmpireEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("empire_envoy_prestige_to_favour_choice_1", "empire_envoy_prestige_to_favour_choice", "empire_envoy_prestige_to_favour_result",
             "Let's do this.", () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("Prestige")> 3, null, 200);
         campaignGameStarter.AddPlayerLine("empire_envoy_prestige_to_favour_choice_2", "empire_envoy_prestige_to_favour_choice", "back_to_main_hub_empire",
             "I need to think about this.", () => IsEmpireEnvoy(), null, 200);
         
-        campaignGameStarter.AddDialogLine("back_to_main_hub_empire", "back_to_main_hub_empire", "empire_envoy_main_hub_close",
-            "I am glad to make businesses with you", () => IsEmpireEnvoy(), ExchangePrestigeToFavor, 200);
-        
+        campaignGameStarter.AddDialogLine("empire_envoy_prestige_to_favour_result", "empire_envoy_prestige_to_favour_result", "back_to_main_hub_empire",
+            "I am glad to make businesses with you(Exchanged {ORIGINAL_PRESTIGE} Prestige to {RETURN_FAVOR}{EONIR_FAVOR})", () => IsEmpireEnvoy(), ExchangePrestigeToFavor, 200);
         
         void ExchangePrestigeToFavor()
         {
             var prestige = Hero.MainHero.GetCustomResourceValue("Prestige");
-            var exchange = (int)(prestige * (2f / 3) * Hero.MainHero.GetSkillValue(DefaultSkills.Charm)/300);
-            Hero.MainHero.AddCultureSpecificCustomResource(exchange);
+            Hero.MainHero.AddCultureSpecificCustomResource(empireCalculatedExchangeBack);
+            
+            Hero.MainHero.AddSkillXp(DefaultSkills.Charm, empireCalculatedExchangeBack);
             
             Hero.MainHero.AddCustomResource("Prestige",-prestige);
         }
         
+        //Favor to Prestige
+        
+        campaignGameStarter.AddDialogLine("empire_envoy_favour_to_prestige", "empire_envoy_favour_to_prestige", "empire_envoy_favour_to_prestige_choice",
+            "The Empires ambitions need to way in the Council. (gain for 50 Council Favour 30 Prestige)", () => IsEmpireEnvoy(), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("empire_envoy_favour_to_prestige_choice_1", "empire_envoy_favour_to_prestige_choice", "empire_envoy_favour_to_prestige_result",
+            "Let's do this.", () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("CouncilFavor")> 50, null, 200);
+        campaignGameStarter.AddPlayerLine("empire_envoy_favour_to_prestige_choice_2", "empire_envoy_favour_to_prestige_choice", "back_to_main_hub_empire",
+            "I need to think about this.", () => IsEmpireEnvoy(), null, 200);
+        
+        campaignGameStarter.AddDialogLine("empire_envoy_favour_to_prestige_result", "empire_envoy_favour_to_prestige_result", "back_to_main_hub_empire",
+            "I am glad to make businesses with you.", () => IsEmpireEnvoy(), ExchangeFavorToPrestige, 200);
+        
+        
+        
+        // why are you here?
+        
+        campaignGameStarter.AddDialogLine("empire_envoy_whyareyouhere", "empire_envoy_whyareyouhere", "envoy_empire_wayh_reaction",
+            "As an envoy of Graf Boris Todbringer I represent the interests of Middenland, and to a minor extent that of the Empire as a whole. We wish to maintain peaceful relations with Eonir, built on trust, trade and mutual respect so that we may all benefit.", () => IsEmpireEnvoy(), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("envoy_empire_wayh_reaction_displeased", "envoy_empire_wayh_reaction", "empire_envoy_whyareyouhere_2",
+            "You encroach upon our lands without heeding what is sacred, yet talk to us about respect? You do not belong here.", () => IsEmpireEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("envoy_empire_wayh_reaction_undecided", "envoy_empire_wayh_reaction", "empire_envoy_whyareyouhere_2",
+            "It benefits neither of us to make enemies when they aren't needed, trade and peace can only benefit both our peoples.", () => IsEmpireEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("envoy_empire_wayh_reaction_agreement", "envoy_empire_wayh_reaction", "empire_envoy_whyareyouhere_2",
+            "The problems of the empire are shared with the Eonir. We need to fight together side on side, all of our common enemies.", () => IsEmpireEnvoy(), null, 200);
+        
+        campaignGameStarter.AddDialogLine("empire_envoy_whyareyouhere_2", "empire_envoy_whyareyouhere_2", "empire_envoy_whyareyouhere_3",
+            "We seek only to cooperate, to the mutual benefit of all involved. Conflict between our peoples serves to aid none but our enemies, surely you can agree with me on this.", () => IsEmpireEnvoy(), null, 200);
+
+        campaignGameStarter.AddDialogLine("empire_envoy_whyareyouhere_3", "empire_envoy_whyareyouhere_3", "back_to_main_hub_empire",
+            "My word carries weight, as does that of our Graf. I can ensure a state of peace and profitable trade between our nations, we may even be able to provide mercenaries should your lands ever be threatened. ...Think on it, we both have much to gain.", () => IsEmpireEnvoy(), null, 200);
+        
+        void ExchangeFavorToPrestige()
+        {
+            Hero.MainHero.AddCustomResource("CouncilFavor",-50);
+            Hero.MainHero.AddCustomResource("Prestige",30);
+        }
+        
+        void calculateCost(float prestige)
+        {
+            empireCalculatedExchangeBack = (int)(prestige * (1f / 2) + prestige *(1f/3* (Hero.MainHero.GetSkillValue(DefaultSkills.Charm)/300f)));
+            GameTexts.SetVariable("ORIGINAL_PRESTIGE",prestige);
+            GameTexts.SetVariable("RETURN_FAVOR",empireCalculatedExchangeBack);
+            GameTexts.SetVariable("PEACE_COSTS",peaceCost);
+        }
         
         bool IsEmpireEnvoy()
         {
+            calculateCost(Hero.MainHero.GetCustomResourceValue("Prestige"));
             var partner = CharacterObject.OneToOneConversationCharacter;
             if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("EmpireEnvoy");
 
@@ -361,6 +449,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 }
                 
                 Hero.MainHero.AddCultureSpecificCustomResource(-(druchii_force_war_price_base-Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
+                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, druchii_force_war_price_base);
             }
         }
         
@@ -432,6 +521,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 DeclareWarAction.ApplyByDefault(slaverBay.OwnerClan,kingdom);
 
                 Hero.MainHero.AddCultureSpecificCustomResource(-(druchii_slaver_tide_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
+                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, druchii_slaver_tide_price_base);
             }
         }
         
@@ -600,6 +690,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             
             Hero.MainHero.ChangeHeroGold(revenue);
             Hero.MainHero.AddCultureSpecificCustomResource(-favorPrice);
+            Hero.MainHero.AddSkillXp(DefaultSkills.Charm, favorPrice);
 
         }
         
@@ -671,6 +762,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 if (leftMemberRoster.Count < count)
                 {
                     Hero.MainHero.AddCultureSpecificCustomResource(-150);
+                    
+                    Hero.MainHero.AddSkillXp(DefaultSkills.Charm, 150);
                 }
             }
         }
@@ -713,6 +806,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                     }
                 }
                 Hero.MainHero.AddCultureSpecificCustomResource(-400);
+                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, 400);
             }
         }
     }
