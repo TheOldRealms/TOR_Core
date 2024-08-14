@@ -141,7 +141,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         bool IsSpellsingerEnvoy()
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null) return partner.HeroObject.HasAttribute("SpellsingerEnvoy");
+            if (partner != null&& partner.IsHero) return partner.HeroObject.HasAttribute("SpellsingerEnvoy");
 
             return false;
         }
@@ -161,15 +161,15 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddDialogLine("envoy_hub_intro_empire", "start", "empire_envoy_main_hub", "How can the empire help?",
             () => IsEmpireEnvoy(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_prestige_to_favour", "empire_envoy_main_hub", "close_window",
-            "I want to use my prestigious goods, to gain more power in the council.", () => IsEmpireEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_prestige_to_favour", "empire_envoy_main_hub", "empire_envoy_prestige_to_favour",
+            "I bring quality goods to trade and wish to build my reputation amongst the High Council. Are you interested?", () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("Prestige")> 3, null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_main_favour_to_prestige", "empire_envoy_main_hub", "close_window",
             "I need a few prestigious goods of the empire, what does it take me to get them from you?", () => IsEmpireEnvoy(), null, 200);
 
 
-        campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_empire_peace", "empire_envoy_main_hub", "close_window",
-            "Our people need to make peace. What does it take to stop the war?", () => IsEmpireEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_empire_peace", "empire_envoy_main_hub", "empire_envoy_force_peace",
+            "Our people need to make peace. What does it take to stop the war?", () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count>0, null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_whyareyouhere", "empire_envoy_main_hub", "close_window", "Why are you here?",
             () => IsEmpireEnvoy(), null, 200);
@@ -178,18 +178,101 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => IsEmpireEnvoy(), null, 200);
         
         
+        //force peace
+        campaignGameStarter.AddDialogLine("empire_envoy_force_peace", "empire_envoy_force_peace", "empire_envoy_force_peace_choice",
+            "The Empire and the Council should make peace. Your people, neither ours will do this without hesitantion (750 Favour)", () => IsEmpireEnvoy(), null, 200);
         
+        campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "empire_envoy_force_peace_choice", "druchii_envoy_force_war_choice_result",
+            "Let's do this.", () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count>0, null, 200);
+        campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_2", "empire_envoy_force_peace_choice", "back_to_main_hub_empire",
+            "I need to think about this.", () => IsEmpireEnvoy(), null, 200);
+            
+        campaignGameStarter.AddDialogLine("druchii_envoy_force_war_choice_result", "druchii_envoy_force_war_choice_result", "back_to_main_hub_empire",
+            "We will see what we can do.", () => IsEmpireEnvoy(), ForcePeacePrompt, 200);
 
 
+        List<Kingdom> AllEmpireFactionsAtWar()
+        {
+            var laurelorn = Campaign.Current.Kingdoms.FirstOrDefault(x => x.StringId == "laurelorn");
+            var allElectorStatesAtWar = Campaign.Current.Kingdoms.WhereQ(x => !x.IsEliminated&& x.Culture.StringId==TORConstants.Cultures.EMPIRE && (x.IsAtWarWith(laurelorn) || Hero.MainHero.IsKingdomLeader&& x.IsAtWarWith(Hero.MainHero.Clan.Kingdom))).ToList();
 
+            return allElectorStatesAtWar;
+        }
+        
+        void ForcePeacePrompt()
+        {
+            List<InquiryElement> list = [];
+
+            var laurelorn = Campaign.Current.Kingdoms.FirstOrDefault(x => x.StringId == "laurelorn");
+
+            var allElectorStatesAtWar = AllEmpireFactionsAtWar();
+
+            foreach (var kingdom in allElectorStatesAtWar)
+            {
+                list.Add(new InquiryElement(kingdom,kingdom.EncyclopediaTitle.ToString(),null,true,"Force Peace with"));
+            }
+            
+            if (list.IsEmpty()) return;
+            
+            var inquirydata = new MultiSelectionInquiryData("Force Peace", "Force an empire state to be in peace with the eonir", list, true, 1, 1, "Confirm", "Cancel", ForcePeace, null,"",true);
+            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+
+
+            void ForcePeace(List<InquiryElement> inquiryElements)
+            {
+                var kingdom = (Kingdom)inquiryElements[0].Identifier;
+                if (Hero.MainHero.IsKingdomLeader)
+                {
+                    MakePeaceAction.Apply(kingdom,Hero.MainHero.Clan.Kingdom,0);
+                }
+                else
+                {
+                    MakePeaceAction.Apply(kingdom,laurelorn,0);
+                }
+            }
+        }
+        
+        
+        //Exchange all Prestige to Council Favor
+        
+        campaignGameStarter.AddDialogLine("empire_envoy_prestige_to_favour", "empire_envoy_prestige_to_favour", "empire_envoy_prestige_to_favour_choice",
+            "Obviously your offering the empire can benefit the Council.", () => IsEmpireEnvoy(), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("empire_envoy_prestige_to_favour_choice_1", "empire_envoy_prestige_to_favour_choice", "empire_envoy_prestige_to_favour_result",
+            "Let's do this.", () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("Prestige")> 3, null, 200);
+        campaignGameStarter.AddPlayerLine("empire_envoy_prestige_to_favour_choice_2", "empire_envoy_prestige_to_favour_choice", "back_to_main_hub_empire",
+            "I need to think about this.", () => IsEmpireEnvoy(), null, 200);
+        
+        campaignGameStarter.AddDialogLine("back_to_main_hub_empire", "back_to_main_hub_empire", "empire_envoy_main_hub_close",
+            "I am glad to make businesses with you", () => IsEmpireEnvoy(), ExchangePrestigeToFavor, 200);
+        
+        
+        void ExchangePrestigeToFavor()
+        {
+            var prestige = Hero.MainHero.GetCustomResourceValue("Prestige");
+            var exchange = (int)(prestige * (2f / 3) * Hero.MainHero.GetSkillValue(DefaultSkills.Charm)/300);
+            Hero.MainHero.AddCultureSpecificCustomResource(exchange);
+            
+            Hero.MainHero.AddCustomResource("Prestige",-prestige);
+        }
+        
+        
         bool IsEmpireEnvoy()
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null) return partner.HeroObject.HasAttribute("EmpireEnvoy");
+            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("EmpireEnvoy");
 
             return false;
         }
+        
+        //back to hub
+        
+        campaignGameStarter.AddDialogLine("back_to_main_hub_empire", "back_to_main_hub_empire", "empire_envoy_main_hub",
+            "Is there another way I can be of service?", () => IsEmpireEnvoy(),null, 200);
+        
     }
+
+ 
 
     private void AddDruchiiEnvoyDialogLines(CampaignGameStarter campaignGameStarter)
     {
@@ -394,7 +477,9 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             _isDruchiiEnvoyTrade = false;
             setDruchiiPrices();
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null) return partner.HeroObject.HasAttribute("DruchiiEnvoy");
+            
+            
+            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("DruchiiEnvoy");
 
             return false;
         }
@@ -522,7 +607,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         {
             SetupPrices();
             var partner = CharacterObject.OneToOneConversationCharacter;
-            if (partner != null) return partner.HeroObject.HasAttribute("AsurEnvoy");
+            if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("AsurEnvoy");
 
             return false;
         }
