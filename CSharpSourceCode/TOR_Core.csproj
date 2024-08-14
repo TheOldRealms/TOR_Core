@@ -606,6 +606,7 @@
     <Compile Include="Extensions\GameModelsExtensions.cs" />
     <Compile Include="Extensions\HeroExtensions.cs" />
     <Compile Include="Extensions\ItemObjectExtensions.cs" />
+    <Compile Include="Extensions\KingdomExtension.cs" />
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />

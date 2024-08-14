@@ -8,11 +8,14 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -29,6 +32,11 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private int asur_favor_price1 = 100;
     private int asur_favor_price2 = 500;
     private int asur_favor_price3 = 1000;
+    private bool _isDruchiiEnvoyTrade;
+
+    private int druchii_force_war_price_base = 750;
+    
+    private int druchii_slaver_tide_price_base = 1000;
 
     private Hero _druchiiEnvoy;
     private Hero _asurEnvoy;
@@ -42,8 +50,25 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameStarted);
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
+        
+        CampaignEvents.OnPrisonerDonatedToSettlementEvent.AddNonSerializedListener(this, OnPrisonersSold);
     }
 
+    private void OnPrisonersSold(MobileParty arg1, FlattenedTroopRoster arg2, Settlement arg3)
+    {
+        if (_isDruchiiEnvoyTrade)
+        {
+            foreach (var element in arg2)
+            {
+                if (!element.Troop.IsHero)
+                {
+                    Hero.MainHero.AddCultureSpecificCustomResource(element.Troop.Tier);
+                    arg3.Party.PrisonRoster.RemoveTroop(element.Troop);
+                }
+            }
+        }
+  
+    }
     private void OnGameMenuOpened(MenuCallbackArgs obj)
     {
         EnforceEnvoyLocation();
@@ -199,37 +224,133 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         //force war
         campaignGameStarter.AddDialogLine("druchii_envoy_force_war", "druchii_envoy_force_war", "druchii_envoy_force_war_choice",
-            "You would be surprised what trouble  the tip of a Khainite dagger could cause. If it finds the wrong throat to the wrong time, war can emerge.", () => IsDruchiiEnvoy(), null, 200);
+            "You would be surprised what trouble  the tip of a Khainite dagger could cause. If it finds the wrong throat to the wrong time, war can emerge. (Declare war between 2 factions ({FORCEWAR_PRICE}{EONIR_FAVOR})", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("druchii_envoy_force_war_choice_1", "druchii_envoy_force_war_choice", "druchii_envoy_force_war_choice_result",
-            "Let's do this.", () => IsDruchiiEnvoy(), null, 200);
+            "Let's do this.", () => IsDruchiiEnvoy() && (druchii_force_war_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)<=Hero.MainHero.GetCultureSpecificCustomResourceValue()), null, 200);
         campaignGameStarter.AddPlayerLine("druchii_envoy_force_war_choice_2", "druchii_envoy_force_war_choice", "back_to_main_hub_druchii",
             "I need to think about this.", () => IsDruchiiEnvoy(), null, 200);
             
-        campaignGameStarter.AddDialogLine("druchii_envoy_force_war_choice_result", "druchii_envoy_force_war_choice_result", "druchii_envoy_main_hub",
-            "We will see what we can do.", () => IsDruchiiEnvoy(), null, 200);
+        campaignGameStarter.AddDialogLine("druchii_envoy_force_war_choice_result", "druchii_envoy_force_war_choice_result", "back_to_main_hub_druchii",
+            "We will see what we can do.", () => IsDruchiiEnvoy(), ForceWarPrompt, 200);
         
         //exchange prisoners
         
         campaignGameStarter.AddDialogLine("druchii_envoy_prisoners", "druchii_envoy_prisoners", "back_to_main_hub_druchii",
-            "What a promising trade. This will be credited for your next negotiation with the Witch king I believe the Council will like this.", () => IsDruchiiEnvoy(), null, 200);
+            "What a promising trade. This will be credited for your next negotiation with the Witch king I believe the Council will like this.", () => IsDruchiiEnvoy(), ExchangePrisoners, 200);
+
+
+        void ExchangePrisoners()
+        {
+            _isDruchiiEnvoyTrade = true;
+            
+            PartyScreenManager.OpenScreenAsDonatePrisoners();
+        }
         
+        void ForceWarPrompt()
+        {
+            List<InquiryElement> list = [];
+
+            var allKingdoms = Campaign.Current.Kingdoms.WhereQ(x => !x.IsEliminated).ToList();
+
+            foreach (var kingdom in allKingdoms)
+            {
+                list.Add(new InquiryElement(kingdom,kingdom.EncyclopediaTitle.ToString(),null,true,"Force war between two kingdoms"));
+            }
+            
+            if (list.IsEmpty()) return;
+            
+            var inquirydata = new MultiSelectionInquiryData("Improve Relationship with one faction", "Select 2 Factions war will emerge between.", list, true, 2, 2, "Confirm", "Cancel", ForceWar, null,"",true);
+            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+
+            void ForceWar(List<InquiryElement> inquiryElements)
+            {
+                var kingdom1 = (Kingdom)inquiryElements[0].Identifier;
+                var kingdom2 = (Kingdom)inquiryElements[1].Identifier;
+
+                if (MBRandom.RandomFloat < 0.5f)
+                {
+                    DeclareWarAction.ApplyByDefault(kingdom1, kingdom2);
+                }
+                else
+                {
+                    DeclareWarAction.ApplyByDefault(kingdom2,kingdom1);
+                }
+                
+                Hero.MainHero.AddCultureSpecificCustomResource(-(druchii_force_war_price_base-Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
+            }
+        }
         
         
         //slaver tide
         
         campaignGameStarter.AddDialogLine("druchii_envoy_slaver_tide", "druchii_envoy_slaver_tide", "druchii_envoy_slaver_tide_choice",
-            "...this will cost you dearly your influence over the Council... (1000 Favor) I could see what I can do.  So where do you suggest our Black Arks to anchor?", () => IsDruchiiEnvoy(), null, 200);
+            "...this will cost you dearly your influence over the Council... ({SLAVERTIDE_PRICE}{EONIR_FAVOR}) I could see what I can do.  So where do you suggest our Black Arks to anchor?", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("druchii_envoy_choice_1", "druchii_envoy_slaver_tide_choice", "druchii_envoy_slaver_tide_choice_result",
-            "Let's do this.", () => IsDruchiiEnvoy(), null, 200);
+            "Let's do this({SLAVERTIDE_PRICE}{EONIR_FAVOR}).", () => IsDruchiiEnvoy() && (druchii_slaver_tide_price_base-Hero.MainHero.GetSkillValue(DefaultSkills.Charm))<=Hero.MainHero.GetCultureSpecificCustomResourceValue(), SlaverTidePrompt, 200);
         
         campaignGameStarter.AddPlayerLine("druchii_envoy_choice_2", "druchii_envoy_slaver_tide_choice", "back_to_main_hub_druchii",
             "I need to think about this.", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddDialogLine("druchii_envoy_slaver_tide_choice_result", "druchii_envoy_slaver_tide_choice_result", "back_to_main_hub_druchii",
-            "Our slaver fleets will head towards there. I will pull a few strings to let it happen", () => IsDruchiiEnvoy(), null, 200);
-        
+            "Our slaver fleets will head towards there. I will pull a few strings to let it happen", () => IsDruchiiEnvoy(), SlaverTidePrompt, 200);
+
+
+        void SlaverTidePrompt()
+        {
+            List<InquiryElement> list = [];
+            var coastalKingdoms = Campaign.Current.Kingdoms.WhereQ(x => !x.IsEliminated && x.IsCoastalKingdom()).ToList();
+
+            foreach (var kingdom in coastalKingdoms)
+            {
+                list.Add(new InquiryElement(kingdom,kingdom.Name.ToString(),null,true,""));
+            }
+            
+            var inquirydata = new MultiSelectionInquiryData("Choose kingdom to swarm of druchii troops", "Select a kingdom being swarmed by druchii slaver troops.", list, true, 1, 1, "Confirm", "Cancel", SwarmKingdomWithDruchii, null,"",true);
+
+            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+            void SwarmKingdomWithDruchii(List<InquiryElement> inquiryElements)
+            {
+                var kingdom = (Kingdom)inquiryElements[0].Identifier;
+
+                var slaverBay = Campaign.Current.Settlements.FirstOrDefaultQ(x => x.StringId == "darkelf_camp_01");
+
+                var slaverBaySettlementComponent =(SlaverCampComponent)slaverBay.SettlementComponent;
+
+                if (slaverBaySettlementComponent != null)
+                {
+                    foreach (var settlement in kingdom.Settlements)
+                    {
+                        if(!settlement.IsVillage) continue;
+
+                        if (MBRandom.RandomFloat < 0.25f)
+                        {
+                            slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty1);
+                            slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty2);
+                            var ta = druchiiParty1.MemberRoster.CloneRosterData();
+                            
+                            druchiiParty1.Position2D = settlement.Position2D;
+                            druchiiParty2.Position2D = settlement.Position2D;
+                            
+                            druchiiParty1.MemberRoster.Add(ta);
+                            druchiiParty2.MemberRoster.Add(ta);
+                            continue;
+                        }
+                        slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty);
+
+                        druchiiParty.Position2D = settlement.Position2D;
+
+                        var t = druchiiParty.MemberRoster.CloneRosterData();
+                        druchiiParty.MemberRoster.Add(t);
+                    }
+                }
+                
+                DeclareWarAction.ApplyByDefault(slaverBay.OwnerClan,kingdom);
+
+                Hero.MainHero.AddCultureSpecificCustomResource(-(druchii_slaver_tide_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
+            }
+        }
         
         
         // why are you here?
@@ -259,13 +380,19 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //back to hub
         
         campaignGameStarter.AddDialogLine("back_to_main_hub_druchii", "back_to_main_hub_druchii", "druchii_envoy_main_hub",
-            "Is there something else the Witch king could do for you?", () => IsDruchiiEnvoy(), null, 200);
+            "Is there something else the Witch king could do for you?", () => IsDruchiiEnvoy(),null, 200);
+
         
-        
-        
+        void setDruchiiPrices()
+        {
+            GameTexts.SetVariable("FORCEWAR_PRICE",druchii_force_war_price_base-Hero.MainHero.GetSkillValue(DefaultSkills.Charm));
+            GameTexts.SetVariable("SLAVERTIDE_PRICE",druchii_slaver_tide_price_base-Hero.MainHero.GetSkillValue(DefaultSkills.Charm));
+        }
         
         bool IsDruchiiEnvoy()
         {
+            _isDruchiiEnvoyTrade = false;
+            setDruchiiPrices();
             var partner = CharacterObject.OneToOneConversationCharacter;
             if (partner != null) return partner.HeroObject.HasAttribute("DruchiiEnvoy");
 
@@ -512,6 +639,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
     private bool EonirEnvoyDialogCondition()
     {
+        if (Settlement.CurrentSettlement == null) return false;
         return Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && Settlement.CurrentSettlement.StringId == "town_LL1";
     }
 
