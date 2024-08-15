@@ -11,6 +11,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.SpellBook;
@@ -94,13 +95,13 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private void AddSpellsingerEnvoyDialogLines(CampaignGameStarter campaignGameStarter)
     {
         campaignGameStarter.AddDialogLine("envoy_foreign", "start", "close_window", "You are not part of these people, begone.",
-            () => !EonirEnvoyDialogCondition(), null, 200);
+            () => EonirEnvoyDialogCondition()&& Hero.MainHero.Culture.StringId!=TORConstants.Cultures.EONIR, null, 200);
         
 
         campaignGameStarter.AddDialogLine("envoy_hub_intro_spellsinger", "start", "spellsinger_envoy_main_hub", "The forest told of me your coming, yet not why. What have you come to ask of me?",
             () => IsSpellsingerEnvoy(), null, 200);
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_world_roots", "spellsinger_envoy_main_hub", "close_window",
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_world_roots", "spellsinger_envoy_main_hub", "spellsinger_envoy_world_roots",
             "I need to travel to roots of the Asrai, would you guide me over it?", () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_troop_refill", "spellsinger_envoy_main_hub", "spellsinger_envoy_troop_refill",
@@ -116,14 +117,25 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_close", "spellsinger_envoy_main_hub", "close_window", "That's all thank you.",
             () => IsSpellsingerEnvoy(), null, 200);
         
+        //travel info
+        
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_world_roots", "spellsinger_envoy_world_roots", "spellsinger_envoy_world_roots_choice",
+            "See , I can help you with that, I won't do for nothing though. Help our people to gain more power, and I will allow you to travel via the roots.", () => IsSpellsingerEnvoy(), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_world_roots_choice_1", "spellsinger_envoy_world_roots_choice", "spellsinger_envoy_world_roots_results",
+            "This is fine. I am willing to help you. How can I travel then?", () => IsSpellsingerEnvoy(), null, 200);
+        
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_world_roots_results", "spellsinger_envoy_world_roots_results", "back_to_main_hub_spellsinger",
+            "Look for the world root end in the Laurelorn forest, a spellsinger will help you travel along the roots. We can take you to the Maisontaal, in the far away Bretonnia. I am not willing to upset the Asrai, therefore we will not take you the whole root up to their Oak of Ages.", () => IsSpellsingerEnvoy(), null, 200);
+        
         //refill
         
         
         campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill_choice",
-            "Many Forestborn, are living as nomades far from our villages. You will only reach them if you call for them. You are willing me to do so?", () => IsSpellsingerEnvoy(), null, 200);
+            "Many Forestborn, are living as nomades far from our villages. Reaching them can be tricky, one needs to call them. You are willing me to do so?", () => IsSpellsingerEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "spellsinger_envoy_troop_refill_choice", "spellsinger_envoy_troop_refill_result",
-            "Thats kind. I am sure we will be able to pay that favor back one day.", () => IsSpellsingerEnvoy()&& 200<=Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
+            "That would be kind. I am sure we will be able to pay that favor back one day. I will decide in favor of the forestborn", () => IsSpellsingerEnvoy()&& 200<=Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_2", "spellsinger_envoy_troop_refill_choice", "back_to_main_hub_spellsinger",
             "I need to think about this.", () => IsSpellsingerEnvoy(), null, 200);
             
@@ -189,7 +201,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private void AddEmpireEnvoyDialogLines(CampaignGameStarter campaignGameStarter)
     {
         campaignGameStarter.AddDialogLine("envoy_foreign", "start", "close_window", "You are not part of these people, begone.",
-            () => !EonirEnvoyDialogCondition(), null, 200);
+            () => EonirEnvoyDialogCondition()&& Hero.MainHero.Culture.StringId!=TORConstants.Cultures.EONIR, null, 200);
 
         campaignGameStarter.AddDialogLine("envoy_missRank", "start", "close_window",
             "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && IsEmpireEnvoy() && !HasRenown2(),
@@ -365,7 +377,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private void AddDruchiiEnvoyDialogLines(CampaignGameStarter campaignGameStarter)
     {
         campaignGameStarter.AddDialogLine("envoy_foreign", "start", "close_window", "You are not part of these people, begone.",
-            () => !EonirEnvoyDialogCondition(), null, 200);
+            () => EonirEnvoyDialogCondition()&& Hero.MainHero.Culture.StringId!=TORConstants.Cultures.EONIR, null, 200);
 
         campaignGameStarter.AddDialogLine("envoy_missRank", "start", "close_window",
             "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && IsDruchiiEnvoy() && !HasRenown2(),
@@ -373,7 +385,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
 
         campaignGameStarter.AddDialogLine("envoy_hub_intro_druchii", "start", "druchii_envoy_main_hub",
-            "I am a servant of the Witchking, what can I do for you?", () => IsDruchiiEnvoy(), null, 200);
+            "I am a servant of the Witchking, what can I do for you?", () => EonirEnvoyDialogCondition() && IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("druchii_envoy_main_force_war", "druchii_envoy_main_hub", "druchii_envoy_force_war",
             "We need to get rid of one of our surrounding threads. Can you help to cause chaos among our enemies?", () => IsDruchiiEnvoy(), null,
@@ -586,7 +598,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private void AddAsurEnvoyDialogLines(CampaignGameStarter starter)
     {
         starter.AddDialogLine("envoy_foreign", "start", "close_window", "You are not part of these people, begone.",
-            () => !EonirEnvoyDialogCondition(), null, 200);
+            () => EonirEnvoyDialogCondition()&& Hero.MainHero.Culture.StringId!=TORConstants.Cultures.EONIR, null, 200);
 
         starter.AddDialogLine("envoy_missRank", "start", "close_window",
             "You do not have the previleg to serve the council. You are of no use. (Low Renown).", () => EonirEnvoyDialogCondition() && IsAsurianEnvoy()&&  !HasRenown2(),
@@ -819,7 +831,17 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private bool EonirEnvoyDialogCondition()
     {
         if (Settlement.CurrentSettlement == null) return false;
-        return Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && Settlement.CurrentSettlement.StringId == "town_LL1";
+        var partner = CharacterObject.OneToOneConversationCharacter;
+        if (partner != null && partner.IsHero)
+        {
+            if (partner.HeroObject.HasAttribute("AsurEnvoy") || partner.HeroObject.HasAttribute("EmpireEnvoy") ||
+                partner.HeroObject.HasAttribute("AsurEnvoy") || partner.HeroObject.HasAttribute("SpellsingerEnvoy"))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void OnNewGameStarted(CampaignGameStarter obj)
