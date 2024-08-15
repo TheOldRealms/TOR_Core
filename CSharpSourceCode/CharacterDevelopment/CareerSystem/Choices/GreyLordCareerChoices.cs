@@ -187,51 +187,41 @@ using TOR_Core.Utilities;
                 _greyLordRoot.Initialize(CareerID, "root", null, true,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
- 
+                        new CareerChoiceObject.MutationObject()
+                        {
+                            MutationTargetType = typeof(AbilityTemplate),
+                            MutationTargetOriginalId = "MindControl",
+                            PropertyName = "ScaleVariable1",
+                            PropertyValue = (choice, originalValue, agent) =>0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft }, 0.000625f),
+                            MutationType = OperationType.Add
+                        }
                     });
-                _caelithsWisdomKeystone.Initialize(CareerID, "Melee attacks can charge career ability. Ability starts charged.", "CaelithsWisdom", false,
+                _caelithsWisdomKeystone.Initialize(CareerID, "2 additional overtakes. Ability scales with charm.", "CaelithsWisdom", false,
                     ChoiceType.Passive);
-                _secretOfForestDragonKeystone.Initialize(CareerID, "Burning effects are increased by 100% in duration. Cityborn can charge ability.", "SecretOfForestDragon", false,
+                _secretOfForestDragonKeystone.Initialize(CareerID, "Controlled unit gets healed completely. Ability scales with medicine.", "SecretOfForestDragon", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
                         {
-                            MutationTargetType = typeof(TriggeredEffectTemplate),
-                            MutationTargetOriginalId = "apply_dragonfire",
-                            PropertyName = "ImbuedStatusEffectDuration",
-                            PropertyValue = (choice, originalValue, agent) => 2f,
-                            MutationType = OperationType.Multiply
-                        }
+                            MutationTargetType = typeof(AbilityTemplate),
+                            MutationTargetOriginalId = "MindControl",
+                            PropertyName = "ScaleVariable1",
+                            PropertyValue = (choice, originalValue, agent) =>0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Medicine }, 0.000625f),
+                            MutationType = OperationType.Add
+                        },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _legendsOfMalokKeystone.Initialize(CareerID, "Range of dragon breath is increased. Cityborn can charge ability.", "LegendsOfMalok", false,
+                _legendsOfMalokKeystone.Initialize(CareerID, "control chance is 15% higher. Ability starts charged.", "LegendsOfMalok", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
                         {
                             MutationTargetType = typeof(AbilityTemplate),
-                            MutationTargetOriginalId = "DragonFire",
-                            PropertyName = "Offset",
-                            PropertyValue = (choice, originalValue, agent) => 5f,
-                            MutationType = OperationType.Replace
+                            MutationTargetOriginalId = "MindControl",
+                            PropertyName = "ScaleVariable1",
+                            PropertyValue = (choice, originalValue, agent) =>0.15f,
+                            MutationType = OperationType.Add
                         },
-                        new CareerChoiceObject.MutationObject()
-                        {
-                            MutationTargetType = typeof(AbilityTemplate),
-                            MutationTargetOriginalId = "DragonFire",
-                            PropertyName = "TargetCapturingRadius",
-                            PropertyValue = (choice, originalValue, agent) => 3f,
-                            MutationType = OperationType.Replace
-                        },
-                        new CareerChoiceObject.MutationObject()
-                        {
-                            MutationTargetType = typeof(TriggeredEffectTemplate),
-                            MutationTargetOriginalId = "apply_dragonfire",
-                            PropertyName = "Radius",
-                            PropertyValue = (choice, originalValue, agent) => 4f,
-                            MutationType = OperationType.Replace
-                        },
-                        
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
                 _secretOfSunDragonKeystone.Initialize(CareerID, "Impact damage of dragon fire is doubled.", "SecretOfSunDragon", false,
@@ -247,7 +237,7 @@ using TOR_Core.Utilities;
                         },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _secretOfStarDragonKeystone.Initialize(CareerID, "Dragon breath slows movement and swing speed of all enemy units.", "SecretOfStarDragon", false,
+                _secretOfStarDragonKeystone.Initialize(CareerID, "When the controlled dies, an explosion occurs, dealing fire damage. Unsucessful control hurt the enemy by 40 HP", "SecretOfStarDragon", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()

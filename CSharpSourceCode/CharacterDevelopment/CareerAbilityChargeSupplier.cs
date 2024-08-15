@@ -395,26 +395,6 @@ namespace TOR_Core.CharacterDevelopment
                 }
             }
 
-            if (affectingAgent.IsPlayerTroop)
-            {
-                if (affectingAgent.Character.IsEliteTroop() && Hero.MainHero.HasCareerChoice("LegendsOfMalokKeystone"))
-                {
-                    switch (mask)
-                    {
-                        case AttackTypeMask.Ranged:
-                            return explainedNumber.ResultNumber;
-                            break;
-                        case AttackTypeMask.Melee:
-                            return explainedNumber.ResultNumber;
-                            break;
-                        case AttackTypeMask.Spell:
-                            break;
-                        case AttackTypeMask.All:
-                            break;
-                    }
-                }
-            }
-
 
             return 0;
         }

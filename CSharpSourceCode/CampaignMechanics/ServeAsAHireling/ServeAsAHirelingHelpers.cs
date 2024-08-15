@@ -37,6 +37,13 @@ public static class ServeAsAHirelingHelpers
                 number.Add(25, new TextObject("Leeched Dark Energy"));
                 return;
             }
+            
+            if (cultureId == TORConstants.Cultures.EONIR)
+            {
+                number.Add(5, new TextObject("Gained Power"));
+                benefits.AddFactor((0.05f * battles));
+                return;
+            }
 
             if (cultureId == TORConstants.Cultures.EMPIRE)
             {
@@ -61,7 +68,7 @@ public static class ServeAsAHirelingHelpers
 
         var cultureId = hero.Culture.StringId;
 
-        if (cultureId == TORConstants.Cultures.EMPIRE || cultureId == TORConstants.Cultures.SYLVANIA)
+        if (cultureId == TORConstants.Cultures.EMPIRE || cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.EONIR)
         {
             wage.AddFactor((0.1f * battles));
             wage.AddFactor(-0.5f+duration/20);

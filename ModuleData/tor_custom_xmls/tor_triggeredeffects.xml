@@ -117,6 +117,7 @@
             ScriptNameToTrigger="none">
             <ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
+	  
       <TriggeredEffectTemplate StringID="cinderblast_explosion" 
             BurstParticleEffectPrefab="cinder_explosion" 
             SoundEffectId="none" 
@@ -1259,24 +1260,8 @@
             DamageVariance="0" 
             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.KnockDownScript"/>
 			
-			
-			
 
-	  <TriggeredEffectTemplate StringID="apply_dragonfire" 
-            BurstParticleEffectPrefab="blast_of_agony_explosion" 
-            SoundEffectId="fireball_explosion" 
-            SoundEffectLength="2.5" 
-            DamageType="Fire" 
-            DamageAmount="80" 
-            Radius="3" 
-            HasShockWave="false" 
-            TargetType="All" 
-            ImbuedStatusEffectDuration="5" 
-            DamageVariance="0.05" 
-            ScriptNameToTrigger="none">
-			<ImbuedStatusEffect>dragonfire_dot</ImbuedStatusEffect>
-      </TriggeredEffectTemplate>
-	  
+	
 	  
 	  <TriggeredEffectTemplate StringID="apply_blastofagony" 
             BurstParticleEffectPrefab="blast_of_agony_explosion" 
@@ -1635,17 +1620,29 @@
 	  
 	  <TriggeredEffectTemplate StringID="apply_mindcontrol" 
             BurstParticleEffectPrefab="shadowblood_explosion" 
-            SoundEffectId="blood_explosion" 
+            SoundEffectId="none" 
             SoundEffectLength="2.5" 
             DamageType="Magical" 
-            DamageAmount="65" 
+            DamageAmount="0" 
             Radius="3" 
             HasShockWave="false" 
-            TargetType="All" 
+            TargetType="Enemy" 
             DamageVariance="0.1" 
             ScriptNameToTrigger="none">
 			
      </TriggeredEffectTemplate>
+	 
+	 <TriggeredEffectTemplate StringID="apply_fellfang_fire" 
+            BurstParticleEffectPrefab="none" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Fire" 
+            DamageAmount="40" 
+            Radius="0" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="none"/>
 	  
 	<!-- 	  Powerstones  -->
 	

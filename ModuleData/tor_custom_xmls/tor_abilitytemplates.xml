@@ -3817,7 +3817,7 @@
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
       Duration="300" 
-      Radius="0.4" 
+      Radius="5" 
       AbilityType="CareerAbility" 
       AbilityEffectType="Hex" 
       BaseMovementSpeed="15" 
@@ -3829,17 +3829,18 @@
       LightFlickeringMagnitude="3" 
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
-      ParticleEffectPrefab="shadowblood" 
+      ParticleEffectPrefab="" 
 	  MaxDistance="120"
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="evilbolt_cast" 
       ShouldSoundLoopOverDuration="false" 
-      CastType="WindUp" 
+      CastType="Instant" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      Offset="2"
-      CrosshairType="SingleTarget"
-      AbilityTargetType="SingleEnemy"
+      Offset="0.0"
+	  TargetCapturingRadius = "5"
+      CrosshairType="TargetedAOE"
+      AbilityTargetType="EnemiesInAOE"
       SpellTier="2"
       TooltipDescription="{=shadowblood_description_str}Shadowy orbs of blood fly towards the target staining the ground beneath every step of the way.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
@@ -3849,7 +3850,6 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>apply_mindcontrol</TriggeredEffect>
-		<SeekerParameters Proportional="0.5" Derivative="0" DisableDistance="10"/>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="BlastOfAgony" 
