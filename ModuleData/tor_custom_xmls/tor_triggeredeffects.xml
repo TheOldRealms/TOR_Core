@@ -717,6 +717,7 @@
             TargetType="All" 
             DamageVariance="0.2" 
             ScriptNameToTrigger="none"/>
+			
       <TriggeredEffectTemplate StringID="shadowblood_explosion" 
             BurstParticleEffectPrefab="shadowblood_explosion" 
             SoundEffectId="blood_explosion" 
@@ -1632,7 +1633,19 @@
             <ImbuedStatusEffect>fey_path_dmg</ImbuedStatusEffect>
       </TriggeredEffectTemplate>
 	  
-	  
+	  <TriggeredEffectTemplate StringID="apply_mindcontrol" 
+            BurstParticleEffectPrefab="shadowblood_explosion" 
+            SoundEffectId="blood_explosion" 
+            SoundEffectLength="2.5" 
+            DamageType="Magical" 
+            DamageAmount="65" 
+            Radius="3" 
+            HasShockWave="false" 
+            TargetType="All" 
+            DamageVariance="0.1" 
+            ScriptNameToTrigger="none">
+			
+     </TriggeredEffectTemplate>
 	  
 	<!-- 	  Powerstones  -->
 	

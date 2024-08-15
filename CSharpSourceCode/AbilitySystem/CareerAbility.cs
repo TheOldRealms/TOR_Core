@@ -51,6 +51,7 @@ namespace TOR_Core.AbilitySystem
                 }
 
                 if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
+                    || Hero.MainHero.HasCareer(TORCareers.GreyLord)
                     || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
                     || Hero.MainHero.HasCareerChoice("SwampRiderKeystone")
