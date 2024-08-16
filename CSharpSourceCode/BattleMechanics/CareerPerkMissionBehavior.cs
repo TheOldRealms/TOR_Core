@@ -260,7 +260,7 @@ namespace TOR_Core.BattleMechanics
             {
                 if (affectedAgent.HasAttribute("FellfangMark"))
                 {
-                    if (Hero.MainHero.HasCareerChoice("SecretOfSunDragonKeystone"))
+                    if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicKeystone"))
                     {
                         var effect = TriggeredEffectManager.CreateNew("apply_fellfang_explosion");
                         effect.Trigger(affectedAgent.Position,Vec3.Up,Agent.Main, Agent.Main.GetCareerAbility().Template);

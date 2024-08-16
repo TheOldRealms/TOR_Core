@@ -56,7 +56,7 @@ public class MindControlScript : CareerAbilityScript
             
             var reducedChance = (level * 0.02f)*health;
             
-            if (Hero.MainHero.HasCareerChoice("SecretOfMoonDragonKeystone"))
+            if (Hero.MainHero.HasCareerChoice("ByAllMeansKeystone"))
             {
                 reducedChance-=0.1f;
             }
@@ -87,22 +87,22 @@ public class MindControlScript : CareerAbilityScript
             count += 2;
         }
         
-        if(Hero.MainHero.HasCareerChoice("SecretOfSunDragonKeystone"))
+        if(Hero.MainHero.HasCareerChoice("UnrestrictedMagicKeystone"))
         {
             count++;
         }
         
-        if(Hero.MainHero.HasCareerChoice("SecretOfStarDragonKeystone"))
+        if(Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryKeystone"))
         {
             count++;
         }
         
-        if(Hero.MainHero.HasCareerChoice("SecretOfMoonDragonKeystone"))
+        if(Hero.MainHero.HasCareerChoice("ByAllMeansKeystone"))
         {
             count++;
         }
         
-        if(Hero.MainHero.HasCareerChoice("SecretOfForestDragonKeystone"))
+        if(Hero.MainHero.HasCareerChoice("SecretOfVenomDragonKeystone"))
         {
             count++;
         }
@@ -125,7 +125,7 @@ public class MindControlScript : CareerAbilityScript
         var casterTeam = _caster.Team;
         target.SetTeam(casterTeam,false);
         
-        if (Hero.MainHero.HasCareerChoice("SecretOfForestDragonKeystone"))
+        if (Hero.MainHero.HasCareerChoice("SecretOfVenomDragonKeystone"))
         {
             target.Health = target.HealthLimit;
         }
@@ -136,7 +136,7 @@ public class MindControlScript : CareerAbilityScript
 
     private void HandleMissed(Agent agent)
     {
-        if (Hero.MainHero.HasCareerChoice("SecretOfSunDragonKeystone"))
+        if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicKeystone"))
         {
             var effect = TriggeredEffectManager.CreateNew("apply_fellfang_fire");
             effect.Trigger(agent.Position,Vec3.Up,Agent.Main, Agent.Main.GetCareerAbility().Template,new MBList<Agent>(){agent});

@@ -141,11 +141,11 @@ namespace TOR_Core.CharacterDevelopment
         //Grey lord wizard
        
         private CareerChoiceGroupObject _caelithsWisdom;
-        private CareerChoiceGroupObject _secretOfForestDragon;
+        private CareerChoiceGroupObject _secretOfVenomDragon;
         private CareerChoiceGroupObject _legendsOfMalok;
-        private CareerChoiceGroupObject _secretOfSunDragon;
-        private CareerChoiceGroupObject _secretOfStarDragon;
-        private CareerChoiceGroupObject _secretOfMoonDragon;
+        private CareerChoiceGroupObject _unrestrictedMagic;
+        private CareerChoiceGroupObject _forbiddenScrollsOfSaphery;
+        private CareerChoiceGroupObject _byAllMeans;
         private CareerChoiceGroupObject _secretOfFellfang;
         
         
@@ -289,10 +289,10 @@ namespace TOR_Core.CharacterDevelopment
             
             _caelithsWisdom = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_caelithsWisdom).UnderscoreFirstCharToUpper()));
             _legendsOfMalok = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_legendsOfMalok).UnderscoreFirstCharToUpper()));
-            _secretOfForestDragon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_secretOfForestDragon).UnderscoreFirstCharToUpper()));
-            _secretOfSunDragon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_secretOfSunDragon).UnderscoreFirstCharToUpper()));
-            _secretOfStarDragon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_secretOfStarDragon).UnderscoreFirstCharToUpper()));
-            _secretOfMoonDragon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_secretOfMoonDragon).UnderscoreFirstCharToUpper()));
+            _secretOfVenomDragon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_secretOfVenomDragon).UnderscoreFirstCharToUpper()));
+            _unrestrictedMagic = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_unrestrictedMagic).UnderscoreFirstCharToUpper()));
+            _forbiddenScrollsOfSaphery = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_forbiddenScrollsOfSaphery).UnderscoreFirstCharToUpper()));
+            _byAllMeans = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_byAllMeans).UnderscoreFirstCharToUpper()));
             _secretOfFellfang = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_secretOfFellfang).UnderscoreFirstCharToUpper()));
 
         }
@@ -885,7 +885,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _secretOfForestDragon.Initialize("Secret of the{newline} Forest Dragon", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            _secretOfVenomDragon.Initialize("Secret of the{newline} Venom Dragon", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
@@ -895,19 +895,19 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _secretOfSunDragon.Initialize("Secret of the{newline} Sun Dragons", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            _unrestrictedMagic.Initialize("Unrestricted Magic", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
             
-            _secretOfStarDragon.Initialize("Secret of the{newline} Star Dragons", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            _forbiddenScrollsOfSaphery.Initialize("Forbidden Scrolls of Saphery", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
             
-            _secretOfMoonDragon.Initialize("Secret of the{newline} Moon Dragons", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            _byAllMeans.Initialize("By All Means", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;

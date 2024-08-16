@@ -80,7 +80,7 @@ namespace TOR_Core.Models
                 
                 if(playerHero.HasCareer(TORCareers.GreyLord))
                 {
-                    if (Hero.MainHero.HasCareerChoice("SecretOfSunDragonPassive4"))
+                    if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicPassive4"))
                     {
                         if (Agent.Main != null)
                         {
@@ -183,7 +183,7 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
                 {
-                    if(template.AbilityEffectType == AbilityEffectType.Heal &&  Hero.MainHero.HasCareerChoice("SecretOfForestDragonPassive4"))
+                    if(template.AbilityEffectType == AbilityEffectType.Heal &&  Hero.MainHero.HasCareerChoice("SecretOfVenomDragonPassive4"))
                     {
                         var comp = Agent.Main.GetComponent<AbilityComponent>();
                         if (comp != null)
@@ -195,7 +195,7 @@ namespace TOR_Core.Models
                         }
                     }
                     
-                    if(template.AbilityEffectType == AbilityEffectType.Hex &&  Hero.MainHero.HasCareerChoice("SecretOfStarDragonPassive4"))
+                    if(template.AbilityEffectType == AbilityEffectType.Hex &&  Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryPassive4"))
                     {
                         var comp = Agent.Main.GetComponent<AbilityComponent>();
                         if (comp != null)
@@ -207,7 +207,7 @@ namespace TOR_Core.Models
                         }
                     }
                     
-                    if(template.AbilityEffectType == AbilityEffectType.Vortex || template.AbilityEffectType == AbilityEffectType.Bombardment &&  Hero.MainHero.HasCareerChoice("SecretOfMoonDragonPassive4"))
+                    if(template.AbilityEffectType == AbilityEffectType.Vortex || template.AbilityEffectType == AbilityEffectType.Bombardment &&  Hero.MainHero.HasCareerChoice("ByAllMeansPassive4"))
                     {
                         var comp = Agent.Main.GetComponent<AbilityComponent>();
                         if (comp != null)

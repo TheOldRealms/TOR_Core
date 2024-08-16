@@ -395,6 +395,28 @@ namespace TOR_Core.CharacterDevelopment
                 }
             }
 
+            if (affectingAgent.IsHero && !affectingAgent.IsMainAgent)
+            {
+                switch (mask)
+                {
+                    case AttackTypeMask.Melee when Hero.MainHero.HasCareerChoice("CaelithsWisdomKeystone"):
+                        return explainedNumber.ResultNumber * 3;
+                    case AttackTypeMask.Melee:
+                        return 0;
+                    case AttackTypeMask.Ranged when Hero.MainHero.HasCareerChoice("CaelithsWisdomKeystone"):
+                        return explainedNumber.ResultNumber;
+                    case AttackTypeMask.Ranged:
+                        return 0;
+                    case AttackTypeMask.Spell:
+                        return explainedNumber.ResultNumber;
+                        break;
+                    case AttackTypeMask.All:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(mask), mask, null);
+                }
+            }
+
 
             return 0;
         }

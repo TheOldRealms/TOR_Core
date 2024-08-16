@@ -25,11 +25,11 @@ using TOR_Core.Utilities;
             private CareerChoiceObject _caelithsWisdomPassive4;
             private CareerChoiceObject _caelithsWisdomKeystone;
 
-            private CareerChoiceObject _secretOfForestDragonPassive1;
-            private CareerChoiceObject _secretOfForestDragonPassive2;
-            private CareerChoiceObject _secretOfForestDragonPassive3;
-            private CareerChoiceObject _secretOfForestDragonPassive4;
-            private CareerChoiceObject _secretOfForestDragonKeystone;
+            private CareerChoiceObject _secretOfVenomDragonPassive1;
+            private CareerChoiceObject _secretOfVenomDragonPassive2;
+            private CareerChoiceObject _secretOfVenomDragonPassive3;
+            private CareerChoiceObject _secretOfVenomDragonPassive4;
+            private CareerChoiceObject _secretOfVenomDragonKeystone;
 
             private CareerChoiceObject _legendsOfMalokPassive1;
             private CareerChoiceObject _legendsOfMalokPassive2;
@@ -37,23 +37,23 @@ using TOR_Core.Utilities;
             private CareerChoiceObject _legendsOfMalokPassive4;
             private CareerChoiceObject _legendsOfMalokKeystone;
 
-            private CareerChoiceObject _secretOfSunDragonPassive1;
-            private CareerChoiceObject _secretOfSunDragonPassive2;
-            private CareerChoiceObject _secretOfSunDragonPassive3;
-            private CareerChoiceObject _secretOfSunDragonPassive4;
-            private CareerChoiceObject _secretOfSunDragonKeystone;
+            private CareerChoiceObject _unrestrictedMagicPassive1;
+            private CareerChoiceObject _unrestrictedMagicPassive2;
+            private CareerChoiceObject _unrestrictedMagicPassive3;
+            private CareerChoiceObject _unrestrictedMagicPassive4;
+            private CareerChoiceObject _unrestrictedMagicKeystone;
 
-            private CareerChoiceObject _secretOfStarDragonPassive1;
-            private CareerChoiceObject _secretOfStarDragonPassive2;
-            private CareerChoiceObject _secretOfStarDragonPassive3;
-            private CareerChoiceObject _secretOfStarDragonPassive4;
-            private CareerChoiceObject _secretOfStarDragonKeystone;
+            private CareerChoiceObject _forbiddenScrollsOfSapheryPassive1;
+            private CareerChoiceObject _forbiddenScrollsOfSapheryPassive2;
+            private CareerChoiceObject _forbiddenScrollsOfSapheryPassive3;
+            private CareerChoiceObject _forbiddenScrollsOfSapheryPassive4;
+            private CareerChoiceObject _forbiddenScrollsOfSapheryKeystone;
 
-            private CareerChoiceObject _secretOfMoonDragonPassive1;
-            private CareerChoiceObject _secretOfMoonDragonPassive2;
-            private CareerChoiceObject _secretOfMoonDragonPassive3;
-            private CareerChoiceObject _secretOfMoonDragonPassive4;
-            private CareerChoiceObject _secretOfMoonDragonKeystone;
+            private CareerChoiceObject _byAllMeansPassive1;
+            private CareerChoiceObject _byAllMeansPassive2;
+            private CareerChoiceObject _byAllMeansPassive3;
+            private CareerChoiceObject _byAllMeansPassive4;
+            private CareerChoiceObject _byAllMeansKeystone;
 
             private CareerChoiceObject _secretOfFellfangPassive1;
             private CareerChoiceObject _secretOfFellfangPassive2;
@@ -82,21 +82,21 @@ using TOR_Core.Utilities;
                     Game.Current.ObjectManager.RegisterPresumedObject(
                         new CareerChoiceObject(nameof(_caelithsWisdomKeystone).UnderscoreFirstCharToUpper()));
 
-                _secretOfForestDragonPassive1 =
+                _secretOfVenomDragonPassive1 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfForestDragonPassive1).UnderscoreFirstCharToUpper()));
-                _secretOfForestDragonPassive2 =
+                        new CareerChoiceObject(nameof(_secretOfVenomDragonPassive1).UnderscoreFirstCharToUpper()));
+                _secretOfVenomDragonPassive2 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfForestDragonPassive2).UnderscoreFirstCharToUpper()));
-                _secretOfForestDragonPassive3 =
+                        new CareerChoiceObject(nameof(_secretOfVenomDragonPassive2).UnderscoreFirstCharToUpper()));
+                _secretOfVenomDragonPassive3 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfForestDragonPassive3).UnderscoreFirstCharToUpper()));
-                _secretOfForestDragonPassive4 =
+                        new CareerChoiceObject(nameof(_secretOfVenomDragonPassive3).UnderscoreFirstCharToUpper()));
+                _secretOfVenomDragonPassive4 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfForestDragonPassive4).UnderscoreFirstCharToUpper()));
-                _secretOfForestDragonKeystone =
+                        new CareerChoiceObject(nameof(_secretOfVenomDragonPassive4).UnderscoreFirstCharToUpper()));
+                _secretOfVenomDragonKeystone =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfForestDragonKeystone).UnderscoreFirstCharToUpper()));
+                        new CareerChoiceObject(nameof(_secretOfVenomDragonKeystone).UnderscoreFirstCharToUpper()));
 
                 _legendsOfMalokPassive1 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
@@ -114,53 +114,53 @@ using TOR_Core.Utilities;
                     Game.Current.ObjectManager.RegisterPresumedObject(
                         new CareerChoiceObject(nameof(_legendsOfMalokKeystone).UnderscoreFirstCharToUpper()));
 
-                _secretOfSunDragonPassive1 =
+                _unrestrictedMagicPassive1 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfSunDragonPassive1).UnderscoreFirstCharToUpper()));
-                _secretOfSunDragonPassive2 =
+                        new CareerChoiceObject(nameof(_unrestrictedMagicPassive1).UnderscoreFirstCharToUpper()));
+                _unrestrictedMagicPassive2 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfSunDragonPassive2).UnderscoreFirstCharToUpper()));
-                _secretOfSunDragonPassive3 =
+                        new CareerChoiceObject(nameof(_unrestrictedMagicPassive2).UnderscoreFirstCharToUpper()));
+                _unrestrictedMagicPassive3 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfSunDragonPassive3).UnderscoreFirstCharToUpper()));
-                _secretOfSunDragonPassive4 =
+                        new CareerChoiceObject(nameof(_unrestrictedMagicPassive3).UnderscoreFirstCharToUpper()));
+                _unrestrictedMagicPassive4 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfSunDragonPassive4).UnderscoreFirstCharToUpper()));
-                _secretOfSunDragonKeystone =
+                        new CareerChoiceObject(nameof(_unrestrictedMagicPassive4).UnderscoreFirstCharToUpper()));
+                _unrestrictedMagicKeystone =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfSunDragonKeystone).UnderscoreFirstCharToUpper()));
+                        new CareerChoiceObject(nameof(_unrestrictedMagicKeystone).UnderscoreFirstCharToUpper()));
 
-                _secretOfStarDragonPassive1 =
+                _forbiddenScrollsOfSapheryPassive1 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfStarDragonPassive1).UnderscoreFirstCharToUpper()));
-                _secretOfStarDragonPassive2 =
+                        new CareerChoiceObject(nameof(_forbiddenScrollsOfSapheryPassive1).UnderscoreFirstCharToUpper()));
+                _forbiddenScrollsOfSapheryPassive2 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfStarDragonPassive2).UnderscoreFirstCharToUpper()));
-                _secretOfStarDragonPassive3 =
+                        new CareerChoiceObject(nameof(_forbiddenScrollsOfSapheryPassive2).UnderscoreFirstCharToUpper()));
+                _forbiddenScrollsOfSapheryPassive3 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfStarDragonPassive3).UnderscoreFirstCharToUpper()));
-                _secretOfStarDragonPassive4 =
+                        new CareerChoiceObject(nameof(_forbiddenScrollsOfSapheryPassive3).UnderscoreFirstCharToUpper()));
+                _forbiddenScrollsOfSapheryPassive4 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfStarDragonPassive4).UnderscoreFirstCharToUpper()));
-                _secretOfStarDragonKeystone =
+                        new CareerChoiceObject(nameof(_forbiddenScrollsOfSapheryPassive4).UnderscoreFirstCharToUpper()));
+                _forbiddenScrollsOfSapheryKeystone =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfStarDragonKeystone).UnderscoreFirstCharToUpper()));
+                        new CareerChoiceObject(nameof(_forbiddenScrollsOfSapheryKeystone).UnderscoreFirstCharToUpper()));
 
-                _secretOfMoonDragonPassive1 =
+                _byAllMeansPassive1 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfMoonDragonPassive1).UnderscoreFirstCharToUpper()));
-                _secretOfMoonDragonPassive2 =
+                        new CareerChoiceObject(nameof(_byAllMeansPassive1).UnderscoreFirstCharToUpper()));
+                _byAllMeansPassive2 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfMoonDragonPassive2).UnderscoreFirstCharToUpper()));
-                _secretOfMoonDragonPassive3 =
+                        new CareerChoiceObject(nameof(_byAllMeansPassive2).UnderscoreFirstCharToUpper()));
+                _byAllMeansPassive3 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfMoonDragonPassive3).UnderscoreFirstCharToUpper()));
-                _secretOfMoonDragonPassive4 =
+                        new CareerChoiceObject(nameof(_byAllMeansPassive3).UnderscoreFirstCharToUpper()));
+                _byAllMeansPassive4 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfMoonDragonPassive4).UnderscoreFirstCharToUpper()));
-                _secretOfMoonDragonKeystone =
+                        new CareerChoiceObject(nameof(_byAllMeansPassive4).UnderscoreFirstCharToUpper()));
+                _byAllMeansKeystone =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfMoonDragonKeystone).UnderscoreFirstCharToUpper()));
+                        new CareerChoiceObject(nameof(_byAllMeansKeystone).UnderscoreFirstCharToUpper()));
 
                 _secretOfFellfangPassive1 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
@@ -198,7 +198,7 @@ using TOR_Core.Utilities;
                     });
                 _caelithsWisdomKeystone.Initialize(CareerID, "2 additional overtakes. Ability scales with Charm. Melee damage can charge ability.", "CaelithsWisdom", false,
                     ChoiceType.Passive);
-                _secretOfForestDragonKeystone.Initialize(CareerID, "Controlled unit gets healed completely. Ability scales with medicine.", "SecretOfForestDragon", false,
+                _secretOfVenomDragonKeystone.Initialize(CareerID, "Controlled unit gets healed completely. Ability scales with medicine.", "SecretOfVenomDragon", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
@@ -224,12 +224,12 @@ using TOR_Core.Utilities;
                         },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _secretOfSunDragonKeystone.Initialize(CareerID, "When the controlled dies he explodes. Unsucessful control hurt the enemy by 40 HP.", "SecretOfSunDragon", false,
+                _unrestrictedMagicKeystone.Initialize(CareerID, "When the controlled dies he explodes. Unsucessful control hurt the enemy by 40 HP.", "UnrestrictedMagic", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _secretOfStarDragonKeystone.Initialize(CareerID, "Companion damage can charge ability. Range is doubled.", "SecretOfStarDragon", false,
+                _forbiddenScrollsOfSapheryKeystone.Initialize(CareerID, "Companion damage can charge ability. Range is doubled.", "ForbiddenScrollsOfSaphery", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
@@ -242,7 +242,7 @@ using TOR_Core.Utilities;
                         },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _secretOfMoonDragonKeystone.Initialize(CareerID, "Ability scales with roguery. Units are easier to overtake", "SecretOfMoonDragon", false,
+                _byAllMeansKeystone.Initialize(CareerID, "Ability scales with roguery. Units are easier to overtake", "ByAllMeans", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
@@ -268,10 +268,10 @@ using TOR_Core.Utilities;
                 _caelithsWisdomPassive4.Initialize(CareerID, "Cityborn troops gain 50% fire resistance.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Fire, 50), AttackTypeMask.All, 
                     (attacker, victim, mask) => victim.BelongsToMainParty()&& !victim.IsHero && victim.Character.Culture.StringId == TORConstants.Cultures.EONIR ));
                 
-                _secretOfForestDragonPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "SecretOfForestDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-                _secretOfForestDragonPassive2.Initialize(CareerID, "{=vivid_visions_passive3_str}Increases Magic resistance against spells by 25%.", "SecretOfForestDragon", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
-                _secretOfForestDragonPassive2.Initialize(CareerID, "Wounded troops in your party heal faster.", "SecretOfForestDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); 
-                _secretOfForestDragonPassive4.Initialize(CareerID, "Not wielding projectile spells increase spell duration for healing spells by 50%", "SecretOfForestDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
+                _secretOfVenomDragonPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "SecretOfVenomDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+                _secretOfVenomDragonPassive2.Initialize(CareerID, "{=vivid_visions_passive3_str}Increases Magic resistance against spells by 25%.", "SecretOfVenomDragon", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
+                _secretOfVenomDragonPassive2.Initialize(CareerID, "Wounded troops in your party heal faster.", "SecretOfVenomDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); 
+                _secretOfVenomDragonPassive4.Initialize(CareerID, "Not wielding projectile spells increase spell duration for healing spells by 50%", "SecretOfVenomDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
                 
                 _legendsOfMalokPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
                 _legendsOfMalokPassive2.Initialize(CareerID, "Favor costs for cityborn  troop upgrades is reduced by 20%.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.CustomResourceUpgradeCostModifier,true));
@@ -280,21 +280,21 @@ using TOR_Core.Utilities;
                 _legendsOfMalokPassive4.Initialize(CareerID, "If no hex spells are equipped you gain 50% spell radius.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
 
                 
-                _secretOfSunDragonPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "SecretOfSunDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
-                _secretOfSunDragonPassive2.Initialize(CareerID, "Spell effect radius is increased by 20%.", "SecretOfSunDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.SpellRadius,true));
-                _secretOfSunDragonPassive3.Initialize(CareerID, "Increases fire spell damage by 10%.", "SecretOfSunDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
-                _secretOfSunDragonPassive4.Initialize(CareerID, "If no AOE effect is equipped, your projectile spells deal 200% extra damage.", "SecretOfSunDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
+                _unrestrictedMagicPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
+                _unrestrictedMagicPassive2.Initialize(CareerID, "Spell effect radius is increased by 20%.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.SpellRadius,true));
+                _unrestrictedMagicPassive3.Initialize(CareerID, "Increases fire spell damage by 10%.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
+                _unrestrictedMagicPassive4.Initialize(CareerID, "If no AOE effect is equipped, your projectile spells deal 200% extra damage.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
                 
-                _secretOfStarDragonPassive1.Initialize(CareerID, "Increases Windsregeneration by 0.5.", "SecretOfStarDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.WindsRegeneration));
-                _secretOfStarDragonPassive2.Initialize(CareerID, "Increase hex durations by 20%.", "SecretOfStarDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration,true)); 
-                _secretOfStarDragonPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "SecretOfStarDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
-                _secretOfStarDragonPassive4.Initialize(CareerID, "Not wielding any healing spells increase hex duration by 50%", "SecretOfStarDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
+                _forbiddenScrollsOfSapheryPassive1.Initialize(CareerID, "Increases Windsregeneration by 0.5.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.WindsRegeneration));
+                _forbiddenScrollsOfSapheryPassive2.Initialize(CareerID, "Increase hex durations by 20%.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration,true)); 
+                _forbiddenScrollsOfSapheryPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
+                _forbiddenScrollsOfSapheryPassive4.Initialize(CareerID, "Not wielding any healing spells increase hex duration by 50%", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
                 
-                _secretOfMoonDragonPassive1.Initialize(CareerID, "Extra 25% Wardsave if your armor weight does not exceed 11 weight.", "SecretOfMoonDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.Spell,
+                _byAllMeansPassive1.Initialize(CareerID, "Extra 25% Wardsave if your armor weight does not exceed 11 weight.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.Spell,
                     (attacker, victim, attackmask) => attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightUndershootCheck(attacker,11)));
-                _secretOfMoonDragonPassive2.Initialize(CareerID, "Increases Lightning spell damage by 10%.", "SecretOfMoonDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Spell));
-                _secretOfMoonDragonPassive3.Initialize(CareerID, "Increases magic spell damage by 10%.", "SecretOfMoonDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
-                _secretOfMoonDragonPassive4.Initialize(CareerID, "If no buff spells are equipped, duration of vortex and area effects are doubled.", "SecretOfMoonDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
+                _byAllMeansPassive2.Initialize(CareerID, "Increases Lightning spell damage by 10%.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Spell));
+                _byAllMeansPassive3.Initialize(CareerID, "Increases magic spell damage by 10%.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
+                _byAllMeansPassive4.Initialize(CareerID, "If no buff spells are equipped, duration of vortex and area effects are doubled.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
                 
                 _secretOfFellfangPassive1.Initialize(CareerID, "50% cooldown reduction if you wield less than 11 spells", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(11, PassiveEffectType.Special));
                 _secretOfFellfangPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
