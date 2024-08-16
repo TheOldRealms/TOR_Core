@@ -13,6 +13,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.SaveSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
@@ -49,9 +50,12 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private Hero _spellsingerEnvoy;
     private List<Hero> envoys;
     private Settlement _torLithanel;
+    
+    [SaveableField(0)] private Dictionary<string, double> _latestEnvoyActionsPerformed = [];
 
     public override void RegisterEvents()
     {
+        
         CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameStarted);
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
@@ -134,9 +138,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         //refill
         
-        
         campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill_choice",
-            "Many Forestborn, are living as nomades far from our villages. Reaching them can be tricky, one needs to call them. You are willing me to do so?", () => IsSpellsingerEnvoy(), null, 200);
+            "Many Forestborn, are living as nomades far from our villages. Reaching them can be tricky, one needs to call them. You are willing me to do so?", () => IsSpellsingerEnvoy() && EnoughTimePassedSinceLastEvent("troop_refill",10), null, 200);
+        
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill_fail_choice",
+            "We recently called for the forestborn's aid. We should wait longer for another call", () => (IsSpellsingerEnvoy()  &&  !EnoughTimePassedSinceLastEvent("troop_refill",10)), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_troop_refill_fail_choice", "spellsinger_envoy_troop_refill_fail_choice", "back_to_main_hub_spellsinger",
+            "Understood.", () => IsSpellsingerEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "spellsinger_envoy_troop_refill_choice", "spellsinger_envoy_troop_refill_result",
             "That would be kind. I am sure we will be able to pay that favor back one day. I will decide in favor of the forestborn", () => IsSpellsingerEnvoy()&& 200<=Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
@@ -240,6 +249,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             
             Hero.MainHero.AddCultureSpecificCustomResource(-200);
             Hero.MainHero.AddSkillXp(DefaultSkills.Charm,200f);
+            _latestEnvoyActionsPerformed.AddOrReplace("troop_refill",CampaignTime.Now.ToDays);
         }
         
                 //why are you here
@@ -275,6 +285,19 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     }
 
 
+    private bool EnoughTimePassedSinceLastEvent(string id, int days)
+    {
+        if (!_latestEnvoyActionsPerformed.ContainsKey(id))
+        {
+            return true;
+        }
+        
+        var timestamp = _latestEnvoyActionsPerformed[id];
+
+        return timestamp + days < CampaignTime.Now.ToDays;
+    }
+
+
     private void AddEmpireEnvoyDialogLines(CampaignGameStarter campaignGameStarter)
     {
         campaignGameStarter.AddDialogLine("envoy_foreign", "start", "close_window", "You are not part of these people, begone.",
@@ -306,8 +329,15 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         
         //force peace
+        
         campaignGameStarter.AddDialogLine("empire_envoy_force_peace", "empire_envoy_force_peace", "empire_envoy_force_peace_choice",
-            "The Empire and the Council should make peace. Your people, neither ours will do this without hesitantion ({PEACE_COSTS}{EONIR_FAVOR})", () => IsEmpireEnvoy(), null, 200);
+            "The Empire and the Council should make peace. Your people, neither ours will do this without hesitantion ({PEACE_COSTS}{EONIR_FAVOR})", () => IsEmpireEnvoy() && EnoughTimePassedSinceLastEvent("force_peace",10), null, 200);
+       
+        campaignGameStarter.AddDialogLine("empire_envoy_force_peace_failed", "empire_envoy_force_peace", "empire_envoy_force_peace_failed_choice",
+            "My political power is limited. We became too demanding, you should ask another time", () => IsEmpireEnvoy(), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_failed_choice", "empire_envoy_force_peace_failed_choice", "back_to_main_hub_empire",
+            "Understood.", () => IsEmpireEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "empire_envoy_force_peace_choice", "empire_envoy_force_peace_choice_result",
             "Let's do this.", () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count>0 && peaceCost<=Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
@@ -359,6 +389,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 
                 Hero.MainHero.AddCultureSpecificCustomResource(-peaceCost);
                 Hero.MainHero.AddSkillXp(DefaultSkills.Charm, peaceCost);
+                _latestEnvoyActionsPerformed.AddOrReplace("force_peace",CampaignTime.Now.ToDays);
             }
         }
         
@@ -484,7 +515,13 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         //force war
         campaignGameStarter.AddDialogLine("druchii_envoy_force_war", "druchii_envoy_force_war", "druchii_envoy_force_war_choice",
-            "You would be surprised what trouble  the tip of a Khainite dagger could cause. If it finds the wrong throat to the wrong time, war can emerge. (Declare war between 2 factions ({FORCEWAR_PRICE}{EONIR_FAVOR})", () => IsDruchiiEnvoy(), null, 200);
+            "You would be surprised what trouble  the tip of a Khainite dagger could cause. If it finds the wrong throat to the wrong time, war can emerge. (Declare war between 2 factions ({FORCEWAR_PRICE}{EONIR_FAVOR})", () => IsDruchiiEnvoy() && EnoughTimePassedSinceLastEvent("force_war",20), null, 200);
+        
+        campaignGameStarter.AddDialogLine("druchii_envoy_force_war_failed", "druchii_envoy_force_war", "druchii_envoy_force_war_failed_choice",
+            "My political power is limited. We became too demanding, you should ask another time", () => IsDruchiiEnvoy(), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("druchii_envoy_force_war_failed_choice", "druchii_envoy_force_war_failed_choice", "back_to_main_hub_druchii",
+            "Understood.", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("druchii_envoy_force_war_choice_1", "druchii_envoy_force_war_choice", "druchii_envoy_force_war_choice_result",
             "Let's do this.", () => IsDruchiiEnvoy() && (druchii_force_war_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)<=Hero.MainHero.GetCultureSpecificCustomResourceValue()), null, 200);
@@ -539,6 +576,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 
                 Hero.MainHero.AddCultureSpecificCustomResource(-(druchii_force_war_price_base-Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
                 Hero.MainHero.AddSkillXp(DefaultSkills.Charm, druchii_force_war_price_base);
+                _latestEnvoyActionsPerformed.AddOrReplace("force_war",CampaignTime.Now.ToDays);
+                
             }
         }
         
@@ -546,7 +585,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //slaver tide
         
         campaignGameStarter.AddDialogLine("druchii_envoy_slaver_tide", "druchii_envoy_slaver_tide", "druchii_envoy_slaver_tide_choice",
-            "...this will cost you dearly your influence over the Council... ({SLAVERTIDE_PRICE}{EONIR_FAVOR}) I could see what I can do.  So where do you suggest our Black Arks to anchor?", () => IsDruchiiEnvoy(), null, 200);
+            "...this will cost you dearly your influence over the Council... ({SLAVERTIDE_PRICE}{EONIR_FAVOR}) I could see what I can do.  So where do you suggest our Black Arks to anchor?", () => IsDruchiiEnvoy() && EnoughTimePassedSinceLastEvent("slaver_tide",20), null, 200);
+        
+        campaignGameStarter.AddDialogLine("druchii_envoy_slaver_tide_failed", "druchii_envoy_slaver_tide", "druchii_envoy_slaver_tide_failed_choice",
+            "My political power is limited. We became too demanding, you should ask another time", () => IsDruchiiEnvoy(), null, 200);
+        
+        campaignGameStarter.AddPlayerLine("druchii_envoy_slaver_tide_failed_choice", "druchii_envoy_slaver_tide_failed_choice", "back_to_main_hub_druchii",
+            "Understood.", () => IsDruchiiEnvoy(), null, 200);
+        
         
         campaignGameStarter.AddPlayerLine("druchii_envoy_choice_1", "druchii_envoy_slaver_tide_choice", "druchii_envoy_slaver_tide_choice_result",
             "Let's do this({SLAVERTIDE_PRICE}{EONIR_FAVOR}).", () => IsDruchiiEnvoy() && (druchii_slaver_tide_price_base-Hero.MainHero.GetSkillValue(DefaultSkills.Charm))<=Hero.MainHero.GetCultureSpecificCustomResourceValue(), SlaverTidePrompt, 200);
@@ -611,6 +657,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
                 Hero.MainHero.AddCultureSpecificCustomResource(-(druchii_slaver_tide_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
                 Hero.MainHero.AddSkillXp(DefaultSkills.Charm, druchii_slaver_tide_price_base);
+                _latestEnvoyActionsPerformed.AddOrReplace("slaver_tide",CampaignTime.Now.ToDays);
             }
         }
         
@@ -704,7 +751,15 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         //money
         starter.AddDialogLine("asur_envoy_money", "asur_envoy_money", "asur_envoy_money_choice",
-            "Nothing easier than this. How much do you need?", () => IsAsurianEnvoy(), null, 200);
+            "Nothing easier than this. How much do you need?", () => IsAsurianEnvoy() && EnoughTimePassedSinceLastEvent("asur_money",5), null, 200);
+        
+        starter.AddDialogLine("asur_envoy_money_failed", "asur_envoy_money", "asur_envoy_money_failed_choice",
+            "My political power is limited. We became too demanding, you should ask another time", () => IsAsurianEnvoy(), null, 200);
+        
+        starter.AddPlayerLine("asur_envoy_money_failed_choice", "asur_envoy_money_failed_choice", "back_to_main_hub_asur",
+            "Understood.", () => IsAsurianEnvoy(), null, 200);
+        
+        
         starter.AddPlayerLine("asur_envoy_money_choice_1", "asur_envoy_money_choice", "back_to_main_hub_asur",
             "{ASUR_MONEYRETURN1}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY1}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>=asur_favor_price1, () => TransferMoney(1,asur_favor_price1), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_2", "asur_envoy_money_choice", "back_to_main_hub_asur",
@@ -715,8 +770,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             "I need to think about this.", () => IsAsurianEnvoy(), null, 200);
         
         //troops
+        
         starter.AddDialogLine("asur_envoy_troops", "asur_envoy_troops", "asur_envoy_troops_choice",
             "Obviously we can help. A batch of our garrison in Marienburg can be made available.", () => IsAsurianEnvoy(), null, 200);
+        
         starter.AddPlayerLine("asur_envoy_troops_choice_1", "asur_envoy_troops_choice", "back_to_main_hub_asur",
             "Sure I accept (150 {EONIR_FAVOR}).", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>=150, ShowTroopSelectionScreen, 200);
         starter.AddPlayerLine("asur_envoy_troops_choice_2", "asur_envoy_troops_choice", "back_to_main_hub_asur",
@@ -724,7 +781,15 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         //diplomacy
         starter.AddDialogLine("asur_envoy_diplomacy", "asur_envoy_diplomacy", "asur_envoy_diplomacy_choice",
-            "The Asur have diplomatic embassies through out the Empire, and have an embassy in Coronne. We can help the Eonir, to improve their overall relationship as a mediator. What do you me to try?", () => IsAsurianEnvoy(), null, 200);
+            "The Asur have diplomatic embassies through out the Empire, and have an embassy in Coronne. We can help the Eonir, to improve their overall relationship as a mediator. What do you me to try?", () => IsAsurianEnvoy()&& EnoughTimePassedSinceLastEvent("asur_diplomacy",15), null, 200);
+        
+        starter.AddDialogLine("asur_envoy_diplomacy_failed", "asur_envoy_diplomacy", "asur_envoy_diplomacy_failed_choice",
+            "My political power is limited. We became too demanding, you should ask another time", () => IsAsurianEnvoy(), null, 200);
+        
+        starter.AddPlayerLine("asur_envoy_diplomacy_failed_choice", "asur_envoy_diplomacy_failed_choice", "back_to_main_hub_asur",
+            "Understood.", () => IsAsurianEnvoy(), null, 200);
+        
+        
         starter.AddPlayerLine("asur_envoy_diplomacy_choice_1", "asur_envoy_diplomacy_choice", "back_to_main_hub_asur",
             "Sure I accept (400 {EONIR_FAVOR}).", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>=400, AsurDiplomacyPrompt, 200);
         starter.AddPlayerLine("asur_envoy_diplomacy_choice_2", "asur_envoy_diplomacy_choice", "back_to_main_hub_asur",
@@ -780,7 +845,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             Hero.MainHero.ChangeHeroGold(revenue);
             Hero.MainHero.AddCultureSpecificCustomResource(-favorPrice);
             Hero.MainHero.AddSkillXp(DefaultSkills.Charm, favorPrice);
-
+            _latestEnvoyActionsPerformed.AddOrReplace("asur_money",CampaignTime.Now.ToDays);
         }
         
         bool IsAsurianEnvoy()
@@ -896,6 +961,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 }
                 Hero.MainHero.AddCultureSpecificCustomResource(-400);
                 Hero.MainHero.AddSkillXp(DefaultSkills.Charm, 400);
+                
+                _latestEnvoyActionsPerformed.AddOrReplace("asur_diplomacy",CampaignTime.Now.ToDays);
             }
         }
     }
@@ -999,5 +1066,6 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
     public override void SyncData(IDataStore dataStore)
     {
+        dataStore.SyncData("_latestEnvoyActionsPerformed", ref _latestEnvoyActionsPerformed);
     }
 }
