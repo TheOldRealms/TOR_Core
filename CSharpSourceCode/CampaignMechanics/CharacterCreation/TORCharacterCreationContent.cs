@@ -286,7 +286,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
-
+            
             if (IsWitchHunterCharacterCreationID(id))
             {
                 Hero.MainHero.AddCareer(TORCareers.WitchHunter);
@@ -328,7 +328,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddAttribute("WEKithbandSymbol");
             }
 
-            if (id == "option_3_we_waywatcher")
+            if (id == "option_3_we_waywatcher" || id == "option_3_eo_ghost_strider")
             {
                 Hero.MainHero.AddCareer(TORCareers.Waywatcher);
             }

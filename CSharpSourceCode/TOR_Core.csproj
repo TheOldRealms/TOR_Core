@@ -467,6 +467,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\PrefabSpawnerScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\SummonScript.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\TraitHelper.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
