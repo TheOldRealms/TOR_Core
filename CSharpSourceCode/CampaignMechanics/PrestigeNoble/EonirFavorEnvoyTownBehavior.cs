@@ -15,8 +15,10 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.SpellBook;
+using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -110,6 +112,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_magic", "spellsinger_envoy_main_hub", "back_to_main_hub_spellsinger", "{=tor_spelltrainer_eonir_open_book_str}I want to learn more magic can you help?.", () => MobileParty.MainParty.HasSpellCasterMember()&&Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && IsSpellsingerEnvoy(), openbookconsequence, 200, null);
 
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_lores", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_lores", "{=tor_spelltrainer_eonir_open_book_str}I think i am ready to learn a new facet of the winds of magic.", () =>  IsSpellsingerEnvoy() && GreylordIsNotAllowedToLearnMoreLores(), null, 200, null);
+
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_whyareyouhere", "spellsinger_envoy_main_hub", "spellsinger_envoy_whyareyouhere",
             "Why are you here?", () => IsSpellsingerEnvoy(), null, 200);
@@ -141,8 +145,81 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             
         campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill_result", "spellsinger_envoy_troop_refill_result", "back_to_main_hub_spellsinger",
             "I will see what I can do.", () => IsSpellsingerEnvoy(), RefillVillages, 200);
+        
+        
+        //learn new lores
+        
+               
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores_choice",
+            "I can teach you, but as much as you are ready to do so, I need your word in the Council (500{EONIR_FAVOR})?", () => IsSpellsingerEnvoy(), null, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_1", "spellsinger_envoy_spellsinger_lores_choice", "spellsinger_envoy_troop_refill_result",
+            "It shouldn't be for your disadvantage", () => IsSpellsingerEnvoy()&& 500<=Hero.MainHero.GetCultureSpecificCustomResourceValue() && GreylordIsNotAllowedToLearnMoreLores(), LearnNewLoresPrompt, 200);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_2", "spellsinger_envoy_spellsinger_lores_choice", "back_to_main_hub_spellsinger",
+            "I need to think about this.", () => IsSpellsingerEnvoy(),null , 200);
 
 
+        bool GreylordIsNotAllowedToLearnMoreLores()
+        {
+            if (!Hero.MainHero.HasCareer(TORCareers.GreyLord))
+            {
+                return false;
+            }
+
+            if (!Hero.MainHero.HasAttribute("CareerTier2"))
+            {
+                return false;
+            }
+            
+            var lores = LoreObject.GetAll();
+
+            var list = new List<string>()
+            {
+                "LoreOfFire",
+                "LoreOfMetal",
+                "LoreOfLife",
+                "LoreOfBeasts",
+                "LoreOfLight",
+                "LoreOfHeavens"
+            };
+            var count = 0;
+            foreach (var lore in lores)
+            {
+                if (list.Contains(lore.ID))
+                {
+                    if (Hero.MainHero.HasKnownLore(lore.ID))
+                        count++;
+                }
+            }
+
+
+            return count <= 4;
+        }
+        
+        void LearnNewLoresPrompt()
+        {
+            List<InquiryElement> list = [];
+
+            var lores = LoreObject.GetAll();
+
+            lores = lores.WhereQ(X => !X.DisabledForCultures.Contains(TORConstants.Cultures.EONIR)&& X.ID!="DarkMagic" && !Hero.MainHero.HasKnownLore(X.ID)).ToList();
+
+            foreach (var lore in lores)
+            {
+                list.Add(new InquiryElement(lore,lore.Name,null,true,"Learn new lore"));
+            }
+            
+            var inquirydata = new MultiSelectionInquiryData("Force Peace", "Select a new lore to learn ( maximum 3)", list, true, 1, 1, "Confirm", "Cancel", SelectLore, null,"",true);
+            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+
+            void SelectLore(List<InquiryElement> inquiryElements)
+            {
+                var newlore =(LoreObject) inquiryElements[0].Identifier;
+                
+                Hero.MainHero.AddKnownLore(newlore.ID);
+                Hero.MainHero.AddCultureSpecificCustomResource(-500);
+            }
+
+        }
         void RefillVillages()
         {
             foreach (var village in Settlement.All.WhereQ(x=> x.IsVillage && x.Culture.StringId == TORConstants.Cultures.EONIR))

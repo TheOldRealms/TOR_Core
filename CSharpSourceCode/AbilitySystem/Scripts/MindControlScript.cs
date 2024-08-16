@@ -102,7 +102,7 @@ public class MindControlScript : CareerAbilityScript
             count++;
         }
         
-        if(Hero.MainHero.HasCareerChoice("SecretOfVenomDragonKeystone"))
+        if(Hero.MainHero.HasCareerChoice("SoulBindingKeystone"))
         {
             count++;
         }
@@ -125,7 +125,7 @@ public class MindControlScript : CareerAbilityScript
         var casterTeam = _caster.Team;
         target.SetTeam(casterTeam,false);
         
-        if (Hero.MainHero.HasCareerChoice("SecretOfVenomDragonKeystone"))
+        if (Hero.MainHero.HasCareerChoice("SoulBindingKeystone"))
         {
             target.Health = target.HealthLimit;
         }

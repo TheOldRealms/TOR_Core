@@ -183,7 +183,7 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
                 {
-                    if(template.AbilityEffectType == AbilityEffectType.Heal &&  Hero.MainHero.HasCareerChoice("SecretOfVenomDragonPassive4"))
+                    if(template.AbilityEffectType == AbilityEffectType.Heal &&  Hero.MainHero.HasCareerChoice("SoulBindingPassive4"))
                     {
                         var comp = Agent.Main.GetComponent<AbilityComponent>();
                         if (comp != null)

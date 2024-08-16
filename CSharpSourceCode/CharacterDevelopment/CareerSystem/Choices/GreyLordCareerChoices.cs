@@ -25,11 +25,11 @@ using TOR_Core.Utilities;
             private CareerChoiceObject _caelithsWisdomPassive4;
             private CareerChoiceObject _caelithsWisdomKeystone;
 
-            private CareerChoiceObject _secretOfVenomDragonPassive1;
-            private CareerChoiceObject _secretOfVenomDragonPassive2;
-            private CareerChoiceObject _secretOfVenomDragonPassive3;
-            private CareerChoiceObject _secretOfVenomDragonPassive4;
-            private CareerChoiceObject _secretOfVenomDragonKeystone;
+            private CareerChoiceObject _soulBindingPassive1;
+            private CareerChoiceObject _soulBindingPassive2;
+            private CareerChoiceObject _soulBindingPassive3;
+            private CareerChoiceObject _soulBindingPassive4;
+            private CareerChoiceObject _soulBindingKeystone;
 
             private CareerChoiceObject _legendsOfMalokPassive1;
             private CareerChoiceObject _legendsOfMalokPassive2;
@@ -82,21 +82,21 @@ using TOR_Core.Utilities;
                     Game.Current.ObjectManager.RegisterPresumedObject(
                         new CareerChoiceObject(nameof(_caelithsWisdomKeystone).UnderscoreFirstCharToUpper()));
 
-                _secretOfVenomDragonPassive1 =
+                _soulBindingPassive1 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfVenomDragonPassive1).UnderscoreFirstCharToUpper()));
-                _secretOfVenomDragonPassive2 =
+                        new CareerChoiceObject(nameof(_soulBindingPassive1).UnderscoreFirstCharToUpper()));
+                _soulBindingPassive2 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfVenomDragonPassive2).UnderscoreFirstCharToUpper()));
-                _secretOfVenomDragonPassive3 =
+                        new CareerChoiceObject(nameof(_soulBindingPassive2).UnderscoreFirstCharToUpper()));
+                _soulBindingPassive3 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfVenomDragonPassive3).UnderscoreFirstCharToUpper()));
-                _secretOfVenomDragonPassive4 =
+                        new CareerChoiceObject(nameof(_soulBindingPassive3).UnderscoreFirstCharToUpper()));
+                _soulBindingPassive4 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfVenomDragonPassive4).UnderscoreFirstCharToUpper()));
-                _secretOfVenomDragonKeystone =
+                        new CareerChoiceObject(nameof(_soulBindingPassive4).UnderscoreFirstCharToUpper()));
+                _soulBindingKeystone =
                     Game.Current.ObjectManager.RegisterPresumedObject(
-                        new CareerChoiceObject(nameof(_secretOfVenomDragonKeystone).UnderscoreFirstCharToUpper()));
+                        new CareerChoiceObject(nameof(_soulBindingKeystone).UnderscoreFirstCharToUpper()));
 
                 _legendsOfMalokPassive1 =
                     Game.Current.ObjectManager.RegisterPresumedObject(
@@ -198,7 +198,7 @@ using TOR_Core.Utilities;
                     });
                 _caelithsWisdomKeystone.Initialize(CareerID, "2 additional overtakes. Ability scales with Charm. Melee damage can charge ability.", "CaelithsWisdom", false,
                     ChoiceType.Passive);
-                _secretOfVenomDragonKeystone.Initialize(CareerID, "Controlled unit gets healed completely. Ability scales with medicine.", "SecretOfVenomDragon", false,
+                _soulBindingKeystone.Initialize(CareerID, "Controlled unit gets healed completely. Ability scales with medicine.", "SoulBinding", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
@@ -268,10 +268,10 @@ using TOR_Core.Utilities;
                 _caelithsWisdomPassive4.Initialize(CareerID, "Cityborn troops gain 50% fire resistance.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Fire, 50), AttackTypeMask.All, 
                     (attacker, victim, mask) => victim.BelongsToMainParty()&& !victim.IsHero && victim.Character.Culture.StringId == TORConstants.Cultures.EONIR ));
                 
-                _secretOfVenomDragonPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "SecretOfVenomDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-                _secretOfVenomDragonPassive2.Initialize(CareerID, "{=vivid_visions_passive3_str}Increases Magic resistance against spells by 25%.", "SecretOfVenomDragon", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
-                _secretOfVenomDragonPassive2.Initialize(CareerID, "Wounded troops in your party heal faster.", "SecretOfVenomDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); 
-                _secretOfVenomDragonPassive4.Initialize(CareerID, "Not wielding projectile spells increase spell duration for healing spells by 50%", "SecretOfVenomDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
+                _soulBindingPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+                _soulBindingPassive2.Initialize(CareerID, "{=vivid_visions_passive3_str}Increases Magic resistance against spells by 25%.", "SoulBinding", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical,25),AttackTypeMask.Spell));
+                _soulBindingPassive3.Initialize(CareerID, "Wounded troops in your party heal faster.", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); 
+                _soulBindingPassive4.Initialize(CareerID, "Not wielding projectile spells increase spell duration for healing spells by 50%", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
                 
                 _legendsOfMalokPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
                 _legendsOfMalokPassive2.Initialize(CareerID, "Favor costs for cityborn  troop upgrades is reduced by 20%.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.CustomResourceUpgradeCostModifier,true));
@@ -300,8 +300,16 @@ using TOR_Core.Utilities;
                 _secretOfFellfangPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
                 _secretOfFellfangPassive3.Initialize(CareerID, "After battle, 30% of your winds are regenerated.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
                 _secretOfFellfangPassive4.Initialize(CareerID, "For every spell dealing fire damage, 20% chance the used spell doesn't cost any winds", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special,true));
-                
-
+            }
+            
+            
+            protected override void UnlockCareerBenefitsTier2()
+            {
+            }
+        
+            protected override void UnlockCareerBenefitsTier3()
+            {
+                Hero.MainHero.AddKnownLore("DarkMagic");
             }
         }
     }

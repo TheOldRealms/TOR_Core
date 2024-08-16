@@ -141,7 +141,7 @@ namespace TOR_Core.CharacterDevelopment
         //Grey lord wizard
        
         private CareerChoiceGroupObject _caelithsWisdom;
-        private CareerChoiceGroupObject _secretOfVenomDragon;
+        private CareerChoiceGroupObject _soulBinding;
         private CareerChoiceGroupObject _legendsOfMalok;
         private CareerChoiceGroupObject _unrestrictedMagic;
         private CareerChoiceGroupObject _forbiddenScrollsOfSaphery;
@@ -289,7 +289,7 @@ namespace TOR_Core.CharacterDevelopment
             
             _caelithsWisdom = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_caelithsWisdom).UnderscoreFirstCharToUpper()));
             _legendsOfMalok = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_legendsOfMalok).UnderscoreFirstCharToUpper()));
-            _secretOfVenomDragon = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_secretOfVenomDragon).UnderscoreFirstCharToUpper()));
+            _soulBinding = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_soulBinding).UnderscoreFirstCharToUpper()));
             _unrestrictedMagic = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_unrestrictedMagic).UnderscoreFirstCharToUpper()));
             _forbiddenScrollsOfSaphery = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_forbiddenScrollsOfSaphery).UnderscoreFirstCharToUpper()));
             _byAllMeans = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_byAllMeans).UnderscoreFirstCharToUpper()));
@@ -885,7 +885,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _secretOfVenomDragon.Initialize("Secret of the{newline} Venom Dragon", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            _soulBinding.Initialize("Secret of the{newline} Venom Dragon", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
