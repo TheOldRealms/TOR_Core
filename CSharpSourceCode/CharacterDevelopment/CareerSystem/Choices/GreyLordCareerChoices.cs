@@ -184,7 +184,7 @@ using TOR_Core.Utilities;
             protected override void InitializeKeyStones()
             {
                 
-                _greyLordRoot.Initialize(CareerID, "root", null, true,
+                _greyLordRoot.Initialize(CareerID, "In a targeted area, enemy units get affected by the fell fang.. With growing Spellcraft skill the chance rises to turn the enemy on your side. The success chance also depends on the available health and the level of the enemy. The more Keystone perks are unlocked the more enemies can be turned.", null, true,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
