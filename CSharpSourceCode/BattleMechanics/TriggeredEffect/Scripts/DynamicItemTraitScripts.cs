@@ -21,7 +21,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 var additionalDamage = new DamageProportionTuple();
 
                 additionalDamage.DamageType = DamageType.Magical;
-                additionalDamage.Percent = 0.20f;
+                additionalDamage.Percent = 0.15f;
                 var trait = new ItemTrait
                 {
                     ItemTraitName = "Swiftshiver shards Trait",

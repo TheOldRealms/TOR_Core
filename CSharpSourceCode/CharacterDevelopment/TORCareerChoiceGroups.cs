@@ -814,7 +814,7 @@ namespace TOR_Core.CharacterDevelopment
             }, (Hero hero, out string unlockText) =>
             {
                 unlockText = "Hagbane Tipps upgrade for troops";
-                return true;
+                return hero.Clan.Tier >= 2;
             });
             
             _hawkeyed.Initialize("Hawkeyed", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>

@@ -41,7 +41,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             {
                 Id = "shift",
                 Name = "Swiftshiver Shards",
-                Description = "adds 25% Magical damage",
+                Description = "adds 15% Magical damage",
                 Effect = "apply_shift_shiver_trait",
                 Price = 20,
                 Symbol = _swiftshiverShardsIcon
@@ -78,12 +78,13 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
 
         for (var i = 0; i < _allArrows.Count; i++)
         {
+            if (!Hero.MainHero.HasUnlockedCareerChoiceTier(i+1))
+                break;
             var arrow = _allArrows[i];
             var icon = GetArrowIconAsText(arrow);
             var price = Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI ? arrow.Price * 3 : arrow.Price;
             list.Add(new InquiryElement(arrow, new TextObject($"{{{icon}}} {arrow.Name}").ToString(), null, true, $"{arrow.Description}, {price}"));
-            if (!Hero.MainHero.HasUnlockedCareerChoiceTier(i + 1))
-                break;
+        
         }
 
         var arrowType = GetCurrentActiveArrowType(_setCharacter);
