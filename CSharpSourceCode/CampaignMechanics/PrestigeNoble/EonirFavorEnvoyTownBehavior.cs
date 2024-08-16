@@ -835,7 +835,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         if (partner != null && partner.IsHero)
         {
             if (partner.HeroObject.HasAttribute("AsurEnvoy") || partner.HeroObject.HasAttribute("EmpireEnvoy") ||
-                partner.HeroObject.HasAttribute("AsurEnvoy") || partner.HeroObject.HasAttribute("SpellsingerEnvoy"))
+                partner.HeroObject.HasAttribute("DruchiiEnvoy") || partner.HeroObject.HasAttribute("SpellsingerEnvoy"))
             {
                 return true;
             }

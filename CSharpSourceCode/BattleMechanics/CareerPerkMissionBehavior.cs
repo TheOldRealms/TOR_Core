@@ -7,6 +7,7 @@ using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -187,6 +188,7 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
+            
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
             if (affectorAgent.BelongsToMainParty()&& ((Hero.MainHero.HasCareer(TORCareers.WitchHunter)&& affectorAgent.IsMainAgent) ||
@@ -200,27 +202,9 @@ namespace TOR_Core.BattleMechanics
                 affectorAgent.ApplyDamage((int)(blow.InflictedDamage*0.25f),affectedAgent.Position);
             }
             
-            if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
-            {
-                AddWOMForKill(affectedAgent,blow.InflictedDamage);
-                
-            }
+            
         }
-
-        private void AddWOMForKill(Agent affectedAgent, int inflictedDamage)
-        {
-            if (!affectedAgent.BelongsToMainParty())
-            {
-                if (affectedAgent.Health < inflictedDamage)
-                {
-                    if (affectedAgent.HasAttribute("WOMMark"))
-                    {
-                        Hero.MainHero.AddWindsOfMagic(0.25f);
-                    }
-                    affectedAgent.RemoveStatusEffect("WOMMark");
-                }
-            }
-        }
+        
 
         private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)
         {
@@ -272,7 +256,24 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
-
+            if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
+            {
+                if (affectedAgent.HasAttribute("FellfangMark"))
+                {
+                    if (Hero.MainHero.HasCareerChoice("SecretOfSunDragonKeystone"))
+                    {
+                        var effect = TriggeredEffectManager.CreateNew("apply_fellfang_explosion");
+                        effect.Trigger(affectedAgent.Position,Vec3.Up,Agent.Main, Agent.Main.GetCareerAbility().Template);
+                    }
+                    
+                    if (Hero.MainHero.HasCareerChoice("SecretOfFellfangKeystone"))
+                    {
+                        Hero.MainHero.AddWindsOfMagic(2);
+                    }
+                }
+            }
+            
+            
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
             var playerHero = affectorAgent.GetHero();
@@ -424,6 +425,9 @@ namespace TOR_Core.BattleMechanics
                         affectorAgent.Heal(0.25f);
                     }
                 }
+
+
+               
             }
         }
     }

@@ -3830,7 +3830,7 @@
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
       ParticleEffectPrefab="" 
-	  MaxDistance="120"
+	  MaxDistance="30"
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="evilbolt_cast" 
       ShouldSoundLoopOverDuration="false" 

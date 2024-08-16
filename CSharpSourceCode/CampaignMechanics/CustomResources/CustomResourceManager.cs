@@ -256,7 +256,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out var renownChange, out _, out _, out _, out _);
 
-            if (MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Prestige"))
+            if (MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Prestige") ||
+                MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Chivalry") ||
+                MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("CouncilFavor"))
             {
                 var fairBattleOrPlayerInferior = _initialCombatRatio < 1.1f;
 

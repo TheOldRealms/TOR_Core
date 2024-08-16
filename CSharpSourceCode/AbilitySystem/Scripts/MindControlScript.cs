@@ -12,8 +12,6 @@ namespace TOR_Core.AbilitySystem.Scripts;
 
 public class MindControlScript : CareerAbilityScript
 {
-    private MissionCameraFadeView _cameraView;
-    private Agent _controlled;
     private Agent _caster;
     private float _radius;
 
@@ -25,27 +23,14 @@ public class MindControlScript : CareerAbilityScript
     protected override void OnInit()
     {
         base.OnInit();
-        var radius = 0f;
         _caster = this.CasterAgent;
-      
-        _cameraView = Mission.Current.GetMissionBehavior<MissionCameraFadeView>();
-        Mission.Current.OnBeforeAgentRemoved += AgentRemoved;
-        
-
-
     }
-
-    private void AgentRemoved(Agent affectedagent, Agent affectoragent, AgentState agentstate, KillingBlow killingblow)
-    {
-        
-        if (affectedagent == _controlled) Stop();
-    }
+    
 
     protected override void OnBeforeTick(float dt)
     {
         base.OnBeforeTick(dt);
-        if(_init)return;
-        if(IsFading) return;
+        _init = false;
         var pos = CurrentGlobalPosition;
 
         var tries = getAmountOfTries();
@@ -57,22 +42,28 @@ public class MindControlScript : CareerAbilityScript
  
         var baseChance = this.Ability.Template.ScaleVariable1;
         
-
-
+        
+        
+        
         foreach (var agent in targets.TakeRandom(tries))
         {
 
             var level = agent.Character.Level - Hero.MainHero.Level;
      
             var health = agent.Health / agent.HealthLimit;
+
+            
             
             var reducedChance = (level * 0.02f)*health;
+            
+            if (Hero.MainHero.HasCareerChoice("SecretOfMoonDragonKeystone"))
+            {
+                reducedChance-=0.1f;
+            }
             var chance = baseChance - reducedChance;
             
-            TORCommon.Say(chance.ToString());
             if (MBRandom.RandomFloat < chance)
             {
-                TORCommon.Say("mindcontrol");
                 SetupMindControl(agent);
             }
             else
@@ -80,7 +71,10 @@ public class MindControlScript : CareerAbilityScript
                 HandleMissed(agent);
             }
         }
+
         _init = true;
+
+        Stop();
     }
 
     private int getAmountOfTries()
@@ -93,12 +87,32 @@ public class MindControlScript : CareerAbilityScript
             count += 2;
         }
         
+        if(Hero.MainHero.HasCareerChoice("SecretOfSunDragonKeystone"))
+        {
+            count++;
+        }
+        
+        if(Hero.MainHero.HasCareerChoice("SecretOfStarDragonKeystone"))
+        {
+            count++;
+        }
+        
+        if(Hero.MainHero.HasCareerChoice("SecretOfMoonDragonKeystone"))
+        {
+            count++;
+        }
+        
         if(Hero.MainHero.HasCareerChoice("SecretOfForestDragonKeystone"))
         {
             count++;
         }
-
+        
         if (Hero.MainHero.HasCareerChoice("LegendsOfMalokKeystone"))
+        {
+            count++;
+        }
+
+        if (Hero.MainHero.HasCareerChoice("SecretOfFellfangKeystone"))
         {
             count++;
         }
@@ -115,52 +129,19 @@ public class MindControlScript : CareerAbilityScript
         {
             target.Health = target.HealthLimit;
         }
+
+        
+        target.ApplyStatusEffect("fellfang_mark",_caster,999999f);
     }
 
     private void HandleMissed(Agent agent)
     {
-        if (Hero.MainHero.HasCareerChoice("SecretOfStarDragonKeystone"))
+        if (Hero.MainHero.HasCareerChoice("SecretOfSunDragonKeystone"))
         {
             var effect = TriggeredEffectManager.CreateNew("apply_fellfang_fire");
-            effect.Trigger(agent.Position,Vec3.Up,_caster, this.Ability.Template , new MBList<Agent>(){agent});
-        }
-        
-        
-    }
-
-    
-    
-    protected override void OnBeforeRemoved(int removeReason)
-    {
-        Mission.Current.OnBeforeAgentRemoved -= AgentRemoved;
-        if (_sucessfulControl)
-        {
-            
-            ShiftControllerToCaster();
-            
-            if (Hero.MainHero.HasCareerChoice("CaelithsWisdomKeystone"))
-            {
-                var effect = TriggeredEffectManager.CreateNew("boltofaqshy_explosion");
-                
-                effect.Trigger(_controlled.Position,Vec3.Up,_caster);
-            }
-
+            effect.Trigger(agent.Position,Vec3.Up,Agent.Main, Agent.Main.GetCareerAbility().Template,new MBList<Agent>(){agent});
         }
     }
     
-    private void ShiftControllerToCaster()
-    {
-        if(_caster==null) return;
-        _caster.ClearTargetFrame();
-
-        if (_caster.Health > 0)
-        {
-            _caster.Controller = Agent.ControllerType.Player;
-            _controlled.Controller = Agent.ControllerType.AI;
-        }
-
-        _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
-        CasterAgent.WieldInitialWeapons();
-        _mindControl = false;
-    }
+    
 }

@@ -196,7 +196,7 @@ using TOR_Core.Utilities;
                             MutationType = OperationType.Add
                         }
                     });
-                _caelithsWisdomKeystone.Initialize(CareerID, "2 additional overtakes. Ability scales with charm.", "CaelithsWisdom", false,
+                _caelithsWisdomKeystone.Initialize(CareerID, "2 additional overtakes. Ability scales with Charm. Melee damage can charge ability.", "CaelithsWisdom", false,
                     ChoiceType.Passive);
                 _secretOfForestDragonKeystone.Initialize(CareerID, "Controlled unit gets healed completely. Ability scales with medicine.", "SecretOfForestDragon", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -211,7 +211,7 @@ using TOR_Core.Utilities;
                         },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _legendsOfMalokKeystone.Initialize(CareerID, "control chance is 15% higher. Ability starts charged.", "LegendsOfMalok", false,
+                _legendsOfMalokKeystone.Initialize(CareerID, "control chance is 15% higher. Ability starts charged. ", "LegendsOfMalok", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
@@ -224,35 +224,38 @@ using TOR_Core.Utilities;
                         },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _secretOfSunDragonKeystone.Initialize(CareerID, "Impact damage of dragon fire is doubled.", "SecretOfSunDragon", false,
+                _secretOfSunDragonKeystone.Initialize(CareerID, "When the controlled dies he explodes. Unsucessful control hurt the enemy by 40 HP.", "SecretOfSunDragon", false,
+                    ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                    {
+                    },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
+                
+                _secretOfStarDragonKeystone.Initialize(CareerID, "Companion damage can charge ability. Range is doubled.", "SecretOfStarDragon", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
                         {
-                            MutationTargetType = typeof(TriggeredEffectTemplate),
-                            MutationTargetOriginalId = "apply_dragonfire",
-                            PropertyName = "DamageAmount",
-                            PropertyValue = (choice, originalValue, agent) => 2f,
+                            MutationTargetType = typeof(AbilityTemplate),
+                            MutationTargetOriginalId = "MindControl", 
+                            PropertyName = "MaxDistance",
+                            PropertyValue = (choice, originalValue, agent) =>2f,
                             MutationType = OperationType.Multiply
                         },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _secretOfStarDragonKeystone.Initialize(CareerID, "When the controlled dies, an explosion occurs, dealing fire damage. Unsucessful control hurt the enemy by 40 HP", "SecretOfStarDragon", false,
+                _secretOfMoonDragonKeystone.Initialize(CareerID, "Ability scales with roguery. Units are easier to overtake", "SecretOfMoonDragon", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
                         {
-                            MutationTargetType = typeof(TriggeredEffectTemplate),
-                            MutationTargetOriginalId = "apply_dragonfire",
-                            PropertyName = "ImbuedStatusEffects",
-                            PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] {"dragonfire_debuff_mov","dragonfire_debuff_ats" }).ToList(),
-                            MutationType = OperationType.Replace
+                            MutationTargetType = typeof(AbilityTemplate),
+                            MutationTargetOriginalId = "MindControl",
+                            PropertyName = "ScaleVariable1",
+                            PropertyValue = (choice, originalValue, agent) =>0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Roguery }, 0.000625f),
+                            MutationType = OperationType.Add
                         },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
-                _secretOfMoonDragonKeystone.Initialize(CareerID, "For every hit enemy by dragon breath, increase magical spell damage by 3% for 10 seconds.", "SecretOfMoonDragon", false,
-                    ChoiceType.Passive);
                 
-                _secretOfFellfangKeystone.Initialize(CareerID, "Every eliminated unit of dragon fire (within 5 seconds), will recharge 0.25 winds.", "SecretOfFellfang", false,
+                _secretOfFellfangKeystone.Initialize(CareerID, "Successful overtake grants 1 winds of magic.", "SecretOfFellfang", false,
                     ChoiceType.Passive);
             }
 
@@ -274,7 +277,7 @@ using TOR_Core.Utilities;
                 _legendsOfMalokPassive2.Initialize(CareerID, "Favor costs for cityborn  troop upgrades is reduced by 20%.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.CustomResourceUpgradeCostModifier,true));
                 _legendsOfMalokPassive3.Initialize(CareerID, "Adds 25% fire damage to all troops.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Fire, 25), AttackTypeMask.Melee, 
                     (attacker, victim, mask) => attacker.BelongsToMainParty() && !attacker.IsHero && attacker.Character.IsEliteTroop() &&  attacker.Character.Culture.StringId == TORConstants.Cultures.EONIR));
-                _legendsOfMalokPassive4.Initialize(CareerID, "If no hex spells are equipped you gain 50% spell radius.\n", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
+                _legendsOfMalokPassive4.Initialize(CareerID, "If no hex spells are equipped you gain 50% spell radius.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
 
                 
                 _secretOfSunDragonPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "SecretOfSunDragon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));

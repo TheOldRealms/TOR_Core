@@ -1643,6 +1643,19 @@
             TargetType="Enemy" 
             DamageVariance="0" 
             ScriptNameToTrigger="none"/>
+			
+			
+	 <TriggeredEffectTemplate StringID="apply_fellfang_explosion" 
+            BurstParticleEffectPrefab="psys_fireball_explosion_1" 
+            SoundEffectId="none" 
+            SoundEffectLength="0" 
+            DamageType="Fire" 
+            DamageAmount="20" 
+            Radius="5" 
+            HasShockWave="false" 
+            TargetType="Enemy" 
+            DamageVariance="0" 
+            ScriptNameToTrigger="none"/>
 	  
 	<!-- 	  Powerstones  -->
 	
