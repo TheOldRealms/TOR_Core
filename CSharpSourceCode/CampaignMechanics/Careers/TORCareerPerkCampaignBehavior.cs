@@ -44,13 +44,9 @@ namespace TOR_Core.CampaignMechanics
                 var postBattleBonus = maximum * choice.GetPassiveValue();
 
                 Hero.MainHero.AddWindsOfMagic(postBattleBonus);
-
-
             }
-            
         }
-
-
+        
         private void CheckWarriorPriestPerks(MapEvent mapEvent)
         {
             if (Hero.MainHero.HasCareerChoice("BookOfSigmarPassive3"))

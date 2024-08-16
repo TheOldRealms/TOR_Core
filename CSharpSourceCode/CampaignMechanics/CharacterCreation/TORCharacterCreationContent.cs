@@ -341,12 +341,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddKnownLore("LoreOfFire");
                 Hero.MainHero.AddAbility("BoltOfAqshy");
                 
-                
-                
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                
             }
             
             if(IsDamselCharacterCreationID (id))

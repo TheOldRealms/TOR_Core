@@ -73,7 +73,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     effect.CurrentDuration = duration; 
                 }
-
                 if (stack)
                 {
                     StatusEffectManager.CreateNewStatusEffect(effectId, applierAgent, isMutated);

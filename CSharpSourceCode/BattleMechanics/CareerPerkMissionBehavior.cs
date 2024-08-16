@@ -185,11 +185,8 @@ namespace TOR_Core.BattleMechanics
             {
                 affectorAgent.ApplyDamage((int)(blow.InflictedDamage*0.25f),affectedAgent.Position);
             }
-            
-            
         }
         
-
         private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)
         {
             var comp = affectedAgent.GetComponent<StatusEffectComponent>();
@@ -409,9 +406,6 @@ namespace TOR_Core.BattleMechanics
                         affectorAgent.Heal(0.25f);
                     }
                 }
-
-
-               
             }
         }
     }
