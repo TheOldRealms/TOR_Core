@@ -279,6 +279,11 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                             break;
                         }
                 }
+
+                if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicPassive3"))
+                {
+                    renownChange *= 1.2f;
+                }
                 
                 if (Hero.MainHero.HasCareerChoice("CollegeOrdersPassive3"))
                 {

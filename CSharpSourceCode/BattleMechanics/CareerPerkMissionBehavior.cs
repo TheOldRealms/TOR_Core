@@ -168,22 +168,6 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
             }
-
-            if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
-            {
-                if (!victim.BelongsToMainParty())
-                {
-                    if (victim.Health < collisionData.InflictedDamage)
-                    {
-                        if (victim.HasAttribute("WOMMark"))
-                        {
-                            Hero.MainHero.AddWindsOfMagic(0.25f);
-                        }
-                        victim.RemoveStatusEffect("WOMMark");
-                    }
-                }
-                
-            }
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)

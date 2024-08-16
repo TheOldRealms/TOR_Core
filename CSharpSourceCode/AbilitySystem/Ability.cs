@@ -197,23 +197,6 @@ namespace TOR_Core.AbilitySystem
                                     cooldown.AddFactor(-0.5f);
                                 }
                             }
-
-                            if (Template.AbilityEffectType == AbilityEffectType.Missile || 
-                                Template.AbilityEffectType == AbilityEffectType.Vortex ||
-                                Template.AbilityEffectType == AbilityEffectType.SeekerMissile ||
-                                Template.AbilityEffectType == AbilityEffectType.Bombardment)
-                            {
-                                var choice2 = TORCareerChoices.GetChoice("SecretOfFellfangPassive4");
-                                if (choice2 != null)
-                                {
-                                    var value = choice2.GetPassiveValue();
-
-                                    if (MBRandom.RandomFloat < value)
-                                    {
-                                        casterAgent.GetHero().AddWindsOfMagic(Template.WindsOfMagicCost);
-                                    }
-                                }
-                            }
                         }
                         
                     }

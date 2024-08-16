@@ -282,7 +282,7 @@ using TOR_Core.Utilities;
                 
                 _unrestrictedMagicPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
                 _unrestrictedMagicPassive2.Initialize(CareerID, "Spell effect radius is increased by 20%.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.SpellRadius,true));
-                _unrestrictedMagicPassive3.Initialize(CareerID, "Increases fire spell damage by 10%.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
+                _unrestrictedMagicPassive3.Initialize(CareerID, "Favor gain from battles is increased by 20%", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
                 _unrestrictedMagicPassive4.Initialize(CareerID, "If no AOE effect is equipped, your projectile spells deal 200% extra damage.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); 
                 
                 _forbiddenScrollsOfSapheryPassive1.Initialize(CareerID, "Increases Windsregeneration by 0.5.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.WindsRegeneration));
@@ -299,7 +299,7 @@ using TOR_Core.Utilities;
                 _secretOfFellfangPassive1.Initialize(CareerID, "50% cooldown reduction if you wield less than 11 spells", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(11, PassiveEffectType.Special));
                 _secretOfFellfangPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
                 _secretOfFellfangPassive3.Initialize(CareerID, "After battle, 30% of your winds are regenerated.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
-                _secretOfFellfangPassive4.Initialize(CareerID, "For every spell dealing fire damage, 20% chance the used spell doesn't cost any winds", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special,true));
+                _secretOfFellfangPassive4.Initialize(CareerID, "Increases fire spell damage by 15%.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
             }
             
             
