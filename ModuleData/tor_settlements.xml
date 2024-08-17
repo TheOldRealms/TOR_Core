@@ -82,7 +82,7 @@
       <CursedSite id="haunted_site_02" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_swamp" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="haunted_site_03" name="{=!}The Barren Hills" owner="Faction.sylvania_clan_1" posX="1505.873" posY="1086.675" culture="Culture.khuzait" text="{=!}Long have the hills southeast of Talabheim been cursed. Strangeness and tragedy are no stranger to that land. Despite this, no one knows what the cause of the miasma is; though not for lack of trying. ">
+  <Settlement id="haunted_site_03" name="{=!}The Barren Hills" owner="Faction.necrarch_clan_1" posX="1505.873" posY="1086.675" culture="Culture.khuzait" text="{=!}Long have the hills southeast of Talabheim been cursed. Strangeness and tragedy are no stranger to that land. Despite this, no one knows what the cause of the miasma is; though not for lack of trying. ">
     <Components>
       <CursedSite id="haunted_site_03" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
