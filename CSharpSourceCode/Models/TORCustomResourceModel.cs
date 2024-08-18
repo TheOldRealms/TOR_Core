@@ -62,12 +62,12 @@ public class TORCustomResourceModel : GameModel
                             }
                             if (settlement.IsVillage)
                             {
-                                number.Add(1,text);
+                                number.Add(0.5f,text);
                             }
 
                             if (settlement.IsCastle || settlement.IsTown)
                             {
-                                number.Add(3,text);
+                                number.Add(1.5f,text);
                             }
                         }
 

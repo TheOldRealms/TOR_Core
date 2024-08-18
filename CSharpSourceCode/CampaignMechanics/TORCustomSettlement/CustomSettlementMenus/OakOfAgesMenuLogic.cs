@@ -255,7 +255,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_C", "Relief Treespirits",null, (args) 
                 => PartyScreenManager.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), new TextObject("Donated Spirits"),
                     500,0,null,TranferCompleted, IsTransferableTreeSpirit,null),
-            false);
+            false);     //check if left side only contain tree spirits done button condition
 
         starter.AddWaitGameMenu("oak_of_ages_tree_spirits_menu_bind_dryads", "{=tor_custom_settlement_cursed_site_ghosts_progress_str}Performing binding ritual...",
             delegate (MenuCallbackArgs args)
@@ -330,7 +330,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         {
             if (type != PartyScreenLogic.TroopType.Member) return false;
             if (character.IsHero) return false;
-            return character.Culture.StringId == TORConstants.Cultures.ASRAI && character.Race != FaceGen.GetRaceOrDefault("elf");
+            return character.Culture.StringId == TORConstants.Cultures.ASRAI && !character.IsElf();
         }
 
         void AddTreemen(MenuCallbackArgs args)
