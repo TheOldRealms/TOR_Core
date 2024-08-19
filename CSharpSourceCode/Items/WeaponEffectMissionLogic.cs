@@ -119,7 +119,11 @@ namespace TOR_Core.Items
                     {
                         foreach (var trait in traits)
                         {
-                            missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);
+                            if (trait.WeaponParticlePreset != null)
+                            {
+                                missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);  
+                            }
+                           
                         }
 
                     }
