@@ -41,9 +41,44 @@
       <Shrine id="sigmar_shrine_03" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
+  <Settlement id="sigmar_shrine_04" name="{=!}Shrine of Sigmar" owner="Faction.reikland_clan_1" posX="1467.32" posY="1307.753" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="sigmar_shrine_04" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="sigmar_shrine_05" name="{=!}Shrine of Sigmar" owner="Faction.reikland_clan_1" posX="1471.909" posY="1202.333" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="sigmar_shrine_05" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="sigmar_shrine_06" name="{=!}Shrine of Sigmar" owner="Faction.reikland_clan_1" posX="1627.181" posY="1117.255" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="sigmar_shrine_06" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="sigmar_shrine_07" name="{=!}Shrine of Sigmar" owner="Faction.reikland_clan_1" posX="896.5964" posY="1096.772" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="sigmar_shrine_07" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
   <Settlement id="taal_shrine_01" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1428.681" posY="1104.84" culture="Culture.empire" text="{=!}Shrine of Sigmar">
     <Components>
       <Shrine id="taal_shrine_01" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="taal_shrine_02" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1440.252" posY="1198.042" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="taal_shrine_02" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="taal_shrine_03" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1357.367" posY="1131.701" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+    <Components>
+      <Shrine id="taal_shrine_03" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="taal_shrine_04" name="{=!}Guarec Circle" owner="Faction.talabecland_clan_1" posX="937.7194" posY="1069.861" culture="Culture.empire" text="{=!}Guarec Circle">
+    <Components>
+      <Shrine id="taal_shrine_04" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="grove_of_the_lady_01" name="{=!}Grove of the Lady" owner="Faction.carcassonne_clan_1" posX="1016.4" posY="810.756" culture="Culture.vlandia" text="{=!}Grove of the Lady">
@@ -54,6 +89,21 @@
   <Settlement id="grove_of_the_lady_02" name="{=!}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="1038.792" posY="1070.953" culture="Culture.vlandia" text="{=!}Grove of the Lady">
     <Components>
       <Shrine id="grove_of_the_lady_02" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="grove_of_the_lady_03" name="{=!}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="1060.126" posY="1260.541" culture="Culture.vlandia" text="{=!}Grove of the Lady">
+    <Components>
+      <Shrine id="grove_of_the_lady_03" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="grove_of_the_lady_04" name="{=!}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="968.8731" posY="1157.072" culture="Culture.vlandia" text="{=!}Grove of the Lady">
+    <Components>
+      <Shrine id="grove_of_the_lady_04" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="grove_of_the_lady_05" name="{=!}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="851.7467" posY="1174.426" culture="Culture.vlandia" text="{=!}Grove of the Lady">
+    <Components>
+      <Shrine id="grove_of_the_lady_05" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="herdstone_01" name="{=!}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="1472.928" posY="1069.09" culture="Culture.chaos_culture" text="{=!}Beastmen Herdstone">
@@ -69,6 +119,116 @@
   <Settlement id="darkelf_camp_01" name="{=!}Druchii Slaver Camp" owner="Faction.druchii_clan_1" posX="792.494" posY="1126.466" culture="Culture.druchii" text="{=!}Druchii Slaver Camp">
     <Components>
       <SlaverCamp id="darkelf_camp_01" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="manaan_shrine_01" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="1412.178" posY="1348.525" culture="Culture.empire" text="{=!}Shrine of Manaan">
+    <Components>
+      <Shrine id="manaan_shrine_01" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="manaan_shrine_02" name="{=!}Manaan's Teeth" owner="Faction.reikland_clan_1" posX="1228.79" posY="1381.38" culture="Culture.empire" text="{=!}Manaan's Teeth">
+    <Components>
+      <Shrine id="manaan_shrine_02" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="manaan_shrine_03" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="1178.662" posY="1229.86" culture="Culture.empire" text="{=!}Shrine of Manaan">
+    <Components>
+      <Shrine id="manaan_shrine_03" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="manaan_shrine_04" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="1115.938" posY="1135.367" culture="Culture.empire" text="{=!}Shrine of Manaan">
+    <Components>
+      <Shrine id="manaan_shrine_04" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="manaan_shrine_05" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="893.3673" posY="1218.717" culture="Culture.empire" text="{=!}Shrine of Manaan">
+    <Components>
+      <Shrine id="manaan_shrine_05" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="manaan_shrine_06" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="926.5174" posY="952.5437" culture="Culture.empire" text="{=!}Shrine of Manaan">
+    <Components>
+      <Shrine id="manaan_shrine_06" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="asuryan_shrine_01" name="{=!}Shrine of Asuryan" owner="Faction.reikland_clan_1" posX="1258.447" posY="1327.954" culture="Culture.empire" text="{=!}Shrine of Asuryan">
+    <Components>
+      <Shrine id="asuryan_shrine_01" religion="cult_of_asuryan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="ulric_shrine_01" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1353.372" posY="1284.965" culture="Culture.empire" text="{=!}Shrine of Ulric">
+    <Components>
+      <Shrine id="ulric_shrine_01" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="ulric_shrine_02" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1363.431" posY="1174.512" culture="Culture.empire" text="{=!}Shrine of Ulric">
+    <Components>
+      <Shrine id="ulric_shrine_02" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="ulric_shrine_03" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1241.563" posY="1189.494" culture="Culture.empire" text="{=!}Shrine of Ulric">
+    <Components>
+      <Shrine id="ulric_shrine_03" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="ulric_shrine_04" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1552.181" posY="1257.369" culture="Culture.empire" text="{=!}Shrine of Ulric">
+    <Components>
+      <Shrine id="ulric_shrine_04" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="ulric_shrine_05" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1499.535" posY="1173.501" culture="Culture.empire" text="{=!}Shrine of Ulric">
+    <Components>
+      <Shrine id="ulric_shrine_05" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="shallya_shrine_01" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="1411.537" posY="1150.294" culture="Culture.empire" text="{=!}Shrine of Shallya">
+    <Components>
+      <Shrine id="shallya_shrine_01" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="shallya_shrine_02" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="1409.657" posY="815.4258" culture="Culture.empire" text="{=!}Shrine of Shallya">
+    <Components>
+      <Shrine id="shallya_shrine_02" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="shallya_shrine_03" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="986.0541" posY="1215.573" culture="Culture.empire" text="{=!}Shrine of Shallya">
+    <Components>
+      <Shrine id="shallya_shrine_03" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="shallya_shrine_04" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="993.8555" posY="1009.031" culture="Culture.empire" text="{=!}Shrine of Shallya">
+    <Components>
+      <Shrine id="shallya_shrine_04" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="shallya_shrine_05" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="1110.782" posY="761.5991" culture="Culture.empire" text="{=!}Shrine of Shallya">
+    <Components>
+      <Shrine id="shallya_shrine_05" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="loec_shrine_01" name="{=!}Shrine of Loec" owner="Faction.reikland_clan_1" posX="1220.387" posY="863.5029" culture="Culture.empire" text="{=!}Shrine of Loec">
+    <Components>
+      <Shrine id="loec_shrine_01" religion="cult_of_loec" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="anath_shrine_01" name="{=!}Shrine of Anath Raema" owner="Faction.reikland_clan_1" posX="1248.776" posY="859.7876" culture="Culture.empire" text="{=!}Shrine of Anath Raema">
+    <Components>
+      <Shrine id="anath_shrine_01" religion="cult_of_anath_raema" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="vaul_shrine_01" name="{=!}Shrine of Vaul" owner="Faction.reikland_clan_1" posX="1184.553" posY="817.1335" culture="Culture.empire" text="{=!}Shrine of Vaul">
+    <Components>
+      <Shrine id="vaul_shrine_01" religion="cult_of_vaul" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="kurnous_shrine_01" name="{=!}Shrine of Kurnous" owner="Faction.reikland_clan_1" posX="1228.865" posY="790.4965" culture="Culture.empire" text="{=!}Shrine of Kurnous">
+    <Components>
+      <Shrine id="kurnous_shrine_01" religion="cult_of_kurnous" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="isha_shrine_01" name="{=!}Shrine of Isha" owner="Faction.reikland_clan_1" posX="1236.481" posY="782.3018" culture="Culture.empire" text="{=!}Shrine of Isha">
+    <Components>
+      <Shrine id="isha_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <!--haunted sites-->
@@ -4268,7 +4428,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_OL1_2" name="{=Settlements.Settlement.name.castle_village_OL1_2}Birkewiese" posX="1506.783" posY="1320.361" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
+  <Settlement id="castle_village_OL1_2" name="{=Settlements.Settlement.name.castle_village_OL1_2}Birkewiese" posX="1506.783" posY="1320.288" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
       <Village id="castle_village_comp_OL1_2" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL1" bound="Settlement.castle_OL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7772,7 +7932,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL3_1" name="{=Settlements.Settlement.name.village_AL3_1}Tal Amere" posX="1243.459" posY="740.5371" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">
+  <Settlement id="village_AL3_1" name="{=Settlements.Settlement.name.village_AL3_1}Tal Amere" posX="1243.459" posY="740.537" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_1}Ussingen is a small village located on the road between Holthusen and Osburg. The town is at the furthest point that the River Schilder remains navigable by barge, meaning that many shipments bound for Helmgart will arrive first here. The people here raise crops along the river Schilder and will venture into the nearby Grey Mountains to mine seams of ore. The town is well protected by the walls at Helmgart, and really only worries about the denizens of the Reikwald.">
     <Components>
       <Village id="village_comp_AL3_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL3" bound="Settlement.town_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7785,7 +7945,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL3_2" name="{=Settlements.Settlement.name.village_AL3_2}Tal Drost" posX="1245.451" posY="754.1553" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
+  <Settlement id="village_AL3_2" name="{=Settlements.Settlement.name.village_AL3_2}Tal Drost" posX="1245.451" posY="754.155" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_2}Morlenfurt is a small village near the headwaters of the river Bogen. The town is known for its silver mines and the small community of Dwarfs which contribute to the silver trade within the Reikland.">
     <Components>
       <Village id="village_comp_AL3_2" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL3" bound="Settlement.town_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8115,7 +8275,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL6_1" name="{=Settlements.Settlement.name.castle_village_AL6_1}Tyr Edrell" posX="1274.927" posY="750.7632" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Weissbruck sits on the joining of the Weissbruck Canal and the river Bӧgen. The town once was a major source of coal and iron in the Reikland, the mining of which provided the Gruber family with enough funds to construct the Weissbruck Canal, which enabled easier transportation of the mined material to market. Now the mines have mostly been depleted and while the town continues to have prosperous ventures in trade thanks to the canal, the many former workers of the mine have found themselves unemployed and stuck in Weissbruck, where they spend their time drinking cheap alcohol and causing trouble.">
+  <Settlement id="castle_village_AL6_1" name="{=Settlements.Settlement.name.castle_village_AL6_1}Tyr Edrell" posX="1274.927" posY="750.763" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Weissbruck sits on the joining of the Weissbruck Canal and the river Bӧgen. The town once was a major source of coal and iron in the Reikland, the mining of which provided the Gruber family with enough funds to construct the Weissbruck Canal, which enabled easier transportation of the mined material to market. Now the mines have mostly been depleted and while the town continues to have prosperous ventures in trade thanks to the canal, the many former workers of the mine have found themselves unemployed and stuck in Weissbruck, where they spend their time drinking cheap alcohol and causing trouble.">
     <Components>
       <Village id="castle_village_comp_AL6_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
