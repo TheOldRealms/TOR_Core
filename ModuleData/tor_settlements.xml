@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=!}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages">
@@ -41,47 +41,47 @@
       <Shrine id="sigmar_shrine_03" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="sigmar_shrine_04" name="{=!}Shrine of Sigmar" owner="Faction.reikland_clan_1" posX="1467.32" posY="1307.753" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+  <Settlement id="sigmar_shrine_04" name="{=!}Shrine of Sigmar" owner="Faction.ostland_clan_1" posX="1467.32" posY="1307.753" culture="Culture.empire" text="{=!}Shrine of Sigmar">
     <Components>
       <Shrine id="sigmar_shrine_04" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="sigmar_shrine_05" name="{=!}Shrine of Sigmar" owner="Faction.reikland_clan_1" posX="1471.909" posY="1202.333" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+  <Settlement id="sigmar_shrine_05" name="{=!}Shrine of Sigmar" owner="Faction.ostland_clan_1" posX="1471.909" posY="1202.333" culture="Culture.empire" text="{=!}Shrine of Sigmar">
     <Components>
       <Shrine id="sigmar_shrine_05" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="sigmar_shrine_06" name="{=!}Shrine of Sigmar" owner="Faction.reikland_clan_1" posX="1627.181" posY="1117.255" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+  <Settlement id="sigmar_shrine_06" name="{=!}Shrine of Sigmar" owner="Faction.ostermark_clan_1" posX="1627.181" posY="1117.255" culture="Culture.empire" text="{=!}Shrine of Sigmar">
     <Components>
       <Shrine id="sigmar_shrine_06" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="sigmar_shrine_07" name="{=!}Shrine of Sigmar" owner="Faction.reikland_clan_1" posX="896.596" posY="1096.772" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+  <Settlement id="sigmar_shrine_07" name="{=!}Abandoned Shrine of Sigmar" owner="Faction.lyonesse_clan_1" posX="896.5964" posY="1096.772" culture="Culture.empire" text="{=!}Shrine of Sigmar">
     <Components>
       <Shrine id="sigmar_shrine_07" religion="cult_of_sigmar" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="taal_shrine_01" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1428.681" posY="1104.84" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+  <Settlement id="taal_shrine_01" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1428.681" posY="1104.84" culture="Culture.empire" text="{=!}Shrine of Taal">
     <Components>
       <Shrine id="taal_shrine_01" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="taal_shrine_02" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1440.252" posY="1198.042" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+  <Settlement id="taal_shrine_02" name="{=!}Shrine of Taal" owner="Faction.hochland_clan_1" posX="1440.252" posY="1198.042" culture="Culture.empire" text="{=!}Shrine of Taal">
     <Components>
       <Shrine id="taal_shrine_02" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="taal_shrine_03" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1357.367" posY="1131.701" culture="Culture.empire" text="{=!}Shrine of Sigmar">
+  <Settlement id="taal_shrine_03" name="{=!}Shrine of Taal" owner="Faction.middenland_clan_1" posX="1357.367" posY="1131.701" culture="Culture.empire" text="{=!}Shrine of Taal">
     <Components>
       <Shrine id="taal_shrine_03" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="taal_shrine_04" name="{=!}Guarec Circle" owner="Faction.talabecland_clan_1" posX="937.719" posY="1069.861" culture="Culture.empire" text="{=!}Guarec Circle">
+  <Settlement id="taal_shrine_04" name="{=!}Guarec Circle" owner="Faction.artois_clan_1" posX="937.7194" posY="1069.861" culture="Culture.empire" text="{=!}Guarec Circle">
     <Components>
       <Shrine id="taal_shrine_04" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="taal_shrine_05" name="{=!}Shrine of Taal" owner="Faction.talabecland_clan_1" posX="1253.428" posY="956.4092" culture="Culture.empire" text="{=!}Shrine of Taal">
+  <Settlement id="taal_shrine_05" name="{=!}Shrine of Taal" owner="Faction.parravon_clan_1" posX="1253.428" posY="956.4092" culture="Culture.empire" text="{=!}Shrine of Taal">
     <Components>
       <Shrine id="taal_shrine_05" religion="cult_of_taal" background_crop_position="0.0" background_mesh="shrine_of_taal" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -96,17 +96,17 @@
       <Shrine id="grove_of_the_lady_02" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="grove_of_the_lady_03" name="{=!}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="1060.126" posY="1260.541" culture="Culture.vlandia" text="{=!}Grove of the Lady">
+  <Settlement id="grove_of_the_lady_03" name="{=!}Grove of the Lady" owner="Faction.couronne_clan_1" posX="1060.126" posY="1260.541" culture="Culture.vlandia" text="{=!}Grove of the Lady">
     <Components>
       <Shrine id="grove_of_the_lady_03" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="grove_of_the_lady_04" name="{=!}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="968.873" posY="1157.072" culture="Culture.vlandia" text="{=!}Grove of the Lady">
+  <Settlement id="grove_of_the_lady_04" name="{=!}Grove of the Lady" owner="Faction.artois_clan_1" posX="968.873" posY="1157.072" culture="Culture.vlandia" text="{=!}Grove of the Lady">
     <Components>
       <Shrine id="grove_of_the_lady_04" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="grove_of_the_lady_05" name="{=!}Grove of the Lady" owner="Faction.bastonne_clan_1" posX="851.747" posY="1174.426" culture="Culture.vlandia" text="{=!}Grove of the Lady">
+  <Settlement id="grove_of_the_lady_05" name="{=!}Grove of the Lady" owner="Faction.lyonesse_clan_1" posX="851.747" posY="1174.426" culture="Culture.vlandia" text="{=!}Grove of the Lady">
     <Components>
       <Shrine id="grove_of_the_lady_05" religion="cult_of_lady" background_crop_position="0.0" background_mesh="shrine_of_lady" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -126,112 +126,112 @@
       <SlaverCamp id="darkelf_camp_01" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="manaan_shrine_01" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="1412.178" posY="1348.525" culture="Culture.empire" text="{=!}Shrine of Manaan">
+  <Settlement id="manaan_shrine_01" name="{=!}Shrine of Manaan" owner="Faction.nordland_clan_1" posX="1412.178" posY="1348.525" culture="Culture.empire" text="{=!}Shrine of Manaan">
     <Components>
       <Shrine id="manaan_shrine_01" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="manaan_shrine_02" name="{=!}Manaan's Teeth" owner="Faction.reikland_clan_1" posX="1228.79" posY="1381.38" culture="Culture.empire" text="{=!}Manaan's Teeth">
+  <Settlement id="manaan_shrine_02" name="{=!}Manaan's Teeth" owner="Faction.nordland_clan_1" posX="1228.79" posY="1381.38" culture="Culture.empire" text="{=!}Manaan's Teeth">
     <Components>
       <Shrine id="manaan_shrine_02" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="manaan_shrine_03" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="1178.662" posY="1229.86" culture="Culture.empire" text="{=!}Shrine of Manaan">
+  <Settlement id="manaan_shrine_03" name="{=!}Shrine of Manaan" owner="Faction.wasteland_clan_1" posX="1178.662" posY="1229.86" culture="Culture.empire" text="{=!}Shrine of Manaan">
     <Components>
       <Shrine id="manaan_shrine_03" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="manaan_shrine_04" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="1115.938" posY="1135.367" culture="Culture.empire" text="{=!}Shrine of Manaan">
+  <Settlement id="manaan_shrine_04" name="{=!}Shrine of Manaan" owner="Faction.wasteland_clan_1" posX="1115.938" posY="1135.367" culture="Culture.empire" text="{=!}Shrine of Manaan">
     <Components>
       <Shrine id="manaan_shrine_04" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="manaan_shrine_05" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="893.367" posY="1218.717" culture="Culture.empire" text="{=!}Shrine of Manaan">
+  <Settlement id="manaan_shrine_05" name="{=!}Shrine of Manaan" owner="Faction.anguille_clan_1" posX="893.3673" posY="1218.717" culture="Culture.empire" text="{=!}Shrine of Manaan">
     <Components>
       <Shrine id="manaan_shrine_05" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="manaan_shrine_06" name="{=!}Shrine of Manaan" owner="Faction.reikland_clan_1" posX="926.517" posY="952.544" culture="Culture.empire" text="{=!}Shrine of Manaan">
+  <Settlement id="manaan_shrine_06" name="{=!}Shrine of Manaan" owner="Faction.bordeleaux_clan_1" posX="926.5174" posY="952.5437" culture="Culture.empire" text="{=!}Shrine of Manaan">
     <Components>
       <Shrine id="manaan_shrine_06" religion="cult_of_manaan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="asuryan_shrine_01" name="{=!}Shrine of Asuryan" owner="Faction.reikland_clan_1" posX="1258.447" posY="1327.954" culture="Culture.empire" text="{=!}Shrine of Asuryan">
+  <Settlement id="asuryan_shrine_01" name="{=!}Shrine of Asuryan" owner="Faction.laurelorn_clan_1" posX="1258.447" posY="1327.954" culture="Culture.eonir" text="{=!}Shrine of Asuryan">
     <Components>
       <Shrine id="asuryan_shrine_01" religion="cult_of_asuryan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="ulric_shrine_01" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1353.372" posY="1284.965" culture="Culture.empire" text="{=!}Shrine of Ulric">
+  <Settlement id="ulric_shrine_01" name="{=!}Shrine of Ulric" owner="Faction.nordland_clan_1" posX="1353.372" posY="1284.965" culture="Culture.empire" text="{=!}Shrine of Ulric">
     <Components>
       <Shrine id="ulric_shrine_01" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="ulric_shrine_02" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1363.431" posY="1174.512" culture="Culture.empire" text="{=!}Shrine of Ulric">
+  <Settlement id="ulric_shrine_02" name="{=!}Shrine of Ulric" owner="Faction.middenland_clan_1" posX="1363.431" posY="1174.512" culture="Culture.empire" text="{=!}Shrine of Ulric">
     <Components>
       <Shrine id="ulric_shrine_02" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="ulric_shrine_03" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1241.563" posY="1189.494" culture="Culture.empire" text="{=!}Shrine of Ulric">
+  <Settlement id="ulric_shrine_03" name="{=!}Shrine of Ulric" owner="Faction.middenland_clan_1" posX="1241.563" posY="1189.494" culture="Culture.empire" text="{=!}Shrine of Ulric">
     <Components>
       <Shrine id="ulric_shrine_03" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="ulric_shrine_04" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1552.181" posY="1257.369" culture="Culture.empire" text="{=!}Shrine of Ulric">
+  <Settlement id="ulric_shrine_04" name="{=!}Shrine of Ulric" owner="Faction.ostland_clan_1" posX="1552.181" posY="1257.369" culture="Culture.empire" text="{=!}Shrine of Ulric">
     <Components>
       <Shrine id="ulric_shrine_04" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="ulric_shrine_05" name="{=!}Shrine of Ulric" owner="Faction.reikland_clan_1" posX="1499.535" posY="1173.501" culture="Culture.empire" text="{=!}Shrine of Ulric">
+  <Settlement id="ulric_shrine_05" name="{=!}Shrine of Ulric" owner="Faction.ostland_clan_1" posX="1499.535" posY="1173.501" culture="Culture.empire" text="{=!}Shrine of Ulric">
     <Components>
       <Shrine id="ulric_shrine_05" religion="cult_of_ulric" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="shallya_shrine_01" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="1411.537" posY="1150.294" culture="Culture.empire" text="{=!}Shrine of Shallya">
+  <Settlement id="shallya_shrine_01" name="{=!}Shrine of Shallya" owner="Faction.hochland_clan_1" posX="1411.537" posY="1150.294" culture="Culture.empire" text="{=!}Shrine of Shallya">
     <Components>
       <Shrine id="shallya_shrine_01" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="shallya_shrine_02" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="1409.657" posY="815.426" culture="Culture.empire" text="{=!}Shrine of Shallya">
+  <Settlement id="shallya_shrine_02" name="{=!}Shrine of Shallya" owner="Faction.wissenland_clan_1" posX="1409.657" posY="815.4258" culture="Culture.empire" text="{=!}Shrine of Shallya">
     <Components>
       <Shrine id="shallya_shrine_02" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="shallya_shrine_03" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="986.054" posY="1215.573" culture="Culture.empire" text="{=!}Shrine of Shallya">
+  <Settlement id="shallya_shrine_03" name="{=!}Shrine of Shallya" owner="Faction.couronne_clan_1" posX="986.0541" posY="1215.573" culture="Culture.empire" text="{=!}Shrine of Shallya">
     <Components>
       <Shrine id="shallya_shrine_03" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="shallya_shrine_04" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="993.856" posY="1009.031" culture="Culture.empire" text="{=!}Shrine of Shallya">
+  <Settlement id="shallya_shrine_04" name="{=!}Shrine of Shallya" owner="Faction.bastonne_clan_1" posX="993.8555" posY="1009.031" culture="Culture.empire" text="{=!}Shrine of Shallya">
     <Components>
       <Shrine id="shallya_shrine_04" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="shallya_shrine_05" name="{=!}Shrine of Shallya" owner="Faction.reikland_clan_1" posX="1110.782" posY="761.599" culture="Culture.empire" text="{=!}Shrine of Shallya">
+  <Settlement id="shallya_shrine_05" name="{=!}Shrine of Shallya" owner="Faction.carcassonne_clan_1" posX="1110.782" posY="761.5991" culture="Culture.empire" text="{=!}Shrine of Shallya">
     <Components>
       <Shrine id="shallya_shrine_05" religion="cult_of_shallya" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="loec_shrine_01" name="{=!}Shrine of Loec" owner="Faction.reikland_clan_1" posX="1220.387" posY="863.503" culture="Culture.empire" text="{=!}Shrine of Loec">
+  <Settlement id="loec_shrine_01" name="{=!}Shrine of Loec" owner="Faction.athel_loren_clan_8" posX="1220.387" posY="863.5029" culture="Culture.battania" text="{=!}Shrine of Loec">
     <Components>
       <Shrine id="loec_shrine_01" religion="cult_of_loec" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="anath_shrine_01" name="{=!}Shrine of Anath Raema" owner="Faction.reikland_clan_1" posX="1248.776" posY="859.788" culture="Culture.empire" text="{=!}Shrine of Anath Raema">
+  <Settlement id="anath_shrine_01" name="{=!}Shrine of Anath Raema" owner="Faction.athel_loren_clan_12" posX="1248.776" posY="859.7876" culture="Culture.battania" text="{=!}Shrine of Anath Raema">
     <Components>
       <Shrine id="anath_shrine_01" religion="cult_of_anath_raema" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="vaul_shrine_01" name="{=!}Shrine of Vaul" owner="Faction.reikland_clan_1" posX="1184.553" posY="817.133" culture="Culture.empire" text="{=!}Shrine of Vaul">
+  <Settlement id="vaul_shrine_01" name="{=!}Shrine of Vaul" owner="Faction.athel_loren_clan_11" posX="1184.553" posY="817.1335" culture="Culture.battania" text="{=!}Shrine of Vaul">
     <Components>
       <Shrine id="vaul_shrine_01" religion="cult_of_vaul" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="kurnous_shrine_01" name="{=!}Shrine of Kurnous" owner="Faction.reikland_clan_1" posX="1228.865" posY="790.497" culture="Culture.empire" text="{=!}Shrine of Kurnous">
+  <Settlement id="kurnous_shrine_01" name="{=!}Shrine of Kurnous" owner="Faction.athel_loren_clan_1" posX="1228.865" posY="790.4965" culture="Culture.battania" text="{=!}Shrine of Kurnous">
     <Components>
       <Shrine id="kurnous_shrine_01" religion="cult_of_kurnous" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="isha_shrine_01" name="{=!}Shrine of Isha" owner="Faction.reikland_clan_1" posX="1236.481" posY="782.302" culture="Culture.empire" text="{=!}Shrine of Isha">
+  <Settlement id="isha_shrine_01" name="{=!}Shrine of Isha" owner="Faction.athel_loren_clan_2" posX="1236.481" posY="782.3018" culture="Culture.battania" text="{=!}Shrine of Isha">
     <Components>
       <Shrine id="isha_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
