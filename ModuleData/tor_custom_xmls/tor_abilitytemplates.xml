@@ -2113,7 +2113,7 @@
 	
 	<AbilityTemplate StringID="FieryConvocation"
       Name="{=fiery_convocation_label_str}Fiery Convocation"
-      SpriteName="wind_blast_icon"
+      SpriteName="fiery_convocation_icon"
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
@@ -2156,7 +2156,7 @@
 	
 	<AbilityTemplate StringID="SoulQuench" 
       Name="{=soul_quench_label_str}Soul Quench" 
-      SpriteName="gehennasgoldenglobe_icon" 
+      SpriteName="soul_quench_icon" 
       CoolDown="30" 
       WindsOfMagicCost="15" 
       BaseMisCastChance="0.05" 
@@ -2284,7 +2284,7 @@
 	
 	<AbilityTemplate StringID="Tempest" 
       Name="{=black_horror_label_str}Tempest" 
-      SpriteName="arzipalsblackhorror_icon" 
+      SpriteName="tempest_icon" 
       CoolDown="40" 
       WindsOfMagicCost="30" 
       BaseMisCastChance="0.3" 
@@ -2332,7 +2332,7 @@
 	
 	<AbilityTemplate StringID="ShieldOfSaphery" 
       Name="{=shield_of_saphery_label_str}Shield of Saphery" 
-      SpriteName="ShieldOfSaphery_icon" 
+      SpriteName="shield_of_saphery_icon" 
       CoolDown="120" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 
@@ -3650,7 +3650,7 @@
 	
 	<AbilityTemplate StringID="AxeOfUlric"
        Name="{=red_fury_label_str}Axe of Ulric"
-       SpriteName="redfury_icon"
+       SpriteName="axe_of_ulric_icon"
        CoolDown="15"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"
@@ -4198,7 +4198,7 @@
 	
 		<AbilityTemplate StringID="UlricsGift"
       Name="{=armor_of_righteousness_label_str}Ulric's Gift"
-      SpriteName="armorofrighteousness_icon"
+      SpriteName="ulrics_gift_icon"
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
@@ -4241,7 +4241,7 @@
 	
 	<AbilityTemplate StringID="HeartOfTheWolf"
       Name="{=armor_of_righteousness_label_str}Heart of The Wolf"
-      SpriteName="vanquish_icon"
+      SpriteName="heart_of_wolf_icon"
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
@@ -4284,7 +4284,7 @@
 	
 	<AbilityTemplate StringID="IceStorm"
       Name="{=armor_of_righteousness_label_str}Ice Storm"
-      SpriteName="wind_blast_icon"
+      SpriteName="ice_storm_icon"
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
