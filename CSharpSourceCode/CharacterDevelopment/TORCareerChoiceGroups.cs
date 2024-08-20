@@ -885,7 +885,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _soulBinding.Initialize("Secret of the{newline} Venom Dragon", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            _soulBinding.Initialize("Soul Binding", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;

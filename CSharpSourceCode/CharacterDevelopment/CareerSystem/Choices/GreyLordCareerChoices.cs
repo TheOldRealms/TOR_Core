@@ -196,8 +196,19 @@ using TOR_Core.Utilities;
                             MutationType = OperationType.Add
                         }
                     });
-                _caelithsWisdomKeystone.Initialize(CareerID, "2 additional overtakes. Ability scales with Charm. Melee damage can charge ability.", "CaelithsWisdom", false,
-                    ChoiceType.Passive);
+                _caelithsWisdomKeystone.Initialize(CareerID, "2 additional overtakes. Ability scales with Leadership. Melee damage can charge ability.", "CaelithsWisdom", false,
+                    ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+                    {
+                        new CareerChoiceObject.MutationObject()
+                        {
+                            MutationTargetType = typeof(AbilityTemplate),
+                            MutationTargetOriginalId = "MindControl",
+                            PropertyName = "ScaleVariable1",
+                            PropertyValue = (choice, originalValue, agent) =>0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership }, 0.000625f),
+                            MutationType = OperationType.Add
+                        },
+                    },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
+                
                 _soulBindingKeystone.Initialize(CareerID, "Controlled unit gets healed completely. Ability scales with medicine.", "SoulBinding", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
@@ -229,7 +240,7 @@ using TOR_Core.Utilities;
                     {
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _forbiddenScrollsOfSapheryKeystone.Initialize(CareerID, "Companion damage can charge ability. Range is doubled.", "ForbiddenScrollsOfSaphery", false,
+                _forbiddenScrollsOfSapheryKeystone.Initialize(CareerID, "Companion damage can charge ability. Range is doubled. Scale with Charm", "ForbiddenScrollsOfSaphery", false,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
@@ -239,6 +250,14 @@ using TOR_Core.Utilities;
                             PropertyName = "MaxDistance",
                             PropertyValue = (choice, originalValue, agent) =>2f,
                             MutationType = OperationType.Multiply
+                        },
+                        new CareerChoiceObject.MutationObject()
+                        {
+                            MutationTargetType = typeof(AbilityTemplate),
+                            MutationTargetOriginalId = "MindControl",
+                            PropertyName = "ScaleVariable1",
+                            PropertyValue = (choice, originalValue, agent) =>0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Charm }, 0.000625f),
+                            MutationType = OperationType.Add
                         },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
