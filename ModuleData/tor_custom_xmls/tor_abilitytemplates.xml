@@ -1542,7 +1542,7 @@
 	</AbilityTemplate>
 	<AbilityTemplate StringID="VanHelsDanseMacabre"
       Name="{=vanhelsdansemacabre_label_str}Vanhel's Danse Macabre"
-      SpriteName="breathofdarkness_icon"
+      SpriteName="vanhels_dance_macabre_icon"
       CoolDown="40"
       WindsOfMagicCost="25"
       BaseMisCastChance="0.05"
@@ -2197,7 +2197,7 @@
 	
 	<AbilityTemplate StringID="CourageOfAenarion"
       Name="{=courage_of_aenarion_label_str}Courage of Aenarion"
-      SpriteName="ladys_favor_icon"
+      SpriteName="courage_of_aenarion_icon"
       CoolDown="60"
       WindsOfMagicCost="30"
       BaseMisCastChance="0.05"
@@ -2240,7 +2240,7 @@
 	
 	<AbilityTemplate StringID="CurseOfArrowAttraction"
       Name="{=curse_of_years_label_str}Curse of Arrow Attraction"
-      SpriteName="curseofyears_icon"
+      SpriteName="curse_of_arrowattraction_icon"
       CoolDown="30"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
@@ -3772,7 +3772,7 @@
 	
 	<AbilityTemplate StringID="MindControl" 
       Name="{=shadowblood_label_str}Fellfang Control" 
-      SpriteName="shadowblood_icon" 
+      SpriteName="fellfangcontrol_icon" 
       CoolDown="20" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
