@@ -987,7 +987,7 @@
 	</AbilityTemplate>
 	<AbilityTemplate StringID="CurseOfMidnightWind"
    Name="{=curse_of_midnight_wind_label_str}Curse Of the Midnight Wind"
-   SpriteName="curseofanraheir_icon"
+   SpriteName="curse_of_the_midnight_wind_icon"
    CoolDown="60"
    WindsOfMagicCost="20"
    BaseMisCastChance="0.05"
@@ -3941,7 +3941,7 @@
 	
 		<AbilityTemplate StringID="WrathOfTheWood" 
       Name="Wrath of the Wood" 
-      SpriteName="theharbinger_icon" 
+      SpriteName="wraith_of_the_forest_icon" 
       CoolDown="5" 
       BaseMisCastChance="0.3" 
       Duration="0" 
