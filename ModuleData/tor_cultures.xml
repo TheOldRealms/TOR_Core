@@ -4822,7 +4822,7 @@
 			 bandit_raider="NPCCharacter.tor_beast_ungor_raider"
 			 bandit_bandit="NPCCharacter.tor_beast_ungor"
 			 bandit_boss="NPCCharacter.tor_beast_ungor_chief"
-			 elite_basic_troop="NPCCharacter.tor_beast_shielded_ungor"
+			 elite_basic_troop="NPCCharacter.tor_beast_gor"
 			 basic_troop="NPCCharacter.tor_beast_ungor"
 			 is_bandit="true"
 			 can_have_settlement="true"
