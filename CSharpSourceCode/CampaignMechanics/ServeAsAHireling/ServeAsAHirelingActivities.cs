@@ -172,6 +172,16 @@ public class ServeAsAHirelingActivities
                     DefaultSkills.Medicine
                 ]);
             }
+            if (career == TORCareers.GreyLord)
+            {
+                _activitySets.Add(career, [
+                    TORSkills.SpellCraft,
+                    DefaultSkills.Riding,
+                    TORSkills.Faith,
+                    DefaultSkills.Charm,
+                    DefaultSkills.Medicine
+                ]);
+            }
         }
     }
     

@@ -29,6 +29,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _imperialMagister;
         private CareerObject _waywatcher;
         private CareerObject _spellsinger;
+        private CareerObject _greyLord;
 
         public TORCareers()
         {
@@ -69,6 +70,8 @@ namespace TOR_Core.CharacterDevelopment
         
         public static CareerObject Spellsinger => Instance._spellsinger;
 
+        public static CareerObject GreyLord => Instance._greyLord;
+
         private void RegisterAll()
         {
             
@@ -86,6 +89,7 @@ namespace TOR_Core.CharacterDevelopment
             _imperialMagister = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("ImperialMagister"));
             _waywatcher = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Waywatcher"));
             _spellsinger = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Spellsinger"));
+            _greyLord = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GreyLord"));
             
             _allCareers =
             [
@@ -102,7 +106,8 @@ namespace TOR_Core.CharacterDevelopment
                 _warriorPriestUlric,
                 _imperialMagister,
                 _waywatcher,
-                _spellsinger
+                _spellsinger,
+                _greyLord
             ];
         }
 
@@ -122,6 +127,7 @@ namespace TOR_Core.CharacterDevelopment
             _imperialMagister.Initialize("Imperial Magister", null, "ArcaneConduit", null, 120, typeof(ArcaneConduit));
             _waywatcher.Initialize("Waywatcher", null, "ArrowOfKurnous",CareerAbilityChargeSupplier.WaywatcherCareerCharge, 800, typeof(ArrowOfKurnousScript));
             _spellsinger.Initialize("Spellsinger", null, "WrathOfTheWood",CareerAbilityChargeSupplier.SpellsingerCareerCharge, 1000, typeof(WrathOfTheWoodScript));
+            _greyLord.Initialize("Grey Lord Wizard", null, "MindControl",CareerAbilityChargeSupplier.GreyLordCareerCharge, 1000, typeof(MindControlScript));
         }
     }
 }

@@ -4544,7 +4544,7 @@
   <!-- Brass Keep-->
   <Settlement id="castle_BK2" name="{=Settlements.Settlement.name.castle_BK2}Brass Keep" owner="Faction.brasskeep_clan_1" posX="1408.114" posY="1257.085" culture="Culture.chaos_culture" gate_posX="1408.906" gate_posY="1256.474" text="{=!}The Brass Keep is a very old fortress, indeed it's older than Sigmar himself. No one knows who built it, only that it has changed owners many times, until recently. During the Great War Against Chaos, the fortress was besieged by many Chaos warlords, many pledging their loyalty to Khorne, Slaanesh, Tzeentch, and Nurgle. While it was under siege, the followers of Nurgle corrupted the foundations, fermenting a plague within the fortress. The chaos forces would eventually succeed in taking the fortress, but were then cut off from reinforcements, sealing their doom within. The only survivors of such a glorious plague were the Nurgle devotees themselves, who now bask in the repugnant citadel.">
     <Components>
-      <Town id="castle_comp_BK2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
+      <Town id="castle_comp_BK2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="brass_keep" gate_rotation="0.908" prosperity="800" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
       <Location id="center" scene_name="TOR_brass_keep_atmo_w_night" scene_name_1="TOR_brass_keep_atmo_w_night" scene_name_2="TOR_brass_keep_atmo_w_night" scene_name_3="TOR_brass_keep_atmo_w_night" />
@@ -8118,7 +8118,7 @@
   </Settlement>
   <Settlement id="village_AL6_2" name="{=Settlements.Settlement.name.village_AL6_2}Talrennic" posX="1186.952" posY="749.908" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL6_2}Steindorf is a small village near the headwaters of the river Grissen. Its people refuse to travel into the Grey Mountains that often overshadow the village. Despite the fact that the minerals would bring great wealth to the village, the people here speak of a dread castle in the mountains above them, saying that they would rather remain in their vale with their grain.">
     <Components>
-      <Village id="village_comp_AL6_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL6" bound="Settlement.town_AL6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_AL6_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL6" bound="Settlement.town_AL6" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
@@ -8141,7 +8141,7 @@
   </Settlement>
   <Settlement id="castle_village_AL1_1" name="{=Settlements.Settlement.name.castle_village_AL1_1}Tal Dovar" posX="1210.524" posY="817.7141" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL1_1}Naffdrof is an isolated village that sits along the Grey Lady Canal between Stimmigen and Hugeldal. Naffdrof is almost entirely surrounded by a marshland created by the nearby rivers Teufel, Ober and Tranig. In truth there is not much reason to stop in Naffdrof, the village's main commodity is the fish that use the canals to move between the rivers.">
     <Components>
-      <Village id="castle_village_comp_AL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL6" bound="Settlement.castle_AL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_AL1_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL6" bound="Settlement.castle_AL1" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
@@ -8164,7 +8164,7 @@
   </Settlement>
   <Settlement id="castle_village_AL2_1" name="{=Settlements.Settlement.name.castle_village_AL2_1}Tal Amara" posX="1218.272" posY="748.741" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL2_1}Diesdorf is a small town on the river Reik located between Altdorf and Kemperbad. Diesdorf is a major holy site of the Cult of Sigmar, it is said that Magnus the Pious once made a powerful and stirring speech to the crowds who had gathered to hear him. Around sixty years ago, Emperor Wilhelm III founded the Diesdorf Military college to train those who have proven their leadership abilities in battle.">
     <Components>
-      <Village id="castle_village_comp_AL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL5" bound="Settlement.castle_AL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_AL2_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL5" bound="Settlement.castle_AL2" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
@@ -8187,7 +8187,7 @@
   </Settlement>
   <Settlement id="castle_village_AL3_1" name="{=Settlements.Settlement.name.castle_village_AL3_1}Locrimere" posX="1236.274" posY="907.936" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
     <Components>
-      <Village id="castle_village_comp_AL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_AL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL3" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
@@ -8200,7 +8200,7 @@
   </Settlement>
   <Settlement id="castle_village_AL3_2" name="{=Settlements.Settlement.name.castle_village_AL3_2}Waterfall Palace of the Naiad Court" posX="1254.59" posY="900.799" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_2}The town of Grünburg sits on the river Teufel. While trade flows through the town from the canals to itself and from the Reik to its north, Grünburg’s main source of wealth comes from its river boatyards, where many of the boats and barges that ply the rivers of the Reikland originate from. The town is also famous for the Battle of Grünburg where the advance of Orc Warlord Gorbad Ironclaw was finally halted around a half a millenia ago. The battle plains is valued particularly due to the fact that nearly all of the Imperial and orc forces present were mounted calvarymen, unusual for both the contemporary period and the modern era. As such an excavation site has been established by several interested parties and many come to look upon their work.">
     <Components>
-      <Village id="castle_village_comp_AL3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_AL3_2" village_type="VillageType.wheat_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL3" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
@@ -8223,7 +8223,7 @@
   </Settlement>
   <Settlement id="castle_village_AL4_1" name="{=Settlements.Settlement.name.castle_village_AL4_1}The Summer Tree" posX="1285.307" posY="890.825" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Weissbruck sits on the joining of the Weissbruck Canal and the river Bӧgen. The town once was a major source of coal and iron in the Reikland, the mining of which provided the Gruber family with enough funds to construct the Weissbruck Canal, which enabled easier transportation of the mined material to market. Now the mines have mostly been depleted and while the town continues to have prosperous ventures in trade thanks to the canal, the many former workers of the mine have found themselves unemployed and stuck in Weissbruck, where they spend their time drinking cheap alcohol and causing trouble.">
     <Components>
-      <Village id="castle_village_comp_AL4_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_AL4_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL4" background_crop_position="0.0" background_mesh="we_village" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
@@ -8246,7 +8246,7 @@
   </Settlement>
   <Settlement id="castle_village_AL5_1" name="{=Settlements.Settlement.name.castle_village_AL5_1}Delliandra" posX="1197.172" posY="912.298" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Weissbruck sits on the joining of the Weissbruck Canal and the river Bӧgen. The town once was a major source of coal and iron in the Reikland, the mining of which provided the Gruber family with enough funds to construct the Weissbruck Canal, which enabled easier transportation of the mined material to market. Now the mines have mostly been depleted and while the town continues to have prosperous ventures in trade thanks to the canal, the many former workers of the mine have found themselves unemployed and stuck in Weissbruck, where they spend their time drinking cheap alcohol and causing trouble.">
     <Components>
-      <Village id="castle_village_comp_AL5_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_AL5_1" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL4" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
@@ -8259,7 +8259,7 @@
   </Settlement>
   <Settlement id="castle_village_AL5_2" name="{=Settlements.Settlement.name.castle_village_AL5_2}Tal Silvoch" posX="1239.973" posY="888.32" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_2}Just to the south west of altdorf is the small village of Heiligen. The village is nothing to speak of, but it is near the amber hills, which offer a spectacular view of Altdorf from their height.">
     <Components>
-      <Village id="castle_village_comp_AL5_2" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_AL5_2" village_type="VillageType.sheep_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL4" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />

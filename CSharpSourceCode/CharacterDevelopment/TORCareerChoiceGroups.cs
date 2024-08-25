@@ -137,8 +137,18 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _arielsBlessing;
         private CareerChoiceGroupObject _magicOfAthelLoren;
         private CareerChoiceGroupObject _furyOfTheForest;
-
-
+        
+        //Grey lord wizard
+       
+        private CareerChoiceGroupObject _caelithsWisdom;
+        private CareerChoiceGroupObject _soulBinding;
+        private CareerChoiceGroupObject _legendsOfMalok;
+        private CareerChoiceGroupObject _unrestrictedMagic;
+        private CareerChoiceGroupObject _forbiddenScrollsOfSaphery;
+        private CareerChoiceGroupObject _byAllMeans;
+        private CareerChoiceGroupObject _secretOfFellfang;
+        
+        
         public TORCareerChoiceGroups()
         {
             Instance = this;
@@ -274,6 +284,16 @@ namespace TOR_Core.CharacterDevelopment
             _arielsBlessing = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_arielsBlessing).UnderscoreFirstCharToUpper()));
             _magicOfAthelLoren = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_magicOfAthelLoren).UnderscoreFirstCharToUpper()));
             _furyOfTheForest = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_furyOfTheForest).UnderscoreFirstCharToUpper()));
+            
+            //Greylord
+            
+            _caelithsWisdom = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_caelithsWisdom).UnderscoreFirstCharToUpper()));
+            _legendsOfMalok = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_legendsOfMalok).UnderscoreFirstCharToUpper()));
+            _soulBinding = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_soulBinding).UnderscoreFirstCharToUpper()));
+            _unrestrictedMagic = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_unrestrictedMagic).UnderscoreFirstCharToUpper()));
+            _forbiddenScrollsOfSaphery = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_forbiddenScrollsOfSaphery).UnderscoreFirstCharToUpper()));
+            _byAllMeans = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_byAllMeans).UnderscoreFirstCharToUpper()));
+            _secretOfFellfang = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_secretOfFellfang).UnderscoreFirstCharToUpper()));
 
         }
 
@@ -794,7 +814,7 @@ namespace TOR_Core.CharacterDevelopment
             }, (Hero hero, out string unlockText) =>
             {
                 unlockText = "Hagbane Tipps upgrade for troops";
-                return true;
+                return hero.Clan.Tier >= 2;
             });
             
             _hawkeyed.Initialize("Hawkeyed", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
@@ -849,11 +869,51 @@ namespace TOR_Core.CharacterDevelopment
             
             _magicOfAthelLoren.Initialize("Fey Magic", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
             {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+          
+            _furyOfTheForest.Initialize("Fury of the Forest", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 4";
+                return hero.Clan.Tier >= 4;
+            });
+            
+            //Grey lord 
+            _caelithsWisdom.Initialize("Caelith's Wisdom", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _soulBinding.Initialize("Soul Binding", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _legendsOfMalok.Initialize("Legends of Malok", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+            _unrestrictedMagic.Initialize("Unrestricted Magic", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            
+            _forbiddenScrollsOfSaphery.Initialize("Forbidden Scrolls of Saphery", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            {
+                text = "Required clan renown: 2";
+                return hero.Clan.Tier >= 2;
+            });
+            
+            _byAllMeans.Initialize("By All Means", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
           
-            _furyOfTheForest.Initialize("Fury of the Forest", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
+            _secretOfFellfang.Initialize("Secret of the Fellfang", TORCareers.GreyLord, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;

@@ -63,6 +63,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public abstract string BattleSceneName { get; }
         public bool IsBattleUnderway { get; set; }
         public abstract string RewardItemId { get; }
-        public abstract void SpawnNewParty();
+        public abstract void SpawnNewParty(out MobileParty party);
     }
 }

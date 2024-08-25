@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Helpers;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
@@ -82,6 +86,22 @@ namespace TOR_Core.Models
                     sellerHero.Occupation == Occupation.Merchant ||
                     sellerHero.Occupation == Occupation.Headman ||
                     sellerHero.Occupation == Occupation.RuralNotable;
+        }
+        
+        public override float GetDailyVolunteerProductionProbability(
+            Hero hero,
+            int index,
+            Settlement settlement)
+        {
+            var value = base.GetDailyVolunteerProductionProbability(hero, index, settlement);
+
+            if (settlement.Owner.Clan.Kingdom.GetNumActiveKingdomWars() > 0)
+            {
+                value *= 2;
+            }
+
+            return value;
+
         }
         
         public override int MaximumIndexHeroCanRecruitFromHero(Hero buyerHero, Hero sellerHero, int useValueAsRelation = -101)

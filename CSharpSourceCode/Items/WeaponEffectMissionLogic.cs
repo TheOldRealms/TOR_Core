@@ -119,7 +119,11 @@ namespace TOR_Core.Items
                     {
                         foreach (var trait in traits)
                         {
-                            missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);
+                            if (trait.WeaponParticlePreset != null)
+                            {
+                                missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);  
+                            }
+                           
                         }
 
                     }
@@ -132,25 +136,12 @@ namespace TOR_Core.Items
             list = new List<ItemTrait>();
             if (agent.IsHuman)
             {
-                /*for (int i = 0; i < 4; i++)
-                {
-                    var weapon = agent.Equipment[i];
-                    if (weapon.Item != null)
-                    {
-                        var magiceffect = weapon.Item.GetTraits(agent);
-                        if (magiceffect != null)
-                        {
-                            list = magiceffect;
-                            return true;
-                        }
-                    }
-                }*/
                 var weapon = agent.WieldedWeapon;
                 if (!weapon.IsEmpty)
                 {
                     if (weapon.Item != null)
                     {
-                        var effects = weapon.Item.GetTraits();
+                        var effects = weapon.Item.GetTraits(agent);
                         if (effects != null)
                         {
                             list = effects;

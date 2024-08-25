@@ -31,7 +31,7 @@
 		particle_id="breath_of_darkness"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="20"
+		base_effect_value="10"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
 		id="mistwalk_base" 
@@ -313,7 +313,7 @@
 		particle_id=""
 		particle_intensity="High"
 		apply_particle_to_root_bone_only="true"
-    	base_effect_value="5"
+    	base_effect_value="10"
 		type="DamageOverTime"
 		damage_type="Physical">
   	</StatusEffectTemplate>
@@ -441,7 +441,7 @@
 		particle_id="midnight_wind_debuff"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="-0.25"
+		base_effect_value="-0.4"
 		type="AttackSpeedManipulation"
 		damage_type="Physical"/>
 	
@@ -449,7 +449,7 @@
 		id="curse_of_midnight_wind_mov" 
 		particle_id=""
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="-0.35"
+		base_effect_value="-0.4"
 		damage_type="Physical"
 		applies_for_attack_type="All"
 		type="MovementManipulation"/>
@@ -459,7 +459,7 @@
 		id="curse_of_midnight_wind_phys" 
 		particle_id=""
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="-0.35"
+		base_effect_value="-0.4"
 		damage_type="Physical"
 		applies_for_attack_type="All"
 		type="Resistance"/>
@@ -492,7 +492,7 @@
 		particle_id="plague_of_rust"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-    	base_effect_value="-0.5"
+    	base_effect_value="-0.7"
 		type="Resistance"
 		damage_type="Physical">
   	</StatusEffectTemplate>
@@ -829,7 +829,7 @@
 		particle_id="breath_of_darkness"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.25"
+		base_effect_value="0.35"
 		damage_type="Physical"
 		type="AttackSpeedManipulation">
 	</StatusEffectTemplate>
@@ -838,7 +838,7 @@
 		particle_id="breath_of_darkness"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.1"
+		base_effect_value="0.15"
 		damage_type="Physical"
 		type="MovementManipulation">
 	</StatusEffectTemplate>
@@ -848,7 +848,7 @@
 		particle_id="firecloak"
 		do_not_attach_to_agent_skeleton="true"
 		particle_intensity="High"
-		base_effect_value="0.3"
+		base_effect_value="0.2"
 		damage_type="Physical"
 		type="Resistance"/>
 	<StatusEffectTemplate 
@@ -999,7 +999,7 @@
 		do_not_attach_to_agent_skeleton="true"
 		particle_id="barkskin"
 		particle_intensity="Low"
-		base_effect_value="0.35"
+		base_effect_value="0.50"
 		damage_type="Physical"
 		type="Resistance"
 		rotation="true"/>
@@ -1033,7 +1033,7 @@
 		particle_id="panns_impenetrable_pelt"
 		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.35"
+		base_effect_value="0.4"
 		damage_type="Physical"
 		type="Resistance"/>
 		
@@ -1041,7 +1041,7 @@
 		id="flock_of_doom_dot"
 		particle_id="flock_of_doom"
 		particle_intensity="High"
-    	base_effect_value="5"
+    	base_effect_value="4"
 		do_not_attach_to_agent_skeleton="true"
 		type="DamageOverTime"
 		damage_type="Physical"/>
@@ -1201,6 +1201,27 @@
     	base_effect_value="5"
 		type="DamageOverTime"
 		damage_type="Magical"/>
+		
+	<StatusEffectTemplate 
+		id="fellfang_dot" 
+		particle_id="torch_fire_sparks"
+		particle_intensity="High"
+		base_effect_value="3"
+		type="DamageOverTime"
+		damage_type="Fire">
+	</StatusEffectTemplate> 
+
+	<StatusEffectTemplate
+		id="fellfang_mark"
+		particle_id="general_life_buff"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="1.0"
+		applies_for_attack_type="Ranged"
+		type="TemporaryAttributeOnly"
+		damage_type="Physical">
+		<temporary_attribute>FellfangMark</temporary_attribute>		
+	</StatusEffectTemplate>
+
 	
 	
 	<!-- powerstones -->

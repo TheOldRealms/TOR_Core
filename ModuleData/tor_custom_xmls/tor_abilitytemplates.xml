@@ -11,7 +11,7 @@
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="SeekerMissile" 
-      BaseMovementSpeed="15" 
+      BaseMovementSpeed="30" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="true" 
@@ -88,7 +88,7 @@
 	<AbilityTemplate StringID="MinorHeal" 
       Name="{=minor_heal_label_str}Petty Heal" 
       SpriteName="petty_healing_icon" 
-      CoolDown="20" 
+      CoolDown="75" 
       WindsOfMagicCost="10" 
       BaseMisCastChance="0.05" 
       Duration="0" 
@@ -117,7 +117,7 @@
       TargetCapturingRadius="1"
       SpellTier="1"
       BelongsToLoreID="MinorMagic"
-      TooltipDescription="{=minor_heal_description_str}Heals the caster for 20 health every second for 5 seconds.">
+      TooltipDescription="{=minor_heal_description_str}Heals the caster for 3 health every second for 7 seconds.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -346,11 +346,11 @@
 	<AbilityTemplate StringID="Fireball" 
       Name="{=fireball_label_str}Fireball" 
       SpriteName="fireball_icon" 
-      CoolDown="30" 
+      CoolDown="25" 
       WindsOfMagicCost="15" 
       BaseMisCastChance="0.05" 
       Duration="3" 
-      Radius="0.4" 
+      Radius="0.5" 
       AbilityType="Spell" 
       AbilityEffectType="Missile" 
       BaseMovementSpeed="35" 
@@ -374,7 +374,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="3"
       BelongsToLoreID="LoreOfFire"
-      TooltipDescription="{=fireball_description_str}There is nothing quite as welcoming as a fireball to the face. Does 80 damage in a 3 meter radius and imbues the burning statuseffect for 5 seconds.">
+      TooltipDescription="{=fireball_description_str}There is nothing quite as welcoming as a fireball to the face. Deals 70 damage in a 6 meter radius and burns the foes for 5 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -386,14 +386,14 @@
 	<AbilityTemplate StringID="CinderBlast" 
       Name="{=cinder_blast_label_str}Cinder Blast" 
       SpriteName="cinderblast_icon" 
-      CoolDown="20" 
-      WindsOfMagicCost="8" 
+      CoolDown="12" 
+      WindsOfMagicCost="7" 
       BaseMisCastChance="0.05" 
       Duration="10" 
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="Missile" 
-      BaseMovementSpeed="25" 
+      BaseMovementSpeed="40" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="false" 
@@ -426,8 +426,8 @@
 	<AbilityTemplate StringID="BoltOfAqshy" 
       Name="{=bolt_of_aqshy_label_str}Bolt of Aqshy" 
       SpriteName="boltofashqy_icon" 
-      CoolDown="20" 
-      WindsOfMagicCost="8" 
+      CoolDown="12" 
+      WindsOfMagicCost="7" 
       BaseMisCastChance="0.05" 
       Duration="3" 
       Radius="0.4" 
@@ -466,8 +466,8 @@
 	<AbilityTemplate StringID="Sear" 
       Name="{=sear_label_str}Sear" 
       SpriteName="sear_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="12" 
+      CoolDown="20" 
+      WindsOfMagicCost="10" 
       BaseMisCastChance="0.05" 
       Duration="4" 
       Radius="1" 
@@ -489,7 +489,7 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      Offset="3"
+      Offset="6"
       AbilityTargetType="WorldPosition"
       CrosshairType="Wind"
       MinDistance="1"
@@ -509,8 +509,8 @@
 	<AbilityTemplate StringID="CascadingFireCloak" 
       Name="{=cascading_fire_cloak_label_str}Cascading Fire-Cloak" 
       SpriteName="cascadingfirecloak_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="4" 
+      CoolDown="75" 
+      WindsOfMagicCost="20" 
       BaseMisCastChance="0.05" 
       Duration="4" 
       Radius="1" 
@@ -540,7 +540,7 @@
       TargetCapturingRadius="1"
       SpellTier="2"
       BelongsToLoreID="LoreOfFire"
-      TooltipDescription="{=cascading_fire_cloak_description_str}The caster wraps himself in a cloak of magical flame that's shielding him from physical (30%) and fire (70%) damage for 15 seconds.">
+      TooltipDescription="{=cascading_fire_cloak_description_str}The caster wraps himself in a cloak of magical flame that shields him from physical (20%) and fire (70%) damage for 30 seconds. The cloak also reflects a portion of damage taken in melee.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -552,8 +552,8 @@
 	<AbilityTemplate StringID="FlamingSwords"
       Name="{=flaming_swords_label_str}Flaming Sword of Rhuin"
       SpriteName="swordsofrhuin_icon"
-      CoolDown="30"
-      WindsOfMagicCost="13"
+      CoolDown="90"
+      WindsOfMagicCost="20"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="0"
@@ -582,7 +582,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfFire"
-      TooltipDescription="{=flaming_swords_description_str}Buff the weapons of allies in a 5 meter radius with the Flaming trait for 20 seconds. The weapons burst into fire and burn every enemy they strike.">
+      TooltipDescription="{=flaming_swords_description_str}Buff the weapons of allies in a 15 meter radius with the Flaming trait for 45 seconds. The weapons burst into fire and burn every enemy they strike.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -594,8 +594,8 @@
 	<AbilityTemplate StringID="BurningHead" 
       Name="{=burning_head_label_str}The Burning Head" 
       SpriteName="burninghead_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="25" 
+      CoolDown="70" 
+      WindsOfMagicCost="45" 
       BaseMisCastChance="0.3" 
       Duration="3" 
       Radius="3" 
@@ -637,8 +637,8 @@
 	<AbilityTemplate StringID="FlameStorm" 
       Name="{=flame_storm_label_str}Fire Tornado" 
       SpriteName="flamingstorm_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="30" 
+      CoolDown="70" 
+      WindsOfMagicCost="35" 
       BaseMisCastChance="0.3" 
       Duration="11" 
       Radius="3" 
@@ -671,7 +671,7 @@
       VisualsRotationVelocity="20"
       SpellTier="4"
       BelongsToLoreID="LoreOfFire"
-      TooltipDescription="{=flame_storm_description_str}A randomly moving fire tornado. Deals high damage.">
+      TooltipDescription="{=flame_storm_description_str}A randomly moving pillar of searing flame is summoned on the battlefield. Flesh and skin melt, while bones turn to ash.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -684,14 +684,14 @@
 	<AbilityTemplate StringID="LightningBolt" 
       Name="{=lightning_bolt_label_str}Lightning Bolt" 
       SpriteName="lightningbolt_icon" 
-      CoolDown="20" 
+      CoolDown="15" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
       Duration="3" 
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="Missile" 
-      BaseMovementSpeed="35" 
+      BaseMovementSpeed="75" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="true" 
@@ -724,7 +724,7 @@
 	<AbilityTemplate StringID="WindBlast" 
       Name="{=wind_blast_label_str}Wind Blast" 
       SpriteName="wind_blast_icon" 
-      CoolDown="20" 
+      CoolDown="30" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
       Duration="4" 
@@ -747,12 +747,12 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      Offset="5"
+      Offset="14"
       AbilityTargetType="WorldPosition"
       CrosshairType="Wind"
       MinDistance="1"
       MaxDistance="2"
-      TargetCapturingRadius="2"
+      TargetCapturingRadius="4"
       SpellTier="2"
       BelongsToLoreID="LoreOfHeavens"
       TooltipDescription="{=wind_blast_description_str}A gust of wind knocks down victims and applies minor damage.">
@@ -767,8 +767,8 @@
 	<AbilityTemplate StringID="ChainLightning" 
       Name="{=chain_lightning_label_str}Chain Lightning" 
       SpriteName="chainlightning_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="15" 
+      CoolDown="45" 
+      WindsOfMagicCost="25" 
       BaseMisCastChance="0.3" 
       Duration="12" 
       Radius="2" 
@@ -813,11 +813,11 @@
 	<AbilityTemplate StringID="HarmonicConvergence"
       Name="{=harmonic_convergence_label_str}Harmonic Convergence"
       SpriteName="harmonicconvergence_icon"
-      CoolDown="30"
-      WindsOfMagicCost="13"
+      CoolDown="90"
+      WindsOfMagicCost="20"
       BaseMisCastChance="0.05"
       Duration="0"
-      Radius="3"
+      Radius="5"
       AbilityType="Spell"
       AbilityEffectType="Augment"
       BaseMovementSpeed="0"
@@ -843,7 +843,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfHeavens"
-      TooltipDescription="{=harmonic_convergence_description_str}Divining favorable signs, the caster guides the minds of his fellow warriors. Allies in a 3 meter radius gain 50% physical resistance for 15 seconds.">
+      TooltipDescription="{=harmonic_convergence_description_str}Divining favorable signs, the caster guides the minds of his fellow warriors. Allies in a 10 meter radius gain 50% physical resistance for 50 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -856,7 +856,7 @@
       Name="{=blizzard_label_str}Iceshard Blizzard" 
       SpriteName="iceshardblizzard_icon" 
       CoolDown="30" 
-      WindsOfMagicCost="14" 
+      WindsOfMagicCost="22" 
       BaseMisCastChance="0.5" 
       Duration="5" 
       Radius="3" 
@@ -882,7 +882,7 @@
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
       MinDistance="5"
-      MaxDistance="30"
+      MaxDistance="25"
       TargetCapturingRadius="2"
       SpellTier="4"
       BelongsToLoreID="LoreOfHeavens"
@@ -898,7 +898,7 @@
 	<AbilityTemplate StringID="CometOfCasandora"
       Name="{=comet_of_casandora_label_str}Comet of Casandora"
       SpriteName="comet_icon"
-      CoolDown="40"
+      CoolDown="90"
       WindsOfMagicCost="40"
       BaseMisCastChance="0.3"
       Duration="30"
@@ -925,8 +925,8 @@
       CrosshairType="TargetedAOE"
       AbilityTargetType="GroundAtPosition"
       MinDistance="3"
-      MaxDistance="30"
-      TargetCapturingRadius="4"
+      MaxDistance="35"
+      TargetCapturingRadius="6"
       MaxRandomDeviation="1"
       ShouldRotateVisuals="true"
       VisualsRotationVelocity="1"
@@ -946,7 +946,7 @@
       Name="{=thunderbolt_label_str}Urannon's Thunderbolt" 
       SpriteName="thunderbolt_icon" 
       CoolDown="40" 
-      WindsOfMagicCost="25" 
+      WindsOfMagicCost="22" 
       BaseMisCastChance="0.5" 
       Duration="4" 
       Radius="1" 
@@ -972,7 +972,7 @@
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
       MinDistance="5"
-      MaxDistance="30"
+      MaxDistance="25"
       TargetCapturingRadius="2"
       SpellTier="4"
       BelongsToLoreID="LoreOfHeavens"
@@ -986,18 +986,18 @@
 		<TriggeredEffect>thunderbolt_explosion</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="CurseOfMidnightWind"
-   Name="{=curse_of_anraheir_label_str}Curse Of the Midnight Wind"
-   SpriteName="curseofanraheir_icon"
-   CoolDown="20"
-   WindsOfMagicCost="15"
+   Name="{=curse_of_midnight_wind_label_str}Curse Of the Midnight Wind"
+   SpriteName="curse_of_the_midnight_wind_icon"
+   CoolDown="60"
+   WindsOfMagicCost="20"
    BaseMisCastChance="0.05"
-   Duration="11"
-   Radius="10"
+   Duration="2"
+   Radius="5"
    AbilityType="Spell"
    AbilityEffectType="Hex"
    BaseMovementSpeed="0"
-   TickInterval="2"
-   TriggerType="EveryTick"
+   TickInterval="-1"
+   TriggerType="TickOnce"
    HasLight="false"
    LightIntensity="0"
    LightRadius="0"
@@ -1013,12 +1013,12 @@
    AnimationActionName="act_release_heavy_thrown"
    Offset="0.5"
    AbilityTargetType="EnemiesInAOE"
-   TargetCapturingRadius="15"
-   MaxDistance="75"
+   TargetCapturingRadius="5"
+   MaxDistance="20"
    CrosshairType="TargetedAOE"
    SpellTier="4"
 	BelongsToLoreID="LoreOfHeavens"
-	TooltipDescription="{=curse_of_anraheir_description_str}Woodland sprites hinder all enemies caught in an area for 11 seconds, reducing movement (35%) and attack speed (50%) and causing 3 damage per second.">
+	TooltipDescription="{=curse_of_midnight_wind_description_str}The wizard speaks an ancient three-word hex, cursing the enemies and iposing a 40% penalty to movement and attack speed, as well as damage dealt.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1076,8 +1076,8 @@
 	<AbilityTemplate StringID="HealingLight"
       Name="{=healing_light_label_str}Healing Light"
       SpriteName="healinglight_icon"
-      CoolDown="30"
-      WindsOfMagicCost="12"
+      CoolDown="60"
+      WindsOfMagicCost="20"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="3"
@@ -1118,11 +1118,11 @@
 	<AbilityTemplate StringID="PhaProtection"
       Name="{=pha_protection_label_str}Pha's Protection"
       SpriteName="phasprotection_icon"
-      CoolDown="30"
-      WindsOfMagicCost="12"
+      CoolDown="90"
+      WindsOfMagicCost="20"
       BaseMisCastChance="0.05"
       Duration="0"
-      Radius="3"
+      Radius="10"
       AbilityType="Spell"
       AbilityEffectType="Augment"
       BaseMovementSpeed="0"
@@ -1148,7 +1148,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLight"
-      TooltipDescription="{=pha_protection_description_str}The wizard calls upon the beneficent Guardian of Light to protect his allies from harm. Grants 50% physical resistance for 15 seconds in a 3 meter radius.">
+      TooltipDescription="{=pha_protection_description_str}The wizard calls upon the beneficent Guardian of Light to protect his allies from harm. Grants 50% physical resistance for a duration 50 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1167,7 +1167,7 @@
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="Missile" 
-      BaseMovementSpeed="25" 
+      BaseMovementSpeed="45" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="false" 
@@ -1200,8 +1200,8 @@
 	<AbilityTemplate StringID="RadiancePillar" 
       Name="{=radiance_pillar_label_str}Pillar of Radiance" 
       SpriteName="pillarofradiance_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="30" 
+      CoolDown="60" 
+      WindsOfMagicCost="35" 
       BaseMisCastChance="0.5" 
       Duration="5" 
       Radius="3" 
@@ -1243,8 +1243,8 @@
 	<AbilityTemplate StringID="RadiantGaze" 
       Name="{=radiant_gaze_label_str}Radiant Gaze" 
       SpriteName="radiantgaze_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="25" 
+      CoolDown="75" 
+      WindsOfMagicCost="45" 
       BaseMisCastChance="0.05" 
       Duration="5" 
       Radius="2" 
@@ -1286,8 +1286,8 @@
 	<AbilityTemplate StringID="NetOfAmyntok"
       Name="{=net_of_amyntok_label_str}Net of Amyntok"
       SpriteName="netofamyntok_icon"
-      CoolDown="5"
-      WindsOfMagicCost="12"
+      CoolDown="65"
+      WindsOfMagicCost="20"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="20"
@@ -1316,7 +1316,7 @@
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLight"
-      TooltipDescription="{=net_of_amyntok_description_str}The wizard conjures an arcane net in the selected area. Any foe caught in the spell is halted for 15 seconds.">
+      TooltipDescription="{=net_of_amyntok_description_str}The wizard conjures an arcane net in the selected area. Any foe caught in the spell is halted for 25 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1329,8 +1329,8 @@
 	<AbilityTemplate StringID="BironasTimewarp"
       Name="{=bironas_timewarp_label_str}Birona's Timewarp"
       SpriteName="bironastimewarp_icon"
-      CoolDown="30"
-      WindsOfMagicCost="12"
+      CoolDown="60"
+      WindsOfMagicCost="15"
       BaseMisCastChance="0.05"
       Duration="15"
       Radius="15"
@@ -1376,8 +1376,8 @@
 	<AbilityTemplate StringID="NagashGaze" 
       Name="{=nagash_gaze_label_str}Gaze of Nagash" 
       SpriteName="gazeofnagash_icon" 
-      CoolDown="20" 
-      WindsOfMagicCost="8" 
+      CoolDown="12" 
+      WindsOfMagicCost="7" 
       BaseMisCastChance="0.05" 
       Duration="3" 
       Radius="0.4" 
@@ -1404,7 +1404,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="2"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="{=nagash_gaze_description_str}A bolt of Dhar fly from the caster's eyes, and what flesh they touch blackens and withers, peeling away completely to reveal bleached white bone beneath.">
+      TooltipDescription="{=nagash_gaze_description_str}A bolt of Dhar flies from the caster's eyes, and what flesh it touches blackens and withers, peeling away completely to reveal bleached white bone beneath.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1416,8 +1416,8 @@
 	<AbilityTemplate StringID="SummonSkeleton" 
       Name="{=summon_skeleton_label_str}Raise the Dead" 
       SpriteName="summonskeleton_icon" 
-      CoolDown="20" 
-      WindsOfMagicCost="4" 
+      CoolDown="30" 
+      WindsOfMagicCost="15" 
       BaseMisCastChance="0.3" 
       Duration="4" 
       Radius="2.5" 
@@ -1443,11 +1443,11 @@
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
       MinDistance="1"
-      MaxDistance="30"
+      MaxDistance="25"
       TargetCapturingRadius="5"
       SpellTier="2"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="{=summon_skeleton_description_str}Raise old bones from the ground. Summon 5 Skeletons for the duration of any single battle.">
+      TooltipDescription="{=summon_skeleton_description_str}Raises old bones from the ground for the Necromancer to command. Summon 25 Skeleton Warriors.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1459,14 +1459,14 @@
 	<AbilityTemplate StringID="Shadowblood" 
       Name="{=shadowblood_label_str}Shadowblood" 
       SpriteName="shadowblood_icon" 
-      CoolDown="20" 
+      CoolDown="15" 
       WindsOfMagicCost="8" 
       BaseMisCastChance="0.05" 
       Duration="300" 
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="SeekerMissile" 
-      BaseMovementSpeed="15" 
+      BaseMovementSpeed="40" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="false" 
@@ -1488,7 +1488,7 @@
       AbilityTargetType="EnemiesInAOE"
       SpellTier="2"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="{=shadowblood_description_str}Shadowy orbs of blood fly towards the target staining the ground beneath every step of the way.">
+      TooltipDescription="{=shadowblood_description_str}Shadowy orbs of blood follow the target staining the ground beneath every step of the way. Deals damage in a medium area.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1501,8 +1501,8 @@
 	<AbilityTemplate StringID="Morkharn"
       Name="{=morkharn_label_str}Morkharn - Breath of Darkness"
       SpriteName="breathofdarkness_icon"
-      CoolDown="30"
-      WindsOfMagicCost="12"
+      CoolDown="60"
+      WindsOfMagicCost="15"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="3"
@@ -1526,7 +1526,7 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
-      TargetCapturingRadius="4"
+      TargetCapturingRadius="5"
       MaxDistance="20"
       CrosshairType="TargetedAOE"
       SpellTier="3"
@@ -1542,14 +1542,14 @@
 	</AbilityTemplate>
 	<AbilityTemplate StringID="VanHelsDanseMacabre"
       Name="{=vanhelsdansemacabre_label_str}Vanhel's Danse Macabre"
-      SpriteName="breathofdarkness_icon"
-      CoolDown="30"
-      WindsOfMagicCost="12"
+      SpriteName="vanhels_dance_macabre_icon"
+      CoolDown="40"
+      WindsOfMagicCost="25"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="3"
       AbilityType="Spell"
-      AbilityEffectType="Heal"
+      AbilityEffectType="Augment"
       BaseMovementSpeed="0"
       TickInterval="-1"
       TriggerType="TickOnce"
@@ -1568,12 +1568,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
-      TargetCapturingRadius="4"
+      TargetCapturingRadius="8"
       MaxDistance="20"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="{=vanhelsdansemacabre_description_str}The animated dead are normally ungainly and cumbersome; this spell, however, gives them grace and speed - and makes then all the more deadly as a result.">
+      TooltipDescription="{=vanhelsdansemacabre_description_str}The animated dead are normally ungainly and cumbersome; this spell, however, gives them grace and speed - and makes them all the more deadly as a result.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1582,55 +1582,11 @@
 		</LightColorRGB>
 		<TriggeredEffect>apply_vanhelsdansemacabre</TriggeredEffect>
 	</AbilityTemplate>
-	<AbilityTemplate StringID="ScreamingSkull" 
-      Name="{=screaming_skull_label_str}Screaming Skull" 
-      SpriteName="screamingskull_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="30" 
-      BaseMisCastChance="0.3" 
-      Duration="3" 
-      Radius="3" 
-      AbilityType="Spell" 
-      AbilityEffectType="Wind" 
-      BaseMovementSpeed="12" 
-      TickInterval="0.5" 
-      TriggerType="EveryTick" 
-      HasLight="true" 
-      LightIntensity="50" 
-      LightRadius="10" 
-      LightFlickeringMagnitude="0" 
-      LightFlickeringInterval="0" 
-      ShadowCastEnabled="false" 
-      ParticleEffectPrefab="screaming_skull_vfx" 
-      ParticleEffectSizeModifier="1" 
-      SoundEffectToPlay="scream" 
-      ShouldSoundLoopOverDuration="false"
-      CastType="WindUp" 
-      CastTime="0.5" 
-      AnimationActionName="act_release_stone" 
-      Offset="10"
-      CrosshairType="Wind"
-      AbilityTargetType="GroundAtPosition"
-      MinDistance="2"
-      MaxDistance="10"
-      TargetCapturingRadius="3"
-      SpellTier="4"
-      BelongsToLoreID="DarkMagic"
-      TooltipDescription="{=screaming_skull_description_str}Conjure a screaming skull dripping with acid that moves forward damaging everything in its path.">
-		<LightColorRGB x="52" y="235" z="88" w="-1">
-			<AsVec2>
-				<x>52</x>
-				<y>235</y>
-				<z>88</z>
-			</AsVec2>
-		</LightColorRGB>
-		<TriggeredEffect>wind_of_death_tick</TriggeredEffect>
-	</AbilityTemplate>
 	<AbilityTemplate StringID="WindOfDeath" 
       Name="{=wind_of_death_label_str}Wind of Death" 
       SpriteName="windofdeath_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="25" 
+      CoolDown="65" 
+      WindsOfMagicCost="35" 
       BaseMisCastChance="0.3" 
       Duration="5" 
       Radius="2" 
@@ -1660,7 +1616,7 @@
       TargetCapturingRadius="3"
       SpellTier="4"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="{=wind_of_death_description_str}Invoke the spirits of the dead to consume the souls of the living. Applies high damage while moving along its path.">
+      TooltipDescription="{=wind_of_death_description_str}Invoke the spirits of the dead to consume the souls of the living. Applies medium damage while moving along its path.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1672,8 +1628,8 @@
 	<AbilityTemplate StringID="GraveCall" 
       Name="{=grave_call_label_str}Grave Call" 
       SpriteName="gravecall_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="14" 
+      CoolDown="60" 
+      WindsOfMagicCost="25" 
       BaseMisCastChance="0.3" 
       Duration="4" 
       Radius="2.5" 
@@ -1699,11 +1655,11 @@
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
       MinDistance="1"
-      MaxDistance="30"
-      TargetCapturingRadius="2.5"
+      MaxDistance="20"
+      TargetCapturingRadius="5"
       SpellTier="4"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="{=grave_call_description_str}Drawing forth the dark energy coursing through the land, the necromancer searches long dead bodies to answer his summons. Raise 15 Skeleton Champions.">
+      TooltipDescription="{=grave_call_description_str}Drawing forth the dark energy coursing through the land, the necromancer searches long dead bodies to answer his summons. Raise 25 Grave Guard.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1715,11 +1671,11 @@
 	<AbilityTemplate StringID="CurseOfYears"
       Name="{=curse_of_years_label_str}Curse of Years"
       SpriteName="curseofyears_icon"
-      CoolDown="30"
-      WindsOfMagicCost="12"
+      CoolDown="60"
+      WindsOfMagicCost="25"
       BaseMisCastChance="0.05"
       Duration="2"
-      Radius="20"
+      Radius="15"
       AbilityType="Spell"
       AbilityEffectType="Hex"
       BaseMovementSpeed="0"
@@ -1741,11 +1697,11 @@
       Offset="0.0"
       AbilityTargetType="EnemiesInAOE"
       TargetCapturingRadius="4"
-      MaxDistance="50"
+      MaxDistance="20"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="Necromancy"
-      TooltipDescription="{=curse_of_years_description_str}The caster utters an ancient curse, which causes the foe to age at a horrific rate. Reduces enemy attack and movement speed by 50% for 15 seconds.">
+      TooltipDescription="{=curse_of_years_description_str}The necromancer utters an ancient curse, which causes the foe to age at a horrific rate. Reduces enemy attack and movement speed by 50% for a duration of 30 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -1759,8 +1715,8 @@
 	<AbilityTemplate StringID="Chillwind" 
       Name="{=chillwind_label_str}Chillwind" 
       SpriteName="chillwind_icon" 
-      CoolDown="20" 
-      WindsOfMagicCost="8" 
+      CoolDown="20"
+      WindsOfMagicCost="12" 
       BaseMisCastChance="0.05" 
       Duration="4" 
       Radius="1" 
@@ -1782,12 +1738,12 @@
       CastType="WindUp" 
       CastTime="0.5" 
       AnimationActionName="act_release_heavy_thrown" 
-      Offset="5"
+      Offset="12"
       AbilityTargetType="WorldPosition"
       CrosshairType="Wind"
-      MinDistance="3"
-      MaxDistance="2"
-      TargetCapturingRadius="2"
+      MinDistance="2"
+      MaxDistance="3"
+      TargetCapturingRadius="4"
       SpellTier="2"
       BelongsToLoreID="DarkMagic"
       TooltipDescription="{=chillwind_description_str}The caster assails the enemy with a freezing gale.">
@@ -1797,13 +1753,13 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>windblast_burst</TriggeredEffect>
+		<TriggeredEffect>chillwind_burst</TriggeredEffect>
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="DoomBolt"
       Name="{=doom_bolt_label_str}Doom Bolt"
       SpriteName="doombolt_icon"
-      CoolDown="40"
+      CoolDown="80"
       WindsOfMagicCost="40"
       BaseMisCastChance="0.3"
       Duration="30"
@@ -1832,7 +1788,7 @@
       AbilityTargetType="GroundAtPosition"
       MinDistance="3"
       MaxDistance="30"
-      TargetCapturingRadius="4"
+      TargetCapturingRadius="6"
       MaxRandomDeviation="1"
       ShouldRotateVisuals="true"
       VisualsRotationVelocity="1"
@@ -1851,14 +1807,14 @@
 	<AbilityTemplate StringID="DeathSpasm" 
       Name="{=death_spasm_label_str}Death Spasm" 
       SpriteName="deathspasm_icon" 
-      CoolDown="20" 
-      WindsOfMagicCost="12" 
+      CoolDown="30" 
+      WindsOfMagicCost="15" 
       BaseMisCastChance="0.05" 
       Duration="3" 
-      Radius="0.4" 
+      Radius="0.5" 
       AbilityType="Spell" 
       AbilityEffectType="Missile" 
-      BaseMovementSpeed="35" 
+      BaseMovementSpeed="45" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="false" 
@@ -1886,13 +1842,13 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>fireball_explosion</TriggeredEffect>
+		<TriggeredEffect>deathspasm_explosion</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="SoulRain" 
       Name="{=soul_rain_label_str}Soul Rain" 
       SpriteName="soulrain_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="15" 
+      CoolDown="50" 
+      WindsOfMagicCost="22" 
       BaseMisCastChance="0.5" 
       Duration="5" 
       Radius="3" 
@@ -1918,8 +1874,8 @@
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
       MinDistance="5"
-      MaxDistance="30"
-      TargetCapturingRadius="2"
+      MaxDistance="25"
+      TargetCapturingRadius="3"
       SpellTier="3"
       BelongsToLoreID="DarkMagic"
       TooltipDescription="{=soul_rain_description_str}A black cloud looms over the targeted area striking those below with arcane lightning bolts.">
@@ -1929,13 +1885,13 @@
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>lightning_tick</TriggeredEffect>
+		<TriggeredEffect>soulrain_tick</TriggeredEffect>
 	</AbilityTemplate>
 	<AbilityTemplate StringID="PowerOfDarkness"
       Name="{=power_of_darkness_label_str}Power of Darkness"
       SpriteName="powerofdarkness_icon"
-      CoolDown="30"
-      WindsOfMagicCost="12"
+      CoolDown="70"
+      WindsOfMagicCost="18"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="3"
@@ -1959,25 +1915,71 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
-      TargetCapturingRadius="4"
+      TargetCapturingRadius="6"
       MaxDistance="20"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="DarkMagic"
-      TooltipDescription="{=power_of_darkness_description_str}The caster draws unstable power from the Realm of Chaos to empower his allies. Grants 20% physical bonus damage for 15 seconds in an area.">
+      TooltipDescription="{=power_of_darkness_description_str}The caster draws unstable power from the Realm of Chaos to empower his allies. Grants 20% physical bonus damage for a duration of 35 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
 				<y>170</y>
 			</AsVec2>
 		</LightColorRGB>
-		<TriggeredEffect>physical_bonus_20</TriggeredEffect>
+		<TriggeredEffect>power_of_darkness_bonus</TriggeredEffect>
 	</AbilityTemplate>
+	
+	<AbilityTemplate StringID="ScreamingSkull" 
+      Name="{=screaming_skull_label_str}Screaming Skull" 
+      SpriteName="screamingskull_icon" 
+      CoolDown="90" 
+      WindsOfMagicCost="50" 
+      BaseMisCastChance="0.3" 
+      Duration="3" 
+      Radius="3" 
+      AbilityType="Spell" 
+      AbilityEffectType="Wind" 
+      BaseMovementSpeed="12" 
+      TickInterval="0.75" 
+      TriggerType="EveryTick" 
+      HasLight="true" 
+      LightIntensity="50" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="0" 
+      LightFlickeringInterval="0" 
+      ShadowCastEnabled="false" 
+      ParticleEffectPrefab="screaming_skull_vfx" 
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="scream" 
+      ShouldSoundLoopOverDuration="false"
+      CastType="WindUp" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_stone" 
+      Offset="10"
+      CrosshairType="Wind"
+      AbilityTargetType="GroundAtPosition"
+      MinDistance="2"
+      MaxDistance="10"
+      TargetCapturingRadius="4"
+      SpellTier="4"
+      BelongsToLoreID="DarkMagic"
+      TooltipDescription="{=screaming_skull_description_str}Conjures a screaming skull dripping with acid that moves forward damaging everything in its path.">
+		<LightColorRGB x="52" y="235" z="88" w="-1">
+			<AsVec2>
+				<x>52</x>
+				<y>235</y>
+				<z>88</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>screaming_skull_tick</TriggeredEffect>
+	</AbilityTemplate>
+	
 	<AbilityTemplate StringID="BlackHorror" 
       Name="{=black_horror_label_str}Arnzipal's Black Horror" 
       SpriteName="arzipalsblackhorror_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="30" 
+      CoolDown="70" 
+      WindsOfMagicCost="35" 
       BaseMisCastChance="0.3" 
       Duration="8" 
       Radius="2" 
@@ -2004,7 +2006,7 @@
       CrosshairType="TargetedAOE"
       MinDistance="3"
       MaxDistance="20"
-      TargetCapturingRadius="2"
+      TargetCapturingRadius="3"
       MaxRandomDeviation="2"
       ShouldRotateVisuals="false"
       VisualsRotationVelocity="0"
@@ -2022,8 +2024,8 @@
 	<AbilityTemplate StringID="SoulStealer"
    Name="{=soul_stealer_label_str}Soul Stealer"
    SpriteName="soulstealer_icon"
-   CoolDown="40"
-   WindsOfMagicCost="25"
+   CoolDown="80"
+   WindsOfMagicCost="35"
    BaseMisCastChance="0.05"
    Duration="0"
    Radius="0"
@@ -2052,7 +2054,7 @@
    CrosshairType="TargetedAOE"
    SpellTier="4"
     BelongsToLoreID="DarkMagic"
-    TooltipDescription="{=soul_stealer_description_str}Enemies in the area experience a soul draining direct damage over time effect causing them to take 12 damage every second for 10 seconds.">
+    TooltipDescription="{=soul_stealer_description_str}Enemies affected experience a soul draining damage over time effect, causing them to take 12 damage every second for a duration of 12 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2111,7 +2113,7 @@
 	
 	<AbilityTemplate StringID="FieryConvocation"
       Name="{=fiery_convocation_label_str}Fiery Convocation"
-      SpriteName="wind_blast_icon"
+      SpriteName="fiery_convocation_icon"
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
@@ -2154,7 +2156,7 @@
 	
 	<AbilityTemplate StringID="SoulQuench" 
       Name="{=soul_quench_label_str}Soul Quench" 
-      SpriteName="gehennasgoldenglobe_icon" 
+      SpriteName="soul_quench_icon" 
       CoolDown="30" 
       WindsOfMagicCost="15" 
       BaseMisCastChance="0.05" 
@@ -2195,13 +2197,13 @@
 	
 	<AbilityTemplate StringID="CourageOfAenarion"
       Name="{=courage_of_aenarion_label_str}Courage of Aenarion"
-      SpriteName="ladys_favor_icon"
+      SpriteName="courage_of_aenarion_icon"
       CoolDown="60"
-      WindsOfMagicCost="0"
+      WindsOfMagicCost="30"
       BaseMisCastChance="0.05"
       Duration="10"
       Radius="6"
-      AbilityType="Prayer"
+      AbilityType="Spell"
       AbilityEffectType="Augment"
       BaseMovementSpeed="0"
       TickInterval="-1"
@@ -2238,7 +2240,7 @@
 	
 	<AbilityTemplate StringID="CurseOfArrowAttraction"
       Name="{=curse_of_years_label_str}Curse of Arrow Attraction"
-      SpriteName="curseofyears_icon"
+      SpriteName="curse_of_arrowattraction_icon"
       CoolDown="30"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
@@ -2282,7 +2284,7 @@
 	
 	<AbilityTemplate StringID="Tempest" 
       Name="{=black_horror_label_str}Tempest" 
-      SpriteName="arzipalsblackhorror_icon" 
+      SpriteName="tempest_icon" 
       CoolDown="40" 
       WindsOfMagicCost="30" 
       BaseMisCastChance="0.3" 
@@ -2330,7 +2332,7 @@
 	
 	<AbilityTemplate StringID="ShieldOfSaphery" 
       Name="{=shield_of_saphery_label_str}Shield of Saphery" 
-      SpriteName="ShieldOfSaphery_icon" 
+      SpriteName="shield_of_saphery_icon" 
       CoolDown="120" 
       WindsOfMagicCost="0" 
       BaseMisCastChance="0.05" 
@@ -2377,10 +2379,10 @@
 	<AbilityTemplate StringID="DwellersBelow"
       Name="{=dwellers_below_label_str}Dwelllers Below"
       SpriteName="dwellersbelow_icon"
-      CoolDown="50"
+      CoolDown="70"
       WindsOfMagicCost="35"
       BaseMisCastChance="0.05"
-      Duration="16"
+      Duration="15"
       Radius="20"
       AbilityType="Spell"
       AbilityEffectType="Bombardment"
@@ -2402,12 +2404,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.0"
       AbilityTargetType="GroundAtPosition"
-      TargetCapturingRadius="10"
-      MaxDistance="50"
+      TargetCapturingRadius="5"
+      MaxDistance="25"
       CrosshairType="TargetedAOE"
       SpellTier="4"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="{=dwellers_below_description_str}Tendrils emerge from the ground reaching out and attacking enemies passing the area. Knocks down and dismounts enemies, slows (0.8%) and deals 5 dmg per second for 16 seconds.">
+      TooltipDescription="{=dwellers_below_description_str}Tendrils emerge from the ground reaching out and attacking enemies in the area. Knocks down, dismounts and slows (80%) enemies, while dealing 10 damage per second for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2420,8 +2422,8 @@
 	<AbilityTemplate StringID="TheGreenEye" 
       Name="{=the_green_eye_label_str}The Green Eye" 
       SpriteName="greeneye_icon" 
-      CoolDown="5" 
-      WindsOfMagicCost="8" 
+      CoolDown="12" 
+      WindsOfMagicCost="6" 
       BaseMisCastChance="0.05" 
       Duration="2" 
       Radius="0.4" 
@@ -2461,8 +2463,8 @@
 	<AbilityTemplate StringID="Barkskin"
       Name="{=barkskin_label_str}Barkskin"
       SpriteName="barkskin_icon"
-      CoolDown="10"
-      WindsOfMagicCost="6"
+      CoolDown="100"
+      WindsOfMagicCost="25"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="3"
@@ -2486,12 +2488,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
-      TargetCapturingRadius="4"
+      TargetCapturingRadius="7"
       MaxDistance="0.5"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="{=barkskin_description_str}Hardens the skin of targets, making them tougher, providing 35% physical resistance for total duration of 8 secouds">
+      TooltipDescription="{=barkskin_description_str}Hardens the skin of targets, making them tougher, providing 50% physical resistance for 80 secouds">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2504,7 +2506,7 @@
 	<AbilityTemplate StringID="SummerHeat"
       Name="{=summer_heat_label_str}Summer Heat"
       SpriteName="summerheat_icon"
-      CoolDown="5"
+      CoolDown="40"
       WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
       Duration="2"
@@ -2529,12 +2531,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.0"
       AbilityTargetType="EnemiesInAOE"
-      TargetCapturingRadius="4"
-      MaxDistance="50"
+      TargetCapturingRadius="6"
+      MaxDistance="25"
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfLife"
-      TooltipDescription="{=summer_heat_description_str}Causes a small area to radiate unbearable heat, causing fatigue, impairing movement by 50%, and making the enemies vulnerable to fire damage by 25% for 8 seconds.">
+      TooltipDescription="{=summer_heat_description_str}A small area radiates unbearable heat, causing fatigue, impairing movement speed by 50%, and making the enemies slightly vulnerable to fire damage for 15 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2547,8 +2549,8 @@
 	<AbilityTemplate StringID="Regrowth" 
 	Name="{=regrowth_label_str}Regrowth"
 	SpriteName="regrowth_icon"
-	CoolDown="10"
-	WindsOfMagicCost="6"
+	CoolDown="25"
+	WindsOfMagicCost="8"
 	BaseMisCastChance="0.05"
 	Duration="0"
 	Radius="3"
@@ -2572,7 +2574,7 @@
 	AnimationActionName="act_release_heavy_thrown"
 	Offset="0.5"
 	AbilityTargetType="AlliesInAOE"
-	TargetCapturingRadius="4"
+	TargetCapturingRadius="5"
 	MaxDistance="20"
 	CrosshairType="TargetedAOE"
 	SpellTier="3"
@@ -2591,8 +2593,8 @@
 	<AbilityTemplate StringID="DrainLife"
    Name="{=drain_life_label_str}Drain Life"
    SpriteName="drainlife_icon"
-   CoolDown="15"
-   WindsOfMagicCost="6"
+   CoolDown="35"
+   WindsOfMagicCost="18"
    BaseMisCastChance="0.05"
    Duration="0"
    Radius="0"
@@ -2616,12 +2618,12 @@
    AnimationActionName="act_release_heavy_thrown"
    Offset="0.5"
    AbilityTargetType="EnemiesInAOE"
-   TargetCapturingRadius="5"
+   TargetCapturingRadius="3"
    MaxDistance="20"
    CrosshairType="TargetedAOE"
    SpellTier="2"
     BelongsToLoreID="LoreOfLife"
-    TooltipDescription="{=drain_life_description_str}Drains the life essence from an enemy, dealing 5 damage per second for total duration of 10 seconds.">
+    TooltipDescription="{=drain_life_description_str}Sucks the moisture and fluids from the foe, dealing 5 damage per second for total duration of 10 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2635,8 +2637,8 @@
 	<AbilityTemplate StringID="StormOfRenewal" 
 	Name="{=storm_of_renewal_label_str}Storm of Renewal"
 	SpriteName="stormofrenewal_icon"
-	CoolDown="10"
-	WindsOfMagicCost="6"
+	CoolDown="50"
+	WindsOfMagicCost="20"
 	BaseMisCastChance="0.05"
 	Duration="12"
 	Radius="5"
@@ -2681,13 +2683,13 @@
       Name="{=amber_spear_label_str}Amber Spear" 
       SpriteName="amberspear_icon" 
       CoolDown="4" 
-      WindsOfMagicCost="8" 
+      WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
       Duration="2" 
       Radius="0.4" 
       AbilityType="Spell" 
       AbilityEffectType="Projectile" 
-      BaseMovementSpeed="60"
+      BaseMovementSpeed="90"
       TickInterval="1" 
       TriggerType="OnStop" 
       HasLight="false" 
@@ -2721,16 +2723,16 @@
 	<AbilityTemplate StringID="TanglingThorn"
       Name="{=tangling_thorn_label_str}Tangling Thorn"
       SpriteName="tanglingthorn_icon"
-      CoolDown="15"
-      WindsOfMagicCost="8"
+      CoolDown="40"
+      WindsOfMagicCost="12"
       BaseMisCastChance="0.05"
-      Duration="0.9"
+      Duration="10"
       Radius="3"
       AbilityType="Spell"
       AbilityEffectType="Hex"
       BaseMovementSpeed="0"
-      TickInterval="1.0"
-      TriggerType="EveryTick"
+      TickInterval="-1"
+      TriggerType="TickOnce"
       HasLight="false"
       LightIntensity="0"
       LightRadius="0"
@@ -2746,12 +2748,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="5"
       AbilityTargetType="GroundAtPosition"
-      TargetCapturingRadius="4"
+      TargetCapturingRadius="3"
       MaxDistance="15"
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="{=tangling_thorn_description_str}Roots erupt from the ground preventing all enemies from moving for 4 seconds.">
+      TooltipDescription="{=tangling_thorn_description_str}Roots erupt from the ground preventing all enemies from moving for a duration of 10 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2764,8 +2766,8 @@
 	<AbilityTemplate StringID="PannsImpenetrablePelt" 
       Name="{=panns_impenetrable_pelt_label_str}Pann's Impenetrable Pelt" 
       SpriteName="pannsimpenetrablepelt_icon" 
-      CoolDown="10" 
-      WindsOfMagicCost="3" 
+      CoolDown="60" 
+      WindsOfMagicCost="16" 
       BaseMisCastChance="0.05" 
       Duration="0" 
       Radius="0" 
@@ -2793,7 +2795,7 @@
       TargetCapturingRadius="1"
       SpellTier="2"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="{=panns_impenetrable_pelt_description_str}A magical skin surrounds the caster protecting him from physical damage (35%) for 12 seconds.">
+      TooltipDescription="{=panns_impenetrable_pelt_description_str}A magical skin surrounds the wizard, protecting him from physical damage (40%) for a duration of 40 seconds.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2807,15 +2809,15 @@
 	<AbilityTemplate StringID="HailStorm" 
       Name="{=hail_storm_label_str}Hail Storm" 
       SpriteName="hailstorm_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="15" 
+      CoolDown="45" 
+      WindsOfMagicCost="20" 
       BaseMisCastChance="0.5" 
-      Duration="10" 
+      Duration="5" 
       Radius="6" 
       AbilityType="Spell" 
       AbilityEffectType="Bombardment" 
       BaseMovementSpeed="0" 
-      TickInterval="0.5" 
+      TickInterval="1" 
       TriggerType="EveryTick" 
       HasLight="false" 
       LightIntensity="50" 
@@ -2834,11 +2836,11 @@
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
       MinDistance="5"
-      MaxDistance="30"
-      TargetCapturingRadius="6"
+      MaxDistance="25"
+      TargetCapturingRadius="3"
       SpellTier="3"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="{=hail_storm_description_str}A Storm of Stones is falling down on your enemies dealing physical damage">
+      TooltipDescription="{=hail_storm_description_str}A storm of stones falls down on the foe, dealing physical damage in a radius.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2850,15 +2852,15 @@
 	<AbilityTemplate StringID="FlockOfDoom"
    Name="{=flock_of_doom_label_str}Flock Of Doom"
    SpriteName="flockofdoom_icon"
-   CoolDown="25"
-   WindsOfMagicCost="20"
+   CoolDown="35"
+   WindsOfMagicCost="30"
    BaseMisCastChance="0.05"
-   Duration="4"
+   Duration="10"
    Radius="7.5"
    AbilityType="Spell"
    AbilityEffectType="Hex"
    BaseMovementSpeed="0"
-   TickInterval="2"
+   TickInterval="1"
    TriggerType="EveryTick"
    HasLight="false"
    LightIntensity="0"
@@ -2876,11 +2878,11 @@
    Offset="0.5"
    AbilityTargetType="EnemiesInAOE"
    TargetCapturingRadius="10"
-   MaxDistance="75"
+   MaxDistance="25"
    CrosshairType="TargetedAOE"
    SpellTier="3"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="{=flock_of_doom_description_str}Summons a nightmare of crows in the targeted area. Enemies caught in the area suffer damage over time for 5 sec and their physical resist is reduced by 20%.">
+    TooltipDescription="{=flock_of_doom_description_str}Summons a nightmare of crows in the targeted area. Affected enemies suffer light damage over time and their physical resistance is reduced by 20% for 10 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2892,11 +2894,11 @@
 	<AbilityTemplate StringID="TheBeastUnleashed"
       Name="{=the_beast_unleashed_label_str}The Beast Unleashed"
       SpriteName="beastunleashed_icon"
-      CoolDown="10"
-      WindsOfMagicCost="6"
+      CoolDown="60"
+      WindsOfMagicCost="20"
       BaseMisCastChance="0.05"
       Duration="0"
-      Radius="3"
+      Radius="12"
       AbilityType="Spell"
       AbilityEffectType="Augment"
       BaseMovementSpeed="0"
@@ -2917,12 +2919,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
-      TargetCapturingRadius="4"
+      TargetCapturingRadius="15"
       MaxDistance="20"
       CrosshairType="TargetedAOE"
       SpellTier="4"
       BelongsToLoreID="LoreOfBeasts"
-      TooltipDescription="{=the_beast_unleashed_description_str}Unleashes the primal savagery of the caster's allies, driving them into a frenzy. Grants 25% more physical damage and 25% attack speed in a 3 meter radius for 20 seconds.">
+      TooltipDescription="{=the_beast_unleashed_description_str}Unleashes the primal savagery of the caster's allies, driving them into a frenzy. Grants a 25% physical damage and attack speed bonus for a duration of 60 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2934,15 +2936,15 @@
 	<AbilityTemplate StringID="CurseOfAnraheir"
    Name="{=curse_of_anraheir_label_str}Curse Of Anraheir"
    SpriteName="curseofanraheir_icon"
-   CoolDown="20"
-   WindsOfMagicCost="15"
+   CoolDown="90"
+   WindsOfMagicCost="35"
    BaseMisCastChance="0.05"
-   Duration="11"
+   Duration="15"
    Radius="10"
    AbilityType="Spell"
    AbilityEffectType="Hex"
    BaseMovementSpeed="0"
-   TickInterval="2"
+   TickInterval="1"
    TriggerType="EveryTick"
    HasLight="false"
    LightIntensity="0"
@@ -2959,12 +2961,12 @@
    AnimationActionName="act_release_heavy_thrown"
    Offset="0.5"
    AbilityTargetType="EnemiesInAOE"
-   TargetCapturingRadius="15"
-   MaxDistance="75"
+   TargetCapturingRadius="10"
+   MaxDistance="20"
    CrosshairType="TargetedAOE"
    SpellTier="4"
     BelongsToLoreID="LoreOfBeasts"
-    TooltipDescription="{=curse_of_anraheir_description_str}Woodland sprites hinder all enemies caught in an area for 11 seconds, reducing movement (35%) and attack speed (50%) and causing 3 damage per second.">
+    TooltipDescription="{=curse_of_anraheir_description_str}Woodland sprites hinder all enemies caught in the area for 15 seconds, reducing movement (35%) and attack speed (50%) as well as causing 3 damage per second.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2978,8 +2980,8 @@
 	<AbilityTemplate StringID="QuicksilverSwords"
       Name="{=quicksilver_swords_label_str}Quicksilver Swords"
       SpriteName="quicksilversword_icon"
-      CoolDown="30"
-      WindsOfMagicCost="13"
+      CoolDown="70"
+      WindsOfMagicCost="20"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="0"
@@ -3003,12 +3005,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
-      TargetCapturingRadius="5"
-      MaxDistance="20"
+      TargetCapturingRadius="7"
+      MaxDistance="25"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfMetal"
-      TooltipDescription="{=flaming_swords_description_str}Buff the weapons of allies in a 5 meter radius with the Flaming trait for 20 seconds. The weapons burst into fire and burn every enemy they strike.">
+      TooltipDescription="{=quicksilver_swords_label_str}Infuses weapons of allies with gleaming energies - Even a rusty sword turns deadly with the help of a Metal Wizard. Friendly units deal 20% magic and fire damage for a duration of 60 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3022,13 +3024,13 @@
       Name="{=gleaming_arrow_label_str}Gleaming Arrow" 
       SpriteName="gleamingarrow_icon" 
       CoolDown="10" 
-      WindsOfMagicCost="4" 
+      WindsOfMagicCost="3" 
       BaseMisCastChance="0.05" 
       Duration="300" 
-      Radius="0.4" 
+      Radius="0.5" 
       AbilityType="Spell" 
       AbilityEffectType="SeekerMissile" 
-      BaseMovementSpeed="45" 
+      BaseMovementSpeed="75" 
       TickInterval="-1" 
       TriggerType="OnCollision" 
       HasLight="true" 
@@ -3050,7 +3052,7 @@
       MaxDistance="100"
       CrosshairType="SingleTarget"
       AbilityTargetType="SingleEnemy"
-      TooltipDescription="Hurl a magical bolt at the enemy. The missile homes in on the target and does 40 damage in a 3 meter radius on contact.">
+      TooltipDescription="{=gleaming_arrow_description_str}The Gold Wizard fires a projectile of golden energy out of his forehead. The missile homes in on the target and deals 100 physical damage.">
       <LightColorRGB x="255" y="200" z="0" w="-1">
         <AsVec2>
           <x>204</x>
@@ -3064,8 +3066,8 @@
 	<AbilityTemplate StringID="MeteroicIronclad"
       Name="{=meteoric_ironclad_label_str}Meteoric Ironclad"
       SpriteName="meteriorironclad_icon"
-      CoolDown="10"
-      WindsOfMagicCost="6"
+      CoolDown="60"
+      WindsOfMagicCost="15"
       BaseMisCastChance="0.05"
       Duration="0"
       Radius="3"
@@ -3089,12 +3091,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
-      TargetCapturingRadius="4"
-      MaxDistance="30"
+      TargetCapturingRadius="10"
+      MaxDistance="0.5"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfMetal"
-      TooltipDescription="{=barkskin_description_str}Hardens the skin of targets, making them tougher, providing 35% physical resistance for total duration of 8 secouds">
+      TooltipDescription="{=meteoric_ironclad_description_str}Allies are protected by an enchantment of iron and silver. Provides 60% physical resistance for a duration of 45 seconds">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3107,15 +3109,15 @@
 	<AbilityTemplate StringID="PlagueOfRust"
       Name="{=plague_of_rust_label_str}Plague Of Rust"
       SpriteName="plagueofrust_icon"
-      CoolDown="5"
-      WindsOfMagicCost="12"
+      CoolDown="90"
+      WindsOfMagicCost="20"
       BaseMisCastChance="0.05"
       Duration="2"
       Radius="20"
       AbilityType="Spell"
       AbilityEffectType="Hex"
       BaseMovementSpeed="0"
-      TickInterval="1.9"
+      TickInterval="-1"
       TriggerType="TickOnce"
       HasLight="false"
       LightIntensity="0"
@@ -3132,12 +3134,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.0"
       AbilityTargetType="EnemiesInAOE"
-      TargetCapturingRadius="4"
-      MaxDistance="50"
+      TargetCapturingRadius="8"
+      MaxDistance="18"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="LoreOfMetal"
-      TooltipDescription="{=curse_of_years_description_str}The caster utters an ancient curse, which causes the foe to age at a horrific rate. Reduces enemy attack and movement speed by 50% for 15 seconds.">
+      TooltipDescription="{=plague_of_rust_description_str}At a flick of the caster's wrist, the armor of foes is consumed by rust. Imposes a 70% physical resistance penalty for a duration of 120 seconds.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3194,8 +3196,8 @@
 	<AbilityTemplate StringID="GehennasGoldenGlobe" 
       Name="{=gehennas_golden_globe_label_str}Gehennas Golden Globe" 
       SpriteName="gehennasgoldenglobe_icon" 
-      CoolDown="30" 
-      WindsOfMagicCost="8" 
+      CoolDown="20" 
+      WindsOfMagicCost="12" 
       BaseMisCastChance="0.05" 
       Duration="100" 
       Radius="0.4" 
@@ -3222,7 +3224,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="3"
       BelongsToLoreID="LoreOfMetal"
-      TooltipDescription="{=comet_of_sigmar_description_str}You throw a fiery missile that takes the form of Sigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile dealing 30 damage. It can knock units down, or throw them off horse. Only affects enemies">
+      TooltipDescription="{=gehennas_golden_globe_description_str}A glittering globe of energy engulfs and burns foes alive. Those unfortunate enough to survive are also slowed down for a short duration.">
 		<LightColorRGB x="245" y="247" z="129" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3235,16 +3237,16 @@
 	<AbilityTemplate StringID="FinalTransmutation"
 	   Name="{=final_transmutation_label_str}Final Transmutation"
 	   SpriteName="finaltransmutation_icon"
-	   CoolDown="20"
-	   WindsOfMagicCost="15"
+	   CoolDown="100"
+	   WindsOfMagicCost="45"
 	   BaseMisCastChance="0.05"
-	   Duration="11"
+	   Duration="1"
 	   Radius="10"
 	   AbilityType="Spell"
 	   AbilityEffectType="Hex"
 	   BaseMovementSpeed="0"
-	   TickInterval="2"
-	   TriggerType="EveryTick"
+	   TickInterval="-1"
+	   TriggerType="TickOnce"
 	   HasLight="false"
 	   LightIntensity="0"
 	   LightRadius="0"
@@ -3260,12 +3262,12 @@
 	   AnimationActionName="act_release_heavy_thrown"
 	   Offset="0.5"
 	   AbilityTargetType="EnemiesInAOE"
-	   TargetCapturingRadius="10"
-	   MaxDistance="75"
+	   TargetCapturingRadius="7"
+	   MaxDistance="20"
 	   CrosshairType="TargetedAOE"
 	   SpellTier="4"
 		BelongsToLoreID="LoreOfMetal"
-		TooltipDescription="{=curse_of_anraheir_description_str}Woodland sprites hinder all enemies caught in an area for 11 seconds, reducing movement (35%) and attack speed (50%) and causing 3 damage per second.">
+		TooltipDescription="{=final_transmutation_description_str}By weaving the brilliant Wind of Chamon, the wizard attempts to transmute his foes into statues of pure gold. Deals continuous damage and greatly slows down enemies.">
 			<LightColorRGB x="255" y="170" z="0" w="-1">
 				<AsVec2>
 					<x>255</x>
@@ -3278,7 +3280,7 @@
 	<AbilityTemplate StringID="GehennasGoldenHounds" 
       Name="{=gehennas_golden_hounds_label_str}Gehennas Golden Hounds" 
       SpriteName="gehennasgoldenhounds_icon" 
-      CoolDown="40" 
+      CoolDown="60" 
       WindsOfMagicCost="30" 
       BaseMisCastChance="0.3" 
       Duration="20" 
@@ -3312,7 +3314,7 @@
       VisualsRotationVelocity="10"
       SpellTier="4"
       BelongsToLoreID="LoreOfMetal"
-      TooltipDescription="{=gehennas_golden_hounds_description_str}The caster tears down the walls between realities, and a black cloud of roiling energy sweeps across the battlefield. As the darkness travels, slimy tentacles lash out from its depths, draggin unfortunate victims screaming to an unknown fate.">
+      TooltipDescription="{=gehennas_golden_hounds_description_str}The wizard calls forth a pair of massive golden hounds that travel in a circular motion.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3648,7 +3650,7 @@
 	
 	<AbilityTemplate StringID="AxeOfUlric"
        Name="{=red_fury_label_str}Axe of Ulric"
-       SpriteName="redfury_icon"
+       SpriteName="axe_of_ulric_icon"
        CoolDown="15"
        WindsOfMagicCost="0"
        BaseMisCastChance="0"
@@ -3768,6 +3770,48 @@
 	   <TriggeredEffect>summon_champion</TriggeredEffect>
 	</AbilityTemplate>
 	
+	<AbilityTemplate StringID="MindControl" 
+      Name="{=shadowblood_label_str}Fellfang Control" 
+      SpriteName="fellfangcontrol_icon" 
+      CoolDown="20" 
+      WindsOfMagicCost="8" 
+      BaseMisCastChance="0.05" 
+      Duration="300" 
+      Radius="5" 
+      AbilityType="CareerAbility" 
+      AbilityEffectType="Hex" 
+      BaseMovementSpeed="15" 
+      TickInterval="-1" 
+      TriggerType="TickOnce" 
+      HasLight="false" 
+      LightIntensity="50" 
+      LightRadius="10" 
+      LightFlickeringMagnitude="3" 
+      LightFlickeringInterval="0.7" 
+      ShadowCastEnabled="true" 
+      ParticleEffectPrefab="" 
+	  MaxDistance="30"
+      ParticleEffectSizeModifier="1" 
+      SoundEffectToPlay="evilbolt_cast" 
+      ShouldSoundLoopOverDuration="false" 
+      CastType="Instant" 
+      CastTime="0.5" 
+      AnimationActionName="act_release_heavy_thrown" 
+      Offset="0.0"
+	  TargetCapturingRadius = "5"
+      CrosshairType="TargetedAOE"
+      AbilityTargetType="EnemiesInAOE"
+      SpellTier="2"
+      TooltipDescription="{=shadowblood_description_str}Shadowy orbs of blood fly towards the target staining the ground beneath every step of the way.">
+		<LightColorRGB x="255" y="170" z="0" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>170</y>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>apply_mindcontrol</TriggeredEffect>
+	</AbilityTemplate>
+	
 	<AbilityTemplate StringID="BlastOfAgony" 
       Name="Blast of Agony" 
       SpriteName="blastofagony_icon" 
@@ -3807,7 +3851,6 @@
 			</AsVec2>
 		</LightColorRGB>
 		<TriggeredEffect>apply_blastofagony</TriggeredEffect>
-		
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="ArcaneConduit"
@@ -3890,12 +3933,15 @@
 		</LightColorRGB>
 		<TriggeredEffect>apply_arrow_of_kurnous</TriggeredEffect>
 		<SeekerParameters Proportional="0.5" Derivative="1" DisableDistance="2"/>
-	</AbilityTemplate> <!-- Needs arrow release animation -->
+	</AbilityTemplate> 
+	
+	
+	
 	
 	
 		<AbilityTemplate StringID="WrathOfTheWood" 
       Name="Wrath of the Wood" 
-      SpriteName="theharbinger_icon" 
+      SpriteName="wraith_of_the_forest_icon" 
       CoolDown="5" 
       BaseMisCastChance="0.3" 
       Duration="0" 
@@ -4152,7 +4198,7 @@
 	
 		<AbilityTemplate StringID="UlricsGift"
       Name="{=armor_of_righteousness_label_str}Ulric's Gift"
-      SpriteName="armorofrighteousness_icon"
+      SpriteName="ulrics_gift_icon"
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
@@ -4195,7 +4241,7 @@
 	
 	<AbilityTemplate StringID="HeartOfTheWolf"
       Name="{=armor_of_righteousness_label_str}Heart of The Wolf"
-      SpriteName="vanquish_icon"
+      SpriteName="heart_of_wolf_icon"
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"
@@ -4238,7 +4284,7 @@
 	
 	<AbilityTemplate StringID="IceStorm"
       Name="{=armor_of_righteousness_label_str}Ice Storm"
-      SpriteName="wind_blast_icon"
+      SpriteName="ice_storm_icon"
       CoolDown="70"
       WindsOfMagicCost="0"
       BaseMisCastChance="0.05"

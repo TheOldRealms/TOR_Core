@@ -39,6 +39,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     private readonly Vec2 _laurelornLocation = new(1239.391f, 1276.938f);
     private readonly Vec2 _gryphenWoodLocation = new(1606.698f, 1133.905f);
     private readonly Vec2 _athelLorenLocation = new(1238.435f, 778.6498f);
+    private readonly Vec2 _maisonTaalLocation = new(1228.051f, 973.7142f);
 
     private const int TreeSymbolChangeCost = 100;
     private const int TreeSymbolUnlockCosts = 500;
@@ -254,7 +255,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_C", "Relief Treespirits",null, (args) 
                 => PartyScreenManager.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), new TextObject("Donated Spirits"),
                     500,0,null,TranferCompleted, IsTransferableTreeSpirit,null),
-            false);
+            false);     //check if left side only contain tree spirits done button condition
 
         starter.AddWaitGameMenu("oak_of_ages_tree_spirits_menu_bind_dryads", "{=tor_custom_settlement_cursed_site_ghosts_progress_str}Performing binding ritual...",
             delegate (MenuCallbackArgs args)
@@ -329,7 +330,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         {
             if (type != PartyScreenLogic.TroopType.Member) return false;
             if (character.IsHero) return false;
-            return character.Culture.StringId == TORConstants.Cultures.ASRAI && character.Race != FaceGen.GetRaceOrDefault("elf");
+            return character.Culture.StringId == TORConstants.Cultures.ASRAI && !character.IsElf();
         }
 
         void AddTreemen(MenuCallbackArgs args)
@@ -704,6 +705,13 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     {
         MBTextManager.SetTextVariable("ROOTRETURNUPGRADE", RootTravelBackUpgradeCost);
         starter.AddGameMenu("worldroots_menu", "{LOCATION_DESCRIPTION}", WorldRootsMenuInit);
+        
+        
+        starter.AddGameMenuOption("worldroots_menu", "travel_eonir", "{tor_custom_settlement_menu_leave_str}Travel to Maisontaal",
+            args => TravelEonirCondition(args) && Hero.MainHero.CurrentSettlement.StringId == "worldroot_02", (MenuCallbackArgs args) => RootTravelConsequence(_maisonTaalLocation, false), true);
+        
+        starter.AddGameMenuOption("worldroots_menu", "travel_eonir", "{tor_custom_settlement_menu_leave_str}Travel to Laurelorn",
+            args => TravelEonirCondition(args) && false, (MenuCallbackArgs args) => RootTravelConsequence(_laurelornLocation, false), true);
 
         starter.AddGameMenuOption("worldroots_menu", "travel_back", "{tor_custom_settlement_menu_leave_str}Travel back to Athel Loren...",
             args => TravelBackCondition(args), (MenuCallbackArgs args) => RootTravelConsequence(_athelLorenLocation, false), true);
@@ -719,6 +727,23 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
+    }
+
+    private bool TravelEonirCondition(MenuCallbackArgs args)
+    {
+        if(Hero.MainHero.Culture.StringId != TORConstants.Cultures.EONIR)
+        {
+            return false;
+        }
+
+        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < 50)
+        {
+            args.IsEnabled = false;
+            args.Tooltip = new TextObject("Not enough Favor");
+            return true;
+        }
+
+        return true;
     }
 
     private bool TravelBackCondition(MenuCallbackArgs args)

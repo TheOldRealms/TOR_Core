@@ -14,6 +14,7 @@ using TOR_Core.BattleMechanics.AI.CastingAI.Components;
 using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TaleWorlds.Localization;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -171,7 +172,7 @@ namespace TOR_Core.AbilitySystem
             IsActivationPending = false;
             IsCasting = false;
             bool prayerCoolSeperated = false;
-            ExplainedNumber Cooldown = new ExplainedNumber(Template.CoolDown);
+            ExplainedNumber cooldown = new ExplainedNumber(Template.CoolDown);
             if (Game.Current.GameType is Campaign)
             {
                 if (casterAgent.IsMainAgent)
@@ -182,22 +183,37 @@ namespace TOR_Core.AbilitySystem
                     var type = Template.AbilityType;
                     if (type == AbilityType.Spell)
                     {
-                        CareerHelper.ApplyBasicCareerPassives(player, ref Cooldown, PassiveEffectType.WindsCooldownReduction, true);
+                        CareerHelper.ApplyBasicCareerPassives(player, ref cooldown, PassiveEffectType.WindsCooldownReduction, true);
+
+                        if (casterAgent.IsMainAgent && casterAgent.GetHero().HasCareer(TORCareers.GreyLord))
+                        {
+                            var choice = TORCareerChoices.GetChoice("SecretOfFellfangPassive1");
+                            if ( choice!=null)
+                            {
+                                var count = Agent.Main.GetAbilities().Count;
+                            
+                                if(count<choice.GetPassiveValue())
+                                {
+                                    cooldown.AddFactor(-0.5f);
+                                }
+                            }
+                        }
+                        
                     }
 
                     if (type == AbilityType.Prayer)
                     {
-                        CareerHelper.ApplyBasicCareerPassives(player, ref Cooldown, PassiveEffectType.PrayerCoolDownReduction, true);
+                        CareerHelper.ApplyBasicCareerPassives(player, ref cooldown, PassiveEffectType.PrayerCoolDownReduction, true);
                     }
 
                 }
             }
 
             if (Template.AbilityType == AbilityType.Prayer && !prayerCoolSeperated)
-                casterAgent.GetComponent<AbilityComponent>().SetPrayerCoolDown((int)Cooldown.ResultNumber);
+                casterAgent.GetComponent<AbilityComponent>().SetPrayerCoolDown((int)cooldown.ResultNumber);
             else
             {
-                SetCoolDown((int)Cooldown.ResultNumber);
+                SetCoolDown((int)cooldown.ResultNumber);
             }
 
             var frame = GetSpawnFrame(casterAgent);

@@ -135,6 +135,7 @@ namespace TOR_Core
                 starter.AddBehavior(new SpellTrainerInTownBehavior());
                 starter.AddBehavior(new MasterEngineerTownBehaviour());
                 starter.AddBehavior(new PrestigeNobleTownBehavior());
+                starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
                 starter.AddBehavior(new TORAICompanionCampaignBehavior());
                 starter.AddBehavior(new CareerSwitchCampaignBehavior());

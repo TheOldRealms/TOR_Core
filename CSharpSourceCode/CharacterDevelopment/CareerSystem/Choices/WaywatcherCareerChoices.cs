@@ -308,7 +308,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
         _hawkeyedPassive1.Initialize(CareerID, "20% Equipment weight Reduction", "Hawkeyed", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
-        _hawkeyedPassive2.Initialize(CareerID, "SPECIAL Headshots double the fill", "Hawkeyed", false, ChoiceType.Passive);
+        _hawkeyedPassive2.Initialize(CareerID, "Headshots double the fill", "Hawkeyed", false, ChoiceType.Passive);
         _hawkeyedPassive3.Initialize(CareerID, "While Zoomed in, the time is slowed down", "Hawkeyed", false, ChoiceType.Passive);
         _hawkeyedPassive4.Initialize(CareerID, "Every sixth arrow, applies a slow down effect on impact", "Hawkeyed", false, ChoiceType.Passive);
 

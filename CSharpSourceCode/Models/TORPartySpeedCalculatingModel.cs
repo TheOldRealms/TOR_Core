@@ -26,13 +26,25 @@ namespace TOR_Core.Models
             if (mobileParty == MobileParty.MainParty)
                 AddCareerPassivesForPartySpeed(mobileParty, ref result);
 
-            if (mobileParty != null && mobileParty != MobileParty.MainParty && mobileParty.IsLordParty && mobileParty.LeaderHero != null && mobileParty.LeaderHero.IsVampire())
+            if (mobileParty != null && mobileParty != MobileParty.MainParty && mobileParty.IsLordParty && mobileParty.LeaderHero != null)
             {
-
-                result.AddFactor(0.5f, new TextObject("Vampire bonus"));
-                if (Campaign.Current.IsNight)
+                if (mobileParty.LeaderHero.IsVampire())
                 {
-                    result.Add(0.25f, new TextObject("Vampire nighttime bonus"));
+                    result.AddFactor(0.5f, new TextObject("Vampire bonus"));
+                    if (Campaign.Current.IsNight)
+                    {
+                        result.Add(0.25f, new TextObject("Vampire nighttime bonus"));
+                    }
+                }
+
+                if (mobileParty.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI ||
+                    mobileParty.LeaderHero.Culture.StringId == TORConstants.Cultures.EONIR)
+                {
+                    TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(mobileParty.CurrentNavigationFace);
+                    if (faceTerrainType == TerrainType.Forest)
+                    {
+                        result.AddFactor(0.5f, new TextObject("Forest bonus for wood elves"));
+                    }
                 }
             }
 

@@ -32,7 +32,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             if(settlement.SettlementComponent is BaseRaiderSpawnerComponent)
             {
                 var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
-                if (component.RaidingPartyCount < 5 && component.IsActive) component.SpawnNewParty();
+                if (component.RaidingPartyCount < 5 && component.IsActive) component.SpawnNewParty(out _);
             }
         }
 

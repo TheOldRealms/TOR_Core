@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.Extensions;
@@ -42,6 +43,25 @@ namespace TOR_Core.Models
                 recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
             }
 
+
+            if (recruiter.HasAttribute("Everchosen"))
+            {
+                CharacterObject replacement = null;
+   
+
+                if (troop.IsEliteTroop())
+                {
+                    replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_undivided_warrior");
+                }
+                else
+                {
+                    replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_aspiring_warrior");
+                }
+                
+                recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+                recruiter.PartyBelongedTo.Party.AddMember(replacement, amount );
+            }
+
             if (troop.IsEliteTroop() && recruiter.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 CharacterObject replacement = null;
@@ -58,7 +78,8 @@ namespace TOR_Core.Models
                if (replacement != null)
                {
                    recruiter.PartyBelongedTo.Party.AddMember(replacement,amount);
-                   recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
+                   var currentNumber = recruiter.PartyBelongedTo.Party.MemberRoster.GetTroopCount(troop);
+                   recruiter.PartyBelongedTo.Party.AddMember(troop, MBMath.ClampInt(-amount,-currentNumber,0));
                }
 
             }

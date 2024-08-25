@@ -7,6 +7,7 @@ using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -114,8 +115,6 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
         {
-            base.OnMissileHit(attacker, victim, isCanceled, collisionData);
-
             if (victim == null) return;
             if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Agent.Main!=null)
             {
@@ -173,6 +172,7 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
+            
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
             if (affectorAgent.BelongsToMainParty()&& ((Hero.MainHero.HasCareer(TORCareers.WitchHunter)&& affectorAgent.IsMainAgent) ||
@@ -186,7 +186,7 @@ namespace TOR_Core.BattleMechanics
                 affectorAgent.ApplyDamage((int)(blow.InflictedDamage*0.25f),affectedAgent.Position);
             }
         }
-
+        
         private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)
         {
             var comp = affectedAgent.GetComponent<StatusEffectComponent>();
@@ -237,7 +237,24 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
-
+            if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
+            {
+                if (affectedAgent.HasAttribute("FellfangMark"))
+                {
+                    if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicKeystone"))
+                    {
+                        var effect = TriggeredEffectManager.CreateNew("apply_fellfang_explosion");
+                        effect.Trigger(affectedAgent.Position,Vec3.Up,Agent.Main, Agent.Main.GetCareerAbility().Template);
+                    }
+                    
+                    if (Hero.MainHero.HasCareerChoice("SecretOfFellfangKeystone"))
+                    {
+                        Hero.MainHero.AddWindsOfMagic(2);
+                    }
+                }
+            }
+            
+            
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
             var playerHero = affectorAgent.GetHero();

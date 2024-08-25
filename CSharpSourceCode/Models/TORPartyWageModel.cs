@@ -31,6 +31,11 @@ namespace TOR_Core.Models
             {
                 value *= 2;
             }
+            
+            if (character.Culture.StringId == TORConstants.Cultures.EONIR && character.IsEliteTroop())
+            {
+                value *= 3;
+            }
 
             return value;
         }

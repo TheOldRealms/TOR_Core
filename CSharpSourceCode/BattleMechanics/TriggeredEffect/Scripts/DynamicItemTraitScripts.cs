@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -20,7 +21,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 var additionalDamage = new DamageProportionTuple();
 
                 additionalDamage.DamageType = DamageType.Magical;
-                additionalDamage.Percent = 0.20f;
+                additionalDamage.Percent = 0.15f;
                 var trait = new ItemTrait
                 {
                     ItemTraitName = "Swiftshiver shards Trait",
@@ -35,7 +36,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     var comp = agent.GetComponent<ItemTraitAgentComponent>();
                     if(comp != null)
                     {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
+                        TraitHelper.ApplyEffectToRangedWeapons(comp, trait, agent, duration);
                     }
                 }
             }
@@ -62,7 +63,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     var comp = agent.GetComponent<ItemTraitAgentComponent>();
                     if(comp != null)
                     {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
+                        TraitHelper.ApplyEffectToRangedWeapons(comp, trait, agent, duration);
                     }
                 }
             }
@@ -93,7 +94,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                     var comp = agent.GetComponent<ItemTraitAgentComponent>();
                     if(comp != null)
                     {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
+                        TraitHelper.ApplyEffectToRangedWeapons(comp, trait, agent, duration);
                     }
                 }
             }

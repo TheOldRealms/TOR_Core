@@ -110,6 +110,31 @@ namespace TOR_Core.Items
             }
         }
 
+        public void AddTraitToWeapon(MissionWeapon weapon, ItemTrait trait, float duration)
+        {
+            TORCommon.Say("hello");
+            if (trait != null && duration > 0)
+            {
+                if(weapon.CurrentUsageItem != null)
+                {
+                    if (_dynamicTraits.Any(x => x.Item1.Item == weapon.Item && x.Item2.Equals(trait)))
+                    {
+                        var match = _dynamicTraits.FirstOrDefault(x => x.Item1.Item == weapon.Item && x.Item2.Equals(trait));
+                        if (match != null)
+                        {
+                            var newTuple = new Tuple<MissionWeapon, ItemTrait, float>(match.Item1, match.Item2, match.Item3 + duration);
+                            _dynamicTraits.Remove(match);
+                            _dynamicTraits.Add(newTuple);
+                        }
+                    }
+                    else
+                    {
+                        _dynamicTraits.Add(new Tuple<MissionWeapon, ItemTrait, float>(weapon, trait, duration));
+                        UpdatePresets();
+                    }
+                }
+            }
+        }
         public void AddTraitToWieldedWeapon(ItemTrait trait, float duration)
         {
             if (trait != null && duration > 0)

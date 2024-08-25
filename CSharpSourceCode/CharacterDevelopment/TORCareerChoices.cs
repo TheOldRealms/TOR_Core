@@ -43,7 +43,8 @@ namespace TOR_Core.CharacterDevelopment
                 new WarriorPriestUlricCareerChoices(TORCareers.WarriorPriestUlric),
                 new ImperialMagisterCareerChoices(TORCareers.ImperialMagister),
                 new WaywatcherCareerChoices(TORCareers.Waywatcher),
-                new SpellsingerCareerChoices(TORCareers.Spellsinger)
+                new SpellsingerCareerChoices(TORCareers.Spellsinger),
+                new GreyLordCareerChoices(TORCareers.GreyLord)
             ];
         }
 
@@ -65,8 +66,5 @@ namespace TOR_Core.CharacterDevelopment
             }
             
         }
-        
-        
-
     }
 }

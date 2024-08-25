@@ -99,7 +99,7 @@ namespace TOR_Core.Models
                 result.AddFactor(0.2f);
             }
             
-            if (party.IsMainParty && party.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+            if (party.IsMainParty && party.LeaderHero!=null &&  party.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
                 if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
                 {

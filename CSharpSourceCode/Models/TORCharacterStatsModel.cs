@@ -29,6 +29,10 @@ namespace TOR_Core.Models
 
         private ExplainedNumber CalculateHitPoints(ExplainedNumber number, CharacterObject character)
         {
+            if (character.Race == FaceGen.GetRaceOrDefault("medium_humanoid_monster"))
+            {
+                number.Add(250f, new TextObject("Medium Monster"));
+            }
             if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
             {
                 number.Add(1000f, new TextObject("Large Monster"));

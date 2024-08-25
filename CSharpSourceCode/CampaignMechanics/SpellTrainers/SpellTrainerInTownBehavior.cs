@@ -308,7 +308,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 null, 200, null);
             
             obj.AddDialogLine("trainer_vampire_learn_magic2", "specializelore_question", "accept_dark_energy_price", "{=tor_spelltrainer_magictest_vc_vampire_player_specialize_lore_str}Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold, " +
-                                                                                                           "I need you to pay with the essence of Life. Then my masters can give you access... (2000{DARKENERGYICON}) ", null,
+                                                                                                           "I need you to pay with the essence of Life. Then my masters can give you access... (1500{DARKENERGYICON}) ", null,
                 null, 200, null);
             obj.AddPlayerLine("agree_dark_energy_price", "accept_dark_energy_price", "specializelore", "Take my gift. Now give me what I demand! (Pay 2000{DARKENERGYICON})", HasEnoughDarkEnergy,
                 chooseloreconsequence, 200, null);
@@ -323,7 +323,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
         private bool HasEnoughDarkEnergy()
         {
-            return Hero.MainHero.GetCustomResourceValue("DarkEnergy") > 2000;
+            return Hero.MainHero.GetCustomResourceValue("DarkEnergy") >= 1500;
         }
 
         private bool VampireCasterReachedNewRankCondition()

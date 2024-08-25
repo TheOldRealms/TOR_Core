@@ -987,7 +987,7 @@
 			<string>Bow</string>
 			<string>OneHanded</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Inteligence</AttributeToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 		<OptionText>{=tor_cc_option_1_eo_toriour_label_str}Descendant of Toriour</OptionText>
 		<OptionFlavourText>{=tor_cc_option_1_eo_toriour_text_str}As a city-born, you lived most of the time in Tor Lithanel, where you learned the traditions and craftsmen-ship preserved long before the separation of your kin.</OptionFlavourText>
 	</CharacterCreationOption>
@@ -1078,15 +1078,15 @@
 	</CharacterCreationOption>
 
 
-	<CharacterCreationOption Id="option_2_eo_senat_member" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_senat_member_2">
+	<CharacterCreationOption Id="option_2_eo_senate_member" Culture="eonir" StageNumber="2" EquipmentSetId="tor_cc_eo_senat_member_2">
 		<SkillsToIncrease>
 			<string>Steward</string>
 			<string>Tactics</string>
 			<string>Leadership</string>
 			<string>Charm</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Inteligence</AttributeToIncrease>
-		<OptionText>{=tor_cc_option_2_eo_senat_member_label_str}Member of the Senat</OptionText>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<OptionText>{=tor_cc_option_2_eo_senat_member_label_str}Member of the Senate</OptionText>
 		<OptionFlavourText>{=tor_cc_option_2_eo_senat_member_text_str}Your competence as a Warrior brought you a seat in the Senat, you learned the ways of diplomacy and how to enforce your policies in the Politics through the manner of speech. </OptionFlavourText>
 	</CharacterCreationOption>
 
@@ -1152,7 +1152,7 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Discipline</AttributeToIncrease>
 		<OptionText>{=tor_cc_option_3_eo_greylord_apprentice_label_str}Greylord Apprentice</OptionText>
-		<PositiveEffectText>"Mercenary" Career</PositiveEffectText>
+		<PositiveEffectText>"Greylord Career"</PositiveEffectText>
 		<OptionFlavourText>{=tor_cc_option_3_eo_greylord_apprentice_text_str}You decided to join the teachings of one of the Exiled Magic lords of Ulthuan, while they know everything of the this world, and beyond, the magicians follow a high interest in the control of dragons, no matter the cost. </OptionFlavourText>
 	</CharacterCreationOption> 
 

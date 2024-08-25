@@ -112,6 +112,10 @@ namespace TOR_Core.Utilities
                 case TORConstants.Cultures.MOUSILLON:
                     args.MenuContext.SetBackgroundMeshName("bretonnia_captive");
                     return;
+                case TORConstants.Cultures.ASRAI:
+                case TORConstants.Cultures.EONIR:
+                    args.MenuContext.SetBackgroundMeshName("wood_elves_captive");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_captive_male");
                     return;

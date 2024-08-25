@@ -8,6 +8,7 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
@@ -40,8 +41,9 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             {
                 Id = "shift",
                 Name = "Swiftshiver Shards",
-                Description = "adds 25% Magical damage",
+                Description = "adds 15% Magical damage",
                 Effect = "apply_shift_shiver_trait",
+                Price = 20,
                 Symbol = _swiftshiverShardsIcon
             },
             new()
@@ -50,6 +52,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 Name = "Hagbane Tipps",
                 Description = "adds a 25% chance for 40% movement speed slowdown",
                 Effect = "apply_hagbane_trait",
+                Price = 30,
                 Symbol = _hagbaneTippsIcon
             },
             new()
@@ -58,6 +61,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 Name = "Starfire Shafts",
                 Description = "Adds 25% armor penetration",
                 Effect = "apply_starfire_trait",
+                Price = 50,
                 Symbol = _starfireShaftsIcon
             }
         };
@@ -74,11 +78,13 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
 
         for (var i = 0; i < _allArrows.Count; i++)
         {
+            if (!Hero.MainHero.HasUnlockedCareerChoiceTier(i+1))
+                break;
             var arrow = _allArrows[i];
             var icon = GetArrowIconAsText(arrow);
-            list.Add(new InquiryElement(arrow, new TextObject($"{{{icon}}} {arrow.Name}").ToString(), null, true, $"{arrow.Description}"));
-            if (!Hero.MainHero.HasUnlockedCareerChoiceTier(i + 1))
-                break;
+            var price = Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI ? arrow.Price * 3 : arrow.Price;
+            list.Add(new InquiryElement(arrow, new TextObject($"{{{icon}}} {arrow.Name}").ToString(), null, true, $"{arrow.Description}, {price}"));
+        
         }
 
         var arrowType = GetCurrentActiveArrowType(_setCharacter);
@@ -97,27 +103,35 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
 
     private void OnSelectedOption(List<InquiryElement> elements)
     {
-        var arrow = elements[0].Identifier as ArrowType;
+        var arrow = elements[0].Identifier as ArrowType ;
+        if (arrow == null)
+        {
+            if ((string)elements[0].Identifier != "remove")
+            {
+                return;
+            }
+        }
+        
         var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
         var attributes = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == _setCharacter.StringId).Value;
 
 
+        
+        
         var arrowType = GetCurrentActiveArrowType(_setCharacter);
 
         if (arrowType != null) partyExtendedInfo.RemoveTroopAttribute(_setCharacter.StringId, arrowType.Effect);
-
-
-        if (elements[0].Identifier == "remove")
-        {
-        }
-        else
+        
+        
+        if (arrow != null)
         {
             partyExtendedInfo.AddTroopAttribute(_setCharacter, arrow.Effect);
+            var price = Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI ? arrow.Price * 3 : arrow.Price;
+            Hero.MainHero.AddCultureSpecificCustomResource(-price);
         }
 
 
         ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
-
         if (PartyVMExtension.ViewModelInstance != null) PartyVMExtension.ViewModelInstance.RefreshValues();
     }
 
@@ -193,6 +207,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
         public string Description;
         public string Name;
         public string Effect;
+        public int Price;
         public string Symbol;
     }
 }
