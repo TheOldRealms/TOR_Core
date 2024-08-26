@@ -64,8 +64,17 @@ namespace TOR_Core.CampaignMechanics
 
             if (brasskeep != null)
             {
-                var nurglewarrior =MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_nurgle_warrior");
+                var nurglewarrior = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_nurgle_warrior");
                 brasskeep.MilitiaPartyComponent.Party.AddMember(nurglewarrior, 500);
+            }
+            
+            
+            var melkiortower = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "castle_MT1");
+
+            if (melkiortower != null)
+            {
+                var wraith = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_cairn_wraith");
+                melkiortower.MilitiaPartyComponent.Party.AddMember(wraith, 100);
             }
         }
         

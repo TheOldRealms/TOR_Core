@@ -129,11 +129,6 @@ public static class ServeAsAHirelingHelpers
         
         if (dialogPartner.Culture.StringId == TORConstants.Cultures.SYLVANIA)
         {
-            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.BRETONNIA ||
-                Hero.MainHero.Culture.StringId != TORConstants.Cultures.MOUSILLON || 
-                Hero.MainHero.Culture.StringId != TORConstants.Cultures.SYLVANIA || 
-                Hero.MainHero.Culture.StringId != TORConstants.Cultures.EMPIRE)
-                return false;
             
             var career = Hero.MainHero.GetCareer();
             if (career == TORCareers.GrailKnight || career == TORCareers.GrailDamsel)

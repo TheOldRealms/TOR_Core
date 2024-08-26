@@ -97,6 +97,12 @@ namespace TOR_Core.Models
                 return false;
             }
 
+            if (mobileParty.LeaderHero != null && mobileParty.LeaderHero.HasAttribute("Brasskeep") &&
+                !mobileParty.LeaderHero.Clan.Settlements.AnyQ(x => x.IsTown))
+            {
+                return false;
+            }
+
             return value;
         }
     }

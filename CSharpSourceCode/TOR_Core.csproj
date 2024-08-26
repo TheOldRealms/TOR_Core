@@ -596,6 +596,7 @@
     <Compile Include="Extensions\AgentExtensions.cs" />
     <Compile Include="Extensions\BannerExtensions.cs" />
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
+    <Compile Include="Extensions\ClanExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\DebugMethods.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\CharacterExtendedInfo.cs" />

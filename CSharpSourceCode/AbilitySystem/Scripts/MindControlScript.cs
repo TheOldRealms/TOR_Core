@@ -18,6 +18,8 @@ public class MindControlScript : CareerAbilityScript
     private bool _mindControl;
 
     private bool _sucessfulControl;
+    
+    private Vec3 _targetPosition; 
 
     private bool _init;
     protected override void OnInit()
@@ -25,24 +27,30 @@ public class MindControlScript : CareerAbilityScript
         base.OnInit();
         _caster = this.CasterAgent;
     }
-    
+
 
     protected override void OnBeforeTick(float dt)
     {
-        base.OnBeforeTick(dt);
         _init = false;
-        var pos = CurrentGlobalPosition;
+        if (_init)
+        {
+            return;
+        }
+        _targetPosition = this.CurrentGlobalPosition;
+        _init = true;
+    }
+
+    protected override void OnAfterTick(float dt)
+    {
+        base.OnBeforeTick(dt);
 
         var tries = getAmountOfTries();
         
         
-        var targets = Mission.Current.GetNearbyAgents(pos.AsVec2, 5, new MBList<Agent>());
-
-    
+        var targets = Mission.Current.GetNearbyAgents(_targetPosition.AsVec2, 5, new MBList<Agent>());
+        targets.RemoveIfExists(_caster);
  
         var baseChance = this.Ability.Template.ScaleVariable1;
-        
-        
         
         
         foreach (var agent in targets.TakeRandom(tries))

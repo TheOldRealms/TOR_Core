@@ -1,9 +1,12 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System;
+using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics;
 using TOR_Core.Extensions;
@@ -13,13 +16,74 @@ namespace TOR_Core.Models
 {
     public class TORAIRecruitmentCampaignBehavior : CampaignBehaviorBase
     {
+        private CharacterObject _skeleton;
+        
+        private CharacterObject _raider;
+
+        private const int UndeadCountVillages = 5;
+        private const int UndeadCountTowns = 20;
+
         public override void RegisterEvents()
         {
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, Initialize);
+            CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddUndeadToPartyOnEnteringSettlement);
             CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TORRecruitmentBehavior);
+            
+            CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this,DailyTickEvents);
+        }
+
+        private void DailyTickEvents(MobileParty party)
+        {
+
+            if (party.IsLordParty && !party.IsMainParty && party.LeaderHero != null )
+            {
+                var clan = party.LeaderHero.Clan;
+                if (clan!=null && clan.IsCastleFaction() && clan.Kingdom!=null && !clan.Kingdom.Settlements.AnyQ(x=> x.IsTown))
+                {
+                    if (party.LeaderHero.Culture.StringId == TORConstants.Cultures.SYLVANIA ||
+                        party.LeaderHero.Culture.StringId == TORConstants.Cultures.MOUSILLON)
+                    {
+                        if (party.LimitedPartySize > party.MemberRoster.TotalManCount + UndeadCountTowns)
+                        {
+                            var count = party.LeaderHero.HasAttribute("BloodDragon") ? UndeadCountVillages : UndeadCountTowns;
+                            party.MemberRoster.AddToCounts(_skeleton, 0, false, count);
+
+                        }
+                        return;
+                    }
+
+                    if (party.LeaderHero.Culture.StringId == TORConstants.Cultures.CHAOS)
+                    {
+                        party.MemberRoster.AddToCounts(_raider, 15);
+                    }
+                }
+            }
+        }
+        
+
+        private void Initialize(CampaignGameStarter obj)
+        {
+            _skeleton = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_skeleton");
+            _raider = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_norscan_raider");
+        }
+
+
+        private void AddUndeadToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero hero)
+        {
+            if (party == null || settlement == null || hero == null || !hero.IsNecromancer() || hero.CharacterObject.IsPlayerCharacter || settlement.IsHideout) return;
+            if (party.MemberRoster.TotalManCount < party.Party.PartySizeLimit)
+            {
+                if (_skeleton != null)
+                {
+                    var number = settlement.IsVillage ? UndeadCountVillages : UndeadCountTowns;
+                    party.MemberRoster.AddToCounts(_skeleton, Math.Min(number, party.Party.PartySizeLimit - party.MemberRoster.TotalManCount));
+                }
+            }
         }
 
         public override void SyncData(IDataStore dataStore)
         {
+            
         }
 
         private void TORRecruitmentBehavior(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int amount)
