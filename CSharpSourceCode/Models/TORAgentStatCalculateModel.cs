@@ -284,17 +284,26 @@ namespace TOR_Core.Models
                 AddSkillEffectsForAgent(agent, agentDrivenProperties);
                 AddPerkEffectsForAgent(agent, agentDrivenProperties);
                 var character = agent.Character as CharacterObject;
-                if (character != null && character.IsVampire())
+                if (character != null)
                 {
-                    float modificator = vampireDaySpeedModificator;
-                    if (Campaign.Current != null && Campaign.Current.IsNight)
+                    if (character.IsVampire())
                     {
-                        modificator = vampireNightSpeedModificator;
+                        float modificator = vampireDaySpeedModificator;
+                        if (Campaign.Current != null && Campaign.Current.IsNight)
+                        {
+                            modificator = vampireNightSpeedModificator;
+                        }
+
+                        agentDrivenProperties.TopSpeedReachDuration *= modificator;
+                        agentDrivenProperties.MaxSpeedMultiplier *= modificator;
+                        agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
                     }
 
-                    agentDrivenProperties.TopSpeedReachDuration *= modificator;
-                    agentDrivenProperties.MaxSpeedMultiplier *= modificator;
-                    agentDrivenProperties.CombatMaxSpeedMultiplier *= modificator;
+                    if (character.IsMinotaur())
+                    {
+                        agentDrivenProperties.SwingSpeedMultiplier *= 1.5f;
+                    }
+  
                 }
             }
 

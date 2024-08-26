@@ -29,9 +29,9 @@ namespace TOR_Core.Models
 
         private ExplainedNumber CalculateHitPoints(ExplainedNumber number, CharacterObject character)
         {
-            if (character.Race == FaceGen.GetRaceOrDefault("medium_humanoid_monster"))
+            if (character.IsMinotaur())
             {
-                number.Add(250f, new TextObject("Medium Monster"));
+                number.Add(250f, new TextObject("Minotaur bonus"));
             }
             if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
             {

@@ -188,6 +188,10 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                     if ((int)devotion >= (int)DevotionLevel.Devoted)
                     {
                         var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
+                        if (troop == null)
+                        {
+                            return;
+                        }
                         var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
                         var count = MBRandom.RandomInt(1, 4); //TODO adjust here for devotion effects
                         if (freeSlots > 0)

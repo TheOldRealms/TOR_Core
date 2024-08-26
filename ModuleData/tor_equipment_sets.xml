@@ -13775,14 +13775,14 @@
       <Equipment slot="Item0" id="Item.composite_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
       <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.composite_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_spear_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
       <Equipment slot="Cape" id="Item.battania_shoulder_strap" />
     </EquipmentSet>
     <EquipmentSet>
@@ -13813,14 +13813,14 @@
       <Equipment slot="Item0" id="Item.composite_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
       <Equipment slot="Cape" id="Item.aserai_horseman_shoulder" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.composite_bow" />
       <Equipment slot="Item1" id="Item.default_arrows" />
       <Equipment slot="Item2" id="Item.tor_beastmen_weapon_axe_ungor_004" />
-      <Equipment slot="Body" id="Item.tor_beastmen_body_armour_gor_001" />
+      <Equipment slot="Body" id="Item.tor_beastmen_body_armor_ungor_001" />
       <Equipment slot="Cape" id="Item.aserai_horseman_shoulder" />
     </EquipmentSet>
   </EquipmentRoster>

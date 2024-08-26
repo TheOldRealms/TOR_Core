@@ -3771,7 +3771,7 @@
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="MindControl" 
-      Name="{=shadowblood_label_str}Fellfang Control" 
+      Name="{=mindcontrol_label_str}Mind Control" 
       SpriteName="fellfangcontrol_icon" 
       CoolDown="20" 
       WindsOfMagicCost="8" 
