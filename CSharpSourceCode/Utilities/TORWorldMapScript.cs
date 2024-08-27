@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.ExceptionServices;
+using System.Security;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -50,7 +52,9 @@ namespace TOR_Core.Utilities
             SaveSettlementDistanceCache();
 		}
 
-		private void CheckSettlementPositions()
+        [HandleProcessCorruptedStateExceptions]
+        [SecurityCritical]
+        private void CheckSettlementPositions()
 		{
             XmlDocument xmlDocument = LoadXmlFile(SettlementsXmlPath);
             GameEntity.RemoveAllChildren();
@@ -107,6 +111,17 @@ namespace TOR_Core.Utilities
                     //MBEditor.ZoomToPosition(settlementPosition);
                     //break;
                 }
+                try
+                {
+                    Vec3 zero = Vec3.Zero;
+                    Scene.GetNavMeshCenterPosition(pathFaceRecord.FaceIndex, ref zero);
+                }
+                catch (Exception e) 
+                {
+                    TORCommon.Say($"Settlement: {settlementId} is on a navmesh face that has no center position (possible concave face)!");
+                    problemsDetected = true;
+                }
+
             }
             if(!problemsDetected)
             {
