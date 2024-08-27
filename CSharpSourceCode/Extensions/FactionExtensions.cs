@@ -13,11 +13,14 @@ namespace TOR_Core.Extensions
         public static int GetNumActiveKingdomWars(this IFaction faction)
         {
             var count = 0;
-            foreach(var stance in faction.Stances)
+            if(faction?.Stances is IEnumerable<StanceLink> stances)
             {
-                if(stance.Faction1 is Kingdom && stance.Faction2 is Kingdom)
+                foreach (var stance in stances)
                 {
-                    if (stance.IsAtWar || stance.IsAtConstantWar) count++;
+                    if (stance.Faction1 is Kingdom && stance.Faction2 is Kingdom)
+                    {
+                        if (stance.IsAtWar || stance.IsAtConstantWar) count++;
+                    }
                 }
             }
             return count;
@@ -26,11 +29,14 @@ namespace TOR_Core.Extensions
         public static float GetSumEnemyKingdomPower(this IFaction faction)
         {
             float sum = 0;
-            foreach (var stance in faction.Stances)
+            if (faction?.Stances is IEnumerable<StanceLink> stances)
             {
-                if (stance.Faction1 is Kingdom && stance.Faction2 is Kingdom)
+                foreach (var stance in stances)
                 {
-                    if (stance.IsAtWar || stance.IsAtConstantWar) sum += stance.Faction1 == faction ? stance.Faction2.TotalStrength : stance.Faction1.TotalStrength;
+                    if (stance.Faction1 is Kingdom && stance.Faction2 is Kingdom)
+                    {
+                        if (stance.IsAtWar || stance.IsAtConstantWar) sum += stance.Faction1 == faction ? stance.Faction2.TotalStrength : stance.Faction1.TotalStrength;
+                    }
                 }
             }
             return sum;
