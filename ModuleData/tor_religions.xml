@@ -53,6 +53,7 @@
         <Followers>
         </Followers>
         <ReligiousTroops>
+		<ReligiousTroop id="NPCCharacter.tor_empire_wolfkin" />
         </ReligiousTroops>
         <ReligiousArtifacts>
         </ReligiousArtifacts>
