@@ -39,7 +39,17 @@ namespace TOR_Core.Extensions
             }
             return false;
         }
-    
+
+        public static Hero GetEnlistingHero(this Hero hero)
+        {
+            var hirelingCampaignBehavior = Campaign.Current.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
+            if (hirelingCampaignBehavior != null)
+            {
+                return hirelingCampaignBehavior.EnlistingLord;
+            }
+            return null;
+        }
+
         public static bool CanRaiseDead(this Hero hero)
         {
             return hero.PartyBelongedTo != null && hero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer());

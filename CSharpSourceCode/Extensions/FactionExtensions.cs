@@ -13,6 +13,7 @@ namespace TOR_Core.Extensions
         public static int GetNumActiveKingdomWars(this IFaction faction)
         {
             var count = 0;
+            if (faction == null) return count;
             if(faction?.Stances is IEnumerable<StanceLink> stances)
             {
                 foreach (var stance in stances)
@@ -29,6 +30,7 @@ namespace TOR_Core.Extensions
         public static float GetSumEnemyKingdomPower(this IFaction faction)
         {
             float sum = 0;
+            if (faction == null) return sum;
             if (faction?.Stances is IEnumerable<StanceLink> stances)
             {
                 foreach (var stance in stances)

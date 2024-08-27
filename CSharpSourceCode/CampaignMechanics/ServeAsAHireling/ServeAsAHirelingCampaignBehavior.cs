@@ -58,6 +58,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             return _hirelingEnlisted;
         }
 
+        public Hero EnlistingLord => _hirelingEnlistingLord;
+
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, Initialize);
@@ -396,19 +398,18 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 hireling_battle_menu_join_battle_on_condition,
                 delegate
                 {
-
                     while (Campaign.Current.CurrentMenuContext != null)
                     {
                         GameMenu.ExitToLast();
                     }
                     if (_hirelingEnlistingLord.PartyBelongedTo.MapEvent != null)
                     {
+                        var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
                         if (_hirelingEnlistingLordIsAttacking)
                         {
-                            var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
                             StartBattleAction.Apply(PartyBase.MainParty, mapEvent.DefenderSide.LeaderParty);
                             
-                            MobileParty.MainParty.CurrentSettlement= _hirelingEnlistingLord.PartyBelongedTo.MapEvent.MapEventSettlement;
+                            MobileParty.MainParty.CurrentSettlement = _hirelingEnlistingLord.PartyBelongedTo.MapEvent.MapEventSettlement;
 
                             if (mapEvent.IsSiegeAssault)
                             {

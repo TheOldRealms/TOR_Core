@@ -4,10 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
@@ -170,6 +173,45 @@ namespace TOR_Core.HarmonyPatches
             List<GameKeyContext> newcontexts = contexts.ToList();
             if (!newcontexts.Any(x => x is TORGameKeyContext)) newcontexts.Add(new TORGameKeyContext());
             contexts = newcontexts;
+            return true;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(HeroAgentSpawnCampaignBehavior), "AddHeroesWithoutPartyCharactersToVillage")]
+        public static bool PreventCrash(Settlement settlement)
+        {
+            foreach (Hero hero in settlement.HeroesWithoutParty)
+            {
+                Monster monsterWithSuffix = TaleWorlds.Core.FaceGen.GetMonsterWithSuffix(hero.CharacterObject.Race, "_settlement");
+                AgentData agentData = new AgentData(new PartyAgentOrigin(null, hero.CharacterObject, -1, default, false)).Monster(monsterWithSuffix);
+                var locationCharacter = new LocationCharacter(agentData, new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddFixedCharacterBehaviors), "sp_notable_rural_notable", false, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
+                if(LocationComplex.Current != null)
+                {
+                    var villageCenter = LocationComplex.Current.GetLocationWithId("village_center");
+                    if(villageCenter != null) villageCenter.AddCharacter(locationCharacter);
+                }
+            }
+            return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(LocationComplex), "Current", MethodType.Getter)]
+        public static bool OverrideCurrentLocationComplex(ref LocationComplex __result)
+        {
+            if (Hero.MainHero.IsEnlisted())
+            {
+                var lord = Hero.MainHero.GetEnlistingHero();
+                if(lord != null)
+                {
+                    if(lord.CurrentSettlement == null || lord.CurrentSettlement.LocationComplex == null)
+                    {
+                        PlayerEncounter.LocationEncounter = null;
+                        __result = null;
+                    }
+                    else __result = lord.CurrentSettlement.LocationComplex;
+                    return false;
+                }
+            }
             return true;
         }
     }

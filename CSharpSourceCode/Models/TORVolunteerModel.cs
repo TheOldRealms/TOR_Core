@@ -95,7 +95,7 @@ namespace TOR_Core.Models
         {
             var value = base.GetDailyVolunteerProductionProbability(hero, index, settlement);
 
-            if (settlement.Owner.Clan.Kingdom?.GetNumActiveKingdomWars() > 0)
+            if (settlement.Owner.Clan != null && settlement.Owner.Clan.Kingdom != null && settlement.Owner.Clan.Kingdom.GetNumActiveKingdomWars() > 0)
             {
                 value *= 2;
             }
