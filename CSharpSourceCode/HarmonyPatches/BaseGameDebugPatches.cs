@@ -193,26 +193,5 @@ namespace TOR_Core.HarmonyPatches
             }
             return false;
         }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(LocationComplex), "Current", MethodType.Getter)]
-        public static bool OverrideCurrentLocationComplex(ref LocationComplex __result)
-        {
-            if (Hero.MainHero.IsEnlisted())
-            {
-                var lord = Hero.MainHero.GetEnlistingHero();
-                if(lord != null)
-                {
-                    if(lord.CurrentSettlement == null || lord.CurrentSettlement.LocationComplex == null)
-                    {
-                        PlayerEncounter.LocationEncounter = null;
-                        __result = null;
-                    }
-                    else __result = lord.CurrentSettlement.LocationComplex;
-                    return false;
-                }
-            }
-            return true;
-        }
     }
 }

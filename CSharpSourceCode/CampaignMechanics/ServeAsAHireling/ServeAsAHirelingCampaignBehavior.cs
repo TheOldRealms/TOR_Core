@@ -201,9 +201,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                         }   
                     }
                 }
-                
-                LeaveLordPartyAction();
                 GameMenu.ExitToLast();
+                LeaveLordPartyAction();
             }, delegate
             {
                 GameMenu.ActivateGameMenu(menuToReturn);
@@ -472,7 +471,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         public void LeaveLordPartyAction()
         {
-            var dummy = PlayerEncounter.Current;
+            var encounter = PlayerEncounter.Current;
             _hirelingEnlisted = false;
             _hirelingEnlistingLord = null;
             _hirelingWaitMenuShown = false;
@@ -480,6 +479,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             //This makes PlayerEncounter.EncounterSettlement null which is accessed via vanilla gamemenu init methods
             //crash does not occur, and finishing encounter is important to not end in a invalid state, where parties try to engange with player but can't
             PlayerEncounter.Finish();
+            if (Settlement.CurrentSettlement != null)
+            {
+                if (PlayerEncounter.EncounterSettlement != null) PlayerEncounter.LeaveSettlement();
+                if (MobileParty.MainParty.CurrentSettlement != null) LeaveSettlementAction.ApplyForParty(MobileParty.MainParty);
+            }
             UndoDiplomacy();
             ShowPlayerParty();
             
@@ -606,9 +610,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             {
                 while (Campaign.Current.CurrentMenuContext != null)
                     GameMenu.ExitToLast();
-                GameMenu.ActivateGameMenu("hireling_menu");
                 if (PartyBase.MainParty.MobileParty.CurrentSettlement != null)
                     LeaveSettlementAction.ApplyForParty(MobileParty.MainParty);
+                PlayerEncounter.Finish();
+                if (PlayerEncounter.EncounterSettlement != null) PlayerEncounter.LeaveSettlement();
+                GameMenu.ActivateGameMenu("hireling_menu");
             }
         }
 
