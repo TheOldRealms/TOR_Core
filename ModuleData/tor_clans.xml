@@ -946,13 +946,13 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_br_troubadour_leader"
              culture="Culture.vlandia"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.142.142.2138.2527.767.767.0.1.0.510.28.28.1190.696.323.640.1.1.38.510.28.28.1219.713.1184.638.1.0.321.510.28.28.1190.696.331.897.1.1.38.510.28.28.1219.713.1192.895.1.0.321.510.28.28.1190.696.347.1168.1.1.38.510.28.28.1219.713.1208.1166.1.0.321.510.28.28.1190.696.341.1482.1.1.38.510.28.28.1219.713.1202.1480.1.0.321.510.28.28.1190.696.313.317.1.1.38.510.28.28.1219.713.1174.315.1.0.321.317.2.2.482.516.765.726.1.1.180.317.2.2.482.516.764.831.1.1.-1.154.28.2.323.514.760.785.1.1.5.302.28.2.338.533.767.785.1.1.-1"
+             banner_key="2.143.12.2499.1836.781.722.1.0.0.506.144.18.166.68.870.584.0.0.0.506.144.18.166.68.995.584.0.0.0.510.144.18.164.192.898.505.0.0.-90.510.144.18.164.192.1023.506.0.0.-90.510.144.18.172.192.961.428.0.0.-181.312.144.18.352.317.520.871.0.1.-28.510.12.18.128.548.568.1003.0.0.-142.505.12.18.316.238.439.889.0.0.-91.506.144.18.166.68.527.1035.0.0.0.505.12.18.202.287.611.779.0.0.-90.510.144.18.185.192.555.955.0.0.-90.424.35.18.207.171.576.504.0.0.1.105.144.18.543.483.760.797.0.0.0.424.35.18.207.171.961.997.0.0.1"
              label_color="FFAC5F2E"
              color="FFAC5F2E"
              color2="FFAC5F2E"
              alternative_color="FFAC5F2E"
              alternative_color2="FFAC5F2E"
-             text="{=!}Lead by Luka Braganza the Braganza's Besiegers are a famous band of Dogs of War mercenaries that hails from the Tilean city-state of Miragliano, trained and maintained as heavily armored Crossbowmen.">
+             text="{=!}The famous Brettonian duo Tristan the Troubadour and Jules the Jester.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_br_troubadour_questing_knight_1" />
 			<template id="NPCCharacter.tor_br_troubadour_questing_knight_2" />
@@ -968,7 +968,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_br_bergerac_leader"
              culture="Culture.vlandia"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.142.142.2138.2527.767.767.0.1.0.510.28.28.1190.696.323.640.1.1.38.510.28.28.1219.713.1184.638.1.0.321.510.28.28.1190.696.331.897.1.1.38.510.28.28.1219.713.1192.895.1.0.321.510.28.28.1190.696.347.1168.1.1.38.510.28.28.1219.713.1208.1166.1.0.321.510.28.28.1190.696.341.1482.1.1.38.510.28.28.1219.713.1202.1480.1.0.321.510.28.28.1190.696.313.317.1.1.38.510.28.28.1219.713.1174.315.1.0.321.317.2.2.482.516.765.726.1.1.180.317.2.2.482.516.764.831.1.1.-1.154.28.2.323.514.760.785.1.1.5.302.28.2.338.533.767.785.1.1.-1"
+             banner_key="1.126.142.2499.1836.781.722.1.0.0.311.124.18.310.298.634.522.0.0.-160.120.116.18.335.335.927.730.0.1.0.120.144.18.335.335.921.740.0.1.0.311.124.18.310.298.634.730.0.0.-160.311.124.18.310.298.636.945.0.0.-160.311.40.18.310.298.642.937.0.0.-160.311.40.18.310.298.636.722.0.0.-160.311.40.18.310.298.634.514.0.0.-160"
              label_color="FFAC5F2E"
              color="FFAC5F2E"
              color2="FFAC5F2E"
@@ -989,13 +989,13 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_br_wainfleet_leader"
              culture="Culture.vlandia"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.142.142.2138.2527.767.767.0.1.0.510.28.28.1190.696.323.640.1.1.38.510.28.28.1219.713.1184.638.1.0.321.510.28.28.1190.696.331.897.1.1.38.510.28.28.1219.713.1192.895.1.0.321.510.28.28.1190.696.347.1168.1.1.38.510.28.28.1219.713.1208.1166.1.0.321.510.28.28.1190.696.341.1482.1.1.38.510.28.28.1219.713.1202.1480.1.0.321.510.28.28.1190.696.313.317.1.1.38.510.28.28.1219.713.1174.315.1.0.321.317.2.2.482.516.765.726.1.1.180.317.2.2.482.516.764.831.1.1.-1.154.28.2.323.514.760.785.1.1.5.302.28.2.338.533.767.785.1.1.-1"
+             banner_key="1.92.38.1942.2432.763.763.1.0.0.342.38.18.262.241.626.939.0.1.26.342.92.18.262.241.885.939.0.0.333.321.7.18.589.407.764.764.0.0.-1.321.12.18.503.381.764.764.0.0.-1.424.0.18.236.196.764.660.0.0.-1.424.144.18.230.164.764.664.0.0.-1.427.144.18.118.47.764.913.0.1.0.308.144.18.535.508.620.618.0.1.11.308.84.18.535.508.897.620.0.0.348"
              label_color="FFAC5F2E"
              color="FFAC5F2E"
              color2="FFAC5F2E"
              alternative_color="FFAC5F2E"
              alternative_color2="FFAC5F2E"
-             text="{=!}Lead by Luka Braganza the Braganza's Besiegers are a famous band of Dogs of War mercenaries that hails from the Tilean city-state of Miragliano, trained and maintained as heavily armored Crossbowmen.">
+             text="{=!}The famous Geg of wainfleet is the one and only peasant ever to be granted knighthood and sip from the holy grail. Together with his peasant knights he roams brettonia to rid the land of all evil.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_br_peasantknight_lord" />
         </minor_faction_character_templates>
@@ -1211,7 +1211,7 @@
              color2="FFAC5F2E"
              alternative_color="FFAC5F2E"
              alternative_color2="FFAC5F2E"
-             text="{=!}Description text missing.">
+             text="{=!}Working secretly from the shadows for many years, the disciples of the Cult of the Broken Wheel have long sought the downfall of the Imperial Colleges of Magic. Worshippers of Tzeentch, the Chaos God of magic and forbidden lore, the cultists of the Broken Wheel view the practises of the eight Colleges as a betrayal of the art of sorcery, structuring and controlling the Winds of Magic instead of revelling in the chaotic, untamed nature of their dark arts.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_bw_cultist_lord_0" />
             <template id="NPCCharacter.tor_bw_cultist_lord_1" />
@@ -1235,7 +1235,7 @@
              color2="FFAC5F2E"
              alternative_color="FFAC5F2E"
              alternative_color2="FFAC5F2E"
-             text="{=!}Description text missing.">
+             text="{=!}The Cult of Illumination is an underground fraternal organization that works for the good of its members and the advancement of their lives and careers. This sect of enormously powerful individuals in both politics and the arts commit heinous acts worshiping the Dark Gods Tzeentch and Slaanesh. The cult works for clear purposes: power, money, and fame. Everyone in the innermost circle is well known to the Imperial public in their normal lives, but it is unknown to the majority of members who the Circle members are. Many members have risen to prominence in the Empire through the machinations of the Cult and those that openly oppose it rarely survive the experience. Within the cult's brotherhood are the aspiring, the famous, and the infamous of both the political world and the artistic world, combining efforts to raise the notoriety of all involved and to continue the legacy of the Cult.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_coi_cultist_lord_0" />
             <template id="NPCCharacter.tor_coi_cultist_lord_1" />
@@ -1259,7 +1259,7 @@
              color2="FFAC5F2E"
              alternative_color="FFAC5F2E"
              alternative_color2="FFAC5F2E"
-             text="{=!}Description text missing.">
+             text="{=!}One of the most influential Chaos Cults to worship Nurgle is the Fraternity of the Second Flesh. This secret organisation plots to drown the Empire in a morass of squalor and disease, preparing for the End Times when the entire world will fall to Chaos. The Fraternity consists of a group of aristocrats who secretly convene to worship Nurgle at a hidden temple in the sewers beneath a leper hospice in Altdorf. The cult believes that when the End Times arrive, the Plague Lord will re-clothe each of them in the flesh of an immortal Plaguebearer in an event they call the Transfiguration.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_fsf_cultist_lord_0" />
             <template id="NPCCharacter.tor_fsf_cultist_lord_1" />

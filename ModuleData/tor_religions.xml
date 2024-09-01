@@ -33,6 +33,9 @@
             <FollowerClan stringId="talabecland_clan_1" />
             <FollowerClan stringId="talabecland_clan_2" />
             <FollowerClan stringId="talabecland_clan_3" />
+            <FollowerClan stringId="hochland_clan_1" />
+            <FollowerClan stringId="hochland_clan_2" />
+            <FollowerClan stringId="hochland_clan_3" />
         </Followers>
         <ReligiousTroops>
             <ReligiousTroop id="NPCCharacter.tor_ror_ward_of_taal" />
@@ -51,6 +54,11 @@
             <HostileReligion id="Religion.chaos_undivided" />
         </HostileReligions>
         <Followers>
+            <FollowerClan stringId="ostland_clan_2" />
+            <FollowerClan stringId="middenland_clan_1" />
+            <FollowerClan stringId="middenland_clan_2" />
+            <FollowerClan stringId="middenland_clan_3" />
+            <FollowerClan stringId="nordland_clan_1" />
         </Followers>
         <ReligiousTroops>
 		<ReligiousTroop id="NPCCharacter.tor_empire_wolfkin" />
@@ -67,7 +75,7 @@
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
         </HostileReligions>
-        <Followers>
+        <Followers>         					
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
@@ -84,6 +92,13 @@
             <HostileReligion id="Religion.chaos_undivided" />
         </HostileReligions>
         <Followers>
+		    <FollowerClan stringId="nordland_clan_2" />
+            <FollowerClan stringId="nordland_clan_3" />
+            <FollowerClan stringId="wasteland_clan_1" />
+            <FollowerClan stringId="wasteland_clan_2" />
+            <FollowerClan stringId="wasteland_clan_3" />
+            <FollowerClan stringId="wasteland_clan_4" />
+            <FollowerClan stringId="anguille_clan_2" />	
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
@@ -120,6 +135,15 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+			<HostileReligion id="Religion.cult_of_ulric" />
+            <HostileReligion id="Religion.cult_of_shallya" />
+            <HostileReligion id="Religion.cult_of_asuryan" />
+            <HostileReligion id="Religion.cult_of_isha" />
+            <HostileReligion id="Religion.cult_of_anath_raema" />
+            <HostileReligion id="Religion.cult_of_loec" />
+            <HostileReligion id="Religion.cult_of_nurgle" />
+            <HostileReligion id="Religion.cult_of_vaul" />
+            <HostileReligion id="Religion.cult_of_kurnous" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="mousillon_clan_1" />
@@ -134,6 +158,15 @@
             <HostileReligion id="Religion.cult_of_taal" />
             <HostileReligion id="Religion.cult_of_lady" />
             <HostileReligion id="Religion.cult_of_nagash" />
+			<HostileReligion id="Religion.cult_of_ulric" />
+            <HostileReligion id="Religion.cult_of_shallya" />
+            <HostileReligion id="Religion.cult_of_asuryan" />
+            <HostileReligion id="Religion.cult_of_isha" />
+            <HostileReligion id="Religion.cult_of_anath_raema" />
+            <HostileReligion id="Religion.cult_of_loec" />
+            <HostileReligion id="Religion.cult_of_nurgle" />
+            <HostileReligion id="Religion.cult_of_vaul" />
+            <HostileReligion id="Religion.cult_of_kurnous" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="chaos_clan_1" />
@@ -148,6 +181,15 @@
             <HostileReligion id="Religion.cult_of_taal" />
             <HostileReligion id="Religion.cult_of_lady" />
             <HostileReligion id="Religion.cult_of_nagash" />
+            <HostileReligion id="Religion.cult_of_ulric" />
+            <HostileReligion id="Religion.cult_of_shallya" />
+            <HostileReligion id="Religion.cult_of_asuryan" />
+            <HostileReligion id="Religion.cult_of_isha" />
+            <HostileReligion id="Religion.cult_of_anath_raema" />
+            <HostileReligion id="Religion.cult_of_loec" />
+            <HostileReligion id="Religion.cult_of_nurgle" />
+            <HostileReligion id="Religion.cult_of_vaul" />
+            <HostileReligion id="Religion.cult_of_kurnous" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -160,6 +202,15 @@
             <HostileReligion id="Religion.cult_of_taal" />
             <HostileReligion id="Religion.cult_of_lady" />
             <HostileReligion id="Religion.cult_of_nagash" />
+			<HostileReligion id="Religion.cult_of_ulric" />
+            <HostileReligion id="Religion.cult_of_shallya" />
+            <HostileReligion id="Religion.cult_of_asuryan" />
+            <HostileReligion id="Religion.cult_of_isha" />
+            <HostileReligion id="Religion.cult_of_anath_raema" />
+            <HostileReligion id="Religion.cult_of_loec" />
+            <HostileReligion id="Religion.cult_of_nurgle" />
+            <HostileReligion id="Religion.cult_of_vaul" />
+            <HostileReligion id="Religion.cult_of_kurnous" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="chs_cult_3" />
@@ -174,6 +225,15 @@
             <HostileReligion id="Religion.cult_of_taal" />
             <HostileReligion id="Religion.cult_of_lady" />
             <HostileReligion id="Religion.cult_of_nagash" />
+			<HostileReligion id="Religion.cult_of_ulric" />
+            <HostileReligion id="Religion.cult_of_shallya" />
+            <HostileReligion id="Religion.cult_of_asuryan" />
+            <HostileReligion id="Religion.cult_of_isha" />
+            <HostileReligion id="Religion.cult_of_anath_raema" />
+            <HostileReligion id="Religion.cult_of_loec" />
+            <HostileReligion id="Religion.cult_of_nurgle" />
+            <HostileReligion id="Religion.cult_of_vaul" />
+            <HostileReligion id="Religion.cult_of_kurnous" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -186,6 +246,15 @@
             <HostileReligion id="Religion.cult_of_taal" />
             <HostileReligion id="Religion.cult_of_lady" />
             <HostileReligion id="Religion.cult_of_nagash" />
+			<HostileReligion id="Religion.cult_of_ulric" />
+            <HostileReligion id="Religion.cult_of_shallya" />
+            <HostileReligion id="Religion.cult_of_asuryan" />
+            <HostileReligion id="Religion.cult_of_isha" />
+            <HostileReligion id="Religion.cult_of_anath_raema" />
+            <HostileReligion id="Religion.cult_of_loec" />
+            <HostileReligion id="Religion.cult_of_nurgle" />
+            <HostileReligion id="Religion.cult_of_vaul" />
+            <HostileReligion id="Religion.cult_of_kurnous" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="chs_cult_1" />
@@ -219,6 +288,9 @@
             <HostileReligion id="Religion.chaos_undivided" />
         </HostileReligions>
         <Followers>
+            <FollowerClan stringId="athel_loren_clan_6" />
+            <FollowerClan stringId="athel_loren_clan_13" />
+            <FollowerClan stringId="athel_loren_clan_2" />
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
@@ -233,6 +305,7 @@
             <HostileReligion id="Religion.chaos_undivided" />
         </HostileReligions>
         <Followers>
+            <FollowerClan stringId="athel_loren_clan_11" />
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
@@ -247,6 +320,8 @@
             <HostileReligion id="Religion.chaos_undivided" />
         </HostileReligions>
         <Followers>
+            <FollowerClan stringId="athel_loren_clan_9" />
+            <FollowerClan stringId="athel_loren_clan_12" />
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
@@ -275,6 +350,7 @@
             <HostileReligion id="Religion.chaos_undivided" />
         </HostileReligions>
         <Followers>
+            <FollowerClan stringId="athel_loren_clan_8" />
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
