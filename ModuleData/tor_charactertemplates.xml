@@ -174,6 +174,30 @@
       <EquipmentSet id="tor_huntsman_wanderer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_empire_8" default_group="infantry" name="{=str_tor_wanderer_empire_8}{FIRSTNAME} the Gold Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="44" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+      <hair_tags>
+        <hair_tag name="Bald" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="Cleanshaven" />
+      </beard_tags>
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="1" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Surgeon" value="3" />
+      <Trait id="Calculating" value="3" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="SpellCasterSkills" value="7" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gold_wizard_template" />
+      <EquipmentSet id="tor_gold_wizard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_wanderer_bretonnia_0" default_group="infantry" name="{=str_tor_wanderer_bretonnia_0}{FIRSTNAME} the Bretonnian Knight" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="38" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
@@ -340,6 +364,90 @@
     <Equipments>
       <EquipmentSet id="tor_vc_lahmian_countess_template" />
       <EquipmentSet id="tor_vc_lahmian_countess_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_woodelf_0" default_group="infantry" name="{=str_tor_wanderer_woodelf_0}{FIRSTNAME} the Spellsinger" occupation="Wanderer" culture="Culture.battania" voice="softspoken" age="19" race="elf" is_female="true" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="1" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Surgeon" value="3" />
+      <Trait id="Calculating" value="3" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="SpellCasterSkills" value="7" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_spellsinger_template" />
+      <EquipmentSet id="tor_we_spellsinger_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_woodelf_1" default_group="infantry" name="{=str_tor_wanderer_woodelf_1}{FIRSTNAME} the Glade Captain" occupation="Wanderer" culture="Culture.battania" voice="curt" age="19" race="elf" is_female="true" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_glade_captain_template" />
+      <EquipmentSet id="tor_we_glade_captain_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_woodelf_2" default_group="infantry" name="{=str_tor_wanderer_woodelf_2}{FIRSTNAME} the Waywatcher" occupation="Wanderer" culture="Culture.battania" voice="curt" age="22" race="elf" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_waywatcher_template" />
+      <EquipmentSet id="tor_we_waywatcher_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_eonir_0" default_group="infantry" name="{=str_tor_wanderer_eonir_0}{FIRSTNAME} the Ghost Strider" occupation="Wanderer" culture="Culture.eonir" voice="curt" age="22" race="elf" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Calculating" value="5" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Valor" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_ghoststrider_template" />
+      <EquipmentSet id="tor_eo_ghoststrider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_wanderer_eonir_1" default_group="infantry" name="{=str_tor_wanderer_eonir_1}{FIRSTNAME} the Guardian Mage" occupation="Wanderer" culture="Culture.eonir" voice="ironic" age="30" race="elf" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="1" />
+      <Trait id="Manager" value="3" />
+      <Trait id="Surgeon" value="3" />
+      <Trait id="Calculating" value="3" />
+      <Trait id="Mercy" value="1" />
+      <Trait id="Valor" value="1" />
+      <Trait id="SpellCasterSkills" value="7" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_guardian_mage_template" />
+      <EquipmentSet id="tor_eo_guardian_mage_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_empire_deserter_lord_0" default_group="cavalry" name="{=str_tor_empire_deserter_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.empire" voice="curt" age="30" is_template="true" is_hero="false">

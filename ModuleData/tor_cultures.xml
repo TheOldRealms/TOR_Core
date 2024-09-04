@@ -1354,6 +1354,7 @@
 			<template name="NPCCharacter.tor_wanderer_empire_5" />
 			<template name="NPCCharacter.tor_wanderer_empire_6" />
 			<template name="NPCCharacter.tor_wanderer_empire_7" />
+			<template name="NPCCharacter.tor_wanderer_empire_8" />
 			<template name="NPCCharacter.tor_notable_empire_0" />
 			<template name="NPCCharacter.tor_notable_empire_0b" />
 			<template name="NPCCharacter.tor_notable_empire_1" />
@@ -4721,7 +4722,8 @@
         <icon id="315" />
       </possible_clan_banner_icon_ids>
       <notable_and_wanderer_templates>
-        <template name="NPCCharacter.tor_wanderer_mousillon_0" />
+        <template name="NPCCharacter.tor_wanderer_eonir_0" />
+		<template name="NPCCharacter.tor_wanderer_eonir_1" />
         <template name="NPCCharacter.spc_notable_eonir_merch1" />
         <template name="NPCCharacter.spc_notable_eonir_merch2" />
         <template name="NPCCharacter.spc_notable_eonir_merch3" />
@@ -5036,16 +5038,9 @@
             <icon id="415" />
         </possible_clan_banner_icon_ids>
         <notable_and_wanderer_templates>
-            <template name="NPCCharacter.spc_wanderer_battania_0" />
-            <template name="NPCCharacter.spc_wanderer_battania_1" />
-            <template name="NPCCharacter.spc_wanderer_battania_2" />
-            <template name="NPCCharacter.spc_wanderer_battania_3" />
-            <template name="NPCCharacter.spc_wanderer_battania_4" />
-            <template name="NPCCharacter.spc_wanderer_battania_5" />
-            <template name="NPCCharacter.spc_wanderer_battania_6" />
-            <template name="NPCCharacter.spc_wanderer_battania_7" />
-            <template name="NPCCharacter.spc_wanderer_battania_8" />
-            <template name="NPCCharacter.spc_wanderer_battania_9" />
+            <template name="NPCCharacter.tor_wanderer_woodelf_0" />
+			<template name="NPCCharacter.tor_wanderer_woodelf_1" />
+			<template name="NPCCharacter.tor_wanderer_woodelf_2" />
             <template name="NPCCharacter.spc_notable_asrai_merch1" />
 			<template name="NPCCharacter.spc_notable_asrai_merch2" />
 			<template name="NPCCharacter.spc_notable_asrai_merch3" />

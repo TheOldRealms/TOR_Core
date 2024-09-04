@@ -150,6 +150,14 @@ public static class ServeAsAHirelingHelpers
             
             return true;
         }
+        
+        if (dialogPartner.Culture.StringId == TORConstants.Cultures.MOUSILLON)
+        {
+            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.BRETONNIA || dialogPartner.GetRelation(Hero.MainHero)>15)
+                return true;
+
+            return false;
+        }
 
         if (dialogPartner.Culture.StringId == Hero.MainHero.Culture.StringId)
         {

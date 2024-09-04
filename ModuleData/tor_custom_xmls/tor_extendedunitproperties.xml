@@ -4978,6 +4978,20 @@
       <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_5">
+    <Abilities />
+    <Attributes>
+      <string>BloodDragon</string>
+      <string>Necromancer</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_vc_lord_blooddragons_first_6">
+    <Abilities />
+    <Attributes>
+      <string>BloodDragon</string>
+      <string>Necromancer</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord_necrarch_first_factionleader">
     <Abilities>
       <string>SummonSkeleton</string>
@@ -5461,6 +5475,32 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_couronne_second_1">
+    <Abilities />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_couronne_second_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_couronne_second_3">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_couronne_third_1">
+    <Abilities />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_br_lord_couronne_third_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_lord_anguille_factionleader">
     <Abilities />
     <Attributes>
@@ -5612,8 +5652,20 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_m_lord_mousillon_first_2">
-    <Abilities />
+    <Abilities>
+      <string>NagashGaze</string>
+      <string>SummonSkeleton</string>
+      <string>Shadowblood</string>
+      <string>Morkharn</string>
+      <string>CurseOfYears</string>
+      <string>Kandorak</string>
+      <string>ScreamingSkull</string>
+      <string>WindOfDeath</string>
+      <string>GraveCall</string>
+    </Abilities>
     <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
       <string>Necromancer</string>
     </Attributes>
   </CharacterExtendedInfo>
@@ -5676,6 +5728,24 @@
       <string>AICompanion</string>
       <string>Undead</string>
     </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_second_1">
+    <Abilities />
+    <Attributes>
+      <string>Necromancer</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_second_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_second_3">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_m_lord_mousillon_second_4">
+    <Abilities />
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_lord_athel_loren_factionleader">
     <Abilities />
