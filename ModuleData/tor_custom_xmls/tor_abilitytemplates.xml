@@ -4024,6 +4024,52 @@
 		</LightColorRGB>
 	</AbilityTemplate>
 	
+	<!-- Shallya Prayers (NPC ONLY) -->
+	
+	<AbilityTemplate StringID="BlessingOfShallya" 
+	Name="{=regrowth_label_str}Regrowth"
+	SpriteName="regrowth_icon"
+	CoolDown="60"
+	WindsOfMagicCost="0"
+	BaseMisCastChance="0.05"
+	Duration="0"
+	Radius="3"
+	AbilityType="Prayer"
+	AbilityEffectType="Augment"
+	BaseMovementSpeed="0"
+	TickInterval="-1"
+	TriggerType="TickOnce"
+	HasLight="false"
+	LightIntensity="0"
+	LightRadius="0"
+	LightFlickeringMagnitude="0"
+	LightFlickeringInterval="0"
+	ShadowCastEnabled="true"
+	ParticleEffectPrefab=""
+	ParticleEffectSizeModifier="0"
+	SoundEffectToPlay=""
+	ShouldSoundLoopOverDuration="false"
+	CastType="Instant"
+	CastTime="0.5"
+	AnimationActionName="act_release_heavy_thrown"
+	Offset="0.5"
+	AbilityTargetType="AlliesInAOE"
+	TargetCapturingRadius="5"
+	MaxDistance="20"
+	CrosshairType="TargetedAOE"
+	SpellTier="3"
+	BelongsToLoreID="ShallyaPrayers"
+	TooltipDescription="{=regrowth_description_str}Invoking the name of Duthandor, lord of the ancient wildshrines, the wizard mends wounds and broken bones of his comrades. Allies in a 3 meter radius gain 5 HP per second for 12 seconds.">
+		<LightColorRGB x="255" y="255" z="255" w="-1">
+			<AsVec2>
+				<x>255</x>
+				<y>255</y>
+				<z>255</z>
+			</AsVec2>
+		</LightColorRGB>
+		<TriggeredEffect>regrowth_heal</TriggeredEffect>
+	</AbilityTemplate>
+	
 	<!-- Sigmarite Prayers -->
 	
 	<AbilityTemplate StringID="CometOfSigmar" 

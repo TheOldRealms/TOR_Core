@@ -6292,12 +6292,26 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_empire_6">
-    <Abilities />
-    <Attributes />
+    <Abilities>
+      <string>BlessingOfShallya</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_empire_7">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_empire_8">
+    <Abilities>
+      <string>GleamingArrow</string>
+      <string>QuicksilverSwords</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_bretonnia_0">
     <Abilities />
@@ -6365,6 +6379,39 @@
       <string>AbilityUser</string>
       <string>SpellCaster</string>
       <string>Unbreakable</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_woodelf_0">
+    <Abilities>
+      <string>AmberSpear</string>
+      <string>Regrowth</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_woodelf_1">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_woodelf_2">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_eonir_0">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_eonir_1">
+    <Abilities>
+      <string>Regrowth</string>
+      <string>BoltOfAqshy</string>
+      <string>Apotheosis</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_deserter_lord_0">
