@@ -161,11 +161,13 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                
         campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores_choice",
             "I can teach you, but as much as you are ready to do so, I need your word in the Council (500{EONIR_FAVOR})?", () => IsSpellsingerEnvoy(), null, 200);
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_1", "spellsinger_envoy_spellsinger_lores_choice", "spellsinger_envoy_troop_refill_result",
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_1", "spellsinger_envoy_spellsinger_lores_choice", "spellsinger_envoy_spellsinger_lores_result",
             "It shouldn't be for your disadvantage", () => IsSpellsingerEnvoy()&& 500<=Hero.MainHero.GetCultureSpecificCustomResourceValue() && GreylordIsNotAllowedToLearnMoreLores(), LearnNewLoresPrompt, 200);
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_2", "spellsinger_envoy_spellsinger_lores_choice", "back_to_main_hub_spellsinger",
             "I need to think about this.", () => IsSpellsingerEnvoy(),null , 200);
 
+        campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores_result", "spellsinger_envoy_spellsinger_lores_result", "back_to_main_hub_spellsinger",
+            "I will see what I can do.", () => IsSpellsingerEnvoy(), null, 200);
 
         bool GreylordIsNotAllowedToLearnMoreLores()
         {
