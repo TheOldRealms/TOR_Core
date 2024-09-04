@@ -88,7 +88,9 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             foreach(var settlement in Settlement.All)
             {
                 if (_settlementCulturePairs.ContainsKey(settlement))
-                return;
+                {
+                    _settlementCulturePairs[settlement] = settlement.Culture;
+                }
                 else
                 {
                     _settlementCulturePairs.Add(settlement, settlement.Culture);
