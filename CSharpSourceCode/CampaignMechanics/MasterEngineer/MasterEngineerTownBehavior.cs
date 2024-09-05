@@ -318,7 +318,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         {
             var engineerItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x =>
                 x.IsTorItem() && x.Culture!=null && x.Culture.StringId == "empire" &&
-                (x.StringId.Contains("gun") || x.StringId.Contains("artillery")));
+                (x.StringId.Contains("gun") ||
+                 x.StringId.Contains("artillery")));
             
             var firstLevelShopItems = HasUpgradeGunShopCondition(1);
             var secondLevelShopItems = HasUpgradeGunShopCondition(2);
@@ -334,12 +335,26 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             }
             
             roster.Add(list);
+            
+            var oldrifle = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_gun_old_rifle");
+            if (oldrifle != null)
+            {
+                roster.Add(new ItemRosterElement(oldrifle, MBRandom.RandomInt(2, 5)));
+                engineerItems.AddItem(oldrifle);
+            }
 
             if (firstLevelShopItems)
             {
                 var buckshots = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball_scatter");
                 if (buckshots != null) roster.Add(new ItemRosterElement(buckshots, MBRandom.RandomInt(2, 5)));
                 engineerItems.AddItem(buckshots);
+            }
+
+            if (secondLevelShopItems)
+            {
+                var mortars = MBObjectManager.Instance.GetObject<ItemObject>("tor_empire_artillery_mortar_001");
+                if(mortars != null)roster.Add(new ItemRosterElement(mortars, MBRandom.RandomInt(1, 1)));
+                engineerItems.AddItem(mortars);
             }
             
             if (thirdLevelShopItems)
