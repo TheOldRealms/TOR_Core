@@ -16014,28 +16014,28 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_eustache_template" culture="Culture.mousillon">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.morningstar_mace_t3" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_003" />
-      <Equipment slot="Item2" id="&quot;" />
-      <Equipment slot="Item3" id="Item.tor_empire_weapon_lance_knight_004&quot;" />
-      <Equipment slot="Body" id="Item.tor_bretonnian_head_helm_pilgrim_001" />
-      <Equipment slot="Cape" id="Item.tor_mousillon_body_armor_kotr_001" />
-      <Equipment slot="Gloves" id="Item.empire_cape_a" />
-      <Equipment slot="Leg" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="HorseHarness" id="Item.noble_horse" />
+      <Equipment slot="Item2" id="Item.morningstar_mace_t3" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_pilgrim_001" />
+      <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.morningstar_mace_t3" />
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
       <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_003" />
-      <Equipment slot="Item2" id="&quot;" />
-      <Equipment slot="Item3" id="Item.tor_empire_weapon_lance_knight_004&quot;" />
-      <Equipment slot="Body" id="Item.tor_bretonnian_head_helm_pilgrim_001" />
-      <Equipment slot="Cape" id="Item.tor_mousillon_body_armor_kotr_001" />
-      <Equipment slot="Gloves" id="Item.empire_cape_a" />
-      <Equipment slot="Leg" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
-      <Equipment slot="Horse" id="Item.tor_mousillon_leg_boots_bgk_001" />
-      <Equipment slot="HorseHarness" id="Item.noble_horse" />
+      <Equipment slot="Item2" id="Item.morningstar_mace_t3" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_pilgrim_001" />
+      <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_mousillon_leg_boots_bgk_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_003" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_people_notable_villager" culture="Culture.battania">

@@ -5134,7 +5134,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CO3" name="{=Settlements.Settlement.name.castle_CO2}Castle Tancred" owner="Faction.couronne_clan_1" posX="1101.953" posY="1232.211" culture="Culture.vlandia" gate_posX="1101.801" gate_posY="1234.01" text="{=Settlements.Settlement.text.castle_CO3}Castle Tancred is only recently completed. It sits on a low but steep hill, and the outer wall is studded with towers. The high inner wall allows defenders to turn the region between the walls into a killing zone, whilst the final round keep also has a tall signal and watchtower. The castle has a good well and large stores of food. Fully manned, it could survive a siege for over threemonths. The surrounding land is not particulary fertile, and it is inlikely that a living army could last that long.">
+  <Settlement id="castle_CO3" name="{=Settlements.Settlement.name.castle_CO2}Castle Tancred" owner="Faction.couronne_clan_3" posX="1101.953" posY="1232.211" culture="Culture.vlandia" gate_posX="1101.801" gate_posY="1234.01" text="{=Settlements.Settlement.text.castle_CO3}Castle Tancred is only recently completed. It sits on a low but steep hill, and the outer wall is studded with towers. The high inner wall allows defenders to turn the region between the walls into a killing zone, whilst the final round keep also has a tall signal and watchtower. The castle has a good well and large stores of food. Fully manned, it could survive a siege for over threemonths. The surrounding land is not particulary fertile, and it is inlikely that a living army could last that long.">
     <Components>
       <Town id="castle_comp_CO3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -7764,7 +7764,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MS2" name="{=Settlements.Settlement.name.castle_MS2}Castle Hane" owner="Faction.mousillon_clan_1" posX="963.22" posY="1060.316" culture="Culture.mousillon" gate_posX="961.515" gate_posY="1059.451" text="{=Settlements.Settlement.name.castle_MS2}Castle Hane is a tall hexagonal tower that stands near the Grismerie river, on a small island in the swamps. Lorded over by Aucassin, a long reigning noble of bretonnia, the surrounding villages are surprisingly livable by Mousillon standards. Surrounding the tower are many stables for Aucassin’s Vampiric Knights, and any who would visit the tower.">
+  <Settlement id="castle_MS2" name="{=Settlements.Settlement.name.castle_MS2}Castle Hane" owner="Faction.mousillon_clan_2" posX="963.22" posY="1060.316" culture="Culture.mousillon" gate_posX="961.515" gate_posY="1059.451" text="{=Settlements.Settlement.name.castle_MS2}Castle Hane is a tall hexagonal tower that stands near the Grismerie river, on a small island in the swamps. Lorded over by Aucassin, a long reigning noble of bretonnia, the surrounding villages are surprisingly livable by Mousillon standards. Surrounding the tower are many stables for Aucassin’s Vampiric Knights, and any who would visit the tower.">
     <Components>
       <Town id="castle_comp_MS2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>

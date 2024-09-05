@@ -535,22 +535,22 @@
              text="{=!}The Dukedom of Couronne is a founding dukedom of Bretonnia that lies upon the northern shores of that realm and is the current seat of power of the king's Royal Court, located in the dukedom, and the kingdom's capital, Castle Couronne."
              banner_key="1.12.142.8000.8000.764.764.0.1.0.302.39.116.512.512.596.628.1.0.180.140.39.116.671.671.764.819.1.0.0.340.39.116.134.134.793.494.1.0.0" />
     <Faction id="couronne_clan_2"
-             name="{=!}de Couronne"
+             name="{=!}Chevaliers D'Honneur"
              tier="6"
              owner="Hero.tor_br_lord_couronne_second_1"
              culture="Culture.vlandia"
              super_faction="Kingdom.couronne"
              is_noble="true"
-             text="{=!}The Dukedom of Couronne is a founding dukedom of Bretonnia that lies upon the northern shores of that realm and is the current seat of power of the king's Royal Court, located in the dukedom, and the kingdom's capital, Castle Couronne."
+             text="{=!}Chevaliers D'Honneur are the friends and supporters of the king. Those who have proven to be a great asset to the crown get the honour title of Chevalier D'Honneur. Members of this group have completed important quests and battles for king Louen and have proven to be loyal knights of the realm and king."
              banner_key="1.12.142.8000.8000.764.764.0.1.0.302.39.116.512.512.596.628.1.0.180.140.39.116.671.671.764.819.1.0.0.340.39.116.134.134.793.494.1.0.0" />
 	    <Faction id="couronne_clan_3"
-             name="{=!}de Couronne"
+             name="{=!}Les Hardis de Montmirail"
              tier="6"
              owner="Hero.tor_br_lord_couronne_third_1"
              culture="Culture.vlandia"
              super_faction="Kingdom.couronne"
              is_noble="true"
-             text="{=!}The Dukedom of Couronne is a founding dukedom of Bretonnia that lies upon the northern shores of that realm and is the current seat of power of the king's Royal Court, located in the dukedom, and the kingdom's capital, Castle Couronne."
+             text="{=!}The knights of Les Hardis de Montmirail are led by Roland the Marshal. They are tasked with protecting the border between Couronne and Marienburg in the east of Couronne. The border is a grey area with no factual borders. Roland the Marechal tries to take more land with every opportunity he has creating conflict between Brettonia and Marienbug."
              banner_key="1.12.142.8000.8000.764.764.0.1.0.302.39.116.512.512.596.628.1.0.180.140.39.116.671.671.764.819.1.0.0.340.39.116.134.134.793.494.1.0.0" />
     <!-- Anguille faction -->
     <Faction id="anguille_clan_1"
@@ -720,13 +720,13 @@
              banner_key="11.15.12.2537.1837.762.746.0.0.0.505.149.132.535.535.760.789.0.0.45.505.15.132.162.331.507.780.0.0.161.426.15.132.162.171.612.736.0.0.304.427.15.132.80.102.663.833.0.0.193.426.15.132.35.98.583.847.0.1.40.426.15.132.35.109.580.807.0.0.10.503.15.132.82.60.600.714.0.1.36.426.15.132.15.47.630.872.0.1.350.426.15.132.15.47.602.897.0.1.338.426.15.132.41.67.624.903.0.1.101.427.15.132.68.58.676.957.0.0.16.427.15.132.111.115.672.1000.0.0.-55.426.15.132.18.92.690.733.0.0.229.426.15.132.15.92.727.792.0.0.196.505.15.132.5.63.735.840.0.0.184.426.15.132.18.92.698.733.0.0.220.427.15.132.43.20.693.996.0.0.8.426.15.132.12.67.718.963.0.0.171.426.15.132.14.77.657.976.0.0.39.426.15.132.17.75.731.998.0.0.162.426.15.132.11.48.736.953.0.0.186.426.15.132.19.82.729.1020.0.0.156.426.15.132.15.96.748.1066.0.0.35.426.15.132.10.66.739.965.0.0.185.427.15.132.16.31.687.917.0.0.-90.427.15.132.16.31.687.874.0.0.-90.507.15.132.74.29.677.858.0.0.165.505.15.132.74.4.735.867.0.0.0.505.15.132.115.4.718.881.0.0.0.505.15.132.74.4.735.924.0.1.180.505.15.132.115.4.718.910.0.1.180.507.15.132.74.29.684.934.0.0.15.427.15.132.30.14.698.896.0.1.90.426.15.132.10.66.719.837.0.0.185.426.15.132.10.66.700.786.0.0.216.426.15.132.13.50.665.762.0.0.260.426.15.132.15.50.630.772.0.0.314.426.15.132.13.95.615.823.0.0.0.426.15.132.11.90.612.901.0.1.348.329.15.132.693.273.678.415.0.1.267.507.15.132.345.273.616.589.0.1.291.507.15.132.74.29.683.951.0.0.31.426.15.132.13.36.719.941.0.1.4.426.15.132.13.36.738.944.0.1.12.426.15.132.13.36.735.940.0.1.15.505.15.132.162.331.1018.780.0.1.199.426.15.132.162.171.912.736.0.1.56.427.15.132.80.102.862.833.0.1.167.426.15.132.35.98.941.847.0.0.320.426.15.132.35.109.945.807.0.1.350.503.15.132.82.60.925.714.0.0.324.426.15.132.15.47.894.872.0.0.10.426.15.132.15.47.923.897.0.0.22.426.15.132.41.67.901.903.0.0.259.427.15.132.68.58.849.957.0.1.344.427.15.132.111.115.853.1000.0.1.55.426.15.132.18.92.835.733.0.1.131.426.15.132.15.92.797.792.0.1.164.505.15.132.5.63.789.840.0.1.176.426.15.132.18.92.827.733.0.1.140.427.15.132.43.20.832.996.0.1.352.426.15.132.12.67.807.963.0.1.189.426.15.132.14.77.868.976.0.1.321.426.15.132.17.75.794.998.0.1.198.426.15.132.11.48.789.953.0.1.174.426.15.132.19.82.795.1020.0.1.204.426.15.132.15.96.777.1066.0.1.325.426.15.132.10.66.785.965.0.1.175.427.15.132.16.31.838.917.0.1.90.427.15.132.16.31.838.874.0.1.90.507.15.132.74.29.848.858.0.1.195.505.15.132.74.4.790.867.0.1.0.505.15.132.115.4.807.881.0.1.0.505.15.132.74.4.790.924.0.0.180.505.15.132.115.4.807.910.0.0.180.507.15.132.74.29.840.934.0.1.345.427.15.132.30.14.827.896.0.0.270.426.15.132.10.66.805.837.0.1.175.426.15.132.10.66.824.786.0.1.144.426.15.132.13.50.860.762.0.1.100.426.15.132.15.50.895.772.0.1.46.426.15.132.13.95.910.823.0.1.0.426.15.132.11.90.912.901.0.0.12.329.15.132.693.273.847.415.0.0.93.507.15.132.345.273.908.589.0.0.69.507.15.132.74.29.842.951.0.1.328.426.15.132.13.36.805.941.0.0.356.426.15.132.13.36.787.944.0.0.348.426.15.132.13.36.790.940.0.0.345.503.15.132.85.68.860.844.0.0.354.503.15.132.149.103.965.876.0.0.69.503.15.132.149.103.990.809.0.0.69.503.15.132.111.94.896.934.0.0.158.503.15.132.111.94.929.971.0.0.158.503.15.132.77.65.874.922.0.0.158.503.15.132.39.35.839.896.0.0.180.503.15.132.60.56.869.877.0.0.190.503.15.132.60.56.873.895.0.0.190.503.15.132.60.56.853.948.0.0.190.426.15.132.33.77.815.1032.0.0.55.505.15.132.35.92.795.1070.0.1.325.505.15.132.35.92.763.1103.0.1.271.503.15.132.85.68.665.844.0.1.5.503.15.132.149.103.560.876.0.1.290.503.15.132.149.103.535.809.0.1.290.503.15.132.111.94.629.934.0.1.201.503.15.132.111.94.596.971.0.1.201.503.15.132.77.65.651.922.0.1.201.503.15.132.39.35.686.896.0.1.179.503.15.132.60.56.655.877.0.1.169.503.15.132.60.56.651.895.0.1.169.503.15.132.60.56.672.948.0.1.169.426.15.132.33.77.710.1032.0.1.304.505.15.132.35.92.729.1070.0.0.35.505.15.132.35.92.762.1103.0.0.88.503.15.132.60.56.696.1066.0.1.169.505.15.132.35.92.762.474.0.0.88.505.15.132.4.452.762.673.0.0.180.505.15.132.4.228.762.1022.0.0.179.505.149.132.12.26.762.1023.0.0.179.161.15.15.361.764.586.386.1.0.179.161.15.15.361.764.542.512.1.1.-17.161.15.15.361.764.942.386.1.1.181.161.15.15.361.764.986.512.1.0.17" />
     
 	<Faction id="mousillon_clan_2"
-             name="{=!}de Mousillon"
+             name="{=!}Chateau Hane"
              tier="6"
              owner="Hero.tor_m_lord_mousillon_second_1"
              culture="Culture.mousillon"
              super_faction="Kingdom.mousillon"
              is_noble="true"
-             text="{=!}The dukedom of Mousillon is a haggard and dreaded land, full of swamps and cursed bogs. An impoverished land constantly plagued by disease, which many of its inhabitants have grown accustomed to. As such, many Mousillians are considered to be mutants and freaks compared to normal Bretonnian peasants. The villages and castles are at the point of collapse, while the nights are haunted by apparitions and vile beasts. Only fools and deadmen leave their homes at night. "
+             text="{=!}Aucassin's family has resided in the Chateau Hane for generations, and the chanson of his family is among the longest in the whole of Bretonnia. His ancestors fought for Maldred against the king and against the Duke of Lyonesse for Merovech before that. Though proven in battle, Aucassin's family is mostly noted as patrons of the arts and exemplars of courtly culture, and Aucassin himself is Mousillon's most cultured noble. His court, held in the handsome Chateau Hane, includes poets and artists to entertain the nobles who come to visit (nobles including Mallobaude himself). Aucassin is the hub of Mousillon's noble culture."
              banner_key="11.15.12.2537.1837.762.746.0.0.0.505.149.132.535.535.760.789.0.0.45.505.15.132.162.331.507.780.0.0.161.426.15.132.162.171.612.736.0.0.304.427.15.132.80.102.663.833.0.0.193.426.15.132.35.98.583.847.0.1.40.426.15.132.35.109.580.807.0.0.10.503.15.132.82.60.600.714.0.1.36.426.15.132.15.47.630.872.0.1.350.426.15.132.15.47.602.897.0.1.338.426.15.132.41.67.624.903.0.1.101.427.15.132.68.58.676.957.0.0.16.427.15.132.111.115.672.1000.0.0.-55.426.15.132.18.92.690.733.0.0.229.426.15.132.15.92.727.792.0.0.196.505.15.132.5.63.735.840.0.0.184.426.15.132.18.92.698.733.0.0.220.427.15.132.43.20.693.996.0.0.8.426.15.132.12.67.718.963.0.0.171.426.15.132.14.77.657.976.0.0.39.426.15.132.17.75.731.998.0.0.162.426.15.132.11.48.736.953.0.0.186.426.15.132.19.82.729.1020.0.0.156.426.15.132.15.96.748.1066.0.0.35.426.15.132.10.66.739.965.0.0.185.427.15.132.16.31.687.917.0.0.-90.427.15.132.16.31.687.874.0.0.-90.507.15.132.74.29.677.858.0.0.165.505.15.132.74.4.735.867.0.0.0.505.15.132.115.4.718.881.0.0.0.505.15.132.74.4.735.924.0.1.180.505.15.132.115.4.718.910.0.1.180.507.15.132.74.29.684.934.0.0.15.427.15.132.30.14.698.896.0.1.90.426.15.132.10.66.719.837.0.0.185.426.15.132.10.66.700.786.0.0.216.426.15.132.13.50.665.762.0.0.260.426.15.132.15.50.630.772.0.0.314.426.15.132.13.95.615.823.0.0.0.426.15.132.11.90.612.901.0.1.348.329.15.132.693.273.678.415.0.1.267.507.15.132.345.273.616.589.0.1.291.507.15.132.74.29.683.951.0.0.31.426.15.132.13.36.719.941.0.1.4.426.15.132.13.36.738.944.0.1.12.426.15.132.13.36.735.940.0.1.15.505.15.132.162.331.1018.780.0.1.199.426.15.132.162.171.912.736.0.1.56.427.15.132.80.102.862.833.0.1.167.426.15.132.35.98.941.847.0.0.320.426.15.132.35.109.945.807.0.1.350.503.15.132.82.60.925.714.0.0.324.426.15.132.15.47.894.872.0.0.10.426.15.132.15.47.923.897.0.0.22.426.15.132.41.67.901.903.0.0.259.427.15.132.68.58.849.957.0.1.344.427.15.132.111.115.853.1000.0.1.55.426.15.132.18.92.835.733.0.1.131.426.15.132.15.92.797.792.0.1.164.505.15.132.5.63.789.840.0.1.176.426.15.132.18.92.827.733.0.1.140.427.15.132.43.20.832.996.0.1.352.426.15.132.12.67.807.963.0.1.189.426.15.132.14.77.868.976.0.1.321.426.15.132.17.75.794.998.0.1.198.426.15.132.11.48.789.953.0.1.174.426.15.132.19.82.795.1020.0.1.204.426.15.132.15.96.777.1066.0.1.325.426.15.132.10.66.785.965.0.1.175.427.15.132.16.31.838.917.0.1.90.427.15.132.16.31.838.874.0.1.90.507.15.132.74.29.848.858.0.1.195.505.15.132.74.4.790.867.0.1.0.505.15.132.115.4.807.881.0.1.0.505.15.132.74.4.790.924.0.0.180.505.15.132.115.4.807.910.0.0.180.507.15.132.74.29.840.934.0.1.345.427.15.132.30.14.827.896.0.0.270.426.15.132.10.66.805.837.0.1.175.426.15.132.10.66.824.786.0.1.144.426.15.132.13.50.860.762.0.1.100.426.15.132.15.50.895.772.0.1.46.426.15.132.13.95.910.823.0.1.0.426.15.132.11.90.912.901.0.0.12.329.15.132.693.273.847.415.0.0.93.507.15.132.345.273.908.589.0.0.69.507.15.132.74.29.842.951.0.1.328.426.15.132.13.36.805.941.0.0.356.426.15.132.13.36.787.944.0.0.348.426.15.132.13.36.790.940.0.0.345.503.15.132.85.68.860.844.0.0.354.503.15.132.149.103.965.876.0.0.69.503.15.132.149.103.990.809.0.0.69.503.15.132.111.94.896.934.0.0.158.503.15.132.111.94.929.971.0.0.158.503.15.132.77.65.874.922.0.0.158.503.15.132.39.35.839.896.0.0.180.503.15.132.60.56.869.877.0.0.190.503.15.132.60.56.873.895.0.0.190.503.15.132.60.56.853.948.0.0.190.426.15.132.33.77.815.1032.0.0.55.505.15.132.35.92.795.1070.0.1.325.505.15.132.35.92.763.1103.0.1.271.503.15.132.85.68.665.844.0.1.5.503.15.132.149.103.560.876.0.1.290.503.15.132.149.103.535.809.0.1.290.503.15.132.111.94.629.934.0.1.201.503.15.132.111.94.596.971.0.1.201.503.15.132.77.65.651.922.0.1.201.503.15.132.39.35.686.896.0.1.179.503.15.132.60.56.655.877.0.1.169.503.15.132.60.56.651.895.0.1.169.503.15.132.60.56.672.948.0.1.169.426.15.132.33.77.710.1032.0.1.304.505.15.132.35.92.729.1070.0.0.35.505.15.132.35.92.762.1103.0.0.88.503.15.132.60.56.696.1066.0.1.169.505.15.132.35.92.762.474.0.0.88.505.15.132.4.452.762.673.0.0.180.505.15.132.4.228.762.1022.0.0.179.505.149.132.12.26.762.1023.0.0.179.161.15.15.361.764.586.386.1.0.179.161.15.15.361.764.542.512.1.1.-17.161.15.15.361.764.942.386.1.1.181.161.15.15.361.764.986.512.1.0.17" />			 
     <!-- Moot faction -->
     <Faction id="moot_clan_1"
@@ -937,7 +937,7 @@
              color2="FF146981"
              alternative_color="FF581645"
              alternative_color2="FF146981"
-             text="{=!}Description text missing." />
+             text="{=!}The Druchii rely on slavery as the primary economic institution that keeps their dark kingdom of Naggaroth functioning and capable of maintaining itself in a permanent state of war. While the inhabitants of ancient Nagarythe were peerless warriors, they had little knowledge of how to build a self-sufficient civilization. For this reason, Malekith's kingdom depends on attacking other peoples for food or capturing slaves to work for them." />
     <!-- Empire outlaw factions -->
     <Faction id="empire_deserter_clan_1"
              default_party_template="PartyTemplate.empire_deserters"
@@ -954,7 +954,7 @@
              color2="FFadb09d"
              alternative_color="FF3064ff"
              alternative_color2="FFadb09d"
-             text="{=!}The Druchii rely on slavery as the primary economic institution that keeps their dark kingdom of Naggaroth functioning and capable of maintaining itself in a permanent state of war. While the inhabitants of ancient Nagarythe were peerless warriors, they had little knowledge of how to build a self-sufficient civilization. For this reason, Malekith's kingdom depends on attacking other peoples for food or capturing slaves to work for them.">
+             text="{=!}The Empire deserters are honorless who fled their duty and now live as fugitives. They now roam the Empire stealing coin from travelers and ambushing caravans.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_deserter_lord_0" />
             <template id="NPCCharacter.tor_empire_deserter_lord_1" />
@@ -975,11 +975,11 @@
              owner="Hero.tor_br_troubadour_leader"
              culture="Culture.vlandia"
              banner_key="2.143.12.2499.1836.781.722.1.0.0.506.144.18.166.68.870.584.0.0.0.506.144.18.166.68.995.584.0.0.0.510.144.18.164.192.898.505.0.0.-90.510.144.18.164.192.1023.506.0.0.-90.510.144.18.172.192.961.428.0.0.-181.312.144.18.352.317.520.871.0.1.-28.510.12.18.128.548.568.1003.0.0.-142.505.12.18.316.238.439.889.0.0.-91.506.144.18.166.68.527.1035.0.0.0.505.12.18.202.287.611.779.0.0.-90.510.144.18.185.192.555.955.0.0.-90.424.35.18.207.171.576.504.0.0.1.105.144.18.543.483.760.797.0.0.0.424.35.18.207.171.961.997.0.0.1"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FF224277"
+             color="FF224277"
+             color2="FFf4ca14"
+             alternative_color="FF224277"
+             alternative_color2="FFf4ca14"
              text="{=!}The famous Brettonian duo Tristan the Troubadour and Jules the Jester.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_br_troubadour_questing_knight_1" />
@@ -997,11 +997,11 @@
              owner="Hero.tor_br_bergerac_leader"
              culture="Culture.vlandia"
              banner_key="1.126.142.2499.1836.781.722.1.0.0.311.124.18.310.298.634.522.0.0.-160.120.116.18.335.335.927.730.0.1.0.120.144.18.335.335.921.740.0.1.0.311.124.18.310.298.634.730.0.0.-160.311.124.18.310.298.636.945.0.0.-160.311.40.18.310.298.642.937.0.0.-160.311.40.18.310.298.636.722.0.0.-160.311.40.18.310.298.634.514.0.0.-160"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FF34671e"
+             color="FF34671e"
+             color2="FF830808"
+             alternative_color="FF34671e"
+             alternative_color2="FF830808"
              text="{=!}Bertrand had no desire to push his claim and become a knight, nor did he wish to join the ranks of the nobility and his followers were thoroughly fed up with paying feudal dues. They liked the idea of keeping everything they grew to themselves. If Bertrand took the vows of chivalry he would also have to forsake his beloved longbow as a dishonourable weapon, and that was something he would never do. Instead, Bertrand and his folk took to wandering through the wilderness regions of Bretonnia, righting wrongs and sticking up for the peasants wherever the need may be. Most often this means fighting against raiders and orcs, but sometimes there is a corrupt Baron or Knight, lacking in honour, who needs to be defeated.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_br_bergerac_lord" />
@@ -1018,11 +1018,11 @@
              owner="Hero.tor_br_wainfleet_leader"
              culture="Culture.vlandia"
              banner_key="1.92.38.1942.2432.763.763.1.0.0.342.38.18.262.241.626.939.0.1.26.342.92.18.262.241.885.939.0.0.333.321.7.18.589.407.764.764.0.0.-1.321.12.18.503.381.764.764.0.0.-1.424.0.18.236.196.764.660.0.0.-1.424.144.18.230.164.764.664.0.0.-1.427.144.18.118.47.764.913.0.1.0.308.144.18.535.508.620.618.0.1.11.308.84.18.535.508.897.620.0.0.348"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FFe9a74d"
+             color="FFe9a74d"
+             color2="FF714214"
+             alternative_color="FFe9a74d"
+             alternative_color2="FF714214"
              text="{=!}The famous Geg of wainfleet is the one and only peasant ever to be granted knighthood and sip from the holy grail. Together with his peasant knights he roams brettonia to rid the land of all evil.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_br_peasantknight_lord" />
@@ -1065,11 +1065,11 @@
              owner="Hero.tor_dog_clan_hero_braganza"
              culture="Culture.empire"
              banner_key="11.149.149.8000.8000.764.764.1.0.0.505.142.142.2138.2527.767.767.0.1.0.510.28.28.1190.696.323.640.1.1.38.510.28.28.1219.713.1184.638.1.0.321.510.28.28.1190.696.331.897.1.1.38.510.28.28.1219.713.1192.895.1.0.321.510.28.28.1190.696.347.1168.1.1.38.510.28.28.1219.713.1208.1166.1.0.321.510.28.28.1190.696.341.1482.1.1.38.510.28.28.1219.713.1202.1480.1.0.321.510.28.28.1190.696.313.317.1.1.38.510.28.28.1219.713.1174.315.1.0.321.317.2.2.482.516.765.726.1.1.180.317.2.2.482.516.764.831.1.1.-1.154.28.2.323.514.760.785.1.1.5.302.28.2.338.533.767.785.1.1.-1"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FF830808"
+             color="FF830808"
+             color2="FF34671e"
+             alternative_color="FF830808"
+             alternative_color2="FF34671e"
              text="{=!}Lead by Luka Braganza the Braganza's Besiegers are a famous band of Dogs of War mercenaries that hails from the Tilean city-state of Miragliano, trained and maintained as heavily armored Crossbowmen.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_dog1_lord_0" />
@@ -1113,11 +1113,11 @@
              owner="Hero.tor_dog_clan_hero_leopard"
              culture="Culture.empire"
              banner_key="11.149.149.8000.8000.764.764.1.0.0.505.28.28.2138.2527.767.767.0.1.0.510.142.28.1609.641.769.349.0.1.0.510.142.28.1609.641.777.552.0.1.0.510.142.28.1609.641.783.760.0.1.0.510.142.28.1609.641.785.979.0.1.0.510.142.28.1609.641.791.1200.0.1.0.503.116.116.408.404.764.754.0.1.0.423.143.116.510.504.764.748.1.1.0.140.143.116.295.292.760.760.0.0.0"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FF830808"
+             color="FF830808"
+             color2="FFf3f3f3"
+             alternative_color="FF830808"
+             alternative_color2="FFf3f3f3"
              text="{=!}Leopold's Leopard Company is a famous band of Dogs of War mercenaries that has its origins within the great city-state of Luccini. The Leopard Company takes its name from the legendary Leopard of Luccini, which is a badge and mascot of the city. It is said that this Leopard was the guardian of the divine twins Lucan and Luccini, founders of the city.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_dog3_lord_0" />
@@ -1137,11 +1137,11 @@
              owner="Hero.tor_dog_clan_hero_voland"
              culture="Culture.empire"
              banner_key="11.149.149.8000.8000.764.764.1.0.0.505.116.116.2138.2527.767.767.0.1.0.511.143.116.1422.1740.769.765.0.1.180"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FFf4d32e"
+             color="FFf4d32e"
+             color2="FF0b0c11"
+             alternative_color="FFf4d32e"
+             alternative_color2="FF0b0c11"
              text="{=!}Voland's Venators are a famous band of Dogs of War mercenaries whose reputation as the best cavalrymen in all of Tilea exceeds that of even veteran knights of the Empire or some say, even Bretonnia itself. These band of renegades, exiles, and disposed sons of nobles and lords are expert cavalrymen, and like everyone in the company, their leader is also a superb horsemen.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_dog4_lord_0" />
@@ -1161,11 +1161,11 @@
              owner="Hero.tor_dog_clan_hero_miragliano"
              culture="Culture.empire"
              banner_key="11.149.149.8000.8000.764.764.1.0.0.505.28.28.2138.2527.767.767.0.1.0.510.142.28.2138.1214.764.764.0.1.0.510.142.28.2138.1214.764.406.0.1.0.510.142.28.2138.1214.773.1129.0.1.0.426.119.116.216.287.765.969.0.1.89.503.116.116.397.401.764.764.0.1.0.423.126.116.440.401.764.764.1.1.0.304.143.116.224.204.795.813.1.1.-58.304.143.116.224.204.813.823.1.1.-74.304.143.116.224.204.813.839.1.1.-83.103.143.116.224.204.765.744.1.1.19.510.119.116.115.320.596.1005.0.1.157.510.119.116.115.320.937.1003.0.0.202"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FFf3f3f3"
+             color="FFf3f3f3"
+             color2="FF830808"
+             alternative_color="FFf3f3f3"
+             alternative_color2="FF830808"
              text="{=!}The Marksmen of Miragliano are a famous band of Dogs of War mercenaries whoses origins hails from the Tilean city-state of Miragliano as their name implies. Although the use of the crossbow as a weapon of war is far from uncommon in Tilea, very few mercenary companies can hope to match the accuracy and precision of these marksmen.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_dog5_lord_0" />
@@ -1185,11 +1185,11 @@
              owner="Hero.tor_dog_clan_hero_ricco"
              culture="Culture.empire"
              banner_key="11.149.149.8000.8000.764.764.1.0.0.505.28.28.2138.2527.767.767.0.1.0.510.142.28.2138.1214.764.764.0.1.0.510.142.28.2138.1214.764.406.0.1.0.510.142.28.2138.1214.773.1129.0.1.0.503.116.116.397.401.764.764.0.1.0.423.143.116.525.478.764.764.1.1.0.336.143.116.254.232.764.754.1.1.0.304.143.116.357.325.760.742.1.1.0"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FFf1c232"
+             color="FFf1c232"
+             color2="FF830808"
+             alternative_color="FFf1c232"
+             alternative_color2="FF830808"
              text="{=!}Ricco's Republican Guard are a famous band of Dogs of War mercenaries hailing from the great Republican city-state of Remas. The Republican Guard was raised in Remas by a rebellious group of merchants during the time of disastrous famines and widespread revolt that preceded the birth of the Republic.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_empire_dog6_lord_0" />
@@ -1234,11 +1234,11 @@
              settlement_banner_mesh="encounter_flag_f"
              culture="Culture.chaos_culture"
              banner_key="11.143.140.8000.8000.768.788.1.0.-30.315.145.116.399.237.915.764.1.1.-90.315.145.116.399.237.612.775.1.1.89.315.145.116.399.237.652.659.1.1.43.315.145.116.399.237.865.654.1.1.-44.315.145.116.399.237.768.917.1.1.-181.315.145.116.399.237.877.860.1.1.-131.315.145.116.399.237.663.879.1.1.-227.315.145.116.399.237.757.614.1.1.0.500.145.116.538.538.763.766.1.1.0.500.145.116.488.488.765.766.1.1.0.500.145.116.118.118.763.766.1.1.0.500.145.116.103.103.763.766.1.1.0.530.143.143.188.188.974.839.1.1.141.530.143.143.192.192.851.942.1.1.70.520.143.143.53.53.836.839.1.1.-12.520.143.143.53.53.859.861.1.1.-12.520.143.143.53.53.877.873.1.1.-12.423.143.143.233.234.925.927.1.1.48"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FFa1b1ef"
+             color="FFa1b1ef"
+             color2="FFf4d32e"
+             alternative_color="FFa1b1ef"
+             alternative_color2="FFf4d32e"
              text="{=!}Working secretly from the shadows for many years, the disciples of the Cult of the Broken Wheel have long sought the downfall of the Imperial Colleges of Magic. Worshippers of Tzeentch, the Chaos God of magic and forbidden lore, the cultists of the Broken Wheel view the practises of the eight Colleges as a betrayal of the art of sorcery, structuring and controlling the Winds of Magic instead of revelling in the chaotic, untamed nature of their dark arts.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_bw_cultist_lord_0" />
@@ -1258,11 +1258,11 @@
              settlement_banner_mesh="encounter_flag_f"
              culture="Culture.chaos_culture"
              banner_key="11.20.140.8000.8000.768.788.1.0.-30.521.117.12.580.580.765.785.1.1.0.504.89.143.556.591.765.744.1.1.0.503.143.116.166.96.765.785.1.1.0.403.143.116.293.219.765.809.1.1.0"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FF7739a7"
+             color="FF7739a7"
+             color2="FF5aa4ad"
+             alternative_color="FF7739a7"
+             alternative_color2="FF5aa4ad"
              text="{=!}The Cult of Illumination is an underground fraternal organization that works for the good of its members and the advancement of their lives and careers. This sect of enormously powerful individuals in both politics and the arts commit heinous acts worshiping the Dark Gods Tzeentch and Slaanesh. The cult works for clear purposes: power, money, and fame. Everyone in the innermost circle is well known to the Imperial public in their normal lives, but it is unknown to the majority of members who the Circle members are. Many members have risen to prominence in the Empire through the machinations of the Cult and those that openly oppose it rarely survive the experience. Within the cult's brotherhood are the aspiring, the famous, and the infamous of both the political world and the artistic world, combining efforts to raise the notoriety of all involved and to continue the legacy of the Cult.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_coi_cultist_lord_0" />
@@ -1282,11 +1282,11 @@
              settlement_banner_mesh="encounter_flag_f"
              culture="Culture.chaos_culture"
              banner_key="11.2.140.8000.8000.768.788.1.0.-30.510.143.116.381.393.764.764.1.1.-90.504.143.116.180.148.764.540.1.1.1.510.143.116.381.393.718.807.1.1.43.504.143.116.180.148.574.941.1.1.134.510.143.116.381.393.809.793.1.1.144.504.143.116.180.148.977.919.1.1.235.414.143.116.360.393.750.765.1.1.-201"
-             label_color="FFAC5F2E"
-             color="FFAC5F2E"
-             color2="FFAC5F2E"
-             alternative_color="FFAC5F2E"
-             alternative_color2="FFAC5F2E"
+             label_color="FF284e19"
+             color="FF284e19"
+             color2="FFdcac46"
+             alternative_color="FF284e19"
+             alternative_color2="FFdcac46"
              text="{=!}One of the most influential Chaos Cults to worship Nurgle is the Fraternity of the Second Flesh. This secret organisation plots to drown the Empire in a morass of squalor and disease, preparing for the End Times when the entire world will fall to Chaos. The Fraternity consists of a group of aristocrats who secretly convene to worship Nurgle at a hidden temple in the sewers beneath a leper hospice in Altdorf. The cult believes that when the End Times arrive, the Plague Lord will re-clothe each of them in the flesh of an immortal Plaguebearer in an event they call the Transfiguration.">
         <minor_faction_character_templates>
             <template id="NPCCharacter.tor_fsf_cultist_lord_0" />
