@@ -635,6 +635,12 @@
 			<meta_mesh_component name="magic_sphere_water"/>
 		</components>
 	</game_entity>
+	<game_entity name="ethereal_dome_large" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="6.0, 6.0, 6.0"/>
+		<components>
+			<meta_mesh_component name="magic_sphere_water"/>
+		</components>
+	</game_entity>
 	<game_entity name="dwellers_below_ground" old_prefab_name="">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>

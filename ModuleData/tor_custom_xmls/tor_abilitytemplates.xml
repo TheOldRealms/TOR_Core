@@ -2349,7 +2349,7 @@
       LightFlickeringMagnitude="0" 
       LightFlickeringInterval="0" 
       ShadowCastEnabled="false" 
-      ParticleEffectPrefab="ethereal_dome" 
+      ParticleEffectPrefab="ethereal_dome_large" 
       ParticleEffectSizeModifier="0" 
       SoundEffectToPlay="none" 
       ShouldSoundLoopOverDuration="false"
