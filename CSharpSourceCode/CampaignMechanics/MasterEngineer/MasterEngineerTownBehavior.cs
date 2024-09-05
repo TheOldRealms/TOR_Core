@@ -454,7 +454,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void checkplayerengineerskillrequirements()
         {
-            if (Hero.MainHero.GetSkillValue(DefaultSkills.Engineering) >= 50) _playerIsSkilledEnough = true;
+            if (Hero.MainHero.GetSkillValue(DefaultSkills.Engineering) >= 0) _playerIsSkilledEnough = true;
             else
             {
                 _playerIsSkilledEnough = false;
