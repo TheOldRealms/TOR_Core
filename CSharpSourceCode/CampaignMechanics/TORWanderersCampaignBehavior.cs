@@ -36,9 +36,32 @@ namespace TOR_Core.CampaignMechanics
             //Seems only to happen when a hero joins the player not anywhere else
             if (hero.IsWanderer)
             {
-                if (hero.Culture.StringId == TORConstants.Cultures.SYLVANIA || hero.Culture.StringId == "mousillon")
+                
+                var shallyaLevel = hero.GetTraitLevel(TORCharacterTraits.ShallyaDevoted);
+                if(shallyaLevel > 0)
                 {
-                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60, false);
+                    var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_shallya");
+                    hero.AddReligiousInfluence(religion, 30, false);
+                }
+                var sigmarLevel = hero.GetTraitLevel(TORCharacterTraits.SigmarDevoted);
+                if(sigmarLevel > 0)
+                {
+
+                    var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar");
+                    hero.AddReligiousInfluence(religion, 30, false);
+                }
+                var ulricLevel = hero.GetTraitLevel(TORCharacterTraits.UlricDevoted);
+                if(ulricLevel > 0)
+                {
+                    var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric");
+                    hero.AddReligiousInfluence(religion, 30, false);
+                }
+                
+                var nagashLevel = hero.GetTraitLevel(TORCharacterTraits.NagashCorrupted);
+                if(nagashLevel > 0)
+                {
+                    var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
+                    hero.AddReligiousInfluence(religion, 30, false);
                 }
             }
         }

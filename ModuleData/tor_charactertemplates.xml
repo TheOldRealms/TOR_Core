@@ -41,6 +41,7 @@
       <Trait id="Calculating" value="1" />
       <Trait id="Mercy" value="3" />
       <Trait id="Valor" value="1" />
+      <Trait id="SigmarDevoted" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_warrior_priest_template" />
@@ -60,10 +61,11 @@
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
       <Trait id="RogueSkills" value="3" />
-      <Trait id="WoodsScoutSkills" value="3" />
+      <Trait id="ScoutSkills" value="3" />
       <Trait id="Calculating" value="3" />
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
+      <Trait id="Gunner" value="4" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_witch_hunter_template" />
@@ -129,12 +131,14 @@
       </beard_tags>
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="3" />
-      <Trait id="EngineerSkills" value="3" />
-      <Trait id="Blacksmith" value="3" />
+      <Trait id="BalancedFightingSkills" value="1" />
+      <Trait id="Manager" value="6" />
+      <Trait id="EngineerSkills" value="7" />
+      <Trait id="Blacksmith" value="4" />
       <Trait id="Calculating" value="-1" />
       <Trait id="Mercy" value="1" />
       <Trait id="Valor" value="1" />
+      <Trait id="Gunner" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_qnpc_masterengineer_template" />
@@ -150,7 +154,8 @@
       <Trait id="Surgeon" value="8" />
       <Trait id="Calculating" value="1" />
       <Trait id="Mercy" value="5" />
-      <Trait id="Valor" value="1" />
+      <Trait id="Valor" value="7" />
+      <Trait id="ShallyaDevoted" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_priestess_of_shallya_template" />
@@ -163,7 +168,7 @@
     </face>
     <Traits>
       <Trait id="ArcherFIghtingSkills" value="8" />
-      <Trait id="WoodsScoutSkills" value="6" />
+      <Trait id="ScoutSkills" value="6" />
       <Trait id="RogueSkills" value="3" />
       <Trait id="Valor" value="1" />
       <Trait id="Honor" value="1" />
@@ -192,6 +197,7 @@
       <Trait id="Mercy" value="1" />
       <Trait id="Valor" value="1" />
       <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="Blacksmith" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gold_wizard_template" />
@@ -254,6 +260,7 @@
       <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="1" />
+      <Trait id="NagashCorrupted" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_fallen_knight" />
@@ -278,6 +285,7 @@
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
       <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="NagashCorrupted" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_necromancer_template" />
@@ -302,6 +310,7 @@
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
       <Trait id="SpellCasterSkills" value="7" />
+      <Trait id="NagashCorrupted" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_necromancer_template" />
@@ -326,6 +335,7 @@
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
       <Trait id="SpellCasterSkills" value="5" />
+      <Trait id="NagashCorrupted" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_generic_vampire_template" />
@@ -342,6 +352,7 @@
       <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
+      <Trait id="NagashCorrupted" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_wight_king_template" />
@@ -360,6 +371,7 @@
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
       <Trait id="SpellCasterSkills" value="5" />
+      <Trait id="NagashCorrupted" value="7" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_vc_lahmian_countess_template" />
@@ -394,6 +406,7 @@
       <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
+      <Trait id="ScoutSkills" value="4" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_glade_captain_template" />
@@ -405,11 +418,13 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="BalancedFightingSkills" value="3" />
       <Trait id="Commander" value="5" />
       <Trait id="Calculating" value="5" />
       <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
+      <Trait id="ScoutSkills" value="6" />
+      <Trait id="ArcherFIghtingSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_we_waywatcher_template" />
@@ -421,11 +436,13 @@
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="BalancedFightingSkills" value="3" />
       <Trait id="Commander" value="5" />
       <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
       <Trait id="Valor" value="-1" />
+      <Trait id="RogueSkills" value="-1" />
+      <Trait id="ScoutSkills" value="7" />
+      <Trait id="ArcherFIghtingSkills" value="3" />
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_eo_ghoststrider_template" />
