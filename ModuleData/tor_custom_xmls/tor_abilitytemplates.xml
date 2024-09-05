@@ -2070,8 +2070,8 @@
 	<AbilityTemplate StringID="Apotheosis" 
 	Name="{=apotheosis_label_str}Apotheosis"
 	SpriteName="apoteosis_icon"
-	CoolDown="10"
-	WindsOfMagicCost="6"
+	CoolDown="25"
+	WindsOfMagicCost="7"
 	BaseMisCastChance="0.05"
 	Duration="12"
 	Radius="3"
@@ -2096,11 +2096,11 @@
 	Offset="0.5"
 	AbilityTargetType="AlliesInAOE"
 	TargetCapturingRadius="4"
-	MaxDistance="20"
+	MaxDistance="25"
 	CrosshairType="TargetedAOE"
-	SpellTier="3"
+	SpellTier="2"
 	BelongsToLoreID="HighMagic"
-	TooltipDescription="{=regrowth_description_str}Invoking the name of Duthandor, lord of the ancient wildshrines, the wizard mends wounds and broken bones of his comrades. Allies in a 3 meter radius gain 5 HP per second for 12 seconds.">
+	TooltipDescription="{=apotheosis_description_str}The wizard infuses and invigorates his allies with pure magical energies.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2115,7 +2115,7 @@
       Name="{=fiery_convocation_label_str}Fiery Convocation"
       SpriteName="fiery_convocation_icon"
       CoolDown="70"
-      WindsOfMagicCost="0"
+      WindsOfMagicCost="35"
       BaseMisCastChance="0.05"
       Duration="5"
       Radius="8"
@@ -2140,11 +2140,11 @@
       Offset="0.5"
       AbilityTargetType="EnemiesInAOE"
       TargetCapturingRadius="4"
-      MaxDistance="50"
+      MaxDistance="30"
       CrosshairType="SingleTarget"
       SpellTier="4"
       BelongsToLoreID="HighMagic"
-      TooltipDescription="{=armor_of_righteousness_description_str}The priest roars with a grand prayer and calls freezing blast of blue flames to cleanse a targeted area of cowards and weaklings. Affected enemies take damage, suffer a -50% movement and attack speed penalty as well as damage over time.">
+      TooltipDescription="{=fiery_convocation_description_str}Utter one secret word, and your foes shall burst with fire and flame. Deals large damage as well as damage over time in the area.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2185,7 +2185,7 @@
       AbilityTargetType="WorldPosition"
       SpellTier="3"
       BelongsToLoreID="HighMagic"
-      TooltipDescription="{=comet_of_sigmar_description_str}You throw a fiery missile that takes the form of Sigmar’s famed twin-tailed comet. A comet of Sigmar is a holy missile dealing 30 damage. It can knock units down, or throw them off horse. Only affects enemies">
+      TooltipDescription="{=soul_quench_description_str}A brilliant sphere of light emerges from the wizard's fingertips. Enemies affected suffer medium damage.">
 		<LightColorRGB x="245" y="247" z="129" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2199,7 +2199,7 @@
       Name="{=courage_of_aenarion_label_str}Courage of Aenarion"
       SpriteName="courage_of_aenarion_icon"
       CoolDown="60"
-      WindsOfMagicCost="30"
+      WindsOfMagicCost="17"
       BaseMisCastChance="0.05"
       Duration="10"
       Radius="6"
@@ -2223,12 +2223,12 @@
       AnimationActionName="act_release_heavy_thrown"
       Offset="0.5"
       AbilityTargetType="AlliesInAOE"
-      TargetCapturingRadius="4"
-      MaxDistance="20"
+      TargetCapturingRadius="7"
+      MaxDistance="2"
       CrosshairType="TargetedAOE"
       SpellTier="2"
       BelongsToLoreID="HighMagic"
-      TooltipDescription="{=ladys_favour_description_str}The Damsel conjures a vision of the Lady of the Lake to guide Bretonnians into the frey. Grants 25% attack speed bonus in a radius.">
+      TooltipDescription="{=courage_of_aenarion_description_str}The Elf mage channels all eight Winds of Magic and invokes the name of Aenarion, the first of Phoenix Kings. Allies around the wizard strike with greater frequency.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2239,10 +2239,10 @@
 	</AbilityTemplate>
 	
 	<AbilityTemplate StringID="CurseOfArrowAttraction"
-      Name="{=curse_of_years_label_str}Curse of Arrow Attraction"
+      Name="{=curse_of_arrowattraction_label_str}Curse of Arrow Attraction"
       SpriteName="curse_of_arrowattraction_icon"
       CoolDown="30"
-      WindsOfMagicCost="12"
+      WindsOfMagicCost="13"
       BaseMisCastChance="0.05"
       Duration="2"
       Radius="20"
@@ -2267,11 +2267,11 @@
       Offset="0.0"
       AbilityTargetType="EnemiesInAOE"
       TargetCapturingRadius="4"
-      MaxDistance="50"
+      MaxDistance="30"
       CrosshairType="TargetedAOE"
       SpellTier="3"
       BelongsToLoreID="HighMagic"
-      TooltipDescription="{=curse_of_years_description_str}The caster utters an ancient curse, which causes the foe to age at a horrific rate. Reduces enemy attack and movement speed by 50% for 15 seconds.">
+      TooltipDescription="{=curse_of_arrowattraction_description_str}The Mage places a curse in the area - the air around enemies distorts and guides allied projectiles with astounding accuracy.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2283,10 +2283,10 @@
 	
 	
 	<AbilityTemplate StringID="Tempest" 
-      Name="{=black_horror_label_str}Tempest" 
+      Name="{=tempest_label_str}Tempest" 
       SpriteName="tempest_icon" 
-      CoolDown="40" 
-      WindsOfMagicCost="30" 
+      CoolDown="60" 
+      WindsOfMagicCost="35" 
       BaseMisCastChance="0.3" 
       Duration="8" 
       Radius="2" 
@@ -2311,15 +2311,15 @@
       Offset="0.0"
       AbilityTargetType="GroundAtPosition"
       CrosshairType="TargetedAOE"
-      MinDistance="10"
-      MaxDistance="45"
+      MinDistance="5"
+      MaxDistance="20"
       TargetCapturingRadius="6"
       MaxRandomDeviation="2"
       ShouldRotateVisuals="true"
       VisualsRotationVelocity="30"
       SpellTier="4"
       BelongsToLoreID="HighMagic"
-      TooltipDescription="{=black_horror_description_str}The caster tears down the walls between realities, and a black cloud of roiling energy sweeps across the battlefield. As the darkness travels, slimy tentacles lash out from its depths, draggin unfortunate victims screaming to an unknown fate.">
+      TooltipDescription="{=tempest_description_str}Conjures a brilliant vortex of shimmering light containing all eight colors of Winds of Magic.">
 		<LightColorRGB x="255" y="170" z="0" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -2333,8 +2333,8 @@
 	<AbilityTemplate StringID="ShieldOfSaphery" 
       Name="{=shield_of_saphery_label_str}Shield of Saphery" 
       SpriteName="shield_of_saphery_icon" 
-      CoolDown="120" 
-      WindsOfMagicCost="0" 
+      CoolDown="30" 
+      WindsOfMagicCost="12" 
       BaseMisCastChance="0.05" 
       Duration="45" 
       Radius="8" 
@@ -2359,11 +2359,11 @@
       Offset="0"
       AbilityTargetType="AlliesInAOE"
       CrosshairType="TargetedAOE"
-	  MaxDistance="50"
-      TargetCapturingRadius="8"
+	  MaxDistance="40"
+      TargetCapturingRadius="4"
       SpellTier="3"
       BelongsToLoreID="HighMagic"
-      TooltipDescription="{=aerial_shield_description_str}Power of the Lady causes enemy missiles to vanish mid-air. Grants 90% ranged physical resistance in a radius.">
+      TooltipDescription="{=shield_of_saphery_description_str}The caster summons an ethereal dome to protect his allies from ranged fire.">
 		<LightColorRGB x="255" y="255" z="255" w="-1">
 			<AsVec2>
 				<x>255</x>
@@ -3790,7 +3790,7 @@
       LightFlickeringInterval="0.7" 
       ShadowCastEnabled="true" 
       ParticleEffectPrefab="" 
-	  MaxDistance="20"
+	  MaxDistance="30"
       ParticleEffectSizeModifier="1" 
       SoundEffectToPlay="evilbolt_cast" 
       ShouldSoundLoopOverDuration="false" 
