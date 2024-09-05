@@ -375,6 +375,20 @@ namespace TOR_Core.CharacterDevelopment
             
             var explainedNumber = new ExplainedNumber(chargeValue);
             
+            if(chargeType == ChargeType.Healed)
+                explainedNumber.AddFactor(-0.25f);
+            
+            if((mask == AttackTypeMask.Spell))
+            {
+                if (affectingAgent.IsMainAgent)
+                {
+                    if (affectingAgent.GetComponent<AbilityComponent>().CareerAbility.IsOnCooldown())
+                    {
+                        return 0;
+                    }
+                }
+            }
+            
             if (affectingAgent.IsMainAgent)
             {
                 switch (mask)

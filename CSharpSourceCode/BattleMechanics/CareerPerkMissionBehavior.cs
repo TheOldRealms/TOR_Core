@@ -1,11 +1,14 @@
+using System.Linq;
 using System.Windows.Input;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Scripts;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
@@ -111,6 +114,30 @@ namespace TOR_Core.BattleMechanics
             {
                 CareerMissionVariables[0] = Mathf.Max(0, CareerMissionVariables[0] - 0.10f);
             }
+
+            if (Mission.Current.IsSiegeBattle)
+            {
+                if (!Mission.Current.IsMissionEnding)
+                {
+                    if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.GreyLord))
+                    {
+                        if (Mission.Current.Teams.PlayerEnemy.ActiveAgents.Count == 0)
+                        {
+                            var agents = Mission.Current.PlayerTeam.ActiveAgents.WhereQ(x => x.HasAttribute("FellfangMark")).ToList();
+
+                            for (int i = agents.Count - 1; i >= 0; i--)
+                            {
+                                
+                                agents[i].ApplyDamage(2000,agents[i].Position);
+                            }
+               
+                        }
+                    }
+                }
+                
+            }
+            
+            
         }
 
         public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
@@ -243,6 +270,8 @@ namespace TOR_Core.BattleMechanics
                 {
                     if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicKeystone"))
                     {
+                        if(Agent.Main==null)
+                            return;
                         var effect = TriggeredEffectManager.CreateNew("apply_fellfang_explosion");
                         effect.Trigger(affectedAgent.Position,Vec3.Up,Agent.Main, Agent.Main.GetCareerAbility().Template);
                     }
