@@ -4838,6 +4838,25 @@
     	</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="sea_raiders"
+			 name="{=!}Norscan Raiders"
+			 bandit_chief="NPCCharacter.tor_bandit_norscan_marauder"
+			 bandit_raider="NPCCharacter.tor_bandit_norscan_whaler"
+			 bandit_bandit="NPCCharacter.tor_bandit_norscan_raider"
+			 bandit_boss="NPCCharacter.tor_bandit_norscan_champion"
+			 elite_basic_troop="NPCCharacter.tor_bandit_norscan_marauder"
+			 basic_troop="NPCCharacter.tor_bandit_norscan_raider"
+			 is_bandit="true"
+			 can_have_settlement="true"
+			 encounter_background_mesh="bandit_encounter_background"
+			 bandit_boss_party_template="PartyTemplate.norscan_sea_raider_bandit_party" >
+		<banner_bearer_replacement_weapons>
+			<item id="Item.vlandia_sword_1_t2" />
+			<item id="Item.vlandia_sword_2_t3" />
+			<item id="Item.vlandia_sword_3_t4" />
+			<item id="Item.vlandia_sword_5_t5" />
+    	</banner_bearer_replacement_weapons>
+	</Culture>
+	<Culture id="desert_bandits"
 			 name="{=!}Herrimaults"
 			 bandit_chief="NPCCharacter.tor_br_bandit_leader"
 			 bandit_raider="NPCCharacter.tor_br_bandit_scout"

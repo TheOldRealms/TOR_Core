@@ -4130,7 +4130,7 @@
       <EquipmentSet id="tor_empire_deserter_scout_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bandit" default_group="infantry" level="11" name="{=str_tor_br_bandit}Hood" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+  <NPCCharacter id="tor_br_bandit" default_group="ranged" level="11" name="{=str_tor_br_bandit}Hood" occupation="Bandit" culture="Culture.desert_bandit" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -4143,7 +4143,7 @@
       <EquipmentSet id="tor_br_bandit_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bandit_leader" default_group="infantry" level="16" name="{=str_tor_br_bandit_leader}Herrimault" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_br_bandit_leader" default_group="ranged" level="16" name="{=str_tor_br_bandit_leader}Herrimault" occupation="Bandit" culture="Culture.desert_bandit" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -4153,7 +4153,7 @@
       <EquipmentSet id="tor_br_bandit_leader_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bandit_scout" default_group="ranged" level="16" name="{=str_tor_br_bandit_scout}Thief" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_br_bandit_scout" default_group="infantry" level="16" name="{=str_tor_br_bandit_scout}Thief" occupation="Bandit" culture="Culture.desert_bandit" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -4161,6 +4161,51 @@
     <Equipments>
       <EquipmentSet id="tor_br_bandit_scout_template" />
       <EquipmentSet id="tor_br_bandit_scout_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_bandit_norscan_raider" default_group="infantry" level="11" name="{=str_tor_bandit_norscan_raider}Renegate Norscan Raider" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_bandit_norscan_marauder" />
+      <upgrade_target id="NPCCharacter.tor_bandit_norscan_whaler" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_norscan_raider_template" />
+      <EquipmentSet id="tor_chaos_norscan_raider_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_bandit_norscan_whaler" default_group="ranged" level="11" name="{=str_tor_bandit_norscan_whaler}Renegate Norscan Whaler" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_chaos_norscan_whaler_template" />
+      <EquipmentSet id="tor_chaos_norscan_whaler_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_bandit_norscan_marauder" default_group="infantry" level="16" name="{=str_tor_bandit_norscan_marauder}Renegate Norscan Marauder" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.undivided_cultist" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_chaos_norscan_champion" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_chaos_norscan_marauder_template" />
+      <EquipmentSet id="tor_chaos_norscan_marauder_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_bandit_norscan_champion" default_group="infantry" level="26" name="{=str_tor_bandit_norscan_champion}Renegate Norscan Marauder Champion" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level26" race="marauder">
+    <face>
+      <face_key_template value="BodyProperty.brute" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_chaos_norscan_champion_template" />
+      <EquipmentSet id="tor_chaos_norscan_champion_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_ti_vittorio" default_group="infantry" level="46" name="{=str_tor_ti_vittorio}Vittorio de Luca" occupation="Special" culture="Culture.empire" skill_template="SkillSet.tor_skills_duelist">

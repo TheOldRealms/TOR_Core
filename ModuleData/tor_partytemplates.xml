@@ -413,6 +413,13 @@
 		  <PartyTemplateStack min_value="1" max_value="4" troop="NPCCharacter.tor_br_bandit_leader" />
 		</stacks>
 	</MBPartyTemplate>
+	<MBPartyTemplate id="norscan_sea_raider_bandit_party" >
+		<stacks>
+		  <PartyTemplateStack min_value="4" max_value="15" troop="NPCCharacter.tor_bandit_norscan_raider" />
+		  <PartyTemplateStack min_value="2" max_value="16" troop="NPCCharacter.tor_bandit_norscan_whaler" />
+		  <PartyTemplateStack min_value="1" max_value="3" troop="NPCCharacter.tor_bandit_norscan_marauder" />
+		</stacks>
+	</MBPartyTemplate>
 	<MBPartyTemplate id="chaos_cultists" >
 		<stacks>
 		  <PartyTemplateStack min_value="6" max_value="36" troop="NPCCharacter.tor_chaos_cult_acolyte" />
