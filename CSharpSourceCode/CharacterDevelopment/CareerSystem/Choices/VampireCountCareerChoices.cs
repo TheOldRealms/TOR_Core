@@ -252,7 +252,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         {
             _newBloodPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             _newBloodPassive2.Initialize(CareerID, "Increases Party size by 25.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize, false));
-            _newBloodPassive3.Initialize(CareerID, "Increases max Winds of Magic by 5.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+            _newBloodPassive3.Initialize(CareerID, "Increases max Winds of Magic by 15.", "NewBlood", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
             _newBloodPassive4.Initialize(CareerID, "Immune to sunlight speed malus.", "NewBlood", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
 
             _feralPassive1.Initialize(CareerID, "10% extra melee damage.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
@@ -260,7 +260,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _feralPassive3.Initialize(CareerID, "Party movement speed is increased by 1.5.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1.5f, PassiveEffectType.PartyMovementSpeed,false));
             _feralPassive4.Initialize(CareerID, "Increases Hitpoints by 25.", "Feral", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
             
-            _arkaynePassive1.Initialize(CareerID, "Increases max Winds of Magic by 10.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _arkaynePassive1.Initialize(CareerID, "Armor weight doesn't affect winds recharge rate", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
             _arkaynePassive2.Initialize(CareerID, "Increases Magical spell damage by 10%.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
             _arkaynePassive3.Initialize(CareerID, "10% extra Magical melee damage.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee));
             _arkaynePassive4.Initialize(CareerID, "10% cost reduction for spells.", "Arkayne", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.WindsCostReduction, true));

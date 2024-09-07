@@ -326,6 +326,11 @@ namespace TOR_Core.Models
 
                 var weightmalus = baseCharacter.Equipment.GetTotalWeightOfArmor(true) / 25;
 
+                if (Hero.MainHero.HasCareerChoice("ArkaynePassive1"))
+                {
+                    weightmalus = 0;
+                }
+
                 explainedNumber.AddFactor(-weightmalus);
             }
             
