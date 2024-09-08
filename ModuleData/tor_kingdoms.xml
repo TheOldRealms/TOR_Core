@@ -115,7 +115,7 @@
              ruler_title="{=!}Emperor"
              text="{=!}The Grand Principality of Reikland is a major and founding Imperial Province. It is located in the southwestern Empire in the centre of the Old World continent. Reikland has been the most important state of the Empire for nearly one hundred years, for it surrounds Altdorf, the current Imperial capital city, and its state armies are those under the command of the Emperor Karl Franz himself.">
         <relationships>
-            <relationship kingdom="Kingdom.wissenland"
+            <relationship kingdom="Kingdom.middenland"
                           value="-1"
                           isAtWar="true" />
         </relationships>
@@ -141,7 +141,11 @@
              title="{=!}Middenland"
              ruler_title="{=!}Elector Count"
              text="{=!}Middenland, officially the Grand Duchies of Middenland and Middenheim, is a founding Electoral Province of the Empire that lies in the north-central region of that realm. Towering above the gloomy canopies of the Drakwald Forest is a sheer-sided pinnacle of white rock atop which sits the fortress city-state of Middenheim, capital of Middenland and the sacred City of the White Wolf. The White Wolf is the holy symbol of Ulric, the Imperial god of war, winter and wolves.">
-        <relationships />
+		<relationships>
+            <relationship kingdom="Kingdom.reikland"
+                          value="-1"
+                          isAtWar="true" />
+        </relationships>
         <policies>
             <policy id="policy_feudal_inheritance" />
         </policies>
