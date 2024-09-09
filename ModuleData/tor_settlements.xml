@@ -4643,7 +4643,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL1" name="{=Settlements.Settlement.name.castle_LL1}Tower of Se-Athil" owner="Faction.laurelorn_clan_3" posX="1215.219" posY="1363.92" culture="Culture.eonir" gate_posX="1213.686" gate_posY="1363.364" text="{=Settlements.Settlement.name.castle_LL1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
+  <Settlement id="castle_LL1" name="{=Settlements.Settlement.name.castle_LL1}Tower of Se-Athil" owner="Faction.laurelorn_clan_3" posX="1215.219" posY="1363.92" culture="Culture.eonir" gate_posX="1213.574" gate_posY="1363.572" text="{=Settlements.Settlement.name.castle_LL1}Located on the border of Montfort, Castle Vingtiennes holds the northern province of Parravon from attack, and overlooks the river Grismerie and Massif Orcal.">
     <Components>
       <Town id="castle_comp_LL1" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="eonir_castle_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4679,7 +4679,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL2" name="{=Settlements.Settlement.name.castle_LL2}Aroth Loren" owner="Faction.laurelorn_clan_4" posX="1280.787" posY="1315.303" culture="Culture.eonir" gate_posX="1284.384" gate_posY="1318.902" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_LL2" name="{=Settlements.Settlement.name.castle_LL2}Aroth Loren" owner="Faction.laurelorn_clan_4" posX="1280.787" posY="1315.303" culture="Culture.eonir" gate_posX="1283.683" gate_posY="1318.795" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_LL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="eonir_castle_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -4702,7 +4702,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_LL3" name="{=Settlements.Settlement.name.castle_LL2}Aroth Hanor" owner="Faction.laurelorn_clan_2" posX="1274.939" posY="1276.186" culture="Culture.eonir" gate_posX="1275.201" gate_posY="1276.275" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
+  <Settlement id="castle_LL3" name="{=Settlements.Settlement.name.castle_LL2}Aroth Hanor" owner="Faction.laurelorn_clan_2" posX="1274.939" posY="1276.186" culture="Culture.eonir" gate_posX="1275.448" gate_posY="1277.376" text="{=Settlements.Settlement.text.castle_MO2}Castle Chambonnay holds the southern border of Parravon from Quenelles, and is the first line of defence from attacks from the south of Bretonnia.">
     <Components>
       <Town id="castle_comp_LL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="eonir_castle_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8266,7 +8266,7 @@
   </Settlement>
   <Settlement id="castle_village_AL5_1" name="{=Settlements.Settlement.name.castle_village_AL5_1}Delliandra" posX="1197.172" posY="912.298" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Weissbruck sits on the joining of the Weissbruck Canal and the river Bӧgen. The town once was a major source of coal and iron in the Reikland, the mining of which provided the Gruber family with enough funds to construct the Weissbruck Canal, which enabled easier transportation of the mined material to market. Now the mines have mostly been depleted and while the town continues to have prosperous ventures in trade thanks to the canal, the many former workers of the mine have found themselves unemployed and stuck in Weissbruck, where they spend their time drinking cheap alcohol and causing trouble.">
     <Components>
-      <Village id="castle_village_comp_AL5_1" village_type="VillageType.wheat_farm" hearth="200"  bound="Settlement.castle_AL5" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="castle_village_comp_AL5_1" village_type="VillageType.wheat_farm" hearth="200" bound="Settlement.castle_AL5" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
@@ -8807,7 +8807,7 @@
       <Hideout id="hideout_beastmen_32" map_icon="bandit_hideout_a" scene_name="TOR_beastman_hideout_02" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_beastmen_33" name="{=Settlements.Settlement.name.hideout_beastmen_29}Ungor Camp" type="Hideout" posX="1217.328" posY="902.299" culture="Culture.steppe_bandits">
+  <Settlement id="hideout_beastmen_33" name="{=Settlements.Settlement.name.hideout_beastmen_29}Ungor Camp" type="Hideout" posX="1217.538" posY="903.205" culture="Culture.steppe_bandits">
     <Components>
       <Hideout id="hideout_beastmen_33" map_icon="bandit_hideout_a" scene_name="TOR_beastman_hideout_01" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
