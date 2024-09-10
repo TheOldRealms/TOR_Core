@@ -4130,7 +4130,7 @@
       <EquipmentSet id="tor_empire_deserter_scout_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bandit" default_group="ranged" level="11" name="{=str_tor_br_bandit}Hood" occupation="Bandit" culture="Culture.desert_bandit" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+  <NPCCharacter id="tor_br_bandit" default_group="ranged" level="11" name="{=str_tor_br_bandit}Hood" occupation="Bandit" culture="Culture.desert_bandits" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -4143,7 +4143,7 @@
       <EquipmentSet id="tor_br_bandit_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bandit_leader" default_group="ranged" level="16" name="{=str_tor_br_bandit_leader}Herrimault" occupation="Bandit" culture="Culture.desert_bandit" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_br_bandit_leader" default_group="ranged" level="16" name="{=str_tor_br_bandit_leader}Herrimault" occupation="Bandit" culture="Culture.desert_bandits" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.brute" />
     </face>
@@ -4153,7 +4153,7 @@
       <EquipmentSet id="tor_br_bandit_leader_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_br_bandit_scout" default_group="infantry" level="16" name="{=str_tor_br_bandit_scout}Thief" occupation="Bandit" culture="Culture.desert_bandit" skill_template="SkillSet.tor_skills_level16">
+  <NPCCharacter id="tor_br_bandit_scout" default_group="infantry" level="16" name="{=str_tor_br_bandit_scout}Thief" occupation="Bandit" culture="Culture.desert_bandits" skill_template="SkillSet.tor_skills_level16">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
