@@ -26,11 +26,14 @@ namespace TOR_Core.Utilities
         private const int RequiredBannerPosCount = 2;
         private const int RequiredBreachableWallCount = 2;
 
+        private int _lastFaceIndexChecked = 0;
+
         private static string SettlementsXmlPath => TORPaths.TORCoreModuleDataPath + "tor_settlements.xml";
         private static string SettlementsDistanceCacheFilePath => TORPaths.TORCoreModuleDataPath + "settlements_distance_cache.bin";
 
         public SimpleButton CheckPositions;
         public SimpleButton CheckSiegeEntities;
+        public SimpleButton CheckNavMesh;
         public SimpleButton SavePositions;
         public SimpleButton ComputeAndSaveSettlementDistanceCache;
 
@@ -47,6 +50,10 @@ namespace TOR_Core.Utilities
             {
                 DoCheckSiegeEntities();
             }
+            if (variableName == "CheckNavMesh")
+            {
+                DoCheckNavMesh();
+            }
             if (variableName == "ComputeAndSaveSettlementDistanceCache")
             {
                 SaveSettlementDistanceCache();
@@ -54,6 +61,36 @@ namespace TOR_Core.Utilities
             if (variableName == "CheckPositions")
             {
                 CheckSettlementPositions();
+            }
+        }
+
+        [HandleProcessCorruptedStateExceptions]
+        [SecurityCritical]
+        private void DoCheckNavMesh()
+        {
+            _lastFaceIndexChecked = 0;
+            try
+            {
+                int navMeshFaceCount = Scene.GetNavMeshFaceCount();
+                for(int i = 0; i < navMeshFaceCount; i++)
+                {
+                    _lastFaceIndexChecked++;
+                    Vec3 centerOfNavMeshFaceVec3 = Vec3.Zero;
+                    Scene.GetNavMeshCenterPosition(i, ref centerOfNavMeshFaceVec3);
+
+                    PathFaceRecord pathFaceRecord = new(-1, -1, -1);
+                    Scene.GetNavMeshFaceIndex(ref pathFaceRecord, centerOfNavMeshFaceVec3.AsVec2, false, false);
+
+                    if (!pathFaceRecord.IsValid())
+                    {
+                        TORCommon.Say($"Invalid navmesh face found at {centerOfNavMeshFaceVec3.AsVec2}");
+                    }
+                }
+                TORCommon.Say("No navmesh issues found.");
+            }
+            catch (Exception ex) 
+            {
+                TORCommon.Say($"Navmesh face with index: {_lastFaceIndexChecked} has no center position!");
             }
         }
 

@@ -57,18 +57,18 @@
         <equipment slot="Body" id="Item.cloth_apron" />
         <equipment slot="Leg" id="Item.battania_leather_boots" />
         <equipment slot="Cape" id="Item.rough_bearskin" />
-        <equipment slot="Head" id="Item.empire_hat_002" />
+        <equipment slot="Head" id="Item.tor_empire_head_helm_hunter_001" />
       </EquipmentRoster>
       <EquipmentRoster civilian="true">
         <equipment slot="Item0" id="Item.short_sword_t3" />
         <equipment slot="Body" id="Item.merchants_fur_coat" />
-        <equipment slot="Head" id="Item.empire_hat_002" />
+        <equipment slot="Head" id="Item.tor_empire_head_helm_hunter_001" />
         <equipment slot="Leg" id="Item.battania_leather_boots" />
       </EquipmentRoster>
       <EquipmentRoster>
         <equipment slot="Item0" id="Item.short_sword_t3" />
         <equipment slot="Body" id="Item.merchants_fur_coat" />
-        <equipment slot="Head" id="Item.empire_hat_002" />
+        <equipment slot="Head" id="Item.tor_empire_head_helm_hunter_001" />
         <equipment slot="Leg" id="Item.battania_leather_boots" />
       </EquipmentRoster>
     </Equipments>
