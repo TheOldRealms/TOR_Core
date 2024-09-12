@@ -62,7 +62,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             if (_markerEntity == null) CreateVisuals();
             if (_markerEntity != null)
             {
-                MatrixFrame frame = PartyVisualManager.Current.GetVisualOfParty(Settlement.Party).CircleLocalFrame;
+                MatrixFrame frame = new MatrixFrame(Mat3.Identity, PartyVisualManager.Current.GetVisualOfParty(Settlement.Party).GetVisualPosition());
                 frame.Scale(new Vec3(32, 32, 1));
                 _markerEntity.SetGlobalFrame(frame);
                 _markerDecal.SetFactor1Linear(4281663744U);
