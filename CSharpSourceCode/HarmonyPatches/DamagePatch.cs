@@ -200,7 +200,7 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
-            if (attackTypeMask == AttackTypeMask.Ranged && attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            if (attackTypeMask == AttackTypeMask.Ranged && attacker.IsMainAgent && Campaign.Current!=null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
                 if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
                 {
