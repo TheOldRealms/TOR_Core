@@ -7870,7 +7870,7 @@
       <Village id="village_comp_AL1_3" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL1" bound="Settlement.town_AL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
+      <Location id="village_center" scene_name="TOR_wood_elf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -7975,7 +7975,7 @@
       <Village id="village_comp_AL3_2" village_type="VillageType.iron_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL3" bound="Settlement.town_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
+      <Location id="village_center" scene_name="TOR_wood_elf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -7988,7 +7988,7 @@
       <Village id="village_comp_AL3_3" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL3" bound="Settlement.town_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
+      <Location id="village_center" scene_name="TOR_wood_elf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
@@ -8164,7 +8164,7 @@
       <Village id="castle_village_comp_AL1_1" village_type="VillageType.iron_mine" hearth="200" trade_bound="Settlement.town_AL6" bound="Settlement.castle_AL1" background_crop_position="0.0" background_mesh="we_village" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
-      <Location id="village_center" scene_name="TOR_wood_elf_village_01" />
+      <Location id="village_center" scene_name="TOR_wood_elf_village_02" />
     </Locations>
     <CommonAreas>
       <Area type="Pasture" name="{=fOUsLdZR}Pasture" />
