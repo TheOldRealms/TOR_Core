@@ -20,6 +20,7 @@ namespace TOR_Core.BattleMechanics.Morale
         private int _ignoreFirstFewEventsNum = -1;
         private int _ignoreEventCurrentCount = 0;
         private bool _battleEnded;
+        private bool _deploymentFinished;
 
         public override void OnTeamDeployed(Team team)
         {
@@ -30,6 +31,11 @@ namespace TOR_Core.BattleMechanics.Morale
                 _playerOrderController.OnOrderIssued += OnOrderIssued;
                 _playerOrderController.OnSelectedFormationsChanged += OnSelectedFormationsChanged;
             }
+        }
+
+        public override void OnDeploymentFinished()
+        {
+            _deploymentFinished = true;
         }
 
         public override void OnBattleEnded()
@@ -57,7 +63,7 @@ namespace TOR_Core.BattleMechanics.Morale
 
         private void OnSelectedFormationsChanged()
         {
-            if (_battleEnded) return;
+            if (_battleEnded || !_deploymentFinished) return;
             if(_ignoreEventCurrentCount > _ignoreFirstFewEventsNum)
             {
                 foreach (var formation in _playerOrderController.SelectedFormations)
@@ -87,7 +93,7 @@ namespace TOR_Core.BattleMechanics.Morale
 
         private void OnOrderIssued(OrderType orderType, TaleWorlds.Library.MBReadOnlyList<Formation> appliedFormations, OrderController orderController, params object[] delegateParams)
         {
-            if (_battleEnded) return;
+            if (_battleEnded || !_deploymentFinished) return;
             if (_ignoreEventCurrentCount > _ignoreFirstFewEventsNum)
             {
                 foreach (var formation in appliedFormations)
@@ -119,99 +125,54 @@ namespace TOR_Core.BattleMechanics.Morale
 
         private SkinVoiceType GetVoiceType(OrderType orderType)
         {
-            switch (orderType)
+            return orderType switch
             {
-                case OrderType.None:
-                    return VoiceType.Idle;
-                case OrderType.Move:
-                    return VoiceType.Move;
-                case OrderType.MoveToLineSegment:
-                    return VoiceType.Move;
-                case OrderType.MoveToLineSegmentWithHorizontalLayout:
-                    return VoiceType.Move;
-                case OrderType.Charge:
-                    return VoiceType.Charge;
-                case OrderType.ChargeWithTarget:
-                    return VoiceType.Charge;
-                case OrderType.StandYourGround:
-                    return VoiceType.Focus;
-                case OrderType.FollowMe:
-                    return VoiceType.Follow;
-                case OrderType.FollowEntity:
-                    return VoiceType.Follow;
-                case OrderType.GuardMe:
-                    return VoiceType.Follow;
-                case OrderType.Retreat:
-                    return VoiceType.Retreat;
-                case OrderType.AdvanceTenPaces:
-                    return VoiceType.Advance;
-                case OrderType.FallBackTenPaces:
-                    return VoiceType.FallBack;
-                case OrderType.Advance:
-                    return VoiceType.Advance;
-                case OrderType.FallBack:
-                    return VoiceType.FallBack;
-                case OrderType.LookAtEnemy:
-                    return VoiceType.FaceEnemy;
-                case OrderType.LookAtDirection:
-                    return VoiceType.FaceDirection;
-                case OrderType.ArrangementLine:
-                    return VoiceType.FormLine;
-                case OrderType.ArrangementCloseOrder:
-                    return VoiceType.FormShieldWall;
-                case OrderType.ArrangementLoose:
-                    return VoiceType.FormLoose;
-                case OrderType.ArrangementCircular:
-                    return VoiceType.FormCircle;
-                case OrderType.ArrangementSchiltron:
-                    return VoiceType.FormSkein;
-                case OrderType.ArrangementVee:
-                    return VoiceType.FormSkein;
-                case OrderType.ArrangementColumn:
-                    return VoiceType.FormColumn;
-                case OrderType.ArrangementScatter:
-                    return VoiceType.FormScatter;
-                case OrderType.FormCustom:
-                    return VoiceType.Move;
-                case OrderType.FormDeep:
-                    return VoiceType.Move;
-                case OrderType.FormWide:
-                    return VoiceType.Move;
-                case OrderType.FormWider:
-                    return VoiceType.Move;
-                case OrderType.CohesionHigh:
-                    return VoiceType.Move;
-                case OrderType.CohesionMedium:
-                    return VoiceType.Move;
-                case OrderType.CohesionLow:
-                    return VoiceType.Move;
-                case OrderType.HoldFire:
-                    return VoiceType.HoldFire;
-                case OrderType.FireAtWill:
-                    return VoiceType.FireAtWill;
-                case OrderType.RideFree:
-                    return VoiceType.Charge;
-                case OrderType.Mount:
-                    return VoiceType.Mount;
-                case OrderType.Dismount:
-                    return VoiceType.Dismount;
-                case OrderType.AIControlOn:
-                    return VoiceType.Follow;
-                case OrderType.AIControlOff:
-                    return VoiceType.Stop;
-                case OrderType.Transfer:
-                    return VoiceType.Move;
-                case OrderType.Use:
-                    return VoiceType.Advance;
-                case OrderType.AttackEntity:
-                    return VoiceType.AttackGate;
-                case OrderType.PointDefence:
-                    return VoiceType.FormLine;
-                case OrderType.Count:
-                    return VoiceType.Idle;
-                default:
-                    return VoiceType.Idle;
-            }
+                OrderType.None => VoiceType.Idle,
+                OrderType.Move => VoiceType.Move,
+                OrderType.MoveToLineSegment => VoiceType.Move,
+                OrderType.MoveToLineSegmentWithHorizontalLayout => VoiceType.Move,
+                OrderType.Charge => VoiceType.Charge,
+                OrderType.ChargeWithTarget => VoiceType.Charge,
+                OrderType.StandYourGround => VoiceType.Focus,
+                OrderType.FollowMe => VoiceType.Follow,
+                OrderType.FollowEntity => VoiceType.Follow,
+                OrderType.GuardMe => VoiceType.Follow,
+                OrderType.Retreat => VoiceType.Retreat,
+                OrderType.AdvanceTenPaces => VoiceType.Advance,
+                OrderType.FallBackTenPaces => VoiceType.FallBack,
+                OrderType.Advance => VoiceType.Advance,
+                OrderType.FallBack => VoiceType.FallBack,
+                OrderType.LookAtEnemy => VoiceType.FaceEnemy,
+                OrderType.LookAtDirection => VoiceType.FaceDirection,
+                OrderType.ArrangementLine => VoiceType.FormLine,
+                OrderType.ArrangementCloseOrder => VoiceType.FormShieldWall,
+                OrderType.ArrangementLoose => VoiceType.FormLoose,
+                OrderType.ArrangementCircular => VoiceType.FormCircle,
+                OrderType.ArrangementSchiltron => VoiceType.FormSkein,
+                OrderType.ArrangementVee => VoiceType.FormSkein,
+                OrderType.ArrangementColumn => VoiceType.FormColumn,
+                OrderType.ArrangementScatter => VoiceType.FormScatter,
+                OrderType.FormCustom => VoiceType.Move,
+                OrderType.FormDeep => VoiceType.Move,
+                OrderType.FormWide => VoiceType.Move,
+                OrderType.FormWider => VoiceType.Move,
+                OrderType.CohesionHigh => VoiceType.Move,
+                OrderType.CohesionMedium => VoiceType.Move,
+                OrderType.CohesionLow => VoiceType.Move,
+                OrderType.HoldFire => VoiceType.HoldFire,
+                OrderType.FireAtWill => VoiceType.FireAtWill,
+                OrderType.RideFree => VoiceType.Charge,
+                OrderType.Mount => VoiceType.Mount,
+                OrderType.Dismount => VoiceType.Dismount,
+                OrderType.AIControlOn => VoiceType.Follow,
+                OrderType.AIControlOff => VoiceType.Stop,
+                OrderType.Transfer => VoiceType.Move,
+                OrderType.Use => VoiceType.Advance,
+                OrderType.AttackEntity => VoiceType.AttackGate,
+                OrderType.PointDefence => VoiceType.FormLine,
+                OrderType.Count => VoiceType.Idle,
+                _ => VoiceType.Idle,
+            };
         }
 
         private enum ResponseEventType
@@ -227,11 +188,11 @@ namespace TOR_Core.BattleMechanics.Morale
             internal ResponseEventType ResponseEventType;
             internal SkinVoiceType OrderVoiceType;
             internal OrderType OrderType;
-            private Timer _timer;
+            private readonly Timer _timer;
             private bool _selectionResponseTriggered;
             private bool _orderRepeatTriggered;
             private bool _orderResponseTriggered;
-            private Action<ResponseEvent> _onFinishedCallback;
+            private readonly Action<ResponseEvent> _onFinishedCallback;
 
             public ResponseEvent(Action<ResponseEvent> onFinishedCallback)
             {
