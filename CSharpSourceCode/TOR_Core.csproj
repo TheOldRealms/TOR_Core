@@ -686,6 +686,7 @@
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
     <Compile Include="Models\TORAgentApplyDamageModel.cs" />
     <Compile Include="Models\TORAgentStatCalculateModel.cs" />
+    <Compile Include="Models\TORAlleyModel.cs" />
     <Compile Include="Models\TORBanditDensityModel.cs" />
     <Compile Include="Models\TORBattleBannerBearersModel.cs" />
     <Compile Include="Models\TORBattleMoraleModel.cs" />

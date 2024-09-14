@@ -168,6 +168,7 @@ namespace TOR_Core
             if (Game.Current.GameType is Campaign && gameStarterObject is CampaignGameStarter)
             {
                 gameStarterObject.Models.RemoveAllOfType(typeof(DefaultMapDistanceModel));
+                gameStarterObject.Models.RemoveAllOfType(typeof(DefaultAlleyModel));
                 gameStarterObject.AddModel(new TORBattleMoraleModel());
                 gameStarterObject.AddModel(new TOREncounterGameMenuModel());
                 gameStarterObject.AddModel(new TORAgentStatCalculateModel());
@@ -204,6 +205,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORMapVisibilityModel());
                 gameStarterObject.AddModel(new TORTournamentModel());
                 gameStarterObject.AddModel(new TORDiplomacyModel());
+                gameStarterObject.AddModel(new TORAlleyModel());
                 gameStarterObject.AddModel(new TORRaidModel());
                 gameStarterObject.AddModel(new TORBattleBannerBearersModel());
                 gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
