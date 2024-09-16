@@ -119,7 +119,7 @@
 			<PartyTemplateStack min_value="4" max_value="8" troop="NPCCharacter.tor_eo_mounted_kithband_warrior" />
 			<PartyTemplateStack min_value="3" max_value="10" troop="NPCCharacter.tor_eo_mounted_ranger" />
 			<PartyTemplateStack min_value="5" max_value="15" troop="NPCCharacter.tor_eo_ranger" />
-			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_eo_queens_guard_axe" />
+			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_eo_queens_guard_sword" />
 			<PartyTemplateStack min_value="2" max_value="4" troop="NPCCharacter.tor_eo_queens_guard_halberd" />
 		</stacks>
 	</MBPartyTemplate>

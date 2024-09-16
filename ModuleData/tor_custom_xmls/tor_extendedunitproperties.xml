@@ -1336,7 +1336,7 @@
     </DamageProportions>
     <ResourceCost ResourceType="CouncilFavor" UpkeepCost="0" UpgradeCost="25" />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_eo_queens_guard_axe">
+  <CharacterExtendedInfo id="tor_eo_queens_guard_sword">
     <Abilities />
     <Attributes>
       <string>Unbreakable</string>

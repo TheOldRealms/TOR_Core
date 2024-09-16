@@ -1736,7 +1736,7 @@
       </beard_tags>
     </face>
     <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_eo_queens_guard_axe" />
+      <upgrade_target id="NPCCharacter.tor_eo_queens_guard_sword" />
       <upgrade_target id="NPCCharacter.tor_eo_queens_guard_halberd" />
     </upgrade_targets>
     <Equipments>
@@ -1762,7 +1762,7 @@
       <EquipmentSet id="tor_eo_cityborn_council_sentinel_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_queens_guard_axe" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard_axe}Eonir Queens Champion (Axe)" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
+  <NPCCharacter id="tor_eo_queens_guard_sword" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard_sword}Eonir Queens Champion" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
@@ -1774,11 +1774,11 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_eo_queens_guard_axe_template" />
-      <EquipmentSet id="tor_eo_queens_guard_axe_template" civilian="true" />
+      <EquipmentSet id="tor_eo_queens_guard_sword_template" />
+      <EquipmentSet id="tor_eo_queens_guard_sword_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_queens_guard_halberd" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard_halberd}Eonir Queens Champion (Halberd)" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
+  <NPCCharacter id="tor_eo_queens_guard_halberd" default_group="infantry" level="46" name="{=str_tor_eo_queens_guard_halberd}Eonir Queens Defender" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level46" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>
