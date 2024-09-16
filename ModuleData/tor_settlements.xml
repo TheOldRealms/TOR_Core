@@ -4589,9 +4589,9 @@
       <Town id="town_comp_LL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="eonir_town_background" gate_rotation="0.908" prosperity="7500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="city_building_eonir" scene_name_1="TOR_eonir_city_001" scene_name_2="TOR_eonir_city_001" scene_name_3="TOR_eonir_city_001" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
-      <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
+      <Location id="tavern" scene_name="TOR_eonir_tavern_001" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wizard_hall_001_forceatmo" />
