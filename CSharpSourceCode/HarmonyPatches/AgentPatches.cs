@@ -2,12 +2,8 @@ using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterDeveloper;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
@@ -92,7 +88,7 @@ namespace TOR_Core.HarmonyPatches
         public static bool VoiceVariationPatch(Agent __instance, SkinVoiceManager.SkinVoiceType voiceType)
         {
             
-            if (__instance == null || !__instance.IsHuman || __instance.Controller != Agent.ControllerType.Player) return true;
+            if (__instance == null || !__instance.IsHuman || !__instance.IsPlayerControlled) return true;
 
             string className = __instance.Monster.SoundAndCollisionInfoClassName;
             if (className != "human") return true;
@@ -115,12 +111,19 @@ namespace TOR_Core.HarmonyPatches
             {
                 cultureId = agent.GetHero().Culture.StringId;
             }
-            return cultureId == TORConstants.Cultures.BRETONNIA || cultureId == TORConstants.Cultures.EMPIRE || agent.IsVampire();
+            return cultureId == TORConstants.Cultures.BRETONNIA || cultureId == TORConstants.Cultures.EMPIRE || agent.IsVampire() || agent.IsTreeSpirit();
         }
 
         private static int GetRandomVoiceIndexForAgent(Agent agent)
         {
-            if(agent.IsVampire()) return MBRandom.RandomInt(TORConstants.VAMPIRE_VOICE_INDEX_START, TORConstants.VAMPIRE_VOICE_INDEX_START + (TORConstants.VAMPIRE_VOICES_COUNT));
+            if (agent.IsVampire())
+            {
+                return MBRandom.RandomInt(TORConstants.VAMPIRE_VOICE_INDEX_START, TORConstants.VAMPIRE_VOICE_INDEX_START + TORConstants.VAMPIRE_VOICES_COUNT);
+            }
+            if (agent.IsTreeSpirit())
+            {
+                return MBRandom.RandomInt(TORConstants.TREESPIRIT_VOICE_INDEX_START, TORConstants.TREESPIRIT_VOICE_INDEX_START + TORConstants.TREESPIRIT_VOICES_COUNT);
+            }
 
             var cultureId = agent.Character.Culture.StringId;
             if (Game.Current.GameType is Campaign)

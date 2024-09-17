@@ -1706,7 +1706,7 @@
       <EquipmentSet id="tor_eo_cityborn_militia_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_cityborn_guard" default_group="ranged" level="26" name="{=str_tor_eo_cityborn_guard}Eonir Tor Lithanel Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
+  <NPCCharacter id="tor_eo_cityborn_guard" default_group="infantry" level="26" name="{=str_tor_eo_cityborn_guard}Eonir Tor Lithanel Guard" occupation="Soldier" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level26" race="elf">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
       <hair_tags>

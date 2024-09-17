@@ -301,9 +301,20 @@ namespace TOR_Core.Models
 
                     if (character.IsMinotaur())
                     {
+                        agent.Defensiveness = 0.001f;
+                        agentDrivenProperties.AIAttackOnDecideChance = 1f;
+                        agentDrivenProperties.AIBlockOnDecideAbility = 0.001f;
+                        agentDrivenProperties.AIParryOnDecideAbility = 0.001f;
                         agentDrivenProperties.SwingSpeedMultiplier *= 1.5f;
                     }
-  
+
+                    if (character.IsTreeSpirit())
+                    {
+                        agent.Defensiveness = 0.001f;
+                        agentDrivenProperties.AIAttackOnDecideChance = 1f;
+                        agentDrivenProperties.AIBlockOnDecideAbility = 0.001f;
+                        agentDrivenProperties.AIParryOnDecideAbility = 0.001f;
+                    }
                 }
             }
 

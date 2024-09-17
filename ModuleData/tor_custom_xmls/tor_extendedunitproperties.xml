@@ -1114,8 +1114,12 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_we_dryad">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Unbreakable</string>
+      <string>Unstoppable</string>
+    </Attributes>
     <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
     </Resistances>
     <DamageAmplifiers />

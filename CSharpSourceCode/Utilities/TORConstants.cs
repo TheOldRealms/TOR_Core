@@ -21,7 +21,7 @@ namespace TOR_Core.Utilities
         public const int DEFAULT_PRAYING_FAITH_XP = 10;
         public const int DEFAULT_CURSE_RADIUS = 25;
         public const int BOUNTY_QUEST_CHANCE = 25;
-        public const int SKELETON_VOICE_INDEX = 24;
+        public const int SKELETON_VOICE_INDEX_START = 24;
         public const int SKELETON_VOICES_COUNT = 1;
         public const int VAMPIRE_VOICE_INDEX_START = 25;
         public const int VAMPIRE_VOICES_COUNT = 2;
@@ -29,6 +29,10 @@ namespace TOR_Core.Utilities
         public const int EMPIRE_VOICES_COUNT = 2;
         public const int BRETONNIA_VOICE_INDEX_START = 29;
         public const int BRETONNIA_VOICES_COUNT = 3;
+        public const int ELVEN_VOICE_INDEX_START = 32;
+        public const int ELVEN_VOICES_COUNT = 1;
+        public const int TREESPIRIT_VOICE_INDEX_START = 33;
+        public const int TREESPIRIT_VOICES_COUNT = 1;
 
         public readonly struct Cultures
         {

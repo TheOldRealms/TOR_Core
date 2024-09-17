@@ -146,16 +146,30 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("elf");
         }
 
+        public static bool IsElf(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("elf");
+        }
+
         public static bool IsTreeSpirit(this CharacterObject characterObject)
         {
             return characterObject.Culture.StringId == TORConstants.Cultures.ASRAI  && !characterObject.IsElf();
         }
 
-        public static bool IsKnightUnit(this BasicCharacterObject characterObject)
+        public static bool IsTreeSpirit(this BasicCharacterObject characterObject)
         {
-            return  !characterObject.IsHero&&characterObject.IsMounted&&IsEliteTroop(characterObject);
+            return characterObject.Culture.StringId == TORConstants.Cultures.ASRAI && !characterObject.IsElf();
         }
 
+        public static bool IsKnightUnit(this CharacterObject characterObject)
+        {
+            return !characterObject.IsHero && characterObject.IsMounted && IsEliteTroop(characterObject);
+        }
+
+        public static bool IsKnightUnit(this BasicCharacterObject characterObject)
+        {
+            return !characterObject.IsHero && characterObject.IsMounted && IsEliteTroop(characterObject);
+        }
 
         public static bool IsEliteTroop(this CharacterObject characterObject)
         {

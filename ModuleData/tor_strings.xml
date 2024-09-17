@@ -878,7 +878,12 @@
   <string id="tor_religion_name_of_god.cult_of_shallya" text="{=tor_religion_name_of_god_cult_of_shallya_str}Shallya" />
   <string id="tor_religion_name_of_god.cult_of_myrmidia" text="{=tor_religion_name_of_god_cult_of_myrmidia_str}Myrmidia" />
   <string id="tor_religion_name_of_god.cult_of_nagash" text="{=tor_religion_name_of_god_cult_of_nagash_str}Nagash" />
-
+  <string id="tor_religion_name_of_god.cult_of_isha" text="{=tor_religion_name_of_god_cult_of_isha_str}Isha" />
+  <string id="tor_religion_name_of_god.cult_of_kurnous" text="{=tor_religion_name_of_god_cult_of_kurnous_str}Kurnous" />
+  <string id="tor_religion_name_of_god.cult_of_vaul" text="{=tor_religion_name_of_god_cult_of_vaul_str}Vaul" />
+  <string id="tor_religion_name_of_god.cult_of_anath_raema" text="{=tor_religion_name_of_god_cult_of_anath_raema_str}Anath Raema" />
+  <string id="tor_religion_name_of_god.cult_of_asuryan" text="{=tor_religion_name_of_god_cult_of_asuryan_str}Asuryan" />
+  <string id="tor_religion_name_of_god.cult_of_loec" text="{=tor_religion_name_of_god_cult_of_loec_str}Loec" />
   <string id="tor_religion_name_of_god.chaos_undivided" text="{=tor_religion_name_of_god_chaos_undivided_str}Ruinous Powers" />
   <string id="tor_religion_name_of_god.cult_of_slaanesh" text="{=tor_religion_name_of_god_cult_of_slaanesh_str}Slaanesh" />
   <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=tor_religion_name_of_god_cult_of_nurgle_str}Nurgle" />

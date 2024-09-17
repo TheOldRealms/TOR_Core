@@ -220,7 +220,7 @@ namespace TOR_Core.BattleMechanics.Morale
                             _selectionResponseTriggered = true;
                             RespondingFormation.ApplyActionOnEachAttachedUnit(agent =>
                             {
-                                if (agent != null && agent.IsActive() && agent.IsHuman && !agent.IsUndead() && agent.CurrentlyUsedGameObject == null)
+                                if (agent != null && agent.IsActive() && agent.IsHuman && !agent.IsUndead() && !agent.IsTreeSpirit() && agent.CurrentlyUsedGameObject == null)
                                 {
                                     agent.MakeVoice(OrderVoiceType, CombatVoiceNetworkPredictionType.NoPrediction);
                                 }
@@ -234,7 +234,7 @@ namespace TOR_Core.BattleMechanics.Morale
                         if (!_orderRepeatTriggered)
                         {
                             _orderRepeatTriggered = true;
-                            if(RepeaterAgent != null && RepeaterAgent.IsActive() && RepeaterAgent.IsAIControlled && RepeaterAgent.IsHuman && !RepeaterAgent.IsUndead())
+                            if(RepeaterAgent != null && RepeaterAgent.IsActive() && RepeaterAgent.IsAIControlled && RepeaterAgent.IsHuman && !RepeaterAgent.IsUndead() && !RepeaterAgent.IsTreeSpirit())
                             {
                                 RepeaterAgent.MakeVoice(OrderVoiceType, CombatVoiceNetworkPredictionType.NoPrediction);
                             }
@@ -247,7 +247,7 @@ namespace TOR_Core.BattleMechanics.Morale
                             _orderResponseTriggered = true;
                             RespondingFormation.ApplyActionOnEachAttachedUnit(agent =>
                             {
-                                if (agent != null && agent.IsActive() && agent.IsHuman && !agent.IsUndead() && agent.CurrentlyUsedGameObject == null)
+                                if (agent != null && agent.IsActive() && agent.IsHuman && !agent.IsUndead() && !agent.IsTreeSpirit() && agent.CurrentlyUsedGameObject == null)
                                 {
                                     agent.MakeVoice((OrderType == OrderType.Charge || OrderType == OrderType.ChargeWithTarget) ? VoiceType.Yell : VoiceType.HorseStop, CombatVoiceNetworkPredictionType.NoPrediction);
                                 }
@@ -256,7 +256,6 @@ namespace TOR_Core.BattleMechanics.Morale
                             _onFinishedCallback?.Invoke(this);
                         }
                     }
-                    
                 }
             }
 

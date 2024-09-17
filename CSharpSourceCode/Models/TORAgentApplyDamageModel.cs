@@ -125,10 +125,6 @@ namespace TOR_Core.Models
                             weaponComponentData.WeaponFlags |= WeaponFlags.BonusAgainstShield;
                         }
                     }
-
-
-
-              
             }
             
             if (attacker.IsTreeSpirit())
