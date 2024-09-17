@@ -33,6 +33,10 @@ namespace TOR_Core.Models
             {
                 number.Add(250f, new TextObject("Minotaur bonus"));
             }
+            if(character.IsTreeSpirit() && character.Race != FaceGen.GetRaceOrDefault("large_humanoid_monster"))
+            {
+                number.Add(100f, new TextObject("Dryad bonus"));
+            }
             if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
             {
                 number.Add(1000f, new TextObject("Large Monster"));
