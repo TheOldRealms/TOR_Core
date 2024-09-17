@@ -445,9 +445,10 @@
     <Compile Include="BattleMechanics\CustomArenaModes\JoustLaneEndVolumeBox.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\CustomTournamentBehaviors.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\JoustTournamentGame.cs" />
+    <Compile Include="BattleMechanics\Morale\AgentVoiceComponent.cs" />
     <Compile Include="BattleMechanics\Morale\BattleShoutsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
-    <Compile Include="BattleMechanics\Morale\UndeadMoraleMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Morale\MoraleMissionLogic.cs" />
     <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
     <Compile Include="BattleMechanics\SFX\TORLightDampener.cs" />
     <Compile Include="BattleMechanics\SFX\TORSimpleObjectAnimator.cs" />

@@ -251,7 +251,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new WeaponEffectMissionLogic());
             mission.AddMissionBehavior(new CustomBannerMissionLogic());
             mission.AddMissionBehavior(new DismembermentMissionLogic());
-            mission.AddMissionBehavior(new UndeadMoraleMissionLogic());
+            mission.AddMissionBehavior(new MoraleMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());

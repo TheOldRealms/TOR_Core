@@ -18,7 +18,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(Equipment), nameof(Equipment.GetRandomEquipmentElements))]
         public static bool FixEquipments(ref Equipment __result, BasicCharacterObject character, bool randomEquipmentModifier, bool isCivilianEquipment = false, int seed = -1)
         {
-            Equipment equipment = new Equipment(isCivilianEquipment);
+            Equipment equipment = new(isCivilianEquipment);
             List<Equipment> list = (from eq in character.AllEquipments
                                     where eq.IsCivilian == isCivilianEquipment && !eq.IsEmpty()
                                     select eq).ToList();
@@ -28,7 +28,7 @@ namespace TOR_Core.HarmonyPatches
                 return false;
             }
             int count = list.Count;
-            Random random = new Random(seed);
+            Random random = new(seed);
             int setNum = MBRandom.RandomInt(count);
             for (int i = 0; i < 12; i++)
             {
@@ -74,7 +74,7 @@ namespace TOR_Core.HarmonyPatches
         {
             if (__result == null)
             {
-                List<Agent> units = new List<Agent>();
+                List<Agent> units = [];
                 foreach (var unit in __instance.Arrangement.GetAllUnits())
                 {
                     units.Add((Agent)unit);
@@ -88,7 +88,7 @@ namespace TOR_Core.HarmonyPatches
         public static bool VoiceVariationPatch(Agent __instance, SkinVoiceManager.SkinVoiceType voiceType)
         {
             
-            if (__instance == null || !__instance.IsHuman || !__instance.IsPlayerControlled) return true;
+            if (__instance == null || !__instance.IsHuman) return true;
 
             string className = __instance.Monster.SoundAndCollisionInfoClassName;
             if (className != "human") return true;
@@ -105,13 +105,14 @@ namespace TOR_Core.HarmonyPatches
 
         private static bool ShouldGetRandomizedVoice(Agent agent)
         {
-            if (agent == null || !agent.IsHuman || agent.Character == null || agent.Character.Culture == null || agent.IsFemale) return false;
+            if (agent.IsTreeSpirit()) return true;
+            if (agent == null || !agent.IsHuman || agent.Character == null || agent.Character.Culture == null || agent.IsFemale || !agent.IsPlayerControlled) return false;
             var cultureId = agent.Character.Culture.StringId;
             if(Game.Current.GameType is Campaign && agent.IsHero)
             {
                 cultureId = agent.GetHero().Culture.StringId;
             }
-            return cultureId == TORConstants.Cultures.BRETONNIA || cultureId == TORConstants.Cultures.EMPIRE || agent.IsVampire() || agent.IsTreeSpirit();
+            return cultureId == TORConstants.Cultures.BRETONNIA || cultureId == TORConstants.Cultures.EMPIRE || agent.IsVampire();
         }
 
         private static int GetRandomVoiceIndexForAgent(Agent agent)
@@ -131,15 +132,12 @@ namespace TOR_Core.HarmonyPatches
                 cultureId = agent.GetHero().Culture.StringId;
             }
 
-            switch (cultureId)
+            return cultureId switch
             {
-                case TORConstants.Cultures.BRETONNIA:
-                    return MBRandom.RandomInt(TORConstants.BRETONNIA_VOICE_INDEX_START, TORConstants.BRETONNIA_VOICE_INDEX_START + (TORConstants.BRETONNIA_VOICES_COUNT));
-                case TORConstants.Cultures.EMPIRE:
-                    return MBRandom.RandomInt(TORConstants.EMPIRE_VOICE_INDEX_START, TORConstants.EMPIRE_VOICE_INDEX_START + (TORConstants.EMPIRE_VOICES_COUNT));
-                default:
-                    return 1;
-            }
+                TORConstants.Cultures.BRETONNIA => MBRandom.RandomInt(TORConstants.BRETONNIA_VOICE_INDEX_START, TORConstants.BRETONNIA_VOICE_INDEX_START + (TORConstants.BRETONNIA_VOICES_COUNT)),
+                TORConstants.Cultures.EMPIRE => MBRandom.RandomInt(TORConstants.EMPIRE_VOICE_INDEX_START, TORConstants.EMPIRE_VOICE_INDEX_START + (TORConstants.EMPIRE_VOICES_COUNT)),
+                _ => 1,
+            };
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Timers;
+using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
@@ -11,14 +10,6 @@ namespace TOR_Core.BattleMechanics.Morale
     public class BattleShoutsMissionLogic : MissionLogic
     {
         private OrderController _playerOrderController;
-        //in milliseconds
-        public const int SelectionResponseDelay = 900;
-        public const int OrderRepeatDelay = 900;
-        public const int OrderResponseDelay = 900;
-        private readonly List<ResponseEvent> _orderResponseEvents = [];
-        private readonly List<ResponseEvent> _orderResponseEventsToRemove = [];
-        private int _ignoreFirstFewEventsNum = -1;
-        private int _ignoreEventCurrentCount = 0;
         private bool _battleEnded;
         private bool _deploymentFinished;
 
@@ -26,10 +17,9 @@ namespace TOR_Core.BattleMechanics.Morale
         {
             if (team.IsPlayerTeam && team.IsPlayerGeneral)
             {
-                _ignoreFirstFewEventsNum = 1;
                 _playerOrderController = team.PlayerOrderController;
                 _playerOrderController.OnOrderIssued += OnOrderIssued;
-                _playerOrderController.OnSelectedFormationsChanged += OnSelectedFormationsChanged;
+                //_playerOrderController.OnSelectedFormationsChanged += OnSelectedFormationsChanged;
             }
         }
 
@@ -43,85 +33,67 @@ namespace TOR_Core.BattleMechanics.Morale
             if(_playerOrderController != null)
             {
                 _playerOrderController.OnOrderIssued -= OnOrderIssued;
-                _playerOrderController.OnSelectedFormationsChanged -= OnSelectedFormationsChanged;
+                //_playerOrderController.OnSelectedFormationsChanged -= OnSelectedFormationsChanged;
             }
             _battleEnded = true;
-            foreach(var responseEvent in _orderResponseEvents)
-            {
-                responseEvent.CancelEarly();
-            }
-        }
-
-        public override void OnMissionTick(float dt)
-        {
-            foreach(var item in _orderResponseEventsToRemove)
-            {
-                _orderResponseEvents.Remove(item);
-            }
-            _orderResponseEventsToRemove.Clear();
         }
 
         private void OnSelectedFormationsChanged()
         {
             if (_battleEnded || !_deploymentFinished) return;
-            if(_ignoreEventCurrentCount > _ignoreFirstFewEventsNum)
+            foreach (var formation in _playerOrderController.SelectedFormations)
             {
-                foreach (var formation in _playerOrderController.SelectedFormations)
+                formation.ApplyActionOnEachUnit(agent =>
                 {
-                    var responseEvent = new ResponseEvent(OnResponseEventComplete)
+                    if (agent != null && 
+                    agent.IsActive() && 
+                    agent.IsHuman && 
+                    !agent.IsUndead() && 
+                    !agent.IsTreeSpirit() && 
+                    agent.CurrentlyUsedGameObject == null && 
+                    agent.GetComponent<AgentVoiceComponent>() is AgentVoiceComponent component)
                     {
-                        RespondingFormation = formation,
-                        ResponseEventType = ResponseEventType.Selection,
-                        RepeaterAgent = null,
-                        OrderVoiceType = VoiceType.HorseStop,
-                        OrderType = OrderType.None
-                    };
-                    if (_orderResponseEvents.AnyQ(x => x.Equals(responseEvent))) responseEvent.CancelEarly();
-                    else _orderResponseEvents.Add(responseEvent);
-                }
-            }
-            else
-            {
-                _ignoreEventCurrentCount++;
+                        component.SetWantsToPlayVoiceWithDelay(VoiceType.HorseStop, 0.5f);
+                    }
+                });
             }
         }
-
-        private void OnResponseEventComplete(ResponseEvent responseEvent)
-        {
-            _orderResponseEventsToRemove.Add(responseEvent);
-        }
-
+        
         private void OnOrderIssued(OrderType orderType, TaleWorlds.Library.MBReadOnlyList<Formation> appliedFormations, OrderController orderController, params object[] delegateParams)
         {
             if (_battleEnded || !_deploymentFinished) return;
-            if (_ignoreEventCurrentCount > _ignoreFirstFewEventsNum)
+
+            foreach (var formation in appliedFormations)
             {
-                foreach (var formation in appliedFormations)
+                var repeaterAgent = formation.Captain ?? formation.GetMedianAgent(true, true, formation.SmoothedAverageUnitPosition);
+                if (repeaterAgent != null &&
+                    repeaterAgent.IsActive() &&
+                    repeaterAgent.IsHuman &&
+                    !repeaterAgent.IsUndead() &&
+                    !repeaterAgent.IsTreeSpirit() &&
+                    repeaterAgent.CurrentlyUsedGameObject == null &&
+                    repeaterAgent.GetComponent<AgentVoiceComponent>() is AgentVoiceComponent component)
                 {
-                    var responseEvent = new ResponseEvent(OnResponseEventComplete)
-                    {
-                        RespondingFormation = formation,
-                        ResponseEventType = ResponseEventType.Order,
-                        RepeaterAgent = formation.Captain ?? formation.GetMedianAgent(true, true, formation.SmoothedAverageUnitPosition),
-                        OrderVoiceType = GetVoiceType(orderType),
-                        OrderType = orderType
-                    };
-                    if (_orderResponseEvents.AnyQ(x => x.Equals(responseEvent))) responseEvent.CancelEarly();
-                    else
-                    {
-                        _orderResponseEvents.Add(responseEvent);
-                        foreach (var item in _orderResponseEvents.WhereQ(x => x.ResponseEventType == ResponseEventType.Selection && x.RespondingFormation == responseEvent.RespondingFormation))
-                        {
-                            item.CancelEarly();
-                        }
-                    }
+                    component.SetWantsToPlayVoiceWithDelay(GetVoiceType(orderType), 0.5f);
                 }
-            }
-            else
-            {
-                _ignoreEventCurrentCount++;
+
+                formation.ApplyActionOnEachUnit(agent =>
+                {
+                    if (agent != null &&
+                    agent != repeaterAgent &&
+                    agent.IsActive() &&
+                    agent.IsHuman &&
+                    !agent.IsUndead() &&
+                    !agent.IsTreeSpirit() &&
+                    agent.CurrentlyUsedGameObject == null &&
+                    agent.GetComponent<AgentVoiceComponent>() is AgentVoiceComponent component)
+                    {
+                        component.SetWantsToPlayVoiceWithDelay((orderType == OrderType.Charge || orderType == OrderType.ChargeWithTarget) ? VoiceType.Yell : VoiceType.HorseStop, 2f);
+                    }
+                });
             }
         }
+        
 
         private SkinVoiceType GetVoiceType(OrderType orderType)
         {
@@ -175,116 +147,5 @@ namespace TOR_Core.BattleMechanics.Morale
             };
         }
 
-        private enum ResponseEventType
-        {
-            Selection,
-            Order
-        }
-
-        private class ResponseEvent : IEquatable<ResponseEvent>
-        {
-            internal Agent RepeaterAgent;
-            internal Formation RespondingFormation;
-            internal ResponseEventType ResponseEventType;
-            internal SkinVoiceType OrderVoiceType;
-            internal OrderType OrderType;
-            private readonly Timer _timer;
-            private bool _selectionResponseTriggered;
-            private bool _orderRepeatTriggered;
-            private bool _orderResponseTriggered;
-            private readonly Action<ResponseEvent> _onFinishedCallback;
-
-            public ResponseEvent(Action<ResponseEvent> onFinishedCallback)
-            {
-                _onFinishedCallback = onFinishedCallback;
-                _timer = ResponseEventType == ResponseEventType.Selection ? new(SelectionResponseDelay) : new(OrderRepeatDelay);
-                _timer.AutoReset = false;
-                _timer.Elapsed += OnElapsed;
-                _timer.Start();
-            }
-
-            internal void CancelEarly()
-            {
-                _timer.Stop();
-                _onFinishedCallback?.Invoke(this);
-            }
-
-            private void OnElapsed(object sender, ElapsedEventArgs e)
-            {
-                lock (this)
-                {
-                    if(ResponseEventType == ResponseEventType.Selection)
-                    {
-                        if (!_selectionResponseTriggered)
-                        {
-                            _selectionResponseTriggered = true;
-                            RespondingFormation.ApplyActionOnEachAttachedUnit(agent =>
-                            {
-                                if (agent != null && agent.IsActive() && agent.IsHuman && !agent.IsUndead() && !agent.IsTreeSpirit() && agent.CurrentlyUsedGameObject == null)
-                                {
-                                    agent.MakeVoice(OrderVoiceType, CombatVoiceNetworkPredictionType.NoPrediction);
-                                }
-                            });
-                            _timer.Stop();
-                            _onFinishedCallback?.Invoke(this);
-                        }
-                    }
-                    else if(ResponseEventType == ResponseEventType.Order) 
-                    { 
-                        if (!_orderRepeatTriggered)
-                        {
-                            _orderRepeatTriggered = true;
-                            if(RepeaterAgent != null && RepeaterAgent.IsActive() && RepeaterAgent.IsAIControlled && RepeaterAgent.IsHuman && !RepeaterAgent.IsUndead() && !RepeaterAgent.IsTreeSpirit())
-                            {
-                                RepeaterAgent.MakeVoice(OrderVoiceType, CombatVoiceNetworkPredictionType.NoPrediction);
-                            }
-                            _timer.Stop();
-                            _timer.Interval = OrderResponseDelay;
-                            _timer.Start();
-                        }
-                        else if(!_orderResponseTriggered)
-                        {
-                            _orderResponseTriggered = true;
-                            RespondingFormation.ApplyActionOnEachAttachedUnit(agent =>
-                            {
-                                if (agent != null && agent.IsActive() && agent.IsHuman && !agent.IsUndead() && !agent.IsTreeSpirit() && agent.CurrentlyUsedGameObject == null)
-                                {
-                                    agent.MakeVoice((OrderType == OrderType.Charge || OrderType == OrderType.ChargeWithTarget) ? VoiceType.Yell : VoiceType.HorseStop, CombatVoiceNetworkPredictionType.NoPrediction);
-                                }
-                            });
-                            _timer.Stop();
-                            _onFinishedCallback?.Invoke(this);
-                        }
-                    }
-                }
-            }
-
-            public override bool Equals(object obj)
-            {
-                if(obj is ResponseEvent e) { return Equals(e); } else { return false; }
-            }
-
-            public bool Equals(ResponseEvent other)
-            {
-                return ResponseEventType == other.ResponseEventType &&
-                    RespondingFormation == other.RespondingFormation &&
-                    OrderType == other.OrderType;
-            }
-
-            public override int GetHashCode()
-            {
-                return ResponseEventType.GetHashCode() + RespondingFormation.GetHashCode() + OrderType.GetHashCode();
-            }
-
-            public static bool operator ==(ResponseEvent x, ResponseEvent y)
-            {
-                return x.Equals(y);
-            }
-
-            public static bool operator !=(ResponseEvent x, ResponseEvent y)
-            {
-                return !(x == y);
-            }
-        }
     }
 }
