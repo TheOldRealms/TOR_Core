@@ -133,7 +133,7 @@ namespace TOR_Core.Models
             
             if (attacker.IsTreeSpirit())
             {
-                resultDamage.AddFactor(10f);
+                resultDamage.AddFactor(20f);
             }
 
             if ( collisionData.IsHorseCharge && attacker.IsMounted && attacker.IsPlayerCharacter && attacker.HeroObject.HasAnyCareer())

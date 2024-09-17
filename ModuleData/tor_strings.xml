@@ -127,7 +127,7 @@
   <string id="str_faction_official.battania_f" text="{=!}a lady" />
   <string id="str_faction_ruler.battania" text="{=!}Highborn" />
   <string id="str_faction_ruler.battania_f" text="{=!}Highborn" />
-    <string id="str_faction_ruler.eonir" text="{=!}Highborn" />
+  <string id="str_faction_ruler.eonir" text="{=!}Highborn" />
   <string id="str_faction_ruler.eonir_f" text="{=!}Highborn" />
 
   <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{RULER.NAME}" />
@@ -135,6 +135,7 @@
   <string id="str_faction_ruler_term_in_speech.vlandia" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.mousillon" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.battania" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_term_in_speech.eonir" text="{=!}{RULER.NAME}" />
 
   <string id="str_faction_ruler_name_with_title.empire" text="{=!}{RULER.NAME}" />
   <string id="str_faction_noble_name_with_title.empire" text="{=!}{RULER.NAME}" />
@@ -146,7 +147,7 @@
   <string id="str_faction_noble_name_with_title.mousillon" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_name_with_title.battania" text="{=!}{RULER.NAME}" />
   <string id="str_faction_noble_name_with_title.battania" text="{=!}{RULER.NAME}" />
-    <string id="str_faction_ruler_name_with_title.eonir" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.eonir" text="{=!}{RULER.NAME}" />
   <string id="str_faction_noble_name_with_title.eonir" text="{=!}{RULER.NAME}" />
 
   <string id="str_adjective_for_faction.averland" text="{=!}imperial" />
@@ -209,18 +210,21 @@
   <string id="str_short_term_for_faction.sylvania" text="{=!}vampires" />
   <string id="str_short_term_for_faction.blooddragons" text="{=!}vampires" />
   <string id="str_short_term_for_faction.athel_loren" text="{=!}asrai" />
+  <string id="str_short_term_for_faction.laurelorn" text="{=!}eonir" />
 
   <string id="str_faction_formal_name_for_culture.khuzait" text="{=!}Sylvania" />
   <string id="str_faction_formal_name_for_culture.empire" text="{=!}Empire" />
   <string id="str_faction_formal_name_for_culture.vlandia" text="{=!}Bretonnia" />
   <string id="str_faction_formal_name_for_culture.mousillon" text="{=!}Mousillon" />
   <string id="str_faction_formal_name_for_culture.battania" text="{=!}Athel Loren" />
+  <string id="str_faction_formal_name_for_culture.eonir" text="{=!}Laurelorn Forest" />
 
   <string id="str_faction_informal_name_for_culture.khuzait" text="{=!}Sylvania" />
   <string id="str_faction_informal_name_for_culture.empire" text="{=!}the Empire" />
   <string id="str_faction_informal_name_for_culture.vlandia" text="{=!}Bretonnia" />
   <string id="str_faction_informal_name_for_culture.mousillon" text="{=!}Mousillon" />
   <string id="str_faction_informal_name_for_culture.battania" text="{=!}Athel Loren" />
+  <string id="str_faction_informal_name_for_culture.battania" text="{=!}Laurelorn" />
 
   <string id="str_adjective_for_culture.khuzait" text="{=!}vampire" />
   <string id="str_adjective_for_culture.empire" text="{=!}imperial" />
@@ -234,7 +238,7 @@
   <string id="str_neutral_term_for_culture.vlandia" text="{=!}bretonnians" />
   <string id="str_neutral_term_for_culture.mousillon" text="{=!}mousillans" />
   <string id="str_neutral_term_for_culture.battania" text="{=!}asrai" />
-  <string id="str_neutral_term_for_culture.battania" text="{=!}eonir" />
+  <string id="str_neutral_term_for_culture.eonir" text="{=!}eonir" />
 
 
   <string id="tor_feudal_oath_line1.averland" text="{=!}I hereby swear to serve the Grand County of Averland." />
@@ -632,7 +636,7 @@
   <string id="str_customresource_trade_label" text="{=!}You will {?PAY_OR_GET}get{?}pay{\?} {TRADE_AMOUNT}" />
 
   <!--custom settlements e.g. chaos portal, shrines, herdstones -->
-  <string id="customsettlement_intro.oak_of_ages" text="{=!}You arrive at the Oak of Ages. The Heart of Athel Loren" />
+  <string id="customsettlement_intro.oak_of_ages" text="{=!}You arrive at the Oak of Ages. The Heart of Athel Loren." />
   <string id="customsettlement_disabled.oak_of_ages" text="{=!}Z3rca write me pls. Oak of Ages should probably never be inactive (unless beastmen raids it? could be a potential gameplay mechanic.)" />
   
   <string id="customsettlement_intro.worldroot_01" text="{=!}You found the world roots ends in the Arden forest." />
@@ -641,6 +645,8 @@
   <string id="customsettlement_disabled.worldroot_02" text="{=!}You found the world roots ends in the Laurelorn forest." />
   <string id="customsettlement_intro.worldroot_03" text="{=!}You found the world roots ends in the Gryphenwood." />
   <string id="customsettlement_disabled.worldroot_03" text="{=!}You found the world roots ends in the Gryphenwood." />
+  <string id="customsettlement_intro.worldroot_04" text="{=!}You found an inconspicuous world roots end." />
+  <string id="customsettlement_disabled.worldroot_04" text="{=!}You found an inconspicuous world roots end." />
 
   <string id="customsettlement_intro.darkelf_camp_01" text="{=!}You arrive at a druchii slaver camp. Ships are anchored in the bay and the cages are full of stock." />
   <string id="customsettlement_disabled.darkelf_camp_01" text="{=!}The slavers have left these shores. Come back at a later time." />
@@ -840,23 +846,20 @@
 
   <string id="tor_religion_description.cult_of_sigmar" text="{=tor_religion_description_cult_of_sigmar_str}The Cult of Sigmar, also sometimes called the Church of Sigmar, the Holy Temple of Sigmar, the Clergy of Sigmar or simply the Sigmarite Cult, is the state church of the Empire that administrates the worship of that realm's patron god, Sigmar Heldenhammer. The Cult of Sigmar was founded by the wild-eyed friar Johann Helstrum in the year 73 IC, when he appeared before the masses to relate a vision that he experienced of Sigmar kneeling before Ulric, the god of war and winter, who placed the crown of godhood upon his brow as Sigmar took his place amongst the deities of the Old World Pantheon. As of today, the Cult of Sigmar has become an essential part of Imperial society. Nearly every city, town or village within the Empire has dedicated a portion of their wealth and land to the creation and maintenance of a Sigmarite temple, from which a priest of the Cult of Sigmar will attend to the spiritual well-being of its citizenry, whether it be through holy words of prayer or through heroic actions and trials by combat." />
   <string id="tor_religion_description.cult_of_taal" text="{=tor_religion_description_cult_of_taal_str}The Cult of Taal and Rhya is among the most ancient and pervasive in the Old World, tracing a direct line to the primal gods from the deepest of history. The cult grew organically, as early Humans tried to explain natural phenomenon, such as thunder, the turning of the seasons, and the rise and ebb of the seas. Over time, the Gods Taal and Rhya came into being, beginning as a single entity, known as Ishnernos. This split occurred many thousands of years ago, and the Cult of Ishnernos faded into distant memory. Taal rules nature and is considered King of the Gods. He claims the wild places as his domain and is primarily worshipped by hardy woodsmen, trackers, and rangers. Rhya's worshippers are found in the cultivated fields and orchards of the Empire, and are found among farmers, fishermen, and young lovers everywhere. The Cult of Taal and Rhya is the sanctioned cult of Talabecland, and is wildly popular in the eastern and northern parts of the Empire. Of the two, Taal receives most recognition, and Rhya's role is much diminished. The grand city of Talabheim is particularly fervent in its worship of both Taal and Rhya. However, in other cities, although Rhya's name is commonly known, he worship is rare, leading many urbanites to conclude that her cult is on the decline." />
-  <string id=
-  "tor_religion_description.cult_of_ulric" text="{=tor_religion_description_cult_of_lady_str}The Ulrican cult, Church of Ulric or simply the Cult of Ulric is the state approved religious organisation that administrates the worship of the god of war, winter, and wolves. It is second in power and influence to the Cult of Sigmar, but is amongst the most ancient religions of the Empire of Man and dates back before the Empire was created by Sigmar. As a god of war, it is through battle and bloodshed that Ulric is worshipped, any who dare oppose him are merely awaiting the ferocious bite of his priests. {newline}
-    {newline}
-  &quot;Ulric give me the fangs of the wolf,   {newline}
+  <string id="tor_religion_description.cult_of_ulric" text="{=tor_religion_description_cult_of_lady_str}The Ulrican cult, Church of Ulric or simply the Cult of Ulric is the state approved religious organisation that administrates the worship of the god of war, winter, and wolves. It is second in power and influence to the Cult of Sigmar, but is amongst the most ancient religions of the Empire of Man and dates back before the Empire was created by Sigmar. As a god of war, it is through battle and bloodshed that Ulric is worshipped, any who dare oppose him are merely awaiting the ferocious bite of his priests. {newline}
+  {newline}
+  Ulric give me the fangs of the wolf,   {newline}
   Ulric give me the claws of the wolf,   {newline}
   Ulric give me the coat of the wolf,   {newline}
-  And I will show your enemies the mercy of the wolf.&quot;"/>
+  And I will show your enemies the mercy of the wolf."/>
 
   <string id="tor_religion_description.cult_of_shallya" text="{=tor_religion_description_cult_of_shallya_str}The Cult of Shallya is dedicated to the White Dove of Mercy, the Lady in White, Shallya. Compassion, mercy and healing are the doctrines of the cult, and her priests offer aid to those in need across the Empire. The Old World is a gruelling place filled with disease, injury and bad fortune that can drive a person to utter despair, it is these folk who turn to Shallya whose priests bring the promise of mercy and comfort. Her temples double as hospitals for those who cannot afford a physician, run by her devout priestesses for few men serve her order." />
-  <string id="tor_religion_description.cult_of_manaan" text=
-  "{=tor_religion_description_cult_of_manaan_str}The religious organisation that oversees and administrates the worship of the god of the sea, oceans, and tides across the Old World. It is most prevalent along the western border of the Empire where the waters of the Sea of Claws touch the shores of man, and most influential within Marienburg. Its members are often navigators, pilots and able-bodied sailors and it is seen as immense luck to have a priest of Manaan aboard your vessel.   {newline}
+  <string id="tor_religion_description.cult_of_manaan" text="{=tor_religion_description_cult_of_manaan_str}The religious organisation that oversees and administrates the worship of the god of the sea, oceans, and tides across the Old World. It is most prevalent along the western border of the Empire where the waters of the Sea of Claws touch the shores of man, and most influential within Marienburg. Its members are often navigators, pilots and able-bodied sailors and it is seen as immense luck to have a priest of Manaan aboard your vessel.   {newline}
   {newline}
   Manann be praised, for he is the breeze to take us out, {newline}
   Manann be praised, for he is the wave to bring us home, {newline}
   Manann be praised, for he is the food to feed us,{newline}
-  Manann be praised, or his be the wrath that drowns us.{newline}
-  " />
+  Manann be praised, or his be the wrath that drowns us." />
 
 
 
@@ -914,7 +917,6 @@
   <string id="career_title.Necrarch" text="{=tor_career_title_necrarch_str}Necrarch" />
   <string id="career_title.Waywatcher" text="{=tor_career_title_waywatcher_str}Waywatcher" />
   <string id="career_title.Spellsinger" text="{=tor_career_title_waywatcher_str}Spellsinger" />
-  
   <string id="career_title.GreyLord" text="{=tor_career_title_waywatcher_str}Grey Lord Wizard" />
 
 
@@ -1010,12 +1012,11 @@
   <string id="career_choicegroup2_name.Spellsinger" text="{=career_choicegroup2_spellsinger_str}Spellweaver" />
   <string id="career_choicegroup3_name.Spellsinger" text="{=career_choicegroup3_waywatcher_str}Ascended Spellweaver" />
   
-  
   <string id="career_choicegroup1_name.GreyLord" text="{=career_choicegroup1_greylord_str}Exile's Apprentice" />
   <string id="career_choicegroup2_name.GreyLord" text="{=career_choicegroup2_greylord_str}Grey Mage" />
   <string id="career_choicegroup3_name.GreyLord" text="{=career_choicegroup3_greylord_str}Grey Lord" />
 
-  <!--Career related related !-->
+  <!--Career related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
   <string id="career_description.WarriorPriestUlric" text="{=career_description_warriorpriest_ulric_str}To be a Wolf Priest is to be one of Ulrics champions, powerful, zealous, and blessed by the feral god himself. The battleground is where the word of Ulric is spread, and it is through bloodshed that he is honoured in worship." />
 
@@ -1044,8 +1045,6 @@
   <string id="tor_extendedInfo.Unbreakable" text="{=tor_extendedInfo_unbreakable_str}Unbreakable -  Unit will not flee due to low morale"/>
   <string id="tor_extendedInfo.Unstoppable" text="{=tor_extendedInfo_unstoppable_str}Unstoppable -  Unit will not show any signs of pain when being hit"/>
 
-
-
   <string id="tor_damagetype.Invalid" text="{=tor_damagetype_invalid_str}Invalid"/>
   <string id="tor_damagetype.Physical" text="{=tor_damagetype_physical_str}Physical"/>
   <string id="tor_damagetype.Magical" text="{=tor_damagetype_magical_str}Magical"/>
@@ -1058,9 +1057,6 @@
   <string id="tor_attacktype.Ranged" text="{=tor_damagetype_lightning_str}Ranged"/>
   <string id="tor_attacktype.Spell" text="{=tor_damagetype_lightning_str}Spell"/>
   <string id="tor_attacktype.All" text="{=tor_damagetype_lightning_str}All"/>
-
-
-
 
   <!-- Begin FaceGen Entries -->
   <string id="str_facegen_skin.TorsoBelly" text="{=!}Belly Girth" />
