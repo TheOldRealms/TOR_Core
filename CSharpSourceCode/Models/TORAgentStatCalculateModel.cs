@@ -34,7 +34,7 @@ namespace TOR_Core.Models
 
             var equipmentEncumbrance = GetTOREffectiveEquipmentEncumbrance(agent, agentDrivenProperties.WeaponsEncumbrance);
             agentDrivenProperties.WeaponsEncumbrance = equipmentEncumbrance;
-            
+
             UpdateAgentDrivenProperties(agent, agentDrivenProperties);
         }
 
@@ -301,19 +301,15 @@ namespace TOR_Core.Models
 
                     if (character.IsMinotaur())
                     {
+                        agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
                         agent.Defensiveness = 0.001f;
-                        agentDrivenProperties.AIAttackOnDecideChance = 1f;
-                        agentDrivenProperties.AIBlockOnDecideAbility = 0.001f;
-                        agentDrivenProperties.AIParryOnDecideAbility = 0.001f;
                         agentDrivenProperties.SwingSpeedMultiplier *= 1.5f;
                     }
 
                     if (character.IsTreeSpirit())
                     {
+                        agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
                         agent.Defensiveness = 0.001f;
-                        agentDrivenProperties.AIAttackOnDecideChance = 1f;
-                        agentDrivenProperties.AIBlockOnDecideAbility = 0.001f;
-                        agentDrivenProperties.AIParryOnDecideAbility = 0.001f;
                     }
                 }
             }

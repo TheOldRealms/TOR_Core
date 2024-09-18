@@ -81,10 +81,8 @@ namespace TOR_Core.Models.CustomBattleModels
             {
                 if (agent.Character.IsTreeSpirit())
                 {
+                    agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
                     agent.Defensiveness = 0.001f;
-                    agentDrivenProperties.AIAttackOnDecideChance = 1f;
-                    agentDrivenProperties.AIBlockOnDecideAbility = 0.001f;
-                    agentDrivenProperties.AIParryOnDecideAbility = 0.001f;
                 }
             }
 
