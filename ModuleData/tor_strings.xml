@@ -760,6 +760,15 @@
   <string id="response_2.tor_wanderer_empire_7" text="{=!}Mhmm..." />
   <string id="backstory_d.tor_wanderer_empire_7" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_empire_7" text="{=!}I am a Huntsman, many monsters have been slain by my hand in service of the Empire." />
+  
+  <string id="prebackstory.tor_wanderer_empire_8" text="{=!}You don't need to know my story stranger, just my skills." />
+  <string id="backstory_a.tor_wanderer_empire_8" text="{=!}I'm a Court Huntsman, well. I was. Lets just say I missed my mark by the rump of a noble." />
+  <string id="backstory_b.tor_wanderer_empire_8" text="{=!}Now I track, hunt and do mercenary work for coin." />
+  <string id="backstory_c.tor_wanderer_empire_8" text="{=!}I have hunted all manner of beast and beastmen, even the occasional orc. My skills go to the highest bidder." />
+  <string id="response_1.tor_wanderer_empire_8" text="{=!}Mhm." />
+  <string id="response_2.tor_wanderer_empire_8" text="{=!}Mhmm..." />
+  <string id="backstory_d.tor_wanderer_empire_8" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_8" text="{=!}I am a Huntsman, many monsters have been slain by my hand in service of the Empire." />
 
   <string id="prebackstory.tor_wanderer_vampire_0" text="{=!}Hm, you wish to know of my life? It is a tale I can share." />
   <string id="backstory_a.tor_wanderer_vampire_0" text="{=!}I have always been surrounded by death, death is everything in Sylvania." />
@@ -832,7 +841,53 @@
   <string id="backstory_d.tor_wanderer_mousillon_1" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_mousillon_1" text="{=!}I am a master of death and undeath, many fear me. Do you? " />
 
+  <string id="prebackstory.tor_wanderer_eonir_0" text="{=!}About me? There is not much to tell." />
+  <string id="backstory_a.tor_wanderer_eonir_0" text="{=!}I have fought all my life against ruinous powers. I made my own bow with the wood of trees so old that they stood tall when Ariel was just a mortal. I killed my first ungor at the age of eleven, and my first chaos spawn at fourteen. Recently, I struck a troll between the eyes with an arrow from two hundred paces away." />
+  <string id="backstory_b.tor_wanderer_eonir_0" text="{=!}Beasts, monsters, humans, or even other elves, if necessary—any creature that threatens the forest shall feel the sting of my arrows." />
+  <string id="backstory_c.tor_wanderer_eonir_0" text="{=!}Behold, with each enemy slain, my people cut their forearms to remember each enemy defeated. There remains space for more deaths." />
+  <string id="response_1.tor_wanderer_eonir_0" text="{=!}It's always good that there are fewer of those disgusting creatures in this world." />
+  <string id="response_2.tor_wanderer_eonir_0" text="{=!}A boy killing beasts? I find it hard to believe." />
+  <string id="backstory_d.tor_wanderer_eonir_0" text="{=!}I am a Guardian Mage of the Toriour caste, an expert in the art of conjuration. I shall deliver the justice of the Eonir." />
+  <string id="generic_backstory.tor_wanderer_eonir_0" text="{=!}I would prefer not to leave my beloved forests, but for a reasonable fee, I might be persuaded to accompany you on your travels for a time." />
 
+  <string id="prebackstory.tor_wanderer_eonir_1" text="{=!}Insolent boy, you stand before a Guardian Mage of the Eonir." />
+  <string id="backstory_a.tor_wanderer_eonir_1" text="{=!}My lineage descends from an ancient line of warriors, tracing its origins to the War of the Beard itself. Indeed, one of my ancestors stood as the right hand of the great Caledor II, fighting alongside him in the Battle of the Three Towers." />
+  <string id="backstory_b.tor_wanderer_eonir_1" text="{=!}Beasts, monsters, humans, or even other elves, if necessary—any creature that threatens the forest shall feel the sting of my arrows." />
+  <string id="backstory_c.tor_wanderer_eonir_1" text="{=!}Behold, with each enemy slain, my people cut their forearms to remember each enemy defeated. There remains space for more deaths." />
+  <string id="response_1.tor_wanderer_eonir_1" text="{=!}A proud lineage." />
+  <string id="response_2.tor_wanderer_eonir_1" text="{=!}Many people claim to be descended from great heroes of the past." />
+  <string id="backstory_d.tor_wanderer_eonir_1" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_eonir_1" text="{=!}Hold a moment, stranger. My services do not come cheap — you’d best prove your worth." />
+  
+  <string id="prebackstory.tor_wanderer_woodelf_0" text="{=!}May Kurnous be with you, Stranger." />
+  <string id="backstory_a.tor_wanderer_woodelf_0" text="{=!}I am a Waywatcher, a master of ambush and stealth. As a child, I felt the call of the forest coursing through my blood. I was trained to vanish into the wilds, unseen and undetectable, as I awaited my prey." />
+  <string id="backstory_b.tor_wanderer_woodelf_0" text="{=!}I have ventured deep into the forest, where even the Asrai are not safe. While others remain sheltered in their halls, I have honed my skills and sharpened my aim." />
+  <string id="backstory_c.tor_wanderer_woodelf_0" text="{=!}Few among the elves can hope to rival a Waywatcher like me with the bow." />
+  <string id="response_1.tor_wanderer_woodelf_0" text="{=!}Certainly, you must be a prodigy" />
+  <string id="response_2.tor_wanderer_woodelf_0" text="{=!}Didn't the Asrai enjoy your company?" />
+  <string id="backstory_d.tor_wanderer_woodelf_0" text="{=!}I am adept in the arts of survival, disruption, and ambush. I can approach my quarry, strike swiftly, and vanish before its body hits the ground. Alternatively, I can subtly lead it into one of my traps." />
+  <string id="generic_backstory.tor_wanderer_woodelf_0" text="{=!}I have but one request. Although I seldom leave the forest, when I do, I seek the pleasures of civilised life. A fine wine in the tavern, pleasant company... I trust your group can provide these comforts." />
+
+  <string id="prebackstory.tor_wanderer_woodelf_1" text="{=!}I do not recall seeing you here before. Who might you be?" />
+  <string id="backstory_a.tor_wanderer_woodelf_1" text="{=!}I am the youngest daughter of a humble family that served a distinguished Asrai lord. However, lineage is not everything to us. For years, I have honed my skills with spear, sword, and bow. My bravery and leadership have earned me the title of Glade Captain." />
+  <string id="backstory_b.tor_wanderer_woodelf_1" text="{=!}Yet, I still aspire to reach greater heights. To become a Glade Lady and earn the title of ‘Talon of Kurnous,’ I must build a formidable reputation and demonstrate my prowess to all of Athel Loren." />
+  <string id="backstory_c.tor_wanderer_woodelf_1" text="{=!}The forest is a living entity. With proper respect, it can be shaped to your will. Many seek out those with my abilities. That is why I have ventured far from home, seeking new challenges to perfect my skills and earn a name that commands respect among the great houses of the Asrai." />
+  <string id="response_1.tor_wanderer_woodelf_1" text="{=!}If you join in my company, I guarantee that you will have that opportunity" />
+  <string id="response_2.tor_wanderer_woodelf_1" text="{=!}An Asrai's duty is in the forest, you should return home." />
+  <string id="backstory_d.tor_wanderer_woodelf_1" text="{=!}If your warband could need a second leader in command I am willing to join. I will lead your troops to victory" />
+  <string id="generic_backstory.tor_wanderer_woodelf_1" text="{=!}Are you a renowned commander? Can you aid me in achieving such a status? I trust you have no objection to proving your worth." />
+  
+    <string id="prebackstory.tor_wanderer_woodelf_2" text="{=!}May Kurnous be with you, Stranger." />
+  <string id="backstory_a.tor_wanderer_woodelf_2" text="{=!}I am a Waywatcher, a master of ambush and stealth. As a child, I felt the call of the forest coursing through my blood. I was trained to vanish into the wilds, unseen and undetectable, as I awaited my prey." />
+  <string id="backstory_b.tor_wanderer_woodelf_2" text="{=!}I have ventured deep into the forest, where even the Asrai are not safe. While others remain sheltered in their halls, I have honed my skills and sharpened my aim." />
+  <string id="backstory_c.tor_wanderer_woodelf_2" text="{=!}Few among the elves can hope to rival a Waywatcher like me with the bow." />
+  <string id="response_1.tor_wanderer_woodelf_2" text="{=!}Certainly, you must be a prodigy" />
+  <string id="response_2.tor_wanderer_woodelf_2" text="{=!}Didn't the Asrai enjoy your company?" />
+  <string id="backstory_d.tor_wanderer_woodelf_2" text="{=!}I am adept in the arts of survival, disruption, and ambush. I can approach my quarry, strike swiftly, and vanish before its body hits the ground. Alternatively, I can subtly lead it into one of my traps." />
+  <string id="generic_backstory.tor_wanderer_woodelf_2" text="{=!}I have but one request. Although I seldom leave the forest, when I do, I seek the pleasures of civilised life. A fine wine in the tavern, pleasant company... I trust your group can provide these comforts." />
+  
+  
+  
   <!-- Religions -->
 
   <string id="tor_religion_label" text="{=tor_religion_label_str}Religion" />
@@ -1040,7 +1095,7 @@
 
 
   <string id="career_description.Waywatcher" text="{=career_description_waywatcher_str}Waywatchers serve as the ultimate watchmen of Athel Loren, lords over the many paths leading in and out of the ancient wood. Master woodsmen and hunters, they can lie in ambush for several days, fire unerringly accurate barrages of arrows, and lay terrifying traps designed to kill, maim and dishearten any trespasser. Few marksmen can even approach a Waywatcher’s ability with the bow, even among the elves, as these elves have drifted the furthest away from elven civilization, embracing fully the call of the living forest." />
-
+  <string id="career_description.GreyLord" text="{=career_description_greylord_str}The Greylords were once powerful mages of Ulthuan, but they were exiled for their cruel experiments. Today, the Greylords continue their often-dangerous experiments in secret in Laurelorn, willingly teach their apprentices the forbidden magic. The Greylords are not to be trifled with, by their power alone has the forest of Laurelorn been saved many times, though some remain fearful their powers may also doom the Eonir." />
 
 
   <!--TOR Information and data !-->

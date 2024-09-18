@@ -184,7 +184,7 @@ using TOR_Core.Utilities;
             protected override void InitializeKeyStones()
             {
                 
-                _greyLordRoot.Initialize(CareerID, "In a targeted area, enemy units get affected by the fell fang.. With growing Spellcraft skill the chance rises to turn the enemy on your side. The success chance also depends on the available health and the level of the enemy. The more Keystone perks are unlocked the more enemies can be turned.", null, true,
+                _greyLordRoot.Initialize(CareerID, "As a master of Winds of Magic and forbidden arts, the Grey Lord conjures subtle whispers inside the enemy’s mind and convinces the foes in the area to turn on their allies. After all, a true Grey Lord knows better than to cloud his judgment with trifling matters of morality. {newline} The chance to turn enemies rises with Spellcraft skills, the health and the level of targets as well as each keystone perk selected", null, true,
                     ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                     {
                         new CareerChoiceObject.MutationObject()
