@@ -177,6 +177,24 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_hat_life_wizard_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_head_hat_beast_wizard_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_head_helm_pistolier_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -624,19 +642,19 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_cape_balthazar_gelt">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_shoulder_cape_gold_wizard_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -961,19 +979,37 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_body_robe_balthazar_gelt">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_body_robe_gold_wizard_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_robe_beast_wizard_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_empire_body_robe_life_wizard_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -1439,10 +1475,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_gauntlet_balthazar_gelt">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -1472,10 +1508,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_arm_bracers_gold_wizard_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Fire Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% fire resistance as well as 10% fire damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -1725,10 +1761,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_balthazar_gelt">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
@@ -1803,10 +1839,10 @@
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_leg_boots_gold_wizard_001">
     <ItemTraits>
-      <ItemTrait ItemTraitName="Lightning Resistance and Amplification" IconName="winds_icon_45">
-        <ItemTraitDescription>This item provides its wearer 10% lightning resistance as well as 10% lightning damage amplification.</ItemTraitDescription>
-        <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.10" />
-        <AmplifierTuple AmplifiedDamageType="Lightning" DamageAmplifier="0.10" />
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
