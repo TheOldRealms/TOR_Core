@@ -4475,7 +4475,7 @@
       <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Item1" id="Item.old_kite_sparring_shield" />
       <Equipment slot="Head" id="Item.tor_eo_head_helm_kithband_helmet_001" />
-      <Equipment slot="Body" id="Item.leather_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_leather_scale_001" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
     </EquipmentSet>
@@ -4483,7 +4483,7 @@
       <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Item1" id="Item.old_kite_sparring_shield" />
       <Equipment slot="Head" id="Item.tor_eo_head_helm_kithband_helmet_001" />
-      <Equipment slot="Body" id="Item.leather_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_leather_scale_001" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
     </EquipmentSet>
@@ -6304,7 +6304,7 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_002" />
       <Equipment slot="Item2" id="Item.range_arrows" />
       <Equipment slot="Head" id="Item.battania_civil_hood" />
-      <Equipment slot="Body" id="Item.leather_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_leather_scale_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
@@ -6314,7 +6314,7 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_002" />
       <Equipment slot="Item2" id="Item.range_arrows" />
       <Equipment slot="Head" id="Item.battania_civil_hood" />
-      <Equipment slot="Body" id="Item.leather_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_leather_scale_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
@@ -6324,7 +6324,7 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_002" />
       <Equipment slot="Item2" id="Item.range_arrows" />
       <Equipment slot="Head" id="Item.leatherlame_nasalhelm_over_imperial_leather" />
-      <Equipment slot="Body" id="Item.leather_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_leather_scale_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
@@ -6334,7 +6334,7 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_002" />
       <Equipment slot="Item2" id="Item.range_arrows" />
       <Equipment slot="Head" id="Item.leatherlame_nasalhelm_over_imperial_leather" />
-      <Equipment slot="Body" id="Item.leather_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_leather_scale_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
@@ -6344,7 +6344,7 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_002" />
       <Equipment slot="Item2" id="Item.range_arrows" />
       <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.leather_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_leather_scale_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
@@ -6354,7 +6354,7 @@
       <Equipment slot="Item1" id="Item.tor_we_weapon_bow_002" />
       <Equipment slot="Item2" id="Item.range_arrows" />
       <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.leather_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_leather_scale_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
@@ -6367,7 +6367,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -6378,7 +6378,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -6389,7 +6389,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -6400,7 +6400,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -9142,7 +9142,7 @@
       <Equipment slot="Item1" id="Item.bracketed_heater_shield" />
       <Equipment slot="Item2" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
@@ -9153,7 +9153,7 @@
       <Equipment slot="Item1" id="Item.bracketed_heater_shield" />
       <Equipment slot="Item2" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
@@ -9167,7 +9167,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -9180,7 +9180,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -9193,7 +9193,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -9206,7 +9206,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -9220,7 +9220,7 @@
       <Equipment slot="Item1" id="Item.bracketed_heater_shield" />
       <Equipment slot="Item2" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
@@ -9231,7 +9231,7 @@
       <Equipment slot="Item1" id="Item.bracketed_heater_shield" />
       <Equipment slot="Item2" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Gloves" id="Item.padded_vambrace" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_horse_002" />
@@ -9245,7 +9245,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -9258,7 +9258,7 @@
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_spearmen_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.empire_cape_a" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_001" />
@@ -9300,7 +9300,7 @@
       <Equipment slot="Item1" id="Item.bracketed_heater_shield" />
       <Equipment slot="Item3" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_queens_guard_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.a_aserai_scale_b_shoulder_e" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_he_leg_boots_phoenix_001" />
@@ -9312,7 +9312,7 @@
       <Equipment slot="Item1" id="Item.bracketed_heater_shield" />
       <Equipment slot="Item3" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Head" id="Item.tor_he_head_helm_queens_guard_001" />
-      <Equipment slot="Body" id="Item.desert_scale_armor" />
+      <Equipment slot="Body" id="Item.tor_eo_body_kithband_metal_scale_001" />
       <Equipment slot="Cape" id="Item.a_aserai_scale_b_shoulder_e" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_he_leg_boots_phoenix_001" />
@@ -15166,6 +15166,46 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_cape_gold_wizard_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_gold_wizard_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_gold_wizard_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_life_wizard_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Item1" id="Item.tor_prophetess_staff_combined" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_valten" />
+      <Equipment slot="Body" id="Item.long_hemp_tunic" />
+      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
+      <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
+      <Equipment slot="Item1" id="Item.tor_prophetess_staff_combined" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_valten" />
+      <Equipment slot="Body" id="Item.long_hemp_tunic" />
+      <Equipment slot="Cape" id="Item.battania_woodland_cloak" />
+      <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
+      <Equipment slot="Leg" id="Item.steppe_leather_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_beast_wizard_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.northern_battle_axe_t3" />
+      <Equipment slot="Item1" id="Item.tor_empire_staff_lw_003_combined" />
+      <Equipment slot="Head" id="Item.bearhead" />
+      <Equipment slot="Body" id="Item.sleeveless_studded_fur_armor" />
+      <Equipment slot="Cape" id="Item.rough_bearskin" />
+      <Equipment slot="Gloves" id="Item.guarded_armwraps" />
+      <Equipment slot="Leg" id="Item.highland_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.northern_battle_axe_t3" />
+      <Equipment slot="Item1" id="Item.tor_empire_staff_lw_003_combined" />
+      <Equipment slot="Head" id="Item.bearhead" />
+      <Equipment slot="Body" id="Item.sleeveless_studded_fur_armor" />
+      <Equipment slot="Cape" id="Item.rough_bearskin" />
+      <Equipment slot="Gloves" id="Item.guarded_armwraps" />
+      <Equipment slot="Leg" id="Item.highland_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_mannfred_template" culture="Culture.khuzait">

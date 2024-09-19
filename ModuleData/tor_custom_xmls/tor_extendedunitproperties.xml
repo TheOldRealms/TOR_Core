@@ -6385,6 +6385,27 @@
     <Abilities>
       <string>GleamingArrow</string>
       <string>QuicksilverSwords</string>
+      <string>Dart</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_empire_9">
+    <Abilities>
+      <string>TheGreenEye</string>
+      <string>EnchantWeapon</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_empire_10">
+    <Abilities>
+      <string>AmberSpear</string>
+      <string>AuraOfResistance</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
