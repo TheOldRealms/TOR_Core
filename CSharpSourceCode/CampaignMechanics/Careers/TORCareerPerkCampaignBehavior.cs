@@ -39,7 +39,7 @@ namespace TOR_Core.CampaignMechanics
             {
                 var choice = TORCareerChoices.GetChoice("SecretOfFellfangPassive3");
                 var abilityModel = Campaign.Current.Models.GetAbilityModel();
-                var maximum = Hero.MainHero.AddWindsOfMagic(abilityModel.GetMaximumWindsOfMagic(Hero.MainHero.CharacterObject));
+                var maximum = abilityModel.GetMaximumWindsOfMagic(Hero.MainHero.CharacterObject);
 
                 var postBattleBonus = maximum * choice.GetPassiveValue();
 

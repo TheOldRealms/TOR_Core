@@ -53,13 +53,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             return false;
         }
         
-        public static bool ContainsSpellType(AbilityComponent component, int spellCount, AbilityTargetType[] excludedTargetTypes)
+        public static bool ContainsSpellType(AbilityComponent component, AbilityTargetType[] excludedTargetTypes)
         {
             var wrongSpell = false;
             if (component == null) return false;
+            var spellCount = component.KnownAbilitySystem.Count;
             for (int i = 0; i < spellCount; i++)
             {
                 var ability = component.GetAbility(i);
+                if(ability is CareerAbility) continue;
                 if(ability.Template==null) continue;
                 
                 if(excludedTargetTypes.AnyQ(x=> x == ability.Template.AbilityTargetType ))

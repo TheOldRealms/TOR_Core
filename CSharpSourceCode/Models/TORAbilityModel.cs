@@ -85,8 +85,7 @@ namespace TOR_Core.Models
                         if (Agent.Main != null)
                         {
                             var comp = Agent.Main.GetComponent<AbilityComponent>();
-                            if (!CareerChoicesHelper.ContainsSpellType(comp, Agent.Main.GetAbilities().Count,
-                                    [AbilityTargetType.AlliesInAOE, AbilityTargetType.EnemiesInAOE, AbilityTargetType.GroundAtPosition]))
+                            if (!CareerChoicesHelper.ContainsSpellType(comp, [AbilityTargetType.AlliesInAOE, AbilityTargetType.EnemiesInAOE, AbilityTargetType.GroundAtPosition]))
                             {
                                 explainedNumber.AddFactor(2);
                             }
@@ -142,7 +141,7 @@ namespace TOR_Core.Models
                             var count = Agent.Main.GetAbilities().Count;
                             if (!CareerChoicesHelper.ContainsSpellType(Agent.Main.GetComponent<AbilityComponent>(), count, AbilityEffectType.Hex))
                             {
-                                explainedNumber.AddFactor(0.5f);
+                                explainedNumber.AddFactor(0.25f);
                             }
                         }
                     }

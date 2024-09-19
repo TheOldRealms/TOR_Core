@@ -140,6 +140,11 @@ public class MindControlScript : CareerAbilityScript
 
         
         target.ApplyStatusEffect("fellfang_mark",_caster,999999f);
+        
+        if (Hero.MainHero.HasCareerChoice("SecretOfFellfangKeystone"))
+        {
+            Hero.MainHero.AddWindsOfMagic(3);
+        }
     }
 
     private void HandleMissed(Agent agent)

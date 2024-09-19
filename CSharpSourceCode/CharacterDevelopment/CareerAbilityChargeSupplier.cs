@@ -413,11 +413,11 @@ namespace TOR_Core.CharacterDevelopment
             {
                 switch (mask)
                 {
-                    case AttackTypeMask.Melee when Hero.MainHero.HasCareerChoice("CaelithsWisdomKeystone"):
+                    case AttackTypeMask.Melee when Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryKeystone"):
                         return explainedNumber.ResultNumber * 3;
                     case AttackTypeMask.Melee:
                         return 0;
-                    case AttackTypeMask.Ranged when Hero.MainHero.HasCareerChoice("CaelithsWisdomKeystone"):
+                    case AttackTypeMask.Ranged when Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryKeystone"):
                         return explainedNumber.ResultNumber;
                     case AttackTypeMask.Ranged:
                         return 0;

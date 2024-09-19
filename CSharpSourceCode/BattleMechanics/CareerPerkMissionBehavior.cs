@@ -275,11 +275,6 @@ namespace TOR_Core.BattleMechanics
                         var effect = TriggeredEffectManager.CreateNew("apply_fellfang_explosion");
                         effect.Trigger(affectedAgent.Position,Vec3.Up,Agent.Main, Agent.Main.GetCareerAbility().Template);
                     }
-                    
-                    if (Hero.MainHero.HasCareerChoice("SecretOfFellfangKeystone"))
-                    {
-                        Hero.MainHero.AddWindsOfMagic(2);
-                    }
                 }
             }
             
