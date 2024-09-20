@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +65,9 @@ namespace TOR_Core.HarmonyPatches
         {
             if(__instance.HasExtension())
             {
-                __result = __instance.GetExtension().GetViewModelAtPath(path);
+                var extension = __instance.GetExtension();
+                if (extension == null) return true;
+                __result = extension.GetViewModelAtPath(path);
                 return false;
             }
             return true;
