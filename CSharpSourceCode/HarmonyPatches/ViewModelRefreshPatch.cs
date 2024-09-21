@@ -27,7 +27,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPostfix]
         static void Postfix(ViewModel __instance)
         {
-            if (__instance.HasExtension()) __instance.GetExtension().RefreshValues();
+            if (__instance.HasExtensionInstance()) __instance.GetExtensionInstance().RefreshValues();
         }
     }
 }

@@ -42,8 +42,7 @@ namespace TOR_Core.Extensions.UI
             BindingPath subPath = path.SubPath;
             if (subPath != null)
             {
-                PropertyInfo property = _vm.GetType().GetProperty(subPath.FirstNode);
-                if (property == null) property = GetType().GetProperty(subPath.FirstNode);
+                PropertyInfo property = _vm.GetType().GetProperty(subPath.FirstNode) ?? GetType().GetProperty(subPath.FirstNode);
                 if (property != null)
                 {
                     object obj = null;
@@ -92,7 +91,7 @@ namespace TOR_Core.Extensions.UI
 
         public Dictionary<string, PropertyInfo> GetProperties()
         {
-            Dictionary<string, PropertyInfo> dictionary = new Dictionary<string, PropertyInfo>();
+            Dictionary<string, PropertyInfo> dictionary = [];
             foreach (PropertyInfo propertyInfo in GetType().GetProperties((BindingFlags)52))
             {
                 if (!dictionary.ContainsKey(propertyInfo.Name))
@@ -105,7 +104,7 @@ namespace TOR_Core.Extensions.UI
 
         public Dictionary<string, MethodInfo> GetMethods()
         {
-            Dictionary<string, MethodInfo> dictionary = new Dictionary<string, MethodInfo>();
+            Dictionary<string, MethodInfo> dictionary = [];
             foreach (MethodInfo methodInfo in GetType().GetMethods((BindingFlags)52))
             {
                 if (!dictionary.ContainsKey(methodInfo.Name))
@@ -118,8 +117,7 @@ namespace TOR_Core.Extensions.UI
 
         public object GetPropertyValue(string name)
         {
-            PropertyInfo property = _vm.GetType().GetProperty(name);
-            if (property == null) property = GetType().GetProperty(name);
+            PropertyInfo property = _vm.GetType().GetProperty(name) ?? GetType().GetProperty(name);
             object result = null;
             if (property != null)
             {
@@ -131,8 +129,7 @@ namespace TOR_Core.Extensions.UI
 
         public void SetPropertyValue(string name, object value)
         {
-            PropertyInfo property = _vm.GetType().GetProperty(name);
-            if (property == null) property = GetType().GetProperty(name);
+            PropertyInfo property = _vm.GetType().GetProperty(name) ?? GetType().GetProperty(name);
             if (property != null)
             {
                 MethodInfo setMethod = property.GetSetMethod();
@@ -140,8 +137,8 @@ namespace TOR_Core.Extensions.UI
                 {
                     return;
                 }
-                if (IsExtendedProperty(property)) setMethod.InvokeWithLog(this, new object[] { value });
-                else setMethod.InvokeWithLog(_vm, new object[] { value });
+                if (IsExtendedProperty(property)) setMethod.InvokeWithLog(this, [value]);
+                else setMethod.InvokeWithLog(_vm, [value]);
             }
         }
 

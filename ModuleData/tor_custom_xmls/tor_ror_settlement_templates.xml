@@ -89,7 +89,7 @@
         RegimentHQName="Horned Hunter Encampment"
     />
     <RORSettlementTemplate
-        SettlementId="castle_RL3"
+        SettlementId="village_RL1_3"
         BaseTroopId="tor_ror_son_of_altdorf"
         MenuHeaderText="Home to the renowned and loved Altdorf Company of Honour, the 'Sons of the Reik', only the best may fight alongside these venerable warriors."
         MenuBackgroundImageId="invalid"
@@ -103,6 +103,14 @@
         MenuBackgroundImageId="invalid"
         RegimentName="Knights Griffon"
         RegimentHQName="Cathedral of Sigmar"
+    />
+	<RORSettlementTemplate
+        SettlementId="castle_village_RL3_2"
+        BaseTroopId="tor_empire_reiksguard_knight"
+        MenuHeaderText="Due to Grünburg's proximity to Castle Reikguard, the headquarters of the Grand Order of the Reiksguard Knights, some of the finest knights of the Empire often patrol these roads."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Reiksguard Knights"
+        RegimentHQName="Headquarters of the Reiksguard Knights"
     />
 	<RORSettlementTemplate
         SettlementId="castle_village_AQ3_2"
@@ -128,5 +136,28 @@
         RegimentName="Peasant Knights of Wainfleet'"
         RegimentHQName="Geg's Manor"
     />
-        
+    <RORSettlementTemplate
+		SettlementId="castle_village_AL6_1"
+        BaseTroopId="tor_we_wildwood_ranger"
+        MenuHeaderText="Not all Forest Spirits wish to coexist with the Asrai. Malevolent and deranged denizens of the forest are banished to the Wildwood, where elite Willdwood Rangers keep their eternal watch."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Wildwood Rangers"
+        RegimentHQName="Wildwood"
+    />
+	<RORSettlementTemplate
+		SettlementId="town_AL5"
+        BaseTroopId="tor_we_wardancer"
+        MenuHeaderText="Fyr Darric, the Trickster's Wood, holds the largest concentration of Wardancer troupes wandering through Athel Loren. Music and laughter can often be heard in this region, but not all things are as they seem at a glance."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Asrai Wardancers"
+        RegimentHQName="The Trickster's Wood"
+    />
+	<RORSettlementTemplate
+		SettlementId="town_AL1"
+        BaseTroopId="tor_we_wild_rider"
+        MenuHeaderText="Here, in King's Glade, impulsive Wild Riders, without uttering a word, await the rebirth of their master, Orion. Their only desire is to ride the Wild Hunt at the side of the King in the Woods."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Wild Riders of Kurnous"
+        RegimentHQName="Shrine of Kurnous"
+    />
 </ArrayOfRORSettlementTemplate>

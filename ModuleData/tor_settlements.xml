@@ -2738,7 +2738,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_RL3" name="{=Settlements.Settlement.name.castle_RL3}Castle Reiksguard" owner="Faction.reikland_clan_1" posX="1302.871" posY="1050.253" culture="Culture.empire" gate_posX="1303.586" gate_posY="1051.358" text="{=!}Castle Reiksguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
+  <Settlement id="castle_RL3" name="{=Settlements.Settlement.name.castle_RL3}Castle Reikguard" owner="Faction.reikland_clan_1" posX="1302.871" posY="1050.253" culture="Culture.empire" gate_posX="1303.586" gate_posY="1051.358" text="{=!}Castle Reikguard is the fortress of the Grand Order of the Reiksguard Knights. It sits on the confluence of the rivers Teufel and Reik. In the time of Emperor Sigismund, while the Reikland was under threat of Gorbad Ironclaw, it was refortified and increased in size by dwarfen architects. It remains a powerful citadel capable of holding hundreds of soldiers and staff and serves as Karl-Franz’s summer home.">
     <Components>
       <Town id="castle_comp_RL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -2748,7 +2748,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_RL3_1" name="{=Settlements.Settlement.name.castle_village_RL3_1}Worlitz" posX="1315.466" posY="1043.359" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
+  <Settlement id="castle_village_RL3_1" name="{=Settlements.Settlement.name.castle_village_RL3_1}Worlitz" posX="1315.466" posY="1043.359" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_RL3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reikguard. The people here are very loyal directly to the Emperor Karl Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
     <Components>
       <Village id="castle_village_comp_RL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_RL1" bound="Settlement.castle_RL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3288,7 +3288,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_ML3_1" name="{=Settlements.Settlement.name.castle_village_ML3_1}Winsen" posX="1251.015" posY="1223.07" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
+  <Settlement id="castle_village_ML3_1" name="{=Settlements.Settlement.name.castle_village_ML3_1}Winsen" posX="1251.015" posY="1223.07" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_ML3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reikguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
     <Components>
       <Village id="castle_village_comp_ML3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_ML1" bound="Settlement.castle_ML3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -3858,7 +3858,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_HL3_1" name="{=Settlements.Settlement.name.castle_village_HL3_1}Gerzen" posX="1403.702" posY="1172.366" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_HL3_1}WoHLitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor KaHL-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
+  <Settlement id="castle_village_HL3_1" name="{=Settlements.Settlement.name.castle_village_HL3_1}Gerzen" posX="1403.702" posY="1172.366" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_HL3_1}WoHLitz is a river village protected by the forces garrisoning the Castle Reikguard. The people here are very loyal directly to the Emperor KaHL-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
     <Components>
       <Village id="castle_village_comp_HL3_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_HL1" bound="Settlement.castle_HL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -4548,7 +4548,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_OL4_1" name="{=Settlements.Settlement.name.castle_village_OL4_1}Obelstein" posX="1466.072" posY="1254.883" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reiksguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
+  <Settlement id="castle_village_OL4_1" name="{=Settlements.Settlement.name.castle_village_OL4_1}Obelstein" posX="1466.072" posY="1254.883" culture="Culture.empire" text="{=Settlements.Settlement.text.castle_village_OL3_1}Worlitz is a river village protected by the forces garrisoning the Castle Reikguard. The people here are very loyal directly to the Emperor Karl-Franz who many believe to be a reincarnation of Sigmar. The town benefits from trade heading down the Reik to Altdorf, Marienburg and beyond.">
     <Components>
       <Village id="castle_village_comp_OL4_1" village_type="VillageType.cattle_farm" hearth="200" trade_bound="Settlement.town_OL4" bound="Settlement.castle_OL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>

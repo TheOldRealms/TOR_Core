@@ -24,14 +24,13 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(ViewModel), MethodType.Constructor)]
         public static void PatchVMConstructor(ViewModel __instance)
         {
-            if (__instance.HasExtension())
+            if (__instance.HasExtensionType())
             {
                 var VMExtensionType = __instance.GetExtensionType();
                 if(VMExtensionType != null)
                 {
-                    var VMExtensionInstance = Activator.CreateInstance(VMExtensionType, __instance) as IViewModelExtension;
                     var exists = Traverse.Create(__instance).Field("_propertiesAndMethods").FieldExists();
-                    if (exists && VMExtensionInstance != null)
+                    if (exists && Activator.CreateInstance(VMExtensionType, __instance) is IViewModelExtension VMExtensionInstance)
                     {
                         var field = Traverse.Create(__instance).Field("_propertiesAndMethods").GetValue();
                         var props = Traverse.Create(field).Property("Properties").GetValue() as Dictionary<string, PropertyInfo>;
@@ -53,9 +52,9 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(ViewModel), "OnFinalize")]
         public static void PatchVMDestructor(ViewModel __instance)
         {
-            if (__instance.HasExtension())
+            if (__instance.HasExtensionInstance())
             {
-                __instance.GetExtension().OnFinalize();
+                __instance.GetExtensionInstance().OnFinalize();
             }
         }
 
@@ -63,11 +62,9 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(ViewModel), "GetViewModelAtPath", typeof(BindingPath))]
         public static bool PatchPathFinder(ViewModel __instance, BindingPath path, ref object __result)
         {
-            if(__instance.HasExtension())
+            if(__instance.HasExtensionInstance())
             {
-                var extension = __instance.GetExtension();
-                if (extension == null) return true;
-                __result = extension.GetViewModelAtPath(path);
+                __result = __instance.GetExtensionInstance().GetViewModelAtPath(path);
                 return false;
             }
             return true;
@@ -77,9 +74,9 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(ViewModel), "GetPropertyValue", typeof(string))]
         public static bool PatchPropertyGetter(ViewModel __instance, string name, ref object __result)
         {
-            if (__instance.HasExtension())
+            if (__instance.HasExtensionInstance())
             {
-                __result = __instance.GetExtension().GetPropertyValue(name);
+                __result = __instance.GetExtensionInstance().GetPropertyValue(name);
                 return false;
             }
             return true;
@@ -92,9 +89,9 @@ namespace TOR_Core.HarmonyPatches
             if (name == DistanceToCamera) return true;
             if (name == Position) return true;
             if (name == Headposition) return true;
-            else if (__instance.HasExtension())
+            else if (__instance.HasExtensionInstance())
             {
-                __instance.GetExtension().SetPropertyValue(name, value);
+                __instance.GetExtensionInstance().SetPropertyValue(name, value);
                 return false;
             }
             return true;
@@ -104,9 +101,9 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(ViewModel), "ExecuteCommand")]
         public static bool PatchExecutor(ViewModel __instance, string commandName, object[] parameters)
         {
-            if (__instance.HasExtension())
+            if (__instance.HasExtensionInstance())
             {
-                __instance.GetExtension().ExecuteCommand(commandName, parameters);
+                __instance.GetExtensionInstance().ExecuteCommand(commandName, parameters);
                 return false;
             }
             return true;

@@ -14,7 +14,7 @@ namespace TOR_Core.Extensions.UI
 {
     public class ViewModelExtensionManager
     {
-        private readonly Dictionary<ViewModel, IViewModelExtension> _extensionInstances = new Dictionary<ViewModel, IViewModelExtension>();
+        private readonly Dictionary<ViewModel, IViewModelExtension> _extensionInstances = [];
         public static ViewModelExtensionManager Instance { get; private set; }
         public Dictionary<Type, Type> ExtensionTypes { get; private set; } = new Dictionary<Type, Type>();
         private ViewModelExtensionManager()
@@ -60,9 +60,14 @@ namespace TOR_Core.Extensions.UI
 			}
 		}
 
-        public bool HasViewModelExtension(ViewModel vm)
+        public bool HasViewModelExtensionType(ViewModel vm)
         {
             return ExtensionTypes.TryGetValue(vm.GetType(), out _);
+        }
+
+        public bool HasViewModelExtensionInstance(ViewModel vm)
+        {
+            return GetExtensionInstance(vm) != null;
         }
 
         public Type GetExtensionType(ViewModel vm)

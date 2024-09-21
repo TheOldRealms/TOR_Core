@@ -61,12 +61,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             Instance._resources.Add("CouncilFavor",
                 new CustomResource("CouncilFavor", "Eonir Council Favor",
                     "Retrieve power in the Eonir council and use it to your benefit.", "favor_icon_45", TORConstants.Cultures.EONIR,FavorHelper.GetFavorInfo));
-            
             Instance._resources.Add("WindsOfMagic",
                 new CustomResource("WindsOfMagic", "Winds of Magic",
                     "Winds of Magic is used by spellcasters to cast spells.", "winds_icon_45"));
-            
- 
         }
 
         public static CustomResource GetResourceObject(string id)
@@ -350,7 +347,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         private static void PartyScreenLogic_AfterReset(PartyScreenLogic partyScreenLogic, bool fromCancel)
         {
             Instance._resourceChanges.Clear();
-            if (Instance._currentPartyVM != null) Instance._currentPartyVM.GetExtension().RefreshValues();
+            if (Instance._currentPartyVM != null) Instance._currentPartyVM.GetExtensionInstance().RefreshValues();
         }
 
         private static void PartyScreenLogic_PartyScreenClosedEvent(PartyBase leftOwnerParty,
@@ -457,7 +454,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 {
                     Instance._resourceChanges.Add(new Tuple<string, int>(requirement.Item1.StringId,
                         requirement.Item2 * command.TotalNumber));
-                    partyVM.GetExtension().RefreshValues();
+                    partyVM.GetExtensionInstance().RefreshValues();
                 }
             }
         }
