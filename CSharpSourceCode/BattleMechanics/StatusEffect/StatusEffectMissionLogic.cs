@@ -79,6 +79,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 CareerHelper.PowerstoneEffectAssignment(agent);
                 return;
             }
+
+            if (agent.GetOriginMobileParty().HasBlessing("cult_of_loec"))
+            {
+                CareerHelper.AddDefaultPermanentMissionEffect(agent,"loec_blessing_mvs");
+                CareerHelper.AddDefaultPermanentMissionEffect(agent,"loec_blessing_ats");
+            }
             
             if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {

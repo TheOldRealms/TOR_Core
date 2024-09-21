@@ -433,6 +433,21 @@ namespace TOR_Core.Models
                 {
                     damageBonuses[(int)DamageType.Lightning] += 0.10f;
                 }
+                
+                if (agentParty.HasBlessing("cult_of_asuryan"))
+                {
+                    damageBonuses[(int)DamageType.Fire] += 0.10f;
+                }
+
+                if ((attackMask  == AttackTypeMask.Ranged && agentParty.HasBlessing("cult_of_kurnous")))
+                {
+                    damageBonuses[(int)DamageType.Physical] += 0.1f;
+                }
+                
+                if (agentParty.HasBlessing("cult_of_vaul"))
+                {
+                    resistances[(int)DamageType.Physical] += 0.1f;
+                }
             }
 
             var wieldedItem = agent.WieldedWeapon.Item;

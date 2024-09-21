@@ -178,7 +178,7 @@
   </Settlement>
   <Settlement id="asuryan_shrine_01" name="{=!}Shrine of Asuryan" owner="Faction.laurelorn_clan_1" posX="1258.447" posY="1327.954" culture="Culture.eonir" text="{=!}Shrine of Asuryan">
     <Components>
-      <Shrine id="asuryan_shrine_01" religion="cult_of_asuryan" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="asuryan_shrine_01" religion="cult_of_asuryan" background_crop_position="0.0" background_mesh="shrine_of_asuryan" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="ulric_shrine_01" name="{=!}Shrine of Ulric" owner="Faction.nordland_clan_1" posX="1353.372" posY="1284.965" culture="Culture.empire" text="{=!}Shrine of Ulric">

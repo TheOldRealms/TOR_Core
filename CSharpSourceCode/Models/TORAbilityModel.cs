@@ -321,6 +321,15 @@ namespace TOR_Core.Models
 
             if (baseCharacter.HeroObject != null && baseCharacter.HeroObject.PartyBelongedTo != null && baseCharacter.HeroObject.PartyBelongedTo.IsMainParty)
             {
+                if (MobileParty.MainParty.HasAnyActiveBlessing())
+                {
+                    if (MobileParty.MainParty.HasBlessing("cult_of_isha"))
+                    {
+                        explainedNumber.AddFactor(0.25f);
+                    }
+                }
+                
+                
                 CareerHelper.ApplyBasicCareerPassives(baseCharacter.HeroObject, ref explainedNumber, PassiveEffectType.WindsRegeneration, false);
 
                 var weightmalus = baseCharacter.Equipment.GetTotalWeightOfArmor(true) / 25;

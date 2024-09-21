@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
@@ -35,6 +36,22 @@ namespace TOR_Core.CampaignMechanics.Religion
             var defenderParties = mapEvent.PartiesOnSide(BattleSideEnum.Defender);
             attackerParties.ForEach(x => DistributeXpForKilledUnits(x));
             defenderParties.ForEach(x => DistributeXpForKilledUnits(x));
+
+
+            if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.PartyBelongedTo.HasBlessing("cult_of_anath_raema"))
+            {
+                var roster = PlayerEncounter.Current.RosterToReceiveLootItems;
+                var randomIndex = MBRandom.RandomInt(0, roster.Count - 1);
+
+
+                var item = PlayerEncounter.Current.RosterToReceiveLootItems[randomIndex].EquipmentElement;
+
+                if (!item.IsEmpty)
+                {
+                    PlayerEncounter.Current.RosterToReceiveLootItems.AddToCounts(item ,7);
+                }
+                
+            }
         }
 
         private void DistributeXpForKilledUnits(MapEventParty party)
