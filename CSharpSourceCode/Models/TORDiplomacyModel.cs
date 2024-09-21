@@ -102,14 +102,15 @@ namespace TOR_Core.Models
 
             if (kingdom == null || mercenaryClan == null) return score;
 
-            if (kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA && mercenaryClan.Culture.StringId != TORConstants.Cultures.BRETONNIA ||
-                kingdom.Culture.StringId != TORConstants.Cultures.BRETONNIA && mercenaryClan.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            if (kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA && mercenaryClan.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            {
+                score = +1000;
+            } else if (mercenaryClan.Culture.StringId != TORConstants.Cultures.BRETONNIA)
             {
                 score = -10000;
             }
             
-            
-            if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && kingdom.Culture.StringId == TORConstants.Cultures.SYLVANIA || kingdom.Culture.StringId == "mousillon" || kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && (kingdom.Culture.StringId == TORConstants.Cultures.SYLVANIA || kingdom.Culture.StringId == "mousillon" || kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA))
             {
                 score = -10000;
             }
