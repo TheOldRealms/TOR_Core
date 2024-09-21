@@ -274,7 +274,7 @@ using TOR_Core.Utilities;
                         },
                     },new CareerChoiceObject.PassiveEffect(0,PassiveEffectType.Special));
                 
-                _secretOfFellfangKeystone.Initialize(CareerID, "Successful overtake grants 1 winds of magic.", "SecretOfFellfang", false,
+                _secretOfFellfangKeystone.Initialize(CareerID, "Successful overtake grants 3 winds of magic.", "SecretOfFellfang", false,
                     ChoiceType.Passive);
             }
 
@@ -317,7 +317,7 @@ using TOR_Core.Utilities;
                 
                 _secretOfFellfangPassive1.Initialize(CareerID, "50% cooldown reduction if you wield less than 11 spells", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(11, PassiveEffectType.Special));
                 _secretOfFellfangPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 25.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
-                _secretOfFellfangPassive3.Initialize(CareerID, "After battle, 30% of your winds are regenerated.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
+                _secretOfFellfangPassive3.Initialize(CareerID, "After battle, 30% of your winds are regenerated.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true));
                 _secretOfFellfangPassive4.Initialize(CareerID, "Increases fire spell damage by 15%.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
             }
             

@@ -190,7 +190,8 @@ namespace TOR_Core.AbilitySystem
                             var choice = TORCareerChoices.GetChoice("SecretOfFellfangPassive1");
                             if ( choice!=null)
                             {
-                                var count = Agent.Main.GetAbilities().Count;
+                                var component = Agent.Main.GetComponent<AbilityComponent>();
+                                var count = component.KnownAbilitySystem.Count;
                             
                                 if(count<choice.GetPassiveValue())
                                 {
