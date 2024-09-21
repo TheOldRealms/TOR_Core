@@ -38,7 +38,7 @@ namespace TOR_Core.CampaignMechanics.Religion
             defenderParties.ForEach(x => DistributeXpForKilledUnits(x));
 
 
-            if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.PartyBelongedTo.HasBlessing("cult_of_anath_raema"))
+            if (mapEvent.PlayerSide == mapEvent.WinningSide && mapEvent.IsPlayerMapEvent &&  Hero.MainHero.PartyBelongedTo.HasBlessing("cult_of_anath_raema"))
             {
                 var roster = PlayerEncounter.Current.RosterToReceiveLootItems;
                 var randomIndex = MBRandom.RandomInt(0, roster.Count - 1);
