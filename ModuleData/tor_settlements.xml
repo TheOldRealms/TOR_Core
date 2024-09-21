@@ -21,7 +21,7 @@
       <WorldRoots id="worldroot_03" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="worldroot_04" name="{=!}Inconspicuous World Roots" owner="Faction.athel_loren_clan_1" posX="1223.082" posY="972.585" culture="Culture.eonir" text="{=!}Inconspicuous World Root End">
+  <Settlement id="worldroot_04" name="{=!}Maisontaal World Roots" owner="Faction.athel_loren_clan_1" posX="1223.082" posY="972.585" culture="Culture.eonir" text="{=!}Maisontaal World Root End">
     <Components>
       <WorldRoots id="worldroot_04" background_crop_position="0.0" background_mesh="beastman_heardstone" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -682,6 +682,14 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         {
             var cost = TravelCost;
             if (HasUnlockedUpgrade("WETravelCostUpgrade")) cost /= 2;
+            
+
+
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR || Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE)
+            {
+                cost/=2;
+            }
+            
             Hero.MainHero.AddCultureSpecificCustomResource(-cost);
         }
 
@@ -711,7 +719,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             args => TravelEonirCondition(args) && Hero.MainHero.CurrentSettlement.StringId == "worldroot_02", (MenuCallbackArgs args) => RootTravelConsequence(_maisonTaalLocation, false), true);
         
         starter.AddGameMenuOption("worldroots_menu", "travel_eonir", "{tor_custom_settlement_menu_leave_str}Travel to Laurelorn",
-            args => TravelEonirCondition(args) && false, (MenuCallbackArgs args) => RootTravelConsequence(_laurelornLocation, false), true);
+            args => TravelEonirCondition(args) && Hero.MainHero.CurrentSettlement.StringId == "worldroot_04", (MenuCallbackArgs args) => RootTravelConsequence(_laurelornLocation, false), true);
 
         starter.AddGameMenuOption("worldroots_menu", "travel_back", "{tor_custom_settlement_menu_leave_str}Travel back to Athel Loren...",
             args => TravelBackCondition(args), (MenuCallbackArgs args) => RootTravelConsequence(_athelLorenLocation, false), true);
@@ -731,17 +739,26 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
     private bool TravelEonirCondition(MenuCallbackArgs args)
     {
-        if(Hero.MainHero.Culture.StringId != TORConstants.Cultures.EONIR)
+        if(Hero.MainHero.Culture.StringId != TORConstants.Cultures.EONIR && Hero.MainHero.Culture.StringId != TORConstants.Cultures.BRETONNIA && Hero.MainHero.Culture.StringId != TORConstants.Cultures.EMPIRE)
         {
             return false;
         }
 
+
+        
+        var resource = Hero.MainHero.GetCultureSpecificCustomResource();
+        var cost = Hero.MainHero.StringId == TORConstants.Cultures.BRETONNIA ? 100 : 50;
         if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < 50)
         {
+
+            
+            
             args.IsEnabled = false;
-            args.Tooltip = new TextObject("Not enough Favor");
+            args.Tooltip = new TextObject("Not enough " + resource.Name + " requires " + cost);
             return true;
         }
+
+        args.Tooltip = new TextObject("Travel to target location (" + cost + " " + resource.GetCustomResourceIconAsText() + ")");
 
         return true;
     }
@@ -773,7 +790,19 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         var text = component.IsActive
             ? GameTexts.FindText("customsettlement_intro", settlement.StringId)
             : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
-        MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
+
+
+        if ((Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR || 
+            Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE ||
+            Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA) 
+            && settlement.StringId =="worldroot_02")
+        {
+            var textb = GameTexts.FindText("customsettlement_intro", settlement.StringId+"b");
+            if (textb != null)
+            {
+                MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", textb);
+            }
+        }
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
     }
 
