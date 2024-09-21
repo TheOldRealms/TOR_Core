@@ -53,63 +53,58 @@ namespace TOR_Core.CampaignMechanics
                         List<TORTroopUpgradeArgs> possibleUpgradeTargets = GetPossibleUpgradeTargets(party, elementCopyAtIndex);
                         if (possibleUpgradeTargets.Count > 0)
                         {
-                     
-                            
-                            
                             TORTroopUpgradeArgs upgradeArgs = SelectPossibleUpgrade(possibleUpgradeTargets);
                             
                             if (party.IsMobile && party.MobileParty.IsLordParty)
                             {
                                 if (memberRoster.Contains(upgradeArgs.UpgradeTarget))
                                 {
-                                    var partyTemplate = party.LeaderHero.Clan.DefaultPartyTemplate; // either takes clan, or if not found the culture
-                                    
-                                    //if(partyTemplate == null) continue;
+                                    var partyTemplate = party.LeaderHero.Clan.DefaultPartyTemplate; // either takes clan, or if not take the culture one
                                     
                                     float currentTotalTroopCount = memberRoster.TotalManCount;
 
-                                    var ratio = 0.1f;
+                                    var ratio = 0f;
 
-                                    if (!partyTemplate.Stacks.Any(x => x.Character == upgradeArgs.UpgradeTarget))
+                                    if (partyTemplate.Stacks.Any(x => x.Character == upgradeArgs.UpgradeTarget))   
+                                    {
+                                        float maximumTotalTroopCountOfTemplate = 0f;
+
+                                        PartyTemplateStack targetStack = new PartyTemplateStack();
+                                        foreach (var stack in partyTemplate.Stacks)
+                                        {
+                                            if (stack.Character == upgradeArgs.UpgradeTarget)
+                                            {
+                                                targetStack = stack;
+                                            }
+
+                                            maximumTotalTroopCountOfTemplate+=stack.MaxValue;
+                                        }
+
+                                        if (maximumTotalTroopCountOfTemplate == 0)
+                                        {
+                                            continue;
+                                        }
+                                    
+                                        ratio = targetStack.MaxValue / maximumTotalTroopCountOfTemplate;
+
+                                        var potentialCountOfTemplate =  ratio * currentTotalTroopCount;
+
+                                        if (!(memberRoster.GetElementCopyAtIndex(i).Number < potentialCountOfTemplate))
+                                        {
+                                            continue;
+                                        }   
+                                    }
+                                    else //case ror are recruited or anything outside the regular roster
                                     {
                                         var count = memberRoster.GetTroopCount(upgradeArgs.UpgradeTarget);
 
+                                        ratio = 0.1f;
                                         if (count > ratio * currentTotalTroopCount)
                                         {
                                             continue;
                                         }
                                     }
-                                    
-                                    
-                                    
-                                    float maximumTotalTroopCountOfTemplate = 0f;
-
-                                    PartyTemplateStack targetStack = new PartyTemplateStack();
-                                    foreach (var stack in partyTemplate.Stacks)
-                                    {
-                                        if (stack.Character == upgradeArgs.UpgradeTarget)
-                                        {
-                                            targetStack = stack;
-                                        }
-
-                                        maximumTotalTroopCountOfTemplate+=stack.MaxValue;
-                                    }
-
-                                    if (maximumTotalTroopCountOfTemplate == 0)
-                                    {
-                                        continue;
-                                    }
-                                    
-                                    ratio = targetStack.MaxValue / maximumTotalTroopCountOfTemplate;
-
-                                    var potentialCountOfTemplate =  ratio * currentTotalTroopCount;
-
-                                    if (!(memberRoster.GetElementCopyAtIndex(i).Number < potentialCountOfTemplate))
-                                    {
-                                        continue;
-                                    }
                                 }
-
                             }
                             UpgradeTroop(party, i, upgradeArgs);
                            
