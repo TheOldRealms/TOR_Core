@@ -1476,8 +1476,8 @@
       <Trait id="Valor" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_fay_enchantress_template" />
-      <EquipmentSet id="tor_fay_enchantress_template" civilian="true" />
+      <EquipmentSet id="tor_we_spellsinger_template" />
+      <EquipmentSet id="tor_we_spellsinger_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eonir_druchii_envoy_0" default_group="infantry" name="{=str_tor_eonir_druchii_envoy_0}{=!}Witch King Envoy" occupation="Special" culture="Culture.eonir" voice="ironic" age="30" race="elf" is_template="true" is_hero="false">
@@ -1492,8 +1492,8 @@
       <Trait id="Valor" value="-4" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_cc_eo_druchii_foundling_1" />
-      <EquipmentSet id="tor_cc_eo_druchii_foundling_1" civilian="true" />
+      <EquipmentSet id="tor_qnpc_eonir_envoy_druchii" />
+      <EquipmentSet id="tor_qnpc_eonir_envoy_druchii" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eonir_asur_envoy_0" default_group="infantry" name="{=str_tor_eonir_asur_envoy_0}{=!}Phoenix King Envoy" occupation="Special" culture="Culture.eonir" voice="ironic" age="30" race="elf" is_template="true" is_hero="false">
@@ -1508,8 +1508,8 @@
       <Trait id="Valor" value="-4" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_eo_champion_lord_template" />
-      <EquipmentSet id="tor_eo_champion_lord_template" civilian="true" />
+      <EquipmentSet id="tor_qnpc_eonir_envoy_asur" />
+      <EquipmentSet id="tor_qnpc_eonir_envoy_asur" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eonir_empire_envoy_0" default_group="infantry" name="{=str_tor_eonir_empire_envoy_0}{=!}Empire Envoy" occupation="Special" culture="Culture.eonir" voice="ironic" age="30" is_template="true" is_hero="false">
@@ -1524,8 +1524,8 @@
       <Trait id="Valor" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_qnpc_prestige_noble_template" />
-      <EquipmentSet id="tor_qnpc_prestige_noble_template" civilian="true" />
+      <EquipmentSet id="tor_qnpc_eonir_envoy_empire" />
+      <EquipmentSet id="tor_qnpc_eonir_envoy_empire" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eonir_spellsinger_envoy_0" default_group="infantry" name="{=str_tor_eonir_spellsinger_envoy_0}{=!}Forestguardian" occupation="Special" culture="Culture.eonir" voice="ironic" age="30" race="elf" is_template="true" is_hero="false">
@@ -1540,8 +1540,8 @@
       <Trait id="Valor" value="-3" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_qnpc_collegemagister_template" />
-      <EquipmentSet id="tor_qnpc_collegemagister_template" civilian="true" />
+      <EquipmentSet id="tor_qnpc_eonir_envoy_spellsinger" />
+      <EquipmentSet id="tor_qnpc_eonir_envoy_spellsinger" civilian="true" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>

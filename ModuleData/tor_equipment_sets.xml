@@ -19512,6 +19512,70 @@
       <Equipment slot="Leg" id="Item.leather_cavalier_boots" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_qnpc_eonir_envoy_empire" culture="Culture.eonir">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_general_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_rapier_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_general_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_pistolier_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_qnpc_eonir_envoy_druchii" culture="Culture.eonir">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_003" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_de_weapon_sword_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_militia_003" />
+      <Equipment slot="Cape" id="Item.tor_de_shoulder_pauldrons_infantry_001" />
+      <Equipment slot="Gloves" id="Item.tor_de_arm_bracers_infantry_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_002" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_qnpc_eonir_envoy_spellsinger" culture="Culture.eonir">
+    <EquipmentSet>
+      <Equipment slot="Head" id="Item.tor_we_head_crown_exiled_wizard_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armour_spellsinger_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_spellsinger_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_lord_002" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_exiled_wizard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Head" id="Item.tor_we_head_crown_exiled_wizard_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armour_spellsinger_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_spellsinger_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_lord_002" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_exiled_wizard_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_qnpc_eonir_envoy_asur" culture="Culture.eonir">
+    <EquipmentSet>
+      <Equipment slot="Head" id="Item.tor_he_head_helm_phoenix_001" />
+      <Equipment slot="Body" id="Item.tor_he_body_armour_phoenix_002" />
+      <Equipment slot="Cape" id="Item.tor_he_shoulder_cape_phoenix_001" />
+      <Equipment slot="Leg" id="Item.tor_he_leg_boots_phoenix_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Head" id="Item.tor_he_head_helm_phoenix_001" />
+      <Equipment slot="Body" id="Item.tor_he_body_armour_phoenix_002" />
+      <Equipment slot="Cape" id="Item.tor_he_shoulder_cape_phoenix_001" />
+      <Equipment slot="Leg" id="Item.tor_he_leg_boots_phoenix_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_qnpc_engineerquest_goswin_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_flintlock_pistol_005" />
