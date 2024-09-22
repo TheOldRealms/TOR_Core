@@ -548,6 +548,19 @@
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect />
     </TriggeredEffectTemplate>
+	    <TriggeredEffectTemplate StringID="shield_of_thorns"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Physical"
+                             DamageAmount="0"
+                             Radius="20"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             ImbuedStatusEffectDuration="80"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>shield_of_thorns</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
     <!-- Beast Magic -->
     <TriggeredEffectTemplate StringID="tangling_thorn"
                              BurstParticleEffectPrefab="tangling_thorn_ground"

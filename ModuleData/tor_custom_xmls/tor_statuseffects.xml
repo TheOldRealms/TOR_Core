@@ -1005,6 +1005,18 @@
 		rotation="true"/>
 		
 		
+	<StatusEffectTemplate
+		id="shield_of_thorns"
+		particle_id="aerial_shield"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="1.0"
+		applies_for_attack_type="Ranged"
+		type="TemporaryAttributeOnly"
+		damage_type="Physical">
+		<temporary_attribute>Thorns</temporary_attribute>		
+	</StatusEffectTemplate>
+		
+		
 	<StatusEffectTemplate 
 		id="armour_of_the_righteous" 
 		do_not_attach_to_agent_skeleton="true"
