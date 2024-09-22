@@ -835,7 +835,7 @@ namespace TOR_Core.CharacterDevelopment
             }, (Hero hero, out string unlockText) =>
             {
                 unlockText = "Unlocks Starfire shafts";
-                return hero.Clan.Tier >= 2;
+                return hero.Clan.Tier >= 4;
             }); 
             
             
