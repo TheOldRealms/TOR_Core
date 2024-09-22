@@ -52,15 +52,17 @@ namespace TOR_Core.CampaignMechanics
 	        var description = resource.Description;
 
 	        var model = Campaign.Current.Models.GetCustomResourceModel();
-	        if (model == null) return new List<TooltipProperty>();
+	        if (model == null) return [];
 	        var change = model.GetCultureSpecificCustomResourceChange(hero);
 
 	        var customDescription = resource.GetCustomTooltipDescription();
 
-	        List<TooltipProperty> list = new List<TooltipProperty>();
-	        list.Add(new TooltipProperty(customResourceTitle, value+icon, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
-	        list.Add(new TooltipProperty(description,"" , 0, false, TooltipProperty.TooltipPropertyFlags.None));
-	        list.AddRange(customDescription);
+	        List<TooltipProperty> list =
+            [
+                new TooltipProperty(customResourceTitle, value+icon, 0, false, TooltipProperty.TooltipPropertyFlags.Title),
+                new TooltipProperty(description,"" , 0, false, TooltipProperty.TooltipPropertyFlags.None),
+                .. customDescription,
+            ];
 	        if (change.GetLines().Any())
 	        {
 		        list.Add(new TooltipProperty("Daily Change", "", 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
@@ -84,10 +86,12 @@ namespace TOR_Core.CampaignMechanics
 			string artilleryInventory = new TextObject ("{=tor_ui_artillery_amount_str}Current Artillery Pieces in Inventory:").ToString();
 			string artilleryDeployable = new TextObject ("{=tor_ui_winds_of_magic_recharge_rate_str}Maximum Deployable Artillery Pieces:").ToString();
 			
-			List<TooltipProperty> list = new List<TooltipProperty>();
-			list.Add(new TooltipProperty(artilleryTitle, _maxArtillery.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title));
-			list.Add(new TooltipProperty(artilleryInventory, _currentArtilleryItems.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-			list.Add(new TooltipProperty(artilleryDeployable, _maxArtillery.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			List<TooltipProperty> list =
+            [
+                new TooltipProperty(artilleryTitle, _maxArtillery.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title),
+                new TooltipProperty(artilleryInventory, _currentArtilleryItems.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None),
+                new TooltipProperty(artilleryDeployable, _maxArtillery.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None),
+            ];
 			return list;
 		}
 
@@ -97,10 +101,12 @@ namespace TOR_Core.CampaignMechanics
 			string womMaximum = new TextObject("{=tor_ui_winds_of_magic_maximum_str}Maximum:").ToString();
 			string womRechargeRate = new TextObject("{=tor_ui_winds_of_magic_recharge_rate_str}Recharge Rate:").ToString();
 
-			var list = new List<TooltipProperty>();
-			list.Add(new TooltipProperty(womTitle, WindsOfMagic, 0, false, TooltipProperty.TooltipPropertyFlags.Title));
-			list.Add(new TooltipProperty(womMaximum, _maxWinds.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-			list.Add(new TooltipProperty(womRechargeRate, string.Format("{0:0.00}", _windRechargeRate), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+			var list = new List<TooltipProperty>
+            {
+                new(womTitle, WindsOfMagic, 0, false, TooltipProperty.TooltipPropertyFlags.Title),
+                new(womMaximum, _maxWinds.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None),
+                new(womRechargeRate, string.Format("{0:0.00}", _windRechargeRate), 0, false, TooltipProperty.TooltipPropertyFlags.None)
+            };
 			return list;
 		}
 
@@ -172,7 +178,7 @@ namespace TOR_Core.CampaignMechanics
 			ArtilleryText = _currentArtilleryItems.ToString() + "/" + _maxArtillery.ToString();
 			var resource = Hero.MainHero.GetCultureSpecificCustomResource();
 			HasCultureResource = resource != null;
-			if (resource != null)
+			if (HasCultureResource)
 				CultureResourceText = ((int)Hero.MainHero.GetCultureSpecificCustomResourceValue()).ToString();
 		}
 

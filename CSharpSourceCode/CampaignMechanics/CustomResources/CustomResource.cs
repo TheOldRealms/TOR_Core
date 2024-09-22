@@ -26,10 +26,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         public CustomResource(string id, string name, string description, string icon, string associatedCulturesId =  null, TextToolTipFunction function = null)
         {
-            if (associatedCulturesId == null)
-            {
-                associatedCulturesId = "neutral_culture";
-            }
+            associatedCulturesId ??= "neutral_culture";
             StringId = id;
             Name = name;
             Description = description;
@@ -42,15 +39,12 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 _toolTipFunction = function;
             }
             
-            Cultures = new List<string>(){associatedCulturesId};
+            Cultures = [associatedCulturesId];
         }
         
         public CustomResource(string id, string name, string description, string icon, string[] associatedCulturesIds)
         {
-            if (associatedCulturesIds == null)
-            {
-                associatedCulturesIds = new string[] { "neutral_culture" };
-            }
+            associatedCulturesIds ??= ["neutral_culture"];
             StringId = id;
             Name = name;
             Description = description;
@@ -58,12 +52,12 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             LargeIconName = icon.Replace("_45", "_100");
             LocalizedName = new TextObject("{=resname_" + StringId + "}" + Name);
             LocalizedDescription = new TextObject("{=resdesc_" + StringId + "}" + Description);
-            Cultures = associatedCulturesIds.ToList();
+            Cultures = [.. associatedCulturesIds];
         }
         
         public List<TooltipProperty> GetCustomTooltipDescription()
         {
-            return _toolTipFunction != null ? _toolTipFunction.Invoke() : new List<TooltipProperty>();
+            return _toolTipFunction != null ? _toolTipFunction.Invoke() : [];
         }
 
         public string GetCustomResourceIconAsText(bool useLarge = false)

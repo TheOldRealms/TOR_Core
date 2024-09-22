@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 
@@ -12,6 +14,10 @@ namespace TOR_Core.Extensions
 {
     public static class SettlementExtensions
     {
+        public static CultureObject OriginalCulture(this Settlement settlement)
+        {
+            return AssimilationCampaignBehavior.GetOriginalCultureForSettlement(settlement);
+        }
 
         public static bool IsBloodKeep(this Settlement settlement)
         {

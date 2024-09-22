@@ -256,6 +256,11 @@ namespace TOR_Core.Models
         {
             if (!_navigationMeshClosestSettlementCache.TryGetValue(face.FaceIndex, out var value))
             {
+                if (!face.IsValid())
+                {
+                    return Settlement.GetFirst;
+                }
+
                 Vec2 navigationMeshCenterPosition = Campaign.Current.MapSceneWrapper.GetNavigationMeshCenterPosition(face);
                 float num = float.MaxValue;
                 foreach (Settlement item in _settlementsToConsider)

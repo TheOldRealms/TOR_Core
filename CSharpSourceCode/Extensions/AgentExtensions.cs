@@ -89,6 +89,11 @@ namespace TOR_Core.Extensions
         
         public static bool IsTreeSpirit(this Agent agent)
         {
+            if (agent.IsHero)
+            {
+                return agent.GetHero().CharacterObject.IsTreeSpirit();
+            }
+
             return agent.Character.IsTreeSpirit();
         }
 

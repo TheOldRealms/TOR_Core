@@ -55,32 +55,17 @@ public static class ChivalryHelper
 
     public static float GetResourceMinimumForChivalryRank(ChivalryLevel level)
     {
-        switch (level)
+        return level switch
         {
-            case ChivalryLevel.Chivalrous:
-                return 2000;
-                break;
-            case ChivalryLevel.Honourable:
-                return 1500;
-                break;
-            case ChivalryLevel.PureHearted:
-                return 1000;
-                break;
-            case ChivalryLevel.Noteworthy:
-                return 750;
-                break;
-            case ChivalryLevel.Sincere:
-                return 500;
-                break;
-            case ChivalryLevel.Uninspiring:
-                return 250;
-                break;
-            case ChivalryLevel.Unknightly:
-                return 0;
-                break;
-            default:
-                return 0;
-        }
+            ChivalryLevel.Chivalrous => 2000,
+            ChivalryLevel.Honourable => 1500,
+            ChivalryLevel.PureHearted => 1000,
+            ChivalryLevel.Noteworthy => 750,
+            ChivalryLevel.Sincere => 500,
+            ChivalryLevel.Uninspiring => 250,
+            ChivalryLevel.Unknightly => 0,
+            _ => (float)0,
+        };
     }
 
 
@@ -97,10 +82,9 @@ public static class ChivalryHelper
         var title = "Chivalry Rank";
         var chivalryLevel = GetChivalryLevelForResource(value);
 
-
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         list.Add(new TooltipProperty(title, chivalryLevel.ToString, 0, false,
-            TooltipProperty.TooltipPropertyFlags.RundownResult));
+            TooltipProperty.TooltipPropertyFlags.None));
 
         switch (chivalryLevel)
         {
@@ -138,7 +122,7 @@ public static class ChivalryHelper
         if (chivalryLevel != ChivalryLevel.Chivalrous)
         {
             list.Add(new TooltipProperty("Next Rank: ", (chivalryLevel + 1).ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-            var result = GetResourceMinimumForChivalryRank((ChivalryLevel)chivalryLevel + 1) - value;
+            var result = GetResourceMinimumForChivalryRank(chivalryLevel + 1) - value;
             list.Add(new TooltipProperty("Required Chivalry: ", result.ToString("0"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
         }
 
