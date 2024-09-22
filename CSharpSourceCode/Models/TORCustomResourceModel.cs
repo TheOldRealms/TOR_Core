@@ -74,7 +74,7 @@ public class TORCustomResourceModel : GameModel
                         if (number.ResultNumber > 0)
                         {
                             var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
-                            var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WEGainUpgrade");
+                            var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WEGainUpgrade");
                             var harmonyFactor = 0f; 
                             harmonyFactor += 0.2f * list.Count;
 

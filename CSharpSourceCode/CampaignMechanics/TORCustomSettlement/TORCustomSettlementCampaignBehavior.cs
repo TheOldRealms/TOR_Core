@@ -97,7 +97,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         return _unlockedOakUpgrades.Contains(unlockedUpgrade);
     }
     
-    public List<string> GetUnlockedOakUpgradeCategotry(string unlockedUpgradeCategory)
+    public List<string> GetUnlockedOakUpgradeCategory(string unlockedUpgradeCategory)
     {
         return _unlockedOakUpgrades.Where(x=> x.StartsWith(unlockedUpgradeCategory)).ToList();
     }

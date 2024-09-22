@@ -178,7 +178,7 @@ namespace TOR_Core.Models
                     }
                     
                     var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
-                    var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WEHealthUpgrade");
+                    var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WEHealthUpgrade");
                     foreach (var attribute in  list)
                     {
                         number.AddFactor(0.1f, new TextObject("Oak of Ages"));

@@ -61,7 +61,7 @@ namespace TOR_Core.Models
 
                 
                 var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
-                var list = settlementBehavior.GetUnlockedOakUpgradeCategotry("WePartySizeUpgrade");
+                var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WePartySizeUpgrade");
                 foreach (var attribute in  list)
                 {
                     if(settlementBehavior.HasUnlockedOakUpgrade(attribute))

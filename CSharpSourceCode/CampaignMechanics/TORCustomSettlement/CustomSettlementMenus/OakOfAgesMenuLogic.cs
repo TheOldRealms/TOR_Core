@@ -74,14 +74,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         "WEGainUpgrade4",
         "WEGainUpgrade5"
     ];
-
-    private static readonly List<string> UpkeepReductionUpgrades =
-    [
-        "WEUpkeepUpgrade1",
-        "WEUpkeepUpgrade2",
-        "WEUpkeepUpgrade3"
-    ];
-
+    
     private static readonly List<TreeSymbol> TreeSymbols =
     [
         new TreeSymbol()
@@ -161,7 +154,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     {
         _upgrades =
         [
-            PartyUpgradeAttributes, MaximumHealthUpgradeAttributes, CustomResourceGainUpgrades, UpkeepReductionUpgrades
+            PartyUpgradeAttributes, MaximumHealthUpgradeAttributes, CustomResourceGainUpgrades
         ];
     }
 
@@ -842,17 +835,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
                     new TextObject("Increase the daily harmony gain from settlements by 20%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
             },
             _ => UnlockOakUpgrade(GetCurrentUpdate("WEGainUpgrade", out var numberOfUpgrades), GainUpgradeCost * (1 + numberOfUpgrades)));
-
-
-        starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_D", "Troop harmony upkeep  reduction. {UPKEEPUPGRADECOST}{FORESTHARMONY}",
-            args =>
-            {
-                var text = GetCurrentUpdate("WEUpkeepUpgrade", out var numberOfUpgrades);
-                GameTexts.SetVariable("UPKEEPUPGRADECOST",TroopUpkeepUpgradeCost * (1+numberOfUpgrades));
-                return DefaultUnlockOakUpgradeCondition(args, text, TroopUpkeepUpgradeCost,
-                    new TextObject("Increase the daily harmony gain by 15.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
-            },
-            _ => UnlockOakUpgrade(GetCurrentUpdate("WEUpkeepUpgrade", out var numberOfUpgrades), TroopUpkeepUpgradeCost * (1 + numberOfUpgrades)));
+        
 
         starter.AddGameMenuOption("oak_of_ages_branches_menu", "branchMenu_leave", "Leave...", delegate(MenuCallbackArgs args)
         {
