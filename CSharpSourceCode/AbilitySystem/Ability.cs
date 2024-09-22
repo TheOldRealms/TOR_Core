@@ -192,6 +192,7 @@ namespace TOR_Core.AbilitySystem
                             {
                                 var component = Agent.Main.GetComponent<AbilityComponent>();
                                 var count = component.KnownAbilitySystem.Count;
+                                count--; // reduced because of career ability 
                             
                                 if(count<choice.GetPassiveValue())
                                 {
