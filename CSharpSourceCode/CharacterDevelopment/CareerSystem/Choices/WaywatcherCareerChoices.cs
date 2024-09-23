@@ -315,7 +315,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _starfireEssencePassive1.Initialize(CareerID, "15 extra ammo", "StarfireEssence", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Ammo));
         _starfireEssencePassive2.Initialize(CareerID, "15% swing speed", "StarfireEssence", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed));
+            new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed, true));
         _starfireEssencePassive3.Initialize(CareerID, "Your arrows can penetrate shields", "StarfireEssence", false, ChoiceType.Passive);
         _starfireEssencePassive4.Initialize(CareerID, "Not shooting an arrows increase the chance your next arrow explode on impact.",
             "StarfireEssence", false, ChoiceType.Passive);
