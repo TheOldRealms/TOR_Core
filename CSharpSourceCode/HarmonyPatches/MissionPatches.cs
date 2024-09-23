@@ -130,7 +130,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(MissionAgentSpawnLogic), "SetSpawnHorses")]
         public static void CreateExceptionForAsrai3(BattleSideEnum side, ref bool spawnHorses)
         {
-            if(PlayerSiege.PlayerSiegeEvent != null && PlayerSiege.BesiegedSettlement?.OriginalCulture().StringId == TORConstants.Cultures.ASRAI)
+            if(Campaign.Current != null && PlayerSiege.PlayerSiegeEvent != null && PlayerSiege.BesiegedSettlement?.OriginalCulture().StringId == TORConstants.Cultures.ASRAI)
             {
                 spawnHorses = true;
             }
