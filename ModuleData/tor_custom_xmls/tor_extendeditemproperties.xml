@@ -730,6 +730,15 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_basic_cape_necrarch_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_shoulder_pauldron_grave_guard_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1136,6 +1145,15 @@
       </ItemTrait>
     </ItemTraits>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_vc_body_basic_robe_necrarch_001">
+    <ItemTraits>
+      <ItemTrait ItemTraitName="Magical Resistance and Amplification" IconName="winds_icon_45">
+        <ItemTraitDescription>This item provides its wearer 10% magical resistance as well as 10% magical damage amplification.</ItemTraitDescription>
+        <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+        <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.10" />
+      </ItemTrait>
+    </ItemTraits>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_vc_body_breastplate_grave_guard_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
@@ -1356,6 +1374,9 @@
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_he_body_armour_whitelion_sleeves_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_body_armour_phoenix_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_body_armor_infantry_001">
