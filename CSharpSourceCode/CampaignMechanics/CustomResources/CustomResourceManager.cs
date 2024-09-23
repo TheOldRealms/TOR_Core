@@ -17,6 +17,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
 using TaleWorlds.TwoDimension;
@@ -255,7 +256,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
             if (MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Prestige") ||
                 MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Chivalry") ||
-                MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("CouncilFavor"))
+                MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("CouncilFavor")||
+                MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("ForestHarmony"))
             {
                 var fairBattleOrPlayerInferior = _initialCombatRatio < 1.1f;
 
@@ -308,10 +310,28 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     
                     if (heroes.Any(x => x.HasKnownLore("LoreOfLight")))
                         bonus += 0.1f;
-
+                    
                     renownChange *= bonus;
+                    
                 }
                 
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI && mapEvent.GetMapEventSide(BattleSideEnum.Defender).Parties
+                        .AnyQ(x =>
+                        {
+                            if (x.Party.Culture.StringId != TORConstants.Cultures.BEASTMEN) return false;
+                            var oak = Settlement.FindFirst(x => x.StringId == "oak_of_ages");
+                            var distance = mapEvent.Position.Distance(oak.Position2D);
+
+                            if (distance <= 250)
+                            {
+                                return true;
+                            }
+                            
+                            return false;
+                        }))
+                {
+                    renownChange *= 3;
+                }
 
                 if (fairBattleOrPlayerInferior)
                 {

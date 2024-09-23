@@ -205,7 +205,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationType = OperationType.Add
                 }
             });
-        _forestStalkerKeystone.Initialize(CareerID, "All enemies in the affected area suffer 50% more magical damage for 10 seconds", "ForestStalker",
+        _forestStalkerKeystone.Initialize(CareerID, "All enemies suffer 50% more magical damage for 10 seconds. Allied troops charge ability.", "ForestStalker",
             false, ChoiceType.Keystone,
             new List<CareerChoiceObject.MutationObject>()
             {

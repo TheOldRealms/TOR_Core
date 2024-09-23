@@ -664,6 +664,18 @@
   <string id="customsettlement_intro.herdstone_02" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="customsettlement_disabled.herdstone_02" text="{=!}The herdstone camp is empty, come back at a later time." />
   <string id="customsettlement_battle.herdstone_02" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
+  
+  <string id="customsettlement_intro.herdstone_03" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
+  <string id="customsettlement_disabled.herdstone_03" text="{=!}The herdstone camp is empty, come back at a later time." />
+  <string id="customsettlement_battle.herdstone_03" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
+  
+  <string id="customsettlement_intro.herdstone_04" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
+  <string id="customsettlement_disabled.herdstone_04" text="{=!}The herdstone camp is empty, come back at a later time." />
+  <string id="customsettlement_battle.herdstone_04" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
+  
+  <string id="customsettlement_intro.herdstone_05" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
+  <string id="customsettlement_disabled.herdstone_05" text="{=!}The herdstone camp is empty, come back at a later time." />
+  <string id="customsettlement_battle.herdstone_05" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
 
   <string id="customsettlement_intro.sigmar_shrine_01" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
   <string id="customsettlement_disabled.sigmar_shrine_01" text="{=!}The shrine lies in ruins. There is nothing to do here." />

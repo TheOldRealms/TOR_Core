@@ -37,12 +37,13 @@ namespace TOR_Core.Utilities
         public readonly struct Cultures
         {
             public const string EMPIRE = "empire";
-            public const string HERRIMAULT = "sea_raiders";
+            public const string HERRIMAULT = "desert_bandits";
             public const string BRETONNIA = "vlandia";
             public const string SYLVANIA = "khuzait";
             public const string MOUSILLON = "mousillon";
             public const string ASRAI = "battania";
             public const string DRUCHII =  "druchii";
+            public const string BEASTMEN =  "steppe_bandits";
             public const string CHAOS = "chaos_culture";
             public const string EONIR = "eonir";
         }

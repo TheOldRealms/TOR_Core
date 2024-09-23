@@ -316,7 +316,13 @@ namespace TOR_Core.CharacterDevelopment
         {
             if (mask != AttackTypeMask.Ranged) return 0;
             if (chargeType == ChargeType.NumberOfKills) return 0;
+            if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield) return 0;
             if (affectingAgent.Team == affectedAgent.Team) return 0;
+            if (affectingAgent.IsEnemyOf(Agent.Main)) return 0;
+
+            if (!affectingAgent.IsMainAgent && affectingAgent.BelongsToMainParty() &&
+                !Hero.MainHero.HasCareerChoice("ForestStalkerKeystone")) return 0;
+            
             
             var explainedNumber = new ExplainedNumber(chargeValue);
 
