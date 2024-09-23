@@ -839,7 +839,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>XCOPY "$(TargetDir)*" "$(TargetDir)..\Win64_Shipping_wEditor\" /S /Y /I</PostBuildEvent>
   </PropertyGroup>
 </Project>

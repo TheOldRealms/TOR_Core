@@ -89,7 +89,7 @@ namespace TOR_Core.Extensions
         
         public static bool IsTreeSpirit(this Agent agent)
         {
-            if (agent.IsHero)
+            if (Campaign.Current != null && agent.IsHero)
             {
                 return agent.GetHero().CharacterObject.IsTreeSpirit();
             }
