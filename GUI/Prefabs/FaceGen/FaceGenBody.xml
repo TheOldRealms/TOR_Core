@@ -43,12 +43,12 @@
                   </ListPanel>
                   
                   <!-- comment this out for release, we don't want people to be able to directly select race -->
-                  <!--<TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="FaceGen.Property.Text" Text="@RaceLbl" ClipContents="false" MarginTop="35" IsVisible="@CanChangeRace"/>
+                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="FaceGen.Property.Text" Text="@RaceLbl" ClipContents="false" MarginTop="35" IsVisible="@CanChangeRace"/>
                   <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="@CanChangeRace" MarginTop="15">
                     <Children>
                       <Standard.DropdownWithHorizontalControl Id="RaceSelection" VerticalAlignment="Center" Parameter.SelectorDataSource="{RaceSelector}" />
                     </Children>
-                  </Widget>-->
+                  </Widget>
 
                   <!--Skin Color Selection-->
                   <NavigationAutoScrollWidget TrackedWidget="..\SkinColorSelection" />
