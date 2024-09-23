@@ -85,7 +85,9 @@ namespace TOR_Core.Models
                             value.Add(line.number, new TextObject(line.name));
                         }
                     }
-
+                    if(elementCopyAtIndex.Character.IsHero && elementCopyAtIndex.Character.HeroObject == Hero.MainHero)
+                         continue;
+                    float  troopwage = elementCopyAtIndex.Character.TroopWage * elementCopyAtIndex.Number;
                     if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA && elementCopyAtIndex.Character.IsKnightUnit())
                     {
                         var level = mobileParty.LeaderHero.GetChivalryLevel();
@@ -113,7 +115,7 @@ namespace TOR_Core.Models
                                 factor=-0.2f;
                                 break;
                         }
-                        value.AddFactor(factor,new TextObject(level.ToString()));
+                        value.Add((troopwage * factor),new TextObject(level.ToString()));
                     }
 
                     if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
@@ -122,33 +124,30 @@ namespace TOR_Core.Models
                         {
                             if (elementCopyAtIndex.Character.IsElf() && elementCopyAtIndex.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
                             {
-                                value.AddFactor(-0.5f, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
+                                value.Add(-0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
                             }
                         }
 
                         if (Hero.MainHero.HasAttribute("WEArielSymbol"))
                         {
-                            value.AddFactor(0.5f, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                            value.Add(0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                         }
                         
                         if (Hero.MainHero.HasAttribute("WEWandererSymbol"))
                         {
-                            value.AddFactor(0.5f, ForestHarmonyHelper.TreeSymbolText("WEWandererSymbol"));
+                            value.Add(0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEWandererSymbol"));
                         }
                         
-                        if (Hero.MainHero.HasAttribute("WETreekinSymbol") && elementCopyAtIndex.Character.IsElf() && elementCopyAtIndex.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+                        if (Hero.MainHero.HasAttribute("WETreekinSymbol") && !elementCopyAtIndex.Character.IsTreeSpirit())
                         {
-                            value.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
+                            value.Add(0.25f * troopwage, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
                         }
-                        
                         
                         if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
                         {
-                            value.AddFactor(0.15f, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
+                            value.Add(0.15f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
                         }
                     }
-
-
                 }
             }
             return value;

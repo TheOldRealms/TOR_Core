@@ -14,6 +14,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -302,31 +303,53 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.BlackGrailKnight);
             }
 
-            if (id == "option_2_we_kurnous")
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                Hero.MainHero.AddAttribute("WEKithbandSymbol");
-                //Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
+                
+                var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+                string symbol = null;
+                ReligionObject religion = null;
+                switch (id)
+                {
+                    case "option_2_we_kurnous":
+                    {
+                        symbol = "WEKithbandSymbol"; 
+                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_kurnous");
+                        break;
+                    }
+                    case "option_2_we_isha":
+                    { 
+                        symbol = "WETreekinSymbol"; 
+                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_isha");
+                        break;
+                    }
+                    case "option_2_we_loec":
+                        symbol = "WEWardancerSymbol";
+                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_loec");
+                        break;
+                    case "option_2_we_vaul":
+                        symbol = "WEKithbandSymbol"; 
+                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_vaul");
+                        break;
+                    case "option_2_we_khaine":
+                        Hero.MainHero.AddAttribute("WEKithbandSymbol");
+                        symbol = "WEKithbandSymbol"; 
+                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_anath_raema");
+                        break;
+                    
+                
+                }
+
+                if (symbol != null && religion!=null)
+                {
+                    Hero.MainHero.AddAttribute(symbol); // is active
+                    settlementBehavior.UnlockOakUpgrade(symbol); // has unlocked it from tree
+                    Hero.MainHero.AddReligiousInfluence(religion,40);
+                }
+
+                
             }
-            
-            if (id == "option_2_we_isha")
-            {
-                Hero.MainHero.AddAttribute("WETreekinSymbol");
-            }
-            
-            if (id == "option_2_we_loec")
-            {
-                Hero.MainHero.AddAttribute("WEWardancerSymbol");
-            }
-            
-            if (id == "option_2_we_vaul")
-            {
-                Hero.MainHero.AddAttribute("WEKithbandSymbol");
-            }
-            
-            if (id == "option_2_we_khaine")
-            {
-                Hero.MainHero.AddAttribute("WEKithbandSymbol");
-            }
+
 
             if (id == "option_3_we_waywatcher" || id == "option_3_eo_ghost_strider")
             {

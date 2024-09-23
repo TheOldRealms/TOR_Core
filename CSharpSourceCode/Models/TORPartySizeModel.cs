@@ -18,7 +18,7 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool includeDescriptions = false)
         {
             var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
-            if (party.MapFaction != null && party.Culture != null && party.Culture.Name.Contains("Vampire"))
+            if (party.MapFaction != null && party.Culture != null && party.Culture.StringId==TORConstants.Cultures.SYLVANIA)
             {
                 if (party.LeaderHero != null && party.LeaderHero.IsHumanPlayerCharacter)
                 {
@@ -57,9 +57,7 @@ namespace TOR_Core.Models
             
             if (party != null && party.LeaderHero != null && party.LeaderHero == Hero.MainHero && Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                num.AddFactor(-0.5f);
-
-                
+                num.AddFactor(-0.5f, new TextObject("Woodelf Party size malus"));
                 var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
                 var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WePartySizeUpgrade");
                 foreach (var attribute in  list)

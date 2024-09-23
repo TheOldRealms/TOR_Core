@@ -28,7 +28,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     private const int PartySizeUpgradeCost = 100;
     private const int HealthUpgradeCost = 125;
     private const int GainUpgradeCost = 150;
-    private const int TroopUpkeepUpgradeCost = 200;
 
     private const int TravelCost = 100;
     private const int RootUnlockCost = 200;
@@ -44,7 +43,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     private const int TreeSymbolChangeCost = 100;
     private const int TreeSymbolUnlockCosts = 500;
     private const int TreeSymbolUpgradeNoCost = 400;
-    private const int TreeSymbolUpgradeDaily = 600;
 
     private string _currentMenu;
 
@@ -385,7 +383,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         MBTextManager.SetTextVariable("TREESYMBOLCHANGECOST", TreeSymbolChangeCost);
         MBTextManager.SetTextVariable("TREESYMBOLUNLOCKCOST", TreeSymbolUnlockCosts);
         MBTextManager.SetTextVariable("TREESYMBOLFREEUPGRADE", TreeSymbolUpgradeNoCost);
-        MBTextManager.SetTextVariable("TREESYMBOLCHANGEDAILY", TreeSymbolUpgradeDaily);
 
         var index = 0;
         foreach (var symbol in TreeSymbols)
@@ -406,10 +403,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             args => DefaultUnlockOakUpgradeCondition(args, "WESymbolReduceCosts", TreeSymbolUpgradeNoCost,
                 new TextObject("Remove Symbol change costs.{newline}{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WESymbolReduceCosts", TreeSymbolUpgradeNoCost));
-        starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_I", "Decorated Bark. {TREESYMBOLCHANGEDAILY}{FORESTHARMONY}",
-            args => DefaultUnlockOakUpgradeCondition(args, "WESymbolsChangeCycle", TreeSymbolUpgradeDaily,
-                new TextObject("Tree signs can be changed every day instead of every week.{newline}{UPGRADEFAILEDREASON}")),
-            _ => UnlockOakUpgrade("WESymbolsChangeCycle", TreeSymbolUpgradeDaily));
 
         starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_leave", "Leave...", delegate(MenuCallbackArgs args)
         {
@@ -522,6 +515,16 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     {
         var failreasonStringBuilder = new StringBuilder();
 
+
+
+        if (!HasUnlockedUpgrade(upgrade)) return false;
+
+        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < upgradeCost)
+        {
+            args.IsEnabled = false;
+            failreasonStringBuilder.Append("{newline}Not enough Harmony.");
+        }
+        
         if (Hero.MainHero.HasAttribute(upgrade))
         {
             if (showAnyway)
@@ -534,14 +537,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             {
                 return false;
             }
-        }
-
-        if (!HasUnlockedUpgrade(upgrade)) return false;
-
-        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < upgradeCost)
-        {
-            args.IsEnabled = false;
-            failreasonStringBuilder.Append("{newline}Not enough Harmony.");
         }
 
         var resultText = toolTipText;
