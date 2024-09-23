@@ -59,13 +59,10 @@ namespace TOR_Core.Models
             {
                 num.AddFactor(-0.5f, new TextObject("Woodelf Party size malus"));
                 var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
-                var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WePartySizeUpgrade");
+                var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WEPartySizeUpgrade");
                 foreach (var attribute in  list)
                 {
-                    if(settlementBehavior.HasUnlockedOakUpgrade(attribute))
-                    {
-                        num.AddFactor(0.1f);
-                    }
+                    num.AddFactor(0.1f);
                 }
 
                 if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))

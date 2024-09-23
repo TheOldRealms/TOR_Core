@@ -52,12 +52,13 @@ public class TORCustomResourceModel : GameModel
                         {
                             if (settlement.IsRaided && settlement.Owner.Culture.StringId == TORConstants.Cultures.ASRAI)
                             {
-                                number.Add(-15,text);
+                                
+                                number.Add(-15,new TextObject(settlement.Name+" is raided"));
                                 continue;
                             }
                             if (settlement.Owner.Culture.StringId != TORConstants.Cultures.ASRAI)
                             {
-                                number.Add(-5,text);
+                                number.Add(-5,new TextObject(settlement.Name+" is captured"));
                                 continue;
                             }
                             if (settlement.IsVillage)
@@ -197,10 +198,6 @@ public class TORCustomResourceModel : GameModel
 
                         if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
                         {
-                            foreach (var attribute in OakOfAgesMenuLogic.CustomResourceGainUpgrades.Where(attribute => Hero.MainHero.HasAttribute(attribute)))
-                            {
-                                unitUpkeet.AddFactor(-0.1f);
-                            }
                             
                             if (Hero.MainHero.HasAttribute("WETreekinSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
                             {
