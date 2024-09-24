@@ -6046,19 +6046,9 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_factionleader">
-    <Abilities>
-      <string>Fireball</string>
-      <string>CinderBlast</string>
-      <string>BoltOfAqshy</string>
-      <string>Sear</string>
-      <string>FlamingSwords</string>
-      <string>BurningHead</string>
-      <string>FlameStorm</string>
-    </Abilities>
+    <Abilities />
     <Attributes>
       <string>Everchosen</string>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_chaos_lord_brasskeep_factionleader">

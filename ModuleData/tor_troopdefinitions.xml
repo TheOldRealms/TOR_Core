@@ -1441,8 +1441,8 @@
       <upgrade_target id="NPCCharacter.tor_we_caravan_captain" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_we_militia_template" />
-      <EquipmentSet id="tor_we_militia_template" civilian="true" />
+      <EquipmentSet id="tor_we_caravan_guard_template" />
+      <EquipmentSet id="tor_we_caravan_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_we_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_we_caravan_ranged}Asrai Trader Guard" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level21" race="elf">
@@ -1459,8 +1459,8 @@
       <upgrade_target id="NPCCharacter.tor_we_caravan_elite_ranged" />
     </upgrade_targets>
     <Equipments>
-      <EquipmentSet id="tor_we_militia_template" />
-      <EquipmentSet id="tor_we_militia_template" civilian="true" />
+      <EquipmentSet id="tor_we_caravan_ranged_template" />
+      <EquipmentSet id="tor_we_caravan_ranged_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_we_caravan_elite_ranged" default_group="ranged" level="26" name="{=str_tor_we_caravan_elite_ranged}Asrai Elite Trader Guard" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
@@ -1475,8 +1475,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_we_militia_template" />
-      <EquipmentSet id="tor_we_militia_template" civilian="true" />
+      <EquipmentSet id="tor_we_caravan_ranged_elite_template" />
+      <EquipmentSet id="tor_we_caravan_ranged_elite_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_we_caravan_captain" default_group="infantry" level="26" name="{=str_tor_we_caravan_captain}Asrai Master Trader" occupation="CaravanGuard" culture="Culture.battania" skill_template="SkillSet.tor_skills_level26" race="elf">
@@ -1491,8 +1491,8 @@
     </face>
     <upgrade_targets />
     <Equipments>
-      <EquipmentSet id="tor_we_militia_template" />
-      <EquipmentSet id="tor_we_militia_template" civilian="true" />
+      <EquipmentSet id="tor_we_caravan_captain_template" />
+      <EquipmentSet id="tor_we_caravan_captain_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eo_forestborn" default_group="infantry" level="1" name="{=str_tor_eo_forestborn}Eonir Forestborn" occupation="Villager" culture="Culture.eonir" skill_template="SkillSet.tor_skills_level1" race="elf">
@@ -1820,9 +1820,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_eo_caravan_ranged" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_eo_caravan_guard_template" />
       <EquipmentSet id="tor_eo_caravan_guard_template" civilian="true" />
@@ -1838,9 +1836,7 @@
         <beard_tag name="Cleanshaven" />
       </beard_tags>
     </face>
-    <upgrade_targets>
-      <upgrade_target id="NPCCharacter.tor_eo_caravan_elite_ranged" />
-    </upgrade_targets>
+    <upgrade_targets />
     <Equipments>
       <EquipmentSet id="tor_eo_caravan_ranged_template" />
       <EquipmentSet id="tor_eo_caravan_ranged_template" civilian="true" />
@@ -2817,9 +2813,9 @@
       <EquipmentSet id="tor_chaos_undivided_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_ranged}Enthralled Caravan Bowman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="marauder">
+  <NPCCharacter id="tor_chaos_caravan_ranged" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_ranged}Enthralled Caravan Bowman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -2827,9 +2823,9 @@
       <EquipmentSet id="tor_br_peasant_archer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_caravan_guard" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_guard}Enthralled Caravan Guard" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="marauder">
+  <NPCCharacter id="tor_chaos_caravan_guard" default_group="ranged" level="21" name="{=str_tor_chaos_caravan_guard}Enthralled Caravan Guard" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level21" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_chaos_caravan_horseman" />
@@ -2839,9 +2835,9 @@
       <EquipmentSet id="tor_br_hunter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_caravan_horseman" default_group="cavalry" level="26" name="{=str_tor_chaos_caravan_horseman}Enthralled Caravan Horseman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="marauder">
+  <NPCCharacter id="tor_chaos_caravan_horseman" default_group="cavalry" level="26" name="{=str_tor_chaos_caravan_horseman}Enthralled Caravan Horseman" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -2849,9 +2845,9 @@
       <EquipmentSet id="tor_br_mounted_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_caravan_captain" default_group="infantry" level="26" name="{=str_tor_chaos_caravan_captain}Enthralled Caravan Master" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="marauder">
+  <NPCCharacter id="tor_chaos_caravan_captain" default_group="infantry" level="26" name="{=str_tor_chaos_caravan_captain}Enthralled Caravan Master" occupation="CaravanGuard" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level26" race="chaos_ud_cultist">
     <face>
-      <face_key_template value="BodyProperty.fighter_empire" />
+      <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
     <upgrade_targets />
     <Equipments>
@@ -2859,7 +2855,7 @@
       <EquipmentSet id="tor_br_manatarms_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_cultist_of_chaos" default_group="infantry" level="6" name="{=str_tor_chaos_cultist_of_chaos}Cultist Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="marauder">
+  <NPCCharacter id="tor_chaos_cultist_of_chaos" default_group="infantry" level="6" name="{=str_tor_chaos_cultist_of_chaos}Cultist Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level6" is_basic_troop="true" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -2871,7 +2867,7 @@
       <EquipmentSet id="tor_chaos_cult_acolyte_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_darksoul_of_chaos" default_group="infantry" level="11" name="{=str_tor_chaos_darksoul_of_chaos}Darksoul Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="marauder">
+  <NPCCharacter id="tor_chaos_darksoul_of_chaos" default_group="infantry" level="11" name="{=str_tor_chaos_darksoul_of_chaos}Darksoul Militia of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level11" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -2883,7 +2879,7 @@
       <EquipmentSet id="tor_chaos_cult_darksoul_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_acolyte_of_chaos" default_group="infantry" level="16" name="{=str_tor_chaos_acolyte_of_chaos}Acolyte of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="marauder">
+  <NPCCharacter id="tor_chaos_acolyte_of_chaos" default_group="infantry" level="16" name="{=str_tor_chaos_acolyte_of_chaos}Acolyte of Chaos" occupation="Soldier" culture="Culture.chaos_culture" skill_template="SkillSet.tor_skills_level16" race="chaos_ud_cultist">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -4215,7 +4211,7 @@
       <EquipmentSet id="tor_br_bandit_scout_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_bandit_norscan_raider" default_group="infantry" level="11" name="{=str_tor_bandit_norscan_raider}Renegate Norscan Raider" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="marauder">
+  <NPCCharacter id="tor_bandit_norscan_raider" default_group="infantry" level="11" name="{=str_tor_bandit_norscan_raider}Renegade Norscan Raider" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -4228,7 +4224,7 @@
       <EquipmentSet id="tor_chaos_norscan_raider_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_bandit_norscan_whaler" default_group="ranged" level="11" name="{=str_tor_bandit_norscan_whaler}Renegate Norscan Whaler" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" race="marauder">
+  <NPCCharacter id="tor_bandit_norscan_whaler" default_group="ranged" level="11" name="{=str_tor_bandit_norscan_whaler}Renegade Norscan Whaler" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level11" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -4238,7 +4234,7 @@
       <EquipmentSet id="tor_chaos_norscan_whaler_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_bandit_norscan_marauder" default_group="infantry" level="16" name="{=str_tor_bandit_norscan_marauder}Renegate Norscan Marauder" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16" race="marauder">
+  <NPCCharacter id="tor_bandit_norscan_marauder" default_group="infantry" level="16" name="{=str_tor_bandit_norscan_marauder}Renegade Norscan Marauder" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level16" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
@@ -4250,7 +4246,7 @@
       <EquipmentSet id="tor_chaos_norscan_marauder_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_bandit_norscan_champion" default_group="infantry" level="26" name="{=str_tor_bandit_norscan_champion}Renegate Norscan Marauder Champion" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level26" race="marauder">
+  <NPCCharacter id="tor_bandit_norscan_champion" default_group="infantry" level="26" name="{=str_tor_bandit_norscan_champion}Renegade Norscan Marauder Champion" occupation="Bandit" culture="Culture.sea_raiders" skill_template="SkillSet.tor_skills_level26" race="marauder">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>

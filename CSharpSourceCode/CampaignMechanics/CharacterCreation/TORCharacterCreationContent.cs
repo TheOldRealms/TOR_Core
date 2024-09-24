@@ -559,6 +559,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("necrarch");
                 MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
             }
         }

@@ -143,7 +143,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
                 args.IsEnabled = false;
             }
             
-            var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastDefileTime(Hero.MainHero);
+            var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTimeTime(Hero.MainHero);
             if (lastGhostRecruitmentTime >= (int)CampaignTime.Now.ToDays)
             {
                 args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action once a day.");

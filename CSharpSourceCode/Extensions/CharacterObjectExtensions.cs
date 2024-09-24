@@ -112,7 +112,7 @@ namespace TOR_Core.Extensions
             {
                 return characterObject.HeroObject.IsVampire();
             }
-            return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
+            return characterObject.Race == FaceGen.GetRaceOrDefault("vampire") || characterObject.Race == FaceGen.GetRaceOrDefault("necrarch");
         }
         
         public static bool IsMinotaur(this CharacterObject characterObject)

@@ -368,7 +368,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsVampire(this Hero hero)
         {
-            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire");
+            return hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("vampire") || hero.CharacterObject.Race == FaceGen.GetRaceOrDefault("necrarch");
         }
 
         public static bool IsPriest(this Hero hero)

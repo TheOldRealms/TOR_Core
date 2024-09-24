@@ -4248,9 +4248,9 @@
       <EquipmentSet id="tor_blooddragon_templar_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_lord_necrarch_first_factionleader" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_first_factionleader}Zacharias the Everliving" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
+  <NPCCharacter id="tor_vc_lord_necrarch_first_factionleader" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_first_factionleader}Zacharias the Everliving" occupation="Lord" culture="Culture.khuzait" voice="curt" age="40" skill_template="SkillSet.tor_skills_vampire_lord" race="necrarch" is_hero="true">
     <face>
-      <BodyProperties version="4" age="19" weight="0.5997" build="0.386" key="003F7C0C402C08824D8A94B94D88E48A885876D56C9A785A16763C8B9E9AB9AD9793C6030C989859C64318BFCA98367B000000000000000C0000000045A47080" />
+      <BodyProperties version="4" age="40" weight="0.5997" build="0.386" key="003F7C0C402C08824D8A94B94D88E48A885876D56C9A785A16763C8B9E9AB9AD9793C6030C989859C64318BFCA98367B000000000000000C0000000045A47080" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -4338,7 +4338,7 @@
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_lord_necrarch_second_1" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_second_1}Dentomaz" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_skills_vampire_lord" race="vampire" is_hero="true">
+  <NPCCharacter id="tor_vc_lord_necrarch_second_1" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_second_1}Dentomaz" occupation="Lord" culture="Culture.khuzait" voice="curt" age="80" skill_template="SkillSet.tor_skills_vampire_lord" race="necrarch" is_hero="true">
     <face>
       <BodyProperties version="4" age="19" weight="0.5997" build="0.386" key="001F5C0AD9A008C077959A79A3A2B81A75B9B398FDDF84C7462A85899A73699B559AB6030B5178B685827988A565C5D7000000000000000B00000000576C1000" />
     </face>
@@ -4374,7 +4374,7 @@
       <EquipmentSet id="tor_vc_lunatic_male_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_vc_lord_necrarch_second_3" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_second_3}Gertruda nagelkopf" occupation="Lord" culture="Culture.khuzait" voice="curt" age="22" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
+  <NPCCharacter id="tor_vc_lord_necrarch_second_3" default_group="cavalry" name="{=str_tor_vc_lord_necrarch_second_3}Gertruda Nagelkopf" occupation="Lord" culture="Culture.khuzait" voice="curt" age="22" skill_template="SkillSet.tor_skills_warrior_lord" is_female="true" is_hero="true">
     <face>
       <BodyProperties version="4" age="19" weight="0.2766" build="0.5489" key="000000015C0010003128758A4B9C21C993877A51BE88A2878AA76EB75AA66525ABEB06130A494D3D685A7A6B98874D48000000000000001A000000006B4C2083" />
     </face>
@@ -7110,7 +7110,7 @@
       <EquipmentSet id="tor_eo_stormwitch_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_lord_laurelorn_third_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_third_2}Lord  Adon of House Tide Strider" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_eo_lord_laurelorn_third_2" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_third_2}Lord Adon of House Tide Strider" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
     </face>
@@ -7146,7 +7146,7 @@
       <EquipmentSet id="tor_eo_cityborn_sentinel_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_eo_lord_laurelorn_third_4" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_third_4}Greylord  Wizard Altharion of House of Caledor" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" race="elf" is_hero="true">
+  <NPCCharacter id="tor_eo_lord_laurelorn_third_4" default_group="cavalry" name="{=str_tor_eo_lord_laurelorn_third_4}Greylord Wizard Altharion of House of Caledor" occupation="Lord" culture="Culture.eonir" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" race="elf" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.7199" build="0.5963" key="001E6409802C30057982FB8878927AA0A7935692694DB5DA75783A9275E98AB28AAD760307242D669B8C998B9A97657500000000000000070000000048EC4003" />
     </face>
@@ -7218,7 +7218,7 @@
       <EquipmentSet id="tor_eo_ranger_lord_2_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Archaon" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" race="marauder" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Chaos Lord Mortkin" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" race="marauder" is_hero="true">
     <face>
       <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
     </face>
