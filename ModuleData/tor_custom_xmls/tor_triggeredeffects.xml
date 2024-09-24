@@ -597,7 +597,7 @@
                              DamageType="Physical"
                              ImbuedStatusEffectDuration="1"
                              DamageAmount="0"
-                             Radius="10"
+                             Radius="8"
                              HasShockWave="false"
                              TargetType="Enemy"
                              DamageVariance="2">
@@ -626,7 +626,7 @@
                              DamageType="Physical"
                              ImbuedStatusEffectDuration="1"
                              DamageAmount="0"
-                             Radius="10"
+                             Radius="8"
                              HasShockWave="false"
                              TargetType="Enemy"
                              DamageVariance="2">
@@ -875,8 +875,8 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Magical"
-                             DamageAmount="75"
-                             Radius="5"
+                             DamageAmount="60"
+                             Radius="4"
                              HasShockWave="false"
                              TargetType="All"
                              DamageVariance="0.2"
