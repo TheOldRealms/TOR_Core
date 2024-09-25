@@ -19,6 +19,7 @@ namespace TOR_Core.Models
         private CharacterObject _skeleton;
         
         private CharacterObject _raider;
+        private CharacterObject _wraith;
 
         private const int UndeadCountVillages = 5;
         private const int UndeadCountTowns = 20;
@@ -48,6 +49,15 @@ namespace TOR_Core.Models
                             var count = party.LeaderHero.HasAttribute("BloodDragon") ? UndeadCountVillages : UndeadCountTowns;
                             party.MemberRoster.AddToCounts(_skeleton, 0, false, count);
 
+                            if (party.ActualClan.StringId.Contains("necrarch"))
+                            {
+                                party.MemberRoster.AddToCounts(_wraith, 3, false, 0);
+
+                                party.Party.MemberRoster.AddXpToTroop(100, _skeleton);
+                                party.Party.MemberRoster.AddXpToTroop(100, _wraith);
+
+                            }
+
                         }
                         return;
                     }
@@ -65,6 +75,7 @@ namespace TOR_Core.Models
         {
             _skeleton = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_skeleton");
             _raider = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_norscan_raider");
+            _wraith = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_cairn_wraith");
         }
 
 
