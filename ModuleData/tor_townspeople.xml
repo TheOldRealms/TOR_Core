@@ -2391,7 +2391,7 @@
       <EquipmentSet id="tor_we_people_notable_villager" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="spc_notable_asrai_rural_2" name="{=!}asrai yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="RuralNotable">
+  <NPCCharacter id="spc_notable_asrai_rural_2" name="{=!}Asrai yeoman" voice="softspoken" is_template="true" default_group="Infantry" culture="Culture.battania" race ="elf" occupation="RuralNotable">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -2400,8 +2400,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_eo_ranger_template" />
-      <EquipmentSet id="tor_eo_ranger_template" civilian="true" />
+      <EquipmentSet id="tor_we_eternal_guard_template" />
+      <EquipmentSet id="tor_we_eternal_guard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="spc_asrai_headman_1" name="{=!}Asrai rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.battania" race ="elf" occupation="Headman">

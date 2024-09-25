@@ -245,7 +245,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationType = OperationType.Multiply
                 }
             });
-        _starfireEssenceKeystone.Initialize(CareerID, "Enemies suffer from a dot on impact.", "StarfireEssence", false, ChoiceType.Keystone,
+        _starfireEssenceKeystone.Initialize(CareerID, "Enemies suffer from a damage over time effect on impact.", "StarfireEssence", false, ChoiceType.Keystone,
             new List<CareerChoiceObject.MutationObject>()
             {
                 new()
@@ -255,7 +255,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     PropertyName = "ImbuedStatusEffects",
                     PropertyValue =
                         (choice, originalValue, agent) =>
-                            ((List<string>)originalValue).Concat(new[] { "arrow_of_kurnous_debuff_mov" }).ToList(),
+                            ((List<string>)originalValue).Concat(new[] { "arrow_of_kurnous_debuff_dot" }).ToList(),
                     MutationType = OperationType.Replace
                 }
             });
