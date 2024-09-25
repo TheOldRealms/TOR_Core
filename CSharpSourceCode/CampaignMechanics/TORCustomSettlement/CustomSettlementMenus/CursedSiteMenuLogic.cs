@@ -143,7 +143,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
                 args.IsEnabled = false;
             }
             
-            var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTimeTime(Hero.MainHero);
+            var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTime(Hero.MainHero);
             if (lastGhostRecruitmentTime >= (int)CampaignTime.Now.ToDays)
             {
                 args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action once a day.");
@@ -223,21 +223,28 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
             int diff = (int)_startWaitTime.ElapsedHoursUntilNow;
             if (diff > 0)
             {
-                args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
+                args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.1f);
                 if (args.MenuContext.GameMenu.Progress != progress)
                 {
                     var troop = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_spirit_host");
                     var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
-                    int raisePower = Math.Max(1, (int)Hero.MainHero.GetExtendedInfo().SpellCastingLevel);
-                    var count = MBRandom.RandomInt(1, 3);
-                    count *= raisePower;
-                    if (freeSlots > 0)
+                    float raisePower = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+
+                    var chance = raisePower / 200;
+
+                    if (MBRandom.RandomFloat < chance)
                     {
-                        if (freeSlots < count) count = freeSlots;
-                        MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
-                        CampaignEventDispatcher.Instance.OnTroopRecruited(Hero.MainHero, Settlement.CurrentSettlement, null, troop, count);
-                        numberOfTroopsFromInteraction += count;
+                        var count = 1;
+                        if (freeSlots > 0)
+                        {
+                            if (freeSlots < count) count = freeSlots;
+                            MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
+                            CampaignEventDispatcher.Instance.OnTroopRecruited(Hero.MainHero, Settlement.CurrentSettlement, null, troop, count);
+                            numberOfTroopsFromInteraction += count;
+                        }
                     }
+                    
+
                 }
 
                 foreach (var hero in MobileParty.MainParty.GetMemberHeroes())

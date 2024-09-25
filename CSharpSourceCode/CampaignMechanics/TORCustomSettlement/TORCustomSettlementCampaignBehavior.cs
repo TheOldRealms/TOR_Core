@@ -54,7 +54,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         return _lastDefileTime[hero.StringId];
     }
 
-    public int LastGhostRecruitmentTimeTime(Hero hero)
+    public int LastGhostRecruitmentTime(Hero hero)
     {
         if (_lastGhostRecruitmentTime.TryGetValue(hero.StringId, out int value))
         {
@@ -63,7 +63,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         else
         {
             _lastGhostRecruitmentTime.Add(hero.StringId, (int)CampaignTime.Now.ToDays);
-            return _lastDefileTime[hero.StringId];
+            return _lastGhostRecruitmentTime[hero.StringId];
         }
     }
     
