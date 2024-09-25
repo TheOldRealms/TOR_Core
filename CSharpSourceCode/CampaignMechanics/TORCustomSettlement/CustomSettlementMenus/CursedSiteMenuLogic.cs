@@ -143,6 +143,14 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
                 args.IsEnabled = false;
             }
             
+            var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
+
+            if (freeSlots <= 0)
+            {
+                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_enough_free_slots_text_str}You have not enough space in your party.");
+                args.IsEnabled = false;
+            }
+            
             var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTime(Hero.MainHero);
             if (lastGhostRecruitmentTime >= (int)CampaignTime.Now.ToDays)
             {
