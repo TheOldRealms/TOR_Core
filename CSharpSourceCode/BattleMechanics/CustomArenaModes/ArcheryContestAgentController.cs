@@ -42,7 +42,7 @@ namespace TOR_Core.BattleMechanics.CustomArenaModes
 
         private void SelectNewTarget()
         {
-            List<KeyValuePair<float, DestructableComponent>> list = new List<KeyValuePair<float, DestructableComponent>>();
+            List<KeyValuePair<float, DestructableComponent>> list = [];
             foreach (DestructableComponent destructableComponent in _targetList)
             {
                 float score = GetScore(destructableComponent);
@@ -60,11 +60,10 @@ namespace TOR_Core.BattleMechanics.CustomArenaModes
             }
             else
             {
-                List<KeyValuePair<float, DestructableComponent>> list2 = (from x in list
+                List<KeyValuePair<float, DestructableComponent>> list2 = [.. (from x in list
                                                                           orderby x.Key descending
-                                                                          select x).ToList();
-                int maxValue = MathF.Min(list2.Count, 5);
-                _target = list2[MBRandom.RandomInt(maxValue)].Value;
+                                                                          select x)];
+                _target = list2.MaxBy(x => x.Key).Value;
             }
             if (_target != null)
             {

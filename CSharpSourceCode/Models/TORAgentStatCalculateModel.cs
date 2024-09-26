@@ -86,7 +86,7 @@ namespace TOR_Core.Models
                 }
                 
                 
-                if (character != null && mobileParty != null)
+                if (character != null && mobileParty != null && !Mission.Current.IsArenaMission())
                 {
                     MissionEquipment equipment = agent.Equipment;
                     for (int i = 0; i < 5; i++)
