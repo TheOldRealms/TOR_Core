@@ -911,8 +911,8 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Cunning</AttributeToIncrease>
 		<PositiveEffectText>Unlocks Kithband Symbol</PositiveEffectText>
-		<OptionText>{=tor_cc_option_2_we_khaine_label_str}Anath Raema, the Goddess of the Savage Hunt</OptionText>
-		<OptionFlavourText>{=tor_cc_option_2_we_khaine_text_str}Also known as the Lord of Murder, Khaine is the Elven god of war, destruction, violence, and blood. It is not an uncommon sight to see Wood Elves offer prayers to Khaine during times of war. Khaine’s tenets are unique in a sense – the Lord of Murder denies his followers no acts. The only transgression would be to defy his will.</OptionFlavourText>
+		<OptionText>{=tor_cc_option_2_we_anath_raema_label_str}Anath Raema, the Goddess of the Savage Hunt</OptionText>
+		<OptionFlavourText>{=tor_cc_option_2_we_anath_raema_text_str}Anath Raema, sister to Khaine, is the dark mirror to Kurnous, a savage predator who's only interest is in spilling the blood of lesser creatures. Though she is publicly spurned in Loren some realms seek her patronage, and more Asrai than most would suspect dedicate at least a few of their kills to the Savage Huntress - All Anath Raema seeks from her followers is the death of prey, from dragons to rats, all of it pleases her.</OptionFlavourText>
 	</CharacterCreationOption>
 
 
