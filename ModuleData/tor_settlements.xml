@@ -7826,7 +7826,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001" />
       <Location id="arena" scene_name="TOR_we_archery_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_wood_elf_tavern_01_forceatmo" />
       <Location id="lordshall" scene_name_1="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_2="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_3="TOR_wood_elf_lords_hall_01_forceatmo" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wood_elf_wizard_hall_01_forceatmo" />
@@ -7898,7 +7898,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001" />
       <Location id="arena" scene_name="TOR_we_archery_arena_001" />
-      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_02" />
+      <Location id="tavern" scene_name="TOR_wood_elf_tavern_01_forceatmo" />
       <Location id="lordshall" scene_name_1="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_2="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_3="TOR_wood_elf_lords_hall_01_forceatmo" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wood_elf_wizard_hall_01_forceatmo" />
@@ -7944,7 +7944,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001" />
       <Location id="arena" scene_name="TOR_we_archery_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_wood_elf_tavern_01_forceatmo" />
       <Location id="lordshall" scene_name_1="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_2="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_3="TOR_wood_elf_lords_hall_01_forceatmo" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wood_elf_wizard_hall_01_forceatmo" />
@@ -8004,7 +8004,7 @@
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001">
       </Location>
       <Location id="arena" scene_name="TOR_we_archery_arena_001" />
-      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_01" />
+      <Location id="tavern" scene_name="TOR_wood_elf_tavern_01_forceatmo" />
       <Location id="lordshall" scene_name_1="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_2="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_3="TOR_wood_elf_lords_hall_01_forceatmo" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wood_elf_wizard_hall_01_forceatmo" />
@@ -8077,7 +8077,7 @@
       <Location id="center" scene_name="TOR_wood_elf_city_001" scene_name_1="TOR_wood_elf_city_001" scene_name_2="TOR_wood_elf_city_001" scene_name_3="TOR_wood_elf_city_001">
       </Location>
       <Location id="arena" scene_name="TOR_we_archery_arena_001" />
-      <Location id="tavern" scene_name="TOR_empire_tavern_ninian_ubersreik_redmooninn" />
+      <Location id="tavern" scene_name="TOR_wood_elf_tavern_01_forceatmo" />
       <Location id="lordshall" scene_name_1="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_2="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_3="TOR_wood_elf_lords_hall_01_forceatmo" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wood_elf_wizard_hall_01_forceatmo" />
@@ -8110,7 +8110,7 @@
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="TOR_wood_elf_glade_midnight_forceatmo" scene_name_1="TOR_wood_elf_glade_midnight_forceatmo" scene_name_2="TOR_wood_elf_glade_midnight_forceatmo" scene_name_3="TOR_wood_elf_glade_midnight_forceatmo" />
       <Location id="arena" scene_name="TOR_we_archery_arena_001" />
-      <Location id="tavern" scene_name="empire_tavern_01" />
+      <Location id="tavern" scene_name="TOR_wood_elf_tavern_01_forceatmo" />
       <Location id="lordshall" scene_name_1="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_2="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_3="TOR_wood_elf_lords_hall_01_forceatmo" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
       <Location id="house_1" scene_name="TOR_wood_elf_wizard_hall_01_forceatmo" />
