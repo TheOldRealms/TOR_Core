@@ -134,7 +134,7 @@ namespace TOR_Core.HarmonyPatches
         {
             if(Campaign.Current != null && PlayerSiege.PlayerSiegeEvent != null && PlayerSiege.BesiegedSettlement?.OriginalCulture().StringId == TORConstants.Cultures.ASRAI)
             {
-                spawnHorses = true;
+                //spawnHorses = true;
             }
         }
 
