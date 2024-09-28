@@ -82,8 +82,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             MinimumLevel = 0,
             UpgradeText = new TextObject("Decipher the Symbol of the Kithband. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
             ApplyText = new TextObject("Apply the Symbol of the Kithband. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
-            ToolTipText = new TextObject(
-                "Increase your party size by 50% , Forestharmony gain is decreased by 25% and wages are increased by 15%.{UPGRADEFAILEDREASON}")
+            ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEKithbandSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
@@ -92,8 +91,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             MinimumLevel = 0,
             UpgradeText = new TextObject("Decipher the Symbol of the Wardancer. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
             ApplyText = new TextObject("Apply the Symbol of the Wardancer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
-            ToolTipText = new TextObject(
-                "The Player and companion gain 25% additional health, and recover wounds 25% faster. All troops heal 25% slower and Forest Harmony is gained 25% slower.{UPGRADEFAILEDREASON}")
+            ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEWardancerSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
@@ -102,7 +100,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             MinimumLevel = 0,
             UpgradeText = new TextObject("Decipher the Symbol of the Treekin. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
             ApplyText = new TextObject("Apply the Symbol of the Treekin. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
-            ToolTipText = new TextObject("Treekin Forest Harmony upkeep is 50% lower. Wages of elves are 25% higher.{UPGRADEFAILEDREASON}")
+            ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WETreekinSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
@@ -111,7 +109,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             MinimumLevel = 15,
             UpgradeText = new TextObject("Decipher the Symbol of Orion. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
             ApplyText = new TextObject("Apply the Symbol of Orion. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
-            ToolTipText = new TextObject("Wages of elves are reduced by 50%. Forest Spirit unit upkeep is doubled.{UPGRADEFAILEDREASON}")
+            ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEOrionSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
@@ -120,8 +118,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             MinimumLevel = 15,
             UpgradeText = new TextObject("Decipher the Symbol of Ariel. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
             ApplyText = new TextObject("Apply the Symbol of Ariel. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
-            ToolTipText = new TextObject(
-                "Winds capacity is increased by 25%. Regenerate +1 more Winds in Athel Loren. Upkeepcosts are increased by 50%.{UPGRADEFAILEDREASON}")
+            ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEArielSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
@@ -130,8 +127,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             MinimumLevel = 15,
             UpgradeText = new TextObject("Decipher the Symbol of the Wanderer.{TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
             ApplyText = new TextObject("Apply the Symbol of the Wanderer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
-            ToolTipText = new TextObject(
-                "Low Forest Harmony has no negative Effect. Forest harmony gain is reduced by 50% and upkeep is increased by 50%.{UPGRADEFAILEDREASON}")
+            ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEWandererSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
         {
@@ -140,8 +136,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             MinimumLevel = 20,
             UpgradeText = new TextObject("Decipher the Symbol of Durthu.{TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
             ApplyText = new TextObject("Apply the Symbol of Durthu. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
-            ToolTipText = new TextObject(
-                "Treeman capacity is increased by 50%. Health is increased by 25%. Party size is decreased by 25%. -20% Fire resistance.{UPGRADEFAILEDREASON}")
+            ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEDurthuSymbol").Value+"{UPGRADEFAILEDREASON}")
         }
     ];
 

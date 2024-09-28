@@ -60,7 +60,7 @@ namespace TOR_Core.CampaignMechanics
 	        List<TooltipProperty> list =
             [
                 new TooltipProperty(customResourceTitle, value+icon, 0, false, TooltipProperty.TooltipPropertyFlags.Title),
-                new TooltipProperty(description,"" , 0, false, TooltipProperty.TooltipPropertyFlags.None),
+                new TooltipProperty("",description , 0, false, TooltipProperty.TooltipPropertyFlags.MultiLine),
                 .. customDescription,
             ];
 	        if (change.GetLines().Any())

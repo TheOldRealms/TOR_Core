@@ -1210,10 +1210,35 @@
   <!--Grail Knight !-->
 
 
+
+
+	<!--Custom Resource related ! -->
+	
+	<!--Forest Harmony ! -->
+	<string id="tor_treesymbol_title.WEKithbandSymbol" text="{=inky_battlefield_strid_title}Kithband Symbol" />
+	<string id="tor_treesymbol_title.WEWardancerSymbol" text="{=inky_battlefield_strid_title}Wardancer Symbol" />
+	<string id="tor_treesymbol_title.WETreekinSymbol" text="{=inky_battlefield_strid_title}Treekin Symbol" />
+	<string id="tor_treesymbol_title.WEOrionSymbol" text="{=inky_battlefield_strid_title}Orion Symbol" />
+	<string id="tor_treesymbol_title.WEArielSymbol" text="{=inky_battlefield_strid_title}Ariel Symbol" />
+	<string id="tor_treesymbol_title.WEDurthuSymbol" text="{=inky_battlefield_strid_title}Durthu Symbol" />
+	<string id="tor_treesymbol_title.WEWandererSymbol" text="{=inky_battlefield_strid_title}Wanderer Symbol" />
+
+
+	<string id="tor_treesymbol_description.WEKithbandSymbol" text="{=str_tor_treesymbol_description_kithbandsymbol}Increase your party size by 50% , Forest harmony gain is decreased by 25% and wages are increased by 15%." />
+	<string id="tor_treesymbol_description.WEWardancerSymbol" text="{=str_tor_treesymbol_description_wardancersymbol}The Player and companion gain 25% additional health, and recover wounds 25% faster. All troops heal 25% slower and Forest Harmony is gained 25% slower." />
+	<string id="tor_treesymbol_description.WETreekinSymbol" text="{=str_tor_treesymbol_description_treekinsymbol}Treekin Forest Harmony upkeep is 50% lower. Wages of elves are 25% higher." />
+	<string id="tor_treesymbol_description.WEOrionSymbol" text="{=str_tor_treesymbol_description_orionsymbol}Wages of elves are reduced by 50%. Forest Spirit unit upkeep is doubled." />
+	<string id="tor_treesymbol_description.WEArielSymbol" text="{=str_tor_treesymbol_description_arielsymbol}Winds capacity is increased by 25%. Regenerate +1 more Winds in Athel Loren. Upkeepcosts are increased by 50%." />
+	<string id="tor_treesymbol_description.WEDurthuSymbol" text="{=str_tor_treesymbol_description_durthusymbol}Treeman capacity is increased by 50%. Health is increased by 25%. Party size is decreased by 25%. -20% Fire resistance." />
+	<string id="tor_treesymbol_description.WEWandererSymbol" text="{=str_tor_treesymbol_description_wanderersymbol}Low Forest Harmony has no negative Effect. Forest Harmony gain is reduced by 50% and upkeep is increased by 50%." />
+  <!--Meadow ! -->
+
+
   <!-- Inky translation related.  Do NOT add texts inside quotation marks!-->
   <!-- every inky story starts with "inky: "+ ID of the file name. While the Variation accounts for the specific text block -->
   <string id="inky_continue" text="{inky_continue_str}" />
   <string id="inky_end" text="{inky_end_str}" />
+ 
 
   <!--Ink !-->
   <string id="inky_party_skill_check_result_template" text ="{=inky_party_skill_check_template_str}({inky_skill_check_skill_name} check with success chance {inky_Party_skill_CheckChance}%)" />

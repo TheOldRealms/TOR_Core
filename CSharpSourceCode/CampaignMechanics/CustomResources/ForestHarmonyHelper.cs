@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Localization;
+using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics.CustomResources;
@@ -52,12 +54,66 @@ public class ForestHarmonyHelper
     {
         return chivalryLevel == hero.GetForestHarmonyLevel();
     }
-    
+
+    private static new List<TooltipProperty> GetForestSymbolText(string ForestSymbol)
+    {
+        var list = new List<TooltipProperty>();
+
+        var hasTitle = GameTexts.TryGetText("tor_treesymbol_title",  out var symbolTitle, ForestSymbol);
+        
+        var hasText = GameTexts.TryGetText("tor_treesymbol_description", out var symbolText, ForestSymbol);
+
+        if (hasTitle && hasText)
+        {
+            list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
+            list.Add(new TooltipProperty("Current active symbol: ", symbolTitle.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty("", symbolText.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.MultiLine));
+        }
+
+        return list;
+    }
     public static List<TooltipProperty> GetForestHarmonyInfo()
     {
         var list = new List<TooltipProperty>();
         var value = Hero.MainHero.GetCustomResourceValue("ForestBinding");
         var forestBindingLevel = Hero.MainHero.GetForestHarmonyLevel();
+
+
+        
+        if(Hero.MainHero.HasAttribute("WEKithbandSymbol"))
+        {
+            list.AddRange(GetForestSymbolText("WEKithbandSymbol"));
+        }
+        
+        if(Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+        {
+            list.AddRange(GetForestSymbolText("WEWardancerSymbol"));
+        }
+        
+        if(Hero.MainHero.HasAttribute("WETreekinSymbol"))
+        {
+            list.AddRange(GetForestSymbolText("WETreekinSymbol"));
+        }
+        
+        if(Hero.MainHero.HasAttribute("WEOrionSymbol"))
+        {
+            list.AddRange(GetForestSymbolText("WEOrionSymbol"));
+        }
+        
+        if(Hero.MainHero.HasAttribute("WEArielSymbol"))
+        {
+            list.AddRange(GetForestSymbolText("WEArielSymbol"));
+        }
+        
+        if(Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+        {
+            list.AddRange(GetForestSymbolText("WEDurthuSymbol"));
+        }
+        
+        if(Hero.MainHero.HasAttribute("WEWandererSymbol"))
+        {
+            list.AddRange(GetForestSymbolText("WEWandererSymbol"));
+        }
 
         var text = forestBindingLevel.ToString();
         var title = "Forest Harmony: "+text;
@@ -93,7 +149,7 @@ public class ForestHarmonyHelper
         {
             list.Add(new TooltipProperty("Next Rank: ", (forestBindingLevel + 1).ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None));
             var result = GetResourceMinimumForForestBindingRank(forestBindingLevel + 1) - value;
-            list.Add(new TooltipProperty("Required Forest binding: ", result.ToString("0"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+            list.Add(new TooltipProperty("Required Forest Harmony: ", result.ToString("0"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
         }
 
 
