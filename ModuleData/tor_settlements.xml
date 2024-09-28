@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=!}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages">
@@ -241,7 +241,7 @@
       <Shrine id="anath_shrine_01" religion="cult_of_anath_raema" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="vaul_shrine_01" name="{=!}Shrine of Vaul" owner="Faction.athel_loren_clan_11" posX="1184.553" posY="817.133" culture="Culture.battania" text="{=!}Shrine of Vaul">
+  <Settlement id="vaul_shrine_01" name="{=!}Shrine of Vaul" owner="Faction.athel_loren_clan_11" posX="1184.427" posY="818.268" culture="Culture.battania" text="{=!}Shrine of Vaul">
     <Components>
       <Shrine id="vaul_shrine_01" religion="cult_of_vaul" background_crop_position="0.0" background_mesh="shrine_of_vaul" wait_mesh="shrine_of_vaul" gate_rotation="0.0" />
     </Components>
