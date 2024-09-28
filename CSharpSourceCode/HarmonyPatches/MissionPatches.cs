@@ -128,16 +128,6 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(MissionAgentSpawnLogic), "SetSpawnHorses")]
-        public static void CreateExceptionForAsrai3(BattleSideEnum side, ref bool spawnHorses)
-        {
-            if(Campaign.Current != null && PlayerSiege.PlayerSiegeEvent != null && PlayerSiege.BesiegedSettlement?.OriginalCulture().StringId == TORConstants.Cultures.ASRAI)
-            {
-                spawnHorses = true;
-            }
-        }
-
         private static string GetBattleSceneForAsraiSiege()
         {
             MBList<SingleplayerBattleSceneData> sceneList = (from scene in GameSceneDataManager.Instance.SingleplayerBattleScenes

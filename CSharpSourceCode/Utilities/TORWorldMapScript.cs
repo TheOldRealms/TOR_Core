@@ -235,8 +235,12 @@ namespace TOR_Core.Utilities
 
                     if (total != 19)
                     {
-                        TORCommon.Say($"There is something wrong with the siege entities of settlement: {settlementId}.");
+                        //TORCommon.Say($"There is something wrong with the siege entities of settlement: {settlementId}.");
                         badCount++;
+                    }
+                    if(breachCount != 2)
+                    {
+                        TORCommon.Say($"Wrong number of breachable walls for: {settlementId}.");
                     }
                 }
             }

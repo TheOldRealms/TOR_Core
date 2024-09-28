@@ -18,7 +18,7 @@ namespace TOR_Core.Missions
 {
     public class ArcheryContestMissionController(CultureObject culture) : MissionLogic, ITournamentGameBehavior
     {
-        private CultureObject _culture = culture;
+        private readonly CultureObject _culture = culture;
         private TournamentMatch _match;
         private BasicMissionTimer _endTimer;
         private bool _isSimulated;
@@ -27,7 +27,8 @@ namespace TOR_Core.Missions
         private List<DestructableComponent> _rightSideTargets;
         private GameEntity _leftParticipantSpawn;
         private GameEntity _rightParticipantSpawn;
-        private readonly List<Agent> _currentParticipantAgents = [];
+        private Agent _leftParticipantAgent;
+        private Agent _rightParticipantAgent;
 
         public override void AfterStart()
         {
@@ -68,7 +69,8 @@ namespace TOR_Core.Missions
         {
             _match = match;
             _isLastRound = isLastRound;
-            _currentParticipantAgents.Clear();
+            _leftParticipantAgent = null;
+            _rightParticipantAgent = null;
             ResetTargets();
             PrepareForMatch();
 
@@ -82,22 +84,23 @@ namespace TOR_Core.Missions
             {
                 var missionTeam = Mission.Teams.Add(BattleSideEnum.None, team.TeamColor, uint.MaxValue, team.TeamBanner, true, false, true);
                 GameEntity spawnPoint = teamIndex == 0 ? _leftParticipantSpawn : _rightParticipantSpawn;
+                var side = teamIndex == 0 ? ArcherySide.Left : ArcherySide.Right;
                 foreach (var participant in team.Participants)
                 {
-                    SpawnTournamentParticipant(spawnPoint, participant, missionTeam);
+                    SpawnTournamentParticipant(spawnPoint, participant, missionTeam, side);
                 }
                 teamIndex++;
             }
         }
 
-        private void SpawnTournamentParticipant(GameEntity spawnPoint, TournamentParticipant participant, Team team)
+        private void SpawnTournamentParticipant(GameEntity spawnPoint, TournamentParticipant participant, Team team, ArcherySide side)
         {
             MatrixFrame globalFrame = spawnPoint.GetGlobalFrame();
             globalFrame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
-            SpawnParticipantAgent(participant, team, globalFrame);
+            SpawnParticipantAgent(participant, team, globalFrame, side);
         }
 
-        private void SpawnParticipantAgent(TournamentParticipant participant, Team team, MatrixFrame frame)
+        private void SpawnParticipantAgent(TournamentParticipant participant, Team team, MatrixFrame frame, ArcherySide side)
         {
             CharacterObject character = participant.Character;
             AgentBuildData agentBuildData = new AgentBuildData(new SimpleAgentOrigin(character, -1, null, participant.Descriptor)).Team(team).InitialPosition(frame.origin);
@@ -115,7 +118,14 @@ namespace TOR_Core.Missions
             agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp, Equipment.InitialWeaponEquipPreference.RangedForMainHand);
             agent.SetWatchState(Agent.WatchState.Alarmed);
             agent.ToggleInvulnerable();
-            _currentParticipantAgents.Add(agent);
+            if(side == ArcherySide.Left)
+            {
+                _leftParticipantAgent = agent;
+            }
+            else
+            {
+                _rightParticipantAgent = agent;
+            }
         }
 
         public void SkipMatch(TournamentMatch match)
@@ -155,11 +165,11 @@ namespace TOR_Core.Missions
 
         private List<Equipment> GetParticipantWeaponEquipmentList()
         {
-            List<Equipment> list = new List<Equipment>();
+            List<Equipment> list = [];
             CharacterObject characterObject = _culture.TournamentTeamTemplatesForOneParticipant.FirstOrDefault();
             foreach (Equipment sourceEquipment in characterObject.BattleEquipments)
             {
-                Equipment equipment = new Equipment();
+                Equipment equipment = new();
                 equipment.FillFrom(sourceEquipment, true);
                 list.Add(equipment);
             }
@@ -205,11 +215,21 @@ namespace TOR_Core.Missions
                 _endTimer = null;
                 return true;
             }
-            if (_endTimer == null && (!IsThereAnyTargetLeft() || !IsThereAnyArrowLeft()))
+            if (_endTimer == null && IsLeftSideFinished() && IsRightSideFinished())
             {
                 _endTimer = new BasicMissionTimer();
             }
             return false;
+        }
+
+        private bool IsLeftSideFinished()
+        {
+            return _leftSideTargets.All(x => x.IsDestroyed) || _leftParticipantAgent.Equipment.GetAmmoAmount(EquipmentIndex.WeaponItemBeginSlot) <= 0;
+        }
+
+        private bool IsRightSideFinished()
+        {
+            return _rightSideTargets.All(x => x.IsDestroyed) || _rightParticipantAgent.Equipment.GetAmmoAmount(EquipmentIndex.WeaponItemBeginSlot) <= 0;
         }
 
         private bool IsThereAnyTargetLeft()
@@ -224,7 +244,7 @@ namespace TOR_Core.Missions
 
         public void OnMatchEnded()
         {
-            SandBoxHelpers.MissionHelper.FadeOutAgents(_currentParticipantAgents, true, false);
+            SandBoxHelpers.MissionHelper.FadeOutAgents([_leftParticipantAgent, _rightParticipantAgent], false, false);
             Mission.ClearCorpses(false);
             Mission.Teams.Clear();
             Mission.RemoveSpawnedItemsAndMissiles();
@@ -240,10 +260,7 @@ namespace TOR_Core.Missions
                 foreach (var agent in Mission.Agents)
                 {
                     var controller = agent.GetController<ArcheryContestAgentController>();
-                    if (controller != null)
-                    {
-                        controller.OnTick();
-                    }
+                    controller?.OnTick();
                 }
             }
         }
@@ -258,6 +275,12 @@ namespace TOR_Core.Missions
             {
                 destructableComponent.Reset();
             }
+        }
+
+        private enum ArcherySide
+        {
+            Left,
+            Right
         }
     }
 }
