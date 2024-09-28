@@ -174,7 +174,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     PropertyName = "Radius",
                     PropertyValue =
                         (choice, originalValue, agent) =>
-                            CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Bow }, 0.06f, true),
+                            CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Bow }, 0.02f, true),
                     MutationType = OperationType.Add
                 }
             });
@@ -201,7 +201,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     PropertyName = "Radius",
                     PropertyValue =
                         (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent,
-                            new List<SkillObject>() { DefaultSkills.Scouting }, 0.06f, true),
+                            new List<SkillObject>() { DefaultSkills.Scouting }, 0.02f, true),
                     MutationType = OperationType.Add
                 }
             });
