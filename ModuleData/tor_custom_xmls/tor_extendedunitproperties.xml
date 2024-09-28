@@ -1052,7 +1052,9 @@
   <CharacterExtendedInfo id="tor_we_wardancer">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1061,7 +1063,9 @@
   <CharacterExtendedInfo id="tor_we_shadowdancer">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1070,7 +1074,9 @@
   <CharacterExtendedInfo id="tor_we_bladesinger">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1097,7 +1103,9 @@
   <CharacterExtendedInfo id="tor_we_wild_rider">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1106,7 +1114,9 @@
   <CharacterExtendedInfo id="tor_we_great_stag_knight">
     <Abilities />
     <Attributes />
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -1119,7 +1129,7 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
     </Resistances>
     <DamageAmplifiers />
@@ -1136,7 +1146,7 @@
       <string>HasAnimationTriggeredEffects</string>
     </Attributes>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
     </Resistances>
     <DamageAmplifiers />
@@ -1153,7 +1163,7 @@
       <string>HasAnimationTriggeredEffects</string>
     </Attributes>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.25" />
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
     </Resistances>
     <DamageAmplifiers />
