@@ -283,7 +283,11 @@ namespace TOR_Core.CampaignMechanics
                 huntSucess *= 1.1f;
 
             var PreySize = MBRandom.RandomInt(1, 3);
-            if (MBRandom.RandomFloatRanged(0, 1) >= PreyChance) return;
+            if (MBRandom.RandomFloatRanged(0, 1) >= PreyChance)
+            {
+                InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","CompletelyFailed").ToString(),Colors.Yellow));
+                return;
+            }
             mobileParty.LeaderHero.AddSkillXp(DefaultSkills.Scouting, 50f * PreySize);
             var preySizeAnimalText = "";
             switch (PreySize)
@@ -302,7 +306,7 @@ namespace TOR_Core.CampaignMechanics
             
             if (MBRandom.RandomFloatRanged(0, 1) >= huntSucess)
             {
-                InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Failed").ToString()));
+                InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Failed").ToString(),Colors.Yellow));
                 return;
             }
             
@@ -314,7 +318,7 @@ namespace TOR_Core.CampaignMechanics
             if (PreySize > 1)
                 mobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Hides, PreySize));
             
-            InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Success").ToString()));
+            InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Success").ToString(), Colors.Yellow));
         }
 
         public override void SyncData(IDataStore dataStore)

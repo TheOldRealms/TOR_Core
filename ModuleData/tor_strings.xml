@@ -1165,8 +1165,8 @@
 
 
   <!--Career perks related !-->
-
-  <string id="tor_hunt_perk_result.Failed" text="{=tor_hunt_perk_result_failed_str}You were able to detect a {PERK_HUNT_ANIMAL_SIZE}, yet your hunt was not sucessful" />
+ <string id="tor_hunt_perk_result.CompletelyFailed" text="{=tor_hunt_perk_result_failed_str}Your daily hunt was not successful" />
+  <string id="tor_hunt_perk_result.Failed" text="{=tor_hunt_perk_result_failed_str}You were able to detect a {PERK_HUNT_ANIMAL_SIZE}, yet your hunt was not successful" />
   <string id="tor_hunt_perk_result.Success" text="{=tor_hunt_perk_result_success_str}You were able to hunt down a {PERK_HUNT_ANIMAL_SIZE}, you gained {PERK_HUNT_PREY}" />
 
 
