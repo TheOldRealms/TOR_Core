@@ -8885,7 +8885,7 @@
   <EquipmentRoster id="tor_m_knight_of_misfortune_template" culture="Culture.mousillon">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
@@ -8896,7 +8896,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
@@ -8907,7 +8907,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_002" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
@@ -8918,7 +8918,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_002" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
@@ -8929,7 +8929,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="tor_mousillon_weapon_shield_knight_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
@@ -8941,7 +8941,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="tor_mousillon_weapon_shield_knight_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
@@ -8953,7 +8953,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_002" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
@@ -8965,7 +8965,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.vlandia_sword_1_t2" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_002" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
@@ -8979,7 +8979,7 @@
   <EquipmentRoster id="tor_m_black_grail_knight_template" culture="Culture.mousillon">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_004" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -8991,7 +8991,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_004" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -9003,7 +9003,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -9015,7 +9015,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -9027,7 +9027,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_questing_knight_002" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -9039,7 +9039,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_questing_knight_002" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -9051,7 +9051,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -9063,7 +9063,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -9075,7 +9075,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -9087,7 +9087,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_003" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_001" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -9204,8 +9204,6 @@
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
-      <Equipment slot="Horse" id="Item.hunter" />
-      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_spear_004" />
@@ -9214,8 +9212,6 @@
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_eternalguard_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_001" />
-      <Equipment slot="Horse" id="Item.hunter" />
-      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_eo_mounted_kithband_warrior_template" culture="Culture.eonir">
@@ -9386,8 +9382,6 @@
       <Equipment slot="Cape" id="Item.a_aserai_scale_b_shoulder_e" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_he_leg_boots_phoenix_001" />
-      <Equipment slot="Horse" id="Item.sturgia_horse_tournament" />
-      <Equipment slot="HorseHarness" id="Item.battania_horse_harness_scaled" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_he_weapon_spearmen_spear_001" />
@@ -9398,8 +9392,6 @@
       <Equipment slot="Cape" id="Item.a_aserai_scale_b_shoulder_e" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
       <Equipment slot="Leg" id="Item.tor_he_leg_boots_phoenix_001" />
-      <Equipment slot="Horse" id="Item.sturgia_horse_tournament" />
-      <Equipment slot="HorseHarness" id="Item.battania_horse_harness_scaled" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_chaos_undivided_knight_template" culture="Culture.chaos_culture">
@@ -15678,6 +15670,32 @@
       <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_louen_leoncoeur" />
       <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_louen_leoncoeur" />
       <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_louen_leoncoeur" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_alberic_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnian_trident_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.charger" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_001" />
+      <Equipment slot="Item2" id="Item.tor_bretonnian_trident_001" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_kotr_002" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_kotr_002" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
       <Equipment slot="Horse" id="Item.charger" />
       <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_001" />
     </EquipmentSet>

@@ -3868,6 +3868,15 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_shield_kotr_003">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_mousillon_weapon_shield_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_mousillon_weapon_shield_knight_002">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_mousillon_weapon_shield_black_grail_knight_001">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_we_weapon_shield_eternalguard_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>

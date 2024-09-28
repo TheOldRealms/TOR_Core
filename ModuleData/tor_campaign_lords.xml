@@ -4820,7 +4820,7 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" />
+      <EquipmentSet id="tor_alberic_template" />
       <EquipmentSet id="tor_bretonnian_generic_lord_template_realm_3" civilian="true" />
     </Equipments>
   </NPCCharacter>
