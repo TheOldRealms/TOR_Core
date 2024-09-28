@@ -1,6 +1,4 @@
 ﻿using Helpers;
-using Messages.FromLobbyServer.ToClient;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -149,7 +147,6 @@ namespace TOR_Core.CampaignMechanics.Chaos
             List<Clan> chaosClans = Clan.NonBanditFactions.Where(x => x.Culture.StringId == "chaos_culture").ToList();
             List<Clan> nonChaosClans = Clan.NonBanditFactions.Where(x => x.Culture.StringId != "chaos_culture").ToList();
             List<Kingdom> chaosKingdoms = Kingdom.All.Where(x => x.Culture.StringId == "chaos_culture").ToList();
-            List<Clan> chaosBanditFactions = Clan.BanditFactions.Where(x => x.StringId == "steppe_bandits" || x.StringId == "forest_bandits").ToList();
             List<Kingdom> nonChaosKingdoms = Kingdom.All.Where(x => x.Culture.StringId != "chaos_culture").ToList();
 
             //Set chaos kingdoms eternal enemy of all non-chaos kingdoms
@@ -185,28 +182,6 @@ namespace TOR_Core.CampaignMechanics.Chaos
                     if (!chaosClan.IsAtWarWith(nonChaosClan))
                     {
                         FactionManager.DeclareWar(chaosClan, nonChaosClan, true);
-                    }
-                }
-            }
-            //set all chaos bandit factions neutral to chaos clans and kingdoms
-            foreach (var chaosBanditFaction in chaosBanditFactions)
-            {
-                foreach (var chaosClan in chaosClans)
-                {
-                    if (chaosClan.IsAtWarWith(chaosBanditFaction))
-                    {
-                        var stance = chaosClan.GetStanceWith(chaosBanditFaction);
-                        stance.IsAtConstantWar = false;
-                        stance.IsAtWar = false;
-                    }
-                }
-                foreach (var chaosKingdom in chaosKingdoms)
-                {
-                    if (chaosKingdom.IsAtWarWith(chaosBanditFaction))
-                    {
-                        var stance = chaosKingdom.GetStanceWith(chaosBanditFaction);
-                        stance.IsAtConstantWar = false;
-                        stance.IsAtWar = false;
                     }
                 }
             }
