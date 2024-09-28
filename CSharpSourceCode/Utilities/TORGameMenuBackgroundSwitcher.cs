@@ -43,6 +43,10 @@ namespace TOR_Core.Utilities
                 case TORConstants.Cultures.BRETONNIA:
                     args.MenuContext.SetBackgroundMeshName("bretonnia_looted_village");
                     return;
+                case TORConstants.Cultures.EONIR:
+                case TORConstants.Cultures.ASRAI:
+                    args.MenuContext.SetBackgroundMeshName("we_village_burned");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_raiding_village");
                     return;

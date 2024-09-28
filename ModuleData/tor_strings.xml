@@ -129,6 +129,8 @@
   <string id="str_faction_ruler.battania_f" text="{=!}Highborn" />
   <string id="str_faction_ruler.eonir" text="{=!}Highborn" />
   <string id="str_faction_ruler.eonir_f" text="{=!}Highborn" />
+  <string id="str_faction_official.eonir" text="{=!}a lord" />
+  <string id="str_faction_official.eonir_f" text="{=!}a lady" />
 
   <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME}" />
