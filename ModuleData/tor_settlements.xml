@@ -8108,8 +8108,8 @@
       <Town id="town_comp_AL6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_wood_elf_glade_midnight_forceatmo" scene_name_1="TOR_wood_elf_glade_midnight_forceatmo" scene_name_2="TOR_wood_elf_glade_midnight_forceatmo" scene_name_3="TOR_wood_elf_glade_midnight_forceatmo" />
-      <Location id="arena" scene_name="TOR_we_archery_arena_001" />
+      <Location id="center" scene_name="TOR_wood_elf_glade_midnight_atmo_w_night" scene_name_1="TOR_wood_elf_glade_midnight_atmo_w_night" scene_name_2="TOR_wood_elf_glade_midnight_atmo_w_night" scene_name_3="TOR_wood_elf_glade_midnight_atmo_w_night" />
+      <Location id="arena" scene_name="TOR_we_archery_arena_001_atmo_w_night" />
       <Location id="tavern" scene_name="TOR_wood_elf_tavern_01_forceatmo" />
       <Location id="lordshall" scene_name_1="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_2="TOR_wood_elf_lords_hall_01_forceatmo" scene_name_3="TOR_wood_elf_lords_hall_01_forceatmo" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
