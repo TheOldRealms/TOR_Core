@@ -227,7 +227,7 @@ namespace TOR_Core.Extensions
         public static int GetPlaceableArtilleryCount(this Hero hero)
         {
             int count = 0;
-            if (hero.CanPlaceArtillery())
+            if (hero.CanPlaceArtillery()|| hero.HasAttribute("EngineerCompanion")&& Hero.MainHero.CanPlaceArtillery())
             {
                 var engineering = hero.GetSkillValue(DefaultSkills.Engineering);
                 count = (int)Math.Truncate((decimal)engineering / 50);

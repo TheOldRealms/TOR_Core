@@ -514,7 +514,7 @@ namespace TOR_Core.AbilitySystem
                 _artillerySlots[team] = 0;
                 foreach (var agent in team.TeamAgents)
                 {
-                    if (agent.CanPlaceArtillery())
+                    if (agent.CanPlaceArtillery() || agent.IsHero &&  agent.HasAttribute("EngineerCompanion") )
                     {
                         _artillerySlots[team] += agent.GetPlaceableArtilleryCount();
                     }

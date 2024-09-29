@@ -6367,7 +6367,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_empire_5">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>EngineerCompanion</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_empire_6">
     <Abilities>

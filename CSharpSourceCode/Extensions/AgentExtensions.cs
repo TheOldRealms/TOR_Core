@@ -231,7 +231,7 @@ namespace TOR_Core.Extensions
         public static int GetPlaceableArtilleryCount(this Agent agent)
         {
             int count = 0;
-            if (agent.CanPlaceArtillery())
+            if (agent.CanPlaceArtillery() || agent.HasAttribute("EngineerCompanion"))
             {
                 if (Game.Current.GameType is Campaign && agent.GetHero() != null)
                 {

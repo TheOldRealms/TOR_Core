@@ -141,8 +141,8 @@
       <Trait id="Gunner" value="7" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_qnpc_masterengineer_template" />
-      <EquipmentSet id="tor_qnpc_masterengineer_template" civilian="true" />
+      <EquipmentSet id="tor_engineer_companion_template" />
+      <EquipmentSet id="tor_engineer_companion_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_wanderer_empire_6" default_group="infantry" name="{=str_tor_wanderer_empire_6}{FIRSTNAME} the Priestess of Shallya" occupation="Wanderer" culture="Culture.empire" voice="curt" age="31" is_female="true" is_template="true" is_hero="false">
