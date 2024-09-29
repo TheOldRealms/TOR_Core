@@ -2386,14 +2386,14 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_bladesinger_template" culture="Culture.battania">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
+      <Equipment slot="Item0" id="Item.tor_we_wildrider_spear_001" />
       <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_dancer_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_dancer_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_dancer_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_2h_axe_001" />
+      <Equipment slot="Item0" id="Item.tor_we_wildrider_spear_001" />
       <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_dancer_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_dancer_001" />
@@ -6198,8 +6198,70 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_glade_guard_template" culture="Culture.battania">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_006" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_005" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_fabric_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_005" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_fabric_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_008" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_008" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
       <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
@@ -6208,8 +6270,8 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_006" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_003" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
       <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
@@ -6220,8 +6282,8 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_deepwood_scout_template" culture="Culture.battania">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_012" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_006" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
       <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
       <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
@@ -6231,11 +6293,33 @@
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_012" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_006" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
       <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
       <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_011" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_011" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_eonir_head_mask_fabric_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
@@ -6244,74 +6328,118 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_master_scout_template" culture="Culture.battania">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_001" />
       <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item3" id="Item.piercing_arrows" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_fabric_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_001" />
       <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
-      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
-      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Item2" id="Item.piercing_arrows" />
+      <Equipment slot="Item3" id="Item.piercing_arrows" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_fabric_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_waywatcher_template" culture="Culture.battania">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_012" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
+      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_012" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_eternalguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_001" />
       <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
-      <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
+      <Equipment slot="Head" id="Item.tor_we_head_hood_ranger_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_waywatcher_sentinel_template" culture="Culture.battania">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item1" id="Item.tor_we_lord_sword_001" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_a" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_a" />
       <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_2h_sword_001" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
-      <Equipment slot="Item3" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item1" id="Item.tor_we_lord_sword_001" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_a" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_a" />
       <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
       <Equipment slot="Body" id="Item.tor_we_body_armor_ranger_002" />
       <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
-      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_ranger_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_012" />
+      <Equipment slot="Item1" id="Item.tor_we_lord_sword_001" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_a" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_a" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_eternalguard_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_012" />
+      <Equipment slot="Item1" id="Item.tor_we_lord_sword_001" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_a" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_a" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_eternalguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_ranger_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_ranger_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_eternalguard_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_caravan_ranged_template" culture="Culture.battania">
@@ -9100,7 +9228,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_glade_rider_template" culture="Culture.battania">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_004" />
       <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
       <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
@@ -9109,10 +9237,10 @@
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_004" />
       <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
       <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
       <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
@@ -9121,7 +9249,57 @@
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
       <Equipment slot="Horse" id="Item.noble_horse" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_007" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_007" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_dancer_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_010" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_fabric_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_010" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Item3" id="Item.bodkin_arrows_c" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_fabric_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_gladeguard_001" />
+      <Equipment slot="Cape" id="Item.tor_we_shoulder_cape_gladeguard_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_gladeguard_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
+      <Equipment slot="Horse" id="Item.noble_horse" />
+      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_glade_knight_template" culture="Culture.battania">
@@ -9134,7 +9312,7 @@
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_lord_002" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_002" />
       <Equipment slot="Horse" id="Item.noble_horse" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_spear_003" />
@@ -9145,7 +9323,7 @@
       <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_lord_002" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_lord_002" />
       <Equipment slot="Horse" id="Item.noble_horse" />
-      <Equipment slot="HorseHarness" id="Item.northern_light_harness" />
+      <Equipment slot="HorseHarness" id="Item.desert_cloth_harness" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_we_wild_rider_template" culture="Culture.battania">
