@@ -91,6 +91,10 @@ namespace TOR_Core.Models
             {
                 if (MBRandom.RandomFloat<0.05f && _treeman !=null)
                 { 
+                    if(party.MemberRoster.GetTroopCount(_treeman)>2)
+                    {
+                        return;
+                    }
                     party.MemberRoster.AddToCounts(_treeman, 1);
                     return;
                 }
