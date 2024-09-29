@@ -34,7 +34,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsArenaMission(this Mission mission)
         {
-            return mission.GetMissionBehavior<ArenaPracticeFightMissionController>() != null || Mission.Current.CombatType == Mission.MissionCombatType.ArenaCombat || Mission.Current.Scene.GetName().ToLowerInvariant().Contains("arena");
+            return mission.GetMissionBehavior<ArenaPracticeFightMissionController>() != null || mission.CombatType == Mission.MissionCombatType.ArenaCombat || mission.Scene.GetName().ToLowerInvariant().Contains("arena");
         }
 
         public static int GetArtillerySlotsLeftForTeam(this Mission mission, Team team)
