@@ -17,7 +17,7 @@
     DeclareWarScoreFactionStrengthMultiplier="0.5"
     DeclareWarScoreReligiousEffectMultiplier="5"
     NumMinKingdomWars="0"
-    NumMaxKingdomWars="2"
+    NumMaxKingdomWars="3"
     MinPeaceDays="20"
     MinWarDays="40"
 />

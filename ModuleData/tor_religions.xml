@@ -75,7 +75,12 @@
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
         </HostileReligions>
-        <Followers>         					
+        <Followers> 
+            <FollowerClan stringId="dog_clan_1" />
+            <FollowerClan stringId="dog_clan_3" />
+            <FollowerClan stringId="dog_clan_4" />
+            <FollowerClan stringId="dog_clan_5" />
+            <FollowerClan stringId="dog_clan_6" />
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
@@ -213,8 +218,8 @@
             <HostileReligion id="Religion.cult_of_kurnous" />
         </HostileReligions>
         <Followers>
-            <FollowerClan stringId="chs_cult_3" />
-            <FollowerClan stringId="brasskeep_clan_1" />
+            <FollowerClan stringId="brasskeep_clan_1" />|
+		    <FollowerClan stringId="chs_cult_3" />
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
