@@ -518,7 +518,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
         if (!HasUnlockedUpgrade(upgrade)) return false;
 
-        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < upgradeCost)
+        if (!HasUnlockedUpgrade("WESymbolReduceCosts")&&Hero.MainHero.GetCultureSpecificCustomResourceValue() < upgradeCost)
         {
             args.IsEnabled = false;
             failreasonStringBuilder.Append("{newline}Not enough Harmony.");
@@ -549,7 +549,11 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     {
         RemoveSymbolConsequence();
         Hero.MainHero.AddAttribute(upgrade); // needed
-        Hero.MainHero.AddCultureSpecificCustomResource(-upgradeCost);
+
+        if (!HasUnlockedUpgrade("WESymbolReduceCosts"))
+        {
+            Hero.MainHero.AddCultureSpecificCustomResource(-upgradeCost);
+        }
         GameMenu.ActivateGameMenu(_currentMenu);
     }
 

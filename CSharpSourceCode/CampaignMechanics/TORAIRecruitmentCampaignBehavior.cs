@@ -17,7 +17,8 @@ namespace TOR_Core.Models
     public class TORAIRecruitmentCampaignBehavior : CampaignBehaviorBase
     {
         private CharacterObject _skeleton;
-        
+        private CharacterObject _dryad;
+        private CharacterObject _treeman;
         private CharacterObject _raider;
         private CharacterObject _wraith;
 
@@ -28,10 +29,13 @@ namespace TOR_Core.Models
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, Initialize);
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddUndeadToPartyOnEnteringSettlement);
+            CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddDryadsToPartyOnEnteringSettlement);
             CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TORRecruitmentBehavior);
             
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this,DailyTickEvents);
         }
+
+  
 
         private void DailyTickEvents(MobileParty party)
         {
@@ -76,9 +80,31 @@ namespace TOR_Core.Models
             _skeleton = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_skeleton");
             _raider = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_norscan_raider");
             _wraith = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_cairn_wraith");
+            _dryad = MBObjectManager.Instance.GetObject<CharacterObject>("tor_we_dryad");
+            _treeman = MBObjectManager.Instance.GetObject<CharacterObject>("tor_we_treeman");
         }
 
+        private void AddDryadsToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero hero)
+        {
+            if (party == null || settlement == null || hero == null || !hero.IsSpellCaster() || hero.Culture.StringId != TORConstants.Cultures.ASRAI|| hero.CharacterObject.IsPlayerCharacter || settlement.IsHideout) return;
+            if (party.MemberRoster.TotalManCount < party.Party.PartySizeLimit)
+            {
+                if (MBRandom.RandomFloat<0.05f && _treeman !=null)
+                { 
+                    party.MemberRoster.AddToCounts(_treeman, 1);
+                    return;
+                }
 
+                if (_dryad == null)
+                {
+                    return;
+                }
+                
+                var number = settlement.IsVillage ? UndeadCountVillages : UndeadCountTowns;
+                party.MemberRoster.AddToCounts(_dryad, Math.Min(number, party.Party.PartySizeLimit - party.MemberRoster.TotalManCount));
+            }
+        }
+        
         private void AddUndeadToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero hero)
         {
             if (party == null || settlement == null || hero == null || !hero.IsNecromancer() || hero.CharacterObject.IsPlayerCharacter || settlement.IsHideout) return;

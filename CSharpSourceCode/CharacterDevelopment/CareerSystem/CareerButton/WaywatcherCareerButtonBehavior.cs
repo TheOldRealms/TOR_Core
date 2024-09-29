@@ -83,15 +83,15 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             var arrow = _allArrows[i];
             var icon = GetArrowIconAsText(arrow);
             var price = Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI ? arrow.Price * 3 : arrow.Price;
-            list.Add(new InquiryElement(arrow, new TextObject($"{{{icon}}} {arrow.Name}").ToString(), null, true, $"{arrow.Description}, {price}"));
+            list.Add(new InquiryElement(arrow, new TextObject($"{{{icon}}} {arrow.Name}").ToString(), null, true, $"{arrow.Description}, {price}{Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText()}"));
         
         }
 
         var arrowType = GetCurrentActiveArrowType(_setCharacter);
 
         if (arrowType != null) list.Add(new InquiryElement("remove", $"Remove {arrowType.Name}", null));
-
-        var inquirydata = new MultiSelectionInquiryData("Choose special arrows", "Empower your ranged Unit with a permanent magical effect.", list,
+        
+        var inquirydata = new MultiSelectionInquiryData("Choose special arrows.", "Empower your ranged Unit with a permanent magical effect.", list,
             true, 1, 1, "Accept", "Cancel", OnSelectedOption, OnCancel, "", false);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
     }

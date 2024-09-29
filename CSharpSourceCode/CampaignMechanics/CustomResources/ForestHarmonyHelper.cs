@@ -17,8 +17,8 @@ public class ForestHarmonyHelper
     public static readonly float HealthDebuffUnBound = -0.35f;
     public static readonly float HealthDebuffBound = -0.15f;
     
-    public static readonly float HealthRegDebuffUnBound = -0.5f;
-    public static readonly float HealthRegDebuffBound = -0.25f;
+    public static readonly float HealthRegDebuffUnBound = -0.25f;
+    public static readonly float HealthRegDebuffBound = -0.12f;
     
     public static readonly float WindsDebuffUnbound = -0.50f;
     public static readonly float WindsDebuffBound = -0.25f;

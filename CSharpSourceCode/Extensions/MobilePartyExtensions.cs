@@ -4,6 +4,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -83,7 +84,10 @@ namespace TOR_Core.Extensions
             {
                 if (party.LeaderHero != null)
                 {
-                    var engineering = party.LeaderHero.GetSkillValue(DefaultSkills.Engineering);
+                    var engineers = party.GetMemberHeroes();
+
+                    var highestEngineer=  engineers.MaxBy(x => x.GetSkillValue(DefaultSkills.Engineering));
+                    var engineering = highestEngineer.GetSkillValue(DefaultSkills.Engineering);
                     return (int)Math.Truncate((decimal)engineering / 50);
                 }
                 else return 0;

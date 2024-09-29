@@ -102,10 +102,19 @@ namespace TOR_Core.Models
 
             if (kingdom == null || mercenaryClan == null) return score;
 
-            if (kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA && mercenaryClan.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            if (kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
-                score = +1000;
-            } else if (mercenaryClan.Culture.StringId != TORConstants.Cultures.BRETONNIA)
+                if (mercenaryClan.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+                {
+                    score = +1000;
+                }
+                else
+                {
+                    score = -10000;
+                }
+            }
+            
+            if (kingdom.Culture.StringId != TORConstants.Cultures.BRETONNIA && mercenaryClan.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 score = -10000;
             }
