@@ -763,7 +763,7 @@
   <string id="backstory_b.tor_wanderer_empire_6" text="{=!}I dedicated my life to Shallya, in return I have been given a gift for healing others." />
   <string id="backstory_c.tor_wanderer_empire_6" text="{=!}Since I have been travelling the Empire, looking to where my skills are needed most. Tending to peasant and soldier alike." />
   <string id="response_1.tor_wanderer_empire_6" text="{=!}I see." />
-  <string id="response_2.tor_wanderer_empire_6" text="{=!}I understant." />
+  <string id="response_2.tor_wanderer_empire_6" text="{=!}I understand." />
   <string id="backstory_d.tor_wanderer_empire_6" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_empire_6" text="{=!}I am a Priestess of the Goddess Shallya, dedicated to the arts of healing." />
 
@@ -784,6 +784,24 @@
   <string id="response_2.tor_wanderer_empire_8" text="{=!}Mhmm..." />
   <string id="backstory_d.tor_wanderer_empire_8" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_empire_8" text="{=!}I am a Huntsman, many monsters have been slain by my hand in service of the Empire." />
+  
+  <string id="prebackstory.tor_wanderer_empire_9" text="{=!}Life is full of questions. I will answer yours." />
+  <string id="backstory_a.tor_wanderer_empire_9" text="{=!}My home was the Drakwald Forest — it's where I was raised and where I felt the nourishing Wind of Ghyran for the first time. People also call us druids." />
+  <string id="backstory_b.tor_wanderer_empire_9" text="{=!}I look after all things natural and heal the injured, for my magic is one of restoration, not mindless destruction." />
+  <string id="backstory_c.tor_wanderer_empire_9" text="{=!}My mission is to uphold the balance between the Empire and nature that feeds us." />
+  <string id="response_1.tor_wanderer_empire_9" text="{=!}Amazing!" />
+  <string id="response_2.tor_wanderer_empire_9" text="{=!}A most important duty." />
+  <string id="backstory_d.tor_wanderer_empire_9" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_9" text="{=!}I am a Life Wizard of the Imperial College. No doubt you have heard of our immense healing capabilities." />
+  
+  <string id="prebackstory.tor_wanderer_empire_10" text="{=!}You have a curious smell, traveler. Will you listen to my story?" />
+  <string id="backstory_a.tor_wanderer_empire_10" text="{=!}When I was young, I felt a strong connection with all kinds of woodland creatures. And soon I learned to converse with them." />
+  <string id="backstory_b.tor_wanderer_empire_10" text="{=!}When the villagers found out, they charged me with heresy and wished to burn me at the stake. Fortunately, I escaped and hid with the animals in the forest." />
+  <string id="backstory_c.tor_wanderer_empire_10" text="{=!}After a long time in isolation, a wizard of the Amber Order found and invited me to come along. It was him that taught me these abilities don't make you a spawn of Chaos. Instead, they mean blessings of the Wind of Ghur." />
+  <string id="response_1.tor_wanderer_empire_10" text="{=!}Citizens of the Empire can be cruel." />
+  <string id="response_2.tor_wanderer_empire_10" text="{=!}No wonder you live isolated." />
+  <string id="backstory_d.tor_wanderer_empire_10" text="{=!}Right." />
+  <string id="generic_backstory.tor_wanderer_empire_10" text="{=!}I am a Beast Wizard of the Imperial College. You have certainly heard of our might and talent for survival." />
 
   <string id="prebackstory.tor_wanderer_vampire_0" text="{=!}Hm, you wish to know of my life? It is a tale I can share." />
   <string id="backstory_a.tor_wanderer_vampire_0" text="{=!}I have always been surrounded by death, death is everything in Sylvania." />
@@ -874,14 +892,14 @@
   <string id="backstory_d.tor_wanderer_eonir_1" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_eonir_1" text="{=!}Hold a moment, stranger. My services do not come cheap — you’d best prove your worth." />
   
-  <string id="prebackstory.tor_wanderer_woodelf_0" text="{=!}May Kurnous be with you, Stranger." />
-  <string id="backstory_a.tor_wanderer_woodelf_0" text="{=!}I am a Waywatcher, a master of ambush and stealth. As a child, I felt the call of the forest coursing through my blood. I was trained to vanish into the wilds, unseen and undetectable, as I awaited my prey." />
-  <string id="backstory_b.tor_wanderer_woodelf_0" text="{=!}I have ventured deep into the forest, where even the Asrai are not safe. While others remain sheltered in their halls, I have honed my skills and sharpened my aim." />
-  <string id="backstory_c.tor_wanderer_woodelf_0" text="{=!}Few among the elves can hope to rival a Waywatcher like me with the bow." />
-  <string id="response_1.tor_wanderer_woodelf_0" text="{=!}Certainly, you must be a prodigy" />
-  <string id="response_2.tor_wanderer_woodelf_0" text="{=!}Didn't the Asrai enjoy your company?" />
-  <string id="backstory_d.tor_wanderer_woodelf_0" text="{=!}I am adept in the arts of survival, disruption, and ambush. I can approach my quarry, strike swiftly, and vanish before its body hits the ground. Alternatively, I can subtly lead it into one of my traps." />
-  <string id="generic_backstory.tor_wanderer_woodelf_0" text="{=!}I have but one request. Although I seldom leave the forest, when I do, I seek the pleasures of civilised life. A fine wine in the tavern, pleasant company... I trust your group can provide these comforts." />
+  <string id="prebackstory.tor_wanderer_woodelf_0" text="{=!}Ah, I do not believe we have met. Peace be upon you, stranger." />
+  <string id="backstory_a.tor_wanderer_woodelf_0" text="{=!}Have you not encountered someone like me before? It is not surprising for I am a Spellsinger of the Asrai." />
+  <string id="backstory_b.tor_wanderer_woodelf_0" text="{=!}Unlike the majority of my people, I possess the rare ability to commune with the magical beings of the deep forest. I can merge their minds with mine and assure their cooperation." />
+  <string id="backstory_c.tor_wanderer_woodelf_0" text="{=!}For most Elves, the talent I wield amounts to little more than a mere instinct. But in truly gifted ones like myself, it becomes a formidable power." />
+  <string id="response_1.tor_wanderer_woodelf_0" text="{=!}Certainly a fearsome power." />
+  <string id="response_2.tor_wanderer_woodelf_0" text="{=!}Those are stories one scares children with." />
+  <string id="backstory_d.tor_wanderer_woodelf_0" text="{=!}The forest is a living entity. With proper respect, it can be persuaded to follow your command. Many seek out those with my abilities." />
+  <string id="generic_backstory.tor_wanderer_woodelf_0" text="{=!}Many desire the presence of a Spellsinger, but few are prepared to pay the price." />
 
   <string id="prebackstory.tor_wanderer_woodelf_1" text="{=!}I do not recall seeing you here before. Who might you be?" />
   <string id="backstory_a.tor_wanderer_woodelf_1" text="{=!}I am the youngest daughter of a humble family that served a distinguished Asrai lord. However, lineage is not everything to us. For years, I have honed my skills with spear, sword, and bow. My bravery and leadership have earned me the title of Glade Captain." />
@@ -892,7 +910,7 @@
   <string id="backstory_d.tor_wanderer_woodelf_1" text="{=!}If your warband could need a second leader in command I am willing to join. I will lead your troops to victory" />
   <string id="generic_backstory.tor_wanderer_woodelf_1" text="{=!}Are you a renowned commander? Can you aid me in achieving such a status? I trust you have no objection to proving your worth." />
   
-    <string id="prebackstory.tor_wanderer_woodelf_2" text="{=!}May Kurnous be with you, Stranger." />
+  <string id="prebackstory.tor_wanderer_woodelf_2" text="{=!}May Kurnous be with you, Stranger." />
   <string id="backstory_a.tor_wanderer_woodelf_2" text="{=!}I am a Waywatcher, a master of ambush and stealth. As a child, I felt the call of the forest coursing through my blood. I was trained to vanish into the wilds, unseen and undetectable, as I awaited my prey." />
   <string id="backstory_b.tor_wanderer_woodelf_2" text="{=!}I have ventured deep into the forest, where even the Asrai are not safe. While others remain sheltered in their halls, I have honed my skills and sharpened my aim." />
   <string id="backstory_c.tor_wanderer_woodelf_2" text="{=!}Few among the elves can hope to rival a Waywatcher like me with the bow." />
