@@ -325,6 +325,11 @@ namespace TOR_Core.CharacterDevelopment
             
             
             var explainedNumber = new ExplainedNumber(chargeValue);
+            
+            if (affectingAgent != Agent.Main)
+            {
+                explainedNumber.AddFactor(-0.9f);
+            }
 
             if (Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone"))
             {

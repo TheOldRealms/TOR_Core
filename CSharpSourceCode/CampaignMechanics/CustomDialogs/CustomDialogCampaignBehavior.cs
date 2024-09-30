@@ -39,10 +39,10 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
 
             obj.AddDialogLine("undead_notalk", "start", "close_window", "...", () => CharacterObject.OneToOneConversationCharacter.IsUndead() && CharacterObject.OneToOneConversationCharacter.HeroObject == null, null, 199);
 
-            obj.AddDialogLine("druchii_greeting_war", "start", "close_window", "{=!}Would you look at that, a fine specimen to add to the stock. Run slave, let us get some sport. '''TODO: lore pls write text'''", () => EncounteredPartyMatch("druchii_clan_1") && !HeroIsWounded()
+            obj.AddDialogLine("druchii_greeting_war", "start", "close_window", "{=druchii_greet_neutral}What do you want, stranger? Speak quickly before you find yourself chained up in the bowels of my ship.", () => EncounteredPartyMatch("druchii_clan_1") && !HeroIsWounded()
             && (bool)PlayerEncounter.EncounteredMobileParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction), null, 199);
 
-            obj.AddDialogLine("druchii_greeting_nowar", "start", "close_window", "{=!}What do you want stranger? Speak quickly before I decide to enslave you. '''TODO: lore pls write text'''", () => EncounteredPartyMatch("druchii_clan_1") && !HeroIsWounded()
+            obj.AddDialogLine("druchii_greeting_nowar", "start", "close_window", "{=druchii_greet_war}It's you... The Masters of Karond Kar will be pleased indeed. Time to embrace your chains, slave!", () => EncounteredPartyMatch("druchii_clan_1") && !HeroIsWounded()
             && !(bool)PlayerEncounter.EncounteredMobileParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction), null, 199);
 
             obj.AddDialogLine("druchii_die", "start", "close_window", "{=!}Our defeat is a mockery to Khaine. '''TODO: lore pls write text'''", () => EncounteredPartyMatch("druchii_clan_1") && HeroIsWounded(), null, 199);

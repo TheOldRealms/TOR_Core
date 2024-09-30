@@ -174,7 +174,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     PropertyName = "Radius",
                     PropertyValue =
                         (choice, originalValue, agent) =>
-                            CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Bow }, 0.02f, true),
+                            CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Bow }, 0.01f, true),
                     MutationType = OperationType.Add
                 }
             });
@@ -201,7 +201,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     PropertyName = "Radius",
                     PropertyValue =
                         (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent,
-                            new List<SkillObject>() { DefaultSkills.Scouting }, 0.02f, true),
+                            new List<SkillObject>() { DefaultSkills.Scouting }, 0.01f, true),
                     MutationType = OperationType.Add
                 }
             });
@@ -222,7 +222,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             });
         _hailOfArrowsKeystone.Initialize(CareerID, "Your reload speed is increased for 4 seconds for every affected enemy", "HailOfArrows", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>() { }); //special
-        _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact. The damage is increased by 60%", "Hawkeyed", false,
+        _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact. The damage is increased by 30%", "Hawkeyed", false,
             ChoiceType.Keystone,
             new List<CareerChoiceObject.MutationObject>()
             {
@@ -241,7 +241,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationTargetType = typeof(TriggeredEffectTemplate),
                     MutationTargetOriginalId = "apply_arrow_of_kurnous",
                     PropertyName = "DamageAmount",
-                    PropertyValue = (choice, originalValue, agent) => 1.6f,
+                    PropertyValue = (choice, originalValue, agent) => 1.3f,
                     MutationType = OperationType.Multiply
                 }
             });
@@ -322,7 +322,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
         _eyeOfTheHunterPassive1.Initialize(CareerID, "20% Equipment weight Reduction", "EyeOfTheHunter", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
-        _eyeOfTheHunterPassive2.Initialize(CareerID, "Multiple targets", "EyeOfTheHunter", false, ChoiceType.Passive);
+        _eyeOfTheHunterPassive2.Initialize(CareerID, "Arrows can pierce multiple targets", "EyeOfTheHunter", false, ChoiceType.Passive);
         _eyeOfTheHunterPassive3.Initialize(CareerID, "Your Archer units gain 50 points in bow skill", "EyeOfTheHunter", false, ChoiceType.Passive,
             null, new CareerChoiceObject.PassiveEffect(50));
         _eyeOfTheHunterPassive4.Initialize(CareerID, "Special shot efficiency is doubled", "EyeOfTheHunter", false, ChoiceType.Passive);
