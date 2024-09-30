@@ -560,6 +560,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
                 Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("necrarch");
+                Hero.MainHero.UpdatePlayerGender(false);
                 MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
             }
         }
