@@ -244,7 +244,14 @@ namespace TOR_Core.Missions
 
         public void OnMatchEnded()
         {
-            SandBoxHelpers.MissionHelper.FadeOutAgents([_leftParticipantAgent, _rightParticipantAgent], false, false);
+            if(_leftParticipantAgent != null)
+            {
+                SandBoxHelpers.MissionHelper.FadeOutAgents([_leftParticipantAgent], false, false);
+            }
+            if (_rightParticipantAgent != null)
+            {
+                SandBoxHelpers.MissionHelper.FadeOutAgents([_rightParticipantAgent], false, false);
+            }
             Mission.ClearCorpses(false);
             Mission.Teams.Clear();
             Mission.RemoveSpawnedItemsAndMissiles();
