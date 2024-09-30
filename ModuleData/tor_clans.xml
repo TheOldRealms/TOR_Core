@@ -574,7 +574,7 @@
              culture="Culture.vlandia"
              super_faction="Kingdom.couronne"
              is_noble="true"
-             text="{=!}The knights of Les Hardis de Montmirail are led by Roland the Marshal. They are tasked with protecting the border between Couronne and Marienburg in the east of Couronne. The border is a grey area with no factual borders. Roland the Marechal tries to take more land with every opportunity he has creating conflict between Brettonia and Marienbug."
+             text="{=!}The knights of Les Hardis de Montmirail are led by Roland the Marechal. They are tasked with protecting the border between Couronne and Marienburg in the east of Couronne. The border is a grey area with no factual borders. Roland the Marechal tries to take more land with every opportunity he has creating conflict between Brettonia and Marienbug."
              banner_key="1.12.142.8000.8000.764.764.0.1.0.302.39.116.512.512.596.628.1.0.180.140.39.116.671.671.764.819.1.0.0.340.39.116.134.134.793.494.1.0.0" />
     <!-- Anguille faction -->
     <Faction id="anguille_clan_1"

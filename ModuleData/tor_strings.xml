@@ -247,11 +247,36 @@
   <string id="tor_feudal_oath_line2.averland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
   <string id="tor_feudal_oath_line3.averland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
   <string id="tor_feudal_oath_line4.averland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+  
+  <string id="tor_feudal_oath_line1.hochland" text="{=!}I swear my loyalty to the Grand Barony of Hochland." />
+  <string id="tor_feudal_oath_line2.hochland" text="{=!}I acknowledge Aldebrand Ludenhof, the Grand Baron of Hochland and Baron of Hergig as my rightful ruler." />
+  <string id="tor_feudal_oath_line3.hochland" text="{=!}Let Taal, Rhya and Sigmar guide me in my duty." />
+  <string id="tor_feudal_oath_line4.hochland" text="{=!}Let my sword, shield and bow remain steady in the face of the enemy." />
+  
+  <string id="tor_feudal_oath_line1.middenland" text="{=!}I solemnly swear to serve the Grand Duchies of Middenland and Middenheim." />
+  <string id="tor_feudal_oath_line2.middenland" text="{=!}I recognize Boris Todbringer, the Graf of Middenheim, the Grand Duke of Middenland, and the Prince of Carroburg as my lord and commander." />
+  <string id="tor_feudal_oath_line3.middenland" text="{=!}May Ulric, the Lord of Winter, guide my steps and lead me to victory for this great province." />
+  <string id="tor_feudal_oath_line4.middenland" text="{=!}I shall not rest until the enemy is no more or the Great Wolf claims me in death." />
+  
+  <string id="tor_feudal_oath_line1.ostermark" text="{=!}I swear my loyalty to the League of Ostermark, the East March." />
+  <string id="tor_feudal_oath_line2.ostermark" text="{=!}I acknowledge Elector Count Wolfram Hertwig, Chancellor of the League of Ostermark and Prince of Bechafen, as my liege." />
+  <string id="tor_feudal_oath_line3.ostermark" text="{=!}As long as I draw breath, I vow to keep the mutant and undead foe at bay." />
+  <string id="tor_feudal_oath_line4.ostermark" text="{=!}I pledge to always work for the benefit of this realm and its stout citizens." />
+  
+  <string id="tor_feudal_oath_line1.ostland" text="{=!}I hereby swear to serve the Grand Principality of Ostland." />
+  <string id="tor_feudal_oath_line2.ostland" text="{=!}May my service to Valmir von Raukov, Grand Prince of Ostland, Margrave of the Northern March, and Hammer of the East allow me to crush our enemies." />
+  <string id="tor_feudal_oath_line3.ostland" text="{=!}Grant me the opportunity to fight for you until I rest in Morr’s embrace." />
+  <string id="tor_feudal_oath_line4.ostland" text="{=!}Let us slay the wolf at the door and protect the people of Ostland!" />
 
   <string id="tor_feudal_oath_line1.stirland" text="{=!}I hereby swear loyalty to the Grand County of Stirland." />
   <string id="tor_feudal_oath_line2.stirland" text="{=!}I acknowledge Alberich Haupt-Anderssen, Grand Count of Stirland, Prince of Wurtbad and Overlord of Sylvania as my lord and liege until my dying day." />
   <string id="tor_feudal_oath_line3.stirland" text="{=!}May my body be Stirland’s shield in defence of the undead threat." />
   <string id="tor_feudal_oath_line4.stirland" text="{=!}I will follow you to the deepest parts of the dead lands." />
+  
+  <string id="tor_feudal_oath_line1.wasteland" text="{=!}I hereby swear fealthy to the mercantile city-state of the Wasteland." />
+  <string id="tor_feudal_oath_line2.wasteland" text="{=!}I will fight with the blessing of Manann for the sea is my home." />
+  <string id="tor_feudal_oath_line3.wasteland" text="{=!}My blood is filled with salt and my pockets are filled with gold for i am a Marienburger." />
+  <string id="tor_feudal_oath_line4.wasteland" text="{=!}The debt will be repaid!" />
 
   <string id="tor_feudal_oath_line1.wissenland" text="{=!}I hereby swear my loyalty to Nuln, Bastion of the South and the Jewel of the Empire and the lesser surrounding villages, castles and towns of Wissenland." />
   <string id="tor_feudal_oath_line2.wissenland" text="{=!}I recognise Emmanuelle von Liebwitz, Grand Countess of Wissenland, Countess of Nuln and Duchess of Meissen as my eternal lady." />
@@ -272,11 +297,26 @@
   <string id="tor_feudal_oath_line2.moot" text="{=!}I proclaim the elder Hisme Stoutheart as my rightful liege." />
   <string id="tor_feudal_oath_line3.moot" text="{=!}I uphold my sword to protect the people against the undead menace." />
   <string id="tor_feudal_oath_line4.moot" text="{=!}I pledge to aid you in peace and in times of war alike." />
+  
+  <string id="tor_feudal_oath_line1.nordland" text="{=!}I proclaim to serve the Grand Barony of Nordland." />
+  <string id="tor_feudal_oath_line2.nordland" text="{=!}I acknowledge Elector Count Theoderic Gausser, Grand Baron of Nordland, Prince of Salzenmund as my rightful liege and commander." />
+  <string id="tor_feudal_oath_line3.nordland" text="{=!}I swear to protect the fine province of Nordland, its shorelines, harbors and forests, from anyone and anything that dares threaten it." />
+  <string id="tor_feudal_oath_line4.nordland" text="{=!}May Manann, Ulric, Taal and Sigmar guide me on this path…" />
 
   <string id="tor_feudal_oath_line1.sylvania" text="{=!}I Pledge mine soul to the eternal servitude of the lands of Sylvania." />
   <string id="tor_feudal_oath_line2.sylvania" text="{=!}I hereby sweareth mine undying loyalty to Mannfred von Carstein, Count of Sylvania, the most cunning and magically gifted vampire of all of the von Carstein bloodlines." />
   <string id="tor_feudal_oath_line3.sylvania" text="{=!}May thine enemies tremble at the sight of me and mine undead legions." />
   <string id="tor_feudal_oath_line4.sylvania" text="{=!}I shall join thine court and follow thee deep into the lands of the empire." />
+  
+  <string id="tor_feudal_oath_line1.anguille" text="{=!}With the lady as my witness, i shall swear loyalty to the salt bitten lands of L'anguille " />
+  <string id="tor_feudal_oath_line2.anguille" text="{=!}Duke Taubert will be my Liege and in times of need i will flock to his banner." />
+  <string id="tor_feudal_oath_line3.anguille" text="{=!}As a knight and as a seafahrer, i will protect the land and coast of L'anguille that i vow." />
+  <string id="tor_feudal_oath_line4.anguille" text="{=!}Blessed by the lady we will overcome!" />
+  
+  <string id="tor_feudal_oath_line1.artois" text="{=!}I give my hearth and dedication to the protection of the forest lands of the dukedom of Artois." />
+  <string id="tor_feudal_oath_line2.artois" text="{=!}My sword and lance are yours Duke Chilfroy for i am your subject." />
+  <string id="tor_feudal_oath_line3.artois" text="{=!}My shield is for the people of Gisoreux whom i will protect with my body and soul, for i am pure a true knight of Brettonia." />
+  <string id="tor_feudal_oath_line4.artois" text="{=!}As a knight of Gisoreux no harm will overcome my people this i vow." />
 
   <string id="tor_feudal_oath_line1.aquitaine" text="{=!}With honour, I swear allegiance to the majestic Dukedom of Aquitaine." />
   <string id="tor_feudal_oath_line2.aquitaine" text="{=!}I shall follow the guidance of the esteemed Duke Armand, a paragon of chivalry and virtue." />
@@ -302,6 +342,21 @@
   <string id="tor_feudal_oath_line2.carcassonne" text="{=!}I proclaim my allegiance to Duke Huebald, a gallant leader whose deeds inspire us all." />
   <string id="tor_feudal_oath_line3.carcassonne" text="{=!}I vow to protect the fields of Carcassonne, its brave knights, and its adept armies." />
   <string id="tor_feudal_oath_line4.carcassonne" text="{=!}As a loyal defender of Carcassonne, I shall stand steadfast in preserving the honour and valour of our beloved realm." />
+  
+  <string id="tor_feudal_oath_line1.couronne" text="{=!}I pledge my loyalty and life to the majestic dukedom of Couronne" />
+  <string id="tor_feudal_oath_line2.couronne" text="{=!}I vow to protect, serve and follow The king of Brettonia King Louen Leoncoeur." />
+  <string id="tor_feudal_oath_line3.couronne" text="{=!}I'm the king his subject and his to command." />
+  <string id="tor_feudal_oath_line4.couronne" text="{=!}All hail King Louen Leoncoeur!" />
+  
+  <string id="tor_feudal_oath_line1.gisoreux" text="{=!}I swear to protect the honourable lands of the dukedom Gisoreux." />
+  <string id="tor_feudal_oath_line2.gisoreux" text="{=!}My banners shall wear the colours of my duke Hagen, for i am his servant and i will aid in his will." />
+  <string id="tor_feudal_oath_line3.gisoreux" text="{=!}I shall guard the mountain tops of the Pale sisters and the plains of Gisoreux as i would defend my family." />
+  <string id="tor_feudal_oath_line4.gisoreux" text="{=!}As a true son of Gisoreux, i will uphold the values of Gisoreux and die for its glory." />
+  
+  <string id="tor_feudal_oath_line1.lyonesse" text="{=!}I offer my sword and shield to the blessed dukedom of Lyonesse." />
+  <string id="tor_feudal_oath_line2.lyonesse" text="{=!}I will vow to support Duke Adalhard in his rule over Lyonesse." />
+  <string id="tor_feudal_oath_line3.lyonesse" text="{=!}I will ride down my enemies, and defend the holy land of Lyonesse." />
+  <string id="tor_feudal_oath_line4.lyonesse" text="{=!}As a knight of Lyonesse i will fight with the courage of a lion, I shall be the pillar that uphold our values and legacy." />
 
   <string id="tor_feudal_oath_line1.montfort" text="{=!}I pledge my unwavering loyalty to the noble Dukedom of Montfort." />
   <string id="tor_feudal_oath_line2.montfort" text="{=!}I proclaim my allegiance to Duke Folcard, a courageous leader whose valour is as hardy as the many mountains he rules over." />
@@ -327,12 +382,36 @@
   <string id="tor_feudal_oath_line2.blooddragons" text="{=!}I hereby swear my blade to the complete destruction of humankind and any other who opposes the power of the vampires." />
   <string id="tor_feudal_oath_line3.blooddragons" text="{=!}May I always sate my sword’s thirst for blood and seek out the greatest of our foes." />
   <string id="tor_feudal_oath_line4.blooddragons" text="{=!}I will never retreat from battle and I will be loyal to you or suffer the consequences of betrayal." />
+  
+  <string id="tor_feudal_oath_line1.necrachs" text="{=!}Upon this baleful night, I do swear mine eternal allegiance to the Necrarch bloodline, and mine Lord, Zacharias the Everliving." />
+  <string id="tor_feudal_oath_line2.necrachs" text="{=!}I dedicate mine mind to the pursuit of the arcane, and I bind mine spirit to the essence of magic." />
+  <string id="tor_feudal_oath_line3.necrachs" text="{=!}With tomes of old, I will navigate the shadows, unlock the whispers and secrets long forgotten." />
+  <string id="tor_feudal_oath_line4.necrachs" text="{=!}As thou dost guide mine fate through this accursed unlife." />
+  
+  <string id="tor_feudal_oath_line1.laurelorn" text="{=!}Your Majesty, in this sacred moment, I stand before you, deeply honored by your presence." />
+  <string id="tor_feudal_oath_line2.laurelorn" text="{=!}I pledge to protect the harmony of our land, nurture its magic, and preserve its beauty that binds us all." />
+  <string id="tor_feudal_oath_line3.laurelorn" text="{=!}In the presence of shimmering streams and ancient trees, I commit to being a guardian of our realm." />
+  <string id="tor_feudal_oath_line4.laurelorn" text="{=!}May Laurelorn, Queen Marrisith, and Eonir flourish and prosper forevermore!" />
+
+  <string id="tor_feudal_oath_line1.athel_loren" text="{=!}I swear to protect the kingdom of Athel loren." />
+  <string id="tor_feudal_oath_line2.athel_loren" text="{=!}I shall be Athel loren's bow and she shall be my arrow." />
+  <string id="tor_feudal_oath_line3.athel_loren" text="{=!}I swear fealthy to the king and queen of the forest Orion and Ariel and i will answer their horn in times of need." />
+  <string id="tor_feudal_oath_line4.athel_loren" text="{=!}May the roots of the forest guide me!" />
+  
+  <string id="tor_feudal_oath_line1.brasskeep" text="{=!}Forged in plague we rise from decay." />
+  <string id="tor_feudal_oath_line2.brasskeep" text="{=!}With the plague lord's gifts we march into the fray." />
+  <string id="tor_feudal_oath_line3.brasskeep" text="{=!}From death our power grows." />
+  <string id="tor_feudal_oath_line4.brasskeep" text="{=!}In Nurgle's name we will deliver death!" />
 
   <string id="tor_player_accept_vassalage.empire" text="{=!}I proclaim you a noble of the Empire. Your life and property shall be protected by our laws, and shall not be taken from you except by law. You may serve as an official over towns and villages and as a general over armies, if we call upon you to do so." />
   <string id="tor_player_accept_vassalage.khuzait" text="{=!}I proclaim you a noble of the Sylvania and a servant of the von Carsteins. You are expected to carry out our bidding and bear arms in times of war. " />
   <string id="tor_player_accept_vassalage.mousillon" text="{=!}I have great hopes for you {PLAYER.NAME}. I know you shall prove yourself worthy of the trust I have placed in you." />
   <string id="tor_player_accept_vassalage.blooddragons" text="{=!}Welcome to the Ordo Draconis {PLAYER.NAME}. Here are some of my followers, may they aid you in battle. Take this blade." />
-
+  <string id="tor_player_accept_vassalage.vlandia" text="{=!}By the lady of the lake. I proclaim you a noble of Brettonia and defender of the realm.  " />
+  <string id="tor_player_accept_vassalage.battania" text="{=!}I name you guardian of Athel Loren, noble of the Asrai, may thy bow aim true." />
+  <string id="tor_player_accept_vassalage.eonir" text="{=!}I proclaim you a noble of the Eonir, stand proud for you are now a protector of the holy forest of Laurorn" />
+  <string id="tor_player_accept_vassalage.chaos_culture" text="{=!}May Nurgle gift u with his blessings" />
+  
   <string id="str_liege_title.empire" text="{=!}Elector Count of one of the Provinces of the Empire">
     <tags>
       <tag tag_name="EmpireTag" />
