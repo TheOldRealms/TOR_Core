@@ -29,6 +29,7 @@ namespace TOR_Core.Missions
         private GameEntity _rightParticipantSpawn;
         private Agent _leftParticipantAgent;
         private Agent _rightParticipantAgent;
+        private readonly Queue<Mission.Missile> _missiles = [];
 
         public override void AfterStart()
         {
@@ -61,8 +62,14 @@ namespace TOR_Core.Missions
             }
             if (attackerAgent.IsPlayerControlled)
             {
-                Hero.MainHero.AddSkillXp(DefaultSkills.Bow, 400f);
+                Hero.MainHero.AddSkillXp(DefaultSkills.Bow, 50f);
             }
+        }
+
+        public override void OnMissileCollisionReaction(Mission.MissileCollisionReaction collisionReaction, Agent attackerAgent, Agent attachedAgent, sbyte attachedBoneIndex)
+        {
+            var missile = Mission.Missiles.FirstOrDefault(x => x.ShooterAgent == attackerAgent);
+            if (missile != null) _missiles.Enqueue(missile);
         }
 
         public void StartMatch(TournamentMatch match, bool isLastRound)
@@ -269,6 +276,11 @@ namespace TOR_Core.Missions
                     var controller = agent.GetController<ArcheryContestAgentController>();
                     controller?.OnTick();
                 }
+            }
+            while(_missiles.Count > 0)
+            {
+                var missile = _missiles.Dequeue();
+                Mission.RemoveMissileAsClient(missile.Index);
             }
         }
 
