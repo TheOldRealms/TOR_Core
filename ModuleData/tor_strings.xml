@@ -855,14 +855,14 @@
   <string id="backstory_d.tor_wanderer_empire_7" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_empire_7" text="{=!}I am a Huntsman, many monsters have been slain by my hand in service of the Empire." />
   
-  <string id="prebackstory.tor_wanderer_empire_8" text="{=!}You don't need to know my story stranger, just my skills." />
-  <string id="backstory_a.tor_wanderer_empire_8" text="{=!}I'm a Court Huntsman, well. I was. Lets just say I missed my mark by the rump of a noble." />
-  <string id="backstory_b.tor_wanderer_empire_8" text="{=!}Now I track, hunt and do mercenary work for coin." />
-  <string id="backstory_c.tor_wanderer_empire_8" text="{=!}I have hunted all manner of beast and beastmen, even the occasional orc. My skills go to the highest bidder." />
-  <string id="response_1.tor_wanderer_empire_8" text="{=!}Mhm." />
-  <string id="response_2.tor_wanderer_empire_8" text="{=!}Mhmm..." />
-  <string id="backstory_d.tor_wanderer_empire_8" text="{=!}Right." />
-  <string id="generic_backstory.tor_wanderer_empire_8" text="{=!}I am a Huntsman, many monsters have been slain by my hand in service of the Empire." />
+  <string id="prebackstory.tor_wanderer_empire_8" text="{=!}What matters is my tale, not my name…" />
+  <string id="backstory_a.tor_wanderer_empire_8" text="{=!}I was admitted to the esteemed Golden College, and quickly distinguished myself among the apprentices." />
+  <string id="backstory_b.tor_wanderer_empire_8" text="{=!}My command of the Wind of Chamon was nearly flawless. Yet, soon Balthasar Gelt arrived, eclipsing all others with his skill. I could have been the greatest Gold Wizard the Empire has ever seen." />
+  <string id="backstory_c.tor_wanderer_empire_8" text="{=!}And yet, not all is lost. I have amassed invaluable knowledge at the College and shall prove my worth across the Old World, while he occupies some dusty seat on some council." />
+  <string id="response_1.tor_wanderer_empire_8" text="{=!}Yes… of course." />
+  <string id="response_2.tor_wanderer_empire_8" text="{=!}Looks like I'll have to settle for the second best Metal Wizard." />
+  <string id="backstory_d.tor_wanderer_empire_8" text="{=!}Do not let appearances deceive your eyes; in a short time, I will surpass Gelt. You shall all see. In the meantime, I must hone my skills, preferably by the side of someone competent. Additionally, I expect certain comforts to be assured." />
+  <string id="generic_backstory.tor_wanderer_empire_8" text="{=!}I am a Metal Wizard of the Imperial College, master spellcaster and alchemist." />
   
   <string id="prebackstory.tor_wanderer_empire_9" text="{=!}Life is full of questions. I will answer yours." />
   <string id="backstory_a.tor_wanderer_empire_9" text="{=!}My home was the Drakwald Forest — it's where I was raised and where I felt the nourishing Wind of Ghyran for the first time. People also call us druids." />
@@ -878,7 +878,7 @@
   <string id="backstory_b.tor_wanderer_empire_10" text="{=!}When the villagers found out, they charged me with heresy and wished to burn me at the stake. Fortunately, I escaped and hid with the animals in the forest." />
   <string id="backstory_c.tor_wanderer_empire_10" text="{=!}After a long time in isolation, a wizard of the Amber Order found and invited me to come along. It was him that taught me these abilities don't make you a spawn of Chaos. Instead, they mean blessings of the Wind of Ghur." />
   <string id="response_1.tor_wanderer_empire_10" text="{=!}Citizens of the Empire can be cruel." />
-  <string id="response_2.tor_wanderer_empire_10" text="{=!}No wonder you live isolated." />
+  <string id="response_2.tor_wanderer_empire_10" text="{=!}No wonder you live in isolation." />
   <string id="backstory_d.tor_wanderer_empire_10" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_empire_10" text="{=!}I am a Beast Wizard of the Imperial College. You have certainly heard of our might and talent for survival." />
 
