@@ -4,6 +4,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Election;
+using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
@@ -46,9 +47,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             if (ConsiderEmergencyPeace(kingdom) && !kingdom.UnresolvedDecisions.AnyQ(x => x is MakePeaceKingdomDecision))
             {
                 peaceCandidate = model.GetPeaceDeclarationTargetCandidate(kingdom, true);
-                if (peaceCandidate != null)
+                if (peaceCandidate != null && !peaceCandidate.UnresolvedDecisions.AnyQ(x => x is MakePeaceKingdomDecision))
                 {
-                    var peaceDecision = new MakePeaceKingdomDecision(clan, peaceCandidate);
+                    var peaceDecision = new MakePeaceKingdomDecision(clan, peaceCandidate, MBRandom.RandomInt(1000, 3000));
                     _kingdomDecisionsList.Add(peaceDecision);
                     clan.Kingdom.AddDecision(peaceDecision, true);
                     _lastDecisionTime[kingdom.StringId] = CampaignTime.Now;

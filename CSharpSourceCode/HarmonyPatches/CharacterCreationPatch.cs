@@ -71,6 +71,14 @@ namespace TOR_Core.HarmonyPatches
             return false;
         }
 
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(FaceGenVM), "UpdateRaceAndGenderBasedResources")]
+        public static void PreserveRace(FaceGenVM __instance, ref int ____selectedRace)
+        {
+            ____selectedRace = CharacterObject.PlayerCharacter.Race;
+            if (__instance.RaceSelector != null) __instance.RaceSelector.SelectedIndex = CharacterObject.PlayerCharacter.Race;
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(FaceGenVM), "UpdateRaceAndGenderBasedResources")]
         public static void ReplaceImages(FaceGenVM __instance)

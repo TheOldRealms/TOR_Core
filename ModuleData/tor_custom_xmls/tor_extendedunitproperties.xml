@@ -1127,6 +1127,7 @@
     <Attributes>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
+      <string>TreeSpirit</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
@@ -1144,6 +1145,7 @@
       <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>HasAnimationTriggeredEffects</string>
+      <string>TreeSpirit</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
@@ -1161,6 +1163,7 @@
       <string>Unbreakable</string>
       <string>Unstoppable</string>
       <string>HasAnimationTriggeredEffects</string>
+      <string>TreeSpirit</string>
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />

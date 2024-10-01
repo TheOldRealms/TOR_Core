@@ -359,6 +359,11 @@ namespace TOR_Core.Extensions
             return hero.HasAttribute("Undead");
         }
 
+        public static bool IsTreeSpirit(this Hero hero)
+        {
+            return hero.HasAttribute("TreeSpirit");
+        }
+
         public static bool IsChaos(this Hero hero)
         {
             if (hero.CharacterObject.IsCultist()) return true;

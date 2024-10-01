@@ -5961,7 +5961,7 @@
            	 default_civilian_equipment_roster="EquipmentRoster.default_civilian_equipment_roster_neutral" >
 	</Culture>
 	<Culture id="battania"
-             name="{=0B27RrYJ}Wood Elves"
+             name="{=!}Wood Elves"
              is_main_culture="true"
              color="0xff284E19"
              color2="0xffB4F0F1"

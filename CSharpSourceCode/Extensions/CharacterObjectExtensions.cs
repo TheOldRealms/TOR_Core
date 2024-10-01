@@ -153,12 +153,13 @@ namespace TOR_Core.Extensions
 
         public static bool IsTreeSpirit(this CharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.ASRAI  && !characterObject.IsElf();
+            if (characterObject.IsHero) return characterObject.HeroObject.IsTreeSpirit();
+            else return characterObject.GetAttributes().Contains("TreeSpirit");
         }
 
         public static bool IsTreeSpirit(this BasicCharacterObject characterObject)
         {
-            return characterObject.Culture.StringId == TORConstants.Cultures.ASRAI && !characterObject.IsElf();
+            return characterObject.GetAttributes().Contains("TreeSpirit");
         }
 
         public static bool IsKnightUnit(this CharacterObject characterObject)
