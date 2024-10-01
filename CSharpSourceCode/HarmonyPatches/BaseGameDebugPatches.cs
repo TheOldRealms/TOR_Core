@@ -1,12 +1,10 @@
 ﻿using HarmonyLib;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
-using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -16,7 +14,6 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ModuleManager;
-using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
 using TOR_Core.Utilities;
@@ -26,6 +23,13 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class BaseGameDebugPatches
     {
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(CraftingCampaignBehavior), "CreateTownOrder")]
+        public static bool PreventCreateCraftingOrder(Hero orderOwner, int orderSlot)
+        {
+            return orderOwner != null && orderOwner.CurrentSettlement != null && orderOwner.PartyBelongedTo != null && orderOwner.Occupation != Occupation.Special && !orderOwner.IsAICompanion();
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(TroopRoster), "EnsureLength")]
         public static bool EnsureLengthProper(int length, ref TroopRosterElement[] ___data, int ____count)
