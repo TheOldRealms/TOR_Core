@@ -2,7 +2,7 @@
 <strings>
   <!-- CC Options -->
   <string id="str_tor_cc_growth.battania" text= "You spent most of your life venerating one of the Asrai deities..."/>
-<string id="str_tor_cc_profession.battania" text= "Choose your path..."/>
+  <string id="str_tor_cc_profession.battania" text= "Choose your path..."/>
   <!--Rogue Engineer Quest-->
 
   <string id="str_quest_tor_engineer.rogueEngineerParty" text= "{ROGUE_ENGINEER_NAME}s Part Thieves"/>
@@ -226,7 +226,7 @@
   <string id="str_faction_informal_name_for_culture.vlandia" text="{=!}Bretonnia" />
   <string id="str_faction_informal_name_for_culture.mousillon" text="{=!}Mousillon" />
   <string id="str_faction_informal_name_for_culture.battania" text="{=!}Athel Loren" />
-  <string id="str_faction_informal_name_for_culture.battania" text="{=!}Laurelorn" />
+  <string id="str_faction_informal_name_for_culture.eonir" text="{=!}Laurelorn" />
 
   <string id="str_adjective_for_culture.khuzait" text="{=!}vampire" />
   <string id="str_adjective_for_culture.empire" text="{=!}imperial" />
@@ -247,22 +247,22 @@
   <string id="tor_feudal_oath_line2.averland" text="{=!}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
   <string id="tor_feudal_oath_line3.averland" text="{=!}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
   <string id="tor_feudal_oath_line4.averland" text="{=!}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
-  
+
   <string id="tor_feudal_oath_line1.hochland" text="{=!}I swear my loyalty to the Grand Barony of Hochland." />
   <string id="tor_feudal_oath_line2.hochland" text="{=!}I acknowledge Aldebrand Ludenhof, the Grand Baron of Hochland and Baron of Hergig as my rightful ruler." />
   <string id="tor_feudal_oath_line3.hochland" text="{=!}Let Taal, Rhya and Sigmar guide me in my duty." />
   <string id="tor_feudal_oath_line4.hochland" text="{=!}Let my sword, shield and bow remain steady in the face of the enemy." />
-  
+
   <string id="tor_feudal_oath_line1.middenland" text="{=!}I solemnly swear to serve the Grand Duchies of Middenland and Middenheim." />
   <string id="tor_feudal_oath_line2.middenland" text="{=!}I recognize Boris Todbringer, the Graf of Middenheim, the Grand Duke of Middenland, and the Prince of Carroburg as my lord and commander." />
   <string id="tor_feudal_oath_line3.middenland" text="{=!}May Ulric, the Lord of Winter, guide my steps and lead me to victory for this great province." />
   <string id="tor_feudal_oath_line4.middenland" text="{=!}I shall not rest until the enemy is no more or the Great Wolf claims me in death." />
-  
+
   <string id="tor_feudal_oath_line1.ostermark" text="{=!}I swear my loyalty to the League of Ostermark, the East March." />
   <string id="tor_feudal_oath_line2.ostermark" text="{=!}I acknowledge Elector Count Wolfram Hertwig, Chancellor of the League of Ostermark and Prince of Bechafen, as my liege." />
   <string id="tor_feudal_oath_line3.ostermark" text="{=!}As long as I draw breath, I vow to keep the mutant and undead foe at bay." />
   <string id="tor_feudal_oath_line4.ostermark" text="{=!}I pledge to always work for the benefit of this realm and its stout citizens." />
-  
+
   <string id="tor_feudal_oath_line1.ostland" text="{=!}I hereby swear to serve the Grand Principality of Ostland." />
   <string id="tor_feudal_oath_line2.ostland" text="{=!}May my service to Valmir von Raukov, Grand Prince of Ostland, Margrave of the Northern March, and Hammer of the East allow me to crush our enemies." />
   <string id="tor_feudal_oath_line3.ostland" text="{=!}Grant me the opportunity to fight for you until I rest in Morr’s embrace." />
@@ -272,7 +272,7 @@
   <string id="tor_feudal_oath_line2.stirland" text="{=!}I acknowledge Alberich Haupt-Anderssen, Grand Count of Stirland, Prince of Wurtbad and Overlord of Sylvania as my lord and liege until my dying day." />
   <string id="tor_feudal_oath_line3.stirland" text="{=!}May my body be Stirland’s shield in defence of the undead threat." />
   <string id="tor_feudal_oath_line4.stirland" text="{=!}I will follow you to the deepest parts of the dead lands." />
-  
+
   <string id="tor_feudal_oath_line1.wasteland" text="{=!}I hereby swear fealthy to the mercantile city-state of the Wasteland." />
   <string id="tor_feudal_oath_line2.wasteland" text="{=!}I will fight with the blessing of Manann for the sea is my home." />
   <string id="tor_feudal_oath_line3.wasteland" text="{=!}My blood is filled with salt and my pockets are filled with gold for i am a Marienburger." />
@@ -297,7 +297,7 @@
   <string id="tor_feudal_oath_line2.moot" text="{=!}I proclaim the elder Hisme Stoutheart as my rightful liege." />
   <string id="tor_feudal_oath_line3.moot" text="{=!}I uphold my sword to protect the people against the undead menace." />
   <string id="tor_feudal_oath_line4.moot" text="{=!}I pledge to aid you in peace and in times of war alike." />
-  
+
   <string id="tor_feudal_oath_line1.nordland" text="{=!}I proclaim to serve the Grand Barony of Nordland." />
   <string id="tor_feudal_oath_line2.nordland" text="{=!}I acknowledge Elector Count Theoderic Gausser, Grand Baron of Nordland, Prince of Salzenmund as my rightful liege and commander." />
   <string id="tor_feudal_oath_line3.nordland" text="{=!}I swear to protect the fine province of Nordland, its shorelines, harbors and forests, from anyone and anything that dares threaten it." />
@@ -307,12 +307,12 @@
   <string id="tor_feudal_oath_line2.sylvania" text="{=!}I hereby sweareth mine undying loyalty to Mannfred von Carstein, Count of Sylvania, the most cunning and magically gifted vampire of all of the von Carstein bloodlines." />
   <string id="tor_feudal_oath_line3.sylvania" text="{=!}May thine enemies tremble at the sight of me and mine undead legions." />
   <string id="tor_feudal_oath_line4.sylvania" text="{=!}I shall join thine court and follow thee deep into the lands of the empire." />
-  
+
   <string id="tor_feudal_oath_line1.anguille" text="{=!}With the lady as my witness, i shall swear loyalty to the salt bitten lands of L'anguille " />
   <string id="tor_feudal_oath_line2.anguille" text="{=!}Duke Taubert will be my Liege and in times of need i will flock to his banner." />
   <string id="tor_feudal_oath_line3.anguille" text="{=!}As a knight and as a seafahrer, i will protect the land and coast of L'anguille that i vow." />
   <string id="tor_feudal_oath_line4.anguille" text="{=!}Blessed by the lady we will overcome!" />
-  
+
   <string id="tor_feudal_oath_line1.artois" text="{=!}I give my hearth and dedication to the protection of the forest lands of the dukedom of Artois." />
   <string id="tor_feudal_oath_line2.artois" text="{=!}My sword and lance are yours Duke Chilfroy for i am your subject." />
   <string id="tor_feudal_oath_line3.artois" text="{=!}My shield is for the people of Gisoreux whom i will protect with my body and soul, for i am pure a true knight of Brettonia." />
@@ -342,17 +342,17 @@
   <string id="tor_feudal_oath_line2.carcassonne" text="{=!}I proclaim my allegiance to Duke Huebald, a gallant leader whose deeds inspire us all." />
   <string id="tor_feudal_oath_line3.carcassonne" text="{=!}I vow to protect the fields of Carcassonne, its brave knights, and its adept armies." />
   <string id="tor_feudal_oath_line4.carcassonne" text="{=!}As a loyal defender of Carcassonne, I shall stand steadfast in preserving the honour and valour of our beloved realm." />
-  
+
   <string id="tor_feudal_oath_line1.couronne" text="{=!}I pledge my loyalty and life to the majestic dukedom of Couronne" />
   <string id="tor_feudal_oath_line2.couronne" text="{=!}I vow to protect, serve and follow The king of Brettonia King Louen Leoncoeur." />
   <string id="tor_feudal_oath_line3.couronne" text="{=!}I'm the king his subject and his to command." />
   <string id="tor_feudal_oath_line4.couronne" text="{=!}All hail King Louen Leoncoeur!" />
-  
+
   <string id="tor_feudal_oath_line1.gisoreux" text="{=!}I swear to protect the honourable lands of the dukedom Gisoreux." />
   <string id="tor_feudal_oath_line2.gisoreux" text="{=!}My banners shall wear the colours of my duke Hagen, for i am his servant and i will aid in his will." />
   <string id="tor_feudal_oath_line3.gisoreux" text="{=!}I shall guard the mountain tops of the Pale sisters and the plains of Gisoreux as i would defend my family." />
   <string id="tor_feudal_oath_line4.gisoreux" text="{=!}As a true son of Gisoreux, i will uphold the values of Gisoreux and die for its glory." />
-  
+
   <string id="tor_feudal_oath_line1.lyonesse" text="{=!}I offer my sword and shield to the blessed dukedom of Lyonesse." />
   <string id="tor_feudal_oath_line2.lyonesse" text="{=!}I will vow to support Duke Adalhard in his rule over Lyonesse." />
   <string id="tor_feudal_oath_line3.lyonesse" text="{=!}I will ride down my enemies, and defend the holy land of Lyonesse." />
@@ -382,12 +382,12 @@
   <string id="tor_feudal_oath_line2.blooddragons" text="{=!}I hereby swear my blade to the complete destruction of humankind and any other who opposes the power of the vampires." />
   <string id="tor_feudal_oath_line3.blooddragons" text="{=!}May I always sate my sword’s thirst for blood and seek out the greatest of our foes." />
   <string id="tor_feudal_oath_line4.blooddragons" text="{=!}I will never retreat from battle and I will be loyal to you or suffer the consequences of betrayal." />
-  
+
   <string id="tor_feudal_oath_line1.necrachs" text="{=!}Upon this baleful night, I do swear mine eternal allegiance to the Necrarch bloodline, and mine Lord, Zacharias the Everliving." />
   <string id="tor_feudal_oath_line2.necrachs" text="{=!}I dedicate mine mind to the pursuit of the arcane, and I bind mine spirit to the essence of magic." />
   <string id="tor_feudal_oath_line3.necrachs" text="{=!}With tomes of old, I will navigate the shadows, unlock the whispers and secrets long forgotten." />
   <string id="tor_feudal_oath_line4.necrachs" text="{=!}As thou dost guide mine fate through this accursed unlife." />
-  
+
   <string id="tor_feudal_oath_line1.laurelorn" text="{=!}Your Majesty, in this sacred moment, I stand before you, deeply honored by your presence." />
   <string id="tor_feudal_oath_line2.laurelorn" text="{=!}I pledge to protect the harmony of our land, nurture its magic, and preserve its beauty that binds us all." />
   <string id="tor_feudal_oath_line3.laurelorn" text="{=!}In the presence of shimmering streams and ancient trees, I commit to being a guardian of our realm." />
@@ -397,7 +397,7 @@
   <string id="tor_feudal_oath_line2.athel_loren" text="{=!}I shall be Athel loren's bow and she shall be my arrow." />
   <string id="tor_feudal_oath_line3.athel_loren" text="{=!}I swear fealthy to the king and queen of the forest Orion and Ariel and i will answer their horn in times of need." />
   <string id="tor_feudal_oath_line4.athel_loren" text="{=!}May the roots of the forest guide me!" />
-  
+
   <string id="tor_feudal_oath_line1.brasskeep" text="{=!}Forged in plague we rise from decay." />
   <string id="tor_feudal_oath_line2.brasskeep" text="{=!}With the plague lord's gifts we march into the fray." />
   <string id="tor_feudal_oath_line3.brasskeep" text="{=!}From death our power grows." />
@@ -409,9 +409,9 @@
   <string id="tor_player_accept_vassalage.blooddragons" text="{=!}Welcome to the Ordo Draconis {PLAYER.NAME}. Here are some of my followers, may they aid you in battle. Take this blade." />
   <string id="tor_player_accept_vassalage.vlandia" text="{=!}By the lady of the lake. I proclaim you a noble of Brettonia and defender of the realm.  " />
   <string id="tor_player_accept_vassalage.battania" text="{=!}I name you guardian of Athel Loren, noble of the Asrai, may thy bow aim true." />
-  <string id="tor_player_accept_vassalage.eonir" text="{=!}I proclaim you a noble of the Eonir, stand proud for you are now a protector of the holy forest of Laurorn" />
-  <string id="tor_player_accept_vassalage.chaos_culture" text="{=!}May Nurgle gift u with his blessings" />
-  
+  <string id="tor_player_accept_vassalage.eonir" text="{=!}I proclaim you a noble of the Eonir, stand proud for you are now a protector of the holy forest of Laurorn." />
+  <string id="tor_player_accept_vassalage.chaos_culture" text="{=!}May Nurgle gift you with his blessings." />
+
   <string id="str_liege_title.empire" text="{=!}Elector Count of one of the Provinces of the Empire">
     <tags>
       <tag tag_name="EmpireTag" />
@@ -719,7 +719,7 @@
   <!--custom settlements e.g. chaos portal, shrines, herdstones -->
   <string id="customsettlement_intro.oak_of_ages" text="{=!}You arrive at the Oak of Ages. The Heart of Athel Loren." />
   <string id="customsettlement_disabled.oak_of_ages" text="{=!}You arrive at the Oak of Ages. The Heart of Athel Loren." />
-  
+
   <string id="customsettlement_intro.worldroot_01" text="{=!}You found the world roots ends in the Arden forest." />
   <string id="customsettlement_disabled.worldroot_01" text="{=!}You found the world roots ends in the Arden forest." />
   <string id="customsettlement_intro.worldroot_02" text="{=!}You found the world roots ends in the Laurelorn forest." />
@@ -741,19 +741,15 @@
   <string id="customsettlement_intro.herdstone_01" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="customsettlement_disabled.herdstone_01" text="{=!}The herdstone camp is empty, come back at a later time." />
   <string id="customsettlement_battle.herdstone_01" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
-
   <string id="customsettlement_intro.herdstone_02" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="customsettlement_disabled.herdstone_02" text="{=!}The herdstone camp is empty, come back at a later time." />
   <string id="customsettlement_battle.herdstone_02" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
-  
   <string id="customsettlement_intro.herdstone_03" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="customsettlement_disabled.herdstone_03" text="{=!}The herdstone camp is empty, come back at a later time." />
   <string id="customsettlement_battle.herdstone_03" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
-  
   <string id="customsettlement_intro.herdstone_04" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="customsettlement_disabled.herdstone_04" text="{=!}The herdstone camp is empty, come back at a later time." />
   <string id="customsettlement_battle.herdstone_04" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
-  
   <string id="customsettlement_intro.herdstone_05" text="{=!}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="customsettlement_disabled.herdstone_05" text="{=!}The herdstone camp is empty, come back at a later time." />
   <string id="customsettlement_battle.herdstone_05" text="{=!}Attempt to defeat the bestmen warherd in the heart of their bloodgrounds." />
@@ -764,14 +760,36 @@
   <string id="customsettlement_disabled.sigmar_shrine_02" text="{=!}The shrine lies in ruins. There is nothing to do here." />
   <string id="customsettlement_intro.sigmar_shrine_03" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
   <string id="customsettlement_disabled.sigmar_shrine_03" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.sigmar_shrine_04" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
+  <string id="customsettlement_disabled.sigmar_shrine_04" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.sigmar_shrine_05" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
+  <string id="customsettlement_disabled.sigmar_shrine_05" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.sigmar_shrine_06" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
+  <string id="customsettlement_disabled.sigmar_shrine_06" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.sigmar_shrine_07" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God-King." />
+  <string id="customsettlement_disabled.sigmar_shrine_07" text="{=!}The shrine lies in ruins. There is nothing to do here." />
 
   <string id="customsettlement_intro.taal_shrine_01" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God of Nature." />
   <string id="customsettlement_disabled.taal_shrine_01" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.taal_shrine_02" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God of Nature." />
+  <string id="customsettlement_disabled.taal_shrine_02" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.taal_shrine_03" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God of Nature." />
+  <string id="customsettlement_disabled.taal_shrine_03" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.taal_shrine_04" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God of Nature." />
+  <string id="customsettlement_disabled.taal_shrine_04" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.taal_shrine_05" text="{=!}You arrive at a shrine of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the God of Nature." />
+  <string id="customsettlement_disabled.taal_shrine_05" text="{=!}The shrine lies in ruins. There is nothing to do here." />
 
   <string id="customsettlement_intro.grove_of_the_lady_01" text="{=!}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
   <string id="customsettlement_disabled.grove_of_the_lady_01" text="{=!}The shrine lies in ruins. There is nothing to do here." />
   <string id="customsettlement_intro.grove_of_the_lady_02" text="{=!}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
   <string id="customsettlement_disabled.grove_of_the_lady_02" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.grove_of_the_lady_03" text="{=!}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
+  <string id="customsettlement_disabled.grove_of_the_lady_03" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.grove_of_the_lady_04" text="{=!}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
+  <string id="customsettlement_disabled.grove_of_the_lady_04" text="{=!}The shrine lies in ruins. There is nothing to do here." />
+  <string id="customsettlement_intro.grove_of_the_lady_05" text="{=!}You arrive at a grove of the {RELIGION_LINK}. Pilgrims from the surrounding settlements are praying to the Lady of the Lake." />
+  <string id="customsettlement_disabled.grove_of_the_lady_05" text="{=!}The shrine lies in ruins. There is nothing to do here." />
 
   <string id="customsettlement_intro.haunted_site_01" text="{=!}Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs. " />
   <string id="customsettlement_disabled.haunted_site_01" text="{=!}You shouldn't see this." />
@@ -854,7 +872,7 @@
   <string id="response_2.tor_wanderer_empire_7" text="{=!}Mhmm..." />
   <string id="backstory_d.tor_wanderer_empire_7" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_empire_7" text="{=!}I am a Huntsman, many monsters have been slain by my hand in service of the Empire." />
-  
+
   <string id="prebackstory.tor_wanderer_empire_8" text="{=!}What matters is my tale, not my name…" />
   <string id="backstory_a.tor_wanderer_empire_8" text="{=!}I was admitted to the esteemed Golden College, and quickly distinguished myself among the apprentices." />
   <string id="backstory_b.tor_wanderer_empire_8" text="{=!}My command of the Wind of Chamon was nearly flawless. Yet, soon Balthasar Gelt arrived, eclipsing all others with his skill. I could have been the greatest Gold Wizard the Empire has ever seen." />
@@ -863,7 +881,7 @@
   <string id="response_2.tor_wanderer_empire_8" text="{=!}Looks like I'll have to settle for the second best Metal Wizard." />
   <string id="backstory_d.tor_wanderer_empire_8" text="{=!}Do not let appearances deceive your eyes; in a short time, I will surpass Gelt. You shall all see. In the meantime, I must hone my skills, preferably by the side of someone competent. Additionally, I expect certain comforts to be assured." />
   <string id="generic_backstory.tor_wanderer_empire_8" text="{=!}I am a Metal Wizard of the Imperial College, master spellcaster and alchemist." />
-  
+
   <string id="prebackstory.tor_wanderer_empire_9" text="{=!}Life is full of questions. I will answer yours." />
   <string id="backstory_a.tor_wanderer_empire_9" text="{=!}My home was the Drakwald Forest — it's where I was raised and where I felt the nourishing Wind of Ghyran for the first time. People also call us druids." />
   <string id="backstory_b.tor_wanderer_empire_9" text="{=!}I look after all things natural and heal the injured, for my magic is one of restoration, not mindless destruction." />
@@ -872,7 +890,7 @@
   <string id="response_2.tor_wanderer_empire_9" text="{=!}A most important duty." />
   <string id="backstory_d.tor_wanderer_empire_9" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_empire_9" text="{=!}I am a Life Wizard of the Imperial College. No doubt you have heard of our immense healing capabilities." />
-  
+
   <string id="prebackstory.tor_wanderer_empire_10" text="{=!}You have a curious smell, traveler. Will you listen to my story?" />
   <string id="backstory_a.tor_wanderer_empire_10" text="{=!}When I was young, I felt a strong connection with all kinds of woodland creatures. And soon I learned to converse with them." />
   <string id="backstory_b.tor_wanderer_empire_10" text="{=!}When the villagers found out, they charged me with heresy and wished to burn me at the stake. Fortunately, I escaped and hid with the animals in the forest." />
@@ -970,7 +988,7 @@
   <string id="response_2.tor_wanderer_eonir_1" text="{=!}Many people claim to be descended from great heroes of the past." />
   <string id="backstory_d.tor_wanderer_eonir_1" text="{=!}Right." />
   <string id="generic_backstory.tor_wanderer_eonir_1" text="{=!}Hold a moment, stranger. My services do not come cheap — you’d best prove your worth." />
-  
+
   <string id="prebackstory.tor_wanderer_woodelf_0" text="{=!}Ah, I do not believe we have met. Peace be upon you, stranger." />
   <string id="backstory_a.tor_wanderer_woodelf_0" text="{=!}Have you not encountered someone like me before? It is not surprising for I am a Spellsinger of the Asrai." />
   <string id="backstory_b.tor_wanderer_woodelf_0" text="{=!}Unlike the majority of my people, I possess the rare ability to commune with the magical beings of the deep forest. I can merge their minds with mine and assure their cooperation." />
@@ -988,7 +1006,7 @@
   <string id="response_2.tor_wanderer_woodelf_1" text="{=!}An Asrai's duty is in the forest, you should return home." />
   <string id="backstory_d.tor_wanderer_woodelf_1" text="{=!}If your warband could need a second leader in command I am willing to join. I will lead your troops to victory" />
   <string id="generic_backstory.tor_wanderer_woodelf_1" text="{=!}Are you a renowned commander? Can you aid me in achieving such a status? I trust you have no objection to proving your worth." />
-  
+
   <string id="prebackstory.tor_wanderer_woodelf_2" text="{=!}May Kurnous be with you, Stranger." />
   <string id="backstory_a.tor_wanderer_woodelf_2" text="{=!}I am a Waywatcher, a master of ambush and stealth. As a child, I felt the call of the forest coursing through my blood. I was trained to vanish into the wilds, unseen and undetectable, as I awaited my prey." />
   <string id="backstory_b.tor_wanderer_woodelf_2" text="{=!}I have ventured deep into the forest, where even the Asrai are not safe. While others remain sheltered in their halls, I have honed my skills and sharpened my aim." />
@@ -997,9 +1015,9 @@
   <string id="response_2.tor_wanderer_woodelf_2" text="{=!}Didn't the Asrai enjoy your company?" />
   <string id="backstory_d.tor_wanderer_woodelf_2" text="{=!}I am adept in the arts of survival, disruption, and ambush. I can approach my quarry, strike swiftly, and vanish before its body hits the ground. Alternatively, I can subtly lead it into one of my traps." />
   <string id="generic_backstory.tor_wanderer_woodelf_2" text="{=!}I have but one request. Although I seldom leave the forest, when I do, I seek the pleasures of civilised life. A fine wine in the tavern, pleasant company... I trust your group can provide these comforts." />
-  
-  
-  
+
+
+
   <!-- Religions -->
 
   <string id="tor_religion_label" text="{=tor_religion_label_str}Religion" />
@@ -1175,15 +1193,15 @@
   <string id="career_choicegroup1_name.ImperialMagister" text="{=career_choicegroup1_imperialmagister_str}Apprentice Magister" />
   <string id="career_choicegroup2_name.ImperialMagister" text="{=career_choicegroup2_imperialmagister_str}Battle Wizard" />
   <string id="career_choicegroup3_name.ImperialMagister" text="{=career_choicegroup3_imperialmagister_str}Lord Magister" />
-  
+
   <string id="career_choicegroup1_name.Waywatcher" text="{=career_choicegroup1_waywatcher_str}Scout" />
   <string id="career_choicegroup2_name.Waywatcher" text="{=career_choicegroup2_waywatcher_str}Waywatcher" />
   <string id="career_choicegroup3_name.Waywatcher" text="{=career_choicegroup3_waywatcher_str}Waystalker" />
-  
+
   <string id="career_choicegroup1_name.Spellsinger" text="{=career_choicegroup1_spellsinger_str}Spellsinger" />
   <string id="career_choicegroup2_name.Spellsinger" text="{=career_choicegroup2_spellsinger_str}Spellweaver" />
   <string id="career_choicegroup3_name.Spellsinger" text="{=career_choicegroup3_waywatcher_str}Ascended Spellweaver" />
-  
+
   <string id="career_choicegroup1_name.GreyLord" text="{=career_choicegroup1_greylord_str}Exile's Apprentice" />
   <string id="career_choicegroup2_name.GreyLord" text="{=career_choicegroup2_greylord_str}Grey Mage" />
   <string id="career_choicegroup3_name.GreyLord" text="{=career_choicegroup3_greylord_str}Grey Lord" />
@@ -1262,7 +1280,7 @@
 
 
   <!--Career perks related !-->
- <string id="tor_hunt_perk_result.CompletelyFailed" text="{=tor_hunt_perk_result_failed_str}Your daily hunt was not successful" />
+  <string id="tor_hunt_perk_result.CompletelyFailed" text="{=tor_hunt_perk_result_failed_str}Your daily hunt was not successful" />
   <string id="tor_hunt_perk_result.Failed" text="{=tor_hunt_perk_result_failed_str}You were able to detect a {PERK_HUNT_ANIMAL_SIZE}, yet your hunt was not successful" />
   <string id="tor_hunt_perk_result.Success" text="{=tor_hunt_perk_result_success_str}You were able to hunt down a {PERK_HUNT_ANIMAL_SIZE}, you gained {PERK_HUNT_PREY}" />
 
@@ -1309,25 +1327,25 @@
 
 
 
-	<!--Custom Resource related ! -->
-	
-	<!--Forest Harmony ! -->
-	<string id="tor_treesymbol_title.WEKithbandSymbol" text="{=inky_battlefield_strid_title}Kithband Symbol" />
-	<string id="tor_treesymbol_title.WEWardancerSymbol" text="{=inky_battlefield_strid_title}Wardancer Symbol" />
-	<string id="tor_treesymbol_title.WETreekinSymbol" text="{=inky_battlefield_strid_title}Treekin Symbol" />
-	<string id="tor_treesymbol_title.WEOrionSymbol" text="{=inky_battlefield_strid_title}Orion Symbol" />
-	<string id="tor_treesymbol_title.WEArielSymbol" text="{=inky_battlefield_strid_title}Ariel Symbol" />
-	<string id="tor_treesymbol_title.WEDurthuSymbol" text="{=inky_battlefield_strid_title}Durthu Symbol" />
-	<string id="tor_treesymbol_title.WEWandererSymbol" text="{=inky_battlefield_strid_title}Wanderer Symbol" />
+  <!--Custom Resource related ! -->
+
+  <!--Forest Harmony ! -->
+  <string id="tor_treesymbol_title.WEKithbandSymbol" text="{=inky_battlefield_strid_title}Kithband Symbol" />
+  <string id="tor_treesymbol_title.WEWardancerSymbol" text="{=inky_battlefield_strid_title}Wardancer Symbol" />
+  <string id="tor_treesymbol_title.WETreekinSymbol" text="{=inky_battlefield_strid_title}Treekin Symbol" />
+  <string id="tor_treesymbol_title.WEOrionSymbol" text="{=inky_battlefield_strid_title}Orion Symbol" />
+  <string id="tor_treesymbol_title.WEArielSymbol" text="{=inky_battlefield_strid_title}Ariel Symbol" />
+  <string id="tor_treesymbol_title.WEDurthuSymbol" text="{=inky_battlefield_strid_title}Durthu Symbol" />
+  <string id="tor_treesymbol_title.WEWandererSymbol" text="{=inky_battlefield_strid_title}Wanderer Symbol" />
 
 
-	<string id="tor_treesymbol_description.WEKithbandSymbol" text="{=str_tor_treesymbol_description_kithbandsymbol}Increase your party size by 50% , Forest harmony gain is decreased by 25% and wages are increased by 15%." />
-	<string id="tor_treesymbol_description.WEWardancerSymbol" text="{=str_tor_treesymbol_description_wardancersymbol}The Player and companion gain 25% additional health, and recover wounds 25% faster. All troops heal 25% slower and Forest Harmony is gained 25% slower." />
-	<string id="tor_treesymbol_description.WETreekinSymbol" text="{=str_tor_treesymbol_description_treekinsymbol}Treekin Forest Harmony upkeep is 50% lower. Wages of elves are 25% higher." />
-	<string id="tor_treesymbol_description.WEOrionSymbol" text="{=str_tor_treesymbol_description_orionsymbol}Wages of elves are reduced by 50%. Forest Spirit unit upkeep is doubled." />
-	<string id="tor_treesymbol_description.WEArielSymbol" text="{=str_tor_treesymbol_description_arielsymbol}Winds capacity is increased by 25%. Regenerate +1 more Winds in Athel Loren. Upkeepcosts are increased by 50%." />
-	<string id="tor_treesymbol_description.WEDurthuSymbol" text="{=str_tor_treesymbol_description_durthusymbol}Treeman capacity is increased by 50%. Health is increased by 25%. Party size is decreased by 25%. -20% Fire resistance." />
-	<string id="tor_treesymbol_description.WEWandererSymbol" text="{=str_tor_treesymbol_description_wanderersymbol}Low Forest Harmony has no negative Effect. Forest Harmony gain is reduced by 50% and upkeep is increased by 50%." />
+  <string id="tor_treesymbol_description.WEKithbandSymbol" text="{=str_tor_treesymbol_description_kithbandsymbol}Increase your party size by 50% , Forest harmony gain is decreased by 25% and wages are increased by 15%." />
+  <string id="tor_treesymbol_description.WEWardancerSymbol" text="{=str_tor_treesymbol_description_wardancersymbol}The Player and companion gain 25% additional health, and recover wounds 25% faster. All troops heal 25% slower and Forest Harmony is gained 25% slower." />
+  <string id="tor_treesymbol_description.WETreekinSymbol" text="{=str_tor_treesymbol_description_treekinsymbol}Treekin Forest Harmony upkeep is 50% lower. Wages of elves are 25% higher." />
+  <string id="tor_treesymbol_description.WEOrionSymbol" text="{=str_tor_treesymbol_description_orionsymbol}Wages of elves are reduced by 50%. Forest Spirit unit upkeep is doubled." />
+  <string id="tor_treesymbol_description.WEArielSymbol" text="{=str_tor_treesymbol_description_arielsymbol}Winds capacity is increased by 25%. Regenerate +1 more Winds in Athel Loren. Upkeepcosts are increased by 50%." />
+  <string id="tor_treesymbol_description.WEDurthuSymbol" text="{=str_tor_treesymbol_description_durthusymbol}Treeman capacity is increased by 50%. Health is increased by 25%. Party size is decreased by 25%. -20% Fire resistance." />
+  <string id="tor_treesymbol_description.WEWandererSymbol" text="{=str_tor_treesymbol_description_wanderersymbol}Low Forest Harmony has no negative Effect. Forest Harmony gain is reduced by 50% and upkeep is increased by 50%." />
   <!--Meadow ! -->
 
 
@@ -1335,7 +1353,7 @@
   <!-- every inky story starts with "inky: "+ ID of the file name. While the Variation accounts for the specific text block -->
   <string id="inky_continue" text="{inky_continue_str}" />
   <string id="inky_end" text="{inky_end_str}" />
- 
+
 
   <!--Ink !-->
   <string id="inky_party_skill_check_result_template" text ="{=inky_party_skill_check_template_str}({inky_skill_check_skill_name} check with success chance {inky_Party_skill_CheckChance}%)" />
@@ -1466,7 +1484,7 @@
   <string id="Hireling.PauseTime" text="Pause on entering the next settlement: {PAUSE_ONOFF}" />
 
   <string id="Hireling.EnlistingArmy" text="Party is part of: {ENLISTING_ARMY}" />
-  
+
   <string id="HirelingActivity0.Waywatcher" text="Target practice in solitude" />
   <string id="HirelingActivity1.Waywatcher" text="Climb trees and scout the area" />
   <string id="HirelingActivity2.Waywatcher" text="Cover the perimeter and set up traps" />
@@ -1545,18 +1563,18 @@
   <string id="HirelingActivity2.WarriorPriest" text="Help set up tents" />
   <string id="HirelingActivity3.WarriorPriest" text="Assist the priestesses of Shallya" />
   <string id="HirelingActivity4.WarriorPriest" text="Preach about Sigmar Heldenhammer" />
-  
-  <string id="HirelingActivity0.Spellsinger" text="Commune with forest spirits" /> 
-  <string id="HirelingActivity1.Spellsinger" text= "Converse with the stabled horses"/> 
-  <string id="HirelingActivity2.Spellsinger" text="Offer a prayer to Isha, the Mother" /> 
-  <string id="HirelingActivity3.Spellsinger" text="Discuss diplomatic matters with the commander" /> 
-  <string id="HirelingActivity4.Spellsinger" text="Gather medicinal herbs" /> 
-  
-  <string id="HirelingActivity0.GreyLord" text="Study manuscripts." /> 
-  <string id="HirelingActivity1.GreyLord" text="Engage in book keeping tasks" /> 
-  <string id="HirelingActivity2.GreyLord" text="Hold speeches about the dragons of Caledor" /> 
-  <string id="HirelingActivity3.GreyLord" text="Maintain Asurian etiquette" /> 
-  <string id="HirelingActivity4.GreyLord" text="Experiment with alchemistic substances" /> 
+
+  <string id="HirelingActivity0.Spellsinger" text="Commune with forest spirits" />
+  <string id="HirelingActivity1.Spellsinger" text= "Converse with the stabled horses"/>
+  <string id="HirelingActivity2.Spellsinger" text="Offer a prayer to Isha, the Mother" />
+  <string id="HirelingActivity3.Spellsinger" text="Discuss diplomatic matters with the commander" />
+  <string id="HirelingActivity4.Spellsinger" text="Gather medicinal herbs" />
+
+  <string id="HirelingActivity0.GreyLord" text="Study manuscripts." />
+  <string id="HirelingActivity1.GreyLord" text="Engage in book keeping tasks" />
+  <string id="HirelingActivity2.GreyLord" text="Hold speeches about the dragons of Caledor" />
+  <string id="HirelingActivity3.GreyLord" text="Maintain Asurian etiquette" />
+  <string id="HirelingActivity4.GreyLord" text="Experiment with alchemistic substances" />
 
 
   <!--Meadow ! -->

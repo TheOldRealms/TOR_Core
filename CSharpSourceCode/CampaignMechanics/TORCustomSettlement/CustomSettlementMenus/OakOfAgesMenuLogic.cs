@@ -778,6 +778,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             ? GameTexts.FindText("customsettlement_intro", settlement.StringId)
             : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
 
+        MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
 
         if ((Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR || 
             Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE ||
