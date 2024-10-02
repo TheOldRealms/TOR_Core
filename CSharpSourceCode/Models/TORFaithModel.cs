@@ -48,15 +48,15 @@ namespace TOR_Core.Models
         public void AddBlessingToParty(MobileParty party, string cultID)
         {
             var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == cultID);
-            if(religion==null) return;
-            AddBlessingToParty(party,religion);
+            if (religion == null) return;
+            AddBlessingToParty(party, religion);
         }
         
         public void AddBlessingToParty(MobileParty party, ReligionObject religion)
         {
-            if(religion==null) return;
+            if (religion == null) return;
             var cultID = religion.StringId;
-            if(party==null || !party.IsActive|| !party.IsLordParty) return;
+            if (party == null || !party.IsActive || !party.IsLordParty) return;
             
             var duration = CalculateBlessingDurationForParty(party);
             

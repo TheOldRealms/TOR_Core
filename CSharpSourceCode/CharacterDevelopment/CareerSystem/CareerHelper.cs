@@ -376,15 +376,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
             if (statuseffectComponent != null && button!=null)
             {
-
-
                 var powerstone = button.GetPowerstone(agent.Character as CharacterObject);
 
                 if (powerstone!=null)
                 {
                     AddMissionPermanentEffect(agent, powerstone.EffectId);
                 }
-                
             }
         }
 
@@ -395,7 +392,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             if (statuseffectComponent != null)
             {
                 AddMissionPermanentEffect(agent, effectID);
-                
             }
         }
         
