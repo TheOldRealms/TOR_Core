@@ -14,6 +14,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -74,6 +75,15 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this,SkillGain);
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this,LeaveKingdomEvent);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnMobilePartyDestroyed);
+            CampaignEvents.RaidCompletedEvent.AddNonSerializedListener(this, OnRaidCompleted);
+        }
+
+        private void OnRaidCompleted(BattleSideEnum side, RaidEventComponent component)
+        {
+            if (component.IsPlayerMapEvent)
+            {
+                GameMenu.ActivateGameMenu("hireling_menu");
+            }
         }
 
         private void OnMobilePartyDestroyed(MobileParty destroyedParty, PartyBase attackingParty)
@@ -697,7 +707,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                         }
                     }
                     
-                    if (!_hirelingLordIsFightingWithoutPlayer)
+                    if (!_hirelingLordIsFightingWithoutPlayer && mapEvent.DefenderSide.TroopCount > 0)
                     {
                         GameMenu.ActivateGameMenu("hireling_battle_menu");
                     }
