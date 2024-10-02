@@ -44,6 +44,11 @@ public class TORCustomResourceModel : GameModel
                         ServeAsAHirelingHelpers.AddHirelingCustomResourceBenefits(hero,ref number);
                     }
 
+                    if (!hero.IsEnlisted() && hero.PartyBelongedTo.Army != null && hero.PartyBelongedTo.Army.LeaderParty != hero.PartyBelongedTo)
+                    {
+                        number.Add(5,new TextObject("Part of Army"));
+                    }
+
                     if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
                     {
                         var weSettlements = Campaign.Current.Settlements.WhereQ(x => x.StringId.Contains("_AL")).ToList();

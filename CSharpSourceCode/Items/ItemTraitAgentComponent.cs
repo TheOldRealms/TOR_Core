@@ -112,7 +112,6 @@ namespace TOR_Core.Items
 
         public void AddTraitToWeapon(MissionWeapon weapon, ItemTrait trait, float duration)
         {
-            TORCommon.Say("hello");
             if (trait != null && duration > 0)
             {
                 if(weapon.CurrentUsageItem != null)

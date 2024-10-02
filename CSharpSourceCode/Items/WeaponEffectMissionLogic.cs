@@ -142,7 +142,7 @@ namespace TOR_Core.Items
                     if (weapon.Item != null)
                     {
                         var effects = weapon.Item.GetTraits(agent);
-                        if (effects != null)
+                        if (effects != null &&!effects.IsEmpty())
                         {
                             list = effects;
                             return true;

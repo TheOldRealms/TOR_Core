@@ -42,7 +42,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 Id = "shift",
                 Name = "Swiftshiver Shards",
                 Description = "adds 15% Magical damage",
-                Effect = "apply_shift_shiver_trait",
+                Effect = "apply_swift_shiver_trait",
                 Price = 20,
                 Symbol = _swiftshiverShardsIcon
             },

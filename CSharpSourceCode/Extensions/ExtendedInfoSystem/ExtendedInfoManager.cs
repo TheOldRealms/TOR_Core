@@ -15,6 +15,7 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
@@ -62,9 +63,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void BattleEnd(MapEvent obj)
         {
-            var t = obj.PartiesOnSide(obj.PlayerSide);
+            var parties = obj.PartiesOnSide(obj.PlayerSide);
 
-            foreach (var party in t)
+            foreach (var party in parties)
             {
                 if(party.Party.MobileParty==null) continue;
                 
@@ -78,8 +79,19 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             
             if (!PartyBase.MainParty.MemberRoster.GetTroopRoster().Any(x => x.Character.StringId == from.StringId))
             {
-                var characterAttributes = info.TroopAttributes[from.StringId];
-                CareerHelper.RemovePowerstone(characterAttributes);
+                var characterAttributes = info.TroopAttributes.FirstOrDefault(x=> x.Key == from.StringId).Value;
+                if (characterAttributes != null)
+                {
+                    if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
+                    {
+                        CareerHelper.RemovePowerstone(characterAttributes);
+                    }
+                    else
+                    {
+                        info.TroopAttributes.Remove(from.StringId);
+                    }
+                }
+                
             }
         }
 

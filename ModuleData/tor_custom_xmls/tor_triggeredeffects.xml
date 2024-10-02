@@ -999,7 +999,7 @@
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect>healing_hand_tick</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
-    <TriggeredEffectTemplate StringID="apply_shift_shiver_trait"
+    <TriggeredEffectTemplate StringID="apply_swift_shiver_trait"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"
                              SoundEffectLength="0"
@@ -1010,7 +1010,7 @@
                              TargetType="Friendly"
                              ImbuedStatusEffectDuration="20"
                              DamageVariance="0"
-                             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplyShiftShiverTrait" />
+                             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.ApplySwiftShiverTrait" />
     <TriggeredEffectTemplate StringID="apply_hagbane_trait"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"

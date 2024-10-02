@@ -11,6 +11,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.HarmonyPatches;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -151,7 +152,7 @@ namespace TOR_Core.AbilitySystem
 
         public void AddCharge(float amount)
         {
-            if (_currentCharge >= _maxCharge)
+            if (amount>=0 && _currentCharge >= _maxCharge)
                 return;
             
             if (!IsActive)

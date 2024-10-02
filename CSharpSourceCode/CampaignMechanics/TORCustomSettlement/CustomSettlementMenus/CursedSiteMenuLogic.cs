@@ -282,7 +282,6 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
                         var troopCharacter = party.MemberRoster.GetCharacterAtIndex(i);
                         if (!troopCharacter.IsUndead()) continue;
                         if (troopCharacter.IsHero) continue;
-                        var t = Hero.MainHero.PartyBelongedTo.Party.MemberRoster.GetElementCopyAtIndex(i).DeltaXp;
                         var a = Hero.MainHero.PartyBelongedTo.Party.MemberRoster.GetElementCopyAtIndex(i).Xp;
 
                         var model = Campaign.Current.Models.PartyTroopUpgradeModel;

@@ -48,6 +48,11 @@ namespace TOR_Core.Models
                     if (party.LeaderHero.Culture.StringId == TORConstants.Cultures.SYLVANIA ||
                         party.LeaderHero.Culture.StringId == TORConstants.Cultures.MOUSILLON)
                     {
+                        if (party.ActualClan.Kingdom.Settlements.AnyQ(x => x.IsTown))
+                        {
+                            return;
+                        }
+                        
                         if (party.LimitedPartySize > party.MemberRoster.TotalManCount + UndeadCountTowns)
                         {
                             var count = party.LeaderHero.HasAttribute("BloodDragon") ? UndeadCountVillages : UndeadCountTowns;

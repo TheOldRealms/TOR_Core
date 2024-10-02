@@ -320,6 +320,8 @@ namespace TOR_Core.CharacterDevelopment
             if (affectingAgent.Team == affectedAgent.Team) return 0;
             if (affectingAgent.IsEnemyOf(Agent.Main)) return 0;
 
+            if (affectedAgent.Team == Agent.Main.Team) return 0;
+
             if (!affectingAgent.IsMainAgent && affectingAgent.BelongsToMainParty() &&
                 !Hero.MainHero.HasCareerChoice("ForestStalkerKeystone")) return 0;
             
@@ -328,7 +330,7 @@ namespace TOR_Core.CharacterDevelopment
             
             if (affectingAgent != Agent.Main)
             {
-                explainedNumber.AddFactor(-0.9f);
+                explainedNumber.AddFactor(-0.95f);
             }
 
             if (Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone"))

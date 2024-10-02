@@ -101,10 +101,10 @@ namespace TOR_Core.Models
                             if (choice == null) return result;
                             var snowText = new TextObject("{=vLjgcdgB}Snow");
                             
-                            var t = result.GetLines().FirstOrDefaultQ(item => snowText.Value.Contains(item.name));
-                            if (t.name !=null)
+                            var snowEffect = result.GetLines().FirstOrDefaultQ(item => snowText.Value.Contains(item.name));
+                            if (snowEffect.name !=null)
                             {
-                                result.Add(-t.number, choice.BelongsToGroup.Name);
+                                result.Add(-snowEffect.number, choice.BelongsToGroup.Name);
                             }
                     }
                    

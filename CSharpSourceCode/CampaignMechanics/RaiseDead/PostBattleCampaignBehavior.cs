@@ -55,9 +55,9 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                        return;
                 }
 
-                var t = GetAthelLorenTreeSpiritUnits(mapEvent);
+                var treeSpiritUnits = GetAthelLorenTreeSpiritUnits(mapEvent);
 
-                foreach (var character in t)
+                foreach (var character in treeSpiritUnits)
                 {
                     PlayerEncounter.Current.RosterToReceiveLootMembers.AddToCounts(character,1);
                 }

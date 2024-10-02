@@ -650,8 +650,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
                         druchiiParty.Position2D = settlement.Position2D;
 
-                        var t = druchiiParty.MemberRoster.CloneRosterData();
-                        druchiiParty.MemberRoster.Add(t);
+                        var memberRosterCopy = druchiiParty.MemberRoster.CloneRosterData();
+                        druchiiParty.MemberRoster.Add(memberRosterCopy);
                     }
                 }
                 
@@ -840,9 +840,9 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         void TransferMoney(int factor, int favorPrice)
         {
-            var t = CalculateBasePrice();
+            var basePrice = CalculateBasePrice();
 
-            var revenue = t * factor;
+            var revenue = basePrice * factor;
             
             Hero.MainHero.ChangeHeroGold(revenue);
             Hero.MainHero.AddCultureSpecificCustomResource(-favorPrice);

@@ -70,7 +70,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, MapEventEnded);
             CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, MenuOpened);
             CampaignEvents.GameMenuOptionSelectedEvent.AddNonSerializedListener(this, ContinueTimeAfterLeftSettlementWhileEnlisted);
-            CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this,DailyRenownGain);
+            CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this,WeeklyRenownGain);
             CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this,SkillGain);
             CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this,LeaveKingdomEvent);
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnMobilePartyDestroyed);
@@ -112,13 +112,17 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             }
         }
 
-        private void DailyRenownGain()
+        private void WeeklyRenownGain()
         {
-            var gain = 1;
-            var clanTier = Hero.MainHero.Clan.Tier;
-            gain += clanTier;
-            
-            Hero.MainHero.Clan.AddRenown(gain);
+            if (Hero.MainHero.IsEnlisted())
+            {
+                var gain = 5;
+                var clanTier = Hero.MainHero.Clan.Tier;
+                gain += clanTier;
+                
+                Hero.MainHero.Clan.AddRenown(gain);
+            }
+
         }
         
         private void ContinueTimeAfterLeftSettlementWhileEnlisted(GameMenuOption obj)
@@ -132,9 +136,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private float GetEnlistingLordEventStrengthRatio(MapEvent mapEvent)
         {
-            var t = mapEvent.GetMapEventSide(BattleSideEnum.Attacker);
+            var attackerMapEventSide = mapEvent.GetMapEventSide(BattleSideEnum.Attacker);
             BattleSideEnum side;
-            if(t.Parties.Any(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party))
+            if(attackerMapEventSide.Parties.Any(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party))
             {
                 side = BattleSideEnum.Attacker;
             }

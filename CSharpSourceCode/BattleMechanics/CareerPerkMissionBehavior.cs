@@ -62,6 +62,10 @@ namespace TOR_Core.BattleMechanics
             
             if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HawkeyedPassive3"))
             {
+                if (Agent.Main != null && Agent.Main.GetComponent<AbilityComponent>().CareerAbility.ChargeLevel < 0.1f)
+                {
+                    return;
+                }
            
                 var timeRequest = new Mission.TimeSpeedRequest (0.60f, TimeRequestId);
                 Mission.Current.AddTimeSpeedRequest (timeRequest);
@@ -100,20 +104,31 @@ namespace TOR_Core.BattleMechanics
                 }
             }
 
-            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("StarfireEssencePassive4"))
+            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
-                CareerMissionVariables[2] ++;
-                
-                if (Hero.MainHero.HasCareerChoice("_eyeOfTheHunterPassive4"))
+                if(Hero.MainHero.HasCareerChoice("StarfireEssencePassive4"))
                 {
                     CareerMissionVariables[2] ++;
+                
+                    if (Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
+                    {
+                        CareerMissionVariables[2] ++;
+                    }
+                }
+                
+                if( Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
+                {
+                    CareerMissionVariables[0] = Mathf.Max(0, CareerMissionVariables[0] - 0.10f);
+                }
+
+                if (_zoomKeyEventStarted)
+                {
+                    var lose = 100;
+                    Agent.Main.GetComponent<AbilityComponent>().CareerAbility.AddCharge(-lose);
                 }
             }
             
-            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
-            {
-                CareerMissionVariables[0] = Mathf.Max(0, CareerMissionVariables[0] - 0.10f);
-            }
+            
 
             if (Mission.Current.IsSiegeBattle)
             {
@@ -134,10 +149,7 @@ namespace TOR_Core.BattleMechanics
                         }
                     }
                 }
-                
             }
-            
-            
         }
 
         public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
@@ -172,7 +184,7 @@ namespace TOR_Core.BattleMechanics
 
                     var hitCount = 6;
 
-                    if (Hero.MainHero.HasCareerChoice("_eyeOfTheHunterPassive4"))
+                    if (Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
                     {
                         hitCount /= 2;
                     }
@@ -189,7 +201,7 @@ namespace TOR_Core.BattleMechanics
                 {
                     CareerMissionVariables[0]++;
                     
-                    if (Hero.MainHero.HasCareerChoice("_eyeOfTheHunterPassive4"))
+                    if (Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
                     {
                         CareerMissionVariables[0] ++;
                     }
