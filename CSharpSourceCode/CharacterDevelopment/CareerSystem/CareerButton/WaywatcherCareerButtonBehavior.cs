@@ -83,6 +83,11 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             var arrow = _allArrows[i];
             var icon = GetArrowIconAsText(arrow);
             var price = Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI ? arrow.Price * 3 : arrow.Price;
+
+            if (price > Hero.MainHero.GetCultureSpecificCustomResourceValue())
+            {
+                continue;
+            }
             list.Add(new InquiryElement(arrow, new TextObject($"{{{icon}}} {arrow.Name}").ToString(), null, true, $"{arrow.Description}, {price}{Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText()}"));
         
         }

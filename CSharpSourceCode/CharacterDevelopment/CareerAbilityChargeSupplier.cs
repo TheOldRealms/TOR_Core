@@ -324,6 +324,9 @@ namespace TOR_Core.CharacterDevelopment
 
             if (!affectingAgent.IsMainAgent && affectingAgent.BelongsToMainParty() &&
                 !Hero.MainHero.HasCareerChoice("ForestStalkerKeystone")) return 0;
+
+            
+            chargeValue = Math.Min(150, chargeValue);
             
             
             var explainedNumber = new ExplainedNumber(chargeValue);
