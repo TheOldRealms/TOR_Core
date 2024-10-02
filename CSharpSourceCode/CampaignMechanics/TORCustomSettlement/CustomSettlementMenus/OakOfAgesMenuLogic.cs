@@ -432,10 +432,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         var toolTipText = toolTipDescription.Value;
         var failreasonStringBuilder = new StringBuilder();
 
-      
-
         args.Tooltip = toolTipDescription;
-
 
         if (minimumLevel > 0)
             if (Hero.MainHero.Level < minimumLevel)
@@ -465,7 +462,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             
             args.IsEnabled = false;
         }
-
 
         var resultText = new TextObject(toolTipText);
         resultText.SetTextVariable("UPGRADEFAILEDREASON", failreasonStringBuilder.ToString());
@@ -808,14 +804,14 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
                 if (upgrade != "")
                 {
-                    GameTexts.SetVariable("PARTYSIZEUPGRADECOST",PartySizeUpgradeCost * (numberOfUpgrades +1)+"{FORESTHARMONY}");
+                    GameTexts.SetVariable("PARTYSIZEUPGRADECOST", PartySizeUpgradeCost * (numberOfUpgrades + 1) + "{FORESTHARMONY}");
                 }
                 else
                 {
                     GameTexts.SetVariable("PARTYSIZEUPGRADECOST","");
                 }
                 
-                return DefaultUnlockOakUpgradeCondition(args, upgrade , PartySizeUpgradeCost,
+                return DefaultUnlockOakUpgradeCondition(args, upgrade , PartySizeUpgradeCost * (numberOfUpgrades + 1),
                     new TextObject("Increase party Size by 10%.{newline}{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
             },
             _ => UnlockOakUpgrade(GetCurrentUpdate("WEPartySizeUpgrade", out var numberOfUpgrades), PartySizeUpgradeCost * (1 + numberOfUpgrades)));
@@ -826,14 +822,14 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
                 var upgrade = GetCurrentUpdate("WEHealthUpgrade", out var numberOfUpgrades);
 
                 if (upgrade != "")
-                { 
-                    GameTexts.SetVariable("HEALTHUPGRADECOST",HealthUpgradeCost * (numberOfUpgrades +1)+"{FORESTHARMONY}");
+                {
+                    GameTexts.SetVariable("HEALTHUPGRADECOST", HealthUpgradeCost * (numberOfUpgrades + 1) + "{FORESTHARMONY}");
                 }
                 else
                 {
                     GameTexts.SetVariable("HEALTHUPGRADECOST","");
                 }
-                return DefaultUnlockOakUpgradeCondition(args, upgrade, HealthUpgradeCost,
+                return DefaultUnlockOakUpgradeCondition(args, upgrade, HealthUpgradeCost * (numberOfUpgrades + 1),
                     new TextObject("Increase maximum health by 10%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
             },
             _ => UnlockOakUpgrade(GetCurrentUpdate("WEHealthUpgrade", out var numberOfUpgrades), HealthUpgradeCost * (1 + numberOfUpgrades)));
@@ -844,14 +840,14 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
                 var upgrade = GetCurrentUpdate("WEGainUpgrade", out var numberOfUpgrades);
                 if (upgrade != "")
                 {
-                    GameTexts.SetVariable("GAINUPGRADECOST",GainUpgradeCost * (numberOfUpgrades +1)+"{FORESTHARMONY}");
+                    GameTexts.SetVariable("GAINUPGRADECOST", GainUpgradeCost * (numberOfUpgrades + 1) + "{FORESTHARMONY}");
                 }
                 else
                 {
                     GameTexts.SetVariable("GAINUPGRADECOST","");
                 }
                 
-                return DefaultUnlockOakUpgradeCondition(args, upgrade, GainUpgradeCost,
+                return DefaultUnlockOakUpgradeCondition(args, upgrade, GainUpgradeCost * (numberOfUpgrades + 1),
                     new TextObject("Increase the daily harmony gain from settlements by 20%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
             },
             _ => UnlockOakUpgrade(GetCurrentUpdate("WEGainUpgrade", out var numberOfUpgrades), GainUpgradeCost * (1 + numberOfUpgrades)));
