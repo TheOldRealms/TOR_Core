@@ -57,6 +57,11 @@ namespace TOR_Core.BattleMechanics
         private void ZoomKeyDownEvents()
         {
             if(_zoomKeyEventStarted) return;
+
+            if (Mission.Current.IsFriendlyMission)
+            {
+                return;
+            }
             
         
             
