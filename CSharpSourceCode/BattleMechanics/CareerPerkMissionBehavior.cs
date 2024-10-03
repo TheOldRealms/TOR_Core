@@ -22,9 +22,9 @@ namespace TOR_Core.BattleMechanics
     public class CareerPerkMissionBehavior : MissionLogic
     {
         private float _currentTime;
-        private readonly float _frequency=1f;
+        private readonly float _frequency = 1f;
         private bool _zoomKeyEventStarted;
-        private const int TimeRequestId =10001;
+        private const int TimeRequestId = 10001;
         public float[] CareerMissionVariables = new float[5];
         
         public override void AfterStart()
@@ -63,8 +63,6 @@ namespace TOR_Core.BattleMechanics
                 return;
             }
             
-        
-            
             if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HawkeyedPassive3"))
             {
                 if (Agent.Main != null && Agent.Main.GetComponent<AbilityComponent>().CareerAbility.ChargeLevel < 0.1f)
@@ -95,8 +93,8 @@ namespace TOR_Core.BattleMechanics
 
         private void TickEvents()
         {
-            
-            if (Agent.Main!=null&&Hero.MainHero.HasCareer(TORCareers.Necrarch))
+
+            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Necrarch))
             {
                 if (Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone"))
                 {

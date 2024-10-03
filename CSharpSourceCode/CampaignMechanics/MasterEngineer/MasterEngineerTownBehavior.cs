@@ -463,8 +463,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (!RunawayPartsQuest.IsOngoing) return false;
             if (Campaign.Current.CurrentConversationContext != ConversationContext.PartyEncounter) return false;
             if (!RunawayPartsQuest.RogueEngineerQuestPartIsActive()) return false;
-            var partner = CharacterObject.OneToOneConversationCharacter;
-            return partner != null && partner.Occupation == Occupation.Lord && partner.HeroObject.Template.StringId.Contains(RunawayPartsQuest.GetRogueEngineerTemplateID());
+            var partner = Hero.OneToOneConversationHero;
+            return partner != null && partner.Occupation == Occupation.Lord && partner.Template != null && partner.Template.StringId.Contains(RunawayPartsQuest.GetRogueEngineerTemplateID());
         }
 
         private void checkplayerengineerskillrequirements()
