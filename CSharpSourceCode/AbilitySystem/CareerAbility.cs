@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.Battle.CrosshairMissionBehavior;
@@ -158,7 +159,7 @@ namespace TOR_Core.AbilitySystem
             if (!IsActive)
             {
                 _currentCharge += amount;
-                _currentCharge = Math.Min(_maxCharge, _currentCharge);
+                _currentCharge = Mathf.Clamp(_currentCharge,0, _maxCharge);
             }
 
             if (_doubleUse) //remove doubleUse in case of special perks that allow for a "second" usage.
