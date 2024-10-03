@@ -69,7 +69,7 @@ namespace TOR_Core.Missions
         public override void OnMissileCollisionReaction(Mission.MissileCollisionReaction collisionReaction, Agent attackerAgent, Agent attachedAgent, sbyte attachedBoneIndex)
         {
             var missile = Mission.Missiles.FirstOrDefault(x => x.ShooterAgent == attackerAgent);
-            if (missile != null) _missiles.Enqueue(missile);
+            if (missile != null && !_missiles.Contains(missile)) _missiles.Enqueue(missile);
         }
 
         public void StartMatch(TournamentMatch match, bool isLastRound)
