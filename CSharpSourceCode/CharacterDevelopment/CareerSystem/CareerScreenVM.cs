@@ -23,7 +23,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             _closeAction = closeAction;
             _currentCareerVM = new CareerObjectVM(Hero.MainHero.GetCareer()); 
-            HasBattlePrayers = CareerHelper.IsPriestCareer();
+            HasBattlePrayers = CareerHelper.IsPriestCareer(Hero.MainHero.GetCareer());
         }
 
         private void ExecuteClose()

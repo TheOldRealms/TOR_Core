@@ -117,13 +117,9 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                    !Clan.PlayerClan.IsUnderMercenaryService &&
                    Clan.PlayerClan.Tier >= 2)
                 {
-                    var career = Hero.MainHero.GetCareer();
-                    if (career == TORCareers.Mercenary ||
-                        career == TORCareers.BlackGrailKnight)
-                    { 
-                        return Hero.MainHero.Clan.Kingdom.MapFaction == partner.MapFaction; 
-                    }
-                    
+
+                    return CanBeVampire();
+
                 }
                 return false;
             }
@@ -156,17 +152,16 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                    !Clan.PlayerClan.IsUnderMercenaryService &&
                    Clan.PlayerClan.Tier >= 4)
                 {
-                    var career = Hero.MainHero.GetCareer();
-                    if (career == TORCareers.Mercenary ||
-                        career == TORCareers.Necromancer)
-                    { 
-                        return !Hero.MainHero.IsVampire();
-                    }
-                    
-                    
+
+                    return CanBeVampire();
+
+
                 }
                 return false;
             }
+
+
+            
 
             
             void OnBloodKissRecieved()
@@ -190,7 +185,24 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                  switchCareer,
                 () => inquiryDeclined=true);
             InformationManager.ShowInquiry(inquiry);
+        } 
+        
+        private bool CanBeVampire()
+        {
+            if (Hero.MainHero.CharacterObject.IsElf())
+            {
+                return false;
+            }
+            
+            var career = Hero.MainHero.GetCareer();
+
+            if (CareerHelper.IsPriestCareer(career))
+                return false;
+                
+            
+            return !Hero.MainHero.IsVampire();
         }
+        
         public override void SyncData(IDataStore dataStore) { }
     }
 }

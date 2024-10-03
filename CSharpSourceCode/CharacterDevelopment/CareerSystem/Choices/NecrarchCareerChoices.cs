@@ -303,7 +303,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 Hero.MainHero.Culture = mousillonCulture;
             }
             
-            if (playerHero.Culture.StringId == "empire")
+            if (playerHero.Culture.StringId == TORConstants.Cultures.EMPIRE)
             {
                 CultureObject sylvaniaCulture= MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.Cultures.SYLVANIA);
                 Hero.MainHero.Culture = sylvaniaCulture;

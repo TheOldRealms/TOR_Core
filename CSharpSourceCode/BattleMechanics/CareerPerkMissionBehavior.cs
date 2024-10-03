@@ -124,7 +124,7 @@ namespace TOR_Core.BattleMechanics
                     CareerMissionVariables[0] = Mathf.Max(0, CareerMissionVariables[0] - 0.10f);
                 }
 
-                if (_zoomKeyEventStarted)
+                if (_zoomKeyEventStarted && Hero.MainHero.HasCareerChoice("HawkeyedPassive3"))
                 {
                     var lose = 100;
                     Agent.Main.GetComponent<AbilityComponent>().CareerAbility.AddCharge(-lose);

@@ -433,9 +433,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             HeadShot
         }
 
-        public static bool IsPriestCareer()
+        public static bool IsPriestCareer(CareerObject career)
         {
-            var career = Hero.MainHero.GetCareer();
 
             return career == TORCareers.WarriorPriest ||
                    career == TORCareers.WarriorPriestUlric ||

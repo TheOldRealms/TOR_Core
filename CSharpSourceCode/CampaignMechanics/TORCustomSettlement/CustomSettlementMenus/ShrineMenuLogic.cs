@@ -116,7 +116,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             args.IsEnabled = false;
         }
 
-        if (CareerHelper.IsPriestCareer() && CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer()) != component.Religion.StringId)
+        if (CareerHelper.IsPriestCareer(Hero.MainHero.GetCareer()) && CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer()) != component.Religion.StringId)
         {
             var careerGod = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
             var god = ReligionObject.All.FirstOrDefault(x => x.StringId == careerGod);
