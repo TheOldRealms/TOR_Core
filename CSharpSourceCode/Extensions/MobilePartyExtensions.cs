@@ -102,11 +102,15 @@ namespace TOR_Core.Extensions
         public static List<Hero> GetMemberHeroes(this MobileParty party)
         {
             List<Hero> heroes = [];
-            foreach (var member in party.MemberRoster.GetTroopRoster())
+            var roster = party.MemberRoster?.GetTroopRoster();
+            if (roster != null)
             {
-                if (member.Character.HeroObject != null)
+                foreach (var member in roster)
                 {
-                    heroes.Add(member.Character.HeroObject);
+                    if (member.Character?.HeroObject != null)
+                    {
+                        heroes.Add(member.Character.HeroObject);
+                    }
                 }
             }
             return heroes;
