@@ -786,6 +786,11 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
+
+        public override void OnEarlyAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
+        {
+            if (affectedAgent == Agent.Main) SlowDownTime(false);
+        }
     }
 
     public enum AbilityModeState
