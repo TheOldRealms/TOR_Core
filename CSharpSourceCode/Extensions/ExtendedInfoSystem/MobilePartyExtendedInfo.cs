@@ -12,15 +12,17 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
     {
         [SaveableField(0)] public string CurrentBlessingStringId = null;
         [SaveableField(1)] public int CurrentBlessingRemainingDuration = -1;
-        [SaveableField(2)] public Dictionary<string, List<string>> TroopAttributes = new Dictionary<string, List<string>>();
+        [SaveableField(2)] public Dictionary<string, List<string>> TroopAttributes = [];
         
         public void AddTroopAttribute(CharacterObject troop, string attribute)
         {
-            if (TroopAttributes == null) TroopAttributes = new Dictionary<string, List<string>>();
+            TroopAttributes ??= [];
             if (!TroopAttributes.TryGetValue(troop.StringId, out var entryList))
             {
-                var list = new List<string>();
-                list.Add(attribute);
+                var list = new List<string>
+                {
+                    attribute
+                };
                 TroopAttributes.Add(troop.StringId, list);
             }
             else

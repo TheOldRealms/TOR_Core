@@ -45,16 +45,16 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, QuarterDailyTick);
-            CampaignEvents.PlayerUpgradedTroopsEvent.AddNonSerializedListener(this,TroopUpgraded);
+            CampaignEvents.PlayerUpgradedTroopsEvent.AddNonSerializedListener(this, TroopUpgraded);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, BattleEnd);
-            CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TroopRecruted);
+            CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TroopRecruited);
             
             CustomResourceManager.RegisterEvents();
         }
 
-        private void TroopRecruted(Hero hero, Settlement arg2, Hero arg3, CharacterObject arg4, int arg5)
+        private void TroopRecruited(Hero hero, Settlement arg2, Hero arg3, CharacterObject arg4, int arg5)
         {
-            if(hero == null) return;
+            if (hero == null) return;
             if (hero.PartyBelongedTo.Party != null)
             {
                 ValidatePartyInfos(hero.PartyBelongedTo);
@@ -67,7 +67,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
             foreach (var party in parties)
             {
-                if(party.Party.MobileParty==null) continue;
+                if (party.Party.MobileParty == null) continue;
                 
                 ValidatePartyInfos(party.Party.MobileParty);
             }
@@ -75,24 +75,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void TroopUpgraded(CharacterObject from, CharacterObject to, int count)
         {
-            if(!_partyInfos.TryGetValue(MobileParty.MainParty.StringId, out var info)) return;
-            
-            if (!PartyBase.MainParty.MemberRoster.GetTroopRoster().Any(x => x.Character.StringId == from.StringId))
-            {
-                var characterAttributes = info.TroopAttributes.FirstOrDefault(x=> x.Key == from.StringId).Value;
-                if (characterAttributes != null)
-                {
-                    if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
-                    {
-                        CareerHelper.RemovePowerstone(characterAttributes);
-                    }
-                    else
-                    {
-                        info.TroopAttributes.Remove(from.StringId);
-                    }
-                }
-                
-            }
+            ValidatePartyInfos(MobileParty.MainParty);
         }
 
         private static void QuarterDailyTick(MobileParty mobileParty)
@@ -146,7 +129,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             
             if (partyInfo.TroopAttributes == null)
             {
-                partyInfo.TroopAttributes = new Dictionary<string, List<string>>();
+                partyInfo.TroopAttributes = [];
                 return;
             }
 
@@ -158,14 +141,12 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CareerHelper.RemoveCareerRelatedTroopAttributes(party, troopAttribute, partyInfo);
                     partyInfo.TroopAttributes.Remove(troopAttribute);
-
-                  
                 }
             }
 
             foreach (var element in roster.Where(element => !partyInfo.TroopAttributes.ContainsKey(element.Character.StringId)))
             {
-                partyInfo.TroopAttributes.Add(element.Character.StringId, new List<string>());
+                partyInfo.TroopAttributes.Add(element.Character.StringId, []);
             }
         }
 
