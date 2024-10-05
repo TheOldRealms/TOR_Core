@@ -4590,7 +4590,7 @@
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
       <Location id="center" scene_name="city_building_eonir" scene_name_1="TOR_eonir_city_001" scene_name_2="TOR_eonir_city_001" scene_name_3="TOR_eonir_city_001" />
-      <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
+      <Location id="arena" scene_name="TOR_eonir_arena_001" />
       <Location id="tavern" scene_name="TOR_eonir_tavern_001" />
       <Location id="lordshall" scene_name_1="TOR_eonir_keep_001" scene_name_2="TOR_eonir_keep_001" scene_name_3="TOR_eonir_keep_001" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />

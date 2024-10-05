@@ -173,4 +173,40 @@
         </Equipments>
     </NPCCharacter>
 
+    <!--Eonir SETS-->
+    <NPCCharacter id="tournament_template_eonir_one_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.eonir" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+        <face>
+            <face_key_template value="BodyProperty.male_wood_elf" />
+        </face>
+        <Equipments>
+            <EquipmentSet id="tor_eonir_tournament_template_one_participant_v1" />
+            <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+        </Equipments>
+    </NPCCharacter>
+
+    <NPCCharacter id="tournament_template_eonir_two_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.eonir" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+        <face>
+            <face_key_template value="BodyProperty.male_wood_elf" />
+        </face>
+        <Equipments>
+            <EquipmentSet id="tor_eonir_tournament_template_two_participant_v1" />
+            <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+        </Equipments>
+    </NPCCharacter>
+
+    <NPCCharacter id="tournament_template_eonir_four_participant_set_v1" default_group="Infantry" name="{=!}dummy" culture="Culture.eonir" is_hero="false" occupation="Special" skill_template="SkillSet.tow_skills_level11">
+        <face>
+            <face_key_template value="BodyProperty.male_wood_elf" />
+        </face>
+        <Equipments>
+            <EquipmentSet id="tor_eonir_tournament_template_four_participant_v1" />
+            <!-- dont change this. It does not matter whats in here, but it is important that it exists. -->
+            <EquipmentSet id="npc_wanderer_equipment_template_empire" civilian="true" />
+        </Equipments>
+    </NPCCharacter>
+
+
+
 </NPCCharacters>

@@ -2529,6 +2529,80 @@
       <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
       <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
     </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item1" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_eonir_tournament_template_one_participant_v1" culture="Culture.eonir">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item2" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item2" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_eonir_tournament_template_two_participant_v1" culture="Culture.eonir">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_he_weapon_spearmen_spear_001" />
+      <Equipment slot="Item1" id="Item.studded_bound_kite_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_he_weapon_spearmen_spear_001" />
+      <Equipment slot="Item1" id="Item.studded_bound_kite_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item2" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item2" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_eonir_tournament_template_four_participant_v1" culture="Culture.eonir">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_he_weapon_2h_sword_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_he_weapon_2h_sword_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_he_weapon_spearmen_spear_001" />
+      <Equipment slot="Item1" id="Item.studded_bound_kite_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_he_weapon_spearmen_spear_001" />
+      <Equipment slot="Item1" id="Item.studded_bound_kite_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_he_weapon_spearmen_spear_001" />
+      <Equipment slot="Item1" id="Item.studded_bound_kite_shield" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_he_weapon_spearmen_spear_001" />
+      <Equipment slot="Item1" id="Item.studded_bound_kite_shield" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item2" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_weapon_sword_002" />
+      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_013" />
+      <Equipment slot="Item2" id="Item.tor_we_tournament_arrows" />
+    </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_de_conscript_template" culture="Culture.druchii">
     <EquipmentSet>
@@ -4711,15 +4785,15 @@
   <EquipmentRoster id="tor_eo_cityborn_militia_template" culture="Culture.eonir">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_009" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item1" id="Item.woodland_longbow" />
+      <Equipment slot="Item2" id="Item.heavy_steppe_arrows" />
       <Equipment slot="Body" id="Item.tor_he_body_armour_spearmen_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_we_weapon_sword_001" />
-      <Equipment slot="Item1" id="Item.tor_we_weapon_bow_009" />
-      <Equipment slot="Item2" id="Item.bodkin_arrows_b" />
+      <Equipment slot="Item1" id="Item.woodland_longbow" />
+      <Equipment slot="Item2" id="Item.heavy_steppe_arrows" />
       <Equipment slot="Body" id="Item.tor_he_body_armour_spearmen_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_gladeguard_001" />
     </EquipmentSet>
@@ -11276,6 +11350,62 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_master_engineer_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_shield_ostland_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_4_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_005" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_greatsword_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_003" />
+      <Equipment slot="Gloves" id="Item.steppe_leather_vambraces" />
+      <Equipment slot="Leg" id="Item.reinforced_suede_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_4_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_005" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_greatsword_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_003" />
+      <Equipment slot="Gloves" id="Item.steppe_leather_vambraces" />
+      <Equipment slot="Leg" id="Item.reinforced_suede_boots" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.vlandia_sword_4_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_005" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_morion_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_003" />
+      <Equipment slot="Gloves" id="Item.steppe_leather_vambraces" />
+      <Equipment slot="Leg" id="Item.reinforced_suede_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.vlandia_sword_4_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_005" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_morion_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_003" />
+      <Equipment slot="Gloves" id="Item.steppe_leather_vambraces" />
+      <Equipment slot="Leg" id="Item.reinforced_suede_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ostland_blackguard_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_thsword_greatsword_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_general_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_general_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_marius_leitdorf" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_general_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_general_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_thsword_greatsword_002" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_general_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_general_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_marius_leitdorf" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_general_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_general_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_sternieste_skeleton_template" culture="Culture.khuzait">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_mace_skeleton_004" />
@@ -11826,6 +11956,218 @@
       <Equipment slot="Leg" id="Item.strapped_shoes" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_bastonne_squire_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_squire_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.red_coat_over_mail" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_squire_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.red_coat_over_mail" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_bastonne_beastslayer_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_halberd_006" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_006" />
+      <Equipment slot="Head" id="Item.tor_neutral_head_helm_002" />
+      <Equipment slot="Body" id="Item.red_coat_over_mail" />
+      <Equipment slot="Cape" id="Item.pauldron_over_scale_armor" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_halberd_006" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_shield_006" />
+      <Equipment slot="Head" id="Item.tor_neutral_head_helm_002" />
+      <Equipment slot="Body" id="Item.red_coat_over_mail" />
+      <Equipment slot="Cape" id="Item.pauldron_over_scale_armor" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_questing_knight_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_carcasonne_mountainguard_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.northern_2hsword_t4" />
+      <Equipment slot="Head" id="Item.kettle_helmet_with_mail" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Leg" id="Item.mail_chausses" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.northern_2hsword_t4" />
+      <Equipment slot="Head" id="Item.kettle_helmet_with_mail" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Leg" id="Item.mail_chausses" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_kharmourts_blade_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.battania_2hsword_5_t5" />
+      <Equipment slot="Head" id="Item.peaked_helmet_over_mail_coif" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.mail_mitten" />
+      <Equipment slot="Leg" id="Item.mail_chausses" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.battania_2hsword_5_t5" />
+      <Equipment slot="Head" id="Item.peaked_helmet_over_mail_coif" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_questing_knight_002" />
+      <Equipment slot="Gloves" id="Item.mail_mitten" />
+      <Equipment slot="Leg" id="Item.mail_chausses" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.battania_2hsword_5_t5" />
+      <Equipment slot="Head" id="Item.kettle_hat_over_mail_coif" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
+      <Equipment slot="Cape" id="Item.empire_plate_armor_shoulder_b" />
+      <Equipment slot="Gloves" id="Item.mail_mitten" />
+      <Equipment slot="Leg" id="Item.mail_chausses" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.battania_2hsword_5_t5" />
+      <Equipment slot="Head" id="Item.kettle_hat_over_mail_coif" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_knight_001" />
+      <Equipment slot="Cape" id="Item.empire_plate_armor_shoulder_b" />
+      <Equipment slot="Gloves" id="Item.mail_mitten" />
+      <Equipment slot="Leg" id="Item.mail_chausses" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_anguille_sailor_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.celtic_throwing_dagger" />
+      <Equipment slot="Item1" id="Item.peasant_hatchet_1_t1" />
+      <Equipment slot="Head" id="Item.padded_cap" />
+      <Equipment slot="Body" id="Item.leather_coat_over_cloth" />
+      <Equipment slot="Cape" id="Item.battania_scarf_a" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.celtic_throwing_dagger" />
+      <Equipment slot="Item1" id="Item.peasant_hatchet_1_t1" />
+      <Equipment slot="Head" id="Item.padded_cap" />
+      <Equipment slot="Body" id="Item.leather_coat_over_cloth" />
+      <Equipment slot="Cape" id="Item.battania_scarf_a" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.celtic_throwing_dagger" />
+      <Equipment slot="Item1" id="Item.seax" />
+      <Equipment slot="Head" id="Item.imperial_leather_coif" />
+      <Equipment slot="Body" id="Item.nordic_sloven" />
+      <Equipment slot="Cape" id="Item.battania_scarf_b" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.celtic_throwing_dagger" />
+      <Equipment slot="Item1" id="Item.seax" />
+      <Equipment slot="Head" id="Item.imperial_leather_coif" />
+      <Equipment slot="Body" id="Item.nordic_sloven" />
+      <Equipment slot="Cape" id="Item.battania_scarf_b" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.celtic_throwing_dagger" />
+      <Equipment slot="Item1" id="Item.seax" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.fur_trimmed_tunic" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.celtic_throwing_dagger" />
+      <Equipment slot="Item1" id="Item.seax" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.fur_trimmed_tunic" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_corduins_mariners_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.generic_javelin_1_t3" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_005" />
+      <Equipment slot="Body" id="Item.imperial_padded_cloth" />
+      <Equipment slot="Cape" id="Item.a_aserai_scale_b_shoulder_a" />
+      <Equipment slot="Gloves" id="Item.lordly_padded_mitten" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.generic_javelin_1_t3" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_005" />
+      <Equipment slot="Body" id="Item.imperial_padded_cloth" />
+      <Equipment slot="Cape" id="Item.a_aserai_scale_b_shoulder_a" />
+      <Equipment slot="Gloves" id="Item.lordly_padded_mitten" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.generic_javelin_1_t3" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_002" />
+      <Equipment slot="Body" id="Item.imperial_padded_cloth" />
+      <Equipment slot="Cape" id="Item.a_aserai_scale_b_shoulder_a" />
+      <Equipment slot="Gloves" id="Item.lordly_padded_mitten" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.generic_javelin_1_t3" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_002" />
+      <Equipment slot="Body" id="Item.imperial_padded_cloth" />
+      <Equipment slot="Cape" id="Item.a_aserai_scale_b_shoulder_a" />
+      <Equipment slot="Gloves" id="Item.lordly_padded_mitten" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_corduins_knightly_mariners_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.western_javelin_3_t4" />
+      <Equipment slot="Item2" id="Item.western_javelin_3_t4" />
+      <Equipment slot="Head" id="Item.kettle_hat_over_padded_coif" />
+      <Equipment slot="Body" id="Item.imperial_mail_vest" />
+      <Equipment slot="Cape" id="Item.desert_scale_shoulders" />
+      <Equipment slot="Gloves" id="Item.battania_warlord_bracers" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.western_javelin_3_t4" />
+      <Equipment slot="Item2" id="Item.western_javelin_3_t4" />
+      <Equipment slot="Head" id="Item.kettle_hat_over_padded_coif" />
+      <Equipment slot="Body" id="Item.imperial_mail_vest" />
+      <Equipment slot="Cape" id="Item.desert_scale_shoulders" />
+      <Equipment slot="Gloves" id="Item.battania_warlord_bracers" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.western_javelin_3_t4" />
+      <Equipment slot="Item2" id="Item.western_javelin_3_t4" />
+      <Equipment slot="Head" id="Item.kettle_helmet_over_arming_coif" />
+      <Equipment slot="Body" id="Item.battania_woodland_chainmail" />
+      <Equipment slot="Cape" id="Item.desert_scale_shoulders" />
+      <Equipment slot="Gloves" id="Item.battania_warlord_bracers" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.billhook_polearm_t2" />
+      <Equipment slot="Item1" id="Item.western_javelin_3_t4" />
+      <Equipment slot="Item2" id="Item.western_javelin_3_t4" />
+      <Equipment slot="Head" id="Item.kettle_helmet_over_arming_coif" />
+      <Equipment slot="Body" id="Item.battania_woodland_chainmail" />
+      <Equipment slot="Cape" id="Item.desert_scale_shoulders" />
+      <Equipment slot="Gloves" id="Item.battania_warlord_bracers" />
+      <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_he_seaelf_militia_template" culture="Culture.asur">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.sturgia_noble_sword_2_t5" />
@@ -11892,6 +12234,22 @@
       <Equipment slot="Cape" id="Item.tor_he_shoulder_cape_whitelion_001" />
       <Equipment slot="Gloves" id="Item.tor_he_arm_bracers_whitelion_001" />
       <Equipment slot="Leg" id="Item.tor_he_leg_boots_whitelion_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_loec_trickster_template" culture="Culture.battania">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_we_wildrider_spear_001" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_dancer_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_sister_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_sister_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_we_wildrider_spear_001" />
+      <Equipment slot="Head" id="Item.tor_we_head_mask_eternalguard_001" />
+      <Equipment slot="Body" id="Item.tor_we_body_armor_dancer_001" />
+      <Equipment slot="Gloves" id="Item.tor_we_arm_bracers_sister_001" />
+      <Equipment slot="Leg" id="Item.tor_we_leg_boots_sister_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_stir_river_scout_template" culture="Culture.empire">
@@ -12292,6 +12650,166 @@
       <Equipment slot="Cape" id="Item.armored_bearskin" />
       <Equipment slot="Gloves" id="Item.highland_gloves" />
       <Equipment slot="Leg" id="Item.wrapped_leather_boots" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_hochland_scout_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_arquebus_002" />
+      <Equipment slot="Item1" id="Item.vlandia_sword_1_t2" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_arquebus_002" />
+      <Equipment slot="Item1" id="Item.vlandia_sword_1_t2" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_hochland_longrifle_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_001" />
+      <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_knight_003" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_cannon_crew_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_cannon_crew_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_001" />
+      <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_knight_003" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_cannon_crew_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_cannon_crew_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_cannon_crew_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_hergig_jaegerkorps_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_002" />
+      <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pistolier_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_003" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_cannon_crew_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_002" />
+      <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pistolier_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_003" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_cannon_crew_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_004" />
+      <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pistolier_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_cannon_crew_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_longrifle_004" />
+      <Equipment slot="Item1" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item2" id="Item.tor_empire_weapon_sword_reiksguard_circle_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_pistolier_002" />
+      <Equipment slot="Body" id="Item.tor_empire_body_undercloth_statetroop_004" />
+      <Equipment slot="Cape" id="Item.tor_empire_body_breastplate_statetrooper_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_cannon_crew_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_cannon_crew_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_gundermans_surefire_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_handgun_001" />
+      <Equipment slot="Item1" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
+      <Equipment slot="Body" id="Item.kilt_over_plated_leather" />
+      <Equipment slot="Gloves" id="Item.highland_gloves" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_gun_handgun_001" />
+      <Equipment slot="Item1" id="Item.vlandia_sword_3_t4" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_burgonet_002" />
+      <Equipment slot="Body" id="Item.kilt_over_plated_leather" />
+      <Equipment slot="Gloves" id="Item.highland_gloves" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_pistolier_003" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_klumpf_buccaneers_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.khuzait_noble_sword_1_t5" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_handgun_001" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.studded_round_shield" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.khuzait_noble_sword_1_t5" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_handgun_001" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.studded_round_shield" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_gauntlet_greatsword_002" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.ridged_sabre_sword_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_handgun_001" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.studded_round_shield" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_002" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.ridged_sabre_sword_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_handgun_001" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.studded_round_shield" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_woodsman_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_greatsword_002" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.khuzait_sword_5_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_handgun_001" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.studded_round_shield" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.khuzait_sword_5_t4" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_gun_handgun_001" />
+      <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_musket_ball" />
+      <Equipment slot="Item3" id="Item.studded_round_shield" />
+      <Equipment slot="Head" id="Item.tor_empire_head_hat_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_free_company_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_plate_001" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_ror_maisontaal_cultist_template" culture="Culture.vlandia">
@@ -13036,6 +13554,154 @@
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_lord_002" />
       <Equipment slot="Horse" id="Item.tor_empire_mount_demigryph_005" />
       <Equipment slot="HorseHarness" id="tor_empire_mountarmor_ror_demigryph_armor_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_lyonesse_knighterrant_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_knight_errant_001" />
+      <Equipment slot="Item2" id="Item.vlandia_sword_5_t5" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.white_coat_over_mail" />
+      <Equipment slot="Cape" id="Item.battanian_chainmail_shoulder_b" />
+      <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_003" />
+      <Equipment slot="Horse" id="Item.noble_horse_battania" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_lance_jousting_001" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_knight_errant_001" />
+      <Equipment slot="Item2" id="Item.vlandia_sword_5_t5" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_003" />
+      <Equipment slot="Body" id="Item.white_coat_over_mail" />
+      <Equipment slot="Cape" id="Item.battanian_chainmail_shoulder_b" />
+      <Equipment slot="Gloves" id="Item.lordly_mail_mitten" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_empire_knight_003" />
+      <Equipment slot="Horse" id="Item.noble_horse_battania" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_knight_lionhearted_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_007" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_002" />
+      <Equipment slot="Item2" id="Item.vlandia_noble_sword_1_t5" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_greathelm_001" />
+      <Equipment slot="Body" id="Item.coat_of_plates_over_mail" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_007" />
+      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_kotr_002" />
+      <Equipment slot="Item2" id="Item.vlandia_noble_sword_1_t5" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_greathelm_001" />
+      <Equipment slot="Body" id="Item.coat_of_plates_over_mail" />
+      <Equipment slot="Cape" id="Item.tor_bretonnian_shoulder_pauldron_knight_003" />
+      <Equipment slot="Gloves" id="Item.tor_bretonnian_arm_gauntlet_kotr_001" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_kotr_001" />
+      <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.tor_bret_mountarmor_horsearmor_005" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_brettonian_mounted_bowman_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.mountain_hunting_bow" />
+      <Equipment slot="Item1" id="Item.range_arrows" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_sword_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_006" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_001" />
+      <Equipment slot="Cape" id="Item.hood" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Horse" id="Item.battania_horse" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.mountain_hunting_bow" />
+      <Equipment slot="Item1" id="Item.range_arrows" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_sword_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_006" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_001" />
+      <Equipment slot="Cape" id="Item.hood" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Horse" id="Item.battania_horse" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.mountain_hunting_bow" />
+      <Equipment slot="Item1" id="Item.range_arrows" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_sword_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_004" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Horse" id="Item.battania_horse" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.mountain_hunting_bow" />
+      <Equipment slot="Item1" id="Item.range_arrows" />
+      <Equipment slot="Item2" id="Item.tor_bretonnia_weapon_sword_002" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_004" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_001" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Horse" id="Item.battania_horse" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_warden_montfort_template" culture="Culture.vlandia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.steppe_heavy_bow" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.range_arrows" />
+      <Equipment slot="Item3" id="Item.range_arrows" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_002" />
+      <Equipment slot="Cape" id="Item.hood" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Horse" id="Item.noble_horse_battania" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.steppe_heavy_bow" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.range_arrows" />
+      <Equipment slot="Item3" id="Item.range_arrows" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_001" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_002" />
+      <Equipment slot="Cape" id="Item.hood" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Horse" id="Item.noble_horse_battania" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.steppe_heavy_bow" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.range_arrows" />
+      <Equipment slot="Item3" id="Item.range_arrows" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_005" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_004" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Horse" id="Item.noble_horse_battania" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.steppe_heavy_bow" />
+      <Equipment slot="Item1" id="Item.tor_bretonnia_weapon_sword_002" />
+      <Equipment slot="Item2" id="Item.range_arrows" />
+      <Equipment slot="Item3" id="Item.range_arrows" />
+      <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_005" />
+      <Equipment slot="Body" id="Item.tor_bretonnia_body_armor_manatarms_004" />
+      <Equipment slot="Cape" id="Item.empire_cape_a" />
+      <Equipment slot="Leg" id="Item.tor_bretonnian_leg_boots_manatarms_001" />
+      <Equipment slot="Horse" id="Item.noble_horse_battania" />
+      <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_chaos_cult_acolyte_template" culture="Culture.chaos_culture">

@@ -149,7 +149,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializeKeyStones()
     {
         _wayWatcherRoot.Initialize(CareerID,
-            "Kurnous, Lord of the Hunt, blesses this fatal shot to travel straight through the heart of the enemy. This missile attack will seek out its target and trigger an explosion upon impact. With every skill point in Archery, the radius increases.",
+            "Kurnous, Lord of the Hunt, blesses this fatal shot to travel straight through the heart of the enemy. This missile attack will seek out its target and trigger an explosion upon impact. With every skill point in Archery, the radius increases. For charging ability deal 1200 damage points with bows. Each Arrow charges a maximum of 150 points",
             null, true, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new()

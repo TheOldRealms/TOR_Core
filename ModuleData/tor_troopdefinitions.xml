@@ -3694,6 +3694,82 @@
       <EquipmentSet id="tor_ror_altdorf_company_sergeant_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_ror_hochland_scout" default_group="infantry" level="21" name="{=str_tor_ror_hochland_scout}Hochland Scout" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_hochland_longrifle" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_hochland_scout_template" />
+      <EquipmentSet id="tor_hochland_scout_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_hochland_longrifle" default_group="infantry" level="26" name="{=str_tor_ror_hochland_longrifle}Hochland Long Rifle" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_hergig_jaegerkorps" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_hochland_longrifle_template" />
+      <EquipmentSet id="tor_hochland_longrifle_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_hergig_jaegerkorps" default_group="infantry" level="36" name="{=str_tor_ror_hergig_jaegerkorps}Hergig Jaegerkorps Marksman" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level36">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_hergig_jaegerkorps_template" />
+      <EquipmentSet id="tor_hergig_jaegerkorps_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_ostland_shield" default_group="infantry" level="16" name="{=str_tor_ror_ostland_shield}Shield of Ostland" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_ostland_blackguard" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_shield_ostland_template" />
+      <EquipmentSet id="tor_shield_ostland_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_ostland_blackguard" default_group="infantry" level="41" name="{=str_tor_ror_ostland_blackguard}Ostland black guard" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level41">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_ostland_blackguard_template" />
+      <EquipmentSet id="tor_ostland_blackguard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_gundermans_surefire" default_group="infantry" level="26" name="{=str_tor_ror_gundermans_surefire}Gunderman's surefire" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_gundermans_surefire_template" />
+      <EquipmentSet id="tor_gundermans_surefire_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_klumpfs_buccaneer" default_group="infantry" level="26" name="{=str_tor_ror_klumpfs_buccaneer}Van Klumpf Buccaneer" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_empire" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_klumpf_buccaneers_template" />
+      <EquipmentSet id="tor_klumpf_buccaneers_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_ror_sternieste_skeleton" default_group="infantry" level="16" name="{=str_tor_ror_sternieste_skeleton}Castle Sternieste Skeleton" occupation="Soldier" culture="Culture.khuzait" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true" race="skeleton">
     <face>
       <face_key_template value="BodyProperty.skeleton" />
@@ -3884,6 +3960,138 @@
     <Equipments>
       <EquipmentSet id="tor_ror_bergerac_bowman_template" />
       <EquipmentSet id="tor_ror_bergerac_bowman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_anguille_sailor" default_group="infantry" level="11" name="{=str_tor_ror_anguille_sailor}L'anguille Sailor" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level11" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_corduin_mariner" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_anguille_sailor_template" />
+      <EquipmentSet id="tor_anguille_sailor_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_corduin_mariner" default_group="infantry" level="21" name="{=str_tor_ror_corduin_mariner}Corduin's Mariner" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_corduin_knightly_mariner" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_corduins_mariners_template" />
+      <EquipmentSet id="tor_corduins_mariners_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_corduin_knightly_mariner" default_group="infantry" level="26" name="{=str_tor_ror_corduin_knightly_mariner}Corduin's Knightly Mariner" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_corduins_knightly_mariners_template" />
+      <EquipmentSet id="tor_corduins_knightly_mariners_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_carcasonne_mountain_guard" default_group="infantry" level="16" name="{=str_tor_ror_carcasonne_mountain_guard}Carcasonne Mountain guard" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_kharmourts_blades" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_carcasonne_mountainguard_template" />
+      <EquipmentSet id="tor_carcasonne_mountainguard_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_kharmourts_blades" default_group="infantry" level="26" name="{=str_tor_ror_kharmourts_blades}Kharmourt's Blades" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_kharmourts_blade_template" />
+      <EquipmentSet id="tor_kharmourts_blade_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_br_mounted_bowman" default_group="cavalry" level="21" name="{=str_tor_ror_br_mounted_bowman}Brettonian Mounted Bowman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_warden_montfort" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_brettonian_mounted_bowman_template" />
+      <EquipmentSet id="tor_brettonian_mounted_bowman_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_warden_montfort" default_group="cavalry" level="26" name="{=str_tor_ror_warden_montfort}Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_warden_montfort_template" />
+      <EquipmentSet id="tor_warden_montfort_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_bastonne_squire" default_group="infantry" level="26" name="{=str_tor_ror_bastonne_squire}Bastonne Squire" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_bastonne_beastslayer" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_bastonne_squire_template" />
+      <EquipmentSet id="tor_bastonne_squire_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_bastonne_beastslayer" default_group="infantry" level="31" name="{=str_tor_ror_bastonne_beastslayer}Beastslayer of Bastonne" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level31">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_bastonne_beastslayer_template" />
+      <EquipmentSet id="tor_bastonne_beastslayer_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_lyonesse_knight_errant" default_group="cavalry" level="21" name="{=str_tor_ror_lyonesse_knight_errant}Lyonesse Knight Errant" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_ror_lionhearted_knight" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_lyonesse_knighterrant_template" />
+      <EquipmentSet id="tor_lyonesse_knighterrant_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_lionhearted_knight" default_group="cavalry" level="36" name="{=str_tor_ror_lionhearted_knight}Knight of the Lionhearted" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level36">
+    <face>
+      <face_key_template value="BodyProperty.fighter_vlandia" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_knight_lionhearted_template" />
+      <EquipmentSet id="tor_knight_lionhearted_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_loec_trickster" default_group="infantry" level="36" name="{=str_tor_ror_loec_trickster}Loec's Trickster" occupation="Soldier" culture="Culture.battania" skill_template="SkillSet.tor_skills_level36" is_basic_troop="true" race="elf">
+    <face>
+      <face_key_template value="BodyProperty.female_wood_elf" />
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_loec_trickster_template" />
+      <EquipmentSet id="tor_loec_trickster_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_wh_retinue" default_group="ranged" level="16" name="{=str_tor_wh_retinue}Retinue Apprentice" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">

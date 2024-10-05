@@ -2434,7 +2434,9 @@
       <string>Unstoppable</string>
     </Attributes>
     <Resistances />
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.80" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
@@ -3078,6 +3080,76 @@
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_hochland_scout">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_hochland_longrifle">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_hergig_jaegerkorps">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="40" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_ostland_shield">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_ostland_blackguard">
+    <Abilities />
+    <Attributes>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.25" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_gundermans_surefire">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_klumpfs_buccaneer">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_sternieste_skeleton">
     <Abilities />
     <Attributes>
@@ -3261,6 +3333,131 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
     <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="40" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_anguille_sailor">
+    <Abilities />
+    <Attributes>
+      <string>Expendable</string>
+    </Attributes>
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_corduin_mariner">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="0" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_corduin_knightly_mariner">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="0" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_carcasonne_mountain_guard">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_kharmourts_blades">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="25" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_br_mounted_bowman">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_warden_montfort">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="10" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_bastonne_squire">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_bastonne_beastslayer">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="10" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_lyonesse_knight_errant">
+    <Abilities />
+    <Attributes />
+    <Resistances />
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_lionhearted_knight">
+    <Abilities />
+    <Attributes />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Physical" ReductionPercent="0.15" />
+    </Resistances>
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.20" />
+    </DamageProportions>
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="1" UpgradeCost="150" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_loec_trickster">
+    <Abilities />
+    <Attributes />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
+    </Resistances>
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wh_retinue">
     <Abilities />

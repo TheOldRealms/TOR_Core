@@ -5743,7 +5743,7 @@
 			<name name="{=wood_elf_female_name_75}yealwine" />
         </female_names>
       <clan_names>
-        <name name="{=!}de {ORIGIN_SETTLEMENT}" />
+        <name name="{=!}of {ORIGIN_SETTLEMENT}" />
       </clan_names>
       <cultural_feats>
         <feat id="vlandian_renown_mercenary_income" />
@@ -5801,13 +5801,13 @@
         <template name="NPCCharacter.tor_m_rogue_lord_0" />
       </rebellion_hero_templates>
       <tournament_team_templates_one_participant>
-        <template name="NPCCharacter.tor_m_tournament_template_one_participant_v1" />
+        <template name="NPCCharacter.tournament_template_eonir_one_participant_set_v1" />
       </tournament_team_templates_one_participant>
       <tournament_team_templates_two_participant>
-        <template name="NPCCharacter.tor_m_tournament_template_two_participant_v1" />
+        <template name="NPCCharacter.tournament_template_eonir_two_participant_set_v1" />
       </tournament_team_templates_two_participant>
       <tournament_team_templates_four_participant>
-        <template name="NPCCharacter.tor_m_tournament_template_four_participant_v1" />
+        <template name="NPCCharacter.tournament_template_eonir_four_participant_set_v1" />
       </tournament_team_templates_four_participant>
       <basic_mercenary_troops>
         <template name="NPCCharacter.tor_eo_caravan_guard" />
