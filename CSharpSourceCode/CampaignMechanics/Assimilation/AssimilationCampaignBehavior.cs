@@ -9,8 +9,6 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.LinQuick;
-using TaleWorlds.SaveSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -20,7 +18,6 @@ namespace TOR_Core.CampaignMechanics.Assimilation
     {
         private Dictionary<Settlement, CultureObject> _settlementCulturePairs = [];
         private Dictionary<Settlement, CultureObject> _originalSettlementCulturePairs = [];
-        private bool _preventRecursiveCall = false;
 
         public static CultureObject GetOriginalCultureForSettlement(Settlement settlement)
         {
@@ -66,8 +63,6 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         private void OnTroopRecruited(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int count)
         {
-            if (_preventRecursiveCall) return;
-
             SwapTroopsIfNeeded(recruiter, recruiter?.PartyBelongedTo?.MemberRoster, troop, count);
         }
 
@@ -167,10 +162,6 @@ namespace TOR_Core.CampaignMechanics.Assimilation
                     int replacementCost = Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(replacement, owner);
                     GiveGoldAction.ApplyBetweenCharacters(null, owner, (troopCost - replacementCost) * count);
                 }
-
-                _preventRecursiveCall = true;
-                CampaignEventDispatcher.Instance.OnTroopRecruited(owner, null, null, replacement, count);
-                _preventRecursiveCall = false;
             }
         }
 
