@@ -12,7 +12,7 @@ using TOR_Core.CampaignMechanics;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.Models
+namespace TOR_Core.CampaignMechanics
 {
     public class TORAIRecruitmentCampaignBehavior : CampaignBehaviorBase
     {
@@ -31,11 +31,8 @@ namespace TOR_Core.Models
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddUndeadToPartyOnEnteringSettlement);
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddDryadsToPartyOnEnteringSettlement);
             CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TORRecruitmentBehavior);
-            
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this,DailyTickEvents);
         }
-
-  
 
         private void DailyTickEvents(MobileParty party)
         {
@@ -127,10 +124,7 @@ namespace TOR_Core.Models
             }
         }
 
-        public override void SyncData(IDataStore dataStore)
-        {
-            
-        }
+        public override void SyncData(IDataStore dataStore) { }
 
         private void TORRecruitmentBehavior(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int amount)
         {
@@ -143,21 +137,18 @@ namespace TOR_Core.Models
                 for (int i = 0; i < amount; i++)
                 {
                     var random = MBRandom.RandomFloat;
-                    if (( !troop.IsBasicTroop && random > 0.25f ) || random > 0.75f)
+                    if ((!troop.IsBasicTroop && random > 0.25f) || random > 0.75f)
                     {
                         var bloodKnightInitate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_initiate");
-                        recruiter.PartyBelongedTo.Party.AddMember(bloodKnightInitate, 1);
+                        recruiter.PartyBelongedTo.AddElementToMemberRoster(bloodKnightInitate, 1);
+                        recruiter.PartyBelongedTo.AddElementToMemberRoster(troop, -amount);
                     }
                 }
-                
-                recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
             }
-
 
             if (recruiter.HasAttribute("Everchosen"))
             {
                 CharacterObject replacement = null;
-   
 
                 if (troop.IsEliteTroop())
                 {

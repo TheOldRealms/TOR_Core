@@ -117,15 +117,14 @@ namespace TOR_Core.CampaignMechanics.Assimilation
         private void SwapTroopsIfNeeded(Hero owner, TroopRoster roster, CharacterObject troop, int count)
         {
             if (troop.Culture == owner?.Culture) return;
-            
-            if(owner==null) return;
+
+            if (owner == null) return;
 
             if ((troop.Culture.StringId == TORConstants.Cultures.SYLVANIA || troop.Culture.StringId == TORConstants.Cultures.MOUSILLON) && 
                 (owner.Culture.StringId == TORConstants.Cultures.SYLVANIA || owner.Culture.StringId == TORConstants.Cultures.MOUSILLON))
             {
                 return;
             }
-            
 
             if (owner.Clan == null || owner == Hero.MainHero || owner.PartyBelongedTo?.Party == null || roster == null || troop.IsHero || roster.GetTroopCount(troop) < count)
             {

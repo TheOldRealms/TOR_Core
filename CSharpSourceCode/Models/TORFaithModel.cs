@@ -1,9 +1,5 @@
 ﻿using Helpers;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -60,7 +56,7 @@ namespace TOR_Core.Models
             
             var duration = CalculateBlessingDurationForParty(party);
             
-            if (party == MobileParty.MainParty && party.LeaderHero == Hero.MainHero && cultID == "cult_of_sigmar" && Hero.MainHero.HasCareerChoice("SigmarsProclaimerPassive4"))
+            if (party == MobileParty.MainParty && party.LeaderHero == Hero.MainHero && !Hero.MainHero.IsPrisoner && cultID == "cult_of_sigmar" && Hero.MainHero.HasCareerChoice("SigmarsProclaimerPassive4"))
             {
                 var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive4");
                 if(choice?.Passive == null)return;
@@ -74,7 +70,7 @@ namespace TOR_Core.Models
             if (cultID== "cult_of_ulric" && Hero.MainHero.HasCareerChoice("TeachingsOfTheWinterFatherPassive2"))
             {
                 var choice = TORCareerChoices.GetChoice("TeachingsOfTheWinterFatherPassive2");
-                if(choice==null||choice.Passive==null)return;
+                if (choice == null || choice.Passive == null) return;
                 Hero.MainHero.Heal(Hero.MainHero.MaxHitPoints,false);
             }
             

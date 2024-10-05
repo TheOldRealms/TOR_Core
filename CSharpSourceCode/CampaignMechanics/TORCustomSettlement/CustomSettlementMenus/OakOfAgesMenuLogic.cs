@@ -22,7 +22,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
-public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
+public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBaseSettlementMenuLogic(campaignGameStarter)
 {
     private const int TreemanPrice = 800;
     private const int PartySizeUpgradeCost = 100;
@@ -141,15 +141,10 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     ];
 
 
-    private readonly List<List<string>> _upgrades;
-
-    public OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : base(campaignGameStarter)
-    {
-        _upgrades =
+    private readonly List<List<string>> _upgrades =
         [
             PartyUpgradeAttributes, MaximumHealthUpgradeAttributes, CustomResourceGainUpgrades
         ];
-    }
 
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
@@ -159,8 +154,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
     private void OakOfAgeMenuInit(MenuCallbackArgs args)
     {
         var settlement = Settlement.CurrentSettlement;
-        var component = settlement.SettlementComponent as TORBaseSettlementComponent;
-        if (component == null) return;
+        if (settlement.SettlementComponent is not TORBaseSettlementComponent component) return;
 
         var text = component.IsActive
             ? GameTexts.FindText("customsettlement_intro", settlement.StringId)
@@ -171,7 +165,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         MBTextManager.SetTextVariable("FORESTHARMONY", CustomResourceManager.GetResourceObject("ForestHarmony").GetCustomResourceIconAsText());
         MBTextManager.SetTextVariable("FORESTHARMONY1", CustomResourceManager.GetResourceObject("ForestHarmony").GetCustomResourceIconAsText());
     }
-
 
     public void AddOakOfAgeMenus(CampaignGameStarter starter)
     {
@@ -209,9 +202,6 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, _ => PlayerEncounter.Finish(true), true);
-        
-        
-
 
         AddBranchesOfTheOakMenu(starter);
         AddWorldRootMenu(starter);
@@ -235,7 +225,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
              });
 
         
-        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "Rouse Treemen. 800 {FORESTHARMONY}", args => CanBindTreeSpirits()&& CanBindTreeman(args),
+        starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_B", "Rouse Treemen. 800 {FORESTHARMONY}", args => CanBindTreeSpirits() && CanBindTreeman(args),
             AddTreemen);
         
         starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_C", "Relief Treespirits",null, (args) 
@@ -272,7 +262,7 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         void TranferCompleted(PartyBase leftownerparty, TroopRoster leftmemberroster, TroopRoster leftprisonroster, PartyBase rightownerparty,
             TroopRoster rightmemberroster, TroopRoster rightprisonroster, bool fromcancel)
         {
-            if(fromcancel) return;
+            if (fromcancel) return;
             var gainedSpiritHarmony = 0;
             foreach (var element in leftmemberroster.GetTroopRoster())
             {
@@ -292,23 +282,18 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
         bool CanBindTreeSpirits()
         {
             var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-            
-            
-            
             return heroes.Any(hero => hero.IsSpellSinger());
         }
 
         bool CanBindTreeman(MenuCallbackArgs args)
         {
             args.IsEnabled = Hero.MainHero.GetCultureSpecificCustomResourceValue() >= TreemanPrice;
-
             return true;
         }
         
         bool CanBindDryads(MenuCallbackArgs args)
         {
             args.IsEnabled = Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 100;
-
             return true;
         }
         
@@ -321,7 +306,10 @@ public class OakOfAgesMenuLogic : TORBaseSettlementMenuLogic
 
         void AddTreemen(MenuCallbackArgs args)
         {
-            
+            var treeman = MBObjectManager.Instance.GetObject<CharacterObject>("tor_we_treeman");
+            MobileParty.MainParty.AddElementToMemberRoster(treeman, 1);
+            Hero.MainHero.AddCultureSpecificCustomResource(-TreemanPrice);
+            GameMenu.ActivateGameMenu("oak_of_ages_tree_spirits_menu");
         }
         
         void BindingTick(MenuCallbackArgs args, CampaignTime dt)
