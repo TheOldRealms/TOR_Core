@@ -4106,7 +4106,7 @@
   </Settlement>
   <Settlement id="village_NL5_1" name="{=Settlements.Settlement.name.village_NL5_1}Beilen" posX="1295.443" posY="1339.449" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_1}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
     <Components>
-      <Village id="village_comp_NL5_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_NL5_1" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4119,7 +4119,7 @@
   </Settlement>
   <Settlement id="village_NL5_2" name="{=Settlements.Settlement.name.village_NL5_2}Schlaghügel" posX="1281.836" posY="1335.507" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_2}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
     <Components>
-      <Village id="village_comp_NL5_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_NL5_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
@@ -4132,7 +4132,7 @@
   </Settlement>
   <Settlement id="village_NL5_3" name="{=Settlements.Settlement.name.village_NL5_3}Ueblingen" posX="1298.003" posY="1352.255" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_3}At the foot of the Axe Bite Pass sits the village of Osburg, the last Imperial settlement before the Market fortress of Helmgart and the Imperial/Bretonnian border. Any shipments bound for Helmgart must pass first through Osburg, and this source of trade makes the merchants here fairly prosperous.">
     <Components>
-      <Village id="village_comp_NL5_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
+      <Village id="village_comp_NL5_3" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_NL4" bound="Settlement.town_NL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.village_complex">
       <Location id="village_center" scene_name="TOR_empire_village_005" />
