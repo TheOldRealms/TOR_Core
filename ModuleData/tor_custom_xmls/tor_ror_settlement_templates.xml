@@ -112,6 +112,38 @@
         RegimentName="Reiksguard Knights"
         RegimentHQName="Headquarters of the Reiksguard Knights"
     />
+		<RORSettlementTemplate
+		SettlementId="town_HL1"
+        BaseTroopId="tor_ror_hochland_scout"
+        MenuHeaderText="Hergig is home to the Hergig Jaegerkorps. These elite marksman are ever training their precise aim. They can be found in the Hergig korps hunting lodge. "
+        MenuBackgroundImageId="invalid"
+        RegimentName="The Hergig Jaegerkorps"
+        RegimentHQName="Hunting lodge of Hergig"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_OL1"
+        BaseTroopId="tor_ror_ostland_shield"
+        MenuHeaderText="The devoted of Morr are sparring in the chapels courtyard honing their greatsword skills. Blessed by the priest of Morr and with two silver coins in their pocket, they are ready for battle."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Ostland Black Guard"
+        RegimentHQName="Chapel of Morr"
+	/>
+		<RORSettlementTemplate
+		SettlementId="village_HL3_3"
+        BaseTroopId="tor_ror_hochland_drakwald_patrol"
+        MenuHeaderText="The village is home to a Drakwald patrol outpost, The Gunderman's Surefires are ready to set out."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Gunderman's Surefires"
+        RegimentHQName="Outpost of the Gunderman's Surefires"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_WA1"
+        BaseTroopId="tor_ror_marienburg_sailor"
+        MenuHeaderText="Inside the port of Marienburg, The Van Klumpf Buccaneers are to be found on their ship, Ready to set sail."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Van Klumpf Buccaneers"
+        RegimentHQName="Tavern of the Van Klumpf Buccaneers"
+	/>
 	<RORSettlementTemplate
         SettlementId="castle_village_AQ3_2"
         BaseTroopId="tor_ror_bergerac_herrimault"
@@ -136,6 +168,54 @@
         RegimentName="Peasant Knights of Wainfleet'"
         RegimentHQName="Geg's Manor"
     />
+		<RORSettlementTemplate
+		SettlementId="town_LA1"
+        BaseTroopId="tor_ror_anguille_sailor"
+        MenuHeaderText="Inside the warf's barracks resides the brave Corduin's knightly mariners, they are ready to sail out for their next job."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Corduin's Knightly Mariners"
+        RegimentHQName="L'Anguille warf barracks"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_ML1"
+        BaseTroopId="tor_empire_wolfkin"
+        MenuHeaderText="Inside Middenheim the cult of Ulric reigns. At the temple of Ulric, The most devoted of Ulric's followers stand ready, thirsting for battle."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Knights of the white wolf"
+        RegimentHQName="Great temple of Ulric"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_CC1"
+        BaseTroopId="tor_ror_carcasonne_mountain_guard"
+        MenuHeaderText="In Castle Carcasonne's barracks the Kharbourt's Blades can be found, the personal pride of Baron Larieu of Kharmourt."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Kharmourt's blades"
+        RegimentHQName="Kharmourt's Barracks"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_BA1"
+        BaseTroopId="tor_ror_bastonne_squire"
+        MenuHeaderText="Within the Court of Bastonne you may find the Beastslayers of Bastonne, much like their fearsome liege lord, they excel at fighting dangerous monsters."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Beastslayers of bastonne"
+        RegimentHQName="Court of Bastonne"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_MO1"
+        BaseTroopId="tor_ror_br_mounted_bowman"
+        MenuHeaderText="In the castle stable's the Wardens tend their horses and ready their bows, the infamous Wardens of Montfort are ready to protect their country."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Wardens of Montfort"
+        RegimentHQName="Castle stable's of Montfort"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_LY1"
+        BaseTroopId="tor_ror_lyonesse_knight_errant"
+        MenuHeaderText="From Castle Lyonesse home to the first great companion, Thierulf the Lionhearted, come the most ferocious of Bretonnia’s Knights. They can be found in the Chapel of the Lady."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Knights of the lionhearted"
+        RegimentHQName="Chapel of the Lady"
+	/>
     <RORSettlementTemplate
 		SettlementId="castle_village_AL6_1"
         BaseTroopId="tor_we_wildwood_ranger"
@@ -146,7 +226,7 @@
     />
 	<RORSettlementTemplate
 		SettlementId="town_AL5"
-        BaseTroopId="tor_we_wardancer"
+        BaseTroopId="tor_ror_loec_trickster"
         MenuHeaderText="Fyr Darric, the Trickster's Wood, holds the largest concentration of Wardancer troupes wandering through Athel Loren. Music and laughter can often be heard in this region, but not all things are as they seem at a glance."
         MenuBackgroundImageId="invalid"
         RegimentName="Asrai Wardancers"
