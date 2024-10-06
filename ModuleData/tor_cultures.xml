@@ -5385,6 +5385,7 @@
       </possible_clan_banner_icon_ids>
       <notable_and_wanderer_templates>
         <template name="NPCCharacter.tor_wanderer_mousillon_0" />
+		<template name="NPCCharacter.tor_wanderer_mousillon_1" />
         <template name="NPCCharacter.spc_notable_mousillon_merch1" />
         <template name="NPCCharacter.spc_notable_mousillon_merch2" />
         <template name="NPCCharacter.spc_notable_mousillon_merch3" />
