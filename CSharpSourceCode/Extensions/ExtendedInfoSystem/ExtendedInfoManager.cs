@@ -17,6 +17,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Utilities;
+using TaleWorlds.ObjectSystem;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
@@ -197,6 +198,18 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             TryLoadCharacters(out _characterInfos);
             var success = _characterInfos.Any(x => x.Value.ResourceCost != null);
             EnsurePartyInfos();
+            HideVanillaUnitsInEncyclopedia();
+        }
+
+        private void HideVanillaUnitsInEncyclopedia()
+        {
+            MBObjectManager.Instance.GetObjectTypeList<CharacterObject>().ForEach(x => 
+            {
+                if (!x.IsTORTemplate())
+                {
+                    x.HiddenInEncylopedia = true;
+                }
+            });
         }
 
         private void OnNewGameCreatedPartialFollowUpEnd(CampaignGameStarter campaignGameStarter, int index)
