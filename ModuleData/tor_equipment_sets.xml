@@ -1459,7 +1459,7 @@
   <EquipmentRoster id="tor_wolf_brother_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.battania_2haxe_1_t2" />
-      <Equipment slot="Head" id="Item.leather_studdedhelm" />
+      <Equipment slot="Head" id="Item.wolfhead" />
       <Equipment slot="Body" id="Item.battanian_savage_armor" />
       <Equipment slot="Cape" id="Item.wolf_shoulder" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
@@ -1467,7 +1467,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.battania_2haxe_1_t2" />
-      <Equipment slot="Head" id="Item.leather_studdedhelm" />
+      <Equipment slot="Head" id="Item.wolfhead" />
       <Equipment slot="Body" id="Item.battanian_savage_armor" />
       <Equipment slot="Cape" id="Item.wolf_shoulder" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
@@ -1475,7 +1475,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.bearded_axe_t3" />
-      <Equipment slot="Head" id="Item.peaked_fur_hood" />
+      <Equipment slot="Head" id="Item.wolfhead" />
       <Equipment slot="Body" id="Item.sleeveless_fur_coat" />
       <Equipment slot="Cape" id="Item.battania_cloak_b" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
@@ -1483,7 +1483,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.bearded_axe_t3" />
-      <Equipment slot="Head" id="Item.peaked_fur_hood" />
+      <Equipment slot="Head" id="Item.wolfhead" />
       <Equipment slot="Body" id="Item.sleeveless_fur_coat" />
       <Equipment slot="Cape" id="Item.battania_cloak_b" />
       <Equipment slot="Gloves" id="Item.guarded_padded_vambrace" />
@@ -1491,14 +1491,14 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.battania_2haxe_1_t2" />
-      <Equipment slot="Head" id="Item.leather_studdedhelm" />
+      <Equipment slot="Head" id="Item.wolfhead" />
       <Equipment slot="Body" id="Item.battania_woodland_outfit" />
       <Equipment slot="Cape" id="Item.wolf_shoulder" />
       <Equipment slot="Leg" id="Item.battania_fur_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.battania_2haxe_1_t2" />
-      <Equipment slot="Head" id="Item.leather_studdedhelm" />
+      <Equipment slot="Head" id="Item.wolfhead" />
       <Equipment slot="Body" id="Item.battania_woodland_outfit" />
       <Equipment slot="Cape" id="Item.wolf_shoulder" />
       <Equipment slot="Leg" id="Item.battania_fur_boots" />

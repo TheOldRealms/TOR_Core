@@ -725,9 +725,12 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.20" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.20" />
     </DamageProportions>
     <ResourceCost ResourceType="Chivalry" UpkeepCost="5" UpgradeCost="400" />
   </CharacterExtendedInfo>
@@ -2435,7 +2438,7 @@
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.80" />
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="1.00" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -2802,10 +2805,13 @@
     <Attributes>
       <string>Unbreakable</string>
     </Attributes>
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
   </CharacterExtendedInfo>
@@ -2814,10 +2820,13 @@
     <Attributes>
       <string>Unbreakable</string>
     </Attributes>
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
   </CharacterExtendedInfo>
@@ -2826,10 +2835,13 @@
     <Attributes>
       <string>Unbreakable</string>
     </Attributes>
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="50" />
   </CharacterExtendedInfo>
@@ -2838,10 +2850,13 @@
     <Attributes>
       <string>Unbreakable</string>
     </Attributes>
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
   </CharacterExtendedInfo>
@@ -2850,10 +2865,13 @@
     <Attributes>
       <string>Unbreakable</string>
     </Attributes>
-    <Resistances />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
+    </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.90" />
+      <DamageProportionTuple DamageType="Fire" Percent="0.10" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="60" />
   </CharacterExtendedInfo>
@@ -3097,7 +3115,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_hergig_jaegerkorps">
     <Abilities />
@@ -3107,7 +3125,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="40" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_ostland_shield">
     <Abilities />
@@ -3130,7 +3148,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="30" />
+    <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="25" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_hochland_drakwald_patrol">
     <Abilities />
@@ -3389,9 +3407,7 @@
     <Abilities />
     <Attributes />
     <Resistances />
-    <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
-    </DamageAmplifiers>
+    <DamageAmplifiers />
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
