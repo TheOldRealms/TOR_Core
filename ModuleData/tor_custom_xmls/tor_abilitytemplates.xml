@@ -4538,7 +4538,7 @@
                      CastTime="0.5"
                      AnimationActionName="act_release_heavy_thrown"
                      Offset="0.5"
-                     AbilityTargetType="AlliesInAOE"
+                     AbilityTargetType="Self"
                      TargetCapturingRadius="4"
                      MaxDistance="0.5"
                      CrosshairType="TargetedAOE"
@@ -4648,7 +4648,7 @@
     </AbilityTemplate>
     <AbilityTemplate StringID="SnowKingDecree"
                      Name="{=armor_of_righteousness_label_str}The Snow King's Decree"
-                     SpriteName="wind_blast_icon"
+                     SpriteName="snow_kings_decree_icon"
                      CoolDown="70"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0.05"

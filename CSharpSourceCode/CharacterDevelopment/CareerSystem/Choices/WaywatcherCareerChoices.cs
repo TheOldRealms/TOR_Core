@@ -182,7 +182,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _protectorOfTheWoodsKeystone.Initialize(CareerID, "Reduces the amount of ranged damage to unlock ability. Ability starts charged.",
             "ProtectorOfTheWoods", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>() { }); //special
 
-        _pathfinderKeystone.Initialize(CareerID, "The range of Eye of Kournous is doubled. Ability scales with Scouting", "Pathfinder", false,
+        _pathfinderKeystone.Initialize(CareerID, "The range of Arrow of Kournous is doubled. Ability scales with Scouting", "Pathfinder", false,
             ChoiceType.Keystone,
             new List<CareerChoiceObject.MutationObject>()
             {
@@ -222,7 +222,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             });
         _hailOfArrowsKeystone.Initialize(CareerID, "Your reload speed is increased for 4 seconds for every affected enemy", "HailOfArrows", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>() { }); //special
-        _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact. The damage is increased by 30%", "Hawkeyed", false,
+        _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact. The damage is doubled", "Hawkeyed", false,
             ChoiceType.Keystone,
             new List<CareerChoiceObject.MutationObject>()
             {
@@ -241,7 +241,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationTargetType = typeof(TriggeredEffectTemplate),
                     MutationTargetOriginalId = "apply_arrow_of_kurnous",
                     PropertyName = "DamageAmount",
-                    PropertyValue = (choice, originalValue, agent) => 1.3f,
+                    PropertyValue = (choice, originalValue, agent) => 1,
                     MutationType = OperationType.Multiply
                 }
             });

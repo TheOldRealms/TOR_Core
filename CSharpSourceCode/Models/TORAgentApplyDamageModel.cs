@@ -572,13 +572,19 @@ namespace TOR_Core.Models
                     if (choices.Contains("RunesOfTheWhiteWolfPassive1"))
                     {
                         var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Head, EquipmentIndex.Head);
+                        equipment.AddRange(agent.Character.GetCharacterEquipment(EquipmentIndex.Cape, EquipmentIndex.Cape));
                         var choice = TORCareerChoices.GetChoice("RunesOfTheWhiteWolfPassive1");
                         if (!equipment.IsEmpty())
                         {
-                            if (equipment[0].StringId.Contains("wolf"))
+                            foreach (var item in equipment)
                             {
-                                resistances[(int)DamageType.All] += choice.GetPassiveValue();
+                                if (item.StringId.Contains("wolf") || item.StringId.Contains("cape_kotww"))
+                                {
+                                    resistances[(int)DamageType.All] += choice.GetPassiveValue();
+                                    break;
+                                }
                             }
+        
                         }
                     }
                 }

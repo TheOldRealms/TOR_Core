@@ -178,7 +178,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private void UpgradeGunShopDialog(CampaignGameStarter obj)
         {
                         //upgrade shop
-            obj.AddDialogLine("upgrade_gunshop_explain_1", "upgradeshop", "upgrade_gunshop_explain_2", " *Sigh* Yes I am sorry to point it out, but not only did Goswin stole parts. Also a lot of our blue prints, and mechanical parts and our finest gunpowder  were destroyed in his rampage. ", () => !HasUpgradeGunShopCondition(1)&& !_explained, null, 200);
+            obj.AddDialogLine("upgrade_gunshop_explain_1", "upgradeshop", "upgrade_gunshop_explain_2", " Not only did Goswin steal valuable parts, but also blueprints. Some of our finest creations were destroyed in his rampage", () => !HasUpgradeGunShopCondition(1)&& !_explained, null, 200);
             obj.AddDialogLine("upgrade_gunshop_explain_2", "upgrade_gunshop_explain_2", "upgradeshop", "There are copies of the plans, and those parts can be recreated, from other engineer schools through out the empire. But for this I have neither the authority nor the contacts to get them over quickly.", () => !HasUpgradeGunShopCondition(1) && !_explained, () => _explained=true, 200);
             
             obj.AddDialogLine("upgrade_gunshop_upgrade_1", "upgradeshop", "upgrade_gunshop_upgrade1_response", "For 500{PRESTIGE_ICON} I can finally stock up our buckshot supplies and continue creating blunderbusses and can get some of those Hochland' Long rifles.", () => !HasUpgradeGunShopCondition(1), null, 200);

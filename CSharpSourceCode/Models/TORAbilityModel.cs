@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -333,6 +334,8 @@ namespace TOR_Core.Models
                 CareerHelper.ApplyBasicCareerPassives(baseCharacter.HeroObject, ref explainedNumber, PassiveEffectType.WindsRegeneration, false);
 
                 var weightmalus = baseCharacter.Equipment.GetTotalWeightOfArmor(true) / 25;
+
+                weightmalus = Mathf.Min(weightmalus, 0.85f);
 
                 if (Hero.MainHero.HasCareerChoice("ArkaynePassive1"))
                 {

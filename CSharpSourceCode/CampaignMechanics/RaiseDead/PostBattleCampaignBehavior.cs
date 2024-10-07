@@ -45,7 +45,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 
                 var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
 
-                if (!heroes.Any(x => x.IsSpellCaster() && x.HasKnownLore("LoreOfLife")))
+                if (!heroes.Any(x => x.IsSpellCaster() && x.HasKnownLore("LoreOfLife") && x.CharacterObject.IsElf()))
                 {
                     return;
                 }

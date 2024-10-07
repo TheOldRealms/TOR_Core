@@ -216,7 +216,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _crusherOfTheWeakPassive2.Initialize(CareerID, "Extra melee damage (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
             _crusherOfTheWeakPassive3.Initialize(CareerID, "Extra melee damage if the target is below tier 4 (10%).", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim!=null&&!victim.IsHero && victim.Character.Level < 16));
-            _crusherOfTheWeakPassive4.Initialize(CareerID, "Prayers are recharged on battle start' in Crusher of the Weak.", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1,PassiveEffectType.Special,true));
+            _crusherOfTheWeakPassive4.Initialize(CareerID, "Prayers are recharged on battle start.", "CrusherOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1,PassiveEffectType.Special,true));
             
             _wildPackPassive1.Initialize(CareerID, "Increases melee physical resistance by 10%.", "WildPack", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical,10),AttackTypeMask.Melee));
             _wildPackPassive2.Initialize(CareerID, "Increases Party size by 10.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.PartySize));
@@ -234,7 +234,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _frostsBitePassive3.Initialize(CareerID, "Party is not slowed by snow.", "FrostsBite", false, ChoiceType.Passive, null); //TORPartySpeedCalculatingModel 46
             _frostsBitePassive4.Initialize(CareerID, "Increase hex durations by 20%.", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration,true)); 
             
-            _runesOfTheWhiteWolfPassive1.Initialize(CareerID,"Wearing a wolf head increases wardsave by 10%","RunesOfTheWhiteWolf",false,ChoiceType.Passive, null , new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true)); //TODO
+            _runesOfTheWhiteWolfPassive1.Initialize(CareerID,"Wearing wolf heads or pelts increases wardsave by 10%","RunesOfTheWhiteWolf",false,ChoiceType.Passive, null , new CareerChoiceObject.PassiveEffect(10,PassiveEffectType.Special,true)); //TODO
             _runesOfTheWhiteWolfPassive2.Initialize(CareerID, "Increases Hitpoints by 50.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
             _runesOfTheWhiteWolfPassive3.Initialize(CareerID, "Increase prayer durations by 20%.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.BuffDuration,true));
             _runesOfTheWhiteWolfPassive4.Initialize(CareerID, "Ulrican troops gain 20% Ward save.", "RunesOfTheWhiteWolf", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.All, 

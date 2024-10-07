@@ -10,13 +10,11 @@ using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics.Crosshairs;
-using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
 
@@ -453,153 +451,6 @@ namespace TOR_Core.Models
   
 
             return number.ResultNumber;
-        }
-
-        public void AddPerkEffectsToAgentProperties(Agent agent, PropertyMask mask, AttackTypeMask attackMask, ref float[] propotions,ref  float[] damageAmps, ref float[]damageBonuses, ref float[]resistances)
-        {
-            
-
-            var agentCaptain = agent.GetCaptainCharacter();
-            var agentLeader = agent.GetPartyLeaderCharacter();
-            var agentParty = agent.GetOriginMobileParty();
-
-            if (agentParty != null && agentParty.HasAnyActiveBlessing())
-            {
-                if (agentParty.HasBlessing("cult_of_manaan"))
-                {
-                    damageBonuses[(int)DamageType.Lightning] += 0.10f;
-                }
-            }
-
-            var wieldedItem = agent.WieldedWeapon.Item;
-
-            if (agent.Character is CharacterObject agentCharacter)
-            {
-                if (mask == PropertyMask.Attack || mask == PropertyMask.All)
-                {
-                    if (agentCharacter.GetPerkValue(TORPerks.SpellCraft.Exchange))
-                    {
-                        damageBonuses[(int)DamageType.Magical] += damageBonuses[(int)DamageType.Physical];
-                    }
-
-                    if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.SpellCraft.ArcaneLink))
-                    {
-                        damageBonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus);
-                    }
-
-                    if (agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Superstitious) && agentCharacter.IsReligiousUnit())
-                    {
-                        damageBonuses[(int)DamageType.Physical] += (TORPerks.Faith.Superstitious.SecondaryBonus);
-                    }
-
-                    if (wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
-                    {
-                        if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
-                        {
-                            propotions[(int)DamageType.Fire] = propotions[(int)DamageType.Physical];
-                            propotions[(int)DamageType.Physical] = 0;
-                        }
-                    }
-                }
-
-                if (mask == PropertyMask.Defense || mask == PropertyMask.All)
-                {
-                    if (agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Imperturbable) && agentCharacter.IsReligiousUnit())
-                    {
-                        resistances[(int)DamageType.Physical] += (TORPerks.Faith.Imperturbable.SecondaryBonus);
-                    }
-                }
-            }
-            
-            if (agent != Agent.Main)
-            {
-                return;
-            }
-            
-            if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
-            {
-                resistances[(int)DamageType.Fire]-=0.2f;
-            }
-                
-            var choices = Agent.Main.GetHero().GetAllCareerChoices();
-                
-                if(mask== PropertyMask.Attack&& attackMask == AttackTypeMask.Melee)
-                {
-                    if (choices.Contains("HuntTheWickedPassive3"))
-                    {
-                        var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
-                        var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive3");
-                        foreach (var weapon in equipment)
-                        {
-                            foreach (var data in weapon.Weapons)
-                            {
-                                if (data.IsRangedWeapon)
-                                {
-                                    damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
-                                }
-                            }
-                        }
-                    }
-                    if (choices.Contains("FuryOfWarPassive1"))
-                    {
-                        var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
-                        var choice = TORCareerChoices.GetChoice("FuryOfWarPassive1");
-                        foreach (var weapon in equipment)
-                        {
-                            foreach (var data in weapon.Weapons)
-                            {
-                                if (data.IsMeleeWeapon)
-                                {
-                                    damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (mask == PropertyMask.Defense && attackMask == AttackTypeMask.Melee || attackMask == AttackTypeMask.Ranged)
-                {
-                    if (choices.Contains("RunesOfTheWhiteWolfPassive1"))
-                    {
-                        var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Head, EquipmentIndex.Head);
-                        var choice = TORCareerChoices.GetChoice("RunesOfTheWhiteWolfPassive1");
-                        if (!equipment.IsEmpty())
-                        {
-                            if (equipment[0].StringId.Contains("wolf"))
-                            {
-                                resistances[(int)DamageType.All] += choice.GetPassiveValue();
-                            }
-                        }
-                    }
-                }
-            
-            if (agent.Character.HasAttribute("NecromancerChampion"))
-            {
-                if(( attackMask == AttackTypeMask.Melee&& mask == PropertyMask.Attack))
-                {
-                    if (agent.Controller == Agent.ControllerType.Player)
-                    {
-                        
-                        if (mask == PropertyMask.Attack&&agent.Character.HasAttribute("NecromancerChampion")&&choices.Contains("LiberMortisKeystone"))
-                        {
-                            var choice = TORCareerChoices.GetChoice("LiberMortisKeystone");
-                            damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
-                        }
-                
-                        if (mask == PropertyMask.Attack&&agent.Character.HasAttribute("NecromancerChampion")&&choices.Contains("BooksOfNagashKeystone"))
-                        {
-                            var choice = TORCareerChoices.GetChoice("BooksOfNagashKeystone");
-                            damageBonuses[(int)DamageType.Magical] += choice.GetPassiveValue();
-                        }
-                    }
-                }
-
-                if (mask == PropertyMask.Defense&&choices.Contains("BookofWsoranKeystone"))
-                {
-                    var choice = TORCareerChoices.GetChoice("BookofWsoranKeystone");
-                    resistances[(int)DamageType.All]+= choice.GetPassiveValue();
-                }
-            }
         }
     }
 }

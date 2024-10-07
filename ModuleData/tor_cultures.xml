@@ -5450,7 +5450,7 @@
             vassal_reward_party_template="PartyTemplate.eonir_lordparty_template"
             default_face_key="000fa92e90004202aced5d976886573d5d679585a376fdd605877a7764b8987c00000000000007520000037f0000000f00000037049140010000000000000000"
             text="{=!}Culture description. Not sure where you see this. If you see this pls report with exact location!"
-            tournament_master="NPCCharacter.tournament_master_vlandia"
+            tournament_master="NPCCharacter.tournament_master_eonir"
             villager="NPCCharacter.tor_eo_forestborn"
             caravan_master="NPCCharacter.tor_eo_caravan_captain"
             armed_trader="NPCCharacter.tor_eo_caravan_ranged"
@@ -5945,7 +5945,8 @@
 			 elite_basic_troop="NPCCharacter.guard"
 			 basic_troop="NPCCharacter.guard"
 			 default_battle_equipment_roster="EquipmentRoster.default_battle_equipment_roster_neutral"
-           	 default_civilian_equipment_roster="EquipmentRoster.default_civilian_equipment_roster_neutral" >
+           	 default_civilian_equipment_roster="EquipmentRoster.default_civilian_equipment_roster_neutral"
+			 encounter_background_mesh="de_encounter" >
 	</Culture>
 	<Culture id="asur"
 			 name="{=!}Asur"
