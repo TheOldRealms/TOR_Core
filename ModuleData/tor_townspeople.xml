@@ -2722,6 +2722,20 @@
     </Equipments>
 	</NPCCharacter>	
 	
+	<NPCCharacter id="prison_guard_eonir" name="{=!}Prison Guard" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="PrisonGuard">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_eo_queens_guard_halberd_template" />
+      <EquipmentSet id="tor_eo_queens_guard_halberd_template" civilian="true" />
+    </Equipments>
+	</NPCCharacter>
+	
 	<NPCCharacter id="tournament_master_eonir" name="{=!}Tournament Master" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="ArenaMaster">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
@@ -2736,7 +2750,7 @@
     </Equipments>
 	</NPCCharacter>
 	
-	<NPCCharacter id="gangleader_bodyguard_eonir" name="{=!}Eonir merchant" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Gangster">
+	<NPCCharacter id="gangleader_bodyguard_eonir" name="{=!}Eonir Gang Leader" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.eonir" occupation="Gangster">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>

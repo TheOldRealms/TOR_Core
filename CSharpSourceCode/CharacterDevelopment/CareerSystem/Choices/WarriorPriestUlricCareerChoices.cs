@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
@@ -126,10 +126,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 {
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "ulric_smash",
-                        PropertyName = "HasShockWave",
-                        PropertyValue = (choice, originalValue, agent) => true,
+                        MutationTargetType = typeof(AbilityTemplate),
+                        MutationTargetOriginalId = "AxeOfUlric",
+                        PropertyName = "TriggeredEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] {"ulric_smash_knockdown" }).ToList(),
                         MutationType = OperationType.Replace
                     },
                 },new CareerChoiceObject.PassiveEffect());

@@ -238,7 +238,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     void StartTransaction(int price, int id)
                     {
                         Hero.MainHero.ChangeHeroGold(-price);
-                        Hero.MainHero.AddCustomResource("Prestige", price / 1000);
+                        Hero.MainHero.AddCustomResource("Prestige", price / 500);
                         _constructedBuildings.Add("building" + id);
                     }
                 }
