@@ -4185,9 +4185,9 @@
                      AbilityTargetType="EnemiesInAOE"
                      SpellTier="3"
                      TooltipDescription="{=fireball_description_str}Launch a devastating homing arrow.">
-        <LightColorRGB x="177"
-                       y="0"
-                       z="255"
+        <LightColorRGB x="52"
+                       y="235"
+                       z="88"
                        w="-1">
             <AsVec2>
                 <x>255</x>

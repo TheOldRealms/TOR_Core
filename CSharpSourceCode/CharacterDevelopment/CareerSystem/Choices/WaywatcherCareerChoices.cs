@@ -220,9 +220,19 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationType = OperationType.Replace
                 }
             });
-        _hailOfArrowsKeystone.Initialize(CareerID, "Your reload speed is increased for 4 seconds for every affected enemy", "HailOfArrows", false,
-            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>() { }); //special
-        _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact. The damage is doubled", "Hawkeyed", false,
+        _hailOfArrowsKeystone.Initialize(CareerID, "Every affected enemy increases reload speed for 4 sec. The damage increased by 50%", "HailOfArrows", false,
+            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
+            {
+                new()
+                {
+                    MutationTargetType = typeof(TriggeredEffectTemplate),
+                    MutationTargetOriginalId = "apply_arrow_of_kurnous",
+                    PropertyName = "DamageAmount",
+                    PropertyValue = (choice, originalValue, agent) => (int) originalValue*0.5f,
+                    MutationType = OperationType.Add
+                }
+            });
+        _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact. The damage increased by 50%", "Hawkeyed", false,
             ChoiceType.Keystone,
             new List<CareerChoiceObject.MutationObject>()
             {
@@ -241,8 +251,8 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationTargetType = typeof(TriggeredEffectTemplate),
                     MutationTargetOriginalId = "apply_arrow_of_kurnous",
                     PropertyName = "DamageAmount",
-                    PropertyValue = (choice, originalValue, agent) => 1,
-                    MutationType = OperationType.Multiply
+                    PropertyValue = (choice, originalValue, agent) => (int) originalValue*0.5f,
+                    MutationType = OperationType.Add
                 }
             });
         _starfireEssenceKeystone.Initialize(CareerID, "Enemies suffer from a damage over time effect on impact.", "StarfireEssence", false, ChoiceType.Keystone,
@@ -260,8 +270,39 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 }
             });
 
-        _eyeOfTheHunterKeystone.Initialize(CareerID, "A second use is provided for Arrow of Kurnous.", "EyeOfTheHunter", false, ChoiceType.Keystone,
-            new List<CareerChoiceObject.MutationObject>() { }); //special
+        _eyeOfTheHunterKeystone.Initialize(CareerID, "Arrow of Kurnous loses it's seeking ability. The damage is doubled.", "EyeOfTheHunter", false, ChoiceType.Keystone,
+            new List<CareerChoiceObject.MutationObject>() {new()
+            {
+                MutationTargetType = typeof(AbilityTemplate),
+                MutationTargetOriginalId = "ArrowOfKurnous",
+                PropertyName = "CrosshairType",
+                PropertyValue = (choice, originalValue, agent) => CrosshairType.Missile,
+                MutationType = OperationType.Replace
+            },
+            new CareerChoiceObject.MutationObject()
+            {
+                MutationTargetType = typeof(TriggeredEffectTemplate),
+                MutationTargetOriginalId = "apply_arrow_of_kurnous",
+                PropertyName = "DamageAmount",
+                PropertyValue = (choice, originalValue, agent) => 1,
+                MutationType = OperationType.Multiply
+            },
+            new()
+            {
+                MutationTargetType = typeof(AbilityTemplate),
+                MutationTargetOriginalId = "ArrowOfKurnous",
+                PropertyName = "SeekerParameters",
+                PropertyValue = (choice, originalValue, agent) =>
+                {
+                    var seeker = new SeekerParameters();
+                    seeker.Derivative = 0;
+                    seeker.Proportional = 0.5f;
+                    seeker.DisableDistance = 1000f;
+                    return seeker;
+                },
+                MutationType = OperationType.Replace
+            },
+            }); //special
     }
 
     protected override void InitializePassives()
@@ -269,8 +310,8 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _protectorOfTheWoodsPassive1.Initialize(CareerID, "Extra ranged damage (10%).", "ProtectorOfTheWoods", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10),
                 AttackTypeMask.Ranged));
-        _protectorOfTheWoodsPassive2.Initialize(CareerID, "5 extra ammo", "ProtectorOfTheWoods", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
+        _protectorOfTheWoodsPassive2.Initialize(CareerID, "3 extra Arrows per equipped Quiver", "ProtectorOfTheWoods", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Ammo));
         _protectorOfTheWoodsPassive3.Initialize(CareerID, "All ranged troops wages are reduced by 20%", "ProtectorOfTheWoods", false,
             ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true,
@@ -278,9 +319,9 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _protectorOfTheWoodsPassive4.Initialize(CareerID, "Reduce range Accuracy movement penalty by 15%.", "ProtectorOfTheWoods", false,
             ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.RangedMovementPenalty, true));
 
-        _pathfinderPassive1.Initialize(CareerID, "{=vivid_visions_passive4_str}The Spotting range of the party is increased by 20%.", "Pathfinder",
+        _pathfinderPassive1.Initialize(CareerID, "The Spotting range of the party is increased by 20%.", "Pathfinder",
             false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-        _pathfinderPassive2.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 1.", "Pathfinder", false,
+        _pathfinderPassive2.Initialize(CareerID, "Party movement speed is increased by 1.", "Pathfinder", false,
             ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
         _pathfinderPassive3.Initialize(CareerID, "Party travels unhindered through snow", "Pathfinder", false, ChoiceType.Passive);
         _pathfinderPassive4.Initialize(CareerID, "Ranged damage is shrugged off", "Pathfinder", false, ChoiceType.Passive);
@@ -298,26 +339,26 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _forestStalkerPassive4.Initialize(CareerID, "20% Equipment weight Reduction", "ForestStalker", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
 
-        _hailOfArrowsPassive1.Initialize(CareerID, "15 extra ammo", "HailOfArrows", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Ammo));
+        _hailOfArrowsPassive1.Initialize(CareerID, "6 extra Arrows per equipped Quiver", "HailOfArrows", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(6, PassiveEffectType.Ammo));
         _hailOfArrowsPassive2.Initialize(CareerID, "Ranged troops gain 25XP daily ", "HailOfArrows", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
         _hailOfArrowsPassive3.Initialize(CareerID, "Attacking unaware enemies adds 50% extra damage", "HailOfArrows", false, ChoiceType.Passive);
-        _hailOfArrowsPassive4.Initialize(CareerID, "For every hit arrow, your magic damage increase. Bonus slowly decrease.", "HailOfArrows", false,
+        _hailOfArrowsPassive4.Initialize(CareerID, "Special shot: For every hit arrow, your magic damage increase. Bonus slowly decrease.", "HailOfArrows", false,
             ChoiceType.Passive);
 
         _hawkeyedPassive1.Initialize(CareerID, "20% Equipment weight Reduction", "Hawkeyed", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         _hawkeyedPassive2.Initialize(CareerID, "Headshots double the fill", "Hawkeyed", false, ChoiceType.Passive);
-        _hawkeyedPassive3.Initialize(CareerID, "While Zoomed in, the time is slowed down", "Hawkeyed", false, ChoiceType.Passive);
-        _hawkeyedPassive4.Initialize(CareerID, "Every sixth arrow, applies a slow down effect on impact", "Hawkeyed", false, ChoiceType.Passive);
+        _hawkeyedPassive3.Initialize(CareerID, "Special shot: Every sixth arrow, applies a slow down effect on impact.", "Hawkeyed", false, ChoiceType.Passive);
+        _hawkeyedPassive4.Initialize(CareerID, "While Zoomed in, the time is slowed down. Every second you lose 100 Career Charge.", "Hawkeyed", false, ChoiceType.Passive);
 
-        _starfireEssencePassive1.Initialize(CareerID, "15 extra ammo", "StarfireEssence", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Ammo));
+        _starfireEssencePassive1.Initialize(CareerID, "6 extra Arrows per equipped Quiver", "StarfireEssence", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(6, PassiveEffectType.Ammo));
         _starfireEssencePassive2.Initialize(CareerID, "15% swing speed", "StarfireEssence", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.SwingSpeed, true));
         _starfireEssencePassive3.Initialize(CareerID, "Your arrows can penetrate shields", "StarfireEssence", false, ChoiceType.Passive);
-        _starfireEssencePassive4.Initialize(CareerID, "Not shooting an arrows increase the chance your next arrow explode on impact.",
+        _starfireEssencePassive4.Initialize(CareerID, "Special shot: Not shooting an arrows increase the chance your next arrow explode on impact.",
             "StarfireEssence", false, ChoiceType.Passive);
 
         _eyeOfTheHunterPassive1.Initialize(CareerID, "20% Equipment weight Reduction", "EyeOfTheHunter", false, ChoiceType.Passive, null,

@@ -94,8 +94,7 @@ namespace TOR_Core.AbilitySystem
             var choices = Hero.MainHero.GetAllCareerChoices();
 
             if ((choices.Contains("SecretsOfTheGrailKeystone")||
-                 choices.Contains("EverlingsSecretKeystone")||
-                 choices.Contains("EyeOfTheHunterKeystone")
+                 choices.Contains("EverlingsSecretKeystone")
                 ) && _doubleUse == false)
             {
                 _currentCharge = _maxCharge;

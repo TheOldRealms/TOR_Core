@@ -344,7 +344,7 @@ namespace TOR_Core.CharacterDevelopment
             
             if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot&& Hero.MainHero.HasCareerChoice("HawkeyedPassive2"))
             {
-               explainedNumber.AddFactor(0.5f);
+               explainedNumber.AddFactor(1f);
             }
             
             

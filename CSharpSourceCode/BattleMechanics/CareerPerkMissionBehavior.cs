@@ -63,7 +63,7 @@ namespace TOR_Core.BattleMechanics
                 return;
             }
             
-            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HawkeyedPassive3"))
+            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HawkeyedPassive4"))
             {
                 if (Agent.Main != null && Agent.Main.GetComponent<AbilityComponent>().CareerAbility.ChargeLevel < 0.1f)
                 {
@@ -124,7 +124,7 @@ namespace TOR_Core.BattleMechanics
                     CareerMissionVariables[0] = Mathf.Max(0, CareerMissionVariables[0] - 0.10f);
                 }
 
-                if (_zoomKeyEventStarted && Hero.MainHero.HasCareerChoice("HawkeyedPassive3"))
+                if (_zoomKeyEventStarted && Hero.MainHero.HasCareerChoice("HawkeyedPassive4"))
                 {
                     var lose = 100;
                     Agent.Main.GetComponent<AbilityComponent>().CareerAbility.AddCharge(-lose);
@@ -181,7 +181,7 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
 
-                if (Hero.MainHero.HasCareerChoice("HawkeyedPassive4") && Agent.Main!=null)
+                if (Hero.MainHero.HasCareerChoice("HawkeyedPassive3") && Agent.Main!=null)
                 {
                     CareerMissionVariables[1]++;
 
