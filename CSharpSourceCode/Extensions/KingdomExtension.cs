@@ -23,4 +23,9 @@ public static class KingdomExtension
 
         return coastalKingdoms.Any(id => kingdom.StringId == id);
     }
+
+    public static bool IsCastleFaction(this Kingdom kingdom)
+    {
+        return kingdom.RulingClan.IsCastleFaction();
+    }
 }

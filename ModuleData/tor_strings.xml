@@ -98,6 +98,7 @@
   <string id="str_culture_rich_name.mousillon" text="{=!}Mousillon" />
   <string id="str_culture_rich_name.battania" text="{=!}Asrai" />
   <string id="str_culture_rich_name.eonir" text="{=!}Eonir" />
+  <string id="str_culture_rich_name.chaos_culture" text="{=!}Chaos" />
 
   <string id="str_culture_description.khuzait" text="{=!}The Vampire Counts are fiends without equal. They seek to topple the civilisations of the living and supplant them with an Undead empire. Each Vampire is a unique and majestic figure with his own personality, drive and ambition. In contrast, their minions are mindlessly obedient - rank after rank of ragged and dirt-encrusted cadavers forced back to life by their masters' necromantic power." />
   <string id="str_culture_description.empire" text="{=!}The Empire of Man, the sprawling nation of humans dominating the Old World, faces a daily struggle for survival. Guided by their Emperor, Karl Franz, its armies stand as a testament to unwavering discipline and unmatched martial skills. In a world teeming with brutal savages and bloodthirsty monsters, the Empire endures thanks to the renowned discipline of its armies, honed through rigorous training and fortified by their unyielding faith in Sigmar. A beacon of human resilience, the Empire's soldiers exemplify the indomitable spirit of man that prevails amidst its endless list of foes." />
@@ -105,6 +106,7 @@
   <string id="str_culture_description.mousillon" text="{=!}Mousillon, the accursed state nestled within the heart of Bretonnia, casts a dark and ominous shadow over the land. Once a proud dukedom, it now stands as a grim testament to the corruption that lingers in the shadows. Ruled by the Serpent of Mousillon, the realm of swamps and thickets contrasts against the vibrant setting of noble Bretonnia. Yet, even more tragic and unsettling are its mutated peasantry, ruled not by noble knights but the twisted undead, whose black knights evoke a chilling blend of traditional Bretonnian martial prowess and unholy power." />
   <string id="str_culture_description.battania" text="{=!}The Asrai are the elvish inhabitants of Athel Loren; they are a suspicious, isolationist and savage kin who live their lives surrounded by the nature of Athel Loren. Their magical forest home is as dangerous as it is beautiful, and it's unforgiving nature has sharpened the skills of its people to a razer's edge. The Asrai live under the teachings of Isha and Kurnous as hunters and warriors defending the Weave and natural world, but darker voices ever seek to tempt them to slaughter and mayhem." />
   <string id="str_culture_description.eonir" text="{=!}Between Nordland and the Wasteland lies the forest of Laurelorn and it's inhabitants, the proud Eonir. They refused to flee the Old World with the rest of their kin and instead stood against and defeated the dwarfish advance on their forest. The Eonir live in a caste society split between the city and forest kin, and maintain their security through careful diplomacy; both with their neighbours and factions as far abroad as the Asur and the Druchii. Their governance works through layers of councils to promote a level of democracy. When the time for battle comes Eonir call on everything from the darkest magic to the purest spirits of the forest to ensure the safety of their home." />
+  <string id="str_culture_description.chaos_culture" text="{=!}No one truly knows the origin of Chaos in the mortal world. Even the long-lived scholars of the High Elves can only speculate as to where the forces of Chaos first originated. War, famine, natural disaster and the destroyer known as time have eroded away nearly all indications of the roots of Chaos." />
 
 
   <string id="str_faction_official.empire" text="{=!}a count" />
@@ -131,6 +133,10 @@
   <string id="str_faction_ruler.eonir_f" text="{=!}Highborn" />
   <string id="str_faction_official.eonir" text="{=!}a lord" />
   <string id="str_faction_official.eonir_f" text="{=!}a lady" />
+  <string id="str_faction_ruler.chaos_culture" text="{=!}Chaos Lord" />
+  <string id="str_faction_ruler.chaos_culture_f" text="{=!}Chaos Lord" />
+  <string id="str_faction_official.chaos_culture" text="{=!}chaos lord" />
+  <string id="str_faction_official.chaos_culture_f" text="{=!}chaos lord" />
 
   <string id="str_faction_ruler_term_in_speech.empire" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.khuzait" text="{=!}{RULER.NAME}" />
@@ -138,6 +144,7 @@
   <string id="str_faction_ruler_term_in_speech.mousillon" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.battania" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_term_in_speech.eonir" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_term_in_speech.chaos_culture" text="{=!}{RULER.NAME}" />
 
   <string id="str_faction_ruler_name_with_title.empire" text="{=!}{RULER.NAME}" />
   <string id="str_faction_noble_name_with_title.empire" text="{=!}{RULER.NAME}" />
@@ -151,6 +158,8 @@
   <string id="str_faction_noble_name_with_title.battania" text="{=!}{RULER.NAME}" />
   <string id="str_faction_ruler_name_with_title.eonir" text="{=!}{RULER.NAME}" />
   <string id="str_faction_noble_name_with_title.eonir" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_ruler_name_with_title.chaos_culture" text="{=!}{RULER.NAME}" />
+  <string id="str_faction_noble_name_with_title.chaos_culture" text="{=!}{RULER.NAME}" />
 
   <string id="str_adjective_for_faction.averland" text="{=!}imperial" />
   <string id="str_adjective_for_faction.stirland" text="{=!}imperial" />
@@ -220,6 +229,7 @@
   <string id="str_faction_formal_name_for_culture.mousillon" text="{=!}Mousillon" />
   <string id="str_faction_formal_name_for_culture.battania" text="{=!}Athel Loren" />
   <string id="str_faction_formal_name_for_culture.eonir" text="{=!}Laurelorn Forest" />
+  <string id="str_faction_formal_name_for_culture.chaos_culture" text="{=!}Forces of Chaos" />
 
   <string id="str_faction_informal_name_for_culture.khuzait" text="{=!}Sylvania" />
   <string id="str_faction_informal_name_for_culture.empire" text="{=!}the Empire" />
@@ -227,6 +237,7 @@
   <string id="str_faction_informal_name_for_culture.mousillon" text="{=!}Mousillon" />
   <string id="str_faction_informal_name_for_culture.battania" text="{=!}Athel Loren" />
   <string id="str_faction_informal_name_for_culture.eonir" text="{=!}Laurelorn" />
+  <string id="str_faction_informal_name_for_culture.chaos_culture" text="{=!}Chaos" />
 
   <string id="str_adjective_for_culture.khuzait" text="{=!}vampire" />
   <string id="str_adjective_for_culture.empire" text="{=!}imperial" />
@@ -234,6 +245,7 @@
   <string id="str_adjective_for_culture.mousillon" text="{=!}mousillan" />
   <string id="str_adjective_for_culture.battania" text="{=!}asrai" />
   <string id="str_adjective_for_culture.eonir" text="{=!}eonir" />
+  <string id="str_adjective_for_culture.chaos_culture" text="{=!}chaos" />
 
   <string id="str_neutral_term_for_culture.khuzait" text="{=!}sylvanians" />
   <string id="str_neutral_term_for_culture.empire" text="{=!}imperials" />
@@ -241,6 +253,7 @@
   <string id="str_neutral_term_for_culture.mousillon" text="{=!}mousillans" />
   <string id="str_neutral_term_for_culture.battania" text="{=!}asrai" />
   <string id="str_neutral_term_for_culture.eonir" text="{=!}eonir" />
+  <string id="str_neutral_term_for_culture.chaos_culture" text="{=!}chaos" />
 
 
   <string id="tor_feudal_oath_line1.averland" text="{=!}I hereby swear to serve the Grand County of Averland." />
@@ -478,6 +491,8 @@
       <tag tag_name="EonirTag" />
     </tags>
   </string>
+  <string id="str_liege_title.chaos_culture" text="{=!}Chaos Lord" />
+  <string id="str_liege_title_female.chaos_culture" text="{=!}Chaos Lord" />
 
   <string id="str_comment_noble_introduces_self.empire" text="{=!}I am {CONVERSATION_CHARACTER.LINK} of the house of {CLAN_NAME}.">
     <tags>

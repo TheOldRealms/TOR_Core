@@ -4,6 +4,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -107,14 +108,29 @@ namespace TOR_Core.CampaignMechanics.Chaos
                 }
             }
 
+            foreach(var comp in clan.WarPartyComponents)
+            {
+                if(comp.MobileParty != null && 
+                    comp.MobileParty.Army == null && 
+                    comp.Party.MapEvent == null && 
+                    comp.MobileParty.LeaderHero != null &&
+                    comp.Party.IsValid &&
+                    comp.MobileParty.IsActive)
+                {
+                    comp.MobileParty.Position2D = settlement.GatePosition;
+                    comp.Party.SetVisualAsDirty();
+                    comp.Party.UpdateVisibilityAndInspected();
+                }
+            }
+
             ChangeOwnerOfSettlementAction.ApplyByRebellion(clan.Leader, settlement);
 
             var chosenGovernor = clan.Lords.WhereQ(x => x.IsAlive && x.GovernorOf == null && x != clan.Leader).GetRandomElementInefficiently();
             var chosenGovernorParty = MobileParty.All.FirstOrDefaultQ(x => x.LeaderHero == chosenGovernor);
 
             ChangeGovernorAction.Apply(settlement.Town, chosenGovernor);
-            
-            DestroyPartyAction.ApplyForDisbanding(chosenGovernorParty, settlement);
+
+            if (chosenGovernorParty != null) DestroyPartyAction.ApplyForDisbanding(chosenGovernorParty, settlement);
 
             clan.Leader.ChangeHeroGold(100000);
 

@@ -22,11 +22,12 @@ namespace TOR_Core.Models
                 explainedNumber.Add(40,new TextObject("Elven Metropolis"));
             }
             
-            if (town.OwnerClan.IsCastleFaction() && !town.OwnerClan.Kingdom.Settlements.AnyQ(x=> x.IsTown))
+            if (town.OwnerClan.IsCastleFaction() && town.IsCastle && !town.IsUnderSiege)
             {
-                if (explainedNumber.ResultNumber<0)
+                if (explainedNumber.ResultNumber < 100)
                 {
-                    explainedNumber.Add(-explainedNumber.ResultNumber);
+                    explainedNumber.LimitMin(0);
+                    explainedNumber.Add(100);
                 }
             }
 

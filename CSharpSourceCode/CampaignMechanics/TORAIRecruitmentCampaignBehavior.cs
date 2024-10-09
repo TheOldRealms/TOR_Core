@@ -37,7 +37,7 @@ namespace TOR_Core.CampaignMechanics
             if (party.IsLordParty && !party.IsMainParty && party.LeaderHero != null )
             {
                 var clan = party.LeaderHero.Clan;
-                if (clan!=null && clan.IsCastleFaction() && clan.Kingdom!=null && !clan.Kingdom.Settlements.AnyQ(x=> x.IsTown))
+                if (clan != null && clan.Kingdom != null && clan.Kingdom.IsCastleFaction() && !clan.Kingdom.Settlements.AnyQ(x => x.IsTown))
                 {
                     if (party.LeaderHero.Culture.StringId == TORConstants.Cultures.SYLVANIA ||
                         party.LeaderHero.Culture.StringId == TORConstants.Cultures.MOUSILLON)
