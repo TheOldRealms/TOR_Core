@@ -4054,7 +4054,7 @@
       <EquipmentSet id="tor_kharmourts_blade_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_br_mounted_bowman" default_group="cavalry" level="21" name="{=str_tor_ror_br_mounted_bowman}Brettonian Mounted Bowman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
+  <NPCCharacter id="tor_ror_br_mounted_bowman" default_group="cavalry" level="21" name="{=str_tor_ror_br_mounted_bowman}Brettonnian Mounted Bowman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>

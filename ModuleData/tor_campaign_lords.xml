@@ -1832,8 +1832,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
+      <EquipmentSet id="tor_generic_empire_lord_kotww_template" />
+      <EquipmentSet id="tor_generic_empire_lord_kotww_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_middenland_first_6" default_group="cavalry" name="{=str_tor_emp_lord_middenland_first_6}Baron Heinrich von Torlichhelm" occupation="Lord" culture="Culture.empire" voice="curt" age="20" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -1994,8 +1994,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
+      <EquipmentSet id="tor_generic_empire_lord_kotww_template" />
+      <EquipmentSet id="tor_generic_empire_lord_kotww_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_middenland_third_2" default_group="cavalry" name="{=str_tor_emp_lord_middenland_third_2}Wolfpriest Heimdal" occupation="Lord" culture="Culture.empire" voice="earnest" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -2012,8 +2012,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" />
-      <EquipmentSet id="tor_generic_empire_lord_heavy_hammer_template" civilian="true" />
+      <EquipmentSet id="tor_generic_empire_lord_kotww_template" />
+      <EquipmentSet id="tor_generic_empire_lord_kotww_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_middenland_third_3" default_group="cavalry" name="{=str_tor_emp_lord_middenland_third_3}Huntsmarshall Helmut Lutz" occupation="Lord" culture="Culture.empire" voice="curt" age="30" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">
@@ -2102,8 +2102,8 @@
       <Trait id="Generosity" value="1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_bright_wizard_template" />
-      <EquipmentSet id="tor_bright_wizard_template" civilian="true" />
+      <EquipmentSet id="tor_beast_wizard_template" />
+      <EquipmentSet id="tor_beast_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_emp_lord_ostermark_factionleader" default_group="cavalry" name="{=str_tor_emp_lord_ostermark_factionleader}Elector Count Wolfram Hertwig" occupation="Lord" culture="Culture.empire" voice="curt" age="60" skill_template="SkillSet.tor_skills_warrior_lord" is_hero="true">

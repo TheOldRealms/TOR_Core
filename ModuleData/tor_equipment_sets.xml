@@ -15630,6 +15630,26 @@
       <Equipment slot="HorseHarness" id="Item.tor_empire_mountarmor_horsearmor_002" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_generic_empire_lord_kotww_template" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_thmace_warrior_priest_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armour_kotww_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_cape_kotww_011" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_kotww_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_kotww_001" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.mail_and_plate_barding" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_thmace_warrior_priest_003" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armour_kotww_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_cape_kotww_011" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_kotww_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_kotww_001" />
+      <Equipment slot="Horse" id="Item.tor_empire_mount_horse_003" />
+      <Equipment slot="HorseHarness" id="Item.mail_and_plate_barding" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_generic_empire_lord_medium_template" culture="Culture.empire">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.vlandia_lance_2_t4" />
