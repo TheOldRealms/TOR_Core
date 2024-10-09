@@ -7218,9 +7218,9 @@
       <EquipmentSet id="tor_eo_ranger_lord_2_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Chaos Lord Mortkin" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_caster_lord" race="marauder" is_hero="true">
+  <NPCCharacter id="tor_chaos_lord_factionleader" default_group="cavalry" name="{=str_tor_chaos_lord_factionleader}Chaos Lord Mortkin" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" race="marauder" is_hero="true">
     <face>
-      <BodyProperties version="4" age="50" weight="0.5" build="0.5" key="0039B8000000300FE90675CE1663F9E2334183BAC5AE860C69B35046831589100077760307A6408700000000000000000000000000000000000000003AF46002" />
+      <BodyProperties version="4" age="50" weight="0.02" build="0.9" key="002A500010000B823F766AFFF3506CB1CCB0866E90D6E01971040518537A395AFF0076030FBA67A9E0C9BA304300006F000000000000000F0000000001FC3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -7268,7 +7268,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_brasskeep_lord_2_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
       <EquipmentSet id="tor_brasskeep_lord_2_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
@@ -7286,7 +7286,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_brasskeep_lord_3_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
       <EquipmentSet id="tor_brasskeep_lord_3_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
@@ -7304,7 +7304,7 @@
       <Trait id="Generosity" value="-1" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_brasskeep_lord_4_template" />
+      <EquipmentSet id="tor_brasskeep_lord_1_template" />
       <EquipmentSet id="tor_brasskeep_lord_4_template" civilian="true" />
     </Equipments>
   </NPCCharacter>

@@ -17059,7 +17059,7 @@
   <EquipmentRoster id="tor_m_lord_serpent" culture="Culture.mousillon">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_006" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -17071,7 +17071,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_006" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_black_grail_knight_001" />
       <Equipment slot="Item2" id="Item.vlandia_sword_3_t4" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_kotr_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -17127,7 +17127,7 @@
   <EquipmentRoster id="tor_fallen_knight" culture="Culture.mousillon">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -17138,7 +17138,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_bretonnia_weapon_thsword_001" />
-      <Equipment slot="Item1" id="Item.tor_vc_weapon_shield_grave_guard_002" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_001" />
       <Equipment slot="Item2" id="Item.tor_empire_weapon_lance_knight_003" />
       <Equipment slot="Head" id="Item.tor_mousillon_head_helm_bgk_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_bgk_001" />
@@ -17173,7 +17173,7 @@
   <EquipmentRoster id="tor_eustache_template" culture="Culture.mousillon">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_003" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_002" />
       <Equipment slot="Item2" id="Item.morningstar_mace_t3" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_pilgrim_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
@@ -17185,7 +17185,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_empire_weapon_lance_knight_004" />
-      <Equipment slot="Item1" id="Item.tor_empire_weapon_shield_noble_003" />
+      <Equipment slot="Item1" id="Item.tor_mousillon_weapon_shield_knight_002" />
       <Equipment slot="Item2" id="Item.morningstar_mace_t3" />
       <Equipment slot="Head" id="Item.tor_bretonnian_head_helm_pilgrim_001" />
       <Equipment slot="Body" id="Item.tor_mousillon_body_armor_kotr_001" />
