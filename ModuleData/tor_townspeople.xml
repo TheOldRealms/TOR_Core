@@ -2447,6 +2447,20 @@
     </Equipments>
   </NPCCharacter>
   
+  	<NPCCharacter id="prison_guard_asrai" name="{=!}Prison Guard" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="elf" culture="Culture.battania" occupation="PrisonGuard">
+    <face>
+      <face_key_template value="BodyProperty.male_wood_elf" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_we_eternal_guard_template" />
+      <EquipmentSet id="tor_we_eternal_guard_template" civilian="true" />
+    </Equipments>
+	</NPCCharacter>
+  
   
     <!-- URBAN CHARACTERS OF eonir -->
 	

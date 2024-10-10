@@ -5993,7 +5993,7 @@
              armed_trader="NPCCharacter.tor_we_caravan_guard"
              caravan_guard="NPCCharacter.tor_we_caravan_ranged"
              veteran_caravan_guard="NPCCharacter.tor_we_caravan_elite_ranged"
-             prison_guard="NPCCharacter.prison_guard_battania"
+             prison_guard="NPCCharacter.prison_guard_asrai"
              guard="NPCCharacter.guard_battania"
              blacksmith="NPCCharacter.blacksmith_woodelf"
              weaponsmith="NPCCharacter.weaponsmith_woodelf"
