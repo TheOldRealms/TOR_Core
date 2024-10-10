@@ -334,11 +334,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
            var activity2 = new TextObject("{HIRELINGACTIVITYTEXT2}");
            var activity3 = new TextObject("{HIRELINGACTIVITYTEXT3}");
            var activity4 = new TextObject("{HIRELINGACTIVITYTEXT4}");
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity0_option",activity0.Value, null, args => ToggleActivity(0, args));
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity1_option",activity1.Value, null, args => ToggleActivity(1, args));
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity2_option",activity2.Value, null, args => ToggleActivity(2, args));
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity3_option",activity3.Value, null, args => ToggleActivity(3, args ));
-           campaignGameStarter.AddGameMenuOption("hireling_menu","activity4_option",activity4.Value, null, args => ToggleActivity(4, args));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity0_option",activity0.Value, args => HoverActiviy(0,args), args => ToggleActivity(0, args));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity1_option",activity1.Value, args => HoverActiviy(1,args), args => ToggleActivity(1, args));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity2_option",activity2.Value, args => HoverActiviy(2,args), args => ToggleActivity(2, args));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity3_option",activity3.Value, args => HoverActiviy(3,args), args => ToggleActivity(3, args ));
+           campaignGameStarter.AddGameMenuOption("hireling_menu","activity4_option",activity4.Value, args => HoverActiviy(4,args), args => ToggleActivity(4, args));
            
            campaignGameStarter.AddGameMenuOption("hireling_menu","empty","", args => { args.IsEnabled = false; return true;
            },null);
@@ -382,13 +382,27 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             }
         }
         
+        private bool HoverActiviy(int i, MenuCallbackArgs args)
+        {
+            var career = Hero.MainHero.GetCareer();
+            var activities = _activities.GetHirelingActivities(career);
+
+            args.Tooltip = activities[i].Name;
+
+            return true;
+        }
+        
+        
         private void ToggleActivity(int i, MenuCallbackArgs args)
         {
+        
             var career = Hero.MainHero.GetCareer();
             _currentActivityIndex = i;
             SetActivities();
 
             var activities = _activities.GetHirelingActivities(career);
+
+            args.Tooltip = activities[i].Name;
            
             _currentTrainedSkill = activities[i];
             args.MenuContext.Refresh();

@@ -86,6 +86,10 @@ namespace TOR_Core.CampaignMechanics
         private void AddDryadsToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero hero)
         {
             if (party == null || settlement == null || hero == null || !hero.IsSpellCaster() || hero.Culture.StringId != TORConstants.Cultures.ASRAI|| hero.CharacterObject.IsPlayerCharacter || settlement.IsHideout) return;
+            if (!settlement.StringId.Contains("AL"))
+            {
+                return;
+            }
             if (party.MemberRoster.TotalManCount < party.Party.PartySizeLimit)
             {
                 if (MBRandom.RandomFloat<0.05f && _treeman !=null)
@@ -98,7 +102,7 @@ namespace TOR_Core.CampaignMechanics
                     return;
                 }
 
-                if (_dryad == null)
+                if (_dryad == null || party.MemberRoster.GetTroopCount(_dryad)>=75)
                 {
                     return;
                 }

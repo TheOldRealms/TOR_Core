@@ -166,9 +166,9 @@ public class ServeAsAHirelingActivities
             {
                 _activitySets.Add(career, [
                     TORSkills.SpellCraft,
-                    DefaultSkills.Scouting,
                     DefaultSkills.Riding,
-                    DefaultSkills.Athletics,
+                    TORSkills.Faith,
+                    DefaultSkills.Charm,
                     DefaultSkills.Medicine
                 ]);
             }
