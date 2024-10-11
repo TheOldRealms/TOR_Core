@@ -5870,7 +5870,7 @@
     	</banner_bearer_replacement_weapons>
 	</Culture>
 	<Culture id="steppe_bandits"
-			 name="{=!}Ungor Warband"
+			 name="{=!}Beastmen Warband"
 			 bandit_chief="NPCCharacter.tor_beast_ungor_chief"
 			 bandit_raider="NPCCharacter.tor_beast_ungor_raider"
 			 bandit_bandit="NPCCharacter.tor_beast_ungor"
@@ -6347,8 +6347,8 @@
             <template name="NPCCharacter.tournament_template_asrai_four_participant_set_v1" />
         </tournament_team_templates_four_participant>
         <basic_mercenary_troops>
-            <template name="NPCCharacter.western_mercenary" />
-            <template name="NPCCharacter.sword_sisters_sister_t3" />
+            <template name="NPCCharacter.tor_we_caravan_elite_ranged" />
+            <template name="NPCCharacter.tor_we_wardancer" />
         </basic_mercenary_troops>
     </Culture>
 	<Culture id="sturgia"
