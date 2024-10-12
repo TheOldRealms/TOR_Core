@@ -11,6 +11,7 @@ using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -44,18 +45,21 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             {
                 
                 var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+                
 
                 if (!heroes.Any(x => x.IsSpellCaster() && x.HasKnownLore("LoreOfLife") && x.CharacterObject.IsElf()))
                 {
                     return;
                 }
+
+   
                 var settlements = TORCommon.FindSettlementsAroundPosition(MobileParty.MainParty.Position2D, 200);
                 if (!settlements.AnyQ(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.StringId .Contains("_AL")))
                 {
                        return;
                 }
-
-                var treeSpiritUnits = GetAthelLorenTreeSpiritUnits(mapEvent);
+                var spellsinger = heroes.Where(x=> x.CharacterObject.IsElf()).MaxBy(x => x.GetSkillValue(TORSkills.SpellCraft));
+                var treeSpiritUnits = GetAthelLorenTreeSpiritUnits(spellsinger);
 
                 foreach (var character in treeSpiritUnits)
                 {
@@ -159,17 +163,16 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             return elements;
         }
         
-        private List<CharacterObject> GetAthelLorenTreeSpiritUnits(MapEvent mapEvent, int reduction = 0){
+        private List<CharacterObject> GetAthelLorenTreeSpiritUnits(Hero spellsinger){
             List<CharacterObject> elements = new List<CharacterObject>();
 
-    
 
-            var num = mapEvent.GetMapEventSide(mapEvent.PlayerSide).TroopCount;
 
-            var gainChance = 0.25f;
-           // var gainChance= Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
+            var maximumNumber = Hero.MainHero.Level;
+
+            var gainChance = Mathf.Min(0.7f, spellsinger.GetSkillValue(TORSkills.SpellCraft) * 0.006f);
             
-            for (int i = 0; i <= num; i++)
+            for (int i = 0; i <= maximumNumber; i++)
             {
                 if(MBRandom.RandomFloat <= gainChance)
                 {

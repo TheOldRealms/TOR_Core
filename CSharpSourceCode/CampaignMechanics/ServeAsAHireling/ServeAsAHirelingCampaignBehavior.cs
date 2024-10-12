@@ -742,10 +742,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         
         private void EnlistPlayer()
         {
+            _hirelingEnlistingLord = CharacterObject.OneToOneConversationCharacter.HeroObject;
             HidePlayerParty();
             DisbandParty();
             Hero.MainHero.AddAttribute("enlisted");
-            _hirelingEnlistingLord = CharacterObject.OneToOneConversationCharacter.HeroObject;
+            
             ChangeKingdomAction.ApplyByJoinFactionAsMercenary(Hero.MainHero.Clan, _hirelingEnlistingLord.Clan.Kingdom, 25, false);
             MBTextManager.SetTextVariable("ENLISTINGLORDNAME", _hirelingEnlistingLord.EncyclopediaLinkWithName);
             
@@ -787,6 +788,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             foreach (TroopRosterElement troopRosterElement in troopRosterElementList)
             {
                 MobileParty.MainParty.MemberRoster.AddToCounts(troopRosterElement.Character, -1 * troopRosterElement.Number);
+                EnlistingLord.PartyBelongedTo.MemberRoster.AddToCounts(troopRosterElement.Character, 1 * troopRosterElement.Number);
+                
             }
         }
         

@@ -103,6 +103,7 @@ namespace TOR_Core.BattleMechanics.Banners
         {
             if (agent.IsHero) return false;
             if (agent.IsSummoned()) return false;
+            if (agent.IsTreeSpirit()) return false;
             if (Game.Current.GameType is Campaign && Campaign.Current != null)
             {
                 if (agent.Origin is PartyAgentOrigin origin)

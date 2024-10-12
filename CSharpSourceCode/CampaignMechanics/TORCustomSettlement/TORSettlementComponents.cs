@@ -131,7 +131,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("ungor_party");
             Clan beastmenClan = Clan.FindFirst(x => x.StringId == "beastmen_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject ("{=tor_ungor_raiders_str}Ungor Raiders").ToString(), template, beastmenClan, MBRandom.RandomInt(75, 99));
+            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject ("{=tor_beastmen_raiders_str}Beastmen Raiders").ToString(), template, beastmenClan, MBRandom.RandomInt(75, 99));
             SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, find);
             ((RaidingPartyComponent)raidingParty.PartyComponent).Target = find;
 
