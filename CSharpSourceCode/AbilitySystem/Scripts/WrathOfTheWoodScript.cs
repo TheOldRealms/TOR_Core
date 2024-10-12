@@ -47,7 +47,6 @@ public class WrathOfTheWoodScript : CareerAbilityScript
         while (count <= maximumSummons)
         {
             var threshold = this.Ability.Template.ScaleVariable1 + bonus;
-            TORCommon.Say(threshold.ToString());
             if (MBRandom.RandomFloat < threshold)
             {
                 count++;

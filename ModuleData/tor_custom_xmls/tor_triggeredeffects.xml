@@ -1495,6 +1495,7 @@
                              DamageType="Magical"
                              DamageAmount="60"
                              HasShockWave="false"
+							 Radius="0.5"
                              TargetType="Enemy"
                              DamageVariance="0" />
     <TriggeredEffectTemplate StringID="attackspeed_bonus_20"

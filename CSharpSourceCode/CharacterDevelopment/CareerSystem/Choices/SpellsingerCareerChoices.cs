@@ -194,7 +194,7 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
                 new CareerChoiceObject.MutationObject()
                 {
                 MutationTargetType = typeof(AbilityTemplate),
-                MutationTargetOriginalId = "RighteousFury",
+                MutationTargetOriginalId = "WrathOfTheWood",
                 PropertyName = "TriggeredEffects",
                 PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new []{"summon_treeman"}).ToList(),
                 MutationType = OperationType.Replace
@@ -214,7 +214,7 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
         _pathShapingPassive4.Initialize(CareerID, "{=grail_vow_passive4_str}Gain 15% Ward save.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
         
         _treeSingingPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-        _treeSingingPassive2.Initialize(CareerID, "Gain 25 Harmony daily.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CustomResourceGain));
+        _treeSingingPassive2.Initialize(CareerID, "Gain 20 Harmony daily.", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.CustomResourceGain));
         _treeSingingPassive3.Initialize(CareerID, "Upkeep for dryads units is reduced by 10%.", "TreeSinging", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.CustomResourceUpkeepModifier, true, characterObject => characterObject.Culture.StringId == TORConstants.Cultures.ASRAI && !characterObject.IsElf()));
         _treeSingingPassive4.Initialize(CareerID, "For every known spell increase party size by 3", "TreeSinging", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, false));
