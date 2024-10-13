@@ -1308,7 +1308,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_SY7" name="{=Settlements.Settlement.name.castle_SY7}Zherdenschlosse Castle" owner="Faction.sylvania_clan_2" posX="1698.386" posY="996.875" culture="Culture.khuzait" gate_posX="1699.278" gate_posY="997.5581">
+  <Settlement id="castle_SY7" name="{=Settlements.Settlement.name.castle_SY7}Zherdenschlosse Castle" owner="Faction.sylvania_clan_2" posX="1698.386" posY="996.875" culture="Culture.khuzait" gate_posX="1699.278" gate_posY="997.5581" text="{=Settlements.Settlement.text.castle_SY7}Zherdenschlosse Castle is one of the most northern keeps of Sylvania, serving as a bulwark against Ostermark and the Dwarves to the east. Zherdenschlosse is surrounded by swamp making it really hard for attackers to lay siege to the keep.">
     <Components>
       <Town id="castle_comp_SY7" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="vampire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -1318,7 +1318,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_SY7_1" name="{=Settlements.Settlement.name.castle_village_SY7_1}Zherden" posX="1688.24" posY="999.934" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY7_1}">
+  <Settlement id="castle_village_SY7_1" name="{=Settlements.Settlement.name.castle_village_SY7_1}Zherden" posX="1688.24" posY="999.934" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY7_1}Zherden is a small swampy town mostly used as first line of defence for Zherdenschlosse Castle. There is a lot of clay to be found in the area.">
     <Components>
       <Village id="castle_village_comp_SY7_1" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_SY2" bound="Settlement.castle_SY7" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -1331,7 +1331,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_SY7_2" name="{=Settlements.Settlement.name.castle_village_SY7_2}Messinghof" posX="1678.464" posY="1011.486" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY7_2}">
+  <Settlement id="castle_village_SY7_2" name="{=Settlements.Settlement.name.castle_village_SY7_2}Messinghof" posX="1678.464" posY="1011.486" culture="Culture.khuzait" text="{=Settlements.Settlement.text.castle_village_SY7_2}Messinghof is a small village between Waldenhof and Zherdenschlosse Castle. Most of it's inhabitants used to be farmers but due to the vampiric corruption their crops failed and their animals died. They now serve as lumberjacks cutting down the dead tree's to make a living.">
     <Components>
       <Village id="castle_village_comp_SY7_2" village_type="VillageType.lumberjack" hearth="101" gate_rotation="0.008" trade_bound="Settlement.town_SY2" bound="Settlement.castle_SY7" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="vampire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>

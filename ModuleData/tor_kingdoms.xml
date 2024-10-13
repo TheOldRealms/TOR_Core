@@ -716,7 +716,7 @@
              short_name="{=!}Athel Loren"
              title="{=!}Athel Loren"
              ruler_title="{=!}Highborn"
-             text="{=!}missing... ">
+             text="{=!}Athel Loren the great forest of the old world is divided into twelve Asrai kingdoms, each ruled by ancient lord's and lady's of the great council. The flow of time works different in Athel Loren. Some realms are permanently locked in time and what seems like the passing of a season is actually years. Others dwell in an eternal night or in the glory of the light of the midday sun. The magical halls of elven lords and ladies are scattered throughout the glades of these kingdoms forming having their own identity and custom's. In these places, enveloped by a dim light, you can hear laughter and ghostly tunes that are reminiscent of the wind blowing through the spring branches. Its magnificent entrance portals are interwoven with the trunks of ancient trees or carved into the slopes of a hill. These places remain hidden from all those who are not welcomed by the Asrai. These beings may pass very close to these entrances, but they will never discover them.">
     </Kingdom>
 	<Kingdom id="laurelorn"
              owner="Hero.tor_eo_lord_laurelorn_factionleader"
