@@ -5747,6 +5747,7 @@
         <name name="{=!}of {ORIGIN_SETTLEMENT}" />
       </clan_names>
       <cultural_feats>
+	    <feat id="battanian_forest_speed" />
         <feat id="vlandian_renown_mercenary_income" />
         <feat id="vlandian_villages_production_bonus" />
         <feat id="vlandian_increased_army_influence_cost" />

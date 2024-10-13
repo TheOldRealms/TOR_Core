@@ -13,6 +13,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -288,6 +289,12 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         bool CanBindTreeman(MenuCallbackArgs args)
         {
             args.IsEnabled = Hero.MainHero.GetCultureSpecificCustomResourceValue() >= TreemanPrice;
+            
+            if(Hero.MainHero.PartyBelongedTo.Party.MemberRoster.GetTroopRoster().Any(x=> x.Character.StringId == "tor_we_treeman"))
+            {
+                args.Tooltip = new TextObject("A treeman already follows your party");
+                args.IsEnabled = false;
+            }
             return true;
         }
         

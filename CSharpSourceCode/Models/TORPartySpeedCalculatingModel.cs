@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Helpers;
 using SandBox;
 using TaleWorlds.CampaignSystem;
@@ -36,16 +36,7 @@ namespace TOR_Core.Models
                         result.Add(0.25f, new TextObject("Vampire nighttime bonus"));
                     }
                 }
-
-                if (mobileParty.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI ||
-                    mobileParty.LeaderHero.Culture.StringId == TORConstants.Cultures.EONIR)
-                {
-                    TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(mobileParty.CurrentNavigationFace);
-                    if (faceTerrainType == TerrainType.Forest)
-                    {
-                        result.AddFactor(0.5f, new TextObject("Forest bonus for wood elves"));
-                    }
-                }
+                
             }
 
             if (mobileParty.Party != null && mobileParty == MobileParty.MainParty)

@@ -208,7 +208,7 @@ public class SpellsingerCareerChoices : TORCareerChoicesBase
     {
         
         _pathShapingPassive1.Initialize(CareerID, "{=vivid_visions_passive2_str}Party movement speed is increased by 1.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
-        _pathShapingPassive2.Initialize(CareerID, "Upkeep for elven units is reduced.", "PathShaping", false, ChoiceType.Passive, null,
+        _pathShapingPassive2.Initialize(CareerID, "Upkeep for elven units is reduced by 15%.", "PathShaping", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.TroopWages, true, characterObject => characterObject.IsElf()));
         _pathShapingPassive3.Initialize(CareerID, "{=vivid_visions_passive4_str}The Spotting range of the party is increased by 20%.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
         _pathShapingPassive4.Initialize(CareerID, "{=grail_vow_passive4_str}Gain 15% Ward save.", "PathShaping", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));

@@ -129,13 +129,13 @@ public class ForestHarmonyHelper
             {
                 case ForestHarmonyLevel.Unbound:
                     list.Add(new TooltipProperty("Maximum health reduced: ", HealthDebuffUnBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-                    list.Add(new TooltipProperty("Maximum health regeneration reduced: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
-                    list.Add(new TooltipProperty("Winds regeneration reduced: ", "-50%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                    list.Add(new TooltipProperty("Health regeneration reduced: ", HealthRegDebuffUnBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                    list.Add(new TooltipProperty("Winds regeneration reduced: ", WindsDebuffUnbound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
                 case ForestHarmonyLevel.Bound:
                     list.Add(new TooltipProperty("Maximum health reduced: ", HealthDebuffBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
-                    list.Add(new TooltipProperty("Maximum health regeneration reduced: ", "-25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
-                    list.Add(new TooltipProperty("Winds regeneration reduced: ", "-25%", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                    list.Add(new TooltipProperty("Health regeneration reduced: ", HealthDebuffBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                    list.Add(new TooltipProperty("Winds regeneration reduced: ", WindsDebuffBound.ToString("0%"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                     break;
                 case ForestHarmonyLevel.Harmony:
                     list.Add(new TooltipProperty("You are one with the forest", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
