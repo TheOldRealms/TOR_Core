@@ -1196,6 +1196,7 @@
   <string id="career_switch_title.MinorVampire" text="{=tor_career_switch_title_necrarch_str}Become a Carstein Vampire" />
   <string id="career_switch_title.BloodKnight" text="{=tor_career_switch_title_necrarch_str}Become a Blood Knight" />
   <string id="career_switch_title.BlackGrailKnight" text="{=tor_career_switch_title_necrarch_str}Become a Knight of Mousillon" />
+    <string id="career_switch_title.Necrarch" text="{=tor_career_switch_title_necrarch_str}Become a Necrach" />
 
   <string id="career_switch_explaination.MinorVampire" text="{=tor_career_switch_title_necrarch_str}
   By accepting you are becoming a Vampire, this decision is permanent and can't be changed back for the rest of your playthrough.{newline}
@@ -1228,6 +1229,16 @@
   The Dialog can be restarted if you decline.
   " />
 
+
+  <string id="career_switch_explaination.Necrarch" text="{=tor_career_switch_title_necrarch_str}
+  By accepting you are becoming a Necrach Vampire, this decision is permanent and can't be changed back for the rest of your playthrough.{newline}
+  {newline}
+  By Becoming a vampire, you will be stripped of Life Magic or Light magic (if you posess it), and the  faith skill.{newline}
+  Beside that you will gain Necrach powers.... {newline}
+  See more in the Wiki for more information.{newline}
+  {newline}
+  The Dialog can be restarted if you decline.
+  " />
 
   <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_witch_hunter_str}Witch Hunter Initiate" />
   <string id="career_choicegroup2_name.WitchHunter" text="{=career_choicegroup2_witch_hunter_str}Witch Hunter Captain" />

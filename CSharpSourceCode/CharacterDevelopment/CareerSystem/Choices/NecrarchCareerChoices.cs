@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -334,8 +334,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             Hero.MainHero.GetExtendedInfo().RemoveAllSpells();
             
-            var race = FaceGen.GetRaceOrDefault("vampire");
-            Hero.MainHero.CharacterObject.Race = race;
+            Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("necrarch");
+            Hero.MainHero.UpdatePlayerGender(false);
                 
             var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
             Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
