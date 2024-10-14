@@ -4408,6 +4408,7 @@
                      AbilityTargetType="GroundAtPosition"
                      CrosshairType="TargetedAOE"
                      TargetCapturingRadius="5"
+					 TooltipDescription="{=healing_hand_description_str}Allies in a 5 meter radius gain 5 Healthpoints every 2 seconds  for 9 seconds.">
                      BelongsToLoreID="SigmaritePrayers">
         <LightColorRGB x="255"
                        y="255"

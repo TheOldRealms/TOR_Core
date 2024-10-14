@@ -186,7 +186,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Replace
                     },
                 });
-            _runesOfTheWhiteWolfKeystone.Initialize(CareerID, "All Enemies hit by the Axe of Ulric suffer from a dot", "RunesOfTheWhiteWolf", false,
+            _runesOfTheWhiteWolfKeystone.Initialize(CareerID, "All Enemies hit by the Axe of Ulric suffer from a damage over time effect", "RunesOfTheWhiteWolf", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
