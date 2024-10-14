@@ -42,6 +42,7 @@ namespace TOR_Core.BattleMechanics.CustomArenaModes
 
         private void SelectNewTarget()
         {
+            if (Owner.IsPlayerControlled) return;
             List<KeyValuePair<float, DestructableComponent>> list = [];
             foreach (DestructableComponent destructableComponent in _targetList)
             {
