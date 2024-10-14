@@ -1,7 +1,5 @@
 ﻿using SandBox;
 using SandBox.Tournaments;
-using SandBox.Tournaments.AgentControllers;
-using SandBox.View.Missions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +17,7 @@ namespace TOR_Core.Missions
     public class ArcheryContestMissionController(CultureObject culture) : MissionLogic, ITournamentGameBehavior
     {
         private readonly CultureObject _culture = culture;
+        private const float EXPECTED_TIME_TO_AIM = 1.9f;
         private TournamentMatch _match;
         private BasicMissionTimer _endTimer;
         private bool _isSimulated;
@@ -29,10 +28,13 @@ namespace TOR_Core.Missions
         private GameEntity _rightParticipantSpawn;
         private Agent _leftParticipantAgent;
         private Agent _rightParticipantAgent;
-        private readonly Queue<Mission.Missile> _missiles = [];
+        private BasicMissionTimer _leftTimer;
+        private BasicMissionTimer _rightTimer;
 
         public override void AfterStart()
         {
+            _leftTimer = new();
+            _rightTimer = new();
             _leftParticipantSpawn = Mission.Scene.FindEntityWithTag("sp_tp_left");
             _rightParticipantSpawn = Mission.Scene.FindEntityWithTag("sp_tp_right");
             _leftSideTargets = (from x in Mission.ActiveMissionObjects.FindAllWithType<DestructableComponent>()
@@ -44,32 +46,44 @@ namespace TOR_Core.Missions
             Mission.SetMissionMode(MissionMode.Battle, true);
             foreach (DestructableComponent destructableComponent in _leftSideTargets)
             {
-                destructableComponent.OnDestroyed += new DestructableComponent.OnHitTakenAndDestroyedDelegate(OnTargetDestroyed);
+                destructableComponent.OnDestroyed += new DestructableComponent.OnHitTakenAndDestroyedDelegate(OnLeftTargetDestroyed);
             }
             foreach (DestructableComponent destructableComponent in _rightSideTargets)
             {
-                destructableComponent.OnDestroyed += new DestructableComponent.OnHitTakenAndDestroyedDelegate(OnTargetDestroyed);
+                destructableComponent.OnDestroyed += new DestructableComponent.OnHitTakenAndDestroyedDelegate(OnRightTargetDestroyed);
             }
         }
 
-        private void OnTargetDestroyed(DestructableComponent target, Agent attackerAgent, in MissionWeapon weapon, ScriptComponentBehavior attackerScriptComponentBehavior, int inflictedDamage)
+        private void OnRightTargetDestroyed(DestructableComponent target, Agent attackerAgent, in MissionWeapon weapon, ScriptComponentBehavior attackerScriptComponentBehavior, int inflictedDamage)
         {
-            var controller = attackerAgent.GetController<ArcheryContestAgentController>();
-            if (controller != null)
-            {
-                controller.OnTargetHit(attackerAgent, target);
-                _match.GetParticipant(attackerAgent.Origin.UniqueSeed).AddScore(1);
-            }
+            var controller = _rightParticipantAgent.GetController<ArcheryContestAgentController>();
+            controller.OnTargetHit(_rightParticipantAgent, target);
+            _match.GetParticipant(_rightParticipantAgent.Origin.UniqueSeed).AddScore(CalculateScore(target, _rightParticipantAgent, _rightTimer.ElapsedTime));
+            _rightTimer.Reset();
             if (attackerAgent.IsPlayerControlled)
             {
                 Hero.MainHero.AddSkillXp(DefaultSkills.Bow, 50f);
             }
         }
 
-        public override void OnMissileCollisionReaction(Mission.MissileCollisionReaction collisionReaction, Agent attackerAgent, Agent attachedAgent, sbyte attachedBoneIndex)
+        private void OnLeftTargetDestroyed(DestructableComponent target, Agent attackerAgent, in MissionWeapon weapon, ScriptComponentBehavior attackerScriptComponentBehavior, int inflictedDamage)
         {
-            var missile = Mission.Missiles.FirstOrDefault(x => x.ShooterAgent == attackerAgent);
-            if (missile != null && !_missiles.Contains(missile)) _missiles.Enqueue(missile);
+            var controller = _leftParticipantAgent.GetController<ArcheryContestAgentController>();
+            controller.OnTargetHit(_leftParticipantAgent, target);
+            _match.GetParticipant(_leftParticipantAgent.Origin.UniqueSeed).AddScore(CalculateScore(target, _leftParticipantAgent, _leftTimer.ElapsedTime));
+            _leftTimer.Reset();
+            if (attackerAgent.IsPlayerControlled)
+            {
+                Hero.MainHero.AddSkillXp(DefaultSkills.Bow, 50f);
+            }
+        }
+
+        private int CalculateScore(DestructableComponent target, Agent agent, float elapsedTime)
+        {
+            var timeSinceLastHit = elapsedTime < 0.2f ? EXPECTED_TIME_TO_AIM : elapsedTime;
+            var distance = target.GameEntity.GlobalPosition.Distance(agent.GetEyeGlobalPosition());
+            var timeBonus = EXPECTED_TIME_TO_AIM / timeSinceLastHit;
+            return (int)(distance * timeBonus);
         }
 
         public void StartMatch(TournamentMatch match, bool isLastRound)
@@ -78,6 +92,8 @@ namespace TOR_Core.Missions
             _isLastRound = isLastRound;
             _leftParticipantAgent = null;
             _rightParticipantAgent = null;
+            _leftTimer.Reset();
+            _rightTimer.Reset();
             ResetTargets();
             PrepareForMatch();
 
@@ -198,7 +214,7 @@ namespace TOR_Core.Missions
                     }
                     if (MBRandom.RandomFloat < GetDeadliness(tournamentParticipant))
                     {
-                        tournamentParticipant.AddScore(1);
+                        tournamentParticipant.AddScore(MBRandom.RandomInt(10,30));
                         i--;
                     }
                 }
@@ -276,11 +292,6 @@ namespace TOR_Core.Missions
                     var controller = agent.GetController<ArcheryContestAgentController>();
                     controller?.OnTick();
                 }
-            }
-            while(_missiles.Count > 0)
-            {
-                var missile = _missiles.Dequeue();
-                Mission.RemoveMissileAsClient(missile.Index);
             }
         }
 
