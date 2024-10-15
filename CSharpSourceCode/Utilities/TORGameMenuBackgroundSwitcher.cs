@@ -128,10 +128,9 @@ namespace TOR_Core.Utilities
         [GameMenuInitializationHandler("town_backstreet")]
         private static void wait_menu_ui_town_backstreet_on_init_tor(MenuCallbackArgs args)
         {
-            var settlement= Settlement.CurrentSettlement;
-            
-            if(settlement==null) return;
-            
+            var settlement = Settlement.CurrentSettlement;
+
+            if (settlement == null) return;
             
             if (settlement.Culture == null)
             {
@@ -143,6 +142,9 @@ namespace TOR_Core.Utilities
             {
                 case "mousillon":
                     args.MenuContext.SetBackgroundMeshName("vlandia_tavern");
+                    return;
+                case "eonir":
+                    args.MenuContext.SetBackgroundMeshName("eonir_town_background");
                     return;
             }
         }
@@ -161,6 +163,9 @@ namespace TOR_Core.Utilities
             {
                 case "mousillon":
                     args.MenuContext.SetBackgroundMeshName("bretonnia_city_background");
+                    return;
+                case "eonir":
+                    args.MenuContext.SetBackgroundMeshName("eonir_town_background");
                     return;
             }
         }

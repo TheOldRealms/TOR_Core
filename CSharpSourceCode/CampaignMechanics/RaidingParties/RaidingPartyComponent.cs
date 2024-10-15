@@ -67,12 +67,12 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
                 AIBehaviorTuple item = new(Target, AiBehavior.RaidSettlement, false);
                 if (thinkParams.TryGetBehaviorScore(item, out float score))
                 {
-                    thinkParams.SetBehaviorScore(item, score + 0.8f);
+                    thinkParams.SetBehaviorScore(item, score + 1f);
                     return;
                 }
                 else
                 {
-                    ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 0.8f);
+                    ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 9999f);
                     thinkParams.AddBehaviorScore(valueTuple);
                 }
 
@@ -83,12 +83,12 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
                 AIBehaviorTuple item = new(HomeSettlement, AiBehavior.PatrolAroundPoint, false);
                 if (thinkParams.TryGetBehaviorScore(item, out float score))
                 {
-                    thinkParams.SetBehaviorScore(item, score + 0.8f);
+                    thinkParams.SetBehaviorScore(item, score + 1f);
                     return;
                 }
                 else
                 {
-                    ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 0.8f);
+                    ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 9999f);
                     thinkParams.AddBehaviorScore(valueTuple);
                 }
             }
