@@ -57,7 +57,7 @@ namespace TOR_Core.Models
             
             if (party != null && party.LeaderHero != null && party.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                num.AddFactor(-0.5f, new TextObject("Woodelf Party size malus"));
+                num.AddFactor(-0.5f, new TextObject("Woodelf party size cultural penalty"));
 
                 if (party.LeaderHero == Hero.MainHero)
                 {
