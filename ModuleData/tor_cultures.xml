@@ -1407,6 +1407,8 @@
 		</tournament_team_templates_four_participant>
 		<basic_mercenary_troops>
       		<template name="NPCCharacter.tor_merc_free_company_volunteer" />
+			<template name="NPCCharacter.tor_empire_novice_engineer" />
+			<template name="NPCCharacter.tor_empire_trainee_artillery_crew" />
     	</basic_mercenary_troops>
 	</Culture>
 	<Culture id="khuzait"
