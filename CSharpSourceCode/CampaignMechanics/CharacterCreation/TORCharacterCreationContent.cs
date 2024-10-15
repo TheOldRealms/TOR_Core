@@ -418,7 +418,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             position2D = culture.StringId switch
             {
-                TORConstants.Cultures.EMPIRE => new Vec2(1450.97f, 991.37f),
+                TORConstants.Cultures.EMPIRE => new Vec2(1281.157f, 1058.522f),
                 TORConstants.Cultures.SYLVANIA => new Vec2(1617.54f, 969.70f),
                 TORConstants.Cultures.BRETONNIA => new Vec2(998.96f, 830.02f),
                 TORConstants.Cultures.MOUSILLON => new Vec2(932.531f, 1049.944f),
