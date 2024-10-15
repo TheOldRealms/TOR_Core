@@ -107,14 +107,14 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
         public override string RewardItemId => "tor_empire_weapon_sword_runefang_001";
 
-        public override void SpawnNewParty(out MobileParty party)
+        public override void SpawnNewParty(out MobileParty party, Settlement initialTarget)
         {
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_lordparty_template");
             Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
             var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, "{=tor_chaos_raiders_str}Chaos Raiders", template, chaosClan, MBRandom.RandomInt(75, 99));
-            SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, find);
-            ((RaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = find;
+            SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, initialTarget ?? find);
+            ((RaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = initialTarget ?? find;
 
             party = chaosRaidingParty;
         }
@@ -126,14 +126,14 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
         public override string RewardItemId => "tor_empire_weapon_sword_runefang_001";
 
-        public override void SpawnNewParty(out MobileParty party)
+        public override void SpawnNewParty(out MobileParty party, Settlement initialTarget)
         {
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("ungor_party");
             Clan beastmenClan = Clan.FindFirst(x => x.StringId == "beastmen_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
             var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject ("{=tor_beastmen_raiders_str}Beastmen Raiders").ToString(), template, beastmenClan, MBRandom.RandomInt(75, 99));
-            SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, find);
-            ((RaidingPartyComponent)raidingParty.PartyComponent).Target = find;
+            SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find);
+            ((RaidingPartyComponent)raidingParty.PartyComponent).Target = initialTarget ?? find;
 
             party = raidingParty;
         }
@@ -145,14 +145,14 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
         public override string RewardItemId => "tor_empire_weapon_sword_runefang_001";
 
-        public override void SpawnNewParty(out MobileParty party)
+        public override void SpawnNewParty(out MobileParty party, Settlement initialTarget)
         {
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("druchii_slaver_party");
             Clan clan = Clan.FindFirst(x => x.StringId == "druchii_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
             var raidingParty = RaidingPartyComponent.CreateRaidingParty("druchii_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject("{=tor_dark_elf_slavers}Druchii Slavers").ToString(), template, clan, MBRandom.RandomInt(75, 99));
-            SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, find);
-            ((RaidingPartyComponent)raidingParty.PartyComponent).Target = find;
+            SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find);
+            ((RaidingPartyComponent)raidingParty.PartyComponent).Target = initialTarget ?? find;
 
             party = raidingParty;
         }

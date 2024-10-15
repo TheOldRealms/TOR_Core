@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
-using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 
@@ -63,6 +58,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public abstract string BattleSceneName { get; }
         public bool IsBattleUnderway { get; set; }
         public abstract string RewardItemId { get; }
-        public abstract void SpawnNewParty(out MobileParty party);
+        public abstract void SpawnNewParty(out MobileParty party, Settlement initialTarget);
     }
 }

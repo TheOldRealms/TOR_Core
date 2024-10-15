@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Helpers;
+using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameMenus;
@@ -18,6 +19,7 @@ using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -625,31 +627,36 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
                 var slaverBay = Campaign.Current.Settlements.FirstOrDefaultQ(x => x.StringId == "darkelf_camp_01");
 
-                var slaverBaySettlementComponent =(SlaverCampComponent)slaverBay.SettlementComponent;
+                var slaverBaySettlementComponent = (SlaverCampComponent)slaverBay.SettlementComponent;
+
+                int maxPartiesToSpawn = 6;
+                int partiesSpawned = 0;
 
                 if (slaverBaySettlementComponent != null)
                 {
                     foreach (var settlement in kingdom.Settlements)
                     {
-                        if(!settlement.IsVillage) continue;
+                        if (partiesSpawned >= maxPartiesToSpawn) break;
+
+                        if(!settlement.IsVillage || settlement.IsRaided || settlement.IsUnderRaid) continue;
 
                         if (MBRandom.RandomFloat < 0.25f)
                         {
-                            slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty1);
-                            slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty2);
+                            slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty1, settlement);
+                            slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty2, settlement);
                             var ta = druchiiParty1.MemberRoster.CloneRosterData();
                             
-                            druchiiParty1.Position2D = settlement.Position2D;
-                            druchiiParty2.Position2D = settlement.Position2D;
-                            
+                            druchiiParty1.Party.PlaceRandomPositionAroundPosition(settlement.Position2D, 20);
+                            druchiiParty2.Party.PlaceRandomPositionAroundPosition(settlement.Position2D, 20);
+
                             druchiiParty1.MemberRoster.Add(ta);
                             druchiiParty2.MemberRoster.Add(ta);
+                            partiesSpawned += 2;
                             continue;
                         }
-                        slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty);
-
-                        druchiiParty.Position2D = settlement.Position2D;
-
+                        slaverBaySettlementComponent.SpawnNewParty(out var druchiiParty, settlement);
+                        partiesSpawned++;
+                        druchiiParty.Party.PlaceRandomPositionAroundPosition(settlement.Position2D, 20);
                         var memberRosterCopy = druchiiParty.MemberRoster.CloneRosterData();
                         druchiiParty.MemberRoster.Add(memberRosterCopy);
                     }
@@ -663,11 +670,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             }
         }
         
-        
         // why are you here?
-        
-        
-        
         campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere", "druchii_envoy_whyareyouhere", "envoy_druchii_wayh_reaction",
             "The Witchking, sends his best regards. I know we were not always on the best terms, yet we think both, the druchii and the Eonir, share undeniable commonalities.... we were both betrayed by the Asur..", () => IsDruchiiEnvoy(), null, 200);
         
@@ -683,16 +686,13 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere_3", "druchii_envoy_whyareyouhere_3", "back_to_main_hub_druchii",
             "We can take care of some of your problems, some of your darkest desires without any question being asked, and ensure the sea protection of your fleets... all we want is a little power within your council, do you think you can do that?", () => IsDruchiiEnvoy(), null, 200);
-
         
         campaignGameStarter.AddDialogLine("back_to_main_hub_druchii", "back_to_main_hub_druchii", "druchii_envoy_main_hub",
             "Is there something else I could do for you?", () => IsDruchiiEnvoy(), null, 200);
         
         //back to hub
-        
         campaignGameStarter.AddDialogLine("back_to_main_hub_druchii", "back_to_main_hub_druchii", "druchii_envoy_main_hub",
             "Is there something else the Witch king could do for you?", () => IsDruchiiEnvoy(),null, 200);
-
         
         void setDruchiiPrices()
         {
@@ -705,8 +705,6 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             _isDruchiiEnvoyTrade = false;
             setDruchiiPrices();
             var partner = CharacterObject.OneToOneConversationCharacter;
-            
-            
             if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("DruchiiEnvoy");
 
             return false;
@@ -720,7 +718,6 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         state.TrainerCulture = CharacterObject.OneToOneConversationCharacter.Culture.StringId;
         Game.Current.GameStateManager.PushState(state);
     }
-
     private void AddAsurEnvoyDialogLines(CampaignGameStarter starter)
     {
         starter.AddDialogLine("envoy_foreign", "start", "close_window", "You are not part of these people, begone.",
