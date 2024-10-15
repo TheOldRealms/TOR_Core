@@ -55,28 +55,30 @@ namespace TOR_Core.Models
                 num.Add(1500, new TextObject("Invasion Force Bonus"));
             }
             
-            if (party != null && party.LeaderHero != null && party.LeaderHero == Hero.MainHero && Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+            if (party != null && party.LeaderHero != null && party.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
                 num.AddFactor(-0.5f, new TextObject("Woodelf Party size malus"));
-                var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
-                var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WEPartySizeUpgrade");
-                foreach (var attribute in  list)
-                {
-                    num.AddFactor(0.1f);
-                }
 
-                if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
+                if (party.LeaderHero == Hero.MainHero)
                 {
-                    num.AddFactor(0.5f, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
+                    var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+                    var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WEPartySizeUpgrade");
+                    foreach (var attribute in list)
+                    {
+                        num.AddFactor(0.1f);
+                    }
+
+                    if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
+                    {
+                        num.AddFactor(0.5f, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
+                    }
+
+                    if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+                    {
+                        num.AddFactor(-0.25f, ForestHarmonyHelper.TreeSymbolText("WEDurthuSymbol"));
+                    }
                 }
-                
-                if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
-                {
-                    num.AddFactor(-0.25f, ForestHarmonyHelper.TreeSymbolText("WEDurthuSymbol"));
-                }
-                
             }
-            
             
             return num;
         }
