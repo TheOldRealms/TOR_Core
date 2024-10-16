@@ -110,13 +110,13 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_world_roots", "spellsinger_envoy_main_hub", "spellsinger_envoy_world_roots",
-            "I need to travel to roots of the Asrai, would you guide me over it?", () => IsSpellsingerEnvoy(), null, 200);
+            "I want to travel along the roots of the Asrai, can you be my guide?", () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_troop_refill", "spellsinger_envoy_main_hub", "spellsinger_envoy_troop_refill",
-            "We need the Forestborn, can you call for them?", () => IsSpellsingerEnvoy(), null, 200);
+            "We need the Forestborn, are there any who can come to our aid?", () => IsSpellsingerEnvoy(), null, 200);
 
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_magic", "spellsinger_envoy_main_hub", "back_to_main_hub_spellsinger", "{=tor_spelltrainer_eonir_open_book_str}I want to learn more magic can you help?.", () => MobileParty.MainParty.HasSpellCasterMember()&&Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && IsSpellsingerEnvoy(), openbookconsequence, 200, null);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_magic", "spellsinger_envoy_main_hub", "back_to_main_hub_spellsinger", "{=tor_spelltrainer_eonir_open_book_str}I seek to further my knowledge of the Winds of Magic, can you help me achieve this?", () => MobileParty.MainParty.HasSpellCasterMember()&&Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && IsSpellsingerEnvoy(), openbookconsequence, 200, null);
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_lores", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_lores", "{=tor_spelltrainer_eonir_open_book_str}I think i am ready to learn a new facet of the winds of magic.", () =>  IsSpellsingerEnvoy() && GreylordIsNotAllowedToLearnMoreLores(), null, 200, null);
 
@@ -130,18 +130,18 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //travel info
         
         campaignGameStarter.AddDialogLine("spellsinger_envoy_world_roots", "spellsinger_envoy_world_roots", "spellsinger_envoy_world_roots_choice",
-            "See , I can help you with that, I won't do for nothing though. Help our people to gain more power, and I will allow you to travel via the roots.", () => IsSpellsingerEnvoy(), null, 200);
+            "I can, but for a price. Help our people, they need more power and then I will allow you to travel the worldroot.", () => IsSpellsingerEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_world_roots_choice_1", "spellsinger_envoy_world_roots_choice", "spellsinger_envoy_world_roots_results",
-            "This is fine. I am willing to help you. How can I travel then?", () => IsSpellsingerEnvoy(), null, 200);
+            "Of course, I am willing to help. Now as my guide, please tell me how I can travel along these ancient pathways?", () => IsSpellsingerEnvoy(), null, 200);
         
         campaignGameStarter.AddDialogLine("spellsinger_envoy_world_roots_results", "spellsinger_envoy_world_roots_results", "back_to_main_hub_spellsinger",
-            "Look for the world root end in the Laurelorn forest, a spellsinger will help you travel along the roots. We can take you to the Maisontaal, in the far away Bretonnia. I am not willing to upset the Asrai, therefore we will not take you the whole root up to their Oak of Ages.", () => IsSpellsingerEnvoy(), null, 200);
+            "There is an entranceway to the Worldroots here in Laurelorn, first you must find it. Once there, a Spellsinger will help you travel across it but only to Maisontaal in the distant lands of Bretonnia.\n\nWe can go no further, as I am not willing to offend the Asrai. The roots are sacred, it is rare enough for non-Asrai to cross them.", () => IsSpellsingerEnvoy(), null, 200);
         
         //refill
         
         campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill_choice",
-            "Many Forestborn, are living as nomades far from our villages. Reaching them can be tricky, one needs to call them. You are willing me to do so?", () => IsSpellsingerEnvoy() && EnoughTimePassedSinceLastEvent("troop_refill",10), null, 200);
+            "There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messages to reach them but it can be done. Is this what you desire?", () => IsSpellsingerEnvoy() && EnoughTimePassedSinceLastEvent("troop_refill",10), null, 200);
         
         campaignGameStarter.AddDialogLine("spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill", "spellsinger_envoy_troop_refill_fail_choice",
             "We recently called for the forestborn's aid. We should wait longer for another call", () => (IsSpellsingerEnvoy()  &&  !EnoughTimePassedSinceLastEvent("troop_refill",10)), null, 200);
@@ -312,14 +312,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             null, 200);
 
 
-        campaignGameStarter.AddDialogLine("envoy_hub_intro_empire", "start", "empire_envoy_main_hub", "How can the empire help?",
+        campaignGameStarter.AddDialogLine("envoy_hub_intro_empire", "start", "empire_envoy_main_hub", "Is there some way I can be of assistance?",
             () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_prestige_to_favour", "empire_envoy_main_hub", "empire_envoy_prestige_to_favour",
             "I bring quality goods to trade and wish to build my reputation amongst the High Council. Are you interested?", () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("Prestige")> 3, null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_main_favour_to_prestige", "empire_envoy_main_hub", "empire_envoy_favour_to_prestige",
-            "I need a few prestigious goods of the empire, what does it take me to get them from you?", () => IsEmpireEnvoy(), null, 200);
+            "I find myself in need of quality goods to trade amongst the nobles of the Empire. Can you supply them?", () => IsEmpireEnvoy(), null, 200);
 
 
         campaignGameStarter.AddPlayerLine("empire_envoy_main_hub_empire_peace", "empire_envoy_main_hub", "empire_envoy_force_peace",
@@ -500,14 +500,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             "I am a servant of the Witchking, what can I do for you?", () => EonirEnvoyDialogCondition() && IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("druchii_envoy_main_force_war", "druchii_envoy_main_hub", "druchii_envoy_force_war",
-            "We need to get rid of one of our surrounding threads. Can you help to cause chaos among our enemies?", () => IsDruchiiEnvoy(), null,
+            "We are surrounded by enemies, we seek your aid to sow chaos within their ranks to weaken them.", () => IsDruchiiEnvoy(), null,
             200);
 
         campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_prisoners", "druchii_envoy_main_hub", "druchii_envoy_prisoners",
-            "I would like to provide you prisoners", () => IsDruchiiEnvoy(), null, 200);
+            "I have a fine stock of prisoners to sell, should you be interested.", () => IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_slaver_tide", "druchii_envoy_main_hub", "druchii_envoy_slaver_tide",
-            "I want you to adjust your slaver catchment areas", () => IsDruchiiEnvoy(), null, 200);
+            "I have some lucrative raiding targets for you.", () => IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("druchii_envoy_main_hub_whyareyouhere", "druchii_envoy_main_hub", "druchii_envoy_whyareyouhere", "Why are you here?",
             () => IsDruchiiEnvoy(), null, 200);
@@ -519,10 +519,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         //force war
         campaignGameStarter.AddDialogLine("druchii_envoy_force_war", "druchii_envoy_force_war", "druchii_envoy_force_war_choice",
-            "You would be surprised what trouble  the tip of a Khainite dagger could cause. If it finds the wrong throat to the wrong time, war can emerge. (Declare war between 2 factions ({FORCEWAR_PRICE}{EONIR_FAVOR})", () => IsDruchiiEnvoy() && EnoughTimePassedSinceLastEvent("force_war",20), null, 200);
+            "A Khainite dagger can make all the difference, if it finds the right throat at the wrong time. Wars have started over less. Upon whose throat should our daggers fall? (Declare war between 2 factions ({FORCEWAR_PRICE}{EONIR_FAVOR})", () => IsDruchiiEnvoy() && EnoughTimePassedSinceLastEvent("force_war",20), null, 200);
         
         campaignGameStarter.AddDialogLine("druchii_envoy_force_war_failed", "druchii_envoy_force_war", "druchii_envoy_force_war_failed_choice",
-            "My political power is limited. We became too demanding, you should ask another time", () => IsDruchiiEnvoy(), null, 200);
+            "The Witchking would not allow that. We should wait longer with such a request.", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("druchii_envoy_force_war_failed_choice", "druchii_envoy_force_war_failed_choice", "back_to_main_hub_druchii",
             "Understood.", () => IsDruchiiEnvoy(), null, 200);
@@ -589,10 +589,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //slaver tide
         
         campaignGameStarter.AddDialogLine("druchii_envoy_slaver_tide", "druchii_envoy_slaver_tide", "druchii_envoy_slaver_tide_choice",
-            "...this will cost you dearly your influence over the Council... ({SLAVERTIDE_PRICE}{EONIR_FAVOR}) I could see what I can do.  So where do you suggest our Black Arks to anchor?", () => IsDruchiiEnvoy() && EnoughTimePassedSinceLastEvent("slaver_tide",20), null, 200);
+            "...This will cost you influence with the council, but we are always in need of more slaves. where do you suggest our Black Arks to anchor?({SLAVERTIDE_PRICE}{EONIR_FAVOR})", () => IsDruchiiEnvoy() && EnoughTimePassedSinceLastEvent("slaver_tide",20), null, 200);
         
         campaignGameStarter.AddDialogLine("druchii_envoy_slaver_tide_failed", "druchii_envoy_slaver_tide", "druchii_envoy_slaver_tide_failed_choice",
-            "My political power is limited. We became too demanding, you should ask another time", () => IsDruchiiEnvoy(), null, 200);
+            "The Witchking would not allow that. We should wait longer with such a request.", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("druchii_envoy_slaver_tide_failed_choice", "druchii_envoy_slaver_tide_failed_choice", "back_to_main_hub_druchii",
             "Understood.", () => IsDruchiiEnvoy(), null, 200);
@@ -605,7 +605,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             "I need to think about this.", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddDialogLine("druchii_envoy_slaver_tide_choice_result", "druchii_envoy_slaver_tide_choice_result", "back_to_main_hub_druchii",
-            "Our slaver fleets will head towards there. I will pull a few strings to let it happen", () => IsDruchiiEnvoy(), SlaverTidePrompt, 200);
+            "I could see what I can do.", () => IsDruchiiEnvoy(), SlaverTidePrompt, 200);
 
 
         void SlaverTidePrompt()
@@ -618,7 +618,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 list.Add(new InquiryElement(kingdom,kingdom.Name.ToString(),null,true,""));
             }
             
-            var inquirydata = new MultiSelectionInquiryData("Choose kingdom to swarm of druchii troops", "Select a kingdom being swarmed by druchii slaver troops.", list, true, 1, 1, "Confirm", "Cancel", SwarmKingdomWithDruchii, null,"",true);
+            var inquirydata = new MultiSelectionInquiryData("Choose a kingdom to be swarmed", "Select a kingdom being swarmed by druchii slaver troops.", list, true, 1, 1, "Confirm", "Cancel", SwarmKingdomWithDruchii, null,"",true);
 
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
             void SwarmKingdomWithDruchii(List<InquiryElement> inquiryElements)
@@ -672,23 +672,23 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         // why are you here?
         campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere", "druchii_envoy_whyareyouhere", "envoy_druchii_wayh_reaction",
-            "The Witchking, sends his best regards. I know we were not always on the best terms, yet we think both, the druchii and the Eonir, share undeniable commonalities.... we were both betrayed by the Asur..", () => IsDruchiiEnvoy(), null, 200);
+            "I speak as an envoy of the rightful ruler of the Asur, and the Black Council. We may not always be aligned in our views but we believe both the Druchii and Eonir have much in common, and much to gain from one another.", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddPlayerLine("envoy_druchii_wayh_reaction_displeased", "envoy_druchii_wayh_reaction", "druchii_envoy_whyareyouhere_2",
-            "You are raiding the coasts of the Eonir, enslaved and drugged our people and now have the audacity to come here and pretend this never happened?", () => IsDruchiiEnvoy(), null, 200);
+            "You raid our coasts, enslave our people and yet have the audacity to stand before us, acting as if none of this has taken place!", () => IsDruchiiEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_druchii_wayh_reaction_undecided", "envoy_druchii_wayh_reaction", "druchii_envoy_whyareyouhere_2",
-            "I am skeptical, you come here without evil ambitions. What would be the benefit for the Eonir, letting you talk here?", () => IsDruchiiEnvoy(), null, 200);
+            "I am skeptical, you come here with your own ambitions but to what end? How would hearing you speak now, benefit the Eonir?", () => IsDruchiiEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("envoy_druchii_wayh_reaction_agreement", "envoy_druchii_wayh_reaction", "druchii_envoy_whyareyouhere_2",
-            "The Asur betrayed us, left us to die. I might not share your sentiment, but in the end you also set yourself free from their reign", () => IsDruchiiEnvoy(), null, 200);
+            "The Asur betrayed us and left us to die, I might not share your every sentiment Druchii, but I know you too suffer from our cousin's boundless arrogance.", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere_2", "druchii_envoy_whyareyouhere_2", "druchii_envoy_whyareyouhere_3",
-            "Listen, I am not your enemy. The opposite is true, the witch king send me, to improve our relationship. there are many ways we could avoid harm on the eonir, and the druchii are one of it. Take our hand as long as it available, I am sure it will be for your best.", () => IsDruchiiEnvoy(), null, 200);
+            "We are not your enemy, the opposite is true. Few share our bond of suffering at the hands of the Asur, few can understand our mutual plight. There are many ways we can coexist and thrive, together. - Join us, we have been scorned by our kin for far too long and this is the best path for our futures combined.", () => IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("druchii_envoy_whyareyouhere_3", "druchii_envoy_whyareyouhere_3", "back_to_main_hub_druchii",
-            "We can take care of some of your problems, some of your darkest desires without any question being asked, and ensure the sea protection of your fleets... all we want is a little power within your council, do you think you can do that?", () => IsDruchiiEnvoy(), null, 200);
+            "Your seas will be safe from raids and protected from any foe, the darkest desires of your people will be free of judgement and all we seek is influence over your council. - We merely wish to lessen the gap between our peoples so that we may stand against the Asur together, a sure and just cause, do you not agree?", () => IsDruchiiEnvoy(), null, 200);
         
         campaignGameStarter.AddDialogLine("back_to_main_hub_druchii", "back_to_main_hub_druchii", "druchii_envoy_main_hub",
-            "Is there something else I could do for you?", () => IsDruchiiEnvoy(), null, 200);
+            "Is there something else you require of me?", () => IsDruchiiEnvoy(), null, 200);
         
         //back to hub
         campaignGameStarter.AddDialogLine("back_to_main_hub_druchii", "back_to_main_hub_druchii", "druchii_envoy_main_hub",
@@ -729,17 +729,17 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
 
         starter.AddDialogLine("envoy_hub_intro_asur", "start", "asur_envoy_main_hub",
-            "I am the Envoy of the Pheonix King, what can the Asur do for you?", () => IsAsurianEnvoy(), null, 200);
+            "Kneel before the envoy of the Asur and representative of the illustrious Pheonix King, Finubar the Seafarer. Speak and do so quickly.", () => IsAsurianEnvoy(), null, 200);
 
         starter.AddPlayerLine("asur_envoy_main_hub_money", "asur_envoy_main_hub", "asur_envoy_money",
-            "I can put a good word for you or your ambitions, but money is short... is there something the Phoenix Throne can do?",
+            "We desire to expand our trade networks, but lack the funding. Would Ulthuan be willing to invest in this endeavour?",
             () => IsAsurianEnvoy(), null, 200);
 
-        starter.AddPlayerLine("asur_envoy_main_hub_troops", "asur_envoy_main_hub", "asur_envoy_troops", "We need your help can you spare some troops?",
+        starter.AddPlayerLine("asur_envoy_main_hub_troops", "asur_envoy_main_hub", "asur_envoy_troops", "Eonir is threatened, we need soldiers to defend our homes and people, can you aid us?",
             () => IsAsurianEnvoy(), null, 200);
 
         starter.AddPlayerLine("asur_envoy_main_hub_diplomacy", "asur_envoy_main_hub", "asur_envoy_diplomacy",
-            "Can you help the eonir to improve the relationship with the Kingdoms of Men?", () => IsAsurianEnvoy(), null, 200);
+            "We seek the aid of your diplomats, tensions between the kingdoms of man is at a high and we seek to reverse this.", () => IsAsurianEnvoy(), null, 200);
 
         starter.AddPlayerLine("asur_envoy_main_hub_whyareyouhere", "asur_envoy_main_hub", "asur_envoy_whyareyouhere", "Why are you here?", () => IsAsurianEnvoy(),
             null, 200);
@@ -750,10 +750,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         //money
         starter.AddDialogLine("asur_envoy_money", "asur_envoy_money", "asur_envoy_money_choice",
-            "Nothing easier than this. How much do you need?", () => IsAsurianEnvoy() && EnoughTimePassedSinceLastEvent("asur_money",5), null, 200);
+            "With ease, how much is needed?", () => IsAsurianEnvoy() && EnoughTimePassedSinceLastEvent("asur_money",5), null, 200);
         
         starter.AddDialogLine("asur_envoy_money_failed", "asur_envoy_money", "asur_envoy_money_failed_choice",
-            "My political power is limited. We became too demanding, you should ask another time", () => IsAsurianEnvoy(), null, 200);
+            "We wait for another shipment of the tressure fleet, this might take a few days. Come back", () => IsAsurianEnvoy(), null, 200);
         
         starter.AddPlayerLine("asur_envoy_money_failed_choice", "asur_envoy_money_failed_choice", "back_to_main_hub_asur",
             "Understood.", () => IsAsurianEnvoy(), null, 200);
@@ -771,7 +771,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //troops
         
         starter.AddDialogLine("asur_envoy_troops", "asur_envoy_troops", "asur_envoy_troops_choice",
-            "Obviously we can help. A batch of our garrison in Marienburg can be made available.", () => IsAsurianEnvoy(), null, 200);
+            "There may be some amongst the Asur willing to fight, even if it is for our less civlised kin.", () => IsAsurianEnvoy(), null, 200);
         
         starter.AddPlayerLine("asur_envoy_troops_choice_1", "asur_envoy_troops_choice", "back_to_main_hub_asur",
             "Sure I accept (150 {EONIR_FAVOR}).", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue()>=150, ShowTroopSelectionScreen, 200);
@@ -780,10 +780,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         
         //diplomacy
         starter.AddDialogLine("asur_envoy_diplomacy", "asur_envoy_diplomacy", "asur_envoy_diplomacy_choice",
-            "The Asur have diplomatic embassies through out the Empire, and have an embassy in Coronne. We can help the Eonir, to improve their overall relationship as a mediator. What do you me to try?", () => IsAsurianEnvoy()&& EnoughTimePassedSinceLastEvent("asur_diplomacy",15), null, 200);
+            "We can put in a good word for you from one of our many embassies, the word of an Asur has much worth amongst men. With whom do you seek better relations?", () => IsAsurianEnvoy()&& EnoughTimePassedSinceLastEvent("asur_diplomacy",15), null, 200);
         
         starter.AddDialogLine("asur_envoy_diplomacy_failed", "asur_envoy_diplomacy", "asur_envoy_diplomacy_failed_choice",
-            "My political power is limited. We became too demanding, you should ask another time", () => IsAsurianEnvoy(), null, 200);
+            "You should wait a bit, good diplomacy requires patience", () => IsAsurianEnvoy(), null, 200);
         
         starter.AddPlayerLine("asur_envoy_diplomacy_failed_choice", "asur_envoy_diplomacy_failed_choice", "back_to_main_hub_asur",
             "Understood.", () => IsAsurianEnvoy(), null, 200);
@@ -798,19 +798,19 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //why are you here
         
         starter.AddDialogLine("asur_envoy_whyareyouhere", "asur_envoy_whyareyouhere", "envoy_asur_wayh_reaction",
-            "The Phoenix King, send his best regards, from the far Ulthuan. We are brothers, maybe even the same People, that should form an alliance. If there is anything the Asur can do for the Eonir, we are pleased to help where we can.", () => IsAsurianEnvoy(), null, 200);
+            "I am here as a representative of Ulthuan, and to stand as a reminder that the freedom and independence you enjoy is a most gracious gift given by the Pheonix King. A gift that can be rescinded at his discretion.", () => IsAsurianEnvoy(), null, 200);
         starter.AddPlayerLine("envoy_asur_wayh_reaction_displeased", "envoy_asur_wayh_reaction", "asur_envoy_whyareyouhere_2",
-            "You left us, descendants of your own kin, to die. We were on our own so long, that your words sound questionable at best.", () => IsAsurianEnvoy(), null,200);
+            "You abandoned us to die, then tried to take our lands by force. We have survived without Ulthuan until now and will continue to do so. Begone, 'kin'.", () => IsAsurianEnvoy(), null,200);
         starter.AddPlayerLine("envoy_asur_wayh_reaction_undecided", "envoy_asur_wayh_reaction", "asur_envoy_whyareyouhere_2",
-            "Be careful Asur, we did not forget your betrayal. I am however not here to maintain a grudge. What do you offer?", () => IsAsurianEnvoy(), null, 200);
+            "Be mindful, our willingess to negotiate is not a sign that we have forgotten your transgressions, what do you come here to offer us?", () => IsAsurianEnvoy(), null, 200);
         starter.AddPlayerLine("envoy_asur_wayh_reaction_agreement", "envoy_asur_wayh_reaction", "asur_envoy_whyareyouhere_2",
-            "Our people are one. Its a long time, we need the help of the Asur. I appreciate you are here.", () => IsAsurianEnvoy(), null, 200);
+            "We are kin and have been apart for far too long, we seek the help of the Asur and appreciate any that can be offered.", () => IsAsurianEnvoy(), null, 200);
         
         starter.AddDialogLine("asur_envoy_whyareyouhere_2", "asur_envoy_whyareyouhere_2", "asur_envoy_whyareyouhere_3",
-            "The Asur help where we can. If there is anything you need from us. We are are happy to help... in exchange for a good word within the council for us.", () => IsAsurianEnvoy(), null, 200);
+            "We are willing to offer aid in many forms, as long as it increases our influence within the council.", () => IsAsurianEnvoy(), null, 200);
 
         starter.AddDialogLine("asur_envoy_whyareyouhere_3", "asur_envoy_whyareyouhere_3", "back_to_main_hub_asur",
-            "The Asur can send to you montary or military help, or try to improve the relationship with other empire kingdoms. In return to a few favors, self explainatory.", () => IsAsurianEnvoy(), null, 200);
+            "Ulthuan has connections across the Old World, should finances, a good word with an enemy or soldiers to defend your forest be needed, we can provide it. For the agreed price, of course.", () => IsAsurianEnvoy(), null, 200);
 
         
         starter.AddDialogLine("back_to_main_hub_asur", "back_to_main_hub_asur", "asur_envoy_main_hub",
