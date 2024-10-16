@@ -271,7 +271,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         TroopResistance,
         TroopRegeneration,  //troop regeneration, flat number
         TroopMorale,        //Morale
-        TroopWages,
+        TroopWages,         //Negative number decrease
         TroopUpgradeCost,
         Ammo,               //Player ammo , flat number
         SwingSpeed,

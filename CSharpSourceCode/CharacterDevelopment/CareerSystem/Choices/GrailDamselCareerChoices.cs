@@ -181,7 +181,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _inspirationOfTheLadyPassive1.Initialize(CareerID, "25% chance to recruit an extra unit free of charge.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); 
             _inspirationOfTheLadyPassive2.Initialize(CareerID, "Wounded troops in your party heal faster.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
-            _inspirationOfTheLadyPassive3.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.TroopWages, true, 
+            _inspirationOfTheLadyPassive3.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true, 
                 characterObject => !characterObject.IsHero && characterObject.IsKnightUnit()));
             _inspirationOfTheLadyPassive4.Initialize(CareerID, "10% Ward save if your armor weight does not exceed 11 weight.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, 
                  (attacker, victim, attackmask) => attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightUndershootCheck(attacker,11)));
