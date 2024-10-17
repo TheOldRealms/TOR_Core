@@ -142,21 +142,25 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
                 args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_necromancer_text_str}You are not a practitioner of necromancy.");
                 args.IsEnabled = false;
             }
-            
-            var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
+            else
+            {
+                var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
 
-            if (freeSlots <= 0)
-            {
-                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_enough_free_slots_text_str}You have not enough space in your party.");
-                args.IsEnabled = false;
+                if (freeSlots <= 0)
+                {
+                    args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_enough_free_slots_text_str}You have not enough space in your party.");
+                    args.IsEnabled = false;
+                }
+            
+                var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTime(Hero.MainHero);
+                if (lastGhostRecruitmentTime >= (int)CampaignTime.Now.ToDays)
+                {
+                    args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action once a day.");
+                    args.IsEnabled = false;
+                }
             }
             
-            var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTime(Hero.MainHero);
-            if (lastGhostRecruitmentTime >= (int)CampaignTime.Now.ToDays)
-            {
-                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action once a day.");
-                args.IsEnabled = false;
-            }
+
             return component.IsActive;
         }
 
@@ -170,16 +174,20 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
                 args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_necromancer_text_str}You are not a practitioner of necromancy.");
                 args.IsEnabled = false;
             }
-            if (!Hero.MainHero.PartyBelongedTo.MemberRoster.ToFlattenedRoster().Any(x => x.Troop.IsUndead()))
+            else
             {
-                args.Tooltip = new TextObject("There are no undead in your party.");
-                args.IsEnabled = false;
+                if (!Hero.MainHero.PartyBelongedTo.MemberRoster.ToFlattenedRoster().Any(x => x.Troop.IsUndead()))
+                {
+                    args.Tooltip = new TextObject("There are no undead in your party.");
+                    args.IsEnabled = false;
+                }
+                if (Hero.MainHero.GetCustomResourceValue("DarkEnergy") < _empoweringUndeadCost)
+                {
+                    args.Tooltip = new TextObject("You have not enough Dark Energy({DARKENERGYICON}).");
+                    args.IsEnabled = false;
+                }
             }
-            if (Hero.MainHero.GetCustomResourceValue("DarkEnergy") < _empoweringUndeadCost)
-            {
-                args.Tooltip = new TextObject("You have not enough Dark Energy({DARKENERGYICON}).");
-                args.IsEnabled = false;
-            }
+
             return component.IsActive;
         }
 

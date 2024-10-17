@@ -233,27 +233,27 @@
   </Settlement>
   <Settlement id="loec_shrine_01" name="{=!}Shrine of Loec" owner="Faction.athel_loren_clan_8" posX="1220.387" posY="863.503" culture="Culture.battania" text="{=!}Shrine of Loec">
     <Components>
-      <Shrine id="loec_shrine_01" religion="cult_of_loec" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="loec_shrine_01" religion="cult_of_loec" background_crop_position="0.0" background_mesh="oak_of_ages" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="anath_shrine_01" name="{=!}Shrine of Anath Raema" owner="Faction.athel_loren_clan_12" posX="1248.776" posY="859.788" culture="Culture.battania" text="{=!}Shrine of Anath Raema">
     <Components>
-      <Shrine id="anath_shrine_01" religion="cult_of_anath_raema" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="anath_shrine_01" religion="cult_of_anath_raema" background_crop_position="0.0" background_mesh="oak_of_ages" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="vaul_shrine_01" name="{=!}Shrine of Vaul" owner="Faction.athel_loren_clan_11" posX="1184.427" posY="818.268" culture="Culture.battania" text="{=!}Shrine of Vaul">
     <Components>
-      <Shrine id="vaul_shrine_01" religion="cult_of_vaul" background_crop_position="0.0" background_mesh="shrine_of_vaul" wait_mesh="shrine_of_vaul" gate_rotation="0.0" />
+      <Shrine id="vaul_shrine_01" religion="cult_of_vaul" background_crop_position="0.0" background_mesh="oak_of_ages" wait_mesh="shrine_of_vaul" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="kurnous_shrine_01" name="{=!}Shrine of Kurnous" owner="Faction.athel_loren_clan_1" posX="1228.865" posY="790.497" culture="Culture.battania" text="{=!}Shrine of Kurnous">
     <Components>
-      <Shrine id="kurnous_shrine_01" religion="cult_of_kurnous" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="kurnous_shrine_01" religion="cult_of_kurnous" background_crop_position="0.0" background_mesh="oak_of_ages" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="isha_shrine_01" name="{=!}Shrine of Isha" owner="Faction.athel_loren_clan_2" posX="1236.481" posY="782.302" culture="Culture.battania" text="{=!}Shrine of Isha">
     <Components>
-      <Shrine id="isha_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_sigmar" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="isha_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="oak_of_ages" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <!--haunted sites-->
