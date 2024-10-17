@@ -15,7 +15,7 @@ namespace TOR_Core.Models
 {
     public class TORDiplomacyModel : DefaultDiplomacyModel
     {
-        public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 50;
+        public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 150;
         public override int GetInfluenceCostOfProposingWar(Clan proposingClan) => 150;
 
         public override float GetRelationIncreaseFactor(Hero hero1, Hero hero2, float relationChange)

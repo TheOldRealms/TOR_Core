@@ -7,7 +7,7 @@ namespace TOR_Core.Models
 {
     public class TORClanPoliticsModel : DefaultClanPoliticsModel
     {
-        private const int INFLUENCE_TRESHHOLD = 800;
+        private const int INFLUENCE_TRESHHOLD = 550;
 
         public override ExplainedNumber CalculateInfluenceChange(Clan clan, bool includeDescriptions = false)
         {
