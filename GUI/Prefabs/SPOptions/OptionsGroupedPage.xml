@@ -1,0 +1,91 @@
+<Prefab>
+	<Variables>
+		<Variable Name="HasCircularNavigation" DefaultValue="false" />
+	</Variables>
+  <Constants>
+    <Constant Name="ButtonBrush.Width" BrushLayer="Default" BrushName="ButtonBrush4" BrushValueType="Width" />
+    <Constant Name="ButtonBrush.Height" BrushLayer="Default" BrushName="ButtonBrush4" BrushValueType="Height" />
+
+    <Constant Name="SPOptions.GameKeysgroup.ExpandIndicator.Width" BrushLayer="Default" BrushName="SPOptions.GameKeysgroup.ExpandIndicator" BrushValueType="Width" />
+    <Constant Name="SPOptions.GameKeysgroup.ExpandIndicator.Height" BrushLayer="Default" BrushName="SPOptions.GameKeysgroup.ExpandIndicator" BrushValueType="Height" />
+  </Constants>
+	<Parameters>
+		<Parameter Name="ResetButtonScopeID" DefaultValue="ResetButtonScope" />
+	</Parameters>
+  <Window>
+    <Widget Id="OptionsInnerPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="10" MarginBottom="10" StackLayout.LayoutMethod="VerticalBottomToTop">
+      <Children>
+        <ListPanel Id="@Name" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" StackLayout.LayoutMethod="VerticalBottomToTop">
+          <Children>
+						
+            <NavigationScopeTargeter Id="ResetButtonScopeTargeter" ScopeID="*ResetButtonScopeID" ScopeParent="..\ResetButton" ScopeMovements="Vertical" UpNavigationScopeTargeter="..\GroupOptionsScopeTargeter" />
+            <NavigationScopeTargeter Id="BaseOptionsScopeTargeter" ScopeID="BaseOptionsScope" ScopeParent="..\BaseOptions" ScopeMovements="Vertical" UpNavigationScopeTargeter="..\ResetButtonScopeTargeter" IsDefaultNavigationScope="true" HasCircularMovement="*HasCircularNavigation" DoNotAutoNavigateAfterSort="true" />
+            <NavigationScopeTargeter Id="GroupOptionsScopeTargeter" ScopeID="GroupOptionsScope" ScopeParent="..\GroupOptions" ScopeMovements="Vertical" DownNavigationScopeTargeter="..\ResetButtonScopeTargeter" ForceGainNavigationBasedOnDirection="true" ExtendDiscoveryAreaTop="-10" DoNotAutoNavigateAfterSort="true"/>
+
+            <NavigationAutoScrollWidget TrackedWidget="..\ResetButton" />
+            <ButtonWidget Id="ResetButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="251" SuggestedHeight="64" Brush="Popup.Cancel.Button" HorizontalAlignment="Right" MarginBottom="10" Command.Click="ExecuteResetToDefault" DoNotPassEventsToChildren="true" IsVisible="@IsResetSupported" GamepadNavigationIndex="0">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Button.Text" Text="@ResetText" MarginLeft="20" MarginRight="20" MarginTop="15" MarginBottom="15" />
+              </Children>
+            </ButtonWidget>
+						
+            <NavigatableListPanel Id="BaseOptions" DataSource="{BaseOptions}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="40" MarginBottom="40" StackLayout.LayoutMethod="VerticalBottomToTop" AutoScrollYOffset="90">
+              <ItemTemplate>
+                <OptionItem />
+              </ItemTemplate>
+            </NavigatableListPanel>
+			
+            <NavigatableListPanel Id="GroupOptions" DataSource="{Groups}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginBottom="40" StackLayout.LayoutMethod="VerticalBottomToTop" StepSize="10000">
+              <ItemTemplate>
+                <NavigatableListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginBottom="50" HorizontalAlignment="Center" StackLayout.LayoutMethod="VerticalBottomToTop" UseSelfIndexForMinimum="true" StepSize="1000" AutoScrollYOffset="90" >
+                  <Children>
+
+                    <PartyHeaderToggleWidget DoNotPassEventsToChildren="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginLeft="120" MarginRight="10" CollapseIndicator="Description\CollapseParent\GroupTitle\CollapseIndicator" ListPanel="..\OptionsList" RenderLate="true" UpdateChildrenStates="true" WidgetToClose="..\OptionsList">
+                      <Children>
+
+                        <NavigationTargetSwitcher FromTarget="..\." ToTarget="..\Description" />
+                        <ListPanel Id="Description" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalRightToLeft" UpdateChildrenStates="true" ExtendCursorAreaLeft="40">
+                          <Children>
+
+                            <BrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="740" SuggestedHeight="2" VerticalAlignment="Center" MarginLeft="15" Brush="SPOptions.CollapserLine"  />
+                            
+                            <Widget Id="CollapseParent" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MaxWidth="382" HorizontalAlignment="Right" UpdateChildrenStates="true" >
+                              <Children>
+                                <TextWidget Id="GroupTitle" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" Brush="SPOptions.GameKeysGroup.Title.Text" Text="@Name" ClipContents="false">
+                                  <Children>
+                                    <BrushWidget Id="CollapseIndicator" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="19" SuggestedWidth="19" VerticalAlignment="Center" PositionXOffset="-26" PositionYOffset="-3" Brush="SPOptions.GameKeysgroup.ExpandIndicator" OverrideDefaultStateSwitchingEnabled="true" />
+                                  </Children>
+                                </TextWidget>
+                              </Children>
+                            </Widget>
+
+                          </Children>
+                        </ListPanel>
+
+                      </Children>
+                    </PartyHeaderToggleWidget>
+                    <NavigatableListPanel Id="OptionsList" DataSource="{Options}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginTop="15" StackLayout.LayoutMethod="VerticalBottomToTop" UseSelfIndexForMinimum="true">
+                      <ItemTemplate>
+                        <OptionItem />
+                      </ItemTemplate>
+                    </NavigatableListPanel>
+
+                  </Children>
+                </NavigatableListPanel>
+              </ItemTemplate>
+            </NavigatableListPanel>
+
+			<NavigationAutoScrollWidget TrackedWidget="..\TORResetButton" />
+            <ButtonWidget Id="TORResetButton" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="251" SuggestedHeight="64" Brush="Popup.Cancel.Button" HorizontalAlignment="Right" MarginBottom="200" AutoScrollYOffset="90" Command.Click="ExecuteResetToTORDefault" DoNotPassEventsToChildren="true" IsVisible="@ContainsTORGameplayOptions" GamepadNavigationIndex="0">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Button.Text" Text="@TORResetText" MarginLeft="20" MarginRight="20" MarginTop="15" MarginBottom="15" />
+              </Children>
+            </ButtonWidget>
+
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+
+  </Window>
+</Prefab>

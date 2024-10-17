@@ -619,6 +619,7 @@
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\MissionConversationVMExtension.cs" />
+    <Compile Include="Extensions\UI\OptionsVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyNameplateItemVMExtension.cs" />
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
@@ -626,8 +627,10 @@
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingCampaignBehavior.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
+    <Compile Include="GameManagers\TORGameplayCampaignOptions.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
+    <Compile Include="GameManagers\TORManagedOptionsTypes.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
@@ -836,6 +839,9 @@
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\UI\Options\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

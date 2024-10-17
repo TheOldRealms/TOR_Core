@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
+  <!--Config option types-->
+  <string id="str_options_type.63" text= "{=!}Fake Banner Frequency"/>
+  <string id="str_options_type.64" text= "{=!}Number of troops Per Formation with Standard"/>
+  
+  <string id="str_options_type.49" text= "{=!}Number Of Maximum Looter Parties Early"/>
+  <string id="str_options_type.50" text= "{=!}Number Of Maximum Looter Parties Midgame"/>
+  <string id="str_options_type.51" text= "{=!}Number Of Maximum Looter Parties Late"/>
+  <string id="str_options_type.52" text= "{=!}Number Of Maximum Bandit Parties Around Each Hideout"/>
+  <string id="str_options_type.53" text= "{=!}Number Of Maximum Bandit Parties In Each Hideout"/>
+  <string id="str_options_type.54" text= "{=!}Number Of Initial Hideouts At Each Bandit Faction"/>
+  <string id="str_options_type.55" text= "{=!}Number Of Maximum Hideouts At Each Bandit Faction"/>
+  
+  <string id="str_options_type.56" text= "{=!}Declare War Score Distance Multiplier"/>
+  <string id="str_options_type.57" text= "{=!}Declare War Score Faction Strength Multiplier"/>
+  <string id="str_options_type.58" text= "{=!}Declare War Score Religious Effect Multiplier"/>
+  <string id="str_options_type.59" text= "{=!}Number Minimum Kingdom Wars"/>
+  <string id="str_options_type.60" text= "{=!}Number Maximum Kingdom Wars"/>
+  <string id="str_options_type.61" text= "{=!}Minimum Peace Days"/>
+  <string id="str_options_type.62" text= "{=!}Minimum War Days"/>
+  
+  
+  
   <!-- CC Options -->
   <string id="str_tor_cc_growth.battania" text= "You spent most of your life venerating one of the Asrai deities..."/>
   <string id="str_tor_cc_profession.battania" text= "Choose your path..."/>
