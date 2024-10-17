@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rhubarbResult>
+  <metadata>
+    <soundFile>E:\voicelines\elves\lord_lines\we_annoyed_1.ogg</soundFile>
+    <duration>4.75</duration>
+  </metadata>
+  <mouthCues>
+    <mouthCue start="0.00" end="0.03">X</mouthCue>
+    <mouthCue start="0.03" end="0.11">A</mouthCue>
+    <mouthCue start="0.11" end="0.34">C</mouthCue>
+    <mouthCue start="0.34" end="0.41">B</mouthCue>
+    <mouthCue start="0.41" end="0.55">E</mouthCue>
+    <mouthCue start="0.55" end="0.76">B</mouthCue>
+    <mouthCue start="0.76" end="0.90">E</mouthCue>
+    <mouthCue start="0.90" end="1.15">C</mouthCue>
+    <mouthCue start="1.15" end="1.26">D</mouthCue>
+    <mouthCue start="1.26" end="1.40">B</mouthCue>
+    <mouthCue start="1.40" end="1.61">C</mouthCue>
+    <mouthCue start="1.61" end="1.68">B</mouthCue>
+    <mouthCue start="1.68" end="1.89">E</mouthCue>
+    <mouthCue start="1.89" end="1.96">G</mouthCue>
+    <mouthCue start="1.96" end="2.10">F</mouthCue>
+    <mouthCue start="2.10" end="3.01">B</mouthCue>
+    <mouthCue start="3.01" end="3.08">C</mouthCue>
+    <mouthCue start="3.08" end="3.71">B</mouthCue>
+    <mouthCue start="3.71" end="3.80">A</mouthCue>
+    <mouthCue start="3.80" end="4.22">B</mouthCue>
+    <mouthCue start="4.22" end="4.29">F</mouthCue>
+    <mouthCue start="4.29" end="4.71">B</mouthCue>
+    <mouthCue start="4.71" end="4.75">X</mouthCue>
+  </mouthCues>
+</rhubarbResult>

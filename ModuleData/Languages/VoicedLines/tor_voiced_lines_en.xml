@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+<Base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
   <VoiceOvers>
     <VoiceOver id="v_first_meeting">
       <Voice path="VoicedLines/EN/$PLATFORM/vamp_whatdoyouwant" />
@@ -51,6 +52,66 @@
     </VoiceOver>
     <VoiceOver id="khorne_cultist_mission">
       <Voice path="VoicedLines/EN/$PLATFORM/khorne_cultist_mission" />
+    </VoiceOver>
+    <VoiceOver id="e_first_meeting">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_unknown_2" />
+    </VoiceOver>
+    <VoiceOver id="e_first_meeting_renowned">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_meagre_1" />
+    </VoiceOver>
+    <VoiceOver id="e_first_meeting_kin">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_kin_friendly_1" />
+    </VoiceOver>
+    <VoiceOver id="e_met_before">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_friendly_1" />
+    </VoiceOver>
+    <VoiceOver id="e_met_before_kin">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_kin_friendly_1" />
+    </VoiceOver>
+    <VoiceOver id="e_met_before_friendly">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_friendly_2" />
+    </VoiceOver>
+    <VoiceOver id="e_wary_1">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_hostile_1" />
+    </VoiceOver>
+    <VoiceOver id="e_wary_2">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_neutral_1" />
+    </VoiceOver>
+    <VoiceOver id="e_wary_3">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_outlander_1" />
+    </VoiceOver>
+    <VoiceOver id="e_hostile_1">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_hostile_3" />
+    </VoiceOver>
+    <VoiceOver id="e_hostile_2">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_annoyed_2" />
+    </VoiceOver>
+    <VoiceOver id="e_under_command">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_friendly_2" />
+    </VoiceOver>
+    <VoiceOver id="e_attacking_1">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_attacking_2" />
+    </VoiceOver>
+    <VoiceOver id="e_attacking_2">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_attacking_1" />
+    </VoiceOver>
+    <VoiceOver id="e_attacking_3">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_attacking_3" />
+    </VoiceOver>
+    <VoiceOver id="e_attacking_4">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_annoyed_3" />
+    </VoiceOver>
+    <VoiceOver id="e_attacking_5">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_attacking_hateful_male_1" />
+    </VoiceOver>
+    <VoiceOver id="e_attacking_6">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_hostile_2" />
+    </VoiceOver>
+    <VoiceOver id="e_defending_1">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_hostile_noattack_1" />
+    </VoiceOver>
+    <VoiceOver id="e_defending_2">
+      <Voice path="VoicedLines/EN/$PLATFORM/we_wary_1" />
     </VoiceOver>
   </VoiceOvers>
 </Base>

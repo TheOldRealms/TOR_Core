@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings>
-  <!-- CULTIST CLASS -->
+  <!-- CULTIST LINES -->
   <string id="ccultist_robbery" text="{=ccultist_robbery}Another fool enters our domain. Surrender your gold or forfeit your life!" />
-  <!-- VAMPIRE CLASS -->
+  <!-- VAMPIRE LINES -->
   <string id="str_context_line_vampire.first_meeting_cu" text="{=v_first_meeting}What do you want of me?">
     <tags>
       <tag tag_name="FirstMeetingTag" />
@@ -72,6 +72,148 @@
       <tag tag_name="FriendlyRelationshipTag" weight="-1" />
       <tag tag_name="CruelTag" weight="1" />
       <tag tag_name="VampireMaleTag" />
+    </tags>
+  </string>
+
+  <!-- ELF LINES -->
+  <string id="str_context_line_elf.first_meeting" text="{=e_first_meeting}You stand before the blessed, yet I know not who you are to do so. Speak, or begone from my sight.">
+    <tags>
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="ElfMaleTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.first_meeting_renowned" text="{=e_first_meeting_renowned}We are aware of your meagre accomplishments. What do you require from the sons and daughters of Athel Loren, monkeigh?">
+    <tags>
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="PlayerIsRenownedTag" />
+      <tag tag_name="PlayerIsElfTag" weight="-1"/>
+    </tags>
+  </string>
+  <string id="str_context_line_elf.first_meeting_kin" text="{=e_first_meeting_kin}Isha welcomes you Kin.">
+    <tags>
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="PlayerIsElfTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.metbefore" text="{=e_met_before}Greetings. What brings you before the Asrai this day?">
+    <tags>
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="ElfMaleTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.metbefore_kin" text="{=e_met_before_kin}Isha welcomes you Kin.">
+    <tags>
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="PlayerIsElfTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.metbefore_friendly" text="{=e_met_before_friendly}May Isha bless you friend. What is it?">
+    <tags>
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="FriendlyRelationshipTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.first_meeting_wary_1" text="{=e_wary_1}Pray tell me what poor creature Morai-Heg has cursed unto my path.">
+    <tags>
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="WaryTag" />
+      <tag tag_name="ElfMaleTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.first_meeting_wary_2" text="{=e_wary_2}The children of Orion and Ariel greet you. Speak quickly for i am busy.">
+    <tags>
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="WaryTag" />
+      <tag tag_name="ElfMaleTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.first_meeting_wary_3" text="{=e_wary_3}Outlander, you waste precious time, but i will hear you. Speak. Quickly.">
+    <tags>
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="WaryTag" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="PlayerIsElfTag" weight="-1"/>
+    </tags>
+  </string>
+  <string id="str_context_line_elf.hostile_1" text="{=e_hostile_1}I thought Ereth Khial had taken you. What is it, fiend?">
+    <tags>
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="HostileRelationshipTag" />
+      <tag tag_name="ElfMaleTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.hostile_2" text="{=e_hostile_2}Lileath bids I hear your poisonous tongue, or I'd have cut it out already.">
+    <tags>
+      <tag tag_name="MetBeforeTag" />
+      <tag tag_name="HostileRelationshipTag" weight="+4" />
+      <tag tag_name="ElfMaleTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.first_meeting_under_command" text="{=e_under_command}May Isha bless you friend. What is it?">
+    <tags>
+      <tag tag_name="UnderCommandTag" weight="15" />
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="ElfMaleTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.attacking_1" text="{=e_attacking_1}Kurnous has bid us hunt today. It seems we have found it. Speak, while you can.">
+    <tags>
+      <tag tag_name="AttackingTag" weight="+2" />
+      <tag tag_name="ElfMaleTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.attacking_2" text="{=e_attacking_2}Eldrazor shall see battle today, if you seek it, the Asrai shall give it.">
+    <tags>
+      <tag tag_name="AttackingTag" />
+      <tag tag_name="ElfMaleTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.attacking_3" text="{=e_attacking_3}It is cruel that Khaine brings you to your death, what do you wish to say before your end.">
+    <tags>
+      <tag tag_name="AttackingTag" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="FriendlyRelationshipTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.attacking_4" text="{=e_attacking_4}I will hear your foul words, only yo make my vengence a sweeter offering to Drakira.">
+    <tags>
+      <tag tag_name="AttackingTag" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="HostileRelationshipTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.attacking_5" text="{=e_attacking_5}Praise Drakira! my most hated foe delivers himself to me, speak your last words then return to your army and await slaughter.">
+    <tags>
+      <tag tag_name="AttackingTag" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="HostileRelationshipTag" weight="+4" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.attacking_6" text="{=e_attacking_6}My kin argue whether you are a prize worthy of Kurnous or Anath Raema, speak while I decide which should have you.">
+    <tags>
+      <tag tag_name="FirstMeetingTag" />
+      <tag tag_name="AttackingTag" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="PlayerIsRenownedTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.defending_1" text="{=e_defending_1}Enemy of the Asrai, i shall not hurry the death of my kin, if you do not for yours. Let us speak.">
+    <tags>
+      <tag tag_name="AttackingTag" weight="-1" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="PlayerIsEnemyTag" />
+    </tags>
+  </string>
+  <string id="str_context_line_elf.defending_2" text="{=e_defending_2}Lileath wishes us to see the truth of people, I pray the truth of you is peaceful.">
+    <tags>
+      <tag tag_name="AttackingTag" weight="-1" />
+      <tag tag_name="ElfMaleTag" />
+      <tag tag_name="PlayerIsEnemyTag" />
+      <tag tag_name="PlayerIsElfTag" />
     </tags>
   </string>
 </strings>

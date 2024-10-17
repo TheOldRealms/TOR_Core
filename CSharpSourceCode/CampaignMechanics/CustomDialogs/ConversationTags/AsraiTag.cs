@@ -25,4 +25,15 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs.ConversationTags
             return character.IsElf() && !character.IsFemale;
         }
     }
+
+    public class PlayerIsElfTag : ConversationTag
+    {
+        public const string Id = "PlayerIsElfTag";
+        public override string StringId => nameof(PlayerIsElfTag);
+
+        public override bool IsApplicableTo(CharacterObject character)
+        {
+            return character.IsElf() && Hero.MainHero.CharacterObject.IsElf();
+        }
+    }
 }
