@@ -14,9 +14,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
     public class TORKingdomDecisionsCampaignBehavior : CampaignBehaviorBase
     {
         private List<KingdomDecision> _kingdomDecisionsList = [];
-        private float _minDaysBetweenDecisions = 1f;
+        private float _minDaysBetweenDecisions = 10f;
         private Dictionary<string, CampaignTime> _lastDecisionTime = [];
-        private float _influenceReserveToKeep = 150f;
+        private float _influenceReserveToKeep = 200f;
         private float _outnumberRatioForEmergencyPeace = 5f;
 
         public override void RegisterEvents()

@@ -14,4 +14,15 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs.ConversationTags
             return character.IsElf() && character.Culture.StringId == TORConstants.Cultures.ASRAI;
         }
     }
+
+    public class ElfMaleTag : ConversationTag
+    {
+        public const string Id = "ElfMaleTag";
+        public override string StringId => nameof(ElfMaleTag);
+
+        public override bool IsApplicableTo(CharacterObject character)
+        {
+            return character.IsElf() && !character.IsFemale;
+        }
+    }
 }
