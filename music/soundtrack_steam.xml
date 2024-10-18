@@ -12766,7 +12766,7 @@
               <AudioData>
                 <_prebeatLengthInSamplesEnteredManually>80475</_prebeatLengthInSamplesEnteredManually>
                 <_postbeatLengthInSamplesEnteredManually>241446</_postbeatLengthInSamplesEnteredManually>
-                <Path>../../../../../../common/Mount &amp; Blade II Bannerlord/music/PC/MBII_LOC_Empire_epic_291017.wav</Path>
+                <Path>empire_ambient_theme.ogg</Path>
                 <Bpm>100</Bpm>
                 <PreBeats>1</PreBeats>
                 <PostBeats>4</PostBeats>
@@ -13014,7 +13014,7 @@
               <AudioData>
                 <_prebeatLengthInSamplesEnteredManually>39934</_prebeatLengthInSamplesEnteredManually>
                 <_postbeatLengthInSamplesEnteredManually>194078</_postbeatLengthInSamplesEnteredManually>
-                <Path>../../../../../../common/Mount &amp; Blade II Bannerlord/music/PC/MBII_LOC_Vlanda_Master_080520.wav</Path>
+                <Path>bretonnia_ambient_theme.ogg</Path>
                 <Bpm>100</Bpm>
                 <PreBeats>1</PreBeats>
                 <PostBeats>4</PostBeats>
