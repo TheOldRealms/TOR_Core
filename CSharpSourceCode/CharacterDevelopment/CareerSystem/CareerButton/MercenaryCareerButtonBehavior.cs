@@ -91,6 +91,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
                 displayText = new TextObject("Only works for non-knightly units.");
                 return false;
             }
+
+            if (characterObject.IsTreeSpirit() || characterObject.IsUndead())
+            {
+                displayText = new TextObject("Only works for humans or elves");
+                return false;
+            }
             
             if (characterObject.Level<=21)
             {

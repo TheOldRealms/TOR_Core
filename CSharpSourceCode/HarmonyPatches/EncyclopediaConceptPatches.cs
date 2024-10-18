@@ -17,7 +17,7 @@ namespace TOR_Core.HarmonyPatches
     {
         [HarmonyPostfix]
         [HarmonyPatch(typeof(DefaultEncyclopediaConceptPage), "InitializeFilterItems")]
-        public static void TroopTreePatch(ref IEnumerable<EncyclopediaFilterGroup> __result)
+        public static void EncyclopediaPatch(ref IEnumerable<EncyclopediaFilterGroup> __result)
         {
             var result = new EncyclopediaFilterGroup(new List<EncyclopediaFilterItem>()
             {
