@@ -1,5 +1,6 @@
 ﻿using Helpers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -9,6 +10,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
@@ -27,7 +29,27 @@ namespace TOR_Core.CampaignMechanics.Religion
             CampaignEvents.OnItemsDiscardedByPlayerEvent.AddNonSerializedListener(this, OnItemsDiscarded);
             CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyPartyTick);
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this, MapEventEnded);
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PlayerBattleEnded);
             TORCampaignEvents.Instance.DevotionLevelChanged += OnDevotionLevelChanged;
+        }
+
+        private void PlayerBattleEnded(MapEvent mapEvent)
+        {
+            if (mapEvent.IsPlayerMapEvent && mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.PartyBelongedTo.HasBlessing("cult_of_anath_raema"))
+            {
+                var roster = PlayerEncounter.Current.RosterToReceiveLootItems;
+                if (roster != null && roster.Count > 0)
+                {
+                    var randomIndex = MBRandom.RandomInt(0, roster.Count - 1);
+
+                    var item = roster[randomIndex].EquipmentElement;
+
+                    if (!item.IsEmpty)
+                    {
+                        roster.AddToCounts(item, 7);
+                    }
+                }
+            }
         }
 
         private void MapEventEnded(MapEvent mapEvent)
@@ -36,22 +58,6 @@ namespace TOR_Core.CampaignMechanics.Religion
             var defenderParties = mapEvent.PartiesOnSide(BattleSideEnum.Defender);
             attackerParties.ForEach(x => DistributeXpForKilledUnits(x));
             defenderParties.ForEach(x => DistributeXpForKilledUnits(x));
-
-
-            if (mapEvent.PlayerSide == mapEvent.WinningSide && mapEvent.IsPlayerMapEvent &&  Hero.MainHero.PartyBelongedTo.HasBlessing("cult_of_anath_raema"))
-            {
-                var roster = PlayerEncounter.Current.RosterToReceiveLootItems;
-                var randomIndex = MBRandom.RandomInt(0, roster.Count - 1);
-
-
-                var item = PlayerEncounter.Current.RosterToReceiveLootItems[randomIndex].EquipmentElement;
-
-                if (!item.IsEmpty)
-                {
-                    PlayerEncounter.Current.RosterToReceiveLootItems.AddToCounts(item ,7);
-                }
-                
-            }
         }
 
         private void DistributeXpForKilledUnits(MapEventParty party)
