@@ -540,6 +540,9 @@
   <NPCCharacter id="tor_empire_wolfkin" default_group="infantry" level="16" name="{=str_tor_empire_wolfkin}Wolf Kin" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
+      <beard_tags>
+        <beard_tag name="LongScragglyBeard" />
+      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_empire_wolfbrother" />
@@ -552,6 +555,9 @@
   <NPCCharacter id="tor_empire_wolfbrother" default_group="infantry" level="21" name="{=str_tor_empire_wolfbrother}Wolf Brother" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level21">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
+      <beard_tags>
+        <beard_tag name="LongScragglyBeard" />
+      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_empire_warrior_ulric" />
@@ -564,6 +570,9 @@
   <NPCCharacter id="tor_empire_warrior_ulric" default_group="infantry" level="26" name="{=str_tor_empire_warrior_ulric}Warrior of Ulric" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
+      <beard_tags>
+        <beard_tag name="LongScragglyBeard" />
+      </beard_tags>
     </face>
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_empire_teutogen_guard" />
@@ -577,6 +586,9 @@
   <NPCCharacter id="tor_empire_teutogen_guard" default_group="infantry" level="41" name="{=str_tor_empire_teutogen_guard}Teutogen Guard" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level41">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
+      <beard_tags>
+        <beard_tag name="LongScragglyBeard" />
+      </beard_tags>
     </face>
     <upgrade_targets />
     <Equipments>
@@ -587,6 +599,9 @@
   <NPCCharacter id="tor_empire_whitewolf_knight" default_group="cavalry" level="41" name="{=str_tor_empire_whitewolf_knight}Knight of the White Wolf" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level41">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
+      <beard_tags>
+        <beard_tag name="LongScragglyBeard" />
+      </beard_tags>
     </face>
     <upgrade_targets />
     <Equipments>
@@ -4054,7 +4069,7 @@
       <EquipmentSet id="tor_kharmourts_blade_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_br_mounted_bowman" default_group="cavalry" level="21" name="{=str_tor_ror_br_mounted_bowman}Brettonnian Mounted Bowman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
+  <NPCCharacter id="tor_ror_br_mounted_bowman" default_group="horsearcher" level="21" name="{=str_tor_ror_br_mounted_bowman}Brettonnian Mounted Bowman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -4066,7 +4081,7 @@
       <EquipmentSet id="tor_brettonian_mounted_bowman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_warden_montfort" default_group="cavalry" level="26" name="{=str_tor_ror_warden_montfort}Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+  <NPCCharacter id="tor_ror_warden_montfort" default_group="horsearcher" level="26" name="{=str_tor_ror_warden_montfort}Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
