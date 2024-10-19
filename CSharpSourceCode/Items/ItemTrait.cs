@@ -24,6 +24,8 @@ namespace TOR_Core.Items
         [XmlAttribute]
         public string ImbuedStatusEffectId { get; set; } = "none";
         [XmlAttribute]
+        public float ImbuedStatusEffectChance { get; set; } = 0.25f;
+        [XmlAttribute]
         public string IconName { get; set; } = "none";
         [XmlElement]
         public WeaponParticlePreset WeaponParticlePreset { get; set; }

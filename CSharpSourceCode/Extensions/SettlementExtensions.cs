@@ -5,12 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
+using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.RegimentsOfRenown;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 
 namespace TOR_Core.Extensions
 {
     public static class SettlementExtensions
     {
+        public static CultureObject OriginalCulture(this Settlement settlement)
+        {
+            return AssimilationCampaignBehavior.GetOriginalCultureForSettlement(settlement);
+        }
 
         public static bool IsBloodKeep(this Settlement settlement)
         {
@@ -30,7 +37,7 @@ namespace TOR_Core.Extensions
             return RORManager.GetTemplateFor(settlement.StringId);
         }
 
-        public static bool IsBretonnianMayorSettlement(this Settlement settlement)
+        public static bool IsBretonnianMajorSettlement(this Settlement settlement)
         {
             if (settlement.IsVillage) return false;
 
@@ -54,6 +61,11 @@ namespace TOR_Core.Extensions
             }
             
             return false;
+        }
+
+        public static bool IsOakOfTheAges(this Settlement settlement)
+        {
+            return settlement.SettlementComponent is OakOfAgesComponent;
         }
     }
 }

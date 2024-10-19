@@ -148,7 +148,7 @@ namespace TOR_Core.CharacterDevelopment
         
         public static float GrailDamselCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            if (chargeType != ChargeType.DamageDone || chargeType != ChargeType.Healed) return 0;
+            if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
 
             if (mask != AttackTypeMask.Spell) return 0;
 
@@ -310,6 +310,145 @@ namespace TOR_Core.CharacterDevelopment
             }
 
             return explainedNumber.ResultNumber;
+        }
+
+        public static float WaywatcherCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        {
+            if (mask != AttackTypeMask.Ranged) return 0;
+            if (chargeType == ChargeType.NumberOfKills) return 0;
+            if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield) return 0;
+            if (affectingAgent.Team == affectedAgent.Team) return 0;
+            if (affectingAgent.IsEnemyOf(Agent.Main)) return 0;
+
+            if (affectedAgent.Team == Agent.Main.Team) return 0;
+
+            if (!affectingAgent.IsMainAgent && affectingAgent.BelongsToMainParty() &&
+                !Hero.MainHero.HasCareerChoice("ForestStalkerKeystone")) return 0;
+
+            
+            chargeValue = Math.Min(150, chargeValue);
+            
+            
+            var explainedNumber = new ExplainedNumber(chargeValue);
+            
+            if (affectingAgent != Agent.Main)
+            {
+                explainedNumber.AddFactor(-0.95f);
+            }
+
+            if (Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone"))
+            {
+                explainedNumber.AddFactor(0.25f);
+            }
+            
+            
+            if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot&& Hero.MainHero.HasCareerChoice("HawkeyedPassive2"))
+            {
+               explainedNumber.AddFactor(1f);
+            }
+            
+            
+            return explainedNumber.ResultNumber;
+        }
+        
+        
+        public static float SpellsingerCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        {
+            if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
+            if (!affectingAgent.BelongsToMainParty()) return 0;
+            if (mask == AttackTypeMask.Ranged) return 0;
+            if (affectingAgent.IsHero && mask == AttackTypeMask.Melee) return 0;
+            
+            var isTreeSpirit = (affectingAgent.Character as CharacterObject).IsTreeSpirit();
+
+            
+            
+            if (!affectingAgent.IsHero && !isTreeSpirit) return 0;
+            
+            if (mask == AttackTypeMask.Melee && isTreeSpirit)
+            {
+                if(!Hero.MainHero.HasCareerChoice("HeartOfTheTreeKeystone"))
+                {
+                    return 0;
+                }
+            }
+            
+            var explainedNumber = new ExplainedNumber(chargeValue);
+
+            if (Hero.MainHero.HasCareerChoice("TreeSingingKeystone"))
+            {
+                explainedNumber.AddFactor(0.5f);
+            }
+            
+            return explainedNumber.ResultNumber;
+        }
+        
+        public static float GreyLordCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
+        {
+            if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
+            if (!affectingAgent.BelongsToMainParty()) return 0;
+            
+            
+            var explainedNumber = new ExplainedNumber(chargeValue);
+            
+            if(chargeType == ChargeType.Healed)
+                explainedNumber.AddFactor(-0.25f);
+            
+            if((mask == AttackTypeMask.Spell))
+            {
+                if (affectingAgent.IsMainAgent)
+                {
+                    if (affectingAgent.GetComponent<AbilityComponent>().CareerAbility.IsOnCooldown())
+                    {
+                        return 0;
+                    }
+                }
+            }
+            
+            if (affectingAgent.IsMainAgent)
+            {
+                switch (mask)
+                {
+                    case AttackTypeMask.Melee when Hero.MainHero.HasCareerChoice("CaelithsWisdomKeystone"):
+                        return explainedNumber.ResultNumber * 3;
+                    case AttackTypeMask.Melee:
+                        return 0;
+                    case AttackTypeMask.Ranged:
+                        break;
+                    case AttackTypeMask.Spell:
+                        return explainedNumber.ResultNumber;
+                        break;
+                    case AttackTypeMask.All:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(mask), mask, null);
+                }
+            }
+
+            if (affectingAgent.IsHero && !affectingAgent.IsMainAgent)
+            {
+                switch (mask)
+                {
+                    case AttackTypeMask.Melee when Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryKeystone"):
+                        return explainedNumber.ResultNumber * 3;
+                    case AttackTypeMask.Melee:
+                        return 0;
+                    case AttackTypeMask.Ranged when Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryKeystone"):
+                        return explainedNumber.ResultNumber;
+                    case AttackTypeMask.Ranged:
+                        return 0;
+                    case AttackTypeMask.Spell:
+                        return explainedNumber.ResultNumber;
+                        break;
+                    case AttackTypeMask.All:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(mask), mask, null);
+                }
+            }
+
+
+            return 0;
         }
     }
 }

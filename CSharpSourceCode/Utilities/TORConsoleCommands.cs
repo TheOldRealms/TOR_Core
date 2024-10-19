@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Helpers;
+using SandBox;
+using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
@@ -9,6 +11,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -122,7 +125,7 @@ namespace TOR_Core.Utilities
         public static string ListPlayerSpells(List<string> argumentNames) =>
             !CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType)
                 ? CampaignCheats.ErrorType
-                : AggregateOutput("Player got these spells:", Hero.MainHero.GetExtendedInfo().AllAbilites);
+                : AggregateOutput("Player got these spells:", Hero.MainHero.GetExtendedInfo().AllAbilities);
 
         [CommandLineFunctionality.CommandLineArgumentFunction("add_spells_to_player", "tor")]
         public static string AddSpells(List<string> arguments)
@@ -291,7 +294,7 @@ namespace TOR_Core.Utilities
         public static string OpenTestMission(List<string> arguments)
         {
             var template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_cultists");
-            TorMissionManager.OpenQuestMission("TOR_cultist_lair_001", template, 9);
+            TorMissionManager.OpenQuestMission("tor_test_scene_for_stuff", template, 9, null, false);
             return "Scene opened.";
         }
 
@@ -346,6 +349,19 @@ namespace TOR_Core.Utilities
         {
             TORTests.Instance.TriggerCorruptedMemoryStateException();
             return "Should crash before this gets returned.";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("print_map_patch_data", "tor")]
+        public static string PrintMapPatchData(List<string> arguments)
+        {
+            if (Campaign.Current == null) return "Function only available when playing in campaign mode.";
+
+            if (ScreenManager.TopScreen is MapScreen && Campaign.Current.MapSceneWrapper != null)
+            {
+                var patch = Campaign.Current.MapSceneWrapper.GetMapPatchAtPosition(MobileParty.MainParty.Position2D);
+                return $"Battle scene index at position ({MobileParty.MainParty.Position2D.ToString()}) is: {patch.sceneIndex}";
+            }
+            else return "Function only available while on the world map.";
         }
 
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>

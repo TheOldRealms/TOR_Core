@@ -13,7 +13,7 @@ namespace TOR_Core.Models
             // spawned without a party.
             return Clan.PlayerClan.Equals(clan)
                 ? base.GetPartyLimitForTier(clan, clanTierToCheck)
-                : clan.Heroes.Count;
+                : clan.Lords.Count;
         }
         
         

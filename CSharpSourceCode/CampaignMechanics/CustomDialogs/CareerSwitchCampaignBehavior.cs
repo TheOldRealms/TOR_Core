@@ -1,4 +1,4 @@
-﻿using Helpers;
+using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         private void OnStart(CampaignGameStarter starter)
         {
 
-            //Blooddragons
+            //Blood Knight
             BloodKnightLines(starter);
 
             //Carstein
@@ -35,7 +35,9 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             
             //BlackGrailKnight
             BlackGrailKnightDialogLines(starter);
-
+            
+            // Necrarch
+            NecrachDialogLines(starter);
         }
 
         private void BlackGrailKnightDialogLines(CampaignGameStarter starter)
@@ -117,13 +119,9 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                    !Clan.PlayerClan.IsUnderMercenaryService &&
                    Clan.PlayerClan.Tier >= 2)
                 {
-                    var career = Hero.MainHero.GetCareer();
-                    if (career == TORCareers.Mercenary ||
-                        career == TORCareers.BlackGrailKnight)
-                    { 
-                        return Hero.MainHero.Clan.Kingdom.MapFaction == partner.MapFaction; 
-                    }
-                    
+
+                    return CanBeVampire();
+
                 }
                 return false;
             }
@@ -156,17 +154,16 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                    !Clan.PlayerClan.IsUnderMercenaryService &&
                    Clan.PlayerClan.Tier >= 4)
                 {
-                    var career = Hero.MainHero.GetCareer();
-                    if (career == TORCareers.Mercenary ||
-                        career == TORCareers.Necromancer)
-                    { 
-                        return !Hero.MainHero.IsVampire();
-                    }
-                    
-                    
+
+                    return CanBeVampire();
+
+
                 }
                 return false;
             }
+
+
+            
 
             
             void OnBloodKissRecieved()
@@ -176,6 +173,47 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 Hero.MainHero.AddCareer(TORCareers.MinorVampire);
             }
         }
+        
+        private void NecrachDialogLines(CampaignGameStarter starter)
+        {
+            starter.AddPlayerLine("request_bloodkiss", "lord_talk_speak_diplomacy_2", "bloodkiss_necrach_root", "{=tor_bloodkiss_necrach_request_str}My lord. Zacharias. The Everliving. The disciple of Melkihor the Ancient. The most powerful of necrarchs. I wish to shed my mortal shell and serve you eternally. -", IsEligibleForBloodKissNecrach, null);
+
+            starter.AddDialogLine("bloodkiss_request_answer", "bloodkiss_necrach_root", "bloodkiss_necrach_answer_line2", "{=tor_bloodkiss_answer_line2_str}You has served me and mine loyally, as my teacher did with me long ago. I will share the gift of immortality with you", null, null);
+            starter.AddDialogLine("bloodkiss_request_answer2", "bloodkiss_necrach_answer_line2", "bloodkiss_necrach_areyouready", "{=tor_bloodkiss_answer_line3_str}Are you sure you are ready to leave your entire mortal life behind and enter forever into the lap of eternal night?", null, null);
+            starter.AddPlayerLine("bloodkiss_iamready", "bloodkiss_necrach_areyouready", "bloodkiss_necrach_player_prompt", "{=tor_bloodkiss_player_ready_str}I am ready my lord.", null, null);
+            starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_necrach_areyouready", "bloodkiss_player_notready", "{=tor_bloodkiss_player_notready_str}On a second thought, I need to think about it.", null, null);
+            
+            starter.AddDialogLine("bloodkiss_necrach_player_prompt", "bloodkiss_necrach_player_prompt", "bloodkiss_nechrach_player_ready", "...", null, () => DisplayPrompt(TORCareers.Necrarch,OnNecrachBloodKissRecieved));
+            
+            starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_player_ready", "bloodkiss_player_notready", "{=tor_blackgrail_receive_str}On a second thought, I need to think about it.", ()=> inquiryDeclined, null);
+            
+            starter.AddDialogLine("bloodkiss_recieve", "bloodkiss_nechrach_player_ready", "bloodkiss_playcutscene", "{=tor_bloodkiss_receive_str}Prepare thine self for thine dark awakening.", ()=> !inquiryDeclined, null);
+            starter.AddDialogLine("bloodkiss_cutscene", "bloodkiss_playcutscene", "close_window", "{=tor_bloodkiss_player_receive_end_str}Behold! The new addition to the brotherhood of the necrarchs.", null, null);
+           
+            starter.AddDialogLine("bloodkiss_dontbotherme", "bloodkiss_player_notready", "close_window", "{=tor_bloodkiss_player_dontbotherme_str}Then think about it someplace else, thou disturbeth mine plans. ", null, null);
+            
+            bool IsEligibleForBloodKissNecrach()
+            {
+                var partner = Hero.OneToOneConversationHero;
+                if(partner.MapFaction.IsKingdomFaction && 
+                   partner.MapFaction.StringId == "necrachs" && 
+                   Clan.PlayerClan.Kingdom == partner.MapFaction && 
+                   !Clan.PlayerClan.IsUnderMercenaryService &&
+                   Clan.PlayerClan.Tier >= 4)
+                {
+                    return CanBeVampire();
+                }
+                return false;
+            }
+            
+            void OnNecrachBloodKissRecieved()
+            {
+                MBInformationManager.ShowSceneNotification(new BloodKissSceneNotificationItem());
+                Hero.MainHero.AddCareer(TORCareers.Necrarch);
+            }
+        }
+        
+        
         
         private void DisplayPrompt(CareerObject careerObject, Action switchCareer)
         {
@@ -190,7 +228,24 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                  switchCareer,
                 () => inquiryDeclined=true);
             InformationManager.ShowInquiry(inquiry);
+        } 
+        
+        private bool CanBeVampire()
+        {
+            if (Hero.MainHero.CharacterObject.IsElf())
+            {
+                return false;
+            }
+            
+            var career = Hero.MainHero.GetCareer();
+
+            if (CareerHelper.IsPriestCareer(career))
+                return false;
+                
+            
+            return !Hero.MainHero.IsVampire();
         }
+        
         public override void SyncData(IDataStore dataStore) { }
     }
 }

@@ -242,7 +242,7 @@ namespace TOR_Core.AbilitySystem
                             float random = MBRandom.RandomFloatRanged(0, 1);
                             if (random < choice.GetPassiveValue())
                             {
-                                playerHero.AddWindsOfMagic(15);
+                                playerHero.AddWindsOfMagic(10);
                             }
                         }
                     }
@@ -514,7 +514,7 @@ namespace TOR_Core.AbilitySystem
                 _artillerySlots[team] = 0;
                 foreach (var agent in team.TeamAgents)
                 {
-                    if (agent.CanPlaceArtillery())
+                    if (agent.CanPlaceArtillery() || agent.IsHero &&  agent.HasAttribute("EngineerCompanion") )
                     {
                         _artillerySlots[team] += agent.GetPlaceableArtilleryCount();
                     }
@@ -769,8 +769,10 @@ namespace TOR_Core.AbilitySystem
                 }
 
                 if (!(Game.Current.GameType is Campaign)) return;
-                if (hero.HasAnyCareer() && hero.HasCareerChoice("ArchLectorPassive1")) return;
-                Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
+                if (hero.HasAnyCareer() && hero.HasCareerChoice("ArchLectorPassive1"))
+                {
+                    Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
+                }
             }
         }
 
@@ -783,6 +785,11 @@ namespace TOR_Core.AbilitySystem
                     DisableAbilityMode(false, null);
                 }
             }
+        }
+
+        public override void OnEarlyAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
+        {
+            if (affectedAgent == Agent.Main) SlowDownTime(false);
         }
     }
 

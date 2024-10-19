@@ -174,50 +174,50 @@ namespace TOR_Core.CharacterDevelopment
 
             _entrySpells.Initialize("{=tor_perk_novice_spellcaster_label_str}Novice Spellcaster", TORSkills.SpellCraft, 25, null, 
                 "{=tor_perk_novice_spellcaster_1_str}Gain access to entry level spells.", SkillEffect.PerkRole.Personal, 0, SkillEffect.EffectIncrementType.Invalid);
-            _adeptSpells.Initialize("{=tor_perk_adept_spellcaster_label_str}Adept Spellcaster", TORSkills.SpellCraft, 75, null,
+            _adeptSpells.Initialize("{=tor_perk_adept_spellcaster_label_str}Adept Spellcaster", TORSkills.SpellCraft, 100, null,
                 "{=tor_perk_adept_spellcaster_1_str}Gain access to adept level spells.", SkillEffect.PerkRole.Personal, 0, SkillEffect.EffectIncrementType.Invalid);
-            _masterSpells.Initialize("{=tor_perk_master_spellcaster_label_str}Master Spellcaster", TORSkills.SpellCraft, 125, null,
+            _masterSpells.Initialize("{=tor_perk_master_spellcaster_label_str}Master Spellcaster", TORSkills.SpellCraft, 200, null,
                 "{=tor_perk_master_spellcaster_1_str}Gain access to master level spells.", SkillEffect.PerkRole.Personal, 0, SkillEffect.EffectIncrementType.Invalid);
 
             _selfish.Initialize("{=tor_perk_selfish_label_str}Selfish", TORSkills.SpellCraft, 50, _wellControlled,
                 "{=tor_perk_selfish_1_str}Your damaging spells do 90% reduced damage to yourself.",
                 SkillEffect.PerkRole.Personal, -0.9f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=tor_perk_selfish_2_str}Your self targeted buff spells have 50% more duration.",
-                SkillEffect.PerkRole.Personal, 0.5f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                SkillEffect.PerkRole.Personal, 0.15f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _wellControlled.Initialize("{=tor_perk_well_controlled_label_str}Well Controlled", TORSkills.SpellCraft, 50, _selfish,
                 "{=tor_perk_well_controlled_1_str}Your damaging spells do 30% less damage to troops in your party.",
                 SkillEffect.PerkRole.Personal, -0.3f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=tor_perk_well_controlled_2_str}Gain 5% advantage in simulation battles.",
                 SkillEffect.PerkRole.PartyLeader, 0.05f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
-            _librarian.Initialize("{=tor_perk_librarian_label_str}Librarian", TORSkills.SpellCraft, 100, _storyTeller,
+            _librarian.Initialize("{=tor_perk_librarian_label_str}Librarian", TORSkills.SpellCraft, 125, _storyTeller,
                 "{=tor_perk_librarian_1_str}You gain double experience from reading books.",
                 SkillEffect.PerkRole.Personal, 1f, SkillEffect.EffectIncrementType.AddFactor,
                 "{=tor_perk_librarian_2_str}Learning new spells cost 50% less gold.",
                 SkillEffect.PerkRole.Personal, -0.5f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
-            _storyTeller.Initialize("{=tor_perk_story_teller_label_str}Storyteller", TORSkills.SpellCraft, 100, _librarian,
+            _storyTeller.Initialize("{=tor_perk_story_teller_label_str}Storyteller", TORSkills.SpellCraft, 125, _librarian,
                 "{=tor_perk_story_teller_1_str}Every companion in your party gains 1000 experience in a random skill per day.",
                 SkillEffect.PerkRole.PartyLeader, 1000f, SkillEffect.EffectIncrementType.Add,
                 "{=tor_perk_story_teller_2_str}Your party gains a permanent +5 increase to party morale.",
                 SkillEffect.PerkRole.PartyLeader, 5f, SkillEffect.EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _overCaster.Initialize("{=tor_perk_overcaster_label_str}Overcaster", TORSkills.SpellCraft, 150, _efficientSpellCaster,
-                "{=tor_perk_overcaster_1_str}Your damaging spells do 20% more damage but cost 10% more winds of magic.",
+                "{=tor_perk_overcaster_1_str}Your damaging spells do 20% more damage but cost 30% more winds of magic.",
                 SkillEffect.PerkRole.Personal, 0.2f, SkillEffect.EffectIncrementType.AddFactor,
                 string.Empty,
-                SkillEffect.PerkRole.None, 0.1f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                SkillEffect.PerkRole.None, 0.15f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _efficientSpellCaster.Initialize("{=tor_perk_effective_spellcaster_label_str}Efficient Spellcaster", TORSkills.SpellCraft, 150, _overCaster,
                 "{=tor_perk_effective_spellcaster_1_str}Your damaging spells do 20% less damage, but cost 30% less winds of magic.",
                 SkillEffect.PerkRole.Personal, -0.2f, SkillEffect.EffectIncrementType.AddFactor,
                 string.Empty,
-                SkillEffect.PerkRole.None, -0.3f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
+                SkillEffect.PerkRole.None, -0.15f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
-            _improvision.Initialize("{=tor_perk_improvision_label_str}Improvision", TORSkills.SpellCraft, 200, _catalyst,
+            _improvision.Initialize("{=tor_perk_improvision_label_str}Improvision", TORSkills.SpellCraft, 225, _catalyst,
                 "{=tor_perk_improvision_1_str}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle.",
                 SkillEffect.PerkRole.Personal, 25f, SkillEffect.EffectIncrementType.Add,
                 "{=tor_perk_improvision_2_str}+10% Persuasion chance during speech checks.",
                 SkillEffect.PerkRole.Personal, 0.1f, SkillEffect.EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
-            _catalyst.Initialize("{=tor_perk_catalyst_label_str}Catalyst", TORSkills.SpellCraft, 200, _improvision,
+            _catalyst.Initialize("{=tor_perk_catalyst_label_str}Catalyst", TORSkills.SpellCraft, 225, _improvision,
                 "{=tor_perk_catalyst_1_str}For every magical item in your equipment slots you gain +5 extra Winds of magic at the start of battle.",
                 SkillEffect.PerkRole.Personal, 5f, SkillEffect.EffectIncrementType.Add,
                 "{=tor_perk_catalyst_2_str}You gain +20% Winds of Magic regeneration while waiting in a town.",

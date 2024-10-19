@@ -1,19 +1,19 @@
 ﻿using HarmonyLib;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ModuleManager;
-using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
 using TOR_Core.Utilities;
@@ -23,6 +23,13 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class BaseGameDebugPatches
     {
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(CraftingCampaignBehavior), "CreateTownOrder")]
+        public static bool PreventCreateCraftingOrder(Hero orderOwner, int orderSlot)
+        {
+            return orderOwner != null && orderOwner.CurrentSettlement != null && orderOwner.PartyBelongedTo != null && orderOwner.Occupation != Occupation.Special && !orderOwner.IsAICompanion();
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(TroopRoster), "EnsureLength")]
         public static bool EnsureLengthProper(int length, ref TroopRosterElement[] ___data, int ____count)
@@ -37,6 +44,19 @@ namespace TOR_Core.HarmonyPatches
                 ___data = array;
             }
             return false;
+        }
+
+        [HarmonyFinalizer]
+        [HarmonyPatch(typeof(MobilePartyAi), "GetBehaviors")]
+        public static Exception GetBehaviorsFinalizer(Exception __exception, MobileParty ____mobileParty, ref AiBehavior bestAiBehavior, ref PartyBase behaviorParty, ref Vec2 bestTargetPoint)
+        {
+            if(__exception != null)
+            {
+                bestAiBehavior = AiBehavior.Hold;
+                behaviorParty = null;
+                bestTargetPoint = ____mobileParty.Position2D;
+            }
+            return null;
         }
 
         [HarmonyPrefix]
@@ -160,17 +180,22 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
-        /*
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(HotKeyManager), "RegisterInitialContexts")]
-        public static void LogGamekeyContexts(IEnumerable<GameKeyContext> contexts, bool loadKeys)
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(HeroAgentSpawnCampaignBehavior), "AddHeroesWithoutPartyCharactersToVillage")]
+        public static bool PreventCrash(Settlement settlement)
         {
-            TORCommon.Log("STARTING RegisterInitialContexts --------------------", LogLevel.Debug);
-            foreach (var context in contexts)
+            foreach (Hero hero in settlement.HeroesWithoutParty)
             {
-                TORCommon.Log("Registering context: " + context.GameKeyCategoryId, LogLevel.Debug);
+                Monster monsterWithSuffix = TaleWorlds.Core.FaceGen.GetMonsterWithSuffix(hero.CharacterObject.Race, "_settlement");
+                AgentData agentData = new AgentData(new PartyAgentOrigin(null, hero.CharacterObject, -1, default, false)).Monster(monsterWithSuffix);
+                var locationCharacter = new LocationCharacter(agentData, new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddFixedCharacterBehaviors), "sp_notable_rural_notable", false, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
+                if(LocationComplex.Current != null)
+                {
+                    var villageCenter = LocationComplex.Current.GetLocationWithId("village_center");
+                    if(villageCenter != null) villageCenter.AddCharacter(locationCharacter);
+                }
             }
+            return false;
         }
-        */
     }
 }

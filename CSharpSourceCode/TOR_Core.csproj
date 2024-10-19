@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,16 +47,16 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
+    <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup>
@@ -337,6 +337,7 @@
     <Compile Include="AbilitySystem\Scripts\AbilityScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AccusationScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArcaneConduit.cs" />
+    <Compile Include="AbilitySystem\Scripts\ArrowOfKurnousScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArtilleryPlacementScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AxeOfUlricScript.cs" />
@@ -344,6 +345,7 @@
     <Compile Include="AbilitySystem\Scripts\BombardmentScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityMissleScript.cs" />
     <Compile Include="AbilitySystem\Scripts\CareerAbilityScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\MindControlScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HealScript.cs" />
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\KnightlyChargeScript.cs" />
@@ -355,8 +357,10 @@
     <Compile Include="AbilitySystem\Scripts\SummonChampionScript.cs" />
     <Compile Include="AbilitySystem\Scripts\SummoningScript.cs" />
     <Compile Include="AbilitySystem\Scripts\TeleportScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\TimeWarpScript.cs" />
     <Compile Include="AbilitySystem\Scripts\VortexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\WindScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\WrathOfTheWoodScript.cs" />
     <Compile Include="AbilitySystem\SeekerController.cs" />
     <Compile Include="AbilitySystem\SeekerParameters.cs" />
     <Compile Include="AbilitySystem\CareerAbilityHUD_VM.cs" />
@@ -430,17 +434,21 @@
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
     <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestAgentController.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestTournamentGame.cs" />
     <Compile Include="BattleMechanics\CustomCrosshairMissionBehavior.cs" />
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\DualWield\DualWieldAgentComponent.cs" />
     <Compile Include="BattleMechanics\DualWield\DualWieldMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Jousting\JoustLaneEndVolumeBox.cs" />
-    <Compile Include="BattleMechanics\Jousting\JoustTournamentBehavior.cs" />
-    <Compile Include="BattleMechanics\Jousting\JoustTournamentGame.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\JoustLaneEndVolumeBox.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\CustomTournamentBehaviors.cs" />
+    <Compile Include="BattleMechanics\CustomArenaModes\JoustTournamentGame.cs" />
+    <Compile Include="BattleMechanics\Morale\AgentVoiceComponent.cs" />
+    <Compile Include="BattleMechanics\Morale\BattleShoutsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
-    <Compile Include="BattleMechanics\Morale\UndeadMoraleMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Morale\MoraleMissionLogic.cs" />
     <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
     <Compile Include="BattleMechanics\SFX\TORLightDampener.cs" />
     <Compile Include="BattleMechanics\SFX\TORSimpleObjectAnimator.cs" />
@@ -460,6 +468,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\PrefabSpawnerScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\SummonScript.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\TraitHelper.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
@@ -467,26 +476,35 @@
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CampaignEventHelpers.cs" />
+    <Compile Include="CampaignMechanics\Careers\CareerButtonDialogs.cs" />
     <Compile Include="CampaignMechanics\Careers\CareerDialogOptionsCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Careers\GrailDamselEnvoyOfTheLadyPerkDialog.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\FaceGenHelper.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CareerSwitchCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\BloodKissSceneNotificationItem.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\AsraiTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\BloodDragonTag.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\CommonTags.cs" />
+    <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\EonirTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\MousillonTag.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\ConversationTags\VampireTags.cs" />
     <Compile Include="CampaignMechanics\CustomDialogs\CustomDialogCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\ChivalryHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResource.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResourceManager.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\FavorHelper.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\ForestHarmonyHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\PartyVMExtension.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\TORDeclareWarDecision.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionProposalBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEvent.cs" />
     <Compile Include="CampaignMechanics\CustomEvents\CustomEventsCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Invasions\InvasionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Invasions\InvasionPartyComponent.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
+    <Compile Include="CampaignMechanics\PrestigeNoble\EonirFavorEnvoyTownBehavior.cs" />
     <Compile Include="CampaignMechanics\PrestigeNoble\PrestigeNobleTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyComponent.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
@@ -504,19 +522,27 @@
     <Compile Include="CampaignMechanics\Religion\ReligionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionEncyclopediaPage.cs" />
     <Compile Include="CampaignMechanics\Religion\ReligionObject.cs" />
+    <Compile Include="CampaignMechanics\Religion\ReligionObjectHelper.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingActivities.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingHelpers.cs" />
     <Compile Include="CampaignMechanics\SkillBooks\TORSkillBookCampaignBehavior.cs" />
     <Compile Include="BattleMechanics\TORBattleAgentLogic.cs" />
     <Compile Include="CampaignMechanics\SpellTrainers\SpellTrainerInTownBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCaptivityCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\OakOfAgesMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\RaidingSiteMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\CursedSiteMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\ShrineMenuLogic.cs" />
+    <Compile Include="CampaignMechanics\TORCustomSettlement\CustomSettlementMenus\TORBaseSettlementMenuLogic.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORBaseSettlementComponent.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORCustomSettlementCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
     <Compile Include="CampaignMechanics\TORFactionDiscontinuationCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
+    <Compile Include="CampaignMechanics\TORMapBarSpriteWidget.cs" />
     <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TORAIRecruitmentCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />
+    <Compile Include="CampaignMechanics\TORRecruitmentHelpers.cs" />
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
     <Compile Include="CampaignMechanics\TORWanderersCampaignBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerAbilityChargeSupplier.cs" />
@@ -529,6 +555,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerAbilityEffectVM.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\NecrarchCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\WaywatcherCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\WitchHunterCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObject.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerChoiceGroupObjectVM.cs" />
@@ -546,16 +573,18 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\CareerChoicesHelper.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\GrailDamselCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\GreyLordCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\ImperialMagisterCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\MercenaryCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecrarchCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecromancerCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\SpellsingerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\TORCareerChoicesBase.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\VampireCountCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WarriorPriestUlricCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\WaywatcherCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\WitchHunterCareerChoices.cs" />
-    <Compile Include="CharacterDevelopment\CareerSystem\SpecialScripts\GrailDamselEnvoyOfTheLadyPerkDialog.cs" />
     <Compile Include="CharacterDevelopment\TORAttributes.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoiceGroups.cs" />
     <Compile Include="CharacterDevelopment\TORCareerChoices.cs" />
@@ -567,7 +596,9 @@
     <Compile Include="CharacterDevelopment\TORSkills.cs" />
     <Compile Include="Extensions\AgentDrivenPropertiesExtensions.cs" />
     <Compile Include="Extensions\AgentExtensions.cs" />
+    <Compile Include="Extensions\BannerExtensions.cs" />
     <Compile Include="Extensions\CharacterObjectExtensions.cs" />
+    <Compile Include="Extensions\ClanExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\DebugMethods.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\CharacterExtendedInfo.cs" />
@@ -575,10 +606,12 @@
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoMissionLogic.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\HeroExtendedInfo.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\MobilePartyExtendedInfo.cs" />
+    <Compile Include="Extensions\FactionExtensions.cs" />
     <Compile Include="Extensions\FormationExtensions.cs" />
     <Compile Include="Extensions\GameModelsExtensions.cs" />
     <Compile Include="Extensions\HeroExtensions.cs" />
     <Compile Include="Extensions\ItemObjectExtensions.cs" />
+    <Compile Include="Extensions\KingdomExtension.cs" />
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />
@@ -586,11 +619,13 @@
     <Compile Include="Extensions\TeamExtensions.cs" />
     <Compile Include="Extensions\UI\BaseViewModelExtension.cs" />
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
+    <Compile Include="Extensions\UI\MissionConversationVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
-    <Compile Include="Extensions\UI\PartyViewExtension.cs" />
+    <Compile Include="Extensions\UI\PartyNameplateItemVMExtension.cs" />
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
+    <Compile Include="CampaignMechanics\ServeAsAHireling\ServeAsAHirelingCampaignBehavior.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
@@ -620,6 +655,7 @@
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
     <Compile Include="HarmonyPatches\MBMusicManagerPatches.cs" />
     <Compile Include="HarmonyPatches\MissionPatches.cs" />
+    <Compile Include="HarmonyPatches\MobilePartyPatches.cs" />
     <Compile Include="HarmonyPatches\MountCreationPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
     <Compile Include="HarmonyPatches\CustomResourcePatches.cs" />
@@ -645,17 +681,15 @@
     <Compile Include="Items\TorImageIdentifierWidget.cs" />
     <Compile Include="Items\TorItemTraitVM.cs" />
     <Compile Include="Items\WeaponEffectMissionLogic.cs" />
+    <Compile Include="Missions\ArcheryContestMissionController.cs" />
     <Compile Include="Missions\GraveyardFightMissionController.cs" />
     <Compile Include="Missions\InkDuelFightMissionController.cs" />
     <Compile Include="Missions\JoustFightMissionController.cs" />
     <Compile Include="Missions\QuestFightMissionController.cs" />
-    <Compile Include="Models\ChivalryHelper.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
-    <Compile Include="Models\Diplomacy\Aggression\DecompiledNativeAggression.cs" />
-    <Compile Include="Models\Diplomacy\Aggression\TORAggressionCalculator.cs" />
-    <Compile Include="Models\Diplomacy\Aggression\ReligiousAggressionCalculator.cs" />
     <Compile Include="Models\TORAgentApplyDamageModel.cs" />
     <Compile Include="Models\TORAgentStatCalculateModel.cs" />
+    <Compile Include="Models\TORAlleyModel.cs" />
     <Compile Include="Models\TORBanditDensityModel.cs" />
     <Compile Include="Models\TORBattleBannerBearersModel.cs" />
     <Compile Include="Models\TORBattleMoraleModel.cs" />
@@ -669,11 +703,13 @@
     <Compile Include="Models\TORCombatXpModel.cs" />
     <Compile Include="Models\TORCompanionHiringPriceCalculationModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
+    <Compile Include="Models\TORCustomResourceModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TOREncounterModel.cs" />
     <Compile Include="Models\TOREquipmentSelectionModel.cs" />
     <Compile Include="Models\TORFaithModel.cs" />
+    <Compile Include="Models\TORSettlementDistanceModel.cs" />
     <Compile Include="Models\TORSettlementFoodModel.cs" />
     <Compile Include="Models\TORInventoryCapacityModel.cs" />
     <Compile Include="Models\TORKingdomDecisionPermissionModel.cs" />
@@ -699,6 +735,7 @@
     <Compile Include="Models\TORTournamentModel.cs" />
     <Compile Include="Models\TORTroopSupplierModel.cs" />
     <Compile Include="Models\TORVoiceOverModel.cs" />
+    <Compile Include="Models\TORVolunteerModel.cs" />
     <Compile Include="Quests\EngineerQuest.cs" />
     <Compile Include="Quests\HuntCultistsQuestCampaignBehavior.cs" />
     <Compile Include="Quests\PlaguedVillageQuestCampaignBehavior.cs" />
@@ -716,6 +753,7 @@
     <Compile Include="Utilities\TORConsoleCommands.cs" />
     <Compile Include="Utilities\TORConstants.cs" />
     <Compile Include="Utilities\TORDamageDisplay.cs" />
+    <Compile Include="Utilities\TOREntityRotator.cs" />
     <Compile Include="Utilities\TOREquipmentHelper.cs" />
     <Compile Include="Utilities\TORCampaignEvents.cs" />
     <Compile Include="Utilities\TORExtendedInfoHelper.cs" />
@@ -738,58 +776,63 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.2.2</Version>
+      <Version>2.3.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Win32.Registry">
-      <Version>4.7.0</Version>
+      <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="NAudio">
-      <Version>2.1.0</Version>
+      <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="NAudio.Asio">
-      <Version>2.1.0</Version>
+      <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="NAudio.Core">
-      <Version>2.1.0</Version>
+      <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="NAudio.Midi">
-      <Version>2.1.0</Version>
+      <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="NAudio.Vorbis">
       <Version>1.5.0</Version>
     </PackageReference>
     <PackageReference Include="NAudio.Wasapi">
-      <Version>2.1.0</Version>
+      <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="NAudio.WinForms">
-      <Version>2.1.0</Version>
+      <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="NAudio.WinMM">
-      <Version>2.1.0</Version>
+      <Version>2.2.1</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>5.0.1</Version>
+      <Version>5.3.4</Version>
     </PackageReference>
     <PackageReference Include="NVorbis">
-      <Version>0.10.4</Version>
+      <Version>0.10.5</Version>
+    </PackageReference>
+    <PackageReference Include="PolySharp">
+      <Version>1.14.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="System.Buffers">
-      <Version>4.4.0</Version>
+      <Version>4.5.1</Version>
     </PackageReference>
     <PackageReference Include="System.Memory">
-      <Version>4.5.3</Version>
+      <Version>4.5.5</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
-      <Version>4.4.0</Version>
+      <Version>4.5.0</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>4.5.2</Version>
+      <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.Security.AccessControl">
-      <Version>4.7.0</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="System.Security.Principal.Windows">
-      <Version>4.7.0</Version>
+      <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>

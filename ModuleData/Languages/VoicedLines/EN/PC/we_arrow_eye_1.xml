@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rhubarbResult>
+  <metadata>
+    <soundFile>E:\voicelines\elves\lord_lines\we_arrow_eye_1.ogg</soundFile>
+    <duration>2.80</duration>
+  </metadata>
+  <mouthCues>
+    <mouthCue start="0.00" end="0.13">X</mouthCue>
+    <mouthCue start="0.13" end="0.21">B</mouthCue>
+    <mouthCue start="0.21" end="0.29">A</mouthCue>
+    <mouthCue start="0.29" end="0.55">B</mouthCue>
+    <mouthCue start="0.55" end="0.63">A</mouthCue>
+    <mouthCue start="0.63" end="0.77">B</mouthCue>
+    <mouthCue start="0.77" end="0.84">G</mouthCue>
+    <mouthCue start="0.84" end="0.91">E</mouthCue>
+    <mouthCue start="0.91" end="0.99">A</mouthCue>
+    <mouthCue start="0.99" end="1.14">F</mouthCue>
+    <mouthCue start="1.14" end="1.56">C</mouthCue>
+    <mouthCue start="1.56" end="1.70">E</mouthCue>
+    <mouthCue start="1.70" end="2.05">F</mouthCue>
+    <mouthCue start="2.05" end="2.19">E</mouthCue>
+    <mouthCue start="2.19" end="2.27">A</mouthCue>
+    <mouthCue start="2.27" end="2.55">D</mouthCue>
+    <mouthCue start="2.55" end="2.69">B</mouthCue>
+    <mouthCue start="2.69" end="2.80">X</mouthCue>
+  </mouthCues>
+</rhubarbResult>

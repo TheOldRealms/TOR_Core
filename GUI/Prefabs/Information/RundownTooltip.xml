@@ -1,0 +1,93 @@
+<Prefab>
+  <Variables>
+  </Variables>
+  <Constants>
+  </Constants>
+  <VisualDefinitions>
+  </VisualDefinitions>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsDisabled="true">
+      <Children>
+
+        <RundownTooltipWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" ValueCategorizationAsInt="@ValueCategorizationAsInt" LineContainerWidget="Body\Explanations\Lines" DividerCollectionWidget="Body\Explanations\DividerCollectionParent\DividerCollection" IsVisible="@IsActive">
+          <Children>
+
+            <ListPanel Id="Body" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" Sprite="BlankWhiteSquare_9" Color="#000000ff">
+              <Children>
+                
+                <!--Top Bar-->
+                <DimensionSyncWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="42" HorizontalAlignment="Center" DimensionToSync="Horizontal" IsEnabled="false" WidgetToCopyHeightFrom="..\Explanations\Lines" PaddingAmount="0">
+                  <Children>
+                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom">
+                      <Children>
+
+                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="horizontal_gradient_divider" ExtendTop="11" Color="#492406ff">
+                          <Children>
+                            <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" VerticalAlignment="Center" Text="@TitleText" MarginBottom="5" MarginLeft="5" Brush="Tooltip.Title.Text" Brush.TextHorizontalAlignment="Left" />
+                          </Children>
+                        </Widget>
+
+                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="7" Sprite="tooltip_frame_white_9" Color="#835513ff" ExtendLeft="4" ExtendRight="4" PositionYOffset="-5"/>
+
+                      </Children>
+                    </ListPanel>
+                    <Widget />
+                  </Children>
+                </DimensionSyncWidget>
+
+                <!--Grid-->
+                <Widget Id="Explanations" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center">
+                  <Children>
+                    
+                    <GridWidget Id="Lines" DataSource="{Lines}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MinWidth="240" MinHeight="15"  HorizontalAlignment="Center" DefaultCellWidth="50" DefaultCellHeight="20" RowCount="45" GridLayout.Direction="ColumnFirst" UseDynamicCellWidth="true" Sprite="BlankWhiteSquare" Color="#000000D9">
+                      <ItemTemplate>
+                        <RundownLineWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" MarginLeft="8" MarginRight="8" NameTextWidget="Name" ValueTextWidget="Value" Value="@Value">
+                          <Children>
+                            <TextWidget Id="Name" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Left" Text="@Name" Brush="RundownTooltip.ExplanationName.Text" />
+                            <TextWidget Id="Value" WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Right" Brush="Rundown.Tooltip.Value.Text" Text="@ValueAsString" />
+                          </Children>
+                        </RundownLineWidget>
+                      </ItemTemplate>
+                    </GridWidget>
+
+                    <DimensionSyncWidget Id="DividerCollectionParent" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" HorizontalAlignment="Center" DimensionToSync="HorizontalAndVertical" WidgetToCopyHeightFrom="..\Lines">
+                      <Children>
+                        <RundownColumnDividerCollectionWidget Id="DividerCollection" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DividerSprite="BlankWhiteSquare" DividerWidth="2" DividerColor="#74390bff" />
+                      </Children>
+                    </DimensionSyncWidget>
+
+                  </Children>
+                </Widget>
+                
+                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="8" MarginTop="5" MarginBottom="5" Brush.TextHorizontalAlignment="Left" Brush="RundownTooltip.MoreInfo.Text" Brush.TextAlphaFactor="0.7" Text="@ExtendText" IsHidden="@IsExtended" />
+
+                <!--Bottom Bar-->
+                <DimensionSyncWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="42" HorizontalAlignment="Center" DimensionToSync="Horizontal" IsEnabled="false" WidgetToCopyHeightFrom="..\Explanations\Lines" PaddingAmount="0">
+                  <Children>
+                    <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop">
+                      <Children>
+
+                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="horizontal_gradient_divider" ExtendBottom="6" Color="#492406ff">
+                          <Children>
+                            <RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Text="@ExpectedChangeText" MarginLeft="5" MarginTop="6" Brush.TextHorizontalAlignment="Left" Brush="RundownTooltip.ExpectedChange.Text" />
+                          </Children>
+                        </Widget>
+
+                        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="7" Sprite="tooltip_frame_white_9" Color="#835513ff" ExtendLeft="4" ExtendRight="4" PositionYOffset="4"/>
+
+                      </Children>
+                    </ListPanel>
+                    <Widget />
+                  </Children>
+                </DimensionSyncWidget>
+
+              </Children>
+            </ListPanel>
+
+          </Children>
+        </RundownTooltipWidget>
+        
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

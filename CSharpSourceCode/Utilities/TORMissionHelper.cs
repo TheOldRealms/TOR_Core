@@ -22,11 +22,12 @@ namespace TOR_Core.Utilities
             {
                 foreach (var agent in agents)
                 {
+                    if (agent == null) continue;
                     if (triggeredeffectTemplate != null && damager != null)
                         TORSpellBlowHelper.EnqueueSpellBlowInfo(agent.Index, damager.Index, triggeredeffectTemplate.StringID, damageType, originSpellTemplate == null ? string.Empty : originSpellTemplate.StringID);
 
                     var damage = maxDamage < minDamage ? minDamage : MBRandom.RandomInt(minDamage, maxDamage);
-                    if(damage<0) continue;
+                    if (damage < 0) continue;
                     if (impactPosition != default && hasShockWave && triggeredeffectTemplate != null)
                     {
                         var distance = agent.Position.Distance(impactPosition);

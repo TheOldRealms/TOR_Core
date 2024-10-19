@@ -250,10 +250,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             {
                 Hero.MainHero.AddReligiousInfluence(nagash,25,true);
             }
-            
-            
-            CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
-            Hero.MainHero.Culture = mousillonCulture;
         }
 
         private static bool isUndeadTroop(Agent agent)

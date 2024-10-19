@@ -1,4 +1,6 @@
 ﻿
+using TOR_Core.Utilities;
+
 namespace TaleWorlds.CampaignSystem.Conversation.Tags
 {
     public class MousillonTag : ConversationTag
@@ -7,7 +9,7 @@ namespace TaleWorlds.CampaignSystem.Conversation.Tags
         public override string StringId => nameof (MousillonTag);
         public override bool IsApplicableTo(CharacterObject character)
         {
-            return character.Culture.StringId == "mousillon";
+            return character.Culture.StringId == TORConstants.Cultures.MOUSILLON;
         }
     }
 }

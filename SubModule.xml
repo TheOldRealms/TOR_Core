@@ -1,15 +1,15 @@
 <Module>
-	<Name value="The Old Realms Core Module" />
+	<Name value="The Old Realms - Core (Season of Doom)" />
 	<Id value="TOR_Core" />
-	<Version value="v1.2.5" />
+	<Version value="v1.2.11" />
 	<ModuleCategory value="Singleplayer"/>
 	<DependedModules>
-		<DependedModule Id="Native" DependentVersion="v1.2.5" />
-		<DependedModule Id="SandBoxCore" DependentVersion="v1.2.5" />
-		<DependedModule Id="Sandbox" DependentVersion="v1.2.5" />
-		<DependedModule Id="StoryMode" DependentVersion="v1.2.5" />
-		<DependedModule Id="TOR_Armory" DependentVersion="v1.2.5" />
-		<DependedModule Id="TOR_Environment" DependentVersion="v1.2.5" />
+		<DependedModule Id="Native" DependentVersion="v1.2.11" />
+		<DependedModule Id="SandBoxCore" DependentVersion="v1.2.11" />
+		<DependedModule Id="Sandbox" DependentVersion="v1.2.11" />
+		<DependedModule Id="StoryMode" DependentVersion="v1.2.11" />
+		<DependedModule Id="TOR_Armory" DependentVersion="v1.2.11" />
+		<DependedModule Id="TOR_Environment" DependentVersion="v1.2.11" />
 	</DependedModules>
 	<SubModules>
 		<SubModule>

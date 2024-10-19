@@ -27,12 +27,21 @@ namespace TOR_Core.Models
                     //result.Add(10f,new TextObject("Blood Keep bonus"));
                     return result;
                 }
+
+                if (settlement.StringId == "castle_BK2")
+                {
+                    if (settlement.Militia < 2000)
+                    {
+                        result.LimitMin(10);
+                    }
+                }
+                
                 switch (settlement.OwnerClan.Culture.StringId)
                 {
-                    case TORConstants.SYLVANIA_CULTURE:
+                    case TORConstants.Cultures.SYLVANIA:
                         result.Add(2f, new TextObject("Bonus"));
                         break;
-                    case TORConstants.EMPIRE_CULTURE:
+                    case TORConstants.Cultures.EMPIRE:
                         result.Add(1f, new TextObject("Bonus"));
                         break;
                     default:
@@ -44,10 +53,10 @@ namespace TOR_Core.Models
             {
                 switch (settlement.OwnerClan.Culture.StringId)
                 {
-                    case TORConstants.SYLVANIA_CULTURE:
+                    case TORConstants.Cultures.SYLVANIA:
                         result.Add(4f, new TextObject("Bonus"));
                         break;
-                    case TORConstants.EMPIRE_CULTURE:
+                    case TORConstants.Cultures.EMPIRE:
                         result.Add(3f, new TextObject("Bonus"));
                         break;
                     default:

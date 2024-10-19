@@ -1,11 +1,16 @@
+using System.Linq;
+using System.Windows.Input;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Scripts;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -17,8 +22,18 @@ namespace TOR_Core.BattleMechanics
     public class CareerPerkMissionBehavior : MissionLogic
     {
         private float _currentTime;
-        private readonly float _frequency=1f;
+        private readonly float _frequency = 1f;
+        private bool _zoomKeyEventStarted;
+        private const int TimeRequestId = 10001;
+        public float[] CareerMissionVariables = new float[5];
         
+        public override void AfterStart()
+        {
+            CareerMissionVariables = new float[5];
+            
+            base.AfterStart();
+        }
+
         public override void OnMissionTick(float dt)
         {
             _currentTime += dt;
@@ -27,13 +42,59 @@ namespace TOR_Core.BattleMechanics
                 _currentTime = 0f;
                 TickEvents();
             }
+
+            if (Mission.InputManager.IsGameKeyDown(24))
+            {
+                ZoomKeyDownEvents();
+            }
+            
+            if(_zoomKeyEventStarted && Mission.InputManager.IsGameKeyReleased(24))
+            {
+                ZoomKeyUpEvents();
+            }
         }
-    
+
+        private void ZoomKeyDownEvents()
+        {
+            if(_zoomKeyEventStarted) return;
+
+            if (Mission.Current.IsFriendlyMission)
+            {
+                return;
+            }
+            
+            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HawkeyedPassive4"))
+            {
+                if (Agent.Main != null && Agent.Main.GetComponent<AbilityComponent>().CareerAbility.ChargeLevel < 0.1f)
+                {
+                    return;
+                }
+           
+                var timeRequest = new Mission.TimeSpeedRequest (0.60f, TimeRequestId);
+                Mission.Current.AddTimeSpeedRequest (timeRequest);
+            }
+            
+            _zoomKeyEventStarted = true;
+        }
+
+        private void ZoomKeyUpEvents()
+        {
+            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                if (Mission.Current.GetRequestedTimeSpeed(TimeRequestId, out float _))
+                {
+                    Mission.Current.RemoveTimeSpeedRequest(TimeRequestId);
+                }
+            }
+            
+            _zoomKeyEventStarted = false;
+        }
+
 
         private void TickEvents()
         {
-            
-            if (Agent.Main!=null&&Hero.MainHero.HasCareer(TORCareers.Necrarch))
+
+            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Necrarch))
             {
                 if (Hero.MainHero.HasCareerChoice("HungerForKnowledgeKeystone"))
                 {
@@ -45,10 +106,115 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
             }
+
+            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                if(Hero.MainHero.HasCareerChoice("StarfireEssencePassive4"))
+                {
+                    CareerMissionVariables[2] ++;
+                
+                    if (Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
+                    {
+                        CareerMissionVariables[2] ++;
+                    }
+                }
+                
+                if( Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
+                {
+                    CareerMissionVariables[0] = Mathf.Max(0, CareerMissionVariables[0] - 0.10f);
+                }
+
+                if (_zoomKeyEventStarted && Hero.MainHero.HasCareerChoice("HawkeyedPassive4"))
+                {
+                    var lose = 100;
+                    Agent.Main.GetComponent<AbilityComponent>().CareerAbility.AddCharge(-lose);
+                }
+            }
+            
+            
+
+            if (Mission.Current.IsSiegeBattle)
+            {
+                if (!Mission.Current.IsMissionEnding)
+                {
+                    if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.GreyLord))
+                    {
+                        if (Mission.Current.Teams.PlayerEnemy.ActiveAgents.Count == 0)
+                        {
+                            var agents = Mission.Current.PlayerTeam.ActiveAgents.WhereQ(x => x.HasAttribute("FellfangMark")).ToList();
+
+                            for (int i = agents.Count - 1; i >= 0; i--)
+                            {
+                                
+                                agents[i].ApplyDamage(2000,agents[i].Position);
+                            }
+               
+                        }
+                    }
+                }
+            }
+        }
+
+        public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
+        {
+            if (victim == null) return;
+            if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Agent.Main!=null)
+            {
+                CareerMissionVariables[2] = 0;
+                
+                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
+                {
+                    var agentDirection = victim.LookDirection;
+                    var attackerDirection = collisionData.WeaponBlowDir.NormalizedCopy();
+                    var isStealthAttack = false;
+                    if (agentDirection.Length != 0 && attackerDirection.Length != 0)
+                    {
+                        var degree = Vec3.AngleBetweenTwoVectors(agentDirection, attackerDirection).ToDegrees();
+                        isStealthAttack = degree < 90;
+                    }
+
+
+                    if (isStealthAttack || !victim.AIStateFlags.HasFlag(Agent.AIStateFlag.Alarmed))
+                    {
+                        InformationManager.DisplayMessage(new InformationMessage("Stealth Attack!", new TaleWorlds.Library.Color(255, 165, 85)));
+                        victim.ApplyDamage((int)(collisionData.InflictedDamage * 0.5f), victim.Position);
+                    }
+                }
+
+                if (Hero.MainHero.HasCareerChoice("HawkeyedPassive3") && Agent.Main!=null)
+                {
+                    CareerMissionVariables[1]++;
+
+                    var hitCount = 6;
+
+                    if (Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
+                    {
+                        hitCount /= 2;
+                    }
+                    
+                    if (CareerMissionVariables[1] >= hitCount)
+                    {
+                        victim.ApplyStatusEffect("hawkeyed_debuff",Agent.Main,6,false);
+                        victim.ApplyStatusEffect("hawkeyed_debuff2",Agent.Main,6,false);
+                        CareerMissionVariables[1] = 0;
+                    }
+                }
+                
+                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4") && Agent.Main!=null)
+                {
+                    CareerMissionVariables[0]++;
+                    
+                    if (Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
+                    {
+                        CareerMissionVariables[0] ++;
+                    }
+                }
+            }
         }
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
+            
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
             if (affectorAgent.BelongsToMainParty()&& ((Hero.MainHero.HasCareer(TORCareers.WitchHunter)&& affectorAgent.IsMainAgent) ||
@@ -62,7 +228,7 @@ namespace TOR_Core.BattleMechanics
                 affectorAgent.ApplyDamage((int)(blow.InflictedDamage*0.25f),affectedAgent.Position);
             }
         }
-
+        
         private void WitchHunterAccusationBehavior(Agent affectorAgent, Agent affectedAgent, int inflictedDamge)
         {
             var comp = affectedAgent.GetComponent<StatusEffectComponent>();
@@ -113,7 +279,21 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
-
+            if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
+            {
+                if (affectedAgent.HasAttribute("FellfangMark"))
+                {
+                    if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicKeystone"))
+                    {
+                        if(Agent.Main==null)
+                            return;
+                        var effect = TriggeredEffectManager.CreateNew("apply_fellfang_explosion");
+                        effect.Trigger(affectedAgent.Position,Vec3.Up,Agent.Main, Agent.Main.GetCareerAbility().Template);
+                    }
+                }
+            }
+            
+            
             if (!CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent)) return;
 
             var playerHero = affectorAgent.GetHero();
@@ -251,6 +431,11 @@ namespace TOR_Core.BattleMechanics
                     {
                         Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, 5 * multiplier);
                     }
+                }
+
+                if (affectorAgent.HasAttribute("WindsLink"))
+                {
+                    Hero.MainHero.AddWindsOfMagic(1);
                 }
 
                 if (TORSpellBlowHelper.IsSpellBlow(blow))

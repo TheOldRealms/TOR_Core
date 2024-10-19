@@ -6,28 +6,29 @@ using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.GameState;
-using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.ObjectSystem;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Utilities;
+using TaleWorlds.ObjectSystem;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
     public class ExtendedInfoManager : CampaignBehaviorBase
     {
-        private static Dictionary<string, CharacterExtendedInfo> _characterInfos = new Dictionary<string, CharacterExtendedInfo>();
-        private Dictionary<string, HeroExtendedInfo> _heroInfos = new Dictionary<string, HeroExtendedInfo>();
-        private Dictionary<string, MobilePartyExtendedInfo> _partyInfos = new Dictionary<string, MobilePartyExtendedInfo>();
+        private static Dictionary<string, CharacterExtendedInfo> _characterInfos = [];
+        private Dictionary<string, HeroExtendedInfo> _heroInfos = [];
+        private Dictionary<string, MobilePartyExtendedInfo> _partyInfos = [];
+        private static Dictionary<string, string> _bannerResources = [];
         private static ExtendedInfoManager _instance;
+        private static readonly Dictionary<string,List<string>> _settlementInfos = [];
 
         public static ExtendedInfoManager Instance => _instance;
 
@@ -45,17 +46,16 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this, OnPartyDestroyed);
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnQuarterDailyPartyTick.AddNonSerializedListener(this, QuarterDailyTick);
-            
-            CampaignEvents.PlayerUpgradedTroopsEvent.AddNonSerializedListener(this,TroopUpgraded);
+            CampaignEvents.PlayerUpgradedTroopsEvent.AddNonSerializedListener(this, TroopUpgraded);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, BattleEnd);
-            CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TroopRecruted);
+            CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TroopRecruited);
             
             CustomResourceManager.RegisterEvents();
         }
 
-        private void TroopRecruted(Hero hero, Settlement arg2, Hero arg3, CharacterObject arg4, int arg5)
+        private void TroopRecruited(Hero hero, Settlement arg2, Hero arg3, CharacterObject arg4, int arg5)
         {
-            if(hero == null) return;
+            if (hero == null) return;
             if (hero.PartyBelongedTo.Party != null)
             {
                 ValidatePartyInfos(hero.PartyBelongedTo);
@@ -64,24 +64,19 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void BattleEnd(MapEvent obj)
         {
-            var t = obj.PartiesOnSide(obj.PlayerSide);
+            var parties = obj.PartiesOnSide(obj.PlayerSide);
 
-            foreach (var party in t)
+            foreach (var party in parties)
             {
-                if(party.Party.MobileParty==null) continue;
+                if (party.Party.MobileParty == null) continue;
+                
                 ValidatePartyInfos(party.Party.MobileParty);
             }
         }
 
         private void TroopUpgraded(CharacterObject from, CharacterObject to, int count)
         {
-            if(!_partyInfos.TryGetValue(MobileParty.MainParty.StringId, out var info)) return;
-            
-            if (!PartyBase.MainParty.MemberRoster.GetTroopRoster().Any(x => x.Character.StringId == from.StringId))
-            {
-                var characterAttributes = info.TroopAttributes[from.StringId];
-                CareerHelper.RemovePowerstone(characterAttributes);
-            }
+            ValidatePartyInfos(MobileParty.MainParty);
         }
 
         private static void QuarterDailyTick(MobileParty mobileParty)
@@ -98,7 +93,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             {
                 if (hero.IsVampire() || hero.IsNecromancer())
                 {
-                    var upkeep = hero.GetCalculatedCustomResourceUpkeep("DarkEnergy").ResultNumber;
+                    var upkeep = hero.GetCalculatedCustomResourceUpkeep("DarkEnergy");
                     hero.AddWindsOfMagic(upkeep * 3); //takes winds
                 }
             }
@@ -109,14 +104,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             foreach (var entry in _heroInfos)
             {
                 var hero = Hero.FindFirst(x => x.StringId == entry.Key);
-
-                if (hero.GetCultureSpecificCustomResource() == null) continue;
-
-                var id = hero.GetCultureSpecificCustomResource().StringId;
-
-                var resourceChange = hero.GetCultureSpecificCustomResourceChange();
-
-                entry.Value.AddCustomResource(id, resourceChange.ResultNumber);
+                var resource = hero.GetCultureSpecificCustomResource();
+                if (resource != null)
+                {
+                    var id = resource.StringId;
+                    var resourceChange = hero.GetCultureSpecificCustomResourceChange();
+                    entry.Value.AddCustomResource(id, resourceChange);
+                }
             }
 
             foreach (var entry in _partyInfos)
@@ -129,11 +123,14 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         
         public void ValidatePartyInfos(MobileParty party)
         {
-            var partyInfo = _partyInfos[party.StringId];
-            if(partyInfo==null) return;
+            if (!_partyInfos.TryGetValue(party.StringId, out var partyInfo))
+            {
+                return;
+            }
+            
             if (partyInfo.TroopAttributes == null)
             {
-                partyInfo.TroopAttributes = new Dictionary<string, List<string>>();
+                partyInfo.TroopAttributes = [];
                 return;
             }
 
@@ -145,30 +142,40 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     CareerHelper.RemoveCareerRelatedTroopAttributes(party, troopAttribute, partyInfo);
                     partyInfo.TroopAttributes.Remove(troopAttribute);
-
-                  
                 }
             }
 
             foreach (var element in roster.Where(element => !partyInfo.TroopAttributes.ContainsKey(element.Character.StringId)))
             {
-                partyInfo.TroopAttributes.Add(element.Character.StringId, new List<string>());
+                partyInfo.TroopAttributes.Add(element.Character.StringId, []);
             }
         }
 
         public static CharacterExtendedInfo GetCharacterInfoFor(string id)
         {
-            return _characterInfos.ContainsKey(id) ? _characterInfos[id] : null;
+            if (_characterInfos.TryGetValue(id, out CharacterExtendedInfo value))
+            {
+                return value;
+            }
+            return null;
         }
 
         public HeroExtendedInfo GetHeroInfoFor(string id)
         {
-            return _heroInfos.ContainsKey(id) ? _heroInfos[id] : null;
+            if (_heroInfos.TryGetValue(id, out HeroExtendedInfo value))
+            {
+                return value;
+            }
+            return null;
         }
 
         public MobilePartyExtendedInfo GetPartyInfoFor(string id)
         {
-            return _partyInfos.ContainsKey(id) ? _partyInfos[id] : null;
+            if (_partyInfos.TryGetValue(id, out MobilePartyExtendedInfo value))
+            {
+                return value;
+            }
+            return null;
         }
 
         public void ClearInfo(Hero hero)
@@ -191,6 +198,18 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             TryLoadCharacters(out _characterInfos);
             var success = _characterInfos.Any(x => x.Value.ResourceCost != null);
             EnsurePartyInfos();
+            HideVanillaUnitsInEncyclopedia();
+        }
+
+        private void HideVanillaUnitsInEncyclopedia()
+        {
+            MBObjectManager.Instance.GetObjectTypeList<CharacterObject>().ForEach(x => 
+            {
+                if (!x.IsTORTemplate())
+                {
+                    x.HiddenInEncylopedia = true;
+                }
+            });
         }
 
         private void OnNewGameCreatedPartialFollowUpEnd(CampaignGameStarter campaignGameStarter, int index)
@@ -263,7 +282,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             //construct character info for all CharacterObject templates loaded by the game.
             //this can be safely reconstructed at each session start without the need to save/load.
-            Dictionary<string, CharacterExtendedInfo> unitlist = new Dictionary<string, CharacterExtendedInfo>();
+            Dictionary<string, CharacterExtendedInfo> unitlist = [];
             infos = unitlist;
             try
             {
@@ -358,6 +377,39 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             }
         }
 
+        public static string GetBannerImageResource(Banner banner)
+        {
+            var bannerCode = banner.Serialize();
+            if (_bannerResources.TryGetValue(bannerCode, out var resource))
+            {
+                return resource;
+            }
+            else return null;
+        }
+
+        public static void AddBannerImageResource(string bannerCode, string imageResource)
+        {
+            _bannerResources.AddOrReplace(bannerCode, imageResource);
+        }
+
+        public static void AddSettlementInfo(Settlement settlement, string tag)
+        {
+            if(_settlementInfos.TryGetValue(settlement.StringId, out var list))
+            {
+                if(!list.Contains(tag)) list.Add(tag);
+            }
+            else
+            {
+                _settlementInfos.Add(settlement.StringId, [tag]);
+            }
+        }
+
+        public static List<string> GetSettlementInfo(Settlement settlement)
+        {
+            if (_settlementInfos.TryGetValue(settlement.StringId, out var list)) return list;
+            else return [];
+        }
+
         public void AddAttributeToCharacterOfParty(string partyId, CharacterObject characterObject, string attribute)
         {
             _partyInfos[partyId].AddTroopAttribute(characterObject, attribute);
@@ -367,7 +419,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             dataStore.SyncData("_heroInfos", ref _heroInfos);
             dataStore.SyncData("_partyInfos", ref _partyInfos);
+            dataStore.SyncData("_bannerResources", ref _bannerResources);
         }
-
     }
 }

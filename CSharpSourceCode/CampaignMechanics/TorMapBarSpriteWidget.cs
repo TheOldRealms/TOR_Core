@@ -14,9 +14,9 @@ using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
 {
-    public class TorMapBarSpriteWidget : Widget
+    public class TORMapBarSpriteWidget : Widget
     {
-        public TorMapBarSpriteWidget(UIContext context) : base(context) { }
+        public TORMapBarSpriteWidget(UIContext context) : base(context) { }
 
         protected override void OnLateUpdate(float dt)
         {

@@ -51,7 +51,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private void DailyTickSettlement(Settlement settlement)
         {
-            if (settlement.Culture.StringId != TORConstants.BRETONNIA_CULTURE || !settlement.IsTown) return;
+            if (settlement.Culture.StringId != TORConstants.Cultures.BRETONNIA || !settlement.IsTown) return;
             if (settlement.Town.Workshops.Any(x => x.WorkshopType.StringId == "wood_WorkshopType"))
             {
                 var trebuchetItem = MBObjectManager.Instance.GetObject<ItemObject>("tor_bretonnia_artillery_fieldtrebuchet_001");
@@ -98,7 +98,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             //skill check
             obj.AddDialogLine("opengunshopcheck", "opengunshopcheck", "skillcheck", GameTexts.FindText(questDialogId,"engineerSkillCheck").ToString(), null, checkplayerengineerskillrequirements, 200, null);
             obj.AddDialogLine("playerskillcheckfailed", "skillcheck", "close window", GameTexts.FindText(questDialogId,"engineerSkillCheckFailed").ToString(), () => !_playerIsSkilledEnough, null, 200);
-            obj.AddDialogLine("playerskillchecksuccess", "skillcheck", "playerpassedskillcheck2",GameTexts.FindText(questDialogId,"engineerSkillCheckPassed").ToString(), () => _playerIsSkilledEnough&& Hero.MainHero.Culture.StringId== TORConstants.EMPIRE_CULTURE && !Hero.MainHero.IsVampire(), null, 200);
+            obj.AddDialogLine("playerskillchecksuccess", "skillcheck", "playerpassedskillcheck2",GameTexts.FindText(questDialogId,"engineerSkillCheckPassed").ToString(), () => _playerIsSkilledEnough&& Hero.MainHero.Culture.StringId== TORConstants.Cultures.EMPIRE && !Hero.MainHero.IsVampire(), null, 200);
 
             //quest start
             obj.AddDialogLine("playerpassskillcheck2", "playerpassedskillcheck2", "playerstartquestcheck",GameTexts.FindText(questDialogId,"cultistBriefing0").ToString(), null, givequestoffer, 200);
@@ -178,7 +178,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         private void UpgradeGunShopDialog(CampaignGameStarter obj)
         {
                         //upgrade shop
-            obj.AddDialogLine("upgrade_gunshop_explain_1", "upgradeshop", "upgrade_gunshop_explain_2", " *Sigh* Yes I am sorry to point it out, but not only did Goswin stole parts. Also a lot of our blue prints, and mechanical parts and our finest gunpowder  were destroyed in his rampage. ", () => !HasUpgradeGunShopCondition(1)&& !_explained, null, 200);
+            obj.AddDialogLine("upgrade_gunshop_explain_1", "upgradeshop", "upgrade_gunshop_explain_2", " Not only did Goswin steal valuable parts, but also blueprints. Some of our finest creations were destroyed in his rampage", () => !HasUpgradeGunShopCondition(1)&& !_explained, null, 200);
             obj.AddDialogLine("upgrade_gunshop_explain_2", "upgrade_gunshop_explain_2", "upgradeshop", "There are copies of the plans, and those parts can be recreated, from other engineer schools through out the empire. But for this I have neither the authority nor the contacts to get them over quickly.", () => !HasUpgradeGunShopCondition(1) && !_explained, () => _explained=true, 200);
             
             obj.AddDialogLine("upgrade_gunshop_upgrade_1", "upgradeshop", "upgrade_gunshop_upgrade1_response", "For 500{PRESTIGE_ICON} I can finally stock up our buckshot supplies and continue creating blunderbusses and can get some of those Hochland' Long rifles.", () => !HasUpgradeGunShopCondition(1), null, 200);
@@ -318,7 +318,8 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         {
             var engineerItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x =>
                 x.IsTorItem() && x.Culture!=null && x.Culture.StringId == "empire" &&
-                (x.StringId.Contains("gun") || x.StringId.Contains("artillery")));
+                (x.StringId.Contains("gun") ||
+                 x.StringId.Contains("artillery")));
             
             var firstLevelShopItems = HasUpgradeGunShopCondition(1);
             var secondLevelShopItems = HasUpgradeGunShopCondition(2);
@@ -334,12 +335,26 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             }
             
             roster.Add(list);
+            
+            var oldrifle = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_gun_old_rifle");
+            if (oldrifle != null)
+            {
+                roster.Add(new ItemRosterElement(oldrifle, MBRandom.RandomInt(2, 5)));
+                engineerItems.AddItem(oldrifle);
+            }
 
             if (firstLevelShopItems)
             {
                 var buckshots = MBObjectManager.Instance.GetObject<ItemObject>("tor_neutral_weapon_ammo_musket_ball_scatter");
                 if (buckshots != null) roster.Add(new ItemRosterElement(buckshots, MBRandom.RandomInt(2, 5)));
                 engineerItems.AddItem(buckshots);
+            }
+
+            if (secondLevelShopItems)
+            {
+                var mortars = MBObjectManager.Instance.GetObject<ItemObject>("tor_empire_artillery_mortar_001");
+                if(mortars != null)roster.Add(new ItemRosterElement(mortars, MBRandom.RandomInt(1, 1)));
+                engineerItems.AddItem(mortars);
             }
             
             if (thirdLevelShopItems)
@@ -448,13 +463,13 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             if (!RunawayPartsQuest.IsOngoing) return false;
             if (Campaign.Current.CurrentConversationContext != ConversationContext.PartyEncounter) return false;
             if (!RunawayPartsQuest.RogueEngineerQuestPartIsActive()) return false;
-            var partner = CharacterObject.OneToOneConversationCharacter;
-            return partner != null && partner.Occupation == Occupation.Lord && partner.HeroObject.Template.StringId.Contains(RunawayPartsQuest.GetRogueEngineerTemplateID());
+            var partner = Hero.OneToOneConversationHero;
+            return partner != null && partner.Occupation == Occupation.Lord && partner.Template != null && partner.Template.StringId.Contains(RunawayPartsQuest.GetRogueEngineerTemplateID());
         }
 
         private void checkplayerengineerskillrequirements()
         {
-            if (Hero.MainHero.GetSkillValue(DefaultSkills.Engineering) >= 50) _playerIsSkilledEnough = true;
+            if (Hero.MainHero.GetSkillValue(DefaultSkills.Engineering) >= 0) _playerIsSkilledEnough = true;
             else
             {
                 _playerIsSkilledEnough = false;

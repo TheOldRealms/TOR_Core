@@ -21,5 +21,11 @@ namespace TOR_Core.Extensions
             var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORFaithModel));
             return result == null ? null : (TORFaithModel)result;
         }
+        
+        public static TORCustomResourceModel GetCustomResourceModel(this GameModels models)
+        {
+            var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORCustomResourceModel));
+            return result == null ? null : (TORCustomResourceModel)result;
+        }
     }
 }

@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -30,7 +31,7 @@ namespace TOR_Core.Models
                 result.Add(TORPerks.SpellCraft.StoryTeller.SecondaryBonus, TORPerks.SpellCraft.StoryTeller.Name);
             }
 
-            if (mobileParty.LeaderHero == Hero.MainHero&& Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            if (mobileParty.LeaderHero == Hero.MainHero&& Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 var chivalryLevel = mobileParty.LeaderHero.GetChivalryLevel();
                 var value = 0f;

@@ -53,7 +53,7 @@ namespace TOR_Core.Models
                 CultureObject culture= hero.Culture;
                 if (culture.StringId == "mousillon")
                 {
-                    CultureObject vlandia = MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.BRETONNIA_CULTURE);
+                    CultureObject vlandia = MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.Cultures.BRETONNIA);
                     culture = vlandia;
                 }
                     

@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Engine;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.Battle.CrosshairMissionBehavior;
@@ -11,6 +12,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.HarmonyPatches;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -51,12 +53,14 @@ namespace TOR_Core.AbilitySystem
                 }
 
                 if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
-                    || Hero.MainHero.HasCareer(TORCareers.WarriorPriestUlric)
+                    ||Hero.MainHero.HasCareerChoice("LegendsOfMalokKeystone")
                     || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
                     || Hero.MainHero.HasCareerChoice("SwampRiderKeystone")
                     || Hero.MainHero.HasCareerChoice("LiberMortisKeystone")
-                    || Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone"))
+                    || Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone")
+                    || Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone")
+                    || Hero.MainHero.HasCareerChoice("ArielsBlessingKeystone"))
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
@@ -148,13 +152,13 @@ namespace TOR_Core.AbilitySystem
 
         public void AddCharge(float amount)
         {
-            if (_currentCharge >= _maxCharge)
+            if (amount>=0 && _currentCharge >= _maxCharge)
                 return;
             
             if (!IsActive)
             {
                 _currentCharge += amount;
-                _currentCharge = Math.Min(_maxCharge, _currentCharge);
+                _currentCharge = Mathf.Clamp(_currentCharge,0, _maxCharge);
             }
 
             if (_doubleUse) //remove doubleUse in case of special perks that allow for a "second" usage.

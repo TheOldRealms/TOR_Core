@@ -238,7 +238,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     void StartTransaction(int price, int id)
                     {
                         Hero.MainHero.ChangeHeroGold(-price);
-                        Hero.MainHero.AddCustomResource("Prestige", price / 1000);
+                        Hero.MainHero.AddCustomResource("Prestige", price / 500);
                         _constructedBuildings.Add("building" + id);
                     }
                 }
@@ -299,7 +299,11 @@ namespace TOR_Core.CampaignMechanics.Menagery
                             "noble_hub_intro2",
                             $"This sounds good, I will support this.({costs[index]}{{INFLUENCE_ICON}})",
                             () => HasEnoughInfluence(costs[index]),
-                            () => _politicalPowerProjects.Add("powerProject" + index), 200);
+                            () =>
+                            {
+                                ExchangeInfluenceForPrestige(costs[index],costs[index]);
+                                _politicalPowerProjects.Add("powerProject" + index);
+                            }, 200);
 
                         campaignGameStarter.AddPlayerLine($"powerSelection_choice{index}_decline",
                             $"powerSelection{index}_choice",
@@ -311,7 +315,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     obj.AddPlayerLine(politicalPowerSelection + 4, "noble_prestige_political_power_hub_selection",
                         "noble_prestige_political_power_hub",
                         "[Enlarge your Influence throughout the Empire (Repeatable)]",
-                        null, () => ExchangeInfluenceForPrestige(RepeatableInfluenceCosts, RepeatablePrestigeGain),
+                        () => HasEnoughInfluence(RepeatableInfluenceCosts), () => ExchangeInfluenceForPrestige(RepeatableInfluenceCosts, RepeatablePrestigeGain),
                         200);
 
                     bool HasEnoughInfluence(int cost)
@@ -344,7 +348,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
         private bool IsPartOfEmpire()
         {
-            return Hero.MainHero.Culture.StringId == TORConstants.EMPIRE_CULTURE;
+            return Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE;
         }
 
         private bool HasRenown2()
@@ -384,6 +388,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 {
                     _altdorf = settlement;
                     CreateNobleOfTheEmpire();
+                    break;
                 }
 
             void CreateNobleOfTheEmpire()

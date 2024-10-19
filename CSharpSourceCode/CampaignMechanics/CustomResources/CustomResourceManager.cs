@@ -17,6 +17,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ScreenSystem;
 using TaleWorlds.TwoDimension;
@@ -46,15 +47,21 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             Instance._resources.Add("Prestige",
                 new CustomResource("Prestige", "Prestige",
                     "Is used for upgrading special units of the Empire and special actions.", "prestige_icon_45",
-                    TORConstants.EMPIRE_CULTURE));
+                    TORConstants.Cultures.EMPIRE));
             Instance._resources.Add("Chivalry",
                 new CustomResource("Chivalry", "Chivalry",
-                    "Is used for upgrading special units of Bretonnia and special actions.", "chivalry_icon_45", TORConstants.BRETONNIA_CULTURE,
+                    "Is used for upgrading special units of Bretonnia and special actions.", "chivalry_icon_45", TORConstants.Cultures.BRETONNIA,
                     ChivalryHelper.GetChivalryInfo));
             Instance._resources.Add("DarkEnergy",
                 new CustomResource("DarkEnergy", "Dark Energy",
                     "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.",
-                    "darkenergy_icon_45", new[] { TORConstants.SYLVANIA_CULTURE, "mousillon" }));
+                    "darkenergy_icon_45", new[] { TORConstants.Cultures.SYLVANIA, "mousillon" }));
+            Instance._resources.Add("ForestHarmony",
+                new CustomResource("ForestHarmony", "Forest Harmony",
+                    "Forest Binding is used to upgrade and maintain troops of the woodelves, as well as retrieve upgrades at the Oak of Ages.", "harmony_icon_45", TORConstants.Cultures.ASRAI, ForestHarmonyHelper.GetForestHarmonyInfo));
+            Instance._resources.Add("CouncilFavor",
+                new CustomResource("CouncilFavor", "Eonir Council Favor",
+                    "Retrieve power in the Eonir council and use it to your benefit.", "favor_icon_45", TORConstants.Cultures.EONIR,FavorHelper.GetFavorInfo));
             Instance._resources.Add("WindsOfMagic",
                 new CustomResource("WindsOfMagic", "Winds of Magic",
                     "Winds of Magic is used by spellcasters to cast spells.", "winds_icon_45"));
@@ -106,7 +113,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 var customResourceGain = new ExplainedNumber(15);
 
-                if (Hero.MainHero.Culture.StringId == TORConstants.SYLVANIA_CULTURE || Hero.MainHero.Culture.StringId == "mousillon")
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.SYLVANIA || Hero.MainHero.Culture.StringId == TORConstants.Cultures.MOUSILLON)
                 {
                     customResourceGain.AddFactor(0.25f);
                 }
@@ -123,7 +130,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 var customResourceGain = new ExplainedNumber(10);
 
-                if (Hero.MainHero.Culture.StringId == TORConstants.SYLVANIA_CULTURE || Hero.MainHero.Culture.StringId == "mousillon")
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.SYLVANIA || Hero.MainHero.Culture.StringId == TORConstants.Cultures.MOUSILLON)
                 {
                     customResourceGain.AddFactor(0.25f);
                 }
@@ -139,9 +146,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         {
             if (winner.IsPlayerCharacter)
             {
-                if (winner.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                if (winner.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                 {
-                    if (settlement.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                    if (settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                     {
                         Hero.MainHero.AddCultureSpecificCustomResource(40);
                     }
@@ -154,11 +161,11 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             var explainedNumber = new ExplainedNumber();
             if (party == PartyBase.MainParty && detail == EndCaptivityDetail.ReleasedByChoice)
             {
-                if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                 {
                     explainedNumber.Add(50);
 
-                    if (prisoner.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                    if (prisoner.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                     {
                         explainedNumber.AddFactor(1);
                     }
@@ -174,7 +181,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             var hideout = eventComponent.MapEvent.MapEventSettlement;
             if (eventComponent.MapEvent.PlayerSide == eventComponent.MapEvent.WinningSide)
             {
-                if (Hero.MainHero.Culture.StringId == TORConstants.SYLVANIA_CULTURE) return;
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.SYLVANIA) return;
 
                 var resource = Hero.MainHero.GetCultureSpecificCustomResource();
 
@@ -184,10 +191,10 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 explainedNumber.Add(20);
 
 
-                if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                 {
                     var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f,
-                        x => x.IsTown && x.IsBretonnianMayorSettlement());
+                        x => x.IsTown && x.IsBretonnianMajorSettlement());
 
                     if (settlement != null)
                     {
@@ -195,16 +202,29 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     }
                 }
                 
-                if (Hero.MainHero.Culture.StringId == "empire")
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.EMPIRE)
                 {
+                    
                     var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 150f,
-                        x => x.IsTown && x.Culture.StringId=="empire");
+                        x => x.IsTown && x.Culture.StringId==TORConstants.Cultures.EMPIRE);
 
                     if (settlement != null)
                     {
                         explainedNumber.AddFactor(0.5f);
                     }
                 }
+                
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                {
+                    var settlement = TORCommon.FindNearestSettlement(MobileParty.MainParty, 500f,
+                        x =>  x.IsOakOfTheAges());
+
+                    if (settlement != null)
+                    {
+                        explainedNumber.AddFactor(2);
+                    }
+                }
+                
 
 
                 Hero.MainHero.AddCultureSpecificCustomResource(explainedNumber.ResultNumber);
@@ -229,13 +249,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 }
             }
         }
-
-
+        
         private void CalculateCustomResourceGainFromBattles(MapEvent mapEvent)
         {
             mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out var renownChange, out _, out _, out _, out _);
 
-            if (MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Prestige"))
+            if (MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Prestige") ||
+                MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("Chivalry") ||
+                MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("CouncilFavor")||
+                MobileParty.MainParty.LeaderHero.GetCultureSpecificCustomResource() == GetResourceObject("ForestHarmony"))
             {
                 var fairBattleOrPlayerInferior = _initialCombatRatio < 1.1f;
 
@@ -255,6 +277,11 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                             break;
                         }
+                }
+
+                if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicPassive3"))
+                {
+                    renownChange *= 1.2f;
                 }
                 
                 if (Hero.MainHero.HasCareerChoice("CollegeOrdersPassive3"))
@@ -283,10 +310,28 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     
                     if (heroes.Any(x => x.HasKnownLore("LoreOfLight")))
                         bonus += 0.1f;
-
+                    
                     renownChange *= bonus;
+                    
                 }
                 
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI && mapEvent.GetMapEventSide(BattleSideEnum.Defender).Parties
+                        .AnyQ(x =>
+                        {
+                            if (x.Party.Culture.StringId != TORConstants.Cultures.BEASTMEN) return false;
+                            var oak = Settlement.FindFirst(x => x.StringId == "oak_of_ages");
+                            var distance = mapEvent.Position.Distance(oak.Position2D);
+
+                            if (distance <= 250)
+                            {
+                                return true;
+                            }
+                            
+                            return false;
+                        }))
+                {
+                    renownChange *= 3;
+                }
 
                 if (fairBattleOrPlayerInferior)
                 {
@@ -322,7 +367,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         private static void PartyScreenLogic_AfterReset(PartyScreenLogic partyScreenLogic, bool fromCancel)
         {
             Instance._resourceChanges.Clear();
-            if (Instance._currentPartyVM != null) Instance._currentPartyVM.GetExtension().RefreshValues();
+            if (Instance._currentPartyVM != null) Instance._currentPartyVM.GetExtensionInstance().RefreshValues();
         }
 
         private static void PartyScreenLogic_PartyScreenClosedEvent(PartyBase leftOwnerParty,
@@ -369,7 +414,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 return;
             }
 
-            if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE &&
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA &&
                 PartyScreenManager.Instance.CurrentMode == PartyScreenMode.Loot)
             {
                 var prisonerRoster = leftPrisonRoster.ToFlattenedRoster().ToList();
@@ -429,7 +474,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 {
                     Instance._resourceChanges.Add(new Tuple<string, int>(requirement.Item1.StringId,
                         requirement.Item2 * command.TotalNumber));
-                    partyVM.GetExtension().RefreshValues();
+                    partyVM.GetExtensionInstance().RefreshValues();
                 }
             }
         }

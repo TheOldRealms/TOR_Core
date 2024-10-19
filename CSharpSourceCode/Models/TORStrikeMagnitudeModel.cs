@@ -41,6 +41,20 @@ namespace TOR_Core.Models
                             resultArmor.AddFactor(choice.GetPassiveValue());
                         }
                     }
+
+                    if (attackerCaptain.IsPlayerCharacter && Hero.MainHero.HasCareer(TORCareers.Spellsinger))
+                    {
+                        if (Hero.MainHero.HasCareerChoice("HeartOfTheTreePassive4"))
+                        {
+                            if (attacker.IsTreeSpirit())
+                            {
+                                resultArmor.AddFactor(-0.8f);
+                            } 
+                        }
+                        
+                    }
+                    
+                    
                 }
 
                 if (attackerCharacter.HasAttribute("Piercing"))

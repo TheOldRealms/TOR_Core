@@ -54,7 +54,60 @@ namespace TOR_Core.CampaignMechanics
                         if (possibleUpgradeTargets.Count > 0)
                         {
                             TORTroopUpgradeArgs upgradeArgs = SelectPossibleUpgrade(possibleUpgradeTargets);
+                            
+                            if (party.IsMobile && party.MobileParty.IsLordParty)
+                            {
+                                if (memberRoster.Contains(upgradeArgs.UpgradeTarget))
+                                {
+                                    var partyTemplate = party.LeaderHero.Clan.DefaultPartyTemplate; // either takes clan, or if not take the culture one
+                                    
+                                    float currentTotalTroopCount = memberRoster.TotalManCount;
+
+                                    var ratio = 0f;
+
+                                    if (partyTemplate.Stacks.Any(x => x.Character == upgradeArgs.UpgradeTarget))   
+                                    {
+                                        float maximumTotalTroopCountOfTemplate = 0f;
+
+                                        PartyTemplateStack targetStack = new PartyTemplateStack();
+                                        foreach (var stack in partyTemplate.Stacks)
+                                        {
+                                            if (stack.Character == upgradeArgs.UpgradeTarget)
+                                            {
+                                                targetStack = stack;
+                                            }
+
+                                            maximumTotalTroopCountOfTemplate+=stack.MaxValue;
+                                        }
+
+                                        if (maximumTotalTroopCountOfTemplate == 0)
+                                        {
+                                            continue;
+                                        }
+                                    
+                                        ratio = targetStack.MaxValue / maximumTotalTroopCountOfTemplate;
+
+                                        var potentialCountOfTemplate =  ratio * currentTotalTroopCount;
+
+                                        if (!(memberRoster.GetElementCopyAtIndex(i).Number < potentialCountOfTemplate))
+                                        {
+                                            continue;
+                                        }   
+                                    }
+                                    else //case ror are recruited or anything outside the regular roster
+                                    {
+                                        var count = memberRoster.GetTroopCount(upgradeArgs.UpgradeTarget);
+
+                                        ratio = 0.1f;
+                                        if (count > ratio * currentTotalTroopCount)
+                                        {
+                                            continue;
+                                        }
+                                    }
+                                }
+                            }
                             UpgradeTroop(party, i, upgradeArgs);
+                           
                         }
                     }
                 }
@@ -64,7 +117,7 @@ namespace TOR_Core.CampaignMechanics
         private List<TORTroopUpgradeArgs> GetPossibleUpgradeTargets(PartyBase party, TroopRosterElement rosterElement)
         {
             PartyWageModel partyWageModel = Campaign.Current.Models.PartyWageModel;
-            List<TORTroopUpgradeArgs> list = new List<TORTroopUpgradeArgs>();
+            List<TORTroopUpgradeArgs> list = [];
             CharacterObject character = rosterElement.Character;
             int num = rosterElement.Number - rosterElement.WoundedNumber;
             if (num > 0)
@@ -174,29 +227,14 @@ namespace TOR_Core.CampaignMechanics
             }
         }
 
-        private readonly struct TORTroopUpgradeArgs
+        private readonly struct TORTroopUpgradeArgs(CharacterObject target, CharacterObject upgradeTarget, int possibleUpgradeCount, int upgradeGoldCost, int upgradeXpCost, float upgradeChance)
         {
-            public TORTroopUpgradeArgs(CharacterObject target, CharacterObject upgradeTarget, int possibleUpgradeCount, int upgradeGoldCost, int upgradeXpCost, float upgradeChance)
-            {
-                Target = target;
-                UpgradeTarget = upgradeTarget;
-                PossibleUpgradeCount = possibleUpgradeCount;
-                UpgradeGoldCost = upgradeGoldCost;
-                UpgradeXpCost = upgradeXpCost;
-                UpgradeChance = upgradeChance;
-            }
-
-            public readonly CharacterObject Target;
-
-            public readonly CharacterObject UpgradeTarget;
-
-            public readonly int PossibleUpgradeCount;
-
-            public readonly int UpgradeGoldCost;
-
-            public readonly int UpgradeXpCost;
-
-            public readonly float UpgradeChance;
+            public readonly CharacterObject Target = target;
+            public readonly CharacterObject UpgradeTarget = upgradeTarget;
+            public readonly int PossibleUpgradeCount = possibleUpgradeCount;
+            public readonly int UpgradeGoldCost = upgradeGoldCost;
+            public readonly int UpgradeXpCost = upgradeXpCost;
+            public readonly float UpgradeChance = upgradeChance;
         }
 
         public override void SyncData(IDataStore dataStore) { }

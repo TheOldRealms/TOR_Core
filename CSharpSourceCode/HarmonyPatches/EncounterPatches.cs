@@ -1,9 +1,13 @@
 ﻿using HarmonyLib;
 using Helpers;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Localization;
+using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -12,7 +16,7 @@ namespace TOR_Core.HarmonyPatches
     {
         [HarmonyPostfix]
         [HarmonyPatch(typeof(PlayerEncounter), "Init", typeof(PartyBase), typeof(PartyBase), typeof(Settlement))]
-        public static void Postfix2(PartyBase attackerParty, PartyBase defenderParty, Settlement settlement = null)
+        public static void Postfix1(PartyBase attackerParty, PartyBase defenderParty, Settlement settlement = null)
         {
             if (defenderParty.MapEvent != null && settlement != null && defenderParty != MobileParty.MainParty.Party && attackerParty == MobileParty.MainParty.Party)
             {
@@ -26,6 +30,27 @@ namespace TOR_Core.HarmonyPatches
                     MobileParty.MainParty.Party.MapEventSide = mapEvent.AttackerSide;
                 }
             }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior), "hostile_action_village_on_init")]
+        public static bool Prefix1()
+        {
+            if (PlayerEncounter.EncounterSettlement == null)
+            {
+                if (Hero.MainHero.IsEnlisted())
+                {
+                    var lord = Hero.MainHero.GetEnlistingHero();
+                    var settlement = lord.CurrentSettlement;
+                    if (settlement != null)
+                    {
+                        MBTextManager.SetTextVariable("VILLAGE_NAME", settlement.Name, false);
+                    }
+                }
+                else MBTextManager.SetTextVariable("VILLAGE_NAME", "unknown_settlement", false);
+                return false;
+            }
+            else return true;
         }
     }
 }

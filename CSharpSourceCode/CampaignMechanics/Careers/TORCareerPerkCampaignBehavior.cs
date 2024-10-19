@@ -28,8 +28,40 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this, DailyCareerTickEvents);
             CampaignEvents.ItemsLooted.AddNonSerializedListener(this, RaidingPartyEvent);
             CampaignEvents.OnUnitRecruitedEvent.AddNonSerializedListener(this, PlayerRecruitmentEvent);
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvents);
+        }
+
+        private void PostBattleEvents(MapEvent mapEvent)
+        {
+            CheckWarriorPriestPerks(mapEvent);
+
+            if (Hero.MainHero.HasCareerChoice("SecretOfFellfangPassive3"))
+            {
+                var choice = TORCareerChoices.GetChoice("SecretOfFellfangPassive3");
+                var abilityModel = Campaign.Current.Models.GetAbilityModel();
+                var maximum = abilityModel.GetMaximumWindsOfMagic(Hero.MainHero.CharacterObject);
+
+                var postBattleBonus = maximum * choice.GetPassiveValue();
+
+                Hero.MainHero.AddWindsOfMagic(postBattleBonus);
+            }
         }
         
+        private void CheckWarriorPriestPerks(MapEvent mapEvent)
+        {
+            if (Hero.MainHero.HasCareerChoice("BookOfSigmarPassive3"))
+            {
+                var playerParty = mapEvent.PartiesOnSide(mapEvent.PlayerSide).FirstOrDefault(x => x.Party.LeaderHero == Hero.MainHero); //TODO Main party check might suffies
+                if (playerParty == null) return;
+                var heroes = playerParty.Party.MobileParty.GetMemberHeroes();
+                foreach (var hero in heroes.Where(hero => !hero.IsHealthFull())) 
+                {
+                    var choice =  TORCareerChoices.GetChoice("BookOfSigmarPassive3");
+                    
+                    hero.Heal((int) choice.GetPassiveValue(),false);
+                }
+            }
+        }
 
         private void PlayerRecruitmentEvent(CharacterObject characterObject, int amount)
         {
@@ -124,7 +156,7 @@ namespace TOR_Core.CampaignMechanics
             if (!MobileParty.MainParty.LeaderHero.HasAnyCareer()) return;
             var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
 
-            if (choices.Contains("SurvivalistPassive4"))
+            if (choices.Contains("SurvivalistPassive4") || choices.Contains("ForestStalkerPassive1"))
             {
                 LaunchHuntingEvent(mobileParty);
             }
@@ -174,6 +206,23 @@ namespace TOR_Core.CampaignMechanics
                 }
             }
             
+            if (choices.Contains("HailOfArrowsPassive2"))
+            {
+                var memberList = mobileParty.MemberRoster.GetTroopRoster();
+                for (var index = 0; index < memberList.Count; index++)
+                {
+                    var member = memberList[index];
+                    if (!member.Character.IsKnightUnit())
+                    {
+                        var choice = TORCareerChoices.GetChoice("HailOfArrowsPassive2");
+                        if (choice != null)
+                        {
+                            mobileParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
+                        }
+                    }
+                }
+            }
+            
             if (choices.Contains("CurseOfMousillonPassive4"))
             {
                 var heroes = mobileParty.GetMemberHeroes();
@@ -187,7 +236,7 @@ namespace TOR_Core.CampaignMechanics
 
                 var memberList = mobileParty.MemberRoster.GetTroopRoster();
 
-                var bretonnes = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == TORConstants.BRETONNIA_CULTURE);
+                var bretonnes = memberList.FindAll(x => !x.Character.IsEliteTroop()&& x.Character.Culture.StringId == TORConstants.Cultures.BRETONNIA);
                 
                 for (var index = 0; index < bretonnes.Count; index++)
                 {
@@ -198,7 +247,7 @@ namespace TOR_Core.CampaignMechanics
 
                         if (randomFloat >= chance) continue;
                         
-                        var mousillonEquivalent = TorRecruitmentHelpers.GetMousillonEquivalent(member.Character);
+                        var mousillonEquivalent = TORRecruitmentHelpers.GetMousillonEquivalent(member.Character);
 
                         if (mousillonEquivalent == null) continue;
                             
@@ -234,7 +283,11 @@ namespace TOR_Core.CampaignMechanics
                 huntSucess *= 1.1f;
 
             var PreySize = MBRandom.RandomInt(1, 3);
-            if (MBRandom.RandomFloatRanged(0, 1) >= PreyChance) return;
+            if (MBRandom.RandomFloatRanged(0, 1) >= PreyChance)
+            {
+                InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","CompletelyFailed").ToString(),Colors.Yellow));
+                return;
+            }
             mobileParty.LeaderHero.AddSkillXp(DefaultSkills.Scouting, 50f * PreySize);
             var preySizeAnimalText = "";
             switch (PreySize)
@@ -253,7 +306,7 @@ namespace TOR_Core.CampaignMechanics
             
             if (MBRandom.RandomFloatRanged(0, 1) >= huntSucess)
             {
-                InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Failed").ToString()));
+                InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Failed").ToString(),Colors.Yellow));
                 return;
             }
             
@@ -265,7 +318,7 @@ namespace TOR_Core.CampaignMechanics
             if (PreySize > 1)
                 mobileParty.ItemRoster.Add(new ItemRosterElement(DefaultItems.Hides, PreySize));
             
-            InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Success").ToString()));
+            InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText ("tor_hunt_perk_result","Success").ToString(), Colors.Yellow));
         }
 
         public override void SyncData(IDataStore dataStore)

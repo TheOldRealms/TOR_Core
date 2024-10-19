@@ -635,6 +635,12 @@
 			<meta_mesh_component name="magic_sphere_water"/>
 		</components>
 	</game_entity>
+	<game_entity name="ethereal_dome_large" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="6.0, 6.0, 6.0"/>
+		<components>
+			<meta_mesh_component name="magic_sphere_water"/>
+		</components>
+	</game_entity>
 	<game_entity name="dwellers_below_ground" old_prefab_name="">
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<components>
@@ -1088,6 +1094,59 @@
 				<effect_ref base_effect="{4504C731-1AC5-43F8-9798-4727F9C5F90F}"/>
 			</particle_system_instanced_component>
 		</components>
+	</game_entity>
+	<game_entity name="apotheosis_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{1F9B4564-D2D8-4DBF-A343-E3EEC701E8F5}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="soul_quench" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{D3ADC8E8-2734-43C7-B7BF-730B4250AFC7}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="tempest" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{3197366C-EC8D-4FD2-9F6E-CF0B7F84AECA}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="timewarp_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{1F9B4564-D2D8-4DBF-A343-E3EEC701E8F5}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="curse_of_midnight_wind" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{DD89957F-D6EB-4152-9B31-31902F98C906}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="arrow_kurnous" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+		<particle_system_instanced_component _index_="1">
+			<effect_ref base_effect="{307538BB-5DC5-4DCB-B882-193B486C02AF}"/>
+		</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="arrow" old_prefab_name="">
+
+			</game_entity>
+		</children>
 	</game_entity>
 </prefabs>
 

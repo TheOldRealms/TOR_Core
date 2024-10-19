@@ -20,61 +20,32 @@ namespace TOR_Core.CharacterDevelopment
     public class TORCareerChoices
     {
         public static TORCareerChoices Instance { get; private set; }
-        public WarriorPriestCareerChoices WarriorPriestCareerChoices { get; private set; }
-        
-        public VampireCountCareerChoices VampireCountCareerChoices { get; private set; }
-        
-        public BloodKnightCareerChoices BloodKnightCareerChoices { get; private set; }
-        
-        public MercenaryCareerChoices MercenaryCareerChoices { get; private set; }
-        
-        public GrailKnightCareerChoices GrailKnightCareerChoices { get; private set; }
-        
-        public GrailDamselCareerChoices GrailDamselCareerChoices { get; private set; }
-        
-        public WitchHunterCareerChoices WitchHunterCareerChoices { get; private set; }
-        
-        public NecromancerCareerChoices NecromancerCareerChoices { get; private set; }
-        
-        public BlackGrailKnightCareerChoices BlackGrailKnightCareerChoices { get; private set; }
-        
-        public NecrarchCareerChoices NecrarchCareerChoices { get; private set; }
-        
-        public WarriorPriestUlricCareerChoices WarriorPriestUlricCareerChoices { get; private set; }
-        
-        public ImperialMagisterCareerChoices ImperialMagisterCareerChoices { get; private set; }
 
-        private List<TORCareerChoicesBase> _allCareers =new List<TORCareerChoicesBase>();
+        private readonly List<TORCareerChoicesBase> _allCareers;
 
         public TORCareerChoices()
         {
             Instance = this;
             SetBasicTextVariables();
-            WarriorPriestCareerChoices = new WarriorPriestCareerChoices(TORCareers.WarriorPriest);
-            VampireCountCareerChoices = new VampireCountCareerChoices(TORCareers.MinorVampire);
-            BloodKnightCareerChoices = new BloodKnightCareerChoices(TORCareers.BloodKnight);
-            MercenaryCareerChoices = new MercenaryCareerChoices(TORCareers.Mercenary);
-            GrailDamselCareerChoices = new GrailDamselCareerChoices(TORCareers.GrailDamsel);
-            GrailKnightCareerChoices = new GrailKnightCareerChoices(TORCareers.GrailKnight);
-            WitchHunterCareerChoices = new WitchHunterCareerChoices(TORCareers.WitchHunter);
-            NecromancerCareerChoices = new NecromancerCareerChoices(TORCareers.Necromancer);
-            BlackGrailKnightCareerChoices = new BlackGrailKnightCareerChoices(TORCareers.BlackGrailKnight);
-            NecrarchCareerChoices = new NecrarchCareerChoices(TORCareers.Necrarch);
-            WarriorPriestUlricCareerChoices = new WarriorPriestUlricCareerChoices(TORCareers.WarriorPriestUlric);
-            ImperialMagisterCareerChoices = new ImperialMagisterCareerChoices(TORCareers.ImperialMagister);
             
-            _allCareers.Add(WarriorPriestCareerChoices);
-            _allCareers.Add(WitchHunterCareerChoices);
-            _allCareers.Add(VampireCountCareerChoices);
-            _allCareers.Add(BloodKnightCareerChoices);
-            _allCareers.Add(MercenaryCareerChoices);
-            _allCareers.Add(GrailKnightCareerChoices);
-            _allCareers.Add(GrailDamselCareerChoices);
-            _allCareers.Add(NecromancerCareerChoices);
-            _allCareers.Add(NecrarchCareerChoices);
-            _allCareers.Add(BlackGrailKnightCareerChoices);
-            _allCareers.Add(WarriorPriestUlricCareerChoices);
-            _allCareers.Add(ImperialMagisterCareerChoices);
+            _allCareers =
+            [
+                new WarriorPriestCareerChoices(TORCareers.WarriorPriest),
+                new VampireCountCareerChoices(TORCareers.MinorVampire),
+                new BloodKnightCareerChoices(TORCareers.BloodKnight),
+                new MercenaryCareerChoices(TORCareers.Mercenary),
+                new GrailDamselCareerChoices(TORCareers.GrailDamsel),
+                new GrailKnightCareerChoices(TORCareers.GrailKnight),
+                new WitchHunterCareerChoices(TORCareers.WitchHunter),
+                new NecromancerCareerChoices(TORCareers.Necromancer),
+                new BlackGrailKnightCareerChoices(TORCareers.BlackGrailKnight),
+                new NecrarchCareerChoices(TORCareers.Necrarch),
+                new WarriorPriestUlricCareerChoices(TORCareers.WarriorPriestUlric),
+                new ImperialMagisterCareerChoices(TORCareers.ImperialMagister),
+                new WaywatcherCareerChoices(TORCareers.Waywatcher),
+                new SpellsingerCareerChoices(TORCareers.Spellsinger),
+                new GreyLordCareerChoices(TORCareers.GreyLord)
+            ];
         }
 
 
@@ -95,8 +66,5 @@ namespace TOR_Core.CharacterDevelopment
             }
             
         }
-        
-        
-
     }
 }

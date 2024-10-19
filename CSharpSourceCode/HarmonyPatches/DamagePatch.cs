@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.BattleMechanics.TriggeredEffect;
@@ -46,10 +47,8 @@ namespace TOR_Core.HarmonyPatches
             var friendlyFire = attacker.Team == victim.Team;
             var damageProportions = new float[7];
             //attack properties;
-            if (!friendlyFire)
-            {
-                damageProportions = attackerPropertyContainer.DamageProportions;
-            } 
+            
+            damageProportions = attackerPropertyContainer.DamageProportions;
             
             var damageAmplifications = attackerPropertyContainer.DamagePercentages;
             var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
@@ -63,20 +62,22 @@ namespace TOR_Core.HarmonyPatches
                 if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim))
                 {
                     var property = PropertyMask.All;
-                    if (attacker.BelongsToMainParty()&&!attacker.IsHero)
+
+               
+                    if (attacker.BelongsToMainParty())
                     {
                         property = PropertyMask.Attack;
-                        var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
+                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attacker, victim, attackTypeMask, property);
                         for (var index = 0; index < careerBonuses.Length; index++)
                         {
                             additionalDamagePercentages[index] += careerBonuses[index];
                         } 
                     }
                     
-                    if(victim.BelongsToMainParty()&&!victim.IsHero)
+                    if(victim.BelongsToMainParty())
                     {
                         property = PropertyMask.Defense;
-                        var careerBonuses = CareerHelper.AddCareerPassivesForTroopDamageValues(attacker, victim, attackTypeMask, property);
+                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attacker, victim, attackTypeMask, property);
                         for (var index = 0; index < careerBonuses.Length; index++)
                         {
                             resistancePercentages[index] += careerBonuses[index];
@@ -199,7 +200,17 @@ namespace TOR_Core.HarmonyPatches
                 return true;
             }
 
-           
+            if (attackTypeMask == AttackTypeMask.Ranged && attacker.IsMainAgent && Campaign.Current!=null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
+                {
+                    CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                    if (careerPerkBehavior != null)
+                    {
+                        damageProportions[(int)DamageType.Magical] += 0.01f*careerPerkBehavior.CareerMissionVariables[0];
+                    }  
+                }
+            }
 
             //calculating non-spell damage
             for (int i = 0; i < damageCategories.Length - 1; i++)
@@ -221,6 +232,12 @@ namespace TOR_Core.HarmonyPatches
             if (victim.GetAttributes().Contains("Unstoppable")||(victim.IsDamageShruggedOff(b.InflictedDamage)))
             {
                 b.BlowFlag |= BlowFlags.ShrugOff;
+            } else if (Campaign.Current!=null && victim.IsMainAgent && attackTypeMask == AttackTypeMask.Ranged && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                if (Hero.MainHero.HasCareerChoice("PathfinderPassive4"))
+                {
+                    b.BlowFlag |= BlowFlags.ShrugOff;
+                }
             }
             
 

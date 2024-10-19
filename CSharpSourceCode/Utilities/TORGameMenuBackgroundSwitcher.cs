@@ -34,14 +34,18 @@ namespace TOR_Core.Utilities
 
             switch (settlement.Culture.StringId)
             {
-                case TORConstants.EMPIRE_CULTURE:
+                case TORConstants.Cultures.EMPIRE:
                     args.MenuContext.SetBackgroundMeshName("empire_looted_village");
                     return;
-                case TORConstants.SYLVANIA_CULTURE:
+                case TORConstants.Cultures.SYLVANIA:
                     args.MenuContext.SetBackgroundMeshName("vampire_looted_village");
                     return;
-                case TORConstants.BRETONNIA_CULTURE:
+                case TORConstants.Cultures.BRETONNIA:
                     args.MenuContext.SetBackgroundMeshName("bretonnia_looted_village");
+                    return;
+                case TORConstants.Cultures.EONIR:
+                case TORConstants.Cultures.ASRAI:
+                    args.MenuContext.SetBackgroundMeshName("we_village_burned");
                     return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_raiding_village");
@@ -59,17 +63,17 @@ namespace TOR_Core.Utilities
             if(settlement != null)
             {
                 
-                if(settlement.Culture.StringId == "mousillon")
+                if(settlement.Culture.StringId == TORConstants.Cultures.MOUSILLON)
                 {
                     args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
                     return;
                 }
-                if(settlement.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                if(settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                 {
                     args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
                     return;
                 }
-                else if (settlement.Culture.StringId == TORConstants.SYLVANIA_CULTURE)
+                else if (settlement.Culture.StringId == TORConstants.Cultures.SYLVANIA)
                 {
                     args.MenuContext.SetBackgroundMeshName("vampire_arena");
                     return;
@@ -100,17 +104,21 @@ namespace TOR_Core.Utilities
 
             switch (culture.StringId)
             {
-                case TORConstants.EMPIRE_CULTURE:
+                case TORConstants.Cultures.EMPIRE:
                     args.MenuContext.SetBackgroundMeshName("empire_captive");
                     return;
-                case TORConstants.SYLVANIA_CULTURE:
+                case TORConstants.Cultures.SYLVANIA:
                     args.MenuContext.SetBackgroundMeshName("vampire_captive");
                     return;
-                case TORConstants.BRETONNIA_CULTURE:
+                case TORConstants.Cultures.BRETONNIA:
                     args.MenuContext.SetBackgroundMeshName("bretonnia_captive");
                     return;
-                case "mousillon":
+                case TORConstants.Cultures.MOUSILLON:
                     args.MenuContext.SetBackgroundMeshName("bretonnia_captive");
+                    return;
+                case TORConstants.Cultures.ASRAI:
+                case TORConstants.Cultures.EONIR:
+                    args.MenuContext.SetBackgroundMeshName("wood_elves_captive");
                     return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_captive_male");
@@ -120,10 +128,9 @@ namespace TOR_Core.Utilities
         [GameMenuInitializationHandler("town_backstreet")]
         private static void wait_menu_ui_town_backstreet_on_init_tor(MenuCallbackArgs args)
         {
-            var settlement= Settlement.CurrentSettlement;
-            
-            if(settlement==null) return;
-            
+            var settlement = Settlement.CurrentSettlement;
+
+            if (settlement == null) return;
             
             if (settlement.Culture == null)
             {
@@ -135,6 +142,9 @@ namespace TOR_Core.Utilities
             {
                 case "mousillon":
                     args.MenuContext.SetBackgroundMeshName("vlandia_tavern");
+                    return;
+                case "eonir":
+                    args.MenuContext.SetBackgroundMeshName("eonir_town_background");
                     return;
             }
         }
@@ -153,6 +163,9 @@ namespace TOR_Core.Utilities
             {
                 case "mousillon":
                     args.MenuContext.SetBackgroundMeshName("bretonnia_city_background");
+                    return;
+                case "eonir":
+                    args.MenuContext.SetBackgroundMeshName("eonir_town_background");
                     return;
             }
         }

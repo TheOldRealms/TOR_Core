@@ -1,4 +1,5 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System.Collections.Generic;
+using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;

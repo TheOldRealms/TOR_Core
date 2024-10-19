@@ -10,33 +10,33 @@ namespace TOR_Core.BattleMechanics.Banners
 {
     public static class CustomBannerManager
     {
-        private static Dictionary<string, List<Banner>> _patterns = new Dictionary<string, List<Banner>>();
-        private static Random _random = new Random();
+        private static readonly Dictionary<string, FactionBannerOverride> _overrides = [];
+        private static readonly Random _random = new();
 
         public static Banner GetRandomBannerFor(string cultureId, string faction = "")
         {
-            List<Banner> banners = null;
+            FactionBannerOverride bannerOverride;
             if (faction == "")
             {
-                _patterns.TryGetValue(cultureId, out banners);
+                _overrides.TryGetValue(cultureId, out bannerOverride);
             }
             else if (faction == "player_faction")
             {
-                _patterns.TryGetValue(Hero.MainHero.Culture.StringId, out banners);
+                _overrides.TryGetValue(Hero.MainHero.Culture.StringId, out bannerOverride);
             }
             else
             {
-                _patterns.TryGetValue(faction, out banners);
-                if (banners == null || banners.Count == 0)
+                _overrides.TryGetValue(faction, out bannerOverride);
+                if (bannerOverride?.Banners?.Count == 0)
                 {
-                    _patterns.TryGetValue(cultureId, out banners);
+                    _overrides.TryGetValue(cultureId, out bannerOverride);
                 }
             }
 
-            if (banners != null && banners.Count > 0)
+            if (bannerOverride?.Banners?.Count > 0)
             {
-                var i = _random.Next(0, banners.Count);
-                return banners[i];
+                var i = _random.Next(0, bannerOverride.Banners.Count);
+                return bannerOverride.Banners[i];
             }
             else return null;
         }
@@ -45,19 +45,18 @@ namespace TOR_Core.BattleMechanics.Banners
         {
             try
             {
-                var ser = new XmlSerializer(typeof(List<ShieldPattern>));
-                var path = TORPaths.TORCoreModuleExtendedDataPath + "tor_shieldpatterns.xml";
-                var list = ser.Deserialize(File.OpenRead(path)) as List<ShieldPattern>;
+                var ser = new XmlSerializer(typeof(List<FactionBannerOverride>));
+                var path = TORPaths.TORCoreModuleExtendedDataPath + "tor_factionbanneroverrides.xml";
+                var list = ser.Deserialize(File.OpenRead(path)) as List<FactionBannerOverride>;
                 foreach (var item in list)
                 {
-                    if (!_patterns.ContainsKey(item.CultureOrKingdomId))
+                    if (!_overrides.ContainsKey(item.CultureOrFactionId))
                     {
-                        _patterns.Add(item.CultureOrKingdomId, new List<Banner>());
-                    }
-
-                    foreach (var item2 in item.BannerCodes)
-                    {
-                        _patterns[item.CultureOrKingdomId].Add(new Banner(item2));
+                        foreach (var item2 in item.BannerCodes)
+                        {
+                            item.Banners.Add(new Banner(item2));
+                        }
+                        _overrides.Add(item.CultureOrFactionId, item);
                     }
                 }
             }
@@ -69,11 +68,13 @@ namespace TOR_Core.BattleMechanics.Banners
     }
 
     [Serializable]
-    public class ShieldPattern
+    public class FactionBannerOverride
     {
-        [XmlElement]
-        public string CultureOrKingdomId { get; set; } = "";
+        [XmlAttribute]
+        public string CultureOrFactionId { get; set; } = string.Empty;
         [XmlElement(ElementName = "BannerCode")]
-        public List<string> BannerCodes { get; set; } = new List<string>();
+        public List<string> BannerCodes { get; set; } = [];
+        [XmlIgnore]
+        public List<Banner> Banners { get; set; } = [];
     }
 }

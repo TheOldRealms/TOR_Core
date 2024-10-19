@@ -86,6 +86,16 @@ namespace TOR_Core.Extensions
         {
             return agent.GetAttributes().Contains("Undead");
         }
+        
+        public static bool IsTreeSpirit(this Agent agent)
+        {
+            if (Campaign.Current != null && agent.IsHero)
+            {
+                return agent.GetHero().IsTreeSpirit();
+            }
+
+            return agent.Character.IsTreeSpirit();
+        }
 
         public static bool IsDamageShruggedOff(this Agent agent, int inflictedDamge=0)
         {
@@ -221,7 +231,7 @@ namespace TOR_Core.Extensions
         public static int GetPlaceableArtilleryCount(this Agent agent)
         {
             int count = 0;
-            if (agent.CanPlaceArtillery())
+            if (agent.CanPlaceArtillery() || agent.HasAttribute("EngineerCompanion"))
             {
                 if (Game.Current.GameType is Campaign && agent.GetHero() != null)
                 {
@@ -241,7 +251,7 @@ namespace TOR_Core.Extensions
             var character = agent.Character;
             if (hero != null)
             {
-                return hero.GetExtendedInfo().AllAbilites;
+                return hero.GetExtendedInfo().AllAbilities;
             }
             else if (character != null)
             {
@@ -454,11 +464,11 @@ namespace TOR_Core.Extensions
             agent.Health = Math.Min(agent.Health + healingAmount, agent.HealthLimit);
         }
 
-        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
+        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false, bool stack = false)
         {
         
             var comp = agent.GetComponent<StatusEffectComponent>();
-            if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated);
+            if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated, stack);
             
         }
         

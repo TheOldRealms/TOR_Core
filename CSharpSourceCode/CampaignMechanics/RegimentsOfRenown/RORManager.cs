@@ -12,14 +12,13 @@ namespace TOR_Core.CampaignMechanics.RegimentsOfRenown
 {
     public static class RORManager
     {
-        private static Dictionary<string, RORSettlementTemplate> _rorSettlementTemplates = new Dictionary<string, RORSettlementTemplate>();
-        private static string _templateFileName = "tor_ror_settlement_templates.xml";
+        private static readonly Dictionary<string, RORSettlementTemplate> _rorSettlementTemplates = [];
+        private static readonly string _templateFileName = "tor_ror_settlement_templates.xml";
 
         public static RORSettlementTemplate GetTemplateFor(string settlementId)
         {
-            RORSettlementTemplate ror = null;
-            _rorSettlementTemplates.TryGetValue(settlementId, out ror);
-            return ror;
+            if (_rorSettlementTemplates.TryGetValue(settlementId, out RORSettlementTemplate ror)) return ror;
+            else return null;
         }
 
         public static void LoadTemplates()

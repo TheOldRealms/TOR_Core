@@ -15,7 +15,6 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, DailyTickSettlement);
-            CampaignEvents.TickEvent.AddNonSerializedListener(this, Tick);
             CampaignEvents.AiHourlyTickEvent.AddNonSerializedListener(this, HourlyPartyTick);
         }
 
@@ -28,22 +27,12 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             }
         }
 
-        //destroy corrupted parties, not sure if this is needed anymore
-        private void Tick(float dt)
-        {
-            var list = MobileParty.All.WhereQ(x => x.IsRaidingParty() && x.ActualClan == null).ToList();
-            foreach(var item in list)
-            {
-                DestroyPartyAction.Apply(null, item);
-            }
-        }
-
         private void DailyTickSettlement(Settlement settlement)
         {
             if(settlement.SettlementComponent is BaseRaiderSpawnerComponent)
             {
                 var component = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
-                if (component.RaidingPartyCount < 5) component.SpawnNewParty();
+                if (component.RaidingPartyCount < 5 && component.IsActive) component.SpawnNewParty(out _, null);
             }
         }
 

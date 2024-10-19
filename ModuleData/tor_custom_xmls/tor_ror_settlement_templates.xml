@@ -3,7 +3,7 @@
 	<RORSettlementTemplate
         SettlementId="town_ST2"
         BaseTroopId="tor_ror_deathjack_longbowman"
-        MenuHeaderText="A temporary resting place for the Deathjacks, longbows are lined up against the walls."
+        MenuHeaderText="The town is home to the Deathjacks, an infamous and deadly archer regiment of renown."
         MenuBackgroundImageId="invalid"
         RegimentName="Deathjacks"
         RegimentHQName="Deathjacks Quarters"
@@ -11,7 +11,7 @@
     <RORSettlementTemplate
         SettlementId="town_ST1"
         BaseTroopId="tor_ror_stir_river_scout"
-        MenuHeaderText="A base for the River Patrol, this barrack has seen constant use and houses weary patrolmen."
+        MenuHeaderText="Within the town you find a barrack of the Stir River Patrol, it has seen constant use and houses weary patrolmen."
         MenuBackgroundImageId="invalid"
         RegimentName="Stir River Patrol"
         RegimentHQName="River Patrol Barracks"
@@ -19,7 +19,7 @@
     <RORSettlementTemplate
         SettlementId="town_AV1"
         BaseTroopId="tor_ror_blazing_sun_initiate"
-        MenuHeaderText="A small Chapter House of the Knighthood Order, for members to rest and resupply."
+        MenuHeaderText="Within the town there is a Chapter House of the Knights of the Blazing Sun."
         MenuBackgroundImageId="invalid"
         RegimentName="Knights of the Blazing Sun"
         RegimentHQName="Blazing Sun Chapter House"
@@ -27,7 +27,7 @@
     <RORSettlementTemplate
         SettlementId="town_AV3"
         BaseTroopId="tor_ror_kragsburg_retainer"
-        MenuHeaderText="Ornate, ordered and clean. The barrack of Von Kragsburgs Guard."
+        MenuHeaderText="The town is home to the Von Kragsburg Guard. Their barracks are ornate, ordered and clean."
         MenuBackgroundImageId="invalid"
         RegimentName="Von Kragsburg Guard"
         RegimentHQName="Von Kragsburg Barracks"
@@ -35,7 +35,7 @@
     <RORSettlementTemplate
         SettlementId="town_WI1"
         BaseTroopId="tor_empire_novice_engineer"
-        MenuHeaderText="A sprawling network of forges, smelteries and factories, worked by the Empires Veteran Gunsmiths and Engineers."
+        MenuHeaderText="Within the town, you may find the Imperial Gunnery School. It is a sprawling network of forges, smelteries and factories, worked by the Empires Veteran Gunsmiths and Engineers."
         MenuBackgroundImageId="invalid"
         RegimentName="Imperial Gunnery School of Nuln"
         RegimentHQName="Imperial Gunnery School"
@@ -43,7 +43,7 @@
     <RORSettlementTemplate
         SettlementId="town_WI4"
         BaseTroopId="tor_ror_grundel_defender_troop"
-        MenuHeaderText="A temporary resting place for the Defenders, spears are lined up against the walls."
+        MenuHeaderText="The town houses the quarters of Grundel's Defenders. A temporary resting place, spears are lined up against the walls."
         MenuBackgroundImageId="invalid"
         RegimentName="Grundel's Defenders"
         RegimentHQName="Defenders Quarters"
@@ -51,7 +51,7 @@
     <RORSettlementTemplate
         SettlementId="town_SY2"
         BaseTroopId="tor_bd_blooddragon_initiate"
-        MenuHeaderText="A small Chapter House of the Knighthood Order, for members to rest and resupply."
+        MenuHeaderText="Within the town there is a Chapter House of the Blood Dragons."
         MenuBackgroundImageId="invalid"
         RegimentName="Blood Dragons"
         RegimentHQName="Blood Dragon Chapter House"
@@ -59,7 +59,7 @@
     <RORSettlementTemplate
         SettlementId="village_ST3_1"
         BaseTroopId="tor_ror_sternieste_skeleton"
-        MenuHeaderText="A crypt for the Forgotten, ready to be raised."
+        MenuHeaderText="Near the village, the Forgotten Legion of Castle Sternieste awaits in their crypt, ready to be raised."
         MenuBackgroundImageId="invalid"
         RegimentName="Forgotten Legion of Castle Sternieste"
         RegimentHQName="Forgotten Legion Crypt"
@@ -67,7 +67,7 @@
     <RORSettlementTemplate
         SettlementId="town_SY1"
         BaseTroopId="tor_ror_konigstein_skeleton"
-        MenuHeaderText="An ancient crypt, filled with the future servants of Sylvania."
+        MenuHeaderText="Under the town in an ancient crypt, the Konigstein Stalkers await their new master."
         MenuBackgroundImageId="invalid"
         RegimentName="Konigstein Stalkers"
         RegimentHQName="Konigstein Crypt"
@@ -75,7 +75,7 @@
     <RORSettlementTemplate
         SettlementId="village_TB1_2"
         BaseTroopId="tor_ror_longshank_initiate"
-        MenuHeaderText="Despite their life of constant travel, vowing to never stay anywhere for long, camps like this can still be found when these hardy folk rest their weary legs."
+        MenuHeaderText="The village houses a Longshanks Encampment. Despite their life of constant travel, vowing to never stay anywhere for long, camps like this can still be found when these hardy folk rest their weary legs."
         MenuBackgroundImageId="invalid"
         RegimentName="Longshanks"
         RegimentHQName="Longshanks Encampment"
@@ -83,15 +83,15 @@
     <RORSettlementTemplate
         SettlementId="castle_village_TB3_2"
         BaseTroopId="tor_ror_ward_of_taal"
-        MenuHeaderText="Despite deep forays into the woods of Talabecland, travelling far from civilisation to honour Taal, Hunters are seen to pass through this camp to rest."
+        MenuHeaderText="The village houses a Horned Hunter Encampment. Despite deep forays into the woods of Talabecland, travelling far from civilisation to honour Taal, Hunters are seen to pass through this camp to rest."
         MenuBackgroundImageId="invalid"
         RegimentName="Horned Hunters of Taal"
         RegimentHQName="Horned Hunter Encampment"
     />
     <RORSettlementTemplate
-        SettlementId="castle_RL3"
+        SettlementId="village_RL1_3"
         BaseTroopId="tor_ror_son_of_altdorf"
-        MenuHeaderText="Home to the renowned and loved 'Sons of the Reik', only the best Altdorf has to offer may fight alongside these venerable warriors."
+        MenuHeaderText="Home to the renowned and loved Altdorf Company of Honour, the 'Sons of the Reik', only the best may fight alongside these venerable warriors."
         MenuBackgroundImageId="invalid"
         RegimentName="Altdorf Company of Honour"
         RegimentHQName="Company Barracks"
@@ -105,9 +105,49 @@
         RegimentHQName="Cathedral of Sigmar"
     />
 	<RORSettlementTemplate
+        SettlementId="castle_village_RL3_2"
+        BaseTroopId="tor_empire_reiksguard_knight"
+        MenuHeaderText="Due to Grünburg's proximity to Castle Reikguard, the headquarters of the Grand Order of the Reiksguard Knights, some of the finest knights of the Empire often patrol these roads."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Reiksguard Knights"
+        RegimentHQName="Headquarters of the Reiksguard Knights"
+    />
+		<RORSettlementTemplate
+		SettlementId="town_HL1"
+        BaseTroopId="tor_ror_hochland_scout"
+        MenuHeaderText="Hergig is home to the Hergig Jaegerkorps. These elite marksman are ever training their precise aim. They can be found in the Hergig korps hunting lodge. "
+        MenuBackgroundImageId="invalid"
+        RegimentName="The Hergig Jaegerkorps"
+        RegimentHQName="Hunting lodge of Hergig"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_OL1"
+        BaseTroopId="tor_ror_ostland_shield"
+        MenuHeaderText="The devoted of Morr are sparring in the chapels courtyard honing their greatsword skills. Blessed by the priest of Morr and with two silver coins in their pocket, they are ready for battle."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Ostland Black Guard"
+        RegimentHQName="Chapel of Morr"
+	/>
+		<RORSettlementTemplate
+		SettlementId="village_HL3_3"
+        BaseTroopId="tor_ror_hochland_drakwald_patrol"
+        MenuHeaderText="The village is home to a Drakwald patrol outpost, The Gunderman's Surefires are ready to set out."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Gunderman's Surefires"
+        RegimentHQName="Outpost of the Gunderman's Surefires"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_WA1"
+        BaseTroopId="tor_ror_marienburg_sailor"
+        MenuHeaderText="Inside the port of Marienburg, The Van Klumpf Buccaneers are to be found on their ship, Ready to set sail."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Van Klumpf Buccaneers"
+        RegimentHQName="Tavern of the Van Klumpf Buccaneers"
+	/>
+	<RORSettlementTemplate
         SettlementId="castle_village_AQ3_2"
         BaseTroopId="tor_ror_bergerac_herrimault"
-        MenuHeaderText="Around Bergerac, you notice the camp of the famous Bowman of Bergerac"
+        MenuHeaderText="Around Bergerac, you notice the camp of the famous Bowman of Bergerac."
         MenuBackgroundImageId="invalid"
         RegimentName="Bowman of Bergerac"
         RegimentHQName="Camp of the Bergerac Bowman"
@@ -115,7 +155,7 @@
 	<RORSettlementTemplate
         SettlementId="village_PA2_3"
         BaseTroopId="tor_ror_maisontaal_cultist"
-        MenuHeaderText="Inside the Abby of Maisontaal you find the Taal devoted cultists of maisontaal"
+        MenuHeaderText="Inside the Abby of Maisontaal you find the Taal devoted cultists of maisontaal."
         MenuBackgroundImageId="invalid"
         RegimentName="Cultists of Maisontaal"
         RegimentHQName="Maisontaal abby"
@@ -123,10 +163,81 @@
 	<RORSettlementTemplate
 		SettlementId="castle_village_AQ1_2"
         BaseTroopId="tor_ror_peasant_squire"
-        MenuHeaderText="As you approach what resembles a shack, you see the less than regal Peasant Knights of Wainfleet"
+        MenuHeaderText="The village is home to Geg's Manor. Little more than a shack, it is nevertheless home to the less than regal Peasant Knights of Wainfleet."
         MenuBackgroundImageId="invalid"
         RegimentName="Peasant Knights of Wainfleet'"
         RegimentHQName="Geg's Manor"
     />
-        
+		<RORSettlementTemplate
+		SettlementId="town_LA1"
+        BaseTroopId="tor_ror_anguille_sailor"
+        MenuHeaderText="Inside the warf's barracks resides the brave Corduin's knightly mariners, they are ready to sail out for their next job."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Corduin's Knightly Mariners"
+        RegimentHQName="L'Anguille warf barracks"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_ML1"
+        BaseTroopId="tor_empire_wolfkin"
+        MenuHeaderText="Inside Middenheim the cult of Ulric reigns. At the temple of Ulric, The most devoted of Ulric's followers stand ready, thirsting for battle."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Knights of the white wolf"
+        RegimentHQName="Great temple of Ulric"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_CC1"
+        BaseTroopId="tor_ror_carcasonne_mountain_guard"
+        MenuHeaderText="In Castle Carcasonne's barracks the Kharbourt's Blades can be found, the personal pride of Baron Larieu of Kharmourt."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Kharmourt's blades"
+        RegimentHQName="Kharmourt's Barracks"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_BA1"
+        BaseTroopId="tor_ror_bastonne_squire"
+        MenuHeaderText="Within the Court of Bastonne you may find the Beastslayers of Bastonne, much like their fearsome liege lord, they excel at fighting dangerous monsters."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Beastslayers of bastonne"
+        RegimentHQName="Court of Bastonne"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_MO1"
+        BaseTroopId="tor_ror_br_mounted_bowman"
+        MenuHeaderText="In the castle stable's the Wardens tend their horses and ready their bows, the infamous Wardens of Montfort are ready to protect their country."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Wardens of Montfort"
+        RegimentHQName="Castle stable's of Montfort"
+	/>
+		<RORSettlementTemplate
+		SettlementId="town_LY1"
+        BaseTroopId="tor_ror_lyonesse_knight_errant"
+        MenuHeaderText="From Castle Lyonesse home to the first great companion, Thierulf the Lionhearted, come the most ferocious of Bretonnia’s Knights. They can be found in the Chapel of the Lady."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Knights of the lionhearted"
+        RegimentHQName="Chapel of the Lady"
+	/>
+    <RORSettlementTemplate
+		SettlementId="castle_village_AL6_1"
+        BaseTroopId="tor_we_wildwood_ranger"
+        MenuHeaderText="Not all Forest Spirits wish to coexist with the Asrai. Malevolent and deranged denizens of the forest are banished to the Wildwood, where elite Willdwood Rangers keep their eternal watch."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Wildwood Rangers"
+        RegimentHQName="Wildwood"
+    />
+	<RORSettlementTemplate
+		SettlementId="town_AL5"
+        BaseTroopId="tor_ror_loec_trickster"
+        MenuHeaderText="Fyr Darric, the Trickster's Wood, holds the largest concentration of Wardancer troupes wandering through Athel Loren. Music and laughter can often be heard in this region, but not all things are as they seem at a glance."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Asrai Wardancers"
+        RegimentHQName="The Trickster's Wood"
+    />
+	<RORSettlementTemplate
+		SettlementId="town_AL1"
+        BaseTroopId="tor_we_wild_rider"
+        MenuHeaderText="Here, in King's Glade, impulsive Wild Riders, without uttering a word, await the rebirth of their master, Orion. Their only desire is to ride the Wild Hunt at the side of the King in the Woods."
+        MenuBackgroundImageId="invalid"
+        RegimentName="Wild Riders of Kurnous"
+        RegimentHQName="Shrine of Kurnous"
+    />
 </ArrayOfRORSettlementTemplate>

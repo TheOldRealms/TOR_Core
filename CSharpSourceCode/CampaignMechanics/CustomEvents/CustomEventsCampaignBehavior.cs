@@ -36,7 +36,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
 
         private void OnChaosUprisingStarted(object sender, ChaosUprisingStartedEventArgs e)
         {
-            MBInformationManager.AddQuickInformation(new TextObject("TODO: REPLACE WITH INK! A chaos uprising started in settlement: " + e.Settlement.Name.ToString()));
+            MBInformationManager.AddQuickInformation(new TextObject($"Chaos corruption reaches a critical level in {e.Settlement.Name.ToString()} and rebellion breaks out."));
         }
 
         private void DailyTick()
@@ -56,7 +56,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             _events.Add(new CustomEvent("Minstrel", CustomEventFrequency.Common, 1000,
                 () => StandardMovingCheck() &&
                 !CampaignTime.Now.IsNightTime &&
-                TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == TORConstants.BRETONNIA_CULTURE, () => InkStoryManager.OpenStory("Minstrel")));
+                TORCommon.FindNearestSettlement(MobileParty.MainParty, 100f, x => x.IsTown)?.Culture.StringId == TORConstants.Cultures.BRETONNIA, () => InkStoryManager.OpenStory("Minstrel")));
         }
 
         private bool StandardMovingCheck()

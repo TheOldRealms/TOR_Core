@@ -5,7 +5,9 @@ using Helpers;
 using SandBox.GameComponents;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.CharacterDevelopment;
@@ -30,11 +32,32 @@ namespace TOR_Core.Models
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if (choices.Contains("MercenaryLordPassive4") || choices.Contains("EndsJustifiesMeansPassive4") )
+                    if (choices.Contains("MercenaryLordPassive4") || choices.Contains("EndsJustifiesMeansPassive4") || choices.Contains("EyeOfTheHunterPassive2") )
                     {
                         missileWeaponFlags |= WeaponFlags.MultiplePenetration;
                     }
+                    
+                    if (choices.Contains("StarfireEssencePassive3") )
+                    {
+                        missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                    }
+                    
+                    if ( Hero.MainHero.HasCareer(TORCareers.Waywatcher) && choices.Contains("StarfireEssencePassive4"))
+                    {
+                        CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                        if (careerPerkBehavior != null)
+                        {
+                            var value = careerPerkBehavior.CareerMissionVariables[2] *= 0.05f;
+                            if (MBRandom.RandomFloat < value)
+                            {
+                                missileWeaponFlags |= WeaponFlags.AffectsAreaBig;
+                            }
+                        }  
+                    }
                 }
+
+                
+                
 
                 if (attackerAgent.HasAttribute("ShieldPenetration"))
                 {
@@ -45,6 +68,7 @@ namespace TOR_Core.Models
 
         public override float CalculateDamage(in AttackInformation attackInformation, in AttackCollisionData collisionData, in MissionWeapon weapon, float baseDamage)
         {
+            var attackerAgent = attackInformation.AttackerAgent;
             var result = base.CalculateDamage(attackInformation, collisionData, weapon, baseDamage);
             var attacker = (attackInformation.IsAttackerAgentMount ? attackInformation.AttackerRiderAgentCharacter : attackInformation.AttackerAgentCharacter) as CharacterObject;
             var attackerCaptain = attackInformation.AttackerCaptainCharacter as CharacterObject;
@@ -52,7 +76,14 @@ namespace TOR_Core.Models
             var defenderCaptain = attackInformation.VictimCaptainCharacter as CharacterObject;
 
             var resultDamage = new ExplainedNumber(result);
-            if (attacker != null && defender != null && !weapon.IsEmpty)
+
+            if (attacker == null)
+            {
+                return resultDamage.ResultNumber;
+            }
+
+            
+            if (defender != null && !weapon.IsEmpty)
             {
                 if (attacker.GetPerkValue(TORPerks.GunPowder.CloseQuarters) && weapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge)
                 {
@@ -89,14 +120,19 @@ namespace TOR_Core.Models
                     {
                         var choices = Hero.MainHero.GetAllCareerChoices();
 
-                        if (choices.Contains("MartiallePassive4") || choices.Contains("NightRiderPassive4") || choices.Contains("CrusherOfTheWeakPassive4"))
+                        if (choices.Contains("MartiallePassive4") || choices.Contains("NightRiderPassive4") || choices.Contains("TeachingsOfTheWinterFatherPassive3"))
                         {
                             weaponComponentData.WeaponFlags |= WeaponFlags.BonusAgainstShield;
                         }
                     }
             }
+            
+            if (attacker.IsTreeSpirit())
+            {
+                resultDamage.AddFactor(20f);
+            }
 
-            if (collisionData.IsHorseCharge && attacker != null && attacker.IsMounted && attacker.IsPlayerCharacter && attacker.HeroObject.HasAnyCareer())
+            if ( collisionData.IsHorseCharge && attacker.IsMounted && attacker.IsPlayerCharacter && attacker.HeroObject.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultDamage, PassiveEffectType.HorseChargeDamage);
             }
@@ -165,16 +201,11 @@ namespace TOR_Core.Models
             { 
                 AssignUnitProperties(agent, propertyMask, attackTypeMask, out damageProportions, out damageAmplifications, out damageResistances, out additionalDamagePercentages);
             }
+
+            AddPerkEffectsToAgentProperties(agent, propertyMask, attackTypeMask, ref damageProportions, ref damageAmplifications,
+                ref additionalDamagePercentages, ref damageResistances);
             var result =  new AgentPropertyContainer(damageProportions, damageAmplifications, damageResistances, additionalDamagePercentages);
             
-            if (Game.Current.GameType is Campaign)
-            {
-                if(MissionGameModels.Current.AgentStatCalculateModel is TORAgentStatCalculateModel model)
-                {
-                    result = model.AddPerkEffectsToAgentPropertyContainer(agent, propertyMask, attackTypeMask, result);
-                }
-            }
-
             return result;
         }
 
@@ -332,6 +363,8 @@ namespace TOR_Core.Models
              {
                  //Hero item level attributes 
 
+                 
+
                  List<ItemTrait> itemTraits = new List<ItemTrait>();
                  List<ItemObject> items;
 
@@ -380,8 +413,212 @@ namespace TOR_Core.Models
                          damageResistances[(int)defenseProperty.ResistedDamageType] += defenseProperty.ReductionPercent;
                      }   
                  }
+                 
+                 
+                 
              }
         }
+        
+        public void AddPerkEffectsToAgentProperties(Agent agent, PropertyMask mask, AttackTypeMask attackMask, ref float[] propotions,ref  float[] damageAmps, ref float[]damageBonuses, ref float[]resistances)
+        {
+            //this code is odd, it can be also be mostly realized via Careerchoices
+            var agentCharacter = agent.Character as CharacterObject;
+            var agentCaptain = agent.GetCaptainCharacter();
+            var agentLeader = agent.GetPartyLeaderCharacter();
+            var agentParty = agent.GetOriginMobileParty();
+
+            if (agentParty != null && agentParty.HasAnyActiveBlessing())
+            {
+                if (agentParty.HasBlessing("cult_of_manaan"))
+                {
+                    damageBonuses[(int)DamageType.Lightning] += 0.10f;
+                }
+                
+                if (agentParty.HasBlessing("cult_of_asuryan"))
+                {
+                    damageBonuses[(int)DamageType.Fire] += 0.10f;
+                }
+
+                if ((attackMask  == AttackTypeMask.Ranged && agentParty.HasBlessing("cult_of_kurnous")))
+                {
+                    damageBonuses[(int)DamageType.Physical] += 0.1f;
+                }
+                
+                if (agentParty.HasBlessing("cult_of_vaul"))
+                {
+                    resistances[(int)DamageType.Physical] += 0.1f;
+                }
+            }
+
+            var wieldedItem = agent.WieldedWeapon.Item;
+
+            if (agentCharacter != null)
+            {
+                if (mask == PropertyMask.Attack || mask == PropertyMask.All)
+                {
+                    if (agentCharacter.GetPerkValue(TORPerks.SpellCraft.Exchange))
+                    {
+                        damageBonuses[(int)DamageType.Magical] += damageBonuses[(int)DamageType.Physical];
+                    }
+
+                    if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.SpellCraft.ArcaneLink))
+                    {
+                        damageBonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus);
+                    }
+
+                    if (agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Superstitious) && agentCharacter.IsReligiousUnit())
+                    {
+                        damageBonuses[(int)DamageType.Physical] += (TORPerks.Faith.Superstitious.SecondaryBonus);
+                    }
+
+                    if (wieldedItem != null && wieldedItem.HasWeaponComponent && wieldedItem.IsSpecialAmmunitionItem() && attackMask.HasAnyFlag(AttackTypeMask.Ranged))
+                    {
+                        if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.GunPowder.PackItIn))
+                        {
+                            propotions[(int)DamageType.Fire] = propotions[(int)DamageType.Physical];
+                            propotions[(int)DamageType.Physical] = 0;
+                        }
+                    }
+                }
+
+                if (mask == PropertyMask.Defense || mask == PropertyMask.All)
+                {
+                    if (agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Imperturbable) && agentCharacter.IsReligiousUnit())
+                    {
+                        resistances[(int)DamageType.Physical] += (TORPerks.Faith.Imperturbable.SecondaryBonus);
+                    }
+                }
+            }
+
+            if (agent.BelongsToMainParty() && agent.IsHero)
+            {
+                
+                if (Hero.MainHero.HasCareer(TORCareers.Spellsinger))
+                {
+                    if (Hero.MainHero.HasCareerChoice("FuryOfTheForestPassive1"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("FuryOfTheForestPassive1");
+                        var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+
+                        if (heroes.Any(x =>x.HasKnownLore("DarkMagic") && x.CharacterObject.IsElf()))
+                        {
+                            damageBonuses[(int)DamageType.Magical] += choice.GetPassiveValue();
+                        }
+                    }
+                    
+                    if (Hero.MainHero.HasCareerChoice("FuryOfTheForestPassive2"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("FuryOfTheForestPassive2");
+                        var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+
+                        if (heroes.Any(x =>  x.HasKnownLore("HighMagic") && x.CharacterObject.IsElf()))
+                        {
+                            resistances[(int)DamageType.All] += choice.GetPassiveValue();
+                        }
+                    }
+                   
+                }
+            }
+            
+            
+            if (agent != Agent.Main)
+            {
+                return;
+            }
+            
+            if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+            {
+                resistances[(int)DamageType.Fire]-=0.2f;
+            }
+                
+            var choices = Agent.Main.GetHero().GetAllCareerChoices();
+                
+                if(mask== PropertyMask.Attack&& attackMask == AttackTypeMask.Melee)
+                {
+                    if (choices.Contains("HuntTheWickedPassive3"))
+                    {
+                        var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
+                        var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive3");
+                        foreach (var weapon in equipment)
+                        {
+                            foreach (var data in weapon.Weapons)
+                            {
+                                if (data.IsRangedWeapon)
+                                {
+                                    damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
+                                }
+                            }
+                        }
+                    }
+                    if (choices.Contains("FuryOfWarPassive1"))
+                    {
+                        var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3);
+                        var choice = TORCareerChoices.GetChoice("FuryOfWarPassive1");
+                        foreach (var weapon in equipment)
+                        {
+                            foreach (var data in weapon.Weapons)
+                            {
+                                if (data.IsMeleeWeapon)
+                                {
+                                    damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (mask == PropertyMask.Defense && attackMask == AttackTypeMask.Melee || attackMask == AttackTypeMask.Ranged)
+                {
+                    if (choices.Contains("RunesOfTheWhiteWolfPassive1"))
+                    {
+                        var equipment = agent.Character.GetCharacterEquipment(EquipmentIndex.Head, EquipmentIndex.Head);
+                        equipment.AddRange(agent.Character.GetCharacterEquipment(EquipmentIndex.Cape, EquipmentIndex.Cape));
+                        var choice = TORCareerChoices.GetChoice("RunesOfTheWhiteWolfPassive1");
+                        if (!equipment.IsEmpty())
+                        {
+                            foreach (var item in equipment)
+                            {
+                                if (item.StringId.Contains("wolf") || item.StringId.Contains("cape_kotww"))
+                                {
+                                    resistances[(int)DamageType.All] += choice.GetPassiveValue();
+                                    break;
+                                }
+                            }
+        
+                        }
+                    }
+                }
+            
+            if (agent.Character.HasAttribute("NecromancerChampion"))
+            {
+                if(( attackMask == AttackTypeMask.Melee&& mask == PropertyMask.Attack))
+                {
+                    if (agent.Controller == Agent.ControllerType.Player)
+                    {
+                        
+                        if (mask == PropertyMask.Attack&&agent.Character.HasAttribute("NecromancerChampion")&&choices.Contains("LiberMortisKeystone"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("LiberMortisKeystone");
+                            damageBonuses[(int)DamageType.Physical] += choice.GetPassiveValue();
+                        }
+                
+                        if (mask == PropertyMask.Attack&&agent.Character.HasAttribute("NecromancerChampion")&&choices.Contains("BooksOfNagashKeystone"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("BooksOfNagashKeystone");
+                            damageBonuses[(int)DamageType.Magical] += choice.GetPassiveValue();
+                        }
+                    }
+                }
+
+                if (mask == PropertyMask.Defense&&choices.Contains("BookofWsoranKeystone"))
+                {
+                    var choice = TORCareerChoices.GetChoice("BookofWsoranKeystone");
+                    resistances[(int)DamageType.All]+= choice.GetPassiveValue();
+                }
+            }
+        }
+        
+        
         public void AssignUnitProperties(
              Agent agent,
              PropertyMask propertyMask,

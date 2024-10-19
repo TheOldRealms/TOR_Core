@@ -26,6 +26,9 @@
             <Style Name="mousillon">
                 <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_4" />
             </Style>
+			<Style Name="eonir">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\eonir_4" />
+			</Style>
         </Styles>
     </Brush>
 
@@ -55,6 +58,9 @@
             <Style Name="mousillon">
                 <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_3" />
             </Style>
+			<Style Name="eonir">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\eonir_3" />
+			</Style>
         </Styles>
     </Brush>
 
@@ -84,6 +90,9 @@
             <Style Name="mousillon">
                 <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_2" />
             </Style>
+            <Style Name="eonir">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\eonir_2" />
+			</Style>
         </Styles>
     </Brush>
 
@@ -112,7 +121,10 @@
             </Style>
             <Style Name="mousillon">
                 <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\mousillon_1" />
-            </Style>
+		    </Style>
+		    <Style Name="eonir">
+                <BrushLayer Name="Default" Sprite="CharacterCreation\Culture\eonir_1" />
+			</Style>
         </Styles>
     </Brush>
 

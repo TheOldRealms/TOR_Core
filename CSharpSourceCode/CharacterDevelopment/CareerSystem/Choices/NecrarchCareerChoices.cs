@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -119,7 +119,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _necrarchRoot.Initialize(CareerID, "Summoned out of the realm of the dead, a projectile spell is casted and deals X damage the radius of the netherball enlarges for every point in spellcraft. The Netherball can be modified with several upgrades from the career tree. The netherball is free of any cost.", null, true,
+            _necrarchRoot.Initialize(CareerID, "Summoned directly from the realm of the dead and cast by the Necrarch, this projectile spell deals 80 damage. The Blast of Agony grows in size for every point put into the Spellcraft skill, it can also be modified with several upgrades from the Career tree. It is free of any winds of magic cost to cast.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -297,15 +297,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                
             }
             
-            if (playerHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            if (playerHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
                 Hero.MainHero.Culture = mousillonCulture;
             }
             
-            if (playerHero.Culture.StringId == "empire")
+            if (playerHero.Culture.StringId == TORConstants.Cultures.EMPIRE)
             {
-                CultureObject sylvaniaCulture= MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.SYLVANIA_CULTURE);
+                CultureObject sylvaniaCulture= MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.Cultures.SYLVANIA);
                 Hero.MainHero.Culture = sylvaniaCulture;
             }
             
@@ -334,8 +334,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             Hero.MainHero.GetExtendedInfo().RemoveAllSpells();
             
-            var race = FaceGen.GetRaceOrDefault("vampire");
-            Hero.MainHero.CharacterObject.Race = race;
+            Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("necrarch");
+            Hero.MainHero.UpdatePlayerGender(false);
                 
             var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
             Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));

@@ -260,7 +260,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         WindsRegeneration,
         BuffDuration,       //Increases duration for friendly augments    
         DebuffDuration,     //Increases duration for hex
-        SpellRadius,
+        SpellRadius,        //
         SpellEffectiveness, //Damage spell effectiveness - for direct effects
         WindsCooldownReduction, //player cooldown reduction as Percentage
         PrayerCoolDownReduction, //player cooldown reduction as Percentage
@@ -271,9 +271,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         TroopResistance,
         TroopRegeneration,  //troop regeneration, flat number
         TroopMorale,        //Morale
-        TroopWages,
+        TroopWages,         //Negative number decrease
         TroopUpgradeCost,
         Ammo,               //Player ammo , flat number
-        SwingSpeed
+        SwingSpeed,
+        EquipmentWeightReduction
     }
 }

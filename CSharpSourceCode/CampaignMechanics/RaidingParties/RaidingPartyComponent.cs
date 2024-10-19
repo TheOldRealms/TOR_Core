@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
-using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.RaidingParties
@@ -25,12 +21,12 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
         [SaveableField(3)] private Settlement _home;
         public override Settlement HomeSettlement => _home;
 
-        [CachedData] private TextObject _cachedName;
+        [SaveableField(4)] private string _name;
 
         private RaidingPartyComponent(Settlement home, string name, Clan ownerClan)
         {
             _home = home;
-            _cachedName = new TextObject(name);
+            _name = name;
             _owner = ownerClan.Leader;
         }
 
@@ -58,17 +54,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
                 mobileParty => ((RaidingPartyComponent)mobileParty.PartyComponent).InitializeRaidingParty(mobileParty, partySize, template, owner));
         }
 
-        public override TextObject Name
-        {
-            get
-            {
-                if (_cachedName == null)
-                {
-                    _cachedName = new TextObject(HomeSettlement.Culture.Name + " Raiders");
-                }
-                return _cachedName;
-            }
-        }
+        public override TextObject Name => new(_name);
 
         public void HourlyTickAI(PartyThinkParams thinkParams)
         {
@@ -76,22 +62,44 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             {
                 FindNewTarget();
             }
-            AIBehaviorTuple item = new AIBehaviorTuple(Target, AiBehavior.RaidSettlement, false);
-            float score;
-            if (thinkParams.TryGetBehaviorScore(item, out score))
+            if(Target != null)
             {
-                thinkParams.SetBehaviorScore(item, score + 0.8f);
-                return;
+                AIBehaviorTuple item = new(Target, AiBehavior.RaidSettlement, false);
+                if (thinkParams.TryGetBehaviorScore(item, out float score))
+                {
+                    thinkParams.SetBehaviorScore(item, score + 1f);
+                    return;
+                }
+                else
+                {
+                    ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 9999f);
+                    thinkParams.AddBehaviorScore(valueTuple);
+                }
+
+                if ((bool)!Clan?.IsAtWarWith(Target?.MapFaction)) DeclareWarAction.ApplyByDefault(Clan, Target.MapFaction);
             }
-            ValueTuple<AIBehaviorTuple, float> valueTuple = new ValueTuple<AIBehaviorTuple, float>(item, 0.8f);
-            thinkParams.AddBehaviorScore(valueTuple);
+            else
+            {
+                AIBehaviorTuple item = new(HomeSettlement, AiBehavior.PatrolAroundPoint, false);
+                if (thinkParams.TryGetBehaviorScore(item, out float score))
+                {
+                    thinkParams.SetBehaviorScore(item, score + 1f);
+                    return;
+                }
+                else
+                {
+                    ValueTuple<AIBehaviorTuple, float> valueTuple = new(item, 9999f);
+                    thinkParams.AddBehaviorScore(valueTuple);
+                }
+            }
         }
 
-        private bool TargetIsValid() => Target != null && !Target.IsRaided && !Target.IsUnderRaid && Target != HomeSettlement && Target.IsVillage;
+        private bool TargetIsValid() => Target != null && !Target.IsRaided && Target != HomeSettlement && Target.IsVillage && 
+            (!Target.IsUnderRaid || Target.LastAttackerParty == MobileParty);
 
         private void FindNewTarget()
         {
-            Target = TORCommon.FindSettlementsAroundPosition(Party.Position2D, 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
+            Target = TORCommon.FindSettlementsAroundPosition(Party.Position2D, 100, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
         }
     }
 }

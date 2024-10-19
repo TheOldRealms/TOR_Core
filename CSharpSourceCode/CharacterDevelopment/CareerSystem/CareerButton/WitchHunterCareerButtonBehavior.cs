@@ -167,7 +167,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 return false;
             }
 
-            if (characterObject.Culture.StringId == TORConstants.BRETONNIA_CULTURE || characterObject.Race != 0)
+            if (characterObject.Culture.StringId == TORConstants.Cultures.BRETONNIA || characterObject.Race != 0)
             {
                 displayText = new TextObject("Needs to be part of the empire or southern realms");
                 return false;

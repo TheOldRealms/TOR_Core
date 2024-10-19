@@ -1,9 +1,5 @@
 ﻿using Helpers;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -48,23 +44,23 @@ namespace TOR_Core.Models
         public void AddBlessingToParty(MobileParty party, string cultID)
         {
             var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == cultID);
-            if(religion==null) return;
-            AddBlessingToParty(party,religion);
+            if (religion == null) return;
+            AddBlessingToParty(party, religion);
         }
         
         public void AddBlessingToParty(MobileParty party, ReligionObject religion)
         {
-            if(religion==null) return;
+            if (religion == null) return;
             var cultID = religion.StringId;
-            if(party==null || !party.IsActive|| !party.IsLordParty) return;
+            if (party == null || !party.IsActive || !party.IsLordParty) return;
             
             var duration = CalculateBlessingDurationForParty(party);
             
-            if (cultID == "cult_of_sigmar" && Hero.MainHero.HasCareerChoice("SigmarsProclaimerPassive4"))
+            if (party == MobileParty.MainParty && party.LeaderHero == Hero.MainHero && !Hero.MainHero.IsPrisoner && cultID == "cult_of_sigmar" && Hero.MainHero.HasCareerChoice("SigmarsProclaimerPassive4"))
             {
                 var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive4");
                 if(choice?.Passive == null)return;
-                foreach (var hero in Hero.MainHero.PartyBelongedTo.GetMemberHeroes())
+                foreach (var hero in party.GetMemberHeroes())
                 {
                     var value =(int) choice.Passive.EffectMagnitude;
                     hero.Heal(value,false);
@@ -74,7 +70,7 @@ namespace TOR_Core.Models
             if (cultID== "cult_of_ulric" && Hero.MainHero.HasCareerChoice("TeachingsOfTheWinterFatherPassive2"))
             {
                 var choice = TORCareerChoices.GetChoice("TeachingsOfTheWinterFatherPassive2");
-                if(choice==null||choice.Passive==null)return;
+                if (choice == null || choice.Passive == null) return;
                 Hero.MainHero.Heal(Hero.MainHero.MaxHitPoints,false);
             }
             

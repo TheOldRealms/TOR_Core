@@ -12,6 +12,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.StatusEffect
@@ -66,6 +67,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 return;
             }
             
+            if(!agent.BelongsToMainParty())
+            {
+                return;
+            }
+            
             if (agent.WieldedWeapon.IsEmpty) return;
 
             if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.ImperialMagister))
@@ -73,10 +79,26 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 CareerHelper.PowerstoneEffectAssignment(agent);
                 return;
             }
-            
-            if(!agent.BelongsToMainParty())
+
+            if (agent.GetOriginMobileParty().HasBlessing("cult_of_loec"))
             {
-                return;
+                CareerHelper.AddDefaultPermanentMissionEffect(agent,"loec_blessing_mvs");
+                CareerHelper.AddDefaultPermanentMissionEffect(agent,"loec_blessing_ats");
+            }
+            
+            if (agent.BelongsToMainParty()&& Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                var partyExtendedInfo = Hero.MainHero.PartyBelongedTo.GetPartyInfo();
+
+                var infos = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == agent.Character.StringId);
+                if (infos.Key!=null)
+                {
+                    foreach (var id in infos.Value)
+                    {
+                        CareerHelper.AddDefaultPermanentMissionEffect(agent,id);
+                    }
+                }
+                
             }
         }
     }

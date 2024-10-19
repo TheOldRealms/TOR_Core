@@ -20,11 +20,11 @@ namespace TOR_Core.Models
             var explainedNumber = base.CalculateDailyBaseFoodConsumptionf(party, includeDescription);
             base.CalculateDailyFoodConsumptionf(party, explainedNumber);
             
-            var noneatingMemberRoster = party.Party.MemberRoster.GetTroopRoster().WhereQ(x => x.Character.IsUndead());
-            int noneatingMemberCount = noneatingMemberRoster.Sum(item => item.Number);
             var totalMembers = party.Party.MemberRoster.Sum(item => item.Number);
-            var ratio= (double) noneatingMemberCount / totalMembers;
-            float  saving = (float)-(ratio * explainedNumber.ResultNumber);
+            var noneatingMemberCount = party.Party.MemberRoster.Sum(item => item.Character.IsUndead() ? item.Number : 0);
+
+            var ratio = (double)noneatingMemberCount / totalMembers;
+            float saving = (float)-(ratio * explainedNumber.ResultNumber);
             
             explainedNumber.Add(saving, new TextObject("Saving from undead troops"));
             explainedNumber.LimitMax(0);
@@ -85,6 +85,25 @@ namespace TOR_Core.Models
             if (perkChoice.Passive.InterpretAsPercentage) effectMagnitude /= 100;
             float basefoodConsumptionForRoster =  ((float)count / NumberOfMenOnMapToEatOneFood);
             return basefoodConsumptionForRoster * effectMagnitude;
+        }
+
+
+        public override bool DoesPartyConsumeFood(MobileParty mobileParty)
+        {
+            var value =  base.DoesPartyConsumeFood(mobileParty);
+
+            if (MobileParty.MainParty== mobileParty && Hero.MainHero.IsEnlisted())
+            {
+                return false;
+            }
+
+            if (mobileParty.LeaderHero != null && mobileParty.LeaderHero.HasAttribute("Brasskeep") &&
+                !mobileParty.LeaderHero.Clan.Settlements.AnyQ(x => x.IsTown))
+            {
+                return false;
+            }
+
+            return value;
         }
     }
     

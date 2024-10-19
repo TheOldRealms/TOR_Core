@@ -112,14 +112,19 @@ namespace TOR_Core.Extensions
             {
                 return characterObject.HeroObject.IsVampire();
             }
-            return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
+            return characterObject.Race == FaceGen.GetRaceOrDefault("vampire") || characterObject.Race == FaceGen.GetRaceOrDefault("necrarch");
+        }
+        
+        public static bool IsMinotaur(this CharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("medium_humanoid_monster") && characterObject.HasAttribute("Minotaur");
         }
 
         public static bool IsHuman(this CharacterObject characterObject)
         {
             if (characterObject.Culture.IsBandit)
             {
-                if (characterObject.IsBeastman() || characterObject.IsCultist())
+                if (characterObject.IsBeastman() || characterObject.IsCultist() || characterObject.IsElf())
                     return false;
                 else
                 {
@@ -127,20 +132,45 @@ namespace TOR_Core.Extensions
                 }
             }
             
-            return characterObject.Culture.StringId == TORConstants.EMPIRE_CULTURE||
-                   characterObject.Culture.StringId == TORConstants.BRETONNIA_CULTURE ||
-                   characterObject.Culture.StringId == TORConstants.SYLVANIA_CULTURE &&
+            return characterObject.Culture.StringId == TORConstants.Cultures.EMPIRE||
+                   characterObject.Culture.StringId == TORConstants.Cultures.BRETONNIA ||
+                   characterObject.Culture.StringId == TORConstants.Cultures.SYLVANIA &&
                    !(characterObject.IsVampire() || characterObject.IsUndead())||
                    characterObject.Culture.StringId == "mousillon" &&
                    !(characterObject.IsVampire() || characterObject.IsUndead());
             
         }
+        
+        public static bool IsElf(this CharacterObject characterObject)     
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("elf");
+        }
+
+        public static bool IsElf(this BasicCharacterObject characterObject)
+        {
+            return characterObject.Race == FaceGen.GetRaceOrDefault("elf");
+        }
+
+        public static bool IsTreeSpirit(this CharacterObject characterObject)
+        {
+            if (characterObject.IsHero) return characterObject.HeroObject.IsTreeSpirit();
+            else return characterObject.GetAttributes().Contains("TreeSpirit");
+        }
+
+        public static bool IsTreeSpirit(this BasicCharacterObject characterObject)
+        {
+            return characterObject.GetAttributes().Contains("TreeSpirit");
+        }
+
+        public static bool IsKnightUnit(this CharacterObject characterObject)
+        {
+            return !characterObject.IsHero && characterObject.IsMounted && IsEliteTroop(characterObject);
+        }
 
         public static bool IsKnightUnit(this BasicCharacterObject characterObject)
         {
-            return  !characterObject.IsHero&&characterObject.IsMounted&&IsEliteTroop(characterObject);
+            return !characterObject.IsHero && characterObject.IsMounted && IsEliteTroop(characterObject);
         }
-
 
         public static bool IsEliteTroop(this CharacterObject characterObject)
         {
@@ -214,6 +244,11 @@ namespace TOR_Core.Extensions
         public static bool IsBloodDragon(this BasicCharacterObject characterObject)
         {
             return characterObject.GetAttributes().Contains("BloodDragon");
+        }
+        
+        public static bool IsBrassKeepLord(this BasicCharacterObject characterObject)
+        {
+            return characterObject.GetAttributes().Contains("BrassKeep");
         }
 
         public static bool IsReligiousUnit(this CharacterObject characterObject)

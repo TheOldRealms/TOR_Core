@@ -27,7 +27,6 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         public override void RegisterEvents()
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, Initialize);
-            CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, SettlementEntered);
             CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyPartyTick);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnBattleEnded);
         }
@@ -75,22 +74,9 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             foreach (var hero in Hero.AllAliveHeroes)
             {
-                if (hero.Culture.StringId == TORConstants.SYLVANIA_CULTURE && !hero.IsNecromancer() && (hero.IsLord || hero.IsWanderer) && hero != Hero.MainHero)
+                if (hero.Culture.StringId == TORConstants.Cultures.SYLVANIA && !hero.IsNecromancer() && (hero.IsLord || hero.IsWanderer) && hero != Hero.MainHero)
                 {
                     hero.AddAttribute("Necromancer");
-                }
-            }
-        }
-
-        private void SettlementEntered(MobileParty party, Settlement settlement, Hero hero)
-        {
-            if (party == null || settlement == null || hero == null || !hero.IsNecromancer() || hero.CharacterObject.IsPlayerCharacter || settlement.IsHideout) return;
-            if (party.MemberRoster.TotalManCount < party.Party.PartySizeLimit)
-            {
-                if (_skeleton != null)
-                {
-                    var number = settlement.IsVillage ? 5 : 20;
-                    party.MemberRoster.AddToCounts(_skeleton, Math.Min(number, party.Party.PartySizeLimit - party.MemberRoster.TotalManCount));
                 }
             }
         }
@@ -98,7 +84,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         private void Initialize(CampaignGameStarter obj)
         {
             obj.AddGameMenuOption("town", "graveyard", "Go to the graveyard",
-                graveyardaccesscondition,
+                 graveyardaccesscondition,
                 delegate (MenuCallbackArgs args)
                 {
                     GameMenu.SwitchToMenu("graveyard");

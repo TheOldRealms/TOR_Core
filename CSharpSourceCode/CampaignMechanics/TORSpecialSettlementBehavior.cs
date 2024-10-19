@@ -24,6 +24,15 @@ namespace TOR_Core.CampaignMechanics
                     settlement.ItemRoster.AddToCounts(DefaultItems.Grain, 100);
                 }
             }
+            
+            if (settlement.StringId == "castle_BK2")
+            {
+                if (settlement.ItemRoster.TotalFood < 500)
+                {
+                    settlement.ItemRoster.AddToCounts(DefaultItems.Meat, 100);
+                    settlement.ItemRoster.AddToCounts(DefaultItems.Grain, 100);
+                }
+            }
         }
 
         private void AfterNewGameStart(CampaignGameStarter starter, int index)
@@ -48,6 +57,24 @@ namespace TOR_Core.CampaignMechanics
             {
                 var undead = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_crypt_guard");
                 castleMousillon.MilitiaPartyComponent.Party.AddMember(undead, 500);
+            }
+
+
+            var brasskeep = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "castle_BK2");
+
+            if (brasskeep != null)
+            {
+                var nurglewarrior = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_nurgle_warrior");
+                brasskeep.MilitiaPartyComponent.Party.AddMember(nurglewarrior, 500);
+            }
+            
+            
+            var melkiortower = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "castle_MT1");
+
+            if (melkiortower != null)
+            {
+                var wraith = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_cairn_wraith");
+                melkiortower.MilitiaPartyComponent.Party.AddMember(wraith, 100);
             }
         }
         

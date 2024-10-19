@@ -4,9 +4,11 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -72,6 +74,13 @@ namespace TOR_Core.Models
             {
                 result = new ExplainedNumber(0, true, new TextObject("{=!}Inside a cursed region"));
             }
+            
+            
+            if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+            {
+                result.AddFactor(-0.25f);
+            }
+            
             return result;
         }
 
@@ -90,10 +99,31 @@ namespace TOR_Core.Models
                 result.AddFactor(0.2f);
             }
             
+            if (party.IsMainParty && party.LeaderHero!=null &&  party.LeaderHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+            {
+                if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                {
+                    var level = Hero.MainHero.GetForestHarmonyLevel();
+                    switch (level)
+                    {
+                        case ForestHarmonyLevel.Harmony: break;
+                        case ForestHarmonyLevel.Unbound:
+                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffUnBound, new TextObject(ForestHarmonyLevel.Unbound.ToString()));
+                            break;
+                        case ForestHarmonyLevel.Bound:
+                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                            break;
+                    }
+                }
+
+                if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+                {
+                    result.AddFactor(0.25f);
+                }
+            }
+            
             return result;
         }
-
-
 
         private void AddCareerPassivesForTroopRegeneration(MobileParty party, ref ExplainedNumber explainedNumber)
         {

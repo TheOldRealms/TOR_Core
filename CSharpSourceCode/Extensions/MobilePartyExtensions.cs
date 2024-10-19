@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TOR_Core.CampaignMechanics.Invasions;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
@@ -33,10 +33,7 @@ namespace TOR_Core.Extensions
         public static void AddBlessingToParty(this MobileParty party, string blessingId)
         { 
             var model = Campaign.Current.Models.GetFaithModel();
-            if (model != null)
-            {
-                model.AddBlessingToParty(party,blessingId);
-            }
+            model?.AddBlessingToParty(party,blessingId);
         }
 
         public static bool HasAnyActiveBlessing(this MobileParty party)
@@ -53,42 +50,31 @@ namespace TOR_Core.Extensions
 
         public static bool IsNearASettlement(this MobileParty party, float threshold = 1.5f)
         {
-            foreach (Settlement settlement in Settlement.All)
-            {
-                float distance;
-                Campaign.Current.Models.MapDistanceModel.GetDistance(settlement, party, Campaign.MapDiagonal, out distance);
-                if (distance < threshold)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return TORCommon.FindSettlementsAroundPosition(party.Position2D, threshold).Count > 0;
         }
 
         public static bool IsAffectedByCurse(this MobileParty party)
         {
-            foreach (Settlement settlement in TORCustomSettlementCampaignBehavior.AllCustomSettlements)
+            if (party.IsMainParty)
             {
-                if(settlement.SettlementComponent is CursedSiteComponent)
-                {
-                    var comp = settlement.SettlementComponent as CursedSiteComponent;
-                    if (party.LeaderHero?.GetDominantReligion() == comp.Religion) continue;
-                    float distance;
-                    Campaign.Current.Models.MapDistanceModel.GetDistance(settlement, party, Campaign.MapDiagonal, out distance);
-                    if (distance < TORConstants.DEFAULT_CURSE_RADIUS)
-                    {
-                        return true;
-                    }
-                }
+                if (party.LeaderHero.IsEnlisted())
+                    return false;   // optional, might be better to make here a more deliberate check for enlisting lord check
             }
-            return false;
+            if (!party.IsLordParty) return false;
+
+            var settlementFound = TORCommon.FindNearestSettlement(party, TORConstants.DEFAULT_CURSE_RADIUS, x => x.SettlementComponent is CursedSiteComponent);
+            if (settlementFound == null) return false;
+
+            if (settlementFound.SettlementComponent is not CursedSiteComponent cursedSite) return false;
+
+            if (party.LeaderHero?.GetDominantReligion() == cursedSite.Religion) return false;
+
+            return true;
         }
 
         public static List<ItemRosterElement> GetArtilleryItems(this MobileParty party)
         {
-            List<ItemRosterElement> list = new List<ItemRosterElement>();
-            list.AddRange(party.ItemRoster.Where(x => x.EquipmentElement.Item.StringId.Contains("artillery")).ToList());
+            List<ItemRosterElement> list = [.. party.ItemRoster.Where(x => x.EquipmentElement.Item.StringId.Contains("artillery")).ToList()];
             return list;
         }
 
@@ -98,7 +84,10 @@ namespace TOR_Core.Extensions
             {
                 if (party.LeaderHero != null)
                 {
-                    var engineering = party.LeaderHero.GetSkillValue(DefaultSkills.Engineering);
+                    var engineers = party.GetMemberHeroes();
+
+                    var highestEngineer=  engineers.MaxBy(x => x.GetSkillValue(DefaultSkills.Engineering));
+                    var engineering = highestEngineer.GetSkillValue(DefaultSkills.Engineering);
                     return (int)Math.Truncate((decimal)engineering / 50);
                 }
                 else return 0;
@@ -112,12 +101,16 @@ namespace TOR_Core.Extensions
 
         public static List<Hero> GetMemberHeroes(this MobileParty party)
         {
-            List<Hero> heroes = new List<Hero>();
-            foreach (var member in party.MemberRoster.GetTroopRoster())
+            List<Hero> heroes = [];
+            var roster = party.MemberRoster?.GetTroopRoster();
+            if (roster != null)
             {
-                if (member.Character.HeroObject != null)
+                foreach (var member in roster)
                 {
-                    heroes.Add(member.Character.HeroObject);
+                    if (member.Character?.HeroObject != null)
+                    {
+                        heroes.Add(member.Character.HeroObject);
+                    }
                 }
             }
             return heroes;

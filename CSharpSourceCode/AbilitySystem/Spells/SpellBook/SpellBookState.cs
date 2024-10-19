@@ -13,7 +13,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
         public override bool IsMenuState => true;
 
         public bool IsTrainerMode { get; internal set; } = false;
-        public string TrainerCulture { get; internal set; } = TORConstants.EMPIRE_CULTURE;
+        public string TrainerCulture { get; internal set; } = TORConstants.Cultures.EMPIRE;
 
         public SpellBookState() { }
     }

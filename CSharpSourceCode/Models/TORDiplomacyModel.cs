@@ -1,15 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
-using TOR_Core.Models.Diplomacy.Aggression;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
     public class TORDiplomacyModel : DefaultDiplomacyModel
     {
+        public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 150;
+        public override int GetInfluenceCostOfProposingWar(Clan proposingClan) => 150;
+
         public override float GetRelationIncreaseFactor(Hero hero1, Hero hero2, float relationChange)
         {
             var baseValue = base.GetRelationIncreaseFactor(hero1, hero2, relationChange);
@@ -40,7 +48,7 @@ namespace TOR_Core.Models
                 {
                     if (baseValue > 0)
                     {
-                        if (conversationHero != null && conversationHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+                        if (conversationHero != null && conversationHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                         {
                             var choice = TORCareerChoices.GetChoice("JustCausePassive4");
                             if (choice != null)
@@ -57,60 +65,162 @@ namespace TOR_Core.Models
 
         public override float GetScoreOfDeclaringWar(IFaction factionDeclaresWar, IFaction factionDeclaredWar, IFaction evaluatingClan, out TextObject warReason)
         {
-            var torScoreOfDeclaringWar = TORAggressionCalculator.TorAggressionScore(factionDeclaresWar, factionDeclaredWar);
+            warReason = new TextObject("It is time to declare war!");
 
-            var nativeScoreOfDeclaringWar = base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
+            if(factionDeclaresWar is Kingdom kingdom)
+            {
+                if (kingdom.GetNumActiveKingdomWars() < TORConfig.NumMinKingdomWars) return 100000;
+                if (kingdom.GetNumActiveKingdomWars() >= TORConfig.NumMaxKingdomWars) return -100000;
+                else return 5000;
+            }
 
-            /// Applying extra multiplers to increase wars
-            torScoreOfDeclaringWar *= TORConfig.DeclareWarScoreMultiplierTor;
-            nativeScoreOfDeclaringWar *= TORConfig.DeclareWarScoreMultiplierNative;
-
-            //TORCommon.Say($"Declaring war between {factionDeclaresWar.Name} and {factionDeclaredWar.Name}\n\t\t" +
-            //    $"Native Score: {nativeScoreOfDeclaringWar},\tTOR Score: {torScoreOfDeclaringWar}");
-
-            return nativeScoreOfDeclaringWar + torScoreOfDeclaringWar;
+            return base.GetScoreOfDeclaringWar(factionDeclaresWar, factionDeclaredWar, evaluatingClan, out warReason);
         }
 
         public override float GetScoreOfDeclaringPeace(IFaction factionDeclaresPeace, IFaction factionDeclaredPeace, IFaction evaluatingClan, out TextObject peaceReason)
         {
+            peaceReason = new TextObject("We see no reason to stop hostilities");
+
             // Chaos really shouldn't be allowed to make peace
-            if (evaluatingClan.Culture.StringId == "chaos_culture")
+            if (factionDeclaresPeace.Culture.StringId == TORConstants.Cultures.CHAOS || factionDeclaredPeace.Culture.StringId == TORConstants.Cultures.CHAOS)
             {
-                peaceReason = new TextObject("Chaos will fight to the death!");
                 return float.MinValue;
             }
 
-            var nativeScoreOfDeclaringPeace = base.GetScoreOfDeclaringPeace(factionDeclaresPeace, factionDeclaredPeace, evaluatingClan, out peaceReason);
-            var torScore = TORAggressionCalculator.TorAggressionScore(factionDeclaresPeace, factionDeclaredPeace);
+            if(factionDeclaresPeace is Kingdom kingdom && factionDeclaredPeace is Kingdom)
+            {
+                if (kingdom.GetNumActiveKingdomWars() <= TORConfig.NumMinKingdomWars) return -100000;
+                if (kingdom.GetNumActiveKingdomWars() > TORConfig.NumMaxKingdomWars) return 100000;
+            }
 
-            /// Apply same multipliers as declaration of war to try to them in agreement as much as possible
-            nativeScoreOfDeclaringPeace *= TORConfig.DeclareWarScoreMultiplierNative;
-            torScore *= TORConfig.DeclareWarScoreMultiplierTor / TORConfig.DeclarePeaceMultiplier;
-
-            //TORCommon.Say($"Declaring peace between {factionDeclaresPeace.Name} and {factionDeclaredPeace.Name}\n\t\t" +
-            //    $"Native Score: {nativeScoreOfDeclaringPeace},\tTOR Score: {torScore}");
-
-            return nativeScoreOfDeclaringPeace - torScore;
+            return base.GetScoreOfDeclaringPeace(factionDeclaresPeace, factionDeclaredPeace, evaluatingClan, out peaceReason);
         }
 
         public override float GetScoreOfMercenaryToJoinKingdom(Clan mercenaryClan, Kingdom kingdom)
         {
             var score = base.GetScoreOfMercenaryToJoinKingdom(mercenaryClan, kingdom);
 
-            if (kingdom == null) return score;
-            if (mercenaryClan == null) return score;
+            if (kingdom == null || mercenaryClan == null) return score;
 
-            if (kingdom.Culture.StringId == TORConstants.BRETONNIA_CULTURE && mercenaryClan.Culture.StringId != TORConstants.BRETONNIA_CULTURE)
+            if (kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            {
+                if (mercenaryClan.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+                {
+                    score = +1000;
+                }
+                else
+                {
+                    score = -10000;
+                }
+            }
+            
+            if (kingdom.Culture.StringId != TORConstants.Cultures.BRETONNIA && mercenaryClan.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+            {
+                score = -10000;
+            }
+            
+            if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && (kingdom.Culture.StringId == TORConstants.Cultures.SYLVANIA || kingdom.Culture.StringId == "mousillon" || kingdom.Culture.StringId == TORConstants.Cultures.BRETONNIA))
             {
                 score = -10000;
             }
 
-            if (mercenaryClan.StringId == "tor_dog_clan_hero_curse" && kingdom.Culture.StringId == TORConstants.SYLVANIA_CULTURE || kingdom.Culture.StringId == "mousillon" || kingdom.Culture.StringId == TORConstants.BRETONNIA_CULTURE)
+            if(mercenaryClan.Culture.StringId == TORConstants.Cultures.DRUCHII)
             {
                 score = -10000;
             }
 
             return score;
+        }
+
+        public Kingdom GetWarDeclarationTargetCandidate(Kingdom consideringKingdom)
+        {
+            if(consideringKingdom == null) return null;
+
+            var permissionModel = Campaign.Current?.Models?.KingdomDecisionPermissionModel;
+            if (permissionModel == null) return null;
+
+            var kingdomCandidates = Kingdom.All.WhereQ(x => 
+                !x.IsEliminated && 
+                x != consideringKingdom && 
+                permissionModel.IsWarDecisionAllowedBetweenKingdoms(consideringKingdom, x, out _) && 
+                !consideringKingdom.IsAtWarWith(x) &&
+                (x.GetStanceWith(consideringKingdom)?.PeaceDeclarationDate == null || 
+                x.GetStanceWith(consideringKingdom)?.PeaceDeclarationDate.ElapsedDaysUntilNow > TORConfig.MinPeaceDays)).ToListQ();
+
+            var distanceModel = Campaign.Current?.Models?.MapDistanceModel as TORSettlementDistanceModel;
+            
+            if (kingdomCandidates.Count > 0 && distanceModel != null)
+            {
+                
+                var kingdomListByDistance = kingdomCandidates.SelectQ(x => new Tuple<Kingdom, float>(x, distanceModel.GetDistance(consideringKingdom.FactionMidSettlement, x.FactionMidSettlement))).ToListQ();
+                var kingdomListByStrength = kingdomCandidates.SelectQ(x => new Tuple<Kingdom, float>(x, x.TotalStrength)).ToListQ();
+                var hostileReligionKingdoms = kingdomCandidates.SelectQ(x => 
+                    new Tuple<Kingdom, float>(x, ReligionObjectHelper.CalculateSimilarityScore(x.Leader.GetDominantReligion(), consideringKingdom.Leader.GetDominantReligion()))).ToListQ();
+
+                Dictionary<Kingdom, float> candidateScores = [];
+                float minDistance = kingdomListByDistance.MinBy(x => x.Item2).Item2;
+                float maxDistance = kingdomListByDistance.MaxBy(x => x.Item2).Item2;
+
+                foreach(var tuple in kingdomListByDistance)
+                {
+                    candidateScores[tuple.Item1] = Math.Abs(MapToRange(tuple.Item2, minDistance, maxDistance, 0, 1) - 1) * TORConfig.DeclareWarScoreDistanceMultiplier;
+                }
+
+                foreach (var tuple in kingdomListByStrength)
+                {
+                    candidateScores[tuple.Item1] += (consideringKingdom.TotalStrength / tuple.Item1.TotalStrength) * TORConfig.DeclareWarScoreFactionStrengthMultiplier;
+                }
+
+                foreach (var tuple in hostileReligionKingdoms)
+                {
+                    candidateScores[tuple.Item1] += -tuple.Item2 * TORConfig.DeclareWarScoreReligiousEffectMultiplier;
+                }
+                var candidate = candidateScores.MaxBy(x => x.Value).Key;
+                return candidate;
+            }
+            return null;
+        }
+
+        public Kingdom GetPeaceDeclarationTargetCandidate(Kingdom consideringKingdom, bool isEmergency = false)
+        {
+            if (consideringKingdom == null) return null;
+
+            var permissionModel = Campaign.Current?.Models?.KingdomDecisionPermissionModel;
+            if (permissionModel == null) return null;
+
+            var kingdomCandidates = Kingdom.All.WhereQ(x =>
+                !x.IsEliminated &&
+                x != consideringKingdom &&
+                permissionModel.IsPeaceDecisionAllowedBetweenKingdoms(consideringKingdom, x, out _) &&
+                consideringKingdom.IsAtWarWith(x) &&
+                (x.GetStanceWith(consideringKingdom)?.WarStartDate.ElapsedDaysUntilNow > TORConfig.MinWarDays ||
+                isEmergency)).ToListQ();
+
+            if (kingdomCandidates.Count > 0)
+            {
+                var kingdomListByStrength = kingdomCandidates.SelectQ(x => new Tuple<Kingdom, float>(x, x.TotalStrength)).ToListQ();
+
+                Dictionary<Kingdom, float> candidateScores = [];
+
+                foreach (var tuple in kingdomListByStrength)
+                {
+                    candidateScores[tuple.Item1] = tuple.Item1.TotalStrength / consideringKingdom.TotalStrength;
+                }
+
+                var maxvalue = candidateScores.Values.Max();
+                if(maxvalue > 1)
+                {
+                    var candidate = candidateScores.MaxBy(x => x.Value).Key;
+                    return candidate;
+                }
+            }
+            return null;
+        }
+
+        private static float MapToRange(float value, float minSource, float maxSource, float minTarget = float.MinValue, float maxTarget = float.MaxValue)
+        {
+            var result = (value - minSource) / (maxSource - minSource) * (maxTarget - minTarget) + minTarget;
+            return result;
         }
     }
 }

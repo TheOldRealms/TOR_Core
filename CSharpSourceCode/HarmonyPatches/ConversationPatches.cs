@@ -90,7 +90,7 @@ namespace TOR_Core.HarmonyPatches
 
 		[HarmonyPrefix]
 		[HarmonyPatch(typeof(LordConversationsCampaignBehavior), "conversations_set_voiced_line")]
-		public static bool OverrideVampireVoicedLines()
+		public static bool OverrideVoicedLines()
 		{
 			var hero = Hero.OneToOneConversationHero;
 			if(hero != null && hero.IsVampire() && !hero.IsFemale)
@@ -100,6 +100,14 @@ namespace TOR_Core.HarmonyPatches
 				TextObject textObject = Campaign.Current.ConversationManager.FindMatchingTextOrNull("str_context_line_vampire", CharacterObject.OneToOneConversationCharacter);
 				MBTextManager.SetTextVariable("VOICED_LINE", textObject ?? TextObject.Empty, false);
 				return false;
+            }
+			else if (hero != null && hero.CharacterObject.IsElf() && !hero.IsFemale)
+			{
+                StringHelpers.SetCharacterProperties("PLAYER", Hero.MainHero.CharacterObject, null, false);
+                MBTextManager.SetTextVariable("STR_SALUTATION", Campaign.Current.ConversationManager.FindMatchingTextOrNull("str_salutation", Hero.OneToOneConversationHero.CharacterObject), false);
+                TextObject textObject = Campaign.Current.ConversationManager.FindMatchingTextOrNull("str_context_line_elf", CharacterObject.OneToOneConversationCharacter);
+                MBTextManager.SetTextVariable("VOICED_LINE", textObject ?? TextObject.Empty, false);
+                return false;
             }
 			return true;
 		}
@@ -115,5 +123,16 @@ namespace TOR_Core.HarmonyPatches
 				MBTextManager.SetTextVariable("ROBBERY_THREAT", text, false);
 			}
 		}
+		
+		[HarmonyPostfix]
+		[HarmonyPatch(typeof(LordConversationsCampaignBehavior), "conversation_player_want_to_end_service_as_mercenary_on_condition")]
+		public static void EndMercenaryContract(ref bool __result)
+		{
+			if (Hero.MainHero.IsEnlisted())
+			{
+				__result = false;
+			}
+		}
+		
 	}
 }

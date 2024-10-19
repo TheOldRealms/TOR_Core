@@ -143,7 +143,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _inspirationOfTheLadyKeystone.Initialize(CareerID, "The Charge Amount is doubled but Spellcaster damage and heal of companions in the party count towards the career ability", "InspirationOfTheLady", false, ChoiceType.Passive);
+            _inspirationOfTheLadyKeystone.Initialize(CareerID, "Charge Amount is doubled but companion spell and heal effects count towards the ability", "InspirationOfTheLady", false, ChoiceType.Passive);
             
             _justCauseKeystone.Initialize(CareerID, "Magical damage for troops close to the exit of the teleport  is increased by 30% for 5 secounds", "JustCause", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -181,10 +181,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             
             _inspirationOfTheLadyPassive1.Initialize(CareerID, "25% chance to recruit an extra unit free of charge.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true)); 
             _inspirationOfTheLadyPassive2.Initialize(CareerID, "Wounded troops in your party heal faster.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
-            _inspirationOfTheLadyPassive3.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.TroopWages, true, 
+            _inspirationOfTheLadyPassive3.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true, 
                 characterObject => !characterObject.IsHero && characterObject.IsKnightUnit()));
             _inspirationOfTheLadyPassive4.Initialize(CareerID, "10% Ward save if your armor weight does not exceed 11 weight.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, 
-                 (attacker, victim, attackmask) => HeroArmorWeightUndershootCheck(attacker) ));
+                 (attacker, victim, attackmask) => attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightUndershootCheck(attacker,11)));
 
             _talesOfGilesPassive1.Initialize(CareerID, "{=tales_of_giles_passive1_str}Increases max Winds of Magic by 10.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _talesOfGilesPassive2.Initialize(CareerID, "{=tales_of_giles_passive2_str}Bretonnian units receive 10% Ward save.", "TalesOfGiles", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
@@ -200,26 +200,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _justCausePassive1.Initialize(CareerID, "Upgrade costs are halved.", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.5f, PassiveEffectType.TroopUpgradeCost));
             _justCausePassive2.Initialize(CareerID, "Non-knight units in the party gain 100 XP every day.", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, false)); //CareerPerkCampaign Behavior 101
             _justCausePassive3.Initialize(CareerID, "Extra 15% Wardsave if your armor weight does not exceed 11 weight.", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.Spell,
-                (attacker, victim, attackmask) => HeroArmorWeightUndershootCheck(attacker)));
+                (attacker, victim, attackmask) => attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightUndershootCheck(attacker,11)));
             _justCausePassive4.Initialize(CareerID, "Increases positive Relation gains by 20%.", "JustCause", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true)); //TorDiplomacy model 23
             
             _secretsOfTheGrailPassive1.Initialize(CareerID, "{=secrets_of_the_grail_Passive1_str}Increases lightning spell damage by 30%.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 30), AttackTypeMask.Spell));
             _secretsOfTheGrailPassive2.Initialize(CareerID, "{=secrets_of_the_grail_Passive2_str}20% cost reduction for spells.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCostReduction, true));
-            _secretsOfTheGrailPassive3.Initialize(CareerID, "{=secrets_of_the_grail_Passive3_str}Casting prayers has a 50% chance to restore 15 Winds of Magic.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true)); //AbilityMissionLogic, OnCastComplete
+            _secretsOfTheGrailPassive3.Initialize(CareerID, "{=secrets_of_the_grail_Passive3_str}Casting prayers has a 30% chance to restore 10 Winds of Magic.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true)); //AbilityMissionLogic, OnCastComplete
             _secretsOfTheGrailPassive4.Initialize(CareerID, "{=secrets_of_the_grail_Passive4_str}30% prayer cooldown reduction.", "SecretsOfTheGrail", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.PrayerCoolDownReduction, true));
             
             _envoyOfTheLadyPassive1.Initialize(CareerID, "{=ambassador_of_the_lady_Passive1_str}Increases Magic damage by 20%.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Spell));
             _envoyOfTheLadyPassive2.Initialize(CareerID, "{=ambassador_of_the_lady_Passive2_str}Knight Companion health points are doubled.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.Special, true));
             _envoyOfTheLadyPassive3.Initialize(CareerID, "{=ambassador_of_the_lady_Passive3_str}Damsel Companion have 25 more Winds of Magic.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, false)); //AbilityMissionLogic, OnCastComplete
             _envoyOfTheLadyPassive4.Initialize(CareerID, "{=ambassador_of_the_lady_Passive4_str}Diplomatic force options for all Brettonnian Leaders.", "EnvoyOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true));
-        }
-        
-        private static bool HeroArmorWeightUndershootCheck(Agent agent)
-        {
-            if (!agent.BelongsToMainParty()) return false;
-            if (!agent.IsMainAgent) return false;
-            var weight = agent.Character.Equipment.GetTotalWeightOfArmor(true);
-            return weight <= 11;
         }
 
         private static bool IsBretonnianUnit(Agent agent)
@@ -229,7 +221,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             if (agent.IsMainAgent) return false;
             
             
-            return agent.Character.Culture.Name.ToString() == TORConstants.BRETONNIA_CULTURE;
+            return agent.Character.Culture.Name.ToString() == TORConstants.Cultures.BRETONNIA;
         }
         
         protected override void UnlockCareerBenefitsTier2()

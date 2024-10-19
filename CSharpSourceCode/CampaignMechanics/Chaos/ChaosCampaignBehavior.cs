@@ -1,11 +1,10 @@
 ﻿using Helpers;
-using Messages.FromLobbyServer.ToClient;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Party.PartyComponents;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -41,7 +40,7 @@ namespace TOR_Core.CampaignMechanics.Chaos
         {
             if (CampaignTime.Now.ToDays > _lastUprisingTime + _minimumElapsedDaysBetweenUprisings && !_hasTriggered)
             {
-                var mostPowerfulKingdom = Kingdom.All.WhereQ(x => (x.Culture.StringId == TORConstants.EMPIRE_CULTURE || x.Culture.StringId == TORConstants.BRETONNIA_CULTURE) && x.Fiefs.Count > 1).MaxBy(x => x.TotalStrength);
+                var mostPowerfulKingdom = Kingdom.All.WhereQ(x => (x.Culture.StringId == TORConstants.Cultures.EMPIRE || x.Culture.StringId == TORConstants.Cultures.BRETONNIA) && x.Fiefs.Count > 1).MaxBy(x => x.TotalStrength);
 
                 var eligibleSettlements = Settlement.All.WhereQ(x=>x.OwnerClan != null && x.OwnerClan.Kingdom != null && 
                 x.OwnerClan.Kingdom == mostPowerfulKingdom &&
@@ -109,14 +108,29 @@ namespace TOR_Core.CampaignMechanics.Chaos
                 }
             }
 
+            foreach(var comp in clan.WarPartyComponents)
+            {
+                if(comp.MobileParty != null && 
+                    comp.MobileParty.Army == null && 
+                    comp.Party.MapEvent == null && 
+                    comp.MobileParty.LeaderHero != null &&
+                    comp.Party.IsValid &&
+                    comp.MobileParty.IsActive)
+                {
+                    comp.MobileParty.Position2D = settlement.GatePosition;
+                    comp.Party.SetVisualAsDirty();
+                    comp.Party.UpdateVisibilityAndInspected();
+                }
+            }
+
             ChangeOwnerOfSettlementAction.ApplyByRebellion(clan.Leader, settlement);
 
             var chosenGovernor = clan.Lords.WhereQ(x => x.IsAlive && x.GovernorOf == null && x != clan.Leader).GetRandomElementInefficiently();
             var chosenGovernorParty = MobileParty.All.FirstOrDefaultQ(x => x.LeaderHero == chosenGovernor);
 
             ChangeGovernorAction.Apply(settlement.Town, chosenGovernor);
-            
-            DestroyPartyAction.ApplyForDisbanding(chosenGovernorParty, settlement);
+
+            if (chosenGovernorParty != null) DestroyPartyAction.ApplyForDisbanding(chosenGovernorParty, settlement);
 
             clan.Leader.ChangeHeroGold(100000);
 
@@ -149,7 +163,6 @@ namespace TOR_Core.CampaignMechanics.Chaos
             List<Clan> chaosClans = Clan.NonBanditFactions.Where(x => x.Culture.StringId == "chaos_culture").ToList();
             List<Clan> nonChaosClans = Clan.NonBanditFactions.Where(x => x.Culture.StringId != "chaos_culture").ToList();
             List<Kingdom> chaosKingdoms = Kingdom.All.Where(x => x.Culture.StringId == "chaos_culture").ToList();
-            List<Clan> chaosBanditFactions = Clan.BanditFactions.Where(x => x.StringId == "steppe_bandits" || x.StringId == "forest_bandits").ToList();
             List<Kingdom> nonChaosKingdoms = Kingdom.All.Where(x => x.Culture.StringId != "chaos_culture").ToList();
 
             //Set chaos kingdoms eternal enemy of all non-chaos kingdoms
@@ -185,28 +198,6 @@ namespace TOR_Core.CampaignMechanics.Chaos
                     if (!chaosClan.IsAtWarWith(nonChaosClan))
                     {
                         FactionManager.DeclareWar(chaosClan, nonChaosClan, true);
-                    }
-                }
-            }
-            //set all chaos bandit factions neutral to chaos clans and kingdoms
-            foreach (var chaosBanditFaction in chaosBanditFactions)
-            {
-                foreach (var chaosClan in chaosClans)
-                {
-                    if (chaosClan.IsAtWarWith(chaosBanditFaction))
-                    {
-                        var stance = chaosClan.GetStanceWith(chaosBanditFaction);
-                        stance.IsAtConstantWar = false;
-                        stance.IsAtWar = false;
-                    }
-                }
-                foreach (var chaosKingdom in chaosKingdoms)
-                {
-                    if (chaosKingdom.IsAtWarWith(chaosBanditFaction))
-                    {
-                        var stance = chaosKingdom.GetStanceWith(chaosBanditFaction);
-                        stance.IsAtConstantWar = false;
-                        stance.IsAtWar = false;
                     }
                 }
             }

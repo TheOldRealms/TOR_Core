@@ -4,7 +4,7 @@ using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.BattleMechanics.Jousting;
+using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.RaiseDead;
@@ -38,14 +38,16 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(HuntCultistsQuestCampaignBehavior.HuntCultistsQuest), 16);
             AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageIssue), 17);
             AddClassDefinition(typeof(PlaguedVillageQuestCampaignBehavior.PlaguedVillageQuest), 18);
-            AddClassDefinition(typeof(TORDeclareWarDecision), 19);
-
+            AddClassDefinition(typeof(SlaverCampComponent), 19);
+            AddClassDefinition(typeof(OakOfAgesComponent), 20);
+            AddClassDefinition(typeof(WorldRootsComponent), 21);
+            AddClassDefinition(typeof(ArcheryContestTournamentGame), 22);
         }
 
         protected override void DefineEnumTypes()
         {
-            AddEnumDefinition(typeof(EngineerQuestStates), 20);
-            AddEnumDefinition(typeof(SpellCastingLevel), 21);
+            AddEnumDefinition(typeof(EngineerQuestStates), 23);
+            AddEnumDefinition(typeof(SpellCastingLevel), 24);
         }
 
         protected override void DefineContainerDefinitions()
@@ -61,6 +63,7 @@ namespace TOR_Core.SaveGameSystem
             ConstructContainerDefinition(typeof(Dictionary<Settlement, Dictionary<CharacterObject, int>>));
             ConstructContainerDefinition(typeof(Dictionary<string, double>));
             ConstructContainerDefinition(typeof(Dictionary<string, float>));
+            ConstructContainerDefinition(typeof(Dictionary<string, string>));
             ConstructContainerDefinition(typeof(Dictionary<string, List<string>>));
         }
     }

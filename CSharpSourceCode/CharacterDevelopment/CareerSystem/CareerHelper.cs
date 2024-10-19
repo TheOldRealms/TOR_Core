@@ -206,38 +206,36 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
-        public static float[] AddCareerPassivesForTroopDamageValues(Agent attacker, Agent victim, AttackTypeMask attackTypeMask, PropertyMask mask)
+        public static float[] AddCareerPassivesForDamageValues(Agent attacker, Agent victim, AttackTypeMask attackTypeMask, PropertyMask mask)
         {
             var damageValues = new float[(int)DamageType.All + 1];
 
             switch (mask)
             {
                 case PropertyMask.Attack:
-                    ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
+                    if (attacker.IsHero && attacker.IsMainAgent)
+                    {
+                        ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.Damage);
+                    }
+                    else
+                    {
+                        ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopDamage);
+                    }
                     return damageValues;
                 case PropertyMask.Defense:
-                    ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
+                    if (victim.IsHero && victim.IsMainAgent)
+                    {
+                        ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.Resistance);
+                    }
+                    else
+                    {
+                        ApplyCareerPassivesForDamageValues(attacker, victim, ref damageValues, attackTypeMask, PassiveEffectType.TroopResistance);
+                    }
+                    
                     return damageValues;
                 default:
                     return null;
             }
-        }
-        public static AgentPropertyContainer AddBasicCareerPassivesToPropertyContainerForMainAgent(Agent agent, AgentPropertyContainer propertyContainer, AttackTypeMask attackType, PropertyMask mask)
-        {
-            if (!agent.GetHero().HasAnyCareer()) return propertyContainer;
-
-            var damageValues = propertyContainer.AdditionalDamagePercentages;
-            var resistanceValues = propertyContainer.ResistancePercentages;
-            if (mask == PropertyMask.Attack)
-            {
-                ApplyCareerPassivesForDamageValues(agent, null, ref damageValues, attackType,PassiveEffectType.Damage);
-            }
-
-            if (mask == PropertyMask.Defense)
-            {
-                ApplyCareerPassivesForDamageValues(agent, null, ref resistanceValues, attackType,PassiveEffectType.Resistance);
-            }
-            return new AgentPropertyContainer(propertyContainer.DamageProportions, propertyContainer.DamagePercentages, resistanceValues, damageValues);
         }
 
         private static void ApplyCareerPassivesForDamageValues(Agent agent,Agent victim, ref float[] values, AttackTypeMask attackMask, PassiveEffectType type)
@@ -378,43 +376,52 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var button =  CareerHelper.GetCareerButton() as ImperialMagisterCareerButtonBehavior;
             if (statuseffectComponent != null && button!=null)
             {
-                var powerstones = button.AvailablePowerStones;
-
-
                 var powerstone = button.GetPowerstone(agent.Character as CharacterObject);
 
                 if (powerstone!=null)
                 {
-                    var template = TriggeredEffectManager.GetTemplateWithId(powerstone.EffectId);
-                    
-                    if(template==null) return;
-                    
-                    foreach (var effect in template.ImbuedStatusEffects)
-                    {
-                        agent.ApplyStatusEffect(effect,Agent.Main,99999);
-                    }
+                    AddMissionPermanentEffect(agent, powerstone.EffectId);
+                }
+            }
+        }
 
-                    var position = agent.Position;
-                    
+        public static void AddDefaultPermanentMissionEffect(Agent agent, string effectID)
+        {
+            var statuseffectComponent = agent.GetComponent<StatusEffectComponent>();
+            
+            if (statuseffectComponent != null)
+            {
+                AddMissionPermanentEffect(agent, effectID);
+            }
+        }
+        
 
-                    if (template!=null&&template.ScriptNameToTrigger != "none")
+        private static void AddMissionPermanentEffect(Agent agent, string effectID)
+        {
+            var template = TriggeredEffectManager.GetTemplateWithId(effectID);
+                    
+            if(template==null) return;
+                    
+            foreach (var effect in template.ImbuedStatusEffects)
+            {
+                agent.ApplyStatusEffect(effect,Agent.Main,99999);
+            }
+
+            if (template!=null&&template.ScriptNameToTrigger != "none")
+            {
+                try
+                {
+                    var obj = Activator.CreateInstance(Type.GetType(template.ScriptNameToTrigger));
+                    if (obj is ITriggeredScript)
                     {
-                        try
-                        {
-                            var obj = Activator.CreateInstance(Type.GetType(template.ScriptNameToTrigger));
-                            if (obj is ITriggeredScript)
-                            {
-                                var script = obj as ITriggeredScript;
-                                script.OnTrigger(agent.Position, Agent.Main, new List<Agent>(){agent}, 9999);
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            TORCommon.Log("Tried to spawn TriggeredScript: " + template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
-                        }
+                        var script = obj as ITriggeredScript;
+                        script.OnTrigger(agent.Position, Agent.Main, new List<Agent>(){agent}, 9999);
                     }
                 }
-                
+                catch (Exception)
+                {
+                    TORCommon.Log("Tried to spawn TriggeredScript: " + template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
+                }
             }
         }
         
@@ -426,9 +433,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             HeadShot
         }
 
-        public static bool IsPriestCareer()
+        public static bool IsPriestCareer(CareerObject career)
         {
-            var career = Hero.MainHero.GetCareer();
 
             return career == TORCareers.WarriorPriest ||
                    career == TORCareers.WarriorPriestUlric ||

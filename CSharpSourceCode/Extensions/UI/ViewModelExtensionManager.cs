@@ -5,15 +5,18 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using NLog.Fluent;
 using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
 {
     public class ViewModelExtensionManager
     {
-        private readonly Dictionary<ViewModel, IViewModelExtension> _extensionInstances = new Dictionary<ViewModel, IViewModelExtension>();
+        private readonly Dictionary<ViewModel, IViewModelExtension> _extensionInstances = [];
         public static ViewModelExtensionManager Instance { get; private set; }
-        public List<Type> ExtensionTypes { get; private set; } = new List<Type>();
+        public Dictionary<Type, Type> ExtensionTypes { get; private set; } = new Dictionary<Type, Type>();
         private ViewModelExtensionManager()
         {
             Instance = this;
@@ -48,30 +51,37 @@ namespace TOR_Core.Extensions.UI
                 {
                     if ((typeof(IViewModelExtension)).IsAssignableFrom(type))
                     {
-                        if(type.GetCustomAttribute<ViewModelExtensionAttribute>() != null)
+                        if(type.GetCustomAttribute<ViewModelExtensionAttribute>()?.BaseType != null)
                         {
-                            ExtensionTypes.Add(type);
+                            ExtensionTypes.Add(type.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType, type);
                         }
                     }
                 }
 			}
 		}
 
-        public bool HasViewModelExtension(ViewModel vm)
+        public bool HasViewModelExtensionType(ViewModel vm)
         {
-            return ExtensionTypes.Any(x => x.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType == vm.GetType());
+            return ExtensionTypes.TryGetValue(vm.GetType(), out _);
+        }
+
+        public bool HasViewModelExtensionInstance(ViewModel vm)
+        {
+            return GetExtensionInstance(vm) != null;
         }
 
         public Type GetExtensionType(ViewModel vm)
         {
-            if (!HasViewModelExtension(vm)) return null;
-            return ExtensionTypes.FirstOrDefault(x => x.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType == vm.GetType());
+            if (ExtensionTypes.TryGetValue(vm.GetType(), out var extension))
+            {
+                return extension;
+            }
+            return null;
         }
 
         public IViewModelExtension GetExtensionInstance(ViewModel vm)
         {
-            if (!HasViewModelExtension(vm)) return null;
-            return _extensionInstances.FirstOrDefault(x => x.Key == vm).Value;
-        }
+            return _extensionInstances.FirstOrDefaultQ(x => x.Key == vm).Value;
+        }       
     }
 }

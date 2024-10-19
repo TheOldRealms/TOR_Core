@@ -28,8 +28,8 @@ namespace TOR_Core.AbilitySystem.SpellBook
         public SpellBookVM(Action closeAction, List<Hero> heroes, bool isTrainerMode, string trainerCulture)
         {
             _closeAction = closeAction;
-            _stats = new MBBindingList<StatItemVM>();
-            _lores = new MBBindingList<LoreObjectVM>();
+            _stats = [];
+            _lores = [];
             _heroes = heroes;
             _isTrainerMode = isTrainerMode;
             _trainerCulture = trainerCulture;
@@ -42,9 +42,9 @@ namespace TOR_Core.AbilitySystem.SpellBook
             _currentHero = _heroes[_currentHeroIndex];
             CurrentCharacter = new HeroViewModel();
             CurrentCharacter.FillFrom(_currentHero);
-            CurrentCharacter.SetEquipment(EquipmentIndex.ArmorItemEndSlot, default(EquipmentElement));
-            CurrentCharacter.SetEquipment(EquipmentIndex.HorseHarness, default(EquipmentElement));
-            CurrentCharacter.SetEquipment(EquipmentIndex.NumAllWeaponSlots, default(EquipmentElement));
+            CurrentCharacter.SetEquipment(EquipmentIndex.ArmorItemEndSlot, default);
+            CurrentCharacter.SetEquipment(EquipmentIndex.HorseHarness, default);
+            CurrentCharacter.SetEquipment(EquipmentIndex.NumAllWeaponSlots, default);
 
             var info = _currentHero.GetExtendedInfo();
             StatItems.Clear();
@@ -78,11 +78,16 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
-                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel)&& Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.BRETONNIA_CULTURE)
+                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel)&& Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.Cultures.BRETONNIA)
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
                 else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.Necrarch) && Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null)
+                {
+                    LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
+                }
+                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.Spellsinger) && Hero.MainHero.HasKnownLore(lore.ID) &&
+                         CharacterObject.OneToOneConversationCharacter != null)
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }

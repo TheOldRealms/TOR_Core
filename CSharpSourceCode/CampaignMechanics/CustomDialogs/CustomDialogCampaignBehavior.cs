@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Helpers;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
-using TaleWorlds.MountAndBlade;
+using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.Localization;
 using TOR_Core.Extensions;
+using static TaleWorlds.CampaignSystem.GameMenus.GameMenu;
 
 namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
 {
@@ -35,14 +38,66 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
             obj.AddDialogLine("secondflesh_die", "start", "close_window", "Today, death. Tomorrow, rebirth. The cycle cannot be stopped!", () => EncounteredPartyMatch("chs_cult_3") && HeroIsWounded(), null, 199);
 
             obj.AddDialogLine("undead_notalk", "start", "close_window", "...", () => CharacterObject.OneToOneConversationCharacter.IsUndead() && CharacterObject.OneToOneConversationCharacter.HeroObject == null, null, 199);
+
+            obj.AddDialogLine("druchii_greeting_war", "start", "close_window", "{=druchii_greet_neutral}What do you want, stranger? Speak quickly before you find yourself chained up in the bowels of my ship.", () => EncounteredPartyMatch("druchii_clan_1") && !HeroIsWounded()
+            && (bool)PlayerEncounter.EncounteredMobileParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction), null, 199);
+
+            obj.AddDialogLine("druchii_greeting_nowar", "start", "close_window", "{=druchii_greet_war}It's you... The Masters of Karond Kar will be pleased indeed. Time to embrace your chains, slave!", () => EncounteredPartyMatch("druchii_clan_1") && !HeroIsWounded()
+            && !(bool)PlayerEncounter.EncounteredMobileParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction), null, 199);
+
+            obj.AddDialogLine("druchii_die", "start", "close_window", "{=!}Our defeat is a mockery to Khaine.", () => EncounteredPartyMatch("druchii_clan_1") && HeroIsWounded(), null, 199);
+
+            obj.AddGameMenuOption("encounter", "druchii_sell_slaves", "{=!}Sell your prisoners as slaves ({RANSOM_AMOUNT}{GOLD_ICON})", (args) =>
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Ransom;
+                int ransomValueOfAllTransferablePrisoners = GetRansomValueOfAllTransferablePrisoners();
+                if (ransomValueOfAllTransferablePrisoners > 0)
+                {
+                    MBTextManager.SetTextVariable("RANSOM_AMOUNT", ransomValueOfAllTransferablePrisoners);
+                }
+                else
+                {
+                    args.IsEnabled = false;
+                    args.Tooltip = new TextObject("You have no prisoners to sell.");
+                }
+                if ((bool)PlayerEncounter.EncounteredParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction))
+                {
+                    args.IsEnabled = false;
+                    args.Tooltip = new TextObject("You are at war with this faction.");
+                }
+                if (EncounteredPartyMatch("druchii_clan_1", false)) return true;
+                else return false;
+            }, (args) =>
+            {
+                SellPrisonersAction.ApplyForSelectedPrisoners(PartyBase.MainParty, PlayerEncounter.EncounteredParty, MobilePartyHelper.GetPlayerPrisonersPlayerCanSell());
+                SwitchToMenu("encounter");
+            }, true, 0);
         }
 
-        private bool EncounteredPartyMatch(string clanId)
+        private static int GetRansomValueOfAllTransferablePrisoners()
+        {
+            int value = 0;
+            List<string> list = Campaign.Current.GetCampaignBehavior<IViewDataTracker>().GetPartyPrisonerLocks().ToList();
+            foreach (TroopRosterElement troopRosterElement in PartyBase.MainParty.PrisonRoster.GetTroopRoster())
+            {
+                if (!list.Contains(troopRosterElement.Character.StringId))
+                {
+                    value += Campaign.Current.Models.RansomValueCalculationModel.PrisonerRansomValue(troopRosterElement.Character, Hero.MainHero) * troopRosterElement.Number;
+                }
+            }
+            return value;
+        }
+
+        private bool EncounteredPartyMatch(string clanId, bool checkForConversationCharacter = true)
         {
             var party = PlayerEncounter.EncounteredMobileParty;
             if (party != null && party.ActualClan != null)
             {
-                return party.ActualClan.StringId == clanId && party.MemberRoster.Contains(CharacterObject.OneToOneConversationCharacter);
+                if(party.ActualClan.StringId == clanId)
+                {
+                    if (checkForConversationCharacter) return party.MemberRoster.Contains(CharacterObject.OneToOneConversationCharacter);
+                    else return true;
+                }
             }
             return false;
         }
@@ -50,9 +105,7 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
         private bool HeroIsWounded()
         {
             var hero = CharacterObject.OneToOneConversationCharacter.HeroObject;
-            if (hero == null)
-                return false;
-            return hero.IsWounded;
+            return hero == null ? false : hero.IsWounded;
         }
 
         public override void SyncData(IDataStore dataStore)

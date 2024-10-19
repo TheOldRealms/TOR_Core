@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -22,47 +23,48 @@ namespace TOR_Core.Models
         public override int GetCharacterWage(CharacterObject character)
         {
             if (character.IsUndead()) return 0;
+            if (character.IsTreeSpirit()) return 0;
             var value = 0;
-            switch (character.Tier)
-            {
-                case 0:
-                    value =  1;
-                    break;
-                case 1:
-                    value =  2;
-                    break;
-                case 2:
-                    value =  3;
-                    break;
-                case 3:
-                    value =  5;
-                    break;
-                case 4:
-                    value =  8;
-                    break;
-                case 5:
-                    value =  12;
-                    break;
-                case 6:
-                    value =  17;
-                    break;
-                case 7:
-                    value =  23;
-                    break;
-                case 8:
-                    value =  30;
-                    break;
-                default:
-                    value = 40;
-                    break;
-            }
+            value = GetWageForTier(character.Tier);
 
-            if (character.Culture.StringId == TORConstants.BRETONNIA_CULTURE && character.IsKnightUnit())
+            if (character.Culture.StringId == TORConstants.Cultures.BRETONNIA && character.IsKnightUnit())
             {
                 value *= 2;
             }
+            
+            if (character.Culture.StringId == TORConstants.Cultures.EONIR && character.IsEliteTroop())
+            {
+                value *= 3;
+            }
 
             return value;
+        }
+
+        private static int GetWageForTier(int tier)
+        {
+            switch (tier)
+            {
+                case 0:
+                    return  1;
+                case 1:
+                    return 2;
+                case 2:
+                    return 3;
+                case 3:
+                    return  5;
+                case 4:
+                    return 8;
+                case 5:
+                    return 12;
+                case 6:
+                    return 17;
+                case 7:
+                    return 23;
+                case 8:
+                    return 30;
+                default:
+                    return 40;
+            }
         }
 
         public override ExplainedNumber GetTotalWage(MobileParty mobileParty, bool includeDescriptions)
@@ -83,8 +85,10 @@ namespace TOR_Core.Models
                             value.Add(line.number, new TextObject(line.name));
                         }
                     }
-
-                    if (Hero.MainHero.Culture.StringId == TORConstants.BRETONNIA_CULTURE && elementCopyAtIndex.Character.IsKnightUnit())
+                    if(elementCopyAtIndex.Character.IsHero && elementCopyAtIndex.Character.HeroObject == Hero.MainHero)
+                         continue;
+                    float  troopwage = elementCopyAtIndex.Character.TroopWage * elementCopyAtIndex.Number;
+                    if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA && elementCopyAtIndex.Character.IsKnightUnit())
                     {
                         var level = mobileParty.LeaderHero.GetChivalryLevel();
                         var factor = 0f;
@@ -111,14 +115,40 @@ namespace TOR_Core.Models
                                 factor=-0.2f;
                                 break;
                         }
-                        value.AddFactor(factor,new TextObject(level.ToString()));
+                        value.Add((troopwage * factor),new TextObject(level.ToString()));
                     }
 
+                    if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                    {
+                        if (Hero.MainHero.HasAttribute("WEOrionSymbol"))
+                        {
+                            if (elementCopyAtIndex.Character.IsElf() && elementCopyAtIndex.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+                            {
+                                value.Add(-0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
+                            }
+                        }
 
+                        if (Hero.MainHero.HasAttribute("WEArielSymbol"))
+                        {
+                            value.Add(0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                        }
+                        
+                        if (Hero.MainHero.HasAttribute("WEWandererSymbol"))
+                        {
+                            value.Add(0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEWandererSymbol"));
+                        }
+                        
+                        if (Hero.MainHero.HasAttribute("WETreekinSymbol") && !elementCopyAtIndex.Character.IsTreeSpirit())
+                        {
+                            value.Add(0.25f * troopwage, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
+                        }
+                        
+                        if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
+                        {
+                            value.Add(0.15f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
+                        }
+                    }
                 }
-
-                
-                
             }
             return value;
         }

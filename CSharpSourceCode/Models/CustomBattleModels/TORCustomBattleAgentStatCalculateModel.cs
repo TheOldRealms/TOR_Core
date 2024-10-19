@@ -21,10 +21,18 @@ namespace TOR_Core.Models.CustomBattleModels
 
         public override float GetEffectiveMaxHealth(Agent agent)
         {
-            if (agent.Character != null && agent.Character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
+            if(agent.IsHuman && agent.Character != null)
             {
-                return 1000f;
+                if (agent.Character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
+                {
+                    return 1000f;
+                }
+                if (agent.Character.IsTreeSpirit())
+                {
+                    return 250f;
+                }
             }
+            
             return base.GetEffectiveMaxHealth(agent);
         }
 
@@ -68,6 +76,16 @@ namespace TOR_Core.Models.CustomBattleModels
         public override void UpdateAgentStats(Agent agent, AgentDrivenProperties agentDrivenProperties)
         {
             base.UpdateAgentStats(agent, agentDrivenProperties);
+
+            if (agent.IsHuman)
+            {
+                if (agent.Character.IsTreeSpirit())
+                {
+                    agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
+                    agent.Defensiveness = 0.001f;
+                }
+            }
+
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
         }
 
