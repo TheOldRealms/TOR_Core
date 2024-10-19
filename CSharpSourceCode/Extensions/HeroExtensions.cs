@@ -52,6 +52,8 @@ namespace TOR_Core.Extensions
 
         public static bool CanRaiseDead(this Hero hero)
         {
+            if (!(hero.Culture.StringId == TORConstants.Cultures.SYLVANIA || hero.Culture.StringId == TORConstants.Cultures.MOUSILLON))
+                return false;
             return hero.PartyBelongedTo != null && hero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer());
         }
 
@@ -346,7 +348,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsNecromancer(this Hero hero)
         {
-            return hero.HasAttribute("Necromancer");
+            return hero.HasAttribute("Necromancer")|| hero.HasKnownLore("Necromancy");
         }
         
         public static bool IsSpellSinger(this Hero hero)
