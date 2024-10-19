@@ -34,8 +34,8 @@ namespace TOR_Core.Models
 
         private bool ShouldOverrideBaseVoice(CharacterObject character, VoiceObject voiceObject)
         {
-            return (character.IsVampire() && !character.IsFemale && voiceObject.VoicePaths.AnyQ(x => x.Contains("TOR_Core"))) ||
-                (character.IsElf() && !character.IsFemale && voiceObject.VoicePaths.AnyQ(x => x.Contains("TOR_Core"))) ||
+            return (character.IsVampire() && !character.IsFemale) ||
+                (character.IsElf() && !character.IsFemale) ||
                 character.Culture.StringId == "forest_bandits" || 
                 character.Culture.StringId == "steppe_bandits";
         }
