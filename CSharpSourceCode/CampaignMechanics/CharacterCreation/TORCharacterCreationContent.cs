@@ -146,9 +146,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _originalRace = CharacterObject.PlayerCharacter.Race;
         }
 
-
-        
-
         private void OnMenuInit(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation charInfo)
         {
             SetMenuLabelTexts();
@@ -196,8 +193,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             charInfo.ClearFaceGenPrefab();
             var race = _originalRace;
             Hero.MainHero.UpdatePlayerGender(_isFemale);
-            
-            
             
             if (IsVampireCharacterCreationID (optionId))
             {
@@ -346,8 +341,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     settlementBehavior.UnlockOakUpgrade(symbol); // has unlocked it from tree
                     Hero.MainHero.AddReligiousInfluence(religion,40);
                 }
-
-                
             }
 
 
@@ -436,8 +429,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             SetHeroAge(25);
             if (Hero.MainHero.IsSpellCaster()) PromptChooseLore();
             if (Hero.MainHero.IsVampire()) PromptChooseBloodline();
-            if (Hero.MainHero.Culture.StringId == "empire" && Hero.MainHero.IsPriest()) PromptChoosePriesthood();
-            
+            if (Hero.MainHero.Culture.StringId == "empire" && Hero.MainHero.IsPriest()) PromptChoosePriesthood();   
         }
 
         protected void SetHeroAge(float age)
