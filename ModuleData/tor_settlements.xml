@@ -7819,7 +7819,7 @@
     </Locations>
   </Settlement>
   <!-- Athel Loren -->
-  <Settlement id="town_AL1" name="{=Settlements.Settlement.name.town_AL1}Yn Edryl Koiran" owner="Faction.athel_loren_clan_1" is_unwalled_settlement="true" posX="1243.703" posY="776.587" culture="Culture.battania" gate_posX="1244.015" gate_posY="777.4089" text="{=!}It is from the King's Glade that Ariel and Orion preside over the realm of Athel Loren. They do not rule alone, but with the aid of a council. There are currently fifteen lords and ladies upon this council, drawn from the hidden realms that blossom beneath the trees. The King's Glade is a vast and awesome clearing, surrounded by great oak trees of immense girth and antiquity.Although vast, this city is virtually invisible to the untrained eye. It merges into the forest and is easily missed by idle traveller and foe alike. Over the centuries, Spellweavers created a city among the trees around the King's Glade. The branches of the great oaks were induced to entwine into walkways and canopies, galleries and vaults. Thus are the buildings and chambers made entirely of living trees, branches and foliage. Beneath the earth, the same methods have been used to create great hollows between the interwoven roots of the trees.">
+  <Settlement id="town_AL1" name="{=Settlements.Settlement.name.town_AL1}Yn Edryl Koiran" owner="Faction.athel_loren_clan_1" is_unwalled_settlement="true" posX="1243.703" posY="776.587" culture="Culture.battania" gate_posX="1244.015" gate_posY="777.4089" text="{=!}It is from the King's Glade that Ariel and Orion preside over the realm of Athel Loren. They do not rule alone, but with the aid of a council. There are currently fifteen lords and ladies upon this council, drawn from the hidden realms that blossom beneath the trees. The King's Glade is a vast and awesome clearing, surrounded by great oak trees of immense girth and antiquity. Although vast, this city is virtually invisible to the untrained eye. It merges into the forest and is easily missed by idle traveler and foe alike. Over the centuries, Spellweavers created a city among the trees around the King's Glade. The branches of the great oaks were induced to entwine into walkways and canopies, galleries and vaults. Thus are the buildings and chambers made entirely of living trees, branches and foliage. Beneath the earth, the same methods have been used to create great hollows between the interwoven roots of the trees.">
     <Components>
       <Town id="town_comp_AL1" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7839,7 +7839,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL1_1" name="{=Settlements.Settlement.name.village_AL1_1}Tal Eth Ayr" posX="1222.283" posY="790.538" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_1}Tal Eth Ayr is a woodelf settlement under the roof of the oak of ages. Forest spirits are very common in this area and interact a lot in the daily life of the Asrai. The village is surrounded by magical forest and is home to many shrines of the Asrai pantheon's.">
+  <Settlement id="village_AL1_1" name="{=Settlements.Settlement.name.village_AL1_1}Tal Eth Ayr" posX="1222.283" posY="790.538" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_1}Tal Eth Ayr is a woodelf settlement under the roof of the oak of ages. Forest spirits are very common in this area and interact frequently in the daily life of the Asrai. The village is surrounded by magical forest and is home to many shrines of the Asrai pantheons.">
     <Components>
       <Village id="village_comp_AL1_1" village_type="VillageType.flax_plant" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL1" bound="Settlement.town_AL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7852,7 +7852,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL1_2" name="{=Settlements.Settlement.name.village_AL1_2}Tal Cullon" posX="1272.864" posY="766.898" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_2}The Asrai hall of Tal Cullon is small settlement east from Yn Edryl Koiran and north of Tyr vanna. The region is filled with magic and has a high population of forest animals. Wild forest horses are numerous. The local elven population is really familiar with the horse herds roaming around. Every so often they bond with one of the horses and are able to ride them into battle.">
+  <Settlement id="village_AL1_2" name="{=Settlements.Settlement.name.village_AL1_2}Tal Cullon" posX="1272.864" posY="766.898" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_2}The Asrai hall of Tal Cullon is small settlement east from Yn Edryl Koiran and north of Tyr Vanna. The region is filled with magic and wild forest horses are numerous. The local elven population is very familiar with the horse herds that roam here. Every so often they bond with one of the horses and are able to ride them into battle.">
     <Components>
       <Village id="village_comp_AL1_2" village_type="VillageType.europe_horse_ranch" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL1" bound="Settlement.town_AL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7865,7 +7865,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL1_3" name="{=Settlements.Settlement.name.village_AL1_3}Tal Govorn" posX="1216.139" posY="831.093" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_3}The Asrai hall of Tal Govorn lies North of the oak of ages. The surrounding is one of the most fertile in Athel loren, it hosts many fields of wild fruit.">
+  <Settlement id="village_AL1_3" name="{=Settlements.Settlement.name.village_AL1_3}Tal Govorn" posX="1216.139" posY="831.093" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_3}The Asrai hall of Tal Govorn lies North of the oak of ages. Its surroundings are among the most fertile in Athel loren, growing many fields of wild fruit.">
     <Components>
       <Village id="village_comp_AL1_3" village_type="VillageType.vineyard" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL1" bound="Settlement.town_AL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7878,7 +7878,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL1_4" name="{=Settlements.Settlement.name.village_AL1_4}Tal Merion" posX="1238.296" posY="813.569" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_3}Tal Merion is one of the smaller halls of The King's glade. Tal Merion lies on a important road between the Oak of ages and the Crag halls of Findol. Tal Merion is often visited by spellsingers who perform rituals in the vacinity.">
+  <Settlement id="village_AL1_4" name="{=Settlements.Settlement.name.village_AL1_4}Tal Merion" posX="1238.296" posY="813.569" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL1_3}Tal Merion is one of the smaller halls of The King's Glade. Tal Merion lies on an important road between the Oak of ages and the Crag halls of Findol. Tal Merion is often visited by spellsingers who perform rituals in the vicinity.">
     <Components>
       <Village id="village_comp_AL1_4" village_type="VillageType.flax_plant" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL1" bound="Settlement.town_AL1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7891,7 +7891,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL2" name="{=Settlements.Settlement.name.town_AL2}Crag Halls of Findol" owner="Faction.athel_loren_clan_12" posX="1262.822" posY="854.329" culture="Culture.battania" gate_posX="1265.753" gate_posY="850.9518" text="{=!}Wydrioth, the Pine Crags, is a High Realm of Athel Loren, ruled by the Glade Lord Findol and Lady Evelyne. It is an embattled region, ever beset by the Dwarfs and Greenskins of the Grey Mountains. the Pine Crags are in fact a sprawling fortress. Here, the Elves have shaped citadels and strongholds from skycrown oaks, and endless leagues of gnarled and tangled walls from rockbriar. A maze of walkways and root-braced tunnels bind the various outposts together into a single living defence-work capable of repelling a full-blown Attack.">
+  <Settlement id="town_AL2" name="{=Settlements.Settlement.name.town_AL2}Crag Halls of Findol" owner="Faction.athel_loren_clan_12" posX="1262.822" posY="854.329" culture="Culture.battania" gate_posX="1265.753" gate_posY="850.9518" text="{=!}Wydrioth, the Pine Crags, is a High Realm of Athel Loren, ruled by the Glade Lord Findol and Lady Evelyne. It is an embattled region, ever beset by the Dwarfs and Greenskins of the Grey Mountains. The Pine Crags are in fact a sprawling fortress. Here, the Elves have shaped citadels and strongholds from skycrown oaks, and endless leagues of gnarled and tangled walls from rockbriar. A maze of walkways and root-braced tunnels bind the various outposts together into a single living defence-work capable of repelling a full-blown attack.">
     <Components>
       <Town id="town_comp_AL2" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -7911,7 +7911,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL2_1" name="{=Settlements.Settlement.name.village_AL2_1}Tal Jul-Finel" posX="1274.928" posY="822.517" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL2_1}The inhabitants of Tal Jul-Finel are all combat experienced warriors for the've fought countless enemies coming from the grey mountains. The hall of Tal Jul-Finel lies on the foot of the grey mountains. They are having numerous attacks on the forest from dwarves and greenskins whom try to lay waste to their beloved forest.">
+  <Settlement id="village_AL2_1" name="{=Settlements.Settlement.name.village_AL2_1}Tal Jul-Finel" posX="1274.928" posY="822.517" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL2_1}The inhabitants of Tal Jul-Finel are all experienced warriors for they've fought countless enemies coming from the grey mountains. They must repel numerous attacks on the forest from dwarves and greenskins whom try to lay waste to their beloved forest.">
     <Components>
       <Village id="village_comp_AL2_1" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL2" bound="Settlement.town_AL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7924,7 +7924,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL2_2" name="{=Settlements.Settlement.name.village_AL2_2}Tal Varigan" posX="1273.769" posY="875.15" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL2_2}Tal Varigan is more often then not protecting it self from dwarven attacks. Dwarves try to destroy their forest and the inhabitants of Tal Varigan put every resource they have into killing the invading dwarves. Tal Varigan's main product is silver spoils of war they've got from the dwarven caravans and mines.">
+  <Settlement id="village_AL2_2" name="{=Settlements.Settlement.name.village_AL2_2}Tal Varigan" posX="1273.769" posY="875.15" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL2_2}Tal Varigan is more often then not protecting it self from dwarven attacks. Dwarves try to destroy their forest and the inhabitants of Tal Varigan put every resource they have into killing the invading dwarves. Tal Varigan's main product is silver spoils of war they've taken from the dwarven caravans and mines.">
     <Components>
       <Village id="village_comp_AL2_2" village_type="VillageType.silver_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL2" bound="Settlement.town_AL2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7957,7 +7957,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL3_1" name="{=Settlements.Settlement.name.village_AL3_1}Tal Amere" posX="1249.172" posY="744.439" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_1}The hall of Tal Amere is a hall covered in ice. It contains large acient ice sculptures depciting the Asrai pantheon. Tal Amere is heavily guarded with Eternal guard for its spirits are asleep. Sometimes voices are heard from the ice sculptures does it contain the gods voices or do they serve another purpose?">
+  <Settlement id="village_AL3_1" name="{=Settlements.Settlement.name.village_AL3_1}Tal Amere" posX="1249.172" posY="744.439" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_1}The hall of Tal Amere is a hall covered in ice. It contains large ancient ice sculptures depicting the Asrai pantheon. Tal Amere is heavily guarded with Eternal guard for its spirits are asleep. Sometimes voices are heard from the ice sculptures, are they the Cadai’s voices or do they serve a darker purpose?">
     <Components>
       <Village id="village_comp_AL3_1" village_type="VillageType.sheep_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL3" bound="Settlement.town_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7970,7 +7970,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL3_2" name="{=Settlements.Settlement.name.village_AL3_2}Tal Drost" posX="1245.451" posY="754.155" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_2}The Trees of Tal Drost are pillars covered in snow and ice. the ice forms a roof above the hall that keeps the elves dry from snowfall. protected by the ice barrier from above the Asrai found a way to plant vegetation and have a consistent food source in this snow covered land.">
+  <Settlement id="village_AL3_2" name="{=Settlements.Settlement.name.village_AL3_2}Tal Drost" posX="1245.451" posY="754.155" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_2}The Trees of Tal Drost are pillars covered in snow and ice. The ice forms a roof above the hall that keeps the elves dry from snowfall. Protected from above by the ice barrier the Asrai found a way to plant vegetation and have a consistent food source in this snow covered land.">
     <Components>
       <Village id="village_comp_AL3_2" village_type="VillageType.wheat_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL3" bound="Settlement.town_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -7983,7 +7983,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL3_3" name="{=Settlements.Settlement.name.village_AL3_3}Tal Mora" posX="1218.501" posY="762.807" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_2}Inbetween the hall of Equos and the Hall of Coeth Mara lies the trade outpost hall of Tal mora. It contains great amounts of imported food to keep the Asrai of Atylwyth fed for there lands are not fertile and covered with ice.">
+  <Settlement id="village_AL3_3" name="{=Settlements.Settlement.name.village_AL3_3}Tal Mora" posX="1218.501" posY="762.807" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL3_2}In between the hall of Equos and the Hall of Coeth Mara lies the trade outpost hall of Tal Mora. It contains great amounts of imported food to keep the Asrai of Atylwyth fed for their lands are not fertile and covered with ice.">
     <Components>
       <Village id="village_comp_AL3_3" village_type="VillageType.swine_farm" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL3" bound="Settlement.town_AL3" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8030,7 +8030,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL4_2" name="{=Settlements.Settlement.name.village_AL4_2}Tal Brianda" posX="1170.73" posY="831.184" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL4_2}The halls of Brianda lay south of the Halls of Anaereth. The hall serves as a outpost keeping a look out on Castle Quenelles.  The Hall of Tal Brianda hosts many waywatchers who are trained to scout the edges of Athel Loren.">
+  <Settlement id="village_AL4_2" name="{=Settlements.Settlement.name.village_AL4_2}Tal Brianda" posX="1170.73" posY="831.184" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL4_2}The halls of Brianda lay south of the Halls of Anaereth. The hall serves as an outpost keeping watch on Castle Quenelles.  The Hall of Tal Brianda hosts many waywatchers who are trained to scout the edges of Athel Loren.">
     <Components>
       <Village id="village_comp_AL4_2" village_type="VillageType.trapper" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL4" bound="Settlement.town_AL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8056,7 +8056,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL4_4" name="{=Settlements.Settlement.name.village_AL4_3}Tal Rond" posX="1183.224" posY="928.454" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL4_4}A hall near the Wysarian Ravine, Tal Rond serves as a watchout point, both against the forces that regularly gather around Addaivoch as well as nearby Parravon. ">
+  <Settlement id="village_AL4_4" name="{=Settlements.Settlement.name.village_AL4_3}Tal Rond" posX="1183.224" posY="928.454" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL4_4}A hall near the Wysarian Ravine, Tal Rond serves as a watch point, both against the forces that regularly gather around Addaivoch as well as nearby Parravon. ">
     <Components>
       <Village id="village_comp_AL4_4" village_type="VillageType.flax_plant" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL4" bound="Settlement.town_AL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8090,7 +8090,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL5_1" name="{=Settlements.Settlement.name.village_AL5_1}Threllock" posX="1249.041" posY="871.376" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL5_1}Threllock is a mighty tree who's echo's the songs and laughter of loec. Wardancers are often found near the tree laughing and dancing.">
+  <Settlement id="village_AL5_1" name="{=Settlements.Settlement.name.village_AL5_1}Threllock" posX="1249.041" posY="871.376" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL5_1}Threllock is a mighty tree which echoes with the songs and laughter of Loec. Wardancers are often found near the tree laughing and dancing.">
     <Components>
       <Village id="village_comp_AL5_1" village_type="VillageType.vineyard" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL5" bound="Settlement.town_AL5" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8103,7 +8103,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_AL6" name="{=Settlements.Settlement.name.town_AL6}Glade of Eternal Midnight" owner="Faction.athel_loren_clan_9" posX="1172.255" posY="775.238" culture="Culture.battania" gate_posX="1172.585" gate_posY="774.6533" text="{=!}Modryn, the Night Glens is one of the twelve kingdoms of Athel Loren. It is ruled by Lady Morlanna and Lord Arlas. The thing that sets Modryn apart from all other realms of Athel Loren is the fact that it is eternally night there. When the Morathi poisoned Ariel's soul, the darkness spread through the forest. However, the rest of the forest recovered with Ariel, but Modryn has remained dark ever since. The elves of Modryn are as dark as their surroundings. They practice dark magic there that would be forbidden in other parts of the Athel Loren.">
+  <Settlement id="town_AL6" name="{=Settlements.Settlement.name.town_AL6}Glade of Eternal Midnight" owner="Faction.athel_loren_clan_9" posX="1172.255" posY="775.238" culture="Culture.battania" gate_posX="1172.585" gate_posY="774.6533" text="{=!}Modryn, the Night Glens is one of the twelve kingdoms of Athel Loren. It is ruled by Lady Morlanna and Lord Arlas. The thing that sets Modryn apart from all other realms of Athel Loren is the fact that it is eternally night there. When Morathi poisoned Ariel's soul, the darkness spread through the forest. The rest of the forest recovered with Ariel, but Modryn has remained dark ever since. The elves of Modryn are as dark as their surroundings. They practice dark magic there that would be forbidden in other parts of Athel Loren.">
     <Components>
       <Town id="town_comp_AL6" is_castle="false" level="3" background_crop_position="0.0" background_mesh="we_halls" wait_mesh="we_halls" gate_rotation="0.908" prosperity="4500" />
     </Components>
@@ -8123,7 +8123,7 @@
       <Area type="Waterfront" name="{=Rr1cy5Sk}Waterfront" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL6_1" name="{=Settlements.Settlement.name.village_AL6_1}Tal Stornos" posX="1168.403" posY="745.9" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL6_1}The hall of Tal Stornos is a southern watch post made to repel Brettonian invaders from the dukedom of Carcasonne. No seconds chances are given for a captured human for dark sorcery will befall them as they enter Modryn.">
+  <Settlement id="village_AL6_1" name="{=Settlements.Settlement.name.village_AL6_1}Tal Stornos" posX="1168.403" posY="745.9" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL6_1}The hall of Tal Stornos is a southern watch post made to repel Brettonian invaders from the dukedom of Carcasonne. No seconds chances are given to a captured human for dark sorcery will befall them as they enter Modryn.">
     <Components>
       <Village id="village_comp_AL6_1" village_type="VillageType.salt_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL6" bound="Settlement.town_AL6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8136,7 +8136,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_AL6_2" name="{=Settlements.Settlement.name.village_AL6_2}Talrennic" posX="1186.952" posY="749.908" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL6_2}Dark magic surrounds Talrennic for the Asrai living here are shrouded in darkness. Foreign wanderers coming close to Talrennic are never to be seen again.">
+  <Settlement id="village_AL6_2" name="{=Settlements.Settlement.name.village_AL6_2}Talrennic" posX="1186.952" posY="749.908" culture="Culture.battania" text="{=Settlements.Settlement.text.village_AL6_2}Dark magic surrounds Talrennic for the Asrai living here are shrouded in darkness. Foreign wanderers who get too close to Talrennic are never seen again.">
     <Components>
       <Village id="village_comp_AL6_2" village_type="VillageType.clay_mine" hearth="250" gate_rotation="0.008" trade_bound="Settlement.town_AL6" bound="Settlement.town_AL6" background_crop_position="0.0" background_mesh="we_village" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8159,7 +8159,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL1_1" name="{=Settlements.Settlement.name.castle_village_AL1_1}Tal Dovar" posX="1210.524" posY="817.7141" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL1_1}The hall of Dovar is one of the biggest supplier of crude iron for lord Daith. Day and night Vaul's Anvil forges weapon. The never ending forge needs a never ending supply, for centuries the hall of Dovar has has given a answer to this call.">
+  <Settlement id="castle_village_AL1_1" name="{=Settlements.Settlement.name.castle_village_AL1_1}Tal Dovar" posX="1210.524" posY="817.7141" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL1_1}The hall of Dovar is one of the biggest supplier of crude iron for lord Daith. Day and night Vaul's Anvil forges weapons. The never ending forge needs a never ending supply, for centuries the hall of Dovar has answered this call.">
     <Components>
       <Village id="castle_village_comp_AL1_1" village_type="VillageType.iron_mine" hearth="200" trade_bound="Settlement.town_AL6" bound="Settlement.castle_AL1" background_crop_position="0.0" background_mesh="we_village" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8172,7 +8172,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL2" name="{=Settlements.Settlement.name.castle_AL2}The Halls of Equos" owner="Faction.athel_loren_clan_6" posX="1208.409" posY="766.929" culture="Culture.battania" gate_posX="1207.738" gate_posY="766.899" text="{=!}Cavaroc, the Skymark Reaches, is a High Realm of Athel Loren, ruled by Lord Edrael of Equos. It is the land of the meadow glades, the sparsely-wooded grassland plains that lie on Athel Loren's south border. The Elves of Cavaroc are horsemasters as fine as any in the world, and the first to march when the war-horns are sounded. They are swift to act, and swift to anger as well. it is all but a certainty that the Glade Riders of the Skymark Reaches will be found at the head of that mad charge.">
+  <Settlement id="castle_AL2" name="{=Settlements.Settlement.name.castle_AL2}The Halls of Equos" owner="Faction.athel_loren_clan_6" posX="1208.409" posY="766.929" culture="Culture.battania" gate_posX="1207.738" gate_posY="766.899" text="{=!}Cavaroc, the Skymark Reaches, is a High Realm of Athel Loren, ruled by Lord Edrael of Equos. It is the land of the meadow glades, the sparsely-wooded grassland plains that lie on Athel Loren's southern border. The Elves of Cavaroc are horsemasters as fine as any in the world, and the first to march when the war-horns are sounded. They are swift to act, and swift to anger as well. It is all but a certainty that the Glade Riders of the Skymark Reaches will be found at the head of that mad charge.">
     <Components>
       <Town id="castle_comp_AL2" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8182,7 +8182,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL2_1" name="{=Settlements.Settlement.name.castle_village_AL2_1}Tal Amara" posX="1218.272" posY="748.741" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL2_1}The Asrai from Tal Amara are born riders. For generations they have delivered the most fierce Glade riders in Athel loren. The inhabitats of the hall of Tal Amara are swift to be angered and are not afraid to use violence as a solution.">
+  <Settlement id="castle_village_AL2_1" name="{=Settlements.Settlement.name.castle_village_AL2_1}Tal Amara" posX="1218.272" posY="748.741" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL2_1}The Asrai from Tal Amara are born riders. For generations they have delivered the fiercest Glade riders in Athel loren. The inhabitants of the hall of Tal Amara are swift to anger and are not afraid to use violence as a solution.">
     <Components>
       <Village id="castle_village_comp_AL2_1" village_type="VillageType.europe_horse_ranch" hearth="200" trade_bound="Settlement.town_AL5" bound="Settlement.castle_AL2" background_crop_position="0.0" background_mesh="we_village" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8195,7 +8195,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_AL3" name="{=Settlements.Settlement.name.castle_AL3}Tal Enda Varian" owner="Faction.athel_loren_clan_4" posX="1216.944" posY="924.341" culture="Culture.battania" gate_posX="1217.577" gate_posY="924.5664" text="{=!}Argwylon, or The Moonspring Glades is one of the twelve kingdoms of Athel Loren. It is ruled by Lord Thalandor Doomstar.The amount of magic in Argwylon far surpasses that of any other of the Forest's realms. Here, miracles and wonders are performed daily. This is one rare place in Athel Loren where records of history are kept, similar to those in Ulthuan. The elves here are also the only ones in Athel Loren that know the ancient tongue of the Eagles. However, Argwylon's elves are notoriously arrogant, and consider themselves superior to all other elves. It is a rare occurrence when an elf of another realm talks to an elf of Argwylon.">
+  <Settlement id="castle_AL3" name="{=Settlements.Settlement.name.castle_AL3}Tal Enda Varian" owner="Faction.athel_loren_clan_4" posX="1216.944" posY="924.341" culture="Culture.battania" gate_posX="1217.577" gate_posY="924.5664" text="{=!}Argwylon, or The Moonspring Glades is one of the twelve kingdoms of Athel Loren. It is ruled by Lord Thalandor Doomstar. The amount of magic in Argwylon far surpasses that of any other of the Forest's realms. Here, miracles and wonders are performed daily. This is one rare place in Athel Loren where records of history are kept, similar to those in Ulthuan. The elves here are also the only ones in Athel Loren that know the ancient tongue of the Eagles. However, Argwylon's elves are notoriously arrogant, and consider themselves superior to all other elves. It is a rare occurrence when an elf of another realm talks to an elf of Argwylon.">
     <Components>
       <Town id="castle_comp_AL3" is_castle="true" level="3" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="800" />
     </Components>
@@ -8205,7 +8205,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL3_1" name="{=Settlements.Settlement.name.castle_village_AL3_1}Locrimere" posX="1236.274" posY="907.936" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_1}Locrimere lies between Tal Enda Varian and the Waterfall palace of the Naiad Court. The tree serves as a outpost to watch Athel Lorens northern border. ">
+  <Settlement id="castle_village_AL3_1" name="{=Settlements.Settlement.name.castle_village_AL3_1}Locrimere" posX="1236.274" posY="907.936" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_1}Locrimere lies between Tal Enda Varian and the Waterfall palace of the Naiad Court. The tree serves as an outpost to watch Athel Lorens northern border. ">
     <Components>
       <Village id="castle_village_comp_AL3_1" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL3" background_crop_position="0.0" background_mesh="we_village" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8218,7 +8218,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_AL3_2" name="{=Settlements.Settlement.name.castle_village_AL3_2}Waterfall Palace of the Naiad Court" posX="1254.59" posY="900.799" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_2}The Naiad court  is a place of light and wonder, where the rivers are alive with naiads, and the waterfalls sing with ghostly voices. The place has a natural defence system build with water, it has kept the spirits and elves that live here safe for ages.">
+  <Settlement id="castle_village_AL3_2" name="{=Settlements.Settlement.name.castle_village_AL3_2}Waterfall Palace of the Naiad Court" posX="1254.59" posY="900.799" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL3_2}The Naiad court is a place of light and wonder, where the rivers are alive with naiads, and the waterfalls sing with ghostly voices. The place has a natural defense system built with water, it has kept the spirits and elves that live here safe for ages.">
     <Components>
       <Village id="castle_village_comp_AL3_2" village_type="VillageType.vineyard" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL3" background_crop_position="0.0" background_mesh="we_village" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8241,7 +8241,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL4_1" name="{=Settlements.Settlement.name.castle_village_AL4_1}The Summer Tree" posX="1285.307" posY="890.825" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}The Summer Tree is one of the biggest and most ancient trees of athel loren. It reaches sky high and absorb's it power from the sun. Many Asrai live under its roof were the shade protects them for the everlasting summer.">
+  <Settlement id="castle_village_AL4_1" name="{=Settlements.Settlement.name.castle_village_AL4_1}The Summer Tree" posX="1285.307" posY="890.825" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}The Summer Tree is one of the largest and most ancient trees of Athel Loren. It reaches sky high and draws its power from the sun. Many Asrai live under its roof were the shade protects them for the everlasting summer.">
     <Components>
       <Village id="castle_village_comp_AL4_1" village_type="VillageType.date_farm" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL4" background_crop_position="0.0" background_mesh="we_village" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8264,7 +8264,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL5_1" name="{=Settlements.Settlement.name.castle_village_AL5_1}Delliandra" posX="1197.172" posY="912.298" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Under the perennially auburn leaves of this mighty guardian, the forest grows and grows eternally. This Tree is home to the elves of anmyr. Surrounded by the taint of Morghurs blood the acient tree Delliandra stands firm and protects those who live near it against corruption.">
+  <Settlement id="castle_village_AL5_1" name="{=Settlements.Settlement.name.castle_village_AL5_1}Delliandra" posX="1197.172" posY="912.298" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Under the perennially auburn leaves of this mighty guardian, the forest grows and grows eternally. This Tree is home to the elves of anmyr. Surrounded by the taint of Morghurs blood the ancient tree Delliandra stands firm and protects those who live near it against corruption.">
     <Components>
       <Village id="castle_village_comp_AL5_1" village_type="VillageType.sheep_farm" hearth="200" bound="Settlement.castle_AL5" background_crop_position="0.0" background_mesh="we_village" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8277,7 +8277,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_AL5_2" name="{=Settlements.Settlement.name.castle_village_AL5_2}Tal Silvoch" posX="1239.973" posY="888.32" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_2}The Asrai hall of Tal Silvoch are filled with the most anarchic followers of the trickster god Loec. Every so often the nomadic wardancers appear to drink,dance, laugh and love... Only to dissapear the following morning  and never to be seen again.">
+  <Settlement id="castle_village_AL5_2" name="{=Settlements.Settlement.name.castle_village_AL5_2}Tal Silvoch" posX="1239.973" posY="888.32" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_2}The Asrai hall of Tal Silvoch are filled with the most anarchic followers of the trickster god Loec. Every so often the nomadic wardancers appear to drink, dance, laugh and love... Only to disappear the following morning, never to be seen again.">
     <Components>
       <Village id="castle_village_comp_AL5_2" village_type="VillageType.olive_trees" hearth="200" bound="Settlement.castle_AL5" background_crop_position="0.0" background_mesh="we_village" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -8300,7 +8300,7 @@
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
-  <Settlement id="castle_village_AL6_1" name="{=Settlements.Settlement.name.castle_village_AL6_1}Tyr Edrell" posX="1274.927" posY="750.763" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Tyr Edrell serves as a lookout for escaped spirits and keeping a watch on Athel Lorens southern border. The Wildwood server as a prison and the Halls of Tyr Edrell will do everything to keep those spirits sealed.">
+  <Settlement id="castle_village_AL6_1" name="{=Settlements.Settlement.name.castle_village_AL6_1}Tyr Edrell" posX="1274.927" posY="750.763" culture="Culture.battania" text="{=Settlements.Settlement.text.castle_village_AL4_1}Tyr Edrell serves as a lookout for escaped spirits and keeping a watch on Athel Lorens southern border. The Wildwood serves as a prison and the Halls of Tyr Edrell will do everything to keep those spirits sealed.">
     <Components>
       <Village id="castle_village_comp_AL6_1" village_type="VillageType.lumberjack" hearth="200" trade_bound="Settlement.town_AL1" bound="Settlement.castle_AL6" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="we_village" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
