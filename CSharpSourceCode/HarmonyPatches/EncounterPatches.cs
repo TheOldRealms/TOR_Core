@@ -1,8 +1,11 @@
-﻿using HarmonyLib;
+﻿using System.Windows.Forms;
+using HarmonyLib;
 using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
@@ -41,6 +44,8 @@ namespace TOR_Core.HarmonyPatches
                 if (Hero.MainHero.IsEnlisted())
                 {
                     var lord = Hero.MainHero.GetEnlistingHero();
+
+                    var t = MapEvent.PlayerMapEvent;
                     var settlement = lord.CurrentSettlement;
                     if (settlement != null)
                     {
@@ -51,6 +56,24 @@ namespace TOR_Core.HarmonyPatches
                 return false;
             }
             else return true;
+        }
+        
+        
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior), "wait_menu_start_raiding_on_condition")]
+        public static bool Prefix1(ref bool __result)
+        {
+            
+            if (Hero.MainHero.IsEnlisted())
+            {
+                __result = false;
+
+                GameMenu.SwitchToMenu("hireling_menu");
+
+                return false;
+            }
+
+            return true;
         }
     }
 }

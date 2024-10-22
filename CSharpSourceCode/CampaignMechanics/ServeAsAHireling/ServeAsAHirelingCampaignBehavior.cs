@@ -500,7 +500,6 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         public void LeaveLordPartyAction()
         {
-            var encounter = PlayerEncounter.Current;
             _hirelingEnlisted = false;
             _hirelingEnlistingLord = null;
             _hirelingWaitMenuShown = false;
@@ -684,7 +683,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (_hirelingEnlisted && _hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo != null)
             {
 
-                if (_hirelingLordIsFightingWithoutPlayer || _hirelingEnlistingLord.PartyBelongedTo?.BesiegerCamp != null || _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement != null)
+                if (_hirelingLordIsFightingWithoutPlayer || _hirelingEnlistingLord.PartyBelongedTo?.BesiegerCamp != null || _hirelingEnlistingLord.PartyBelongedTo.CurrentSettlement != null || (_hirelingEnlistingLord.PartyBelongedTo.MapEvent!=null && _hirelingEnlistingLord.PartyBelongedTo.MapEvent.IsRaid))
                 {
                     if (!MobileParty.MainParty.ShouldBeIgnored)
                     {

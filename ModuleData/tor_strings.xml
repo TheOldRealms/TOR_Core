@@ -1633,8 +1633,8 @@
   <string id="HirelingActivity1.Necrarch" text="Hone your Witchsight" />
   <string id="HirelingActivity2.Necrarch" text="Search for prey to feed on" />
   <string id="HirelingActivity3.Necrarch" text="Dissect test subjects" />
-  <string id="HirelingActivity3.Necrarch" text="Study arcane blueprints" />
-  <string id="HirelingActivity3.Necrarch" text="Issue orders to your servants" />
+  <string id="HirelingActivity4.Necrarch" text="Study arcane blueprints" />
+  <string id="HirelingActivity5.Necrarch" text="Issue orders to your servants" />
 
   <string id="HirelingActivity0.Necromancer" text="Study tomes of knowledge" />
   <string id="HirelingActivity1.Necromancer" text="Raid nearby cemeteries" />

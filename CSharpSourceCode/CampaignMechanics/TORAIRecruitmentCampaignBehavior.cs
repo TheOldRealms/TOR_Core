@@ -50,7 +50,7 @@ namespace TOR_Core.CampaignMechanics
                         if (party.LimitedPartySize > party.MemberRoster.TotalManCount + UndeadCountTowns)
                         {
                             var count = party.LeaderHero.HasAttribute("BloodDragon") ? UndeadCountVillages : UndeadCountTowns;
-                            party.MemberRoster.AddToCounts(_skeleton, 0, false, count);
+                            party.MemberRoster.AddToCounts(_skeleton, count, false, 0);
 
                             if (party.ActualClan.StringId.Contains("necrarch"))
                             {
