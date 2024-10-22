@@ -55,6 +55,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             return _lastGhostRecruitmentTime[hero.StringId];
         }
     }
+
+    public void SetLastDefileTime(Hero hero, int value)
+    {
+        _lastDefileTime.AddOrReplace(hero.StringId,value);
+    }
     
     public void SetLastGhostRecruitmentTime(Hero hero, int value)
     {

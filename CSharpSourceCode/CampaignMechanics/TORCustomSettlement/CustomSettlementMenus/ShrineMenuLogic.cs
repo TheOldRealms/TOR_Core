@@ -19,6 +19,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
 public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 {
+    private const int DefillingCooldownInDays = 5;
     private const int DefilingDarkEnergyPerTick = 125;
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
@@ -80,9 +81,10 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         if (Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire())
         {
             var lastDefileTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastDefileTime(Hero.MainHero);
-            if (lastDefileTime >= (int)CampaignTime.Now.ToDays - 5)
+            if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
             {
-                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action every 20 days.");
+                GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
+                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                 args.IsEnabled = false;
             }
 
@@ -250,6 +252,8 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             {
                 if (shrineReligion.Affinity == dominantReligion.Affinity) hero.SetPersonalRelation(Hero.MainHero, (int)relation - 10);
             }
+            
+            Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastDefileTime(Hero.MainHero, (int) CampaignTime.Now.ToDays);
         }
     }
 

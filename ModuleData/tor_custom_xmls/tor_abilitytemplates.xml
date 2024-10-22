@@ -4202,7 +4202,7 @@
     <AbilityTemplate StringID="WrathOfTheWood"
                      Name="Wrath of the Wood"
                      SpriteName="wraith_of_the_forest_icon"
-                     CoolDown="5"
+                     CoolDown="40"
                      BaseMisCastChance="0.3"
                      Duration="0"
                      Radius="2"
