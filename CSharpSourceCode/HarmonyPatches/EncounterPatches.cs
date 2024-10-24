@@ -63,7 +63,6 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior), "wait_menu_start_raiding_on_condition")]
         public static bool Prefix1(ref bool __result)
         {
-            
             if (Hero.MainHero.IsEnlisted())
             {
                 __result = false;

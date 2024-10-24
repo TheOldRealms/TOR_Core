@@ -283,15 +283,15 @@ namespace TOR_Core.AbilitySystem
                     }
                 // Quick cast setup
                 case AbilityEffectType.Augment:
-                    frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3();
+                    frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3MT();
                     break;
                 case AbilityEffectType.ArtilleryPlacement:
                 case AbilityEffectType.Summoning:
                     frame.origin =
-                        Mission.Current.GetRandomPositionAroundPoint(Agent.Main.GetWorldPosition().GetGroundVec3(), 3, 6, false);
+                        Mission.Current.GetRandomPositionAroundPoint(Agent.Main.GetWorldPosition().GetGroundVec3MT(), 3, 6, false);
                     break;
                 case AbilityEffectType.Heal when IsGroundAbility():
-                    frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3();
+                    frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3MT();
                     break;
                 case AbilityEffectType.Heal:
                     {

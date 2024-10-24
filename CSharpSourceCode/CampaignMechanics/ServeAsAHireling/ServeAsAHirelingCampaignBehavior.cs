@@ -638,10 +638,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             {
                 while (Campaign.Current.CurrentMenuContext != null)
                     GameMenu.ExitToLast();
-                if (PartyBase.MainParty.MobileParty.CurrentSettlement != null)
-                    LeaveSettlementAction.ApplyForParty(MobileParty.MainParty);
-                PlayerEncounter.Finish();
-                if (PlayerEncounter.EncounterSettlement != null) PlayerEncounter.LeaveSettlement();
+                if (PlayerEncounter.Current != null && PlayerEncounter.Current.EncounterState == PlayerEncounterState.End)
+                    PlayerEncounter.Finish();
+                if (PartyBase.MainParty.MobileParty.CurrentSettlement != null) 
+                    PlayerEncounter.LeaveSettlement();
+                if (PlayerEncounter.LocationEncounter != null) 
+                    PlayerEncounter.LocationEncounter = null;
+                PartyBase.MainParty.SetVisualAsDirty();
                 GameMenu.ActivateGameMenu("hireling_menu");
             }
         }

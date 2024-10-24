@@ -165,7 +165,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
         public bool IsArtilleryAtPosition(TacticalPosition position)
         {
             return Mission.Current.GetActiveEntitiesWithScriptComponentOfType<BaseFieldSiegeWeapon>()
-                .Any(entity => entity.GlobalPosition.Distance(position.Position.GetGroundVec3()) < 30);
+                .Any(entity => entity.GlobalPosition.Distance(position.Position.GetGroundVec3MT()) < 30);
         }
 
         public void DeterminePositions()
@@ -193,7 +193,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                 var tp = _chosenArtilleryPosition.TacticalPosition;
                 var direction = (Team.QuerySystem.AverageEnemyPosition - tp.Position.AsVec2).Normalized();
                 TacticalPosition primaryDefensivePosition = new TacticalPosition(
-                    new WorldPosition(Mission.Current.Scene, tp.Position.GetGroundVec3() + direction.ToVec3() * 50),
+                    new WorldPosition(Mission.Current.Scene, tp.Position.GetGroundVec3MT() + direction.ToVec3() * 50),
                     direction, tp.Width, tp.Slope, tp.IsInsurmountable, tp.TacticalPositionType, tp.TacticalRegionMembership);
 
                 if (primaryDefensivePosition != _mainDefensiveLinePosition)
@@ -246,7 +246,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
         private bool LineOfSightAllowsArtillery(TacticalPosition position, Vec3 enemyPosition)
         {
             return true; //TODO:Temp
-            var posCorrected = position.Position.GetGroundVec3();
+            var posCorrected = position.Position.GetGroundVec3MT();
             posCorrected.z += 1.5f;
             var enemyCorrected = enemyPosition;
             enemyCorrected.z += 2.5f;
@@ -257,8 +257,8 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                 // && CommonAIFunctions.HasLineOfSight(posCorrected, posCorrected + position.Direction.Normalized().ToVec3()*15, 20);
             }
 
-            return CommonAIFunctions.CommonAIFunctions.HasLineOfSight(posCorrected, enemyCorrected, Team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyCorrected) * 0.5f) ||
-                   CommonAIFunctions.CommonAIFunctions.HasLineOfSight(enemyCorrected, posCorrected, Team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3().Distance(enemyCorrected) * 0.5f);
+            return CommonAIFunctions.CommonAIFunctions.HasLineOfSight(posCorrected, enemyCorrected, Team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3MT().Distance(enemyCorrected) * 0.5f) ||
+                   CommonAIFunctions.CommonAIFunctions.HasLineOfSight(enemyCorrected, posCorrected, Team.TeamAI.IsDefenseApplicable ? 70.0f : position.Position.GetGroundVec3MT().Distance(enemyCorrected) * 0.5f);
             //  && CommonAIFunctions.HasLineOfSight(posCorrected, posCorrected + position.Direction.Normalized().ToVec3()*15, 20);
         }
 
@@ -353,7 +353,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                 _artilleryFormation.AI.ResetBehaviorWeights();
                 SetDefaultBehaviorWeights(_artilleryFormation);
                 var enemyDirection = (_chosenArtilleryPosition.TacticalPosition.Position.AsVec2 - Team.QuerySystem.AverageEnemyPosition).Normalized();
-                _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(15f).DefensePosition = new WorldPosition(Mission.Current.Scene, _chosenArtilleryPosition.TacticalPosition.Position.GetGroundVec3() + enemyDirection.ToVec3() * 12);
+                _artilleryFormation.AI.SetBehaviorWeight<BehaviorDefend>(15f).DefensePosition = new WorldPosition(Mission.Current.Scene, _chosenArtilleryPosition.TacticalPosition.Position.GetGroundVec3MT() + enemyDirection.ToVec3() * 12);
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorSkirmishLine>(1f);
                 _artilleryFormation.AI.SetBehaviorWeight<BehaviorScreenedSkirmish>(1f);
             }

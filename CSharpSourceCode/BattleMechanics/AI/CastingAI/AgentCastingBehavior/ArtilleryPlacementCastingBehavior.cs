@@ -34,9 +34,9 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
         protected override Target UpdateTarget(Target target)
         {
             var width = Math.Max(target.TacticalPosition.Width, 35);
-            var direction = target.TacticalPosition.Position.GetGroundVec3() - Agent.Team.QuerySystem.AverageEnemyPosition.ToVec3();
+            var direction = target.TacticalPosition.Position.GetGroundVec3MT() - Agent.Team.QuerySystem.AverageEnemyPosition.ToVec3();
             direction /= direction.Length;
-            target.SelectedWorldPosition = target.TacticalPosition.Position.GetGroundVec3() + direction.AsVec2.RightVec().ToVec3() * (float) (_random.NextDouble() * width - width / 2);
+            target.SelectedWorldPosition = target.TacticalPosition.Position.GetGroundVec3MT() + direction.AsVec2.RightVec().ToVec3() * (float) (_random.NextDouble() * width - width / 2);
             return target;
         }
 
@@ -57,7 +57,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
 
             var artilleryFormation = Agent.Team.GetFormationsIncludingSpecial().ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
 
-            var artilleryPosition = CurrentTarget.TacticalPosition.Position.GetGroundVec3();
+            var artilleryPosition = CurrentTarget.TacticalPosition.Position.GetGroundVec3MT();
             CurrentTarget.UtilityValue = Mission.Current.GetArtillerySlotsLeftForTeam(Agent.Team) > 0 &&
                                          ((ItemBoundAbility) Agent.GetAbility(AbilityIndex)).GetRemainingCharges() > 0 &&
                                          (Agent.Position.Distance(artilleryPosition) < 25 || artilleryFormation != null && artilleryFormation.CurrentPosition.Distance(artilleryPosition.AsVec2) < 20)

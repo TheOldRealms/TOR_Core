@@ -9,9 +9,9 @@ namespace TOR_Core.Extensions
         {
             if (target.TacticalPosition != null)
             {
-                MBDebug.RenderDebugText3D(target.TacticalPosition.Position.GetGroundVec3(), target.UtilityValue.ToString(), 4294967295U, 0, 0, time);
-                MBDebug.RenderDebugSphere(target.TacticalPosition.Position.GetGroundVec3(), size, 4294967295, false, time);
-                MBDebug.RenderDebugDirectionArrow(target.TacticalPosition.Position.GetGroundVec3(), target.TacticalPosition.Direction.ToVec3());
+                MBDebug.RenderDebugText3D(target.TacticalPosition.Position.GetGroundVec3MT(), target.UtilityValue.ToString(), 4294967295U, 0, 0, time);
+                MBDebug.RenderDebugSphere(target.TacticalPosition.Position.GetGroundVec3MT(), size, 4294967295, false, time);
+                MBDebug.RenderDebugDirectionArrow(target.TacticalPosition.Position.GetGroundVec3MT(), target.TacticalPosition.Direction.ToVec3());
             }
         }
     }

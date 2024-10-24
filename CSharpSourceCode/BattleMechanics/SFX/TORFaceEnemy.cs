@@ -22,7 +22,7 @@ namespace TOR_Core.BattleMechanics.SFX
             if (alliedTeam == null) return;
             var enemyTeam =  Mission.Current.GetEnemyTeamsOf(alliedTeam).FirstOrDefault();
             if (enemyTeam == null) return;
-            var target = enemyTeam.GetMedianPosition(enemyTeam.GetAveragePosition()).GetGroundVec3();
+            var target = enemyTeam.GetMedianPosition(enemyTeam.GetAveragePosition()).GetGroundVec3MT();
             var direction = (target - GameEntity.GlobalPosition).NormalizedCopy();
             var rotationNew = faceAllied? Mat3.CreateMat3WithForward(direction):  Mat3.CreateMat3WithForward(-direction);
             var position = GameEntity.GlobalPosition;

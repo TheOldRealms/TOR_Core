@@ -22,7 +22,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentTacticalBehavior
             CastingPosition = 
                 target.Formation != null ? CalculateCastingPosition(target.Formation) :
                 target.SelectedWorldPosition != null && target.SelectedWorldPosition != Vec3.Zero ? target.SelectedWorldPosition :
-                target.TacticalPosition != null ? target.TacticalPosition.Position.GetGroundVec3():
+                target.TacticalPosition != null ? target.TacticalPosition.Position.GetGroundVec3MT():
                 Agent.Position;
             var worldPosition = new WorldPosition(Mission.Current.Scene, CastingPosition);
             Agent.SetScriptedPosition(ref worldPosition, false);
@@ -31,7 +31,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentTacticalBehavior
         private static Vec3 CalculateCastingPosition(Formation targetFormation)
         {
             var medianPositionPosition = targetFormation.QuerySystem.MedianPosition;
-            return medianPositionPosition.GetGroundVec3() + (targetFormation.Direction * targetFormation.GetMovementSpeedOfUnits()).ToVec3(medianPositionPosition.GetGroundZ());
+            return medianPositionPosition.GetGroundVec3MT() + (targetFormation.Direction * targetFormation.GetMovementSpeedOfUnits()).ToVec3(medianPositionPosition.GetGroundZMT());
         }
 
         public override void ApplyBehaviorParams()

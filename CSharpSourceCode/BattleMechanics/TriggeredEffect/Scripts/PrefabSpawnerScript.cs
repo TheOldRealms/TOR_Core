@@ -23,7 +23,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
         private void SpawnPrefab(Vec3 position, Agent triggeredByAgent)
         {
             var team = Mission.Current.GetEnemyTeamsOf(triggeredByAgent.Team).FirstOrDefault();
-            var target = team.GetMedianPosition(team.GetAveragePosition()).GetGroundVec3();
+            Vec3 target = Vec3.Invalid;
+            using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+            {
+                target = team.GetMedianPosition(team.GetAveragePosition()).GetGroundVec3MT();
+            }
+            if (!target.IsValid) return;
             var direction = (target - position).NormalizedCopy();
             var rotation = Mat3.CreateMat3WithForward(-direction);
             var entity = GameEntity.Instantiate(Mission.Current.Scene, PrefabName, true);
@@ -42,7 +47,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 
         internal void OnInit(string spawnPrefabName)
         {
-            this.PrefabName = spawnPrefabName;
+            PrefabName = spawnPrefabName;
         }
     }
 }

@@ -163,7 +163,7 @@ namespace TOR_Core.BattleMechanics.AI.CivilianMissionAI
 				return 0f;
 			}
 			float num = 1f;
-			Vec3 vec = vacantStandingPointForAI.GetUserFrameForAgent(OwnerAgent).Origin.GetGroundVec3() - OwnerAgent.Position;
+			Vec3 vec = vacantStandingPointForAI.GetUserFrameForAgent(OwnerAgent).Origin.GetGroundVec3MT() - OwnerAgent.Position;
 			if (vec.Length < 2f)
 			{
 				num *= vec.Length / 2f;
