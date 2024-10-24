@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
-using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.TwoDimension;
-using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 
@@ -37,7 +34,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             get
             {
-                if (_targetAgents == null) return new MBReadOnlyList<Agent>();
+                if (_targetAgents == null) return [];
                 else return new MBReadOnlyList<Agent>(_targetAgents);
             }
         }
@@ -157,8 +154,11 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             _previousFrameOrigin = frame.origin;
             var newframe = GetNextGlobalFrame(frame, dt);
-            GameEntity.SetGlobalFrame(newframe);
-            if (GameEntity.GetBodyShape() != null) GameEntity.GetBodyShape().ManualInvalidate();
+            GameEntity.SetGlobalFrameMT(newframe);
+            using(new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
+            {
+                GameEntity.GetBodyShape()?.ManualInvalidate();
+            }
         }
 
         protected virtual MatrixFrame GetNextGlobalFrame(MatrixFrame oldFrame, float dt)
@@ -223,7 +223,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             if(!_canCollide) return false;
             var collisionRadius = _ability.Template.Radius + 1;
-            MBList<Agent> agents = new MBList<Agent>();
+            MBList<Agent> agents = [];
             agents = Mission.Current.GetNearbyAgents(GameEntity.GetGlobalFrame().origin.AsVec2, collisionRadius, agents);
             return agents.Any(agent => agent != _casterAgent && Math.Abs(GameEntity.GetGlobalFrame().origin.Z - agent.Position.Z) < collisionRadius);
         }
@@ -257,7 +257,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 {
                     if (_ability.Template.AbilityTargetType == AbilityTargetType.Self)
                     {
-                        effect.Trigger(position, normal, _casterAgent, _ability.Template, new MBList<Agent>(1) { _casterAgent });
+                        effect.Trigger(position, normal, _casterAgent, _ability.Template, [_casterAgent]);
                     }
                     else if(_targetAgents != null && _targetAgents.Count() > 0)
                     {
@@ -270,7 +270,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected virtual List<TriggeredEffect> GetEffectsToTrigger()
         {
-            List<TriggeredEffect> effects = new List<TriggeredEffect>();
+            List<TriggeredEffect> effects = [];
             if (_ability == null) return effects; 
             foreach(var effect in _ability.Template.AssociatedTriggeredEffectTemplates)
             {

@@ -47,7 +47,11 @@ namespace TOR_Core.AbilitySystem.Scripts
             frame.rotation.RotateAboutUp(_currentDeviation);
             var distance = Ability.Template.BaseMovementSpeed * dt;
             frame.Advance(distance);
-            var heightAtPosition = Mission.Current.Scene.GetGroundHeightAtPosition(frame.origin);
+            float heightAtPosition;
+            using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+            {
+                heightAtPosition = Mission.Current.Scene.GetGroundHeightAtPositionMT(frame.origin);
+            }
             frame.origin.z = heightAtPosition + Ability.Template.Offset;
 
             oldFrame.origin = frame.origin;

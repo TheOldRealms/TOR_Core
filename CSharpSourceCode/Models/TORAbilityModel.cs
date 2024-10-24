@@ -148,7 +148,6 @@ namespace TOR_Core.Models
                     }
 
                 }
-   
 
                 CareerHelper.ApplyBasicCareerPassives(player, ref explainedNumber, PassiveEffectType.SpellRadius, true);
 

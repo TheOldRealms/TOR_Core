@@ -44,7 +44,7 @@ namespace TOR_Core.AbilitySystem
         private SummonedCombatant _defenderSummoningCombatant;
         private SummonedCombatant _attackerSummoningCombatant;
         private readonly float DamagePortionForChargingCareerAbility = 1f;
-        private Dictionary<Team, int> _artillerySlots = new Dictionary<Team, int>();
+        private Dictionary<Team, int> _artillerySlots = [];
         private GameKey _quickCastMenuKey;
         private GameKey _quickCast;
         private GameKey _specialMoveKey;
@@ -131,10 +131,7 @@ namespace TOR_Core.AbilitySystem
                 _shouldSheathWeapon = true;
                 _shouldPlayIdleCastStanceAnim = true;
                 var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
-                if (traitcomp != null)
-                {
-                    traitcomp.EnableAllParticles(false);
-                }
+                traitcomp?.EnableAllParticles(false);
 
                 EnableCastStanceParticles(true);
             }
@@ -183,7 +180,7 @@ namespace TOR_Core.AbilitySystem
             }
             else if(!isSlowTimeActive && enable)
             {
-                Mission.TimeSpeedRequest timeRequest = new Mission.TimeSpeedRequest(0.3f, _timeRequestID);
+                Mission.TimeSpeedRequest timeRequest = new(0.3f, _timeRequestID);
                 _timeRequestID = timeRequest.RequestID;
                 Mission.Current.AddTimeSpeedRequest(timeRequest);
             }
@@ -208,10 +205,7 @@ namespace TOR_Core.AbilitySystem
             SlowDownTime(false);
             _abilityView.MissionScreen?.SetRadialMenuActiveState(false);
             var traitcomp = Agent.Main.GetComponent<ItemTraitAgentComponent>();
-            if (traitcomp != null)
-            {
-                traitcomp.EnableAllParticles(true);
-            }
+            traitcomp?.EnableAllParticles(true);
 
             EnableCastStanceParticles(false);
             if(errorMessage != null)
@@ -266,10 +260,7 @@ namespace TOR_Core.AbilitySystem
                 if (Game.Current.GameType is Campaign)
                 {
                     var quest = TORQuestHelper.GetCurrentActiveIfExists<SpecializeLoreQuest>();
-                    if (quest != null)
-                    {
-                        quest.IncrementCast();
-                    }
+                    quest?.IncrementCast();
                 }
             }
 
@@ -314,7 +305,7 @@ namespace TOR_Core.AbilitySystem
                         }
                         else if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
                         {
-                            TextObject disabledReason = new TextObject("Error Casting Career Ability");
+                            TextObject disabledReason = new("Error Casting Career Ability");
                             if ( _abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out disabledReason) && IsSniperScopeDisabled())
                             {
                                 _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
@@ -324,8 +315,7 @@ namespace TOR_Core.AbilitySystem
                                 }
                                 else
                                 {
-                                    TextObject failureReason;
-                                    if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                    if (!Agent.Main.TryCastCurrentAbility(out TextObject failureReason))
                                     {
                                         DisableAbilityMode(false, failureReason);
                                     }
@@ -349,8 +339,7 @@ namespace TOR_Core.AbilitySystem
                             if (_abilityComponent.CurrentAbility != null && !_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out _) && IsSniperScopeDisabled())
                             {
                                 _abilityComponent.LastCastWasQuickCast = true;
-                                TextObject failureReason;
-                                if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                if (!Agent.Main.TryCastCurrentAbility(out TextObject failureReason))
                                 {
                                     DisableAbilityMode(false, failureReason);
                                 }
@@ -362,8 +351,7 @@ namespace TOR_Core.AbilitySystem
                     {
                         if (!Input.IsKeyDown(_quickCastMenuKey.KeyboardKey.InputKey) && !Input.IsKeyDown(_quickCastMenuKey.ControllerKey.InputKey))
                         {
-                            TextObject failureReason;
-                            if (_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out failureReason))
+                            if (_abilityComponent.CurrentAbility.IsDisabled(Agent.Main, out TextObject failureReason))
                             {
                                 DisableAbilityMode(false, failureReason);
                                 return;
@@ -401,8 +389,7 @@ namespace TOR_Core.AbilitySystem
                                          !((SingleTargetCrosshair)_abilityComponent.CurrentAbility.Crosshair).IsTargetLocked);
                             if (!flag)
                             {
-                                TextObject failureReason;
-                                if (!Agent.Main.TryCastCurrentAbility(out failureReason))
+                                if (!Agent.Main.TryCastCurrentAbility(out TextObject failureReason))
                                 {
                                     DisableAbilityMode(false, failureReason);
                                 }
@@ -478,8 +465,7 @@ namespace TOR_Core.AbilitySystem
 
         public int GetArtillerySlotsLeftForTeam(Team team)
         {
-            int slotsLeft = 0;
-            _artillerySlots.TryGetValue(team, out slotsLeft);
+            _artillerySlots.TryGetValue(team, out int slotsLeft);
             return slotsLeft;
         }
 
@@ -550,10 +536,7 @@ namespace TOR_Core.AbilitySystem
                     }
 
                     var comp = agent.GetComponent<StatusEffectComponent>();
-                    if (comp != null)
-                    {
-                        comp.Dispose();
-                    }
+                    comp?.Dispose();
                 }
             }
         }
@@ -650,10 +633,7 @@ namespace TOR_Core.AbilitySystem
                 }
                 foreach (var psys in _psys)
                 {
-                    if (psys != null)
-                    {
-                        psys.SetEnable(enable);
-                    }
+                    psys?.SetEnable(enable);
                 }
             }
         }
@@ -709,19 +689,11 @@ namespace TOR_Core.AbilitySystem
             }
 
             var combatantToReturn =
-                team.Side == BattleSideEnum.Attacker ? _attackerSummoningCombatant
+                (team.Side == BattleSideEnum.Attacker ? _attackerSummoningCombatant
                 : team.Side == BattleSideEnum.Defender ? _defenderSummoningCombatant
-                : null;
-
-            if (combatantToReturn == null)
-            {
-                // Crash the thread early to make it easier to debug instead of
-                // letting it the thread die on TalesWorld's end.
-                throw new NullReferenceException(
+                : null) ?? throw new NullReferenceException(
                     String.Format("Summoning combatant for team: {0} is null!", team.Side)
                 );
-            }
-
             return combatantToReturn;
         }
 
@@ -730,8 +702,7 @@ namespace TOR_Core.AbilitySystem
             if (_abilityComponent != null)
             {
                 _psys = new ParticleSystem[2];
-                GameEntity entity;
-                _psys[0] = TORParticleSystem.ApplyParticleToAgentBone(Agent.Main, _castingStanceParticleName, Game.Current.DefaultMonster.MainHandItemBoneIndex, out entity);
+                _psys[0] = TORParticleSystem.ApplyParticleToAgentBone(Agent.Main, _castingStanceParticleName, Game.Current.DefaultMonster.MainHandItemBoneIndex, out GameEntity entity);
                 _psys[1] = TORParticleSystem.ApplyParticleToAgentBone(Agent.Main, _castingStanceParticleName, Game.Current.DefaultMonster.OffHandItemBoneIndex, out entity);
                 EnableCastStanceParticles(false);
             }
@@ -768,7 +739,7 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
 
-                if (!(Game.Current.GameType is Campaign)) return;
+                if (Game.Current.GameType is not Campaign) return;
                 if (hero.HasAnyCareer() && hero.HasCareerChoice("ArchLectorPassive1"))
                 {
                     Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();

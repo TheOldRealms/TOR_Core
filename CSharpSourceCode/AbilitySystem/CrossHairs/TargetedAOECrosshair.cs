@@ -27,7 +27,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 UpdatePosition();
                 if (Targets != null)
                 {
-                    _previousTargets = new MBReadOnlyList<Agent>(Targets.ToList());
+                    _previousTargets = new MBReadOnlyList<Agent>([.. Targets]);
                 }
                 UpdateTargets();
                 UpdateAgentsGlow();
@@ -129,7 +129,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             Targets.Clear();
         }
 
-        public MBList<Agent> Targets  = new MBList<Agent>();
+        public MBList<Agent> Targets  = [];
 
         private MBReadOnlyList<Agent> _previousTargets;
 

@@ -99,16 +99,20 @@ namespace TOR_Core.Missions
 
 		protected bool CanAgentSeeAgent(Agent agent, Agent targetAgent)
 		{
+			bool result = false;
 			if ((agent.Position - targetAgent.Position).Length < 10f)
 			{
 				Vec3 eyeGlobalPosition = targetAgent.GetEyeGlobalPosition();
 				Vec3 eyeGlobalPosition2 = agent.GetEyeGlobalPosition();
 				if (MathF.Abs(Vec3.AngleBetweenTwoVectors(targetAgent.Position - agent.Position, agent.LookDirection)) < 1.5f)
 				{
-                    return !Mission.Current.Scene.RayCastForClosestEntityOrTerrain(eyeGlobalPosition2, eyeGlobalPosition, out _, 0.01f, BodyFlags.CommonFocusRayCastExcludeFlags);
+                    using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+					{
+                        result = !Mission.Current.Scene.RayCastForClosestEntityOrTerrainMT(eyeGlobalPosition2, eyeGlobalPosition, out _, 0.01f, BodyFlags.CommonFocusRayCastExcludeFlags);
+                    }
                 }
 			}
-			return false;
+			return result;
 		}
 
 		public override InquiryData OnEndMissionRequest(out bool canLeave)

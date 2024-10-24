@@ -9,8 +9,6 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
 {
     public class MissileCastingBehavior : AbstractAgentCastingBehavior
     {
-       
-
         public MissileCastingBehavior(Agent agent, AbilityTemplate template, int abilityIndex) : base(agent, template,
             abilityIndex)
         {
@@ -36,14 +34,18 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             return target;
         }
 
-       
-
         protected override bool HaveLineOfSightToTarget(Target target)
         {
             var targetPoint = target.GetPositionPrioritizeCalculated();
             targetPoint.z += 0.75f;
-            Agent collidedAgent = Mission.Current.RayCastForClosestAgent(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, out float _, Agent.Index, 0.4f);
-            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, out float distance, out GameEntity _, 0.4f);
+            Agent collidedAgent;
+            float distance;
+
+            using(new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+            {
+                collidedAgent = Mission.Current.RayCastForClosestAgent(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, out float _, Agent.Index, 0.4f);
+                Mission.Current.Scene.RayCastForClosestEntityOrTerrainMT(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, out distance, out GameEntity _, 0.4f);
+            }
 
             return Agent.GetChestGlobalPosition().Distance(targetPoint) > 1 && (distance is Single.NaN || distance > 1) &&
                    (collidedAgent == null || collidedAgent.IsEnemyOf(Agent) || collidedAgent.GetChestGlobalPosition().Distance(targetPoint) < 4) &&

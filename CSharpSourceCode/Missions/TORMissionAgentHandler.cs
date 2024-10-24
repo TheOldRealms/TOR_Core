@@ -177,7 +177,10 @@ namespace TOR_Core.Missions
 					matrixFrame.rotation.s = Vec3.CrossProduct(matrixFrame.rotation.f, matrixFrame.rotation.u);
 					matrixFrame.rotation.OrthonormalizeAccordingToForwardAndKeepUpAsZAxis();
 
-					matrixFrame.origin.z = Mission.Scene.GetGroundHeightAtPosition(matrixFrame.origin, BodyFlags.CommonCollisionExcludeFlags);
+                    using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+					{
+                        matrixFrame.origin.z = Mission.Scene.GetGroundHeightAtPositionMT(matrixFrame.origin, BodyFlags.CommonCollisionExcludeFlags);
+                    }
 
 					var agentData = GetAgentBuildData(character, matrixFrame);
 

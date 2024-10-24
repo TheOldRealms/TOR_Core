@@ -34,7 +34,7 @@ namespace TOR_Core.BattleMechanics.SFX
         {
             base.OnInit();
             this.SetScriptComponentToTick(this.GetTickRequirement());
-            var chair = this.GameEntity.GetScriptComponents<Chair>().FirstOrDefault();
+            var chair = GameEntity.GetScriptComponents<Chair>().FirstOrDefault();
             sitingPoint = chair.StandingPoints[0];
         }
 
@@ -73,13 +73,13 @@ namespace TOR_Core.BattleMechanics.SFX
 
         public void Advance(MatrixFrame frame)
         {
-            this.GameEntity.SetGlobalFrame(frame);
-            this.GameEntity.GetChild(0).SetGlobalFrame(frame);
+            GameEntity.SetGlobalFrameMT(frame);
+            GameEntity.GetChild(0).SetGlobalFrameMT(frame);
         }
         
         public void ActivateFlying()
         {
-            var chair = this.GameEntity.GetScriptComponents<Chair>().FirstOrDefault();
+            var chair = GameEntity.GetScriptComponents<Chair>().FirstOrDefault();
             var point = chair.StandingPoints[0];
 
             chair.Activate();

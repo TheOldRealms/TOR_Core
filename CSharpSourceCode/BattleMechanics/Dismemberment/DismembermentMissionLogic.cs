@@ -96,10 +96,11 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             Vec3 upPos = Mission.Current.GetBattleSideInitialSpawnPathFrame(BattleSideEnum.Defender).Origin.Normal;
             upPos += Vec3.Up * 50;
             var frame = new MatrixFrame(Mat3.Identity, upPos); 
-            item.SetGlobalFrame(frame);
-            //item.FadeOut(0,false);
-            item.AddPhysics(item.Mass, item.CenterOfMass, item.GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
-            //item.SetPhysicsState(false,true);
+            item.SetGlobalFrameMT(frame);
+            using (new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
+            {
+                item.AddPhysics(item.Mass, item.CenterOfMass, item.GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("flesh"), false, -1);
+            }
             item.SetAlpha(0);
             
             return item;
@@ -207,12 +208,13 @@ namespace TOR_Core.BattleMechanics.Dismemberment
                 if (!_fullyInstantiated)    
                 {
                     _pooledDismemberedLimbs[_index][i].SetAlpha(1);
-                   // _pooledDismemberedLimbs[_index][i].SetAlpha(1);
-                    //_pooledDismemberedLimbs[_index][i].SetPhysicsState(true,true);
                 }
-                _pooledDismemberedLimbs[_index][i].SetGlobalFrame(frame);
+                _pooledDismemberedLimbs[_index][i].SetGlobalFrameMT(frame);
                 var dir = GetRandomDirection(3);
-                _pooledDismemberedLimbs[_index][i].ApplyLocalImpulseToDynamicBody(Vec3.Up*-1, dir * 25);
+                using (new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
+                {
+                    _pooledDismemberedLimbs[_index][i].ApplyLocalImpulseToDynamicBody(Vec3.Up * -1, dir * 25);
+                }
             }
 
             _index++;
@@ -254,7 +256,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         {
             GameEntity head = CopyHead(victim);
             MatrixFrame headFrame = new MatrixFrame(victim.LookFrame.rotation, victim.GetEyeGlobalPosition());
-            head.SetGlobalFrame(headFrame);
+            head.SetGlobalFrameMT(headFrame);
 
             float weight = 0;
             var headEquipment = victim.SpawnEquipment[EquipmentIndex.Head];
@@ -265,7 +267,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
                 var headArmor = CopyHeadArmor(victim, headEquipment, out tag);
                 if (tag == MeshTag.SHA)
                 {
-                    headArmor.SetGlobalFrame(headFrame);
+                    headArmor.SetGlobalFrameMT(headFrame);
                     AddPhysics(headArmor, attackCollision, weight);
                 }
                 else
@@ -328,10 +330,13 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         private void AddPhysics(GameEntity entity, AttackCollisionData collisionData, float weight = 1)
         {
-            entity.AddSphereAsBody(Vec3.Zero, 0.15f, BodyFlags.BodyOwnerEntity);
-            entity.EnableDynamicBody();
-            Vec3 blowDir = collisionData.WeaponBlowDir;
-            entity.AddPhysics(weight, entity.CenterOfMass, entity.GetBodyShape(), blowDir * 2, blowDir * 10, PhysicsMaterial.GetFromName("flesh"), false, -1);
+            using (new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
+            {
+                entity.AddSphereAsBody(Vec3.Zero, 0.15f, BodyFlags.BodyOwnerEntity);
+                entity.EnableDynamicBody();
+                Vec3 blowDir = collisionData.WeaponBlowDir;
+                entity.AddPhysics(weight, entity.CenterOfMass, entity.GetBodyShape(), blowDir * 2, blowDir * 10, PhysicsMaterial.GetFromName("flesh"), false, -1);
+            }
         }
 
         private void CoverCutWithFlesh(Agent victim, GameEntity head)

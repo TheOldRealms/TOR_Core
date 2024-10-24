@@ -71,7 +71,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 if (CasterAgent.IsPlayerControlled) DisbindKeyBindings();
                 var frame = CasterAgent.Frame.Elevate(3f);
                 Agent.Main.TeleportToPosition(frame.origin);
-                GameEntity.SetGlobalFrame(frame);
+                GameEntity.SetGlobalFrameMT(frame);
                 InstantiateFlightPrefab(frame);
             }
             else
@@ -95,15 +95,19 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private float GetDistance()
         {
-            float num;
+            float num = 3;
             var pos2 = GameEntity.GetGlobalFrame().origin;
             var pos = GameEntity.GetGlobalFrame().Elevate(-_minimalDistance).origin;
-            if (Mission.Current.Scene.RayCastForClosestEntityOrTerrain(pos2, pos, out num))
+
+            using(new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
             {
-                return num;
+                if (Mission.Current.Scene.RayCastForClosestEntityOrTerrainMT(pos2, pos, out float distance))
+                {
+                    num = distance;
+                }
             }
 
-            return 3;
+            return num;
         }
 
         private void Fly(float dt)
@@ -115,7 +119,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             frame.Elevate(-_speed * dt);
 
             _playerFlyableObjectScript.Advance(frame);
-            GameEntity.SetGlobalFrame(frame);
+            GameEntity.SetGlobalFrameMT(frame);
         }
 
         protected override void OnBeforeRemoved(int removeReason)

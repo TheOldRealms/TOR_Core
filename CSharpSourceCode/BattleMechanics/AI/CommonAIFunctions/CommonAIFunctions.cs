@@ -184,7 +184,7 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
 
     public static class CommonAIFunctions
     {
-        private static Random _random = new Random();
+        private static readonly Random _random = new();
 
         public static Agent GetRandomAgent(Formation targetFormation)
         {
@@ -206,10 +206,12 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
 
         public static bool HasLineOfSight(Vec3 from, Vec3 to, float atLeast = 70)
         {
-            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(from, to, out float distanceE, out GameEntity entity);
+            float distanceE;
+            using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+            {
+                Mission.Current.Scene.RayCastForClosestEntityOrTerrainMT(from, to, out distanceE, out GameEntity entity);
+            }
             return distanceE > atLeast;
         }
-
-
     }
 }

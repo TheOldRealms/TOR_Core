@@ -33,8 +33,13 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         public bool IsSafeToFire()
         {
-            Agent agent = Mission.Current.RayCastForClosestAgent(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 60, out float distanceA, -1, 0.05f);
-            Mission.Current.Scene.RayCastForClosestEntityOrTerrain(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 25, out float distanceE, out GameEntity entity, 0.05f);
+            float distanceA, distanceE;
+            Agent agent;
+            using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+            {
+                agent = Mission.Current.RayCastForClosestAgent(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 60, out distanceA, -1, 0.05f);
+                Mission.Current.Scene.RayCastForClosestEntityOrTerrainMT(MissleStartingPositionForSimulation, MissleStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 25, out distanceE, out GameEntity _, 0.05f);
+            }
             return !(distanceA < 50 && agent != null && !agent.IsEnemyOf(PilotAgent) || distanceE < 15);
         }
 

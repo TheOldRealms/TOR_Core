@@ -5,12 +5,8 @@ using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.AbilitySystem.Crosshairs
 {
-    public class SingleTargetCrosshair : MissileCrosshair
+    public class SingleTargetCrosshair(AbilityTemplate template) : MissileCrosshair(template)
     {
-        public SingleTargetCrosshair(AbilityTemplate template) : base(template)
-        {
-        }
-
         public override void Tick()
         {
             FindTarget();
@@ -38,7 +34,11 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 _missionScreen.GetProjectedMousePositionOnGround(out targetPoint, out _, BodyFlags.CommonFocusRayCastExcludeFlags, true);
             }
             float collisionDistance;
-            Agent newTarget = _mission.RayCastForClosestAgent(sourcePoint, targetPoint, out collisionDistance);
+            Agent newTarget;
+            using(new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+            {
+                newTarget = _mission.RayCastForClosestAgent(sourcePoint, targetPoint, out collisionDistance);
+            }
             if (newTarget == null)
             {
                 UnlockTarget();

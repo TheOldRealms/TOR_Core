@@ -30,7 +30,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             entity.SetMobility(GameEntity.Mobility.dynamic);
             entity.EntityFlags = (entity.EntityFlags | EntityFlags.DontSaveToScene);
             var frame = new MatrixFrame(rotation, position);
-            entity.SetGlobalFrame(frame);
+            entity.SetGlobalFrameMT(frame);
             var artillery = entity.GetFirstScriptInFamilyDescending<BaseFieldSiegeWeapon>();
             if (artillery != null)
             {
