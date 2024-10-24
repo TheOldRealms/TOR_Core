@@ -178,7 +178,7 @@ namespace TOR_Core.Models
                 PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.Selfish, character, false, ref explainedNumber);
             }
 
-            if (character.IsHero && character.HeroObject == Hero.MainHero)
+            if (character.IsHero && character.HeroObject == Hero.MainHero && Agent.Main != null && Agent.Main.IsActive())
             {
                 if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
                 {

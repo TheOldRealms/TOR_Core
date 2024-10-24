@@ -30,7 +30,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         public List<string> StatusEffects => _template.ImbuedStatusEffects;
         public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null)
         {
-            if (_template == null && !triggererAgent.IsActive()) return;
+            if (_template == null || !triggererAgent.IsActive()) return;
             _timer = new Timer(2000)
             {
                 AutoReset = false,
