@@ -205,7 +205,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             MBObjectManager.Instance.GetObjectTypeList<CharacterObject>().ForEach(x => 
             {
-                if (!x.IsTORTemplate())
+                if (!x.IsTORTemplate() && x.Occupation == Occupation.Soldier)
                 {
                     x.HiddenInEncylopedia = true;
                 }
