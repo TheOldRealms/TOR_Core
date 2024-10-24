@@ -185,5 +185,21 @@ namespace TOR_Core.HarmonyPatches
             }
             return text;
         }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PartyScreenLogic), "DoneLogic")]
+        public static void AdditionalPartyScreenClosingLogic(ref bool __result)
+        {
+            foreach (var resourceKVP in CustomResourceManager.GetPendingResources())
+            {
+                var currentResource = Hero.MainHero.GetCustomResourceValue(resourceKVP.Key.StringId);
+                if(currentResource < resourceKVP.Value)
+                {
+                    MBInformationManager.AddQuickInformation(new($"You don't have enough {resourceKVP.Key.Name}."));
+                    __result = false;
+                    break;
+                }
+            }
+        }
     }
 }

@@ -32,12 +32,12 @@ namespace TOR_Core.CampaignMechanics.CustomResources
     public class CustomResourceManager
     {
         public static CustomResourceManager Instance { get; private set; }
-        private Dictionary<string, CustomResource> _resources = new Dictionary<string, CustomResource>();
+        private readonly Dictionary<string, CustomResource> _resources = [];
         private ScreenBase _currentPartyScreen;
         private PartyVM _currentPartyVM;
-        private List<Tuple<string, int>> _resourceChanges = new List<Tuple<string, int>>();
+        private readonly List<Tuple<string, int>> _resourceChanges = [];
         private float _initialCombatRatio;
-        
+
         private CustomResourceManager() { }
 
         public static void Initialize()
@@ -55,7 +55,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             Instance._resources.Add("DarkEnergy",
                 new CustomResource("DarkEnergy", "Dark Energy",
                     "Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions.",
-                    "darkenergy_icon_45", new[] { TORConstants.Cultures.SYLVANIA, "mousillon" }));
+                    "darkenergy_icon_45", [TORConstants.Cultures.SYLVANIA, "mousillon"]));
             Instance._resources.Add("ForestHarmony",
                 new CustomResource("ForestHarmony", "Forest Harmony",
                     "Forest Binding is used to upgrade and maintain troops of the woodelves, as well as retrieve upgrades at the Oak of Ages.", "harmony_icon_45", TORConstants.Cultures.ASRAI, ForestHarmonyHelper.GetForestHarmonyInfo));
@@ -78,7 +78,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         public static CustomResource GetResourceObject(Func<List<CustomResource>, CustomResource> query)
         {
-            return query(Instance._resources.Values.ToList());
+            return query([.. Instance._resources.Values]);
         }
 
         public static bool DoesResourceObjectExist(string id)
@@ -96,8 +96,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         private void RegisterCampaignEvents()
         {
             CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
-            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this,
-                CalculateCustomResourceGainFromBattles);
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, CalculateCustomResourceGainFromBattles);
             CampaignEvents.OnHideoutBattleCompletedEvent.AddNonSerializedListener(this, CalculateHideOutCompletedGain);
             CampaignEvents.HeroPrisonerReleased.AddNonSerializedListener(this, PrisonerReleasedChange);
             CampaignEvents.TournamentFinished.AddNonSerializedListener(this, TournamentFinishedChange);
@@ -117,10 +116,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 {
                     customResourceGain.AddFactor(0.25f);
                 }
-                 
                 
                 Hero.MainHero.AddCultureSpecificCustomResource(customResourceGain.ResultNumber);
-
             }
         }
 
@@ -134,10 +131,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 {
                     customResourceGain.AddFactor(0.25f);
                 }
-                 
                 
                 Hero.MainHero.AddCultureSpecificCustomResource(customResourceGain.ResultNumber);
-
             }
         }
 
@@ -225,8 +220,6 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     }
                 }
                 
-
-
                 Hero.MainHero.AddCultureSpecificCustomResource(explainedNumber.ResultNumber);
             }
         }
@@ -367,7 +360,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         private static void PartyScreenLogic_AfterReset(PartyScreenLogic partyScreenLogic, bool fromCancel)
         {
             Instance._resourceChanges.Clear();
-            if (Instance._currentPartyVM != null) Instance._currentPartyVM.GetExtensionInstance().RefreshValues();
+            Instance._currentPartyVM?.GetExtensionInstance().RefreshValues();
         }
 
         private static void PartyScreenLogic_PartyScreenClosedEvent(PartyBase leftOwnerParty,
