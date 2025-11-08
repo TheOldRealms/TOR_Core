@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AnimationTriggers>
+    <AnimationTrigger
+        action_name="act_lhm_hitground_right"
+        animation_percent_to_trigger="0.5"
+        bone_index="27"
+        triggered_effect="treeman_smash" />
+    <AnimationTrigger
+        action_name="act_lhm_hitground_left"
+        animation_percent_to_trigger="0.5"
+        bone_index="20"
+        triggered_effect="treeman_smash" />
+    <AnimationTrigger
+        action_name="act_lhm_hitground_overhead"
+        animation_percent_to_trigger="0.75"
+        bone_index="27"
+        triggered_effect="treeman_smash" />
+    <AnimationTrigger
+        action_name="act_lhm_stomp_attack_down"
+        animation_percent_to_trigger="0.7"
+        bone_index="7"
+        triggered_effect="treeman_smash" />
+</AnimationTriggers>

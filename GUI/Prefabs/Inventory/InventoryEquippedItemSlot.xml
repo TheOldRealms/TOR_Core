@@ -1,0 +1,36 @@
+<Prefab>
+    <Parameters>
+        <Parameter Name="ItemDataSource" DefaultValue="" />
+        <Parameter Name="HintDataSource" DefaultValue="" />
+        <Parameter Name="IsRightSide" DefaultValue="false" />
+        <Parameter Name="BackgroundBrush" DefaultValue="" />
+        <Parameter Name="EquipmentIndex" DefaultValue="0" />
+        <Parameter Name="DropTag" DefaultValue="" />
+    </Parameters>
+    <Constants>
+        <Constant Name="HintDataSource" Value="*HintDataSource" Prefix="..\"/>
+        <Constant Name="HintDataSourceBackground" Value="*HintDataSource"/>
+    </Constants>
+    <Window>
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="130" SuggestedHeight="65">
+            <Children>
+                <BrushWidget Id="Background" AcceptDrop="true" Command.Drop="ExecuteTransferWithParameters" CommandParameter.Drop="*DropTag" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="*BackgroundBrush">
+                    <Children>
+                        <HintWidget IsDisabled="true" DataSource="!HintDataSourceBackground" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>
+                    </Children>
+                </BrushWidget>
+                <InventoryEquippedItemSlotWidget DataSource="*ItemDataSource" IsRightSide="*IsRightSide" TargetEquipmentIndex="*EquipmentIndex" ItemType="@TypeId" AcceptDrag="true" Command.PreviewItem="ExecutePreviewItem" Command.SellItem="ExecuteSellItem" Command.UnequipItem="ExecuteUnequipItem" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Background="..\Background" ImageIdentifier="ImageIdentifier">
+                    <Children>
+                        <BrushWidget Id="ColorableEquipmentSlot" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4" Sprite="Inventory\portrait_cart" />
+                        <TorImageIdentifierWidget Id="ImageIdentifier" DataSource="{ImageIdentifier}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="3" MarginRight="4" MarginTop="3" MarginBottom="4" ImageId="@Id" AdditionalArgs="@AdditionalArgs" ImageTypeCode="@ImageTypeCode" LoadingIconWidget="LoadingIconWidget">
+                            <Children>
+                                <Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="LoadingIconWidget"/>
+                            </Children>
+                        </TorImageIdentifierWidget>
+                        <!--<HintWidget IsDisabled="true" DataSource="!HintDataSource" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>-->
+                    </Children>
+                </InventoryEquippedItemSlotWidget>
+            </Children>
+        </Widget>
+    </Window>
+</Prefab>

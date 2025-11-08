@@ -1,0 +1,1345 @@
+<prefabs>
+	<game_entity name="fireball_prefab" old_prefab_name="" mobility="1" season_mask="255">
+		<flags>
+			<flag name="record_to_scene_replay" value="true"/>
+		</flags>
+		<components>
+			<particle_system_instanced_component _index_="1">
+				<effect base_effect="{BA0CCB36-D63D-4F33-8770-044F88A0E347}">
+					<emitter_overrides>
+						<emitter guid="{6B81BDF2-D77B-4C50-85ED-107627C748E5}">
+							<flags>
+								<flag name="emit_while_moving" value="true"/>
+								<flag name="dont_emit_while_moving" value="false"/>
+								<flag name="scale_with_respect_to_particle_velocity" value="true"/>
+							</flags>
+							<parameters>
+								<parameter name="scale_with_emitter_velocity_coef" value="-1.000"/>
+								<parameter name="emit_sphere_radius" value="0.200"/>
+								<parameter name="emit_volume_type" value="sphere"/>
+								<parameter name="emission_rate" base="25.000" bias="5.000"/>
+								<parameter name="emit_rotation_speed" base="0.000" bias="180.000"/>
+								<parameter name="particle_size" base="3.000" bias="2.000">
+									<curve name="particle_life" version="1" default="1.000" curve_multiplier="1.000">
+										<keys>
+											<key time="0.000" value="1.000" tangent="0.014, 0.000"/>
+											<key time="0.069" value="1.000" tangent="-0.062, 0.000"/>
+											<key time="0.069" value="1.000" tangent="0.062, 0.000"/>
+											<key time="0.552" value="0.171" tangent="-0.216, 0.090"/>
+											<key time="0.552" value="0.171" tangent="0.216, -0.090"/>
+											<key time="1.000" value="0.126" tangent="-0.200, 0.000"/>
+										</keys>
+									</curve>
+								</parameter>
+							</parameters>
+						</emitter>
+						<emitter guid="{A23CA26F-9B9A-40E0-A960-76EF10BCBF35}">
+							<parameters>
+								<parameter name="emission_rate" base="0.000" bias="0.000"/>
+							</parameters>
+						</emitter>
+						<emitter guid="{8F9992C4-2377-4E4D-A6C9-88683388F025}">
+							<parameters>
+								<parameter name="emission_rate" base="0.000" bias="0.000"/>
+							</parameters>
+						</emitter>
+					</emitter_overrides>
+				</effect>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="wind_of_death_vfx" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect base_effect="{1E1495D4-BC75-47F7-BB81-56C4BEAD3E4A}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="dart_particle" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{6F715D82-A1A7-408C-A439-73C106A1CA22}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="burning_skull" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<meta_mesh_component name="spellskull" position="0.000, 0.000, 3.000" rotation="0.000, 0.000, 0.000" scale="1.200, 1.200, 1.200"/>
+			<particle_system_instanced_component _index_="1">
+				<effect_ref base_effect="{6CB55903-EC6D-4033-B048-E2E88EB55DA4}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="screaming_skull_vfx" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<meta_mesh_component name="spellskull" position="0.000, 0.000, 2.000" rotation="0.000, 0.000, 0.000" scale="1.000, 1.000, 1.000">
+				<mesh name="spellskull" factor="4278517505"/>
+			</meta_mesh_component>
+			<particle_system_instanced_component _index_="1">
+				<effect_ref base_effect="{A30EDB15-71A5-43F6-A8C5-23EFAAE31176}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="healing_circle" old_prefab_name="">
+		<flags>
+			<flag name="align_to_terrain" value="true"/>
+			<flag name="align_rotation_to_terrain" value="true"/>
+		</flags>
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{BAE4E95F-9112-469C-8A16-98D1999415F4}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="tangling_thorn_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{AEB30BC8-4458-4D51-A055-66634C2FAF63}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="hail_storm" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{CC615B59-F874-4C1B-B8F0-32998DD5C9B8}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="storm_of_renewal_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{DB579893-7096-49A0-BDDD-9308F09035D2}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="curse_of_anraheir_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{43B2213A-E721-435F-84AA-70F88FEF1EA4}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="bats_vfx" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{6C8CE917-7A9F-42DF-AA3E-1D101F75EE75}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="tornado" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{5ADDA246-B9A1-420C-A201-083B73F3EDAD}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="foetid_cloud" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{29BD5545-3942-4FB9-8AD0-7A84CB2D8EB7}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="dust_storm" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{5ADDA246-B9A1-420C-A201-083B73F3EDAD}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="lightning_bolt" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{F5684B5D-109D-4AC3-8FBD-CDE953884D4C}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="comet_of_casandora" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<meta_mesh_component name="casandora_comet" position="0.000, 0.000, 0.400" rotation="0.000, 0.000, 0.000" scale="0.300, 0.300, 0.500">
+				<mesh name="casandora_comet" argument="1.000, 0.300, 1.000, 10.000"/>
+			</meta_mesh_component>
+			<particle_system_instanced_component _index_="1">
+				<effect_ref base_effect="{81EEC005-4E3B-446B-809A-BEDFD58998F1}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="thunderbolt" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{1010B168-F0DD-4F9F-91C0-F81BB93A9085}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="sear" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{9D564B33-AABA-4CCC-B3D7-56AD2ACC1723}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="ball_lightning" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{A28F2228-CFF3-4AF0-9E33-C4D3A982A229}"/>
+			</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="empty_object" old_prefab_name="">
+				<transform position="0.022, -0.018, 1.207"/>
+				<components>
+					<light_component color="0.761, 0.988, 1.000" intensity="200.000" radius="50.000" flicker_interval="1.000" flicker_magnitude="5.000" local_frame_rot="50.000000, 0.000000, 0.000000, 0.000000, 50.000000, 0.000000, 0.000000, 0.000000, 50.000000" hotspot_angle="30.000" falloff_angle="45.000" mobility="1" shadow_size_multiplier="1" shadow_radius="40.000"/>
+				</components>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="bolt_of_aqshy" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{81EEC005-4E3B-446B-809A-BEDFD58998F1}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="cinder_blast" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{8F77344D-606E-4784-891E-F2804E9A2FE4}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="flamestorm" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{126C09F8-588F-4984-B763-F9D3A163A809}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="iceshard_blizzard" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{D486C5F1-55C4-4EE4-B680-8B98F8DD393D}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="wind_blast" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{0B51C811-5D86-4869-93CE-D80E92DF0791}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="shem_gaze" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect base_effect="{81EEC005-4E3B-446B-809A-BEDFD58998F1}">
+					<emitter_overrides>
+						<emitter guid="{B71C27BF-8D6A-4363-A3B0-B5C4031F2EBF}">
+							<parameters>
+								<parameter name="particle_color">
+									<color>
+										<keys>
+											<key time="0.000" value="1.000, 1.000, 1.000"/>
+											<key time="0.173" value="0.694, 0.941, 1.000"/>
+											<key time="0.692" value="0.379, 0.991, 1.000"/>
+										</keys>
+									</color>
+									<alpha>
+										<keys>
+											<key time="0.000" value="0.000"/>
+											<key time="0.531" value="1.000"/>
+											<key time="1.000" value="0.000"/>
+										</keys>
+									</alpha>
+								</parameter>
+							</parameters>
+						</emitter>
+						<emitter guid="{FF917314-9B09-42E1-A626-6AA3B88B6A5E}">
+							<parameters>
+								<parameter name="particle_color">
+									<color>
+										<keys>
+											<key time="0.005" value="1.000, 1.000, 1.000"/>
+											<key time="0.155" value="0.379, 0.991, 1.000"/>
+											<key time="1.000" value="0.000, 0.040, 1.000"/>
+										</keys>
+									</color>
+									<alpha>
+										<keys>
+											<key time="0.003" value="0.000"/>
+											<key time="0.063" value="1.000"/>
+											<key time="0.805" value="0.855"/>
+											<key time="1.000" value="0.000"/>
+										</keys>
+									</alpha>
+								</parameter>
+							</parameters>
+						</emitter>
+					</emitter_overrides>
+				</effect>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="nagash_gaze" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect base_effect="{81EEC005-4E3B-446B-809A-BEDFD58998F1}">
+					<emitter_overrides>
+						<emitter guid="{B71C27BF-8D6A-4363-A3B0-B5C4031F2EBF}">
+							<parameters>
+								<parameter name="particle_color">
+									<color>
+										<keys>
+											<key time="0.000" value="1.000, 0.000, 0.899"/>
+											<key time="0.173" value="0.133, 0.000, 1.000"/>
+											<key time="0.692" value="0.040, 0.000, 1.000"/>
+										</keys>
+									</color>
+									<alpha>
+										<keys>
+											<key time="0.000" value="0.000"/>
+											<key time="0.531" value="1.000"/>
+											<key time="1.000" value="0.000"/>
+										</keys>
+									</alpha>
+								</parameter>
+							</parameters>
+						</emitter>
+						<emitter guid="{FF917314-9B09-42E1-A626-6AA3B88B6A5E}">
+							<parameters>
+								<parameter name="particle_color">
+									<color>
+										<keys>
+											<key time="0.005" value="0.867, 0.000, 1.000"/>
+											<key time="0.155" value="0.080, 0.000, 1.000"/>
+											<key time="1.000" value="0.000, 0.040, 1.000"/>
+										</keys>
+									</color>
+									<alpha>
+										<keys>
+											<key time="0.003" value="0.000"/>
+											<key time="0.063" value="1.000"/>
+											<key time="0.805" value="0.855"/>
+											<key time="1.000" value="0.000"/>
+										</keys>
+									</alpha>
+								</parameter>
+							</parameters>
+						</emitter>
+					</emitter_overrides>
+				</effect>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="amber_spear" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{DD4CD7CC-64D1-4B2F-91FC-FCC659F61101}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="green_eye" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{91DB985A-149D-4274-927F-B09D2F755615}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="stone_assault" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{8E572796-1554-41BD-8348-C7031383F955}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="deathly_shards" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{19E48096-D09D-43CE-AB04-F215846F983E}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="radiance_pillar" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{78216AB0-192D-4A06-AFC3-63CF43574154}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="radiant_gaze" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{9FF14D4D-DF74-4102-BEC4-24C5F417C618}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="shadowblood" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{F7897EE9-B3E5-48F0-A013-51DB9612711D}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="withering_wave" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{4CE3646F-5153-4FA9-8AC6-C43FC0FAEF47}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="raise_dead" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{64C46A6C-9303-4503-B14D-D15DA5D9F14A}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="chillwind" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{7AF9F137-264C-4269-953F-CC5DA338628B}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="black_horror" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{661AB8D2-6316-497D-9992-28E6511D8FFB}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="doombolt" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect base_effect="{81EEC005-4E3B-446B-809A-BEDFD58998F1}">
+					<emitter_overrides>
+						<emitter guid="{B71C27BF-8D6A-4363-A3B0-B5C4031F2EBF}">
+							<flags>
+								<flag name="loop_sprite" value="true"/>
+								<flag name="uses_sprite_animation" value="true"/>
+								<flag name="spherical_normals" value="true"/>
+								<flag name="order_by_distance" value="true"/>
+							</flags>
+							<parameters>
+								<parameter name="texture_sprite_count" value="8, 8"/>
+								<parameter name="texture_sprite_frame_count" value="64"/>
+								<parameter name="texture_sprite_frame_rate" value="32.000"/>
+								<parameter name="particle_size" base="0.500" bias="0.000">
+									<curve name="particle_life" version="1" default="1.000" curve_multiplier="1.000">
+										<keys>
+											<key time="0.000" value="0.729" tangent="0.215, -0.610"/>
+											<key time="1.000" value="0.211" tangent="-0.645, 0.000"/>
+										</keys>
+									</curve>
+								</parameter>
+								<parameter name="material_guid" value="{CF0A316F-5051-4EBF-9BA3-D65567CEC076}"/>
+								<parameter name="particle_color">
+									<color>
+										<keys>
+											<key time="0.000" value="0.000, 0.000, 0.000"/>
+											<key time="0.173" value="0.000, 0.000, 0.000"/>
+											<key time="0.692" value="0.000, 0.000, 0.000"/>
+										</keys>
+									</color>
+									<alpha>
+										<keys>
+											<key time="0.000" value="0.000"/>
+											<key time="0.531" value="1.000"/>
+											<key time="1.000" value="0.000"/>
+										</keys>
+									</alpha>
+								</parameter>
+							</parameters>
+						</emitter>
+						<emitter guid="{FF917314-9B09-42E1-A626-6AA3B88B6A5E}">
+							<flags>
+								<flag name="loop_sprite" value="true"/>
+								<flag name="order_by_distance" value="true"/>
+							</flags>
+							<parameters>
+								<parameter name="skew_with_particle_velocity_coef" value="1.000"/>
+								<parameter name="skew_with_particle_velocity_limit" value="0.500"/>
+								<parameter name="texture_sprite_count" value="8, 8"/>
+								<parameter name="texture_sprite_frame_count" value="64"/>
+								<parameter name="texture_sprite_frame_rate" value="48.000"/>
+								<parameter name="diffuse_multiplier" value="5.000"/>
+								<parameter name="material_guid" value="{CF0A316F-5051-4EBF-9BA3-D65567CEC076}"/>
+								<parameter name="particle_color">
+									<color>
+										<keys>
+											<key time="0.005" value="0.000, 0.000, 0.000"/>
+											<key time="0.524" value="0.212, 0.021, 0.021"/>
+											<key time="1.000" value="0.448, 0.359, 0.049"/>
+										</keys>
+									</color>
+									<alpha>
+										<keys>
+											<key time="0.003" value="0.000"/>
+											<key time="0.143" value="1.000"/>
+											<key time="0.805" value="0.855"/>
+											<key time="1.000" value="0.000"/>
+										</keys>
+									</alpha>
+								</parameter>
+							</parameters>
+						</emitter>
+					</emitter_overrides>
+				</effect>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="souldrain" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{E187EE03-D466-4DD4-9A21-555B67269F5C}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="comet_of_sigmar" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{561D58F0-7C36-4D28-8017-E73958F7A7BB}"/>
+			</particle_system_instanced_component>
+			<meta_mesh_component name="magic_sphere_holy" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="0.200, 0.200, 0.200" _index_="1"/>
+		</components>
+	</game_entity>
+	<game_entity name="healing_hand_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<children>
+			<game_entity name="heavenlyLight" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, 5.750" rotation_euler="0.201, 0.232, -0.084"/>
+				<components>
+					<light_component flags="200" color="1.000, 0.831, 0.396" intensity="309.969" radius="8.000" local_frame_rot="4.618802, 0.000000, 0.000000, 0.000000, 4.618802, 0.000000, 0.000000, 0.000000, 8.000000" hotspot_angle="5.000" falloff_angle="30.000" shadow="2" mobility="1" shadow_size_multiplier="1" shadow_radius="4.800"/>
+				</components>
+				<scripts>
+					<script name="WaveFloater">
+						<variables>
+							<variable name="oscillateAtX" value="true"/>
+							<variable name="oscillateAtY" value="true"/>
+							<variable name="oscillateAtZ" value="false"/>
+							<variable name="oscillationFrequency" value="0.800"/>
+							<variable name="maxOscillationAngle" value="15.200"/>
+							<variable name="bounceX" value="false"/>
+							<variable name="bounceXFrequency" value="14.000"/>
+							<variable name="maxBounceXDistance" value="0.500"/>
+							<variable name="bounceY" value="false"/>
+							<variable name="bounceYFrequency" value="14.000"/>
+							<variable name="maxBounceYDistance" value="0.300"/>
+							<variable name="bounceZ" value="false"/>
+							<variable name="bounceZFrequency" value="14.000"/>
+							<variable name="maxBounceZDistance" value="0.300"/>
+						</variables>
+					</script>
+					<script name="TORLightDampener">
+						<variables>
+							<variable name="Duration" value="9.100"/>
+							<variable name="FadeInDuration" value="2.000"/>
+							<variable name="FadeOutDuration" value="1.500"/>
+							<variable name="FadeInIntenisityChange" value="900.000"/>
+							<variable name="FadeOutIntensityChange" value="1200.000"/>
+							<variable name="BeginIntensity" value="0.000"/>
+							<variable name="MaximumIntensity" value="1500.000"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="clouds" old_prefab_name="" mobility="1">
+				<transform position="0.000, 0.000, -0.010"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{EFAEF766-F994-44B3-AA14-3F6DE5CF43ED}"/>
+					</particle_system_instanced_component>
+				</components>
+				<scripts>
+					<script name="object_mover">
+						<variables>
+							<variable name="Move Amount" value="0.000000"/>
+							<variable name="Move Duration" value="0.000000"/>
+							<variable name="Up Movement Amount" value="0.000000"/>
+							<variable name="Up Movement Frequency" value="0.000000"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="ladys_favour" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<scripts>
+			<script name="TORFaceArmy">
+				<variables>
+					<variable name="faceAllied" value="false"/>
+					<variable name="CultureId" value="empire"/>
+				</variables>
+			</script>
+		</scripts>
+		<children>
+			<game_entity name="lady_ghost" old_prefab_name="" mobility="1">
+				<transform position="0.010, 0.202, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="2.500, 2.500, 2.500"/>
+				<components>
+					<meta_mesh_component name="ladystatue" position="0.100, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="1.000, 1.000, 1.000">
+						<mesh name="ladystatue" material="vc_ghost_horse_reins_001"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="empty_object" old_prefab_name="" mobility="1">
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{8B8F054C-5279-48F4-BB95-E14BD6963822}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="ethereal_dome" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="3.0, 3.0, 3.0"/>
+		<components>
+			<meta_mesh_component name="magic_sphere_water"/>
+		</components>
+	</game_entity>
+	<game_entity name="ethereal_dome_large" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="6.0, 6.0, 6.0"/>
+		<components>
+			<meta_mesh_component name="magic_sphere_water"/>
+		</components>
+	</game_entity>
+	<game_entity name="dwellers_below_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{A2344965-C46E-4FA6-89D4-68289D22042D}"/>
+			</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="dwellers_below_tendril" old_prefab_name="" mobility="1">
+				<transform position="-3.716, 3.282, 0.000" rotation_euler="0.000, 0.000, -2.963" scale="1.500, 1.500, 1.500"/>
+				<skeleton skeleton_model="dwellers_below_skeleton">
+					<components>
+						<meta_mesh_component name="dwellers_below_tendril"/>
+					</components>
+					<bones>
+						<bone frame="-0.073014, -0.037002, 0.996644, 0.000000, 0.997295, 0.005727, 0.073275, 0.000000, -0.008419, 0.999299, 0.036484, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000"/>
+						<bone frame="0.944653, -0.253410, -0.208360, 0.000000, 0.327520, 0.765241, 0.554199, 0.000000, 0.019006, -0.591768, 0.805884, 0.000000, 0.260927, -0.000000, 0.000000, 1.000000" _index_="1"/>
+						<bone frame="0.858068, -0.346068, -0.379417, 0.000000, 0.493478, 0.760136, 0.422697, 0.000000, 0.142127, -0.549936, 0.823025, 0.000000, 0.345854, 0.000000, 0.000000, 1.000000" _index_="2"/>
+						<bone frame="0.776471, -0.414441, -0.474691, 0.000000, 0.542557, 0.822823, 0.169096, 0.000000, 0.320506, -0.388845, 0.863756, 0.000000, 0.415073, 0.000000, 0.000000, 1.000000" _index_="3"/>
+						<bone frame="0.804104, -0.399735, -0.440032, 0.000000, 0.396026, 0.912217, -0.104991, 0.000000, 0.443374, -0.089840, 0.891823, 0.000000, 0.332855, 0.000000, 0.000000, 1.000000" _index_="4"/>
+						<bone frame="0.856708, -0.378193, -0.350746, 0.000000, 0.290952, 0.915815, -0.276821, 0.000000, 0.425910, 0.135104, 0.894622, 0.000000, 0.332855, 0.000000, -0.000000, 1.000000" _index_="5"/>
+						<bone frame="0.902206, -0.339391, -0.266155, 0.000000, 0.230419, 0.900924, -0.367755, 0.000000, 0.364597, 0.270463, 0.891021, 0.000000, 0.334290, -0.000000, 0.000000, 1.000000" _index_="6"/>
+						<bone frame="0.933040, -0.250228, -0.258501, 0.000000, 0.134848, 0.909365, -0.393538, 0.000000, 0.333546, 0.332328, 0.882216, 0.000000, 0.300000, 0.000000, 0.000000, 1.000000" _index_="7"/>
+						<bone frame="0.813637, 0.089407, -0.574457, 0.000000, -0.238005, 0.952734, -0.188819, 0.000000, 0.530422, 0.290353, 0.796459, 0.000000, 0.219954, 0.084903, -0.023223, 1.000000" _index_="9"/>
+						<bone frame="0.699755, -0.617075, -0.359946, 0.000000, 0.487274, 0.780736, -0.391172, 0.000000, 0.522405, 0.098333, 0.847009, 0.000000, 0.067170, -0.045328, -0.052348, 1.000000" _index_="11"/>
+						<bone frame="0.852817, -0.509861, -0.112893, 0.000000, 0.423440, 0.801682, -0.421905, 0.000000, 0.305617, 0.312005, 0.899584, 0.000000, 0.204751, 0.000000, -0.000000, 1.000000" _index_="12"/>
+						<bone frame="0.992864, -0.109100, -0.048140, 0.000000, 0.078144, 0.900194, -0.428422, 0.000000, 0.090076, 0.421603, 0.902296, 0.000000, 0.256841, -0.000000, 0.000000, 1.000000" _index_="13"/>
+						<bone frame="0.857285, -0.514765, -0.008872, 0.000000, 0.504303, 0.836144, 0.215736, 0.000000, -0.103635, -0.189421, 0.976412, 0.000000, 0.100545, -0.053547, 0.085992, 1.000000" _index_="15"/>
+						<bone frame="0.683757, -0.079342, -0.725384, 0.000000, 0.117033, 0.993127, 0.001689, 0.000000, 0.720264, -0.086048, 0.688343, 0.000000, 0.319892, 0.000000, -0.000000, 1.000000" _index_="16"/>
+						<bone frame="0.782218, 0.451707, -0.429065, 0.000000, -0.204432, 0.836669, 0.508126, 0.000000, 0.588510, -0.309751, 0.746800, 0.000000, 0.354699, 0.068613, -0.097833, 1.000000" _index_="18"/>
+						<bone frame="0.941626, -0.297259, -0.158045, 0.000000, 0.335532, 0.867061, 0.368270, 0.000000, 0.027563, -0.399802, 0.916187, 0.000000, 0.271616, 0.000000, -0.000000, 1.000000" _index_="19"/>
+					</bones>
+				</skeleton>
+				<scripts>
+					<script name="TORSimpleObjectAnimator">
+						<variables>
+							<variable name="AnimationName" value="dwellers_below_tendrils_idle1"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="dwellers_below_tendril" old_prefab_name="" mobility="1">
+				<transform position="4.036, 3.027, 0.000" rotation_euler="0.000, 0.000, -2.963" scale="1.500, 1.500, 1.500"/>
+				<skeleton skeleton_model="dwellers_below_skeleton">
+					<components>
+						<meta_mesh_component name="dwellers_below_tendril"/>
+					</components>
+					<bones>
+						<bone frame="-0.092231, -0.287825, 0.953232, 0.000000, 0.991174, 0.065007, 0.115531, 0.000000, -0.095220, 0.955474, 0.279289, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000"/>
+						<bone frame="0.713106, 0.659166, 0.238704, 0.000000, -0.701037, 0.672970, 0.235921, 0.000000, -0.005129, -0.335577, 0.941999, 0.000000, 0.260927, -0.000000, 0.000000, 1.000000" _index_="1"/>
+						<bone frame="0.889143, -0.020822, 0.457156, 0.000000, -0.117218, 0.955276, 0.271491, 0.000000, -0.442363, -0.294982, 0.846936, 0.000000, 0.345854, 0.000000, 0.000000, 1.000000" _index_="2"/>
+						<bone frame="0.822033, -0.081526, 0.563574, 0.000000, -0.173289, 0.906944, 0.383958, 0.000000, -0.542433, -0.413287, 0.731410, 0.000000, 0.415073, 0.000000, 0.000000, 1.000000" _index_="3"/>
+						<bone frame="0.811997, -0.313045, 0.492610, 0.000000, -0.038934, 0.813067, 0.580867, 0.000000, -0.582362, -0.490841, 0.648019, 0.000000, 0.332855, 0.000000, 0.000000, 1.000000" _index_="4"/>
+						<bone frame="0.813100, -0.494281, 0.307496, 0.000000, 0.180747, 0.716492, 0.673773, 0.000000, -0.553352, -0.492266, 0.671920, 0.000000, 0.332855, 0.000000, -0.000000, 1.000000" _index_="5"/>
+						<bone frame="0.776043, -0.610967, 0.156452, 0.000000, 0.416671, 0.682901, 0.600026, 0.000000, -0.473437, -0.400457, 0.784533, 0.000000, 0.334290, -0.000000, 0.000000, 1.000000" _index_="6"/>
+						<bone frame="0.679103, -0.713800, 0.171198, 0.000000, 0.597530, 0.673027, 0.435882, 0.000000, -0.426353, -0.193713, 0.883571, 0.000000, 0.300000, 0.000000, 0.000000, 1.000000" _index_="7"/>
+						<bone frame="0.832316, -0.189502, 0.520903, 0.000000, 0.189417, 0.980410, 0.054012, 0.000000, -0.520934, 0.053713, 0.851906, 0.000000, 0.219954, 0.084903, -0.023223, 1.000000" _index_="9"/>
+						<bone frame="0.820051, 0.157390, 0.550223, 0.000000, -0.066991, 0.981229, -0.180836, 0.000000, -0.568356, 0.111435, 0.815201, 0.000000, 0.067170, -0.045328, -0.052348, 1.000000" _index_="11"/>
+						<bone frame="0.769187, -0.589272, 0.247204, 0.000000, 0.351328, 0.713100, 0.606676, 0.000000, -0.533779, -0.379797, 0.755535, 0.000000, 0.204751, 0.000000, -0.000000, 1.000000" _index_="12"/>
+						<bone frame="0.516623, -0.735790, 0.437851, 0.000000, 0.364500, 0.651728, 0.665125, 0.000000, -0.774752, -0.184023, 0.604893, 0.000000, 0.256841, -0.000000, 0.000000, 1.000000" _index_="13"/>
+						<bone frame="0.233219, -0.444221, 0.865030, 0.000000, 0.291785, 0.880538, 0.373517, 0.000000, -0.927615, 0.165291, 0.334975, 0.000000, 0.100545, -0.053547, 0.085992, 1.000000" _index_="15"/>
+						<bone frame="0.861051, -0.351451, 0.367524, 0.000000, 0.289362, 0.932943, 0.214212, 0.000000, -0.418163, -0.078099, 0.905008, 0.000000, 0.319892, 0.000000, -0.000000, 1.000000" _index_="16"/>
+						<bone frame="0.842252, 0.293369, 0.452269, 0.000000, -0.245248, 0.955632, -0.163160, 0.000000, -0.480068, 0.026503, 0.876831, 0.000000, 0.354699, 0.068613, -0.097833, 1.000000" _index_="18"/>
+						<bone frame="0.379413, -0.422153, 0.823306, 0.000000, 0.537901, 0.824653, 0.174957, 0.000000, -0.752800, 0.376477, 0.539961, 0.000000, 0.271616, 0.000000, -0.000000, 1.000000" _index_="19"/>
+					</bones>
+				</skeleton>
+				<scripts>
+					<script name="TORSimpleObjectAnimator">
+						<variables>
+							<variable name="AnimationName" value="dwellers_below_tendrils_idle2"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="dwellers_below_tendril" old_prefab_name="" mobility="1">
+				<transform position="5.051, -3.930, 0.000" rotation_euler="0.000, 0.000, -2.963" scale="1.500, 1.500, 1.500"/>
+				<skeleton skeleton_model="dwellers_below_skeleton">
+					<components>
+						<meta_mesh_component name="dwellers_below_tendril"/>
+					</components>
+					<bones>
+						<bone frame="0.028823, 0.032062, 0.999070, 0.000000, 0.993018, 0.113459, -0.032290, 0.000000, -0.114388, 0.993025, -0.028568, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000"/>
+						<bone frame="0.990994, 0.130964, 0.027909, 0.000000, -0.131143, 0.907121, 0.399915, 0.000000, 0.027058, -0.399974, 0.916127, 0.000000, 0.260927, -0.000000, 0.000000, 1.000000" _index_="1"/>
+						<bone frame="0.990654, 0.068606, 0.117886, 0.000000, -0.105536, 0.933073, 0.343855, 0.000000, -0.086406, -0.353083, 0.931593, 0.000000, 0.345854, 0.000000, 0.000000, 1.000000" _index_="2"/>
+						<bone frame="0.933297, 0.320608, 0.161762, 0.000000, -0.358194, 0.799074, 0.482885, 0.000000, 0.025557, -0.508618, 0.860613, 0.000000, 0.415073, 0.000000, 0.000000, 1.000000" _index_="3"/>
+						<bone frame="0.906956, 0.421168, -0.006939, 0.000000, -0.295415, 0.647725, 0.702269, 0.000000, 0.300268, -0.634877, 0.711878, 0.000000, 0.332855, 0.000000, 0.000000, 1.000000" _index_="4"/>
+						<bone frame="0.901445, 0.274372, -0.334839, 0.000000, 0.083756, 0.648331, 0.756738, 0.000000, 0.424714, -0.710202, 0.561455, 0.000000, 0.332855, 0.000000, -0.000000, 1.000000" _index_="5"/>
+						<bone frame="0.952765, -0.043640, -0.300555, 0.000000, 0.241830, 0.707689, 0.663849, 0.000000, 0.183729, -0.705175, 0.684815, 0.000000, 0.334290, -0.000000, 0.000000, 1.000000" _index_="6"/>
+						<bone frame="0.978368, -0.167957, -0.120777, 0.000000, 0.204344, 0.875624, 0.437638, 0.000000, 0.032251, -0.452851, 0.891003, 0.000000, 0.300000, 0.000000, 0.000000, 1.000000" _index_="7"/>
+						<bone frame="0.829026, -0.126068, 0.544814, 0.000000, 0.124677, 0.991403, 0.039690, 0.000000, -0.545134, 0.035021, 0.837617, 0.000000, 0.219954, 0.084903, -0.023223, 1.000000" _index_="9"/>
+						<bone frame="0.853233, 0.169447, 0.493236, 0.000000, -0.098132, 0.981016, -0.167265, 0.000000, -0.512215, 0.094314, 0.853663, 0.000000, 0.067170, -0.045328, -0.052348, 1.000000" _index_="11"/>
+						<bone frame="0.789980, -0.579374, 0.200646, 0.000000, 0.363102, 0.705763, 0.608321, 0.000000, -0.494054, -0.407707, 0.767910, 0.000000, 0.204751, 0.000000, -0.000000, 1.000000" _index_="12"/>
+						<bone frame="0.661337, -0.721875, 0.203788, 0.000000, 0.599960, 0.672140, 0.433908, 0.000000, -0.450202, -0.164695, 0.877607, 0.000000, 0.256841, -0.000000, 0.000000, 1.000000" _index_="13"/>
+						<bone frame="0.496278, -0.222257, 0.839232, 0.000000, 0.183393, 0.971699, 0.148890, 0.000000, -0.848572, 0.080018, 0.522993, 0.000000, 0.100545, -0.053547, 0.085992, 1.000000" _index_="15"/>
+						<bone frame="0.955522, -0.032068, 0.293172, 0.000000, -0.113890, 0.876834, 0.467109, 0.000000, -0.272043, -0.479722, 0.834182, 0.000000, 0.319892, 0.000000, -0.000000, 1.000000" _index_="16"/>
+						<bone frame="0.865608, 0.444126, 0.231245, 0.000000, -0.337210, 0.858449, -0.386465, 0.000000, -0.370151, 0.256549, 0.892844, 0.000000, 0.354699, 0.068613, -0.097833, 1.000000" _index_="18"/>
+						<bone frame="0.551130, -0.124638, 0.825058, 0.000000, 0.443684, 0.881187, -0.163259, 0.000000, -0.706683, 0.456042, 0.540948, 0.000000, 0.271616, 0.000000, -0.000000, 1.000000" _index_="19"/>
+					</bones>
+				</skeleton>
+				<scripts>
+					<script name="TORSimpleObjectAnimator">
+						<variables>
+							<variable name="AnimationName" value="dwellers_below_tendrils_idle3"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="dwellers_below_tendril" old_prefab_name="" mobility="1">
+				<transform position="0.020, -2.872, 0.000" rotation_euler="0.000, 0.000, -2.963" scale="1.500, 1.500, 1.500"/>
+				<skeleton skeleton_model="dwellers_below_skeleton">
+					<components>
+						<meta_mesh_component name="dwellers_below_tendril"/>
+					</components>
+					<bones>
+						<bone frame="-0.009320, -0.207209, 0.978252, 0.000000, 0.996953, 0.073844, 0.025140, 0.000000, -0.077447, 0.975506, 0.205890, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000"/>
+						<bone frame="0.886233, 0.462031, 0.033425, 0.000000, -0.447259, 0.834642, 0.321453, 0.000000, 0.120624, -0.299832, 0.946335, 0.000000, 0.260927, -0.000000, 0.000000, 1.000000" _index_="1"/>
+						<bone frame="0.981302, -0.009601, 0.192237, 0.000000, -0.041421, 0.964820, 0.259627, 0.000000, -0.187966, -0.262735, 0.946382, 0.000000, 0.345854, 0.000000, 0.000000, 1.000000" _index_="2"/>
+						<bone frame="0.954131, 0.098066, 0.282874, 0.000000, -0.188017, 0.931550, 0.311230, 0.000000, -0.232990, -0.350139, 0.907259, 0.000000, 0.415073, 0.000000, 0.000000, 1.000000" _index_="3"/>
+						<bone frame="0.970374, 0.194141, 0.143820, 0.000000, -0.240544, 0.832103, 0.499742, 0.000000, -0.022652, -0.519532, 0.854151, 0.000000, 0.332855, 0.000000, 0.000000, 1.000000" _index_="4"/>
+						<bone frame="0.979398, -0.102987, -0.173702, 0.000000, 0.176742, 0.853240, 0.490656, 0.000000, 0.097678, -0.511248, 0.853864, 0.000000, 0.332855, 0.000000, -0.000000, 1.000000" _index_="5"/>
+						<bone frame="0.898188, -0.421995, -0.123198, 0.000000, 0.416082, 0.725598, 0.548072, 0.000000, -0.141891, -0.543532, 0.827309, 0.000000, 0.334290, -0.000000, 0.000000, 1.000000" _index_="6"/>
+						<bone frame="0.845222, -0.532840, 0.041002, 0.000000, 0.472873, 0.781428, 0.407137, 0.000000, -0.248979, -0.324732, 0.912446, 0.000000, 0.300000, 0.000000, 0.000000, 1.000000" _index_="7"/>
+						<bone frame="0.832165, -0.189548, 0.521126, 0.000000, 0.189445, 0.980401, 0.054083, 0.000000, -0.521164, 0.053719, 0.851765, 0.000000, 0.219954, 0.084903, -0.023223, 1.000000" _index_="9"/>
+						<bone frame="0.820412, 0.157251, 0.549724, 0.000000, -0.067270, 0.981306, -0.180313, 0.000000, -0.567802, 0.110951, 0.815653, 0.000000, 0.067170, -0.045328, -0.052348, 1.000000" _index_="11"/>
+						<bone frame="0.769623, -0.588708, 0.247191, 0.000000, 0.350684, 0.713264, 0.606857, 0.000000, -0.533574, -0.380365, 0.755395, 0.000000, 0.204751, 0.000000, -0.000000, 1.000000" _index_="12"/>
+						<bone frame="0.516694, -0.735583, 0.438116, 0.000000, 0.364419, 0.651998, 0.664904, 0.000000, -0.774743, -0.183894, 0.604944, 0.000000, 0.256841, -0.000000, 0.000000, 1.000000" _index_="13"/>
+						<bone frame="0.233148, -0.444331, 0.864993, 0.000000, 0.291663, 0.880507, 0.373686, 0.000000, -0.927672, 0.165162, 0.334883, 0.000000, 0.100545, -0.053547, 0.085992, 1.000000" _index_="15"/>
+						<bone frame="0.861002, -0.351456, 0.367633, 0.000000, 0.289296, 0.932933, 0.214346, 0.000000, -0.418310, -0.078198, 0.904932, 0.000000, 0.319892, 0.000000, -0.000000, 1.000000" _index_="16"/>
+						<bone frame="0.842108, 0.293636, 0.452363, 0.000000, -0.245540, 0.955554, -0.163174, 0.000000, -0.480171, 0.026337, 0.876779, 0.000000, 0.354699, 0.068613, -0.097833, 1.000000" _index_="18"/>
+						<bone frame="0.379337, -0.422221, 0.823306, 0.000000, 0.537807, 0.824677, 0.175130, 0.000000, -0.752906, 0.376347, 0.539904, 0.000000, 0.271616, 0.000000, -0.000000, 1.000000" _index_="19"/>
+					</bones>
+				</skeleton>
+				<scripts>
+					<script name="TORSimpleObjectAnimator">
+						<variables>
+							<variable name="AnimationName" value="dwellers_below_tendrils_idle4"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="dwellers_below_tendril" old_prefab_name="" mobility="1">
+				<transform position="-4.667, -4.600, 0.000" rotation_euler="0.000, 0.000, -2.963" scale="1.500, 1.500, 1.500"/>
+				<skeleton skeleton_model="dwellers_below_skeleton">
+					<components>
+						<meta_mesh_component name="dwellers_below_tendril"/>
+					</components>
+					<bones>
+						<bone frame="-0.072071, -0.037036, 0.996712, 0.000000, 0.997367, 0.005418, 0.072320, 0.000000, -0.008078, 0.999299, 0.036548, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000"/>
+						<bone frame="0.945096, -0.263416, -0.193403, 0.000000, 0.322401, 0.848258, 0.420138, 0.000000, 0.053385, -0.459425, 0.886611, 0.000000, 0.260927, -0.000000, 0.000000, 1.000000" _index_="1"/>
+						<bone frame="0.858593, -0.364756, -0.360237, 0.000000, 0.474118, 0.832263, 0.287315, 0.000000, 0.195012, -0.417482, 0.887513, 0.000000, 0.345854, 0.000000, 0.000000, 1.000000" _index_="2"/>
+						<bone frame="0.775917, -0.435442, -0.456445, 0.000000, 0.515333, 0.854851, 0.060506, 0.000000, 0.363846, -0.282169, 0.887692, 0.000000, 0.415073, 0.000000, 0.000000, 1.000000" _index_="3"/>
+						<bone frame="0.795204, -0.408321, -0.448246, 0.000000, 0.393873, 0.909908, -0.130120, 0.000000, 0.460994, -0.073080, 0.884389, 0.000000, 0.332855, 0.000000, 0.000000, 1.000000" _index_="4"/>
+						<bone frame="0.845940, -0.381151, -0.372973, 0.000000, 0.286331, 0.914670, -0.285296, 0.000000, 0.449888, 0.134550, 0.882891, 0.000000, 0.332855, 0.000000, -0.000000, 1.000000" _index_="5"/>
+						<bone frame="0.920148, -0.232455, -0.315106, 0.000000, 0.112349, 0.927618, -0.356233, 0.000000, 0.375106, 0.292386, 0.879662, 0.000000, 0.334290, -0.000000, 0.000000, 1.000000" _index_="6"/>
+						<bone frame="0.949477, -0.063874, -0.307267, 0.000000, -0.056288, 0.928534, -0.366955, 0.000000, 0.308747, 0.365711, 0.878027, 0.000000, 0.300000, 0.000000, 0.000000, 1.000000" _index_="7"/>
+						<bone frame="0.766789, 0.199529, -0.610100, 0.000000, -0.351415, 0.925863, -0.138869, 0.000000, 0.537161, 0.320882, 0.780060, 0.000000, 0.219954, 0.084903, -0.023223, 1.000000" _index_="9"/>
+						<bone frame="0.686213, -0.621852, -0.377374, 0.000000, 0.481221, 0.777141, -0.405558, 0.000000, 0.545470, 0.096699, 0.832533, 0.000000, 0.067170, -0.045328, -0.052348, 1.000000" _index_="11"/>
+						<bone frame="0.897644, -0.411148, -0.158723, 0.000000, 0.311325, 0.846459, -0.431954, 0.000000, 0.311950, 0.338326, 0.887819, 0.000000, 0.204751, 0.000000, -0.000000, 1.000000" _index_="12"/>
+						<bone frame="0.992318, 0.077880, -0.096127, 0.000000, -0.112402, 0.892155, -0.437521, 0.000000, 0.051687, 0.444964, 0.894055, 0.000000, 0.256841, -0.000000, 0.000000, 1.000000" _index_="13"/>
+						<bone frame="0.877638, -0.479247, -0.008606, 0.000000, 0.472997, 0.863005, 0.177471, 0.000000, -0.077625, -0.159826, 0.984088, 0.000000, 0.100545, -0.053547, 0.085992, 1.000000" _index_="15"/>
+						<bone frame="0.668766, -0.095618, -0.737298, 0.000000, 0.108577, 0.993624, -0.030376, 0.000000, 0.735502, -0.059739, 0.674884, 0.000000, 0.319892, 0.000000, -0.000000, 1.000000" _index_="16"/>
+						<bone frame="0.771166, 0.444232, -0.456028, 0.000000, -0.237855, 0.865482, 0.440869, 0.000000, 0.590532, -0.231514, 0.773093, 0.000000, 0.354699, 0.068613, -0.097833, 1.000000" _index_="18"/>
+						<bone frame="0.936320, -0.299878, -0.182699, 0.000000, 0.347763, 0.863975, 0.364155, 0.000000, 0.048645, -0.404501, 0.913243, 0.000000, 0.271616, 0.000000, -0.000000, 1.000000" _index_="19"/>
+					</bones>
+				</skeleton>
+				<scripts>
+					<script name="TORSimpleObjectAnimator">
+						<variables>
+							<variable name="AnimationName" value="dwellers_below_tendrils_idle5"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+			<game_entity name="dwellers_below_tendril" old_prefab_name="" mobility="1">
+				<transform position="0.322, 1.252, 0.000" rotation_euler="0.000, 0.000, 0.000" scale="1.500, 1.500, 1.500"/>
+				<skeleton skeleton_model="dwellers_below_skeleton">
+					<components>
+						<meta_mesh_component name="dwellers_below_tendril"/>
+					</components>
+					<bones>
+						<bone frame="0.108930, 0.014668, 0.993941, 0.000000, 0.994047, 0.000545, -0.108950, 0.000000, -0.002140, 0.999892, -0.014521, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000"/>
+						<bone frame="0.540384, 0.756978, 0.367382, 0.000000, -0.793487, 0.603722, -0.076805, 0.000000, -0.279936, -0.250008, 0.926893, 0.000000, 0.260927, -0.000000, 0.000000, 1.000000" _index_="1"/>
+						<bone frame="0.819103, 0.045834, 0.571813, 0.000000, -0.046836, 0.998818, -0.012970, 0.000000, -0.571732, -0.016157, 0.820282, 0.000000, 0.345854, 0.000000, 0.000000, 1.000000" _index_="2"/>
+						<bone frame="0.746999, -0.162582, 0.644639, 0.000000, 0.137167, 0.986465, 0.089844, 0.000000, -0.650521, 0.021310, 0.759189, 0.000000, 0.415073, 0.000000, 0.000000, 1.000000" _index_="3"/>
+						<bone frame="0.699921, -0.321252, 0.637893, 0.000000, 0.276010, 0.945407, 0.173272, 0.000000, -0.658733, 0.054788, 0.750380, 0.000000, 0.332855, 0.000000, 0.000000, 1.000000" _index_="4"/>
+						<bone frame="0.653105, -0.462894, 0.599319, 0.000000, 0.410236, 0.881504, 0.233791, 0.000000, -0.636523, 0.093172, 0.765610, 0.000000, 0.332855, 0.000000, -0.000000, 1.000000" _index_="5"/>
+						<bone frame="0.601669, -0.578859, 0.550378, 0.000000, 0.480646, 0.812721, 0.329340, 0.000000, -0.637945, 0.066383, 0.767215, 0.000000, 0.334290, -0.000000, 0.000000, 1.000000" _index_="6"/>
+						<bone frame="0.586316, -0.666680, 0.460186, 0.000000, 0.543476, 0.744980, 0.386832, 0.000000, -0.600722, 0.023294, 0.799118, 0.000000, 0.300000, 0.000000, 0.000000, 1.000000" _index_="7"/>
+						<bone frame="0.832165, -0.189548, 0.521126, 0.000000, 0.189445, 0.980401, 0.054083, 0.000000, -0.521164, 0.053719, 0.851765, 0.000000, 0.219954, 0.084903, -0.023223, 1.000000" _index_="9"/>
+						<bone frame="0.820195, 0.157312, 0.550031, 0.000000, -0.067046, 0.981256, -0.180668, 0.000000, -0.568142, 0.111306, 0.815368, 0.000000, 0.067170, -0.045328, -0.052348, 1.000000" _index_="11"/>
+						<bone frame="0.769245, -0.589224, 0.247136, 0.000000, 0.351234, 0.713049, 0.606792, 0.000000, -0.533757, -0.379969, 0.755465, 0.000000, 0.204751, 0.000000, -0.000000, 1.000000" _index_="12"/>
+						<bone frame="0.516523, -0.735608, 0.438274, 0.000000, 0.364326, 0.651998, 0.664955, 0.000000, -0.774900, -0.183791, 0.604773, 0.000000, 0.256841, -0.000000, 0.000000, 1.000000" _index_="13"/>
+						<bone frame="0.233148, -0.444331, 0.864993, 0.000000, 0.291663, 0.880507, 0.373686, 0.000000, -0.927672, 0.165162, 0.334883, 0.000000, 0.100545, -0.053547, 0.085992, 1.000000" _index_="15"/>
+						<bone frame="0.861002, -0.351456, 0.367632, 0.000000, 0.289296, 0.932933, 0.214346, 0.000000, -0.418310, -0.078198, 0.904932, 0.000000, 0.319892, 0.000000, -0.000000, 1.000000" _index_="16"/>
+						<bone frame="0.842211, 0.293335, 0.452366, 0.000000, -0.245149, 0.955640, -0.163263, 0.000000, -0.480190, 0.026605, 0.876761, 0.000000, 0.354699, 0.068613, -0.097833, 1.000000" _index_="18"/>
+						<bone frame="0.379337, -0.422221, 0.823306, 0.000000, 0.537807, 0.824677, 0.175130, 0.000000, -0.752906, 0.376347, 0.539904, 0.000000, 0.271616, 0.000000, -0.000000, 1.000000" _index_="19"/>
+					</bones>
+				</skeleton>
+				<scripts>
+					<script name="TORSimpleObjectAnimator">
+						<variables>
+							<variable name="AnimationName" value="dwellers_below_tendrils_idle6"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="doom_bolt_prefab" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<meta_mesh_component name="doombolt_crystal"/>
+			<particle_system_instanced_component _index_="1">
+				<effect_ref base_effect="{74E5BAF9-A2AA-450D-8CEF-405C64077122}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="gleaming_arrow" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{52191349-AF46-4FD4-9130-8CC1071886CA}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="gehennas_golden_globe" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{64131E47-E653-4678-AD60-B73B3AB029FE}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="gehennas_golden_hound_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<children>
+			<game_entity name="axis" old_prefab_name="" mobility="1">
+				<transform position="-0.356, 2.500, 0.134" rotation_euler="-0.335, -0.461, -1.107"/>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="1400.000"/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="gehennas_golden_hound" old_prefab_name="" mobility="1">
+						<transform position="1.290, 2.141, 0.000" rotation_euler="0.000, 0.000, 1.028" scale="1.501, 1.501, 1.500"/>
+						<skeleton skeleton_model="dog_skeleton">
+							<components>
+								<meta_mesh_component name="dog">
+									<mesh name="dog" material="hound" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								</meta_mesh_component>
+							</components>
+							<bones>
+								<bone frame="-0.015378, 0.963698, 0.266553, 0.000000, 0.068050, -0.264958, 0.961856, 0.000000, 0.997563, 0.032930, -0.061505, 0.000000, -0.000000, -0.254853, 0.641666, 1.000000"/>
+								<bone frame="0.987428, -0.155896, 0.026123, 0.000000, 0.155673, 0.987754, 0.010355, 0.000000, -0.027417, -0.006158, 0.999605, 0.000000, 0.000000, -0.008736, -0.002816, 1.000000" _index_="1"/>
+								<bone frame="0.971992, -0.234369, 0.017390, 0.000000, 0.234703, 0.971849, -0.020607, 0.000000, -0.012071, 0.024112, 0.999636, 0.000000, 0.148818, 0.000000, 0.000000, 1.000000" _index_="2"/>
+								<bone frame="0.993529, -0.113423, 0.005979, 0.000000, 0.113542, 0.993188, -0.026205, 0.000000, -0.002966, 0.026714, 0.999639, 0.000000, 0.164839, 0.000000, 0.000000, 1.000000" _index_="3"/>
+								<bone frame="0.998350, -0.057408, 0.001404, 0.000000, 0.057425, 0.998011, -0.026001, 0.000000, 0.000091, 0.026039, 0.999661, 0.000000, 0.175840, 0.000000, 0.000000, 1.000000" _index_="4"/>
+								<bone frame="-0.050378, -0.250428, -0.966824, 0.000000, 0.177830, -0.954833, 0.238056, 0.000000, -0.982771, -0.159938, 0.092636, 0.000000, -0.099839, 0.049910, -0.012820, 1.000000" _index_="6"/>
+								<bone frame="0.125029, 0.690528, -0.712417, 0.000000, -0.091203, -0.707013, -0.701295, 0.000000, -0.987952, 0.152657, -0.025419, 0.000000, 0.043537, 0.000000, 0.000000, 1.000000" _index_="7"/>
+								<bone frame="0.822799, 0.551154, 0.138672, 0.000000, -0.558867, 0.828987, 0.021168, 0.000000, -0.103290, -0.094916, 0.990112, 0.000000, 0.211360, -0.000115, -0.021702, 1.000000" _index_="9"/>
+								<bone frame="0.826272, 0.561212, -0.048133, 0.000000, -0.543501, 0.816795, 0.193529, 0.000000, 0.147925, -0.133747, 0.979913, 0.000000, 0.221398, 0.000000, 0.000000, 1.000000" _index_="10"/>
+								<bone frame="0.997004, 0.077349, 0.000194, 0.000000, -0.077349, 0.997004, -0.000209, 0.000000, -0.000209, 0.000194, 1.000000, 0.000000, 0.092065, 0.000000, -0.000000, 1.000000" _index_="11"/>
+								<bone frame="-0.222357, 0.759689, 0.611089, 0.000000, 0.063428, -0.614181, 0.786613, 0.000000, 0.972900, 0.213669, 0.088382, 0.000000, -0.099839, 0.049911, 0.018452, 1.000000" _index_="13"/>
+								<bone frame="-0.578665, 0.644147, 0.500220, 0.000000, 0.361745, -0.346986, 0.865298, 0.000000, 0.730949, 0.681670, -0.032228, 0.000000, 0.043537, -0.000000, 0.000000, 1.000000" _index_="14"/>
+								<bone frame="0.344805, -0.935813, -0.073233, 0.000000, 0.938573, 0.342568, 0.041580, 0.000000, -0.013824, -0.083072, 0.996448, 0.000000, 0.175682, 0.000377, 0.035515, 1.000000" _index_="15"/>
+								<bone frame="0.977200, 0.114118, -0.179045, 0.000000, -0.143896, 0.976031, -0.163270, 0.000000, 0.156121, 0.185311, 0.970199, 0.000000, 0.211360, -0.000115, 0.021702, 1.000000" _index_="16"/>
+								<bone frame="0.997217, 0.041424, 0.061993, 0.000000, -0.022566, 0.960148, -0.278579, 0.000000, -0.071063, 0.276404, 0.958411, 0.000000, 0.221399, 0.000000, 0.000000, 1.000000" _index_="17"/>
+								<bone frame="0.772313, 0.633918, -0.040991, 0.000000, -0.635163, 0.771625, -0.034095, 0.000000, 0.010016, 0.052368, 0.998578, 0.000000, 0.092057, 0.000889, -0.000896, 1.000000" _index_="18"/>
+								<bone frame="0.996520, -0.083328, 0.002154, 0.000000, 0.083333, 0.996520, -0.001982, 0.000000, -0.001982, 0.002154, 0.999996, 0.000000, 0.044334, -0.000000, 0.000000, 1.000000" _index_="19"/>
+								<bone frame="0.944392, 0.328821, 0.000000, 0.000000, -0.328821, 0.944392, -0.000000, 0.000000, -0.000000, 0.000000, 1.000000, 0.000000, 0.003083, -0.000461, 0.002816, 1.000000" _index_="20"/>
+								<bone frame="0.976754, 0.214361, 0.000000, 0.000000, -0.214361, 0.976754, -0.000000, 0.000000, -0.000000, 0.000000, 1.000000, 0.000000, 0.093401, -0.000071, 0.000000, 1.000000" _index_="21"/>
+								<bone frame="0.962599, 0.270930, 0.000000, 0.000000, -0.270930, 0.962599, -0.000000, 0.000000, -0.000000, 0.000000, 1.000000, 0.000000, 0.093850, 0.000119, -0.000000, 1.000000" _index_="22"/>
+								<bone frame="0.701497, -0.712673, -0.000000, 0.000000, 0.712673, 0.701497, 0.000000, 0.000000, 0.000000, -0.000000, 1.000000, 0.000000, 0.080562, -0.000263, -0.000000, 1.000000" _index_="23"/>
+								<bone frame="0.485115, 0.874451, -0.000063, 0.000000, -0.874451, 0.485115, 0.000243, 0.000000, 0.000243, -0.000063, 1.000000, 0.000000, -0.004069, -0.017042, 0.000000, 1.000000" _index_="25"/>
+								<bone frame="-0.070653, -0.997501, 0.000000, 0.000000, 0.997501, -0.070653, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.091666, 0.000140, 0.000000, 1.000000" _index_="26"/>
+								<bone frame="0.767782, 0.640711, 0.000278, 0.000000, -0.640711, 0.767782, -0.000594, 0.000000, -0.000594, 0.000278, 1.000000, 0.000000, 0.100574, 0.001919, 0.000000, 1.000000" _index_="27"/>
+								<bone frame="0.193837, -0.970727, 0.141832, 0.000000, 0.964006, 0.215290, 0.156021, 0.000000, -0.181989, 0.106484, 0.977518, 0.000000, 0.177311, -0.014802, -0.036331, 1.000000" _index_="29"/>
+								<bone frame="0.379828, -0.914267, 0.140876, 0.000000, 0.924408, 0.380837, -0.020796, 0.000000, -0.034638, 0.138126, 0.989809, 0.000000, 0.177311, -0.014801, 0.036331, 1.000000" _index_="30"/>
+								<bone frame="0.112372, 0.199740, 0.973384, 0.000000, -0.859204, -0.472538, 0.196156, 0.000000, 0.499141, -0.858377, 0.118518, 0.000000, -0.018051, 0.067733, 0.076421, 1.000000" _index_="31"/>
+								<bone frame="0.215932, 0.404758, 0.888563, 0.000000, 0.056663, 0.903304, -0.425242, 0.000000, -0.974763, 0.142172, 0.172117, 0.000000, 0.038838, 0.000594, -0.000377, 1.000000" _index_="32"/>
+								<bone frame="0.968618, 0.208554, 0.135217, 0.000000, -0.115405, 0.859184, -0.498482, 0.000000, -0.220136, 0.467234, 0.856290, 0.000000, 0.055007, 0.000237, 0.004868, 1.000000" _index_="33"/>
+								<bone frame="0.417281, 0.118874, -0.900969, 0.000000, -0.711278, -0.574361, -0.405207, 0.000000, -0.565650, 0.809925, -0.155117, 0.000000, -0.018051, 0.067732, -0.076421, 1.000000" _index_="34"/>
+								<bone frame="0.169040, 0.837434, -0.519740, 0.000000, -0.418037, 0.538465, 0.731642, 0.000000, 0.892564, 0.093594, 0.441100, 0.000000, 0.038838, 0.000594, 0.000377, 1.000000" _index_="35"/>
+								<bone frame="0.970565, -0.040565, -0.237400, 0.000000, 0.111441, 0.949482, 0.293368, 0.000000, 0.213507, -0.311189, 0.926054, 0.000000, 0.055221, 0.000279, 0.000015, 1.000000" _index_="36"/>
+								<bone frame="-0.225780, -0.966496, -0.122104, 0.000000, 0.973497, -0.219156, -0.065383, 0.000000, 0.036433, -0.133630, 0.990361, 0.000000, -0.063152, -0.028620, -0.066431, 1.000000" _index_="37"/>
+								<bone frame="-0.210870, -0.960527, 0.181444, 0.000000, 0.976728, -0.214479, -0.000276, 0.000000, 0.039181, 0.177164, 0.983401, 0.000000, 0.213754, 0.000199, -0.025752, 1.000000" _index_="38"/>
+								<bone frame="0.138500, 0.979681, 0.145060, 0.000000, -0.981304, 0.115987, 0.153591, 0.000000, 0.133645, -0.163621, 0.977429, 0.000000, 0.208268, 0.000000, 0.000000, 1.000000" _index_="39"/>
+								<bone frame="0.870330, -0.481167, -0.104901, 0.000000, 0.491963, 0.859134, 0.140927, 0.000000, 0.022314, -0.174260, 0.984447, 0.000000, 0.169662, 0.000537, -0.006212, 1.000000" _index_="40"/>
+								<bone frame="0.929138, 0.369724, 0.002784, 0.000000, -0.369712, 0.929138, -0.004104, 0.000000, -0.004104, 0.002784, 0.999988, 0.000000, 0.044530, 0.000000, 0.000000, 1.000000" _index_="41"/>
+								<bone frame="-0.016632, -0.975173, 0.220819, 0.000000, 0.999026, -0.007181, 0.043531, 0.000000, -0.040864, 0.221328, 0.974343, 0.000000, -0.063151, -0.028620, 0.066431, 1.000000" _index_="42"/>
+								<bone frame="-0.189218, -0.965824, -0.177144, 0.000000, 0.981339, -0.192287, 0.000157, 0.000000, -0.034214, -0.173808, 0.984185, 0.000000, 0.213754, 0.000199, 0.025752, 1.000000" _index_="43"/>
+								<bone frame="0.519353, 0.850351, -0.084706, 0.000000, -0.851993, 0.507567, -0.128388, 0.000000, -0.066181, 0.138847, 0.988100, 0.000000, 0.208267, 0.000001, 0.000000, 1.000000" _index_="44"/>
+								<bone frame="0.975555, 0.215540, 0.042834, 0.000000, -0.206220, 0.965259, -0.160463, 0.000000, -0.075932, 0.147707, 0.986112, 0.000000, 0.169663, 0.000536, 0.006212, 1.000000" _index_="45"/>
+								<bone frame="0.999998, 0.001298, -0.001297, 0.000000, -0.001297, 0.999998, 0.001298, 0.000000, 0.001298, -0.001297, 0.999998, 0.000000, 0.044530, -0.000000, -0.000000, 1.000000" _index_="46"/>
+								<bone frame="-0.966295, -0.252409, -0.050638, 0.000000, 0.255554, -0.964238, -0.070270, 0.000000, -0.031090, -0.080842, 0.996242, 0.000000, -0.083800, 0.057587, 0.000000, 1.000000" _index_="47"/>
+								<bone frame="0.989641, 0.138426, -0.038070, 0.000000, -0.140725, 0.987820, -0.066389, 0.000000, 0.028416, 0.071058, 0.997067, 0.000000, 0.065548, 0.000000, -0.000000, 1.000000" _index_="48"/>
+								<bone frame="0.876712, -0.477270, -0.059913, 0.000000, 0.465395, 0.873120, -0.145152, 0.000000, 0.121588, 0.099374, 0.987594, 0.000000, 0.091381, 0.000001, 0.000000, 1.000000" _index_="49"/>
+								<bone frame="0.990728, -0.134804, 0.016932, 0.000000, 0.135853, 0.981457, -0.135229, 0.000000, 0.001612, 0.136276, 0.990670, 0.000000, 0.102141, -0.000000, 0.000000, 1.000000" _index_="50"/>
+								<bone frame="0.998894, 0.029308, 0.036769, 0.000000, -0.025435, 0.994491, -0.101691, 0.000000, -0.039547, 0.100643, 0.994136, 0.000000, 0.102398, 0.000001, 0.000000, 1.000000" _index_="51"/>
+							</bones>
+						</skeleton>
+						<scripts>
+							<script name="TORSimpleObjectAnimator">
+								<variables>
+									<variable name="AnimationName" value="hound_gallop"/>
+								</variables>
+							</script>
+						</scripts>
+						<children>
+							<game_entity name="trail" old_prefab_name="" mobility="1">
+								<transform position="0.103, 0.158, 0.147"/>
+								<components>
+									<particle_system_instanced_component>
+										<effect_ref base_effect="{E8E7FA2E-9A00-414D-9ED7-F5ED42B19CF9}"/>
+									</particle_system_instanced_component>
+								</components>
+							</game_entity>
+							<game_entity name="trail" old_prefab_name="" mobility="1">
+								<transform position="-0.080, 0.158, 0.147"/>
+								<components>
+									<particle_system_instanced_component>
+										<effect_ref base_effect="{E8E7FA2E-9A00-414D-9ED7-F5ED42B19CF9}"/>
+									</particle_system_instanced_component>
+								</components>
+							</game_entity>
+						</children>
+					</game_entity>
+				</children>
+			</game_entity>
+			<game_entity name="axis" old_prefab_name="" mobility="1">
+				<transform position="1.848, -0.594, -0.118" rotation_euler="-0.314, 0.001, 1.146"/>
+				<scripts>
+					<script name="TORSpinner">
+						<variables>
+							<variable name="RotationSpeed" value="-1500.000"/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="gehennas_golden_hound" old_prefab_name="" mobility="1">
+						<transform position="-1.934, -1.699, -0.371" rotation_euler="0.000, 0.000, 0.858" scale="1.500, 1.500, 1.500"/>
+						<skeleton skeleton_model="dog_skeleton">
+							<components>
+								<meta_mesh_component name="dog">
+									<mesh name="dog" material="hound" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								</meta_mesh_component>
+							</components>
+							<bones>
+								<bone frame="-0.015378, 0.963698, 0.266553, 0.000000, 0.068050, -0.264958, 0.961856, 0.000000, 0.997563, 0.032930, -0.061505, 0.000000, -0.000000, -0.254853, 0.641666, 1.000000"/>
+								<bone frame="0.987428, -0.155896, 0.026123, 0.000000, 0.155673, 0.987754, 0.010355, 0.000000, -0.027417, -0.006158, 0.999605, 0.000000, 0.000000, -0.008736, -0.002816, 1.000000" _index_="1"/>
+								<bone frame="0.971992, -0.234369, 0.017390, 0.000000, 0.234703, 0.971849, -0.020607, 0.000000, -0.012071, 0.024112, 0.999636, 0.000000, 0.148818, 0.000000, 0.000000, 1.000000" _index_="2"/>
+								<bone frame="0.993529, -0.113423, 0.005979, 0.000000, 0.113542, 0.993188, -0.026205, 0.000000, -0.002966, 0.026714, 0.999639, 0.000000, 0.164839, 0.000000, 0.000000, 1.000000" _index_="3"/>
+								<bone frame="0.998350, -0.057408, 0.001404, 0.000000, 0.057425, 0.998011, -0.026001, 0.000000, 0.000091, 0.026039, 0.999661, 0.000000, 0.175840, 0.000000, 0.000000, 1.000000" _index_="4"/>
+								<bone frame="-0.050378, -0.250428, -0.966824, 0.000000, 0.177830, -0.954833, 0.238056, 0.000000, -0.982771, -0.159938, 0.092636, 0.000000, -0.099839, 0.049910, -0.012820, 1.000000" _index_="6"/>
+								<bone frame="0.125029, 0.690528, -0.712417, 0.000000, -0.091203, -0.707013, -0.701295, 0.000000, -0.987952, 0.152657, -0.025419, 0.000000, 0.043537, 0.000000, 0.000000, 1.000000" _index_="7"/>
+								<bone frame="0.822799, 0.551154, 0.138672, 0.000000, -0.558867, 0.828987, 0.021168, 0.000000, -0.103290, -0.094916, 0.990112, 0.000000, 0.211360, -0.000115, -0.021702, 1.000000" _index_="9"/>
+								<bone frame="0.826272, 0.561212, -0.048133, 0.000000, -0.543501, 0.816795, 0.193529, 0.000000, 0.147925, -0.133747, 0.979913, 0.000000, 0.221398, 0.000000, 0.000000, 1.000000" _index_="10"/>
+								<bone frame="0.997004, 0.077349, 0.000194, 0.000000, -0.077349, 0.997004, -0.000209, 0.000000, -0.000209, 0.000194, 1.000000, 0.000000, 0.092065, 0.000000, -0.000000, 1.000000" _index_="11"/>
+								<bone frame="-0.222357, 0.759689, 0.611089, 0.000000, 0.063428, -0.614181, 0.786613, 0.000000, 0.972900, 0.213669, 0.088382, 0.000000, -0.099839, 0.049911, 0.018452, 1.000000" _index_="13"/>
+								<bone frame="-0.578665, 0.644147, 0.500220, 0.000000, 0.361745, -0.346986, 0.865298, 0.000000, 0.730949, 0.681670, -0.032228, 0.000000, 0.043537, -0.000000, 0.000000, 1.000000" _index_="14"/>
+								<bone frame="0.344805, -0.935813, -0.073233, 0.000000, 0.938573, 0.342568, 0.041580, 0.000000, -0.013824, -0.083072, 0.996448, 0.000000, 0.175682, 0.000377, 0.035515, 1.000000" _index_="15"/>
+								<bone frame="0.977200, 0.114118, -0.179045, 0.000000, -0.143896, 0.976031, -0.163270, 0.000000, 0.156121, 0.185311, 0.970199, 0.000000, 0.211360, -0.000115, 0.021702, 1.000000" _index_="16"/>
+								<bone frame="0.997217, 0.041424, 0.061993, 0.000000, -0.022566, 0.960148, -0.278579, 0.000000, -0.071063, 0.276404, 0.958411, 0.000000, 0.221399, 0.000000, 0.000000, 1.000000" _index_="17"/>
+								<bone frame="0.772313, 0.633918, -0.040991, 0.000000, -0.635163, 0.771625, -0.034095, 0.000000, 0.010016, 0.052368, 0.998578, 0.000000, 0.092057, 0.000889, -0.000896, 1.000000" _index_="18"/>
+								<bone frame="0.996520, -0.083328, 0.002154, 0.000000, 0.083333, 0.996520, -0.001982, 0.000000, -0.001982, 0.002154, 0.999996, 0.000000, 0.044334, -0.000000, 0.000000, 1.000000" _index_="19"/>
+								<bone frame="0.944392, 0.328821, 0.000000, 0.000000, -0.328821, 0.944392, -0.000000, 0.000000, -0.000000, 0.000000, 1.000000, 0.000000, 0.003083, -0.000461, 0.002816, 1.000000" _index_="20"/>
+								<bone frame="0.976754, 0.214361, 0.000000, 0.000000, -0.214361, 0.976754, -0.000000, 0.000000, -0.000000, 0.000000, 1.000000, 0.000000, 0.093401, -0.000071, 0.000000, 1.000000" _index_="21"/>
+								<bone frame="0.962599, 0.270930, 0.000000, 0.000000, -0.270930, 0.962599, -0.000000, 0.000000, -0.000000, 0.000000, 1.000000, 0.000000, 0.093850, 0.000119, -0.000000, 1.000000" _index_="22"/>
+								<bone frame="0.701497, -0.712673, -0.000000, 0.000000, 0.712673, 0.701497, 0.000000, 0.000000, 0.000000, -0.000000, 1.000000, 0.000000, 0.080562, -0.000263, -0.000000, 1.000000" _index_="23"/>
+								<bone frame="0.485115, 0.874451, -0.000063, 0.000000, -0.874451, 0.485115, 0.000243, 0.000000, 0.000243, -0.000063, 1.000000, 0.000000, -0.004069, -0.017042, 0.000000, 1.000000" _index_="25"/>
+								<bone frame="-0.070653, -0.997501, 0.000000, 0.000000, 0.997501, -0.070653, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.091666, 0.000140, 0.000000, 1.000000" _index_="26"/>
+								<bone frame="0.767782, 0.640711, 0.000278, 0.000000, -0.640711, 0.767782, -0.000594, 0.000000, -0.000594, 0.000278, 1.000000, 0.000000, 0.100574, 0.001919, 0.000000, 1.000000" _index_="27"/>
+								<bone frame="0.193837, -0.970727, 0.141832, 0.000000, 0.964006, 0.215290, 0.156021, 0.000000, -0.181989, 0.106484, 0.977518, 0.000000, 0.177311, -0.014802, -0.036331, 1.000000" _index_="29"/>
+								<bone frame="0.379828, -0.914267, 0.140876, 0.000000, 0.924408, 0.380837, -0.020796, 0.000000, -0.034638, 0.138126, 0.989809, 0.000000, 0.177311, -0.014801, 0.036331, 1.000000" _index_="30"/>
+								<bone frame="0.112372, 0.199740, 0.973384, 0.000000, -0.859204, -0.472538, 0.196156, 0.000000, 0.499141, -0.858377, 0.118518, 0.000000, -0.018051, 0.067733, 0.076421, 1.000000" _index_="31"/>
+								<bone frame="0.215932, 0.404758, 0.888563, 0.000000, 0.056663, 0.903304, -0.425242, 0.000000, -0.974763, 0.142172, 0.172117, 0.000000, 0.038838, 0.000594, -0.000377, 1.000000" _index_="32"/>
+								<bone frame="0.968618, 0.208554, 0.135217, 0.000000, -0.115405, 0.859184, -0.498482, 0.000000, -0.220136, 0.467234, 0.856290, 0.000000, 0.055007, 0.000237, 0.004868, 1.000000" _index_="33"/>
+								<bone frame="0.417281, 0.118874, -0.900969, 0.000000, -0.711278, -0.574361, -0.405207, 0.000000, -0.565650, 0.809925, -0.155117, 0.000000, -0.018051, 0.067732, -0.076421, 1.000000" _index_="34"/>
+								<bone frame="0.169040, 0.837434, -0.519740, 0.000000, -0.418037, 0.538465, 0.731642, 0.000000, 0.892564, 0.093594, 0.441100, 0.000000, 0.038838, 0.000594, 0.000377, 1.000000" _index_="35"/>
+								<bone frame="0.970565, -0.040565, -0.237400, 0.000000, 0.111441, 0.949482, 0.293368, 0.000000, 0.213507, -0.311189, 0.926054, 0.000000, 0.055221, 0.000279, 0.000015, 1.000000" _index_="36"/>
+								<bone frame="-0.225780, -0.966496, -0.122104, 0.000000, 0.973497, -0.219156, -0.065383, 0.000000, 0.036433, -0.133630, 0.990361, 0.000000, -0.063152, -0.028620, -0.066431, 1.000000" _index_="37"/>
+								<bone frame="-0.210870, -0.960527, 0.181444, 0.000000, 0.976728, -0.214479, -0.000276, 0.000000, 0.039181, 0.177164, 0.983401, 0.000000, 0.213754, 0.000199, -0.025752, 1.000000" _index_="38"/>
+								<bone frame="0.138500, 0.979681, 0.145060, 0.000000, -0.981304, 0.115987, 0.153591, 0.000000, 0.133645, -0.163621, 0.977429, 0.000000, 0.208268, 0.000000, 0.000000, 1.000000" _index_="39"/>
+								<bone frame="0.870330, -0.481167, -0.104901, 0.000000, 0.491963, 0.859134, 0.140927, 0.000000, 0.022314, -0.174260, 0.984447, 0.000000, 0.169662, 0.000537, -0.006212, 1.000000" _index_="40"/>
+								<bone frame="0.929138, 0.369724, 0.002784, 0.000000, -0.369712, 0.929138, -0.004104, 0.000000, -0.004104, 0.002784, 0.999988, 0.000000, 0.044530, 0.000000, 0.000000, 1.000000" _index_="41"/>
+								<bone frame="-0.016632, -0.975173, 0.220819, 0.000000, 0.999026, -0.007181, 0.043531, 0.000000, -0.040864, 0.221328, 0.974343, 0.000000, -0.063151, -0.028620, 0.066431, 1.000000" _index_="42"/>
+								<bone frame="-0.189218, -0.965824, -0.177144, 0.000000, 0.981339, -0.192287, 0.000157, 0.000000, -0.034214, -0.173808, 0.984185, 0.000000, 0.213754, 0.000199, 0.025752, 1.000000" _index_="43"/>
+								<bone frame="0.519353, 0.850351, -0.084706, 0.000000, -0.851993, 0.507567, -0.128388, 0.000000, -0.066181, 0.138847, 0.988100, 0.000000, 0.208267, 0.000001, 0.000000, 1.000000" _index_="44"/>
+								<bone frame="0.975555, 0.215540, 0.042834, 0.000000, -0.206220, 0.965259, -0.160463, 0.000000, -0.075932, 0.147707, 0.986112, 0.000000, 0.169663, 0.000536, 0.006212, 1.000000" _index_="45"/>
+								<bone frame="0.999998, 0.001298, -0.001297, 0.000000, -0.001297, 0.999998, 0.001298, 0.000000, 0.001298, -0.001297, 0.999998, 0.000000, 0.044530, -0.000000, -0.000000, 1.000000" _index_="46"/>
+								<bone frame="-0.966295, -0.252409, -0.050638, 0.000000, 0.255554, -0.964238, -0.070270, 0.000000, -0.031090, -0.080842, 0.996242, 0.000000, -0.083800, 0.057587, 0.000000, 1.000000" _index_="47"/>
+								<bone frame="0.989641, 0.138426, -0.038070, 0.000000, -0.140725, 0.987820, -0.066389, 0.000000, 0.028416, 0.071058, 0.997067, 0.000000, 0.065548, 0.000000, -0.000000, 1.000000" _index_="48"/>
+								<bone frame="0.876712, -0.477270, -0.059913, 0.000000, 0.465395, 0.873120, -0.145152, 0.000000, 0.121588, 0.099374, 0.987594, 0.000000, 0.091381, 0.000001, 0.000000, 1.000000" _index_="49"/>
+								<bone frame="0.990728, -0.134804, 0.016932, 0.000000, 0.135853, 0.981457, -0.135229, 0.000000, 0.001612, 0.136276, 0.990670, 0.000000, 0.102141, -0.000000, 0.000000, 1.000000" _index_="50"/>
+								<bone frame="0.998894, 0.029308, 0.036769, 0.000000, -0.025435, 0.994491, -0.101691, 0.000000, -0.039547, 0.100643, 0.994136, 0.000000, 0.102398, 0.000001, 0.000000, 1.000000" _index_="51"/>
+							</bones>
+						</skeleton>
+						<scripts>
+							<script name="TORSimpleObjectAnimator">
+								<variables>
+									<variable name="AnimationName" value="hound_gallop"/>
+								</variables>
+							</script>
+						</scripts>
+						<children>
+							<game_entity name="trail" old_prefab_name="" mobility="1">
+								<transform position="0.103, 0.158, 0.147"/>
+								<components>
+									<particle_system_instanced_component>
+										<effect_ref base_effect="{E8E7FA2E-9A00-414D-9ED7-F5ED42B19CF9}"/>
+									</particle_system_instanced_component>
+								</components>
+							</game_entity>
+							<game_entity name="trail" old_prefab_name="" mobility="1">
+								<transform position="-0.080, 0.158, 0.147"/>
+								<components>
+									<particle_system_instanced_component>
+										<effect_ref base_effect="{E8E7FA2E-9A00-414D-9ED7-F5ED42B19CF9}"/>
+									</particle_system_instanced_component>
+								</components>
+							</game_entity>
+						</children>
+					</game_entity>
+				</children>
+			</game_entity>
+			<game_entity name="ground_effect" old_prefab_name="">
+				<transform position="0.020, 0.002, 0.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{F7E1FCAC-C5BC-44B8-A4A5-ED0790E6679E}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="final_transmutation_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{8AC332B3-CE29-4616-AA5F-F24238905FC1}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="blast_of_agony_prefab" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{4504C731-1AC5-43F8-9798-4727F9C5F90F}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="apotheosis_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{1F9B4564-D2D8-4DBF-A343-E3EEC701E8F5}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="soul_quench" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{D3ADC8E8-2734-43C7-B7BF-730B4250AFC7}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="tempest" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{3197366C-EC8D-4FD2-9F6E-CF0B7F84AECA}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="timewarp_ground" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{1F9B4564-D2D8-4DBF-A343-E3EEC701E8F5}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="curse_of_midnight_wind" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{DD89957F-D6EB-4152-9B31-31902F98C906}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="arrow_kurnous" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component _index_="1">
+				<effect_ref base_effect="{307538BB-5DC5-4DCB-B882-193B486C02AF}"/>
+			</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="arrow" old_prefab_name=""/>
+		</children>
+	</game_entity>
+	<game_entity name="purple_sun" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<children>
+			<game_entity name="purple_sun_ground" old_prefab_name="">
+				<transform position="0.000, 0.000, -0.010"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{C0820DEC-A566-47D9-8DBF-490C51D46F30}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+			<game_entity name="purple_sun" old_prefab_name="">
+				<flags>
+					<flag name="record_to_scene_replay" value="true"/>
+				</flags>
+				<transform position="0.000, 0.000, 4.000"/>
+				<components>
+					<particle_system_instanced_component>
+						<effect_ref base_effect="{CB9A7244-7D04-461C-8CD4-23AFDCB4C284}"/>
+					</particle_system_instanced_component>
+				</components>
+			</game_entity>
+			<game_entity name="flying_sphere" old_prefab_name="">
+				<transform position="-0.001, 0.002, 4.000" rotation_euler="-0.785, -0.785, -3.142" scale="2.000, 2.000, 2.000"/>
+				<components>
+					<meta_mesh_component name="magic_sphere">
+						<mesh name="magic_sphere" material="magic_orb" argument="0.120, 0.060, 0.000, 10.000"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="flying_sphere" old_prefab_name="">
+				<transform position="-0.001, 0.002, 4.000" rotation_euler="0.000, 0.000, 3.142" scale="1.800, 1.800, 1.800"/>
+				<components>
+					<meta_mesh_component name="invisible_sphere">
+						<mesh name="invisible_sphere" material="magic_orb" argument="0.120, 0.060, 0.000, 10.000"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+			<game_entity name="flying_sphere" old_prefab_name="">
+				<transform position="-0.001, 0.002, 4.000" rotation_euler="0.785, 0.785, 0.785" scale="2.000, 2.000, 2.000"/>
+				<components>
+					<meta_mesh_component name="invisible_sphere">
+						<mesh name="invisible_sphere" material="magic_orb" argument="0.120, 0.060, 0.000, 10.000"/>
+					</meta_mesh_component>
+				</components>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="ashes_and_dust" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{A984273D-3113-45D3-9B18-8DC77B55E083}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
+	<game_entity name="fate_of_bjuna" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{50F477B3-7E95-4D1F-BA53-61B0F579BA10}"/>
+			</particle_system_instanced_component>
+		</components>
+		<children>
+			<game_entity name="laughing_skull" old_prefab_name="">
+				<transform position="0.201, -2.459, 4.164"/>
+				<children>
+					<game_entity name="skull_002_top" old_prefab_name="" mobility="1">
+						<transform position="0.212, 0.166, 0.404" rotation_euler="-1.255, 3.141, 3.141"/>
+						<physics override_material="stone"/>
+						<components>
+							<meta_mesh_component name="skull_002_top" position="0.000, 0.000, 0.000" rotation="1.000, 0.000, 0.000" scale="8.000, 8.000, 8.000">
+								<mesh name="skull_002_top" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								<mesh name="skull_002_top.lod1" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								<mesh name="skull_002_top.lod2" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								<mesh name="skull_002_top.lod3" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								<mesh name="skull_002_top.lod4" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+							</meta_mesh_component>
+						</components>
+						<scripts>
+							<script name="WaveFloater">
+								<variables>
+									<variable name="oscillateAtX" value="true"/>
+									<variable name="oscillateAtY" value="false"/>
+									<variable name="oscillateAtZ" value="false"/>
+									<variable name="oscillationFrequency" value="9.000"/>
+									<variable name="maxOscillationAngle" value="10.000"/>
+									<variable name="bounceX" value="false"/>
+									<variable name="bounceXFrequency" value="14.000"/>
+									<variable name="maxBounceXDistance" value="0.300"/>
+									<variable name="bounceY" value="false"/>
+									<variable name="bounceYFrequency" value="14.000"/>
+									<variable name="maxBounceYDistance" value="0.300"/>
+									<variable name="bounceZ" value="false"/>
+									<variable name="bounceZFrequency" value="14.000"/>
+									<variable name="maxBounceZDistance" value="0.300"/>
+								</variables>
+							</script>
+						</scripts>
+					</game_entity>
+					<game_entity name="skull_002_jaw" old_prefab_name="" mobility="1">
+						<transform position="0.242, -0.220, -0.221" rotation_euler="-0.705, 0.000, 0.000"/>
+						<physics override_material="stone"/>
+						<components>
+							<meta_mesh_component name="skull_002_jaw" position="0.000, 0.000, 0.000" rotation="0.000, 0.000, 0.000" scale="8.000, 8.000, 8.000">
+								<mesh name="skull_002_jaw" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								<mesh name="skull_002_jaw.lod1" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								<mesh name="skull_002_jaw.lod2" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								<mesh name="skull_002_jaw.lod3" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+								<mesh name="skull_002_jaw.lod4" material="hound" factor="4284155391" factor2="4280484607" argument="0.020, 0.000, 0.000, 5.000" argument2="0.600, 0.000, 0.000, 0.000"/>
+							</meta_mesh_component>
+						</components>
+						<scripts>
+							<script name="WaveFloater">
+								<variables>
+									<variable name="oscillateAtX" value="true"/>
+									<variable name="oscillateAtY" value="false"/>
+									<variable name="oscillateAtZ" value="false"/>
+									<variable name="oscillationFrequency" value="8.000"/>
+									<variable name="maxOscillationAngle" value="10.000"/>
+									<variable name="bounceX" value="false"/>
+									<variable name="bounceXFrequency" value="14.000"/>
+									<variable name="maxBounceXDistance" value="0.300"/>
+									<variable name="bounceY" value="false"/>
+									<variable name="bounceYFrequency" value="14.000"/>
+									<variable name="maxBounceYDistance" value="0.300"/>
+									<variable name="bounceZ" value="false"/>
+									<variable name="bounceZFrequency" value="14.000"/>
+									<variable name="maxBounceZDistance" value="0.300"/>
+								</variables>
+							</script>
+						</scripts>
+					</game_entity>
+					<game_entity name="warpgate" old_prefab_name="">
+						<transform position="0.253, -0.411, 0.619" rotation_euler="-0.494, 0.000, 0.000"/>
+						<components>
+							<particle_system_instanced_component>
+								<effect_ref base_effect="{5425BE3E-B002-441D-837A-1E5B428B62C0}"/>
+							</particle_system_instanced_component>
+						</components>
+					</game_entity>
+				</children>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="hawk_ability" old_prefab_name="" mobility="1">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<scripts>
+			<script name="TORSpinner">
+				<variables>
+					<variable name="RotationSpeed" value="500.000"/>
+				</variables>
+			</script>
+		</scripts>
+		<children>
+			<game_entity name="tor_flying_eagle" old_prefab_name="" mobility="1">
+				<transform position="12.500, 0.000, 12.000" rotation_euler="0.000, 0.332, 3.141" scale="2.000, 2.000, 2.000"/>
+				<skeleton skeleton_model="bird_skeleton">
+					<components>
+						<meta_mesh_component name="hawk_mesh"/>
+					</components>
+					<bones>
+						<bone frame="0.000031, -0.981476, 0.191585, 0.000000, 0.000013, 0.191585, 0.981476, 0.000000, -1.000000, -0.000028, 0.000018, 0.000000, -0.000000, 0.096099, 0.142053, 1.000000"/>
+						<bone frame="-0.000101, 0.000230, -1.000000, 0.000000, 0.447939, 0.894064, 0.000160, 0.000000, 0.894064, -0.447939, -0.000193, 0.000000, 0.093985, -0.009268, 0.000000, 1.000000" _index_="1"/>
+						<bone frame="-0.000499, 0.522549, 0.852609, 0.000000, -0.001043, 0.852609, -0.522549, 0.000000, -0.999999, -0.001150, 0.000119, 0.000000, -0.000000, 0.018227, 0.038616, 1.000000" _index_="2"/>
+						<bone frame="0.000569, -0.001548, -0.999999, 0.000000, 0.616037, 0.787717, -0.000869, 0.000000, 0.787717, -0.616036, 0.001402, 0.000000, 0.048111, 0.000000, 0.000000, 1.000000" _index_="3"/>
+						<bone frame="-0.135302, 0.288238, 0.947952, 0.000000, 0.194390, 0.945877, -0.259862, 0.000000, -0.971548, 0.149113, -0.184010, 0.000000, -0.048007, 0.015167, 0.034035, 1.000000" _index_="4"/>
+						<bone frame="0.972014, 0.000632, 0.234922, 0.000000, 0.037855, 0.986507, -0.159284, 0.000000, -0.231853, 0.163719, 0.958875, 0.000000, 0.000000, 0.000000, 0.070889, 1.000000" _index_="6"/>
+						<bone frame="0.993822, -0.002459, -0.110963, 0.000000, 0.002912, 0.999988, 0.003922, 0.000000, 0.110952, -0.004221, 0.993817, 0.000000, 0.000000, -0.000000, 0.095645, 1.000000" _index_="7"/>
+						<bone frame="-0.050379, 0.374893, 0.925698, 0.000000, -0.062849, 0.923848, -0.377564, 0.000000, -0.996751, -0.077201, -0.022981, 0.000000, 0.001110, 0.000633, 0.039837, 1.000000" _index_="8"/>
+						<bone frame="-0.134298, -0.287980, -0.948173, 0.000000, 0.196563, -0.945570, 0.259348, 0.000000, -0.971250, -0.151545, 0.183595, 0.000000, 0.048007, 0.015167, 0.034035, 1.000000" _index_="13"/>
+						<bone frame="0.972025, 0.000268, 0.234878, 0.000000, 0.038224, 0.986488, -0.159314, 0.000000, -0.231747, 0.163835, 0.958880, 0.000000, -0.000000, 0.000000, -0.070889, 1.000000" _index_="15"/>
+						<bone frame="0.993571, -0.005255, -0.113085, 0.000000, 0.005880, 0.999969, 0.005196, 0.000000, 0.113054, -0.005828, 0.993572, 0.000000, 0.000000, 0.000000, -0.095644, 1.000000" _index_="16"/>
+						<bone frame="-0.042902, 0.375774, 0.925718, 0.000000, -0.065445, 0.923524, -0.377917, 0.000000, -0.996934, -0.076797, -0.015028, 0.000000, -0.001110, -0.000634, -0.039838, 1.000000" _index_="17"/>
+						<bone frame="0.000005, 0.005016, -0.999987, 0.000000, 0.299968, 0.953937, 0.004787, 0.000000, 0.953949, -0.299965, -0.001500, 0.000000, -0.047688, 0.009943, -0.000000, 1.000000" _index_="22"/>
+						<bone frame="0.043741, 0.207815, -0.977190, 0.000000, -0.997121, -0.051565, -0.055599, 0.000000, -0.061943, 0.976808, 0.204962, 0.000000, 0.053806, -0.034031, 0.026306, 1.000000" _index_="23"/>
+						<bone frame="0.973330, 0.146400, -0.176622, 0.000000, 0.054630, 0.599837, 0.798255, 0.000000, 0.222809, -0.786615, 0.575841, 0.000000, -0.002737, 0.079557, 0.005605, 1.000000" _index_="24"/>
+						<bone frame="0.971661, -0.116090, 0.205910, 0.000000, 0.158158, 0.966672, -0.201324, 0.000000, -0.175675, 0.228184, 0.957638, 0.000000, 0.005736, 0.008046, -0.045848, 1.000000" _index_="25"/>
+						<bone frame="0.987221, 0.142329, 0.071676, 0.000000, -0.138616, 0.545063, 0.826857, 0.000000, 0.078618, -0.826226, 0.557826, 0.000000, 0.000030, 0.007222, -0.024084, 1.000000" _index_="26"/>
+						<bone frame="0.017043, -0.135902, -0.990576, 0.000000, -0.999668, -0.021453, -0.014256, 0.000000, -0.019313, 0.990490, -0.136222, 0.000000, 0.053806, -0.034031, -0.026306, 1.000000" _index_="27"/>
+						<bone frame="0.972416, -0.135558, 0.189819, 0.000000, -0.029404, 0.736054, 0.676283, 0.000000, -0.231392, -0.663210, 0.711765, 0.000000, 0.002686, 0.079623, 0.004517, 1.000000" _index_="28"/>
+						<bone frame="0.941671, 0.133641, -0.308864, 0.000000, -0.193488, 0.965913, -0.171974, 0.000000, 0.275353, 0.221704, 0.935429, 0.000000, -0.005688, 0.009767, -0.045521, 1.000000" _index_="29"/>
+						<bone frame="0.990964, -0.019815, -0.132656, 0.000000, -0.118813, -0.588615, -0.799635, 0.000000, -0.062238, 0.808171, -0.585651, 0.000000, 0.000420, 0.006840, -0.024160, 1.000000" _index_="30"/>
+					</bones>
+				</skeleton>
+				<scripts>
+					<script name="TORSimpleObjectAnimator">
+						<variables>
+							<variable name="AnimationName" value="anim_tor_bird_cycle"/>
+						</variables>
+					</script>
+				</scripts>
+			</game_entity>
+		</children>
+	</game_entity>
+</prefabs>
+

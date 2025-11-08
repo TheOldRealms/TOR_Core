@@ -1,0 +1,353 @@
+<Prefab>
+  <Variables>
+  </Variables>
+  <Constants>
+    <Constant Name="Tuple.Height.Additive" Value="0" />
+
+    <Constant Name="Toggle.Width" BrushLayer="Default" BrushName="Party.TroopTupple.Right" BrushValueType="Width" />
+    <Constant Name="Toggle.Height" Additive="!Tuple.Height.Additive" BrushLayer="Default" BrushName="Party.TroopTupple.Right" BrushValueType="Height" />
+    <Constant Name="Toggle.Pressed.Width" BrushLayer="PressedLayer" BrushName="Party.TroopTupple.Right" BrushValueType="Width" />
+
+    <Constant Name="Extension.Width" BrushLayer="Default" BrushName="Party.TroopTupple.Extension.Right" BrushValueType="Width" />
+    <Constant Name="Extension.Height" Additive="!Tuple.Height.Additive" BrushLayer="Default" BrushName="Party.TroopTupple.Extension.Right" BrushValueType="Height" />
+
+    <Constant Name="Extension.Hidden.MarginTop" Value="5" />
+    <Constant Name="Extension.Hidden.Height" Additive="!Tuple.Height.Additive" Value="58" />
+    <Constant Name="Extension.Selected.MarginTop" Value="58" />
+
+    <Constant Name="Extension.DropShadowOverlay.Height" SpriteName="PartyScreen\selected_button_extension_dropshadow_overlay" SpriteValueType="Height" />
+
+    <Constant Name="Party.TroopTuple.Extension.StockButton.Width" BrushLayer="Default" BrushName="Party.TroopTuple.Extension.StockButton" BrushValueType="Width" />
+    <Constant Name="Party.TroopTuple.Extension.StockButton.Height" BrushLayer="Default" BrushName="Party.TroopTuple.Extension.StockButton" BrushValueType="Height" />
+
+    <Constant Name="TalkIcon.Width" Additive="-8" SpriteName="PartyScreen\talk_icon" SpriteValueType="Width" />
+    <Constant Name="TalkIcon.Height" Additive="-8" SpriteName="PartyScreen\talk_icon" SpriteValueType="Height" />
+
+    <Constant Name="RecruitIcon.Width" Additive="-8" SpriteName="PartyScreen\recruit_prisoner" SpriteValueType="Width" />
+    <Constant Name="RecruitIcon.Height" Additive="-8" SpriteName="PartyScreen\recruit_prisoner" SpriteValueType="Height" />
+
+    <Constant Name="Party.Slot.Width" BrushLayer="Default" BrushName="Party.TalkSlot.Background" BrushValueType="Width" />
+    <Constant Name="Party.Slot.Height" BrushLayer="Default" BrushName="Party.TalkSlot.Background" BrushValueType="Height" />
+
+    <Constant Name="Button.Transfer.Width" BrushLayer="Default" BrushName="Party.TroopTuple.Extension.TransferButton" BrushValueType="Width" />
+    <Constant Name="Button.Transfer.Height" BrushLayer="Default" BrushName="Party.TroopTuple.Extension.TransferButton" BrushValueType="Height" />
+
+    <Constant Name="Button.TransferAll.Width" BrushLayer="Default" BrushName="ButtonRightArrowBrush1" BrushValueType="Width" />
+    <Constant Name="Button.TransferAll.Height" BrushLayer="Default" BrushName="ButtonRightArrowBrush1" BrushValueType="Height" />
+
+    <Constant Name="Party.TroopTuple.UpgradeIcon.Background.Width" BrushLayer="Default" BrushName="Party.TroopTuple.UpgradeIcon.Background" BrushValueType="Width" />
+    <Constant Name="Party.TroopTuple.UpgradeIcon.Background.Height" BrushLayer="Default" BrushName="Party.TroopTuple.UpgradeIcon.Background" BrushValueType="Height" />
+
+    <Constant Name="Image.Width" Value="130" />
+    <Constant Name="Image.Height" Additive="!Tuple.Height.Additive" Value="63" />
+    <Constant Name="Image.MarginLeft" Value="36" />
+    <Constant Name="Image.MarginTop" Value="0" />
+    <Constant Name="Image.Padding" Value="2" />
+
+    <Constant Name="NameLeft" Value="170" />
+
+    <Constant Name="IconAlpha" Value="0.7" />
+  </Constants>
+  <VisualDefinitions>
+    <VisualDefinition Name="Container" TransitionDuration="0.075">
+      <VisualState SuggestedWidth="!Toggle.Width" State="Default" />
+      <VisualState SuggestedWidth="!Toggle.Pressed.Width" State="Pressed" />
+      <VisualState SuggestedWidth="!Toggle.Width" State="Selected" />
+      <VisualState SuggestedWidth="!Toggle.Width" State="Hovered" />
+      <VisualState SuggestedWidth="!Toggle.Width" State="Disabled" />
+    </VisualDefinition>
+    <VisualDefinition Name="Extension" TransitionDuration="0.15">
+      <VisualState SuggestedHeight="!Extension.Hidden.Height" MarginTop="!Extension.Hidden.MarginTop" State="Default" />
+      <VisualState SuggestedHeight="!Extension.Hidden.Height" MarginTop="!Extension.Hidden.MarginTop" State="Pressed" />
+      <VisualState SuggestedHeight="!Extension.Height" MarginTop="!Extension.Selected.MarginTop" State="Selected" />
+      <VisualState SuggestedHeight="!Extension.Hidden.Height" MarginTop="!Extension.Hidden.MarginTop" State="Hovered" />
+      <VisualState SuggestedHeight="!Extension.Hidden.Height" MarginTop="!Extension.Hidden.MarginTop" State="Disabled" />
+    </VisualDefinition>
+    <VisualDefinition Name="Main" TransitionDuration="0.075">
+      <VisualState SuggestedWidth="!Toggle.Width" State="Default" />
+      <VisualState SuggestedWidth="!Toggle.Pressed.Width" State="Pressed" />
+      <VisualState SuggestedWidth="!Toggle.Width" State="Selected" />
+      <VisualState SuggestedWidth="!Toggle.Width" State="Hovered" />
+      <VisualState SuggestedWidth="!Toggle.Width" State="Disabled" />
+    </VisualDefinition>
+  </VisualDefinitions>
+  <Window>
+    <PartyTroopTupleButtonWidget Id="PartyTroopTuple" VisualDefinition="Container" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="!Toggle.Width" HorizontalAlignment="Center" MarginTop="2" Brush="Party.TroopTuple.SoundBrush" Command.HoverBegin="ExecuteSetFocused" Command.HoverEnd="ExecuteSetUnfocused" AcceptDrag="true" CharacterID="@TroopID" Command.AlternateClick="ExecuteOpenTroopEncyclopedia" Command.Click="ExecuteSetSelected" Command.Opened="ExecuteResetTrade" DragWidget="DragWidget" ExtendedControlsContainer="Extension" IsMainHero="@IsMainHero" IsPrisoner="@IsPrisoner" IsTransferable="@IsTroopTransferrable" IsTupleLeftSide="false" Main="Main" TransferAmount="@TransferAmount" HoveredCursorState="RightClickLink" TransferSlider="Extension\ExtensionCarrier\SliderParent\TransferSlider" UpgradesPanel="Extension\ExtensionCarrier\ButtonCarrier\ButtonsList\UpgradesPanel">
+      <Children>
+
+				<InventoryTupleExtensionControlsWidget Id="Extension" VisualDefinition="Extension" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Toggle.Width" SuggestedHeight="!Extension.Hidden.Height" HorizontalAlignment="Center" MarginTop="!Extension.Hidden.MarginTop" ClipContents="true" IsDisabled="true" IsHidden="@IsMainHero" DoNotAcceptNavigation="true" TransferSlider="ExtensionCarrier\SliderParent\TransferSlider" IncreaseDecreaseButtonsParent="ExtensionCarrier\SliderParent\BottomLeftStack" ButtonCarrier="ExtensionCarrier\ButtonCarrier" NavigationParent="..\Main">
+          <Children>
+
+            <Widget Id="ExtensionCarrier" DataSource="{TradeData}" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Extension.Width" SuggestedHeight="!Extension.Height" HorizontalAlignment="Center" VerticalAlignment="Bottom" Sprite="SPGeneral\InventoryPartyExtension\Extension\tuple_extension" ExtendLeft="16" ExtendRight="16">
+              <Children>
+
+                <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.Transfer.Width" SuggestedHeight="!Button.Transfer.Height" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="9" MarginBottom="26" Brush="Party.TroopTuple.Extension.TransferButton" Command.Click="ExecuteApplyTransaction" IsEnabled="@IsExchangeAvailable" IsVisible="false" />
+
+                <Widget Id="SliderParent" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"  MarginLeft="10" MarginRight="10" MarginTop="15" HorizontalAlignment = "Center" VerticalAlignment="Top">
+                  <Children>
+
+                    <ListPanel Id="BottomLeftStack" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight" PositionXOffset="-10" MarginTop="50" >
+                      <Children>
+
+                        <NavigationAutoScrollWidget TrackedWidget="..\IncreaseStockButtonWidget" ScrollYOffset="160" />
+                        <ButtonWidget Id="IncreaseStockButtonWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" Brush="Inventory.Tuple.Extension.PlusButton" VerticalAlignment="Center" Command.Click="ExecuteIncreasePlayerStock" IsEnabled="@IsTransfarable" GamepadNavigationIndex="0"/>
+                        <Widget IsEnabled="false" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="10" MarginRight="8" >
+                          <Children>
+                            <TextWidget IntText="@ThisStock" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  Brush="Inventory.Tuple.Extension.StockButtonText" Brush.FontSize="42" ClipContents="false"/>
+                          </Children>
+                        </Widget>
+                        <NavigationAutoScrollWidget TrackedWidget="..\DecreaseStockButtonWidget" ScrollYOffset="160" />
+                        <ButtonWidget Id="DecreaseStockButtonWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" Brush="Inventory.Tuple.Extension.MinusButton" VerticalAlignment="Center" Command.Click="ExecuteIncreaseOtherStock" IsEnabled="@IsTransfarable" GamepadNavigationIndex="1"/>
+                      </Children>
+                    </ListPanel>
+
+                    <NavigationAutoScrollWidget TrackedWidget="..\TransferSlider\SliderHandle" ScrollYOffset="160" />
+                    <InventoryTwoWaySliderWidget Id="TransferSlider" DoNotUpdateHandleSize="true" IsDiscrete="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" MarginTop="15" SuggestedHeight = "21" HorizontalAlignment = "Center" VerticalAlignment="Center" MarginBottom="80" BaseValueInt="@InitialThisStock" ChangeFillWidget="ChangeFill" MinValueInt ="0" MaxValueInt="@TotalStock" ValueInt="@ThisStock" Handle="SliderHandle" Filler="Filler" Command.OnValueChange="ExecuteApplyTransaction" IncreaseStockButtonWidget="..\BottomLeftStack\IncreaseStockButtonWidget" DecreaseStockButtonWidget="..\BottomLeftStack\DecreaseStockButtonWidget" UpdateValueOnScroll="False" IsEnabled="@IsTransfarable" Command.RemoveZeroCounts="ExecuteRemoveZeroCounts" >
+                      <Children>
+                        <Widget DoNotAcceptEvents="true" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "Fixed" SuggestedHeight="21" VerticalAlignment="Center" Sprite="slider_fill_white_9" Color="#1D1D1BFF" />
+                        <Widget Id="Filler" DoNotAcceptEvents="true" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "Fixed" SuggestedHeight="21"  VerticalAlignment="Center" Sprite="slider_fill_white_9" Color="#7A5B1EFF"  />
+                        <BrushWidget Id="ChangeFill" DoNotAcceptEvents="true" WidthSizePolicy = "Fixed" HeightSizePolicy = "Fixed" SuggestedHeight="21"  VerticalAlignment="Center" Brush="Inventory.Tuple.Slider.ChangeFill" />
+                        <Widget Id="SliderHandle" DoNotAcceptEvents="true" WidthSizePolicy = "Fixed" HeightSizePolicy = "Fixed" SuggestedWidth = "3" SuggestedHeight = "21" HorizontalAlignment = "Left" VerticalAlignment = "Center" Sprite="SPGeneral\InventoryPartyExtension\Extension\SliderSeperator" Color="#F7E499FF" GamepadNavigationIndex="0" />
+                        <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="30" VerticalAlignment="Center" Sprite="SPGeneral\InventoryPartyExtension\Extension\slider_frame_slick" ExtendLeft="4" ExtendTop="4" ExtendRight="4" ExtendBottom="4" />
+                      </Children>
+                    </InventoryTwoWaySliderWidget>
+
+                    <TextWidget IntText="@TotalStock" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="40" HorizontalAlignment="Right" Brush="Inventory.Tuple.Extension.StockButtonText" Brush.FontSize="28"/>
+
+                    <!--<ButtonWidget  IsEnabled="false" Command.Click="ExecuteIncreaseThisStock" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="40" HorizontalAlignment="Right" Brush.ColorFactor="0.2">
+                      <Children>
+                        <TextWidget IntText="@TotalStock" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Inventory.Tuple.Extension.StockButtonText" Brush.FontSize="28"/>
+                        -->
+                    <!--TextWidget Text="@OtherStockLbl" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="45" SuggestedHeight="!Inventory.Tuple.Extension.StockButton.Height" HorizontalAlignment="Center" PositionYOffset="!Inventory.Tuple.Extension.StockButton.Height" Brush="Inventory.Tuple.Extension.StockButtonInfo"/-->
+                    <!--
+                        -->
+                    <!--TOOLTIP-HERE!-->
+                    <!--
+                      </Children>
+                    </ButtonWidget>-->
+
+                    <Widget DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" MarginLeft="80" MarginRight="80" MarginTop="45" IsVisible="@IsTransfarable">
+                      <Children>
+                        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center">
+                          <Children>
+                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" Brush="Party.TroopTuple.Extension.CountChangePrefix" Text="@CountChange" />
+                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="StretchToParent" MarginLeft="5" Brush="Party.TroopTuple.Extension.CountChangeSuffix" Text="@CountLbl" />
+                          </Children>
+                        </ListPanel>
+                      </Children>
+                    </Widget>
+                  </Children>
+                </Widget>
+
+                <Widget Id="ButtonCarrier" DataSource="{..}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="80" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginLeft="150" MarginRight="20" MarginBottom="10">
+                  <Children>
+
+                    <ListPanel Id="ButtonsList" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                      <Children>
+
+                        <!--Talk Button-->
+                        <NavigationAutoScrollWidget TrackedWidget="..\TalkButton" ScrollYOffset="160" />
+                        <ButtonWidget Id="TalkButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Slot.Width" SuggestedHeight="!Party.Slot.Height" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="10" Brush="Party.TalkSlot.Background" Command.Click="ExecuteTalk" IsVisible="@CanTalk" GamepadNavigationIndex="0">
+                          <Children>
+                            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!TalkIcon.Width" SuggestedHeight="!TalkIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="PartyScreen\talk_icon" HueFactor="10" SaturationFactor="60" ValueFactor="20" />
+                          </Children>
+                        </ButtonWidget>
+
+                        <!-- Conformity Fillbar -->
+                        <FillBarVerticalWidget Id="PrisonerConformityBarWidget" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="10" SuggestedHeight="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginLeft="10" MarginTop="5" MarginBottom="20" Sprite="BlankWhiteSquare_9" Color="#00000066" FillWidget="FillWidget" CurrentAmount="@CurrentConformity" InitialAmount="@CurrentConformity" IsDirectionUpward="true" IsVisible="@IsPrisoner" MaxAmount="@MaxConformity">
+                          <Children>
+                            <Widget Id="FillWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" Sprite="BlankWhiteSquare_9" Color="#D4AF37FF" />
+                            <HintWidget DataSource="{TroopConformityTooltip}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                          </Children>
+                        </FillBarVerticalWidget>
+
+                        <!--Recruit Prisoner Button-->
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Slot.Width" SuggestedHeight="!Party.Slot.Height" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="10" MarginRight="10" IsVisible="@IsPrisonerOfPlayer">
+                          <Children>
+
+                            <NavigationAutoScrollWidget TrackedWidget="..\RecruitPrisonerButton" ScrollYOffset="160" />
+                            <ButtonWidget Id="RecruitPrisonerButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Party.RecruitSlot.Background" Command.Click="ExecuteRecruitTroop" IsEnabled="@IsTroopRecruitable" GamepadNavigationIndex="1">
+                              <Children>
+                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!RecruitIcon.Width" SuggestedHeight="!RecruitIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="PartyScreen\recruit_prisoner" HueFactor="10" SaturationFactor="60" ValueFactor="20" />
+                                <HintWidget DataSource="{RecruitPrisonerHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                              </Children>
+                            </ButtonWidget>
+
+                            <HintWidget DataSource="{RecruitPrisonerHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                          </Children>
+                        </Widget>
+
+                        <!--Execute Prisoner Button-->
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Slot.Width" SuggestedHeight="!Party.Slot.Height" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="10" MarginRight="10" IsVisible="@IsHeroPrisonerOfPlayer">
+                          <Children>
+
+                            <NavigationAutoScrollWidget TrackedWidget="..\ExecutePrisonerButton" ScrollYOffset="160" />
+                            <ButtonWidget Id="ExecutePrisonerButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Party.TalkSlot.Background" Command.Click="ExecuteExecuteTroop" IsEnabled="@IsExecutable" GamepadNavigationIndex="2">
+                              <Children>
+                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!RecruitIcon.Width" SuggestedHeight="!RecruitIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="General\Mission\PersonalKillfeed\kill_feed_skull" Color="#FF0000FF" SaturationFactor="60" ValueFactor="20" />
+                                <HintWidget DataSource="{ExecutePrisonerHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                              </Children>
+                            </ButtonWidget>
+
+                            <HintWidget DataSource="{ExecutePrisonerHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                          </Children>
+                        </Widget>
+
+                        <!--Career Special Button-->
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Slot.Width" SuggestedHeight="!Party.Slot.Height" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="10" MarginRight="10" IsVisible="@ShouldButtonBeVisible">
+                          <Children>
+
+                            <NavigationAutoScrollWidget TrackedWidget="..\Z3rcaButton" ScrollYOffset="160" />
+                            <ButtonWidget Id="Z3rcaButton" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Party.TalkSlot.Background" Command.Click="ExecuteButtonClick" IsEnabled="@IsButtonEnabled" GamepadNavigationIndex="2">
+                              <Children>
+                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!RecruitIcon.Width" SuggestedHeight="!RecruitIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="@SpriteTORButton" SaturationFactor="60" ValueFactor="20" />
+                                <HintWidget DataSource="{ButtonHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                              </Children>
+                            </ButtonWidget>
+
+                            <HintWidget DataSource="{ButtonHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                          </Children>
+                        </Widget>
+						
+                        <!--XP Bar-->
+                        <FillBarVerticalWidget Id="TroopXPBarWidget" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="10" SuggestedHeight="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginLeft="10" MarginTop="5" MarginBottom="20" Sprite="BlankWhiteSquare_9" Color="#00000066" FillWidget="FillWidget" InitialAmount="@CurrentXP" IsDirectionUpward="true" IsVisible="@IsUpgradableTroop" MaxAmount="@MaxXP">
+                          <Children>
+                            <Widget Id="FillWidget" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" Sprite="BlankWhiteSquare_9" Color="#D4AF37FF" />
+                            <HintWidget DataSource="{TroopXPTooltip}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsEnabled="false" />
+                          </Children>
+                        </FillBarVerticalWidget>
+
+                        <!--Upgrade Targets-->
+                        <ScrollablePanel Id="UpgradesPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedWidth="230" SuggestedHeight="80" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="10" MarginRight="10" ClipRect="ClipRect" InnerPanel="ClipRect\Upgrades" HorizontalScrollbar="HorizontalScrollbar" AutoHideScrollBars="true" OnlyAcceptScrollEventIfCanScroll="true" IsVisible="@IsUpgradableTroop">
+                          <Children>
+                            <Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true">
+                              <Children>
+                                <NavigatableListPanel Id="Upgrades" DataSource="{Upgrades}" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Center" StackLayout.LayoutMethod="HorizontalLeftToRight" GamepadNavigationIndex="3" UseSelfIndexForMinimum="true">
+                                  <ItemTemplate>
+                                    <PartyUpgradeButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Slot.Width" SuggestedHeight="!Party.Slot.Height" VerticalAlignment="Center" MarginRight="10" Command.AlternateClick="ExecuteUpgradeEncyclopediaLink" Command.Click="ExecuteUpgrade" DefaultBrush="Party.UpgradeSlot.Button" ImageIdentifierWidget="ImageIdentifier" InsufficientBrush="Party.UpgradeSlot.ButtonInsufficient" IsAvailable="@IsAvailable" IsInsufficient="@IsInsufficient" UnavailableBrush="Party.UpgradeSlot.ButtonUnavailable">
+                                      <Children>
+                                        <HintWidget DataSource="{Hint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                                        <ImageIdentifierWidget Id="ImageIdentifier" DataSource="{TroopImage}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="7" MarginRight="7" MarginTop="6" MarginBottom="8" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" />
+                                        <TutorialHighlightItemBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsHighlightEnabled="@IsHighlighted" IsVisible="false" />
+                                      </Children>
+                                    </PartyUpgradeButtonWidget>
+                                  </ItemTemplate>
+                                </NavigatableListPanel>
+                              </Children>
+                            </Widget>
+
+                            <!-- Scrollbar -->
+                            <ScrollbarWidget Id="HorizontalScrollbar" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="7" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginLeft="10" MarginRight="10" MarginBottom="5" AlignmentAxis="Horizontal" Handle="HorizontalScrollbarHandle" MaxValue="100" MinValue="0">
+                              <Children>
+                                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="3" Sprite="BlankWhiteSquare" AlphaFactor="0.5" Color="#3C2A20FF" ColorFactor="1.8" PositionYOffset="2"/>
+                                <ImageWidget Id="HorizontalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="10" MarginTop="1" MarginBottom="1" HorizontalAlignment="Center" Brush="Party.Scrollbar.Handle" />
+                              </Children>
+                            </ScrollbarWidget>
+
+                          </Children>
+                        </ScrollablePanel>
+
+                      </Children>
+                    </ListPanel>
+
+                  </Children>
+                </Widget>
+                <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="100" Sprite="SPGeneral\InventoryPartyExtension\Extension\drop_shadow_on_everything" />
+              </Children>
+
+            </Widget>
+
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="!Extension.DropShadowOverlay.Height" Sprite="PartyScreen\selected_button_extension_dropshadow_overlay" IsDisabled="true" />
+
+          </Children>
+        </InventoryTupleExtensionControlsWidget>
+
+        <NavigationTargetSwitcher FromTarget="..\." ToTarget="..\Main" />
+        <BrushWidget Id="Main" VisualDefinition="Main" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Toggle.Width" SuggestedHeight="!Toggle.Height" HorizontalAlignment="Center" Brush="Party.TroopTupple.Right">
+          <Children>
+            <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Button.TransferAll.Width" SuggestedHeight="!Button.TransferAll.Height" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="ButtonRightArrowBrush1" Command.Click="ExecuteTransferSingle" IsVisible="@IsTroopTransferrable">
+              <Children>
+                <HintWidget DataSource="{TransferHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                <TutorialHighlightItemBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsEnabled="false" IsHighlightEnabled="@IsTransferButtonHiglighted" IsVisible="false" />
+              </Children>
+            </ButtonWidget>
+
+            <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Image.Width" SuggestedHeight="!Image.Height" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="!Image.MarginLeft" MarginTop="!Image.MarginTop" Brush="Party.TroopBack">
+              <Children>
+                <ImageIdentifierWidget DataSource="{Code}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="!Image.Padding" MarginRight="!Image.Padding" MarginTop="!Image.Padding" MarginBottom="!Image.Padding" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsBig="true" LoadingIconWidget="LoadingIconWidget">
+                  <Children>
+                    <Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="LoadingIconWidget"/>
+                  </Children>
+                </ImageIdentifierWidget>
+                <Widget DataSource="{TierIconData}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" VerticalAlignment="Top" PositionXOffset="0" PositionYOffset="2" Sprite="@Text">
+                  <Children>
+                    <HintWidget DataSource="{Hint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+                  </Children>
+                </Widget>
+                <Widget DataSource="{TypeIconData}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Left" VerticalAlignment="Top" PositionXOffset="6" PositionYOffset="2" Sprite="@Text">
+                  <Children>
+                    <HintWidget DataSource="{Hint}" DoNotAcceptEvents="true" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>
+                  </Children>
+                </Widget>
+              </Children>
+            </BrushWidget>
+
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="110" SuggestedHeight="61" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="0" Brush="Party.Text.Tuple" Brush.TextHorizontalAlignment="Center" IsDisabled="true" IsHidden="@IsHero" Text="@TroopNum" />
+
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.TroopTuple.UpgradeIcon.Background.Width" SuggestedHeight="50" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="80" IsVisible="@IsTroopUpgradable">
+              <Children>
+                <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.TroopTuple.UpgradeIcon.Background.Width" SuggestedHeight="!Party.TroopTuple.UpgradeIcon.Background.Height" HorizontalAlignment="Center" Sprite="PartyScreen\upgrade_icon" IsVisible="@IsTroopUpgradable" />
+                <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Brush="Party.Text.UpgradeAmount" Brush.TextHorizontalAlignment="Center" IntText="@NumOfUpgradeableTroops" IsDisabled="true" IsVisible="@IsTroopUpgradable" />
+                <TutorialHighlightItemBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsEnabled="false" IsHighlightEnabled="@IsUpgradeButtonsHiglighted" IsVisible="false" />
+              </Children>
+            </Widget>
+
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.TroopTuple.UpgradeIcon.Background.Width" SuggestedHeight="50" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="80" IsVisible="@IsTroopRecruitable">
+              <Children>
+                <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!RecruitIcon.Width" SuggestedHeight="!RecruitIcon.Height" HorizontalAlignment="Center" Sprite="PartyScreen\recruit_prisoner" IsVisible="@IsTroopRecruitable" />
+                <TextWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Brush="Party.Text.UpgradeAmount" Brush.TextHorizontalAlignment="Center" IntText="@NumOfRecruitablePrisoners" IsDisabled="true" IsVisible="@IsTroopRecruitable" />
+                <TutorialHighlightItemBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsEnabled="false" IsHighlightEnabled="@IsRecruitButtonsHiglighted" IsVisible="false" />
+              </Children>
+            </Widget>
+
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="300" HorizontalAlignment="Left" VerticalAlignment="Center" MarginLeft="!NameLeft" MarginTop="10" MarginBottom="10" Brush="Party.Text.Tuple" Brush.TextHorizontalAlignment="Left" IsDisabled="true" Text="@Name" />
+
+            <Widget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="128" SuggestedHeight="23" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="30" Sprite="BlankWhiteSquare_9" Color="#0f0f0eff" IsVisible="@IsHero">
+              <Children>
+                <HintWidget DataSource="{HeroHealthHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+                <PartyHealthFillBarWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Party.TroopTupple.HealthBarFill" DoNotUseCustomScale="true" Health="@HeroHealth" HealthText="HealthText" IsWounded="@IsHeroWounded" MaxAmount="100">
+                  <Children>
+                    <TextWidget Id="HealthText" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="20" VerticalAlignment="Center" Brush="Party.TroopTupple.HealthBarText" Brush.FontSize="16" />
+                  </Children>
+                </PartyHealthFillBarWidget>
+                
+                <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="PartyScreen\health_bar_frame" />
+
+              </Children>
+            </Widget>
+			
+			<Widget DoNotPassEventsToChildren="false" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="130" Sprite="extendedinfo_icon_45" IsVisible="@IsTroop">
+              <Children>
+				<HintWidget DataSource="{ExtendedInfoHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+              </Children>
+            </Widget>
+
+            <ButtonWidget Id="LockButton" IsSelected="@IsLocked" ButtonType="Toggle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="20" SuggestedHeight="20" HorizontalAlignment="Right" MarginRight="8" VerticalAlignment="Center" Brush="Inventory.Lock" IsVisible="true">
+              <Children>
+                <HintWidget DoNotAcceptEvents="true" DataSource="{LockHint}" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>
+              </Children>
+            </ButtonWidget>
+
+          </Children>
+        </BrushWidget>
+
+        <Widget Id="DragWidget" DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Image.Width" SuggestedHeight="!Image.Height" HorizontalAlignment="Left" VerticalAlignment="Top" Sprite="PartyScreen\portrait" IsDisabled="true" IsVisible="false">
+          <Children>
+            <ImageIdentifierWidget DataSource="{Code}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="!Image.Padding" MarginRight="!Image.Padding" MarginTop="!Image.Padding" MarginBottom="!Image.Padding" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsBig="true" />
+          </Children>
+        </Widget>
+
+      </Children>
+    </PartyTroopTupleButtonWidget>
+  </Window>
+</Prefab>

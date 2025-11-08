@@ -46,10 +46,10 @@ namespace TOR_Core.Utilities
             public const string DAWI = "sturgia";
             public const string GREENSKIN = "aserai";
 
-            public static readonly List<string> All = new()
-            {
+            public static readonly List<string> All =
+            [
                 EMPIRE,BRETONNIA,SYLVANIA,MOUSILLON,ASRAI,EONIR,DAWI,GREENSKIN
-            };
+            ];
         }
 
     }

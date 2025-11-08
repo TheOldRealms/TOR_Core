@@ -1,0 +1,15 @@
+<prefabs>
+	<game_entity name="circular_targeting_rune" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.200" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<meta_mesh_component name="circular_targeting_rune"/>
+		</components>
+	</game_entity>
+	<game_entity name="linear_targeting_rune" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.350" rotation_euler="0.000, 0.000, -3.142"/>
+		<components>
+			<meta_mesh_component name="linear_targeting_rune"/>
+		</components>
+	</game_entity>
+</prefabs>
+

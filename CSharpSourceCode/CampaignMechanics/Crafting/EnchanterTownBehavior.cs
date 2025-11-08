@@ -1,0 +1,606 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using HarmonyLib;
+using Helpers;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.AgentOrigins;
+using TaleWorlds.CampaignSystem.GameMenus;
+using TaleWorlds.CampaignSystem.Inventory;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.Settlements.Locations;
+using TaleWorlds.Core;
+using TaleWorlds.Core.ImageIdentifiers;
+using TaleWorlds.Library;
+using TaleWorlds.LinQuick;
+using TaleWorlds.Localization;
+using TaleWorlds.ObjectSystem;
+using TaleWorlds.TwoDimension;
+using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.Crafting;
+using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.Menagery;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
+using TOR_Core.HarmonyPatches;
+using TOR_Core.Ink;
+using TOR_Core.Items;
+using TOR_Core.Utilities;
+
+namespace TOR_Core.CampaignMechanics.SpellTrainers;
+
+public class EnchanterTownBehavior : CampaignBehaviorBase
+{
+    private bool _learnedEnchantment;
+    private bool _spokeToEnchanter;
+
+    private Dictionary<string, string> _settlementToEnchanterMap = new();
+
+
+    private readonly Dictionary<string, (string enchanterTemplate, List<string> enchantmentSuffixes)> _cultureToTemplateMap = new()
+    {
+        { TORConstants.Cultures.EMPIRE, ("tor_enchanter_empire_0", new List<string>()
+        {
+            "emp_enchant"
+        }) },
+        { TORConstants.Cultures.SYLVANIA, ("tor_spelltrainer_vc_0", new List<string>()
+        {
+            "vc_enchant",
+        }) },
+        { TORConstants.Cultures.BRETONNIA, ("tor_spelltrainer_bretonnia_0", new List<string>()
+        {
+            "emp_enchant", "bret_blessing"
+        }) },
+        { TORConstants.Cultures.MOUSILLON, ("tor_spelltrainer_vc_0",  new List<string>()
+        {
+            "vc_enchant",
+        }) },
+        { TORConstants.Cultures.ASRAI, ("tor_spelltrainer_woodelves_0", new List<string>()
+        {
+            "we_enchant", "asrai_enchant"
+        }) },
+        { TORConstants.Cultures.EONIR, ("tor_eonir_spellsinger_envoy_0", new List<string>()
+        {
+            "we_enchant", "eo_enchant"
+        }) },
+        { TORConstants.Cultures.DAWI, ("tor_dawi_runelord_trainer_0",  new List<string>()
+        {
+            "dw_rune",
+        }) },
+        { TORConstants.Cultures.GREENSKIN, ("tor_spelltrainer_greenskins_0", new List<string>()
+        {
+            "gs_enchant",
+        })}
+    };
+
+    private List<string> _multiUseCultures = new()
+    {
+        TORConstants.Cultures.GREENSKIN,
+        TORConstants.Cultures.BRETONNIA,
+        TORConstants.Cultures.SYLVANIA,
+        TORConstants.Cultures.MOUSILLON,
+        TORConstants.Cultures.ASRAI,
+        TORConstants.Cultures.EONIR,
+        TORConstants.Cultures.DAWI
+    };
+
+    private List<string> _careerEligableForFreebee = ["GrailDamsel", "ImperialMagister", "Spellsinger", "Greylord", "Necromancer", "Runelord"];
+
+    public bool SpokeToEnchanter => _spokeToEnchanter;
+
+    public override void RegisterEvents()
+    {
+        CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+        CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
+        CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
+        CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
+    }
+
+    private void OnSessionLaunched(CampaignGameStarter obj)
+    {
+        AddDialogs(obj);
+    }
+
+    private void OnBeforeMissionStart()
+    {
+        SpawnEnchanterIfNeeded();
+    }
+
+    private void OnGameMenuOpened(MenuCallbackArgs obj)
+    {
+        SpawnEnchanterIfNeeded();
+    }
+
+    private void SpawnEnchanterIfNeeded()
+    {
+        if (Settlement.CurrentSettlement != null && Settlement.CurrentSettlement.IsTown && !IsTrainerInCollege(Settlement.CurrentSettlement))
+            SpawnEnchanter(Settlement.CurrentSettlement, true);
+    }
+
+    private void SpawnEnchanter(Settlement settlement, bool forceSpawn = false)
+    {
+        var trainer = GetEnchanterForTown(settlement);
+        var currentLocation = settlement.LocationComplex.GetLocationWithId("house_1");
+        if (trainer != null && currentLocation != null)
+        {
+            if (forceSpawn)
+            {
+                var locationCharacter = new LocationCharacter(
+                    new AgentData(new SimpleAgentOrigin(trainer.CharacterObject, -1, null, default)).Monster(
+                        FaceGen.GetBaseMonsterFromRace(trainer.CharacterObject.Race)),
+                    new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors), "npc_common", true,
+                    LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
+                currentLocation.AddCharacter(locationCharacter);
+            }
+            else
+            {
+                var locChar = settlement.LocationComplex.GetLocationCharacterOfHero(trainer);
+                var currentloc = settlement.LocationComplex.GetLocationOfCharacter(trainer);
+                if (currentloc != currentLocation) settlement.LocationComplex.ChangeLocation(locChar, currentloc, currentLocation);
+            }
+        }
+    }
+
+    private bool IsTrainerInCollege(Settlement settlement)
+    {
+        var location = settlement.LocationComplex.GetLocationWithId("house_1");
+        var trainer = GetEnchanterForTown(settlement);
+        if (trainer != null) return location.GetLocationCharacter(trainer) != null;
+
+        return false;
+    }
+
+    private Hero GetEnchanterForTown(Settlement settlement)
+    {
+        Hero hero = null;
+        var heroId = "";
+        if (_settlementToEnchanterMap.TryGetValue(settlement.StringId, out heroId)) hero = Hero.FindFirst(x => x.StringId == heroId);
+        return hero;
+    }
+
+    private void AddDialogs(CampaignGameStarter campaignGameStarter)
+    {
+        GenericEnchantmentDialogs(campaignGameStarter);
+    }
+
+
+    private void OnNewGameCreated(CampaignGameStarter obj)
+    {
+        foreach (var settlement in Settlement.All)
+            if (settlement.IsTown)
+                CreateEnchanter(settlement);
+    }
+
+    private void CreateEnchanter(Settlement settlement)
+    {
+        CharacterObject template = null;
+
+        var cultureID = settlement.Culture.StringId;
+
+        _cultureToTemplateMap.TryGetValue(cultureID, out var enchanterTemplateId);
+
+        if (enchanterTemplateId.enchanterTemplate == null)
+            return;
+
+
+        if (_multiUseCultures.Contains(cultureID))
+        {
+            var hero = Hero.FindFirst(x => x.StringId == enchanterTemplateId.enchanterTemplate);
+            if (hero != null) _settlementToEnchanterMap.Add(settlement.StringId, hero.StringId);
+            return; //we know it gets instantiated somewhere else, we are not creating another instance
+        }
+
+        template = MBObjectManager.Instance.GetObject<CharacterObject>(enchanterTemplateId.enchanterTemplate);
+
+
+        if (template != null)
+        {
+            var hero = HeroCreator.CreateSpecialHero(template, settlement, null, null, 50);
+            hero.SupporterOf = settlement.OwnerClan;
+            hero.Culture = settlement.Culture;//for templates shared between cultures
+            var nameObject = template.GetName();
+            nameObject.SetTextVariable("FIRSTNAME", hero.FirstName);
+            hero.SetName(nameObject, hero.FirstName);
+            hero.CharacterObject.HiddenInEncyclopedia = true;
+            HeroHelper.SpawnHeroForTheFirstTime(hero, settlement);
+            _settlementToEnchanterMap.Add(settlement.StringId, hero.StringId);
+        }
+    }
+
+    public bool IsEnchanter(Hero hero)
+    {
+        var settlement = Hero.MainHero.CurrentSettlement;
+        if (settlement == null || !settlement.IsTown) return false;
+
+        var isEnchanter = _settlementToEnchanterMap.ContainsValue(hero.StringId);
+
+        if (isEnchanter) return true;
+
+        if (!_multiUseCultures.Contains(settlement.Culture.StringId)) return false;
+
+        AddCharacterToEnchanterMapIrregular(settlement, hero);
+        return true;
+    }
+
+    private void AddCharacterToEnchanterMapIrregular(Settlement settlement, Hero hero)
+    {
+        var templateId = _cultureToTemplateMap[settlement.Culture.StringId];
+
+        if (hero.Template?.StringId == templateId.enchanterTemplate)
+            _settlementToEnchanterMap.Add(settlement.StringId,
+                hero.StringId); //we collected the missing member, next time we just look in the serialized dictionary.
+    }
+
+
+    private void GenericEnchantmentDialogs(CampaignGameStarter campaignGameStarter)
+    {
+        var cultures = _cultureToTemplateMap.Keys.ToList();
+
+        for (var index = 0; index < cultures.Count; index++)
+        {
+            var i = index; // i still dont get it, but it works...
+
+            var template = _cultureToTemplateMap[cultures[i]];
+            var quittoken = "close_window";
+            if (_multiUseCultures.Contains(cultures[i]))
+            {
+                var hub = "choices";
+                quittoken = "start";
+                if (cultures[i] == TORConstants.Cultures.BRETONNIA)
+                {
+                    hub = "choices_prophetesse";
+                    quittoken = "hub_prophetesse";
+                }
+
+                if (cultures[i] == TORConstants.Cultures.ASRAI)
+                {
+                    hub = "choices_spellsinger";
+                    quittoken = "hub_spellsinger";
+                }
+
+                if (cultures[i] == TORConstants.Cultures.EONIR) hub = "spellsinger_envoy_main_hub";
+
+                if (cultures[i] == TORConstants.Cultures.DAWI) hub = "tor_dw_guildmaster_runesmith_hub";
+
+                campaignGameStarter.AddPlayerLine("enchanter_start_p" + cultures[i], hub, "enchanter_start" + cultures[i],
+                    GameTexts.FindText("enchanter_start_p", cultures[i]).ToString(),
+                    () => EnchanterCondition(cultures[i]) && cultureCheck(cultures[i]), null, 210);
+
+
+                campaignGameStarter.AddDialogLine("enchanter_start_enchanter" + cultures[i], "enchanter_start" + cultures[i],
+                    "enchanter_hub_intro" + cultures[i], GameTexts.FindText("enchanter_start_enchanter", cultures[i]).ToString(),
+                    () => enchanterCareer() && cultureCheck(cultures[i]), null, 200);
+
+                campaignGameStarter.AddDialogLine("enchanter_start" + cultures[i], "enchanter_start" + cultures[i],
+                    "enchanter_hub_intro" + cultures[i], GameTexts.FindText("enchanter_dialog_start", cultures[i]).ToString(),
+                    () => EnchanterCondition(cultures[i]) && cultureCheck(cultures[i]), null, 200);
+            }
+            else
+            {
+                campaignGameStarter.AddDialogLine("enchanter_start_quit" + cultures[i], "start", "close_window",
+                    GameTexts.FindText("enchanter_dialog_start_quit", cultures[i]).ToString(),
+                    () => EnchanterCondition(cultures[i]) && !cultureCheck(cultures[i]), null, 200);
+
+                campaignGameStarter.AddDialogLine("enchanter_start_2" + cultures[i], "start", "enchanter_hub_intro" + cultures[i],
+                    GameTexts.FindText("enchanter_dialog_start_2", cultures[i]).ToString(),
+                    () => EnchanterCondition(cultures[i]) && fullfillsFreeBeeCondition() && cultureCheck(cultures[i]), null, 200);
+
+                campaignGameStarter.AddDialogLine("enchanter_start_1" + cultures[i], "start", "enchanter_hub_intro" + cultures[i],
+                    GameTexts.FindText("enchanter_dialog_start_1", cultures[i]).ToString(),
+                    () => EnchanterCondition(cultures[i]) && cultureCheck(cultures[i]), null, 200);
+            }
+
+            bool cultureCheck(string culture)
+            {
+                return Hero.MainHero.Culture.StringId == culture;
+            }
+
+            bool enchanterCareer()
+            {
+                return _careerEligableForFreebee.Contains(Hero.MainHero.GetCareer().StringId);
+            }
+
+            bool fullfillsFreeBeeCondition()
+            {
+                return !_learnedEnchantment && _careerEligableForFreebee.Contains(Hero.MainHero.GetCareer().StringId);
+            }
+
+            //enchantment hub
+
+            campaignGameStarter.AddDialogLine("enchanter_hub_intro" + cultures[i], "enchanter_hub_intro" + cultures[i],
+                "enchantment_hub" + cultures[i], GameTexts.FindText("enchanter_hub_intro", cultures[i]).ToString(), null, null, 200);
+
+            campaignGameStarter.AddDialogLine("enchanter_hub_reintro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
+                "enchantment_hub" + cultures[i], GameTexts.FindText("enchanter_hub_reintro", cultures[i]).ToString(), null, null, 200);
+
+
+            campaignGameStarter.AddPlayerLine("enchanter_hub_info_p" + cultures[i], "enchantment_hub" + cultures[i],
+                "enchanter_info_hub_intro" + cultures[i], GameTexts.FindText("enchanter_hub_info_p", cultures[i]).ToString(),
+                () => !_learnedEnchantment, null, 200);
+            campaignGameStarter.AddPlayerLine("enchanter_hub_blueprints_p" + cultures[i], "enchantment_hub" + cultures[i],
+                "enchanter_blueprints" + cultures[i], GameTexts.FindText("enchanter_hub_blueprints_p", cultures[i]).ToString(),
+                () => _spokeToEnchanter, null, 200);
+            campaignGameStarter.AddPlayerLine("enchanter_hub_donate_items_p" + cultures[i], "enchantment_hub" + cultures[i],
+                "enchanter_donate_items_1" + cultures[i], GameTexts.FindText("enchanter_hub_donate_items_p", cultures[i]).ToString(),
+                () => _spokeToEnchanter, null, 200);
+            campaignGameStarter.AddPlayerLine("enchanter_hub_open_enchanter_p" + cultures[i], "enchantment_hub" + cultures[i],
+                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("enchanter_hub_open_enchanter_p", cultures[i]).ToString(),
+                () => _spokeToEnchanter, () => EnchantingScreen.Open(), 200);
+
+            campaignGameStarter.AddPlayerLine("enchanter_hub_return_p" + cultures[i], "enchantment_hub" + cultures[i], quittoken,
+                GameTexts.FindText("enchanter_hub_return_p", cultures[i]).ToString(), null, null, 200);
+
+            //buy Enchanting Blue prints 
+
+            campaignGameStarter.AddDialogLine("enchanter_blueprints" + cultures[i], "enchanter_blueprints" + cultures[i],
+                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("enchanter_blueprints", cultures[i]).ToString(),
+                () => HasAnyViableEnchanterCharacter(cultures[i]), () => OpenEnchantmentShop(template.enchantmentSuffixes, cultures[i]), 200);
+
+            campaignGameStarter.AddDialogLine("enchanter_blueprints_decline" + cultures[i], "enchanter_blueprints" + cultures[i],
+                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("enchanter_blueprints_decline", cultures[i]).ToString(), null, null, 200);
+
+
+            bool HasAnyViableEnchanterCharacter(string culture)
+            {
+                var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
+
+                foreach (var hero in heroes.Where(hero => hero.Culture.StringId == culture))
+                {
+                    if (hero.HasAttribute("RuneCraft"))
+                        return true;
+
+                    var lores = LoreObject.GetAll();
+                    if (lores.Any(lore => hero.HasKnownLore(lore.ID))) return true;
+                }
+
+                return false;
+            }
+
+            //donation
+            campaignGameStarter.AddDialogLine("enchanter_donate_items_1" + cultures[i], "enchanter_donate_items_1" + cultures[i],
+                "enchanter_gift_items_hub" + cultures[i], GameTexts.FindText("enchanter_donate_items_1", cultures[i]).ToString(),
+                ConditionForDonation, null, 200);
+
+            campaignGameStarter.AddDialogLine("enchanter_donate_items_1_negative" + cultures[i], "enchanter_donate_items_1" + cultures[i],
+                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("enchanter_donate_items_1_negative", cultures[i]).ToString(), null, null,
+                200);
+
+            campaignGameStarter.AddPlayerLine("enchanter_donate_items_hub_p" + cultures[i], "enchanter_gift_items_hub" + cultures[i],
+                "enchanter_donate_items_2" + cultures[i], GameTexts.FindText("enchanter_donate_items_hub_p", cultures[i]).ToString(), null,
+                () => DonationMode(true), 200);
+
+            campaignGameStarter.AddPlayerLine("enchanter_gift_items_hub_return_p" + cultures[i], "enchanter_gift_items_hub" + cultures[i],
+                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("enchanter_gift_items_hub_return_p", cultures[i]).ToString(), null, null,
+                200);
+
+
+            campaignGameStarter.AddDialogLine("enchanter_donate_items_2" + cultures[i], "enchanter_donate_items_2" + cultures[i],
+                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("enchanter_donate_items_2", cultures[i]).ToString(), null, null, 200);
+            
+
+            // enchantment info hub
+            campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_enchanter_first_visit" + cultures[i],
+                "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
+                GameTexts.FindText("enchanter_info_hub_intro_enchanter_first_visit", cultures[i]).ToString(), fullfillsFreeBeeCondition, () =>
+                {
+                    _spokeToEnchanter = true;
+                    spokeFirstTime();
+                    AddBeginnerBlueprintsForEnchantment();
+                }, 200);
+
+
+            campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_enchanter_first_visit" + cultures[i],
+                "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
+                GameTexts.FindText("enchanter_info_hub_intro_enchanter_first_visit", cultures[i]).ToString(), null,
+                () => { spokeFirstTime();}, 200);
+
+
+
+            void spokeFirstTime()
+            {
+                _spokeToEnchanter = true; 
+                AddManual();
+            }
+
+
+            void AddManual()
+            {
+                var itemId = "";
+                switch (Hero.MainHero.Culture.StringId)
+                {
+                    case TORConstants.Cultures.EMPIRE:
+                        itemId = "tor_book_learn_enchanting";
+                        break;
+                    case TORConstants.Cultures.DAWI:
+                        itemId = "tor_book_learn_runecraft";
+                        break;
+                }
+                
+                if(itemId == "")
+                    return;
+
+                var item = MBObjectManager.Instance.GetObject<ItemObject>(itemId);
+                Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(item, 1);
+            }
+            
+            
+            
+            void AddBeginnerBlueprintsForEnchantment()
+            {
+                var career = Hero.MainHero.GetCareer();
+
+                if (Hero.MainHero.IsSpellCaster() && career == TORCareers.ImperialMagister)
+                {
+                    if (Hero.MainHero.HasKnownLore("LoreOfDeath")) Hero.MainHero.AddEnchantmentBlueprint("lesser_shyish_weapon", true);
+
+                    if (Hero.MainHero.HasKnownLore("LoreOfMetal")) Hero.MainHero.AddEnchantmentBlueprint("lesser_chamon_weapon", true);
+
+                    if (Hero.MainHero.HasKnownLore("LoreOfLight")) Hero.MainHero.AddEnchantmentBlueprint("lesser_lumen_stone", true);
+
+                    if (Hero.MainHero.HasKnownLore("LoreOfHeavens")) Hero.MainHero.AddEnchantmentBlueprint("lesser_chamon_weapon", true);
+
+                    if (Hero.MainHero.HasKnownLore("LoreOfBeasts")) Hero.MainHero.AddEnchantmentBlueprint("lesser_ghost_amber", true);
+
+                    if (Hero.MainHero.HasKnownLore("LoreOfLife")) Hero.MainHero.AddEnchantmentBlueprint("lesser_vitaellum_armor", true);
+
+                    if (Hero.MainHero.HasKnownLore("LoreOfFire")) Hero.MainHero.AddEnchantmentBlueprint("lesser_fire_ruby", true);
+                }
+
+                if (Hero.MainHero.IsSpellCaster() && Hero.MainHero.HasCareer(TORCareers.GrailDamsel))
+                    if (Hero.MainHero.HasKnownLore("LoreOfLife"))
+                        Hero.MainHero.AddEnchantmentBlueprint("lesser_vitaellum_armor", true);
+
+                if (Hero.MainHero.HasCareer(TORCareers.Runelord)) Hero.MainHero.AddEnchantmentBlueprint("dw_rune_stone", true);
+            }
+
+            bool ConditionForDonation()
+            {
+                var roster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster;
+
+                foreach (var elem in roster)
+                {
+                    var item = elem.EquipmentElement.Item;
+                    if (item.IsCraftedByPlayer) continue;
+                    if (item.HasAnyTrait())
+                        if (item.IsArmor() || item.IsWeapon() || item.IsShield())
+                            return true;
+                }
+
+                return false;
+            }
+
+            void DonationMode(bool customResourceExchange)
+            {
+                var i = 0;
+
+                var roster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster.ToMBList();
+
+                if (customResourceExchange) roster = roster.FindAll(x => !x.EquipmentElement.Item.IsCraftedByPlayer).ToMBList();
+
+                var selectableItems = new List<InquiryElement>();
+                foreach (var elem in roster)
+                {
+                    var item = elem.EquipmentElement.Item;
+                    if (item.HasAnyTrait() && (item.IsWeapon() || item.IsArmor() || item.IsShield()))
+                        selectableItems.Add(new InquiryElement(item, item.Name.ToString(), new ItemImageIdentifier(item)));
+                }
+
+                GameTexts.SetVariable("CUSTOMRESOURCE_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
+
+
+                var title = GameTexts.FindText("enchant_prompt_disintegrate", "title");
+                var text = GameTexts.FindText("enchant_prompt_disintegrate", "text");
+                if (customResourceExchange)
+                {
+                    title = GameTexts.FindText("enchant_prompt_donate_items", "title");
+                    text = GameTexts.FindText("enchant_prompt_donate_items", "text");
+                }
+
+
+                var inquirydata = new MultiSelectionInquiryData(title.ToString(), text.ToString(), selectableItems, true, 1, 15, "Accept", "Cancel",
+                    Disenchant, null);
+                MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+
+
+                void Disenchant(List<InquiryElement> inquiryElements)
+                {
+                    var model = Campaign.Current.Models.GetEnchantmentIngredientModel();
+
+                    var resources = new int[Enum.GetValues(typeof(TorTradeGoodType)).Length];
+                    var customResources = 0;
+
+
+                    foreach (var element in inquiryElements)
+                    {
+                        var customResourceElem = 0;
+                        var customResourceFactor = 1 / 3f;
+                        var item = (ItemObject)element.Identifier;
+
+                        if (!item.IsCraftedByPlayer)
+                        {
+                            var adjusted = item.Value / 100;
+                            customResourceElem += MBMath.ClampIndex(adjusted, 50, 500);
+                        }
+
+                        var traits = item.GetTraits();
+
+                        if (!traits.Any()) return;
+
+                        Hero.MainHero.PartyBelongedTo.ItemRoster.Add(new ItemRosterElement(item, -1));
+
+
+                        foreach (var trait in item.GetTraits())
+                        foreach (TorTradeGoodType type in Enum.GetValues(typeof(TorTradeGoodType)))
+                        {
+                            if (trait.IngredientItem != type) continue;
+
+                            if (trait.IngredientAmount > 0)
+                            {
+                                var factor = model.GetPercentOfIngredientForRecycleItems(type, item);
+
+                                resources[(int)type] += (int)Mathf.Max(1, trait.IngredientAmount * factor);
+
+                                customResourceElem += model.GetCustomResourceValueForIngredient(type) * trait.IngredientAmount;
+                                customResourceFactor += customResourceFactor;
+                            }
+                        }
+
+                        customResourceElem = (int)(customResourceElem * customResourceFactor);
+
+                        customResources += customResourceElem;
+                    }
+
+                    if (customResourceExchange)
+                    {
+                        var resultValue = (int)customResources;
+                        MBInformationManager.AddQuickInformation(
+                            new TextObject("Gained " + resultValue + Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText()),
+                            2000, Hero.MainHero.CharacterObject);
+                        Hero.MainHero.AddCultureSpecificCustomResource(resultValue);
+
+                        return;
+                    }
+
+                    var text = "";
+
+                    foreach (TorTradeGoodType type in Enum.GetValues(typeof(TorTradeGoodType)))
+                    {
+                        text.Add(" ");
+                        var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(type);
+                        if (ingredient == null)
+                            continue;
+
+                        Hero.MainHero.PartyBelongedTo.ItemRoster.Add(new ItemRosterElement(ingredient, resources[(int)type]));
+                        if (resources[(int)type] > 0) text += resources[(int)type] + ", " + ingredient.Name;
+                    }
+
+
+                    MBInformationManager.AddQuickInformation(new TextObject("Gained " + text), 2000, Hero.MainHero.CharacterObject);
+                }
+            }
+            
+            bool EnchanterCondition(string culture)
+            {
+                var partner = CharacterObject.OneToOneConversationCharacter;
+                if (partner.Culture.StringId != culture) return false;
+
+                return partner.HeroObject != null && partner.HeroObject.IsEnchanter();
+            }
+
+
+            void OpenEnchantmentShop(List<string> prefixList, string culture)
+            {
+                EnchantmentHelper.OpenEnchantmentRecipeShop(prefixList, culture, false);
+            }
+        }
+    }
+
+    public override void SyncData(IDataStore dataStore)
+    {
+        dataStore.SyncData("_spokeToEnchanter", ref _spokeToEnchanter);
+        dataStore.SyncData("_learnedEnchantment", ref _learnedEnchantment);
+        dataStore.SyncData("_settlementToEnchanterMap", ref _settlementToEnchanterMap);
+    }
+}

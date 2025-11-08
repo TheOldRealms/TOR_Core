@@ -1,0 +1,1362 @@
+<prefabs>
+	<game_entity name="tor_mortar" old_prefab_name="" mobility="1">
+		<flags>
+			<flag name="record_to_scene_replay" value="true"/>
+			<flag name="hide_in_prefab_editors" value="true"/>
+		</flags>
+		<tags>
+			<tag name="machine_parent"/>
+		</tags>
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<scripts>
+			<script name="SynchedMissionObject">
+				<variables>
+					<variable name="NavMeshPrefabName" value=""/>
+				</variables>
+			</script>
+		</scripts>
+		<children>
+			<game_entity name="tor_mortar_body" old_prefab_name="" mobility="1">
+				<flags>
+					<flag name="record_to_scene_replay" value="true"/>
+				</flags>
+				<scripts>
+					<script name="ArtilleryRangedSiegeWeapon">
+						<variables>
+							<variable name="IdleActionName" value="act_usage_mangonel_big_idle"/>
+							<variable name="ShootActionName" value="act_usage_mangonel_big_shoot"/>
+							<variable name="Reload1ActionName" value="act_usage_mangonel_big_reload"/>
+							<variable name="Reload2ActionName" value="act_usage_mangonel_reload_2"/>
+							<variable name="RotateLeftActionName" value="act_usage_mangonel_rotate_left"/>
+							<variable name="RotateRightActionName" value="act_usage_mangonel_rotate_right"/>
+							<variable name="LoadAmmoBeginActionName" value="act_usage_mangonel_big_load_ammo_begin"/>
+							<variable name="LoadAmmoEndActionName" value="act_usage_mangonel_big_load_ammo_end"/>
+							<variable name="Reload2IdleActionName" value="act_usage_mangonel_reload_2_idle"/>
+							<variable name="FireSoundID" value="mortar_shot_1"/>
+							<variable name="FireSoundID2" value="mortar_shot_2"/>
+							<variable name="RecoilDuration" value="0.100"/>
+							<variable name="Recoil2Duration" value="0.800"/>
+							<variable name="DisplayName" value="{=!}Mortar"/>
+							<variable name="BaseMuzzleVelocity" value="40.000"/>
+							<variable name="PreferHighAngle" value="true"/>
+							<variable name="MissileItemID" value="tor_neutral_weapon_ammo_cannonball"/>
+							<variable name="Focus" value="Troops"/>
+							<variable name="startingAmmoCount" value="20"/>
+							<variable name="TopReleaseAngleRestriction" value="1.400"/>
+							<variable name="BottomReleaseAngleRestriction" value="0.300"/>
+							<variable name="VisualizeReleaseTrajectoryAngle" value="1.400"/>
+							<variable name="RemoveOnDeployTag" value=""/>
+							<variable name="AddOnDeployTag" value=""/>
+							<variable name="ForcedUse" value="false"/>
+							<variable name="PilotStandingPointTag" value="Pilot"/>
+							<variable name="AmmoPickUpTag" value="ammopickup"/>
+							<variable name="WaitStandingPointTag" value="Wait"/>
+							<variable name="NavMeshPrefabName" value=""/>
+						</variables>
+					</script>
+					<script name="DestructableComponent">
+						<variables>
+							<variable name="DestructionStates" value="destroyed"/>
+							<variable name="DestroyedByStoneOnly" value="false"/>
+							<variable name="CanBeDestroyedInitially" value="false"/>
+							<variable name="MaxHitPoint" value="350.000"/>
+							<variable name="DestroyOnAnyHit" value="false"/>
+							<variable name="PassHitOnToParent" value="false"/>
+							<variable name="ReferenceEntityTag" value=""/>
+							<variable name="HeavyHitParticlesTag" value=""/>
+							<variable name="HeavyHitParticlesThreshold" value="5.000"/>
+							<variable name="ParticleEffectOnDestroy" value=""/>
+							<variable name="SoundEffectOnDestroy" value="event:/mission/siege/mangonel/break"/>
+							<variable name="SoundAndParticleEffectHeightOffset" value="0.000"/>
+							<variable name="SoundAndParticleEffectForwardOffset" value="0.000"/>
+							<variable name="BattleSide" value="None"/>
+							<variable name="NavMeshPrefabName" value=""/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="clean" old_prefab_name="" mobility="1">
+						<flags>
+							<flag name="record_to_scene_replay" value="true"/>
+						</flags>
+						<tags>
+							<tag name="operational"/>
+							<tag name="Battery_Base"/>
+						</tags>
+						<transform position="0.000, 0.000, 0.309"/>
+						<physics shape="bo_empire_mortar_001_base" override_material="wood_nonstick"/>
+						<components>
+							<meta_mesh_component name="empire_mortar_001_base"/>
+						</components>
+						<scripts>
+							<script name="SynchedMissionObject">
+								<variables>
+									<variable name="NavMeshPrefabName" value=""/>
+								</variables>
+							</script>
+						</scripts>
+						<children>
+							<game_entity name="barrel" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Barrel"/>
+								</tags>
+								<transform position="0.000, 0.008, 0.530"/>
+								<components>
+									<meta_mesh_component name="empire_mortar_001_barrel"/>
+								</components>
+								<scripts>
+									<script name="SynchedMissionObject">
+										<variables>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+								<children>
+									<game_entity name="projectile_leaving_position" old_prefab_name="" mobility="1">
+										<transform position="0.002, -0.924, -0.007" rotation_euler="0.000, 0.000, 3.141"/>
+									</game_entity>
+									<game_entity name="projectile_boulder" old_prefab_name="" mobility="1">
+										<flags>
+											<flag name="record_to_scene_replay" value="true"/>
+										</flags>
+										<tags>
+											<tag name="projectile"/>
+											<tag name="tor_neutral_weapon_ammo_cannonball"/>
+										</tags>
+										<transform position="-0.002, -0.343, -0.007" rotation_euler="0.000, 0.000, 3.141"/>
+										<components>
+											<meta_mesh_component name="cannonball_001"/>
+										</components>
+										<scripts>
+											<script name="SynchedMissionObject">
+												<variables>
+													<variable name="NavMeshPrefabName" value=""/>
+												</variables>
+											</script>
+										</scripts>
+									</game_entity>
+								</children>
+							</game_entity>
+							<game_entity name="use_reload_fire_l" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="Pilot"/>
+								</tags>
+								<transform position="0.125, 2.566, -0.302" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="ArtilleryStandingPoint">
+										<variables>
+											<variable name="AutoSheathWeapons" value="true"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="waiting_pos" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="Wait"/>
+									<tag name="can_pick_up_ammo"/>
+								</tags>
+								<transform position="-1.977, -1.662, -0.302" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="ArtilleryStandingPoint">
+										<variables>
+											<variable name="AutoSheathWeapons" value="false"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="targeting_volume" old_prefab_name="" visible="false" mobility="1">
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="targeting_entity"/>
+								</tags>
+								<transform position="0.000, -0.410, 0.778" rotation_euler="0.000, 0.000, 0.000" scale="4.000, 4.000, 4.000"/>
+								<components>
+									<meta_mesh_component name="barrier_sphere">
+										<mesh name="barrier_sphere" material="ghost"/>
+									</meta_mesh_component>
+								</components>
+							</game_entity>
+							<game_entity name="use_load" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="ammoload"/>
+								</tags>
+								<transform position="0.000, -1.789, -0.302" rotation_euler="0.000, 0.000, -0.054"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="StandingPointWithWeaponRequirement">
+										<variables>
+											<variable name="AutoSheathWeapons" value="false"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="wheel_R" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Wheel_R"/>
+								</tags>
+								<transform position="-0.797, -0.430, 0.217"/>
+								<components>
+									<meta_mesh_component name="empire_mortar_001_wheel"/>
+								</components>
+								<scripts>
+									<script name="SynchedMissionObject">
+										<variables>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="wheel_L" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Wheel_L"/>
+								</tags>
+								<transform position="0.810, -0.430, 0.217" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="empire_mortar_001_wheel"/>
+								</components>
+								<scripts>
+									<script name="SynchedMissionObject">
+										<variables>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+						</children>
+					</game_entity>
+					<game_entity name="destroyed" old_prefab_name="" visible="false" mobility="1">
+						<children>
+							<game_entity name="particles" old_prefab_name="" mobility="1">
+								<components>
+									<particle_system_instanced_component>
+										<effect_ref base_effect="{AC8C0DFA-5CA6-4474-A6DD-0B50C20CF064}"/>
+									</particle_system_instanced_component>
+								</components>
+							</game_entity>
+							<game_entity name="destroyed_base" old_prefab_name="" mobility="1">
+								<transform position="0.000, -0.002, 0.304" rotation_euler="0.201, 0.334, 0.000"/>
+								<components>
+									<meta_mesh_component name="empire_mortar_001_base"/>
+								</components>
+							</game_entity>
+							<game_entity name="wheel_R" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Wheel_R"/>
+								</tags>
+								<transform position="-0.880, -0.430, 0.394" rotation_euler="0.000, 0.703, 0.000"/>
+								<components>
+									<meta_mesh_component name="empire_mortar_001_wheel"/>
+								</components>
+							</game_entity>
+							<game_entity name="wheel_L" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Wheel_L"/>
+								</tags>
+								<transform position="0.800, -0.430, 0.096" rotation_euler="0.152, -1.355, 3.050"/>
+								<components>
+									<meta_mesh_component name="empire_mortar_001_wheel"/>
+								</components>
+							</game_entity>
+							<game_entity name="barrel" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Barrel"/>
+								</tags>
+								<transform position="-0.124, 0.524, 0.036" rotation_euler="-0.725, -0.069, 0.300"/>
+								<components>
+									<meta_mesh_component name="empire_mortar_001_barrel"/>
+								</components>
+							</game_entity>
+						</children>
+					</game_entity>
+				</children>
+			</game_entity>
+			<game_entity name="projectile_pile" old_prefab_name="" mobility="1">
+				<transform position="-3.767, -0.319, 0.026"/>
+				<physics override_material="wood"/>
+				<components>
+					<meta_mesh_component name="cannonball_pile_001"/>
+				</components>
+				<scripts>
+					<script name="CannonBallPile">
+						<variables>
+							<variable name="PilotStandingPointTag" value="Pilot"/>
+							<variable name="AmmoPickUpTag" value="ammopickup"/>
+							<variable name="WaitStandingPointTag" value="Wait"/>
+							<variable name="NavMeshPrefabName" value=""/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="ammo_pos_g" old_prefab_name="" mobility="1">
+						<flags>
+							<flag name="record_to_scene_replay" value="true"/>
+						</flags>
+						<visibility_masks>
+							<visibility_mask name="visible_only_when_editing" value="true"/>
+						</visibility_masks>
+						<tags>
+							<tag name="ammopickup"/>
+						</tags>
+						<transform position="1.217, 0.017, 0.000" rotation_euler="0.000, 0.000, 1.571"/>
+						<components>
+							<meta_mesh_component name="icon_man"/>
+						</components>
+						<scripts>
+							<script name="AmmoPickUpStandingPoint">
+								<variables>
+									<variable name="AutoSheathWeapons" value="false"/>
+									<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+									<variable name="AutoWieldWeapons" value="false"/>
+									<variable name="TranslateUser" value="true"/>
+									<variable name="HasRecentlyBeenRechecked" value="false"/>
+									<variable name="NavMeshPrefabName" value=""/>
+								</variables>
+							</script>
+						</scripts>
+					</game_entity>
+					<game_entity name="pile_collider" old_prefab_name="" mobility="1">
+						<tags>
+							<tag name="pile_collider"/>
+						</tags>
+						<physics shape="bo_mangonel_rock_pile" override_material="stone"/>
+					</game_entity>
+				</children>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="tor_greatcannon" old_prefab_name="" mobility="1">
+		<flags>
+			<flag name="record_to_scene_replay" value="true"/>
+			<flag name="hide_in_prefab_editors" value="true"/>
+		</flags>
+		<tags>
+			<tag name="machine_parent"/>
+		</tags>
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<scripts>
+			<script name="SynchedMissionObject">
+				<variables>
+					<variable name="NavMeshPrefabName" value=""/>
+				</variables>
+			</script>
+		</scripts>
+		<children>
+			<game_entity name="tor_cannon_body" old_prefab_name="" mobility="1">
+				<flags>
+					<flag name="record_to_scene_replay" value="true"/>
+				</flags>
+				<scripts>
+					<script name="ArtilleryRangedSiegeWeapon">
+						<variables>
+							<variable name="IdleActionName" value="act_usage_mangonel_big_idle"/>
+							<variable name="ShootActionName" value="act_usage_mangonel_big_shoot"/>
+							<variable name="Reload1ActionName" value="act_usage_mangonel_big_reload"/>
+							<variable name="Reload2ActionName" value="act_usage_mangonel_reload_2"/>
+							<variable name="RotateLeftActionName" value="act_usage_mangonel_rotate_left"/>
+							<variable name="RotateRightActionName" value="act_usage_mangonel_rotate_right"/>
+							<variable name="LoadAmmoBeginActionName" value="act_usage_mangonel_big_load_ammo_begin"/>
+							<variable name="LoadAmmoEndActionName" value="act_usage_mangonel_big_load_ammo_end"/>
+							<variable name="Reload2IdleActionName" value="act_usage_mangonel_reload_2_idle"/>
+							<variable name="FireSoundID" value="mortar_shot_1"/>
+							<variable name="FireSoundID2" value="mortar_shot_2"/>
+							<variable name="RecoilDuration" value="0.100"/>
+							<variable name="Recoil2Duration" value="0.800"/>
+							<variable name="DisplayName" value="{=!}Great Cannon"/>
+							<variable name="BaseMuzzleVelocity" value="120.000"/>
+							<variable name="PreferHighAngle" value="false"/>
+							<variable name="MissileItemID" value="tor_neutral_weapon_ammo_cannonball"/>
+							<variable name="Focus" value="Troops"/>
+							<variable name="startingAmmoCount" value="20"/>
+							<variable name="TopReleaseAngleRestriction" value="0.300"/>
+							<variable name="BottomReleaseAngleRestriction" value="-0.100"/>
+							<variable name="VisualizeReleaseTrajectoryAngle" value="0.300"/>
+							<variable name="RemoveOnDeployTag" value=""/>
+							<variable name="AddOnDeployTag" value=""/>
+							<variable name="ForcedUse" value="false"/>
+							<variable name="PilotStandingPointTag" value="Pilot"/>
+							<variable name="AmmoPickUpTag" value="ammopickup"/>
+							<variable name="WaitStandingPointTag" value="Wait"/>
+							<variable name="NavMeshPrefabName" value=""/>
+						</variables>
+					</script>
+					<script name="DestructableComponent">
+						<variables>
+							<variable name="DestructionStates" value="destroyed"/>
+							<variable name="DestroyedByStoneOnly" value="false"/>
+							<variable name="CanBeDestroyedInitially" value="false"/>
+							<variable name="MaxHitPoint" value="350.000"/>
+							<variable name="DestroyOnAnyHit" value="false"/>
+							<variable name="PassHitOnToParent" value="false"/>
+							<variable name="ReferenceEntityTag" value=""/>
+							<variable name="HeavyHitParticlesTag" value=""/>
+							<variable name="HeavyHitParticlesThreshold" value="5.000"/>
+							<variable name="ParticleEffectOnDestroy" value=""/>
+							<variable name="SoundEffectOnDestroy" value="event:/mission/siege/mangonel/break"/>
+							<variable name="SoundAndParticleEffectHeightOffset" value="0.000"/>
+							<variable name="SoundAndParticleEffectForwardOffset" value="0.000"/>
+							<variable name="BattleSide" value="None"/>
+							<variable name="NavMeshPrefabName" value=""/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="clean" old_prefab_name="" mobility="1">
+						<flags>
+							<flag name="record_to_scene_replay" value="true"/>
+						</flags>
+						<tags>
+							<tag name="operational"/>
+							<tag name="Battery_Base"/>
+						</tags>
+						<transform position="0.000, 0.000, 0.555"/>
+						<physics shape="bo_empire_mortar_001_base" override_material="wood_nonstick"/>
+						<components>
+							<meta_mesh_component name="empire_cannon_001_base"/>
+						</components>
+						<scripts>
+							<script name="SynchedMissionObject">
+								<variables>
+									<variable name="NavMeshPrefabName" value=""/>
+								</variables>
+							</script>
+						</scripts>
+						<children>
+							<game_entity name="barrel" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Barrel"/>
+								</tags>
+								<transform position="0.000, -0.241, 0.443"/>
+								<components>
+									<meta_mesh_component name="empire_cannon_001_barrel"/>
+								</components>
+								<scripts>
+									<script name="SynchedMissionObject">
+										<variables>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+								<children>
+									<game_entity name="projectile_leaving_position" old_prefab_name="" mobility="1">
+										<transform position="0.002, -1.472, -0.007" rotation_euler="0.000, 0.000, 3.141"/>
+									</game_entity>
+									<game_entity name="projectile_boulder" old_prefab_name="" mobility="1">
+										<flags>
+											<flag name="record_to_scene_replay" value="true"/>
+										</flags>
+										<tags>
+											<tag name="projectile"/>
+											<tag name="tor_neutral_weapon_ammo_cannonball"/>
+										</tags>
+										<transform position="-0.002, -1.310, -0.007" rotation_euler="0.000, 0.000, 3.141"/>
+										<components>
+											<meta_mesh_component name="cannonball_001"/>
+										</components>
+										<scripts>
+											<script name="SynchedMissionObject">
+												<variables>
+													<variable name="NavMeshPrefabName" value=""/>
+												</variables>
+											</script>
+										</scripts>
+									</game_entity>
+								</children>
+							</game_entity>
+							<game_entity name="use_reload_fire_l" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="Pilot"/>
+								</tags>
+								<transform position="0.125, 3.466, -0.558" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="ArtilleryStandingPoint">
+										<variables>
+											<variable name="AutoSheathWeapons" value="true"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="waiting_pos" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="Wait"/>
+									<tag name="can_pick_up_ammo"/>
+								</tags>
+								<transform position="-1.977, -1.662, -0.302" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="ArtilleryStandingPoint">
+										<variables>
+											<variable name="AutoSheathWeapons" value="false"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="targeting_volume" old_prefab_name="" visible="false" mobility="1">
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="targeting_entity"/>
+								</tags>
+								<transform position="0.000, -0.410, 0.778" rotation_euler="0.000, 0.000, 0.000" scale="4.000, 4.000, 4.000"/>
+								<components>
+									<meta_mesh_component name="barrier_sphere">
+										<mesh name="barrier_sphere" material="ghost"/>
+									</meta_mesh_component>
+								</components>
+							</game_entity>
+							<game_entity name="use_load" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="ammoload"/>
+								</tags>
+								<transform position="0.000, -2.257, -0.558" rotation_euler="0.000, 0.000, -0.054"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="StandingPointWithWeaponRequirement">
+										<variables>
+											<variable name="AutoSheathWeapons" value="false"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="wheel_R" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Wheel_R"/>
+								</tags>
+								<transform position="-0.753, 0.002, -0.005"/>
+								<components>
+									<meta_mesh_component name="empire_cannon_001_wheel"/>
+								</components>
+								<scripts>
+									<script name="SynchedMissionObject">
+										<variables>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="wheel_L" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Wheel_L"/>
+								</tags>
+								<transform position="0.751, 0.002, -0.005" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="empire_cannon_001_wheel"/>
+								</components>
+								<scripts>
+									<script name="SynchedMissionObject">
+										<variables>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+						</children>
+					</game_entity>
+					<game_entity name="destroyed" old_prefab_name="" visible="false" mobility="1">
+						<tags>
+							<tag name="destroyed"/>
+						</tags>
+						<children>
+							<game_entity name="particles" old_prefab_name="" mobility="1">
+								<components>
+									<particle_system_instanced_component>
+										<effect_ref base_effect="{AC8C0DFA-5CA6-4474-A6DD-0B50C20CF064}"/>
+									</particle_system_instanced_component>
+								</components>
+							</game_entity>
+							<game_entity name="destroyed_base" old_prefab_name="" mobility="1">
+								<transform position="0.011, -0.001, 0.559" rotation_euler="-0.073, -0.412, -0.147"/>
+								<components>
+									<meta_mesh_component name="empire_cannon_001_base"/>
+								</components>
+							</game_entity>
+							<game_entity name="barrel" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Barrel"/>
+								</tags>
+								<transform position="0.167, -1.135, 0.544" rotation_euler="0.336, -0.140, 0.403"/>
+								<components>
+									<meta_mesh_component name="empire_cannon_001_barrel"/>
+								</components>
+							</game_entity>
+							<game_entity name="wheel_R" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Wheel_R"/>
+								</tags>
+								<transform position="-0.580, 0.002, 0.235" rotation_euler="-0.059, -0.952, -0.266"/>
+								<components>
+									<meta_mesh_component name="empire_cannon_001_wheel"/>
+								</components>
+							</game_entity>
+							<game_entity name="wheel_L" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="Wheel_L"/>
+								</tags>
+								<transform position="0.751, 0.002, 0.550" rotation_euler="0.580, 0.660, 2.544"/>
+								<components>
+									<meta_mesh_component name="empire_cannon_001_wheel"/>
+								</components>
+							</game_entity>
+						</children>
+					</game_entity>
+				</children>
+			</game_entity>
+			<game_entity name="projectile_pile" old_prefab_name="" mobility="1">
+				<transform position="-3.767, -0.319, 0.026"/>
+				<physics override_material="wood"/>
+				<components>
+					<meta_mesh_component name="cannonball_pile_001"/>
+				</components>
+				<scripts>
+					<script name="CannonBallPile">
+						<variables>
+							<variable name="PilotStandingPointTag" value="Pilot"/>
+							<variable name="AmmoPickUpTag" value="ammopickup"/>
+							<variable name="WaitStandingPointTag" value="Wait"/>
+							<variable name="NavMeshPrefabName" value=""/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="ammo_pos_g" old_prefab_name="" mobility="1">
+						<flags>
+							<flag name="record_to_scene_replay" value="true"/>
+						</flags>
+						<visibility_masks>
+							<visibility_mask name="visible_only_when_editing" value="true"/>
+						</visibility_masks>
+						<tags>
+							<tag name="ammopickup"/>
+						</tags>
+						<transform position="1.217, 0.017, 0.000" rotation_euler="0.000, 0.000, 1.571"/>
+						<components>
+							<meta_mesh_component name="icon_man"/>
+						</components>
+						<scripts>
+							<script name="AmmoPickUpStandingPoint">
+								<variables>
+									<variable name="AutoSheathWeapons" value="false"/>
+									<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+									<variable name="AutoWieldWeapons" value="false"/>
+									<variable name="TranslateUser" value="true"/>
+									<variable name="HasRecentlyBeenRechecked" value="false"/>
+									<variable name="NavMeshPrefabName" value=""/>
+								</variables>
+							</script>
+						</scripts>
+					</game_entity>
+					<game_entity name="pile_collider" old_prefab_name="" mobility="1">
+						<tags>
+							<tag name="pile_collider"/>
+						</tags>
+						<physics shape="bo_mangonel_rock_pile" override_material="stone"/>
+					</game_entity>
+				</children>
+			</game_entity>
+		</children>
+	</game_entity>
+	<game_entity name="tor_fieldtrebuchet" old_prefab_name="" mobility="1">
+		<flags>
+			<flag name="record_to_scene_replay" value="true"/>
+			<flag name="hide_in_prefab_editors" value="true"/>
+		</flags>
+		<tags>
+			<tag name="machine_parent"/>
+		</tags>
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<scripts>
+			<script name="SynchedMissionObject">
+				<variables>
+					<variable name="NavMeshPrefabName" value=""/>
+				</variables>
+			</script>
+		</scripts>
+		<children>
+			<game_entity name="trebuchet_a" old_prefab_name="" mobility="1">
+				<scripts>
+					<script name="FieldTrebuchet">
+						<variables>
+							<variable name="ProjectileSpeed" value="45.000"/>
+							<variable name="AIAmmoLoadTag" value="ammoload_ai"/>
+							<variable name="IdleWithAmmoAnimation" value="trebuchet_a_sling_idle_with_ammo"/>
+							<variable name="IdleEmptyAnimation" value="trebuchet_a_sling_idle_emtpy"/>
+							<variable name="BodyFireAnimation" value="trebuchet_a_body_fire"/>
+							<variable name="BodySetUpAnimation" value="trebuchet_a_body_setup"/>
+							<variable name="SlingFireAnimation" value="trebuchet_a_sling_fire"/>
+							<variable name="SlingSetUpAnimation" value="trebuchet_a_sling_setup"/>
+							<variable name="RopeFireAnimation" value="trebuchet_a_rope_fire"/>
+							<variable name="RopeSetUpAnimation" value="trebuchet_a_rope_setup"/>
+							<variable name="VerticalAdjusterAnimation" value="trebuchet_a_anglearm_state"/>
+							<variable name="TimeGapBetweenShootActionAndProjectileLeaving" value="1.600"/>
+							<variable name="MissileItemID" value="boulder"/>
+							<variable name="Focus" value="Troops"/>
+							<variable name="startingAmmoCount" value="20"/>
+							<variable name="TopReleaseAngleRestriction" value="1.000"/>
+							<variable name="BottomReleaseAngleRestriction" value="0.300"/>
+							<variable name="VisualizeReleaseTrajectoryAngle" value="1.000"/>
+							<variable name="RemoveOnDeployTag" value=""/>
+							<variable name="AddOnDeployTag" value=""/>
+							<variable name="PilotStandingPointTag" value="Pilot"/>
+							<variable name="AmmoPickUpTag" value="ammopickup"/>
+							<variable name="WaitStandingPointTag" value="Wait"/>
+							<variable name="NavMeshPrefabName" value=""/>
+						</variables>
+					</script>
+					<script name="DestructableComponent">
+						<variables>
+							<variable name="DestructionStates" value="destroyed"/>
+							<variable name="DestroyedByStoneOnly" value="false"/>
+							<variable name="CanBeDestroyedInitially" value="false"/>
+							<variable name="MaxHitPoint" value="1000.000"/>
+							<variable name="DestroyOnAnyHit" value="false"/>
+							<variable name="PassHitOnToParent" value="false"/>
+							<variable name="ReferenceEntityTag" value=""/>
+							<variable name="HeavyHitParticlesTag" value=""/>
+							<variable name="HeavyHitParticlesThreshold" value="5.000"/>
+							<variable name="ParticleEffectOnDestroy" value=""/>
+							<variable name="SoundEffectOnDestroy" value="event:/mission/siege/trebuchet/break"/>
+							<variable name="SoundAndParticleEffectHeightOffset" value="0.000"/>
+							<variable name="SoundAndParticleEffectForwardOffset" value="0.000"/>
+							<variable name="BattleSide" value="Attacker"/>
+							<variable name="NavMeshPrefabName" value=""/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="destroyed" old_prefab_name="" visible="false" mobility="1">
+						<flags>
+							<flag name="record_to_scene_replay" value="true"/>
+						</flags>
+						<physics shape="bo_trebuchet_a_destroyed_body"/>
+						<components>
+							<meta_mesh_component name="trebuchet_a_destroyed_body"/>
+							<meta_mesh_component name="trebuchet_a_destroyed_body_dirt" _index_="1"/>
+						</components>
+						<children>
+							<game_entity name="part1" old_prefab_name="" mobility="1">
+								<transform position="-0.791, -0.531, 4.378" rotation_euler="0.000, 0.000, 0.025"/>
+								<physics shape="bo_trebuchet_a_destroyed_part1">
+									<body_flags>
+										<body_flag name="dynamic"/>
+									</body_flags>
+								</physics>
+								<components>
+									<meta_mesh_component name="trebuchet_a_destroyed_part1"/>
+								</components>
+							</game_entity>
+							<game_entity name="part7" old_prefab_name="" mobility="1">
+								<transform position="-0.452, -0.527, 3.893" rotation_euler="-0.024, -0.122, -3.116"/>
+								<physics shape="bo_trebuchet_a_destroyed_part7">
+									<body_flags>
+										<body_flag name="dynamic"/>
+									</body_flags>
+								</physics>
+								<components>
+									<meta_mesh_component name="trebuchet_a_destroyed_part7"/>
+								</components>
+							</game_entity>
+							<game_entity name="part2" old_prefab_name="" mobility="1">
+								<transform position="0.880, -0.520, 4.347"/>
+								<physics shape="bo_trebuchet_a_destroyed_part2">
+									<body_flags>
+										<body_flag name="dynamic"/>
+									</body_flags>
+								</physics>
+								<components>
+									<meta_mesh_component name="trebuchet_a_destroyed_part2"/>
+								</components>
+							</game_entity>
+							<game_entity name="part3" old_prefab_name="" mobility="1">
+								<transform position="1.203, 0.123, 3.437" rotation_euler="0.127, 0.608, -1.715"/>
+								<physics shape="bo_trebuchet_a_destroyed_part3">
+									<body_flags>
+										<body_flag name="dynamic"/>
+									</body_flags>
+								</physics>
+								<components>
+									<meta_mesh_component name="trebuchet_a_destroyed_part3"/>
+								</components>
+							</game_entity>
+							<game_entity name="part4" old_prefab_name="" mobility="1">
+								<transform position="0.843, -1.843, 2.924" rotation_euler="0.091, -0.671, -1.725"/>
+								<physics shape="bo_trebuchet_a_destroyed_part4">
+									<body_flags>
+										<body_flag name="dynamic"/>
+									</body_flags>
+								</physics>
+								<components>
+									<meta_mesh_component name="trebuchet_a_destroyed_part4"/>
+								</components>
+							</game_entity>
+							<game_entity name="part5" old_prefab_name="" mobility="1">
+								<transform position="1.005, -0.546, 3.432" rotation_euler="0.000, 0.000, 0.025"/>
+								<physics shape="bo_trebuchet_a_destroyed_part5">
+									<body_flags>
+										<body_flag name="dynamic"/>
+									</body_flags>
+								</physics>
+								<components>
+									<meta_mesh_component name="trebuchet_a_destroyed_part5"/>
+								</components>
+							</game_entity>
+							<game_entity name="part6" old_prefab_name="" mobility="1">
+								<transform position="-0.949, -0.939, 3.665" rotation_euler="0.123, 0.570, 1.515"/>
+								<physics shape="bo_trebuchet_a_destroyed_part6">
+									<body_flags>
+										<body_flag name="dynamic"/>
+									</body_flags>
+								</physics>
+								<components>
+									<meta_mesh_component name="trebuchet_a_destroyed_part6"/>
+								</components>
+							</game_entity>
+							<game_entity name="particles" old_prefab_name="" mobility="1">
+								<transform position="0.343, -2.495, 0.965"/>
+								<components>
+									<particle_system_instanced_component>
+										<effect_ref base_effect="{AC8C0DFA-5CA6-4474-A6DD-0B50C20CF064}"/>
+									</particle_system_instanced_component>
+								</components>
+							</game_entity>
+							<game_entity name="particles" old_prefab_name="" mobility="1">
+								<transform position="-0.561, 2.734, -0.253"/>
+								<components>
+									<particle_system_instanced_component>
+										<effect_ref base_effect="{AC8C0DFA-5CA6-4474-A6DD-0B50C20CF064}"/>
+									</particle_system_instanced_component>
+								</components>
+							</game_entity>
+							<game_entity name="particles" old_prefab_name="" mobility="1">
+								<transform position="-0.408, -2.123, 4.259"/>
+								<components>
+									<particle_system_instanced_component>
+										<effect_ref base_effect="{AC8C0DFA-5CA6-4474-A6DD-0B50C20CF064}"/>
+									</particle_system_instanced_component>
+								</components>
+							</game_entity>
+						</children>
+					</game_entity>
+					<game_entity name="clean" old_prefab_name="" mobility="1">
+						<flags>
+							<flag name="record_to_scene_replay" value="true"/>
+						</flags>
+						<tags>
+							<tag name="operational"/>
+							<tag name="rotate_entity"/>
+						</tags>
+						<scripts>
+							<script name="SynchedMissionObject">
+								<variables>
+									<variable name="NavMeshPrefabName" value=""/>
+								</variables>
+							</script>
+						</scripts>
+						<children>
+							<game_entity name="angle_meter" old_prefab_name="" mobility="1">
+								<tags>
+									<tag name="vertical_adjuster"/>
+								</tags>
+								<skeleton skeleton_model="trebuchet_a_aim_skeleton">
+									<components>
+										<meta_mesh_component name="trebuchet_a_aimbar"/>
+									</components>
+								</skeleton>
+							</game_entity>
+							<game_entity name="body" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<tags>
+									<tag name="body"/>
+								</tags>
+								<physics shape="bo_trebuchet_a" override_material="wood_nonstick"/>
+								<skeleton skeleton_model="trebuchet_a_skeleton">
+									<components>
+										<meta_mesh_component name="trebuchet_a"/>
+									</components>
+								</skeleton>
+								<scripts>
+									<script name="SynchedMissionObject">
+										<variables>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="sling" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<tags>
+									<tag name="sling"/>
+								</tags>
+								<skeleton skeleton_model="trebuchet_a_sling_skeleton">
+									<components>
+										<meta_mesh_component name="trebuchet_a_sling"/>
+									</components>
+								</skeleton>
+								<scripts>
+									<script name="SynchedMissionObject">
+										<variables>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+								<children>
+									<game_entity name="projectile_boulder" old_prefab_name="" mobility="1">
+										<flags>
+											<flag name="record_to_scene_replay" value="true"/>
+										</flags>
+										<tags>
+											<tag name="projectile"/>
+											<tag name="boulder"/>
+										</tags>
+										<components>
+											<meta_mesh_component name="projectile_rock"/>
+										</components>
+										<scripts>
+											<script name="SynchedMissionObject">
+												<variables>
+													<variable name="NavMeshPrefabName" value=""/>
+												</variables>
+											</script>
+										</scripts>
+									</game_entity>
+									<game_entity name="projectile_pot" old_prefab_name="" visible="false" mobility="1">
+										<flags>
+											<flag name="record_to_scene_replay" value="true"/>
+										</flags>
+										<tags>
+											<tag name="projectile"/>
+											<tag name="pot"/>
+										</tags>
+										<components>
+											<meta_mesh_component name="projectile_pot"/>
+										</components>
+										<scripts>
+											<script name="SynchedMissionObject">
+												<variables>
+													<variable name="NavMeshPrefabName" value=""/>
+												</variables>
+											</script>
+										</scripts>
+									</game_entity>
+									<game_entity name="projectile_grapeshot_fire" old_prefab_name="" visible="false" mobility="1">
+										<flags>
+											<flag name="record_to_scene_replay" value="true"/>
+										</flags>
+										<tags>
+											<tag name="projectile"/>
+											<tag name="grapeshot_fire_stack"/>
+										</tags>
+										<transform rotation_euler="0.000, 0.000, 0.000" scale="0.700, 0.700, 0.700"/>
+										<components>
+											<meta_mesh_component name="projectile_grapeshot_fire_carry"/>
+										</components>
+										<scripts>
+											<script name="SynchedMissionObject">
+												<variables>
+													<variable name="NavMeshPrefabName" value=""/>
+												</variables>
+											</script>
+										</scripts>
+									</game_entity>
+									<game_entity name="projectile_grapeshot" old_prefab_name="" visible="false" mobility="1">
+										<flags>
+											<flag name="record_to_scene_replay" value="true"/>
+										</flags>
+										<tags>
+											<tag name="projectile"/>
+											<tag name="grapeshot_stack"/>
+										</tags>
+										<transform rotation_euler="0.000, 0.000, 0.000" scale="0.700, 0.700, 0.700"/>
+										<components>
+											<meta_mesh_component name="projectile_grapeshot_carry"/>
+										</components>
+										<scripts>
+											<script name="SynchedMissionObject">
+												<variables>
+													<variable name="NavMeshPrefabName" value=""/>
+												</variables>
+											</script>
+										</scripts>
+									</game_entity>
+								</children>
+							</game_entity>
+							<game_entity name="use_reload_fire_l" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="Pilot"/>
+									<tag name="reload"/>
+									<tag name="can_pick_up_ammo"/>
+								</tags>
+								<transform position="1.600, 2.800, 0.000" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="TrebuchetStandingPoint">
+										<variables>
+											<variable name="AutoSheathWeapons" value="true"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="use_load_center" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="ammoload"/>
+								</tags>
+								<transform position="0.000, -0.800, 0.000"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="StandingPointWithWeaponRequirement">
+										<variables>
+											<variable name="AutoSheathWeapons" value="false"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="use_reload_r" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="right"/>
+									<tag name="reload"/>
+									<tag name="can_pick_up_ammo"/>
+								</tags>
+								<transform position="-1.600, 2.780, 0.000" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="TrebuchetStandingPoint">
+										<variables>
+											<variable name="AutoSheathWeapons" value="true"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="rope" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<tags>
+									<tag name="rope"/>
+								</tags>
+								<skeleton skeleton_model="trebuchet_a_rope_skeleton">
+									<components>
+										<meta_mesh_component name="trebuchet_a_rope"/>
+									</components>
+								</skeleton>
+								<scripts>
+									<script name="SynchedMissionObject">
+										<variables>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="use_load_l" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="ammoload"/>
+								</tags>
+								<transform position="1.210, 0.613, 0.000" rotation_euler="0.000, 0.000, 1.571"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="StandingPointWithWeaponRequirement">
+										<variables>
+											<variable name="AutoSheathWeapons" value="false"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="use_load_r" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="ammoload"/>
+									<tag name="ammoload_ai"/>
+								</tags>
+								<transform position="-1.210, 0.613, 0.000" rotation_euler="0.000, 0.000, -1.571"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="StandingPointWithWeaponRequirement">
+										<variables>
+											<variable name="AutoSheathWeapons" value="false"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="wait_pos_r" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="right"/>
+									<tag name="can_pick_up_ammo"/>
+									<tag name="no_ammo_pick_up_penalty"/>
+								</tags>
+								<transform position="-1.600, 8.184, 0.000" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="TrebuchetStandingPoint">
+										<variables>
+											<variable name="AutoSheathWeapons" value="true"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="wait_pos_l" old_prefab_name="" mobility="1">
+								<flags>
+									<flag name="record_to_scene_replay" value="true"/>
+								</flags>
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="can_pick_up_ammo"/>
+									<tag name="no_ammo_pick_up_penalty"/>
+								</tags>
+								<transform position="1.600, 8.204, 0.000" rotation_euler="0.000, 0.000, 3.141"/>
+								<components>
+									<meta_mesh_component name="icon_man"/>
+								</components>
+								<scripts>
+									<script name="TrebuchetStandingPoint">
+										<variables>
+											<variable name="AutoSheathWeapons" value="true"/>
+											<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+											<variable name="AutoWieldWeapons" value="false"/>
+											<variable name="TranslateUser" value="true"/>
+											<variable name="HasRecentlyBeenRechecked" value="false"/>
+											<variable name="NavMeshPrefabName" value=""/>
+										</variables>
+									</script>
+								</scripts>
+							</game_entity>
+							<game_entity name="targeting_volume" old_prefab_name="" mobility="1">
+								<visibility_masks>
+									<visibility_mask name="visible_only_when_editing" value="true"/>
+								</visibility_masks>
+								<tags>
+									<tag name="targeting_entity"/>
+								</tags>
+								<transform position="0.000, -0.423, 1.149" rotation_euler="0.000, 0.000, 0.000" scale="4.673, 4.673, 4.673"/>
+								<components>
+									<meta_mesh_component name="barrier_sphere">
+										<mesh name="barrier_sphere" material="ghost"/>
+									</meta_mesh_component>
+								</components>
+							</game_entity>
+							<game_entity name="projectile_leaving_position" old_prefab_name="" mobility="1">
+								<transform position="0.000, 0.860, 18.000"/>
+							</game_entity>
+						</children>
+					</game_entity>
+				</children>
+			</game_entity>
+			<game_entity name="projectile_pile" old_prefab_name="" mobility="1">
+				<transform position="-5.330, 1.529, 0.000"/>
+				<physics override_material="wood"/>
+				<components>
+					<meta_mesh_component name="mangonel_rock_pile"/>
+				</components>
+				<scripts>
+					<script name="SiegeMachineStonePile">
+						<variables>
+							<variable name="PilotStandingPointTag" value="Pilot"/>
+							<variable name="AmmoPickUpTag" value="ammopickup"/>
+							<variable name="WaitStandingPointTag" value="Wait"/>
+							<variable name="NavMeshPrefabName" value="projectile_pile_a_blocker_dnm"/>
+						</variables>
+					</script>
+				</scripts>
+				<children>
+					<game_entity name="ammo_pos_g" old_prefab_name="" mobility="1">
+						<flags>
+							<flag name="record_to_scene_replay" value="true"/>
+						</flags>
+						<visibility_masks>
+							<visibility_mask name="visible_only_when_editing" value="true"/>
+						</visibility_masks>
+						<tags>
+							<tag name="ammopickup"/>
+						</tags>
+						<transform position="1.217, 0.017, 0.000" rotation_euler="0.000, 0.000, 1.571"/>
+						<components>
+							<meta_mesh_component name="icon_man"/>
+						</components>
+						<scripts>
+							<script name="StandingPointWithWeaponRequirement">
+								<variables>
+									<variable name="AutoSheathWeapons" value="false"/>
+									<variable name="AutoEquipWeaponsOnUseStopped" value="false"/>
+									<variable name="AutoWieldWeapons" value="false"/>
+									<variable name="TranslateUser" value="true"/>
+									<variable name="HasRecentlyBeenRechecked" value="false"/>
+									<variable name="NavMeshPrefabName" value=""/>
+								</variables>
+							</script>
+						</scripts>
+					</game_entity>
+					<game_entity name="pile_collider" old_prefab_name="" mobility="1">
+						<tags>
+							<tag name="pile_collider"/>
+						</tags>
+						<physics shape="bo_mangonel_rock_pile" override_material="stone"/>
+					</game_entity>
+				</children>
+			</game_entity>
+		</children>
+	</game_entity>
+</prefabs>
+

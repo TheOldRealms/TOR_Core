@@ -1,0 +1,226 @@
+using System.Collections.Generic;
+using System.Net.Http.Headers;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection.Information;
+using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.Menagery;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
+
+namespace TOR_Core.CampaignMechanics.CustomResources;
+
+public class OathGoldHelper
+{ 
+    
+    public static List<TooltipProperty> GetOathGoldInfo()
+    {
+        var list = new List<TooltipProperty>();
+        
+        var behavior = Campaign.Current.GetCampaignBehavior<OathGoldBehavior>();
+
+        if (behavior == null) return list;
+        var lastVisitToTown = behavior.LastVisitAtTown;
+        var expeditionMaximum = behavior.ExpeditionMaximum;
+        var expeditionCount = behavior.CurrentExpeditions;
+        var engineerRank = GetOathGoldForGuildRespect(behavior.EngineerGuildReputation);
+        var warriorsRank = GetOathGoldForGuildRespect(behavior.WarriorsGuildReputation);
+        var runeSmithRank =  GetOathGoldForGuildRespect(behavior.RuneSmithReputation);
+        var gemcutterRank = GetOathGoldForGuildRespect(behavior.GemcuttersAndMinersReputation);
+        var brewersRank = GetOathGoldForGuildRespect(behavior.BrewersGuildReputation);
+        
+
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
+        string  time = ((int)lastVisitToTown).ToString()+ " days";
+        if (lastVisitToTown / CampaignTime.DaysInWeek > 2)
+        {
+            time = ">2 weeks ago";
+        }
+        list.Add(new TooltipProperty("Time since last benefits provided", time, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+
+        list.Add(new TooltipProperty("Engineers", engineerRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
+
+        //could use textObject variables to only add "Reduced gun troop upkeep." when bonus > 0
+        list.Add(new TooltipProperty("Access to gunpowder arsenal. Reduced gun troop upkeep.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        var gunTroopUpkeepReduction = 0; //can this find the amount elsewhere?
+        if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
+        {
+            list.Add(new TooltipProperty("Entire arsenal", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            gunTroopUpkeepReduction = 25;
+        } else if(Hero.MainHero.HasAttribute("DwarfEngineersII"))
+        {
+            list.Add(new TooltipProperty("Guns and artillery", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            gunTroopUpkeepReduction = 15;
+        } else if(Hero.MainHero.HasAttribute("DwarfEngineersI"))
+        {
+            list.Add(new TooltipProperty("Guns", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+        if (gunTroopUpkeepReduction > 0)
+        {
+            list.Add(new TooltipProperty("Upkeep reduction for gun troops", "-" + gunTroopUpkeepReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+        
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+
+        list.Add(new TooltipProperty("Runesmiths", runeSmithRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
+        
+        list.Add(new TooltipProperty("Access to stronger equipment. Reduce Ironbreaker upgrade costs.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        var ironbreakerUpgradeReduction = 0;
+        if (Hero.MainHero.HasAttribute("RuneSmithIII"))
+        {
+            list.Add(new TooltipProperty("Artefacts", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+            ironbreakerUpgradeReduction = 20;
+        }else if(Hero.MainHero.HasAttribute("RuneSmithII"))
+        {
+            list.Add(new TooltipProperty("Weapons and armors", " ", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+            ironbreakerUpgradeReduction = 10;
+        }else if(Hero.MainHero.HasAttribute("RuneSmithI"))
+        {
+            list.Add(new TooltipProperty("Weapons", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+        if (ironbreakerUpgradeReduction > 0)
+        {
+            list.Add(new TooltipProperty("Upkeep reduction for ironbreakers", "-" + ironbreakerUpgradeReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        } 
+        
+
+        //list.Add(new TooltipProperty("Biweekly Enchantment Ingredients", ">2 weeks ago", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+                
+        list.Add(new TooltipProperty("Mining and Expeditions Guild", gemcutterRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None)); 
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
+        list.Add(new TooltipProperty("Provide mining resources. Launch expeditions.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        var oreVillageBoost = 0;
+        if (Hero.MainHero.HasAttribute("DwarfMinersIII"))
+        {
+            oreVillageBoost = 25;
+        }
+        else if (Hero.MainHero.HasAttribute("DwarfMinersII"))
+        {
+            oreVillageBoost = 10;
+        }
+        else if (Hero.MainHero.HasAttribute("DwarfMinersI"))
+        {
+        }
+        if (expeditionMaximum > 0)
+        { 
+            list.Add(new TooltipProperty("Expeditions ", expeditionCount + "/" + expeditionMaximum, 0, false, TooltipProperty.TooltipPropertyFlags.None)); 
+        }
+        if (oreVillageBoost > 0)
+        {
+            list.Add(new TooltipProperty("Global productivity of mines", "+" + oreVillageBoost.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+      
+
+
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        
+        list.Add(new TooltipProperty("Brewers", brewersRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
+        list.Add(new TooltipProperty("Receive care packages (new name plz). Increase food production. Improve spotting near Karaks (ancestral Karaks? also confusing).", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        var dawiLoyaltyBoost = 0;
+        var dawiFoodBoost = 0;
+        var dawiSightBonus = 0;
+        string carePackageSize = "";
+        if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
+        {
+            carePackageSize = "Medium";
+            dawiSightBonus = 30;
+            dawiFoodBoost = 50;
+            dawiLoyaltyBoost = 2;
+        } else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
+        {
+            carePackageSize = "Medium";
+            dawiSightBonus = 20;
+            dawiFoodBoost = 25;
+            dawiLoyaltyBoost = 1;
+        }
+        else if (Hero.MainHero.HasAttribute("DwarfBrewersI"))
+        {
+            carePackageSize = "Small";
+            dawiSightBonus = 10;
+            dawiFoodBoost = 10;
+        }
+        if (carePackageSize.Length > 0)//"" is empty string so it has length 0, right, right?
+        {
+            list.Add(new TooltipProperty("Biweekly care package", carePackageSize, 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+        if (dawiFoodBoost > 0)
+        {
+            list.Add(new TooltipProperty("Extra food production in Karaks (same confusion)", "+" + dawiFoodBoost + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+        if (dawiLoyaltyBoost > 0) {
+            list.Add(new TooltipProperty("Global Town Loyality (is this also karaks?)", "+" + dawiLoyaltyBoost, 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+        if (dawiSightBonus > 0)
+        {
+            list.Add(new TooltipProperty("Extra sight close to Dwarf settlements", "+" + dawiSightBonus + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+        
+
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        
+        list.Add(new TooltipProperty("Warriors", warriorsRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
+        list.Add(new TooltipProperty("Reduce upgrade costs for warriors. Increase Oathgold gain. Increase settlement militias.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
+        var warriorUpgradeReduction = 0;
+        var oathGoldBonus = 0f;
+        var militiaBonus = 0;
+        if (Hero.MainHero.HasAttribute("DwarfWarriorIII"))
+        {
+            warriorUpgradeReduction = 30;
+            oathGoldBonus = 3f;
+            militiaBonus = 4;
+        } else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
+        {
+            warriorUpgradeReduction = 20;
+            oathGoldBonus = 2f;
+            militiaBonus = 2;
+        }
+        else if (Hero.MainHero.HasAttribute("DwarfWarriorI"))
+        {
+            warriorUpgradeReduction = 10;
+            oathGoldBonus = 1.5f;
+        }
+        if (warriorUpgradeReduction >0)
+        {
+            list.Add(new TooltipProperty("Upgrade cost reduction for Slayers, Warriors and Longbeards", "+" + warriorUpgradeReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+        if (oathGoldBonus > 0)
+        { 
+            list.Add(new TooltipProperty("Battle and tournament Oathgold gain", "+" + oathGoldBonus.ToString(), 0, true, TooltipProperty.TooltipPropertyFlags.None)); }
+        if (militiaBonus > 0)
+        {
+            list.Add(new TooltipProperty("Additional Militia", "+" + militiaBonus.ToString(), 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
+
+        
+        list.Add(new TooltipProperty("", " ", 0, false, TooltipProperty.TooltipPropertyFlags.Cost)); //empty line
+        list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
+        return list;
+    }
+
+    public static OathRespectLevel GetOathGoldForGuildRespect(int respect)
+    {
+        return respect switch
+        {
+            >= 2000 => OathRespectLevel.Respected,
+            >= 1000 => OathRespectLevel.Reliable,
+            >= 500 => OathRespectLevel.Trustworthy,
+            < 500 => OathRespectLevel.Unknown
+        };
+    }
+}
+
+public enum OathRespectLevel
+{
+    Respected = 3,
+    Reliable =2,
+    Trustworthy = 1,
+    Unknown = 0
+}

@@ -1,5 +1,12 @@
-﻿using System.IO;
+﻿using SandBox.Objects.Usables;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Serialization;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CharacterCreation
@@ -32,7 +39,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     else return string.Empty;
                 }
             }
-
+            
             return null;
         }
 
@@ -40,7 +47,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             if (SkinDocument == null) LoadSkinsXML();
 
-            if (SkinDocument != null)
+            if(SkinDocument != null)
             {
                 var raceList = SkinDocument.GetElementsByTagName("race");
                 var selectedRace = raceList[race];
@@ -65,7 +72,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             if (SkinDocument == null) LoadSkinsXML();
 
-            if (SkinDocument != null)
+            if(SkinDocument != null)
             {
                 var raceList = SkinDocument.GetElementsByTagName("race");
                 var selectedRace = raceList[race];
@@ -93,7 +100,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var settings = new XmlReaderSettings();
                 settings.IgnoreComments = true;
                 var reader = XmlReader.Create(SkinFilePath, settings);
-
+                
                 SkinDocument = new XmlDocument();
                 SkinDocument.Load(reader);
             }

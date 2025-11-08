@@ -1,0 +1,40 @@
+<Prefab>
+    <Window>
+        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsVisible="@IsVisible">
+            <Children>
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="1200" SuggestedHeight="800" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="InkStories\Background\book">
+                    <Children>
+                        <!-- left side - STORY AREA-->
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="510" HorizontalAlignment="Left" MarginTop="50" MarginBottom="30" MarginLeft="100">
+                            <Children>
+                                <!-- TEXT AREA-->
+                                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="500" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <Children>
+                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Text="@Title" VerticalAlignment="Top" HorizontalAlignment="Center" MarginTop="10" Brush="TorInkStoryBrush" Brush.FontSize="30"/>
+                                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Text="@CurrentText" VerticalAlignment="Top" MarginTop="60" HorizontalAlignment="Left" Brush="TorInkStoryBrush" MarginLeft="5"/>
+                                    </Children>
+                                </Widget>
+                                <!-- CHOICES AREA-->
+                                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" VerticalAlignment="Bottom" MarginBottom="20">
+                                    <Children>
+                                        <ListPanel DataSource="{CurrentChoices}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginRight="15">
+                                            <ItemTemplate>
+                                                <ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Command.Click="ExecuteSelect" Brush="TorInkStoryButtonBrush">
+                                                    <Children>
+                                                        <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Brush="TorInkStoryBrush" Text="@ChoiceText" HorizontalAlignment="Left" MarginTop="5" MarginBottom="5" MarginLeft="5"/>
+                                                    </Children>
+                                                </ButtonWidget>
+                                            </ItemTemplate>
+                                        </ListPanel>
+                                    </Children>
+                                </Widget>
+                            </Children>
+                        </Widget>
+                        <!-- right side - ILLUSTRATION AREA-->
+                        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="510" HorizontalAlignment="Right" MarginTop="40" MarginBottom="40" MarginRight="60" Sprite="@SpritePath" />
+                    </Children>
+                </Widget>
+            </Children>
+        </Widget>
+    </Window>
+</Prefab>

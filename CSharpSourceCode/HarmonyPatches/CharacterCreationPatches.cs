@@ -55,8 +55,7 @@ namespace TOR_Core.HarmonyPatches
 
             CharacterObject.PlayerCharacter.HeroObject.Culture = selectedCulture.Culture;
 
-            BodyProperties properties;
-            if (BodyProperties.FromString(keyValue, out properties))
+            if (BodyProperties.FromString(keyValue, out BodyProperties properties))
             {
                 CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(properties, CharacterObject.PlayerCharacter.Race, CharacterObject.PlayerCharacter.IsFemale);
             }

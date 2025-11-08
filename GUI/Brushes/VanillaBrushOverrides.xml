@@ -1,0 +1,87 @@
+<Brushes>
+    <Brush Name="EquipmentType.Image">
+        <Layers>
+            <BrushLayer Name="Default" IsHidden="true" />
+        </Layers>
+        <Styles>
+            <Style Name="Default">
+                <BrushLayer Name="Default" IsHidden="true" />
+            </Style>
+            <Style Name="Invalid">
+                <BrushLayer Name="Default" IsHidden="true" />
+            </Style>
+            <Style Name="Horse">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_mount" IsHidden="false" />
+            </Style>
+            <Style Name="OneHandedWeapon">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_one_handed" IsHidden="false" />
+            </Style>
+            <Style Name="TwoHandedWeapon">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_two_handed" IsHidden="false" />
+            </Style>
+            <Style Name="Polearm">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_polearm" IsHidden="false" />
+            </Style>
+            <Style Name="Arrows">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_quiver" IsHidden="false" />
+            </Style>
+            <Style Name="Bolts">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_quiver" IsHidden="false" />
+            </Style>
+            <Style Name="Shield">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_shield" IsHidden="false" />
+            </Style>
+            <Style Name="Bow">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_bow" IsHidden="false" />
+            </Style>
+            <Style Name="Crossbow">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_crossbow" IsHidden="false" />
+            </Style>
+            <Style Name="Thrown">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_throwing" IsHidden="false" />
+            </Style>
+            <Style Name="Goods">
+                <BrushLayer Name="Default" IsHidden="true" />
+            </Style>
+            <Style Name="HeadArmor">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_head_armor" IsHidden="false" />
+            </Style>
+            <Style Name="BodyArmor">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_body_armor" IsHidden="false" />
+            </Style>
+            <Style Name="LegArmor">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_leg_armor" IsHidden="false" />
+            </Style>
+            <Style Name="HandArmor">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_hand_armor" IsHidden="false" />
+            </Style>
+            <Style Name="Pistol">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_musket" IsHidden="false" />
+            </Style>
+            <Style Name="Musket">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_musket" IsHidden="false" />
+            </Style>
+            <Style Name="Bullets">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_bag" IsHidden="false" />
+            </Style>
+            <Style Name="Animal">
+                <BrushLayer Name="Default" IsHidden="true" />
+            </Style>
+            <Style Name="Book">
+                <BrushLayer Name="Default" IsHidden="true" />
+            </Style>
+            <Style Name="ChestArmor">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_body_armor" IsHidden="false" />
+            </Style>
+            <Style Name="Cape">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_cape" IsHidden="false" />
+            </Style>
+            <Style Name="HorseHarness">
+                <BrushLayer Name="Default" IsHidden="true" />
+            </Style>
+            <Style Name="Banner">
+                <BrushLayer Name="Default" Sprite="General\EquipmentIcons\equipment_type_banner" IsHidden="false" />
+            </Style>
+        </Styles>
+    </Brush>
+</Brushes>
