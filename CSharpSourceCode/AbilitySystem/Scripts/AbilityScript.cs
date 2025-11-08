@@ -86,7 +86,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected virtual void OnAfterTick(float dt) { }
 
         
-        protected unsafe sealed override void OnTick(float dt)
+        protected sealed override void OnTick(float dt)
         {
             if (Mission.Current.CurrentState != Mission.State.Continuing || 
                 Mission.Current.MissionEnded || 
