@@ -580,44 +580,44 @@ namespace TOR_Core.AbilitySystem
             switch (Template.AbilityEffectType)
             {
                 case AbilityEffectType.Projectile:
-                    AddExactBehaviour<ProjectileScript>(entity, casterAgent);
+                    AddExactBehaviour<ProjectileScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.SeekerMissile:
                 case AbilityEffectType.Missile:
-                    AddExactBehaviour<MissileScript>(entity, casterAgent);
+                    AddExactBehaviour<MissileScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Wind:
-                    AddExactBehaviour<WindScript>(entity, casterAgent);
+                    AddExactBehaviour<WindScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Heal:
-                    AddExactBehaviour<HealScript>(entity, casterAgent);
+                    AddExactBehaviour<HealScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Augment:
-                    AddExactBehaviour<AugmentScript>(entity, casterAgent);
+                    AddExactBehaviour<AugmentScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Summoning:
-                    AddExactBehaviour<SummoningScript>(entity, casterAgent);
+                    AddExactBehaviour<SummoningScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.CareerAbilityEffect:
-                    AddExactBehaviour<CareerAbilityScript>(entity, casterAgent);
+                    AddExactBehaviour<CareerAbilityScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Hex:
-                    AddExactBehaviour<HexScript>(entity, casterAgent);
+                    AddExactBehaviour<HexScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Vortex:
-                    AddExactBehaviour<VortexScript>(entity, casterAgent);
+                    AddExactBehaviour<VortexScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Blast:
-                    AddExactBehaviour<BlastScript>(entity, casterAgent);
+                    AddExactBehaviour<BlastScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Bombardment:
-                    AddExactBehaviour<BombardmentScript>(entity, casterAgent);
+                    AddExactBehaviour<BombardmentScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.ArtilleryPlacement:
-                    AddExactBehaviour<ArtilleryPlacementScript>(entity, casterAgent);
+                    AddExactBehaviour<ArtilleryPlacementScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.TimeWarpEffect:
-                    AddExactBehaviour<TimeWarpScript>(entity, casterAgent);
+                    AddExactBehaviour<TimeWarpScript>(ref entity, casterAgent);
                     break;
             }
 
@@ -658,14 +658,14 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        protected virtual void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
+        protected virtual void AddExactBehaviour<TAbilityScript>(ref GameEntity parentEntity, Agent casterAgent)
             where TAbilityScript : AbilityScript
         {
             parentEntity.CreateAndAddScriptComponent(typeof(TAbilityScript).Name, false);
             AbilityScript = parentEntity.GetFirstScriptOfType<TAbilityScript>();
             var prefabEntity = SpawnEntity();
             parentEntity.AddChild(prefabEntity);
-            AbilityScript?.Initialize(this);
+            AbilityScript?.Initialize(this, ref parentEntity);
             AbilityScript?.SetCasterAgent(casterAgent);
             parentEntity.CallScriptCallbacks(true);
         }

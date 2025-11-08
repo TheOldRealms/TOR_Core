@@ -1,4 +1,5 @@
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Engine;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.CharacterDevelopment;
@@ -13,9 +14,9 @@ public class WisdomOfThungniScript : CareerAbilityScript
 {
     private const int BASEVALUE = 5;
 
-    public override void Initialize(Ability ability)
+    public override void Initialize(Ability ability, ref GameEntity entity)
     {
-        base.Initialize(ability);
+        base.Initialize(ability, ref entity);
 
         if (Agent.Main == null) return;
         var agent = Agent.Main;

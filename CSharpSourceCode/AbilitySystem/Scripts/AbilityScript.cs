@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -28,6 +29,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         private float _additionalDuration = 0;
         private Vec3 _previousFrameOrigin = Vec3.Zero;
         private bool _lifeTimeExpired;
+        private GameEntity _entity;
 
         public Agent CasterAgent => _casterAgent;
         public MBReadOnlyList<Agent> ExplicitTargetAgents
@@ -72,9 +74,10 @@ namespace TOR_Core.AbilitySystem.Scripts
             return TickRequirement.Tick;
         }
 
-        public virtual void Initialize(Ability ability)
+        public virtual void Initialize(Ability ability, ref GameEntity entity)
         {
             _ability = ability;
+            _entity = entity;
             if (_ability.Template.SoundEffectToPlay != "none" && _ability.Template.SoundEffectToPlay != null)
             {
                 _soundIndex = SoundEvent.GetEventIdFromString(_ability.Template.SoundEffectToPlay);
@@ -282,13 +285,6 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected sealed override void OnRemoved(int removeReason)
         {
             OnBeforeRemoved(removeReason);
-            if (GameEntity.GetPhysicsState())
-            {
-                using(new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
-                {
-                    GameEntity.RemovePhysics();
-                }
-            }
             _sound?.Release();
             _sound = null;
             _ability = null;
@@ -306,7 +302,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 TriggerEffects(frame.origin, frame.origin.NormalizedCopy());
             }
             IsFading = true;
-            GameEntity.Remove(0);
+            _entity?.FadeOut(0.05f, true);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
@@ -8,9 +9,9 @@ namespace TOR_Core.AbilitySystem.Scripts;
 public class TimeWarpScript : AbilityScript
 {
     private int _timeRequestID = 1444; 
-    public override void Initialize(Ability ability)
+    public override void Initialize(Ability ability, ref GameEntity entity)
     {
-        base.Initialize (ability);
+        base.Initialize (ability, ref entity);
         var timeRequest = new Mission.TimeSpeedRequest (0.60f,_timeRequestID);
         _timeRequestID = timeRequest.RequestID;
         Mission.Current.AddTimeSpeedRequest (timeRequest);

@@ -73,7 +73,7 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        protected override void AddExactBehaviour<TAbilityScript>(GameEntity parentEntity, Agent casterAgent)
+        protected override void AddExactBehaviour<TAbilityScript>(ref GameEntity parentEntity, Agent casterAgent)
         {
             if (_career.AbilityScriptType != null)
             {
@@ -81,13 +81,13 @@ namespace TOR_Core.AbilitySystem
                 AbilityScript = parentEntity.GetFirstScriptOfType<CareerAbilityScript>();
                 var prefabEntity = SpawnEntity();
                 parentEntity.AddChild(prefabEntity);
-                AbilityScript?.Initialize(this);
+                AbilityScript?.Initialize(this, ref parentEntity);
                 AbilityScript?.SetCasterAgent(casterAgent);
                 parentEntity.CallScriptCallbacks(true);
             }
             else
             {
-                base.AddExactBehaviour<TAbilityScript>(parentEntity, casterAgent);
+                base.AddExactBehaviour<TAbilityScript>(ref parentEntity, casterAgent);
             }
         }
 

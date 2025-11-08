@@ -18,9 +18,9 @@ namespace TOR_Core.AbilitySystem.Scripts
         private float _previousCameraAddedDistance = 0;
         private PlayerFlyableObjectScript _playerFlyableObjectScript;
 
-        public override void Initialize(Ability ability)
+        public override void Initialize(Ability ability, ref GameEntity entity)
         {
-            base.Initialize(ability);
+            base.Initialize(ability, ref entity);
             SaveKeyBindings();
             _speed = 10;
             if (Agent.Main.GetHero().GetAllCareerChoices().Contains("FeralKeystone"))

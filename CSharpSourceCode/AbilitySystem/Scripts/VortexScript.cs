@@ -13,9 +13,9 @@ namespace TOR_Core.AbilitySystem.Scripts
         private float _currentDeviation;
         private WeakGameEntity _vortexPrefab;
 
-        public override void Initialize(Ability ability)
+        public override void Initialize(Ability ability, ref GameEntity entity)
         {
-            base.Initialize(ability);
+            base.Initialize(ability, ref entity);
             _maxDeviation = Ability.Template.MaxRandomDeviation;
             var children = GameEntity.GetChildren().ToList();
             _vortexPrefab = children[0];
