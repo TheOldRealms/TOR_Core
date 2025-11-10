@@ -4,6 +4,8 @@ using SandBox.View.Map;
 using System.IO;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Map.DistanceCache;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Library;
 using TOR_Core.Utilities;
 
@@ -27,10 +29,23 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(SettlementPositionScript), "SettlementsXmlPath", MethodType.Getter)]
-        public static bool ChangePathToTOR(ref string __result)
+        public static bool ChangeSettlementPathToTOR(ref string __result)
         {
             __result = TORPaths.TORCoreModuleDataPath + "tor_settlements.xml";
             return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(SettlementPositionScript), "GetSettlementsDistanceCacheFileForCapability")]
+        public static bool ChangeCachePathToTOR(ref bool __result, string moduleId, MobileParty.NavigationType navigationType, ref string filePath)
+        {
+            if (moduleId == "TOR_Core")
+            {
+                filePath = TORPaths.TORCoreModuleDataPath + "settlements_distance_cache_Default.bin";
+                __result = true;
+                return false;
+            }
+            return true;
         }
     }
 }
