@@ -288,6 +288,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             _sound?.Release();
             _sound = null;
             _ability = null;
+            _entity = null;
             _casterAgent = null;
         }
 

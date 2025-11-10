@@ -55,14 +55,6 @@
 				<GameType value="EditorGame" />
 			</IncludedGameTypes>
 		</XmlNode>
-		<!--<XmlNode>
-			<XmlName id="NPCCharacters" path="tor_pre_npccharacters" />
-			<IncludedGameTypes>
-				<GameType value="Campaign" />
-				<GameType value="CampaignStoryMode" />
-				<GameType value="CustomGame" />
-			</IncludedGameTypes>
-		</XmlNode>
 		<XmlNode>
 			<XmlName id="NPCCharacters" path="tor_townspeople" />
 			<IncludedGameTypes>
@@ -70,35 +62,11 @@
 				<GameType value="CampaignStoryMode" />
 			</IncludedGameTypes>
 		</XmlNode>
-		
-		
 		<XmlNode>
-			<XmlName id="NPCCharacters" path="tor_dummyNPCs" />
+			<XmlName id="NPCCharacters" path="tor_npccharacters" />
 			<IncludedGameTypes>
 				<GameType value="Campaign" />
 				<GameType value="CampaignStoryMode" />
-			</IncludedGameTypes>
-		</XmlNode>
-		<XmlNode>
-			<XmlName id="NPCCharacters" path="tor_campaign_lords" />
-			<IncludedGameTypes>
-				<GameType value="Campaign" />
-				<GameType value="CampaignStoryMode" />
-			</IncludedGameTypes>
-		</XmlNode>
-		<XmlNode>
-			<XmlName id="NPCCharacters" path="tor_charactertemplates" />
-			<IncludedGameTypes>
-				<GameType value="Campaign" />
-				<GameType value="CampaignStoryMode" />
-			</IncludedGameTypes>
-		</XmlNode>
-		<XmlNode>
-			<XmlName id="SPCultures" path="tor_pre_cultures" />
-			<IncludedGameTypes>
-				<GameType value="Campaign" />
-				<GameType value="CampaignStoryMode" />
-				<GameType value="CustomGame" />
 			</IncludedGameTypes>
 		</XmlNode>
 		<XmlNode>
@@ -110,13 +78,6 @@
 			</IncludedGameTypes>
 		</XmlNode>
 		<XmlNode>
-			<XmlName id="Heroes" path="tor_pre_heroes"/>
-			<IncludedGameTypes>
-				<GameType value = "Campaign"/>
-				<GameType value = "CampaignStoryMode"/>
-			</IncludedGameTypes>
-		</XmlNode>
-		<XmlNode>
 			<XmlName id="Heroes" path="tor_heroes"/>
 			<IncludedGameTypes>
 				<GameType value = "Campaign"/>
@@ -124,21 +85,7 @@
 			</IncludedGameTypes>
 		</XmlNode>
 		<XmlNode>
-			<XmlName id="Kingdoms" path="tor_pre_kingdoms"/>
-			<IncludedGameTypes>
-				<GameType value = "Campaign"/>
-				<GameType value = "CampaignStoryMode"/>
-			</IncludedGameTypes>
-		</XmlNode>
-		<XmlNode>
 			<XmlName id="Kingdoms" path="tor_kingdoms"/>
-			<IncludedGameTypes>
-				<GameType value = "Campaign"/>
-				<GameType value = "CampaignStoryMode"/>
-			</IncludedGameTypes>
-		</XmlNode>
-		<XmlNode>
-			<XmlName id="Factions" path="tor_pre_clans"/>
 			<IncludedGameTypes>
 				<GameType value = "Campaign"/>
 				<GameType value = "CampaignStoryMode"/>
@@ -159,24 +106,8 @@
 				<GameType value="CustomGame" />
 			</IncludedGameTypes>
 		</XmlNode>
-		
-		
-		<XmlNode>
-			<XmlName id="partyTemplates" path="tor_pre_partytemplates" />
-			<IncludedGameTypes>
-				<GameType value="Campaign" />
-				<GameType value="CampaignStoryMode" />
-			</IncludedGameTypes>
-		</XmlNode>
 		<XmlNode>
 			<XmlName id="partyTemplates" path="tor_partytemplates" />
-			<IncludedGameTypes>
-				<GameType value="Campaign" />
-				<GameType value="CampaignStoryMode" />
-			</IncludedGameTypes>
-		</XmlNode>
-		<XmlNode>
-			<XmlName id="Settlements" path="tor_pre_settlements" />
 			<IncludedGameTypes>
 				<GameType value="Campaign" />
 				<GameType value="CampaignStoryMode" />
@@ -212,6 +143,6 @@
 				<GameType value = "Campaign"/>
 				<GameType value = "CampaignStoryMode"/>
 			</IncludedGameTypes>
-		</XmlNode>-->
+		</XmlNode>
 	</Xmls>
 </Module>

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Settlements>
   <!--Custom Settlements-->
-  <!--
   <Settlement id="oak_of_ages" name="{=str_tor_settlements_oak_of_ages}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages" gate_posX="1218.711" gate_posY="798.5">
     <Components>
       <OakOfAges id="oak_of_ages" background_crop_position="0.0" background_mesh="oak_of_ages" wait_mesh="wait_empire_village" gate_rotation="0.0" />
@@ -307,7 +306,6 @@
       <CursedSite id="haunted_site_04" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  -->
   <!-- Averland 2 Towns 11 villages 2 castles -->
   <Settlement id="town_AV1" name="{=Settlements.Settlement.name.town_AV1}Averheim" owner="Faction.averland_clan_1" posX="1438.185" posY="923.072" culture="Culture.empire" gate_posX="1434.525" gate_posY="919.9986" text="{=Settlements.Settlement.text.town_AV1}Averheim, the capital of the Grand Province of Averland, is one of the oldest cities in the Empire. The site upon which the modern city now lies has been occupied since before the time of Sigmar when the Averlanders were still called Brigrundians. The dockyards here are particularly bustling due to the Aver serving as the primary trade route for the Halfling goods from the Moot into the wider empire. The bluff that the city sits upon protects the inhabitants from occasional flooding and has always served as an ideal crossing point across the Aver River; making the Griffin bridge one of the only places for many miles which provides access across the river for merchants and travellers heading north into Stirland or south into Averland. The skyline of the city is dominated by the Averburg Palace, a formidable fortress originally built around the founding of the Empire; views of the surrounding lands from the palace go for several miles all around the city. The city is famous for its cattle stockyards, the final destination of thousands of Averland cattle, the Plenzerplatz and of course its lord; Marious Lietdorf, the mad count of Averland.">
     <Components>

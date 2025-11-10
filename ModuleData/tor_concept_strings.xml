@@ -1,0 +1,28 @@
+<Concepts>
+<!-- #The Old Realms -->
+  <Concept title="{=str_tor_manual_title_not_here}Old Realms Manual" id="str_tor_manual" group="The Old Realms" link_id="TOR_MANUAL" text=
+	"{=str_tor_manual_description_not_here}The Old Realms Manual has been moved! {newline}
+	{newline}
+	{newline}
+	All information regarding TOR can either be found in a live maintained Google document or the attached PDF in the Core Modules folder. {newline}
+	{newline}
+	The PDF Manual can be found under: {newline}
+	{newline}
+	Non Steam Workshop version:  {newline}
+	...\Mount &amp; Blade II Bannerlord\Modules\TOR_Core {newline}
+	{newline}
+	Steam Workshop version:{newline}
+	Navigate to the 'The Old Realms Core Module' page, there will be a link to the manual document. {newline}
+	{newline}
+	{newline}
+	Note the most updated version of the manual is available online, and may contain more information than the attached PDF document! A link to the online doc is provided in the PDF.{newline}
+	{newline}
+	{newline}
+	You can also join our Discord channel for more information, the link can be found in the PDF.	{newline}
+	{newline}
+	{newline}
+	{newline}
+	
+	"/>
+  
+</Concepts>

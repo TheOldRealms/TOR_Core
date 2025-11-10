@@ -10,10 +10,12 @@ using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TaleWorlds.MountAndBlade.GauntletUI.Mission;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
@@ -48,8 +50,10 @@ using TOR_Core.CampaignMechanics.SpellTrainers;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Extensions.UI;
 using TOR_Core.GameManagers;
 using TOR_Core.Ink;
 using TOR_Core.Items;
@@ -62,6 +66,8 @@ namespace TOR_Core
 {
     public class SubModule : MBSubModuleBase
     {
+        private static float _tick = 0f;
+        private static int _num = -1;
         public static Harmony HarmonyInstance { get; private set; }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
@@ -75,6 +81,7 @@ namespace TOR_Core
             currentDomain.AssemblyResolve += new ResolveEventHandler(ResolveDllPath);
 
             ConfigureLogging();
+            ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
             HarmonyInstance.PatchAll();
             UIConfig.DoNotUseGeneratedPrefabs = true;
@@ -124,6 +131,52 @@ namespace TOR_Core
             {
                 var starter = starterObject as CampaignGameStarter;
                 TORGameStarterHelper.CleanCampaignStarter(starter);
+                starter.AddBehavior(new ExtendedInfoManager());
+                starter.AddBehavior(new ChaosCampaignBehavior());
+                starter.AddBehavior(new InventoryUseScriptsCampaignBehavior());
+                starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
+                starter.AddBehavior(new RaidingPartyCampaignBehavior());
+                starter.AddBehavior(new CustomDialogCampaignBehavior());
+                starter.AddBehavior(new PostBattleCampaignBehavior());
+                starter.AddBehavior(new RaiseDeadInTownBehavior());
+                starter.AddBehavior(new RORCampaignBehavior());
+                starter.AddBehavior(new TORCaptivityCampaignBehavior());
+                starter.AddBehavior(new AssimilationCampaignBehavior());
+                starter.AddBehavior(new SpellTrainerInTownBehavior());
+                starter.AddBehavior(new EnchanterTownBehavior());
+                starter.AddBehavior(new MasterEngineerTownBehaviour());
+                starter.AddBehavior(new PrestigeNobleTownBehavior());
+                starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
+                starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
+                starter.AddBehavior(new TORAICompanionCampaignBehavior());
+                starter.AddBehavior(new CareerSwitchCampaignBehavior());
+                starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
+                //starter.AddBehavior(new InkStoryCampaignBehavior());
+                starter.AddBehavior(new ReligionCampaignBehavior());
+                starter.AddBehavior(new BountyMasterCampaignBehavior());
+                starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());
+                starter.AddBehavior(new TORCareerPerkCampaignBehavior());
+                starter.AddBehavior(new RaceFixCampaignBehavior());
+                starter.AddBehavior(new TORAIRecruitmentCampaignBehavior());
+                starter.AddBehavior(new TORSpecialSettlementBehavior());
+                starter.AddBehavior(new CustomEventsCampaignBehavior());
+                starter.AddBehavior(new SimpleCareerQuestBehavior());
+                starter.AddBehavior(new PlaguedVillageQuestCampaignBehavior());
+                starter.AddBehavior(new CareerDialogOptionsCampaignBehavior());
+                starter.AddBehavior(new TORFactionDiscontinuationCampaignBehavior());
+                starter.AddBehavior(new ServeAsAHirelingCampaignBehavior());
+                starter.AddBehavior(new TORStartupBehavior());
+                starter.AddBehavior(new TORArtisanDistrictCampaignBehavior());
+                starter.AddBehavior(new PriestBehavior());
+                starter.AddBehavior(new SkillTrainerBehavior());
+                starter.AddBehavior(new EnchantmentIngredientLootCampaignBehavior());
+                starter.AddBehavior(new LootCampaignBehavior());
+                starter.AddBehavior(new OathGoldBehavior());
+                starter.AddBehavior(new TeefBehavior());
+                starter.AddBehavior(new WaaaghBehavior());
+                starter.AddBehavior(new GreenskinBrawlBehavior());
+                starter.AddBehavior(new GoblinRecruitmentBehavior());
+                starter.AddBehavior(new DuelBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }
@@ -243,6 +296,49 @@ namespace TOR_Core
             if (Debugger.IsAttached)
             {
                 mission.AddMissionBehavior(new TORAnimationLogger());
+            }
+        }
+
+        public override void BeginGameStart(Game game)
+        {
+            if (game.GameType is Campaign)
+            {
+                game.ObjectManager.RegisterType<ShrineComponent>("Shrine", "Components", 99U, true);
+                game.ObjectManager.RegisterType<ChaosPortalComponent>("ChaosPortal", "Components", 100U, true);
+                game.ObjectManager.RegisterType<HerdStoneComponent>("HerdStone", "Components", 101U, true);
+                game.ObjectManager.RegisterType<CursedSiteComponent>("CursedSite", "Components", 102U, true);
+                game.ObjectManager.RegisterType<CareerObject>("Career", "Careers", 103U, true);
+                game.ObjectManager.RegisterType<CareerChoiceObject>("CareerChoice", "CareerChoices", 104U, true);
+                game.ObjectManager.RegisterType<CareerChoiceGroupObject>("CareerChoiceGroup", "CareerChoiceGroups", 105U, true);
+                game.ObjectManager.RegisterType<ReligionObject>("Religion", "Religions", 106U, true);
+                game.ObjectManager.RegisterType<SlaverCampComponent>("SlaverCamp", "Components", 107U, true);
+                game.ObjectManager.RegisterType<OakOfAgesComponent>("OakOfAges", "Components", 108U, true);
+                game.ObjectManager.RegisterType<WorldRootsComponent>("WorldRoots", "Components", 109U, true);
+                _ = new TORCareers();
+                _ = new TORCareerChoiceGroups();
+                _ = new TORCareerChoices();
+                _ = new TORCampaignEvents();
+
+                MBObjectManager.Instance.LoadXML("Religions", false);
+                ReligionObject.FillAll();
+            }
+        }
+
+        protected override void OnApplicationTick(float dt)
+        {
+            _tick += dt;
+            if (_tick > 1)
+            {
+                _tick = 0;
+                if (!LoadingWindow.IsLoadingWindowActive)
+                {
+                    var lastnum = _num;
+                    _num = TaleWorlds.Engine.Utilities.GetNumberOfShaderCompilationsInProgress();
+                    if (_num > 0 && _num != lastnum)
+                    {
+                        TORCommon.Say("Shader compilation in progress. Remaining shaders to compile: " + _num);
+                    }
+                }
             }
         }
     }

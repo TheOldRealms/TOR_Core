@@ -19,7 +19,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
     public class RaiseDeadInTownBehavior : CampaignBehaviorBase
     {
         private CharacterObject _skeleton;
-        private CampaignTime _startWaitTime = CampaignTime.Now;
+        private CampaignTime _startWaitTime = CampaignTime.Zero;
         private MobileParty _currentWatchParty;
         private bool _isMissionStarted;
         private Settlement _currentSettlement;
