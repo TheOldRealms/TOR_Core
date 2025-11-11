@@ -1,0 +1,80 @@
+<Prefab>
+	<Constants>
+		<Constant Name="MainHeroVisual.Padding" Value="5" />
+
+		<Constant Name="Party.Banner.Width" BrushLayer="Default" BrushName="Nameplate.FlatBanner.Party" BrushValueType="Width" />
+		<Constant Name="Party.Banner.Height" BrushLayer="Default" BrushName="Nameplate.FlatBanner.Party" BrushValueType="Height" />
+
+		<Constant Name="Party.Banner.Width.Scaled" MultiplyResult="0.20" Value="!Party.Banner.Width" />
+		<Constant Name="Party.Banner.Height.Scaled" MultiplyResult="0.20" Value="!Party.Banner.Height" />
+
+	</Constants>
+	<Window>
+		<PartyNameplateWidget DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush="TutorialHighlightBrush" DisorganizedWidget="NameplateLayoutListPanel\NameplateLayoutWidget\StatusList\DisorganizedWidget" HeadPosition="@HeadPosition" IsArmy="@IsArmy" IsBehind="@IsBehind" IsHigh="@IsHigh" IsInArmy="@IsInArmy" IsInSettlement="@IsInSettlement" IsMainParty="@IsMainParty" IsTargetedByTutorial="@IsTargetedByTutorial" IsVisibleOnMap="@IsVisibleOnMap" MainPartyArrowWidget="MainPartyArrowWidget" NameplateExtraInfoTextWidget="NameplateLayoutListPanel\NameplateLayoutWidget\LabelsList\NameplateExtraInfoTextWidget" NameplateFullNameTextWidget="NameSpeedContainer\\NameplateFullNameTextWidget" SpeedTextWidget="NameSpeedContainer\SpeedTextWidget" SpeedIconWidget="NameSpeedContainer\SpeedTextWidget\SpeedIconWidget" NameplateLayoutListPanel="NameplateLayoutListPanel" NameplateTextWidget="NameplateLayoutListPanel\NameplateLayoutWidget\LabelsList\NameplateTextWidget" PartyBannerWidget="NameplateLayoutListPanel\NameplateLayoutWidget\PartyBannerWidget" Position="@Position" ShouldShowFullName="@ShouldShowFullName" TrackerFrame="TrackerFrame" IsPrisoner="false" HeadGroupWidget="NameSpeedContainer">
+			<Children>
+
+				<ListPanel Id="NameplateLayoutListPanel" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="HorizontalCentered">
+					<Children>
+
+						<Widget Id="NameplateLayoutWidget" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="50">
+							<Children>
+
+								<ListPanel Id="StatusList" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="10" HorizontalAlignment="Left" StackLayout.LayoutMethod="HorizontalRightToLeft" PositionXOffset="-2">
+									<Children>
+
+										<ListPanel DataSource="{Quests}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" IsEnabled="False" StackLayout.LayoutMethod="HorizontalLeftToRight">
+											<ItemTemplate>
+												<QuestMarkerBrushWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="42" QuestMarkerType="@QuestMarkerType" Brush="GameMenu.QuestMarker"/>
+											</ItemTemplate>
+										</ListPanel>
+
+										<Widget Id="DisorganizedWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="35" SuggestedHeight="35" HorizontalAlignment="Left" VerticalAlignment="Center" Sprite="SPGeneral\Nameplates\party_disorganized" Color="#E81313FF" IsVisible="@IsDisorganized" />
+
+									</Children>
+								</ListPanel>
+
+								<MaskedTextureWidget Id="PartyBannerWidget" DataSource="{PartyBanner}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Party.Banner.Width.Scaled" SuggestedHeight="!Party.Banner.Height.Scaled" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Nameplate.FlatBanner.Party" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" >
+									<Children>
+										<!--Army visual-->
+										<Widget DataSource="{..}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="-5" MarginRight="-5" MarginTop="-5" MarginBottom="-5" Sprite="leader_frame_9" IsVisible="@IsArmy" />
+									</Children>
+								</MaskedTextureWidget>
+
+								<ListPanel Id="LabelsList" WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="10" HorizontalAlignment="Right" PositionXOffset="4">
+									<Children>
+										<TextWidget Id="NameplateTextWidget" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="Map.Party.Mencount.Number" Brush.FontColor="@FactionColor" Brush.FontSize="35" ClipContents="false" Text="@Count" />
+										<TextWidget Id="NameplateExtraInfoTextWidget" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginLeft="3" Brush="Map.Party.Mencount.Number" Brush.FontColor="@FactionColor" Brush.FontSize="28" ClipContents="false" Text="@ExtraInfoText" />
+									</Children>
+								</ListPanel>
+
+							</Children>
+						</Widget>
+						
+					</Children>
+				</ListPanel>
+
+				<ListPanel Id="NameSpeedContainer" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" MarginRight="10" ClipContents="false" StackLayout.LayoutMethod="VerticalBottomToTop">
+					<Children>
+						<TextWidget Id="SpeedTextWidget" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" PositionXOffset="17" Brush="PartyNameplate.FullName.Text" Brush.FontColor="@FactionColor" Text="@MovementSpeedText">
+							<Children>
+								<Widget Id="SpeedIconWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" HorizontalAlignment="Left" VerticalAlignment="Center" PositionXOffset="-34" Sprite="General\Icons\Speed@2x" />
+							</Children>
+						</TextWidget>
+						<TextWidget Id="NameplateFullNameTextWidget" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Brush="PartyNameplate.FullName.Text" Brush.FontColor="@FactionColor" Text="@FullName" />
+					</Children>
+				</ListPanel>
+
+				<ButtonWidget Id="MainPartyArrowWidget" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="120" SuggestedHeight="88" Brush="Map.MainHeroParty.Tracker" CircularClipEnabled="true" CircularClipRadius="40" HorizontalAlignment="Center" Command.Click="ExecuteSetCameraPosition">
+					<Children>
+						<ImageIdentifierWidget DataSource="{MainHeroVisual}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="!MainHeroVisual.Padding" MarginRight="!MainHeroVisual.Padding" MarginTop="!MainHeroVisual.Padding" MarginBottom="!MainHeroVisual.Padding" AdditionalArgs="@AdditionalArgs" ImageId="@Id" ImageTypeCode="@ImageTypeCode" IsDisabled="true" MaterialAlphaFactor="0.5" />
+					</Children>
+				</ButtonWidget>
+				<Widget Id="TrackerFrame" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="115" SuggestedHeight="115" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-10" Sprite="SPGeneral\Nameplates\DayFrame@2x" AlphaFactor="0.6" IsEnabled="false" />
+
+				<!-- Size Setter (used to keep a uniform size independent of which set of widgets visible currently.) -->
+				<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="120" SuggestedHeight="120" IsEnabled="false" />
+
+			</Children>
+		</PartyNameplateWidget>
+	</Window>
+</Prefab>

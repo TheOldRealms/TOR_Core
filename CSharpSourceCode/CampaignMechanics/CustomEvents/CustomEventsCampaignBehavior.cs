@@ -29,9 +29,9 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
 
         public override void RegisterEvents()
         {
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
-            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
-            CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, WeeklyTick);
+            //CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
+            //CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
+            //CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, WeeklyTick);
             TORCampaignEvents.Instance.ChaosUprisingStarted += OnChaosUprisingStarted;
         }
 

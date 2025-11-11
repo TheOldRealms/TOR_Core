@@ -28,6 +28,9 @@ namespace TOR_Core.CampaignMechanics
         /// 
         /// Sly : This could be at risk of causing a crash due to mobParty data caching not being fast enough to complete before the method will attempt to spawn parties; no issues so far, but I ran into a crash with another mod when attempting to run a similar method on the CharacterCreationOverEvent where the parallel methods for data caching were too slow compared to the time it took to exit char creation.
         /// </remarks>
+        /// 
+        
+        //Sly : this is likely resolved by clans/kingdoms having an initial home settlement now
         private void SpawnAiHeroParties(CampaignGameStarter starter, int i)
         {
             var heroSpawnCampaignBehaviorInstance = Activator.CreateInstance(typeof(HeroSpawnCampaignBehavior));
@@ -36,7 +39,7 @@ namespace TOR_Core.CampaignMechanics
             //Campaign.Current.GameStarted is still false at this point in campaign initialization; it will be set to true on the first game tick
             foreach (Clan clan in Campaign.Current.Clans)
             {
-                var methodInvoke = considerSpawningLordPartiesMethod.Invoke(heroSpawnCampaignBehaviorInstance, new object[] { clan });
+                var methodInvoke = considerSpawningLordPartiesMethod.Invoke(heroSpawnCampaignBehaviorInstance, new object[] { clan, true });
             }
             //place chaos, beastmen, and bandit nobles on top of settlements of their culture maybe?
 

@@ -77,15 +77,17 @@ namespace TOR_Core.Models
 
         public override ExplainedNumber GetDailyHealingForRegulars(PartyBase party, bool isPrisoners, bool includeDescriptions = false)
         {
-            if (party.MobileParty != null && party.MobileParty.IsAffectedByCurse() && party.MobileParty.CurrentSettlement == null && party.MobileParty.BesiegedSettlement == null)
+            if (party?.MobileParty == null || !party.MobileParty.IsLordParty)
+            {
+                return base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
+            }
+
+            if (party.MobileParty.IsAffectedByCurse() && party.MobileParty.CurrentSettlement == null && party.MobileParty.BesiegedSettlement == null)
             {
                 return new ExplainedNumber(0, true, GameTexts.FindText("tor_customSettlement_generic_inCursedRegion"));
             }
 
-            var result = base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
-
-            if ((bool)!party.MobileParty?.IsLordParty) return result;
-            
+            var result = base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);            
 
 
             if (party.MobileParty != MobileParty.MainParty) return result;
@@ -108,15 +110,19 @@ namespace TOR_Core.Models
 
         public override ExplainedNumber GetDailyHealingHpForHeroes(PartyBase party, bool isPrisoners, bool includeDescriptions = false)
         {
-            if ((bool)(party.MobileParty?.IsAffectedByCurse()))
+            if (party?.MobileParty == null || !party.MobileParty.IsLordParty)
+            {
+                return base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
+            }
+
+
+            if (party.MobileParty.IsAffectedByCurse())
             {
                 return new ExplainedNumber(0, true, GameTexts.FindText("tor_customSettlement_generic_inCursedRegion"));
             }
 
+
             var result = base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
-
-            if ((bool)!party.MobileParty?.IsLordParty) return result;
-
 
             if (party.MobileParty != MobileParty.MainParty && party.LeaderHero != null && party.LeaderHero.IsVampire())
             {

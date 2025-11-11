@@ -82,6 +82,12 @@ namespace TOR_Core
 
             ConfigureLogging();
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
+
+            //creating the manager early enough that FindText calls from harmony won't lead to a null instance
+            //hopefully the morale text is there
+            var gameTextManager = new GameTextManager();
+            GameTexts.Initialize(gameTextManager);
+
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
             HarmonyInstance.PatchAll();
             UIConfig.DoNotUseGeneratedPrefabs = true;
