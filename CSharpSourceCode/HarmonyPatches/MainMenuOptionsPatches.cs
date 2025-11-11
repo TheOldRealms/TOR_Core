@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
-using SandBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -21,7 +21,7 @@ namespace TOR_Core.HarmonyPatches
             List<InitialStateOption> newlist = new List<InitialStateOption>();
             newlist = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
             var torOption = new InitialStateOption("TORNewgame", new TextObject("{=tor_menu_enter_game_label_str}Enter the Old World"), 3, OnCLick, IsDisabledAndReason);
-            var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=tor_menu_shader_cache_label_str}Build Shader Cache"), 4, OnForceClick, IsDisabledAndReason);
+            var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=tor_menu_shader_cache_label_str}Build Shader Cache"), 4, OnForceClick, IsDisabledAndReason); 
             newlist.Add(torOption);
             newlist.Add(torOption2);
             newlist.Sort((x, y) => x.OrderIndex.CompareTo(y.OrderIndex));
@@ -66,7 +66,8 @@ namespace TOR_Core.HarmonyPatches
 
         private static void OnCLick()
         {
-            MBGameManager.StartNewGame(new SandBoxGameManager(() => new Campaign(CampaignGameMode.Campaign)));
+            // Campaign creator delegate that creates a new Campaign in Campaign mode
+            MBGameManager.StartNewGame(new TorCampaignGameManager(() => new Campaign(CampaignGameMode.Campaign)));
         }
 
         private static (bool, TextObject) IsDisabledAndReason()
