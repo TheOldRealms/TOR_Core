@@ -31,6 +31,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private bool _isFemale = false;
         private int _originalRace = 0;
         private Equipment PlayerStartEquipment;
+        private string _currentEquipmentRosterId = "player_char_creation_childhood_age_empire_default_m";
         private const int FocusToAdd = 1;
         private const int SkillLevelToAdd = 10;
         private const int AttributeLevelToAdd = 1;
@@ -137,12 +138,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             characterCreation.AddNewMenu(stage2Menu);
             characterCreation.AddNewMenu(stage3Menu);
         }
-
-        // Helper method: Returns character args for displaying player in menus
+        
         private List<NarrativeMenuCharacterArgs> GetPlayerMenuCharacterArgs(string characterId, CharacterCreationManager manager)
         {
             List<NarrativeMenuCharacterArgs> list = new List<NarrativeMenuCharacterArgs>();
-            list.Add(new NarrativeMenuCharacterArgs(characterId, 0, "test", "test", "test"));
+            list.Add(new NarrativeMenuCharacterArgs(
+                characterId,
+                25,  // age
+                _currentEquipmentRosterId,  // equipment roster ID (updated when option is selected)
+                "act_childhood_schooled",    // standard character creation animation
+                "spawnpoint_player_1",       // standard spawn point
+                isFemale: CharacterObject.PlayerCharacter.IsFemale
+            ));
             return list;
         }
 
@@ -182,17 +189,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         // Helper method: Checks if option should be visible (culture filter)
         private bool OptionCondition(CharacterCreationManager manager, CharacterCreationOption option)
         {
+            var stage = manager.CurrentStage;
             // Check if option's culture matches currently selected culture
             CultureObject currentCulture = manager.CharacterCreationContent.SelectedCulture;
             return currentCulture != null && currentCulture.StringId == option.Culture;
         }
 
-        private void OnMenuInit(CharacterCreationManager charInfo)
+        private void OnMenuInit()
         {
-            SetMenuLabelTexts();
             _isFemale = CharacterObject.PlayerCharacter.IsFemale;
             _originalRace = CharacterObject.PlayerCharacter.Race;
-            //if(Debugger.IsAttached) _originalRace = CharacterObject.PlayerCharacter.Race; //This is to allow becoming different races by selecting them at character creation for development purposes.
         }
         
         private void SetMenuLabelTexts()
@@ -229,6 +235,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             var selectedOption = _options.Find(x => x.Id == optionId);
             var race = _originalRace;
+            var isFemale = _isFemale;
             
 
             if (optionId == "option_3_vc_vampire" || optionId == "option_3_mousillon_vampire")
@@ -237,19 +244,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else if(optionId == "option_3_bretonnia_damsel" && !CharacterObject.PlayerCharacter.IsFemale)
             {
-                var equipment = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId).DefaultEquipment;
-                var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
-                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, race,true);
+                isFemale = true;
             }
             else if(optionId == "option_3_bretonnia_knight_errant" && CharacterObject.PlayerCharacter.IsFemale)
             {
-                var equipment = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId).DefaultEquipment;
-                var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
-                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, race,false);
+                isFemale = false;
             }
             
             UpdateVisuals(race);
-            UpdateEquipment(selectedOption);
+            UpdateEquipment(manager, selectedOption, isFemale);
         }
 
         private void UpdateVisuals(int race)
@@ -258,13 +261,22 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             CharacterObject.PlayerCharacter.Race = race;
         }
 
-        private void UpdateEquipment(CharacterCreationOption selectedOption)
+        private void UpdateEquipment(CharacterCreationManager manager, CharacterCreationOption selectedOption, bool isfemale)
         {
-            Equipment equipment = null;
+            MBEquipmentRoster roster = null;
             try
-            {
-                equipment = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId).DefaultEquipment;
-                if (equipment == null) MBObjectManager.Instance.CreateObject<MBEquipmentRoster>(selectedOption.EquipmentSetId);
+            { 
+                roster = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId);
+                if (roster == null)
+                {
+                    TORCommon.Log($"Equipment roster '{selectedOption.EquipmentSetId}' not found, creating placeholder.", NLog.LogLevel.Warn);
+                }
+                else
+                {
+                    // Track the equipment roster ID for character display
+                    _currentEquipmentRosterId = selectedOption.EquipmentSetId;
+                    TORCommon.Log($"Updated equipment roster to: {_currentEquipmentRosterId}", NLog.LogLevel.Info);
+                }
             }
             catch (NullReferenceException)
             {
@@ -272,11 +284,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 throw;
             }
 
-            if (equipment != null && !equipment.IsEmpty())
+            if (roster != null && !roster.DefaultEquipment.IsEmpty())
             {
-                // NEW 1.3.1: Update player equipment directly, visual updates handled automatically
-                PlayerStartEquipment = equipment;
-                CharacterObject.PlayerCharacter.Equipment.FillFrom(PlayerStartEquipment);
+                var character = manager.CurrentMenu.Characters[0];
+                
+                var equipment = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId).DefaultEquipment;
+                var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
+
+                character.SetEquipment(roster);
+                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, CharacterObject.PlayerCharacter.Race, isfemale);
+
+                character.IsFemale = isfemale;
+                
             }
         }
 
@@ -656,9 +675,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        // ======== ICharacterCreationContentHandler Implementation ========
-        // Native 1.3.1 requires implementing these 4 methods instead of inheriting from CharacterCreationContentBase
-
         public void InitializeContent(CharacterCreationManager manager)
         {
             TORCommon.Log("[TOR CharacterCreation] InitializeContent called", NLog.LogLevel.Info);
@@ -673,28 +689,28 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 }
             }
             
+            
             AddMenus(manager);
-
-            TORCommon.Log("[TOR CharacterCreation] Added TOR cultures and narrative menus", NLog.LogLevel.Info);
         }
 
         public void AfterInitializeContent(CharacterCreationManager manager)
         {
-            // Called after all handlers' InitializeContent completes
             TORCommon.Log("[TOR CharacterCreation] AfterInitializeContent called", NLog.LogLevel.Info);
         }
 
         public void OnStageCompleted(CharacterCreationStageBase stage)
         {
             // Called when a character creation stage is completed
-            TORCommon.Log($"[TOR CharacterCreation] Stage completed: {stage?.GetType().Name}", NLog.LogLevel.Info);
+            var stages = stage;
+
+            if (stages.GetType() == typeof(CharacterCreationFaceGeneratorStage))
+            {
+                this.OnMenuInit();
+            }
         }
 
         public void OnCharacterCreationFinalize(CharacterCreationManager manager)
         {
-            // Called when character creation finalizes (before entering campaign)
-            // This should call the old OnCharacterCreationFinalized() logic
-            TORCommon.Log("[TOR CharacterCreation] OnCharacterCreationFinalize called", NLog.LogLevel.Info);
             OnCharacterCreationFinalized();
         }
     }
