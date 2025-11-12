@@ -393,7 +393,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI)
             {
-                var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
                 string grudge = null;
                 switch (id)
                 {
@@ -663,20 +662,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public void InitializeContent(CharacterCreationManager manager)
         {
             TORCommon.Log("[TOR CharacterCreation] InitializeContent called", NLog.LogLevel.Info);
-
-            // Add TOR cultures to character creation
-            // The base game's CharacterCreationCampaignBehavior only adds 6 vanilla cultures
-            // We need to add ALL TOR cultures including custom ones (mousillon, eonir)
-            foreach (var cultureId in new[] {
-                TORConstants.Cultures.EMPIRE,
-                TORConstants.Cultures.SYLVANIA,
-                TORConstants.Cultures.BRETONNIA,
-                TORConstants.Cultures.MOUSILLON,
-                TORConstants.Cultures.ASRAI,
-                TORConstants.Cultures.EONIR,
-                TORConstants.Cultures.DAWI,
-                TORConstants.Cultures.GREENSKIN
-            })
+            
+            foreach (var cultureId  in TORConstants.Cultures.All)
             {
                 var culture = MBObjectManager.Instance.GetObject<CultureObject>(cultureId);
                 if (culture != null)
@@ -685,8 +672,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     TORCommon.Log($"[TOR CharacterCreation] Added culture: {cultureId}", NLog.LogLevel.Info);
                 }
             }
-
-            // Add TOR's 3 custom narrative menus (Origin, Growth, Profession)
+            
             AddMenus(manager);
 
             TORCommon.Log("[TOR CharacterCreation] Added TOR cultures and narrative menus", NLog.LogLevel.Info);
