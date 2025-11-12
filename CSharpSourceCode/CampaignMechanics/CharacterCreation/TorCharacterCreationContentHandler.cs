@@ -51,32 +51,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             ExtendedInfoManager.Instance.ClearInfo(Hero.MainHero);
         }
 
-        // OLD: These were overrides from CharacterCreationContentBase (no longer exists in 1.3.1)
-        // Keeping for reference - need to adapt to new pattern
-        /*
-        public override TextObject ReviewPageDescription => new("{=tor_cc_finished_info_str}You prepare to enter The Old World! Here is your character. Click finish if you are ready, or go back to make changes.", null);
-
-        public override IEnumerable<Type> CharacterCreationStages
-        {
-            get
-            {
-                yield return typeof(CharacterCreationCultureStage);
-                yield return typeof(CharacterCreationFaceGeneratorStage);
-                yield return typeof(CharacterCreationGenericStage);
-                yield return typeof(CharacterCreationOptionsStage);
-                yield return typeof(CharacterCreationBannerEditorStage);
-                yield return typeof(CharacterCreationClanNamingStage);
-                yield return typeof(CharacterCreationReviewStage);
-                yield break;
-            }
-        }
-
-        protected override void OnInitialized(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreation characterCreation)
-        {
-            AddMenus(characterCreation);
-        }
-        */
-
         private void AddMenus(CharacterCreationManager characterCreation)
         {
             // Initialize menu text variables before creating menus
@@ -213,14 +187,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             return currentCulture != null && currentCulture.StringId == option.Culture;
         }
 
-        // OLD: Was override from CharacterCreationContentBase
-        /*
-        protected override void OnApplyCulture()
-        {
-            _originalRace = CharacterObject.PlayerCharacter.Race;
-        }
-        */
-
         private void OnMenuInit(CharacterCreationManager charInfo)
         {
             SetMenuLabelTexts();
@@ -262,12 +228,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void OnOptionSelected(CharacterCreationManager manager, string optionId)
         {
             var selectedOption = _options.Find(x => x.Id == optionId);
-
-            // OLD 1.2.x: ClearFaceGenPrefab() doesn't exist in 1.3.1
-            // NEW 1.3.1: Visuals update automatically via GetPlayerMenuCharacterArgs delegate
-
             var race = _originalRace;
-           // Hero.MainHero.UpdatePlayerGender(_isFemale); TODO why is this needed?
+            
 
             if (IsVampireCharacterCreationID (optionId))
             {
@@ -275,14 +237,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else if(IsDamselCharacterCreationID(optionId) && !CharacterObject.PlayerCharacter.IsFemale)
             {
-                //Hero.MainHero.UpdatePlayerGender(true); TODO fix Updating gender for Knight and Damsel
+                var equipment = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId).DefaultEquipment;
+                var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
+                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, race,true);
             }
             else if(IsKnightErrantCharacterCreationID(optionId) && CharacterObject.PlayerCharacter.IsFemale)
             {
-               // Hero.MainHero.UpdatePlayerGender(false);
+                var equipment = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId).DefaultEquipment;
+                var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
+                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, race,false);
             }
-
-            // Update player data - visuals refresh automatically via delegates
+            
             UpdateVisuals(race);
             UpdateEquipment(selectedOption);
         }
