@@ -231,17 +231,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var race = _originalRace;
             
 
-            if (IsVampireCharacterCreationID (optionId))
+            if (optionId == "option_vc_vampire" || optionId == "option_mousillon_vampire")
             {
                 race = FaceGen.GetRaceOrDefault("vampire");
             }
-            else if(IsDamselCharacterCreationID(optionId) && !CharacterObject.PlayerCharacter.IsFemale)
+            else if(optionId == "option_bretonnia_damsel" && !CharacterObject.PlayerCharacter.IsFemale)
             {
                 var equipment = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId).DefaultEquipment;
                 var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
                 CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, race,true);
             }
-            else if(IsKnightErrantCharacterCreationID(optionId) && CharacterObject.PlayerCharacter.IsFemale)
+            else if(optionId == "option_bretonnia_knight_errant" && CharacterObject.PlayerCharacter.IsFemale)
             {
                 var equipment = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId).DefaultEquipment;
                 var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
@@ -295,7 +295,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.KnightOldWorld);
             }
             
-            if (IsMagicianCharacterCreationID (id) || IsDamselCharacterCreationID (id))
+            if (id == "option_empire_magister_apprentice" || id == "option_bretonnia_damsel")
             {
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.AddAbility("Dart");
@@ -305,7 +305,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
 
-            if (IsMagicianCharacterCreationID(id))
+            if (id == "option_empire_magister_apprentice")
             {
                 Hero.MainHero.AddCareer(TORCareers.ImperialMagister);
             }
@@ -333,17 +333,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.Slayer);
             }
             
-            if (IsWitchHunterCharacterCreationID(id))
+            if (id == "option_empire_witch_hunter")
             {
                 Hero.MainHero.AddCareer(TORCareers.WitchHunter);
             }
-            
-            if (IsKnightErrantCharacterCreationID(id))
+
+            if (id == "option_bretonnia_knight_errant")
             {
                 Hero.MainHero.AddCareer(TORCareers.GrailKnight);
             }
 
-            if (IsKnightOfMousillonCharacterCreationId(id))
+            if (id == "option_mousillon_knight_errant")
             {
                 Hero.MainHero.AddCareer(TORCareers.BlackGrailKnight);
             }
@@ -443,7 +443,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
             
-            if(IsDamselCharacterCreationID (id))
+            if(id == "option_bretonnia_damsel")
             {
                 Hero.MainHero.AddAttribute("PriestLady");
                 Hero.MainHero.AddCareer(TORCareers.GrailDamsel);
@@ -453,12 +453,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddAbility("AuraOfTheLady");
                 Hero.MainHero.PartyBelongedTo.Party.AddMember(knight, 1, 0);
             }
-            
-            if (IsPriestAcolyteCharacterCreationID(id))
+
+            if (id == "option_empire_priest_acolyte")
             {
                 Hero.MainHero.AddAttribute("Priest");
             }
-            else if (IsNecromancerCharacterCreationID (id))
+            else if (id == "option_vc_necromancer" || id == "option_mousillon_necromancer")
             {
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.AddAttribute("Necromancer");
@@ -471,7 +471,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddCareer(TORCareers.Necromancer);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
             }
-            else if (IsVampireCharacterCreationID (id))
+            else if (id == "option_vc_vampire" || id == "option_mousillon_vampire")
             {
                 Hero.MainHero.AddAttribute("Vampire");
                 Hero.MainHero.AddAttribute("Necromancer");
@@ -538,14 +538,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             Hero.MainHero.SetBirthDay(CampaignTime.YearsFromNow(-age));
         }
 
-        private bool IsKnightOfMousillonCharacterCreationId(string characterCreationOptionID) =>  characterCreationOptionID == "option56";
-        private bool IsWitchHunterCharacterCreationID(string characterCreationOptionID) =>  characterCreationOptionID == "option14";
-        private bool IsKnightErrantCharacterCreationID(string characterCreationOptionID) =>  characterCreationOptionID == "option41";
-        private bool IsVampireCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option26" || characterCreationOptionID == "option57";
-        private bool IsMagicianCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option12";
-        private bool IsDamselCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option42";
-        private bool IsPriestAcolyteCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option13";
-        private bool IsNecromancerCharacterCreationID(string characterCreationOptionID) => characterCreationOptionID == "option27" || characterCreationOptionID == "option58";
 
         private void PromptChooseLore()
         {
