@@ -10,7 +10,7 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
         {
             RefreshValues();
         }
-        
+
         public override void RefreshValues()
         {
             IsKnown = Hero.HasAbility(Template.StringID);

@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using SandBox.Objects.Usables;
+﻿using SandBox.Objects.Usables;
+using System.Linq;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
@@ -14,7 +14,7 @@ namespace TOR_Core.BattleMechanics.SFX
         private bool init;
         private bool animationSkipped;
         private bool animationSkipped2;
-        
+
         public bool IsReady()
         {
             return init && seated;
@@ -45,7 +45,7 @@ namespace TOR_Core.BattleMechanics.SFX
         {
             if (!init) return;
             base.OnTick(dt);
-            
+
             if (Agent.Main?.CurrentlyUsedGameObject == sitingPoint)
             {
                 var sitAnim = ActionIndexCache.Create("act_sit_1");
@@ -76,7 +76,7 @@ namespace TOR_Core.BattleMechanics.SFX
             GameEntity.SetGlobalFrame(frame);
             GameEntity.GetChild(0).SetGlobalFrame(frame);
         }
-        
+
         public void ActivateFlying()
         {
             var chair = GameEntity.GetScriptComponents<Chair>().FirstOrDefault();
@@ -92,7 +92,7 @@ namespace TOR_Core.BattleMechanics.SFX
                 init = true;
             }
         }
-        
+
         public void DeactivateFlying()
         {
             var agent = Agent.Main;

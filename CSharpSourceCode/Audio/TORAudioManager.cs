@@ -22,7 +22,7 @@ namespace TOR_Core.Audio
             var info = new FileInfo(filePath);
             if (info.Exists)
             {
-                if(info.Extension == ".ogg")
+                if (info.Extension == ".ogg")
                 {
                     if (!_registeredSounds.ContainsKey(info.Name))
                     {

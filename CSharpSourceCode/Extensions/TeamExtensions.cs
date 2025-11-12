@@ -18,7 +18,7 @@ namespace TOR_Core.Extensions
         {
             return team.FormationsIncludingSpecialAndEmpty.FindAll(form => form.CountOfUnits > 0);
         }
-        
+
         public static List<Team> GetEnemyTeams(this Team team)
         {
             return Mission.Current.Teams.Where(x => x.IsEnemyOf(team)).ToList();

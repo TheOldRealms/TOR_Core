@@ -1,13 +1,13 @@
+using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.CampaignSystem.GameMenus;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 {
     public static class TORSettlementMenuHelpers
     {
-        public static void RearrangeTownMenus(GameMenu menu, string entryId, string targetEntryId, bool above= false)
+        public static void RearrangeTownMenus(GameMenu menu, string entryId, string targetEntryId, bool above = false)
         {
             if (menu == null) return;
 

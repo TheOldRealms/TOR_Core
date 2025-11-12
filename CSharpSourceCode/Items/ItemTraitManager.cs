@@ -59,14 +59,14 @@ namespace TOR_Core.Items
                 case ItemTraitItemType.Thrown:
                 case ItemTraitItemType.Shield:
                 case ItemTraitItemType.Ammo:
-                    if (itemTrait.StatsTuple!=null && !IsValidForExchangableEquipmentItems(itemTrait, out var equipmentReason))
+                    if (itemTrait.StatsTuple != null && !IsValidForExchangableEquipmentItems(itemTrait, out var equipmentReason))
                     {
                         TORCommon.Log(equipmentReason, LogLevel.Error);
                         return false;
                     }
                     break;
                 case ItemTraitItemType.Armor:
-                    if (itemTrait.StatsTuple!=null && !IsValidForArmor(itemTrait, out var armorReason))
+                    if (itemTrait.StatsTuple != null && !IsValidForArmor(itemTrait, out var armorReason))
                     {
                         TORCommon.Log(armorReason, LogLevel.Error);
                         return false;
@@ -96,10 +96,10 @@ namespace TOR_Core.Items
                 case ItemTraitStatType.ShieldHealth:
                     if (itemTrait.ValidItemType != ItemTraitItemType.Shield)
                     {
-                        reason = itemTrait.ItemTraitStringId+" failed creation. Stat type "+ itemTrait.StatsTuple.StatType +" does not match"+ itemTrait.ValidItemType;
-                        isValid =  false;
+                        reason = itemTrait.ItemTraitStringId + " failed creation. Stat type " + itemTrait.StatsTuple.StatType + " does not match" + itemTrait.ValidItemType;
+                        isValid = false;
                     }
-    
+
                     break;
                 case ItemTraitStatType.ShieldDamage:
                     if (itemTrait.ValidItemType == ItemTraitItemType.Shield)
@@ -109,9 +109,9 @@ namespace TOR_Core.Items
                 case ItemTraitStatType.Cleave:
                     if (itemTrait.ValidItemType != ItemTraitItemType.Melee)
                     {
-                        isValid =  false;
+                        isValid = false;
                     }
-             
+
                     break;
                 case ItemTraitStatType.MissileSpeed:
                 case ItemTraitStatType.MultiPenetration:
@@ -129,10 +129,10 @@ namespace TOR_Core.Items
 
             if (!isValid)
             {
-                reason = itemTrait.ItemTraitStringId+" failed creation. Stat type "+ itemTrait.StatsTuple.StatType +" does not match "+ itemTrait.ValidItemType;
+                reason = itemTrait.ItemTraitStringId + " failed creation. Stat type " + itemTrait.StatsTuple.StatType + " does not match " + itemTrait.ValidItemType;
                 return false;
             }
-            
+
             return true;
         }
 
@@ -155,22 +155,22 @@ namespace TOR_Core.Items
                     isValid = false;
                     break;
             }
-            
+
             if (!isValid)
             {
-                reason = itemTrait.ItemTraitStringId+" failed creation. Stat type "+ itemTrait.StatsTuple.StatType +" does not match"+ itemTrait.ValidItemType;
+                reason = itemTrait.ItemTraitStringId + " failed creation. Stat type " + itemTrait.StatsTuple.StatType + " does not match" + itemTrait.ValidItemType;
                 return false;
             }
 
             return true;
         }
-        
-        
+
+
     }
 
 
     public class TORInvalidItemTraitException(string reason) : Exception(reason)
     {
-        
+
     }
 }

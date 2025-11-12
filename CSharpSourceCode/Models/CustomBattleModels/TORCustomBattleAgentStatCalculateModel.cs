@@ -21,7 +21,7 @@ namespace TOR_Core.Models.CustomBattleModels
 
         public override float GetEffectiveMaxHealth(Agent agent)
         {
-            if(agent.IsHuman && agent.Character != null)
+            if (agent.IsHuman && agent.Character != null)
             {
                 if (agent.Character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
                 {
@@ -32,7 +32,7 @@ namespace TOR_Core.Models.CustomBattleModels
                     return 250f;
                 }
             }
-            
+
             return base.GetEffectiveMaxHealth(agent);
         }
 
@@ -67,7 +67,7 @@ namespace TOR_Core.Models.CustomBattleModels
                 var character = agent.Character;
                 if (character != null)
                 {
-                    if(Mission.Current.IsSiegeBattle)
+                    if (Mission.Current.IsSiegeBattle)
                         TOREquipmentHelper.RemoveLanceFromEquipment(agent, false);     //i would like to change that to knights not beeing in guard position anyhow
                 }
             }
@@ -134,6 +134,6 @@ namespace TOR_Core.Models.CustomBattleModels
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, 1); //I have the feeling this call is not necessary given the many updates that are done per frame.
             }
         }
-  
+
     }
 }

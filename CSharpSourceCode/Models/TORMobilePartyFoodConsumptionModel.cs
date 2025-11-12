@@ -33,7 +33,7 @@ namespace TOR_Core.Models
             }
 
             if (party != MobileParty.MainParty) return explainedNumber;
-            
+
 
             if (Hero.MainHero == party.LeaderHero)
             {
@@ -93,38 +93,38 @@ namespace TOR_Core.Models
             explainedNumber.LimitMax(0);//food consumption is a negative number
             return explainedNumber;
         }
-        
-        
+
+
         private void AddCareerSpecificFoodPerks(ref ExplainedNumber values, MobileParty party)
         {
             var choices = party.LeaderHero.GetAllCareerChoices();
-            
+
             if (choices.Contains("SigmarsProclaimerPassive3"))
             {
                 bool includeRegularTroops = choices.Contains("ArchLectorPassive2");
                 var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive3");
-                var perkValue = AddSigmarsProclaimerPerk(values, party,choice,includeRegularTroops);
+                var perkValue = AddSigmarsProclaimerPerk(values, party, choice, includeRegularTroops);
                 values.Add(perkValue, choice.BelongsToGroup.Name);
             }
-            
-            
+
+
         }
 
         private float AddSigmarsProclaimerPerk(ExplainedNumber values, MobileParty party, CareerChoiceObject perkChoice, bool includeRegularTroops)
         {
-            if(perkChoice==null) return 0;
+            if (perkChoice == null) return 0;
             var choices = party.LeaderHero.GetAllCareerChoices();
-            
+
 
             var troops = party.MemberRoster.GetTroopRoster();
             var sigmarRiteTroops = new MBList<TroopRosterElement>();
-            
+
             foreach (var troopRosterElement in troops.Where(troopRosterElement => troopRosterElement.Character.IsSoldier)) //could be all a nice query , doesn't work for whatever reason
             {
                 if (!troopRosterElement.Character.UnitBelongsToCult("cult_of_sigmar"))
                 {
-                    if(troopRosterElement.Character.IsReligiousUnit())
-                       continue; 
+                    if (troopRosterElement.Character.IsReligiousUnit())
+                        continue;
                     if (includeRegularTroops)
                     {
                         sigmarRiteTroops.Add(troopRosterElement);
@@ -140,16 +140,16 @@ namespace TOR_Core.Models
             if (perkChoice.Passive == null) return 0f;
             var effectMagnitude = perkChoice.Passive.EffectMagnitude;
             if (perkChoice.Passive.InterpretAsPercentage) effectMagnitude /= 100;
-            float basefoodConsumptionForRoster =  ((float)count / NumberOfMenOnMapToEatOneFood);
+            float basefoodConsumptionForRoster = ((float)count / NumberOfMenOnMapToEatOneFood);
             return basefoodConsumptionForRoster * effectMagnitude;
         }
 
 
         public override bool DoesPartyConsumeFood(MobileParty mobileParty)
         {
-            var value =  base.DoesPartyConsumeFood(mobileParty);
+            var value = base.DoesPartyConsumeFood(mobileParty);
 
-            if (MobileParty.MainParty== mobileParty && Hero.MainHero.IsEnlisted())
+            if (MobileParty.MainParty == mobileParty && Hero.MainHero.IsEnlisted())
             {
                 return false;
             }
@@ -163,6 +163,6 @@ namespace TOR_Core.Models
             return value;
         }
     }
-    
-  
+
+
 }

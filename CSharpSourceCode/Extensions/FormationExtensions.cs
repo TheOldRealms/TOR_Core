@@ -12,7 +12,7 @@ namespace TOR_Core.Extensions
             reformPosition = formation.CachedMedianPosition;
             if (formation.GetReadonlyMovementOrderReference().MovementState == MovementOrder.MovementStateEnum.Charge) return false;
             var formationIntegrityData = formation.CachedFormationIntegrityData;
-            if(formationIntegrityData.DeviationOfPositionsExcludeFarAgents * formation.CachedMovementSpeed * speedModifier > formation.QuerySystem.IdealAverageDisplacement)
+            if (formationIntegrityData.DeviationOfPositionsExcludeFarAgents * formation.CachedMovementSpeed * speedModifier > formation.QuerySystem.IdealAverageDisplacement)
             {
                 var targetFormationDirection = (formation.QuerySystem.Team.MedianTargetFormationPosition.AsVec2 - formation.CachedAveragePosition).Normalized();
                 var reformPositionVec2 = formation.CachedAveragePosition + targetFormationDirection * 5f;
@@ -25,13 +25,13 @@ namespace TOR_Core.Extensions
         public static bool IsFormationBeingChargedByCavalry(this Formation formation, float distanceToCheck = 30f, float minSpeedToRegisterCharge = 2f)
         {
             bool result = false;
-            if(formation.CachedClosestEnemyFormation != null && formation.CachedClosestEnemyFormation.IsCavalryFormation)
+            if (formation.CachedClosestEnemyFormation != null && formation.CachedClosestEnemyFormation.IsCavalryFormation)
             {
                 var formationDirection = (formation.CachedAveragePosition - formation.CachedClosestEnemyFormation.Formation.CachedAveragePosition);
                 var distance = formationDirection.Normalize();
                 var enemyVelocity = formation.CachedClosestEnemyFormation.Formation.CachedCurrentVelocity;
                 var enemySpeed = enemyVelocity.Normalize();
-                if(distance < distanceToCheck && enemySpeed > minSpeedToRegisterCharge && formationDirection.DotProduct(enemyVelocity) > 0.5f)
+                if (distance < distanceToCheck && enemySpeed > minSpeedToRegisterCharge && formationDirection.DotProduct(enemyVelocity) > 0.5f)
                 {
                     result = true;
                 }

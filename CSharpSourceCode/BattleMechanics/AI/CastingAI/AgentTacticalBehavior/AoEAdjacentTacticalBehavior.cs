@@ -19,10 +19,10 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentTacticalBehavior
 
         private void CalculateCastingTarget(Target target)
         {
-            CastingPosition = 
+            CastingPosition =
                 target.Formation != null ? CalculateCastingPosition(target.Formation) :
                 target.SelectedWorldPosition != null && target.SelectedWorldPosition != Vec3.Zero ? target.SelectedWorldPosition :
-                target.TacticalPosition != null ? target.TacticalPosition.Position.GetGroundVec3MT():
+                target.TacticalPosition != null ? target.TacticalPosition.Position.GetGroundVec3MT() :
                 Agent.Position;
             var worldPosition = new WorldPosition(Mission.Current.Scene, CastingPosition);
             Agent.SetScriptedPosition(ref worldPosition, false);

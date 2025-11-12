@@ -32,7 +32,7 @@ namespace TOR_Core.Items.InventoryUseScripts
 
         public SkillBookScript(string[] arguments) : base(arguments)
         {
-            if(arguments.Count() >= 3)
+            if (arguments.Count() >= 3)
             {
                 _skillId = arguments[0];
                 if (Campaign.Current.ObjectManager.GetObject<SkillObject>(_skillId) == null)

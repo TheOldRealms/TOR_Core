@@ -15,7 +15,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
 
         public override void Execute()
         {
-            var castingPosition = ((AdjacentAoETacticalBehavior) TacticalBehavior)?.CastingPosition;
+            var castingPosition = ((AdjacentAoETacticalBehavior)TacticalBehavior)?.CastingPosition;
             if (castingPosition.HasValue && Agent.Position.AsVec2.Distance(castingPosition.Value.AsVec2) > 5) return;
 
             base.Execute();
@@ -25,7 +25,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
         {
             if (!CommonAIStateFunctions.CanAgentMoveFreely(Agent))
                 return 0.0f;
-            
+
             return base.CalculateUtility(target);
         }
     }

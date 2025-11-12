@@ -213,18 +213,18 @@ public class ServeAsAHirelingActivities
                     DefaultSkills.Leadership,
                 ]
             },
-            
+
         };
-        
+
         foreach (var career in TORCareers.All)
         {
             if (!_activitySets.ContainsKey(career))
             {
-                throw new Exception("Zerca register the hireling career acitivities, you dumb ass! missing : "+career.Name);
+                throw new Exception("Zerca register the hireling career acitivities, you dumb ass! missing : " + career.Name);
             }
         }
     }
-    
+
     public List<SkillObject> GetHirelingActivities(CareerObject careerObject)
     {
         if (_activitySets.TryGetValue(careerObject, out var activities))

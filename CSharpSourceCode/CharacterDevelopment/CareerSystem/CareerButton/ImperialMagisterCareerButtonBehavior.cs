@@ -32,8 +32,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private string _beastIcon = "CareerSystem\\ghur";
         private string _metalIcon = "CareerSystem\\chamon";
         private string _deathIcon = "CareerSystem\\chamon";
-        
-        
+
+
         public List<PowerStone> AvailablePowerStones { get; } = new List<PowerStone>();
 
         private CharacterObject _setCharacter;
@@ -55,7 +55,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         public List<PowerStone> GetAllPowerstones()
         {
             var list = new List<PowerStone>();
-            if(Hero.MainHero.PartyBelongedTo==null) return new List<PowerStone>();
+            if (Hero.MainHero.PartyBelongedTo == null) return new List<PowerStone>();
             var partyExtendedInfo =
                 ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
 
@@ -72,7 +72,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     }
                 }
             }
-            
+
 
             return list;
         }
@@ -87,15 +87,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             {
                 if (attributes.Count > 0)
                 {
-                    var stones = attributes.Select(attribute => AvailablePowerStones.Find( x => x.Id == attribute ))
+                    var stones = attributes.Select(attribute => AvailablePowerStones.Find(x => x.Id == attribute))
                         .Where(powerstone => powerstone != null).ToList();
-                    
+
                     var first = stones[0];
-                    
+
                     return first;
                 }
             }
-            
+
             return null;
         }
 
@@ -103,14 +103,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             MBTextManager.SetTextVariable("WINDS_ICON",
             CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText());
-            
-            MBTextManager.SetTextVariable("FIRE_ICON", string.Format("<img src=\"{0}\"/>",_fireIcon));
-            MBTextManager.SetTextVariable("HEAVENS_ICON", string.Format("<img src=\"{0}\"/>",_heavensIcon));
-            MBTextManager.SetTextVariable("LIGHT_ICON", string.Format("<img src=\"{0}\"/>",_lightIcon));
-            MBTextManager.SetTextVariable("LIFE_ICON", string.Format("<img src=\"{0}\"/>",_lifeIcon));
-            MBTextManager.SetTextVariable("BEAST_ICON", string.Format("<img src=\"{0}\"/>",_beastIcon));
-            MBTextManager.SetTextVariable("METAL_ICON", string.Format("<img src=\"{0}\"/>",_metalIcon));
-            MBTextManager.SetTextVariable("DEATH_ICON", string.Format("<img src=\"{0}\"/>",_metalIcon));
+
+            MBTextManager.SetTextVariable("FIRE_ICON", string.Format("<img src=\"{0}\"/>", _fireIcon));
+            MBTextManager.SetTextVariable("HEAVENS_ICON", string.Format("<img src=\"{0}\"/>", _heavensIcon));
+            MBTextManager.SetTextVariable("LIGHT_ICON", string.Format("<img src=\"{0}\"/>", _lightIcon));
+            MBTextManager.SetTextVariable("LIFE_ICON", string.Format("<img src=\"{0}\"/>", _lifeIcon));
+            MBTextManager.SetTextVariable("BEAST_ICON", string.Format("<img src=\"{0}\"/>", _beastIcon));
+            MBTextManager.SetTextVariable("METAL_ICON", string.Format("<img src=\"{0}\"/>", _metalIcon));
+            MBTextManager.SetTextVariable("DEATH_ICON", string.Format("<img src=\"{0}\"/>", _metalIcon));
             AvailablePowerStones = CreateStoneList();
         }
 
@@ -159,36 +159,36 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 new PowerStone("life_res_40_debuff",new TextObject("Lesser Heavy Vitaellum"), new TextObject("Add 35% physical resistance -35% reduced speed"), "powerstone_life_res_debuff", 15, 10,
                     "LoreOfLife", PowerSize.Lesser),
 
-                new PowerStone("heavens_dmg_raged_20", new TextObject("Lesser Wind Saphire"),new TextObject("+20% physical ranged damage amplification"), "powerstone_heavens_dmg_range", 
+                new PowerStone("heavens_dmg_raged_20", new TextObject("Lesser Wind Saphire"),new TextObject("+20% physical ranged damage amplification"), "powerstone_heavens_dmg_range",
                     15, 10, "LoreOfHeavens", PowerSize.Lesser),
                 new PowerStone("heavens_dmg_20", new TextObject("Lesser Conductive Saphire"), new TextObject("+20% lightning melee damage"), "powerstone_heavens_trait",
                     15, 10, "LoreOfHeavens", PowerSize.Lesser),
-                
+
                 new PowerStone("heavens_res_25", new TextObject("Lesser Dissipation  Saphire"), new TextObject("+25% lightning resistance, + 25% magical resistance"),"powerstone_heavens_res",
                     15, 10, "LoreOfHeavens", PowerSize.Lesser),
 
-                new PowerStone("metal_dmg_15", new TextObject("Lesser Hardening Goldstone"), new TextObject("+15% physical damage"),"powerstone_metal_dmg1", 
-                    15, 
-                    10,
-                    "LoreOfMetal", PowerSize.Lesser),
-                new PowerStone("metal_dmg_20", new TextObject("Lesser Sparkling Goldstone"),new TextObject("+20% physical ranged damage"), "powerstone_metal_dmg2", 
-                    15, 
-                    10,
-                    "LoreOfMetal", PowerSize.Lesser),
-                new PowerStone("metal_res_30_debuff", new TextObject("Lesser Burdening Goldstone"),new TextObject("+30% physical resistance, 35% reduced speed"), "powerstone_metal_res_less", 
+                new PowerStone("metal_dmg_15", new TextObject("Lesser Hardening Goldstone"), new TextObject("+15% physical damage"),"powerstone_metal_dmg1",
                     15,
                     10,
                     "LoreOfMetal", PowerSize.Lesser),
-                
-                new PowerStone("death_dmg_15", new TextObject("Lesser Harming Endstone"), new TextObject("+15% physical damage"),"powerstone_metal_dmg1", 
-                15, 
+                new PowerStone("metal_dmg_20", new TextObject("Lesser Sparkling Goldstone"),new TextObject("+20% physical ranged damage"), "powerstone_metal_dmg2",
+                    15,
+                    10,
+                    "LoreOfMetal", PowerSize.Lesser),
+                new PowerStone("metal_res_30_debuff", new TextObject("Lesser Burdening Goldstone"),new TextObject("+30% physical resistance, 35% reduced speed"), "powerstone_metal_res_less",
+                    15,
+                    10,
+                    "LoreOfMetal", PowerSize.Lesser),
+
+                new PowerStone("death_dmg_15", new TextObject("Lesser Harming Endstone"), new TextObject("+15% physical damage"),"powerstone_metal_dmg1",
+                15,
                 10,
                 "LoreOfDeath", PowerSize.Lesser),
-                new PowerStone("death_res_mag_20", new TextObject("Lesser Encouraging Endstone"),new TextObject("+20% magic damage resistance"), "powerstone_metal_dmg2", 
-                    15, 
+                new PowerStone("death_res_mag_20", new TextObject("Lesser Encouraging Endstone"),new TextObject("+20% magic damage resistance"), "powerstone_metal_dmg2",
+                    15,
                     10,
                     "LoreOfDeath", PowerSize.Lesser),
-                new PowerStone("death_res_30_debuff", new TextObject("Lesser deadening Endstone"),new TextObject("+25% physical resistance, 20% reduced swing-speed"), "powerstone_metal_res_less", 
+                new PowerStone("death_res_30_debuff", new TextObject("Lesser deadening Endstone"),new TextObject("+25% physical resistance, 20% reduced swing-speed"), "powerstone_metal_res_less",
                     15,
                     10,
                     "LoreOfDeath", PowerSize.Lesser)
@@ -202,14 +202,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var list = new List<PowerStone>()
             {
                 new PowerStone("fire_dmg_35", new TextObject("Greater Enlightening Fire Ruby"),new TextObject("+50% Fire amplification, 15% Fire damage+30% "),
-                    "powerstone_fire_trait2", 
-                    25, 
+                    "powerstone_fire_trait2",
+                    25,
                     20, "LoreOfFire", PowerSize.Greater),
                 new PowerStone("fire_amp_50", new TextObject("Greater Nourishing Fire Ruby"),new TextObject("Fire amplification, +20% speed"), "powerstone_fire_amp_mov", 15,
                     20, "LoreOfFire", PowerSize.Greater),
 
                 new PowerStone("light_res_phys_magic_40",
-                    new TextObject("Greater Protecting Lumenstone"),new TextObject("+40% physical, 40% magical resistance"), "powerstone_light_res2", 
+                    new TextObject("Greater Protecting Lumenstone"),new TextObject("+40% physical, 40% magical resistance"), "powerstone_light_res2",
                     25, 20,
                     "LoreOfLight", PowerSize.Greater),
                 new PowerStone("light_mov_dmg_25",
@@ -217,11 +217,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     25, 20,
                     "LoreOfLight", PowerSize.Greater),
 
-                new PowerStone("beast_res_wild",new TextObject("Greater Ghost Amber of the Wild"), new TextObject("Unit is unstopable, will not show any sign of pain"), 
-                    "powerstone_beast_wild", 
+                new PowerStone("beast_res_wild",new TextObject("Greater Ghost Amber of the Wild"), new TextObject("Unit is unstopable, will not show any sign of pain"),
+                    "powerstone_beast_wild",
                     25, 20,
                     "LoreOfBeasts", PowerSize.Greater),
-                new PowerStone("beast_res_range_25", new TextObject("Greater Ghost Amber of the Hunter"),new TextObject("+35% ranged resistance,+25% ranged damage"), "powerstone_beast_range_res_hunt", 
+                new PowerStone("beast_res_range_25", new TextObject("Greater Ghost Amber of the Hunter"),new TextObject("+35% ranged resistance,+25% ranged damage"), "powerstone_beast_range_res_hunt",
                     25, 20,
                     "LoreOfBeasts", PowerSize.Greater),
 
@@ -243,7 +243,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     "LoreOfMetal", PowerSize.Greater),
                 new PowerStone("metal_magic_dmg_20", new TextObject("Greater Goldstone of Sharpening"),new TextObject("+50% Armor penetration"), "powerstone_metal_pen", 20, 4,
                     "LoreOfMetal", PowerSize.Greater),
-                
+
                 new PowerStone("death_trait_undead_bane", new TextObject("Greater Banishing Endstone"),new TextObject("50% more damage against undead and vampires"), "powerstone_death_undead_bane",
                 20, 4,
                 "LoreOfDeath", PowerSize.Greater),
@@ -280,7 +280,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
                 new PowerStone("metal_magic_dmg_phys", new TextObject("Mighty Goldstone"),new TextObject("40% Armor penetration, 20% magical, 20% fire"),  "powerstone_metal_trait2", 50, 50,
                     "LoreOfMetal", PowerSize.Mighty),
-                
+
                 new PowerStone("death_magic_surv_100", new TextObject("Mighty Endstone"),new TextObject("100% survival Chance for Unit"),  "powerstone_metal_trait2", 50, 50,
                 "LoreOfDeath", PowerSize.Mighty)
             };
@@ -315,11 +315,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var availablePrestige = Hero.MainHero.GetCultureSpecificCustomResourceValue();
 
             var MaximumWinds = Hero.MainHero.GetExtendedInfo().MaxWindsOfMagic;
-            
+
             var fittingStones = stones.Where(
                 x =>
-                Hero.MainHero.HasKnownLore(x.LoreId) 
-                && x.Price <= availablePrestige 
+                Hero.MainHero.HasKnownLore(x.LoreId)
+                && x.Price <= availablePrestige
                 && x.Upkeep < MaximumWinds).ToList();
 
             if (Hero.MainHero.HasCareerChoice("CollegeOrdersPassive4"))
@@ -327,19 +327,19 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 var lores = PowerstoneHelper.GetPartyLores(Hero.MainHero.PartyBelongedTo.GetMemberHeroes());
                 foreach (var lore in lores)
                 {
-                    fittingStones.AddRange(stones.Where(x=> x.LoreId == lore.ID && x.Price <= availablePrestige));
+                    fittingStones.AddRange(stones.Where(x => x.LoreId == lore.ID && x.Price <= availablePrestige));
                 }
 
                 fittingStones = fittingStones.Distinct().ToList();
             }
-            
+
             var displayedStones = fittingStones.Where(x => x.StoneLevel == PowerSize.Lesser).ToList();
-            
-            
-            
+
+
+
             if (Hero.MainHero.HasUnlockedCareerChoiceTier(2))
-                displayedStones.AddRange(fittingStones.Where(x => x.StoneLevel == PowerSize.Greater).ToList()); 
-            
+                displayedStones.AddRange(fittingStones.Where(x => x.StoneLevel == PowerSize.Greater).ToList());
+
             if (Hero.MainHero.HasUnlockedCareerChoiceTier(3))
                 displayedStones.AddRange(fittingStones.Where(x => x.StoneLevel == PowerSize.Mighty).ToList());
 
@@ -347,10 +347,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (!Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
             {
-                foreach (var alreadyTakenStone in 
-                         getAllStones.Select(stone => 
+                foreach (var alreadyTakenStone in
+                         getAllStones.Select(stone =>
                              displayedStones.FirstOrDefault(X => X.Id == stone.Id)).
-                             Where(alreadyTakenStone => alreadyTakenStone!=null))
+                             Where(alreadyTakenStone => alreadyTakenStone != null))
                 {
                     displayedStones.Remove(alreadyTakenStone);
                 }
@@ -362,10 +362,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             {
                 displayedStones.Remove(currenstone);
             }
-            
+
             foreach (var stone in displayedStones)
             {
-                
+
                 var upkeep = stone.Upkeep;
                 var price = stone.Price;
                 var emptyspace = "\n";
@@ -375,14 +375,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 if (!enabled) hintText = "You don't have enough Winds";
                 var text =
                     $"{{{icon}}}{stone.StoneName}{emptyspace}{price}{{PRESTIGE_ICON}} Reserved Winds: {upkeep}{{WINDS_ICON}}";
-                
-                list.Add(new InquiryElement(stone, new TextObject(text).ToString(), null,enabled,hintText));
+
+                list.Add(new InquiryElement(stone, new TextObject(text).ToString(), null, enabled, hintText));
             }
 
 
             if (currenstone != null)
             {
-                
+
                 list.Add(new InquiryElement("remove", $"Remove {currenstone.StoneName}", null));
             }
 
@@ -395,9 +395,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         }
 
 
-        
 
-        private string GetStoneIcon(string stoneLoreId, bool asText=true)
+
+        private string GetStoneIcon(string stoneLoreId, bool asText = true)
         {
             if (!asText)
             {
@@ -421,7 +421,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 case "LoreOfLife": return "LIFE_ICON";
                 case "LoreOfMetal": return "METAL_ICON";
                 case "LoreOfDeath": return "DEATH_ICON";
-                default: return "{}"; 
+                default: return "{}";
             }
         }
 
@@ -519,8 +519,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 if (hero == Hero.MainHero) continue;
 
                 if (hero.Culture.StringId != "empire") continue;
-                    
-                if(!hero.IsSpellCaster())continue;
+
+                if (!hero.IsSpellCaster()) continue;
 
                 var lores = LoreObject.GetAll();
 
@@ -561,16 +561,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     var choiceEnchantment = TORCareerChoices.GetChoice("ImperialEnchantmentPassive4");
                     factor -= choiceEnchantment.GetPassiveValue();
                 }
-                
+
                 if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
                 {
-                    
+
                     var lores = PowerstoneHelper.GetPartyLores(Hero.MainHero.PartyBelongedTo.GetMemberHeroes());
                     factor -= lores.Count * 0.05f;
                 }
 
                 upkeep = factor * upkeep;
-                
+
                 return (int)upkeep;
             }
         }

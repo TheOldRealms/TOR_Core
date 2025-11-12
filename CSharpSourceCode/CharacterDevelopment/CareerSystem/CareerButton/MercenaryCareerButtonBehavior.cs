@@ -17,24 +17,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
     {
         private CharacterObject _currentTemplate;
         private int _price = 50000;
-        
+
         public MercenaryCareerButtonBehavior(CareerObject career) : base(career)
         {
-            if(career != TORCareers.Mercenary) return;
-            
+            if (career != TORCareers.Mercenary) return;
+
         }
-        
+
         public override string CareerButtonIcon => "CareerSystem\\ghal_maraz";
-        
+
         public bool PlayerHasMoney()
         {
             return Hero.MainHero.Gold > _price;
         }
-        
-        private void  InitiateDialog(string troopID)
+
+        private void InitiateDialog(string troopID)
         {
             isDialogStart = true;
-            
+
             var characterTemplate = MBObjectManager.Instance.GetObject<CharacterObject>(troopID);
             Game.Current.GameStateManager.PopState(0);
 
@@ -45,24 +45,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             }
 
             _price = 1000 * characterTemplate.Level + 200 * characterTemplate.TroopWage;
-            GameTexts.SetVariable("MERCCOMPANIONPRICE",_price.ToString());
+            GameTexts.SetVariable("MERCCOMPANIONPRICE", _price.ToString());
             _currentTemplate = characterTemplate;
             ConversationCharacterData characterData = new ConversationCharacterData(_currentTemplate, null);
-            ConversationCharacterData playerData = new ConversationCharacterData(Hero.MainHero.CharacterObject,Hero.MainHero.PartyBelongedTo.Party);
+            ConversationCharacterData playerData = new ConversationCharacterData(Hero.MainHero.CharacterObject, Hero.MainHero.PartyBelongedTo.Party);
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
-            Campaign.Current.ConversationManager.OpenMapConversation(playerData,characterData);
-           
+            Campaign.Current.ConversationManager.OpenMapConversation(playerData, characterData);
+
         }
-        
+
         public void MakeMercenaryCompanion()
-        { 
+        {
             var hero = HeroCreator.CreateSpecialHero(_currentTemplate, Campaign.Current.MainParty.CurrentSettlement, null, null, 40);
             hero.SetNewOccupation(Occupation.Special); //see what happens if a special hero joins a clan
             //do companions created through this show up in the encyclopedia?
             GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, null, _price);
             AddCompanionAction.Apply(MobileParty.MainParty.ActualClan, hero);
             AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
-            MobileParty.MainParty.MemberRoster.AddToCountsAtIndex(MobileParty.MainParty.MemberRoster.FindIndexOfTroop(_currentTemplate),-1);
+            MobileParty.MainParty.MemberRoster.AddToCountsAtIndex(MobileParty.MainParty.MemberRoster.FindIndexOfTroop(_currentTemplate), -1);
         }
 
         public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClick = false)
@@ -70,22 +70,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             InitiateDialog(characterObject.StringId);
         }
 
-        public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner=false)
+        public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
         {
             if (PartyScreenHelper.GetActivePartyState().PartyScreenMode != PartyScreenMode.Normal) return false;
-            
+
             //Elite + Ranged allows empire mercs to recruit outriders as companions but not the rest of the tree
-            return Hero.MainHero.HasCareerChoice("PaymasterPassive4") && 
-                !characterObject.IsHero && 
+            return Hero.MainHero.HasCareerChoice("PaymasterPassive4") &&
+                !characterObject.IsHero &&
                 !isPrisoner &&
-                (!characterObject.IsEliteTroop() || 
+                (!characterObject.IsEliteTroop() ||
                     (characterObject.IsEliteTroop() && characterObject.IsRanged));
         }
 
-        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner=false)
-        { 
+        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
+        {
             displayText = new TextObject("{=tor_career_button_mercenary_allowDefault_str}Makes the selected troop a companion.");
-            if (Campaign.Current.Models.ClanTierModel.GetCompanionLimit(Hero.MainHero.Clan) <= Clan.PlayerClan.Companions.Count()) 
+            if (Campaign.Current.Models.ClanTierModel.GetCompanionLimit(Hero.MainHero.Clan) <= Clan.PlayerClan.Companions.Count())
             {
                 displayText = new TextObject("{=tor_career_button_mercenary_companionLimit_str}Clan companion limit has been reached.");
                 return false;
@@ -99,7 +99,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
                 return false;
             }
 
-            if (characterObject.IsKnightUnit()&& !characterObject.IsRanged)
+            if (characterObject.IsKnightUnit() && !characterObject.IsRanged)
             {
                 displayText = new TextObject("{=tor_career_button_mercenary_noKnightly_str}Only works for non-knightly units.");
                 return false;
@@ -110,15 +110,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
                 displayText = new TextObject("{=tor_career_button_mercenary_noTreeUndead_str}Only works for humans or elves");
                 return false;
             }
-            
-            if (characterObject.Level<26)
+
+            if (characterObject.Level < 26)
             {
                 displayText = new TextObject("{=tor_career_button_mercenary_notTier5_str}Troop needs to reach tier 5 or higher.");
                 return false;
             }
-            
+
             return true;
         }
-        
+
     }
 }

@@ -24,16 +24,16 @@ namespace TOR_Core.Models
             return (int)result.ResultNumber;
         }
 
-        public int CalculateSkillXpForPraying(Hero hero, int blessingDuration=1)
+        public int CalculateSkillXpForPraying(Hero hero, int blessingDuration = 1)
         {
             ExplainedNumber result = new ExplainedNumber(TORConstants.DEFAULT_PRAYING_FAITH_XP);
 
-            if (hero.PartyBelongedTo!=null && hero.PartyBelongedTo.HasAnyActiveBlessing())
+            if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.HasAnyActiveBlessing())
             {//when refreshing an active blessing, xp is only granted for the extension
                 var t = hero.PartyBelongedTo.GetPartyInfo();
                 blessingDuration = blessingDuration - t.CurrentBlessingRemainingDuration;
             }
-            result.AddFactor(blessingDuration-1);
+            result.AddFactor(blessingDuration - 1);
             return (int)result.ResultNumber;
         }
 
@@ -67,27 +67,27 @@ namespace TOR_Core.Models
             var blessingDuration = durationValue;
             if (info != null) blessingDuration -= info.CurrentBlessingRemainingDuration;
             if (blessingDuration <= 0) return; //you'd need to lose faith skill level between blessings for this to be true
-     
-            var timeValue = (float)blessingDuration/(5*CampaignTime.HoursInDay);
-            
+
+            var timeValue = (float)blessingDuration / (5 * CampaignTime.HoursInDay);
+
             switch (level)
             {
                 case DevotionLevel.None:
-                    amount=0;
+                    amount = 0;
                     break;
                 case DevotionLevel.Follower:
-                    amount=1;
+                    amount = 1;
                     break;
                 case DevotionLevel.Devoted:
-                    amount=2;
+                    amount = 2;
                     break;
                 case DevotionLevel.Fanatic:
-                    amount=3;
+                    amount = 3;
                     break;
             }
-            
+
             var blessedWater = TorEnchantingIngredients.BlessedWater;
-            var toReceive = (int)(amount*timeValue);
+            var toReceive = (int)(amount * timeValue);
             if (toReceive > 0) PartyBase.MainParty.MobileParty.ItemRoster.AddToCounts(blessedWater, toReceive);
         }
 
@@ -95,7 +95,7 @@ namespace TOR_Core.Models
         {
             if (religion == null) return;
             if (party == null || !party.IsActive || !party.IsLordParty || party.LeaderHero == null) return;
-            
+
             var cultID = religion.StringId;
             var leaderHero = party.LeaderHero;
             var duration = CalculateBlessingDurationForParty(party);
@@ -141,8 +141,8 @@ namespace TOR_Core.Models
 
             //because ai parties entering shrines will automatically gain a blessing if possible, a player can run an army through a shrine like a religious car wash
             leaderHero.AddReligiousInfluence(religion, duration);
-            leaderHero.AddSkillXp(TORSkills.Faith, CalculateSkillXpForPraying(leaderHero, duration));            
-            
+            leaderHero.AddSkillXp(TORSkills.Faith, CalculateSkillXpForPraying(leaderHero, duration));
+
             ExtendedInfoManager.Instance.AddBlessingToParty(party, cultID, duration);
         }
     }

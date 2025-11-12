@@ -21,7 +21,7 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class MissionPatches
     {
-        
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(CampaignAgentComponent), "OwnerParty", MethodType.Getter)]
         public static bool PatchOwnerPartyForSummons(Agent ___Agent, ref PartyBase __result)
@@ -45,7 +45,7 @@ namespace TOR_Core.HarmonyPatches
             }
             return true;
         }
-        
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Mission), "MeleeHitCallback")]
         public static void MeleeHitCallbackPostfix(
@@ -66,7 +66,7 @@ namespace TOR_Core.HarmonyPatches
             int inflictedDamage = collisionData.InflictedDamage + collisionData.AbsorbedByArmor;
             if (inflictedDamage < 1)
             {
-                return; 
+                return;
             }
 
             var model = MissionGameModels.Current.AgentApplyDamageModel as TORAgentApplyDamageModel;
@@ -78,22 +78,22 @@ namespace TOR_Core.HarmonyPatches
             if (!model.ShouldCutThrough(collisionData, attacker, victim))
                 return;
 
-            float num2 = (float)collisionData.InflictedDamage / (float)inflictedDamage; 
+            float num2 = (float)collisionData.InflictedDamage / (float)inflictedDamage;
             inOutMomentumRemaining = num2 * 0.25f;
         }
 
-        
-        
+
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(HideoutCinematicController), "StartCinematic")]
         public static bool PostOnInitialFadeOutOver()
         {
             var abilityManagerMissionLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
             abilityManagerMissionLogic?.InitHideOutBossFight();
-            
+
             return true;
         }
-        
+
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MissionAgentSpawnLogic), "IsSideDepleted")]
@@ -128,7 +128,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(SandBoxMissions), "OpenSiegeMissionWithDeployment")]
         public static bool CreateExceptionForAsrai(ref Mission __result, string scene, float[] wallHitPointPercentages, bool hasAnySiegeTower, List<MissionSiegeWeapon> siegeWeaponsOfAttackers, List<MissionSiegeWeapon> siegeWeaponsOfDefenders, bool isPlayerAttacker, int sceneUpgradeLevel = 0, bool isSallyOut = false, bool isReliefForceAttack = false)
         {
-            if(PlayerSiege.BesiegedSettlement != null && PlayerSiege.BesiegedSettlement.OriginalCulture().StringId == TORConstants.Cultures.ASRAI)
+            if (PlayerSiege.BesiegedSettlement != null && PlayerSiege.BesiegedSettlement.OriginalCulture().StringId == TORConstants.Cultures.ASRAI)
             {
                 //__result = SandBoxMissions.OpenBattleMission(GetBattleSceneForAsraiSiege(), true);
                 __result = SandBoxMissions.OpenBattleMission("TOR_wood_elf_city_001", true);
@@ -155,8 +155,8 @@ namespace TOR_Core.HarmonyPatches
         private static string GetBattleSceneForAsraiSiege()
         {
             MBList<SingleplayerBattleSceneData> sceneList = (from scene in GameSceneDataManager.Instance.SingleplayerBattleScenes
-                                                          where scene.MapIndices.Any(i => i >= 90 && i <= 93)
-                                                          select scene).ToMBList();
+                                                             where scene.MapIndices.Any(i => i >= 90 && i <= 93)
+                                                             select scene).ToMBList();
             string sceneID;
             if (sceneList.IsEmpty())
             {

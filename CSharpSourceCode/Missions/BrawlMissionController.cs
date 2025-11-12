@@ -25,7 +25,7 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
     private Dictionary<Hero, int> _scores;
     private List<Hero> _losses;
 
-    public BrawlMissionController(TroopRoster playerSideTroops,  TroopRoster enemyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)
+    public BrawlMissionController(TroopRoster playerSideTroops, TroopRoster enemyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)
     {
         base.OnBehaviorInitialize();
         _enemyPartySize = enemyPartySize;
@@ -41,7 +41,7 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
         Mission.DoesMissionRequireCivilianEquipment = false;
         _missionAgentSpawnLogic = Mission.GetMissionBehavior<TORMissionAgentHandler>();
         _missionAgentSpawnLogic.SpawnPlayer(false, true, false, true, false);
-        _missionAgentSpawnLogic.SpawnEnemies(_enemyRoster,_enemyPartySize);
+        _missionAgentSpawnLogic.SpawnEnemies(_enemyRoster, _enemyPartySize);
         foreach (var agent in Mission.Agents)
         {
             if (agent != Agent.Main && agent.IsHuman)
@@ -63,7 +63,7 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
             Mission.Current.EndMission();
         }
         return null;
-       
+
     }
 
     public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
@@ -79,15 +79,15 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
         }
         if (affectedAgent.Team.Side == BattleSideEnum.Defender && affectorAgent.IsHero)
         {
-            var hero =  affectorAgent.GetHero();
+            var hero = affectorAgent.GetHero();
             if (hero == null)
             {
                 return;
             }
-            
-            if(!_scores.ContainsKey(hero))
+
+            if (!_scores.ContainsKey(hero))
             {
-                _scores.Add(hero,1);
+                _scores.Add(hero, 1);
             }
             else
             {
@@ -106,24 +106,24 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
 
     public override bool MissionEnded(ref MissionResult missionResult)
     {
-        if(Agent.Main == null || !Agent.Main.IsActive())
+        if (Agent.Main == null || !Agent.Main.IsActive())
         {
             missionResult = MissionResult.CreateDefeated(Mission);
-            BrawlMissionResult brawlMissionResult= new BrawlMissionResult(missionResult,_scores, _losses);
+            BrawlMissionResult brawlMissionResult = new BrawlMissionResult(missionResult, _scores, _losses);
             _onMissionEnd?.Invoke(brawlMissionResult);
             return true;
         }
         if (Mission.GetMemberCountOfSide(BattleSideEnum.Attacker) == 0)
         {
             missionResult = (Mission.PlayerTeam.Side == BattleSideEnum.Attacker) ? MissionResult.CreateDefeated(Mission) : MissionResult.CreateSuccessful(Mission, false);
-            BrawlMissionResult brawlMissionResult= new BrawlMissionResult(missionResult,_scores, _losses);
+            BrawlMissionResult brawlMissionResult = new BrawlMissionResult(missionResult, _scores, _losses);
             _onMissionEnd?.Invoke(brawlMissionResult);
             return true;
         }
         if (Mission.GetMemberCountOfSide(BattleSideEnum.Defender) == 0)
         {
             missionResult = (Mission.PlayerTeam.Side == BattleSideEnum.Attacker) ? MissionResult.CreateSuccessful(Mission, false) : MissionResult.CreateDefeated(Mission);
-            BrawlMissionResult brawlMissionResult= new BrawlMissionResult(missionResult,_scores, _losses);
+            BrawlMissionResult brawlMissionResult = new BrawlMissionResult(missionResult, _scores, _losses);
             _onMissionEnd?.Invoke(brawlMissionResult);
             return true;
         }

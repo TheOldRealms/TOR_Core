@@ -11,7 +11,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.Components
     {
         private static readonly Random Rand = new Random();
         private static readonly float EvalInterval = 3;
-        private float _dtSinceLastOccasional = (float) Rand.NextDouble() * EvalInterval; //Randomly distribute ticks
+        private float _dtSinceLastOccasional = (float)Rand.NextDouble() * EvalInterval; //Randomly distribute ticks
 
         public AbstractAgentCastingBehavior CurrentCastingBehavior;
 

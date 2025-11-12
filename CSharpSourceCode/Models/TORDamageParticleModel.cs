@@ -9,7 +9,7 @@ namespace TOR_Core.Models
     {
         public override void GetMeleeAttackBloodParticles(Agent attacker, Agent victim, in Blow blow, in AttackCollisionData collisionData, out HitParticleResultData particleResultData)
         {
-            if (victim.IsUndead()||victim.ShouldNotBleed())
+            if (victim.IsUndead() || victim.ShouldNotBleed())
             {
                 particleResultData.ContinueHitParticleIndex = -1;
                 particleResultData.StartHitParticleIndex = -1;
@@ -53,7 +53,7 @@ namespace TOR_Core.Models
         private void HideMissleIfExists(int index)
         {
             var missle = Mission.Current.MissilesList.FirstOrDefault(x => x.Index == index);
-            if(missle!=null)
+            if (missle != null)
                 missle.Entity.SetAlpha(0);
         }
     }

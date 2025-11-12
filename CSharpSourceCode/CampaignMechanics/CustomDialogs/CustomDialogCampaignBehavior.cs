@@ -93,7 +93,7 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
             var party = PlayerEncounter.EncounteredMobileParty;
             if (party != null && party.ActualClan != null)
             {
-                if(party.ActualClan.StringId == clanId)
+                if (party.ActualClan.StringId == clanId)
                 {
                     if (checkForConversationCharacter) return party.MemberRoster.Contains(CharacterObject.OneToOneConversationCharacter);
                     else return true;

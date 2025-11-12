@@ -14,14 +14,14 @@ namespace TOR_Core.CharacterDevelopment
     {
         public static float WitchHunterCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            
+
             if (chargeType != ChargeType.DamageDone) return 0;
             if (!affectingAgent.BelongsToMainParty()) return 0;
 
-            if (affectingAgent.IsMainAgent || ( affectingAgent.IsHero && Hero.MainHero.HasCareerChoice("GuiltyByAssociationKeystone") ))
+            if (affectingAgent.IsMainAgent || (affectingAgent.IsHero && Hero.MainHero.HasCareerChoice("GuiltyByAssociationKeystone")))
             {
                 ExplainedNumber explainedNumber = new ExplainedNumber(0);
-            
+
                 if (mask == AttackTypeMask.Ranged || mask == AttackTypeMask.Melee && Hero.MainHero.HasCareerChoice("HuntTheWickedKeystone"))
                 {
                     if (mask == AttackTypeMask.Ranged)
@@ -38,9 +38,9 @@ namespace TOR_Core.CharacterDevelopment
                 }
 
                 return explainedNumber.ResultNumber;
-                
+
             }
-            
+
             return 0;
         }
 
@@ -54,7 +54,7 @@ namespace TOR_Core.CharacterDevelopment
                 return 0;
             }
 
-            if (( chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed )) return 0;
+            if ((chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed)) return 0;
 
             ExplainedNumber explainedNumber = new ExplainedNumber();
 
@@ -76,7 +76,7 @@ namespace TOR_Core.CharacterDevelopment
             {
                 return 0;
             }
-            
+
             ExplainedNumber explainedNumber = new ExplainedNumber();
             explainedNumber.Add(chargeValue);
 
@@ -84,22 +84,22 @@ namespace TOR_Core.CharacterDevelopment
             {
                 explainedNumber.AddFactor(1);
             }
-            
+
             return explainedNumber.ResultNumber;
         }
-        
+
         public static float NecrarchCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
             ExplainedNumber explainedNumber = new ExplainedNumber();
-            
+
             if (!affectingAgent.IsHero && affectingAgent.IsUndead() && Hero.MainHero.HasCareerChoice("DiscipleOfAccursedKeystone"))
             {
                 explainedNumber.Add(chargeValue);
                 explainedNumber.AddFactor(-0.75f);
-                return Mathf.Max(explainedNumber.ResultNumber,1);
+                return Mathf.Max(explainedNumber.ResultNumber, 1);
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("DarkVisionKeystone"))
             {
                 explainedNumber.AddFactor(0.25f);
@@ -135,17 +135,17 @@ namespace TOR_Core.CharacterDevelopment
                 {
                     explainedNumber.AddFactor(-0.10f);
                 }
-                
+
             }
 
             if (!affectingAgent.IsHero || mask != AttackTypeMask.Spell) return explainedNumber.ResultNumber;
             explainedNumber.Add(chargeValue);
-            if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone")) 
+            if (!affectingAgent.IsMainAgent && !Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone"))
                 return 0;
-            
+
             return explainedNumber.ResultNumber;
         }
-        
+
         public static float GrailDamselCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
@@ -233,54 +233,54 @@ namespace TOR_Core.CharacterDevelopment
             if (chargeType != ChargeType.NumberOfKills) return 0;
 
             if (!affectingAgent.IsHero) return 0;
-            
+
             var explainedNumber = new ExplainedNumber();   //charge value is always 1, this is added with the calculated value  below
-            
+
             var maxCharge = Hero.MainHero.GetCareer().MaxCharge;
-            
+
             var malus = 0f;
-            
+
             if (Hero.MainHero.HasCareerChoice("NightRiderKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("BladeMasterKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("DoomRiderKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("AvatarOfDeathKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("ControlledHungerKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("DreadKnightKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("PeerlessWarriorKeystone"))
             {
                 malus += 1;
             }
-            
-            malus = Math.Min(5, malus);
-            
-            var change = maxCharge / ( 5 + malus );
 
-           explainedNumber.Add(change);
-            
+            malus = Math.Min(5, malus);
+
+            var change = maxCharge / (5 + malus);
+
+            explainedNumber.Add(change);
+
             return explainedNumber.ResultNumber;
         }
 
@@ -290,7 +290,7 @@ namespace TOR_Core.CharacterDevelopment
             if (chargeType == ChargeType.NumberOfKills) return 0;
             if (affectingAgent.Team == affectedAgent.Team) return 0;
             var explainedNumber = new ExplainedNumber();
-            
+
             if ((chargeType != ChargeType.DamageTaken && affectedAgent.IsMainAgent) || (affectingAgent.IsMainAgent &&
                     Hero.MainHero.HasCareerChoice("BookOfSigmarKeyStone")))
             {
@@ -326,12 +326,12 @@ namespace TOR_Core.CharacterDevelopment
             if (!affectingAgent.IsMainAgent && affectingAgent.BelongsToMainParty() &&
                 !Hero.MainHero.HasCareerChoice("ForestStalkerKeystone")) return 0;
 
-            
+
             chargeValue = Math.Min(150, chargeValue);
-            
-            
+
+
             var explainedNumber = new ExplainedNumber(chargeValue);
-            
+
             if (affectingAgent != Agent.Main)
             {
                 explainedNumber.AddFactor(-0.95f);
@@ -341,61 +341,61 @@ namespace TOR_Core.CharacterDevelopment
             {
                 explainedNumber.AddFactor(0.25f);
             }
-            
-            
-            if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot&& Hero.MainHero.HasCareerChoice("HawkeyedPassive2"))
+
+
+            if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot && Hero.MainHero.HasCareerChoice("HawkeyedPassive2"))
             {
-               explainedNumber.AddFactor(1f);
+                explainedNumber.AddFactor(1f);
             }
-            
-            
+
+
             return explainedNumber.ResultNumber;
         }
-        
-        
+
+
         public static float SpellsingerCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
             if (!affectingAgent.BelongsToMainParty()) return 0;
             if (mask == AttackTypeMask.Ranged) return 0;
             if (affectingAgent.IsHero && mask == AttackTypeMask.Melee) return 0;
-            
+
             var isTreeSpirit = (affectingAgent.Character as CharacterObject).IsTreeSpirit();
 
-            
-            
+
+
             if (!affectingAgent.IsHero && !isTreeSpirit) return 0;
-            
+
             if (mask == AttackTypeMask.Melee && isTreeSpirit)
             {
-                if(!Hero.MainHero.HasCareerChoice("HeartOfTheTreeKeystone"))
+                if (!Hero.MainHero.HasCareerChoice("HeartOfTheTreeKeystone"))
                 {
                     return 0;
                 }
             }
-            
+
             var explainedNumber = new ExplainedNumber(chargeValue);
 
             if (Hero.MainHero.HasCareerChoice("TreeSingingKeystone"))
             {
                 explainedNumber.AddFactor(0.5f);
             }
-            
+
             return explainedNumber.ResultNumber;
         }
-        
+
         public static float GreyLordCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed) return 0;
             if (!affectingAgent.BelongsToMainParty()) return 0;
-            
-            
+
+
             var explainedNumber = new ExplainedNumber(chargeValue);
-            
-            if(chargeType == ChargeType.Healed)
+
+            if (chargeType == ChargeType.Healed)
                 explainedNumber.AddFactor(-0.25f);
-            
-            if((mask == AttackTypeMask.Spell))
+
+            if ((mask == AttackTypeMask.Spell))
             {
                 if (affectingAgent.IsMainAgent)
                 {
@@ -405,7 +405,7 @@ namespace TOR_Core.CharacterDevelopment
                     }
                 }
             }
-            
+
             if (affectingAgent.IsMainAgent)
             {
                 switch (mask)
@@ -449,7 +449,7 @@ namespace TOR_Core.CharacterDevelopment
 
             return 0;
         }
-        
+
         public static float KnightOldWorldChargeSupplier(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
             if (chargeType == ChargeType.DamageTaken) return 0;
@@ -461,9 +461,9 @@ namespace TOR_Core.CharacterDevelopment
             if (mask == AttackTypeMask.Spell) return 0;
 
             if (!affectingAgent.IsMainAgent && (!affectingAgent.BelongsToMainParty() || !Hero.MainHero.HasCareerChoice("SquiresKeystone"))) return 0;
-            if(Hero.MainHero.HasCareerChoice("WrathAgainstChaosKeystone"))
+            if (Hero.MainHero.HasCareerChoice("WrathAgainstChaosKeystone"))
             {
-                chargeValue = (int) (chargeValue * 0.2f);
+                chargeValue = (int)(chargeValue * 0.2f);
             }
 
             return chargeValue;
@@ -472,14 +472,14 @@ namespace TOR_Core.CharacterDevelopment
         public static float IronbreakerChargeSupplier(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue,
             AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            if(affectedAgent == Agent.Main && affectedAgent.GetHero() == Hero.MainHero)
+            if (affectedAgent == Agent.Main && affectedAgent.GetHero() == Hero.MainHero)
             {
                 if (chargeType == ChargeType.DamageTaken) return chargeValue;
                 if (chargeType == ChargeType.DamageDone && Hero.MainHero.HasCareerChoice("IronPriceKeystone")) return chargeValue;
             }
             return 0;
         }
-        
+
         public static float SlayerChargeSupplier(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue,
             AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
@@ -487,37 +487,37 @@ namespace TOR_Core.CharacterDevelopment
             if (!affectingAgent.IsMainAgent) return 0;
 
             var malus = 0;
-            
+
             if (Hero.MainHero.HasCareerChoice("AxeOfGrimnirKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("ShameOfTheAncestorsKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("DeadlyDeterminationKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("UrkSlayerKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("GiantSlayerKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("BaneOfChaosKeystone"))
             {
                 malus += 1;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("TheLastJourneyKeystone"))
             {
                 malus += 1;
@@ -525,11 +525,11 @@ namespace TOR_Core.CharacterDevelopment
 
             if (malus > 0)
             {
-                chargeValue = (int)(chargeValue- (chargeValue * (0.1f * malus)));
+                chargeValue = (int)(chargeValue - (chargeValue * (0.1f * malus)));
             }
 
-           
-            
+
+
             return chargeType switch
             {
                 ChargeType.NumberOfKills => 100,
@@ -537,7 +537,7 @@ namespace TOR_Core.CharacterDevelopment
                 _ => chargeValue
             };
         }
-        
+
         public static float RunelordChargeSupplier(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue,
             AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
@@ -545,7 +545,7 @@ namespace TOR_Core.CharacterDevelopment
             {
                 if (affectingAgent.WieldedWeapon.Item.HasAnyTrait(affectingAgent))
                 {
-                    chargeValue = (int) (chargeValue * 0.1f);
+                    chargeValue = (int)(chargeValue * 0.1f);
                 }
             }
             return chargeValue;

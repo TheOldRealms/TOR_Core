@@ -98,7 +98,7 @@ namespace TOR_Core.Audio
                     outputSamples = Math.Max(samplesRead, outputSamples);
                     if (samplesRead < count)
                     {
-                        if(!source.IsLooping) sources.RemoveAt(index);
+                        if (!source.IsLooping) sources.RemoveAt(index);
                     }
                     index--;
                 }

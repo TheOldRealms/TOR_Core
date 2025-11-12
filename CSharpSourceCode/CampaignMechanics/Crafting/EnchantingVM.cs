@@ -93,7 +93,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
         private int CalculateMaxTraits()
         {
             var traitAmount = 1;
-            var model = (TOREnchantmentCraftingModel) Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
+            var model = (TOREnchantmentCraftingModel)Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
             if (model != null)
             {
                 traitAmount = model.MaximumAmountOfEnchantments(PartyBase.MainParty.MobileParty.GetMemberHeroes());
@@ -106,7 +106,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
         {
             var cost = 0;
             cost = itemTrait.IngredientAmount;
-            var model = (TOREnchantmentCraftingModel) Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
+            var model = (TOREnchantmentCraftingModel)Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
             if (model != null)
             {
                 cost = model.GetEffectiveIngredientAmount(PartyBase.MainParty.MobileParty.GetMemberHeroes(), itemTrait,
@@ -134,22 +134,22 @@ namespace TOR_Core.CampaignMechanics.Crafting
                         {
                             var he = hero.HasKnownEnchantmentBlueprint(x.ItemTraitStringId);
                             var ve = ItemTrait.IsValidFor(x, item.Item.Item.ItemType);
-                        } 
-                       
+                        }
+
                     }
-                    
+
                 }
-                
-                foreach (var trait in ItemTrait.All.Where(x => x.IsCraftable && 
-                                                               hero.HasKnownEnchantmentBlueprint(x.ItemTraitStringId) && 
+
+                foreach (var trait in ItemTrait.All.Where(x => x.IsCraftable &&
+                                                               hero.HasKnownEnchantmentBlueprint(x.ItemTraitStringId) &&
                                                                ItemTrait.IsValidFor(x, item.Item.Item.ItemType))
                              .OrderBy(y => y.ItemTraitName))
                 {
                     Traits.Add(new EnchantableTraitVM(trait, OnTraitSelected));
                 }
             }
-            
-            foreach(var ingredient in Ingredients)
+
+            foreach (var ingredient in Ingredients)
             {
                 ingredient.ResetPendingAmount();
             }
@@ -160,7 +160,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         private void ExecuteEnchant()
         {
-            if(Traits.Count <= 0)
+            if (Traits.Count <= 0)
             {
                 InformationManager.ShowInquiry(new InquiryData("Enchanting", "You don't know any enchantment blueprints.", true, false, "OK", null, null, null), true);
                 return;
@@ -170,12 +170,12 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 InformationManager.ShowInquiry(new InquiryData("Enchanting", "No traits are selected.", true, false, "OK", null, null, null), true);
                 return;
             }
-            else if(Ingredients.Any(x=>Math.Abs(x.PendingAmount) > x.CurrentAmount))
+            else if (Ingredients.Any(x => Math.Abs(x.PendingAmount) > x.CurrentAmount))
             {
                 InformationManager.ShowInquiry(new InquiryData("Enchanting", "Missing ingredients.", true, false, "OK", null, null, null), true);
                 return;
             }
-            else 
+            else
             {
                 var item = _selectedItem.Item.Item;
                 var modifier = _selectedItem.Item.ItemModifier;
@@ -186,7 +186,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
         private void CreateNewItem(string newItemName, ItemObject item, ItemModifier modifier)
         {
             List<string> traits = _selectedTraits.Select(x => x.ItemTrait.ItemTraitStringId).ToList();
-            var newItem = EnchantmentHelper.CreateEnchantedItem(item, traits, newItemName,true, modifier);
+            var newItem = EnchantmentHelper.CreateEnchantedItem(item, traits, newItemName, true, modifier);
 
             if (newItem == null)
             {
@@ -195,8 +195,8 @@ namespace TOR_Core.CampaignMechanics.Crafting
             }
             var oldItem = new EquipmentElement(item, modifier);
             var equipmentItem = new EquipmentElement(newItem, modifier);
-            MobileParty.MainParty.ItemRoster.AddToCounts(equipmentItem, 1); 
-            
+            MobileParty.MainParty.ItemRoster.AddToCounts(equipmentItem, 1);
+
             InformationManager.ShowInquiry(new InquiryData("Enchanting", "Enchanting successful. Item was added to inventory.", true, false, "OK", null, null, null), true);
             MobileParty.MainParty.ItemRoster.AddToCounts(oldItem, -1);
 

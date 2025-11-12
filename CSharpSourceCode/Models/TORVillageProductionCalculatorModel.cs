@@ -12,7 +12,7 @@ public class TORVillageProductionCalculatorModel : DefaultVillageProductionCalcu
 {
     public override ExplainedNumber CalculateDailyProductionAmount(Village village, ItemObject item)
     {
-        var value =  base.CalculateDailyProductionAmount(village, item);
+        var value = base.CalculateDailyProductionAmount(village, item);
 
         if (village.Settlement.Culture.StringId == TORConstants.Cultures.DAWI)
         {
@@ -30,8 +30,8 @@ public class TORVillageProductionCalculatorModel : DefaultVillageProductionCalcu
 
                 value.AddFactor(bonus, new TextObject("Dwarf Mining Bonus"));
             }
- 
-           
+
+
         }
 
 

@@ -46,6 +46,7 @@ namespace TOR_Core.HarmonyPatches
             }
             else
             {
+                var actionSetMethod = typeof(AgentVisualsData).GetMethod(nameof(AgentVisualsData.ActionSet));
                 var insertedInstructions = new List<CodeInstruction>
                 {
                     // Load "this" (The BodyGeneratorView) unto the stack
@@ -53,7 +54,7 @@ namespace TOR_Core.HarmonyPatches
                     // Pass it as an argument to our static method that gets the correct action set and then puts it on the stack
                     new(OpCodes.Call, AccessTools.Method(typeof(RaceFixPatches), nameof(RaceFixPatches.GetActionSet))),
                     // equivalent to AgentVisualsData.ActionSet(RefreshCharacterEntityAuxPatch.GetActionSet(this));
-                    new(OpCodes.Callvirt, AccessTools.Method(typeof(AgentVisualsData), nameof(AgentVisualsData.ActionSet)))
+                    new(OpCodes.Callvirt, actionSetMethod)
                 };
                 newInstructions.InsertRange(insertionIndex, insertedInstructions);
             }

@@ -19,7 +19,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if(triggeredAgents.Count() > 0)
+            if (triggeredAgents.Count() > 0)
             {
                 var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_swiftshiver_shards");
                 if (trait == null) return;
@@ -27,7 +27,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 foreach (Agent agent in triggeredAgents)
                 {
                     var comp = agent?.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
+                    if (comp != null)
                     {
                         TraitHelper.ApplyEffectToRangedWeapons(comp, trait, agent, duration);
                     }
@@ -35,12 +35,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyHagbaneTrait : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if(triggeredAgents.Count() > 0)
+            if (triggeredAgents.Count() > 0)
             {
                 var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_hagbane");
                 if (trait == null) return;
@@ -48,7 +48,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 foreach (Agent agent in triggeredAgents)
                 {
                     var comp = agent?.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
+                    if (comp != null)
                     {
                         TraitHelper.ApplyEffectToRangedWeapons(comp, trait, agent, duration);
                     }
@@ -56,12 +56,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyStarFireTrait : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if(triggeredAgents.Count() > 0)
+            if (triggeredAgents.Count() > 0)
             {
                 var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_starfire_shards");
                 if (trait == null) return;
@@ -69,7 +69,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 foreach (Agent agent in triggeredAgents)
                 {
                     var comp = agent?.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
+                    if (comp != null)
                     {
                         TraitHelper.ApplyEffectToRangedWeapons(comp, trait, agent, duration);
                     }
@@ -77,12 +77,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyFlamingItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if(triggeredAgents.Count() > 0)
+            if (triggeredAgents.Count() > 0)
             {
                 var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "flaming_weapon");
                 if (trait == null) return;
@@ -90,7 +90,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 foreach (Agent agent in triggeredAgents)
                 {
                     var comp = agent?.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
+                    if (comp != null)
                     {
                         comp.AddTraitToWieldedWeapon(trait, duration);
                     }
@@ -106,49 +106,49 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             var additionalDamage = new DamageProportionTuple();
             additionalDamage.DamageType = DamageType.Physical;
             additionalDamage.Percent = 0.2f;
-            
+
             var ca = triggeredByAgent?.GetComponent<AbilityComponent>().CareerAbility;
 
             var bonusdamage = 0f;
             if (ca != null)
-            { 
+            {
                 bonusdamage = ca.Template.ScaleVariable1;
             }
             additionalDamage.Percent += bonusdamage;
 
-            var additionalLoads = Hero.MainHero.GetAllCareerChoices().WhereQ(x=> x.Contains("Keystone")).Count();
+            var additionalLoads = Hero.MainHero.GetAllCareerChoices().WhereQ(x => x.Contains("Keystone")).Count();
 
             if (Hero.MainHero.HasCareerChoice("SecularOrdersKeystone"))
             {
                 additionalLoads += 2;
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("TemplarOrdersKeystone"))
             {
                 additionalLoads += 2;
             }
-            
+
             var traitList = new List<ItemTrait>();
-            
+
             if (Hero.MainHero.HasCareerChoice("PathOfGloryKeystone"))
             {
                 var holyTrait = CareerHelper.GetTraitForReligion(Hero.MainHero, Hero.MainHero.GetDominantReligion());
-                if(holyTrait != null && holyTrait != ItemTrait.Invalid) traitList.Add(holyTrait);
+                if (holyTrait != null && holyTrait != ItemTrait.Invalid) traitList.Add(holyTrait);
             }
 
             var knightlytrait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_knightlystrike");
             if (knightlytrait != null) traitList.Add(knightlytrait);
 
-            triggeredByAgent.ApplyStatusEffect("knightly_strike",triggeredByAgent,30,false,false,true);
+            triggeredByAgent.ApplyStatusEffect("knightly_strike", triggeredByAgent, 30, false, false, true);
             for (int i = 0; i < additionalLoads; i++)
             {
-                triggeredByAgent.ApplyStatusEffect("knightly_strike",triggeredByAgent,30,false,false,true);
+                triggeredByAgent.ApplyStatusEffect("knightly_strike", triggeredByAgent, 30, false, false, true);
             }
-            
+
             foreach (Agent agent in triggeredAgents)
             {
                 var comp = agent.GetComponent<ItemTraitAgentComponent>();
-                if(comp != null)
+                if (comp != null)
                 {
                     foreach (var trait in traitList)
                     {
@@ -158,12 +158,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyLesserFlamingItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if(triggeredAgents.Count() > 0)
+            if (triggeredAgents.Count() > 0)
             {
                 var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "lesser_flaming_weapon");
                 if (trait == null) return;
@@ -171,7 +171,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 foreach (Agent agent in triggeredAgents)
                 {
                     var comp = agent?.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
+                    if (comp != null)
                     {
                         comp.AddTraitToWieldedWeapon(trait, duration);
                     }
@@ -179,12 +179,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyLesserLightItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if(triggeredAgents.Count() > 0)
+            if (triggeredAgents.Count() > 0)
             {
                 var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "lesser_hysh_weapon");
                 if (trait == null) return;
@@ -192,7 +192,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 foreach (Agent agent in triggeredAgents)
                 {
                     var comp = agent?.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
+                    if (comp != null)
                     {
                         comp.AddTraitToWieldedWeapon(trait, duration);
                     }
@@ -200,12 +200,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyLightItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if(triggeredAgents.Count() > 0)
+            if (triggeredAgents.Count() > 0)
             {
                 var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "hysh_weapon");
                 if (trait == null) return;
@@ -213,7 +213,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 foreach (Agent agent in triggeredAgents)
                 {
                     var comp = agent?.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
+                    if (comp != null)
                     {
                         comp.AddTraitToWieldedWeapon(trait, duration);
                     }
@@ -221,12 +221,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyLesserHeavensItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if(triggeredAgents.Count() > 0)
+            if (triggeredAgents.Count() > 0)
             {
                 var trait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "lesser_azyr_weapon");
                 if (trait == null) return;
@@ -234,7 +234,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 foreach (Agent agent in triggeredAgents)
                 {
                     var comp = agent?.GetComponent<ItemTraitAgentComponent>();
-                    if(comp != null)
+                    if (comp != null)
                     {
                         comp.AddTraitToWieldedWeapon(trait, duration);
                     }
@@ -242,7 +242,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyHeavensItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
@@ -263,7 +263,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyDeathDamageItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
@@ -284,7 +284,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyGreaterHeavensItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
@@ -305,7 +305,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyMetalItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
@@ -326,7 +326,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyQuickSilverWeaponItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
@@ -347,7 +347,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyHolyItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
@@ -368,7 +368,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyAzyrForesightScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
@@ -389,7 +389,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
 
     public class EnchantWeaponScript : ITriggeredScript
     {
@@ -411,7 +411,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
+
     public class ApplyTranquillityCadaiTrait : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
@@ -432,9 +432,9 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
         }
     }
-    
-    
-    public class SpiritLeech: ITriggeredScript
+
+
+    public class SpiritLeech : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
@@ -443,7 +443,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             var target = targets[0];
             target = targets.FirstOrDefaultQ(x => x.IsHero) ?? targets.MaxBy(x => x.Character.Level);
             var tier = target.Character.GetBattleTier();
-            triggeredByAgent.ApplyStatusEffect("spirit_leech_heal",triggeredByAgent,tier * duration);
+            triggeredByAgent.ApplyStatusEffect("spirit_leech_heal", triggeredByAgent, tier * duration);
         }
     }
 }

@@ -98,7 +98,7 @@ namespace TOR_Core.Extensions
             }
             return list;
         }
-        
+
         public static bool IsUndead(this CharacterObject characterObject)
         {
             if (characterObject.IsHero)
@@ -125,7 +125,7 @@ namespace TOR_Core.Extensions
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("dwarf");
         }
-        
+
         public static bool IsOrc(this CharacterObject characterObject)
         {
             if (characterObject.IsHero)
@@ -164,17 +164,17 @@ namespace TOR_Core.Extensions
                     return true;
                 }
             }
-            
-            return characterObject.Culture.StringId == TORConstants.Cultures.EMPIRE||
+
+            return characterObject.Culture.StringId == TORConstants.Cultures.EMPIRE ||
                    characterObject.Culture.StringId == TORConstants.Cultures.BRETONNIA ||
                    characterObject.Culture.StringId == TORConstants.Cultures.SYLVANIA &&
-                   !(characterObject.IsVampire() || characterObject.IsUndead())||
+                   !(characterObject.IsVampire() || characterObject.IsUndead()) ||
                    characterObject.Culture.StringId == "mousillon" &&
                    !(characterObject.IsVampire() || characterObject.IsUndead());
-            
+
         }
-        
-        public static bool IsElf(this CharacterObject characterObject)     
+
+        public static bool IsElf(this CharacterObject characterObject)
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("elf");
         }
@@ -211,8 +211,8 @@ namespace TOR_Core.Extensions
             var attributes = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == characterObject.StringId).Value;
             if (attributes == null) return false;
             var runes = RunelordCareerButtonBehavior.GetRuneIds;
-            
-            return attributes.All(x=> runes.Contains(x));
+
+            return attributes.All(x => runes.Contains(x));
 
         }
 
@@ -230,7 +230,7 @@ namespace TOR_Core.Extensions
         {
             var cultures = MBObjectManager.Instance.GetObjectTypeList<CultureObject>();
             bool result = false;
-            foreach(var culture in cultures)
+            foreach (var culture in cultures)
             {
                 var elite = culture.EliteBasicTroop;
                 if (elite == character)
@@ -238,8 +238,8 @@ namespace TOR_Core.Extensions
                     return true;
                 }
 
-                result= IsTroopInUpgradeTree(character, elite);
-                if(result)
+                result = IsTroopInUpgradeTree(character, elite);
+                if (result)
                     break;
             }
             return result;
@@ -251,14 +251,14 @@ namespace TOR_Core.Extensions
             if (basicCharacter == character) result = true;
             else if (basicCharacter.UpgradeTargets.Count() > 0)
             {
-                foreach(var target in basicCharacter.UpgradeTargets)
+                foreach (var target in basicCharacter.UpgradeTargets)
                 {
-                    if(target == character)
+                    if (target == character)
                     {
                         result = true;
                         break;
-                    } 
-                    
+                    }
+
                     result = IsTroopInUpgradeTree(character, target);
 
                     if (result)
@@ -274,8 +274,8 @@ namespace TOR_Core.Extensions
         {
             return (CultureObject)characterObject.Culture;
         }
-        
-        public static bool IsBeastman(this CharacterObject characterObject)     
+
+        public static bool IsBeastman(this CharacterObject characterObject)
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("ungor");
         }
@@ -294,7 +294,7 @@ namespace TOR_Core.Extensions
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("vampire");
         }
-        
+
         public static bool IsCultist(this BasicCharacterObject characterObject)
         {
             return characterObject?.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
@@ -304,7 +304,7 @@ namespace TOR_Core.Extensions
         {
             return characterObject.GetAttributes().Contains("BloodDragon");
         }
-        
+
         public static bool IsBrassKeepLord(this BasicCharacterObject characterObject)
         {
             return characterObject.GetAttributes().Contains("BrassKeep");
@@ -314,7 +314,7 @@ namespace TOR_Core.Extensions
         {
             return ReligionObject.All.Any(x => x.ReligiousTroops.Contains(characterObject));
         }
-        
+
         public static bool IsReligiousUnit(this BasicCharacterObject characterObject)
         {
             return ReligionObject.All.Any(x => x.ReligiousTroops.Contains(characterObject));
@@ -322,15 +322,15 @@ namespace TOR_Core.Extensions
 
         public static bool UnitBelongsToCult(this CharacterObject characterObject, string cultId)
         {
-            var cult = ReligionObject.All.FirstOrDefault(x => x.StringId==cultId);
+            var cult = ReligionObject.All.FirstOrDefault(x => x.StringId == cultId);
             return cult != null && cult.ReligiousTroops.Contains(characterObject);
         }
         public static bool UnitBelongsToCult(this BasicCharacterObject characterObject, string cultId)
         {
-            var cult = ReligionObject.All.FirstOrDefault(x => x.StringId==cultId);
+            var cult = ReligionObject.All.FirstOrDefault(x => x.StringId == cultId);
             return cult != null && cult.ReligiousTroops.Contains(characterObject);
         }
-        
+
         public static bool HasCustomResourceUpgradeRequirement(this CharacterObject character)
         {
             var info = ExtendedInfoManager.GetCharacterInfoFor(character.StringId);
@@ -351,7 +351,7 @@ namespace TOR_Core.Extensions
             return false;
         }
 
-        public static Tuple<CustomResource, int> GetCustomResourceRequiredForUpgrade(this CharacterObject character, bool belongsToMainParty=false)
+        public static Tuple<CustomResource, int> GetCustomResourceRequiredForUpgrade(this CharacterObject character, bool belongsToMainParty = false)
         {
             var info = ExtendedInfoManager.GetCharacterInfoFor(character.StringId);
             if (info != null && character.HasCustomResourceUpgradeRequirement())
@@ -360,7 +360,7 @@ namespace TOR_Core.Extensions
                 if (belongsToMainParty)
                 {
                     var explainedNumber = new ExplainedNumber(cost);
-                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero,ref explainedNumber,PassiveEffectType.CustomResourceUpgradeCostModifier,true, character);
+                    CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber, PassiveEffectType.CustomResourceUpgradeCostModifier, true, character);
 
                     // Waaagh3 and Waaagh4 (Wargh3/Wargh4): Teef upgrade penalty for Greenskins
                     if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN &&
@@ -372,9 +372,9 @@ namespace TOR_Core.Extensions
                             explainedNumber.AddFactor(0.5f);
                     }
 
-                    cost = Math.Max((int)explainedNumber.ResultNumber,1);
+                    cost = Math.Max((int)explainedNumber.ResultNumber, 1);
                 }
-               
+
                 return new Tuple<CustomResource, int>(CustomResourceManager.GetResourceObject(info.ResourceCost.ResourceType), cost);
             }
             return null;

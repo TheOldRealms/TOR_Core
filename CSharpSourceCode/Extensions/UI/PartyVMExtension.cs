@@ -1,37 +1,30 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.GauntletUI;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.TwoDimension;
-using TOR_Core.Extensions;
-using TOR_Core.Extensions.UI;
+using TOR_Core.CampaignMechanics.CustomResources;
 
-namespace TOR_Core.CampaignMechanics.CustomResources
+namespace TOR_Core.Extensions.UI
 {
     [ViewModelExtension(typeof(PartyVM), "RefreshCurrentCharacterInformation")]
     public class PartyVMExtension : BaseViewModelExtension
     {
         public static PartyVM ViewModelInstance { get; private set; }
-  
+
         private bool _customResourceUpkeepVisible;
         private string _customResourceUpkeepText = string.Empty;
         private HintViewModel _hintViewModel;
         private Sprite _customResourceUpkeepSprite;
         private MBBindingList<PendingResourceCostVM> _pendingResourceCosts;
 
-        public PartyVMExtension(ViewModel vm) : base(vm) 
+        public PartyVMExtension(ViewModel vm) : base(vm)
         {
-            var partyVm  = vm as PartyVM;
+            var partyVm = vm as PartyVM;
             ViewModelInstance = partyVm;
-            
+
             _hintViewModel = new HintViewModel(new TextObject("{=upkeep}Upkeep"));
             _pendingResourceCosts = new MBBindingList<PendingResourceCostVM>();
         }
@@ -43,7 +36,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
             var pendingResourceCost = CustomResourceManager.GetPendingResources();
             ((PartyVM)(_vm)).CurrentCharacter.InitializeUpgrades();
-            foreach(var item in pendingResourceCost)
+            foreach (var item in pendingResourceCost)
             {
                 MBTextManager.SetTextVariable("PAY_OR_GET", (item.Value > 0) ? 0 : 1);
                 MBTextManager.SetTextVariable("TRADE_AMOUNT", MathF.Abs(item.Value));
@@ -64,7 +57,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 CustomResourceUpkeepVisible = false;
             }
         }
-        
+
         public override void OnFinalize()
         {
             base.OnFinalize();

@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.Issues;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TOR_Core.Extensions;
-using TOR_Core.Utilities;
-using TaleWorlds.Localization;
-using TaleWorlds.SaveSystem;
-using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.Library;
-using TOR_Core.Ink;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.CampaignSystem.Conversation;
+using TaleWorlds.SaveSystem;
+using TOR_Core.Extensions;
+using TOR_Core.Ink;
 using TOR_Core.Missions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Quests
 {
@@ -162,7 +162,7 @@ namespace TOR_Core.Quests
             private void TrackTarget()
             {
                 if (_settlement != null)
-                    AddTrackedObject(_settlement); 
+                    AddTrackedObject(_settlement);
             }
 
             public PlaguedVillageQuest(string questId, Hero questGiver, CampaignTime duration, int rewardGold, Settlement targetSettlement) : base(questId, questGiver, duration, rewardGold)

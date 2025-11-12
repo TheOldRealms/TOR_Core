@@ -83,8 +83,8 @@ namespace TOR_Core.Models
             if (character.IsHero && character.IsPlayerCharacter)
             {
                 var playerHero = character.HeroObject;
-                
-                if(playerHero.HasCareer(TORCareers.GreyLord))
+
+                if (playerHero.HasCareer(TORCareers.GreyLord))
                 {
                     if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicPassive4"))
                     {
@@ -96,7 +96,7 @@ namespace TOR_Core.Models
                                 explainedNumber.AddFactor(2);
                             }
                         }
-              
+
                     }
                 }
 
@@ -108,13 +108,13 @@ namespace TOR_Core.Models
                         {
                             var comp = Agent.Main.GetComponent<AbilityComponent>();
                             var spellcraftValue = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                            explainedNumber.AddFactor(0.005f* spellcraftValue);
+                            explainedNumber.AddFactor(0.005f * spellcraftValue);
                         }
-              
+
                     }
                 }
             }
-            
+
             return explainedNumber.ResultNumber;
         }
 
@@ -171,7 +171,7 @@ namespace TOR_Core.Models
                         {
                             explainedNumber.AddFactor(0.2f);
                         }
-                        
+
                         if (playerHero.HasCareerChoice("ChiselAndHammerKeystone"))
                         {
                             var comp = Agent.Main.GetComponent<AbilityComponent>(); //what's this component for?
@@ -223,37 +223,40 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
                 {
-                    if(template.AbilityEffectType == AbilityEffectType.Heal &&  Hero.MainHero.HasCareerChoice("SoulBindingPassive4"))
+                    if (template.AbilityEffectType == AbilityEffectType.Heal && Hero.MainHero.HasCareerChoice("SoulBindingPassive4"))
                     {
                         var comp = Agent.Main.GetComponent<AbilityComponent>();
                         if (comp != null)
                         {
                             var count = Agent.Main.GetAbilities().Count;
-                            if(!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Projectile )){
+                            if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Projectile))
+                            {
                                 explainedNumber.AddFactor(0.5f);
                             }
                         }
                     }
-                    
-                    if(template.AbilityEffectType == AbilityEffectType.Hex &&  Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryPassive4"))
+
+                    if (template.AbilityEffectType == AbilityEffectType.Hex && Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryPassive4"))
                     {
                         var comp = Agent.Main.GetComponent<AbilityComponent>();
                         if (comp != null)
                         {
                             var count = Agent.Main.GetAbilities().Count;
-                            if(!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Heal )){
+                            if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Heal))
+                            {
                                 explainedNumber.AddFactor(0.5f);
                             }
                         }
                     }
-                    
-                    if(template.AbilityEffectType == AbilityEffectType.Vortex || template.AbilityEffectType == AbilityEffectType.Bombardment &&  Hero.MainHero.HasCareerChoice("ByAllMeansPassive4"))
+
+                    if (template.AbilityEffectType == AbilityEffectType.Vortex || template.AbilityEffectType == AbilityEffectType.Bombardment && Hero.MainHero.HasCareerChoice("ByAllMeansPassive4"))
                     {
                         var comp = Agent.Main.GetComponent<AbilityComponent>();
                         if (comp != null)
                         {
                             var count = Agent.Main.GetAbilities().Count;
-                            if(!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Augment )){
+                            if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Augment))
+                            {
                                 explainedNumber.AddFactor(0.5f);
                             }
                         }
@@ -318,7 +321,7 @@ namespace TOR_Core.Models
                             explainedNumber.AddFactor(choice.GetPassiveValue());
                         }
                     }
-                    
+
                 }
             }
             return explainedNumber.ResultNumber;
@@ -408,7 +411,7 @@ namespace TOR_Core.Models
             {
                 explainedNumber.Add(WoMRegenFromEquipment, GameTexts.FindText("tor_generic_enchantedEquipment"));
             }
-            
+
             //debuffs are for asrai player campaigns, not any asrai-cultured wanderer regardless of the player's culture
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
@@ -422,7 +425,7 @@ namespace TOR_Core.Models
                             explainedNumber.AddFactor(ForestHarmonyHelper.WindsDebuffUnbound, new TextObject(ForestHarmonyLevel.Unbound.ToString()));
                             break;
                         case ForestHarmonyLevel.Bound:
-                            explainedNumber.AddFactor(ForestHarmonyHelper.WindsDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                            explainedNumber.AddFactor(ForestHarmonyHelper.WindsDebuffBound, new TextObject(ForestHarmonyLevel.Bound.ToString()));
                             break;
                     }
                 }
@@ -442,7 +445,7 @@ namespace TOR_Core.Models
 
             return explainedNumber.ResultNumber;
         }
-        
+
         public float GetMaximumWindsOfMagic(CharacterObject baseCharacter)
         {
             var hero = baseCharacter?.HeroObject;
@@ -474,7 +477,7 @@ namespace TOR_Core.Models
                         var choice = TORCareerChoices.GetChoice("DarkVisionPassive4");
                         explainedNumber.Add(choice.GetPassiveValue() * spellCount);
                     }
-                    
+
                     if (careerChoices.Contains("DiscipleOfAccursedPassive4"))
                     {
                         var characterEquipment = baseCharacter.GetCharacterEquipment();
@@ -528,14 +531,14 @@ namespace TOR_Core.Models
                         var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive3");
                         explainedNumber.Add(choice.GetPassiveValue());
                     }
-                        
+
                     if (careerChoices.Contains("WardenOfArgwylonPassive4") && hero.IsSpellSinger()) //wardens can't be spellsingers so no need to check player
                     {
                         var choice = TORCareerChoices.GetChoice("WardenOfArgwylonPassive4");
                         explainedNumber.Add(choice.GetPassiveValue());
                     }
                 }
-                
+
                 if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister)) //Sly : penalizes all mages in party, don't care because it requires off-culture companions to occur - idk what the description is for powerstones
                 {
                     var stoneBehavior =
@@ -547,11 +550,11 @@ namespace TOR_Core.Models
                     var reserved = powerstones.Sum(pair => (pair.Upkeep));
 
                     explainedNumber.Add(-reserved);
-            }
+                }
             }
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
-            {   
+            {
                 if (Hero.MainHero.HasAttribute("WEArielSymbol"))
                 {
                     if (hero.PartyBelongedTo.InAthelLoren())

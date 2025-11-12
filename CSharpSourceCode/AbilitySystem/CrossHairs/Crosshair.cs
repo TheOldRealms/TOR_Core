@@ -61,11 +61,11 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             }
             _crosshairVM.CrosshairType = BannerlordConfig.CrosshairType;
             Agent mainAgent = Mission.Current.MainAgent;
-            if(mainAgent==null) return;
-            
+            if (mainAgent == null) return;
+
             WeaponInfo wieldedWeaponInfo = mainAgent.GetWieldedWeaponInfo(Agent.HandIndex.MainHand);
-            _crosshairVM.IsVisible = wieldedWeaponInfo.IsValid && wieldedWeaponInfo.IsRangedWeapon ; // this only is relevant for the actual ranged crosshair not the entire vm
-            
+            _crosshairVM.IsVisible = wieldedWeaponInfo.IsValid && wieldedWeaponInfo.IsRangedWeapon; // this only is relevant for the actual ranged crosshair not the entire vm
+
             double num = (double)(_missionScreen.CameraViewAngle * _viewAngleConst);
             double accuracy = 2.0 * Math.Tan((double)(mainAgent.CurrentAimingError + mainAgent.CurrentAimingTurbulance) * (0.5 / Math.Tan(num * 0.5)));
             _crosshairVM.SetProperties(accuracy, (double)(1f + (_missionScreen.CombatCamera.HorizontalFov - _crosshairAngleConstant) / _crosshairAngleConstant));
@@ -74,7 +74,7 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             {
                 Agent.ActionCodeType currentActionType = mainAgent.GetCurrentActionType(1);
                 MissionWeapon wieldedWeapon = mainAgent.WieldedWeapon;
-                if ((wieldedWeapon.ReloadPhaseCount > 1|| mainAgent.WieldedWeapon.CurrentUsageItem.IsGunPowderWeapon()) && wieldedWeapon.IsReloading && currentActionType == Agent.ActionCodeType.Reload)
+                if ((wieldedWeapon.ReloadPhaseCount > 1 || mainAgent.WieldedWeapon.CurrentUsageItem.IsGunPowderWeapon()) && wieldedWeapon.IsReloading && currentActionType == Agent.ActionCodeType.Reload)
                 {
                     StackArray.StackArray10FloatFloatTuple array = default(StackArray.StackArray10FloatFloatTuple);
                     var itemUsageReloadActionCode = MBItem.GetItemUsageReloadActionCode(wieldedWeapon.CurrentUsageItem.ItemUsage, 9, mainAgent.HasMount, -1, mainAgent.GetIsLeftStance(), mainAgent.IsLookDirectionLow);

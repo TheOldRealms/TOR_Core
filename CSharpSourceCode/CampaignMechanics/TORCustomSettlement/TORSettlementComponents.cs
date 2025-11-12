@@ -27,8 +27,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public int WardHours
         {
             get { return _wardHours; }
-            set 
-            { 
+            set
+            {
                 _wardHours = value;
                 if (_wardHours == 0) IsActive = true;
             }
@@ -123,16 +123,16 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public override List<string> RewardItemIds =>
         [
             "tor_empire_weapon_sword_runefang_001",
-            
+
             "tor_chaos_weapon_metal_ud_lance_001",
-            
+
             "tor_chaos_arm_gauntlet_slaneesh_warrior_001",
             "tor_chaos_arm_gauntlet_khorne_warrior_001",
             "tor_chaos_arm_gauntlet_khorne_warrior_002",
             "tor_chaos_arm_gauntlet_tzeentch_warrior_001",
             "tor_chaos_arm_gauntlet_hallow",
             "tor_chaos_arm_bracers_marauder_001",
-            
+
             "tor_chaos_leg_boots_slaneesh_warrior_001",
             "tor_chaos_leg_boots_nurgle_knight_001",
             "tor_chaos_leg_boots_khorne_warrior_001",
@@ -141,7 +141,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             "tor_chaos_leg_boots_hallow",
             "tor_chaos_leg_boots_marauder_001",
             "tor_chaos_leg_boots_chaos_warrior_001",
-            
+
             "tor_chaos_body_armor_slaneesh_warrior_001",
             "tor_chaos_body_armor_khorne_warrior_001",
             "tor_chaos_body_armor_khorne_warrior_002",
@@ -151,7 +151,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             "tor_chaos_body_armor_marauder_001",
             "tor_chaos_body_armor_marauder_002",
             "tor_chaos_body_armor_chaos_warrior_001",
-            
+
             "tor_chaos_shoulder_pauldron_nurgle_001",
             "tor_chaos_shoulder_pauldron_nurgle_002",
             "tor_chaos_shoulder_pauldron_slaneesh_warrior_001",
@@ -162,7 +162,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             "tor_chaos_shoulder_cape_marauder_001",
             "tor_chaos_shoulder_fur_marauder_001",
             "tor_chaos_shoulder_cape_chaos_warrior_001",
-            
+
             "tor_empire_staff_cw_001_combined",
             "tor_empire_staff_cw_002_combined",
             "tor_empire_staff_cw_003_combined",
@@ -188,7 +188,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
             var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, "{=tor_chaos_raiders_str}Chaos Raiders", template, chaosClan, MBRandom.RandomInt(75, 99));
             if (find != null)
-            {                
+            {
                 SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
                 ((RaidingPartyComponent)chaosRaidingParty.PartyComponent).Target = initialTarget ?? find;
             }
@@ -209,11 +209,11 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public override List<string> RewardItemIds =>
             new()
             {
-                
+
                 "tor_vc_blood_keep_grandmaster_helm",
-                
+
                 "tor_empire_weapon_mace_holy_hammer",
-                
+
                 "tor_vc_shoulder_pauldron_vlad",
                 "tor_vc_shoulder_pauldron_red_duke",
                 "tor_vc_shoulder_pauldron_blood_dragon_knight_001",
@@ -229,10 +229,10 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 "tor_vc_leg_boots_red_duke",
                 "tor_he_weapon_2h_sword_001",
                 "tor_vc_weapon_thaxe_black_axe_of_krell",
-                "tor_empire_weapon_sword_runefang_001", 
+                "tor_empire_weapon_sword_runefang_001",
                 "tor_we_weapon_bow_legendary",
                 "tor_vc_weapon_sword_khopesh_001",
-                
+
                 "tor_empire_staff_cw_001_combined",
                 "tor_empire_staff_cw_002_combined",
                 "tor_empire_staff_cw_003_combined",
@@ -241,7 +241,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 "tor_empire_staff_lw_001_combined",
                 "tor_empire_staff_lw_002_combined",
                 "tor_empire_staff_lw_003_combined",
-                
+
                 "tor_learn_dw_master_rune_flight",
                 "tor_learn_dw_master_rune_gromril"
             };
@@ -253,9 +253,9 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("ungor_party");
             Clan beastmenClan = Clan.FindFirst(x => x.StringId == "beastmen_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject ("{=tor_beastmen_raiders_str}Beastmen Raiders").ToString(), template, beastmenClan, MBRandom.RandomInt(75, 99));
+            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject("{=tor_beastmen_raiders_str}Beastmen Raiders").ToString(), template, beastmenClan, MBRandom.RandomInt(75, 99));
             if (find != null)
-            {                
+            {
                 SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
                 ((RaidingPartyComponent)raidingParty.PartyComponent).Target = initialTarget ?? find;
             }
@@ -273,30 +273,30 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public override int BattlePartySize => 400;
         public override string BattleSceneName => "TOR_slaver_bay_001";
 
-        public override List<string> RewardItemIds => 
+        public override List<string> RewardItemIds =>
         [
             "tor_he_head_helm_phoenix_001",
             "tor_he_head_helm_whitelion_001",
-            
+
             "tor_he_shoulder_cape_phoenix_001",
             "tor_he_shoulder_cape_whitelion_001",
             "tor_he_body_armour_phoenix_001",
             "tor_he_body_armour_whitelion_001",
-            
+
             "tor_he_arm_bracers_phoenix_001",
             "tor_he_leg_boots_phoenix_001",
-            
+
             "tor_he_leg_boots_whitelion_001",
             "tor_he_arm_bracers_whitelion_001",
-            
+
             "tor_he_weapon_2h_axe_whitelion_001",
-            
+
             "tor_he_weapon_halberd_phoenix_001",
-            
+
             "tor_we_weapon_bow_legendary",
-                
+
             "tor_vc_weapon_sword_khopesh_001",
-            
+
             "tor_empire_staff_cw_001_combined",
             "tor_empire_staff_cw_002_combined",
             "tor_empire_staff_cw_003_combined",
@@ -305,7 +305,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             "tor_empire_staff_lw_001_combined",
             "tor_empire_staff_lw_002_combined",
             "tor_empire_staff_lw_003_combined",
-            
+
             "tor_learn_dw_master_rune_breaking",
             "tor_learn_dw_master_rune_steel",
         ];
@@ -319,7 +319,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
             var raidingParty = RaidingPartyComponent.CreateRaidingParty("druchii_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject("{=tor_dark_elf_slavers}Druchii Slavers").ToString(), template, clan, MBRandom.RandomInt(75, 99));
             if (find != null)
-            {                
+            {
                 SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
                 ((RaidingPartyComponent)raidingParty.PartyComponent).Target = initialTarget ?? find;
             }

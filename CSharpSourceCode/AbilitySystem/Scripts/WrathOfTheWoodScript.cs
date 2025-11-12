@@ -15,7 +15,7 @@ public class WrathOfTheWoodScript : CareerAbilityScript
 {
     private int maximumSummons = 25;
     private List<(string id, int count)> treeSpiritUnitIds = new List<(string id, int count)>();
-    
+
     private const string dryadID = "tor_we_dryad";
     private const string treemanID = "tor_we_treeman";
     private bool spawned;
@@ -24,15 +24,15 @@ public class WrathOfTheWoodScript : CareerAbilityScript
         base.OnInit();
 
 
-        
-        
+
+
 
     }
 
     protected override void OnBeforeTick(float dt)
     {
-        if(spawned) return;
-        
+        if (spawned) return;
+
         var count = 1;
 
         if (Hero.MainHero.HasCareerChoice("TreeSingingKeystone"))
@@ -42,8 +42,8 @@ public class WrathOfTheWoodScript : CareerAbilityScript
 
 
         var choices = Hero.MainHero.GetAllCareerChoices().WhereQ(x => x.Contains("Keystone")).ToListQ();
-        var bonus = Mathf.Clamp(0.5f-(0.1f*choices.Count), 0f, 0.5f);
-        
+        var bonus = Mathf.Clamp(0.5f - (0.1f * choices.Count), 0f, 0.5f);
+
         while (count <= maximumSummons)
         {
             var threshold = this.Ability.Template.ScaleVariable1 + bonus;
@@ -56,7 +56,7 @@ public class WrathOfTheWoodScript : CareerAbilityScript
                 break;
             }
         }
-        
+
         foreach (var triggeredEffect in this.EffectsToTrigger)
         {
             if (triggeredEffect.SummonedTroopId != "none")
@@ -64,10 +64,10 @@ public class WrathOfTheWoodScript : CareerAbilityScript
                 switch (triggeredEffect.SummonedTroopId)
                 {
                     case dryadID:
-                        treeSpiritUnitIds.Add(new (triggeredEffect.SummonedTroopId,count));
+                        treeSpiritUnitIds.Add(new(triggeredEffect.SummonedTroopId, count));
                         break;
                     case treemanID:
-                        treeSpiritUnitIds.Add(new (triggeredEffect.SummonedTroopId,1));
+                        treeSpiritUnitIds.Add(new(triggeredEffect.SummonedTroopId, 1));
                         break;
                 }
             }
@@ -79,21 +79,21 @@ public class WrathOfTheWoodScript : CareerAbilityScript
         {
             var unitCount = treeSpirit.count;
             AgentBuildData data = null;
-            if (treeSpirit.id == treemanID &&  !Mission.Current.IsFieldBattle)
+            if (treeSpirit.id == treemanID && !Mission.Current.IsFieldBattle)
             {
-                 data = TORSummonHelper.GetAgentBuildData(CasterAgent,dryadID);
-                 unitCount +=25;
+                data = TORSummonHelper.GetAgentBuildData(CasterAgent, dryadID);
+                unitCount += 25;
             }
             else
-            { 
-                data = TORSummonHelper.GetAgentBuildData(CasterAgent, treeSpirit.id); 
+            {
+                data = TORSummonHelper.GetAgentBuildData(CasterAgent, treeSpirit.id);
             }
-            
-            
+
+
             for (int i = 0; i < unitCount; i++)
             {
                 targetPosition = Mission.Current.GetRandomPositionAroundPoint(targetPosition, 0.1f, 2.5f);
-                
+
                 TORSummonHelper.SpawnAgent(data, targetPosition);
                 spawnCounter++;
             }
@@ -104,14 +104,14 @@ public class WrathOfTheWoodScript : CareerAbilityScript
         {
             foreach (var hero in Agent.Main.GetOriginMobileParty().GetMemberHeroes())
             {
-                hero.Heal(spawnCounter,false);
+                hero.Heal(spawnCounter, false);
             }
         }
 
-        
-        
-        
-        
+
+
+
+
         spawned = true;
     }
 
@@ -123,8 +123,8 @@ public class WrathOfTheWoodScript : CareerAbilityScript
         {
             foreach (var treespirit in treeSpirits)
             {
-                treespirit.ApplyStatusEffect("path_shaping_buff",null,10,true);
-                treespirit.ApplyStatusEffect("path_shaping_buff_ats",null,10,true);
+                treespirit.ApplyStatusEffect("path_shaping_buff", null, 10, true);
+                treespirit.ApplyStatusEffect("path_shaping_buff_ats", null, 10, true);
             }
         }
 
@@ -132,7 +132,7 @@ public class WrathOfTheWoodScript : CareerAbilityScript
         {
             foreach (var treeSpirit in treeSpirits)
             {
-                treeSpirit.ApplyStatusEffect("magic_athel_loren_windslink",null,20,true);
+                treeSpirit.ApplyStatusEffect("magic_athel_loren_windslink", null, 20, true);
             }
         }
     }

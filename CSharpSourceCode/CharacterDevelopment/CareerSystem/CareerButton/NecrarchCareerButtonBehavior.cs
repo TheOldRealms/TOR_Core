@@ -21,7 +21,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             Hero.MainHero.AddCustomResource("WindsOfMagic", gainForClick);
             Hero.MainHero.AddCustomResource("DarkEnergy", -_costForClick);
-            
+
             if (characterObject.IsHero && characterObject.HeroObject.IsSpellCaster())
             {
                 Hero.MainHero.AddCustomResource("WindsOfMagic", gainForClick);
@@ -31,18 +31,18 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
         {
             if (PartyScreenHelper.GetActivePartyState().PartyScreenMode != PartyScreenMode.Normal) return false;
-            
+
             if (!characterObject.IsHero) return false;
 
-            return characterObject.HeroObject.PartyBelongedTo == MobileParty.MainParty&& characterObject.HeroObject.IsSpellCaster();
+            return characterObject.HeroObject.PartyBelongedTo == MobileParty.MainParty && characterObject.HeroObject.IsSpellCaster();
         }
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
-            displayText= new TextObject("");
+            displayText = new TextObject("");
             if (!characterObject.IsHero) return false;
-            
-            if ( Hero.MainHero.GetCustomResourceValue("WindsOfMagic")>= Hero.MainHero.GetExtendedInfo().MaxWindsOfMagic)
+
+            if (Hero.MainHero.GetCustomResourceValue("WindsOfMagic") >= Hero.MainHero.GetExtendedInfo().MaxWindsOfMagic)
             {
                 displayText = new TextObject("Your Winds are already full");
                 return false;
@@ -50,11 +50,11 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (Hero.MainHero.GetCustomResourceValue("DarkEnergy") < _costForClick)
             {
-                displayText = new TextObject("Requires " + _costForClick + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText()+ "for exchange");
+                displayText = new TextObject("Requires " + _costForClick + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText() + "for exchange");
                 return false;
             }
 
-            displayText = new TextObject("Exchange " + _costForClick + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText() +" for "+ gainForClick+ CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText() );
+            displayText = new TextObject("Exchange " + _costForClick + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText() + " for " + gainForClick + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText());
             return characterObject.HeroObject.PartyBelongedTo == MobileParty.MainParty;
 
         }

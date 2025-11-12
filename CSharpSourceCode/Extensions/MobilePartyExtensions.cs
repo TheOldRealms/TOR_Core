@@ -25,9 +25,9 @@ namespace TOR_Core.Extensions
         }
 
         public static void AddBlessingToParty(this MobileParty party, string blessingId)
-        { 
+        {
             var model = Campaign.Current.Models.GetFaithModel();
-            model?.AddBlessingToParty(party,blessingId);
+            model?.AddBlessingToParty(party, blessingId);
         }
 
         public static bool HasAnyActiveBlessing(this MobileParty party)
@@ -56,8 +56,8 @@ namespace TOR_Core.Extensions
                 if (party.LeaderHero.IsEnlisted())
                     return false;   // optional, might be better to make here a more deliberate check for enlisting lord check
             }
-            
-            
+
+
             var settlementFound = TORCommon.FindNearestSettlement(party, TORConstants.DEFAULT_CURSE_RADIUS, x => x.SettlementComponent is CursedSiteComponent);
             if (settlementFound == null) return false;
 
@@ -82,7 +82,7 @@ namespace TOR_Core.Extensions
                 {
                     var engineers = party.GetMemberHeroes();
 
-                    var highestEngineer=  engineers.MaxBy(x => x.GetSkillValue(DefaultSkills.Engineering));
+                    var highestEngineer = engineers.MaxBy(x => x.GetSkillValue(DefaultSkills.Engineering));
                     var engineering = highestEngineer.GetSkillValue(DefaultSkills.Engineering);
                     return (int)Math.Truncate((decimal)engineering / 50);
                 }
@@ -125,7 +125,7 @@ namespace TOR_Core.Extensions
         public static int GetHighestSkillValue(this MobileParty party, SkillObject skill)
         {
             int skillValue = 0;
-            foreach(var hero in party.GetMemberHeroes())
+            foreach (var hero in party.GetMemberHeroes())
             {
                 var heroSkillvalue = hero.GetSkillValue(skill);
                 if (heroSkillvalue > skillValue) skillValue = heroSkillvalue;
@@ -179,7 +179,7 @@ namespace TOR_Core.Extensions
             }
             return false;
         }
-        
+
         public static bool HasAnvilOfDoom(this MobileParty party)
         {
             var roster = party.ItemRoster;
@@ -205,9 +205,9 @@ namespace TOR_Core.Extensions
             var position = party.Position; //what's the point of GetPosition2D?
 
             //Point and radius squared defining approximate boundary for Laurelorn forest
-              
+
             var LLAll = new Vec2(1259.60f, 1317.35f); //Laurelorn : midpoint (1259.60, 1317.35); r^2 = 672.65
-            
+
             if (party.InAthelLoren() || position.DistanceSquared(LLAll) < 672.65)
             {
                 return true;
@@ -228,7 +228,7 @@ namespace TOR_Core.Extensions
             //Points and radii squared defining approximate boundary for Athel Loren
             var ALNorthHalf = new Vec2(1209.99f, 916.42f); //Athel Lorn north half : midpoint (1209.99, 916.42); r^2 = 1255.75
             var ALSouthHalf = new Vec2(1207.75f, 796.74f); //Athel Lorn south half : midpoint (1207.75, 796.74); r^2 = 1419.44
-            
+
             if (position.DistanceSquared(ALNorthHalf) < 1255.75 || position.DistanceSquared(ALSouthHalf) < 1419.445)
             {
                 return true;

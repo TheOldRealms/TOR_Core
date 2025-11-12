@@ -52,7 +52,7 @@ namespace TOR_Core.SaveGameSystem
             AddInterfaceDefinition(typeof(IInventoryUseScript), 24);
             AddClassDefinition(typeof(BaseInventoryUseScript), 25);
             AddClassDefinition(typeof(SkillBookScript), 26);
-            AddClassDefinition(typeof(HeroTrainingData),27);
+            AddClassDefinition(typeof(HeroTrainingData), 27);
             AddClassDefinition(typeof(RunesmithQuest), 30);    //TODO change to 28, and so on
             AddClassDefinition(typeof(RunelordQuest), 31);    //TODO change to 28, and so on
             AddClassDefinition(typeof(OrcBossQuest1), 32); //Sly : changing the id# will cause any save made with the prior id to crash the game when the game is launched and it scans through the Game Saves folder for every available save; this can only be done when people do not need access to prior saves, or they must clear their save folder of any prior ones

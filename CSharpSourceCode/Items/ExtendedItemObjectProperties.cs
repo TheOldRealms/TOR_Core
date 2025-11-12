@@ -23,7 +23,7 @@ namespace TOR_Core.Items
 
         public ExtendedItemObjectProperties() { }
 
-        private ExtendedItemObjectProperties(string id, DamageType defaultDamageType= DamageType.Physical)
+        private ExtendedItemObjectProperties(string id, DamageType defaultDamageType = DamageType.Physical)
         {
             ItemStringId = id;
             DamageProportionTuple proportionTuple = new()

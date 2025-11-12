@@ -22,12 +22,12 @@ namespace TOR_Core.Extensions
 
         public static bool IsBloodKeep(this Settlement settlement)
         {
-            if(settlement!=null)
+            if (settlement != null)
                 return settlement.StringId == "castle_BK1";
 
             return false;
         }
-        
+
         public static bool IsRoRSettlement(this Settlement settlement)
         {
             return RORManager.GetTemplateFor(settlement.StringId) != null;
@@ -45,7 +45,7 @@ namespace TOR_Core.Extensions
             if (settlement.IsCastle || settlement.IsTown)
             {
                 var endString = settlement.StringId.Substring(settlement.StringId.Length - 3, 3);
-                
+
                 if (endString.Contains("MS")) return true;
                 if (endString.Contains("PA")) return true;
                 if (endString.Contains("MO")) return true;
@@ -60,7 +60,7 @@ namespace TOR_Core.Extensions
                 if (endString.Contains("LA")) return true;
                 if (endString.Contains("CO")) return true;
             }
-            
+
             return false;
         }
 
@@ -70,9 +70,9 @@ namespace TOR_Core.Extensions
 
             if (settlement.Owner.Culture.StringId != TORConstants.Cultures.DAWI) return false;
 
-            
+
             var endString = settlement.StringId.Substring(settlement.StringId.Length - 3, 3);
-            
+
             if (endString.Contains("ZH")) return true;
             if (endString.Contains("KK")) return true;
             if (endString.Contains("AN")) return true;
@@ -87,7 +87,7 @@ namespace TOR_Core.Extensions
 
             return false;
         }
-        
+
         public static bool IsGreenskinCamp(this Settlement settlement)
         {
             if (!settlement.IsTown && !settlement.IsCastle) return false;

@@ -10,7 +10,7 @@ namespace TOR_Core.AbilitySystem.Scripts
     {
         private MissionCameraFadeView _cameraView;
         private Vec3 targetPosition;
-        
+
         protected override void OnInit()
         {
             targetPosition = GameEntity.GlobalPosition; //works for what ever reason better
@@ -35,7 +35,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             _cameraView.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
 
             CasterAgent.TeleportToPosition(targetPosition);
-            
+
             Stop();
         }
     }

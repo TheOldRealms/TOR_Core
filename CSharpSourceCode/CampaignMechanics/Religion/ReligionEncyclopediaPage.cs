@@ -31,7 +31,7 @@ namespace TOR_Core.CampaignMechanics.Religion
             {
                 if (!culturesWithReligions.Contains(religion.Culture)) culturesWithReligions.Add(religion.Culture);
             }
-            foreach(var culture in culturesWithReligions)
+            foreach (var culture in culturesWithReligions)
             {
                 filterItems.Add(new EncyclopediaFilterItem(culture.Name, (object c) => ((ReligionObject)c).Culture == culture));
             }

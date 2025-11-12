@@ -58,10 +58,10 @@ namespace TOR_Core.Items
         {
             if (_currentPresets.Any(x => x.Item1 == preset))
             {
-                for(int i = 0; i < _currentPresets.Count; i++)
+                for (int i = 0; i < _currentPresets.Count; i++)
                 {
                     var tuple = _currentPresets[i];
-                    if(tuple.Item1 == preset && tuple.Item2 != null && tuple.Item2.Count > 0 && tuple.Item3 == false)
+                    if (tuple.Item1 == preset && tuple.Item2 != null && tuple.Item2.Count > 0 && tuple.Item3 == false)
                     {
                         _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(tuple.Item1, tuple.Item2, true);
                     }
@@ -113,7 +113,7 @@ namespace TOR_Core.Items
         {
             if (trait != null && duration > 0)
             {
-                if(weapon.CurrentUsageItem != null)
+                if (weapon.CurrentUsageItem != null)
                 {
                     if (_dynamicTraits.Any(x => x.Item1.Item == weapon.Item && x.Item2.Equals(trait)))
                     {
@@ -138,7 +138,7 @@ namespace TOR_Core.Items
             if (trait != null && duration > 0)
             {
                 var weapon = Agent.WieldedWeapon;
-                if(weapon.CurrentUsageItem != null)
+                if (weapon.CurrentUsageItem != null)
                 {
                     if (_dynamicTraits.Any(x => x.Item1.Item == weapon.Item && x.Item2.Equals(trait)))
                     {
@@ -164,9 +164,9 @@ namespace TOR_Core.Items
             if (traitName != null)
             {
                 var weapon = Agent.WieldedWeapon;
-                if(weapon.CurrentUsageItem != null)
+                if (weapon.CurrentUsageItem != null)
                 {
-                    var match = _dynamicTraits.FirstOrDefault(x => x.Item1.Item == weapon.Item && x.Item2.ItemTraitStringId  == traitName);
+                    var match = _dynamicTraits.FirstOrDefault(x => x.Item1.Item == weapon.Item && x.Item2.ItemTraitStringId == traitName);
                     if (match != null)
                     {
                         _dynamicTraits.Remove(match);
@@ -180,7 +180,7 @@ namespace TOR_Core.Items
         {
             var index = Agent.GetPrimaryWieldedItemIndex();
             if (index == EquipmentIndex.None) return;
-            for(int i = 0; i < _currentPresets.Count; i++)
+            for (int i = 0; i < _currentPresets.Count; i++)
             {
                 var item = _currentPresets[i];
                 _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(item.Item1, item.Item2, false);
@@ -208,7 +208,7 @@ namespace TOR_Core.Items
                 for (int i = 0; i < _currentPresets.Count; i++)
                 {
                     var item = _currentPresets[i];
-                    if(_currentPresets[i].Item3 == false) _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(item.Item1, item.Item2, true);
+                    if (_currentPresets[i].Item3 == false) _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(item.Item1, item.Item2, true);
                 }
             }
             else
@@ -224,17 +224,17 @@ namespace TOR_Core.Items
 
         private void RefreshVisuals()
         {
-            foreach(var item in _currentPresets.Where(x => x.Item3 == true))
+            foreach (var item in _currentPresets.Where(x => x.Item3 == true))
             {
-                if(item.Item2.Count > 0)
+                if (item.Item2.Count > 0)
                 {
-                    foreach(var ps in item.Item2)
+                    foreach (var ps in item.Item2)
                     {
                         if (ps != null)
                         {
                             ps.SetEnable(true);
                         }
-                
+
                     }
                 }
             }
@@ -255,7 +255,7 @@ namespace TOR_Core.Items
             List<ItemTrait> list = new List<ItemTrait>();
             foreach (var item in _dynamicTraits)
             {
-                if(item.Item1.Item == itemObject) list.Add(item.Item2);
+                if (item.Item1.Item == itemObject) list.Add(item.Item2);
             }
             return list;
         }

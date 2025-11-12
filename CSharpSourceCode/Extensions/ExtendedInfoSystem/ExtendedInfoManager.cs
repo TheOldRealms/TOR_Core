@@ -6,19 +6,19 @@ using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Utilities;
-using TaleWorlds.ObjectSystem;
-using TOR_Core.CampaignMechanics.Religion;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
@@ -29,7 +29,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private Dictionary<string, MobilePartyExtendedInfo> _partyInfos = [];
         private static Dictionary<string, string> _bannerResources = [];
         private static ExtendedInfoManager _instance;
-        private static readonly Dictionary<string,List<string>> _settlementInfos = [];
+        private static readonly Dictionary<string, List<string>> _settlementInfos = [];
 
         public static ExtendedInfoManager Instance => _instance;
 
@@ -50,7 +50,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             CampaignEvents.PlayerUpgradedTroopsEvent.AddNonSerializedListener(this, PlayerTroopUpgraded);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PlayerBattleEnd);
             CampaignEvents.OnUnitRecruitedEvent.AddNonSerializedListener(this, PlayerTroopRecruitment);
-            
+
             CustomResourceManager.RegisterEvents();
         }
 
@@ -67,9 +67,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
             foreach (var party in parties)
             {
-                if (party.Party.MobileParty !=  MobileParty.MainParty) continue;
+                if (party.Party.MobileParty != MobileParty.MainParty) continue;
                 if (party.Party.MobileParty == null) continue;
-                
+
                 ValidatePartyInfos(party.Party.MobileParty);
             }
         }
@@ -104,28 +104,28 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             //Sly : until(if) custom resources are ever implemented for AI heroes, there's no point in calculating the resource upkeep for every hero.
             //foreach (var entry in _heroInfos)
             //{
-                var hero = Hero.MainHero; //Hero.FindFirst(x => x.StringId == entry.Key);
-                var resource = hero.GetCultureSpecificCustomResource();
-                if (resource != null && _heroInfos.TryGetValue(hero.StringId, out var heroInfo))
-                {
-                    var id = resource.StringId;
-                    var resourceChange = hero.GetCultureSpecificCustomResourceChange(id);
-                    heroInfo.AddCustomResource(id, resourceChange);
-                }
+            var hero = Hero.MainHero; //Hero.FindFirst(x => x.StringId == entry.Key);
+            var resource = hero.GetCultureSpecificCustomResource();
+            if (resource != null && _heroInfos.TryGetValue(hero.StringId, out var heroInfo))
+            {
+                var id = resource.StringId;
+                var resourceChange = hero.GetCultureSpecificCustomResourceChange(id);
+                heroInfo.AddCustomResource(id, resourceChange);
+            }
             //}
             //only the player uses the TroopAttribute dictionary which is what is validated - it's used for storing temporary troop attributes granted by careers like waywatcher, runesmith, etc... Extended units attributes are in the _characterInfos dictionary which reads from the xml.
             //foreach (var entry in _partyInfos)
             //{
-                //var party = Campaign.Current.LordParties.FirstOrDefault(x => x.StringId == entry.Key);
-                
-                ValidatePartyInfos(MobileParty.MainParty);
+            //var party = Campaign.Current.LordParties.FirstOrDefault(x => x.StringId == entry.Key);
+
+            ValidatePartyInfos(MobileParty.MainParty);
             //}
         }
-        
+
         public void ValidatePartyInfos(MobileParty party)
         {
             if (!_partyInfos.TryGetValue(party.StringId, out var partyInfo)) return;
-            
+
             if (partyInfo.TroopAttributes == null)
             {
                 partyInfo.TroopAttributes = [];
@@ -211,7 +211,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         private void HideVanillaUnitsInEncyclopedia()
         {
-            MBObjectManager.Instance.GetObjectTypeList<CharacterObject>().ForEach(x => 
+            MBObjectManager.Instance.GetObjectTypeList<CharacterObject>().ForEach(x =>
             {
                 if (!x.IsTORTemplate() && x.Occupation == Occupation.Soldier)
                 {
@@ -353,7 +353,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
                 //these for loops are a verification - during HeroExtendedInfo initialization, attributes and abilities will already be added due to the template serving as a reference and _characterInfos having everything it needs from the unit info xml
                 var info = hero.GetExtendedInfo();
-                
+
                 if (info == null) return;
 
 
@@ -374,7 +374,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                         castingLevel = Math.Max(castingLevel, abilityobj.SpellTier);
                     }
                 }
-                
+
                 //OnPerkPicked occurs before hero info is created so we verify manually after its creation
                 if (hero.IsSpellCaster())
                 {
@@ -449,9 +449,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         public static void AddSettlementInfo(Settlement settlement, string tag)
         {
-            if(_settlementInfos.TryGetValue(settlement.StringId, out var list))
+            if (_settlementInfos.TryGetValue(settlement.StringId, out var list))
             {
-                if(!list.Contains(tag)) list.Add(tag);
+                if (!list.Contains(tag)) list.Add(tag);
             }
             else
             {

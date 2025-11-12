@@ -10,8 +10,8 @@ namespace TOR_Core.CampaignMechanics
             if (Campaign.Current != null)
             {
                 var playerEvent = Campaign.Current.MainParty.MapEvent;
-                
-                if(playerEvent==null) return 0;
+
+                if (playerEvent == null) return 0;
 
                 playerEvent.GetStrengthsRelativeToParty(playerEvent.PlayerSide, out float playerStrength, out float enemyStrength);
 

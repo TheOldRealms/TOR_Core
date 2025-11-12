@@ -14,8 +14,8 @@ namespace TOR_Core.HarmonyPatches
         private const string Headposition = "HeadPosition";
         private const string Position = "Position";
         private const string DistanceToCamera = "DistanceToCamera";
-        
-        
+
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(ViewModel), MethodType.Constructor)]
         public static void PatchVMConstructor(ViewModel __instance)
@@ -23,7 +23,7 @@ namespace TOR_Core.HarmonyPatches
             if (__instance.HasExtensionType())
             {
                 var VMExtensionType = __instance.GetExtensionType();
-                if(VMExtensionType != null)
+                if (VMExtensionType != null)
                 {
                     var exists = Traverse.Create(__instance).Field("_propertiesAndMethods").FieldExists();
                     if (exists && Activator.CreateInstance(VMExtensionType, __instance) is IViewModelExtension VMExtensionInstance)
@@ -31,7 +31,7 @@ namespace TOR_Core.HarmonyPatches
                         var field = Traverse.Create(__instance).Field("_propertiesAndMethods").GetValue();
                         var props = Traverse.Create(field).Property("Properties").GetValue() as Dictionary<string, PropertyInfo>;
                         var methods = Traverse.Create(field).Property("Methods").GetValue() as Dictionary<string, MethodInfo>;
-                        foreach(var prop in VMExtensionInstance.GetProperties())
+                        foreach (var prop in VMExtensionInstance.GetProperties())
                         {
                             props.AddItem(prop);
                         }
@@ -58,7 +58,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(ViewModel), "GetViewModelAtPath", typeof(BindingPath))]
         public static bool PatchPathFinder(ViewModel __instance, BindingPath path, ref object __result)
         {
-            if(__instance.HasExtensionInstance())
+            if (__instance.HasExtensionInstance())
             {
                 __result = __instance.GetExtensionInstance().GetViewModelAtPath(path);
                 return false;

@@ -18,28 +18,28 @@ public static class ServeAsAHirelingHelpers
 
         var duration = hirelingCampaignBehavior.DurationInDays;
         var battles = hirelingCampaignBehavior.ManuallyFoughtBattles;
-        
+
         var benefits = new ExplainedNumber();
         var cultureId = hero.Culture.StringId;
-            
+
         if (cultureId == TORConstants.Cultures.BRETONNIA)
         {
-            benefits.Add(10f); 
+            benefits.Add(10f);
             benefits.AddFactor((0.05f * battles));
-            benefits.AddFactor(-0.5f+duration/40);
+            benefits.AddFactor(-0.5f + duration / 40);
             number.Add(benefits.ResultNumber, GameTexts.FindText("tor_custom_resource_bre_hireling"));
             return;
         }
 
-        if ((cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.MOUSILLON) && (hero.IsNecromancer() || (hero.PartyBelongedTo!=null && hero.PartyBelongedTo.HasNecromancer())))
+        if ((cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.MOUSILLON) && (hero.IsNecromancer() || (hero.PartyBelongedTo != null && hero.PartyBelongedTo.HasNecromancer())))
         {
             number.Add(25, GameTexts.FindText("tor_custom_resource_vc_mo_hireling"));
             return;
         }
-            
+
         if (cultureId == TORConstants.Cultures.EONIR)
         {
-            benefits.Add(5f); 
+            benefits.Add(5f);
             benefits.AddFactor((0.05f * battles));
             number.Add(benefits.ResultNumber, GameTexts.FindText("tor_custom_resource_eo_hireling"));
             return;
@@ -47,20 +47,20 @@ public static class ServeAsAHirelingHelpers
 
         if (cultureId == TORConstants.Cultures.EMPIRE)
         {
-            benefits.Add(5f); 
+            benefits.Add(5f);
             benefits.AddFactor((0.05f * battles));
             number.Add(benefits.ResultNumber, GameTexts.FindText("tor_custom_resource_emp_hireling"));
             return;
         }
-        
-        number.AddFactor(hirelingCampaignBehavior.DurationInDays/10);
+
+        number.AddFactor(hirelingCampaignBehavior.DurationInDays / 10);
     }
 
     public static void AddHirelingWage(Hero hero, ref ExplainedNumber number)
     {
         var hirelingCampaignBehavior = Campaign.Current.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>();
         if (hirelingCampaignBehavior == null) return;
-        if(hero.PartyBelongedTo==null) return; // can be null and causes crash
+        if (hero.PartyBelongedTo == null) return; // can be null and causes crash
 
         var duration = hirelingCampaignBehavior.DurationInDays;
         var battles = hirelingCampaignBehavior.ManuallyFoughtBattles;
@@ -71,7 +71,7 @@ public static class ServeAsAHirelingHelpers
         if (cultureId == TORConstants.Cultures.EMPIRE || cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.EONIR || cultureId == TORConstants.Cultures.DAWI) //dawi here cause I want more than 200 gold a day
         {
             wage.AddFactor((0.1f * battles));
-            wage.AddFactor(-0.5f+duration/20);
+            wage.AddFactor(-0.5f + duration / 20);
 
             if (cultureId == TORConstants.Cultures.SYLVANIA)
             {
@@ -85,12 +85,12 @@ public static class ServeAsAHirelingHelpers
             var malus = 3 - ((int)hero.GetChivalryLevel());     //from level 3 on you increase your wage
             wage.AddFactor((-0.1f * malus));
         }
-        
-        var multiplier = hero.PartyBelongedTo.GetMemberHeroes().Count-1;
-        
+
+        var multiplier = hero.PartyBelongedTo.GetMemberHeroes().Count - 1;
+
         wage.AddFactor(multiplier); //additive with other factors
-        
-        number.Add(wage.ResultNumber , GameTexts.FindText("tor_hireling_wage"));
+
+        number.Add(wage.ResultNumber, GameTexts.FindText("tor_hireling_wage"));
     }
 
     public static bool HirelingServiceConditions()
@@ -99,29 +99,29 @@ public static class ServeAsAHirelingHelpers
 
         if (GameTexts.TryGetText("HirelingLordExplain", out var explainText, dialogPartner.Culture.StringId))
         {
-            GameTexts.SetVariable("HIRELING_EXPLAIN_TEXT",explainText);
+            GameTexts.SetVariable("HIRELING_EXPLAIN_TEXT", explainText);
         }
         else
         {
-            var text= GameTexts.FindText("HirelingLordExplain", "default");
-            GameTexts.SetVariable("HIRELING_EXPLAIN_TEXT",text);
+            var text = GameTexts.FindText("HirelingLordExplain", "default");
+            GameTexts.SetVariable("HIRELING_EXPLAIN_TEXT", text);
         }
-        
+
         if (GameTexts.TryGetText("HirelingLordResult", out var resultText, dialogPartner.Culture.StringId))
         {
-            GameTexts.SetVariable("HIRELING_DECISION_TEXT",resultText);
+            GameTexts.SetVariable("HIRELING_DECISION_TEXT", resultText);
         }
         else
         {
-            var text= GameTexts.FindText("HirelingLordResult", "default");
-            GameTexts.SetVariable("HIRELING_DECISION_TEXT",text);
+            var text = GameTexts.FindText("HirelingLordResult", "default");
+            GameTexts.SetVariable("HIRELING_DECISION_TEXT", text);
         }
-        
+
         if (dialogPartner.Culture.StringId == Hero.MainHero.Culture.StringId)
         {
             return true;
         }
-        
+
         if (dialogPartner.Culture.StringId == TORConstants.Cultures.EMPIRE)
         {
             var career = Hero.MainHero.GetCareer();
@@ -131,17 +131,17 @@ public static class ServeAsAHirelingHelpers
 
             return true;
         }
-        
+
         if (dialogPartner.Culture.StringId == TORConstants.Cultures.SYLVANIA)
         {
-            
+
             var career = Hero.MainHero.GetCareer();
             if (career == TORCareers.GrailKnight || career == TORCareers.GrailDamsel)
                 return false;
-            
-            if (career == TORCareers.WitchHunter || 
-                career == TORCareers.WarriorPriest||
-                career == TORCareers.WarriorPriestUlric||
+
+            if (career == TORCareers.WitchHunter ||
+                career == TORCareers.WarriorPriest ||
+                career == TORCareers.WarriorPriestUlric ||
                 career == TORCareers.ImperialMagister)
                 return false;
 
@@ -152,19 +152,19 @@ public static class ServeAsAHirelingHelpers
         {
             if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.BRETONNIA)
                 return false;
-            
+
             return true;
         }
-        
+
         if (dialogPartner.Culture.StringId == TORConstants.Cultures.MOUSILLON)
         {
-            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.BRETONNIA || dialogPartner.GetRelation(Hero.MainHero)>15)
+            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.BRETONNIA || dialogPartner.GetRelation(Hero.MainHero) > 15)
                 return true;
 
             return false;
         }
 
-        
+
         return false;
     }
 }

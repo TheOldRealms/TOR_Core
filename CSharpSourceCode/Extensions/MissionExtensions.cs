@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HarmonyLib;
+﻿using HarmonyLib;
 using SandBox.Missions.MissionLogics.Arena;
+using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 
@@ -11,7 +11,7 @@ namespace TOR_Core.Extensions
     {
         public static void AddMissionLogicAtIndexOf(this Mission mission, MissionLogic missionCombatantsLogic, MissionLogic torMissionCombatantsLogic)
         {
-           
+
             var behaviorIndex = mission.MissionBehaviors.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
             var logicsIndex = mission.MissionLogics.FindIndex(item => item.GetType() == missionCombatantsLogic.GetType());
             mission.RemoveMissionBehavior(missionCombatantsLogic);

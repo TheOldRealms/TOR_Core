@@ -9,6 +9,7 @@ using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 
@@ -23,7 +24,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
     private string _beastIcon = "CareerSystem\\ghur";
     private string _grungniRune = "CareerSystem\\chamon";
     private string _deathIcon = "CareerSystem\\chamon";
-    
+
     private static readonly List<UnitRune> UnitRunes =
     [
         new("unit_rune_guarding", new TextObject("Rune of Guarding"), new TextObject("15% extra physical resistance."), "unit_rune_guarding",
@@ -45,29 +46,29 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         new("unit_rune_grimnir", new TextObject("Master Rune of Grimnir"),
             new TextObject("20% extra attack speed, 35% extra physical and fire damage."), "unit_rune_grimnir", new List<string> { "dw_rune_master_swiftness","dw_rune_master_breaking","dw_rune_fury" }, 3)
     ];
-    
-    
-    public static List<string> GetRuneIds => UnitRunes.SelectQ(x=> x.EffectId).ToListQ();
 
-    private CharacterObject _currentCharacter = null; 
-    
-    
+
+    public static List<string> GetRuneIds => UnitRunes.SelectQ(x => x.EffectId).ToListQ();
+
+    private CharacterObject _currentCharacter = null;
+
+
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner, bool shiftClick)
     {
         _currentCharacter = characterObject;
-        MBTextManager.SetTextVariable("DEATH_ICON", string.Format("<img src=\"{0}\"/>",_grungniRune));
+        MBTextManager.SetTextVariable("DEATH_ICON", string.Format("<img src=\"{0}\"/>", _grungniRune));
 
         var tier = 0;
         for (var i = 1; i < 4; i++)
         {
-            
+
             if (!Hero.MainHero.HasUnlockedCareerChoiceTier(i))
             {
-               break;
+                break;
             }
             tier = i;
         }
-        
+
         PromptUnitRunes(tier);
     }
 
@@ -78,17 +79,17 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
             .Where(x => x.EnchantmentBluePrintIdList.All(blueprintId =>
                 ItemTrait.All.Any(trait => trait.ItemTraitStringId == blueprintId)))
             .ToList();
-        
+
         var list = new List<InquiryElement>();
 
         var currentRuneId = GetCurrentRuneId(_currentCharacter);
         var warningText = new TextObject("");
         if (currentRuneId != null)
-        { 
+        {
             warningText = new TextObject("WARNING : Current {CURRENT_RUNE} will removed without compensation.");
         }
 
-        
+
         foreach (var unitRune in available)
         {
 
@@ -97,47 +98,47 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
                 warningText.SetTextVariable("CURRENT_RUNE", UnitRunes.First(x => x.EffectId == currentRuneId).RuneName.ToString());
                 continue;
             }
-            
+
             var blueprintList = unitRune.EnchantmentBluePrintIdList;
 
             var hint = unitRune.HintText;
 
             var hasIngredients = HasIngredientsForUse(blueprintList, out var failed);
 
-            if (failed.Any(x=> x.notKnown==true))
+            if (failed.Any(x => x.notKnown == true))
             {
-                var entries = new StringBuilder(); 
+                var entries = new StringBuilder();
                 foreach (var entry in failed)
                 {
                     var trait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == entry.Id);
                     entries.Append(trait.ItemTraitName + "{newline}");
                 }
-                
-                hint = new TextObject("You do not know the required runes: "+ entries.ToString()) ;
-                list.Add(new InquiryElement(unitRune,unitRune.RuneName.ToString(), null, false,hint.ToString()));
+
+                hint = new TextObject("You do not know the required runes: " + entries.ToString());
+                list.Add(new InquiryElement(unitRune, unitRune.RuneName.ToString(), null, false, hint.ToString()));
                 continue;
             }
             if (!hasIngredients)
             {
-                var entries = new StringBuilder(); 
+                var entries = new StringBuilder();
                 foreach (var entry in failed)
                 {
-                    entries.Append(entry.cost +" "+ "("+entry.available+")"+ entry.ingredient.Name + "{newline}");
+                    entries.Append(entry.cost + " " + "(" + entry.available + ")" + entry.ingredient.Name + "{newline}");
                 }
-                
+
                 GameTexts.SetVariable("RUNECRAFT_FAILED_ENTRIES", entries.ToString());
-                hint = new TextObject("You  do not have enough ingredients requires : {RUNECRAFT_FAILED_ENTRIES}") ;
+                hint = new TextObject("You  do not have enough ingredients requires : {RUNECRAFT_FAILED_ENTRIES}");
             }
-            
-            list.Add(new InquiryElement(unitRune,unitRune.RuneName.ToString(), null, hasIngredients,hint.ToString()));
+
+            list.Add(new InquiryElement(unitRune, unitRune.RuneName.ToString(), null, hasIngredients, hint.ToString()));
         }
         var title = new TextObject("{=unit_rune_title_str}Unit runes");
         var text = new TextObject("{=unit_rune_text_description_str}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}");
-        text.SetTextVariable("RUNE_WARNING_TEXT",warningText);
+        text.SetTextVariable("RUNE_WARNING_TEXT", warningText);
         var inquirydata = new MultiSelectionInquiryData(title.ToString(),
             text.ToString(), list, true, 1, 1, "Confirm",
-            "Cancel",SelectedRune,null);
-                
+            "Cancel", SelectedRune, null);
+
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
 
@@ -149,20 +150,20 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         var attributes = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == character.StringId).Value;
         return attributes?.FirstOrDefault(x => UnitRunes.Any(y => y.EffectId == x));
     }
-    
+
     private void SelectedRune(List<InquiryElement> inquirydata)
     {
-        var rune = (UnitRune) inquirydata.FirstOrDefault().Identifier;
+        var rune = (UnitRune)inquirydata.FirstOrDefault().Identifier;
 
         var itemRoster = Hero.MainHero.PartyBelongedTo.ItemRoster;
         foreach (var traitId in rune.EnchantmentBluePrintIdList)
         {
-            var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId ==  traitId);
+            var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == traitId);
             var cost = GetIngredientCost(itemTrait);
             var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(itemTrait.IngredientItem);
 
             itemRoster.AddToCounts(ingredient, -cost);
-            
+
         }
 
         var currentRuneId = GetCurrentRuneId(_currentCharacter);
@@ -171,7 +172,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         {
             partyExtendedInfo.RemoveTroopAttribute(_currentCharacter.StringId, currentRuneId);
         }
-        
+
         partyExtendedInfo.AddTroopAttribute(_currentCharacter, rune.EffectId);
 
         ExtendedInfoManager.Instance.ValidatePartyInfos(MobileParty.MainParty);
@@ -195,13 +196,13 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         return costMultiplier * itemTrait.IngredientAmount;
     }
 
-    private bool HasIngredientsForUse(List<string> blueprintList, out List<(string Id, ItemObject ingredient, int cost, int available,  bool notKnown)> failed)
+    private bool HasIngredientsForUse(List<string> blueprintList, out List<(string Id, ItemObject ingredient, int cost, int available, bool notKnown)> failed)
     {
         failed = [];
         var itemTraits = ItemTrait.All.WhereQ(x => blueprintList.Contains(x.ItemTraitStringId));
 
         var itemRoster = Hero.MainHero.PartyBelongedTo.Party.ItemRoster;
-        
+
         foreach (var itemTrait in itemTraits)
         {
             bool notKnown = !Hero.MainHero.HasKnownEnchantmentBlueprint(itemTrait.ItemTraitStringId);
@@ -209,9 +210,9 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
             var ingredient = TorEnchantingIngredients.GetItemObjectForIngredient(itemTrait.IngredientItem);
 
             var available = itemRoster.GetItemNumber(ingredient);
-            if (notKnown ||available < cost)
+            if (notKnown || available < cost)
             {
-                failed.Add(( itemTrait.ItemTraitStringId,ingredient, cost, available, notKnown));
+                failed.Add((itemTrait.ItemTraitStringId, ingredient, cost, available, notKnown));
             }
         }
 
@@ -233,18 +234,18 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
             displayText = new TextObject("Doesnt work for heroes");
             return false;
         }
-        
+
         if (characterObject.HasUnitRune())
         {
             var id = GetCurrentRuneId(characterObject);
             if (id != null)
             {
                 var rune = UnitRunes.FirstOrDefault(x => x.Id == id);
-                
+
                 displayText = new TextObject(rune.RuneName.ToString());
                 hasRune = true;
             }
-        
+
         }
 
         var extendedInfo = Hero.MainHero.GetExtendedInfo();
@@ -254,15 +255,15 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
             displayText = new TextObject("Hero doesn't know any Runes yet");
             return false;
         }
-        
 
-        if (Hero.MainHero.CurrentSettlement == null || Hero.MainHero.CurrentSettlement!=null && !Hero.MainHero.CurrentSettlement.IsDwarfKarak())
+
+        if (Hero.MainHero.CurrentSettlement == null || Hero.MainHero.CurrentSettlement != null && !Hero.MainHero.CurrentSettlement.IsDwarfKarak())
         {
             if (!hasRune)
             {
                 displayText = new TextObject("Only possible inside a dwarf Karak. Visit a Dwarf Karak");
             }
-        
+
             return false;
         }
 
@@ -275,29 +276,29 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
 
         return true;
     }
-    
+
 }
 
 
-public class  UnitRune()
+public class UnitRune()
 {
     private readonly int _price;
     private readonly TorTradeGoodType _enchantmentGood;
-    public List<string>  EnchantmentBluePrintIdList { get; }
+    public List<string> EnchantmentBluePrintIdList { get; }
     public TextObject RuneName { get; set; }
     public string Id { get; set; }
     public string EffectId { get; set; }
     public TextObject HintText { get; set; }
 
     public int CareerTier { get; }
-    
+
     public UnitRune(string id, TextObject text, TextObject hintText, string effect, List<string> enchantmentBluePrintIdList, int careerTier) : this()
     {
         this.RuneName = text;
         HintText = hintText;
         Id = id;
         EffectId = effect;
-        EnchantmentBluePrintIdList =  enchantmentBluePrintIdList;
+        EnchantmentBluePrintIdList = enchantmentBluePrintIdList;
         CareerTier = careerTier;
     }
 

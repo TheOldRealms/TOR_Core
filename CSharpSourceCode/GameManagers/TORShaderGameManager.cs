@@ -15,7 +15,7 @@ namespace TOR_Core.GameManagers
         public override void OnLoadFinished()
         {
             IsLoaded = true;
-            
+
             LoadScene();
         }
 

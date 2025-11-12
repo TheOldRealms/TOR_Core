@@ -46,15 +46,15 @@ namespace TOR_Core.AbilitySystem.Crosshairs
                 {
                     _position = _caster.LookFrame.Advance(_template.MaxDistance).origin;
                     _position.z = _mission.Scene.GetGroundHeightAtPosition(Position);
-                    Position = _position; 
+                    Position = _position;
                 }
             }
         }
 
         private float _currentDistance;
-       
+
         private Vec3 _position;
-        
+
         private Vec3 _normal;
     }
 }

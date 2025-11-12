@@ -13,15 +13,15 @@ namespace TOR_Core.Utilities
 
         public override void OnMissionTick(float dt)
         {
-            if(Agent.Main != null)
+            if (Agent.Main != null)
             {
                 var action = Agent.Main.GetCurrentAction(1);
-                if(action != null)
+                if (action != null)
                 {
-                    if(_actionName != action.GetName())
+                    if (_actionName != action.GetName())
                     {
                         _actionName = action.GetName();
-                      //  TORCommon.Say("New action: " +  _actionName);
+                        //  TORCommon.Say("New action: " +  _actionName);
                     }
                 }
             }

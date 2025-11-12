@@ -15,7 +15,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
     public class SimpleCareerQuestBehavior : CampaignBehaviorBase
     {
         private readonly Dictionary<string, string> _careerStories = new Dictionary<string, string>();
-        
+
         private bool _hasShownCareerStory = false;
 
         public override void RegisterEvents()
@@ -24,7 +24,7 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             {
                 CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyTick);
             }
-     
+
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
         }
 
@@ -49,14 +49,14 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             // Only check once and only if we haven't shown a career story yet
             if (_hasShownCareerStory)
                 return;
-            
-            var id = Hero.MainHero.GetCareer()!=null ? Hero.MainHero.GetCareer().StringId : "";
-            if(!_careerStories.ContainsKey(id))
+
+            var id = Hero.MainHero.GetCareer() != null ? Hero.MainHero.GetCareer().StringId : "";
+            if (!_careerStories.ContainsKey(id))
                 return;
-            
+
             if (!StandardMovingCheck())
                 return;
-            
+
             if (TryLaunchCareerStory())
             {
                 _hasShownCareerStory = true;
@@ -65,13 +65,13 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
 
         private bool StandardMovingCheck()
         {
-            return MobileParty.MainParty.IsMoving && 
-                   MobileParty.MainParty.Army == null && 
-                   !Hero.MainHero.IsPrisoner && 
-                   MobileParty.MainParty.CurrentSettlement == null && 
+            return MobileParty.MainParty.IsMoving &&
+                   MobileParty.MainParty.Army == null &&
+                   !Hero.MainHero.IsPrisoner &&
+                   MobileParty.MainParty.CurrentSettlement == null &&
                    MobileParty.MainParty.BesiegedSettlement == null;
         }
-        
+
         private bool TryLaunchCareerStory()
         {
             if (Hero.MainHero == null)

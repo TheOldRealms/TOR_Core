@@ -32,12 +32,12 @@ namespace TOR_Core.CampaignMechanics
                 if (duration.ToDays > _maximumDaysInCaptivity) EndCaptivityAction.ApplyByEscape(hero, null);
             }
 
-            if(!hero.IsPrisoner && 
+            if (!hero.IsPrisoner &&
                 hero.IsLord &&
-                hero.GovernorOf == null && 
-                hero.PartyBelongedTo == null && 
-                hero.PartyBelongedToAsPrisoner == null && 
-                hero.CanLeadParty() && 
+                hero.GovernorOf == null &&
+                hero.PartyBelongedTo == null &&
+                hero.PartyBelongedToAsPrisoner == null &&
+                hero.CanLeadParty() &&
                 hero.IsAlive &&
                 hero.LastKnownClosestSettlement != null &&
                 hero.IsActive &&

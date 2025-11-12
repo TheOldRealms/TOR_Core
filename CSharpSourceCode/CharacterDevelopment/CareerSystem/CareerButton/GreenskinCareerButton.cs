@@ -6,6 +6,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
@@ -16,41 +17,41 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
     {
         if (!isPrisoner || !IsEdibleCharacter(characterObject))
             return;
-        
+
         var meat = CustomResourceManager.GetResourceObject("Meat");
         var amount = GetMeatAmountForCharacter(characterObject);
-        
+
         if (shiftClick)
         {
             var troopCount = CareerButtonHelper.GetMaximumExchangeTroops(characterObject, isPrisoner, 5, 0, 0);
             for (int i = 0; i < troopCount; i++)
             {
-                CustomResourceManager.AddResourceChanges(meat,-amount);
+                CustomResourceManager.AddResourceChanges(meat, -amount);
                 ChopPrisoner(characterObject);
             }
         }
         else
         {
             // Chop single prisoner
-            CustomResourceManager.AddResourceChanges(meat,-amount);
+            CustomResourceManager.AddResourceChanges(meat, -amount);
             ChopPrisoner(characterObject);
         }
-        
+
         PartyVMExtension.ViewModelInstance.GetExtensionInstance().RefreshValues(); //Refresh to display correct resource exchange
     }
 
     private int GetMeatAmountForCharacter(CharacterObject characterObject)
     {
-        var baseValue = characterObject.Level / 3 ==0?1:characterObject.Level / 3;
+        var baseValue = characterObject.Level / 3 == 0 ? 1 : characterObject.Level / 3;
 
         if (characterObject.HasMount())
         {
-            baseValue = (int)(baseValue*1.5f);
+            baseValue = (int)(baseValue * 1.5f);
         }
 
         if (characterObject.IsMinotaur())
         {
-            baseValue = (int)(baseValue*3);
+            baseValue = (int)(baseValue * 3);
         }
 
         return baseValue;
@@ -61,7 +62,7 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
         // Only show chop button for prisoners
         if (!isPrisoner)
             return false;
-        
+
         if (!IsEdibleCharacter(characterObject))
             return false;
 
@@ -103,14 +104,14 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
 
     private void ChopPrisoner(CharacterObject prisoner)
     {
-        CareerButtonHelper.RemoveUnit(prisoner,true,true);
+        CareerButtonHelper.RemoveUnit(prisoner, true, true);
     }
 
     private bool IsEdibleCharacter(CharacterObject character)
     {
         // Check if character is human based on culture
         return character.Race == FaceGen.GetRaceOrDefault("dwarf") || character.Race == FaceGen.GetRaceOrDefault("human") ||
-               character.Race == FaceGen.GetRaceOrDefault("elf") || character.Race == FaceGen.GetRaceOrDefault("ungor")||
-               character.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist") ;
+               character.Race == FaceGen.GetRaceOrDefault("elf") || character.Race == FaceGen.GetRaceOrDefault("ungor") ||
+               character.Race == FaceGen.GetRaceOrDefault("chaos_ud_cultist");
     }
 }

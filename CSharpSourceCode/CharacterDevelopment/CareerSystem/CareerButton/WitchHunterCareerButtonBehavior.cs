@@ -24,8 +24,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private const string RetinueId = "tor_wh_retinue";
 
         public override string CareerButtonIcon => "CareerSystem\\ghal_maraz";
-        
-        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false, bool shiftClick=false)
+
+        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClick = false)
         {
             var witchHunterRetinue = MBObjectManager.Instance.GetObject<CharacterObject>(RetinueId);
 
@@ -35,14 +35,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
                 for (int i = 0; i < affordable; i++)
                 {
-                    CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(),ExchangeCost);
+                    CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), ExchangeCost);
                     PartyScreenHelper.GetActivePartyState().PartyScreenLogic.CurrentData.PartyGoldChangeAmount -= GoldCost;
                     CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, witchHunterRetinue, true);
                 }
             }
             else
             {
-                CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(),ExchangeCost);
+                CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), ExchangeCost);
                 PartyScreenHelper.GetActivePartyState().PartyScreenLogic.CurrentData.PartyGoldChangeAmount -= GoldCost;
                 CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, witchHunterRetinue, true);
             }
@@ -50,13 +50,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner)
         {
-            
+
             if (PartyScreenHelper.GetActivePartyState().PartyScreenMode != PartyScreenMode.Normal) return false;
 
             if (characterObject.IsHero) return false;
 
             if (isPrisoner) return false;
-            
+
             if (!Hero.MainHero.HasCareerChoice("SilverHammerPassive4")) return false;
 
             if (characterObject.StringId.Contains(RetinueId))
@@ -68,24 +68,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             return false;
         }
 
-        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner=false)
+        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
             var index = -1;
             displayText = TextObject.GetEmpty();
             index = Hero.MainHero.PartyBelongedTo.MemberRoster.FindIndexOfTroop(characterObject);
 
             if (index == -1) return false;
-            
+
             displayText = new TextObject("Upgrades troop to a Witch Hunter Retinue");
             if (characterObject.IsEliteTroop())
             {
                 displayText = new TextObject("Knights Cant be upgraded to Retinues");
                 return false;
             }
-            
-            var healthyTroops= Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
+
+            var healthyTroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementNumber(index);
             var woundedTroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
-            if (healthyTroops - woundedTroops < 0 )
+            if (healthyTroops - woundedTroops < 0)
             {
                 displayText = new TextObject("Not enough healthy troops available");
                 return false;
@@ -96,15 +96,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 displayText = new TextObject("Needs to be part of the empire or southern realms");
                 return false;
             }
-            
-            
+
+
             var pendingResources = CustomResourceManager.GetPendingResources();
             if (!pendingResources.IsEmpty() && pendingResources[Hero.MainHero.GetCultureSpecificCustomResource()] + ExchangeCost > Hero.MainHero.GetCultureSpecificCustomResourceValue())
             {
                 //Sly : dark energy icon instead of prestige? Shows prestige in-game, so I'm unsure in what context this would show in to check.
                 //Would this line be localizable or it needs to have a {variable} that's set? Can't even find it to check.
                 displayText = new TextObject("Requires atleast " + ExchangeCost + " " + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
-                return false; 
+                return false;
             }
 
             return true;

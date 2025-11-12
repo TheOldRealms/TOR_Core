@@ -1,7 +1,7 @@
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -30,7 +30,7 @@ namespace TOR_Core.Items
 
         public override void OnMissionTick(float dt)
         {
-            if(Agent.Main != null && Agent.Main.GetComponent<ItemTraitAgentComponent>() != null)
+            if (Agent.Main != null && Agent.Main.GetComponent<ItemTraitAgentComponent>() != null)
             {
                 Agent.Main.GetComponent<ItemTraitAgentComponent>().OnTickAsMainAgent(dt);
             }
@@ -38,7 +38,7 @@ namespace TOR_Core.Items
             _deltaTime += dt;
             if (_deltaTime > _triggerCooldown)
             {
-                if(_traitCoolDownMap.AnyQ())
+                if (_traitCoolDownMap.AnyQ())
                 {
                     foreach (var entry in _traitCoolDownMap.WhereQ(entry => entry.Value.AnyQ()))
                     {
@@ -58,7 +58,7 @@ namespace TOR_Core.Items
         {
             if (affectedAgent == affectorAgent)
                 return;
-            
+
             if (affectorWeapon.Item != null && affectorWeapon.Item.HasAnyTrait(affectorAgent))
             {
                 var statusEffectTraits = affectorWeapon.Item.GetTraits(affectorAgent).Where(x => x.ImbuedStatusEffectId != "none" && x.ImbuedStatusEffectId != null);
@@ -70,18 +70,18 @@ namespace TOR_Core.Items
                         {
                             affectedAgent.ApplyStatusEffect(trait.ImbuedStatusEffectId, affectorAgent, 5, false);
                         }
-           
+
                     }
                 }
-                
+
                 var onHitTraits = affectorWeapon.Item.GetTraits(affectorAgent)
                     .WhereQ(x => x.OnWeaponHitScript != null && !string.IsNullOrWhiteSpace(x.OnWeaponHitScript.WeaponScriptName) && x.OnWeaponHitScript.WeaponScriptName != "invalid");
-                
+
                 if (onHitTraits != null && onHitTraits.Count() > 0)
                 {
                     foreach (var trait in onHitTraits)
                     {
-                        ApplySpecialTrait( trait,affectorAgent,affectedAgent,true, blow , affectorWeapon,attackCollisionData);
+                        ApplySpecialTrait(trait, affectorAgent, affectedAgent, true, blow, affectorWeapon, attackCollisionData);
                     }
                 }
             }
@@ -103,20 +103,20 @@ namespace TOR_Core.Items
                     {
                         items.Add(affectedAgent.WieldedOffhandWeapon.Item);
                     }
-                    
+
                 }
                 else
-                { 
-                    items =  affectedAgent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot);
+                {
+                    items = affectedAgent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot);
                 }
-                
+
                 var traits = new List<ItemTrait>();
-                
+
                 foreach (var item in items)
                 {
                     traits.AddRange(item.GetTraits().Where(x => x.OnWeaponHitScript != null).ToList());
                 }
-                
+
                 var simpleStatusEffects = traits.Where(x => x.ImbuedStatusEffectId != "none" && x.ImbuedStatusEffectId != null);
                 if (simpleStatusEffects != null && simpleStatusEffects.Count() > 0)
                 {
@@ -134,8 +134,8 @@ namespace TOR_Core.Items
                 {
                     foreach (var trait in onHitTraits)
                     {
-                        ApplySpecialTrait( trait,affectorAgent,affectedAgent,true, blow , affectorWeapon,attackCollisionData);
-                    }  
+                        ApplySpecialTrait(trait, affectorAgent, affectedAgent, true, blow, affectorWeapon, attackCollisionData);
+                    }
                 }
             }
         }
@@ -147,7 +147,7 @@ namespace TOR_Core.Items
         /// <returns></returns>
         private ItemObject FindBrokenShield(Agent agent)
         {
-            var possibleItems = agent.GetHero().CharacterObject.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3).Where(x=> x.IsShield() && x.HasAnyTrait());
+            var possibleItems = agent.GetHero().CharacterObject.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Weapon3).Where(x => x.IsShield() && x.HasAnyTrait());
             ItemObject targetItem = null;
             foreach (var itemObject in possibleItems)
             {
@@ -170,28 +170,28 @@ namespace TOR_Core.Items
         private void ApplySpecialTrait(ItemTrait trait, Agent affectorAgent, Agent affectedAgent, bool isDefenceTrait, Blow blow, MissionWeapon affectorWeapon, AttackCollisionData attackCollisionData)
         {
             Agent targetAgent = null;
-            
-            targetAgent = isDefenceTrait? affectedAgent: affectorAgent;
-            if (MBRandom.RandomFloatRanged(0f,1f) > trait.ImbuedEffectChance)
+
+            targetAgent = isDefenceTrait ? affectedAgent : affectorAgent;
+            if (MBRandom.RandomFloatRanged(0f, 1f) > trait.ImbuedEffectChance)
             {
                 return;
             }
             if (_traitCoolDownMap.TryGetValue(targetAgent.Index, out var value))
             {
-                if(value.Contains(trait.ItemTraitStringId))
+                if (value.Contains(trait.ItemTraitStringId))
                     return;
                 _traitCoolDownMap[targetAgent.Index] = value;
             }
             else
             {
                 _traitCoolDownMap.Add(targetAgent.Index, new Queue<string>([trait.ItemTraitStringId]));
-                
+
             }
-            
+
             try
             {
                 object script;
-                     
+
                 if (trait.OnWeaponHitScript.WeaponScriptArguments != null && trait.OnWeaponHitScript.WeaponScriptArguments.Count > 0)
                 {
                     script = Activator.CreateInstance(Type.GetType(trait.OnWeaponHitScript.WeaponScriptName), [trait.OnWeaponHitScript.WeaponScriptArguments.ToArray()]);
@@ -200,31 +200,31 @@ namespace TOR_Core.Items
                 {
                     var type = Type.GetType(trait.OnWeaponHitScript.WeaponScriptName);
                     script = Activator.CreateInstance(type);
-                } 
+                }
                 if (script is BaseWeaponHitScript weaponHitScript)
                 {
-                    weaponHitScript.OnHit(affectorAgent, affectedAgent, blow,affectorWeapon, attackCollisionData);
+                    weaponHitScript.OnHit(affectorAgent, affectedAgent, blow, affectorWeapon, attackCollisionData);
                 }
-                       
+
             }
-            catch(Exception)
+            catch (Exception)
             {
                 TORCommon.Log("Tried to create magicweapon onhitscript: " + trait.OnWeaponHitScript.WeaponScriptName + ", but failed.", NLog.LogLevel.Error);
             }
-            
+
         }
 
         public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
         {
             if (attacker == victim)
                 return;
-            
+
             if (attacker != null)
             {
                 if (HasWeaponWithTrait(attacker, out var traits))
                 {
-                    
-                    if (traits != null && traits.Count() > 0 && victim!=null && ! (collisionData.MissileBlockedWithWeapon || collisionData.AttackBlockedWithShield))
+
+                    if (traits != null && traits.Count() > 0 && victim != null && !(collisionData.MissileBlockedWithWeapon || collisionData.AttackBlockedWithShield))
                     {
                         foreach (var trait in traits)
                         {
@@ -239,12 +239,12 @@ namespace TOR_Core.Items
                             }
                         }
                     }
-                    
+
                     var missileIndex = collisionData.AffectorWeaponSlotOrMissileIndex;
                     var targetMissile = Mission.Current.MissilesList.FirstOrDefault(x => x.Index == missileIndex);
                     targetMissile.Entity.RemoveAllParticleSystems();
                 }
-                
+
                 //TODO check if scripts are applied anyway for onHit scripts
             }
         }
@@ -256,18 +256,18 @@ namespace TOR_Core.Items
 
             if (weaponData != null && shooterAgent != null)
             {
-                var missile = Mission.Current.MissilesList.FirstOrDefault(X => X.ShooterAgent == shooterAgent );
+                var missile = Mission.Current.MissilesList.FirstOrDefault(X => X.ShooterAgent == shooterAgent);
 
                 if (missile != null)
                 {
-   
+
                     if (HasWeaponWithTrait(shooterAgent, out var traits))
                     {
                         foreach (var trait in traits)
                         {
                             if (trait.WeaponParticlePreset != null)
                             {
-                                missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);  
+                                missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);
                             }
                         }
                     }
@@ -276,7 +276,7 @@ namespace TOR_Core.Items
         }
 
         private bool HasWeaponWithTrait(Agent agent, out List<ItemTrait> list)
-        { 
+        {
             list = [];
             if (agent.IsHuman)
             {
@@ -286,7 +286,7 @@ namespace TOR_Core.Items
                     if (weapon.Item != null)
                     {
                         var effects = weapon.Item.GetTraits(agent);
-                        if (effects != null &&!effects.IsEmpty())
+                        if (effects != null && !effects.IsEmpty())
                         {
                             list = effects;
                             return true;

@@ -6,7 +6,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
-    public class TORPrisonerRecruitmentCalculationModel: DefaultPrisonerRecruitmentCalculationModel
+    public class TORPrisonerRecruitmentCalculationModel : DefaultPrisonerRecruitmentCalculationModel
     {
         /// <summary>
         /// Stops AI parties from recruiting cross-culture prisoners.
@@ -39,15 +39,15 @@ namespace TOR_Core.Models
             //base handles all of the modifiers for recruitment rate
             return base.GetConformityChangePerHour(party, character);
         }
-        
-        
-        
+
+
+
         public override int GetPrisonerRecruitmentMoraleEffect(
             PartyBase party,
             CharacterObject character,
             int num)
         {
-            var value = base.GetPrisonerRecruitmentMoraleEffect(party,character,num);
+            var value = base.GetPrisonerRecruitmentMoraleEffect(party, character, num);
 
             if (party.LeaderHero?.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {

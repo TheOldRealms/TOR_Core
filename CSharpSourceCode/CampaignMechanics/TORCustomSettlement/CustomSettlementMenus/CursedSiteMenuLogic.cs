@@ -20,16 +20,16 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlementMenuLogic(starter)
 {
     public static int MinimumDaysBetweenRaisingGhosts = 3;
-    
+
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
         AddCursedSiteMenus(campaignGameStarter);
     }
-    
+
     private const int _empoweringUndeadCost = 100;
     private int _empoweredUndead = 0;
     private Dictionary<string, int> _leveledUpUndead = [];
-    
+
     private void AddCursedSiteMenus(CampaignGameStarter starter)
     {
         MBTextManager.SetTextVariable("DARKENERGYICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
@@ -150,7 +150,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
                 args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_enough_free_slots_text_str}You have not enough space in your party.");
                 args.IsEnabled = false;
             }
-            
+
             var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTime(Hero.MainHero);
             if (lastGhostRecruitmentTime >= (int)CampaignTime.Now.ToDays)
             {
@@ -158,7 +158,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
                 args.IsEnabled = false;
             }
         }
-            
+
 
         return component.IsActive;
     }
@@ -353,10 +353,10 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         {
             MBTextManager.SetTextVariable("GHOST_RESULT_NUMBER", numberOfTroopsFromInteraction);
             MBTextManager.SetTextVariable("GHOST_RESULT", "{=tor_custom_settlement_cursed_site_ghosts_result_str}You successfully bind {GHOST_RESULT_NUMBER} spirits to your command.");
-                
-            Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastGhostRecruitmentTime(Hero.MainHero, (int) CampaignTime.Now.ToDays);
-                
-     
+
+            Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastGhostRecruitmentTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
+
+
         }
     }
 
@@ -377,23 +377,23 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         }
         Hero.MainHero.AddCustomResource("DarkEnergy", -100);
     }
-        
+
     public static bool CanPartyRecruitGhosts(MobileParty party)
     {
-        return party.IsLordParty && 
-                !party.IsEngaging && 
+        return party.IsLordParty &&
+                !party.IsEngaging &&
                 party.IsActive &&
-                party.Army == null && 
-                !party.IsDisbanding && 
-                !party.IsCurrentlyUsedByAQuest && 
-                party.CurrentSettlement == null && 
-                party.MapEvent == null && 
-                !party.Ai.IsDisabled && 
-                party.LeaderHero != null && 
-                (party.LeaderHero.IsNecromancer() || 
-                party.LeaderHero.IsVampire()) && 
+                party.Army == null &&
+                !party.IsDisbanding &&
+                !party.IsCurrentlyUsedByAQuest &&
+                party.CurrentSettlement == null &&
+                party.MapEvent == null &&
+                !party.Ai.IsDisabled &&
+                party.LeaderHero != null &&
+                (party.LeaderHero.IsNecromancer() ||
+                party.LeaderHero.IsVampire()) &&
                 party.PartySizeRatio < 0.8f;
     }
 
-       
+
 }

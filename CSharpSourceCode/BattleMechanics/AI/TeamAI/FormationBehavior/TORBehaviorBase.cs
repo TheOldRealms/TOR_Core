@@ -31,7 +31,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior
         protected WorldPosition ReformPosition = WorldPosition.Invalid;
         protected readonly BehaviorType BehaviorType;
 
-        protected TORBehaviorBase(Formation formation,  float coherence, BehaviorType behaviorType) : base(formation)
+        protected TORBehaviorBase(Formation formation, float coherence, BehaviorType behaviorType) : base(formation)
         {
             BehaviorCoherence = coherence;
             CalculateCurrentOrder();
@@ -74,7 +74,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior
 
         private void SetOrders()
         {
-            if(Formation.AI.ActiveBehavior == this)
+            if (Formation.AI.ActiveBehavior == this)
             {
                 CalculateCurrentOrder();
                 Formation.SetMovementOrder(CurrentOrder);

@@ -44,11 +44,11 @@ namespace TOR_Core.HarmonyPatches
                 List<Agent> units = [];
                 foreach (var unit in __instance.Arrangement.GetAllUnits())
                 {
-                    if(unit is Agent agent && agent.IsActive())
+                    if (unit is Agent agent && agent.IsActive())
                     {
                         units.Add(agent);
                     }
-                    
+
                 }
                 __result = units.FirstOrDefault();
             }

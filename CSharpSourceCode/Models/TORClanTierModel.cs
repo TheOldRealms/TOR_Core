@@ -15,8 +15,8 @@ namespace TOR_Core.Models
                 ? base.GetPartyLimitForTier(clan, clanTierToCheck)
                 : 9999;
         }
-        
-        
+
+
         public override int GetCompanionLimit(Clan clan)
         {
             int companionLimit = base.GetCompanionLimit(clan);
@@ -25,8 +25,8 @@ namespace TOR_Core.Models
 
             if (Hero.MainHero.HasAnyCareer())
             {
-                var explainedNumber = new ExplainedNumber(); 
-                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber ,PassiveEffectType.CompanionLimit, false);
+                var explainedNumber = new ExplainedNumber();
+                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber, PassiveEffectType.CompanionLimit, false);
                 companionLimit += (int)explainedNumber.ResultNumber;
             }
 

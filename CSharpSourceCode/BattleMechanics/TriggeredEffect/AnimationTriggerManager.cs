@@ -24,7 +24,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             }
         }
         public List<AnimationTrigger> AnimationTriggers { get; private set; }
-        private AnimationTriggerManager() 
+        private AnimationTriggerManager()
         {
             AnimationTriggers = new List<AnimationTrigger>();
         }

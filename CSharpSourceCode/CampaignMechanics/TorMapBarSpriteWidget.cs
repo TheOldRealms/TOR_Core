@@ -20,14 +20,14 @@ namespace TOR_Core.CampaignMechanics
 
         protected override void OnLateUpdate(float dt)
         {
-            if(Game.Current.GameType is Campaign && Hero.MainHero != null)
+            if (Game.Current.GameType is Campaign && Hero.MainHero != null)
             {
                 var resource = Hero.MainHero.GetCultureSpecificCustomResource();
-                if(resource != null)
+                if (resource != null)
                 {
                     Sprite = Context.SpriteData.GetSprite(resource.SmallIconName);
                 }
-            }   
+            }
         }
     }
 }

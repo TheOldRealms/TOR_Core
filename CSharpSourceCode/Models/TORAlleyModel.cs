@@ -32,8 +32,8 @@ public class TORAlleyModel : DefaultAlleyModel
                     return MBObjectManager.Instance.GetObject<CharacterObject>("tor_eo_thug");
                 }
             }
-            
-            
+
+
             return MBObjectManager.Instance.GetObject<CharacterObject>("gangster_1");
         }
     }
@@ -69,29 +69,29 @@ public class TORAlleyModel : DefaultAlleyModel
             return MBObjectManager.Instance.GetObject<CharacterObject>("gangster_2");
         }
     }
-    
+
     public override TroopRoster GetTroopsOfAIOwnedAlley(Alley alley)
     {
         return this.GetTroopsOfAlleyInternal(alley);
     }
-    
-    
+
+
     public override TroopRoster GetTroopsOfAlleyForBattleMission(Alley alley)
     {
         TroopRoster troopsOfAlleyInternal = this.GetTroopsOfAlleyInternal(alley);
         TroopRoster dummyTroopRoster = TroopRoster.CreateDummyTroopRoster();
-        foreach (TroopRosterElement troopRosterElement in (List<TroopRosterElement>) troopsOfAlleyInternal.GetTroopRoster())
+        foreach (TroopRosterElement troopRosterElement in (List<TroopRosterElement>)troopsOfAlleyInternal.GetTroopRoster())
             dummyTroopRoster.AddToCounts(troopRosterElement.Character, troopRosterElement.Number * 2);
         return dummyTroopRoster;
     }
-    
+
     private TroopRoster GetTroopsOfAlleyInternal(Alley alley)
     {
         TroopRoster dummyTroopRoster = TroopRoster.CreateDummyTroopRoster();
         Hero owner = alley.Owner;
-        if ((double) owner.Power <= 100.0)
+        if ((double)owner.Power <= 100.0)
         {
-            if ((double) owner.RandomValue > 0.5)
+            if ((double)owner.RandomValue > 0.5)
             {
                 dummyTroopRoster.AddToCounts(this._thug, 3);
             }
@@ -101,9 +101,9 @@ public class TORAlleyModel : DefaultAlleyModel
                 dummyTroopRoster.AddToCounts(this._masterThug, 1);
             }
         }
-        else if ((double) owner.Power <= 200.0)
+        else if ((double)owner.Power <= 200.0)
         {
-            if ((double) owner.RandomValue > 0.5)
+            if ((double)owner.RandomValue > 0.5)
             {
                 dummyTroopRoster.AddToCounts(this._thug, 2);
                 dummyTroopRoster.AddToCounts(this._expertThug, 1);
@@ -116,9 +116,9 @@ public class TORAlleyModel : DefaultAlleyModel
                 dummyTroopRoster.AddToCounts(this._masterThug, 2);
             }
         }
-        else if ((double) owner.Power <= 300.0)
+        else if ((double)owner.Power <= 300.0)
         {
-            if ((double) owner.RandomValue > 0.5)
+            if ((double)owner.RandomValue > 0.5)
             {
                 dummyTroopRoster.AddToCounts(this._thug, 3);
                 dummyTroopRoster.AddToCounts(this._expertThug, 2);
@@ -131,7 +131,7 @@ public class TORAlleyModel : DefaultAlleyModel
                 dummyTroopRoster.AddToCounts(this._masterThug, 3);
             }
         }
-        else if ((double) owner.RandomValue > 0.5)
+        else if ((double)owner.RandomValue > 0.5)
         {
             dummyTroopRoster.AddToCounts(this._thug, 3);
             dummyTroopRoster.AddToCounts(this._expertThug, 3);
@@ -145,27 +145,27 @@ public class TORAlleyModel : DefaultAlleyModel
         }
         return dummyTroopRoster;
     }
-    
+
     public override TroopRoster GetTroopsToRecruitFromAlleyDependingOnAlleyRandom(
         Alley alley,
         float random)
     {
         TroopRoster dummyTroopRoster = TroopRoster.CreateDummyTroopRoster();
-        if ((double) random >= 0.5)
+        if ((double)random >= 0.5)
             return dummyTroopRoster;
         Clan settlementFaction = alley.Settlement.Owner.Clan;
-        if ((double) random > 0.30000001192092896)
+        if ((double)random > 0.30000001192092896)
         {
             dummyTroopRoster.AddToCounts(this._thug, 1);
             dummyTroopRoster.AddToCounts(settlementFaction.BasicTroop, 1);
         }
-        else if ((double) random > 0.15000000596046448)
+        else if ((double)random > 0.15000000596046448)
         {
             dummyTroopRoster.AddToCounts(this._thug, 2);
             dummyTroopRoster.AddToCounts(settlementFaction.BasicTroop, 1);
             dummyTroopRoster.AddToCounts(settlementFaction.BasicTroop.UpgradeTargets[0], 1);
         }
-        else if ((double) random > 0.05000000074505806)
+        else if ((double)random > 0.05000000074505806)
         {
             dummyTroopRoster.AddToCounts(this._thug, 3);
             dummyTroopRoster.AddToCounts(settlementFaction.BasicTroop, 2);
@@ -179,5 +179,5 @@ public class TORAlleyModel : DefaultAlleyModel
         }
         return dummyTroopRoster;
     }
-    
+
 }

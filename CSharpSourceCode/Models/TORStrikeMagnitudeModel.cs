@@ -1,6 +1,6 @@
-using System.Linq;
 using Helpers;
 using SandBox.GameComponents;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
@@ -31,19 +31,19 @@ namespace TOR_Core.Models
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.PiercingShots, attacker, true, ref resultArmor);
                 }
 
-                if (attacker.IsPlayerCharacter&& attacker.HeroObject == Hero.MainHero)
+                if (attacker.IsPlayerCharacter && attacker.HeroObject == Hero.MainHero)
                 {
                     var attackMask = AttackTypeMask.Melee;
                     if (weaponComponent.IsRangedWeapon) attackMask = AttackTypeMask.Ranged;
-                    
+
                     CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultArmor, PassiveEffectType.ArmorPenetration, attackMask, true);
                 }
 
                 if (attacker.IsHero) // never remove this check. operations for item traits can be very heavy
-                { 
-                    var agent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero &&  x.Character == attacker);
+                {
+                    var agent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.Character == attacker);
 
-             
+
 
                     if (weaponComponent.IsAmmo || weaponComponent.IsRangedWeapon)
                     {
@@ -62,8 +62,8 @@ namespace TOR_Core.Models
                             }
                         }
                     }
-                    
-                    if ( agent.WieldedWeapon.CurrentUsageItem != null &&  agent.WieldedWeapon.CurrentUsageItem.GetItemUsageIndex() == weaponComponent.GetItemUsageIndex())
+
+                    if (agent.WieldedWeapon.CurrentUsageItem != null && agent.WieldedWeapon.CurrentUsageItem.GetItemUsageIndex() == weaponComponent.GetItemUsageIndex())
                     {
                         if (!agent.WieldedWeapon.IsEmpty)
                         {
@@ -80,7 +80,7 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (attackerCharacter.IsUndead() &&attackerCaptain.IsPlayerCharacter&& attackerCaptain.HeroObject == Hero.MainHero)
+                if (attackerCharacter.IsUndead() && attackerCaptain.IsPlayerCharacter && attackerCaptain.HeroObject == Hero.MainHero)
                 {
                     if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
                     {
@@ -98,20 +98,20 @@ namespace TOR_Core.Models
                             if (attacker.IsTreeSpirit())
                             {
                                 resultArmor.AddFactor(-0.8f);
-                            } 
+                            }
                         }
-                        
+
                     }
-                    
+
                 }
 
                 if (attackerCharacter.HasAttribute("Piercing"))
                 {
                     resultArmor.AddFactor(-0.4f);
                 }
-                
+
             }
-            
+
             return resultArmor.ResultNumber;
         }
     }

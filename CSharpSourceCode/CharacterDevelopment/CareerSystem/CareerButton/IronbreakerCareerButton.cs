@@ -30,26 +30,26 @@ public class IronbreakerCareerButtonBehavior(CareerObject careerObject) : Career
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner, bool shiftClick)
     {
         var ironbreakerUnit = MBObjectManager.Instance.GetObject<CharacterObject>(IronbreakerId);
-        
+
         if (shiftClick)
         {
-            var buyableTroops = CareerButtonHelper.GetMaximumExchangeTroops(characterObject, false, 5,GoldCost,ExchangeCost);
-            
+            var buyableTroops = CareerButtonHelper.GetMaximumExchangeTroops(characterObject, false, 5, GoldCost, ExchangeCost);
+
             for (int i = 0; i < buyableTroops; i++)
             {
-                CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(),ExchangeCost);
+                CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), ExchangeCost);
                 PartyScreenHelper.GetActivePartyState().PartyScreenLogic.CurrentData.PartyGoldChangeAmount -= GoldCost;
                 CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, ironbreakerUnit, true);
-                
+
             }
         }
         else
         {
             PartyScreenHelper.GetActivePartyState().PartyScreenLogic.CurrentData.PartyGoldChangeAmount -= GoldCost;
-            CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(),ExchangeCost);
+            CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), ExchangeCost);
             CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, ironbreakerUnit, true);
         }
-        
+
         PartyVMExtension.ViewModelInstance.RefreshValues();
     }
 
@@ -60,15 +60,15 @@ public class IronbreakerCareerButtonBehavior(CareerObject careerObject) : Career
 
         if (characterObject.IsHero)
             return false;
-        
+
         if (characterObject.IsIronbreakerUnit())
         {
             return false;
         }
-        
+
         if (characterObject.Culture.StringId != TORConstants.Cultures.DAWI)
             return false;
-        
+
         return true;
     }
 
@@ -78,7 +78,7 @@ public class IronbreakerCareerButtonBehavior(CareerObject careerObject) : Career
 
         var pending = CustomResourceManager.GetPendingResources().Values.ToList().Sum();
 
-        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < pending+ ExchangeCost)
+        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < pending + ExchangeCost)
         {
             displayText = new TextObject("Not enough resources");
             return false;

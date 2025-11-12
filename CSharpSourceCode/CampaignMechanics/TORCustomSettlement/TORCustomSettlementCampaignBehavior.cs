@@ -25,7 +25,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement;
 public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 {
     private List<TORBaseSettlementMenuLogic> _customSettlementMenus;
-    
+
     [SaveableField(0)] private Dictionary<string, bool> _customSettlementActiveStates = [];
     [SaveableField(1)] private Dictionary<string, int> _cursedSiteWardDurationLeft = [];
     [SaveableField(2)] private Dictionary<string, int> _lastGhostRecruitmentTime = [];
@@ -36,13 +36,13 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
     public static MBReadOnlyList<Settlement> AllCustomSettlements { get; private set; } = [];
 
-   /// <summary>
-   /// Returns the value if it exists, otherwise returns 0.
-   /// </summary>
-   /// <remarks>With a start date of Summer 13, 2502, the first day of the game is 210 201. 0 should be far enough in the past that regardless of changes to the defile cooldown, the player won't be blocked from defiling on campaign start.
-   /// <para>Because this is called when the player enters a shrine, the previous implementation that would add CampaignTime.Now to the dictionary would be performed on the first time that a shrine was entered which would push the first defile in a campaign to (days until entered a shrine + defile cooldown).</para>
-   /// <para>A specific number was chosen rather than using member accesses to get the campaign start date and the defile cooldown.</para>
-   /// </remarks>
+    /// <summary>
+    /// Returns the value if it exists, otherwise returns 0.
+    /// </summary>
+    /// <remarks>With a start date of Summer 13, 2502, the first day of the game is 210 201. 0 should be far enough in the past that regardless of changes to the defile cooldown, the player won't be blocked from defiling on campaign start.
+    /// <para>Because this is called when the player enters a shrine, the previous implementation that would add CampaignTime.Now to the dictionary would be performed on the first time that a shrine was entered which would push the first defile in a campaign to (days until entered a shrine + defile cooldown).</para>
+    /// <para>A specific number was chosen rather than using member accesses to get the campaign start date and the defile cooldown.</para>
+    /// </remarks>
     public int LastDefileTime(Hero hero)
     {
         if (_lastDefileTime.TryGetValue(hero.StringId, out int value))
@@ -72,9 +72,9 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
     public void SetLastDefileTime(Hero hero, int value)
     {
-        _lastDefileTime.AddOrReplace(hero.StringId,value);
+        _lastDefileTime.AddOrReplace(hero.StringId, value);
     }
-    
+
     public void SetLastGhostRecruitmentTime(Hero hero, int value)
     {
         _lastGhostRecruitmentTime.AddOrReplace(hero.StringId, value);
@@ -104,16 +104,16 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     {
         return _unlockedOakUpgrades.Contains(unlockedUpgrade);
     }
-    
+
     public List<string> GetUnlockedOakUpgradeCategory(string unlockedUpgradeCategory)
     {
-        return _unlockedOakUpgrades.Where(x=> x.StartsWith(unlockedUpgradeCategory)).ToList();
+        return _unlockedOakUpgrades.Where(x => x.StartsWith(unlockedUpgradeCategory)).ToList();
     }
-    
-    
+
+
     private void OnMissionEnded(IMission obj)
     {
-        var battleSettlement = Settlement.FindFirst(delegate(Settlement settlement)
+        var battleSettlement = Settlement.FindFirst(delegate (Settlement settlement)
         {
             {
                 var comp = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
@@ -121,7 +121,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 {
                     return comp.IsBattleUnderway;
                 }
-       
+
             }
 
             return false;
@@ -136,10 +136,10 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 comp.IsActive = false;
                 var list = new List<InquiryElement>();
                 var itemIds = comp.RewardItemIds;
-                
+
                 if (itemIds.Count > 2)
                 {
-                    itemIds = itemIds.TakeRandom(2).ToList(); 
+                    itemIds = itemIds.TakeRandom(2).ToList();
                 }
 
                 var items = itemIds.Select(id => MBObjectManager.Instance.GetObject<ItemObject>(id)).ToList();
@@ -147,11 +147,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
                 var cultureItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
                     .Where(x => x.Culture == Hero.MainHero.Culture && x.IsWeapon() || x.IsArmor()).ToList();
-                
+
                 items.AddRange(cultureItems.TakeRandom(2).ToList());
 
 
-                var model = (TORBattleRewardModel) Campaign.Current.Models.BattleRewardModel;
+                var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
 
                 var newItems = new List<ItemObject>(items);
                 foreach (var item in items)
@@ -164,12 +164,12 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                         .Where(x => x.ItemTraitStringId.Contains("lesser_loot") && ItemTrait.IsValidFor(x, item.ItemType)).TakeRandom(traitCount);
                     var ids = traits.Select(x => x.ItemTraitStringId).ToList();
                     var name = model.GetNameModifierForTraits(traitCount);
-                    var newItem =  EnchantmentHelper.CreateEnchantedItem(item, ids, name + " " + item.Name, false);
+                    var newItem = EnchantmentHelper.CreateEnchantedItem(item, ids, name + " " + item.Name, false);
                     newItems.Add(newItem);
                     newItems.Remove(item);
                 }
                 items = newItems;
-                
+
                 var ingredientsBehavior = Campaign.Current.GetCampaignBehavior<EnchantmentIngredientLootCampaignBehavior>();
                 if (ingredientsBehavior != null)
                 {
@@ -181,22 +181,22 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                     var traits = item.GetTraits();
                     var text = new MBStringBuilder();
                     text.Initialize();
-                        
+
                     var hintInfo = item.GetTorSpecificData();
                     if (hintInfo != null && !hintInfo.Description.IsEmpty())
                     {
                         text.AppendLine(hintInfo.Description);
                     }
-                        
+
                     foreach (var trait in traits)
                     {
                         text.AppendLine(trait.ItemTraitDescription);
                     }
-                        
-                        
-                    list.Add(new InquiryElement(item, item.Name.ToString(), new ItemImageIdentifier(item),true,text.ToStringAndRelease()));
+
+
+                    list.Add(new InquiryElement(item, item.Name.ToString(), new ItemImageIdentifier(item), true, text.ToStringAndRelease()));
                 }
-                
+
                 var inq = new MultiSelectionInquiryData("Victory!", new TextObject("{=tor_custom_settlement_chaos_portal_victory_str}You are Victorious! Claim your reward! Select one!").ToString(), list, false, 1, 1, "OK", null, OnRewardClaimed, null);
                 MBInformationManager.ShowMultiSelectionInquiry(inq);
             }
@@ -211,7 +211,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     private void OnRewardClaimed(List<InquiryElement> obj)
     {
         var item = obj[0].Identifier as ItemObject;
-        var count = 1; 
+        var count = 1;
         var ingredientsBehavior = Campaign.Current.GetCampaignBehavior<EnchantmentIngredientLootCampaignBehavior>();
         if (ingredientsBehavior != null)
         {
@@ -220,10 +220,10 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 count = 5;
             }
         }
-        
+
         Hero.MainHero.PartyBelongedTo.Party.ItemRoster.AddToCounts(item, count);
     }
-    
+
     private void CollectSettlementData()
     {
         var customSettlements = Settlement.FindAll(x => x.SettlementComponent is TORBaseSettlementComponent);
@@ -287,11 +287,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 }
             }
         }
-        
+
         LeaveSettlementAction.ApplyForParty(party);
-            
+
         if (party.Army == null || party.Army.LeaderParty == party)//unsure what happens if all of the attached parties in an army are set to start thinking; player-facing issue only as AI armies won't try to visit shrines
-        {   
+        {
             party.SetMoveModeHold();
             party.Ai.SetDoNotMakeNewDecisions(false);
             party.Ai.RethinkAtNextHourlyTick = true;
@@ -335,13 +335,13 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
         _customSettlementMenus = new List<TORBaseSettlementMenuLogic>()
         {
-            new ShrineMenuLogic(starter), 
+            new ShrineMenuLogic(starter),
             new CursedSiteMenuLogic(starter),
             new RaidingSiteMenuLogic(starter),
             new OakOfAgesMenuLogic(starter)
         };
-        
-  
+
+
         foreach (var entry in _customSettlementActiveStates)
         {
             var settlement = Settlement.Find(entry.Key);
@@ -397,7 +397,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             else site.HourlyTick();
         }
     }
-    
+
     public override void SyncData(IDataStore dataStore)
     {
         dataStore.SyncData("_customSettlementActiveStates", ref _customSettlementActiveStates);

@@ -42,7 +42,7 @@ namespace TOR_Core.CampaignMechanics.AICompanions
         {
             if (index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 1)
             {
-                foreach(var party in MobileParty.AllLordParties)
+                foreach (var party in MobileParty.AllLordParties)
                 {
                     OnPartyCreated(party);
                 }
@@ -79,10 +79,10 @@ namespace TOR_Core.CampaignMechanics.AICompanions
 
         private void OnPartyCreated(MobileParty party)
         {
-            if(party != null && party.LeaderHero != null && party.LeaderHero.Clan != null && party.LeaderHero.Clan.Leader != null && party.LeaderHero.Clan.Leader == party.LeaderHero)
+            if (party != null && party.LeaderHero != null && party.LeaderHero.Clan != null && party.LeaderHero.Clan.Leader != null && party.LeaderHero.Clan.Leader == party.LeaderHero)
             {
                 var companions = party.LeaderHero.Clan.Heroes.Where(x => x.IsAICompanion());
-                foreach(var companion in companions)
+                foreach (var companion in companions)
                 {
                     if (!party.GetMemberHeroes().Contains(companion)) AddHeroToPartyAction.Apply(companion, party);
                 }
@@ -95,18 +95,18 @@ namespace TOR_Core.CampaignMechanics.AICompanions
             var location = settlement.LocationComplex?.GetLocationWithId(Keep);
             if (location == null) return;
             List<Hero> companions = new List<Hero>();
-            foreach(var partyInSettlement in settlement.Parties)
+            foreach (var partyInSettlement in settlement.Parties)
             {
                 foreach (var companion in partyInSettlement.GetMemberHeroes().Where(x => x.IsAICompanion()))
                 {
                     companions.Add(companion);
                 }
             }
-            foreach(var companion in settlement.HeroesWithoutParty.Where(x=>x.IsAICompanion()))
+            foreach (var companion in settlement.HeroesWithoutParty.Where(x => x.IsAICompanion()))
             {
                 companions.Add(companion);
             }
-            foreach(var companion in companions)
+            foreach (var companion in companions)
             {
                 AddLocationCharacterToLocation(companion, location);
             }

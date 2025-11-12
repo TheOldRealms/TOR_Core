@@ -1,8 +1,8 @@
-﻿using System;
+﻿using HarmonyLib;
+using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.GameMenus;
@@ -61,9 +61,9 @@ public class PriestBehavior : CampaignBehaviorBase
     private void OnNewGameCreated(CampaignGameStarter campaignStarter)
     {
         foreach (var town in Town.AllTowns)
-        foreach (var pair in _priestTemplateSpawns)
-            if (pair.Value.Item1 == town.StringId)
-                CreatePriests(town.Settlement, pair.Key, pair.Value.Item2);
+            foreach (var pair in _priestTemplateSpawns)
+                if (pair.Value.Item1 == town.StringId)
+                    CreatePriests(town.Settlement, pair.Key, pair.Value.Item2);
     }
 
     private void CreatePriests(Settlement settlement, string templateId, string religionId)
@@ -77,7 +77,7 @@ public class PriestBehavior : CampaignBehaviorBase
 
         var hero = HeroCreator.CreateSpecialHero(template, settlement, null, null, 50);
         hero.SupporterOf = settlement.OwnerClan;
-        hero.SetName(template.Name,template.Name);
+        hero.SetName(template.Name, template.Name);
 
 
         hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == religionId), 100);
@@ -167,7 +167,7 @@ public class PriestBehavior : CampaignBehaviorBase
             var i = index;
             var cult = cultsWithEnchanterPriest[index];
             var template = _priestTemplateSpawns.FirstOrDefault(x => x.Value.cultId == cult).Value;
-            
+
 
             campaignStarter.AddDialogLine("priest_start_accept" + cult, "start", "priest_hub_intro" + cult,
                 GameTexts.FindText("priest_start_accept", cult).ToString(), () => PriestCondition(cult) && PlayerMeetsRequirements(cult), null, 200);
@@ -250,13 +250,13 @@ public class PriestBehavior : CampaignBehaviorBase
 
 
             //blessing shop
-            
+
             campaignStarter.AddDialogLine("priest_blessingshop_first" + cult, "priest_blessingshop_1" + cult, "priest_hub_reintro" + cult,
                 GameTexts.FindText("priest_blessingshop_1", cult).ToString(), () => !LearnedBlessings(), teachAboutBlessings, 200);
-            
+
             campaignStarter.AddDialogLine("priest_blessingshop_1" + cult, "priest_blessingshop_1" + cult, "priest_hub_reintro" + cult,
-                GameTexts.FindText("priest_blessingshop_1", cult).ToString(), LearnedBlessings, ()=> OpenBlessingRecipesShop(template.enchantmentSuffix), 200);
-            
+                GameTexts.FindText("priest_blessingshop_1", cult).ToString(), LearnedBlessings, () => OpenBlessingRecipesShop(template.enchantmentSuffix), 200);
+
             //receive party blessing
 
             campaignStarter.AddDialogLine("priest_blessing_party_1" + cult, "priest_blessing_party_1" + cult, "priest_hub_reintro" + cult,
@@ -276,8 +276,8 @@ public class PriestBehavior : CampaignBehaviorBase
             void OpenBlessingRecipesShop(string prefix)
             {
                 var partner = CharacterObject.OneToOneConversationCharacter;
-                
-                EnchantmentHelper.OpenEnchantmentRecipeShop([prefix],partner.Culture.StringId, true);
+
+                EnchantmentHelper.OpenEnchantmentRecipeShop([prefix], partner.Culture.StringId, true);
             }
 
             void BlessParty(string cultId)

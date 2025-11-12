@@ -26,14 +26,14 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvent);                //Those events are never executed when the player lose a battle!
         }
-        
+
         private void PostBattleEvent(MapEvent mapEvent)
         {
             if (Hero.MainHero.IsEnlisted())
             {
                 return;
             }
-            
+
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
                 //Sly : I feel like a lot of these helpers should put out the member hero list rather than generating it once to check the condition, then again after to make use of it
@@ -45,7 +45,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 if (!MobileParty.MainParty.InElfForest()) return;
 
                 var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-                var spellsinger = heroes.Where(x=> x.IsSpellSinger()).MaxBy(x => x.GetSkillValue(TORSkills.SpellCraft));
+                var spellsinger = heroes.Where(x => x.IsSpellSinger()).MaxBy(x => x.GetSkillValue(TORSkills.SpellCraft));
                 var spiritCount = GetTreeSpiritCounts(spellsinger);
 
                 if (spiritCount > 0)
@@ -54,7 +54,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                         PlayerEncounter.Current.RosterToReceiveLootMembers.AddToCounts(treeSpirit, spiritCount);
                 }
             }
-            
+
             if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.CanRaiseDead())
             {
                 List<CharacterObject> troops = new List<CharacterObject>();
@@ -84,9 +84,9 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 foreach (var troop in greenskinTroops)
                 {
                     PlayerEncounter.Current.RosterToReceiveLootMembers.AddToCounts(troop.Character, troop.Number);
-                    
+
                 }
-    
+
             }
         }
 
@@ -110,16 +110,16 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             CharacterObject BloodKnightTemplate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_initiate");        //I assume that needs change, beware
 
             var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
-            
+
             foreach (var party in partiesOnSide)
             {
                 var roster = party.Troops.Where(x => x.IsKilled);
                 foreach (var rosterMember in roster)
                 {
-                    if(rosterMember.Troop.IsUndead()||rosterMember.Troop.IsBeastman())
+                    if (rosterMember.Troop.IsUndead() || rosterMember.Troop.IsBeastman())
                         continue;
-                    
-                    if (rosterMember.Troop.Tier<4)
+
+                    if (rosterMember.Troop.Tier < 4)
                     {
                         if (MBRandom.RandomFloat >= 0.05f) continue;
                         elements.Add(BloodKnightTemplate);
@@ -136,24 +136,24 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             return elements;
         }
 
-        private List<CharacterObject> CalculateRaiseDeadTroops(MapEvent mapEvent, int reduction=0)
+        private List<CharacterObject> CalculateRaiseDeadTroops(MapEvent mapEvent, int reduction = 0)
         {
             List<CharacterObject> elements = new List<CharacterObject>();
             var num = mapEvent.GetMapEventSide(mapEvent.DefeatedSide).TroopCasualties - reduction;
             double raiseDeadChance = 0;
 
-            raiseDeadChance= Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
-            
+            raiseDeadChance = Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
+
             for (int i = 0; i <= num; i++)
             {
-                if(MBRandom.RandomFloat <= raiseDeadChance)
+                if (MBRandom.RandomFloat <= raiseDeadChance)
                 {
                     elements.Add(_raiseableCharacters.GetRandomElement());
                 }
             }
             return elements;
         }
-        
+
         /// <summary>
         /// Returns an int for the number of dryads gained derived from the spellsinger's spellcraft level.
         /// </summary>
@@ -163,10 +163,10 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         private int GetTreeSpiritCounts(Hero spellsinger)
         {
             List<CharacterObject> elements = new List<CharacterObject>();
-            var maximumNumber = spellsinger.Level/2;
+            var maximumNumber = spellsinger.Level / 2;
             var gainChance = TreeSpiritHelpers.GetSuccessChance(spellsinger);
             var spiritsBound = 0;
-            
+
             for (int i = 0; i <= maximumNumber; i++)
             {
                 if (MBRandom.RandomFloat <= gainChance)
@@ -186,7 +186,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
             foreach (var party in partiesOnSide)
             {
-                
+
                 bool isGreenskinParty = party.Party?.Culture?.StringId == TORConstants.Cultures.GREENSKIN;
                 bool isBanditParty = party.Party?.MobileParty?.IsBandit ?? false; //village defense parties don't have a MobileParty
 
@@ -199,12 +199,12 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 if (isBanditParty)
                 {
                     var totalManCount = PlayerEncounter.Current.RosterToReceiveLootPrisoners.TotalManCount;
-                    
+
                     var troopRoster = party.Troops.ToList();
                     var count = 0;
                     foreach (var element in survivors)
                     {
-                        
+
                         var troopId = "";
                         if (element.Character.IsOrc())
                         {
@@ -217,8 +217,8 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                         }
 
                         var troop = MBObjectManager.Instance.GetObject<CharacterObject>(troopId);
-                            
-                        if(troop==null)
+
+                        if (troop == null)
                             continue;
 
                         var newElement = new TroopRosterElement(troop);
@@ -240,7 +240,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                             {
                                 recruited++;
                             }
-                            
+
                         }
 
                         // Remove recruited prisoners from the prisoner roster

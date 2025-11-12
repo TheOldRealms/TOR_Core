@@ -38,7 +38,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public void DeSelectChoice()
         {
-            if(Hero.MainHero.TryRemoveCareerChoice(_choice)) RefreshValues();
+            if (Hero.MainHero.TryRemoveCareerChoice(_choice)) RefreshValues();
         }
 
         [DataSourceProperty]

@@ -66,11 +66,13 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void OnBeforeTick(float dt)
         {
-            if (CasterAgent == null || CasterAgent.State != AgentState.Active || CasterAgent.Health <= 0) {
+            if (CasterAgent == null || CasterAgent.State != AgentState.Active || CasterAgent.Health <= 0)
+            {
                 if (_playerFlyableObjectScript.IsReady())
                 {
                     //eventually triggers removal of the script and the chair game entity is removed with OnBeforeRemoved
-                    _playerFlyableObjectScript.DeactivateFlying();}
+                    _playerFlyableObjectScript.DeactivateFlying();
+                }
                 return;
             }
             if (!HasTickedOnce)
@@ -105,7 +107,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             var pos2 = GameEntity.GetGlobalFrame().origin;
             var pos = GameEntity.GetGlobalFrame().Elevate(-_minimalDistance).origin;
 
-            using(new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+            using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
             {
                 if (Mission.Current.Scene.RayCastForClosestEntityOrTerrain(pos2, pos, out float distance))
                 {

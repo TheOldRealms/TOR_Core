@@ -161,7 +161,7 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     return originalValue;
                 },
                 MutationType = OperationType.Replace},
-                
+
                 new()
                 {
                 MutationTargetType = typeof(TriggeredEffectTemplate),
@@ -174,7 +174,7 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                         return ((List<string>)originalValue).Concat(new[] { "armed_to_da_teef_speed_debuff" }).ToList();
                     }
                     return originalValue;
-                }, MutationType = OperationType.Replace 
+                }, MutationType = OperationType.Replace
                 }
             });
 
@@ -194,7 +194,7 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     return list;
                 },
                 MutationType = OperationType.Replace
-            } 
+            }
         });
 
         // You an wot armour - Damage scales with Two Handed skill
@@ -294,8 +294,8 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _tufferDanNailsPassive4.Initialize(CareerID, "{=tuffer_dan_nails_passive4_str}Double Renown Gain from battles", "TufferDanNails", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(100, PassiveEffectType.BattleRenownGain, true)); //applied as a factor, ie. +100%
 
         // YouAnWotArmour
-        _youAnWotArmourPassive1.Initialize(CareerID, "{=you_an_wot_armour_passive1_str}Orc melee and cavalry deal 10% extra damage.", "YouAnWotArmour", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) => 
-            attacker.BelongsToMainParty() && !attacker.IsHero && (attacker.Character as CharacterObject).IsOrc() && (mask == AttackTypeMask.Melee )));
+        _youAnWotArmourPassive1.Initialize(CareerID, "{=you_an_wot_armour_passive1_str}Orc melee and cavalry deal 10% extra damage.", "YouAnWotArmour", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
+            attacker.BelongsToMainParty() && !attacker.IsHero && (attacker.Character as CharacterObject).IsOrc() && (mask == AttackTypeMask.Melee)));
         _youAnWotArmourPassive2.Initialize(CareerID, "{=you_an_wot_armour_passive2_str}10% extra melee damage only when Polearm, 1h and 2h are equipped", "YouAnWotArmour", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Melee && HasAllThreeWeaponTypes(attacker)));
@@ -304,10 +304,10 @@ public class OrcBossCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
         // GoodwivBlockas
         _goodwivBlockasPassive1.Initialize(CareerID, "{=goodwiv_blockas_passive1_str}Hits below 30 will not stagger.", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.ShruggedOff));
-        _goodwivBlockasPassive2.Initialize(CareerID, "{=goodwiv_blockas_passive2_str}Using shields grants 10% extra physical resistance.", "GoodwivBlockas", false, ChoiceType.Passive, null, 
+        _goodwivBlockasPassive2.Initialize(CareerID, "{=goodwiv_blockas_passive2_str}Using shields grants 10% extra physical resistance.", "GoodwivBlockas", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee | AttackTypeMask.Ranged, (attacker, victim, mask) => victim.IsMainAgent && victim.WieldedOffhandWeapon.IsShield()));
         _goodwivBlockasPassive3.Initialize(CareerID, "{=goodwiv_blockas_passive3_str}Party size increase by 50", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
-        _goodwivBlockasPassive4.Initialize(CareerID, "{=goodwiv_blockas_passive4_str}Melee Orc Infantry gains 10% physical damage", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, 
+        _goodwivBlockasPassive4.Initialize(CareerID, "{=goodwiv_blockas_passive4_str}Melee Orc Infantry gains 10% physical damage", "GoodwivBlockas", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage,
             new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) => attacker.BelongsToMainParty() && !attacker.IsHero && (attacker.Character as CharacterObject).IsOrc() && !attacker.HasMount && mask == AttackTypeMask.Melee));
 
         // Meanestan’daBaddest

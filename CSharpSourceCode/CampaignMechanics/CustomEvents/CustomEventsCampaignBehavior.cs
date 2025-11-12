@@ -66,11 +66,11 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
 
         private bool StandardMovingCheck()
         {
-            return MobileParty.MainParty.IsMoving && 
-                MobileParty.MainParty.Army == null && 
-                !Hero.MainHero.IsPrisoner && 
-                MobileParty.MainParty.MemberRoster.TotalManCount > 10 && 
-                MobileParty.MainParty.CurrentSettlement == null && 
+            return MobileParty.MainParty.IsMoving &&
+                MobileParty.MainParty.Army == null &&
+                !Hero.MainHero.IsPrisoner &&
+                MobileParty.MainParty.MemberRoster.TotalManCount > 10 &&
+                MobileParty.MainParty.CurrentSettlement == null &&
                 MobileParty.MainParty.BesiegedSettlement == null;
         }
 

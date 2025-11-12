@@ -11,12 +11,12 @@ using TOR_Core.Utilities;
 namespace TOR_Core.CampaignMechanics.CustomResources;
 
 public class OathGoldHelper
-{ 
-    
+{
+
     public static List<TooltipProperty> GetOathGoldInfo()
     {
         var list = new List<TooltipProperty>();
-        
+
         var behavior = Campaign.Current.GetCampaignBehavior<OathGoldBehavior>();
 
         if (behavior == null) return list;
@@ -25,13 +25,13 @@ public class OathGoldHelper
         var expeditionCount = behavior.CurrentExpeditions;
         var engineerRank = GetOathGoldForGuildRespect(behavior.EngineerGuildReputation);
         var warriorsRank = GetOathGoldForGuildRespect(behavior.WarriorsGuildReputation);
-        var runeSmithRank =  GetOathGoldForGuildRespect(behavior.RuneSmithReputation);
+        var runeSmithRank = GetOathGoldForGuildRespect(behavior.RuneSmithReputation);
         var gemcutterRank = GetOathGoldForGuildRespect(behavior.GemcuttersAndMinersReputation);
         var brewersRank = GetOathGoldForGuildRespect(behavior.BrewersGuildReputation);
-        
+
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
-        string  time = ((int)lastVisitToTown).ToString()+ " days";
+        string time = ((int)lastVisitToTown).ToString() + " days";
         if (lastVisitToTown / CampaignTime.DaysInWeek > 2)
         {
             time = ">2 weeks ago";
@@ -50,11 +50,13 @@ public class OathGoldHelper
         {
             list.Add(new TooltipProperty("Entire arsenal", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             gunTroopUpkeepReduction = 25;
-        } else if(Hero.MainHero.HasAttribute("DwarfEngineersII"))
+        }
+        else if (Hero.MainHero.HasAttribute("DwarfEngineersII"))
         {
             list.Add(new TooltipProperty("Guns and artillery", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             gunTroopUpkeepReduction = 15;
-        } else if(Hero.MainHero.HasAttribute("DwarfEngineersI"))
+        }
+        else if (Hero.MainHero.HasAttribute("DwarfEngineersI"))
         {
             list.Add(new TooltipProperty("Guns", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
@@ -62,37 +64,39 @@ public class OathGoldHelper
         {
             list.Add(new TooltipProperty("Upkeep reduction for gun troops", "-" + gunTroopUpkeepReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
-        
+
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
         list.Add(new TooltipProperty("Runesmiths", runeSmithRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
-        
+
         list.Add(new TooltipProperty("Access to stronger equipment. Reduce Ironbreaker upgrade costs.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var ironbreakerUpgradeReduction = 0;
         if (Hero.MainHero.HasAttribute("RuneSmithIII"))
         {
             list.Add(new TooltipProperty("Artefacts", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
             ironbreakerUpgradeReduction = 20;
-        }else if(Hero.MainHero.HasAttribute("RuneSmithII"))
+        }
+        else if (Hero.MainHero.HasAttribute("RuneSmithII"))
         {
             list.Add(new TooltipProperty("Weapons and armors", " ", 0, false, TooltipProperty.TooltipPropertyFlags.None));
             ironbreakerUpgradeReduction = 10;
-        }else if(Hero.MainHero.HasAttribute("RuneSmithI"))
+        }
+        else if (Hero.MainHero.HasAttribute("RuneSmithI"))
         {
             list.Add(new TooltipProperty("Weapons", " ", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (ironbreakerUpgradeReduction > 0)
         {
             list.Add(new TooltipProperty("Upkeep reduction for ironbreakers", "-" + ironbreakerUpgradeReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
-        } 
-        
+        }
+
 
         //list.Add(new TooltipProperty("Biweekly Enchantment Ingredients", ">2 weeks ago", 0, false, TooltipProperty.TooltipPropertyFlags.None));
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
-                
-        list.Add(new TooltipProperty("Mining and Expeditions Guild", gemcutterRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None)); 
+
+        list.Add(new TooltipProperty("Mining and Expeditions Guild", gemcutterRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         list.Add(new TooltipProperty("Provide mining resources. Launch expeditions.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
         var oreVillageBoost = 0;
@@ -108,18 +112,18 @@ public class OathGoldHelper
         {
         }
         if (expeditionMaximum > 0)
-        { 
-            list.Add(new TooltipProperty("Expeditions ", expeditionCount + "/" + expeditionMaximum, 0, false, TooltipProperty.TooltipPropertyFlags.None)); 
+        {
+            list.Add(new TooltipProperty("Expeditions ", expeditionCount + "/" + expeditionMaximum, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (oreVillageBoost > 0)
         {
             list.Add(new TooltipProperty("Global productivity of mines", "+" + oreVillageBoost.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
-      
+
 
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
-        
+
         list.Add(new TooltipProperty("Brewers", brewersRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         list.Add(new TooltipProperty("Receive care packages (new name plz). Increase food production. Improve spotting near Karaks (ancestral Karaks? also confusing).", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
@@ -133,7 +137,8 @@ public class OathGoldHelper
             dawiSightBonus = 30;
             dawiFoodBoost = 50;
             dawiLoyaltyBoost = 2;
-        } else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
+        }
+        else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
         {
             carePackageSize = "Medium";
             dawiSightBonus = 20;
@@ -154,17 +159,18 @@ public class OathGoldHelper
         {
             list.Add(new TooltipProperty("Extra food production in Karaks (same confusion)", "+" + dawiFoodBoost + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
-        if (dawiLoyaltyBoost > 0) {
+        if (dawiLoyaltyBoost > 0)
+        {
             list.Add(new TooltipProperty("Global Town Loyality (is this also karaks?)", "+" + dawiLoyaltyBoost, 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (dawiSightBonus > 0)
         {
             list.Add(new TooltipProperty("Extra sight close to Dwarf settlements", "+" + dawiSightBonus + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
-        
+
 
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
-        
+
         list.Add(new TooltipProperty("Warriors", warriorsRank.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.None));
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         list.Add(new TooltipProperty("Reduce upgrade costs for warriors. Increase Oathgold gain. Increase settlement militias.", "", 0, false, TooltipProperty.TooltipPropertyFlags.None));
@@ -176,7 +182,8 @@ public class OathGoldHelper
             warriorUpgradeReduction = 30;
             oathGoldBonus = 3f;
             militiaBonus = 4;
-        } else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
+        }
+        else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
         {
             warriorUpgradeReduction = 20;
             oathGoldBonus = 2f;
@@ -187,19 +194,20 @@ public class OathGoldHelper
             warriorUpgradeReduction = 10;
             oathGoldBonus = 1.5f;
         }
-        if (warriorUpgradeReduction >0)
+        if (warriorUpgradeReduction > 0)
         {
             list.Add(new TooltipProperty("Upgrade cost reduction for Slayers, Warriors and Longbeards", "+" + warriorUpgradeReduction.ToString() + "%", 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
         if (oathGoldBonus > 0)
-        { 
-            list.Add(new TooltipProperty("Battle and tournament Oathgold gain", "+" + oathGoldBonus.ToString(), 0, true, TooltipProperty.TooltipPropertyFlags.None)); }
+        {
+            list.Add(new TooltipProperty("Battle and tournament Oathgold gain", "+" + oathGoldBonus.ToString(), 0, true, TooltipProperty.TooltipPropertyFlags.None));
+        }
         if (militiaBonus > 0)
         {
             list.Add(new TooltipProperty("Additional Militia", "+" + militiaBonus.ToString(), 0, true, TooltipProperty.TooltipPropertyFlags.None));
         }
 
-        
+
         list.Add(new TooltipProperty("", " ", 0, false, TooltipProperty.TooltipPropertyFlags.Cost)); //empty line
         list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.DefaultSeperator));
         return list;
@@ -220,7 +228,7 @@ public class OathGoldHelper
 public enum OathRespectLevel
 {
     Respected = 3,
-    Reliable =2,
+    Reliable = 2,
     Trustworthy = 1,
     Unknown = 0
 }

@@ -46,7 +46,7 @@ namespace TOR_Core.Audio
 
             CurrentPosition += samplesToCopy;
 
-            if(CurrentPosition >= AudioData.Length && IsLooping && samplesToCopy <= count)
+            if (CurrentPosition >= AudioData.Length && IsLooping && samplesToCopy <= count)
             {
                 int additionalSamples = (int)(count - samplesToCopy);
                 CurrentPosition = 0;

@@ -1,29 +1,29 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
+using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade.View;
+using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.AbilitySystem.Crosshairs;
-using TOR_Core.Utilities;
-using TOR_Core.Extensions;
-using TOR_Core.BattleMechanics.AI.CastingAI.Components;
-using TOR_Core.Items;
-using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.Battle.CrosshairMissionBehavior;
-using TaleWorlds.CampaignSystem;
-using TOR_Core.CharacterDevelopment;
-using TOR_Core.GameManagers;
-using TOR_Core.Quests;
+using TOR_Core.BattleMechanics.AI.CastingAI.Components;
+using TOR_Core.BattleMechanics.Crosshairs;
 using TOR_Core.BattleMechanics.StatusEffect;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
+using TOR_Core.GameManagers;
 using TOR_Core.HarmonyPatches;
-using TaleWorlds.MountAndBlade.View;
-using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade.View.MissionViews;
-using TaleWorlds.Library;
+using TOR_Core.Items;
+using TOR_Core.Quests;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -38,7 +38,7 @@ namespace TOR_Core.AbilitySystem
         private EquipmentIndex _offHand;
         private AbilityComponent _abilityComponent;
         private GameKeyContext _keyContext = HotKeyManager.GetCategory("CombatHotKeyCategory");
-        private static ActionIndexCache _idleAnimation = ActionIndexCache.Create("act_spellcasting_idle");
+        private static ActionIndexCache? _idleAnimation;
         private ParticleSystem[] _psys = null;
         private readonly string _castingStanceParticleName = "psys_spellcasting_stance";
         private SummonedCombatant _defenderSummoningCombatant;
@@ -57,7 +57,15 @@ namespace TOR_Core.AbilitySystem
         private bool _wieldOffHandStaff;
         public delegate void OnHideOutBossFightInit();
         public event OnHideOutBossFightInit OnInitHideOutBossFight;
-
+        private static ActionIndexCache IdleAnimation
+        {
+            get
+            {
+                if (_idleAnimation == null)
+                    _idleAnimation = ActionIndexCache.Create("act_spellcasting_idle");
+                return _idleAnimation.Value;
+            }
+        }
         public AbilityModeState CurrentState => _currentState;
 
         public bool ShouldSuppressCombatActions => CurrentState == AbilityModeState.Targeting || CurrentState == AbilityModeState.Casting || _disableCombatActionsAfterCast;
@@ -72,7 +80,7 @@ namespace TOR_Core.AbilitySystem
         {
             OnInitHideOutBossFight?.Invoke();
         }
-        
+
         public override void EarlyStart()
         {
             base.EarlyStart();
@@ -87,7 +95,7 @@ namespace TOR_Core.AbilitySystem
         public override void OnPreMissionTick(float dt)
         {
             _elapsedTimeSinceLastActivation += dt;
-            if(_disableCombatActionsAfterCast && _elapsedTimeSinceLastActivation > (_lastActivationDeltaTime + _disableCombatActionsDuration))
+            if (_disableCombatActionsAfterCast && _elapsedTimeSinceLastActivation > (_lastActivationDeltaTime + _disableCombatActionsDuration))
             {
                 _disableCombatActionsAfterCast = false;
             }
@@ -125,7 +133,7 @@ namespace TOR_Core.AbilitySystem
             SlowDownTime(true);
             SwitchOffhandStanceForStaffs();
 
-            if (_abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Spell || 
+            if (_abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Spell ||
                 _abilityComponent.CurrentAbility.Template.AbilityType == AbilityType.Prayer)
             {
                 _shouldSheathWeapon = true;
@@ -146,18 +154,18 @@ namespace TOR_Core.AbilitySystem
         {
             if (!Agent.Main.WieldedOffhandWeapon.IsEmpty)
             {
-                if(Agent.Main.WieldedOffhandWeapon.Item.IsMagicalStaff())
+                if (Agent.Main.WieldedOffhandWeapon.Item.IsMagicalStaff())
                 {
                     _wieldOffHandStaff = true;
                     _idleAnimation = ActionIndexCache.Create("act_ready_continue_throwing_axe_with_handshield");
                     return;
                 }
-                
+
             }
             _idleAnimation = ActionIndexCache.Create("act_spellcasting_idle");
             _wieldOffHandStaff = false;
             return;
-            
+
         }
 
         private void EnableQuickSelectionMenuMode()
@@ -173,12 +181,12 @@ namespace TOR_Core.AbilitySystem
         private void SlowDownTime(bool enable)
         {
             bool isSlowTimeActive = Mission.Current.GetRequestedTimeSpeed(_timeRequestID, out _);
-            if(isSlowTimeActive && !enable)
+            if (isSlowTimeActive && !enable)
             {
                 Mission.Current.RemoveTimeSpeedRequest(_timeRequestID);
                 return;
             }
-            else if(!isSlowTimeActive && enable)
+            else if (!isSlowTimeActive && enable)
             {
                 Mission.TimeSpeedRequest timeRequest = new(0.3f, _timeRequestID);
                 _timeRequestID = timeRequest.RequestID;
@@ -208,7 +216,7 @@ namespace TOR_Core.AbilitySystem
             traitcomp?.EnableAllParticles(true);
 
             EnableCastStanceParticles(false);
-            if(errorMessage != null)
+            if (errorMessage != null)
             {
                 _abilityView.DisplayErrorMessage(errorMessage.ToString());
             }
@@ -282,7 +290,7 @@ namespace TOR_Core.AbilitySystem
             if (Input.IsKeyDown(InputKey.Tab))
                 return;
 
-            if(_currentState == AbilityModeState.QuickMenuSelection || _currentState == AbilityModeState.Targeting)
+            if (_currentState == AbilityModeState.QuickMenuSelection || _currentState == AbilityModeState.Targeting)
             {
                 if (Input.IsKeyPressed(InputKey.RightMouseButton))
                 {
@@ -306,7 +314,7 @@ namespace TOR_Core.AbilitySystem
                         else if (Input.IsKeyPressed(_specialMoveKey.KeyboardKey.InputKey) || Input.IsKeyPressed(_specialMoveKey.ControllerKey.InputKey))
                         {
                             TextObject disabledReason = new("Error Casting Career Ability");
-                            if ( _abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out disabledReason) && IsSniperScopeDisabled())
+                            if (_abilityComponent.CareerAbility != null && !_abilityComponent.CareerAbility.IsDisabled(Agent.Main, out disabledReason) && IsSniperScopeDisabled())
                             {
                                 _abilityComponent.SelectAbility(_abilityComponent.CareerAbility);
                                 if (_abilityComponent.CurrentAbility.RequiresTargeting)
@@ -426,7 +434,7 @@ namespace TOR_Core.AbilitySystem
                 var action = Agent.Main.GetCurrentAction(1);
                 if (CurrentState == AbilityModeState.Targeting && _shouldPlayIdleCastStanceAnim && action != _idleAnimation)
                 {
-                    Agent.Main.SetActionChannel(1, _idleAnimation);
+                    Agent.Main.SetActionChannel(1, IdleAnimation);
                 }
             }
         }
@@ -439,14 +447,14 @@ namespace TOR_Core.AbilitySystem
                 {
                     Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.MainHand, Agent.WeaponWieldActionType.WithAnimation);
                 }
-                
+
                 if (Agent.Main.GetOffhandWieldedItemIndex() != EquipmentIndex.None)
                 {
                     if (!Agent.Main.WieldedOffhandWeapon.Item.IsMagicalStaff())
                     {
                         Agent.Main.TryToSheathWeaponInHand(Agent.HandIndex.OffHand, Agent.WeaponWieldActionType.WithAnimation);
                     }
-                   
+
                 }
                 _shouldSheathWeapon = false;
             }
@@ -502,7 +510,7 @@ namespace TOR_Core.AbilitySystem
                 _artillerySlots[team] = 0;
                 foreach (var agent in team.TeamAgents)
                 {
-                    if (agent.CanPlaceArtillery() || agent.IsHero &&  agent.HasAttribute("EngineerCompanion") )
+                    if (agent.CanPlaceArtillery() || agent.IsHero && agent.HasAttribute("EngineerCompanion"))
                     {
                         _artillerySlots[team] += agent.GetPlaceableArtilleryCount();
                     }
@@ -576,7 +584,7 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnAgentHit(Agent affectedAgent, Agent affectorAgent, in MissionWeapon affectorWeapon, in Blow blow, in AttackCollisionData attackCollisionData)
         {
-            if(CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
+            if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
                 var attackMask = DamagePatch.DetermineMask(blow);
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageDone, attackMask, affectorAgent, affectedAgent, attackCollisionData);
@@ -714,7 +722,7 @@ namespace TOR_Core.AbilitySystem
 
         private void AddPerkEffectsToStartingWindsOfMagic()
         {
-            if(!IsCastingMission()) return;
+            if (!IsCastingMission()) return;
             var hero = Agent.Main?.GetHero();
             if (hero != null)
             {

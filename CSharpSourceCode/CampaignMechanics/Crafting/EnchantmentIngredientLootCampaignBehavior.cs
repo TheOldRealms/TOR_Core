@@ -53,7 +53,7 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 
     public override void SyncData(IDataStore dataStore)
     {
-        
+
     }
 
     private void SetLootedIngredients(MapEvent mapEvent)
@@ -77,7 +77,7 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
         var keys = _goodAmounts.Keys.ToList();
         foreach (var key in keys) _goodAmounts[key] = 0;
     }
-    
+
     private void CalculatePotentialLootedEnchantmentResources(IMission obj)
     {
         var playerEvent = Campaign.Current.MainParty.MapEvent;
@@ -86,7 +86,7 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
         if (playerEvent == null)
             return;
         if (playerEvent.PlayerSide == BattleSideEnum.Attacker) enemySide = BattleSideEnum.Defender;
-        
+
         var side = playerEvent.GetMapEventSide(enemySide);
 
         var model = Campaign.Current.Models.GetEnchantmentIngredientModel();

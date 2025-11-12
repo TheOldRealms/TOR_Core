@@ -1,8 +1,8 @@
-﻿using System;
+﻿using HarmonyLib;
+using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
@@ -84,7 +84,7 @@ namespace TOR_Core.CampaignMechanics
                         value = 30;
                         break;
                 }
-            
+
                 RuneSmithForgeFirePerk(hero, value);
             }
         }
@@ -111,7 +111,7 @@ namespace TOR_Core.CampaignMechanics
         {
             if (Hero.MainHero.HasCareerChoice("ForgefireBurningPassive4")) hero.AddSkillXp(TORSkills.Faith, value);
         }
-    
+
         private void OnItemDuplicated(object sender, ItemDuplicatedEventArgs e)
         {
             if (Hero.MainHero.HasCareer(TORCareers.Runelord) && Hero.MainHero.HasCareerChoice("TeachingsOfThungniPassive2"))
@@ -213,7 +213,7 @@ namespace TOR_Core.CampaignMechanics
                 }
             }
         }
-    
+
         private void AddExtraTroopsWithChanceIfPossible(CharacterObject troop, int originalAmount, MobileParty party, float chance)
         {
             for (var i = 0; i < originalAmount; i++)
@@ -291,7 +291,7 @@ namespace TOR_Core.CampaignMechanics
                     if (!member.Character.IsRanged && !member.Character.IsHero)
                     {
                         var choice = TORCareerChoices.GetChoice("ErrantryWarPassive4");
-                        if (choice != null) 
+                        if (choice != null)
                             mainParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
                     }
                 }
@@ -306,7 +306,7 @@ namespace TOR_Core.CampaignMechanics
                     if (!member.Character.IsKnightUnit())
                     {
                         var choice = TORCareerChoices.GetChoice("JustCausePassive2");
-                        if (choice != null) 
+                        if (choice != null)
                             mainParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
                     }
                 }
@@ -321,7 +321,7 @@ namespace TOR_Core.CampaignMechanics
                     if (!member.Character.IsKnightUnit())
                     {
                         var choice = TORCareerChoices.GetChoice("HailOfArrowsPassive2");
-                        if (choice != null) 
+                        if (choice != null)
                             mainParty.MemberRoster.AddXpToTroopAtIndex((int)choice.GetPassiveValue(), index);
                     }
                 }
@@ -431,7 +431,7 @@ namespace TOR_Core.CampaignMechanics
 
             InformationManager.DisplayMessage(new InformationMessage(GameTexts.FindText("tor_hunt_perk_result", "Success").ToString(), Colors.Yellow));
         }
-    
+
         ~TORCareerPerkCampaignBehavior()
         {
             TORCampaignEvents.Instance.ItemDuplicated -= OnItemDuplicated;

@@ -4,11 +4,11 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TOR_Core.Utilities;
-using TOR_Core.Extensions;
 using TOR_Core.AbilitySystem.Spells;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CharacterDevelopment;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -54,12 +54,12 @@ namespace TOR_Core.AbilitySystem.SpellBook
             StatItems.Add(new StatItemVM("Current Winds of Magic: ", ((int)info.GetCustomResourceValue("WindsOfMagic")).ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
             StatItems.Add(new StatItemVM("Winds of Magic recharge rate: ", info.WindsOfMagicRechargeRate.ToString("0.00") + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText() + "/ hour"));
             string lorestext = "";
-            for(int i = 0; i < info.KnownLores.Count; i++)
+            for (int i = 0; i < info.KnownLores.Count; i++)
             {
                 lorestext += info.KnownLores[i].Name;
                 if (i != info.KnownLores.Count - 1) lorestext += ", ";
 
-                if (i>0&&i%2==1)
+                if (i > 0 && i % 2 == 1)
                 {
                     lorestext += "\n";
                 }
@@ -68,17 +68,17 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
             LoreObjects.Clear();
             var lores = LoreObject.GetAll();
-            foreach(var lore in lores)
+            foreach (var lore in lores)
             {
                 if (!_isTrainerMode)
                 {
                     if (info.KnownLores.Contains(lore)) LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero));
                 }
-                else if(!lore.DisabledForCultures.Contains(_trainerCulture))
+                else if (!lore.DisabledForCultures.Contains(_trainerCulture))
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
-                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel)&& Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.Cultures.BRETONNIA)
+                else if (_isTrainerMode && Hero.MainHero.HasCareer(TORCareers.GrailDamsel) && Hero.MainHero.HasKnownLore(lore.ID) && CharacterObject.OneToOneConversationCharacter != null && _trainerCulture == TORConstants.Cultures.BRETONNIA)
                 {
                     LoreObjects.Add(new LoreObjectVM(this, lore, _currentHero, _isTrainerMode));
                 }
@@ -107,10 +107,10 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
         private void ExecuteSelectPreviousHero()
         {
-            if(_heroes.Count > 1)
+            if (_heroes.Count > 1)
             {
                 _currentHeroIndex -= 1;
-                if(_currentHeroIndex < 0)
+                if (_currentHeroIndex < 0)
                 {
                     _currentHeroIndex = _heroes.Count - 1;
                 }

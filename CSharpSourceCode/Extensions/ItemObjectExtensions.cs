@@ -2,8 +2,8 @@ using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
-using TaleWorlds.Library.NewsManager;
 using TaleWorlds.Library;
+using TaleWorlds.Library.NewsManager;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Items;
@@ -38,14 +38,14 @@ namespace TOR_Core.Extensions
         {
             var itemType = item.ItemType;
             var result = itemType == ItemObject.ItemTypeEnum.BodyArmor ||
-                     itemType== ItemObject.ItemTypeEnum.Cape ||
+                     itemType == ItemObject.ItemTypeEnum.Cape ||
                      itemType == ItemObject.ItemTypeEnum.ChestArmor ||
                      itemType == ItemObject.ItemTypeEnum.HandArmor ||
-                     itemType== ItemObject.ItemTypeEnum.HeadArmor ||
+                     itemType == ItemObject.ItemTypeEnum.HeadArmor ||
                      itemType == ItemObject.ItemTypeEnum.LegArmor;
             return result;
         }
-        
+
         public static bool IsShield(this ItemObject item)
         {
             var itemType = item.ItemType;
@@ -160,7 +160,7 @@ namespace TOR_Core.Extensions
         public static bool IsMagicalItem(this ItemObject item)
         {
             var info = item.GetTorSpecificData();
-            if(info != null)
+            if (info != null)
             {
                 return info.DamageProportions.Any(x => x.DamageType != DamageType.Physical) || info.ItemTraits.Count > 0;
             }
@@ -250,11 +250,11 @@ namespace TOR_Core.Extensions
 
             return itemObject.StringId.Contains("grenade") || itemObject.StringId.Contains("scatter");
         }
-        
+
         public static bool IsFlameThrowerItem(this ItemObject itemObject)
         {
-            if(!IsAmmunitionItem(itemObject)) return false;
-            
+            if (!IsAmmunitionItem(itemObject)) return false;
+
             return itemObject.StringId.Contains("canister") || itemObject.StringId.Contains("weapon_gun_drakegun");
         }
 

@@ -49,7 +49,7 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
                     return TacticalPosition.Position.GetGroundVec3MT();
                 return base.Position;
             }
-            catch(NullReferenceException)
+            catch (NullReferenceException)
             {
                 TORCommon.Log("Null error in TOR_Core.BattleMechanics.AI.Decision.Target.GetPosition(). Suppressed.", NLog.LogLevel.Error);
                 return Vec3.Invalid;

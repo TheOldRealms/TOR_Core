@@ -30,7 +30,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         private void ExecuteClickIncrease()
         {
-            for(int i = 0; i < _choices.Count; i++)
+            for (int i = 0; i < _choices.Count; i++)
             {
                 if (!_choices[i].IsTaken)
                 {

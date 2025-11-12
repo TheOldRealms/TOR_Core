@@ -39,7 +39,7 @@ namespace TOR_Core.Quests
         private const string CultistLeaderTemplateId = "tor_bw_cultist_lord_0";
         private const string EngineerFactionId = "mountain_bandits";
         private string RogueEngineerDisplayName;
-       
+
         private const string RogueEngineerPartyTemplateId = "empire_deserters_boss_party";
         private const string RogueEngineerLeaderTemplateId = "tor_engineerquesthero";
         public EngineerQuestStates CurrentActiveLog => (EngineerQuestStates)_currentActiveLog;
@@ -83,8 +83,8 @@ namespace TOR_Core.Quests
         {
             LoadAllLogs();
             _task1 = AddDiscreteLog(_logs[0].LogText, _logs[0].TaskName, 0, 1);
-            RogueEngineerLeaderName = new TextObject ("{ROGUE_ENGINEER_NAME}").ToString();
-            RogueEngineerDisplayName = GameTexts.FindText ("str_quest_tor_engineer","rogueEngineerParty").ToString();
+            RogueEngineerLeaderName = new TextObject("{ROGUE_ENGINEER_NAME}").ToString();
+            RogueEngineerDisplayName = GameTexts.FindText("str_quest_tor_engineer", "rogueEngineerParty").ToString();
             CultistPartyDisplayName = new TextObject("{tor_quest_engineer_cultist_party_str} Runaway Thieves").ToString();
             CultistPartyLeaderName = new TextObject("{tor_quest_engineer_cultist_party_leader_str} Runaway Thieves Leader").ToString();
             _currentActiveLog = 0;
@@ -175,12 +175,12 @@ namespace TOR_Core.Quests
                 new TextObject("{=tor_engineer_quest_cultists_skip_str}Your victory here is meaningless...you will never find what we took..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInCultisthunt, RemoveSkip, 0, 1,
                 200, null);
-            
+
             Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle",
                 new TextObject("{=tor_engineer_quest_engineer_skip_str}You have no idea what you are interfering with..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt, RemoveSkip,
                 0, 1, 200, null);
-           
+
         }
 
         private void RemoveSkip()

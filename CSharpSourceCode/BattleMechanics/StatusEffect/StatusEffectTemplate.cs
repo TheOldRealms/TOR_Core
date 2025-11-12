@@ -33,7 +33,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
         [XmlAttribute("rotation")] public bool Rotation { get; set; } = false;
         [XmlAttribute("rotation_speed")] public int RotationSpeed { get; set; } = 100;
-        
+
 
         public enum EffectType
         {

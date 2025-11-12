@@ -33,7 +33,7 @@ namespace TOR_Core.Ink
 
         public override void RefreshValues()
         {
-           
+
             if (_story == null) return;
             Title = _story.Title;
             //Get Sprite to display on the right
@@ -42,33 +42,33 @@ namespace TOR_Core.Ink
             {
                 SpritePath = _story.GetCurrentIllustration();
             }
-           
+
             //Calc if the current text is too long
-            if(CurrentText.Count() > _maxChars)
+            if (CurrentText.Count() > _maxChars)
             {
                 CurrentText = _story.GetLine();
             }
             else
             {
                 CurrentText = CurrentText + "\n" + _story.GetLine();
-                
+
             }
             //Check choices
             _choices.Clear();
             if (_story.IsOver())
             {
-                _choices.Add(new InkStoryChoiceVM(-1, new TextObject ("{=inky_end_str}End").ToString(), OnChoiceSelected));
+                _choices.Add(new InkStoryChoiceVM(-1, new TextObject("{=inky_end_str}End").ToString(), OnChoiceSelected));
             }
             else if (!_story.HasChoices())
             {
-                
-                _choices.Add(new InkStoryChoiceVM(0, new TextObject ("{=inky_continue_str}Continue").ToString(), OnChoiceSelected));
+
+                _choices.Add(new InkStoryChoiceVM(0, new TextObject("{=inky_continue_str}Continue").ToString(), OnChoiceSelected));
             }
             else
             {
-                foreach(var choice in _story.GetChoices())
+                foreach (var choice in _story.GetChoices())
                 {
-                    var text = _story.getChoiceText (choice);
+                    var text = _story.getChoiceText(choice);
                     _choices.Add(new InkStoryChoiceVM(choice.index, text, OnChoiceSelected));
                 }
             }

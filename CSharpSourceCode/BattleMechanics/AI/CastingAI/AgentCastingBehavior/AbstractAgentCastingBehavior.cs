@@ -33,7 +33,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             AbilityIndex = abilityIndex;
             if (abilityTemplate != null)
             {
-                _abilityRange = (int) (abilityTemplate.BaseMovementSpeed * abilityTemplate.Duration) - 1;
+                _abilityRange = (int)(abilityTemplate.BaseMovementSpeed * abilityTemplate.Duration) - 1;
             }
 
             AbilityTemplate = abilityTemplate;
@@ -93,15 +93,15 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
                 case AbilityEffectType.Heal:
                 case AbilityEffectType.Hex:
                 case AbilityEffectType.Augment:
-                {
-                    time = AbilityTemplate.CastTime;
-                    break;
-                }
+                    {
+                        time = AbilityTemplate.CastTime;
+                        break;
+                    }
                 default:
-                {
-                    time = AbilityTemplate.BaseMovementSpeed != 0 ? targetPosition.Distance(Agent.Position) / AbilityTemplate.BaseMovementSpeed : AbilityTemplate.CastTime;
-                    break;
-                }
+                    {
+                        time = AbilityTemplate.BaseMovementSpeed != 0 ? targetPosition.Distance(Agent.Position) / AbilityTemplate.BaseMovementSpeed : AbilityTemplate.CastTime;
+                        break;
+                    }
             }
 
             return targetVelocity * time;
@@ -121,7 +121,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
                     target.UtilityValue = CalculateUtility(target);
                     return target;
                 })
-                .Select(target => new BehaviorOption {Target = target, Behavior = this, UtilityValue = target.UtilityValue})
+                .Select(target => new BehaviorOption { Target = target, Behavior = this, UtilityValue = target.UtilityValue })
                 .ToList();
 
             return LatestScores;

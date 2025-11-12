@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Helpers;
 using SandBox;
+using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
@@ -33,7 +33,7 @@ namespace TOR_Core.Models
 
             var leaderHero = mobileParty?.LeaderHero;
             if (leaderHero == null) return result;
-            
+
 
 
             if (mobileParty != MobileParty.MainParty)
@@ -50,7 +50,7 @@ namespace TOR_Core.Models
 
             if (mobileParty != MobileParty.MainParty) return result;
 
-            
+
             TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(mobileParty.CurrentNavigationFace);
             if (mobileParty.HasBlessing("cult_of_taal"))
             {
@@ -65,7 +65,7 @@ namespace TOR_Core.Models
             var heroes = mobileParty.GetMemberHeroes();
             foreach (var trait in heroes.SelectQ(hero => hero.CharacterObject.GetCharacterEquipment()).
                             SelectMany(equipment => equipment.SelectQ(item => item.GetTraits()).
-                                SelectMany(traits => traits.WhereQ(trait => trait!=null && trait.StatsTuple?.StatType == ItemTraitStatType.PartySpeed))))
+                                SelectMany(traits => traits.WhereQ(trait => trait != null && trait.StatsTuple?.StatType == ItemTraitStatType.PartySpeed))))
             {
                 result.AddFactor(trait.StatsTuple.Value, GameTexts.FindText("tor_generic_enchantedEquipment"));
             }
@@ -97,10 +97,10 @@ namespace TOR_Core.Models
                 }
             }
 
-                
-            if (leaderHero.GetCustomResourceValue("DarkEnergy")==0 && leaderHero.GetCalculatedCustomResourceUpkeep("DarkEnergy") <=-100)
+
+            if (leaderHero.GetCustomResourceValue("DarkEnergy") == 0 && leaderHero.GetCalculatedCustomResourceUpkeep("DarkEnergy") <= -100)
             {
-                result.AddFactor(-0.9f,new TextObject("Burden of Dark Energy Costs is too high!"));
+                result.AddFactor(-0.9f, new TextObject("Burden of Dark Energy Costs is too high!"));
             }
 
             if (leaderHero.IsVampire()) //player vamp
@@ -144,16 +144,16 @@ namespace TOR_Core.Models
                 {
                     choice = TORCareerChoices.GetChoice("FrostsBitePassive3");
                 }
-                else if(leaderHero.HasCareerChoice("PathfinderPassive3"))
-                { 
+                else if (leaderHero.HasCareerChoice("PathfinderPassive3"))
+                {
                     choice = TORCareerChoices.GetChoice("PathfinderPassive3");
                 }
 
                 if (choice == null) return result;
                 var snowText = new TextObject("{=vLjgcdgB}Snow");
-                            
+
                 var snowEffect = result.GetLines().FirstOrDefaultQ(item => snowText.Value.Contains(item.name));
-                if (snowEffect.name !=null)
+                if (snowEffect.name != null)
                 {
                     result.Add(-snowEffect.number, choice.BelongsToGroup.Name);
                 }

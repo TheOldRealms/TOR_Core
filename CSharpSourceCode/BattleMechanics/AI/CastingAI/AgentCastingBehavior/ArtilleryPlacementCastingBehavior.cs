@@ -25,7 +25,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
         {
             if (CurrentTarget.TacticalPosition == null) return;
 
-            var castingPosition = ((AdjacentAoETacticalBehavior) TacticalBehavior)?.CastingPosition;
+            var castingPosition = ((AdjacentAoETacticalBehavior)TacticalBehavior)?.CastingPosition;
             if (castingPosition.HasValue && Agent.Position.AsVec2.Distance(castingPosition.Value.AsVec2) > 10) return;
 
             base.Execute();
@@ -36,7 +36,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             var width = Math.Max(target.TacticalPosition.Width, 35);
             var direction = target.TacticalPosition.Position.GetGroundVec3MT() - Agent.Team.QuerySystem.AverageEnemyPosition.ToVec3();
             direction /= direction.Length;
-            target.SelectedWorldPosition = target.TacticalPosition.Position.GetGroundVec3MT() + direction.AsVec2.RightVec().ToVec3() * (float) (_random.NextDouble() * width - width / 2);
+            target.SelectedWorldPosition = target.TacticalPosition.Position.GetGroundVec3MT() + direction.AsVec2.RightVec().ToVec3() * (float)(_random.NextDouble() * width - width / 2);
             return target;
         }
 
@@ -55,15 +55,15 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
                 return behaviorOptions;
             }
 
-            var artilleryFormation = Agent.Team.GetFormationsIncludingSpecial().ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+            var artilleryFormation = Agent.Team.GetFormationsIncludingSpecial().ToList().Find(formation => formation.Index == (int)TORFormationClass.Artillery);
 
             var artilleryPosition = CurrentTarget.TacticalPosition.Position.GetGroundVec3MT();
             CurrentTarget.UtilityValue = Mission.Current.GetArtillerySlotsLeftForTeam(Agent.Team) > 0 &&
-                                         ((ItemBoundAbility) Agent.GetAbility(AbilityIndex)).GetRemainingCharges() > 0 &&
+                                         ((ItemBoundAbility)Agent.GetAbility(AbilityIndex)).GetRemainingCharges() > 0 &&
                                          (Agent.Position.Distance(artilleryPosition) < 25 || artilleryFormation != null && artilleryFormation.CurrentPosition.Distance(artilleryPosition.AsVec2) < 20)
                 ? 1.0f
                 : 0.0f;
-            behaviorOptions.Add(new BehaviorOption {Target = CurrentTarget, Behavior = this});
+            behaviorOptions.Add(new BehaviorOption { Target = CurrentTarget, Behavior = this });
             return behaviorOptions;
         }
     }

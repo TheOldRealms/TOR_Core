@@ -15,7 +15,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior
         {
             var artillery = FindArtilleryFormation();
             if (artillery == null) return;
-            
+
             var closestEnemyFormation = artillery.CachedClosestEnemyFormation?.Formation;
             if (closestEnemyFormation != null && closestEnemyFormation.CachedAveragePosition.Distance(artillery.CachedAveragePosition) < 30)
             {
@@ -33,9 +33,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior
 
         private Formation FindArtilleryFormation()
         {
-            return Formation.Team.GetFormationsIncludingSpecial().ToList().Find(formation => formation.Index == (int) TORFormationClass.Artillery);
+            return Formation.Team.GetFormationsIncludingSpecial().ToList().Find(formation => formation.Index == (int)TORFormationClass.Artillery);
         }
 
-        protected override float GetAiWeight() => Formation.Index == (int) TORFormationClass.ArtilleryGuard && FindArtilleryFormation() != null ? 100f : 0.0f;
+        protected override float GetAiWeight() => Formation.Index == (int)TORFormationClass.ArtilleryGuard && FindArtilleryFormation() != null ? 100f : 0.0f;
     }
 }

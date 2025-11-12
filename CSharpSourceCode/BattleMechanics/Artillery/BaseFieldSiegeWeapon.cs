@@ -103,20 +103,20 @@ namespace TOR_Core.BattleMechanics.Artillery
             var ammoPickUpPoints = base.AmmoPickUpPoints; //Sly : for my curiosity about the different standing point types and their relevance to ammo pickup
 
             if (State == WeaponState.LoadingAmmo && !LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.HasAIMovingTo)
-            if (State == WeaponState.LoadingAmmo && !LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.HasAIMovingTo)
-            {
-                foreach (var sp in AmmoPickUpPoints)
+                if (State == WeaponState.LoadingAmmo && !LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.HasAIMovingTo)
                 {
-                    if (sp.IsDeactivated) sp.SetIsDeactivatedSynched(false);
+                    foreach (var sp in AmmoPickUpPoints)
+                    {
+                        if (sp.IsDeactivated) sp.SetIsDeactivatedSynched(false);
+                    }
                 }
-            }
-            else
-            {
-                foreach (var sp in AmmoPickUpPoints)
+                else
                 {
-                    if (!sp.IsDeactivated) sp.SetIsDeactivatedSynched(true);
+                    foreach (var sp in AmmoPickUpPoints)
+                    {
+                        if (!sp.IsDeactivated) sp.SetIsDeactivatedSynched(true);
+                    }
                 }
-            }
         }
     }
 }

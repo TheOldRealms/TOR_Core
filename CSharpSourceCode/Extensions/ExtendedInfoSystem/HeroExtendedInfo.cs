@@ -1,18 +1,18 @@
 using Helpers;
+using Ink.Parsed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
 
@@ -40,7 +40,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             if (CustomResources.ContainsKey(id))
             {
                 CustomResources[id] = Math.Max(0, CustomResources[id] + amount);
-                if(id == "WindsOfMagic")
+                if (id == "WindsOfMagic")
                 {
                     CustomResources[id] = Math.Min(MaxWindsOfMagic, CustomResources[id]);
                 }
@@ -109,7 +109,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
             get
             {
                 if (Game.Current.GameType is not Campaign) return 0.2f;
-                TORAbilityModel  model = Campaign.Current.Models.GetAbilityModel();
+                TORAbilityModel model = Campaign.Current.Models.GetAbilityModel();
                 return model.GetWindsRechargeRate(this.BaseCharacter);
             }
         }
@@ -142,7 +142,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                     }
                 }
                 list.AddRange(AcquiredAbilities);
-                
+
                 return list;
             }
         }
@@ -178,7 +178,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             get
             {
-                if(ReligionDevotionLevels.Count == 0 || ReligionDevotionLevels.Values.Sum() == 0) return null;
+                if (ReligionDevotionLevels.Count == 0 || ReligionDevotionLevels.Values.Sum() == 0) return null;
                 var dominantTuple = ReligionDevotionLevels.MaxBy(x => x.Value);
                 return ReligionObject.All.FirstOrDefault(x => x.StringId == dominantTuple.Key); //this should scan through less objects I think? the list of religion objects is already cached on load and we know it has to be among them
                 //return MBObjectManager.Instance.GetObject<ReligionObject>(dominantTuple.Key);
@@ -187,7 +187,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
 
         public void AddSelectedAbility(string abilityId)
         {
-            if(!_selectedAbilities.Contains(abilityId)) _selectedAbilities.Add(abilityId);
+            if (!_selectedAbilities.Contains(abilityId)) _selectedAbilities.Add(abilityId);
         }
 
         public void RemoveSelectedAbility(string abilityId)
@@ -198,7 +198,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public void ToggleSelectedAbility(string abilityId)
         {
             if (IsAbilitySelected(abilityId)) RemoveSelectedAbility(abilityId);
-            else if(AllAbilities.Contains(abilityId)) AddSelectedAbility(abilityId);
+            else if (AllAbilities.Contains(abilityId)) AddSelectedAbility(abilityId);
         }
 
         public bool IsAbilitySelected(string abilityId)
@@ -242,7 +242,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 AcquiredAbilities.Remove(prayer);
             }
         }
-        
+
         public void RemoveKnownLore(string loreId)
         {
             if (LoreObject.GetLore(loreId) != null && _knownLores.Contains(loreId))
@@ -250,13 +250,13 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 foreach (var abilityID in AllAbilities)
                 {
                     var ability = AbilityFactory.GetTemplate(abilityID);
-                    if (ability.BelongsToLoreID!=loreId)continue;
+                    if (ability.BelongsToLoreID != loreId) continue;
                     _selectedAbilities.Remove(abilityID);
                 }
                 _knownLores.Remove(loreId);
             }
         }
-        
+
         public void RemoveAllSpells()
         {
             var allSpells = AbilityFactory.GetAllSpellNamesAsList();
@@ -276,7 +276,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         {
             return _knownLores.Contains(loreId);
         }
-        
+
         public int GetKnownLoreCount()
         {
             return _knownLores.Count;
@@ -285,12 +285,12 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private void EnsureKnownLores()
         {
             List<AbilityTemplate> list = [];
-            foreach(var abilityId in AllAbilities)
+            foreach (var abilityId in AllAbilities)
             {
                 var ability = AbilityFactory.GetTemplate(abilityId);
                 if (ability != null && ability.IsSpell) list.Add(ability);
             }
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 if (!HasKnownLore(item.BelongsToLoreID)) AddKnownLore(item.BelongsToLoreID);
             }

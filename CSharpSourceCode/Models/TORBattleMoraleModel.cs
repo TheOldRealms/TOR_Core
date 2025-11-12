@@ -18,7 +18,7 @@ namespace TOR_Core.Models
         public override bool CanPanicDueToMorale(Agent agent)
         {
             var leader = agent.GetPartyLeaderCharacter();
-            if(leader != null && leader.GetPerkValue(TORPerks.GunPowder.SteelTerror) && agent.HasAttribute("ArtilleryCrew"))
+            if (leader != null && leader.GetPerkValue(TORPerks.GunPowder.SteelTerror) && agent.HasAttribute("ArtilleryCrew"))
             {
                 return false;
             }

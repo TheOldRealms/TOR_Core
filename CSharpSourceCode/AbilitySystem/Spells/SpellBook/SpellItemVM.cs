@@ -20,7 +20,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
         private string _learnText;
         private int _goldCost;
 
-        public SpellItemVM(AbilityTemplate template, Hero currentHero, bool isTrainerMode = false) : base(template,currentHero)
+        public SpellItemVM(AbilityTemplate template, Hero currentHero, bool isTrainerMode = false) : base(template, currentHero)
         {
             _isTrainerMode = isTrainerMode;
             RefreshValues();
@@ -33,7 +33,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
             var sugarDaddy = Hero.IsPartyLeader ? Hero
                 : Hero.PartyBelongedTo != null ? Hero.PartyBelongedTo.Owner
                     : Hero;
-            if(sugarDaddy.Gold >= _goldCost)
+            if (sugarDaddy.Gold >= _goldCost)
             {
                 sugarDaddy.ChangeHeroGold(-_goldCost);
                 Hero.AddAbility(Template.StringID);
@@ -69,17 +69,17 @@ namespace TOR_Core.AbilitySystem.SpellBook
             MBTextManager.SetTextVariable("COINIMAGE", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"4\">", false);
             MBTextManager.SetTextVariable("GOLDCOST", _goldCost);
             LearnText = learnTextObject.ToString(); //this does result in a localized string in the UI - to be determined if this is actually how we want to localize that UI
-            
+
             IsSelected = !_isTrainerMode && info.IsAbilitySelected(Template.StringID);
             if (IsDisabled)
             {
                 CanLearn = _isTrainerMode && Template.SpellTier <= (int)info.SpellCastingLevel && Hero.HasKnownLore(Template.BelongsToLoreID);
-                if (!info.KnownLores.Any(x=>x.ID == Template.BelongsToLoreID))
+                if (!info.KnownLores.Any(x => x.ID == Template.BelongsToLoreID))
                 {
                     var disabledReasonTextObject = new TextObject("{=tor_learnSpellDisabled_lore}Unfamiliar lore");
                     DisabledReason = disabledReasonTextObject.ToString();
                 }
-                else if(Template.SpellTier > (int)info.SpellCastingLevel)
+                else if (Template.SpellTier > (int)info.SpellCastingLevel)
                 {
                     var disabledReasonTextObject = new TextObject("{=tor_learnSpellDisabled_spellTier}Insufficient caster level");
                     DisabledReason = disabledReasonTextObject.ToString();
@@ -91,7 +91,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public bool CanLearn
         {
@@ -125,6 +125,6 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 }
             }
         }
-        
+
     }
 }

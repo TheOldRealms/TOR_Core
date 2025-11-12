@@ -17,7 +17,7 @@ namespace TOR_Core.CampaignMechanics.Careers
 
         public override void SyncData(IDataStore dataStore)
         {
-            
+
         }
     }
 }

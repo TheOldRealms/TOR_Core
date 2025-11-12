@@ -20,11 +20,11 @@ public class WeaponBuffStackScript(string[] arguments) : BaseWeaponHitScript(arg
 {
     public override void OnHit(Agent receiverAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-        if(receiverAgent == null) return;
-        
-        
+        if (receiverAgent == null) return;
+
+
         var statusEffect = _arguments[0];
-        
+
         if (!int.TryParse(_arguments[2], out var maxStackCount))
         {
             return;
@@ -35,9 +35,9 @@ public class WeaponBuffStackScript(string[] arguments) : BaseWeaponHitScript(arg
         }
 
         var component = receiverAgent.GetComponent<StatusEffectComponent>();
-        if(component == null)return;
-        
-        var attributes  =  component.GetTemporaryAttributes(true).ToListQ();
+        if (component == null) return;
+
+        var attributes = component.GetTemporaryAttributes(true).ToListQ();
 
         var count = attributes.CountQ();
 
@@ -45,9 +45,9 @@ public class WeaponBuffStackScript(string[] arguments) : BaseWeaponHitScript(arg
         {
             return;
         }
-        
-        receiverAgent.ApplyStatusEffect(statusEffect,receiverAgent,duration,false,false,true);
-        
+
+        receiverAgent.ApplyStatusEffect(statusEffect, receiverAgent, duration, false, false, true);
+
     }
 }
 /// <summary>
@@ -59,26 +59,26 @@ public class WeaponBuffStackScript(string[] arguments) : BaseWeaponHitScript(arg
 public class WeaponTriggerEffectScript(string[] arguments) : BaseWeaponHitScript(arguments)
 {
     protected Agent _triggererAgent;
-    
-    public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow  blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
+
+    public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
-        if(attackingAgent == null) return;
-        
-        if(attackedAgent == null) return;
+        if (attackingAgent == null) return;
+
+        if (attackedAgent == null) return;
 
         if (_triggererAgent == null)
         {
             _triggererAgent = attackingAgent;
-        } 
-        
-        
+        }
+
+
         var triggeredEffect = _arguments[0];
         var applyOnAttacker = false;
         if (_arguments.Length >= 2)
         {
             if (!bool.TryParse(_arguments[1], out applyOnAttacker))
             {
-            
+
             }
         }
         var targeted = false;
@@ -86,7 +86,7 @@ public class WeaponTriggerEffectScript(string[] arguments) : BaseWeaponHitScript
         {
             bool.TryParse(_arguments[2], out targeted);
         }
-        
+
         var effect = TriggeredEffectManager.CreateNew(triggeredEffect);
         if (!targeted)
         {
@@ -96,8 +96,8 @@ public class WeaponTriggerEffectScript(string[] arguments) : BaseWeaponHitScript
         else
         {
             var position = attackedAgent.Position; // doesnt matter
-            var target = applyOnAttacker ? attackingAgent : attackedAgent; 
-            effect.Trigger(position, Vec3.Up, _triggererAgent, null,new MBList<Agent>(){target} );
+            var target = applyOnAttacker ? attackingAgent : attackedAgent;
+            effect.Trigger(position, Vec3.Up, _triggererAgent, null, new MBList<Agent>() { target });
         }
     }
 }
@@ -112,16 +112,16 @@ public class BonusDOTDamageEffectScript(string[] arguments) : BaseWeaponHitScrip
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
-        if(attackingAgent == null) return;
-        
-        if(attackedAgent == null) return;
-        
-        if(blow.InflictedDamage<=0) return;
+        if (attackingAgent == null) return;
+
+        if (attackedAgent == null) return;
+
+        if (blow.InflictedDamage <= 0) return;
 
 
         var component = attackedAgent.GetComponent<StatusEffectComponent>();
-        
-        if(component == null)return;
+
+        if (component == null) return;
 
 
 
@@ -129,11 +129,11 @@ public class BonusDOTDamageEffectScript(string[] arguments) : BaseWeaponHitScrip
         {
             return;
         }
-        
+
         var damageOverTimeAggregate = component.GetDamageOverTimeAggregate();
         if (damageOverTimeAggregate > 0)
         {
-            attackedAgent.ApplyDamage(blow.InflictedDamage*(percent/100),attackedAgent.Position,attackingAgent,true,false,false);
+            attackedAgent.ApplyDamage(blow.InflictedDamage * (percent / 100), attackedAgent.Position, attackingAgent, true, false, false);
         }
 
     }
@@ -147,9 +147,9 @@ public class UndeadTriggeredEffectScript(string[] arguments) : WeaponTriggerEffe
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
-        if(attackingAgent == null) return;
-        
-        if(attackedAgent == null) return;
+        if (attackingAgent == null) return;
+
+        if (attackedAgent == null) return;
 
         if (attackedAgent.IsUndead() || attackedAgent.IsVampire())
         {
@@ -166,20 +166,20 @@ public class BonusDamageOnUndeadEffectScript() : BaseWeaponHitScript
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
-        if(attackingAgent == null) return;
-        
-        if(attackedAgent == null) return;
-        
-        if(blow.InflictedDamage<=0) return;
+        if (attackingAgent == null) return;
+
+        if (attackedAgent == null) return;
+
+        if (blow.InflictedDamage <= 0) return;
 
         if (!attackedAgent.IsUndead() && !attackedAgent.IsVampire()) return;
-        
+
         if (!int.TryParse(_arguments[0], out var percent))
         {
             return;
         }
-        
-        attackedAgent.ApplyDamage(blow.InflictedDamage*(percent/100),attackedAgent.Position,attackingAgent,true,false,false);
+
+        attackedAgent.ApplyDamage(blow.InflictedDamage * (percent / 100), attackedAgent.Position, attackingAgent, true, false, false);
     }
 }
 
@@ -224,33 +224,33 @@ public class AmmoRechargeOnHit(string[] arguments) : BaseWeaponHitScript(argumen
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-        
-        if(blow.InflictedDamage<=0)
+
+        if (blow.InflictedDamage <= 0)
             return;
-        
+
         WeaponComponentData currentUsageItem = missionWeapon.CurrentUsageItem;
-        
-        if(currentUsageItem.IsMeleeWeapon)
+
+        if (currentUsageItem.IsMeleeWeapon)
             return;
-        
-        
+
+
         MissionEquipment equipment = attackingAgent.Equipment;
         for (int i = 0; i < 5; i++)
         {
             EquipmentIndex equipmentIndex = (EquipmentIndex)i;
-           
-            if ( equipment[equipmentIndex].CurrentUsageItem == missionWeapon.CurrentUsageItem)
+
+            if (equipment[equipmentIndex].CurrentUsageItem == missionWeapon.CurrentUsageItem)
             {
                 var amount = missionWeapon.Amount;
-            
+
                 amount++;
-                
+
                 if (amount != missionWeapon.Amount)
                 {
                     equipment.SetAmountOfSlot(equipmentIndex, amount, true);
                 }
             }
-            
+
         }
     }
 }
@@ -261,7 +261,7 @@ public class StealthAttackScript(string[] arguments) : BaseWeaponHitScript(argum
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow inflictedDamge, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
         var percent = 0f;
-        if(int.TryParse(_arguments[0], out var percentValue))
+        if (int.TryParse(_arguments[0], out var percentValue))
         {
             percent = percentValue / 100f;
         }
@@ -269,7 +269,7 @@ public class StealthAttackScript(string[] arguments) : BaseWeaponHitScript(argum
         {
             percent = 0.25f;
         }
-        
+
         var agentDirection = attackedAgent.LookDirection;
         var attackerDirection = collisionData.WeaponBlowDir.NormalizedCopy();
         var isStealthAttack = false;
@@ -294,7 +294,7 @@ public class BeastSlayingScript(string[] arguments) : BaseWeaponHitScript(argume
         if (attackedAgent.IsMount || attackedAgent.HasAttribute("Minotaur"))
         {
             var percent = 0f;
-            if(int.TryParse(_arguments[0], out var percentValue))
+            if (int.TryParse(_arguments[0], out var percentValue))
             {
                 percent = percentValue / 100f;
             }
@@ -303,11 +303,11 @@ public class BeastSlayingScript(string[] arguments) : BaseWeaponHitScript(argume
                 percent = 0.25f;
             }
 
-            
+
             var newBlow = new Blow(attackingAgent.Index);
 
-            blow.InflictedDamage = (int) percent * blow.InflictedDamage;
-            attackedAgent.RegisterBlow(blow,collisionData);     //Works but the display can be broken 
+            blow.InflictedDamage = (int)percent * blow.InflictedDamage;
+            attackedAgent.RegisterBlow(blow, collisionData);     //Works but the display can be broken 
         }
     }
 }
@@ -321,7 +321,7 @@ public class ExtraHeadshotDamageScript(string[] arguments) : BaseWeaponHitScript
             return;
         }
         var percent = 0f;
-        if(int.TryParse(_arguments[0], out var percentValue))
+        if (int.TryParse(_arguments[0], out var percentValue))
         {
             percent = percentValue / 100f;
         }
@@ -330,11 +330,11 @@ public class ExtraHeadshotDamageScript(string[] arguments) : BaseWeaponHitScript
             percent = 0.25f;
         }
 
-            
+
         var newBlow = new Blow(attackingAgent.Index);
 
-        blow.InflictedDamage = (int) percent * blow.InflictedDamage;
-        attackedAgent.RegisterBlow(blow,collisionData);     //Works but the display can be broken 
+        blow.InflictedDamage = (int)percent * blow.InflictedDamage;
+        attackedAgent.RegisterBlow(blow, collisionData);     //Works but the display can be broken 
     }
 }
 
@@ -345,7 +345,7 @@ public class HeadShotTriggerScript(string[] arguments) : BaseWeaponHitScript(arg
 
         if (collisionData.VictimHitBodyPart == BoneBodyPartType.Head)
         {
-            base.OnHit(attackingAgent,attackedAgent,blow, missionWeapon, collisionData);
+            base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, collisionData);
         }
     }
 }
@@ -359,9 +359,9 @@ public class TriggerOnKillScript(string[] arguments) : WeaponTriggerEffectScript
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-        if (attackedAgent.Health<=0)
+        if (attackedAgent.Health <= 0)
         {
-            base.OnHit(attackingAgent,attackedAgent,blow, missionWeapon, collisionData);
+            base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, collisionData);
         }
     }
 }
@@ -377,13 +377,13 @@ public class BloodLettingTriggerScript(string[] arguments) : WeaponTriggerEffect
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-       base.OnHit(attackingAgent,attackedAgent, blow,missionWeapon, collisionData);
+        base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, collisionData);
 
-       if (int.TryParse(_arguments[3], out var damageValue))
-       {
-           attackingAgent.ApplyDamage(damageValue,attackedAgent.Position);
-       }
-   
+        if (int.TryParse(_arguments[3], out var damageValue))
+        {
+            attackingAgent.ApplyDamage(damageValue, attackedAgent.Position);
+        }
+
     }
 }
 
@@ -401,12 +401,12 @@ public class BloodLeechingScript(string[] arguments) : BaseWeaponHitScript(argum
         {
             return;
         }
-        
+
         if (!int.TryParse(_arguments[1], out var minimumHealth))
         {
             return;
         }
-        
+
         if (attackingAgent.Health < minimumHealth)
         {
             attackingAgent.Health += amount;
@@ -429,10 +429,7 @@ public class RaceTriggerScript(string[] arguments) : WeaponTriggerEffectScript(a
 
         if (attackedAgent.Character.Race == raceIndex)
         {
-            base.OnHit(attackingAgent,attackedAgent, blow,missionWeapon, collisionData);
+            base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, collisionData);
         }
     }
 }
-
-
-

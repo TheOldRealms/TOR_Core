@@ -11,13 +11,13 @@ namespace TOR_Core.Models
     public class TORSettlementLoyaltyModel : DefaultSettlementLoyaltyModel
     {
         public override ExplainedNumber CalculateLoyaltyChange(Town town, bool includeDescriptions = false)
-        { 
-            var modifiedExplainedNumberNumber= base.CalculateLoyaltyChange(town, includeDescriptions); 
+        {
+            var modifiedExplainedNumberNumber = base.CalculateLoyaltyChange(town, includeDescriptions);
             GetTORSpecialSettlementLoyaltyChange(ref modifiedExplainedNumberNumber, town);
             return modifiedExplainedNumberNumber;
         }
-        
-        
+
+
         private static void GetTORSpecialSettlementLoyaltyChange(
             ref ExplainedNumber explainedNumber, Town town)
         {
@@ -25,11 +25,11 @@ namespace TOR_Core.Models
             {
                 if (town.Settlement.Owner.IsVampire())
                 {
-                    explainedNumber.Add(5,new TextObject("vampire effect"), new TextObject("variable test"));
+                    explainedNumber.Add(5, new TextObject("vampire effect"), new TextObject("variable test"));
                 }
                 else
                 {
-                    explainedNumber.Add(-10,new TextObject("not vampire"), new TextObject("variable test"));
+                    explainedNumber.Add(-10, new TextObject("not vampire"), new TextObject("variable test"));
                 }
             }
 
@@ -40,13 +40,13 @@ namespace TOR_Core.Models
                     var description = new TextObject("Brewers Guild");
                     if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
                     {
-                        explainedNumber.Add(2,description);
+                        explainedNumber.Add(2, description);
                     }
                     else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
                     {
-                        explainedNumber.Add(1,description);
+                        explainedNumber.Add(1, description);
                     }
-                        
+
                 }
             }
 
@@ -54,11 +54,11 @@ namespace TOR_Core.Models
             {
                 if (town.Settlement.Owner == Hero.MainHero && town.Settlement.IsGreenskinCamp())
                 {
-                    float shinies = town.Settlement.Stash.FirstOrDefaultQ(x=> x.EquipmentElement.Item.StringId == "tor_gs_gold_pile" ).Amount;
-                    explainedNumber.Add(shinies/500, new TextObject("Shiny Pile"));
+                    float shinies = town.Settlement.Stash.FirstOrDefaultQ(x => x.EquipmentElement.Item.StringId == "tor_gs_gold_pile").Amount;
+                    explainedNumber.Add(shinies / 500, new TextObject("Shiny Pile"));
                 }
             }
-            
+
         }
     }
 }

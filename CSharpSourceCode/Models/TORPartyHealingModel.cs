@@ -30,40 +30,40 @@ namespace TOR_Core.Models
             {
                 return 1;
             }
-            
+
             var result = base.GetSurvivalChance(party, character, damageType, canDamageKillEvenIfBlunt, enemyParty);
-            
+
             if (result < 0.5f && party != null && party.LeaderHero != null && party.LeaderHero.GetPerkValue(TORPerks.Faith.Revival)) result = TORPerks.Faith.Revival.PrimaryBonus; //Sly : perk description does not match functionality
-                
-            if (!character.IsUndead()) 
-                return result;   
+
+            if (!character.IsUndead())
+                return result;
             //undead "survival chance"
             if (character.IsHero)
             {
                 return result;
             }
             if (character.Tier < 4)
-            { 
+            {
                 return 0;
             }
 
             if (party != null && party.LeaderHero != null && party.LeaderHero == Hero.MainHero && party.LeaderHero.HasAnyCareer())
             {
                 var choices = party.LeaderHero.GetAllCareerChoices();
-                if(choices.Contains("MasterOfDeadPassive4"))
+                if (choices.Contains("MasterOfDeadPassive4"))
                 {
                     var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive4");
                     if (choice != null)
                         return result + choice.GetPassiveValue();
                 }
-                if(choices.Contains( "CodexMortificaPassive4"))
+                if (choices.Contains("CodexMortificaPassive4"))
                 {
                     var choice = TORCareerChoices.GetChoice("CodexMortificaPassive4");
                     if (choice != null)
                         return result + choice.GetPassiveValue();
                 }
-                
-                if(choices.Contains( "WellspringOfDharPassive2"))
+
+                if (choices.Contains("WellspringOfDharPassive2"))
                 {
                     var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive2");
                     if (choice != null)
@@ -71,7 +71,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            
+
             return 0;
         }
 
@@ -87,12 +87,12 @@ namespace TOR_Core.Models
                 return new ExplainedNumber(0, true, GameTexts.FindText("tor_customSettlement_generic_inCursedRegion"));
             }
 
-            var result = base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);            
+            var result = base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
 
 
             if (party.MobileParty != MobileParty.MainParty) return result;
 
-            
+
             if (party.MobileParty.HasBlessing("cult_of_sigmar"))
             {
                 result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_sigmar"));
@@ -104,7 +104,7 @@ namespace TOR_Core.Models
             {
                 result.AddFactor(-0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
             }
-            
+
             return result;
         }
 
@@ -130,8 +130,8 @@ namespace TOR_Core.Models
             }
 
             if (!party.MobileParty.IsMainParty) return result;
-            
-            
+
+
             if (party.MobileParty.HasBlessing("cult_of_shallya")) result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_shallya"));
 
             AddCareerPassivesForHeroRegeneration(party.MobileParty, ref result);
@@ -149,7 +149,7 @@ namespace TOR_Core.Models
                             result.AddFactor(ForestHarmonyHelper.HealthRegDebuffUnBound, new TextObject(ForestHarmonyLevel.Unbound.ToString()));
                             break;
                         case ForestHarmonyLevel.Bound:
-                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffBound, new TextObject(ForestHarmonyLevel.Bound.ToString()));
                             break;
                     }
                 }
@@ -159,7 +159,7 @@ namespace TOR_Core.Models
                     result.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
                 }
             }
-            
+
             return result;
         }
 
@@ -168,20 +168,20 @@ namespace TOR_Core.Models
             if (party.LeaderHero.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopRegeneration, false);
-                
+
                 if (Hero.MainHero.HasCareer(TORCareers.KnightOldWorld))
                 {
-                    var shallya = ReligionObject.All.FirstOrDefaultQ(x=> x.StringId == "cult_of_shallya");
+                    var shallya = ReligionObject.All.FirstOrDefaultQ(x => x.StringId == "cult_of_shallya");
                     if (Hero.MainHero.GetDevotionLevelForReligion(shallya) >= DevotionLevel.Fanatic)
                     {
-                        var info =ExtendedInfoManager.Instance.GetPartyInfoFor(party.StringId);
+                        var info = ExtendedInfoManager.Instance.GetPartyInfoFor(party.StringId);
 
                         if (info == null) return;
-                            
+
                         var troopAttributes = info.TroopAttributes;
 
                         var bonus = 0f;
-                        foreach (var troop in  party.MemberRoster.GetTroopRoster())
+                        foreach (var troop in party.MemberRoster.GetTroopRoster())
                         {
                             if (troopAttributes.TryGetValue(troop.Character.StringId, out List<string> elementAttributes))
                             {
@@ -191,13 +191,13 @@ namespace TOR_Core.Models
                                 }
                             }
                         }
-                        
+
                         explainedNumber.Add(bonus, new TextObject("Shallya Seal"));
                     }
                 }
             }
         }
-        
+
         private void AddCareerPassivesForHeroRegeneration(MobileParty party, ref ExplainedNumber explainedNumber)
         {
             if (party.LeaderHero.HasAnyCareer())
@@ -212,11 +212,11 @@ namespace TOR_Core.Models
         public override int GetHeroesEffectedHealingAmount(Hero hero, float healingRate)
         {
             var effectiveRate = new ExplainedNumber(base.GetHeroesEffectedHealingAmount(hero, healingRate));
-            
+
             if (hero.PartyBelongedTo == MobileParty.MainParty)
             {
                 var equipmentEffect = hero.GetAggregatedStatEffectFromEquipment(ItemTraitStatType.HealthRegen);
-                if(equipmentEffect > 0)
+                if (equipmentEffect > 0)
                 {
                     effectiveRate.AddFactor(equipmentEffect, GameTexts.FindText("tor_generic_enchantedEquipment"));//percentage values are listed on the item traits
                 }

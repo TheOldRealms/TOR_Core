@@ -7,6 +7,7 @@ using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
@@ -15,7 +16,7 @@ public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(ca
 {
     private string _regularIcon = "teef_icon_100";
     private string _extorsionIcon = "CareerSystem\\teef_extorsion";
-    
+
     private CharacterObject _setCharacter;
     private bool _setCharacterIsPrisoner;
     public override string CareerButtonIcon
@@ -32,7 +33,7 @@ public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(ca
             {
                 return null;
             }
-            return SuffersFromExtorsion(_setCharacter)? _extorsionIcon: _regularIcon;
+            return SuffersFromExtorsion(_setCharacter) ? _extorsionIcon : _regularIcon;
         }
     }
 
@@ -42,7 +43,7 @@ public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(ca
         _setCharacterIsPrisoner = isPrisoner;
         if (characterObject.Culture.StringId == TORConstants.Cultures.GREENSKIN)
         {
-            return true; 
+            return true;
         }
         return base.ShouldButtonBeVisible(characterObject, isPrisoner);
     }
@@ -57,7 +58,7 @@ public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(ca
         if (characterObject.Culture.StringId == TORConstants.Cultures.GREENSKIN)
         {
             displayText = new TextObject("Extort Teef but damage party morale.");
-            return true; 
+            return true;
         }
 
         return false;
@@ -112,5 +113,5 @@ public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(ca
         var attributes = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == characterObject.StringId).Value;
         return attributes?.Contains("Extorsion") ?? false;
     }
-    
+
 }

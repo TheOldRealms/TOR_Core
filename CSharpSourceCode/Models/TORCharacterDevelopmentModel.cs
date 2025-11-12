@@ -64,17 +64,17 @@ namespace TOR_Core.Models
         public override void GetTraitLevelForTraitXp(Hero hero, TraitObject trait, int xpValue, out int traitLevel, out int clampedTraitXp)
         {
             base.GetTraitLevelForTraitXp(hero, trait, xpValue, out traitLevel, out clampedTraitXp);
-            
-            if(xpValue<-500) return; //fail save -1500 traitvalue for killing lords is a bit much :)
+
+            if (xpValue < -500) return; //fail save -1500 traitvalue for killing lords is a bit much :)
             if (hero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 if (trait.StringId == "Valor" && xpValue < 0)
                 {
                     return;
-                } 
+                }
                 if (trait.StringId == "Mercy" || trait.StringId == "Honor" || trait.StringId == "Valor")
                 {
-                    hero.AddCustomResource("Chivalry",xpValue);
+                    hero.AddCustomResource("Chivalry", xpValue);
                 }
             }
         }

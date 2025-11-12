@@ -38,13 +38,13 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             StatItems.Add(new StatItemVM("Prayer level: ", ((PrayerLevel)highest).ToString()));
             var prayers = battlePrayers.ConvertAll(input => input.PrayerID);
             _loreObjectVm = new PrayerLoreObjectVM(this, prayers, Hero.MainHero);
-            
+
             foreach (var prayer in _loreObjectVm.PrayerList)
                 if (!prayer.IsKnown)
                     prayer.IsDisabled = true;
         }
 
-        
+
 
 
         [DataSourceProperty] public PrayerLoreObjectVM PrayerLore => _loreObjectVm;

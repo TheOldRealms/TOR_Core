@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using Helpers;
 using SandBox.GameComponents;
 using SandBox.Missions.MissionLogics;
 using SandBox.Missions.MissionLogics.Hideout;
+using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
@@ -36,7 +36,7 @@ namespace TOR_Core.Models
         private float vampireDaySpeedModificator = 1.1f;
         private float vampireNightSpeedModificator = 1.2f;
         private CustomCrosshairMissionBehavior _crosshairBehavior;
-        
+
         public override void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
         {
             base.InitializeAgentStats(agent, spawnEquipment, agentDrivenProperties, agentBuildData);
@@ -95,15 +95,15 @@ namespace TOR_Core.Models
             {
                 var character = agent.Character as CharacterObject;
                 var mobileParty = agent.GetOriginMobileParty();
-                
+
                 if (agent != Agent.Main && character != null)
                 {
                     //Lance removal Behavior
                     if (Mission.Current.IsSiegeBattle || (Mission.Current.IsFriendlyMission && Mission.Current.GetMissionBehavior<JoustTournamentBehavior>() == null) || Mission.Current.GetMissionBehavior<HideoutMissionController>() != null)
                         TOREquipmentHelper.RemoveLanceFromEquipment(agent, Mission.Current.IsFriendlyMission);      //i would like to change that to knights not beeing in guard position anyhow
                 }
-                
-                
+
+
                 if (character != null && mobileParty != null && !Mission.Current.IsArenaMission())
                 {
                     MissionEquipment equipment = agent.Equipment;
@@ -118,16 +118,16 @@ namespace TOR_Core.Models
                             {
                                 ExplainedNumber ammoCount = new ExplainedNumber(missionWeapon.Amount);
 
-                                if (agent.IsMainAgent&&!missionWeapon.Item.IsSpecialAmmunitionItem())
+                                if (agent.IsMainAgent && !missionWeapon.Item.IsSpecialAmmunitionItem())
                                 {
-                                    CareerHelper.ApplyBasicCareerPassives(character.HeroObject,ref ammoCount,PassiveEffectType.Ammo, false);
+                                    CareerHelper.ApplyBasicCareerPassives(character.HeroObject, ref ammoCount, PassiveEffectType.Ammo, false);
                                 }
 
                                 if (agent.IsMainAgent && character.HeroObject.HasAnyCareer())
                                 {
                                     var choices = character.HeroObject.GetAllCareerChoices();
 
-                                    if (missionWeapon.Item.IsSpecialAmmunitionItem()&&choices.Contains("MercenaryLordPassive1"))
+                                    if (missionWeapon.Item.IsSpecialAmmunitionItem() && choices.Contains("MercenaryLordPassive1"))
                                     {
                                         var choice = TORCareerChoices.GetChoice("MercenaryLordPassive1");
                                         if (choice != null)
@@ -139,22 +139,22 @@ namespace TOR_Core.Models
 
                                 if (Hero.MainHero.HasCareer(TORCareers.Ironbreaker))
                                 {
-                                    if ( missionWeapon.HasAnyUsageWithWeaponClass(WeaponClass.Stone) &&
+                                    if (missionWeapon.HasAnyUsageWithWeaponClass(WeaponClass.Stone) &&
                                          currentUsageItem.ItemUsage.Contains("dwarf_hand_grenade")
                                        )
                                     {
-                                        if( agent.Character.IsHero && agent.GetHero() == Hero.MainHero &&  Hero.MainHero.HasCareerChoice("NestCleansingPassive3"))
+                                        if (agent.Character.IsHero && agent.GetHero() == Hero.MainHero && Hero.MainHero.HasCareerChoice("NestCleansingPassive3"))
                                         {
                                             ammoCount.Add(2);
                                         }
-                                        if(agent.Character.IsIronbreakerUnit() && !agent.Character.IsHero &&  Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
+                                        if (agent.Character.IsIronbreakerUnit() && !agent.Character.IsHero && Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
                                         {
                                             ammoCount.Add(1);
                                         }
 
-                                        
+
                                     }
-                                    
+
                                     if (Hero.MainHero.HasCareerChoice("IronDrakesPassive4") && agent.GetOriginMobileParty() == MobileParty.MainParty && agent.Character.IsIronbreakerUnit())
                                     {
                                         foreach (var elem in MobileParty.MainParty.MemberRoster.GetTroopRoster())
@@ -166,20 +166,20 @@ namespace TOR_Core.Models
                                         }
                                     }
 
-                                    if (agent.Character.IsHero && agent.GetHero() == Hero.MainHero )
+                                    if (agent.Character.IsHero && agent.GetHero() == Hero.MainHero)
                                     {
 
                                         if (missionWeapon.Item.IsFlameThrowerItem())
                                         {
-                                            if(Hero.MainHero.HasCareerChoice("IronDrakesPassive3"))
+                                            if (Hero.MainHero.HasCareerChoice("IronDrakesPassive3"))
                                             {
                                                 ammoCount.Add(12);
                                             }
                                         }
-                                        
+
                                     }
                                 }
-                                
+
                                 if (currentUsageItem.RelevantSkill == TORSkills.GunPowder && currentUsageItem.WeaponClass == WeaponClass.Cartridge)
                                 {
                                     PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.AmmoWagons, mobileParty, true, ref ammoCount);
@@ -195,29 +195,29 @@ namespace TOR_Core.Models
                             if (currentUsageItem.IsShield && agent.IsHero)
                             {
                                 int hitPoints = missionWeapon.HitPoints;
-                                if ( agent == Agent.Main && Hero.MainHero.HasCareer(TORCareers.Ironbreaker) && Hero.MainHero.HasCareerChoice("ShieldwallPassive4"))
+                                if (agent == Agent.Main && Hero.MainHero.HasCareer(TORCareers.Ironbreaker) && Hero.MainHero.HasCareerChoice("ShieldwallPassive4"))
                                 {
                                     var smithingSkill = Hero.MainHero.GetSkillValue(DefaultSkills.Crafting);
-                                    hitPoints += (int) (smithingSkill *0.5f);
-                                   
+                                    hitPoints += (int)(smithingSkill * 0.5f);
+
                                 }
 
-                                var traits = agent.WieldedOffhandWeapon.Item.GetTraits().Where(x=> x.StatsTuple.StatType == ItemTraitStatType.ShieldHealth).ToList();
+                                var traits = agent.WieldedOffhandWeapon.Item.GetTraits().Where(x => x.StatsTuple.StatType == ItemTraitStatType.ShieldHealth).ToList();
 
                                 if (traits.Count > 0)
                                 {
                                     hitPoints += traits.Sum(trait => (int)trait.StatsTuple.Value);
                                 }
-                                
-                                equipment.SetHitPointsOfSlot(equipmentIndex, (short) hitPoints, true);
+
+                                equipment.SetHitPointsOfSlot(equipmentIndex, (short)hitPoints, true);
                             }
                         }
                     }
 
-                    if (agent.BelongsToMainParty() && agent.Character.IsIronbreakerUnit() && !agent.Character.IsRanged )
+                    if (agent.BelongsToMainParty() && agent.Character.IsIronbreakerUnit() && !agent.Character.IsRanged)
                     {
                         if (!Hero.MainHero.HasCareer(TORCareers.Ironbreaker)) return;
-                        
+
                         if (Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
                         {
                             MissionEquipment troopEquipment = agent.Equipment;
@@ -225,10 +225,10 @@ namespace TOR_Core.Models
                             {
                                 EquipmentIndex equipmentIndex = (EquipmentIndex)i;
                                 MissionWeapon missionWeapon = equipment[equipmentIndex];
-                                
+
                             }
                         }
-                        
+
                         if (Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
                         {
                             MissionEquipment troopEquipment = agent.Equipment;
@@ -290,7 +290,7 @@ namespace TOR_Core.Models
                     {
                         if (mobileParty.LeaderHero.HasAnyCareer())
                         {
-                            if (!agent.IsMainAgent && !agent.Character.IsHero )
+                            if (!agent.IsMainAgent && !agent.Character.IsHero)
                             {
                                 CareerHelper.ApplySkillBonusForTroops(ref resultNumber, skill, agent.Character);
                             }
@@ -311,20 +311,20 @@ namespace TOR_Core.Models
         public override float GetEffectiveMaxHealth(Agent agent)
         {
             if (agent == null) return 0;
-            if (agent.Origin is SummonedAgentOrigin) 
+            if (agent.Origin is SummonedAgentOrigin)
                 return agent.BaseHealthLimit;
-            
+
             var explainedNumber = new ExplainedNumber(base.GetEffectiveMaxHealth(agent));
-            
+
             if (agent.IsMount)
             {
-                
-                if (agent.RiderAgent!=null&&agent.RiderAgent.IsHero&&agent.RiderAgent.GetHero()==Hero.MainHero)
+
+                if (agent.RiderAgent != null && agent.RiderAgent.IsHero && agent.RiderAgent.GetHero() == Hero.MainHero)
                 {
-                    CareerHelper.ApplyBasicCareerPassives(agent.RiderAgent.GetHero(),ref explainedNumber,PassiveEffectType.HorseHealth,true);
+                    CareerHelper.ApplyBasicCareerPassives(agent.RiderAgent.GetHero(), ref explainedNumber, PassiveEffectType.HorseHealth, true);
                 }
             }
-            
+
             return explainedNumber.ResultNumber;
         }
 
@@ -346,7 +346,7 @@ namespace TOR_Core.Models
                 }
             }
             //Specific settings for the tilean duelist
-            if(agent.Character != null && agent.Character.StringId == "tor_ti_vittorio")
+            if (agent.Character != null && agent.Character.StringId == "tor_ti_vittorio")
             {
                 agentDrivenProperties.TopSpeedReachDuration = 0.8f;
                 agentDrivenProperties.MaxSpeedMultiplier = 1.5f;
@@ -395,8 +395,8 @@ namespace TOR_Core.Models
                         if (character.IsIronbreakerUnit())
                         {
                             agentDrivenProperties.WeaponInaccuracy += 0.095f;
-                        
-                        
+
+
                             var modificator = HeavyDwarfSpeedModificatior;
                             agentDrivenProperties.TopSpeedReachDuration *= modificator;
                             agentDrivenProperties.MaxSpeedMultiplier *= modificator;
@@ -411,23 +411,23 @@ namespace TOR_Core.Models
                     {
                         agentDrivenProperties.MaxSpeedMultiplier *= OrcSpeedModificatior;
                     }
-                    
+
                     if (character.IsGoblin())
                     {
                         agentDrivenProperties.MaxSpeedMultiplier *= GoblinSpeedModificatior;
                     }
-                    
+
                 }
             }
 
             if (agent.IsHero)
             {
-                foreach (var equipmentItem in agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot,EquipmentIndex.ArmorItemEndSlot))
+                foreach (var equipmentItem in agent.Character.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot, EquipmentIndex.ArmorItemEndSlot))
                 {
                     var traits = equipmentItem.GetTraits();
-                    foreach (var trait in traits.WhereQ(trait => trait.StatsTuple !=null && trait.StatsTuple.StatType == ItemTraitStatType.MovementSpeed))
+                    foreach (var trait in traits.WhereQ(trait => trait.StatsTuple != null && trait.StatsTuple.StatType == ItemTraitStatType.MovementSpeed))
                     {
-                        agentDrivenProperties.MaxSpeedMultiplier *= (1+ trait.StatsTuple.Value/100);
+                        agentDrivenProperties.MaxSpeedMultiplier *= (1 + trait.StatsTuple.Value / 100);
                     }
                 }
                 if (!agent.WieldedWeapon.IsEmpty)
@@ -437,14 +437,14 @@ namespace TOR_Core.Models
                         var traits = agent.WieldedWeapon.Item.GetTraits().WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.SwingSpeed).ToListQ();
                         foreach (var trait in traits)
                         {
-                            agentDrivenProperties.SwingSpeedMultiplier *= (1+trait.StatsTuple.Value/100);
+                            agentDrivenProperties.SwingSpeedMultiplier *= (1 + trait.StatsTuple.Value / 100);
                         }
                     }
 
                     if (agent.WieldedWeapon.CurrentUsageItem.IsRangedWeapon)
                     {
-                        var traits = new List<ItemTrait>(); 
-                        
+                        var traits = new List<ItemTrait>();
+
                         traits.AddRange(agent.WieldedWeapon.Item.GetTraits().WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.ReloadSpeed).ToListQ());
                         traits.AddRange(agent.WieldedWeapon.Item.GetTraits().WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.MissileSpeed).ToListQ());
 
@@ -453,24 +453,24 @@ namespace TOR_Core.Models
                             traits.AddRange(agent.WieldedWeapon.AmmoWeapon.Item.GetTraits().WhereQ(x => x.StatsTuple?.StatType == ItemTraitStatType.MissileSpeed).ToListQ());
                         }
 
-                        
+
                         foreach (var trait in traits)
                         {
                             if (trait.StatsTuple.StatType == ItemTraitStatType.ReloadSpeed)
                             {
-                                agentDrivenProperties.ReloadSpeed *= (1+trait.StatsTuple.Value/100);
+                                agentDrivenProperties.ReloadSpeed *= (1 + trait.StatsTuple.Value / 100);
                             }
 
                             if (trait.StatsTuple.StatType == ItemTraitStatType.MissileSpeed)
                             {
-                                agentDrivenProperties.MissileSpeedMultiplier *= (1+trait.StatsTuple.Value/100);
+                                agentDrivenProperties.MissileSpeedMultiplier *= (1 + trait.StatsTuple.Value / 100);
                             }
                         }
-                        
+
                     }
-            
+
                 }
-                
+
             }
 
             UpdateDynamicAgentDrivenProperties(agent, agentDrivenProperties);
@@ -513,7 +513,7 @@ namespace TOR_Core.Models
             {
                 var swingSpeedMultiplier = Mathf.Clamp(weaponSwingSpeedModifier + 1, 0.05f, 2); //I guess its better to set here a minimum, just in case something breaks.
                 if (agent.IsMount) return;
-                
+
 
                 agentDrivenProperties.SetDynamicCombatProperties(statusEffectComponent, swingSpeedMultiplier);
             }
@@ -523,17 +523,17 @@ namespace TOR_Core.Models
             }
 
             var reloadSpeedModifier = statusEffectComponent.GetReloadSpeedModifier();
-            
+
             if (reloadSpeedModifier != 0)
             {
-                var reloadSpeed = Mathf.Clamp(reloadSpeedModifier + 1, 0.05f, 2); 
+                var reloadSpeed = Mathf.Clamp(reloadSpeedModifier + 1, 0.05f, 2);
                 if (agent.IsMount) return;
 
                 agentDrivenProperties.SetDynamicReloadProperties(statusEffectComponent, reloadSpeed);
             }
             else
             {
-                agentDrivenProperties.SetDynamicReloadProperties(statusEffectComponent, 1); 
+                agentDrivenProperties.SetDynamicReloadProperties(statusEffectComponent, 1);
             }
         }
 
@@ -577,11 +577,11 @@ namespace TOR_Core.Models
             if (agent.IsMainAgent && agent.GetHero().HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref movementAccuracyPenalty, PassiveEffectType.RangedMovementPenalty);
-                
+
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref accuracyPenalty, PassiveEffectType.AccuracyPenalty);
-                
+
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref swingSpeed, PassiveEffectType.SwingSpeed);
-                
+
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref movementSpeed, PassiveEffectType.MovementSpeed);
             }
 
@@ -603,18 +603,18 @@ namespace TOR_Core.Models
 
             return base.GetMaxCameraZoom(agent);
         }
-        
+
         //The moment you realize they forget to add an override statement. if they do it needs to be moved on the EffectiveArmorEncumbrance
         public float GetTOREffectiveEquipmentEncumbrance(Agent agent, float value)
         {
             if (agent == null) return 0;
             if (agent.IsMount) return 0;
-            var number =  new ExplainedNumber(value);
+            var number = new ExplainedNumber(value);
             if (agent.GetHero() == Hero.MainHero)
             {
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref number, PassiveEffectType.EquipmentWeightReduction);
             }
-  
+
 
             return number.ResultNumber;
         }

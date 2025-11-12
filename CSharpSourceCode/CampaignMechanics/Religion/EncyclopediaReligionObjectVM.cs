@@ -22,7 +22,7 @@ namespace TOR_Core.CampaignMechanics.Religion
 
         public EncyclopediaReligionObjectVM(EncyclopediaPageArgs args) : base(args)
         {
-            if(args.Obj != null && args.Obj is ReligionObject)
+            if (args.Obj != null && args.Obj is ReligionObject)
             {
                 _religionObject = args.Obj as ReligionObject;
             }
@@ -31,15 +31,15 @@ namespace TOR_Core.CampaignMechanics.Religion
 
         public override void RefreshValues()
         {
-            if(_religionObject != null)
+            if (_religionObject != null)
             {
                 TitleText = _religionObject.Name.ToString();
                 DescriptionText = _religionObject.LoreText.ToString();
-                foreach(var follower in _religionObject.CurrentFollowers)
+                foreach (var follower in _religionObject.CurrentFollowers)
                 {
                     Followers.Add(new HeroVM(follower));
                 }
-                foreach(var troop in _religionObject.ReligiousTroops)
+                foreach (var troop in _religionObject.ReligiousTroops)
                 {
                     ReligiousTroops.Add(new EncyclopediaUnitVM(troop, false));
                 }

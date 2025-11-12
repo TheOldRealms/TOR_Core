@@ -1,8 +1,8 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior;
@@ -14,7 +14,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI
     {
         private readonly IEnumerable<IBattleCombatant> _battleCombatants;
         private readonly Mission.MissionTeamAITypeEnum _teamAIType;
-        
+
         public TORMissionCombatantsLogic(IEnumerable<IBattleCombatant> battleCombatants, IBattleCombatant playerBattleCombatant, IBattleCombatant defenderLeaderBattleCombatant, IBattleCombatant attackerLeaderBattleCombatant, Mission.MissionTeamAITypeEnum teamAIType, bool isPlayerSergeant) :
             base(battleCombatants, playerBattleCombatant, defenderLeaderBattleCombatant, attackerLeaderBattleCombatant, teamAIType, isPlayerSergeant)
         {

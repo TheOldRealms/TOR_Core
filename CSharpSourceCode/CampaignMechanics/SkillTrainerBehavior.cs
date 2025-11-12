@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NLog;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Extensions;
@@ -29,8 +29,8 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
     private Dictionary<string, string> _icons;
 
-    
-    
+
+
     private readonly Dictionary<string, (string TrainerDialogId, string SkillId, string HubId, string HubReintroKey, List<string> Restrictions)> _skilltrainers = new()
     {
         {"tor_priest_trainer_empire_ulric_0",("EngineerEmpire","Faith", "priest_hubcult_of_ulric","priest_hub_reintrocult_of_ulric",[])},
@@ -43,35 +43,35 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {"tor_spelltrainer_vc_0",("Necromancer","Spellcraft", "priest_hubcult_of_sigmar","priest_hub_reintrocult_of_sigmar",[])},
     };
 
-    private Dictionary<string, HeroTrainingData > _heroesInTraining = new();
-    
+    private Dictionary<string, HeroTrainingData> _heroesInTraining = new();
+
     private Hero _currentTrainer = null;
     private SkillObject _currentSkill;
-    
+
     public override void RegisterEvents()
     {
-        
+
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
-        CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this,Setup);
+        CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, Setup);
         CampaignEvents.BeforeMissionOpenedEvent.AddNonSerializedListener(this, OnBeforeMissionStart);
-        
+
 
         CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
 
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, TeachCompanions);
-        
-        CampaignEvents.OnHeroTeleportationRequestedEvent.AddNonSerializedListener(this,TeleportRequest);
-        
+
+        CampaignEvents.OnHeroTeleportationRequestedEvent.AddNonSerializedListener(this, TeleportRequest);
+
         CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, SettlementOwnerChanged);
     }
-    
+
     private void SettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
     {
         if (_heroesInTraining.Any())
         {
             if (detail != ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.ByRebellion &&
                 detail != ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail.BySiege) return;
-            
+
             foreach (var heroEntry in _heroesInTraining)
             {
                 if (heroEntry.Value.SettlementId == settlement.StringId)
@@ -88,7 +88,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
     {
         if (hero.CurrentSettlement == null || !hero.CurrentSettlement.IsUnderSiege)
         {
-            if (hero.PartyBelongedTo==null)
+            if (hero.PartyBelongedTo == null)
             {
                 TeleportHeroAction.ApplyDelayedTeleportToParty(hero, MobileParty.MainParty);
             }
@@ -105,18 +105,18 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {
             foreach (var hero in Campaign.Current.AliveHeroes)
             {
-                OnNewHeroCreated(hero,false);
+                OnNewHeroCreated(hero, false);
             }
         }
-        
 
-   
+
+
     }
     private void TeleportRequest(Hero arg1, Settlement arg2, MobileParty arg3, TeleportHeroAction.TeleportationDetail teleportDetails)
     {
-        
+
     }
-    
+
 
     private void TeachCompanions()
     {
@@ -125,7 +125,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {
             foreach (var entry in _heroesInTraining)
             {
-                var hero = Campaign.Current.AliveHeroes.FirstOrDefault(x=> x.StringId == entry.Key);
+                var hero = Campaign.Current.AliveHeroes.FirstOrDefault(x => x.StringId == entry.Key);
 
                 if (hero == null)
                 {
@@ -137,7 +137,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
                     removableHeroes.Add(hero);
                 }
 
-                if (hero.PartyBelongedTo !=null)
+                if (hero.PartyBelongedTo != null)
                 {
                     removableHeroes.Add(hero);
                     continue;
@@ -151,20 +151,20 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
                 }
 
                 entry.Value.duration++;
-                
-                
+
+
                 var model = Campaign.Current.Models.GetCompanionTrainingModel();
-                var value = model.DailySkillGainForTraining(hero,skill);
+                var value = model.DailySkillGainForTraining(hero, skill);
                 if (!model.ReachedSkillCap(hero, skill, value))
                 {
                     hero.AddSkillXp(skill, value);
                 }
                 else
                 {
-                    hero.AddSkillXp(skill,value);
+                    hero.AddSkillXp(skill, value);
                     removableHeroes.Add(hero);
                 }
-                
+
             }
         }
 
@@ -180,19 +180,19 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
     private void OnGameMenuOpened(MenuCallbackArgs obj)
     {
-        
+
     }
 
     private void OnNewHeroCreated(Hero hero, bool b)
     {
-        if(hero.Template==null)return;
-            
+        if (hero.Template == null) return;
+
         if (_skilltrainers.ContainsKey(hero.Template.StringId))
         {
             var values = _skilltrainers[hero.Template.StringId];
             var skillTrainerAtribute = _skillTrainerAttribute;
             var skill = values.SkillId;
-            
+
             var info = hero.GetExtendedInfo();
             if (info != null)
             {
@@ -205,14 +205,14 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
     private void OnSessionLaunched(CampaignGameStarter campaignStarter)
     {
         var skills = new List<SkillObject>();
-        
+
         skills = Game.Current.DefaultSkills.GetDefaultSkills();
         skills.AddRange(TORSkills.Instance.GetTorSkills());
 
         foreach (var skill in skills)
         {
-            var icon = "gui_skills_icon_"+skill.StringId.ToLower()+"_small";
-            MBTextManager.SetTextVariable("SKILL_ICON_"+skill.StringId.ToLower(), string.Format("<img src=\"{0}\" extend=\"8\">",icon));
+            var icon = "gui_skills_icon_" + skill.StringId.ToLower() + "_small";
+            MBTextManager.SetTextVariable("SKILL_ICON_" + skill.StringId.ToLower(), string.Format("<img src=\"{0}\" extend=\"8\">", icon));
         }
         foreach (var entry in _skilltrainers)
         {
@@ -222,34 +222,34 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             var trainerId = entry.Key;
             var skillId = entry.Value.SkillId;
             var restrictions = entry.Value.Restrictions;
-            
-            campaignStarter.AddPlayerLine("teach_skills_dialog_p" + trainerDialogId+ skillId, hub, "skill_teacher_train_1" + trainerDialogId+skillId,
-                GameTexts.FindText("teach_skills_dialog_p", trainerDialogId).ToString(), () => TrainerCondition(trainerId,skillId), null, 210);
-            
-            
-            //train companion
-            campaignStarter.AddDialogLine("skill_teacher_train_1" + trainerDialogId+skillId, "skill_teacher_train_1" + trainerDialogId+skillId,"skill_teacher_train_2"+trainerDialogId+skillId,
-                GameTexts.FindText("skill_teacher_train_1", trainerDialogId).ToString(), null, null, 200);
-           
-            campaignStarter.AddDialogLine("skill_teacher_train_2" + trainerDialogId+skillId, "skill_teacher_train_2"+trainerDialogId+skillId,"skilltrainer_train_hub"+trainerDialogId+skillId,
-                GameTexts.FindText("skill_teacher_train_2", trainerDialogId).ToString(), null, null, 200);
-           
-            campaignStarter.AddPlayerLine("skill_train_hub_select_companion_p" + trainerDialogId+skillId, "skilltrainer_train_hub"+trainerDialogId+skillId, "priest_train_hub_select_companion" + trainerDialogId+skillId,
-                GameTexts.FindText("skill_train_hub_select_companion_p", trainerDialogId).ToString(), null, null, 200);
-            
-            
-            campaignStarter.AddDialogLine("skill_train_hub_select_companion" + trainerDialogId+skillId, "priest_train_hub_select_companion"+trainerDialogId+skillId, "skill_teacher_train_2" + trainerDialogId,
-                GameTexts.FindText("priest_train_hub_select_companion", trainerDialogId).ToString(), () => IsAnyCompanionEligableForTraining(skillId,restrictions), () => SelectCompanionForTraining(skillId), 200);
-           
-            campaignStarter.AddDialogLine("skill_train_hub_select_companion_decline" + trainerDialogId+skillId, "priest_train_hub_select_companion"+trainerDialogId+skillId, "skill_teacher_train_2" + trainerDialogId+skillId,
-                GameTexts.FindText("skill_train_hub_select_companion_decline", trainerDialogId).ToString(), () => !IsAnyCompanionEligableForTraining(skillId,restrictions), null,200);
 
-            
-            
-            campaignStarter.AddPlayerLine("skilltrain_train_hub_quit_p" + trainerDialogId+skillId, "skilltrainer_train_hub"+trainerDialogId+skillId,reintro_hub,
+            campaignStarter.AddPlayerLine("teach_skills_dialog_p" + trainerDialogId + skillId, hub, "skill_teacher_train_1" + trainerDialogId + skillId,
+                GameTexts.FindText("teach_skills_dialog_p", trainerDialogId).ToString(), () => TrainerCondition(trainerId, skillId), null, 210);
+
+
+            //train companion
+            campaignStarter.AddDialogLine("skill_teacher_train_1" + trainerDialogId + skillId, "skill_teacher_train_1" + trainerDialogId + skillId, "skill_teacher_train_2" + trainerDialogId + skillId,
+                GameTexts.FindText("skill_teacher_train_1", trainerDialogId).ToString(), null, null, 200);
+
+            campaignStarter.AddDialogLine("skill_teacher_train_2" + trainerDialogId + skillId, "skill_teacher_train_2" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId,
+                GameTexts.FindText("skill_teacher_train_2", trainerDialogId).ToString(), null, null, 200);
+
+            campaignStarter.AddPlayerLine("skill_train_hub_select_companion_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId,
+                GameTexts.FindText("skill_train_hub_select_companion_p", trainerDialogId).ToString(), null, null, 200);
+
+
+            campaignStarter.AddDialogLine("skill_train_hub_select_companion" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "skill_teacher_train_2" + trainerDialogId,
+                GameTexts.FindText("priest_train_hub_select_companion", trainerDialogId).ToString(), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId), 200);
+
+            campaignStarter.AddDialogLine("skill_train_hub_select_companion_decline" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "skill_teacher_train_2" + trainerDialogId + skillId,
+                GameTexts.FindText("skill_train_hub_select_companion_decline", trainerDialogId).ToString(), () => !IsAnyCompanionEligableForTraining(skillId, restrictions), null, 200);
+
+
+
+            campaignStarter.AddPlayerLine("skilltrain_train_hub_quit_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, reintro_hub,
                 GameTexts.FindText("priest_train_hub_quit_p", trainerDialogId).ToString(), null, null, 200);
         }
-        
+
         bool TrainerCondition(string trainerId, string skillId)
         {
             var partner = CharacterObject.OneToOneConversationCharacter;
@@ -258,8 +258,8 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             {
                 return false;
             }
-            
-            
+
+
             if (partner.HeroObject.Template.StringId != trainerId)
             {
                 return false;
@@ -274,15 +274,15 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
         bool IsAnyCompanionEligableForTraining(string skillId, List<string> restrictions)
         {
-            var skill = Skills.All.FirstOrDefault(x=> x.StringId == skillId);
-            
+            var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
+
             if (skill == null)
             {
                 return false;
             }
             var model = Campaign.Current.Models.GetCompanionTrainingModel();
             var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-            
+
             foreach (var hero in heroes.Where(hero => hero != Hero.MainHero))
             {
                 var allowed = true;
@@ -291,7 +291,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
                     allowed = false;
                     foreach (var restriction in restrictions)
                     {
-                        allowed= hero.HasKnownLore(restriction) || hero.HasAttribute(restriction);
+                        allowed = hero.HasKnownLore(restriction) || hero.HasAttribute(restriction);
                     }
                 }
 
@@ -311,11 +311,11 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
     private void SelectCompanionForTraining(string skillId)
     {
-        
+
         _currentTrainer = Hero.OneToOneConversationHero;
-      
-        var skill = Skills.All.FirstOrDefault(x=> x.StringId == skillId);
-        
+
+        var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
+
         if (skill == null)
         {
             return;
@@ -323,22 +323,22 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
         _currentSkill = skill;
         GameTexts.SetVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
-        GameTexts.SetVariable("CUSTOMRESOURCE",Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(true));
+        GameTexts.SetVariable("CUSTOMRESOURCE", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(true));
         var title = GameTexts.FindText("str_tor_skill_training_prompt", "title");
         title.SetTextVariable("SKILL_NAME", skill.Name);
         var description = GameTexts.FindText("str_tor_skill_training_prompt", "description");
         description.SetTextVariable("INSTRUCTOR_NAME", _currentTrainer.Name);
         description.SetTextVariable("SKILLNAME", skill.Name);
-        
-        
+
+
         var elements = new List<InquiryElement>();
-        
-        
+
+
         var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-        
-        
-        
-        
+
+
+
+
         var model = Campaign.Current.Models.GetCompanionTrainingModel();
 
         foreach (var hero in heroes)
@@ -348,7 +348,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
                 continue;
             }
             var isEnabled = false;
-            if (!model.HeroIsEligibleForTraining(hero,skill))
+            if (!model.HeroIsEligibleForTraining(hero, skill))
             {
                 continue;
             }
@@ -364,70 +364,70 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             if (Hero.MainHero.Gold < costs.goldcost)
             {
                 isEnabled = false;
-                
+
                 var noGoldText = GameTexts.FindText("str_tor_skill_training_hover", "NoGold");
 
                 reason.Append(noGoldText);
             }
-            
+
             if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < costs.customResourceCost)
             {
                 isEnabled = false;
-                var noCustomResource= GameTexts.FindText("str_tor_skill_training_hover", "NoCustomResource");
+                var noCustomResource = GameTexts.FindText("str_tor_skill_training_hover", "NoCustomResource");
                 reason.Append(noCustomResource);
                 //reason = new TextObject("not enough"+Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(true) +" requires "+costs.customResourceCost);
             }
-            
-            GameTexts.SetVariable("SKILLTRAINING_REASON",reason.ToString());
-            var costText= GameTexts.FindText("str_tor_skill_training_hover", "Costs");
+
+            GameTexts.SetVariable("SKILLTRAINING_REASON", reason.ToString());
+            var costText = GameTexts.FindText("str_tor_skill_training_hover", "Costs");
             costText.SetTextVariable("GOLD_COST", costs.goldcost);
             costText.SetTextVariable("CR_COST", costs.customResourceCost);
-            GameTexts.SetVariable("SKILL_TRAINING_COSTS",costText.ToString());
+            GameTexts.SetVariable("SKILL_TRAINING_COSTS", costText.ToString());
 
             var currentSkillValueText = GameTexts.FindText("str_tor_skill_training_prompt", "skill_value");
             currentSkillValueText.SetTextVariable("SKILL_VALUE", hero.GetSkillValue(skill));
-            var final= GameTexts.FindText("str_tor_skill_training_hover", "Full");
-            
-            var heroItem = new InquiryElement(new Tuple<Hero, (int goldCost,int crCost)>(hero, costs), hero.Name.ToString()+ "\n"+currentSkillValueText,
+            var final = GameTexts.FindText("str_tor_skill_training_hover", "Full");
+
+            var heroItem = new InquiryElement(new Tuple<Hero, (int goldCost, int crCost)>(hero, costs), hero.Name.ToString() + "\n" + currentSkillValueText,
                 new CharacterImageIdentifier(CampaignUIHelper.GetCharacterCode(hero.CharacterObject)), isEnabled, final.ToString());
 
             elements.Add(heroItem);
-     
+
         }
-        
+
         var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), elements, true, 1, 1, "Accept", "Cancel",
             MoveHeroToTrainer, null);
-        MBInformationManager.ShowMultiSelectionInquiry(inquirydata,true);
+        MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
 
         void MoveHeroToTrainer(List<InquiryElement> inquiryElements)
         {
-            var obj =  (Tuple<Hero, (int goldCost, int crCost)>) inquiryElements.FirstOrDefault()?.Identifier;
+            var obj = (Tuple<Hero, (int goldCost, int crCost)>)inquiryElements.FirstOrDefault()?.Identifier;
 
             Hero hero = obj.Item1;
             var costs = obj.Item2;
-            
-            if(hero== null)
+
+            if (hero == null)
                 return;
-                
+
             var partner = Hero.OneToOneConversationHero;
-            
-            TeleportHeroAction.ApplyImmediateTeleportToSettlement(hero,partner.CurrentSettlement);
-            
+
+            TeleportHeroAction.ApplyImmediateTeleportToSettlement(hero, partner.CurrentSettlement);
+
             Hero.MainHero.ChangeHeroGold(-costs.goldCost);
-            
+
             Hero.MainHero.AddCultureSpecificCustomResource(-costs.crCost);
-            
-                
+
+
 
             var data = new HeroTrainingData()
             {
-                skillId = _currentSkill.StringId, 
+                skillId = _currentSkill.StringId,
                 timeStampTrainingBegin = Campaign.CurrentTime,
                 duration = 0f,
                 SettlementId = partner.CurrentSettlement.StringId
-                    
+
             };
-            _heroesInTraining.Add(hero.StringId,data);
+            _heroesInTraining.Add(hero.StringId, data);
             _currentSkill = null;
         }
 
@@ -438,14 +438,14 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
     {
         dataStore.SyncData("_heroesInTraining", ref _heroesInTraining);
     }
-    
-   
+
+
 }
 
 public class HeroTrainingData
 {
     [SaveableField(0)] public string skillId;
-    [SaveableField(1)]public float timeStampTrainingBegin;
-    [SaveableField(2)]public float duration;
-    [SaveableField(3)]public string SettlementId;
+    [SaveableField(1)] public float timeStampTrainingBegin;
+    [SaveableField(2)] public float duration;
+    [SaveableField(3)] public string SettlementId;
 }

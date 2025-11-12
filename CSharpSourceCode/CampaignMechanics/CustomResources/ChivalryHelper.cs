@@ -16,62 +16,62 @@ public static class ChivalryHelper
         switch (level)
         {
             case var _ when level < 250:
-            {
-                result = ChivalryLevel.Unknightly;
-                break;
-            }
+                {
+                    result = ChivalryLevel.Unknightly;
+                    break;
+                }
             case var _ when level < 500:
-            {
-                result = ChivalryLevel.Uninspiring;
-                break;
-            }
+                {
+                    result = ChivalryLevel.Uninspiring;
+                    break;
+                }
             case var _ when level > 500 && level < 750:
-            {
-                result = ChivalryLevel.Sincere;
-                break;
-            }
+                {
+                    result = ChivalryLevel.Sincere;
+                    break;
+                }
             case var _ when level > 750 && level < 1000:
-            {
-                result = ChivalryLevel.Noteworthy;
-                break;
-            }
+                {
+                    result = ChivalryLevel.Noteworthy;
+                    break;
+                }
             case var _ when level > 1000 && level < 1500:
-            {
-                result = ChivalryLevel.PureHearted;
-                break;
-            }
+                {
+                    result = ChivalryLevel.PureHearted;
+                    break;
+                }
             case var _ when level > 1500 && level < 2000:
-            {
-                result = ChivalryLevel.Honourable;
-                break;
-            }
+                {
+                    result = ChivalryLevel.Honourable;
+                    break;
+                }
             case var _ when level > 2000:
-            {
-                result = ChivalryLevel.Chivalrous;
-                break;
-            }
+                {
+                    result = ChivalryLevel.Chivalrous;
+                    break;
+                }
         }
 
         return result;
     }
 
-    public static TextObject GetChivalryRankText (ChivalryLevel chivalry)
+    public static TextObject GetChivalryRankText(ChivalryLevel chivalry)
     {
         switch (chivalry)
         {
-            case ChivalryLevel.Chivalrous : return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
+            case ChivalryLevel.Chivalrous: return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
 
-            case ChivalryLevel.Honourable : return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
+            case ChivalryLevel.Honourable: return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
 
-            case ChivalryLevel.PureHearted : return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
+            case ChivalryLevel.PureHearted: return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
 
-            case ChivalryLevel.Noteworthy : return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
+            case ChivalryLevel.Noteworthy: return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
 
-            case ChivalryLevel.Sincere : return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
+            case ChivalryLevel.Sincere: return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
 
-            case ChivalryLevel.Uninspiring : return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
+            case ChivalryLevel.Uninspiring: return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
 
-            case ChivalryLevel.Unknightly : return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
+            case ChivalryLevel.Unknightly: return GameTexts.FindText("tor_custom_resource_bre_chivalry_tier", chivalry.ToString());
         }
 
         return new TextObject("Failed to find rank's associated text : " + chivalry);
@@ -102,7 +102,7 @@ public static class ChivalryHelper
     {
         var list = new List<TooltipProperty>();
         var value = Hero.MainHero.GetCustomResourceValue("Chivalry");
-        
+
         var title = GameTexts.FindText("tor_custom_resource_bre_chivalry_rankText");
         var chivalryLevel = GetChivalryLevelForResource(value);
 

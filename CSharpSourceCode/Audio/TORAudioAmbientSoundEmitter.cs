@@ -25,7 +25,7 @@ namespace TOR_Core.Audio
         protected override void OnInit()
         {
             SetScriptComponentToTick(GetTickRequirement());
-            if(!string.IsNullOrEmpty(AudioName))
+            if (!string.IsNullOrEmpty(AudioName))
             {
                 _cachedSound = TORAudioManager.CreateSoundInstance(AudioName, true, 0);
                 if (_cachedSound != null) _cachedSound.Play();
@@ -34,7 +34,7 @@ namespace TOR_Core.Audio
 
         protected override void OnTick(float dt)
         {
-            if(_cachedSound != null && _cachedSound.IsLoaded)
+            if (_cachedSound != null && _cachedSound.IsLoaded)
             {
                 var cameraPos = Scene.LastFinalRenderCameraPosition;
                 var soundPos = GameEntity.GlobalPosition;
@@ -71,7 +71,7 @@ namespace TOR_Core.Audio
 
         private void DoPlaySound()
         {
-            if(_cachedSound != null && _cachedSound.IsLoaded) _cachedSound.Play();
+            if (_cachedSound != null && _cachedSound.IsLoaded) _cachedSound.Play();
         }
 
         private void DoLoadSound()

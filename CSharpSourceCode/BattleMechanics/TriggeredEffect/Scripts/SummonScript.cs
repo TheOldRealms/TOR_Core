@@ -25,7 +25,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             var data = TORSummonHelper.GetAgentBuildData(triggeredByAgent, SummonedUnitID);
             var bonus = 0;
 
-            if(Game.Current.GameType is Campaign)
+            if (Game.Current.GameType is Campaign)
             {
                 if (triggeredByAgent.GetHero() == Hero.MainHero && Hero.MainHero.HasCareer(TORCareers.Necromancer))
                 {
@@ -51,7 +51,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
                 TORSummonHelper.SpawnAgent(data, spawnPosition, true);
             }
         }
-        
+
         public string SummonedUnitID { get; private set; }
         public int NumberToSummon { get; private set; }
     }

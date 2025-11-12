@@ -23,11 +23,11 @@ namespace TOR_Core.Extensions.UI
         private BasicTooltipViewModel _extendedInfoHint;
         private string _spriteTORButton;
         private TextObject disableReason;
-        
+
 
         public PartyCharacterVMExtension(ViewModel vm) : base(vm)
         {
-      
+
             _buttonHint = new BasicTooltipViewModel(GetButtonHintText);
 
             if (Hero.MainHero.HasAnyCareer())
@@ -50,7 +50,7 @@ namespace TOR_Core.Extensions.UI
                     }
                 }
             }
-            
+
             RefreshValues();
         }
 
@@ -58,14 +58,14 @@ namespace TOR_Core.Extensions.UI
         {
             //Update datasource properties here. Gets called every time the base ViewModel would get refreshed.
             //Careful to always update the property, not the field behind it directly, because then the engine won't get notified and events won't be raised.
-            
-            var troopCharacter = ( (PartyCharacterVM)_vm ).Troop.Character;
 
-            
+            var troopCharacter = ((PartyCharacterVM)_vm).Troop.Character;
 
-            var isPrisoner = ( (PartyCharacterVM)_vm ).IsPrisonerOfPlayer;
-            if(troopCharacter==null) return;
-            
+
+
+            var isPrisoner = ((PartyCharacterVM)_vm).IsPrisonerOfPlayer;
+            if (troopCharacter == null) return;
+
             IsTroop = !troopCharacter.IsHero;
 
             if (IsTroop)
@@ -73,15 +73,15 @@ namespace TOR_Core.Extensions.UI
                 var extendedInfoList = TORExtendedInfoHelper.GenererateExtendedTroopInfoToolTip(troopCharacter);
                 if (!extendedInfoList.IsEmpty())
                 {
-                    ExtendedInfoHint = new BasicTooltipViewModel(()=> extendedInfoList);
+                    ExtendedInfoHint = new BasicTooltipViewModel(() => extendedInfoList);
                 }
             }
 
             ShouldButtonBeVisible = SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeVisible(troopCharacter, isPrisoner);
-            
-            IsButtonEnabled =  SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeActive(troopCharacter, out var displaytext, isPrisoner);
+
+            IsButtonEnabled = SpecialbuttonEventManagerHandler.Instance.ShouldButtonBeActive(troopCharacter, out var displaytext, isPrisoner);
             disableReason = displaytext;
-            
+
             SpriteTORButton = CareerHelper.GetButtonSprite();
         }
 
@@ -93,19 +93,19 @@ namespace TOR_Core.Extensions.UI
 
         public void ExecuteButtonClick()
         {
-            var troop = ( (PartyCharacterVM)_vm ).Troop.Character;
-            var isPrisoner = ( (PartyCharacterVM)_vm ).IsPrisonerOfPlayer;
+            var troop = ((PartyCharacterVM)_vm).Troop.Character;
+            var isPrisoner = ((PartyCharacterVM)_vm).IsPrisonerOfPlayer;
             var shiftPress = false;
 
             if (Input.IsKeyDown(InputKey.LeftShift))
             {
                 shiftPress = true;
             }
-            SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop,isPrisoner, shiftPress);
+            SpecialbuttonEventManagerHandler.Instance.OnButtonClicked(troop, isPrisoner, shiftPress);
         }
-        
 
-        
+
+
         [DataSourceProperty]
         public string SpriteTORButton
         {
@@ -114,12 +114,12 @@ namespace TOR_Core.Extensions.UI
                 return _spriteTORButton;
             }
             set
-            { 
-                _spriteTORButton=value;
+            {
+                _spriteTORButton = value;
                 _vm.OnPropertyChangedWithValue(value, "SpriteTORButton");
             }
         }
-        
+
         [DataSourceProperty]
         public bool ShouldButtonBeVisible
         {
@@ -136,7 +136,7 @@ namespace TOR_Core.Extensions.UI
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public BasicTooltipViewModel ExtendedInfoHint
         {
@@ -146,10 +146,10 @@ namespace TOR_Core.Extensions.UI
                 if (value == this._extendedInfoHint)
                     return;
                 this._extendedInfoHint = value;
-                this._vm.OnPropertyChangedWithValue(nameof (ExtendedInfoHint));
+                this._vm.OnPropertyChangedWithValue(nameof(ExtendedInfoHint));
             }
         }
-        
+
         [DataSourceProperty]
         public bool IsTroop
         {
@@ -202,5 +202,5 @@ namespace TOR_Core.Extensions.UI
         }
     }
 
-    
+
 }

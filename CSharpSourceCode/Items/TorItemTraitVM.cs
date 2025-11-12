@@ -22,49 +22,49 @@ namespace TOR_Core.Items
             _icon = "<img src=\"" + trait.IconName + "\"/>";
         }
 
-		private TorItemTraitVM() { }
+        private TorItemTraitVM() { }
 
         public static TorItemTraitVM CreateDamageOnlyTraitVM()
         {
-			var vm = new TorItemTraitVM();
-			vm._hintText = new HintViewModel(new TaleWorlds.Localization.TextObject("{=tor_item_trait_default_elemental_damage_str}This item deals elemental damage."));
-			vm._icon = "<img src=\"winds_icon_45\"/>";
+            var vm = new TorItemTraitVM();
+            vm._hintText = new HintViewModel(new TaleWorlds.Localization.TextObject("{=tor_item_trait_default_elemental_damage_str}This item deals elemental damage."));
+            vm._icon = "<img src=\"winds_icon_45\"/>";
 
             return vm;
         }
 
         [DataSourceProperty]
-		public HintViewModel Hint
-		{
-			get
-			{
-				return _hintText;
-			}
-			set
-			{
-				if (value != _hintText)
-				{
-					_hintText = value;
+        public HintViewModel Hint
+        {
+            get
+            {
+                return _hintText;
+            }
+            set
+            {
+                if (value != _hintText)
+                {
+                    _hintText = value;
                     OnPropertyChangedWithValue(value, "Hint");
-				}
-			}
-		}
+                }
+            }
+        }
 
-		[DataSourceProperty]
-		public string Icon
-		{
-			get
-			{
-				return _icon;
-			}
-			set
-			{
-				if (value != _icon)
-				{
-					_icon = value;
+        [DataSourceProperty]
+        public string Icon
+        {
+            get
+            {
+                return _icon;
+            }
+            set
+            {
+                if (value != _icon)
+                {
+                    _icon = value;
                     OnPropertyChangedWithValue(value, "Icon");
-				}
-			}
-		}
-	}
+                }
+            }
+        }
+    }
 }

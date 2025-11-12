@@ -52,14 +52,14 @@ namespace TOR_Core.Utilities
                         agent.Heal(minHeal);
                     }
                     else
-                    { 
+                    {
                         amount = MBRandom.RandomInt(minHeal, maxHeal);
                         agent.Heal(amount);
                     }
 
-                    if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(healer,agent))
+                    if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(healer, agent))
                     {
-                        CareerHelper.ApplyCareerAbilityCharge(amount,ChargeType.Healed,AttackTypeMask.Spell,healer,agent);
+                        CareerHelper.ApplyCareerAbilityCharge(amount, ChargeType.Healed, AttackTypeMask.Spell, healer, agent);
                     }
                 }
             }

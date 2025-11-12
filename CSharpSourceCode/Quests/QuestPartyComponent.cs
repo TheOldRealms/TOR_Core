@@ -51,19 +51,19 @@ namespace TOR_Core.Quests
 
         public static MobileParty CreateParty(Settlement settlement, Hero leader, Clan clan, string partyTemplateOverride = null)
         {
-            var name= new TextObject ("{TOR_QUEST_PARTYLEADER_NAME}'s party");
+            var name = new TextObject("{TOR_QUEST_PARTYLEADER_NAME}'s party");
             name.SetTextVariable("TOR_QUEST_PARTYLEADER_NAME", leader.FirstName);
-            
+
             PartyTemplateObject partyTemplate = null;
             if (partyTemplateOverride != null)
             {
                 partyTemplate = MBObjectManager.Instance.GetObject<PartyTemplateObject>(partyTemplateOverride);
             }
-            
+
             //MapMobilePartyTrackerVMPatches uses "torquestparty" to detect TOR's parties to permit map trackers
             return MobileParty.CreateParty(leader.StringId + "_torquestparty_1", new QuestPartyComponent(leader, name, settlement, partyTemplate));
         }
-        
+
         private void InitializeQuestPartyProperties()
         {
             var component = MobileParty.PartyComponent as QuestPartyComponent;
@@ -87,7 +87,7 @@ namespace TOR_Core.Quests
         }
 
         public Vec3 GetPosition()
-        { 
+        {
             return MobileParty.GetPositionAsVec3();
         }
 

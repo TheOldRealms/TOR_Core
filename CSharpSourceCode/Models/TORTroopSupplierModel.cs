@@ -22,8 +22,8 @@ namespace TOR_Core.Models
         private readonly float DesiredRangedRatio = 0.25f;
         private readonly float DesiredRangedCavalryRatio = 0.1f;
 
-        public override void EnqueueTroopSpawnProbabilitiesAccordingToUnitSpawnPrioritization(MapEventParty battleParty, 
-            FlattenedTroopRoster priorityTroops, bool includePlayer, int sizeOfSide, bool forcePriorityTroops, 
+        public override void EnqueueTroopSpawnProbabilitiesAccordingToUnitSpawnPrioritization(MapEventParty battleParty,
+            FlattenedTroopRoster priorityTroops, bool includePlayer, int sizeOfSide, bool forcePriorityTroops,
             List<(FlattenedTroopRosterElement, MapEventParty, float)> priorityList)
         {
             bool isLordParty = battleParty.Party != null && battleParty.Party.MobileParty != null && battleParty.Party.MobileParty.IsLordParty;
@@ -41,13 +41,13 @@ namespace TOR_Core.Models
                 unitSpawnPrioritizations = Game.Current.UnitSpawnPrioritization;
             }
 
-            
+
             var list = battleParty.Troops.ToList();
             bool partyHasArtilleryCrew = list.AnyQ(x => x.Troop.HasAttribute("ArtilleryCrew"));
             var crewMembers = 0;
             list.Shuffle();
 
-            foreach(var element in list)
+            foreach (var element in list)
             {
                 float num = 0f;
                 if (CanTroopJoinBattle(element, includePlayer))
@@ -67,11 +67,11 @@ namespace TOR_Core.Models
                             {
                                 num *= 15;
                                 crewMembers++;
-                                
+
                                 goto skip;
                             }
                         }
-                        if(element.Troop.DefaultFormationClass == FormationClass.Infantry && CalculateRatioOfFormationClass(FormationClass.Infantry, priorityList) < DesiredInfantryRatio)
+                        if (element.Troop.DefaultFormationClass == FormationClass.Infantry && CalculateRatioOfFormationClass(FormationClass.Infantry, priorityList) < DesiredInfantryRatio)
                         {
                             num *= 10;
                         }
@@ -87,7 +87,7 @@ namespace TOR_Core.Models
                         {
                             num *= 10;
                         }
-                        skip:
+                    skip:
                         num *= MBRandom.RandomFloatRanged(0.9f, 1.1f);
                         priorityList.Add(new ValueTuple<FlattenedTroopRosterElement, MapEventParty, float>(element, battleParty, num));
                     }

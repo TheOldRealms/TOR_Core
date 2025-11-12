@@ -52,7 +52,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                     TransferPrisonerAction.Apply(CharacterObject.PlayerCharacter, _currentWatchParty.Party, relatedSettlement.Party);
                 }
                 DestroyPartyAction.ApplyForDisbanding(_currentWatchParty, relatedSettlement);
-                
+
                 _currentWatchParty = null;
                 _currentSettlement = null;
             }
@@ -106,7 +106,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 },
                 GameMenu.MenuOverlayType.SettlementWithBoth, GameMenu.MenuFlags.None, null);
 
-            obj.AddGameMenuOption("graveyard", "raise_dead_attempt", new TextObject ("{=tor_settlement_graveyard_raise_dead_action}Raise dead from the corpses in the ground (wait 8 hours).").ToString(),
+            obj.AddGameMenuOption("graveyard", "raise_dead_attempt", new TextObject("{=tor_settlement_graveyard_raise_dead_action}Raise dead from the corpses in the ground (wait 8 hours).").ToString(),
                 raisedeadattemptcondition,
                 delegate (MenuCallbackArgs args)
                 {

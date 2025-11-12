@@ -29,18 +29,18 @@ namespace TOR_Core.AbilitySystem.Scripts
 
 
             if (CasterAgent.WieldedWeapon.IsEmpty)
-                return  result;
+                return result;
 
             if (CasterAgent.WieldedWeapon.CurrentUsageItem.RelevantSkill == DefaultSkills.Polearm)
             {
                 TriggeredEffectTemplate dismountTemplate = (TriggeredEffectTemplate)TriggeredEffectManager.GetTemplateWithId("armed_to_da_teef_dismount").Clone("armed_to_da_teef_dismount" + "*cloned*" + CasterAgent.Index);
                 var dismount = new TriggeredEffect(dismountTemplate);
                 var targets = new MBList<Agent>();
-                var riders = Mission.Current.GetNearbyEnemyAgents( this.CurrentGlobalPosition.AsVec2, 4 , CasterAgent.Team.GetEnemyTeams().FirstOrDefault(),targets).WhereQ(x=> x.HasMount).ToMBList();
-                
-                dismount.Trigger(this.CurrentGlobalPosition,Vec3.Up, CasterAgent,null,riders);
+                var riders = Mission.Current.GetNearbyEnemyAgents(this.CurrentGlobalPosition.AsVec2, 4, CasterAgent.Team.GetEnemyTeams().FirstOrDefault(), targets).WhereQ(x => x.HasMount).ToMBList();
+
+                dismount.Trigger(this.CurrentGlobalPosition, Vec3.Up, CasterAgent, null, riders);
             }
-            
+
             if (Hero.MainHero.HasCareerChoice("GetToDaChoppasKeystone"))
             {
                 string buffEffectId = "get_to_da_choppas_buff";

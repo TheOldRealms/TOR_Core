@@ -53,7 +53,7 @@ namespace TOR_Core.Audio
 
         private bool EnsureSampleRateAndChannels(ISampleProvider provider)
         {
-            if(provider.WaveFormat.SampleRate != TORAudioEngine.Instance.SampleRate || 
+            if (provider.WaveFormat.SampleRate != TORAudioEngine.Instance.SampleRate ||
                 provider.WaveFormat.Channels != TORAudioEngine.Instance.Channels)
             {
                 TORCommon.Log(string.Format("Sound file at path: {0} is either mono or not sampled at 44100. Sound not loaded.", SoundFilePath), NLog.LogLevel.Warn);

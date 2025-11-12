@@ -45,12 +45,12 @@ namespace TOR_Core.CharacterDevelopment
             AssignCareerButtons();
         }
 
-        
+
 
         private void AssignCareerButtons()
         {
             foreach (var career in All)
-            { 
+            {
                 CareerButtons.Instance.GetCareerButton(career);
             }
         }
@@ -65,7 +65,7 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject WarriorPriest => Instance._warriorPriest;
         public static CareerObject Mercenary => Instance._mercenary;
         public static CareerObject BloodKnight => Instance._bloodKnight;
-        
+
         public static CareerObject BlackGrailKnight => Instance._blackGrailKnight;
         public static CareerObject Necrarch => Instance._necrarch;
 
@@ -73,9 +73,9 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject WarriorPriestUlric => Instance._warriorPriestUlric;
 
         public static CareerObject ImperialMagister => Instance._imperialMagister;
-        
+
         public static CareerObject Waywatcher => Instance._waywatcher;
-        
+
         public static CareerObject Spellsinger => Instance._spellsinger;
 
         public static CareerObject GreyLord => Instance._greyLord;
@@ -83,9 +83,9 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerObject KnightOldWorld => Instance._knightOldWorld;
 
         public static CareerObject Ironbreaker => Instance._ironbreaker;
-        
+
         public static CareerObject Slayer => Instance._slayer;
-        
+
         public static CareerObject Warden => Instance._warden;
 
         public static CareerObject Runelord => Instance._runelord;
@@ -94,7 +94,7 @@ namespace TOR_Core.CharacterDevelopment
 
         private void RegisterAll()
         {
-            
+
             _grailDamsel = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailDamsel"));
             _grailKnight = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("GrailKnight"));
             _minorVampire = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("MinorVampire"));
@@ -114,9 +114,9 @@ namespace TOR_Core.CharacterDevelopment
             _ironbreaker = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Ironbreaker"));
             _slayer = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Slayer"));
             _warden = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Warden"));
-            _runelord =  Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Runelord"));
-            _orcBoss =  Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("OrcBoss"));
-            
+            _runelord = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Runelord"));
+            _orcBoss = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("OrcBoss"));
+
             _allCareers =
             [
                 _grailKnight,
@@ -146,26 +146,26 @@ namespace TOR_Core.CharacterDevelopment
         private void InitializeAll()
         {
             _grailDamsel.Initialize("Damsel of the Lady", null, "FeyPaths", CareerAbilityChargeSupplier.GrailDamselCareerCharge, 2500, typeof(TeleportScript));
-            _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge", null,100, typeof(KnightlyChargeScript));
+            _grailKnight.Initialize("Grail Knight", null, "KnightlyCharge", null, 100, typeof(KnightlyChargeScript));
             _bloodKnight.Initialize("Blood Knight", null, "RedFury", CareerAbilityChargeSupplier.BloodKnightCareerCharge, 10, typeof(RedFuryScript));
             _minorVampire.Initialize("Vampire Count", null, "ShadowStep", CareerAbilityChargeSupplier.MinorVampireCareerCharge, 800, typeof(ShadowStepScript));
-            _warriorPriest.Initialize("Warrior Priest of Sigmar", hero => { return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.Cultures.EMPIRE) && hero.Clan.Tier >= 1; }, "RighteousFury", CareerAbilityChargeSupplier.WarriorPriestCareerCharge, 300 );
-            _mercenary.Initialize("Mercenary", null, "LetThemHaveIt" );
+            _warriorPriest.Initialize("Warrior Priest of Sigmar", hero => { return hero.Culture == MBObjectManager.Instance.GetObject<CultureObject>(TORConstants.Cultures.EMPIRE) && hero.Clan.Tier >= 1; }, "RighteousFury", CareerAbilityChargeSupplier.WarriorPriestCareerCharge, 300);
+            _mercenary.Initialize("Mercenary", null, "LetThemHaveIt");
             _witchHunter.Initialize("Witch Hunter", null, "Accusation", CareerAbilityChargeSupplier.WitchHunterCareerCharge, 200, typeof(AccusationScript));
             _necromancer.Initialize("Necromancer", null, "GreaterHarbinger", CareerAbilityChargeSupplier.NecromancerCareerCharge, 2000, typeof(SummonChampionScript));
-            _blackGrailKnight.Initialize("Knight of the Black Grail", null, "KnightlyCharge",null,100, typeof(KnightlyChargeScript));
+            _blackGrailKnight.Initialize("Knight of the Black Grail", null, "KnightlyCharge", null, 100, typeof(KnightlyChargeScript));
             _necrarch.Initialize("Necrarch", null, "BlastOfAgony", CareerAbilityChargeSupplier.NecrarchCareerCharge, 1500, typeof(BlastOfAgonyScript));
             _warriorPriestUlric.Initialize("Warrior Priest of Ulric", null, "AxeOfUlric", CareerAbilityChargeSupplier.WarriorPriestUlricCharge, 400, typeof(AxeOfUlricScript));
             _imperialMagister.Initialize("Imperial Magister", null, "ArcaneConduit", null, 120, typeof(ArcaneConduit));
-            _waywatcher.Initialize("Waywatcher", null, "ArrowOfKurnous",CareerAbilityChargeSupplier.WaywatcherCareerCharge, 1200, typeof(ArrowOfKurnousScript));
-            _spellsinger.Initialize("Spellsinger", null, "WrathOfTheWood",CareerAbilityChargeSupplier.SpellsingerCareerCharge, 1000, typeof(WrathOfTheWoodScript));
-            _greyLord.Initialize("Grey Lord Wizard", null, "MindControl",CareerAbilityChargeSupplier.GreyLordCareerCharge, 1000, typeof(MindControlScript));
-            _knightOldWorld.Initialize("Knight of the Old World", null,"KnightlyStrike", CareerAbilityChargeSupplier.KnightOldWorldChargeSupplier, 500);
-            _ironbreaker.Initialize("Ironbreaker", null,"Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 50, typeof(ImpenetrableScript));
-            _slayer.Initialize("Slayer", null,"DoomSeeking", CareerAbilityChargeSupplier.SlayerChargeSupplier, 500, typeof(ImpenetrableScript));
-            _warden.Initialize("Warden",null,"HawkEye",null,100, typeof(HawkEyeScript));
-            _runelord.Initialize("Runelord",null,"WisdomOfThungni",CareerAbilityChargeSupplier.RunelordChargeSupplier,500, typeof(WisdomOfThungniScript));
-            _orcBoss.Initialize("Orc Boss", null,"ArmedToDaTeef", null, 100, typeof(ArmedToDaTeef));
+            _waywatcher.Initialize("Waywatcher", null, "ArrowOfKurnous", CareerAbilityChargeSupplier.WaywatcherCareerCharge, 1200, typeof(ArrowOfKurnousScript));
+            _spellsinger.Initialize("Spellsinger", null, "WrathOfTheWood", CareerAbilityChargeSupplier.SpellsingerCareerCharge, 1000, typeof(WrathOfTheWoodScript));
+            _greyLord.Initialize("Grey Lord Wizard", null, "MindControl", CareerAbilityChargeSupplier.GreyLordCareerCharge, 1000, typeof(MindControlScript));
+            _knightOldWorld.Initialize("Knight of the Old World", null, "KnightlyStrike", CareerAbilityChargeSupplier.KnightOldWorldChargeSupplier, 500);
+            _ironbreaker.Initialize("Ironbreaker", null, "Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 50, typeof(ImpenetrableScript));
+            _slayer.Initialize("Slayer", null, "DoomSeeking", CareerAbilityChargeSupplier.SlayerChargeSupplier, 500, typeof(ImpenetrableScript));
+            _warden.Initialize("Warden", null, "HawkEye", null, 100, typeof(HawkEyeScript));
+            _runelord.Initialize("Runelord", null, "WisdomOfThungni", CareerAbilityChargeSupplier.RunelordChargeSupplier, 500, typeof(WisdomOfThungniScript));
+            _orcBoss.Initialize("Orc Boss", null, "ArmedToDaTeef", null, 100, typeof(ArmedToDaTeef));
         }
     }
 }

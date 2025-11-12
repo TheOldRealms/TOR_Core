@@ -41,8 +41,8 @@ namespace TOR_Core.Missions
                                 where x.GameEntity.HasTag("archery_target_left")
                                 select x).ToList();
             _rightSideTargets = (from x in Mission.ActiveMissionObjects.FindAllWithType<DestructableComponent>()
-                                where x.GameEntity.HasTag("archery_target_right")
-                                select x).ToList();
+                                 where x.GameEntity.HasTag("archery_target_right")
+                                 select x).ToList();
             Mission.SetMissionMode(MissionMode.Battle, true);
             foreach (DestructableComponent destructableComponent in _leftSideTargets)
             {
@@ -103,7 +103,7 @@ namespace TOR_Core.Missions
             }
 
             var teamIndex = 0;
-            foreach(var team in _match.Teams)
+            foreach (var team in _match.Teams)
             {
                 var missionTeam = Mission.Teams.Add(BattleSideEnum.None, team.TeamColor, uint.MaxValue, team.TeamBanner, true, false, true);
                 GameEntity spawnPoint = teamIndex == 0 ? _leftParticipantSpawn : _rightParticipantSpawn;
@@ -141,7 +141,7 @@ namespace TOR_Core.Missions
             agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp, Equipment.InitialWeaponEquipPreference.RangedForMainHand);
             agent.SetWatchState(Agent.WatchState.Alarmed);
             agent.ToggleInvulnerable();
-            if(side == ArcherySide.Left)
+            if (side == ArcherySide.Left)
             {
                 _leftParticipantAgent = agent;
             }
@@ -214,7 +214,7 @@ namespace TOR_Core.Missions
                     }
                     if (MBRandom.RandomFloat < GetDeadliness(tournamentParticipant))
                     {
-                        tournamentParticipant.AddScore(MBRandom.RandomInt(10,30));
+                        tournamentParticipant.AddScore(MBRandom.RandomInt(10, 30));
                         i--;
                     }
                 }
@@ -267,7 +267,7 @@ namespace TOR_Core.Missions
 
         public void OnMatchEnded()
         {
-            if(_leftParticipantAgent != null)
+            if (_leftParticipantAgent != null)
             {
                 SandBoxHelpers.MissionHelper.FadeOutAgents([_leftParticipantAgent], false, false);
             }

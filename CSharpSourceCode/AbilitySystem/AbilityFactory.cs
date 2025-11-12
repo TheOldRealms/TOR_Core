@@ -28,7 +28,7 @@ namespace TOR_Core.AbilitySystem
         public static List<AbilityTemplate> GetAllTemplates()
         {
             var list = new List<AbilityTemplate>();
-            foreach(var template in _templates.Values) list.Add(template);
+            foreach (var template in _templates.Values) list.Add(template);
             return list;
         }
 
@@ -77,7 +77,7 @@ namespace TOR_Core.AbilitySystem
             {
                 ability = new CareerAbility(template, caster);
             }
-            else if(template.AbilityType == AbilityType.ItemBound)
+            else if (template.AbilityType == AbilityType.ItemBound)
             {
                 ability = new ItemBoundAbility(template);
             }

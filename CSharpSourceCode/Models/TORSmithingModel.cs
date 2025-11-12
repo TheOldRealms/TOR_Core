@@ -17,7 +17,7 @@ namespace TOR_Core.Models
     {
         public override int GetEnergyCostForRefining(ref Crafting.RefiningFormula refineFormula, Hero hero)
         {
-            var value =  base.GetEnergyCostForRefining(ref refineFormula, hero);
+            var value = base.GetEnergyCostForRefining(ref refineFormula, hero);
 
             if (hero.HasCareer(TORCareers.Runelord))
             {
@@ -57,12 +57,12 @@ namespace TOR_Core.Models
             }
             return value;
         }
-        
+
         public override IEnumerable<Crafting.RefiningFormula> GetRefiningFormulas(
             Hero weaponsmith)
         {
             var values = base.GetRefiningFormulas(weaponsmith);
-            
+
 
 
             if (weaponsmith.HasCareer(TORCareers.Runelord))
@@ -73,13 +73,13 @@ namespace TOR_Core.Models
                     if (weaponsmith.HasCareerChoice("ForgefireBurningPassive1") && value.Output == CraftingMaterials.Charcoal)
                     {
                         var entry = new Crafting.RefiningFormula(value.Input1, value.Input1Count, value.Input2, value.Input2Count, value.Output,
-                            value.OutputCount +1);
+                            value.OutputCount + 1);
                         newValues.Add(entry);
                         continue;
                     }
                     if (weaponsmith.HasCareerChoice("ForgefireBurningPassive2") && value.Output is CraftingMaterials.Iron1 or CraftingMaterials.Iron2 or CraftingMaterials.Iron3 or CraftingMaterials.Iron4)
                     {
-                       
+
                         var entry = new Crafting.RefiningFormula(value.Input1, value.Input1Count, value.Input2, value.Input2Count, value.Output,
                             value.OutputCount * 2);
                         newValues.Add(entry);
@@ -87,10 +87,10 @@ namespace TOR_Core.Models
                     }
                     newValues.Add(value);
                 }
-                
+
                 values = newValues;
             }
-            
+
             return values;
         }
     }

@@ -46,7 +46,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         {
             if (_caster != null)
             {
-                if (_missionScreen.GetProjectedMousePositionOnGround(out _position, out _normal, BodyFlags.CommonFocusRayCastExcludeFlags,  true))
+                if (_missionScreen.GetProjectedMousePositionOnGround(out _position, out _normal, BodyFlags.CommonFocusRayCastExcludeFlags, true))
                 {
                     _currentDistance = _caster.Position.Distance(_position);
                     if (_currentDistance > _template.MaxDistance)
@@ -90,7 +90,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         {
             if (Targets != null)
             {
-                foreach(var agent in Targets)
+                foreach (var agent in Targets)
                 {
                     if (agent == null) continue;
                     if (agent.State == TaleWorlds.Core.AgentState.Active || agent.State == TaleWorlds.Core.AgentState.Routed)
@@ -130,7 +130,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             Targets.Clear();
         }
 
-        public MBList<Agent> Targets  = [];
+        public MBList<Agent> Targets = [];
 
         private MBReadOnlyList<Agent> _previousTargets;
 

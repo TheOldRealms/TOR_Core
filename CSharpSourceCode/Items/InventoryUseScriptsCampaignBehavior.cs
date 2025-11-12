@@ -16,7 +16,7 @@ namespace TOR_Core.Items
         private Dictionary<string, List<BaseInventoryUseScript>> _activeScripts = [];
         private Dictionary<string, List<BaseInventoryUseScript>> _scriptsToRemove = [];
         private List<ScriptUseData> _usages = new List<ScriptUseData>();
-            
+
 
         public static InventoryUseScriptsCampaignBehavior Instance => Campaign.Current.GetCampaignBehavior<InventoryUseScriptsCampaignBehavior>();
 
@@ -24,7 +24,7 @@ namespace TOR_Core.Items
         {
             CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, OnHourlyTick);
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this, OnDailyTick);
-            TORCampaignEvents.Instance.OnUseInventoryScriptActivated+= InventoryUseScriptActivated;
+            TORCampaignEvents.Instance.OnUseInventoryScriptActivated += InventoryUseScriptActivated;
         }
 
         private void InventoryUseScriptActivated(object sender, OnUseInventoryScriptActivatedEventArgs onUseInventoryScriptActivatedEventArgs)
@@ -32,14 +32,14 @@ namespace TOR_Core.Items
             var args = onUseInventoryScriptActivatedEventArgs;
             var party = args.Party;
             var item = args.Item;
-            
+
             foreach (var entry in _usages.Where(entry => entry.heroId == party.LeaderHero.StringId && item.StringId == entry.itemId))
             {
                 entry.timeLastUsed = CampaignTime.Now;
                 entry.usages++;
                 return;
             }
-            
+
             var t = new ScriptUseData()
             {
                 heroId = party.StringId,
@@ -109,9 +109,9 @@ namespace TOR_Core.Items
 
         ~InventoryUseScriptsCampaignBehavior()
         {
-            TORCampaignEvents.Instance.OnUseInventoryScriptActivated-= InventoryUseScriptActivated;
+            TORCampaignEvents.Instance.OnUseInventoryScriptActivated -= InventoryUseScriptActivated;
         }
     }
 
- 
+
 }

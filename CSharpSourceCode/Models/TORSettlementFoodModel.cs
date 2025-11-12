@@ -19,9 +19,9 @@ namespace TOR_Core.Models
 
             if (town.StringId == "town_comp_LL1")
             {
-                explainedNumber.Add(40,new TextObject("Elven Metropolis"));
+                explainedNumber.Add(40, new TextObject("Elven Metropolis"));
             }
-            
+
             if (town.OwnerClan.IsCastleFaction() && town.IsCastle && !town.IsUnderSiege)
             {
                 if (explainedNumber.ResultNumber < 100)
@@ -33,17 +33,18 @@ namespace TOR_Core.Models
 
             if (town.Settlement.IsDwarfKarak())
             {
-                explainedNumber.Add(50,new TextObject("Dwarf Karak"));
+                explainedNumber.Add(50, new TextObject("Dwarf Karak"));
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI)
                 {
                     if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
                     {
                         explainedNumber.Add(50f, new TextObject("Brewers Guild"));
-                    } 
+                    }
                     else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
-                    { 
+                    {
                         explainedNumber.Add(25f, new TextObject("Brewers Guild"));
-                    } else if (Hero.MainHero.HasAttribute("DwarfBrewersI"))
+                    }
+                    else if (Hero.MainHero.HasAttribute("DwarfBrewersI"))
                     {
                         explainedNumber.Add(10f, new TextObject("Brewers Guild"));
                     }
@@ -52,8 +53,8 @@ namespace TOR_Core.Models
 
             if (town.Settlement.Owner == Hero.MainHero && town.Settlement.IsGreenskinCamp())
             {
-                var shinies = town.Settlement.Stash.FirstOrDefaultQ(x=> x.EquipmentElement.Item.StringId == "tor_gs_gold_pile" ).Amount;
-                explainedNumber.Add(shinies/20, new TextObject("Shiny Pile"));
+                var shinies = town.Settlement.Stash.FirstOrDefaultQ(x => x.EquipmentElement.Item.StringId == "tor_gs_gold_pile").Amount;
+                explainedNumber.Add(shinies / 20, new TextObject("Shiny Pile"));
             }
 
             return explainedNumber;

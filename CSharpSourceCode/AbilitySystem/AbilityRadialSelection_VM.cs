@@ -13,14 +13,14 @@ namespace TOR_Core.AbilitySystem
     public class AbilityRadialSelection_VM : ViewModel
     {
         private bool _isVisible;
-        private MBBindingList<AbilityRadialSelectionItem_VM> _abilities = new MBBindingList<AbilityRadialSelectionItem_VM> ();
+        private MBBindingList<AbilityRadialSelectionItem_VM> _abilities = new MBBindingList<AbilityRadialSelectionItem_VM>();
         private AbilityManagerMissionLogic _abilityLogic;
         private AbilityHUD_VM _abilityVM;
         private bool _errorMessageVisible;
         private string _errorMessageText;
         private Timer _timer;
 
-        public AbilityRadialSelection_VM() : base() 
+        public AbilityRadialSelection_VM() : base()
         {
             _timer = new Timer(2000);
             _timer.Interval = 2000;
@@ -36,7 +36,7 @@ namespace TOR_Core.AbilitySystem
         public override void RefreshValues()
         {
             if (_abilityLogic == null) _abilityLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
-            if(_abilityLogic != null)
+            if (_abilityLogic != null)
             {
                 IsVisible = _abilityLogic.CurrentState == AbilityModeState.QuickMenuSelection;
                 if (IsVisible)
@@ -51,9 +51,9 @@ namespace TOR_Core.AbilitySystem
         {
             _abilities.Clear();
             var comp = agent.GetComponent<AbilityComponent>();
-            if(comp != null && comp.KnownAbilitySystem.Count > 0)
+            if (comp != null && comp.KnownAbilitySystem.Count > 0)
             {
-                foreach(var ability in comp.KnownAbilitySystem)
+                foreach (var ability in comp.KnownAbilitySystem)
                 {
                     _abilities.Add(new AbilityRadialSelectionItem_VM(ability, OnItemSelected));
                 }

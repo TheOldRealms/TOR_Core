@@ -16,7 +16,7 @@ namespace TOR_Core.Extensions.UI
         {
             RefreshValues();
         }
-        
+
         public override void RefreshValues()
         {
             var unitVM = _vm as EncyclopediaUnitPageVM;
@@ -27,12 +27,12 @@ namespace TOR_Core.Extensions.UI
             var extendedInfoList = _characterObject.GetExtendedInfoToolTipText();
             if (!extendedInfoList.IsEmpty()) ExtendedInfoHint = new BasicTooltipViewModel(() => extendedInfoList);
         }
-        
+
         public CharacterObject GetCharacterObject()
         {
             return _characterObject;
         }
-        
+
         [DataSourceProperty]
         public BasicTooltipViewModel ExtendedInfoHint
         {

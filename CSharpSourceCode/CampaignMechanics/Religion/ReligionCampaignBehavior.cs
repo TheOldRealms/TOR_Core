@@ -92,9 +92,9 @@ namespace TOR_Core.CampaignMechanics.Religion
             if (party?.Party?.LeaderHero is not Hero hero) return; //LordParty, Caravan, and CustomParty components can pass
 
             var mobileParty = hero.PartyBelongedTo; //they're already a party leader so no false positives for companions
-            if(!mobileParty.IsLordParty) return; //remove caravans lead by heroes and custom parties for quests
-            
-            if(hero.GetPerkValue(TORPerks.Faith.Spirit))
+            if (!mobileParty.IsLordParty) return; //remove caravans lead by heroes and custom parties for quests
+
+            if (hero.GetPerkValue(TORPerks.Faith.Spirit))
             {
                 int xp = 0;
                 var killedtroops = party.Troops.Where(x => x.IsKilled);
@@ -124,7 +124,7 @@ namespace TOR_Core.CampaignMechanics.Religion
 
         private void OnItemsDiscarded(ItemRoster itemRoster)
         {
-            if(Settlement.CurrentSettlement?.SettlementComponent is ShrineComponent && 
+            if (Settlement.CurrentSettlement?.SettlementComponent is ShrineComponent &&
                 Hero.MainHero.GetPerkValue(TORPerks.Faith.Offering) &&
                 itemRoster.Count > 0)
             {//ItemRoster.OnRosterUpdated uses ItemObject.Value rather than EquipmentElement.ItemValue which causes the calculation to ignore item modifiers affecting price
@@ -138,19 +138,19 @@ namespace TOR_Core.CampaignMechanics.Religion
         public void OnHeroExtendedInfoCreated(object sender, HeroExtendedInfoCreatedEventArgs heroArgs)
         {
             var hero = heroArgs.Hero;
-            if(hero.IsSpecial || hero.IsWanderer || hero.IsLord) DetermineReligionForHero(hero);
+            if (hero.IsSpecial || hero.IsWanderer || hero.IsLord) DetermineReligionForHero(hero);
         }
 
         private void OnDevotionLevelChanged(object sender, DevotionLevelChangedEventArgs e)
         {
-            if((int)e.NewDevotionLevel > (int)e.OldDevotionLevel && e.Hero == Hero.MainHero)
+            if ((int)e.NewDevotionLevel > (int)e.OldDevotionLevel && e.Hero == Hero.MainHero)
             {
-                var devotionLevelText = GameTexts.FindText ("tor_religion_devotionlevel", e.NewDevotionLevel.ToString());
-                var religionNameText = GameTexts.FindText ("tor_religion_name_of_god", e.Religion.StringId);
-                MBTextManager.SetTextVariable ("TOR_DEVOTION_LEVEL",devotionLevelText);
-                MBTextManager.SetTextVariable ("TOR_RELIGION",religionNameText);
-                MBTextManager.SetTextVariable ("PLAYER.NAME",Hero.MainHero.Name);
-                MBInformationManager.AddQuickInformation(GameTexts.FindText ("tor_religion_change_notification_frame"));
+                var devotionLevelText = GameTexts.FindText("tor_religion_devotionlevel", e.NewDevotionLevel.ToString());
+                var religionNameText = GameTexts.FindText("tor_religion_name_of_god", e.Religion.StringId);
+                MBTextManager.SetTextVariable("TOR_DEVOTION_LEVEL", devotionLevelText);
+                MBTextManager.SetTextVariable("TOR_RELIGION", religionNameText);
+                MBTextManager.SetTextVariable("PLAYER.NAME", Hero.MainHero.Name);
+                MBInformationManager.AddQuickInformation(GameTexts.FindText("tor_religion_change_notification_frame"));
             }
         }
 
@@ -160,7 +160,7 @@ namespace TOR_Core.CampaignMechanics.Religion
         /// </remarks>
         private void AfterNewGameStart(CampaignGameStarter starter, int index)
         {
-            if(index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 1)
+            if (index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 1)
             {
                 foreach (var religion in ReligionObject.All)
                 {
@@ -169,7 +169,7 @@ namespace TOR_Core.CampaignMechanics.Religion
                         var clan = Clan.FindFirst(x => x.StringId == id);
                         if (clan != null)
                         {
-                            foreach(var hero in clan.Heroes)
+                            foreach (var hero in clan.Heroes)
                             {
                                 hero.AddReligiousInfluence(religion, MBRandom.RandomInt(50, 90), false);//higher than the value in DetermineReligionForHero so any religion coming from the xml is guaranteed to be the dominant religion for any heroes that have 2+ influences
                             }
@@ -183,17 +183,17 @@ namespace TOR_Core.CampaignMechanics.Religion
         private void OnSessionStart(CampaignGameStarter starter)
         {
             //ensure mutual entries for hostile religions
-            foreach(var religion in ReligionObject.All)
+            foreach (var religion in ReligionObject.All)
             {
-                foreach(var religion2 in religion.HostileReligions)
+                foreach (var religion2 in religion.HostileReligions)
                 {
                     if (!religion2.HostileReligions.Contains(religion)) religion2.HostileReligions.Add(religion);
                 }
             }
             //add descendants of religious units if xml only has base troop
-            foreach(var religion in ReligionObject.All)
+            foreach (var religion in ReligionObject.All)
             {
-                foreach(var troop in religion.ReligiousTroops.ToList())
+                foreach (var troop in religion.ReligiousTroops.ToList())
                 {
                     AddReligiousUnitToReligionRecursive(religion, troop);
                 }
@@ -203,7 +203,7 @@ namespace TOR_Core.CampaignMechanics.Religion
         private void AddReligiousUnitToReligionRecursive(ReligionObject religion, CharacterObject troop)
         {
             if (!religion.ReligiousTroops.Contains(troop)) religion.ReligiousTroops.Add(troop);
-            if(troop.UpgradeTargets.Count() > 0)
+            if (troop.UpgradeTargets.Count() > 0)
             {
                 foreach (var target in troop.UpgradeTargets) AddReligiousUnitToReligionRecursive(religion, target);
             }
@@ -216,32 +216,32 @@ namespace TOR_Core.CampaignMechanics.Religion
             if (hero.IsWanderer)
             {//the trait levels could be converted to attributes at a future point
                 var shallyaLevel = hero.GetTraitLevel(TORCharacterTraits.ShallyaDevoted);
-                if(shallyaLevel > 0)
+                if (shallyaLevel > 0)
                 {
                     religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_shallya");
                     hero.AddReligiousInfluence(religion, 30, false);
                 }
                 var sigmarLevel = hero.GetTraitLevel(TORCharacterTraits.SigmarDevoted);
-                if(sigmarLevel > 0)
+                if (sigmarLevel > 0)
                 {
 
                     religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar");
                     hero.AddReligiousInfluence(religion, 30, false);
                 }
                 var ulricLevel = hero.GetTraitLevel(TORCharacterTraits.UlricDevoted);
-                if(ulricLevel > 0)
+                if (ulricLevel > 0)
                 {
                     religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric");
                     hero.AddReligiousInfluence(religion, 30, false);
                 }
                 var ladyLevel = hero.GetTraitLevel(TORCharacterTraits.LadyDevoted);
-                if(ladyLevel > 0)
+                if (ladyLevel > 0)
                 {
                     religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_lady");
                     hero.AddReligiousInfluence(religion, 30, false);
                 }
                 var nagashLevel = hero.GetTraitLevel(TORCharacterTraits.NagashCorrupted);
-                if(nagashLevel > 0)
+                if (nagashLevel > 0)
                 {
                     religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
                     hero.AddReligiousInfluence(religion, 30, false);
@@ -275,7 +275,7 @@ namespace TOR_Core.CampaignMechanics.Religion
             TORCampaignEvents.Instance.DevotionLevelChanged -= OnDevotionLevelChanged;
             TORCampaignEvents.Instance.HeroExtendedInfoCreated -= OnHeroExtendedInfoCreated;
         }
-        
+
         private void SetIntialReligionBasedRelationDriftForAi()
         {
             var heroList = new List<Hero>();

@@ -10,6 +10,7 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
 
@@ -25,23 +26,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClick = false)
         {
             var knightUnit = MBObjectManager.Instance.GetObject<CharacterObject>(_knightId);
-            
+
             if (shiftClick)
             {
                 var affordable = CareerButtonHelper.GetMaximumExchangeTroops(characterObject, isPrisoner, 5, 0, ExchangeCost);
 
                 for (int i = 0; i < affordable; i++)
                 {
-                    CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(),ExchangeCost);
+                    CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), ExchangeCost);
                     CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, knightUnit, isPrisoner);
                 }
             }
             else
             {
-                CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(),ExchangeCost);
+                CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), ExchangeCost);
                 CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, knightUnit, true, isPrisoner);
             }
-            
+
             PartyVMExtension.ViewModelInstance.RefreshValues(); //important refresh otherwise the methods don't get re-evaluated.
         }
 
@@ -95,12 +96,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     return false;
                 }
             }
-            
+
             var pendingResources = CustomResourceManager.GetPendingResources();
-            if (!pendingResources.IsEmpty()&& pendingResources[Hero.MainHero.GetCultureSpecificCustomResource()] + ExchangeCost > Hero.MainHero.GetCultureSpecificCustomResourceValue())
+            if (!pendingResources.IsEmpty() && pendingResources[Hero.MainHero.GetCultureSpecificCustomResource()] + ExchangeCost > Hero.MainHero.GetCultureSpecificCustomResourceValue())
             {
                 displayText = new TextObject("Requires atleast " + ExchangeCost + " " + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
-                return false; 
+                return false;
             }
 
             displayText = new TextObject("");

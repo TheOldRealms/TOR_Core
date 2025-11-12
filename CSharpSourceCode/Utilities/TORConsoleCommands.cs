@@ -41,7 +41,7 @@ namespace TOR_Core.Utilities
     public class TORConsoleCommands
     {
         private static List<string> torSpellNames = AbilityFactory.GetAllSpellNamesAsList();
-        
+
         //TODO currently disabled due to missing Engineer Quest
         [CommandLineFunctionality.CommandLineArgumentFunction("whereisgoswin", "tor")]
         public static string TeleportPlayerToQuestParty(List<string> arguments)
@@ -57,14 +57,14 @@ namespace TOR_Core.Utilities
             }
             return "Engineer Quest is not active \n";
         }
-        
+
         [CommandLineFunctionality.CommandLineArgumentFunction("whereAreAICompanions", "tor")]
         public static string ShowCompanionPosition(List<string> arguments)
         {
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
-            if(CampaignCheats.CheckHelp(arguments))
+            if (CampaignCheats.CheckHelp(arguments))
             {
                 string helpInfo = "Will attempt to find and describe the state of every AI companion. Expect a delay as it iterates through every hero and lordParty.";
                 return helpInfo;
@@ -81,27 +81,29 @@ namespace TOR_Core.Utilities
             {
                 var partResult = "";
                 partResult = partResult.Add(companion.Name.ToString() + "'s state is " + companion.HeroState.ToString() + ".", false);
-                if (companion.HeroDeveloper == null){
-                    partResult = partResult.Add(" HeroDev is null.", false);}
+                if (companion.HeroDeveloper == null)
+                {
+                    partResult = partResult.Add(" HeroDev is null.", false);
+                }
 
                 if (companion.CurrentSettlement != null)
                 {
                     partResult = partResult.Add(companion.Name.ToString() + " " + " is currently in " + companion.CurrentSettlement);
-                    result+=partResult;
+                    result += partResult;
                     continue;
                 }
 
                 if (companion.PartyBelongedTo != null)
                 {
-                    partResult=partResult.Add(companion.Name.ToString() + " " + " is part of  " + companion.PartyBelongedTo.LeaderHero.Name + " Party"+ companion.PartyBelongedTo.GetPosition2D);
-                    result+=partResult;
+                    partResult = partResult.Add(companion.Name.ToString() + " " + " is part of  " + companion.PartyBelongedTo.LeaderHero.Name + " Party" + companion.PartyBelongedTo.GetPosition2D);
+                    result += partResult;
                     continue;
                 }
 
                 if (companion.CurrentSettlement == null && companion.PartyBelongedTo == null)
                 {
-                    partResult= partResult.Add(companion.Name.ToString() + " " + " is nowhere to be found.");
-                    result+=partResult;
+                    partResult = partResult.Add(companion.Name.ToString() + " " + " is nowhere to be found.");
+                    result += partResult;
                     continue;
                 }
             }
@@ -111,13 +113,13 @@ namespace TOR_Core.Utilities
             //unsure how to set up lambas in a single line to put it into an enumerable
             //var partiesForDeads = MobileParty.AllLordParties.Where(x => x.GetMemberHeroes().Exists(y => y.)
             //if i'm checking all of these anyways, would it be worthwhile to create a tuple so that each hero can have a list of parties they are part of in case there are multiple, then I can use the tuple after to read out the parties that are in when printing? Do I expect to have multiple parties that a single hero is supposed to be in?
-            List<MobileParty> lordParties = new ();
+            List<MobileParty> lordParties = new();
             foreach (var lordParty in MobileParty.AllLordParties)
             {
                 foreach (var deadHero in deadAiCompanions)
                 {
                     if (lordParty.MemberRoster.Contains(deadHero.CharacterObject))
-                    {   
+                    {
                         lordParties.Add(lordParty);
                     }
                 }
@@ -127,25 +129,27 @@ namespace TOR_Core.Utilities
             result = result.Add("Dead special heroes : " + deadAiCompanions.Count().ToString());
             result = result.Add("Parties containing a dead specHero : " + lordParties.Count().ToString());
 
-            foreach (var deadCompanion in deadAiCompanions) 
+            foreach (var deadCompanion in deadAiCompanions)
             {
                 string deadCompanionStates = "\n";
                 deadCompanionStates = deadCompanionStates.Add(deadCompanion.Name.ToString() + "'s state is " + deadCompanion.HeroState.ToString() + ".", false);
                 var deadHerosParties = lordParties.Where(x => x.MemberRoster.Contains(deadCompanion.CharacterObject));
                 foreach (var party in deadHerosParties)
                 {
-                    if (party.Owner != null){
-                        deadCompanionStates = deadCompanionStates.Add(" Party owned by : " + party.Owner.Name.ToString() + ".", false);}
+                    if (party.Owner != null)
+                    {
+                        deadCompanionStates = deadCompanionStates.Add(" Party owned by : " + party.Owner.Name.ToString() + ".", false);
+                    }
 
                     if (party.LeaderHero == null) { deadCompanionStates = deadCompanionStates.Add(" Leader is null.", false); }
 
                     else { deadCompanionStates = deadCompanionStates.Add(" LeaderHero is " + party.LeaderHero.Name.ToString() + ".", false); }
                 }
-                result +=deadCompanionStates;
+                result += deadCompanionStates;
             }
             return result;
         }
-        
+
         [CommandLineFunctionality.CommandLineArgumentFunction("declare_peace", "tor")]
         public static string DeclarePeace(List<string> strings)
         {
@@ -160,7 +164,7 @@ namespace TOR_Core.Utilities
             string kingdom_str1 = separatedNames[0].ToLower().Replace(" ", "");
             string kingdom_str2 = separatedNames[1].ToLower().Replace(" ", "");
             Kingdom faction1 = null;
-            Kingdom faction2 =  null;
+            Kingdom faction2 = null;
             foreach (var kingdom in Campaign.Current.Kingdoms)
             {
                 if (kingdom_str1 == kingdom.StringId)
@@ -169,18 +173,18 @@ namespace TOR_Core.Utilities
                 }
                 if (kingdom_str2 == kingdom.StringId)
                 {
-                    faction2= kingdom;
+                    faction2 = kingdom;
                 }
             }
-            
+
             if (faction1 != null && faction2 != null)
             {
                 MakePeaceAction.Apply(faction1, faction2);
-                return "Peace declared between " + (object) faction1.Name + " and " + (object) faction2.Name;
+                return "Peace declared between " + (object)faction1.Name + " and " + (object)faction2.Name;
             }
             return faction1 == null ? "Faction is not found: " + kingdom_str1 + "\n" + str1 : "Faction is not found: " + kingdom_str2;
         }
-        
+
         [CommandLineFunctionality.CommandLineArgumentFunction("add_enchantment_blueprint", "tor")]
         public static string AddEnchantmentBlueprint(List<string> arguments)
         {
@@ -198,13 +202,13 @@ namespace TOR_Core.Utilities
             if (arguments.Count == 2)
             {
                 hero = null;
-                var potentialHeroes =  Campaign.Current.AliveHeroes.Where(x => x.Name.ToString() == arguments[0]).ToList();
-                
+                var potentialHeroes = Campaign.Current.AliveHeroes.Where(x => x.Name.ToString() == arguments[0]).ToList();
+
                 if (!potentialHeroes.Any())
                 {
                     return "no Hero with the given Name could be found";
                 }
-                
+
                 foreach (var potentialHero in potentialHeroes)
                 {
                     if (hero.PartyBelongedTo == MobileParty.MainParty)
@@ -218,12 +222,12 @@ namespace TOR_Core.Utilities
 
                     if (hero.Clan != Clan.PlayerClan && hero.Clan.Kingdom != Hero.MainHero.Clan.Kingdom) continue;
                     if (hero.Name != potentialHero.Name) continue;
-                    
+
                     hero = potentialHero;
                     break;
 
                 }
-                
+
                 trait = arguments[1];
             }
 
@@ -231,16 +235,16 @@ namespace TOR_Core.Utilities
             {
                 return "no Hero with the given Name could be found in Clan or Kingdom";
             }
-            
+
             var obj = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == trait);
             if (obj == null)
             {
-                return ("There exists no trait with the id "+trait);
+                return ("There exists no trait with the id " + trait);
             }
-            
+
             hero.AddEnchantmentBlueprint(trait);
-            
-            
+
+
             return "Blueprint added: " + trait + "to " + hero.Name;
         }
 
@@ -266,19 +270,19 @@ namespace TOR_Core.Utilities
             var knownSpells = new List<string>();
 
             foreach (var argument in arguments)
-            foreach (var torSpell in torSpellNames)
-                if (string.Equals(torSpell, argument, StringComparison.CurrentCultureIgnoreCase))
-                {
-                    matchedArguments.Add(torSpell);
-
-                    if (Hero.MainHero.HasAbility(torSpell))
-                        knownSpells.Add(torSpell);
-                    else
+                foreach (var torSpell in torSpellNames)
+                    if (string.Equals(torSpell, argument, StringComparison.CurrentCultureIgnoreCase))
                     {
-                        Hero.MainHero.AddAbility(torSpell);
-                        newSpells.Add(torSpell);
+                        matchedArguments.Add(torSpell);
+
+                        if (Hero.MainHero.HasAbility(torSpell))
+                            knownSpells.Add(torSpell);
+                        else
+                        {
+                            Hero.MainHero.AddAbility(torSpell);
+                            newSpells.Add(torSpell);
+                        }
                     }
-                }
 
             if (newSpells.Count > 0)
                 MakePlayerSpellCaster(null);
@@ -319,7 +323,7 @@ namespace TOR_Core.Utilities
 
             return "Player is spell caster now. \n";
         }
-        
+
         [CommandLineFunctionality.CommandLineArgumentFunction("damage_agent", "tor")]
         public static string DamageAgent(List<string> arguments)
         {
@@ -328,11 +332,11 @@ namespace TOR_Core.Utilities
                 if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                     return CampaignCheats.ErrorType;
             }
-        
+
             if (Mission.Current == null)
                 return "not in mission";
-            
-            Agent target=null;
+
+            Agent target = null;
             int damage;
             if (int.TryParse(arguments[0], out damage))
             {
@@ -340,18 +344,18 @@ namespace TOR_Core.Utilities
             }
             else
             {
-                if (arguments.Count==2&&int.TryParse(arguments[1], out damage))
+                if (arguments.Count == 2 && int.TryParse(arguments[1], out damage))
                 {
-                    target= Mission.Current.Agents.FirstOrDefault(x => x.Name == arguments[0]);
+                    target = Mission.Current.Agents.FirstOrDefault(x => x.Name == arguments[0]);
                 }
             }
 
             if (target == null) return "Couldn't find agent";
-            target.ApplyDamage(damage,target.Position);
-            return "Damaged "+target.Name+" with "+ damage+ "\n";
+            target.ApplyDamage(damage, target.Position);
+            return "Damaged " + target.Name + " with " + damage + "\n";
 
         }
-        
+
         [CommandLineFunctionality.CommandLineArgumentFunction("add_blessing", "tor")]
         public static string AddBlessingToPlayer(List<string> arguments)
         {
@@ -360,18 +364,18 @@ namespace TOR_Core.Utilities
 
             var religionId = arguments[0];
             var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == religionId);
-            if(religion != null)
+            if (religion != null)
             {
                 if (Hero.MainHero.PartyBelongedTo == null) return "not in a party";
                 var blessingText = religion.BlessingEffectName;
                 if (blessingText == null) return "blessing description not found";
                 Hero.MainHero.PartyBelongedTo.AddBlessingToParty(religion.StringId);
-                
-                return string.Format("Player now has the {0}. \n", blessingText); 
+
+                return string.Format("Player now has the {0}. \n", blessingText);
             }
             else return "No religion with the given argument found. \n";
         }
-        
+
         [CommandLineFunctionality.CommandLineArgumentFunction("add_career", "tor")]
         public static string AddCareerToPlayer(List<string> arguments)
         {
@@ -380,10 +384,10 @@ namespace TOR_Core.Utilities
 
             var careerId = arguments[0];
             var career = TORCareers.All.FirstOrDefault(x => x.StringId == careerId);
-            if(career != null)
+            if (career != null)
             {
                 Hero.MainHero.AddCareer(career);
-                return string.Format("Player now has {0} career. \n", career.StringId); 
+                return string.Format("Player now has {0} career. \n", career.StringId);
             }
             else return "No career with the given argument found. \n";
         }
@@ -394,7 +398,7 @@ namespace TOR_Core.Utilities
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
-            if(arguments == null || arguments.Count == 0)
+            if (arguments == null || arguments.Count == 0)
             {
                 return "Argument cannot be null. Pass in the name of the story to open. \n";
             }
@@ -436,7 +440,7 @@ namespace TOR_Core.Utilities
             TorMissionManager.OpenQuestMission("tor_test_scene_for_stuff", template, 9, null, false);
             return "Scene opened.";
         }
-        
+
         [CommandLineFunctionality.CommandLineArgumentFunction("change_player_race", "tor")]
         public static string ChangeRace(List<string> arguments)
         {
@@ -480,21 +484,21 @@ namespace TOR_Core.Utilities
         public static string ReloadAnimationTriggers(List<string> arguments)
         {
             AnimationTriggerManager.ReloadAnimationTriggers();
-            
+
             return string.Format("Successfully reloaded animation triggers");
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("add_custom_resource", "tor")]
         public static string AddCustomResource(List<string> arguments)
         {
-            if(arguments.Count!= 2) return string.Format("Incorrect arguments. Usage is \"tor.add_custom_resource ResourceName amount\" ");
-            
+            if (arguments.Count != 2) return string.Format("Incorrect arguments. Usage is \"tor.add_custom_resource ResourceName amount\" ");
+
             string resourceId = arguments[0];
             int amount = 0;
-            if(int.TryParse(arguments[1], out amount))
+            if (int.TryParse(arguments[1], out amount))
             {
                 var resource = CustomResourceManager.GetResourceObject(resourceId);
-                if(resource != null)
+                if (resource != null)
                 {
                     Hero.MainHero.AddCustomResource(resourceId, amount);
                     return string.Format("Successfully added {0} {1} to main hero.", amount.ToString(), resource.Name);
@@ -553,9 +557,9 @@ namespace TOR_Core.Utilities
             possibleScenes.ForEach(x => scenesConcatenated = scenesConcatenated.Add(x.SceneID + " | ", false));
             scenesConcatenated.TrimEnd([' ', '|']);
             result = result.Add("Battle scenes at position : " + scenesConcatenated);
-            
 
-			return result;
+
+            return result;
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("print_mission_position_data", "tor")]
@@ -658,13 +662,13 @@ namespace TOR_Core.Utilities
 
             // Complete all tasks by setting progress to max
             foreach (var entry in quest.JournalEntries)
-            { 
+            {
                 entry.UpdateCurrentProgress(Int32.MaxValue);
             }
 
             return $"Quest '{questId}' requirements completed! Quest will finalize on next hourly tick.\n";
         }
-        
+
         private static string AggregateOutput(string topicHeader, List<string> matchedSpells) =>
             matchedSpells.Aggregate(
                 $"\n{topicHeader}\n",

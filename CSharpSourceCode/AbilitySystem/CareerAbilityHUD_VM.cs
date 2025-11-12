@@ -52,7 +52,7 @@ namespace TOR_Core.AbilitySystem
                 if (value != _chargeLevel)
                 {
                     _chargeLevel = value;
-                    TORCommon.Say(_chargeLevel.ToString() +"%");
+                    TORCommon.Say(_chargeLevel.ToString() + "%");
                     base.OnPropertyChangedWithValue(value, "ChargeLevel");
                 }
             }

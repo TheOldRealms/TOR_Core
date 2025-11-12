@@ -240,4 +240,3 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         All = Ranged | Melee | Spell
     }
 }
-

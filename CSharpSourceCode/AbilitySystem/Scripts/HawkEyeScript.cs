@@ -6,10 +6,10 @@ using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.AbilitySystem.Scripts;
 
-public class HawkEyeScript: CareerAbilityScript
+public class HawkEyeScript : CareerAbilityScript
 {
-            protected override MatrixFrame GetNextGlobalFrame(MatrixFrame oldFrame, float dt)
-            {
-                return oldFrame;
-            }
+    protected override MatrixFrame GetNextGlobalFrame(MatrixFrame oldFrame, float dt)
+    {
+        return oldFrame;
+    }
 }

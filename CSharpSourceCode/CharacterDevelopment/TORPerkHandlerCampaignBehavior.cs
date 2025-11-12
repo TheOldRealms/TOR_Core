@@ -27,10 +27,10 @@ namespace TOR_Core.CharacterDevelopment
         /// </remarks>
         private void OnPerkPicked(Hero hero, PerkObject perk)
         {
-            if (hero != null && perk != null ) //!hero.GetPerkValue(perk) -> this does not get triggered for any of the perks, since all of them do have a value of 0!
-                //No, it's because the perk value is set to 1, then the event is dispatched, so GetPerkValue will always return true at this point. GetPerkValue returns false if the perk value is 0.
+            if (hero != null && perk != null) //!hero.GetPerkValue(perk) -> this does not get triggered for any of the perks, since all of them do have a value of 0!
+                                              //No, it's because the perk value is set to 1, then the event is dispatched, so GetPerkValue will always return true at this point. GetPerkValue returns false if the perk value is 0.
             {
-                if(perk == TORPerks.GunPowder.FiringDrills)
+                if (perk == TORPerks.GunPowder.FiringDrills)
                 {
                     if (hero.GetAttributeValue(TORAttributes.Discipline) < Campaign.Current.Models.CharacterDevelopmentModel.MaxAttribute)
                     {
@@ -38,7 +38,7 @@ namespace TOR_Core.CharacterDevelopment
                     }
                     else hero.HeroDeveloper.UnspentAttributePoints += 1;
                 }
-                if(perk == TORPerks.Faith.DivineMission)
+                if (perk == TORPerks.Faith.DivineMission)
                 {
                     if (hero.HeroDeveloper.CanAddFocusToSkill(DefaultSkills.Medicine))
                     {
@@ -69,7 +69,7 @@ namespace TOR_Core.CharacterDevelopment
                                 hero.SetSpellCastingLevel(SpellCastingLevel.Master);
                         }
                     }
-                    
+
                     if (hero.IsPriest())
                     {
                         var prayers = CareerHelper.GetPriestPrayerList(hero);
@@ -80,17 +80,17 @@ namespace TOR_Core.CharacterDevelopment
                         {
                             rank = 2;
                         }
-                        
+
                         else if (perk == TORPerks.Faith.AdeptPrayers)
                         {
                             rank = 3;
                         }
-                        
+
                         else if (perk == TORPerks.Faith.GrandPrayers)
                         {
                             rank = 4;
                         }
-                        
+
                         var prayersForRank = prayers.Where(X => X.Rank == rank);
                         foreach (var prayer in prayersForRank)
                         {
@@ -103,7 +103,7 @@ namespace TOR_Core.CharacterDevelopment
 
         public override void SyncData(IDataStore dataStore)
         {
-            
+
         }
     }
 }

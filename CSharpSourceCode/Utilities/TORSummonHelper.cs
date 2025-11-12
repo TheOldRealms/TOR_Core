@@ -10,14 +10,23 @@ namespace TOR_Core.Utilities
 {
     public static class TORSummonHelper
     {
-        private static readonly ActionIndexCache act_raise_from_ground = ActionIndexCache.Create("act_raisefromground");
+        private static ActionIndexCache? _actRaiseFromGround;
+        private static ActionIndexCache ActRaiseFromGround
+        {
+            get
+            {
+                if (_actRaiseFromGround == null)
+                    _actRaiseFromGround = ActionIndexCache.Create("act_raisefromground");
+                return _actRaiseFromGround.Value;
+            }
+        }
 
         public static AgentBuildData GetAgentBuildData(Agent caster, string summonedUnitID)
         {
             BasicCharacterObject troopCharacter = MBObjectManager.Instance.GetObject<BasicCharacterObject>(summonedUnitID);
 
             if (troopCharacter == null) return null;
-            
+
             IAgentOriginBase troopOrigin = new SummonedAgentOrigin(caster, troopCharacter);
             var formation = caster.Team.GetFormation(FormationClass.Infantry);
             if (formation == null)
@@ -35,9 +44,9 @@ namespace TOR_Core.Utilities
                 InitialDirection(Vec2.Forward);
             return buildData;
         }
-        
-        
-        
+
+
+
         public static Agent SpawnAgent(AgentBuildData buildData, Vec3 position, bool withAnimation = false)
         {
             Agent troop = Mission.Current.SpawnAgent(buildData, false);
@@ -52,7 +61,7 @@ namespace TOR_Core.Utilities
             troop.SetWatchState(Agent.WatchState.Alarmed);
             if (withAnimation)
             {
-                troop.SetActionChannel(0, act_raise_from_ground);
+                troop.SetActionChannel(0, ActRaiseFromGround);
                 troop.SetCurrentActionProgress(0, 0f);
                 troop.SetCurrentActionSpeed(0, 1f);
             }

@@ -5,7 +5,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 
 public static class TraitHelper
 {
-    public static void ApplyEffectToRangedWeapons(ItemTraitAgentComponent traitComponent,ItemTrait trait, Agent agent,float duration)
+    public static void ApplyEffectToRangedWeapons(ItemTraitAgentComponent traitComponent, ItemTrait trait, Agent agent, float duration)
     {
         if (agent.Equipment.ContainsNonConsumableRangedWeaponWithAmmo())
         {
@@ -13,7 +13,7 @@ public static class TraitHelper
             {
                 if (agent.Equipment[i].CurrentUsageItem.IsRangedWeapon && !agent.Equipment[i].CurrentUsageItem.IsAmmo)
                 {
-                    traitComponent.AddTraitToWeapon(agent.Equipment[i],trait, duration);
+                    traitComponent.AddTraitToWeapon(agent.Equipment[i], trait, duration);
                 }
             }
         }

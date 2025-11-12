@@ -18,19 +18,19 @@ namespace TOR_Core.CampaignMechanics.Careers
 
         private const int CostForPeace = 150;
         private const int CostForWar = 300;
-        
+
         private List<Kingdom> _factionsAtWarWith;
         private List<Kingdom> _factionsRuleBretonnianSettlement;
-        
+
         private void EnvoyOfTheLadyDialogOptions(CampaignGameStarter campaignGameStarter)
         {
-            var icon ="";
+            var icon = "";
             var chivalry = CustomResourceManager.GetResourceObject("Chivalry");
-            if (chivalry!=null)
+            if (chivalry != null)
             {
                 icon = chivalry.GetCustomResourceIconAsText();
             }
-            
+
             campaignGameStarter.AddPlayerLine("convincelord0", "lord_talk_speak_diplomacy_2", "convincelord1", $"The Lady demands that you stop slaughtering your fellow Bretonnians! ({CostForPeace}{icon})", () => FullfillsEnvoyOfTheLadyCondition() && CivilWarCondition() && PriceCondition(CostForPeace), null);
 
             campaignGameStarter.AddDialogLine("convincelord1", "convincelord1", "convincelord2", "Mylady, how dare you demand me... oh she does?", null, null, 200, null);
@@ -49,11 +49,11 @@ namespace TOR_Core.CampaignMechanics.Careers
             campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar2", "convincelordplayerchoicewar", "convincelord_end", "We need to unite against {FACTION_NAME_2}.", condition_enemy2, consequence_declareWar2, 200, null, null);
             campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar3", "convincelordplayerchoicewar", "convincelord_end", "We need to unite against {FACTION_NAME_3}.", condition_enemy3, consequence_declareWar3, 200, null, null);
             campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar3", "convincelordplayerchoicewar", "lord_pretalk", "Actually never mind", null, null, 200, null, null);
-            
+
             campaignGameStarter.AddDialogLine("convincelord_end", "convincelord_end", "lord_pretalk", "As you wish Mylady.", null, null, 200, null);
         }
-        
-        
+
+
 
 
         private bool foreignForceRulesSettlementinbretonnia()
@@ -130,7 +130,7 @@ namespace TOR_Core.CampaignMechanics.Careers
             var character = Campaign.Current.ConversationManager.OneToOneConversationCharacter.HeroObject;
             DeclareWarAction.ApplyByKingdomDecision(character.Clan.Kingdom, _factionsRuleBretonnianSettlement[0]);
             Hero.MainHero.AddCustomResource("Chivalry", -CostForWar);
-            
+
         }
 
         public void consequence_declareWar2()
@@ -211,7 +211,7 @@ namespace TOR_Core.CampaignMechanics.Careers
             {
                 _factionsAtWarWith.Add(faction);
             }
-            
+
             return _factionsAtWarWith.Any();
         }
 
@@ -225,6 +225,6 @@ namespace TOR_Core.CampaignMechanics.Careers
         {
             var chivalry = Hero.MainHero.GetCultureSpecificCustomResourceValue();
             return chivalry > Price;
-        } 
+        }
     }
 }

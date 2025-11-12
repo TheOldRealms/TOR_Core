@@ -21,7 +21,7 @@ public class DefenseStackBuffScript(string[] arguments) : WeaponBuffStackScript(
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
-        base.OnHit(receiverAgent: attackedAgent,attackingAgent,blow,missionWeapon, attackCollision);  // note the flip from attacker to attacked
+        base.OnHit(receiverAgent: attackedAgent, attackingAgent, blow, missionWeapon, attackCollision);  // note the flip from attacker to attacked
     }
 }
 
@@ -35,9 +35,9 @@ public class DefenseTriggerEffectScript(string[] arguments) : WeaponTriggerEffec
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
-        if(attackedAgent == null) return;
+        if (attackedAgent == null) return;
         _triggererAgent = attackedAgent;
-        base.OnHit(attackingAgent,attackedAgent,blow,missionWeapon, attackCollision);
+        base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, attackCollision);
     }
 }
 
@@ -48,18 +48,18 @@ public class DefenseTriggerEffectScript(string[] arguments) : WeaponTriggerEffec
 /// <inheritdoc />
 /// </summary>
 /// <inheritdoc />
-public class UndeadConditionDefenseTriggerEffectScript( string[] arguments ): DefenseTriggerEffectScript(arguments)
+public class UndeadConditionDefenseTriggerEffectScript(string[] arguments) : DefenseTriggerEffectScript(arguments)
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollision)
     {
-        if(attackingAgent == null) return;
+        if (attackingAgent == null) return;
 
         if (attackingAgent.IsUndead() || attackingAgent.IsVampire())
         {
-            base.OnHit(attackingAgent,attackedAgent,blow,missionWeapon, attackCollision);
+            base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, attackCollision);
         }
-        
-        
+
+
     }
 }
 /// <summary>
@@ -68,11 +68,11 @@ public class UndeadConditionDefenseTriggerEffectScript( string[] arguments ): De
 /// </summary>
 /// <inheritdoc />
 /// n<param name="arguments[3]"> Attack type : Spell, Melee, Range. All is not considered</param>
-public class AttackTypeDefenseTriggerScript( string[] arguments ): DefenseTriggerEffectScript(arguments)
+public class AttackTypeDefenseTriggerScript(string[] arguments) : DefenseTriggerEffectScript(arguments)
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollisionData)
     {
-        if(attackingAgent == null) return;
+        if (attackingAgent == null) return;
 
         if (missionWeapon.IsEmpty) return;
 
@@ -97,7 +97,7 @@ public class AttackTypeDefenseTriggerScript( string[] arguments ): DefenseTrigge
 
         if (attackType == AttackTypeMask.Spell)
         {
-            if(!TORSpellBlowHelper.IsSpellBlow(blow)) return;
+            if (!TORSpellBlowHelper.IsSpellBlow(blow)) return;
         }
 
         if (attackType == AttackTypeMask.Ranged && missionWeapon.GetWeaponComponentDataForUsage(missionWeapon.CurrentUsageIndex).IsRangedWeapon)
@@ -105,9 +105,9 @@ public class AttackTypeDefenseTriggerScript( string[] arguments ): DefenseTrigge
             base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, attackCollisionData);
         }
 
-        if(attackType == AttackTypeMask.Melee && missionWeapon.GetWeaponComponentDataForUsage(missionWeapon.CurrentUsageIndex).IsMeleeWeapon)
+        if (attackType == AttackTypeMask.Melee && missionWeapon.GetWeaponComponentDataForUsage(missionWeapon.CurrentUsageIndex).IsMeleeWeapon)
         {
-            base.OnHit(attackingAgent,attackedAgent,blow,missionWeapon, attackCollisionData);
+            base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, attackCollisionData);
         }
     }
 }
@@ -122,12 +122,12 @@ public class UndeadConditionDefenseStackBuffScript(string[] arguments) : Defense
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-        if(attackingAgent == null) return;
-        if(attackedAgent == null) return;
-        
+        if (attackingAgent == null) return;
+        if (attackedAgent == null) return;
+
         if (attackingAgent.IsUndead() || attackedAgent.IsVampire())
         {
-            base.OnHit(attackingAgent,attackingAgent, blow ,missionWeapon, collisionData);
+            base.OnHit(attackingAgent, attackingAgent, blow, missionWeapon, collisionData);
         }
     }
 }
@@ -136,12 +136,12 @@ public class TimeCoolDownReductionShieldScript() : BaseWeaponHitScript()
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollisionData)
     {
-        if(attackingAgent == null) return;
-        if(attackedAgent == null) return;
+        if (attackingAgent == null) return;
+        if (attackedAgent == null) return;
 
         var hero = attackedAgent.GetHero();
-        
-        if(hero==null) return;
+
+        if (hero == null) return;
 
         if (hero.HasAnyCareer())
         {
@@ -161,8 +161,8 @@ public class ReviveScript() : BaseWeaponHitScript()
 {
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData attackCollisionData)
     {
-        if(attackingAgent == null) return;
-        if(attackedAgent == null) return;
+        if (attackingAgent == null) return;
+        if (attackedAgent == null) return;
 
         if (attackedAgent.HasAttribute("RevivedOnce"))
         {
@@ -171,8 +171,8 @@ public class ReviveScript() : BaseWeaponHitScript()
 
         if (blow.InflictedDamage > attackedAgent.Health)
         {
-            attackedAgent.Heal(blow.InflictedDamage + attackedAgent.HealthLimit/2);
-            
+            attackedAgent.Heal(blow.InflictedDamage + attackedAgent.HealthLimit / 2);
+
         }
     }
 }
@@ -182,7 +182,7 @@ public class DefenseWindsDrainScript(string[] arguments) : BaseWeaponHitScript(a
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
         int.TryParse(_arguments[0], out var amount);
-        
+
         if (attackingAgent.IsSpellCaster())
         {
             if (TORSpellBlowHelper.IsSpellBlow(blow))
@@ -200,7 +200,7 @@ public class ShieldBreakScript(string[] arguments) : DefenseTriggerEffectScript(
     {
         if (collisionData.IsShieldBroken)
         {
-            base.OnHit(attackingAgent,attackedAgent,blow,missionWeapon,collisionData);
+            base.OnHit(attackingAgent, attackedAgent, blow, missionWeapon, collisionData);
         }
     }
 }

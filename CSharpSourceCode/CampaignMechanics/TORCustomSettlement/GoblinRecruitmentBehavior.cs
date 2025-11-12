@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -33,7 +33,7 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
     {
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
         CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, AfterSessionLaunched);
-       // CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnBattleEnded);
+        // CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnBattleEnded);
     }
 
 
@@ -93,7 +93,7 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
 
     private void AddGoblinRecruitmentResultMenus(CampaignGameStarter starter)
     {
-        starter.AddWaitGameMenu("goblin_recruitment_waiting", "Looking for goblins...", delegate(MenuCallbackArgs args)
+        starter.AddWaitGameMenu("goblin_recruitment_waiting", "Looking for goblins...", delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             args.MenuContext.GameMenu.StartWait();
@@ -295,10 +295,10 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
 
         // Add goblins with random multiplier (0.7 to 1.4)
         var goblinCharacter = MBObjectManager.Instance.GetObject<CharacterObject>(_goblinTroopId);
-        
+
         if (goblinCharacter == null)
         {
-         return;
+            return;
         }
         int randomGoblinCount = (int)(_baseGoblinGroupSize * MBRandom.RandomFloatRanged(0.7f, 1.4f));
         goblinRoster.AddToCounts(goblinCharacter, randomGoblinCount);

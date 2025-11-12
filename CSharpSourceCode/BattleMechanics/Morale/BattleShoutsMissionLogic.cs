@@ -30,7 +30,7 @@ namespace TOR_Core.BattleMechanics.Morale
 
         public override void OnBattleEnded()
         {
-            if(_playerOrderController != null)
+            if (_playerOrderController != null)
             {
                 _playerOrderController.OnOrderIssued -= OnOrderIssued;
                 //_playerOrderController.OnSelectedFormationsChanged -= OnSelectedFormationsChanged;
@@ -45,12 +45,12 @@ namespace TOR_Core.BattleMechanics.Morale
             {
                 formation.ApplyActionOnEachUnit(agent =>
                 {
-                    if (agent != null && 
-                    agent.IsActive() && 
-                    agent.IsHuman && 
-                    !agent.IsUndead() && 
-                    !agent.IsTreeSpirit() && 
-                    agent.CurrentlyUsedGameObject == null && 
+                    if (agent != null &&
+                    agent.IsActive() &&
+                    agent.IsHuman &&
+                    !agent.IsUndead() &&
+                    !agent.IsTreeSpirit() &&
+                    agent.CurrentlyUsedGameObject == null &&
                     agent.GetComponent<AgentVoiceComponent>() is AgentVoiceComponent component)
                     {
                         component.SetWantsToPlayVoiceWithDelay(VoiceType.HorseStop, 0.5f);
@@ -58,7 +58,7 @@ namespace TOR_Core.BattleMechanics.Morale
                 });
             }
         }
-        
+
         private void OnOrderIssued(OrderType orderType, TaleWorlds.Library.MBReadOnlyList<Formation> appliedFormations, OrderController orderController, params object[] delegateParams)
         {
             if (_battleEnded || !_deploymentFinished) return;
@@ -93,7 +93,7 @@ namespace TOR_Core.BattleMechanics.Morale
                 });
             }
         }
-        
+
 
         private SkinVoiceType GetVoiceType(OrderType orderType)
         {
