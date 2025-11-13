@@ -55,6 +55,7 @@ using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
 using TOR_Core.GameManagers;
+using TOR_Core.HarmonyPatches;
 using TOR_Core.Ink;
 using TOR_Core.Items;
 using TOR_Core.Models;
@@ -89,7 +90,7 @@ namespace TOR_Core
             GameTexts.Initialize(gameTextManager);
 
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
-            HarmonyInstance.PatchAll();
+            HarmonyInstance.PatchAllUncategorized();
             UIConfig.DoNotUseGeneratedPrefabs = true;
 
             TORConfig.ReadConfig();
@@ -190,6 +191,13 @@ namespace TOR_Core
             {
                 ExtendedInfoManager.CreateDefaultInstanceAndLoad();
             }
+        }
+
+        public override void AfterRegisterSubModuleObjects(bool isSavedCampaign)
+        {
+            HarmonyInstance.PatchCategory("AgentPatches");
+            HarmonyInstance.PatchCategory("DamagePatch");
+            HarmonyInstance.PatchCategory("ItemPatches");
         }
 
         protected override void OnGameStart(Game game, IGameStarter gameStarterObject)

@@ -7,7 +7,6 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
-using TOR_Core.BattleMechanics.SFX;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -19,6 +18,7 @@ using TOR_Core.Utilities;
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
+    [HarmonyPatchCategory("DamagePatch")]
     public static class DamagePatch
     {
         [HarmonyPrefix]

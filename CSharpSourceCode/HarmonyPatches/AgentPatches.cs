@@ -1,10 +1,6 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaleWorlds.Core;
-using TaleWorlds.Engine;
-using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
@@ -12,6 +8,7 @@ using TOR_Core.Extensions;
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
+    [HarmonyPatchCategory("AgentPatches")]
     public static class AgentPatches
     {
         [HarmonyPostfix]
