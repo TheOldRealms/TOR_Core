@@ -300,15 +300,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (roster != null && !roster.DefaultEquipment.IsEmpty())
             {
                 var character = manager.CurrentMenu.Characters[0];
-                
-                var equipment = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId).DefaultEquipment;
-                var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
 
+                var equipment = roster.DefaultEquipment;
+                var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
+                
                 character.SetEquipment(roster);
                 CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, CharacterObject.PlayerCharacter.Race, isfemale);
-
                 character.IsFemale = isfemale;
                 
+                CharacterObject.PlayerCharacter.Equipment.FillFrom(roster.DefaultEquipment);
+                CharacterObject.PlayerCharacter.FirstCivilianEquipment.FillFrom(equipment);
             }
         }
 
@@ -540,7 +541,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
             Hero.MainHero.AddCultureSpecificCustomResource(0);
             CampaignVec2 position2D = default;
-
+ 
             position2D = culture.StringId switch
             {
                 TORConstants.Cultures.EMPIRE => new CampaignVec2(new Vec2(1281.157f, 1058.522f),true),
