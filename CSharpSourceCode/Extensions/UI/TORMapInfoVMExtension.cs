@@ -176,17 +176,24 @@ namespace TOR_Core.Extensions.UI
             _resourceInfo.IntValue = (int)resourceValue;
             _resourceInfo.FloatValue = resourceValue;
 
-            var info = Hero.MainHero.PartyBelongedTo.GetPartyInfo();
-            _remainingBlessingTime = GetBlessingTimeInDays(info.CurrentBlessingRemainingDuration);
-            var blessing = info.CurrentBlessingStringId;
-            if (blessing == null)
+            var info = MobileParty.MainParty.GetPartyInfo();
+            if (info != null)
             {
-                _blessingInfo.Value = "-";
+                _remainingBlessingTime = GetBlessingTimeInDays(info.CurrentBlessingRemainingDuration);
+                var blessing = info.CurrentBlessingStringId;
+
+                if (blessing == null)
+                {
+                    _blessingInfo.Value = "-";
+                }
+                else
+                {
+                    _blessingInfo.Value = _remainingBlessingTime;
+                }
             }
-            else
-            {
-                _blessingInfo.Value = _remainingBlessingTime;
-            }
+            else _blessingInfo.Value = "-";
+
+
             _hasBaseVMBeenInitialized = true;
         }
 
