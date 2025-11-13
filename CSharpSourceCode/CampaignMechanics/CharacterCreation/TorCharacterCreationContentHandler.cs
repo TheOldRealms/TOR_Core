@@ -32,6 +32,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private int _originalRace = 0;
         private Equipment PlayerStartEquipment;
         private string _currentEquipmentRosterId = "player_char_creation_childhood_age_empire_default_m";
+        private string _selectedProfessionId = ""; // Track stage 3 selection for stage 4 conditions
         private const int FocusToAdd = 1;
         private const int SkillLevelToAdd = 10;
         private const int AttributeLevelToAdd = 1;
@@ -98,7 +99,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             NarrativeMenu stage3Menu = new NarrativeMenu(
                 "tor_profession_menu",
                 "tor_growth_menu",
-                "narrative_face_generator_menu",  // Continue to face gen stage
+                "narrative_face_generator_menu",  // Exit narrative stage, go to next stage (TORSpecializationStage)
                 new TextObject("{=tor_cc_profession_summary_str}Profession"),
                 new TextObject("{TOR_CC_PROFESSION}"),
                 playerCharacterList,
@@ -224,7 +225,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 GameTexts.SetVariable("TOR_CC_ORIGIN", "Choose your family's background...");
             }
-            
+
             if (GameTexts.TryGetText("str_tor_cc_growth", out var stage2Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
                 GameTexts.SetVariable("TOR_CC_GROWTH", stage2Text);
@@ -233,7 +234,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 GameTexts.SetVariable("TOR_CC_GROWTH", "Teenage years...");
             }
-            
+
             if (GameTexts.TryGetText("str_tor_cc_profession", out var stage3Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
                 GameTexts.SetVariable("TOR_CC_PROFESSION", stage3Text);
@@ -242,6 +243,208 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 GameTexts.SetVariable("TOR_CC_PROFESSION", "Your starting profession...");
             }
+
+            if (GameTexts.TryGetText("str_tor_cc_specialization", out var stage4Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            {
+                GameTexts.SetVariable("TOR_CC_SPECIALIZATION", stage4Text);
+            }
+            else
+            {
+                GameTexts.SetVariable("TOR_CC_SPECIALIZATION", "Choose your specialization...");
+            }
+        }
+
+        private void AddLoreSelectionOptions(NarrativeMenu menu)
+        {
+            // Add lore selection options for spellcasters
+            // Dynamically load from LoreObject.GetAll() like the original popup did
+            var allLores = LoreObject.GetAll();
+
+            foreach (var lore in allLores)
+            {
+                // Skip MinorMagic and vampire-only lores (same filters as original)
+                if (lore.ID == "MinorMagic" || lore.IsRestrictedToVampires)
+                    continue;
+
+                var option = new NarrativeMenuOption(
+                    "lore_" + lore.ID,  // Prefix with "lore_" for unique IDs
+                    new TextObject(lore.Name),
+                    new TextObject( ""), // Use lore description if available
+                    new GetNarrativeMenuOptionArgsDelegate(args => { /* Empty for now */ }),
+                    new NarrativeMenuOptionOnConditionDelegate(manager => IsSpellcasterAndLoreAvailable(lore)),
+                    new NarrativeMenuOptionOnSelectDelegate(manager => { /* Handle selection */ }),
+                    new NarrativeMenuOptionOnConsequenceDelegate(manager => OnLoreSelected(lore.ID))
+                );
+                menu.AddNarrativeMenuOption(option);
+            }
+        }
+
+        private bool IsSpellcasterAndLoreAvailable(LoreObject lore)
+        {
+            bool isSpellcaster = IsSpellcaster();
+            TORCommon.Log($"[IsSpellcasterAndLoreAvailable] Lore: {lore.ID}, IsSpellcaster: {isSpellcaster}, _selectedProfessionId: '{_selectedProfessionId}'", NLog.LogLevel.Info);
+
+            if (!isSpellcaster) return false;
+
+            // Filter out lores disabled for current culture (same as original)
+            if (lore.DisabledForCultures.Contains(CharacterObject.PlayerCharacter.Culture.StringId))
+                return false;
+
+            // Don't show lores already known
+            if (Hero.MainHero.GetExtendedInfo().HasKnownLore(lore.ID))
+                return false;
+
+            return true;
+        }
+
+        private void AddBloodlineSelectionOptions(NarrativeMenu menu)
+        {
+            // Add bloodline selection options for vampires
+            var bloodlines = new[]
+            {
+                ("bloodline_von_carstein", "Von Carstein Vampire", "The noble bloodline of Sylvania"),
+                ("bloodline_blood_knight", "Blood Knight", "An undead warrior of terrible prowess"),
+                ("bloodline_necrarch", "Necrarch", "A scholar of the dark arts"),
+            };
+
+            foreach (var (id, name, desc) in bloodlines)
+            {
+                var option = new NarrativeMenuOption(
+                    id,
+                    new TextObject(name),
+                    new TextObject(desc),
+                    new GetNarrativeMenuOptionArgsDelegate(args => { /* Empty for now */ }),
+                    new NarrativeMenuOptionOnConditionDelegate(manager => IsVampire()),
+                    new NarrativeMenuOptionOnSelectDelegate(manager => { /* Handle selection */ }),
+                    new NarrativeMenuOptionOnConsequenceDelegate(manager => OnBloodlineSelected(id))
+                );
+                menu.AddNarrativeMenuOption(option);
+            }
+        }
+
+        private void AddPriesthoodSelectionOptions(NarrativeMenu menu)
+        {
+            // Add priesthood selection options for Empire priests
+            var gods = new[]
+            {
+                ("god_sigmar", "Sigmar", "The Warrior God, founder of the Empire"),
+                ("god_ulric", "Ulric", "The God of Winter, Wolves, and War"),
+            };
+
+            foreach (var (id, name, desc) in gods)
+            {
+                var option = new NarrativeMenuOption(
+                    id,
+                    new TextObject(name),
+                    new TextObject(desc),
+                    new GetNarrativeMenuOptionArgsDelegate(args => { /* Empty for now */ }),
+                    new NarrativeMenuOptionOnConditionDelegate(manager => IsPriest()),
+                    new NarrativeMenuOptionOnSelectDelegate(manager => { /* Handle selection */ }),
+                    new NarrativeMenuOptionOnConsequenceDelegate(manager => OnPriesthoodSelected(id))
+                );
+                menu.AddNarrativeMenuOption(option);
+            }
+        }
+
+        public string GetSelectedProfessionId() => _selectedProfessionId;
+
+        public bool IsSpellcaster(string professionId = null)
+        {
+            string id = professionId ?? _selectedProfessionId;
+            return id == "option_3_empire_magister_apprentice" ||
+                   id == "option_3_bretonnia_damsel" ||
+                   id == "option_3_we_spellsinger" ||
+                   id == "option_3_eo_greylord_apprentice";
+        }
+
+        public bool IsVampire(string professionId = null)
+        {
+            string id = professionId ?? _selectedProfessionId;
+            return id == "option_3_vc_vampire" ||
+                   id == "option_3_mousillon_vampire";
+        }
+
+        public bool IsPriest(string professionId = null)
+        {
+            string id = professionId ?? _selectedProfessionId;
+            return id == "option_3_empire_priest_acolyte";
+        }
+
+        private void OnLoreSelected(string loreId)
+        {
+            TORCommon.Log($"[OnLoreSelected] Lore selected: {loreId}", NLog.LogLevel.Info);
+
+            // Remove "lore_" prefix to get actual lore ID
+            string actualLoreId = loreId.Replace("lore_", "");
+
+            var info = Hero.MainHero.GetExtendedInfo();
+            Hero.MainHero.AddKnownLore(actualLoreId);
+            if (info.SpellCastingLevel < SpellCastingLevel.Entry)
+            {
+                Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+            }
+
+            var lore = LoreObject.GetAll().FirstOrDefault(x => x.ID == actualLoreId);
+            if (lore != null)
+            {
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned lore: " + lore.Name), 0, CharacterObject.PlayerCharacter);
+            }
+        }
+
+        private void OnBloodlineSelected(string bloodlineId)
+        {
+            TORCommon.Log($"[OnBloodlineSelected] Bloodline selected: {bloodlineId}", NLog.LogLevel.Info);
+
+            if (bloodlineId == "bloodline_von_carstein")
+            {
+                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.AddAbility("NagashGaze");
+                Hero.MainHero.AddKnownLore("MinorMagic");
+                Hero.MainHero.AddKnownLore("Necromancy");
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                Hero.MainHero.AddCareer(TORCareers.MinorVampire);
+            }
+            else if (bloodlineId == "bloodline_blood_knight")
+            {
+                Hero.MainHero.AddCareer(TORCareers.BloodKnight);
+            }
+            else if (bloodlineId == "bloodline_necrarch")
+            {
+                Hero.MainHero.AddAttribute("SpellCaster");
+                Hero.MainHero.AddAbility("NagashGaze");
+                Hero.MainHero.AddKnownLore("MinorMagic");
+                Hero.MainHero.AddKnownLore("Necromancy");
+                Hero.MainHero.AddCareer(TORCareers.Necrarch);
+                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+            }
+        }
+
+        private void OnPriesthoodSelected(string godId)
+        {
+            TORCommon.Log($"[OnPriesthoodSelected] God selected: {godId}", NLog.LogLevel.Info);
+
+            if (godId == "god_sigmar")
+            {
+                Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
+                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
+                Hero.MainHero.AddAttribute("PriestSigmar");
+            }
+            else if (godId == "god_ulric")
+            {
+                Hero.MainHero.AddCareer(TORCareers.WarriorPriestUlric);
+                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 60);
+                Hero.MainHero.AddAttribute("PriestUlric");
+            }
+
+            var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
+            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+            Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
         }
 
         private void OnOptionSelected(CharacterCreationManager manager, string optionId)
@@ -249,7 +452,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var selectedOption = _options.Find(x => x.Id == optionId);
             var race = _originalRace;
             var isFemale = _isFemale;
-            
+
+            // Track stage 3 (profession) selection for stage 4 skip logic
+            if (selectedOption != null && selectedOption.StageNumber == 3)
+            {
+                _selectedProfessionId = optionId;
+                TORCommon.Log($"[OnOptionSelected] Profession selected: {_selectedProfessionId}", NLog.LogLevel.Info);
+            }
 
             if (optionId == "option_3_vc_vampire" || optionId == "option_3_mousillon_vampire")
             {
@@ -263,7 +472,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 isFemale = false;
             }
-            
+
             UpdateVisuals(race);
             UpdateEquipment(manager, selectedOption, isFemale);
         }
@@ -530,12 +739,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     Hero.MainHero.AddCareer(TORCareers.Warden);
                     return;
                 }
-                
+
                 Hero.MainHero.AddCareer(TORCareers.Mercenary);
             }
-        }
 
-        // OLD: Was override, now called from OnCharacterCreationFinalize
+            // NOTE: Specialization selection now handled by TORSpecializationStageView
+            // No need to call NextStage() or do anything here
+        }
+        
         private void OnCharacterCreationFinalized()
         {
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
@@ -560,9 +771,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 mapState.Handler.TeleportCameraToMainParty();
             }
             SetHeroAge(25);
-            if (Hero.MainHero.IsSpellCaster()) PromptChooseLore();
-            if (Hero.MainHero.IsVampire()) PromptChooseBloodline();
-            if (Hero.MainHero.Culture.StringId == "empire" && Hero.MainHero.IsPriest()) PromptChoosePriesthood();   
         }
 
         protected void SetHeroAge(float age)
@@ -707,15 +915,75 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             AddMenus(manager);
         }
 
+        private CharacterCreationManager _manager; // Store reference for stage skipping
+
         public void AfterInitializeContent(CharacterCreationManager manager)
         {
             TORCommon.Log("[TOR CharacterCreation] AfterInitializeContent called", NLog.LogLevel.Info);
+
+            // Store manager reference for later use
+            _manager = manager;
+
+            // Insert TORSpecializationStage at a specific position using reflection
+            // We need it AFTER CharacterCreationNarrativeStage but BEFORE CharacterCreationFaceGeneratorStage
+            try
+            {
+                var stagesField = typeof(CharacterCreationManager).GetField("_stages",
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                if (stagesField != null)
+                {
+                    var stages = stagesField.GetValue(manager) as MBList<CharacterCreationStageBase>;
+                    if (stages != null)
+                    {
+                        // Log current stages
+                        TORCommon.Log($"[TOR CharacterCreation] Current stage count: {stages.Count}", NLog.LogLevel.Info);
+                        for (int i = 0; i < stages.Count; i++)
+                        {
+                            TORCommon.Log($"[TOR CharacterCreation] Stage {i}: {stages[i].GetType().Name}", NLog.LogLevel.Info);
+                        }
+
+                        // Find CharacterCreationNarrativeStage and insert our stage after it
+                        int narrativeIndex = -1;
+                        for (int i = 0; i < stages.Count; i++)
+                        {
+                            if (stages[i].GetType().Name == "CharacterCreationNarrativeStage")
+                            {
+                                narrativeIndex = i;
+                                break;
+                            }
+                        }
+
+                        if (narrativeIndex >= 0)
+                        {
+                            // Insert after narrative stage
+                            stages.Insert(narrativeIndex + 1, new TORSpecializationStage());
+                            TORCommon.Log($"[TOR CharacterCreation] Inserted TORSpecializationStage at index {narrativeIndex + 1}", NLog.LogLevel.Info);
+                        }
+                        else
+                        {
+                            // Fallback: just add at the end
+                            stages.Add(new TORSpecializationStage());
+                            TORCommon.Log("[TOR CharacterCreation] Added TORSpecializationStage at end (narrative stage not found)", NLog.LogLevel.Warn);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TORCommon.Log($"[TOR CharacterCreation] Failed to insert stage: {ex.Message}", NLog.LogLevel.Error);
+                // Fallback
+                manager.AddStage(new TORSpecializationStage());
+            }
         }
 
         public void OnStageCompleted(CharacterCreationStageBase stage)
         {
             // Called when a character creation stage is completed
             var stages = stage;
+
+            // DEBUG: Log stage type to understand what's completing
+            TORCommon.Log($"[OnStageCompleted] Stage completed: {stages.GetType().Name}, _selectedProfessionId: '{_selectedProfessionId}'", NLog.LogLevel.Info);
 
             if (stages.GetType() == typeof(CharacterCreationFaceGeneratorStage))
             {
@@ -726,7 +994,41 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 OnCultureSelected();
             }
             
-            
+            /*// Check if this is our TORSpecializationStage completing
+            if (stages.GetType() == typeof(CharacterCreationNarrativeStage))
+            {
+                var t = _manager.GetIndexOfCurrentStage();
+                if (NeedsSpecialization())
+                {
+                    _manager.TrySwitchToNextMenu();
+                }
+                else
+                {
+                    _manager.
+                }
+            }*/
+        }
+
+        public bool NeedsSpecialization(string narrativeStep)
+        {
+            // Check if selected profession requires specialization (lore, bloodline, or priesthood choice)
+            return narrativeStep switch
+            {
+                // Spellcasters need lore selection
+                "option_3_empire_magister_apprentice" => true,
+                "option_3_bretonnia_damsel" => true,
+                "option_3_we_spellsinger" => true,
+                "option_3_eo_greylord_apprentice" => true,
+
+                // Vampires need bloodline selection
+                "option_3_vc_vampire" => true,
+                "option_3_mousillon_vampire" => true,
+
+                // Empire priests need god selection
+                "option_3_empire_priest_acolyte" => true,
+
+                _ => false
+            };
         }
 
         private void OnCultureSelected()
