@@ -156,21 +156,36 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         // Helper method: Sets skill and attribute bonuses for an option
         private void GetOptionArgs(NarrativeMenuOptionArgs args, CharacterCreationOption option)
         {
-            // Build affected skills array
-            var effectedSkills = new MBList<SkillObject>();
-            foreach (var skillId in option.SkillsToIncrease)
+            // Store custom positive effect text if it exists (for display via Harmony patch)
+            if (!string.IsNullOrEmpty(option.PositiveEffectText))
             {
-                var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
-                if (skill != null)
+                HarmonyPatches.CharacterCreationPatches.CustomPositiveEffects[args] = new TextObject(option.PositiveEffectText);
+                TORCommon.Log($"[GetOptionArgs] Stored custom positive effect for {option.Id}: {option.PositiveEffectText}", NLog.LogLevel.Info);
+            }
+            else
+            {
+                // No custom text, remove from dictionary to use default behavior
+                HarmonyPatches.CharacterCreationPatches.CustomPositiveEffects.Remove(args);
+            }
+
+            // Still set skills/attributes so they get applied to the character
+            // (They just won't be displayed due to our Harmony patch overriding the text)
+            var effectedSkills = new MBList<SkillObject>();
+            if (option.SkillsToIncrease != null)
+            {
+                foreach (var skillId in option.SkillsToIncrease)
                 {
-                    effectedSkills.Add(skill);
+                    var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
+                    if (skill != null)
+                    {
+                        effectedSkills.Add(skill);
+                    }
                 }
             }
 
-            // Get attribute
-            CharacterAttribute attribute = Attributes.All.FirstOrDefault(x => x.StringId == option.AttributeToIncrease.ToLower());
+            CharacterAttribute attribute = Attributes.All.FirstOrDefault(x => x.StringId == option.AttributeToIncrease?.ToLower());
 
-            // Set values on args
+            // Set values so they get applied (via ApplyFinalEffects)
             if (effectedSkills.Count > 0)
             {
                 args.SetAffectedSkills(effectedSkills.ToArray());
@@ -182,8 +197,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 args.SetLevelToAttribute(attribute, AttributeLevelToAdd);
             }
-
-            // Note: PositiveEffectText is auto-computed from skills/attributes, no need to set manually
         }
 
         // Helper method: Checks if option should be visible (culture filter)
@@ -195,7 +208,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             return currentCulture != null && currentCulture.StringId == option.Culture;
         }
 
-        private void OnMenuInit()
+        private void OnFinalizeFaceCreation()
         {
             _isFemale = CharacterObject.PlayerCharacter.IsFemale;
             _originalRace = CharacterObject.PlayerCharacter.Race;
@@ -705,8 +718,71 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (stages.GetType() == typeof(CharacterCreationFaceGeneratorStage))
             {
-                this.OnMenuInit();
+                this.OnFinalizeFaceCreation();
             }
+            if (stages.GetType() == typeof(CharacterCreationCultureStage))
+            {
+                OnCultureSelected();
+            }
+            
+            
+        }
+
+        private void OnCultureSelected()
+        {
+            // Set race and default body properties based on selected culture
+            string default_elf = "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='000BAC088000100DB976648E6774B835537D86629511323BDCB177278A84F667017776140748B49500000000000000000000000000000000000000003EFC5002'/>";
+            string default_empire = "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='000500000000000D797664884754DCBAA35E866295A0967774414A498C8336860F7776F20BA7B7A500000000000000000000000000000000000000003CFC2002'/>";
+            string default_bretonnia = "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='001CB80CC000300D7C7664876753888A7577866254C69643C4B647398C95A0370077760307A7497300000000000000000000000000000000000000003AF47002'/>";
+            string default_vc = "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='0028C80FC000100DBA756445533377873CD1833B3101B44A21C3C5347CA32C260F7776F20BBC35E8000000000000000000000000000000000000000042F41002'/>";
+            string default_dwarf = "<BodyProperties version='4' age='25' weight='0.4182' build='0.1898' key='0005000F00000280F77664884754DCBAFF9E566095F09F1F74414A49893F81FE0F77760307A7B7A536000000000000000000000000000007000000003CFC0002'/>";
+            string default_orc = "<BodyProperties version='4' age='25' weight='0.3657' build='0.2978'  key='0005100000CC00005C12429361532471D9656C584FA9A47724B588AAD7B53C5DDACBA6130657877845CCBADBCCBCBABC0000000000000016000000002ECC0000'/>";
+            string keyValue;
+
+            var culture = CharacterObject.PlayerCharacter.Culture;
+
+            if (culture.StringId == TORConstants.Cultures.ASRAI || culture.StringId == TORConstants.Cultures.EONIR)
+            {
+                keyValue = default_elf;
+                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("elf");
+            }
+            else if (culture.StringId == TORConstants.Cultures.EMPIRE)
+            {
+                keyValue = default_empire;
+                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+            }
+            else if (culture.StringId == TORConstants.Cultures.BRETONNIA || culture.StringId == TORConstants.Cultures.MOUSILLON)
+            {
+                keyValue = default_bretonnia;
+                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+            }
+            else if (culture.StringId == TORConstants.Cultures.SYLVANIA)
+            {
+                keyValue = default_vc;
+                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+            }
+            else if (culture.StringId == TORConstants.Cultures.DAWI)
+            {
+                keyValue = default_dwarf;
+                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("dwarf");
+            }
+            else if (culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                keyValue = default_orc;
+                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("orc");
+            }
+            else
+            {
+                keyValue = default_empire;
+                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+            }
+
+            if (BodyProperties.FromString(keyValue, out BodyProperties properties))
+            {
+                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(properties, CharacterObject.PlayerCharacter.Race, CharacterObject.PlayerCharacter.IsFemale);
+            }
+
+            TORCommon.Log($"[OnCultureSelected] Set race for culture {culture.StringId} to {CharacterObject.PlayerCharacter.Race}", NLog.LogLevel.Info);
         }
 
         public void OnCharacterCreationFinalize(CharacterCreationManager manager)
