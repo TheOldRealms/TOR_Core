@@ -22,7 +22,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
         public static CultureObject GetOriginalCultureForSettlement(Settlement settlement)
         {
             if (Campaign.Current == null || Campaign.Current.GetCampaignBehavior<AssimilationCampaignBehavior>() == null) return settlement.Culture;
-            
+
             var instance = Campaign.Current.GetCampaignBehavior<AssimilationCampaignBehavior>();
             if (instance._originalSettlementCulturePairs.ContainsKey(settlement)) return instance._originalSettlementCulturePairs[settlement];
             else return settlement.Culture;
@@ -70,7 +70,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         private void OnNewGameStart(CampaignGameStarter starter, int index)
         {
-            if(index == 0)
+            if (index == 0)
             {
                 foreach (var settlement in Settlement.All)
                 {
@@ -82,7 +82,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         private void BeforeSave()
         {
-            foreach(var settlement in Settlement.All)
+            foreach (var settlement in Settlement.All)
             {
                 if (_settlementCulturePairs.ContainsKey(settlement))
                 {
@@ -97,13 +97,13 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
-            foreach(var settlement in _settlementCulturePairs.Keys)
+            foreach (var settlement in _settlementCulturePairs.Keys)
             {
                 CultureObject settlementCulture = _settlementCulturePairs[settlement];
                 if (settlement.Culture != settlementCulture)
                 {
                     settlement.Culture = settlementCulture;
-                    foreach(var notable in settlement.Notables)
+                    foreach (var notable in settlement.Notables)
                     {
                         if (notable.Culture != settlement.Culture) notable.Culture = settlement.Culture;
                     }
@@ -119,7 +119,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
             if (owner == null) return;
 
-            if ((troop.Culture.StringId == TORConstants.Cultures.SYLVANIA || troop.Culture.StringId == TORConstants.Cultures.MOUSILLON) && 
+            if ((troop.Culture.StringId == TORConstants.Cultures.SYLVANIA || troop.Culture.StringId == TORConstants.Cultures.MOUSILLON) &&
                 (owner.Culture.StringId == TORConstants.Cultures.SYLVANIA || owner.Culture.StringId == TORConstants.Cultures.MOUSILLON))
             {
                 return;
@@ -131,7 +131,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             }
 
             roster.ValidateTroopListCache(); //Sly : the roster passed in has its properties changed by the Add and Remove further below, but the underlying data cache for the elements is unchanged. Performing the validation forces the cached values to be updated so that the TroopCount below is not counting a stale copy and avoids the issue of a noble recruiting multiple troops simultaneosuly and the subsequent troop swaps using stale values
-            var verifiedAmount = roster.GetTroopCount(troop); 
+            var verifiedAmount = roster.GetTroopCount(troop);
             if (verifiedAmount < 1) return;
             count = (int)verifiedAmount; //Sly : if multiple behaviours remove troops (which makes use of the roster index), then the roster index may vary and a troop with no valid index causes the troop roster to fetch data[-1], ie. TORAIRecruitmentCampaignBehavior
 
@@ -161,7 +161,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             // finally check for template character of any formation and the opposite elite status
             replacement ??= DetermineReplacement(templateCharacters, troop.Tier, !IsEliteTroop(troop));
 
-            if(replacement != null)
+            if (replacement != null)
             {
                 roster.RemoveTroop(troop, count); //Sly : will use FindIndexOfTroop which returns -1 if the troop is not in the roster, but it passes it blindly into AddToCountsAtIndex which naively manipulates it trying to access the data[-1]
                 roster.AddToCounts(replacement, count);
@@ -195,24 +195,24 @@ namespace TOR_Core.CampaignMechanics.Assimilation
 
         private void SettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
         {
-            if(IsSpecialSettlement(settlement))
+            if (IsSpecialSettlement(settlement))
                 return;
-            
-            if(newOwner.MapFaction != null && oldOwner.MapFaction != null)
+
+            if (newOwner.MapFaction != null && oldOwner.MapFaction != null)
             {
                 if (newOwner.MapFaction.Culture != settlement.Culture)
                 {
                     settlement.Culture = newOwner.MapFaction.Culture;
-                    foreach(var notable in settlement.Notables)
+                    foreach (var notable in settlement.Notables)
                     {
                         if (notable.Culture != settlement.Culture) notable.Culture = settlement.Culture;
                     }
-                    if(settlement.BoundVillages != null && settlement.BoundVillages.Count > 0)
+                    if (settlement.BoundVillages != null && settlement.BoundVillages.Count > 0)
                     {
-                        foreach(var village in settlement.BoundVillages)
+                        foreach (var village in settlement.BoundVillages)
                         {
                             village.Settlement.Culture = settlement.Culture;
-                            foreach(var villageNotable in village.Settlement.Notables)
+                            foreach (var villageNotable in village.Settlement.Notables)
                             {
                                 if (villageNotable.Culture != settlement.Culture) villageNotable.Culture = settlement.Culture;
                             }

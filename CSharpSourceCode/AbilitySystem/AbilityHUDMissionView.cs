@@ -1,10 +1,10 @@
-﻿using TaleWorlds.Engine.GauntletUI;
+﻿using System;
 using TaleWorlds.Core;
+using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.ScreenSystem;
-using System;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -65,7 +65,7 @@ namespace TOR_Core.AbilitySystem
 
         public void DisplayErrorMessage(string message)
         {
-            if(_abilityRadialSelection_VM != null) _abilityRadialSelection_VM.DisplayErrorMessage(message);
+            if (_abilityRadialSelection_VM != null) _abilityRadialSelection_VM.DisplayErrorMessage(message);
         }
 
         public override void OnMissionTick(float dt)
@@ -74,7 +74,7 @@ namespace TOR_Core.AbilitySystem
             {
                 bool canHudBeVisible = Agent.Main != null &&
                                        Agent.Main.State == AgentState.Active &&
-                                       (Mission.Current.Mode == MissionMode.Battle || 
+                                       (Mission.Current.Mode == MissionMode.Battle ||
                                        Mission.Current.Mode == MissionMode.Stealth) &&
                                        MissionScreen.CustomCamera == null &&
                                        !MissionScreen.IsViewingCharacter() &&

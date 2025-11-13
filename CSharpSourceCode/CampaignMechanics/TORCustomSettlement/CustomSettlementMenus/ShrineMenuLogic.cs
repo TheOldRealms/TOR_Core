@@ -31,12 +31,12 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         starter.AddGameMenuOption("shrine_menu", "pray", "{PRAY_TEXT}", PrayCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_praying"));
         starter.AddGameMenuOption("shrine_menu", "defile", "Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this", DefileCondtion, (args) => GameMenu.SwitchToMenu("shrine_menu_defiling"));
         starter.AddGameMenuOption("shrine_menu", "donate", "{=tor_custom_settlement_shrine_offering_label_str}Give items as an offering", DonationCondition, (args) => InventoryScreenHelper.OpenScreenAsInventory());//the xp calculation is performed in ReligionCampaignBehavior.OnItemsDiscarded
-        starter.AddGameMenuOption("shrine_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate(MenuCallbackArgs args)
+        starter.AddGameMenuOption("shrine_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
-        starter.AddWaitGameMenu("shrine_menu_praying", "Praying...", delegate(MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_praying", "Praying...", delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             numberOfTroopsFromInteraction = 0;
@@ -64,14 +64,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             GameMenu.SwitchToMenu("shrine_menu");
 
         }, true);
-        starter.AddWaitGameMenu("shrine_menu_defiling", "Defiling the shrine...", delegate(MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_defiling", "Defiling the shrine...", delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             PlayerEncounter.Current.IsPlayerWaiting = true;
             args.MenuContext.GameMenu.StartWait();
         }, null, DefileConsequence, DefilingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
         starter.AddGameMenu("shrine_menu_defile_result", "You successfully gathered " + DefilingDarkEnergyPerTick * 4 + " Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime.", null);
-        starter.AddGameMenuOption("shrine_menu_defile_result", "return_to_root", "Continue", args => 
+        starter.AddGameMenuOption("shrine_menu_defile_result", "return_to_root", "Continue", args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -210,7 +210,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                         {
                             count *= 2;
                         }
-                        
+
                         if (freeSlots < count) count = freeSlots;
                         MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
                         CampaignEventDispatcher.Instance.OnTroopRecruited(Hero.MainHero, settlement, null, troop, count);
@@ -245,20 +245,20 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                     case DevotionLevel.None:
                         continue;
                     case DevotionLevel.Follower:
-                    {
-                        hero.SetPersonalRelation(Hero.MainHero, (int)relation - 20);
-                        continue;
-                    }
+                        {
+                            hero.SetPersonalRelation(Hero.MainHero, (int)relation - 20);
+                            continue;
+                        }
                     case DevotionLevel.Devoted:
-                    {
-                        hero.SetPersonalRelation(Hero.MainHero, (int)relation - 30);
-                        continue;
-                    }
+                        {
+                            hero.SetPersonalRelation(Hero.MainHero, (int)relation - 30);
+                            continue;
+                        }
                     case DevotionLevel.Fanatic:
-                    {
-                        hero.SetPersonalRelation(Hero.MainHero, (int)relation - 100);
-                        continue;
-                    }
+                        {
+                            hero.SetPersonalRelation(Hero.MainHero, (int)relation - 100);
+                            continue;
+                        }
                     default:
                         continue;
                 }
@@ -267,8 +267,8 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             {
                 if (shrineReligion.Affinity == dominantReligion.Affinity) hero.SetPersonalRelation(Hero.MainHero, (int)relation - 10);
             }
-            
-            Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastDefileTime(Hero.MainHero, (int) CampaignTime.Now.ToDays);
+
+            Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastDefileTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
         }
     }
 

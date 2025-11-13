@@ -1,6 +1,6 @@
-﻿using TaleWorlds.MountAndBlade;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.AI.CastingAI.SupportMissionLogic

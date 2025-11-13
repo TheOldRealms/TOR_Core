@@ -6,17 +6,17 @@ namespace TOR_Core.AbilitySystem
     [Serializable]
     public class SeekerParameters
     {
-        [XmlAttribute] 
+        [XmlAttribute]
         public float Proportional = 0.5f;
-        [XmlAttribute] 
+        [XmlAttribute]
         public float Derivative = 0f;
-        
+
         [XmlAttribute]
         public float MaxDistance = float.MaxValue;
         [XmlAttribute]
         public float MinDistance = float.MinValue;
 
-        [XmlAttribute] 
+        [XmlAttribute]
         public float DisableDistance = float.MinValue;
     }
 }

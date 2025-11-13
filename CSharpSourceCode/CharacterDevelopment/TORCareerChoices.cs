@@ -1,9 +1,9 @@
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -27,7 +27,7 @@ namespace TOR_Core.CharacterDevelopment
         {
             Instance = this;
             SetBasicTextVariables();
-            
+
             _allCareerChoices =
             [
                 new WarriorPriestCareerChoices(TORCareers.WarriorPriest),
@@ -68,22 +68,22 @@ namespace TOR_Core.CharacterDevelopment
         public static CareerChoiceObject GetChoice(string id) => Game.Current.ObjectManager.GetObject<CareerChoiceObject>(x => x.StringId == id);
 
 
-        public TORCareerChoicesBase  GetCareerChoices(CareerObject id)
+        public TORCareerChoicesBase GetCareerChoices(CareerObject id)
         {
-            return _allCareerChoices.FirstOrDefault(x => x.GetID() ==id);
+            return _allCareerChoices.FirstOrDefault(x => x.GetID() == id);
         }
 
         private void SetBasicTextVariables()
         {
             foreach (var type in Enum.GetValues(typeof(PassiveEffectType)).Cast<PassiveEffectType>())
             {
-                GameTexts.SetVariable("TOR_CHOICE_"+type.ToString().ToUpper(),GameTexts.FindText("tor_careerchoice_basic", type.ToString()));
+                GameTexts.SetVariable("TOR_CHOICE_" + type.ToString().ToUpper(), GameTexts.FindText("tor_careerchoice_basic", type.ToString()));
             }
-            
+
         }
     }
 
-    public class CareerHasNoChoicesException(string message): Exception(message)
+    public class CareerHasNoChoicesException(string message) : Exception(message)
     {
     }
 }

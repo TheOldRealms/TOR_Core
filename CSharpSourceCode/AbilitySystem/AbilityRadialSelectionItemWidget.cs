@@ -33,9 +33,9 @@ namespace TOR_Core.AbilitySystem
 
         private void AbilityRadialSelectionItemWidget_boolPropertyChanged(PropertyOwnerObject widget, string propertyName, bool value)
         {
-            if(propertyName == "IsSelected")
+            if (propertyName == "IsSelected")
             {
-                if(value)
+                if (value)
                 {
                     SetState("Selected");
                     EventFired("OnSelected", Array.Empty<object>());

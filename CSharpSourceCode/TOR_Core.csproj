@@ -292,10 +292,6 @@
       <HintPath>..\..\..\Modules\CustomBattle\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.CustomBattle.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.Options.dll">
-      <HintPath>..\..\..\Modules\CustomBattle\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Options.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -531,7 +527,7 @@
     <Compile Include="CampaignMechanics\CustomResources\FavorHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\ForestHarmonyHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\OathGoldHelper.cs" />
-    <Compile Include="CampaignMechanics\CustomResources\PartyVMExtension.cs" />
+    <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\IRaidingParty.cs" />
@@ -570,7 +566,7 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementMenuHelpers.cs" />
     <Compile Include="CampaignMechanics\TORFactionDiscontinuationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
-    <Compile Include="CampaignMechanics\TORMapInfoVMExtension.cs" />
+    <Compile Include="Extensions\UI\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />
     <Compile Include="CampaignMechanics\TORSpecialSettlementBehavior.cs" />
@@ -604,7 +600,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreen.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenGameState.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerScreenVM.cs" />
-    <Compile Include="CharacterDevelopment\CareerSystem\CharacterDeveloperVMExtension.cs" />
+    <Compile Include="Extensions\UI\CharacterDeveloperVMExtension.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\BlackGrailKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\BloodKnightCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\CareerChoicesHelper.cs" />

@@ -7,12 +7,12 @@ using TaleWorlds.TwoDimension;
 namespace TOR_Core.Extensions.UI;
 
 [ViewModelExtension(typeof(MissionConversationVM), "Refresh")]
-public class MissionConversationVMExtension: BaseViewModelExtension
+public class MissionConversationVMExtension : BaseViewModelExtension
 {
-    private string  _customResourceValue;
-    
+    private string _customResourceValue;
+
     private Sprite _customResourceSprite;
-    
+
     public MissionConversationVMExtension(ViewModel vm) : base(vm)
     {
         RefreshValues();
@@ -20,10 +20,10 @@ public class MissionConversationVMExtension: BaseViewModelExtension
     public override void RefreshValues()
     {
         var resource = Hero.MainHero.GetCultureSpecificCustomResource();
-        
+
         CustomResourceValue = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString();
-        
-        CustomResourceSprite = UIResourceManager.SpriteData.GetSprite(resource.LargeIconName);   
+
+        CustomResourceSprite = UIResourceManager.SpriteData.GetSprite(resource.LargeIconName);
     }
 
     public void OnConversationContinued()
@@ -47,7 +47,7 @@ public class MissionConversationVMExtension: BaseViewModelExtension
             }
         }
     }
-    
+
     [DataSourceProperty]
     public string CustomResourceValue
     {

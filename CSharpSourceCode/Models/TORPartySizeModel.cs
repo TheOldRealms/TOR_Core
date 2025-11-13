@@ -16,7 +16,7 @@ namespace TOR_Core.Models
         public override ExplainedNumber GetPartyMemberSizeLimit(PartyBase party, bool includeDescriptions = false)
         {
             var num = base.GetPartyMemberSizeLimit(party, includeDescriptions);
-            if (party?.MapFaction != null && party.Culture != null && party.Culture.StringId==TORConstants.Cultures.SYLVANIA)
+            if (party?.MapFaction != null && party.Culture != null && party.Culture.StringId == TORConstants.Cultures.SYLVANIA)
             {
                 if (party.LeaderHero != null && party.LeaderHero.IsHumanPlayerCharacter)
                 {
@@ -43,14 +43,14 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (party == null || party.LeaderHero ==null)
+            if (party == null || party.LeaderHero == null)
                 return num;
 
             if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
             {
                 AddCareerPassivesForPartySize(Hero.MainHero, ref num);
             }
-            
+
             if (party.LeaderHero?.Culture?.StringId == TORConstants.Cultures.ASRAI)
             {
                 num.AddFactor(-0.25f, new TextObject("Woodelf party size cultural penalty"));
@@ -99,7 +99,7 @@ namespace TOR_Core.Models
             if (playerHero == null) return;
             if (playerHero.HasAnyCareer())
             {
-                CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize,false);
+                CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize, false);
             }
 
 
@@ -109,8 +109,8 @@ namespace TOR_Core.Models
                 {
                     var info = playerHero.GetExtendedInfo();
                     var abilities = info.AllAbilities;
-                    
-                    number.Add(3*abilities.Count);
+
+                    number.Add(3 * abilities.Count);
                 }
             }
 
@@ -125,7 +125,7 @@ namespace TOR_Core.Models
                         {
                             continue;
                         }
-                        if(!hero.CharacterObject.IsElf())
+                        if (!hero.CharacterObject.IsElf())
                             continue;
 
                         if (hero.Culture.StringId != TORConstants.Cultures.ASRAI)
@@ -135,7 +135,7 @@ namespace TOR_Core.Models
 
                         if (hero.HasAttribute("GladeCaptain"))
                         {
-                            number.Add(choice.Passive.EffectMagnitude,choice.Description);
+                            number.Add(choice.Passive.EffectMagnitude, choice.Description);
                         }
                     }
                 }

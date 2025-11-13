@@ -20,7 +20,7 @@ namespace TOR_Core.Models
 
                     float daytime = CampaignTime.Hours(Campaign.CurrentTime).CurrentHourInDay;
                     var isNight = daytime > 18 || daytime < 6;
-                    if (choices.Contains("NightRiderPassive3")&& isNight)
+                    if (choices.Contains("NightRiderPassive3") && isNight)
                     {
                         var choice = TORCareerChoices.GetChoice("NightRiderPassive3");
                         if (choice != null)
@@ -30,13 +30,13 @@ namespace TOR_Core.Models
                     }
                 }
             }
-            
+
             if (attackerSide.IsMainPartyAmongParties())
             {
                 if (MobileParty.MainParty.LeaderHero.HasAnyCareer())
                 {
                     var choices = MobileParty.MainParty.LeaderHero.GetAllCareerChoices();
-                    
+
                     if (choices.Contains("RobberKnightPassive4"))
                     {
                         var choice = TORCareerChoices.GetChoice("RobberKnightPassive4");
@@ -44,8 +44,8 @@ namespace TOR_Core.Models
                         {
                             explainedNumber.AddFactor(-choice.GetPassiveValue());
                         }
-                        
-                        Hero.MainHero.AddCustomResource("DarkEnergy",explainedNumber.ResultNumber*250);
+
+                        Hero.MainHero.AddCustomResource("DarkEnergy", explainedNumber.ResultNumber * 250);
                     }
                 }
             }

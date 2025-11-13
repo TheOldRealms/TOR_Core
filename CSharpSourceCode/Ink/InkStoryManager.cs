@@ -33,7 +33,7 @@ namespace TOR_Core.Ink
             if (Directory.Exists(path))
             {
                 var files = Directory.GetFiles(path, "*.ink");
-                foreach(var file in files)
+                foreach (var file in files)
                 {
                     _stories.Add(Path.GetFileNameWithoutExtension(file), new InkStory(Path.GetFileNameWithoutExtension(file), file));
                 }
@@ -55,10 +55,10 @@ namespace TOR_Core.Ink
         public static void OpenStory(string name, Action<InkStory> afterClose = null)
         {
             var story = GetStory(name);
-            if(story != null && Game.Current.GameType is Campaign)
+            if (story != null && Game.Current.GameType is Campaign)
             {
                 var behavior = Campaign.Current.GetCampaignBehavior<InkStoryCampaignBehavior>();
-                if(behavior != null)
+                if (behavior != null)
                 {
                     behavior.OpenStory(story);
                     LastStoryId = name;
@@ -69,7 +69,7 @@ namespace TOR_Core.Ink
 
         public static void CloseCurrentStory()
         {
-            if(Game.Current.GameType is Campaign)
+            if (Game.Current.GameType is Campaign)
             {
                 var behavior = Campaign.Current.GetCampaignBehavior<InkStoryCampaignBehavior>();
                 if (behavior != null)

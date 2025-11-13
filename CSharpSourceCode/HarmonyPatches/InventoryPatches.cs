@@ -41,7 +41,7 @@ namespace TOR_Core.HarmonyPatches
                 var list = text.Split(',');
                 var logic = AccessTools.Field(typeof(SPInventoryVM), "_inventoryLogic").GetValue(____dataSource) as InventoryLogic;
                 List<Tuple<string, int>> itemList = new List<Tuple<string, int>>();
-                for(int i = 0; i < list.Length; i++)
+                for (int i = 0; i < list.Length; i++)
                 {
                     itemList.Add(new Tuple<string, int>(list[i], i));
                 }
@@ -146,7 +146,7 @@ namespace TOR_Core.HarmonyPatches
                 {
                     var itemId = tuple.Item1.Split('.').Last();
                     var itemObject = MBObjectManager.Instance.GetObject<ItemObject>(itemId);
-                    if(itemObject != null)
+                    if (itemObject != null)
                     {
                         var playerItems = logic.GetElementsInRoster(InventoryLogic.InventorySide.PlayerInventory);
                         var otherItems = logic.GetElementsInRoster(InventoryLogic.InventorySide.OtherInventory);
@@ -158,7 +158,7 @@ namespace TOR_Core.HarmonyPatches
                             element = otherItems.FirstOrDefault(x => x.EquipmentElement.Item.StringId == itemObject.StringId);
                             side = InventoryLogic.InventorySide.OtherInventory;
                         }
-                        if(!element.IsEmpty)
+                        if (!element.IsEmpty)
                         {
                             var command = TransferCommand.Transfer(1, side, InventoryLogic.InventorySide.BattleEquipment, element, EquipmentIndex.None, GetItemTypeWithIndex(tuple.Item2), inventoryVM.CharacterList.SelectedItem.Hero.CharacterObject);
                             commands.Add(command);
@@ -168,14 +168,14 @@ namespace TOR_Core.HarmonyPatches
                 else
                 {
                     var itemFromslot = GetItemFromIndex(GetItemTypeWithIndex(tuple.Item2), inventoryVM);
-                    if(itemFromslot != null && !itemFromslot.ItemRosterElement.IsEmpty)
+                    if (itemFromslot != null && !itemFromslot.ItemRosterElement.IsEmpty)
                     {
                         var command = TransferCommand.Transfer(1, InventoryLogic.InventorySide.BattleEquipment, InventoryLogic.InventorySide.PlayerInventory, itemFromslot.ItemRosterElement, GetItemTypeWithIndex(tuple.Item2), EquipmentIndex.None, inventoryVM.CharacterList.SelectedItem.Hero.CharacterObject);
                         commands.Add(command);
                     }
                 }
             }
-            if(commands.Count > 0) logic.AddTransferCommands(commands);
+            if (commands.Count > 0) logic.AddTransferCommands(commands);
         }
 
         public static EquipmentIndex GetItemTypeWithIndex(int index)

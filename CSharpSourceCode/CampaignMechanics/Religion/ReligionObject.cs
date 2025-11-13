@@ -21,8 +21,8 @@ namespace TOR_Core.CampaignMechanics.Religion
         public TextObject Name { get; set; }
         public TextObject DeityName { get; set; }
         public TextObject LoreText { get; private set; }
-        public TextObject BlessingEffectDescription{ get; private set; }
-        public TextObject BlessingEffectName{ get; private set; }
+        public TextObject BlessingEffectDescription { get; private set; }
+        public TextObject BlessingEffectName { get; private set; }
         public CultureObject Culture { get; private set; }
         public List<ReligionObject> HostileReligions { get; private set; } = [];
         public List<CharacterObject> ReligiousTroops { get; private set; } = [];
@@ -61,21 +61,21 @@ namespace TOR_Core.CampaignMechanics.Religion
             Culture = MBObjectManager.Instance.ReadObjectReferenceFromXml<CultureObject>("Culture", node);
             Affinity = (ReligionAffinity)Enum.Parse(typeof(ReligionAffinity), node.Attributes.GetNamedItem("Affinity").Value);
             LoreText = GameTexts.FindText("tor_religion_description", StringId);
-            
+
             if (GameTexts.TryGetText("tor_religion_blessing_name", out var blessingName, this.StringId))
                 BlessingEffectName = blessingName;
             if (GameTexts.TryGetText("tor_religion_blessing_effect_description", out var blessingDescription, this.StringId))
                 BlessingEffectDescription = blessingDescription;
-            
+
             if (node.HasChildNodes)
             {
                 foreach (XmlNode child in node.ChildNodes)
                 {
-                    if(child.Name == "HostileReligions")
+                    if (child.Name == "HostileReligions")
                     {
-                        foreach(XmlNode religionNode in child.ChildNodes)
+                        foreach (XmlNode religionNode in child.ChildNodes)
                         {
-                            if(religionNode.Name == "HostileReligion")
+                            if (religionNode.Name == "HostileReligion")
                             {
                                 ReligionObject hostileReligion = MBObjectManager.Instance.ReadObjectReferenceFromXml<ReligionObject>("id", religionNode);
                                 if (hostileReligion != null) HostileReligions.Add(hostileReligion);
@@ -86,7 +86,7 @@ namespace TOR_Core.CampaignMechanics.Religion
                     {
                         foreach (XmlNode followerNode in child.ChildNodes)
                         {
-                            if(followerNode.Name == "FollowerClan")
+                            if (followerNode.Name == "FollowerClan")
                             {
                                 var id = followerNode.Attributes.GetNamedItem("stringId").Value;
                                 if (!string.IsNullOrWhiteSpace(id) && !InitialClans.Contains(id)) InitialClans.Add(id);

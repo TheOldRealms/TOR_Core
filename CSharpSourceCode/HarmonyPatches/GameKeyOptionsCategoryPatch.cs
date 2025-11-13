@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using HarmonyLib;
+using System.Collections.Generic;
 using TaleWorlds.MountAndBlade.Options;
 using TOR_Core.GameManagers;
 
@@ -15,7 +15,7 @@ namespace TOR_Core.HarmonyPatches
     {
         [HarmonyPostfix]
         [HarmonyPatch(typeof(OptionsProvider), "GetGameKeyCategoriesList")]
-        public static IEnumerable<string> Postfix( IEnumerable<string> __result)
+        public static IEnumerable<string> Postfix(IEnumerable<string> __result)
         {
             return __result.AddItem(nameof(TORGameKeyContext));
         }

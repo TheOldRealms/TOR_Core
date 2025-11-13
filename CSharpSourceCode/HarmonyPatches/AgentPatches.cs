@@ -1,10 +1,6 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaleWorlds.Core;
-using TaleWorlds.Engine;
-using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
@@ -12,6 +8,7 @@ using TOR_Core.Extensions;
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
+    [HarmonyPatchCategory("LatePatches")]
     public static class AgentPatches
     {
         [HarmonyPostfix]
@@ -44,11 +41,11 @@ namespace TOR_Core.HarmonyPatches
                 List<Agent> units = [];
                 foreach (var unit in __instance.Arrangement.GetAllUnits())
                 {
-                    if(unit is Agent agent && agent.IsActive())
+                    if (unit is Agent agent && agent.IsActive())
                     {
                         units.Add(agent);
                     }
-                    
+
                 }
                 __result = units.FirstOrDefault();
             }

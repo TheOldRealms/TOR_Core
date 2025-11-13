@@ -1,9 +1,9 @@
+using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -30,11 +30,11 @@ namespace TOR_Core.Models
             if ((bool)(settlement?.IsRoRSettlement()) && IsHeroRoRCapable(sellerHero))
             {
                 var template = RORManager.GetTemplateFor(settlement.StringId);
-                if(template != null)
+                if (template != null)
                 {
-                    
+
                     var troop = MBObjectManager.Instance.GetObject<CharacterObject>(template.BaseTroopId);
-                    
+
                     if (troop != null)
                     {
                         if (troop.IsUndead())
@@ -79,7 +79,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if(settlement.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            if (settlement.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
                 var random = MBRandom.RandomInt(0, 3);
                 if (random <= 1)
@@ -102,7 +102,7 @@ namespace TOR_Core.Models
                     sellerHero.Occupation == Occupation.Headman ||
                     sellerHero.Occupation == Occupation.RuralNotable;
         }
-        
+
         public override float GetDailyVolunteerProductionProbability(
             Hero hero,
             int index,
@@ -118,24 +118,24 @@ namespace TOR_Core.Models
             return value;
 
         }
-        
+
         public override int MaximumIndexHeroCanRecruitFromHero(Hero buyerHero, Hero sellerHero, int useValueAsRelation = -101)
         {
             if (GetBasicVolunteer(sellerHero).IsUndead())
             {
-                if (!buyerHero.IsNecromancer() || !buyerHero.PartyBelongedTo.GetMemberHeroes().Any(x=> x.IsNecromancer()))
+                if (!buyerHero.IsNecromancer() || !buyerHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()))
                 {
                     return -1;
                 }
             }
-            
+
             var value = base.MaximumIndexHeroCanRecruitFromHero(buyerHero, sellerHero, useValueAsRelation);
 
             if (buyerHero.IsEnlisted()) //make sure only the player is affected!
             {
                 return -1;
             }
-            
+
             return value;
         }
     }

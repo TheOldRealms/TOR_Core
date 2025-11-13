@@ -9,7 +9,7 @@ public abstract class TORBaseSettlementMenuLogic
         AddSettlementMenu(campaignGameStarter);
     }
     protected abstract void AddSettlementMenu(CampaignGameStarter campaignGameStarter);
-    
+
     protected CampaignTime _startWaitTime;
 
     protected int numberOfTroopsFromInteraction;

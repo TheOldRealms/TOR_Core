@@ -33,7 +33,8 @@ namespace TOR_Core.BattleMechanics.Morale
                     TORCommon.Log("AgentVoiceComponent : agent is null.", NLog.LogLevel.Warn);
                 }
                 _wantsToPlayVoice = false;
-                try { 
+                try
+                {
                     if (Agent.IsHuman && Agent.IsActive() && Agent.Health > 1f)
                     {
                         PlayVoice(_wantsToPlayVoiceType);

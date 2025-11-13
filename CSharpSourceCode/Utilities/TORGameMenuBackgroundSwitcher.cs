@@ -60,15 +60,15 @@ namespace TOR_Core.Utilities
                 ?? TORCommon.FindNearestSettlement(MobileParty.MainParty, RAID_RADIUS)
                 ?? null;
 
-            if(settlement != null)
+            if (settlement != null)
             {
-                
-                if(settlement.Culture.StringId == TORConstants.Cultures.MOUSILLON)
+
+                if (settlement.Culture.StringId == TORConstants.Cultures.MOUSILLON)
                 {
                     args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
                     return;
                 }
-                if(settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA)
+                if (settlement.Culture.StringId == TORConstants.Cultures.BRETONNIA)
                 {
                     args.MenuContext.SetBackgroundMeshName("bretonnia_arena");
                     return;
@@ -79,7 +79,7 @@ namespace TOR_Core.Utilities
                     return;
                 }
             }
-            
+
             args.MenuContext.SetBackgroundMeshName("generic_arena");
             //args.MenuContext.SetAmbientSound("event:/map/ambient/node/settlements/2d/arena");
         }
@@ -131,7 +131,7 @@ namespace TOR_Core.Utilities
             var settlement = Settlement.CurrentSettlement;
 
             if (settlement == null) return;
-            
+
             if (settlement.Culture == null)
             {
                 args.MenuContext.SetBackgroundMeshName("vlandia_backstreet");
@@ -151,7 +151,7 @@ namespace TOR_Core.Utilities
                     return;
             }
         }
-        
+
         [GameMenuInitializationHandler("town_keep")]
         private static void wait_menu_ui_town_keep_on_init_tor(MenuCallbackArgs args)
         {

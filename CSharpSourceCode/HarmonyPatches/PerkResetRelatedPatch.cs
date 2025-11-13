@@ -27,21 +27,21 @@ namespace TOR_Core.HarmonyPatches
             if (!hero.GetPerkValue(perk)) return;
 
             if (perk == TORPerks.GunPowder.FiringDrills)
-            {   
+            {
                 hero.HeroDeveloper.RemoveAttribute(TORAttributes.Discipline, 1);
             }
-            if(perk == TORPerks.Faith.DivineMission)
+            if (perk == TORPerks.Faith.DivineMission)
             {
                 hero.HeroDeveloper.RemoveFocus(DefaultSkills.Medicine, 1);
             }
-            if(perk == TORPerks.Faith.ForeSight)
+            if (perk == TORPerks.Faith.ForeSight)
             {
                 hero.HeroDeveloper.UnspentAttributePoints -= 1;
             }
             //if someone has a spell, does it become unuseable if they lose the perk, but it remains in their spellbook?
             //why do prayers need to be removed rather than also unuseable (if that's what happens)?
             if (hero.IsPriest())
-            {    
+            {
                 var prayers = CareerHelper.GetPriestPrayerList(hero);
 
                 var rank = 0;
@@ -50,25 +50,25 @@ namespace TOR_Core.HarmonyPatches
                 {
                     rank = 2;
                 }
-                        
+
                 else if (perk == TORPerks.Faith.AdeptPrayers)
                 {
                     rank = 3;
                 }
-                        
+
                 else if (perk == TORPerks.Faith.GrandPrayers)
                 {
                     rank = 4;
                 }
-                        
+
                 var prayersForRank = prayers.Where(X => X.Rank == rank);
-                var extendedInfo = hero.GetExtendedInfo(); 
+                var extendedInfo = hero.GetExtendedInfo();
                 foreach (var prayer in prayersForRank)
                 {
                     extendedInfo.RemoveAbility(prayer.PrayerID);
                 }
             }
-            
+
         }
     }
 }

@@ -22,17 +22,17 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 {
                     _trackedAgents.Add(agent, new MBList<AnimationTriggerTuple>());
                 }
-                else if(agent.IsHero && agent.GetHero() != null && agent.GetHero().HasAttribute("HasAnimationTriggeredEffects"))
+                else if (agent.IsHero && agent.GetHero() != null && agent.GetHero().HasAttribute("HasAnimationTriggeredEffects"))
                 {
                     _trackedAgents.Add(agent, new MBList<AnimationTriggerTuple>());
                 }
             }
-            
+
         }
 
         public override void OnMissionTick(float dt)
         {
-            foreach (var entry in _trackedAgents.ToMBList()) 
+            foreach (var entry in _trackedAgents.ToMBList())
             {
                 var agent = entry.Key;
                 if (!agent.IsActive()) continue;

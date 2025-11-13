@@ -15,7 +15,7 @@ public static class TreeSpiritHelpers
     {
         return Mathf.Min(0.7f, spellsinger.GetSkillValue(TORSkills.SpellCraft) * 0.002f);//350 Spellcraft to reach 0.7
     }
-    
+
     public static bool CanBindTreeSpirits()
     {
         var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();

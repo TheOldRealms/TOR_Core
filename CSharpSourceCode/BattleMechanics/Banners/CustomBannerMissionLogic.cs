@@ -58,10 +58,12 @@ namespace TOR_Core.BattleMechanics.Banners
                 {
                     var agent = _unprocessedAgents.Dequeue();
                     var banner = DetermineBanner(agent);
-                    if (agent == null) {
+                    if (agent == null)
+                    {
                         TORCommon.Log("CustomBannerMissionLogic : Tried to assign shield pattern to null agent.", NLog.LogLevel.Error);
                     }
-                    if (banner == null) {
+                    if (banner == null)
+                    {
                         TORCommon.Log("CustomBannerMissionLogic : Tried to assign null shield pattern to agent : " + agent.ToString() + ".", NLog.LogLevel.Error);
                     }
                     try
@@ -89,7 +91,7 @@ namespace TOR_Core.BattleMechanics.Banners
         {
             if (_agentsWithBanners.ContainsKey(affectedAgent.Index))
             {
-                if (affectedAgent.Equipment != null && 
+                if (affectedAgent.Equipment != null &&
                     !affectedAgent.Equipment[_agentsWithBanners[affectedAgent.Index]].IsEmpty)
                 {
                     //Sly : is this here because of some sort of crash? or is the intention to have far less shields be on the ground from agents dying?
@@ -108,14 +110,14 @@ namespace TOR_Core.BattleMechanics.Banners
                     var equipment = agent.Equipment[i];
                     if (!equipment.IsEmpty && equipment.Item != null)
                     {
-                        if(equipment.Item.ItemType == ItemTypeEnum.Shield)
+                        if (equipment.Item.ItemType == ItemTypeEnum.Shield)
                         {
                             if (equipment.Item.IsUsingTableau)
                             {
                                 agent.RemoveEquippedWeapon((EquipmentIndex)i);
                                 var missionWeapon = new MissionWeapon(equipment.Item, equipment.ItemModifier, banner);
                                 agent.EquipWeaponWithNewEntity((EquipmentIndex)i, ref missionWeapon);
-                                
+
                                 //addresses an issue with the start of siege assaults where attacking formations attached to siege equipment won't equip their new shields until the siege equipment has finished its role
                                 //issue with AIStateFlag.UseObjectWaiting that's preventing changing wielded items maybe?
                                 //UsableMissionObject movingToOrDefendingObject + usedObject is StandingPoint ?
@@ -149,9 +151,9 @@ namespace TOR_Core.BattleMechanics.Banners
                 }
                 else return false;
             }
-            
+
             var equipment = agent.Equipment;
-            if(equipment.HasAnyWeaponWithFlags(WeaponFlags.NotUsableWithOneHand)) return false;
+            if (equipment.HasAnyWeaponWithFlags(WeaponFlags.NotUsableWithOneHand)) return false;
             var weaponList = GetWeaponItems(equipment).ToList();
             if (weaponList.Any(x => !x.IsEmpty && x.Item != null && x.Item.ItemType == ItemTypeEnum.TwoHandedWeapon)) return false;
 
@@ -170,8 +172,8 @@ namespace TOR_Core.BattleMechanics.Banners
 
         private ItemObject GetFakeBannerObject(int agentTier)
         {
-            if(agentTier > 6) return MBObjectManager.Instance.GetObject<ItemObject>("tor_fake_faction_banner_001_t3");
-            else if(agentTier > 3) return MBObjectManager.Instance.GetObject<ItemObject>("tor_fake_faction_banner_001_t2");
+            if (agentTier > 6) return MBObjectManager.Instance.GetObject<ItemObject>("tor_fake_faction_banner_001_t3");
+            else if (agentTier > 3) return MBObjectManager.Instance.GetObject<ItemObject>("tor_fake_faction_banner_001_t2");
             return MBObjectManager.Instance.GetObject<ItemObject>("tor_fake_faction_banner_001_t1");
         }
 
@@ -198,7 +200,7 @@ namespace TOR_Core.BattleMechanics.Banners
             if (currentMesh != null)
             {
                 Material material = currentMesh.GetMaterial()?.CreateCopy();
-                if(material != null)
+                if (material != null)
                 {
                     material.SetTexture(Material.MBTextureType.DiffuseMap2, t);
                     uint num = (uint)material.GetShader().GetMaterialShaderFlagMask("use_tableau_blending", true);
@@ -218,7 +220,7 @@ namespace TOR_Core.BattleMechanics.Banners
                 {
                     //var origin = agent.Origin as PartyAgentOrigin;
                     factionId = origin.Party.MapFaction.StringId;
-                    if(origin.Party.MapFaction.Leader == Hero.MainHero)
+                    if (origin.Party.MapFaction.Leader == Hero.MainHero)
                     {
                         return Hero.MainHero.ClanBanner;
                     }

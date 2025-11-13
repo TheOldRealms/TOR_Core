@@ -28,7 +28,7 @@ namespace TOR_Core.Items
         {
             if (!MainContainer.Brush.IsCloneRelated(CharacterCantUseBrush) && _magicBrush != null)
             {
-                if(ItemID != null)
+                if (ItemID != null)
                 {
                     if (ExtendedItemObjectManager.HasMagicItemId(ItemID))
                     {

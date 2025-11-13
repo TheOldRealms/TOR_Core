@@ -1,18 +1,18 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.SpellBook;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.TriggeredEffect;
-using TOR_Core.Utilities;
-using TOR_Core.Extensions;
-using System.Collections.Generic;
-using System.Linq;
-using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -105,18 +105,18 @@ namespace TOR_Core.AbilitySystem
         public bool ShouldRotateVisuals { get; set; } = false;
         [XmlAttribute]
         public bool DoNotAlignParticleEffectPrefab { get; set; } = false;
-        [XmlElement] 
+        [XmlElement]
         public SeekerParameters SeekerParameters { get; set; } = null;
-        [XmlIgnore] 
+        [XmlIgnore]
         public float ScaleVariable1 { get; set; } = 0f;
         public float VisualsRotationVelocity { get; set; } = 0f;
-        
+
         [XmlIgnore]
         public bool IsSpell => AbilityType == AbilityType.Spell;
         [XmlIgnore]
         public List<TriggeredEffectTemplate> AssociatedTriggeredEffectTemplates => TriggeredEffectManager.GetTemplatesWithIds(TriggeredEffects);
         [XmlIgnore]
-        public bool DoesDamage => AssociatedTriggeredEffectTemplates.Any(x=> x.DamageType != DamageType.Invalid && x.DamageAmount > 0);
+        public bool DoesDamage => AssociatedTriggeredEffectTemplates.Any(x => x.DamageType != DamageType.Invalid && x.DamageAmount > 0);
         [XmlIgnore]
         public int GoldCost
         {
@@ -133,8 +133,8 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-       
-        
+
+
         public AbilityTemplate() { }
         public AbilityTemplate(string id) => StringID = id;
         public MBBindingList<StatItemVM> GetStats(Hero hero, AbilityTemplate spellTemplate)
@@ -142,18 +142,18 @@ namespace TOR_Core.AbilitySystem
             MBBindingList<StatItemVM> list = new MBBindingList<StatItemVM>();
             if (IsSpell)
             {
-                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_name_str}Spell Name: ").ToString(), new TextObject(Name).ToString()));
-                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_wom_cost_str}Winds of Magic cost: ").ToString(), hero.GetEffectiveWindsCostForSpell(spellTemplate) + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
-                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_tier_str}Spell Tier: ").ToString(), ((SpellCastingLevel)SpellTier).ToString()));
-                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_type_str}Spell Type: ").ToString(), AbilityEffectType.ToString()));
-                list.Add(new StatItemVM(new TextObject ("{=tor_spell_stat_tag_cooldown_str}Cooldown: ").ToString(), CoolDown.ToString()+" seconds"));
+                list.Add(new StatItemVM(new TextObject("{=tor_spell_stat_tag_name_str}Spell Name: ").ToString(), new TextObject(Name).ToString()));
+                list.Add(new StatItemVM(new TextObject("{=tor_spell_stat_tag_wom_cost_str}Winds of Magic cost: ").ToString(), hero.GetEffectiveWindsCostForSpell(spellTemplate) + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
+                list.Add(new StatItemVM(new TextObject("{=tor_spell_stat_tag_tier_str}Spell Tier: ").ToString(), ((SpellCastingLevel)SpellTier).ToString()));
+                list.Add(new StatItemVM(new TextObject("{=tor_spell_stat_tag_type_str}Spell Type: ").ToString(), AbilityEffectType.ToString()));
+                list.Add(new StatItemVM(new TextObject("{=tor_spell_stat_tag_cooldown_str}Cooldown: ").ToString(), CoolDown.ToString() + " seconds"));
             }
             else if (AbilityType == AbilityType.Prayer)
             {
-                list.Add(new StatItemVM(new TextObject ("{=tor_prayer_stat_tag_name_str}Prayer Name: ").ToString(), new TextObject(Name).ToString()));
-                list.Add(new StatItemVM(new TextObject ("{=tor_prayer_stat_tag_tier_str}Prayer Tier: ").ToString(), ((PrayerLevel)SpellTier).ToString()));
-                list.Add(new StatItemVM(new TextObject ("{=tor_prayer_stat_tag_type_str}Prayer Type: ").ToString(), AbilityEffectType.ToString()));
-                list.Add(new StatItemVM(new TextObject ("{=tor_prayer_stat_tag_cooldown_str}Cooldown: ").ToString(), CoolDown.ToString()+" seconds"));
+                list.Add(new StatItemVM(new TextObject("{=tor_prayer_stat_tag_name_str}Prayer Name: ").ToString(), new TextObject(Name).ToString()));
+                list.Add(new StatItemVM(new TextObject("{=tor_prayer_stat_tag_tier_str}Prayer Tier: ").ToString(), ((PrayerLevel)SpellTier).ToString()));
+                list.Add(new StatItemVM(new TextObject("{=tor_prayer_stat_tag_type_str}Prayer Type: ").ToString(), AbilityEffectType.ToString()));
+                list.Add(new StatItemVM(new TextObject("{=tor_prayer_stat_tag_cooldown_str}Cooldown: ").ToString(), CoolDown.ToString() + " seconds"));
             }
             return list;
         }
@@ -163,7 +163,7 @@ namespace TOR_Core.AbilitySystem
             return new AbilityTemplate(newId)
             {
                 Name = Name,
-                SpriteName  = SpriteName,
+                SpriteName = SpriteName,
                 CoolDown = CoolDown,
                 WindsOfMagicCost = WindsOfMagicCost,
                 BaseMisCastChance = BaseMisCastChance,

@@ -15,15 +15,15 @@ namespace TOR_Core.Ink
         public InkStory CurrentStory { get; private set; }
         public override void RegisterEvents() { }
 
-        public void OpenStory(InkStory story) 
+        public void OpenStory(InkStory story)
         {
-            if(ScreenManager.TopScreen is MapScreen)
+            if (ScreenManager.TopScreen is MapScreen)
             {
                 _mapScreen = ScreenManager.TopScreen as MapScreen;
                 _cachedSpeed = Campaign.Current.TimeControlMode;
                 Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
                 _inkView = (InkBookMapView)_mapScreen.AddMapView<InkBookMapView>();
-                if(_inkView != null) _inkView.OpenStory(story);
+                if (_inkView != null) _inkView.OpenStory(story);
                 CurrentStory = story;
             }
         }

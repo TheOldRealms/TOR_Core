@@ -39,7 +39,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
         {
             InitializeVariables();
             AddPrestigeNobleDialogLines(obj);
-            
+
             //Setting variables like this puts them into the TextProcessingContext _variables dictionary which is the global back-up if a TextObject contains no local value for a variable
             //for common variables, these should probably be grouped together in a single location rather than each class defining global values separately that may conflict for the same variable name
             void InitializeVariables()
@@ -83,7 +83,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     null, null, 200);
 
                 InitPrestigeItemDialog();
-                
+
                 cgs.AddPlayerLine("infrastructure_projects", "prestige_noble_main_hub",
                     "noble_prestige_infrastructure_hub", GameTexts.FindText("tor_empire_prestigeNoble_buildingAsk_p").ToString(),
                     null, null, 200);
@@ -97,7 +97,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                 cgs.AddPlayerLine("noble_hub_exit", "prestige_noble_main_hub", "close_window", GameTexts.FindText("tor_empire_prestigeNoble_exitConvo_p").ToString(),
                     null, null, 200);
-                
+
                 //prestige items : eg. demigrpyh
 
                 void InitPrestigeItemDialog()
@@ -109,7 +109,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     cgs.AddPlayerLine("noble_prestige_item_selection_mount", "noble_prestige_item_hub",
                         "noble_prestige_item_explain_mount", GameTexts.FindText("tor_empire_prestigeNoble_mountInquiry_p").ToString(),
                         null, null, 200);
-                    
+
                     cgs.AddPlayerLine("prestige_item_noble_hub_selection_back", "noble_prestige_item_hub",
                         "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_noInterestItems_p").ToString(),
                         null, null, 200);
@@ -182,12 +182,12 @@ namespace TOR_Core.CampaignMechanics.Menagery
                         var index = i; //using i will cause index out of bounds exceptions during gameplay because the Line conditionals aren't evaluated until the line is about to be displayed at which point i = buildingCosts.Length
                         cgs.AddPlayerLine(buildingPrestigeSelection + index,
                             "noble_prestige_infrastructure_hub_selection",
-                            buildingPrestigeExplain + index, GameTexts.FindText("tor_empire_prestigeNoble_buildingOption"+index).ToString(),
+                            buildingPrestigeExplain + index, GameTexts.FindText("tor_empire_prestigeNoble_buildingOption" + index).ToString(),
                             () => !_constructedBuildings.Any(x => x.Contains("building" + index)), null, 200);
-                        
+
                         cgs.AddDialogLine(buildingPrestigeExplain + index, buildingPrestigeExplain + index,
                             $"buildingPrestigeSelection{index}_choice",
-                             GameTexts.FindText("tor_empire_prestigeNoble_buildingExplain"+index).SetTextVariable("BUILDING_COST", buildingCosts[index]).ToString(),
+                             GameTexts.FindText("tor_empire_prestigeNoble_buildingExplain" + index).SetTextVariable("BUILDING_COST", buildingCosts[index]).ToString(),
                             null, null, 200);
 
                         cgs.AddPlayerLine($"noble_prestige_item_selection_building_{index}_agree",
@@ -263,11 +263,11 @@ namespace TOR_Core.CampaignMechanics.Menagery
                         var index = i;
                         cgs.AddPlayerLine(politicalPowerSelection + index,
                             "noble_prestige_political_power_hub_selection",
-                            politicalPowerExplain + index, GameTexts.FindText("tor_empire_prestigeNoble_influenceOption"+index).ToString(),
+                            politicalPowerExplain + index, GameTexts.FindText("tor_empire_prestigeNoble_influenceOption" + index).ToString(),
                             () => !_politicalPowerProjects.Any(x => x.Contains("powerProject" + index)), null, 200);
 
                         cgs.AddDialogLine(politicalPowerExplain + index, politicalPowerExplain + index,
-                            $"powerSelection{index}_choice", GameTexts.FindText("tor_empire_prestigeNoble_influenceExplain"+index).SetTextVariable("INFLUENCE_COST", costs[index]).ToString(),
+                            $"powerSelection{index}_choice", GameTexts.FindText("tor_empire_prestigeNoble_influenceExplain" + index).SetTextVariable("INFLUENCE_COST", costs[index]).ToString(),
                             null, null, 200);
 
                         cgs.AddPlayerLine($"powerSelection_choice{index}_agree",
@@ -276,7 +276,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                             () => HasEnoughInfluence(costs[index]),
                             () =>
                             {
-                                ExchangeInfluenceForPrestige(costs[index],costs[index]);
+                                ExchangeInfluenceForPrestige(costs[index], costs[index]);
                                 _politicalPowerProjects.Add("powerProject" + index);
                             }, 200);
 
@@ -315,8 +315,8 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                     return false;
                 }
-                
-                bool IsPrestigeNoble( Hero hero)
+
+                bool IsPrestigeNoble(Hero hero)
                 {
                     if (hero != null)
                         return hero.Occupation == Occupation.Special && hero.HasAttribute("PrestigeNoble");
@@ -345,7 +345,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
             foreach (var item in demigryphens)
                 list.Add(new InquiryElement(item, item.Name.ToString(), new ItemImageIdentifier(item)));
-            
+
             var inq = new MultiSelectionInquiryData(GameTexts.FindText("tor_empire_prestigeNoble_demigryphInquiryTitle").ToString(), GameTexts.FindText("tor_empire_prestigeNoble_demigryphInquiryDescription").ToString(),
                 list, false, 1, 1, new TextObject("{=5Unqsx3N}Confirm", null).ToString(), null, OnGryphRewardClaimed, null);
             MBInformationManager.ShowMultiSelectionInquiry(inq);

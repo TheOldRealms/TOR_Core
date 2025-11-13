@@ -26,18 +26,18 @@ namespace TOR_Core.Items.InventoryUseScripts
 
         public virtual void OnUse(MobileParty userParty, ItemObject item)
         {
-         
+
         }
 
         public void UseScript(MobileParty userParty, ItemObject item)
         {
             OnUse(userParty, item);
-            TORCampaignEvents.Instance.OnUseInventoryUseScriptObject(item,this.GetType().FullName, userParty, _arguments);
+            TORCampaignEvents.Instance.OnUseInventoryUseScriptObject(item, this.GetType().FullName, userParty, _arguments);
         }
-        
+
         public virtual void OnHourlyTick(MobileParty party) { }
         public virtual void OnDailyTick(MobileParty party) { }
-        
+
         public bool Equals(BaseInventoryUseScript other)
         {
             if (other == null) return false;
@@ -77,8 +77,8 @@ namespace TOR_Core.Items.InventoryUseScripts
 
     public class TORUseScriptArgumentException(string message) : ArgumentException
     {
-        
-    } 
+
+    }
 
 
     public class ScriptUseData()

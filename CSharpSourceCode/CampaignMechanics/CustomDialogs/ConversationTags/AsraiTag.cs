@@ -1,5 +1,5 @@
-﻿using TaleWorlds.CampaignSystem.Conversation.Tags;
-using TaleWorlds.CampaignSystem;
+﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Conversation.Tags;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 

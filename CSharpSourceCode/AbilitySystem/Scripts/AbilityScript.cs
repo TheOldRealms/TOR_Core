@@ -49,7 +49,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         public void SetTargetSeeking(Target target, SeekerParameters parameters) => _controller = new SeekerController(target, parameters);
 
         public void SetCasterAgent(Agent agent) => _casterAgent = agent;
-        
+
         public void SetExplicitTargetAgents(MBList<Agent> agents) => _targetAgents = agents;
 
         protected override bool MovesEntity() => true;
@@ -85,18 +85,18 @@ namespace TOR_Core.AbilitySystem.Scripts
             }
         }
 
-        protected virtual void OnBeforeTick(float dt) { } 
+        protected virtual void OnBeforeTick(float dt) { }
         protected virtual void OnAfterTick(float dt) { }
 
-        
+
         protected sealed override void OnTick(float dt)
         {
-            if (Mission.Current.CurrentState != Mission.State.Continuing || 
-                Mission.Current.MissionEnded || 
+            if (Mission.Current.CurrentState != Mission.State.Continuing ||
+                Mission.Current.MissionEnded ||
                 Mission.Current.IsMissionEnding ||
                 Mission.Current.MissionIsEnding)
             {
-                Stop(); 
+                Stop();
                 return;
             }
 
@@ -131,7 +131,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 var position = frame.origin;
                 var normal = frame.origin.NormalizedCopy();
-                if(_ability.Template.AbilityEffectType == AbilityEffectType.Blast)
+                if (_ability.Template.AbilityEffectType == AbilityEffectType.Blast)
                 {
                     position = frame.Advance(_ability.Template.Offset).origin;
                     normal = frame.rotation.f.NormalizedCopy();
@@ -193,7 +193,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private void UpdateSound(Vec3 position)
         {
-            if(_sound != null)
+            if (_sound != null)
             {
                 _sound.SetPosition(position);
                 if (IsSoundPlaying()) return;
@@ -224,7 +224,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected virtual bool CollidedWithAgent()
         {
-            if(!_canCollide) return false;
+            if (!_canCollide) return false;
             var collisionRadius = _ability.Template.Radius + 1;
             MBList<Agent> agents = [];
             agents = Mission.Current.GetNearbyAgents(GameEntity.GetGlobalFrame().origin.AsVec2, collisionRadius, agents);
@@ -253,7 +253,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         private void TriggerEffects(Vec3 position, Vec3 normal)
         {
             var effects = GetEffectsToTrigger();
-            foreach(var effect in effects)
+            foreach (var effect in effects)
             {
                 if (effect != null)
                 {
@@ -261,7 +261,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                     {
                         effect.Trigger(position, normal, _casterAgent, _ability.Template, [_casterAgent]);
                     }
-                    else if(_targetAgents != null && _targetAgents.Count() > 0)
+                    else if (_targetAgents != null && _targetAgents.Count() > 0)
                     {
                         effect.Trigger(position, normal, _casterAgent, _ability.Template, _targetAgents.ToMBList());
                     }
@@ -274,8 +274,8 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected virtual List<TriggeredEffect> GetEffectsToTrigger()
         {
             List<TriggeredEffect> effects = [];
-            if (_ability == null) return effects; 
-            foreach(var effect in _ability.Template.AssociatedTriggeredEffectTemplates)
+            if (_ability == null) return effects;
+            foreach (var effect in _ability.Template.AssociatedTriggeredEffectTemplates)
             {
                 effects.Add(new TriggeredEffect(effect));
             }

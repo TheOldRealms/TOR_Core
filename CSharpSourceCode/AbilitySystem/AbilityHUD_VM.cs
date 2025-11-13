@@ -31,7 +31,7 @@ namespace TOR_Core.AbilitySystem
         public override void RefreshValues()
         {
             _ability = Agent.Main.GetCurrentAbility();
-            if(_abilityLogic == null) _abilityLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
+            if (_abilityLogic == null) _abilityLogic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
             IsVisible = _ability != null && _abilityLogic != null && (Mission.Current.Mode == MissionMode.Battle || Mission.Current.Mode == MissionMode.Stealth);
             if (IsVisible)
             {
@@ -43,7 +43,7 @@ namespace TOR_Core.AbilitySystem
                 CoolDownLeft = _ability.GetCoolDownLeft().ToString();
                 IsOnCoolDown = _ability.IsOnCooldown();
                 TextObject disabledReason;
-                if(_ability.IsDisabled(Agent.Main, out disabledReason))
+                if (_ability.IsDisabled(Agent.Main, out disabledReason))
                 {
                     IsDisabled = true;
                     DisabledText = disabledReason.ToString();
@@ -55,11 +55,11 @@ namespace TOR_Core.AbilitySystem
                 }
                 if (Game.Current.GameType is Campaign)
                 {
-                    if (Agent.Main!=null&& Agent.Main.IsSpellCaster())
+                    if (Agent.Main != null && Agent.Main.IsSpellCaster())
                     {
                         SetWindsOfMagicValue((float)(Agent.Main?.GetHero()?.GetCustomResourceValue("WindsOfMagic")));
                     }
-                    
+
                     var windsCost = AddPerkEffectsToWindsCost(Agent.Main?.GetHero(), _ability.Template);
                     WindsCost = windsCost.ToString();
                 }
@@ -70,7 +70,7 @@ namespace TOR_Core.AbilitySystem
         {
             int result = template.WindsOfMagicCost;
             var model = Campaign.Current.Models.GetAbilityModel();
-            if(model != null && hero != null)
+            if (model != null && hero != null)
             {
                 result = model.GetEffectiveWindsCost(hero.CharacterObject, template);
             }
@@ -127,7 +127,7 @@ namespace TOR_Core.AbilitySystem
             {
                 if (value != _name)
                 {
-                    
+
                     _name = value;
                     base.OnPropertyChangedWithValue(value, "Name");
                 }

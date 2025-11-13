@@ -66,7 +66,7 @@ namespace TOR_Core.Models
                 {
                     value = 0.2f;
                 }
-                
+
                 result.AddFactor(value, ChivalryHelper.GetChivalryRankText(chivalryLevel));
             }
 
@@ -116,10 +116,10 @@ namespace TOR_Core.Models
 
             return result;
         }
-        
+
         private void AddCareerPassivesForTroopMorale(MobileParty party, ref ExplainedNumber explainedNumber)
         {
-            if(party.LeaderHero==null)return;
+            if (party.LeaderHero == null) return;
             if (party.LeaderHero.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(party.LeaderHero, ref explainedNumber, PassiveEffectType.TroopMorale);

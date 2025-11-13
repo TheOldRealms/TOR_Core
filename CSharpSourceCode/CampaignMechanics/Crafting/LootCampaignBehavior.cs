@@ -24,12 +24,12 @@ namespace TOR_Core.CampaignMechanics.Crafting;
 public class LootCampaignBehavior : CampaignBehaviorBase
 {
     protected readonly Dictionary<CharacterObject, int> _initialEnemyArmy = new();
-    
+
     public override void RegisterEvents()
     {
         CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, AddMagicalItemsFromBattle);
         CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, RemovedUnusedLootItems); //slightly less often than on map event end, but skips having to check lots of map events
-        CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this,StoreInitialArmy);
+        CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, StoreInitialArmy);
     }
 
 
@@ -56,7 +56,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
 
     private void RemovedUnusedLootItems()
     {
-        var objects=  MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.HasAnyLootTraits()).ToMBList();
+        var objects = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.HasAnyLootTraits()).ToMBList();
 
         var toRemove = new List<ItemObject>();
 
@@ -64,7 +64,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         var settlements = new List<Settlement>();
         //creating a new MBReadOnlyList and assigning it the value from the hero's clan was creating a reference copy which allowed settlements.Add to add the settlement with any of the player's workshops to the list which then transfered back to the property which was used in generating the list of settlements belonging to the player in the ClanManagementVM. When loading a save, the list would then read the empty cache and display the correct value until this started adding the settlement again on each pass through.
         if (Hero.MainHero.IsKingdomLeader)
-        { 
+        {
             settlements = Hero.MainHero.Clan.Kingdom.Settlements.ToList();
         }
         else
@@ -76,7 +76,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
         {
             settlements.Add(workshop.Settlement);
         }
-                
+
         settlements = settlements.Distinct().ToMBList();
 
         foreach (var item in objects)
@@ -84,27 +84,27 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             var found = settlements.AnyQ(settlement => settlement.ItemRoster.AnyQ(x => x.EquipmentElement.Item == item));
 
             var heroes = Hero.MainHero.IsKingdomLeader ? Hero.MainHero.Clan.Kingdom.Heroes : Hero.MainHero.Clan.Heroes; //Sly : is the goal of the kingdom usage to allow player companions that were promoted to vassals to keep their equipment that may contain loot traits? Code isn't set up to give them those benefits on campaign map/in battle so those would be useless enchantments. If this was being left in long term, part of this block should be in an event triggered by promoting a companion to vassal which swaps their enchanted equipment for the base non-magical equivalent and allows the ObjectManager to delete the now unused ItemObject.
-            
+
             //if the goal is to remove lesser enchanted items from mobileParty item rosters later, why avoid doing that due to the player's clan/kingdom parties having the item? They could instead all be removed; those parties can't do anything with the item, it can be removed and unregistered.
             if ((MobileParty.MainParty?.ItemRoster.AnyQ(x => x.EquipmentElement.Item == item)) == true)
-            { 
+            {
                 found = true;
             }
 
-            
+
             //why only check their armour?
             if (heroes.Where(hero => hero.IsActive).Any(hero => hero.CharacterObject.GetCharacterEquipment(EquipmentIndex.ArmorItemBeginSlot, EquipmentIndex.HorseHarness)
                     .AnyQ(x => x == item)))
             {
                 found = true;
             }
-                
+
             if (!found)
             {
                 toRemove.Add(item);
             }
         }
-        
+
         foreach (var item in toRemove)
         {
             foreach (var settlement in Settlement.All)
@@ -115,15 +115,15 @@ public class LootCampaignBehavior : CampaignBehaviorBase
                     settlement.ItemRoster.Remove(new ItemRosterElement(item));
                 }
             }
-                
-            foreach (var party in MobileParty.AllLordParties.WhereQ(x=>x.ActualClan!=null &&  x.ActualClan!=Clan.PlayerClan))
+
+            foreach (var party in MobileParty.AllLordParties.WhereQ(x => x.ActualClan != null && x.ActualClan != Clan.PlayerClan))
             {
                 if (!party.ItemRoster.AnyQ(x => x.EquipmentElement.Item == item)) continue; //Sly : this shouldn't be possible without mods as any loot "acquired" by ai parties is ignored and the equivalent gold value is added to the leader's gold immediately
                 {
                     party.ItemRoster.Remove(new ItemRosterElement(item));
                 }
             }
-                
+
             MBObjectManager.Instance.UnregisterObject(item);
         }
     }
@@ -134,7 +134,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
     /// <param name="mapEvent"></param>
     private void AddMagicalItemsFromBattle(MapEvent mapEvent)
     {
-        if(Hero.MainHero.IsEnlisted())
+        if (Hero.MainHero.IsEnlisted())
             return;
 
         if (mapEvent.PlayerSide != mapEvent.WinningSide) return; //player dying and their troops retreating triggers a PlayerBattleEndEvent with no winner; no point in calculating this for losses
@@ -146,7 +146,7 @@ public class LootCampaignBehavior : CampaignBehaviorBase
 
         var itemRosterToReceive = PlayerEncounter.Current.RosterToReceiveLootItems;
         var enemySide = mapEvent.PlayerSide == BattleSideEnum.Attacker ? BattleSideEnum.Defender : BattleSideEnum.Attacker;
-        var model = (TORBattleRewardModel) Campaign.Current.Models.BattleRewardModel;
+        var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
 
         foreach (var element in _initialEnemyArmy)
         {
@@ -162,11 +162,11 @@ public class LootCampaignBehavior : CampaignBehaviorBase
                 continue; //TODO check in Unit Catalog that all Legendary Lord have this attribute.
 
 
-            var traitCount = model.GetTraitCountForTroops(character, element.Value , playerEarnedLootPercentage);
-            
+            var traitCount = model.GetTraitCountForTroops(character, element.Value, playerEarnedLootPercentage);
+
             if (traitCount <= 0)
                 continue;
-            
+
             var traitList = new List<string>();
             var item = character.GetCharacterEquipment(EquipmentIndex.Weapon0, EquipmentIndex.Cape).TakeRandom(1).FirstOrDefault();
             for (var j = 0; j < traitCount; j++)
@@ -188,11 +188,11 @@ public class LootCampaignBehavior : CampaignBehaviorBase
                     var trait = traits.TakeRandom(1).FirstOrDefault(); //Sly : could do TakeRandom(traitCount) and skip iteration
 
                     if (trait == null)
-                        continue; 
-                    
+                        continue;
+
                     traitList.Add(trait.ItemTraitStringId);
                 }
-            
+
             var nameModifier = model.GetNameModifierForTraits(traitCount);
             GameTexts.SetVariable("NAMEMODIFIER", nameModifier);
             GameTexts.SetVariable("NAMEOFITEM", item.Name);
@@ -210,6 +210,6 @@ public class LootCampaignBehavior : CampaignBehaviorBase
 
     public override void SyncData(IDataStore dataStore)
     {
-        
+
     }
 }

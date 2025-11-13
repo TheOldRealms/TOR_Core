@@ -81,14 +81,14 @@ namespace TOR_Core.BattleMechanics.Firearms
             if (shooterAgent.WieldedWeapon.Item.StringId.Contains("_gun_drakegun"))
             {
                 RemoveLastProjectile(shooterAgent);
-                _continousFiringAgents[shooterAgent.Index] = new ContinousFiringData 
-                { 
+                _continousFiringAgents[shooterAgent.Index] = new ContinousFiringData
+                {
                     OwnerAgent = shooterAgent,
                     FireAmmoId = shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId,
-                    RemainingTime = _continousFiringBurstLength, 
-                    LastFiredTime = MissionTime.Now.ToMilliseconds, 
+                    RemainingTime = _continousFiringBurstLength,
+                    LastFiredTime = MissionTime.Now.ToMilliseconds,
                     IsParticleEnabled = true,
-                    
+
                 };
                 BurstFireShot(shooterAgent, 0.1f, shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId);
                 return;
@@ -184,9 +184,9 @@ namespace TOR_Core.BattleMechanics.Firearms
 
             var baseSpeed = 15;
             var bonusSpeed = 18;
-            
+
             Mission.AddCustomMissile(shooterAgent, ammo, frame.origin, frame.rotation.f, frame.rotation,
-                baseSpeed, bonusSpeed, true,null);
+                baseSpeed, bonusSpeed, true, null);
         }
 
         public override void OnMissileCollisionReaction(Mission.MissileCollisionReaction collisionReaction,
@@ -199,23 +199,23 @@ namespace TOR_Core.BattleMechanics.Firearms
             var missileObj = Mission.MissilesList.FirstOrDefault(missile => missile.ShooterAgent == attackerAgent);
 
             if (missileObj == null) return;
-            
+
             var pos = missileObj.Entity.GlobalPosition;
-            
+
             if (missileObj.Weapon.Item.StringId.Contains("grenade"))
             {
-                RunExplosionSoundEffects(pos,"mortar_explosion_1");
-                RunExplosionVisualEffects(pos,"cannonball_explosion_8");
+                RunExplosionSoundEffects(pos, "mortar_explosion_1");
+                RunExplosionVisualEffects(pos, "cannonball_explosion_8");
             }
-            
+
             if (missileObj.Weapon.Item.StringId.Contains("cannonball"))
             {
-                RunExplosionSoundEffects(pos,"mortar_explosion_1");
-                RunExplosionVisualEffects(pos,"cannonball_explosion_7");
+                RunExplosionSoundEffects(pos, "mortar_explosion_1");
+                RunExplosionVisualEffects(pos, "cannonball_explosion_7");
                 //ApplySplashDamage(attackerAgent, pos, _explosionRadius, _explosionDamage, __explosionDamageVariance);
             }
         }
-        
+
         private void RunExplosionVisualEffects(Vec3 position, string particleEffectID)
         {
             var effect = GameEntity.CreateEmpty(Mission.Current.Scene);
@@ -224,11 +224,11 @@ namespace TOR_Core.BattleMechanics.Firearms
             var globalFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in Vec3.Zero), position);
             effect.SetGlobalFrame(globalFrame);
         }
-        
-        private void RunExplosionSoundEffects(Vec3 position, string soundID, string farAwaySoundID=null)
+
+        private void RunExplosionSoundEffects(Vec3 position, string soundID, string farAwaySoundID = null)
         {
             farAwaySoundID ??= soundID;
-            
+
             var distanceFromPlayer = position.Distance(Mission.Current.GetCameraFrame().origin);
             int soundIndex = distanceFromPlayer < 30 ? SoundEvent.GetEventIdFromString(soundID) : SoundEvent.GetEventIdFromString(farAwaySoundID);
             var sound = SoundEvent.CreateEvent(soundIndex, Mission.Current.Scene);
@@ -240,15 +240,15 @@ namespace TOR_Core.BattleMechanics.Firearms
         {
             base.OnScoreHit(affectedAgent, affectorAgent, attackerWeapon, isBlocked, isSiegeEngineHit, in blow, in collisionData, damagedHp, hitDistance, shotDifficulty);
 
-            if (attackerWeapon !=null && attackerWeapon.WeaponClass == WeaponClass.Stone)
+            if (attackerWeapon != null && attackerWeapon.WeaponClass == WeaponClass.Stone)
             {
                 if (attackerWeapon.ItemUsage == "tor_dw_weapon_grenade_hand_grenade")
                 {
                     if (affectorAgent.IsHero)
                     {
-                        affectorAgent.GetHero().AddSkillXp(TORSkills.GunPowder,damagedHp);
+                        affectorAgent.GetHero().AddSkillXp(TORSkills.GunPowder, damagedHp);
                     }
-                    
+
                 }
             }
         }
@@ -288,7 +288,7 @@ namespace TOR_Core.BattleMechanics.Firearms
         public Agent OwnerAgent;
         public string FireAmmoId;
         private bool _isParticleEnabled;
-        
+
         public bool IsParticleEnabled
         {
             get
@@ -297,10 +297,10 @@ namespace TOR_Core.BattleMechanics.Firearms
             }
             set
             {
-                if(_isParticleEnabled != value)
+                if (_isParticleEnabled != value)
                 {
                     _isParticleEnabled = value;
-                    if(_isParticleEnabled && OwnerAgent != null)
+                    if (_isParticleEnabled && OwnerAgent != null)
                     {
                         if (FireStreamPS == null) FireStreamPS = TORParticleSystem.ApplyParticleToAgentBone(OwnerAgent, "drakegun_fire", Game.Current.DefaultMonster.MainHandItemBoneIndex, out _, 0, new Vec3(90, 0, 0));
                         FireStreamPS.SetEnable(true);

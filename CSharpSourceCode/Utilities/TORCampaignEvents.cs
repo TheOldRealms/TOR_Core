@@ -19,11 +19,11 @@ namespace TOR_Core.Utilities
         public event EventHandler<DevotionLevelChangedEventArgs> DevotionLevelChanged;
         public event EventHandler<ChaosUprisingStartedEventArgs> ChaosUprisingStarted;
         public event EventHandler<ItemDuplicatedEventArgs> ItemDuplicated;
-        
+
         public event EventHandler<EnchantmentLearnedEventArgs> EnchantmentLearned;
-        
+
         public event EventHandler<AbilitylearnedEventArgs> AbilityLearned;
-        
+
         public event EventHandler<OathLevelChangedEventArgs> OathLevelChanged;
 
         public event EventHandler<OnUseInventoryScriptActivatedEventArgs> OnUseInventoryScriptActivated;
@@ -40,12 +40,12 @@ namespace TOR_Core.Utilities
         {
             Instance = this;
         }
-        
+
         public void OnHeroExtendedInfoCreated(Hero hero)
         {
             var args = new HeroExtendedInfoCreatedEventArgs(hero);
             var heroInfoEvent = HeroExtendedInfoCreated;
-            if(heroInfoEvent != null)
+            if (heroInfoEvent != null)
             {
                 heroInfoEvent(this, args);
             }
@@ -55,7 +55,7 @@ namespace TOR_Core.Utilities
         {
             var args = new DevotionLevelChangedEventArgs(hero, religion, oldDevotionLevel, newDevotionLevel);
             var devotionEvent = DevotionLevelChanged;
-            if(devotionEvent != null)
+            if (devotionEvent != null)
             {
                 devotionEvent(this, args);
             }
@@ -65,7 +65,7 @@ namespace TOR_Core.Utilities
         {
             var args = new ChaosUprisingStartedEventArgs(settlement);
             var uprisingEvent = ChaosUprisingStarted;
-            if(uprisingEvent != null)
+            if (uprisingEvent != null)
             {
                 uprisingEvent(this, args);
             }
@@ -80,7 +80,7 @@ namespace TOR_Core.Utilities
                 itemDuplicatedEvent(this, args);
             }
         }
-        
+
         public void OnEnchantmentLearned(Hero hero, string blueprintId)
         {
             var args = new EnchantmentLearnedEventArgs(hero, blueprintId);
@@ -90,7 +90,7 @@ namespace TOR_Core.Utilities
                 enchantmentLearnedEvent(this, args);
             }
         }
-        
+
         public void OnAbilityLearned(Hero hero, string blueprintId)
         {
             var args = new AbilitylearnedEventArgs(hero, blueprintId);
@@ -100,7 +100,7 @@ namespace TOR_Core.Utilities
                 abilityLearned(this, args);
             }
         }
-        
+
         public void OnGuildOathLevelChanged(int newValue, string guild)
         {
             var args = new OathLevelChangedEventArgs(newValue, guild);
@@ -112,7 +112,7 @@ namespace TOR_Core.Utilities
         }
 
 
-        public void OnUseInventoryUseScriptObject(ItemObject item, string scriptType, MobileParty party, string[]  arguments)
+        public void OnUseInventoryUseScriptObject(ItemObject item, string scriptType, MobileParty party, string[] arguments)
         {
             var args = new OnUseInventoryScriptActivatedEventArgs(item, scriptType, party, arguments);
             var OnuseInventoryScript = OnUseInventoryScriptActivated;
@@ -228,7 +228,7 @@ namespace TOR_Core.Utilities
         public ItemObject OldItem { get; set; }
         public List<string> Traits { get; set; }
     }
-    
+
     public class EnchantmentLearnedEventArgs(Hero hero, string enchantmentTraitId) : EventArgs
     {
         public Hero Hero { get; set; } = hero;

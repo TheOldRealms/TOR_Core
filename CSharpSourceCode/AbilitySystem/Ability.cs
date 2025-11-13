@@ -1,22 +1,22 @@
 using System;
 using System.Linq;
-using TaleWorlds.MountAndBlade;
 using System.Timers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using TaleWorlds.Library;
 using TaleWorlds.Engine;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
-using Timer = System.Timers.Timer;
-using TOR_Core.AbilitySystem.Scripts;
+using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem.Crosshairs;
-using TOR_Core.Extensions;
+using TOR_Core.AbilitySystem.Scripts;
 using TOR_Core.BattleMechanics.AI.CastingAI.Components;
 using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
-using TOR_Core.CharacterDevelopment.CareerSystem;
-using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using Timer = System.Timers.Timer;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -83,16 +83,16 @@ namespace TOR_Core.AbilitySystem
             disabledReason = new TextObject("{=caster_agent_enabled_str}Enabled");
             if (casterAgent == null) return false;
 
-            if (casterAgent.GetHero()?.Culture.StringId == TORConstants.Cultures.DAWI && this.Template.BelongsToLoreID == "RuneMagic" )
+            if (casterAgent.GetHero()?.Culture.StringId == TORConstants.Cultures.DAWI && this.Template.BelongsToLoreID == "RuneMagic")
             {
                 if (!casterAgent.HasPartyAnvilOfDoom()) //The check could be maybe expensive. We should maybe reiterate after all components are set
-                    //Sly : attribute on player/runesmith hero that is added or removed when items are discarded/sold/acquired/etc? Rechecking the party's inventory for every attempt to use rune magic be problematic because player's have a tendancy to : 1) hoard items, and 2) play pokemon with caster companions.
+                                                        //Sly : attribute on player/runesmith hero that is added or removed when items are discarded/sold/acquired/etc? Rechecking the party's inventory for every attempt to use rune magic be problematic because player's have a tendancy to : 1) hoard items, and 2) play pokemon with caster companions.
                 {
                     disabledReason = new TextObject("{=caster_agent_anvilofdoom_str}Missing Anvil of Doom");
                     return true;
                 }
             }
-            
+
             if (IsOnCooldown())
             {
                 disabledReason = new TextObject("{=caster_agent_cooldown_str}On cooldown");
@@ -110,14 +110,14 @@ namespace TOR_Core.AbilitySystem
             }
             if (casterAgent.IsMainAgent && casterAgent.GetHero().HasAnyCareer())
             {
-                if(casterAgent.GetCareerAbility().RequiresDisabledCrosshairDuringAbility && casterAgent.GetCareerAbility().IsActive)
+                if (casterAgent.GetCareerAbility().RequiresDisabledCrosshairDuringAbility && casterAgent.GetCareerAbility().IsActive)
                 {
                     disabledReason = new TextObject("{=caster_agent_mistform_str}In Mistform");
                     return true;
                 }
             }
 
-            
+
 
             return false;
         }
@@ -135,16 +135,16 @@ namespace TOR_Core.AbilitySystem
 
         public virtual bool CanCast(Agent casterAgent, out TextObject failureReason)
         {
-            if(IsDisabled(casterAgent, out failureReason))
+            if (IsDisabled(casterAgent, out failureReason))
             {
                 return false;
             }
-            if(casterAgent.IsPlayerControlled && !IsRightAngleToCast())
+            if (casterAgent.IsPlayerControlled && !IsRightAngleToCast())
             {
                 failureReason = new TextObject("Can only cast in a frontal cone");
                 return false;
             }
-            if(!casterAgent.IsActive() || casterAgent.Health <= 0 || (casterAgent.IsAIControlled && casterAgent.GetMorale() <= 1) || !casterAgent.IsAbilityUser())
+            if (!casterAgent.IsActive() || casterAgent.Health <= 0 || (casterAgent.IsAIControlled && casterAgent.GetMorale() <= 1) || !casterAgent.IsAbilityUser())
             {
                 failureReason = new TextObject("Caster is dead or routed");
                 return false;
@@ -207,13 +207,13 @@ namespace TOR_Core.AbilitySystem
                         if (casterAgent.IsMainAgent && casterAgent.GetHero().HasCareer(TORCareers.GreyLord))
                         {
                             var choice = TORCareerChoices.GetChoice("SecretOfFellfangPassive1");
-                            if ( choice!=null)
+                            if (choice != null)
                             {
                                 var component = Agent.Main.GetComponent<AbilityComponent>();
                                 var count = component.KnownAbilitySystem.Count;
                                 count--; // reduced because of career ability 
-                            
-                                if(count<choice.GetPassiveValue())
+
+                                if (count < choice.GetPassiveValue())
                                 {
                                     cooldown.AddFactor(-0.5f);
                                 }
@@ -566,7 +566,7 @@ namespace TOR_Core.AbilitySystem
 
         private void AddPhysics(ref GameEntity entity)
         {
-            using(new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
+            using (new TWSharedMutexWriteLock(Scene.PhysicsAndRayCastLock))
             {
                 var mass = 1;
                 entity.AddSphereAsBody(Vec3.Zero, Template.Radius, BodyFlags.Moveable | BodyFlags.DoNotCollideWithRaycast);

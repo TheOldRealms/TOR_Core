@@ -8,7 +8,7 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
         {
             return x =>
             {
-                var pow = (float) (L / (1 + m * Math.Pow(Math.E, -k * (x - mid))));
+                var pow = (float)(L / (1 + m * Math.Pow(Math.E, -k * (x - mid))));
                 return pow;
             };
         }

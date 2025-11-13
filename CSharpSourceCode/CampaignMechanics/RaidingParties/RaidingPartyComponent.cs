@@ -65,11 +65,11 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 
         public void HourlyTickAI(PartyThinkParams thinkParams)
         {
-            if(!TargetIsValid())
+            if (!TargetIsValid())
             {
                 FindNewTarget();
             }
-            if(Target != null)
+            if (Target != null)
             {
                 AIBehaviorData item = new(Target, AiBehavior.RaidSettlement, MobileParty.NavigationType.Default, false, false, false);
                 if (thinkParams.TryGetBehaviorScore(item, out float score))
@@ -101,7 +101,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
             }
         }
 
-        private bool TargetIsValid() => Target != null && !Target.IsRaided && Target != HomeSettlement && Target.IsVillage && 
+        private bool TargetIsValid() => Target != null && !Target.IsRaided && Target != HomeSettlement && Target.IsVillage &&
             (!Target.IsUnderRaid || Target.LastAttackerParty == MobileParty);
 
         private void FindNewTarget()

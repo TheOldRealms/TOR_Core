@@ -6,8 +6,8 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.SFX
 {
-  
-    
+
+
     public class TORSimpleObjectAnimator : ScriptComponentBehavior
     {
         public String AnimationName = "";
@@ -17,16 +17,16 @@ namespace TOR_Core.BattleMechanics.SFX
 
 
 
-        protected  override void OnInit()
+        protected override void OnInit()
         {
             base.OnInit();
             Init();
         }
-        
-        protected  override void OnEditorInit()
+
+        protected override void OnEditorInit()
         {
             base.OnInit();
-            if(AnimationName==null)
+            if (AnimationName == null)
                 AnimationName = "";
             Init();
         }
@@ -35,7 +35,7 @@ namespace TOR_Core.BattleMechanics.SFX
         {
             if (AnimationName != "")
             {
-            
+
                 this._entityBody = this.GameEntity;
                 if (_entityBody == null)
                 {
@@ -48,9 +48,9 @@ namespace TOR_Core.BattleMechanics.SFX
                     TORCommon.Say("no skeleton");
                     return;
                 }
-                
+
                 this._skeleton.SetAnimationAtChannel(AnimationName, 0, blendInPeriod: 0.0f);
-                _skeleton.SetAgentActionChannel(0,ActionIndexCache.act_none, 0,0,false);
+                _skeleton.SetAgentActionChannel(0, ActionIndexCache.act_none, 0, 0, false);
 
 
 
@@ -66,14 +66,14 @@ namespace TOR_Core.BattleMechanics.SFX
                 Init();
             }
 
-            if(_skeleton==null) return;
-            
+            if (_skeleton == null) return;
+
             if (AnimationName != _skeleton.GetAnimationAtChannel(0))
             {
                 Init();
             }
         }
-        
+
 
 
 

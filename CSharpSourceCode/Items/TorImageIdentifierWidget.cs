@@ -25,10 +25,10 @@ namespace TOR_Core.Items
 
         private void TorImageIdentifierWidget_PropertyChanged(PropertyOwnerObject widget, string propertyName, object identifier)
         {
-            if(propertyName == "ImageId")
+            if (propertyName == "ImageId")
             {
                 var item = MBObjectManager.Instance.GetObject<ItemObject>((string)identifier);
-                if(item != null) _isMagicItem = item.IsMagicalItem();
+                if (item != null) _isMagicItem = item.IsMagicalItem();
             }
         }
 
@@ -40,7 +40,7 @@ namespace TOR_Core.Items
                 if (ParentWidget is BrushWidget && _relevantWidgetIds.Contains(ParentWidget.Id)) targetWidget = ParentWidget as BrushWidget;
                 else targetWidget = (BrushWidget)ParentWidget.Children.FirstOrDefault(x => x is BrushWidget && _relevantWidgetIds.Contains(x.Id));
             }
-            if(targetWidget != null)
+            if (targetWidget != null)
             {
                 if (_isMagicItem) targetWidget.Brush.Color = TaleWorlds.Library.Color.ConvertStringToColor("#FF39FFEB");
                 else targetWidget.Brush.Color = TaleWorlds.Library.Color.White;

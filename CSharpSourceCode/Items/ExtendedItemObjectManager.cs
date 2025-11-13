@@ -29,18 +29,18 @@ namespace TOR_Core.Items
         {
             ExtendedItemObjectProperties info = null;
             _itemToInfoMap.TryGetValue(itemId, out info);
-            if(info != null) info = info.Clone();
+            if (info != null) info = info.Clone();
             return info;
         }
 
         public static bool HasMagicItemId(string uiStringID)
         {
-            var modifier = MBObjectManager.Instance.GetObjectTypeList<ItemModifier>().FirstOrDefaultQ(x=> uiStringID.EndsWith(x.StringId));
+            var modifier = MBObjectManager.Instance.GetObjectTypeList<ItemModifier>().FirstOrDefaultQ(x => uiStringID.EndsWith(x.StringId));
 
             if (modifier == null)
             {
-                var entry = _itemToInfoMap.FirstOrDefaultQ(x => uiStringID==x.Key);
-                
+                var entry = _itemToInfoMap.FirstOrDefaultQ(x => uiStringID == x.Key);
+
                 if (entry.Key != null && entry.Value.ItemTraits.AnyQ()) return true;
             }
             else
@@ -49,7 +49,7 @@ namespace TOR_Core.Items
 
                 return entrys.AnyQ(entry => entry.Key.EndsWith(modifier.StringId));
             }
-            
+
             return false;
         }
 
@@ -102,9 +102,9 @@ namespace TOR_Core.Items
             {
                 XmlSerializer ser = new XmlSerializer(typeof(List<ExtendedItemObjectProperties>));
                 List<ExtendedItemObjectProperties> list = ser.Deserialize(File.OpenRead(XMLPath)) as List<ExtendedItemObjectProperties>;
-                if(list != null && list.Count > 0)
+                if (list != null && list.Count > 0)
                 {
-                    foreach(var item in list)
+                    foreach (var item in list)
                     {
                         _itemToInfoMap.Add(item.ItemStringId, item);
                     }

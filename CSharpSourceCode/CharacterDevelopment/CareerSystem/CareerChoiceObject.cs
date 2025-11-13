@@ -1,9 +1,9 @@
 using HarmonyLib;
+using Ink.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ink.Runtime;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -33,25 +33,25 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             TextObject text;
             text = new TextObject(description);
             Passive = passiveEffect;
-            if(GameTexts.TryGetText("careerchoice_description", out var descriptionOverride, StringId))
+            if (GameTexts.TryGetText("careerchoice_description", out var descriptionOverride, StringId))
             {
-                if(Passive != null)
+                if (Passive != null)
                 {
                     if (Passive.DamageProportionTuple != null)
                     {
                         var damageType = Passive.DamageProportionTuple.DamageType;
-                        GameTexts.TryGetText("tor_damagetype",out var damageTypeText,damageType.ToString());
-                        GameTexts.SetVariable("EFFECT_DAMAGE_TYPE",damageTypeText);
+                        GameTexts.TryGetText("tor_damagetype", out var damageTypeText, damageType.ToString());
+                        GameTexts.SetVariable("EFFECT_DAMAGE_TYPE", damageTypeText);
 
                         var attackType = Passive.AttackTypeMask;
-                        GameTexts.TryGetText("tor_attacktype",out var attackTypeText,attackType.ToString());
-                        GameTexts.SetVariable("EFFECT_ATTACK_TYPE",damageTypeText);
+                        GameTexts.TryGetText("tor_attacktype", out var attackTypeText, attackType.ToString());
+                        GameTexts.SetVariable("EFFECT_ATTACK_TYPE", damageTypeText);
                         GameTexts.SetVariable("EFFECT_VALUE", (Passive.DamageProportionTuple.Percent).ToString("R"));
                     }
                     else
                     {
-                        
-                        
+
+
                         if (Passive.InterpretAsPercentage)
                         {
                             if (Passive.PassiveEffectType == PassiveEffectType.ArmorPenetration)
@@ -63,15 +63,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                                 GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
                             }
                         }
-                        else 
+                        else
                         {
-                            
+
                             GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString());
                         }
                     }
-                    
+
                 }
-                
+
                 if (descriptionOverride != null)
                 {
                     text = new TextObject(descriptionOverride.ToString());
@@ -85,7 +85,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
             else BelongsToGroup = null;
             if (BelongsToGroup != null) BelongsToGroup.Choices.Add(this);
-            if(mutations != null) _mutations.AddRange(mutations);
+            if (mutations != null) _mutations.AddRange(mutations);
             if (isRootNode) OwnerCareer.RootNode = this;
             AfterInitialized();
         }
@@ -99,7 +99,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private void MutateObject(ITemplate target, Agent agent)
         {
             var type = target.GetType();
-            foreach(var mutation in _mutations)
+            foreach (var mutation in _mutations)
             {
                 if (mutation != null && mutation.MutationTargetType == type && mutation.MutationType != OperationType.None && !string.IsNullOrEmpty(mutation.MutationTargetOriginalId) && !string.IsNullOrEmpty(mutation.PropertyName) && mutation.PropertyValue != null)
                 {
@@ -113,13 +113,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                         switch (mutation.MutationType)
                         {
                             case OperationType.Replace:
-                                if(newValue.GetType() == propertyType) 
+                                if (newValue.GetType() == propertyType)
                                 {
                                     traverse.Property(mutation.PropertyName).SetValue(newValue);
                                 }
                                 break;
                             case OperationType.Multiply:
-                                
+
                                 if (propertyType == typeof(float))
                                 {
                                     var value = traverse.Property(mutation.PropertyName).GetValue<float>();
@@ -163,24 +163,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public class PassiveEffect
         {
             public float EffectMagnitude = 0f;
-            public string TargetEffect ="";
+            public string TargetEffect = "";
             public OperationType Operation = OperationType.None;
             public PassiveEffectType PassiveEffectType = PassiveEffectType.Special;
             public bool InterpretAsPercentage = true;
             public bool WithFactorFlatSwitch;
             public DamageProportionTuple DamageProportionTuple;
             public AttackTypeMask AttackTypeMask = AttackTypeMask.Melee;
-            
-            
+
+
             public delegate bool SpecialCombatInteractionFunction(Agent attacker, Agent victim, AttackTypeMask mask);
             private readonly SpecialCombatInteractionFunction _specialCombatInteractionFunction;
             public delegate bool SpecialCharacterEvaluationFunction(CharacterObject characterObject);
             private readonly SpecialCharacterEvaluationFunction _specialCharacterEvaluationFunction;
 
-            public bool IsValidCombatInteraction(Agent attacker, Agent victim, AttackTypeMask mask) =>  _specialCombatInteractionFunction==null||_specialCombatInteractionFunction.Invoke(attacker,victim, mask);
+            public bool IsValidCombatInteraction(Agent attacker, Agent victim, AttackTypeMask mask) => _specialCombatInteractionFunction == null || _specialCombatInteractionFunction.Invoke(attacker, victim, mask);
 
-            public bool IsValidCharacterObject(CharacterObject characterObject) =>_specialCharacterEvaluationFunction==null || _specialCharacterEvaluationFunction.Invoke(characterObject);
-            
+            public bool IsValidCharacterObject(CharacterObject characterObject) => _specialCharacterEvaluationFunction == null || _specialCharacterEvaluationFunction.Invoke(characterObject);
+
             public PassiveEffect(float effectValue, PassiveEffectType type, AttackTypeMask mask)
             {
                 EffectMagnitude = effectValue;
@@ -190,7 +190,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 AttackTypeMask = mask;
             }
 
-            
+
             public PassiveEffect(PassiveEffectType type, DamageProportionTuple damageProportionTuple, AttackTypeMask mask, SpecialCombatInteractionFunction function = null)
             {
                 InterpretAsPercentage = true;
@@ -203,7 +203,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 _specialCombatInteractionFunction = function;
             }
 
-            public PassiveEffect(float effectValue=0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent=false,  SpecialCharacterEvaluationFunction function = null, bool withFactorFlatSwitch=false)
+            public PassiveEffect(float effectValue = 0, PassiveEffectType type = PassiveEffectType.Special, bool asPercent = false, SpecialCharacterEvaluationFunction function = null, bool withFactorFlatSwitch = false)
             {
                 EffectMagnitude = effectValue;
                 Operation = OperationType.Add;
@@ -220,7 +220,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 PassiveEffectType = PassiveEffectType.TroopSkill;
                 _specialCharacterEvaluationFunction = function;
             }
-            
+
             public PassiveEffect(float effectValue, List<string> skillObjectIDs, SpecialCharacterEvaluationFunction function = null)
             {
                 var concat = new StringBuilder();
@@ -234,10 +234,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 _specialCharacterEvaluationFunction = function;
             }
         }
-        
+
         public float GetPassiveValue()
         {
-            if (Passive == null)return 0;
+            if (Passive == null) return 0;
             return Passive.InterpretAsPercentage ? Passive.EffectMagnitude / 100 : Passive.EffectMagnitude;
         }
 
@@ -246,8 +246,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             return !_mutations.IsEmpty();
         }
     }
-    
-    
+
+
 
     public enum ChoiceType
     {
@@ -267,7 +267,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
     public enum PassiveEffectType
     {
         Special,            //For everything that requires special implementation
-        
+
         Health,             //Player health points, flat number
         CustomResourceUpkeepModifier, //scales custom resource upkeep
         CustomResourceUpgradeCostModifier, //scales custom upgrade costs

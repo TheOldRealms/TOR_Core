@@ -4,12 +4,12 @@ using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.BattleMechanics.SFX
 {
-    public class TORSpinner :ScriptComponentBehavior
+    public class TORSpinner : ScriptComponentBehavior
     {
         public float RotationSpeed = 100f;
-        
+
         protected override void OnInit() => this.SetScriptComponentToTick(this.GetTickRequirement());
-        
+
         private void Rotate(float dt)
         {
             var gameEntity = GameEntity;
@@ -18,19 +18,19 @@ namespace TOR_Core.BattleMechanics.SFX
             frame.rotation.RotateAboutUp(a);
             gameEntity.SetFrame(ref frame);
         }
-        
+
         public override ScriptComponentBehavior.TickRequirement GetTickRequirement() => base.GetTickRequirement() | ScriptComponentBehavior.TickRequirement.TickParallel;
 
-        protected  override void OnTickParallel(float dt)
+        protected override void OnTickParallel(float dt)
         {
             this.Rotate(dt);
         }
 
-        protected  override void OnEditorTick(float dt)
+        protected override void OnEditorTick(float dt)
         {
             base.OnEditorTick(dt);
             this.Rotate(dt);
         }
-        
+
     }
 }

@@ -23,15 +23,15 @@ namespace TOR_Core.AbilitySystem.Scripts
         private void Init()
         {
             var effects = GetEffectsToTrigger();
-            
+
             if (Hero.MainHero.HasCareerChoice("CollegeOrdersKeystone"))
             {
                 var heroAgents = Mission.Current.Agents.Where(x => x.IsHero).ToList();
-                
+
                 foreach (var agent in heroAgents)
                 {
                     if (!agent.BelongsToMainParty() && !agent.IsSpellCaster()) continue;
-                    
+
                     foreach (var effect in effects)
                     {
                         foreach (var statusEffect in effect.StatusEffects)

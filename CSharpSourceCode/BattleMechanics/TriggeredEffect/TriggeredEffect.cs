@@ -1,17 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
-using TaleWorlds.Engine;
-using System;
-using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
-using System.Collections.Generic;
 using TOR_Core.AbilitySystem;
-using TOR_Core.Utilities;
-using TOR_Core.Extensions;
-using TaleWorlds.Core;
-using TaleWorlds.CampaignSystem;
-using Timer = System.Timers.Timer;
+using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.CharacterDevelopment;
-using System.Linq;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
+using Timer = System.Timers.Timer;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect
 {
@@ -52,7 +52,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             float damageMultiplier = 1f;
             float statusEffectDuration = _template.ImbuedStatusEffectDuration;
             float radius = _template.Radius;
-            if(Game.Current.GameType is Campaign && originAbilityTemplate != null)
+            if (Game.Current.GameType is Campaign && originAbilityTemplate != null)
             {
                 var model = Campaign.Current.Models.GetAbilityModel();
                 if (model != null && triggererAgent.Character is CharacterObject character)
@@ -66,7 +66,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             if (targets == null && triggererAgent != null)
             {
                 targets = [];
-                if(_template.TargetType == TargetType.Self)
+                if (_template.TargetType == TargetType.Self)
                 {
                     targets.Add(triggererAgent);
                 }
@@ -140,7 +140,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         private void PlaySound(Vec3 position)
         {
             //play sound
-            if (_template!=null&&_template.SoundEffectId != "none")
+            if (_template != null && _template.SoundEffectId != "none")
             {
                 _soundIndex = SoundEvent.GetEventIdFromString(_template.SoundEffectId);
                 _sound = SoundEvent.CreateEvent(_soundIndex, Mission.Current.Scene);
@@ -150,17 +150,17 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
         private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if (_template!=null&&_template.ScriptNameToTrigger != "none")
+            if (_template != null && _template.ScriptNameToTrigger != "none")
             {
                 try
                 {
                     var obj = Activator.CreateInstance(Type.GetType(_template.ScriptNameToTrigger));
-                    if(obj is PrefabSpawnerScript)
+                    if (obj is PrefabSpawnerScript)
                     {
                         var script = obj as PrefabSpawnerScript;
                         script.OnInit(_template.SpawnPrefabName);
                     }
-                    else if(obj is SummonScript && _template.TroopIdToSummon != "none")
+                    else if (obj is SummonScript && _template.TroopIdToSummon != "none")
                     {
                         var script = obj as SummonScript;
                         script.OnInit(_template.TroopIdToSummon, _template.NumberToSummon);

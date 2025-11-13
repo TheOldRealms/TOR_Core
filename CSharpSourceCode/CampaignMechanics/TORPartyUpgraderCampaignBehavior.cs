@@ -19,7 +19,7 @@ namespace TOR_Core.CampaignMechanics
     public class TORPartyUpgraderCampaignBehavior : CampaignBehaviorBase
     {
         private float _offTemplateRatio = 0.05f;
-        
+
         ///<summary>Only troops above this level will have restricted upgrades</summary>
         /// <remarks>
         /// Tier is equivalent to : Ceiling(level/5 - 1) : level 25 = t4; 26 = t5
@@ -38,9 +38,9 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, new Action(WeeklyGarrisonUpgrade));
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, CalculateTemplateDataOnLoad);
         }
-        
 
-        
+
+
         private void CalculateTemplateDataOnLoad(CampaignGameStarter starter)
         {
             //bandit cultures don't usually have a culture template, and I'm not sure if it would be used if they did
@@ -65,7 +65,7 @@ namespace TOR_Core.CampaignMechanics
         //Sly : garrison recruitment, upgrades, and deposits from lord parties are all in interaction. Eonir suffer greatly from upgrading city troops because the game is blind to their increased wages because it uses an AverageWage that is shared across all cultural template stacks for all MainFaction cultures.
         private void WeeklyGarrisonUpgrade()
         {//Sly : I could put a check in for player fiefs to check the auto-recruit button before performing upgrades, but I lean away from that because there may be players who want to stop recruiting new troops, but still have their current ones upgrade to higher tiers.
-            foreach(var fortification in Town.AllFiefs.Where(x => !x.IsUnderSiege))
+            foreach (var fortification in Town.AllFiefs.Where(x => !x.IsUnderSiege))
             {
                 if (fortification.GarrisonParty is MobileParty party && party.MapEvent == null)
                 {
@@ -163,14 +163,14 @@ namespace TOR_Core.CampaignMechanics
                     missingTroopsAtEachTier.Add(templateTroop.Character, countOfTroopAndTargets);
                 }
             }
-            
+
             foreach (var rosterElement in upgradeableRoster)
             {
                 var upgradingCharacter = rosterElement.Character;
                 var rosterCount = rosterElement.Number;
                 var healthyCount = rosterCount - rosterElement.WoundedNumber;
                 IEnumerable<CharacterObject> potentialTargets = upgradingCharacter.UpgradeTargets.Where(possibleTarget =>
-                        BanditPerkAndItemCheck(party, upgradingCharacter, possibleTarget, partyTroopUpgradeModel) 
+                        BanditPerkAndItemCheck(party, upgradingCharacter, possibleTarget, partyTroopUpgradeModel)
                         && (healthyCount > 0));//this healthy condition will have an unintended consequence for non-lord parties who will only upgrade on map event end when they have the most wounded troops
                 if (potentialTargets.Any() == false) continue;
                 //if below a cutoff tier, troops can upgrade without restriction
@@ -194,7 +194,7 @@ namespace TOR_Core.CampaignMechanics
                     {
                         bool inTemplate = missingTroopsAtEachTier.TryGetValue(target, out float missingCount);//if a high enough tier troop is in the cultural template, it will exist in the dictionary
                         //low tier troops, outside of the cultural template with targets below their ratio, or in the template and missing at least 1  targeted troop are possibilities
-                        if (target.Level <= _cutoffLevel || (inTemplate && missingCount >= 1) || 
+                        if (target.Level <= _cutoffLevel || (inTemplate && missingCount >= 1) ||
                             (!inTemplate && ((int)(troopCount * _offTemplateRatio) - memberRoster.GetTroopCount(target)) >= 1))
                         {
                             targetMissingTroops.Add(target);
@@ -240,7 +240,7 @@ namespace TOR_Core.CampaignMechanics
             if (numPossibleTroopsToUpgrade > 0)
             {
                 PartyTroopUpgradeModel partyTroopUpgradeModel = Campaign.Current.Models.PartyTroopUpgradeModel;
-                for(int i = 0; i < troopCharacter.UpgradeTargets.Length; i++)
+                for (int i = 0; i < troopCharacter.UpgradeTargets.Length; i++)
                 {
                     CharacterObject upgradeTargetCharacter = troopCharacter.UpgradeTargets[i];
                     int upgradeXpCost = troopCharacter.GetUpgradeXpCost(party, i);
@@ -260,10 +260,10 @@ namespace TOR_Core.CampaignMechanics
                         !party.MobileParty.IsWageLimitExceeded() &&
                         party.MobileParty.TotalWage + numPossibleTroopsToUpgrade * (partyWageModel.GetCharacterWage(upgradeTargetCharacter) - partyWageModel.GetCharacterWage(troopCharacter)) > party.MobileParty.PaymentLimit)
                     {
-                        numPossibleTroopsToUpgrade =  (party.MobileParty.PaymentLimit - party.MobileParty.TotalWage) / (partyWageModel.GetCharacterWage(upgradeTargetCharacter) - partyWageModel.GetCharacterWage(troopCharacter));
+                        numPossibleTroopsToUpgrade = (party.MobileParty.PaymentLimit - party.MobileParty.TotalWage) / (partyWageModel.GetCharacterWage(upgradeTargetCharacter) - partyWageModel.GetCharacterWage(troopCharacter));
                         if (numPossibleTroopsToUpgrade <= 1) { continue; }
                     }
-                    
+
                     if ((!party.Culture.IsBandit || upgradeTargetCharacter.Culture.IsBandit) && (troopCharacter.Occupation != Occupation.Bandit || partyTroopUpgradeModel.CanPartyUpgradeTroopToTarget(party, troopCharacter, upgradeTargetCharacter)))
                     {
                         float upgradeChanceForTroopUpgrade = Campaign.Current.Models.PartyTroopUpgradeModel.GetUpgradeChanceForTroopUpgrade(party, troopCharacter, i);
@@ -321,7 +321,7 @@ namespace TOR_Core.CampaignMechanics
                 memberRoster.SetElementXp(rosterIndex, memberRoster.GetElementXp(rosterIndex) - xpToUpgradeCount);
                 party.AddMember(upgradeArgs.UpgradeSource, -possibleUpgradeCount, 0);
                 party.AddMember(upgradeArgs.UpgradeTarget, possibleUpgradeCount, 0);
-            
+
                 ApplyEffects(party, upgradeArgs);
             }
         }

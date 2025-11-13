@@ -37,7 +37,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             if (!_customCraftedItems.ContainsKey(e.NewItem))
             {
                 var copyfromStringId = e.OldItem.StringId;
-                _customCraftedItems.Add(e.NewItem, new TorItemDuplicationData { OriginalItemStringId = e.OldItem.StringId, NewItemName = e.NewItem.Name.ToString(), ItemTraits = e.Traits, IsPlayerCrafted = e.NewItem.IsCraftedByPlayer});
+                _customCraftedItems.Add(e.NewItem, new TorItemDuplicationData { OriginalItemStringId = e.OldItem.StringId, NewItemName = e.NewItem.Name.ToString(), ItemTraits = e.Traits, IsPlayerCrafted = e.NewItem.IsCraftedByPlayer });
                 ExtendedItemObjectManager.AddCraftedItem(copyfromStringId, e.NewItem.StringId, e.Traits);
             }
         }
@@ -60,7 +60,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
         private void AddTownMenu(CampaignGameStarter starter)
         {
             starter.AddGameMenuOption("town", "town_artisan", "Go to the artisan district",
-                args => 
+                args =>
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
                     return MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty());
@@ -68,7 +68,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 args =>
                 {
                     GameMenu.SwitchToMenu("town_artisan");
-                }, 
+                },
                 false, 4, false, null);
 
             starter.AddGameMenu("town_artisan", "{ARTISAN_INTRODUCTION}",
@@ -86,7 +86,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 args =>
                 {
                     CraftingHelper.OpenCrafting(CraftingTemplate.All[0], null);
-                }, 
+                },
                 false, -1, false, null);
 
             starter.AddGameMenuOption("town_artisan", "town_artisan_enchanting", "Visit the enchanter",
@@ -106,7 +106,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 args =>
                 {
                     GameMenu.SwitchToMenu("town");
-                }, 
+                },
                 true, -1, false, null);
         }
 
@@ -115,10 +115,10 @@ namespace TOR_Core.CampaignMechanics.Crafting
             bool canPlayerDo = Campaign.Current.Models.SettlementAccessModel.CanMainHeroDoSettlementAction(Settlement.CurrentSettlement, SettlementAccessModel.SettlementAction.Craft, out bool shouldBeDisabled, out TextObject disabledText);
             args.optionLeaveType = GameMenuOption.LeaveType.Craft;
             ICraftingCampaignBehavior campaignBehavior = Campaign.Current.GetCampaignBehavior<ICraftingCampaignBehavior>();
-            if (Settlement.CurrentSettlement.IsTown && 
-                campaignBehavior != null && 
-                campaignBehavior.CraftingOrders != null && 
-                campaignBehavior.CraftingOrders.TryGetValue(Settlement.CurrentSettlement.Town, out CraftingOrderSlots craftingOrderSlots) && 
+            if (Settlement.CurrentSettlement.IsTown &&
+                campaignBehavior != null &&
+                campaignBehavior.CraftingOrders != null &&
+                campaignBehavior.CraftingOrders.TryGetValue(Settlement.CurrentSettlement.Town, out CraftingOrderSlots craftingOrderSlots) &&
                 craftingOrderSlots.CustomOrders.Count > 0)
             {
                 args.OptionQuestData |= GameMenuOption.IssueQuestFlags.ActiveIssue;
@@ -135,7 +135,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         public void InitializeSavedCraftedItems()
         {
-            foreach(var element in _customCraftedItems)
+            foreach (var element in _customCraftedItems)
             {
                 var duplicateItem = element.Key;
                 var copyFrom = MBObjectManager.Instance.GetObject<ItemObject>(element.Value.OriginalItemStringId);

@@ -12,11 +12,11 @@ namespace TOR_Core.Utilities
     public class TORTests
     {
         private static TORTests _instance;
-        public static TORTests Instance 
+        public static TORTests Instance
         {
             get
             {
-                if( _instance == null ) _instance = new TORTests();
+                if (_instance == null) _instance = new TORTests();
                 return _instance;
             }
         }

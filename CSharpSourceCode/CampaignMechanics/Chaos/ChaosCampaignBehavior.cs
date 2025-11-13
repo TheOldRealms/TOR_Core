@@ -46,12 +46,12 @@ namespace TOR_Core.CampaignMechanics.Chaos
                 var mostPowerfulKingdom = allEligibleKingdoms.MaxBy(x => x.CurrentTotalStrength);
 
                 var eligibleSettlements = mostPowerfulKingdom.Fiefs.WhereQ(x =>
-                x.IsTown && 
-                !x.IsUnderSiege && 
+                x.IsTown &&
+                !x.IsUnderSiege &&
                 !x.OwnerClan.IsRebelClan &&
                 x.Settlement.Party.MapEvent == null); //Sly : I've left in the possibility for the player's current settlement to have the chaos rebellion as I think it will be a nice surprise to suddenly be kicked out while waiting in the settlement and a bunch of chaos parties to spawn and rush out after them.
 
-                if(eligibleSettlements.Any())
+                if (eligibleSettlements.Any())
                 {
                     var settlement = eligibleSettlements.MinBy(x => x.Loyalty);
                     StartChaosUprisingEvent(settlement.Settlement);
@@ -101,20 +101,20 @@ namespace TOR_Core.CampaignMechanics.Chaos
             if (clan.AliveLords.WhereQ(x => x.IsAlive).Count() < _maxNumberOfChaosLords)
             {
                 MBReadOnlyList<CharacterObject> heroTemplates = chaosCulture.LordTemplates;
-                for(int i = 0; i < _numberOfChaosLordsToSpawnPerUprising; i++)
+                for (int i = 0; i < _numberOfChaosLordsToSpawnPerUprising; i++)
                 {
-                    if(clan.AliveLords.WhereQ(x => x.IsAlive).Count() + 1 < _maxNumberOfChaosLords)
+                    if (clan.AliveLords.WhereQ(x => x.IsAlive).Count() + 1 < _maxNumberOfChaosLords)
                     {
                         CreateChaosHero(heroTemplates.GetRandomElement(), settlement, chaosCulture, clan);
                     }
                 }
             }
 
-            foreach(var comp in clan.WarPartyComponents)
+            foreach (var comp in clan.WarPartyComponents)
             {
-                if(comp.MobileParty != null && 
-                    comp.MobileParty.Army == null && 
-                    comp.Party.MapEvent == null && 
+                if (comp.MobileParty != null &&
+                    comp.MobileParty.Army == null &&
+                    comp.Party.MapEvent == null &&
                     comp.MobileParty.LeaderHero != null &&
                     comp.Party.IsValid &&
                     comp.MobileParty.IsActive)
@@ -136,8 +136,8 @@ namespace TOR_Core.CampaignMechanics.Chaos
             clan.Leader.ChangeHeroGold(100000);
 
             var chaosKingdom = Kingdom.All.FirstOrDefault(x => x.Name == clan.Name);
-            
-            if(chaosKingdom == null)
+
+            if (chaosKingdom == null)
             {
                 Campaign.Current.KingdomManager.CreateKingdom(clan.Name, clan.InformalName, chaosCulture, clan);
             }

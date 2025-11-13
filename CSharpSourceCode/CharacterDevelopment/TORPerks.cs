@@ -113,10 +113,10 @@ namespace TOR_Core.CharacterDevelopment
 
         private void InitializeAll()
         {
-            _runAndGun.Initialize("{=tor_perk_run_and_gun_label_str}Run and Gun", TORSkills.GunPowder, 50, _mountedHeritage, 
-                "{=tor_perk_run_and_gun_1_str}While on foot and using a pistol, your accuracy penalty for moving is reduced by 20%.", 
-                PartyRole.Personal, -0.2f, EffectIncrementType.AddFactor, 
-                "{=tor_perk_run_and_gun_2_str}Gunpowder infantry troops in your party have their gunpowder skill increased by 30.", 
+            _runAndGun.Initialize("{=tor_perk_run_and_gun_label_str}Run and Gun", TORSkills.GunPowder, 50, _mountedHeritage,
+                "{=tor_perk_run_and_gun_1_str}While on foot and using a pistol, your accuracy penalty for moving is reduced by 20%.",
+                PartyRole.Personal, -0.2f, EffectIncrementType.AddFactor,
+                "{=tor_perk_run_and_gun_2_str}Gunpowder infantry troops in your party have their gunpowder skill increased by 30.",
                 PartyRole.PartyLeader, 30f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.OnFoot | TroopUsageFlags.Ranged);
             _mountedHeritage.Initialize("{=tor_perk_mounted_heritage_label_str}Mounted Heritage", TORSkills.GunPowder, 50, _runAndGun,
                 "{=tor_perk_mounted_heritage_1_str}Your accuracy is increased by 20% with gunpowder weapons when mounted.",
@@ -168,11 +168,11 @@ namespace TOR_Core.CharacterDevelopment
                 "{=tor_perk_steel_terror_2_str}Artillery crews and engineers in your party become unbreakable due to morale loss.",
                 PartyRole.PartyLeader, 1f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 
-            _piercingShots.Initialize("{=tor_perk_piercing_shots_label_str}Piercing Shots", TORSkills.GunPowder, 300, null, 
-                "{=tor_perk_piercing_shots_1_str}Your shots ignore 50% of enemy armor and penetrate shields.", 
+            _piercingShots.Initialize("{=tor_perk_piercing_shots_label_str}Piercing Shots", TORSkills.GunPowder, 300, null,
+                "{=tor_perk_piercing_shots_1_str}Your shots ignore 50% of enemy armor and penetrate shields.",
                 PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, "{=tor_perk_piercing_shots_2_str}Gunpowder troops in your party pierce shields.", PartyRole.PartyLeader, 0, EffectIncrementType.Invalid);
 
-            _entrySpells.Initialize("{=tor_perk_novice_spellcaster_label_str}Novice Spellcaster", TORSkills.SpellCraft, 25, null, 
+            _entrySpells.Initialize("{=tor_perk_novice_spellcaster_label_str}Novice Spellcaster", TORSkills.SpellCraft, 25, null,
                 "{=tor_perk_novice_spellcaster_1_str}Gain access to entry level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
             _adeptSpells.Initialize("{=tor_perk_adept_spellcaster_label_str}Adept Spellcaster", TORSkills.SpellCraft, 100, null,
                 "{=tor_perk_adept_spellcaster_1_str}Gain access to adept level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
@@ -235,7 +235,7 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _exchange.Initialize("{=tor_perk_exchange_label_str}Exchange", TORSkills.SpellCraft, 300, null,
-                "{=tor_perk_exchange_1_str}All physical damage done by your weapons is doubled and dealt again as magical damage.", 
+                "{=tor_perk_exchange_1_str}All physical damage done by your weapons is doubled and dealt again as magical damage.",
                 PartyRole.Personal, 2f, EffectIncrementType.AddFactor);
 
             _novicePrayers.Initialize("{=tor_perk_novice_prayer_label_str}Novice Prayers", TORSkills.Faith, 25, null,

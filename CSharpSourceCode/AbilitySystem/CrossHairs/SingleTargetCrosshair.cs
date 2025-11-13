@@ -35,7 +35,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             }
             float collisionDistance;
             Agent newTarget;
-            using(new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+            using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
             {
                 newTarget = _mission.RayCastForClosestAgent(sourcePoint, targetPoint, -1, 0.05f, out collisionDistance);
             }
@@ -50,8 +50,8 @@ namespace TOR_Core.AbilitySystem.Crosshairs
             }
             var targetType = _template.AbilityTargetType;
             bool isTargetMatching = collisionDistance <= _template.MaxDistance &&
-                                    ((targetType == AbilityTargetType.SingleEnemy|| targetType ==  AbilityTargetType.EnemiesInAOE) && newTarget.IsEnemyOf(_caster)) ||          // the target filter can be single, but the effect for multiple
-                                    ((targetType == AbilityTargetType.SingleAlly || targetType ==  AbilityTargetType.AlliesInAOE) && !newTarget.IsEnemyOf(_caster));
+                                    ((targetType == AbilityTargetType.SingleEnemy || targetType == AbilityTargetType.EnemiesInAOE) && newTarget.IsEnemyOf(_caster)) ||          // the target filter can be single, but the effect for multiple
+                                    ((targetType == AbilityTargetType.SingleAlly || targetType == AbilityTargetType.AlliesInAOE) && !newTarget.IsEnemyOf(_caster));
             if (isTargetMatching)
             {
                 if (newTarget != _cachedTarget)
@@ -87,13 +87,13 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         {
             if (Mission.Current.CurrentState != Mission.State.Over)
             {
-                if (_cachedTarget!=null&& !_cachedTarget.IsFadingOut())
+                if (_cachedTarget != null && !_cachedTarget.IsFadingOut())
                 {
                     _cachedTarget.AgentVisuals?.SetContourColor(colorLess); //Sly : I've had a memory access violation occur here previously when switching between prayers on ulric - not sure exactly what occurred, I probably went from a prayer that highlighted a group of agents with an aoe to the Snow King's Decree single target circle and something went wrong with the unhighlighting?
                 }
-                
+
             }
-            
+
             _isTargetLocked = false;
         }
 

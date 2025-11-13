@@ -1,7 +1,7 @@
+using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -27,27 +27,27 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
 
     private TroopRoster _lastTroopRoster;
     private Dictionary<string, CampaignTime> _brawlCooldowns = new();
-    
+
 
     public override void RegisterEvents()
     {
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
         CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, AfterSessionLaunched);
-        CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this,OnBattleEnded);
+        CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnBattleEnded);
     }
 
-    
+
     private void OnBattleEnded(MapEvent mapevent)
     {
-  
+
         if (_isMissionStarted && mapevent.WinningSide == mapevent.PlayerSide)
         {
             _isMissionStarted = false;
-            
+
         }
     }
-    
-    
+
+
     private void AfterSessionLaunched(CampaignGameStarter obj)
     {
         var menu = Campaign.Current.GameMenuManager.GetGameMenu("town");
@@ -55,11 +55,11 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
     }
 
     private void OnSessionStart(CampaignGameStarter starter)
-    { 
+    {
         AddTownMenuButton(starter);
 
     }
-    
+
 
     private void AddTownMenuButton(CampaignGameStarter starter)
     {
@@ -164,7 +164,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
         // Record cooldown
         var settlementId = Settlement.CurrentSettlement.StringId;
         _brawlCooldowns[settlementId] = CampaignTime.Now;
-      
+
 
         _lastTroopRoster = null;
         TroopRoster playerRoster = TroopRoster.CreateDummyTroopRoster();
@@ -191,19 +191,19 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             };
 
             if (!shouldAdd) continue;
-            
+
             var addCount = Math.Min(troopElement.Number, spawnsLeft);
             enemyRoster.AddToCounts(troopElement.Character, addCount);
             spawnsLeft -= addCount;
         }
-        
+
         Location location = LocationComplex.Current.GetLocationWithId("tavern");
-        
+
         TroopRoster playerSideTroops = playerRoster;
         TroopRoster rivalSideTroops = enemyRoster;
 
         _lastTroopRoster = rivalSideTroops;
-        
+
 
         _isMissionStarted = true;
         var mission = TorMissionManager.OpenBrawlFightMission(location, playerSideTroops, rivalSideTroops, enemyPartySize, OnBrawlMissionEnd);
@@ -238,15 +238,15 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
         foreach (var entry in _lastBrawlResult.Scores)
         {
             var hero = entry.Key;
-            entries.Add(hero.Name + " "+ entry.Value);
+            entries.Add(hero.Name + " " + entry.Value);
             if (entry.Key == Hero.MainHero)
             {
-                resultScore +=entry.Value;
+                resultScore += entry.Value;
                 resultScore += 10;  //survival bonus
             }
             if (entry.Key != Hero.MainHero)
             {
-                resultScore +=entry.Value/2;
+                resultScore += entry.Value / 2;
                 resultScore += 5;  //survival bonus
             }
         }
@@ -281,19 +281,19 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             pouchedRoster.AddToCounts(goblin, 1);
             continue;
         }
-        
-        int goldReward = MBRandom.RandomInt(50*(int)resultScore, 150*(int)resultScore);
+
+        int goldReward = MBRandom.RandomInt(50 * (int)resultScore, 150 * (int)resultScore);
         int renownReward = (int)resultScore / 3;
-        int teefWin = (int) resultScore;
-        
+        int teefWin = (int)resultScore;
+
         var customResourceIcon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
-        
+
         var description = GameTexts.FindText("tor_greenskin_brawl_victory_reward");
-        GameTexts.SetVariable("GOLD_REWARD",goldReward);
-        GameTexts.SetVariable("RENOWN_REWARD",renownReward);
-        GameTexts.SetVariable("TEEF_REWARD",teefWin);
-        GameTexts.SetVariable("CR_ICON",customResourceIcon);
-        
+        GameTexts.SetVariable("GOLD_REWARD", goldReward);
+        GameTexts.SetVariable("RENOWN_REWARD", renownReward);
+        GameTexts.SetVariable("TEEF_REWARD", teefWin);
+        GameTexts.SetVariable("CR_ICON", customResourceIcon);
+
         Hero.MainHero.ChangeHeroGold(goldReward);
         Clan.PlayerClan.AddRenown(renownReward);
         Hero.MainHero.AddCultureSpecificCustomResource(teefWin);
@@ -316,7 +316,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             }
 
             GameTexts.SetVariable("POUCHED_TROOPS", stringBuilder.ToString());
-            GameTexts.SetVariable("TROOP_REWARD",impressedTroopDescription);
+            GameTexts.SetVariable("TROOP_REWARD", impressedTroopDescription);
         }
         else if (availablePartySpace <= 0)
         {
@@ -329,27 +329,27 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
             // No troops recruited due to randomness, not party space
             GameTexts.SetVariable("TROOP_REWARD", TextObject.GetEmpty());
         }
-        
+
         GameTexts.SetVariable("BRAWL_RESULT", description);
-        
+
         MBTextManager.SetTextVariable("BRAWL_WIN_DESCRIPTION", text);
     }
 
     private void SetDefeat(MenuCallbackArgs args)
     {
         var enemyCount = _lastTroopRoster.TotalManCount;
-        
-        int goldLoss = MBRandom.RandomInt(25*enemyCount, 100*enemyCount);
+
+        int goldLoss = MBRandom.RandomInt(25 * enemyCount, 100 * enemyCount);
 
         int teef = enemyCount;
 
         Hero.MainHero.ChangeHeroGold(-goldLoss);
         Hero.MainHero.AddCultureSpecificCustomResource(-teef);
-        
+
         GameTexts.SetVariable("TEEF_LOSS", teef);
         GameTexts.SetVariable("GOLD_LOSS", goldLoss);
         GameTexts.SetVariable("CR_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
-        
+
         var text = GameTexts.FindText("tor_greenskin_brawl_defeat_desc");
         MBTextManager.SetTextVariable("BRAWL_DEFEAT_DESCRIPTION", text);
     }
@@ -362,7 +362,7 @@ public class GreenskinBrawlBehavior : CampaignBehaviorBase
 
 }
 
-public class BrawlMissionResult(MissionResult missionResult, Dictionary<Hero, int> scores, List<Hero> losses) : 
+public class BrawlMissionResult(MissionResult missionResult, Dictionary<Hero, int> scores, List<Hero> losses) :
     MissionResult(missionResult.BattleState,
     missionResult.PlayerVictory, missionResult.PlayerDefeated, missionResult.EnemyRetreated)
 {

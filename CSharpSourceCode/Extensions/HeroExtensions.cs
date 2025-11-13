@@ -74,7 +74,7 @@ namespace TOR_Core.Extensions
             }
             return result;
         }
-        
+
         /// <remarks>
         /// This can only return true for the main hero; anything else passed is guaranteed false.
         /// </remarks>
@@ -113,39 +113,7 @@ namespace TOR_Core.Extensions
         public static float GetRaiseDeadChance(this Hero hero)
         {
             if (!hero.IsNecromancer()) return 0f;
-            
-            var chance = new ExplainedNumber();
-            var skillValue = hero.GetSkillValue(TORSkills.SpellCraft);
 
-            var chanceValue = Mathf.Clamp(skillValue * 0.005f, 0.05f, 0.7f);
-           chance.Add(chanceValue);
-
-            if (hero.HasAnyCareer())
-            {
-                var choices = hero.GetAllCareerChoices();
-
-                if (choices.Contains("MasterOfDeadPassive3"))
-                {
-                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
-                    if(choice!=null)
-                        chance.AddFactor(choice.GetPassiveValue());
-                }
-            }
-
-            return chance.ResultNumber;
-        }
-        
-        /// <summary>
-        /// Calculates the chance based on the Spellcraft Skillvalue and applies Career Perks.
-        /// 0.005 would allow with 200 spell craft an 80% chance of raising dead.
-        /// </summary>
-        /// <remarks>
-        /// I think this was an attempt that didn't end up being used when dryads were being designed. It's a copy of the GetRaiseDeadChance method with nothing changed.
-        /// </remarks>
-        public static float GetTreeSpiritChance(this Hero hero)
-        {
-            if (!hero.IsSpellCaster()) return 0f;
-            
             var chance = new ExplainedNumber();
             var skillValue = hero.GetSkillValue(TORSkills.SpellCraft);
 
@@ -159,14 +127,46 @@ namespace TOR_Core.Extensions
                 if (choices.Contains("MasterOfDeadPassive3"))
                 {
                     var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
-                    if(choice!=null)
+                    if (choice != null)
                         chance.AddFactor(choice.GetPassiveValue());
                 }
             }
 
             return chance.ResultNumber;
         }
-        
+
+        /// <summary>
+        /// Calculates the chance based on the Spellcraft Skillvalue and applies Career Perks.
+        /// 0.005 would allow with 200 spell craft an 80% chance of raising dead.
+        /// </summary>
+        /// <remarks>
+        /// I think this was an attempt that didn't end up being used when dryads were being designed. It's a copy of the GetRaiseDeadChance method with nothing changed.
+        /// </remarks>
+        public static float GetTreeSpiritChance(this Hero hero)
+        {
+            if (!hero.IsSpellCaster()) return 0f;
+
+            var chance = new ExplainedNumber();
+            var skillValue = hero.GetSkillValue(TORSkills.SpellCraft);
+
+            var chanceValue = Mathf.Clamp(skillValue * 0.005f, 0.05f, 0.7f);
+            chance.Add(chanceValue);
+
+            if (hero.HasAnyCareer())
+            {
+                var choices = hero.GetAllCareerChoices();
+
+                if (choices.Contains("MasterOfDeadPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive3");
+                    if (choice != null)
+                        chance.AddFactor(choice.GetPassiveValue());
+                }
+            }
+
+            return chance.ResultNumber;
+        }
+
 
         public static void AddCustomResource(this Hero hero, string id, float amount)
         {
@@ -177,7 +177,7 @@ namespace TOR_Core.Extensions
         public static float GetCustomResourceValue(this Hero hero, string id)
         {
             var info = hero.GetExtendedInfo();
-            
+
             if (info != null)
             {
                 return info.GetCustomResourceValue(id);
@@ -189,7 +189,7 @@ namespace TOR_Core.Extensions
         {
             if (hero == null)
                 return null;
-            
+
             return CustomResourceManager.GetResourceObject(x => x.FirstOrDefault(y => y.Cultures.Contains(hero.Culture.StringId)));
         }
 
@@ -204,7 +204,7 @@ namespace TOR_Core.Extensions
 
             return 0;
         }
-        
+
         public static float GetCultureSpecificCustomResourceChange(this Hero hero, string resourceid)
         {
             var model = Campaign.Current.Models.GetCustomResourceModel();
@@ -228,7 +228,7 @@ namespace TOR_Core.Extensions
 
         public static void AddCultureSpecificCustomResource(this Hero hero, float amount)
         {
-            if(hero.GetCultureSpecificCustomResource() != null) hero.AddCustomResource(hero.GetCultureSpecificCustomResource().StringId, amount);
+            if (hero.GetCultureSpecificCustomResource() != null) hero.AddCustomResource(hero.GetCultureSpecificCustomResource().StringId, amount);
         }
 
         public static Dictionary<CustomResource, float> GetCustomResources(this Hero hero)
@@ -246,7 +246,7 @@ namespace TOR_Core.Extensions
             float result = 0;
             var info = hero.GetExtendedInfo();
             info?.AddCustomResource("WindsOfMagic", amount);
-            
+
             return result;
         }
 
@@ -255,7 +255,7 @@ namespace TOR_Core.Extensions
             return ExtendedInfoManager.Instance.GetHeroInfoFor(hero.GetInfoKey());
         }
 
-        public static int GetEffectiveWindsCostForSpell(this Hero hero, Spell spell)            
+        public static int GetEffectiveWindsCostForSpell(this Hero hero, Spell spell)
         {
             return hero.GetEffectiveWindsCostForSpell(spell.Template);
         }
@@ -277,7 +277,7 @@ namespace TOR_Core.Extensions
         public static int GetPlaceableArtilleryCount(this Hero hero)
         {
             int count = 0;
-            if (hero.CanPlaceArtillery()|| hero.HasAttribute("EngineerCompanion")&& Hero.MainHero.CanPlaceArtillery())
+            if (hero.CanPlaceArtillery() || hero.HasAttribute("EngineerCompanion") && Hero.MainHero.CanPlaceArtillery())
             {
                 var engineering = hero.GetSkillValue(DefaultSkills.Engineering);
                 count = (int)Math.Truncate((decimal)engineering / 50);
@@ -297,7 +297,7 @@ namespace TOR_Core.Extensions
             if (info != null && !info.AllAbilities.Contains(ability))
             {
                 info.AcquiredAbilities.Add(ability);
-                TORCampaignEvents.Instance.OnAbilityLearned(hero,ability);
+                TORCampaignEvents.Instance.OnAbilityLearned(hero, ability);
             }
         }
 
@@ -317,8 +317,8 @@ namespace TOR_Core.Extensions
                 info.AcquiredAttributes.Add(attribute);
             }
         }
-        
-        public static void AddEnchantmentBlueprint(this Hero hero, string bluePrint, bool showNotification =false)
+
+        public static void AddEnchantmentBlueprint(this Hero hero, string bluePrint, bool showNotification = false)
         {
             var info = hero.GetExtendedInfo();
             if (info != null && !info.HasKnownEnchantmentBlueprint(bluePrint))
@@ -327,7 +327,7 @@ namespace TOR_Core.Extensions
                 if (showNotification)
                 {
                     var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == bluePrint);
-                    MBInformationManager.AddQuickInformation(new TextObject(hero.Name+" learned the enchantment"+itemTrait!.ItemTraitName), 0, hero.CharacterObject);
+                    MBInformationManager.AddQuickInformation(new TextObject(hero.Name + " learned the enchantment" + itemTrait!.ItemTraitName), 0, hero.CharacterObject);
                 }
             }
         }
@@ -355,13 +355,13 @@ namespace TOR_Core.Extensions
             var customResource = GetCustomResourceValue(hero, "Chivalry");
             return ChivalryHelper.GetChivalryLevelForResource(customResource);
         }
-        
+
         public static ForestHarmonyLevel GetForestHarmonyLevel(this Hero hero)
         {
             var customResource = GetCustomResourceValue(hero, "ForestHarmony");
             return ForestHarmonyHelper.GetForestHarmonyLevelForResource(customResource);
         }
-        
+
         public static bool HasChivalryLevel(this Hero hero, ChivalryLevel level)
         {
             return ChivalryHelper.HasChivalryLevel(hero, level);
@@ -398,7 +398,7 @@ namespace TOR_Core.Extensions
             }
             else return false;
         }
-        
+
         public static int GetKnownLoreCount(this Hero hero)
         {
             if (hero.GetExtendedInfo() != null)
@@ -421,9 +421,9 @@ namespace TOR_Core.Extensions
 
         public static bool IsNecromancer(this Hero hero)
         {
-            return hero.HasAttribute("Necromancer")|| hero.HasKnownLore("Necromancy");
+            return hero.HasAttribute("Necromancer") || hero.HasKnownLore("Necromancy");
         }
-        
+
         public static bool IsSpellSinger(this Hero hero)
         {
             return hero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.HasAttribute("SpellCaster");
@@ -481,7 +481,7 @@ namespace TOR_Core.Extensions
 
             return false;
         }
-        
+
         public static bool IsAICompanion(this Hero hero)
         {
             return hero.HasAttribute("AICompanion") && hero.Occupation == Occupation.Special;
@@ -507,7 +507,7 @@ namespace TOR_Core.Extensions
 
             return false;
         }
-        
+
         public static bool IsEnchanter(this Hero hero)
         {
             var behavior = Campaign.Current.GetCampaignBehavior<EnchanterTownBehavior>();
@@ -538,7 +538,7 @@ namespace TOR_Core.Extensions
                 return hero.Occupation == Occupation.Special && hero.Template.StringId.Contains("nulnengineernpc");
             return false;
         }
-       
+
 
         public static bool HasCareerChoice(this Hero hero, string choiceID)
         {
@@ -567,8 +567,8 @@ namespace TOR_Core.Extensions
                 var info = hero.GetExtendedInfo();
                 if (info != null && !info.CareerChoices.Contains(choice.StringId))
                 {
-                    int maxChoices = Math.Min(hero.Level+1, TORConfig.MaximumNumberOfCareerPerkPoints + 1);
-                    if(info.CareerChoices.Count < maxChoices)
+                    int maxChoices = Math.Min(hero.Level + 1, TORConfig.MaximumNumberOfCareerPerkPoints + 1);
+                    if (info.CareerChoices.Count < maxChoices)
                     {
                         info.CareerChoices.Add(choice.StringId);
                         return true;
@@ -617,7 +617,7 @@ namespace TOR_Core.Extensions
             CareerObject result = null;
             if (hero?.GetExtendedInfo() is HeroExtendedInfo heroInfo && !string.IsNullOrEmpty(heroInfo.CareerID))
             {
-                result = TORCareers.All.FirstOrDefault(x=>x.StringId == heroInfo.CareerID);
+                result = TORCareers.All.FirstOrDefault(x => x.StringId == heroInfo.CareerID);
             }
             return result;
         }
@@ -633,13 +633,13 @@ namespace TOR_Core.Extensions
                     {
                         info.CareerChoices.Clear();
                     }
-                    
+
                     info.CareerID = career.StringId;
                     info.CareerChoices.Add(career.RootNode.StringId);
                     var careerObj = TORCareerChoices.Instance.GetCareerChoices(hero.GetCareer());
-                    RemoveAttribute(hero,"CareerTier"+1);
-                    RemoveAttribute(hero,"CareerTier"+2);
-                    RemoveAttribute(hero,"CareerTier"+3);
+                    RemoveAttribute(hero, "CareerTier" + 1);
+                    RemoveAttribute(hero, "CareerTier" + 2);
+                    RemoveAttribute(hero, "CareerTier" + 3);
                     careerObj.InitialCareerSetup();
                 }
             }
@@ -648,17 +648,17 @@ namespace TOR_Core.Extensions
         public static bool HasUnlockedCareerChoiceTier(this Hero hero, int tier)
         {
             var tierText = "CareerTier";
-            if(hero.HasAnyCareer()&& hero.HasAttribute(tierText + tier))return true;
-            
+            if (hero.HasAnyCareer() && hero.HasAttribute(tierText + tier)) return true;
+
             return false;
         }
-        
+
         /// <summary>
         /// Access item objects from the equipment of the character
         /// Equipment Indexes can define the Range. Note that horses are not a valid item object to be accessed
         /// </summary>
         public static List<ItemObject> GetHeroEquipment(this Hero hero,
-            EquipmentIndex BeginningFrom = EquipmentIndex.Weapon0, EquipmentIndex EndingAt = EquipmentIndex.ArmorItemEndSlot, bool civilian=true)
+            EquipmentIndex BeginningFrom = EquipmentIndex.Weapon0, EquipmentIndex EndingAt = EquipmentIndex.ArmorItemEndSlot, bool civilian = true)
         {
             int index = (int)BeginningFrom;
             int end = (int)EndingAt;
@@ -666,18 +666,18 @@ namespace TOR_Core.Extensions
             for (int i = index; i <= end; i++)
             {
                 var equipment = hero.BattleEquipment;
-                if ( equipment!=null)
+                if (equipment != null)
                 {
                     CharacterEquipmentItems.Add(hero.BattleEquipment[i].Item);
                 }
 
-                if (civilian && hero.CivilianEquipment!=null)
+                if (civilian && hero.CivilianEquipment != null)
                 {
                     CharacterEquipmentItems.Add(hero.CivilianEquipment[i].Item);
                 }
             }
-            
-            
+
+
             return CharacterEquipmentItems;
         }
 
@@ -703,11 +703,11 @@ namespace TOR_Core.Extensions
         public static void AddReligiousInfluence(this Hero hero, ReligionObject religion, int amount, bool shouldNotify = true)
         {
             var info = hero.GetExtendedInfo();
-            if(info != null)
+            if (info != null)
             {
                 var copy = info.ReligionDevotionLevels.ToDictionary(x => x.Key, x => x.Value);
                 Dictionary<string, DevotionLevel> originalDevotionLevels = [];
-                foreach(var ro in ReligionObject.All)
+                foreach (var ro in ReligionObject.All)
                 {
                     if (copy.ContainsKey(ro.StringId))
                     {
@@ -720,7 +720,7 @@ namespace TOR_Core.Extensions
                 }
 
                 int sumTotalDevotion = info.ReligionDevotionLevels.Sum(x => x.Value);
-                if(sumTotalDevotion + amount <= TORConstants.MAXIMUM_DEVOTION_LEVEL)
+                if (sumTotalDevotion + amount <= TORConstants.MAXIMUM_DEVOTION_LEVEL)
                 {
                     if (info.ReligionDevotionLevels.ContainsKey(religion.StringId))
                     {
@@ -751,7 +751,7 @@ namespace TOR_Core.Extensions
                         foreach (var entry in info.ReligionDevotionLevels.ToDictionary(x => x.Key, x => x.Value))
                         {
                             info.ReligionDevotionLevels[entry.Key] -= newAmount;
-                            
+
                         }
                         info.ReligionDevotionLevels.Add(religion.StringId, newAmount);
                     }
@@ -770,12 +770,12 @@ namespace TOR_Core.Extensions
                     else newDevotionLevels.Add(ro.StringId, DevotionLevel.None);
                 }
 
-                foreach(var entry in originalDevotionLevels)
+                foreach (var entry in originalDevotionLevels)
                 {
                     if (newDevotionLevels.ContainsKey(entry.Key))
                     {
-                        if (newDevotionLevels[entry.Key] != originalDevotionLevels[entry.Key] && shouldNotify) 
-                            TORCampaignEvents.Instance.OnDevotionLevelChanged(hero, ReligionObject.All.FirstOrDefault(x=>x.StringId == entry.Key), originalDevotionLevels[entry.Key], newDevotionLevels[entry.Key]);
+                        if (newDevotionLevels[entry.Key] != originalDevotionLevels[entry.Key] && shouldNotify)
+                            TORCampaignEvents.Instance.OnDevotionLevelChanged(hero, ReligionObject.All.FirstOrDefault(x => x.StringId == entry.Key), originalDevotionLevels[entry.Key], newDevotionLevels[entry.Key]);
                     }
                 }
             }

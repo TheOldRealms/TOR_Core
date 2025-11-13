@@ -19,14 +19,14 @@ public static class MobilePartyPatches
         {
             return true;
         }
-        
+
         if (__instance.LeaderHero.IsEnlisted())
         {
             __instance.MobileParty.IsVisible = false;
-            
+
             return false;
         }
-        
+
         return true;
     }
 

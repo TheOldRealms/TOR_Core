@@ -24,12 +24,12 @@ namespace TOR_Core.Utilities
             var info = ExtendedInfoManager.GetCharacterInfoFor(characterObject.StringId);
             List<TooltipProperty> list = new List<TooltipProperty>();
             if (info == null) return list;
-            
-            
+
+
             list.Add(new TooltipProperty("Health", hitpoints.ToString, 0, false,
                 TooltipProperty.TooltipPropertyFlags.RundownResult));
-            
-            
+
+
             list.AddRange(GenerateDamageDisplay(characterObject, info));
             list.AddRange(GenerateAmplifierDisplay(info));
             list.AddRange(GenerateResistanceDisplay(info));
@@ -48,7 +48,7 @@ namespace TOR_Core.Utilities
         {
             var attributeTexts = new List<TooltipProperty>();
             if (!info.CharacterAttributes.Any()) return attributeTexts;
-            
+
             foreach (var attribute in info.CharacterAttributes)
             {
                 if (GameTexts.TryGetText("tor_extendedInfo", out TextObject text, attribute))
@@ -56,7 +56,7 @@ namespace TOR_Core.Utilities
                     attributeTexts.Add(new TooltipProperty("", text.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.MultiLine));
                 }
             }
-            
+
             if (attributeTexts.Any())
             {
                 attributeTexts.Insert(0,
@@ -144,7 +144,7 @@ namespace TOR_Core.Utilities
                     listDamages.Add((damage, typetext));
                 }
             }
-                
+
             var damagesList = new List<TooltipProperty>();
 
             foreach (var damageCategory in listDamages)
@@ -158,7 +158,7 @@ namespace TOR_Core.Utilities
                     propotionList.Add(new TooltipProperty(tuple.DamageType.ToString, value.ToString, 0, false,
                         TooltipProperty.TooltipPropertyFlags.None));
                 }
-                    
+
                 damagesList.Add(new TooltipProperty(damageCategory.damageType + " Damage ",
                     resultDamge.ToString, 0, false, TooltipProperty.TooltipPropertyFlags.RundownResult));
 

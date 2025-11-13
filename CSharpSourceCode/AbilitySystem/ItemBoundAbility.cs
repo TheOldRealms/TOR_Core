@@ -22,12 +22,12 @@ namespace TOR_Core.AbilitySystem
 
         public override bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
         {
-            if(_chargeNum <= 0) 
+            if (_chargeNum <= 0)
             {
                 disabledReason = new TextObject("{=!}No more artillery pieces in inventory");
                 return true;
             }
-            if(Mission.Current.GetArtillerySlotsLeftForTeam(casterAgent.Team) <= 0)
+            if (Mission.Current.GetArtillerySlotsLeftForTeam(casterAgent.Team) <= 0)
             {
                 disabledReason = new TextObject("{=!}Party cannot field more artillery pieces");
                 return true;

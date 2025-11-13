@@ -58,7 +58,7 @@ namespace TOR_Core.Items
             switch (itemTrait.ValidItemType)
             {
                 case ItemTraitItemType.Melee:
-                    result = itemType == ItemTypeEnum.OneHandedWeapon || 
+                    result = itemType == ItemTypeEnum.OneHandedWeapon ||
                              itemType == ItemTypeEnum.TwoHandedWeapon ||
                              itemType == ItemTypeEnum.Polearm;
                     break;
@@ -66,8 +66,8 @@ namespace TOR_Core.Items
                     result = itemType == ItemTypeEnum.Thrown;
                     break;
                 case ItemTraitItemType.Ammo:
-                    result = itemType == ItemTypeEnum.Bullets || 
-                             itemType == ItemTypeEnum.Bolts || 
+                    result = itemType == ItemTypeEnum.Bullets ||
+                             itemType == ItemTypeEnum.Bolts ||
                              itemType == ItemTypeEnum.Arrows ||
                              itemType == ItemTypeEnum.Thrown;
                     break;
@@ -75,7 +75,7 @@ namespace TOR_Core.Items
                     result = itemType == ItemTypeEnum.Thrown ||
                              itemType == ItemTypeEnum.Bow ||
                              itemType == ItemTypeEnum.Crossbow ||
-               
+
                              itemType == ItemTypeEnum.Musket ||
                              itemType == ItemTypeEnum.Pistol;
                     break;

@@ -55,7 +55,7 @@ namespace TOR_Core.CampaignMechanics
             {
                 if (_artilleryCrew == null) return;
                 var crewInPartySum = party.MemberRoster.GetTroopRoster().Where(x => x.Character.GetAttributes().Contains("ArtilleryCrew")).Sum(x => x.Number);
-                if (crewInPartySum > 10) { return;} //2 crew per gun, max 3 guns for certain ai parties
+                if (crewInPartySum > 10) { return; } //2 crew per gun, max 3 guns for certain ai parties
                 var cost = Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(_artilleryCrew, party.LeaderHero).ResultNumber * recruitmentNumber;
                 if (party.LeaderHero.Gold > cost)
                 {
@@ -68,7 +68,7 @@ namespace TOR_Core.CampaignMechanics
 
         private void DailyTickEvents(MobileParty party)
         {
-            if (party.IsLordParty && !party.IsMainParty && party.LeaderHero != null )
+            if (party.IsLordParty && !party.IsMainParty && party.LeaderHero != null)
             {
                 var clan = party.LeaderHero.Clan;
                 if (clan != null && clan.Kingdom != null && clan.Kingdom.IsCastleFaction() && !clan.Kingdom.Settlements.AnyQ(x => x.IsTown))
@@ -80,7 +80,7 @@ namespace TOR_Core.CampaignMechanics
                         {
                             return;
                         }
-                        
+
                         if (party.Party.PartySizeLimit > party.MemberRoster.TotalManCount + UndeadCountTowns)
                         {
                             var count = party.LeaderHero.HasAttribute("BloodDragon") ? UndeadCountVillages : UndeadCountTowns;
@@ -119,25 +119,25 @@ namespace TOR_Core.CampaignMechanics
 
         private void AddDryadsToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero leaderHero)
         {
-            if (party == null || settlement == null || leaderHero == null || !leaderHero.IsSpellCaster() || leaderHero.Culture.StringId != TORConstants.Cultures.ASRAI|| settlement.IsHideout || party.IsMainParty) return;
+            if (party == null || settlement == null || leaderHero == null || !leaderHero.IsSpellCaster() || leaderHero.Culture.StringId != TORConstants.Cultures.ASRAI || settlement.IsHideout || party.IsMainParty) return;
             if (!settlement.StringId.Contains("AL")) return;
 
             if (party.MemberRoster.TotalManCount < party.Party.PartySizeLimit)
             {
-                if (_treeman !=null && party.MemberRoster.GetTroopCount(_treeman) is int count && count < 3)
-                { 
+                if (_treeman != null && party.MemberRoster.GetTroopCount(_treeman) is int count && count < 3)
+                {
                     if (MBRandom.RandomFloat < 0.05f)
-                    party.MemberRoster.AddToCounts(_treeman, 1);
+                        party.MemberRoster.AddToCounts(_treeman, 1);
                     return;
                 }
 
-                if (_dryad == null || party.MemberRoster.GetTroopCount(_dryad)>=75) return;
-                
+                if (_dryad == null || party.MemberRoster.GetTroopCount(_dryad) >= 75) return;
+
                 var number = settlement.IsVillage ? UndeadCountVillages : UndeadCountTowns;
                 party.MemberRoster.AddToCounts(_dryad, Math.Min(number, party.Party.PartySizeLimit - party.MemberRoster.TotalManCount));
             }
         }
-        
+
         private void AddUndeadToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero leaderHero)
         {
             if (party == null || settlement == null || leaderHero == null || !leaderHero.IsNecromancer() || settlement.IsHideout || party.IsMainParty) return;
@@ -173,9 +173,9 @@ namespace TOR_Core.CampaignMechanics
                 {
                     var random = MBRandom.RandomFloat;
                     if ((!troop.IsBasicTroop && random > 0.25f) || random > 0.75f)
-                        count ++;
+                        count++;
                 }
-                
+
                 var bloodKnightInitate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_initiate");
                 if (count > 0 && bloodKnightInitate != null)
                 {
@@ -196,30 +196,30 @@ namespace TOR_Core.CampaignMechanics
                 {
                     replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_aspiring_warrior");
                 }
-                
+
                 recruiter.PartyBelongedTo.Party.AddMember(troop, -amount);
-                recruiter.PartyBelongedTo.Party.AddMember(replacement, amount );
+                recruiter.PartyBelongedTo.Party.AddMember(replacement, amount);
             }
 
             if (troop.IsEliteTroop() && recruiter.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {
                 CharacterObject replacement = null;
-               if(recruiter.HasAttribute("Bergerac"))
-               {
-                   replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_bergerac_ranger");
-               }
-               
-               if(recruiter.HasAttribute("PeasantKnight"))
-               {
-                   replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_peasant_squight");
-               }
+                if (recruiter.HasAttribute("Bergerac"))
+                {
+                    replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_bergerac_ranger");
+                }
 
-               if (replacement != null)
-               {
-                   recruiter.PartyBelongedTo.Party.AddMember(replacement,amount);
-                   var currentNumber = recruiter.PartyBelongedTo.Party.MemberRoster.GetTroopCount(troop);
-                   recruiter.PartyBelongedTo.Party.AddMember(troop, MBMath.ClampInt(-amount,-currentNumber,0));
-               }
+                if (recruiter.HasAttribute("PeasantKnight"))
+                {
+                    replacement = MBObjectManager.Instance.GetObject<CharacterObject>("tor_ror_peasant_squight");
+                }
+
+                if (replacement != null)
+                {
+                    recruiter.PartyBelongedTo.Party.AddMember(replacement, amount);
+                    var currentNumber = recruiter.PartyBelongedTo.Party.MemberRoster.GetTroopCount(troop);
+                    recruiter.PartyBelongedTo.Party.AddMember(troop, MBMath.ClampInt(-amount, -currentNumber, 0));
+                }
             }
 
             if (recruiter.CharacterObject.IsBrassKeepLord())
@@ -234,15 +234,15 @@ namespace TOR_Core.CampaignMechanics
                         : MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_pugulist");
                     if (chaosKnight != null)
                     {
-                        recruiter.PartyBelongedTo.Party.AddMember(chaosKnight,amount);
+                        recruiter.PartyBelongedTo.Party.AddMember(chaosKnight, amount);
                     }
                 }
                 else
                 {
                     var raider = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_norscan_raider");
-                    recruiter.PartyBelongedTo.Party.AddMember(raider,amount);
+                    recruiter.PartyBelongedTo.Party.AddMember(raider, amount);
                 }
-            }           
+            }
 
             if (recruiter.IsLord && troop.Culture.StringId == TORConstants.Cultures.MOUSILLON && recruiter.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             {

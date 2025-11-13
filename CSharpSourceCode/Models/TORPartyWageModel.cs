@@ -31,7 +31,7 @@ namespace TOR_Core.Models
             {
                 value *= 2;
             }
-            
+
             if (character.Culture.StringId == TORConstants.Cultures.EONIR && character.IsEliteTroop())
             {
                 value *= 2;
@@ -45,13 +45,13 @@ namespace TOR_Core.Models
             switch (tier)
             {
                 case 0:
-                    return  1;
+                    return 1;
                 case 1:
                     return 2;
                 case 2:
                     return 3;
                 case 3:
-                    return  5;
+                    return 5;
                 case 4:
                     return 8;
                 case 5:
@@ -72,7 +72,7 @@ namespace TOR_Core.Models
             var value = base.GetTotalWage(mobileParty, troopRoster, includeDescriptions);
             value.LimitMin(0f); //no getting paid after all bonuses are applied
 
-            if (!mobileParty.IsMainParty) return value; 
+            if (!mobileParty.IsMainParty) return value;
 
             var leaderHero = mobileParty.LeaderHero;
             if (leaderHero != Hero.MainHero) return value; //Sly : when player is prisoner
@@ -84,13 +84,13 @@ namespace TOR_Core.Models
             {
                 TroopRosterElement elementCopyAtIndex = mobileParty.MemberRoster.GetElementCopyAtIndex(index);
                 var character = elementCopyAtIndex.Character;
-                if(character.IsHero && character.HeroObject == Hero.MainHero) continue;//player has no wage, but leaving this open to effects that can reduce companion wages
-                
-                float  troopwage = elementCopyAtIndex.Character.TroopWage * elementCopyAtIndex.Number;
-                
+                if (character.IsHero && character.HeroObject == Hero.MainHero) continue;//player has no wage, but leaving this open to effects that can reduce companion wages
+
+                float troopwage = elementCopyAtIndex.Character.TroopWage * elementCopyAtIndex.Number;
+
                 if (hasCareer)
                 {
-                    var careerFactors = new ExplainedNumber(0, true); 
+                    var careerFactors = new ExplainedNumber(0, true);
                     careerFactors = AddCareerSpecificWagePerks(careerFactors, leaderHero, elementCopyAtIndex);
                     foreach (var line in careerFactors.GetLines())
                     {
@@ -107,7 +107,7 @@ namespace TOR_Core.Models
                         {
                             foreach (var attribute in attributes.Where(attribute => attribute == "SecularSeal2"))
                             {
-                                value.Add(-0.25f * troopwage,new TextObject("Secular Seal")); //this should probably retrieve the value better
+                                value.Add(-0.25f * troopwage, new TextObject("Secular Seal")); //this should probably retrieve the value better
                             }
                         }
                     }
@@ -117,13 +117,13 @@ namespace TOR_Core.Models
                 {
                     if (elementCopyAtIndex.Character.HasAttribute("DwarfGun"))
                     {
-                        if(leaderHero.HasAttribute("DwarfEngineersIII"))
+                        if (leaderHero.HasAttribute("DwarfEngineersIII"))
                         {
-                            value.Add(-0.25f * troopwage,new TextObject("Engineers Guild"));
+                            value.Add(-0.25f * troopwage, new TextObject("Engineers Guild"));
                         }
-                        else if(leaderHero.HasAttribute("DwarfEngineersII"))
+                        else if (leaderHero.HasAttribute("DwarfEngineersII"))
                         {
-                            value.AddFactor(-0.15f * troopwage,new TextObject("Engineers Guild"));
+                            value.AddFactor(-0.15f * troopwage, new TextObject("Engineers Guild"));
                         }
                     }
                 }
@@ -136,24 +136,24 @@ namespace TOR_Core.Models
                     switch (level)
                     {
                         case ChivalryLevel.Unknightly:
-                            factor=0.75f;
+                            factor = 0.75f;
                             break;
                         case ChivalryLevel.Uninspiring:
-                            factor=0.5f;
+                            factor = 0.5f;
                             break;
                         case ChivalryLevel.Sincere:
-                            factor=0.25f;
+                            factor = 0.25f;
                             break;
                         case ChivalryLevel.Noteworthy:
-                            factor=0.1f;
+                            factor = 0.1f;
                             break;
                         case ChivalryLevel.PureHearted:
                             break;
                         case ChivalryLevel.Honourable:
-                            factor=-0.1f;
+                            factor = -0.1f;
                             break;
                         case ChivalryLevel.Chivalrous:
-                            factor=-0.2f;
+                            factor = -0.2f;
                             break;
                     }
                     value.Add((troopwage * factor), includeDescriptions ? ChivalryHelper.GetChivalryRankText(level) : null);
@@ -163,7 +163,7 @@ namespace TOR_Core.Models
                 {
                     if (leaderHero.HasAttribute("WEOrionSymbol"))
                     {
-                        if (elementCopyAtIndex.Character.IsElf() && elementCopyAtIndex.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+                        if (elementCopyAtIndex.Character.IsElf() && elementCopyAtIndex.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
                         {
                             value.Add(-0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
                         }
@@ -173,17 +173,17 @@ namespace TOR_Core.Models
                     {
                         value.Add(0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                     }
-                        
+
                     if (leaderHero.HasAttribute("WEWandererSymbol"))
                     {
                         value.Add(0.5f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEWandererSymbol"));
                     }
-                        
+
                     if (leaderHero.HasAttribute("WETreekinSymbol") && !elementCopyAtIndex.Character.IsTreeSpirit())
                     {
                         value.Add(0.25f * troopwage, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
                     }
-                        
+
                     if (leaderHero.HasAttribute("WEKithbandSymbol"))
                     {
                         value.Add(0.15f * troopwage, ForestHarmonyHelper.TreeSymbolText("WEKithbandSymbol"));
@@ -244,7 +244,7 @@ namespace TOR_Core.Models
                     if (buyerHero.GetPerkValue(DefaultPerks.Charm.SlickNegotiator))
                         explainedNumber.AddFactor(DefaultPerks.Charm.SlickNegotiator.PrimaryBonus);
                 }
-                
+
                 troopRecruitmentCost = MathF.Max(1, MathF.Round(troopRecruitmentCost * explainedNumber.ResultNumber));
             }
             return new ExplainedNumber(troopRecruitmentCost);
@@ -259,7 +259,7 @@ namespace TOR_Core.Models
             {
                 var choice = TORCareerChoices.GetChoice(choiceID);
                 if (choice?.Passive?.PassiveEffectType != PassiveEffectType.TroopWages) continue;
-                
+
                 if (!choice.Passive.IsValidCharacterObject(unit.Character))
                 {
                     continue;
@@ -268,7 +268,7 @@ namespace TOR_Core.Models
                 var value = CareerHelper.CalculateTroopWageCareerPerkEffect(unit, choice, out var textObject);
                 resultValue.Add(value, textObject);
             }
-                
+
             return resultValue;
         }
     }

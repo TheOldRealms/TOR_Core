@@ -24,7 +24,7 @@ namespace TOR_Core.CampaignMechanics
                     settlement.ItemRoster.AddToCounts(DefaultItems.Grain, 100);
                 }
             }
-            
+
             if (settlement.StringId == "castle_BK2")
             {
                 if (settlement.ItemRoster.TotalFood < 500)
@@ -67,8 +67,8 @@ namespace TOR_Core.CampaignMechanics
                 var nurglewarrior = MBObjectManager.Instance.GetObject<CharacterObject>("tor_chaos_nurgle_warrior");
                 brasskeep.MilitiaPartyComponent.Party.AddMember(nurglewarrior, 500);
             }
-            
-            
+
+
             var melkiortower = Campaign.Current.Settlements.FirstOrDefault(x => x.StringId == "castle_MT1");
 
             if (melkiortower != null)
@@ -77,7 +77,7 @@ namespace TOR_Core.CampaignMechanics
                 melkiortower.MilitiaPartyComponent.Party.AddMember(wraith, 100);
             }
         }
-        
+
         public override void SyncData(IDataStore dataStore)
         {
         }

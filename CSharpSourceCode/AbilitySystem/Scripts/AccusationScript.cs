@@ -1,7 +1,7 @@
+using Ink.Parsed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ink.Parsed;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -32,7 +32,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                 ExplicitTargetAgents[0]
             };
             list.AddRange(additionalTargets);
-            
+
             SetExplicitTargetAgents(list);
         }
 
@@ -47,7 +47,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 for (int i = 0; i < 9; i++)
                 {
-                    var trial = MBRandom.RandomFloatRanged(0f,1f);
+                    var trial = MBRandom.RandomFloatRanged(0f, 1f);
                     if (trial <= chance)
                     {
                         additionalTargetNumber++;
@@ -64,21 +64,21 @@ namespace TOR_Core.AbilitySystem.Scripts
         public static MBList<Agent> GetAdditionalAccusationMarkTargets(Vec2 pos, int limit = 0)
         {
             var targets = Mission.Current.GetNearbyAgents(pos, 5, new MBList<Agent>()).TakeRandom(limit).ToMBList();
-            if (limit > 0&&targets.Count < limit)
+            if (limit > 0 && targets.Count < limit)
             {
                 List<Agent> list = targets.ToList();
                 targets = list.TakeRandom(limit).ToMBList();
             }
-            
+
             for (var index = 0; index < targets.Count; index++)
             {
                 var target = targets[index];
-                if (target.Team.MBTeam.IsValid&&target.Team.IsPlayerTeam)
+                if (target.Team.MBTeam.IsValid && target.Team.IsPlayerTeam)
                 {
                     targets.Remove(target);
                     continue;
                 }
-                
+
                 var tempAttributes = target.GetComponent<StatusEffectComponent>().GetTemporaryAttributes();
 
                 if (tempAttributes.Contains("AccusationMark"))
@@ -86,7 +86,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                     targets.Remove(target);
                 }
             }
-            
+
             return targets;
         }
     }

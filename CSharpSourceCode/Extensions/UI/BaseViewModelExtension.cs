@@ -46,7 +46,7 @@ namespace TOR_Core.Extensions.UI
                 if (property != null)
                 {
                     object obj = null;
-                    if(IsExtendedProperty(property)) obj = property.GetGetMethod().InvokeWithLog(this , null);
+                    if (IsExtendedProperty(property)) obj = property.GetGetMethod().InvokeWithLog(this, null);
                     else obj = property.GetGetMethod().InvokeWithLog(_vm, null);
                     ViewModel viewModel;
                     if ((viewModel = (obj as ViewModel)) != null)
@@ -121,7 +121,7 @@ namespace TOR_Core.Extensions.UI
             object result = null;
             if (property != null)
             {
-                if(IsExtendedProperty(property)) result = property.GetGetMethod().InvokeWithLog(this, null);
+                if (IsExtendedProperty(property)) result = property.GetGetMethod().InvokeWithLog(this, null);
                 else result = property.GetGetMethod().InvokeWithLog(_vm, null);
             }
             return result;
@@ -146,7 +146,7 @@ namespace TOR_Core.Extensions.UI
         {
             var methodInfo = _vm.GetType().GetMethod(commandName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             if (methodInfo == null) methodInfo = GetType().GetMethod(commandName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if(methodInfo != null)
+            if (methodInfo != null)
             {
                 if (methodInfo.GetParameters().Length == parameters.Length)
                 {
@@ -163,7 +163,7 @@ namespace TOR_Core.Extensions.UI
                             array[i] = stringObj;
                         }
                     }
-                    if(IsExtendedMethod(methodInfo)) methodInfo.InvokeWithLog(this, array);
+                    if (IsExtendedMethod(methodInfo)) methodInfo.InvokeWithLog(this, array);
                     else methodInfo.InvokeWithLog(_vm, array);
                     return;
                 }

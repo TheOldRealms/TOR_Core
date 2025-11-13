@@ -1,8 +1,8 @@
+using Ink.Parsed;
+using NLog;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Ink.Parsed;
-using NLog;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
@@ -28,7 +28,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 StatusEffectComponent effectComponent = new StatusEffectComponent(agent);
                 agent.AddComponent(effectComponent);
             }
-            
+
             _unprocessedAgents.Enqueue(agent);
         }
 
@@ -41,7 +41,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         public override void OnMissionTick(float dt)
         {
             foreach (var agent in Mission.Current.AllAgents)//Sly : I tried .Agents (active agents only, ie. ones not knocked out) to reduce the number of agents being checked and it lead to errors from the enumerable source being modified during use - probably because an agent getting killed will immediately remove them from the list which has a relatively high chance of happening, especially during spells.
-                //using AllAgents is generally less error prone because it's only modified during reinforcement waves, but if there's still instability here then it may be worth locally storing the agent list before iterating to prevent the enumerable source modified crash.
+                                                            //using AllAgents is generally less error prone because it's only modified during reinforcement waves, but if there's still instability here then it may be worth locally storing the agent list before iterating to prevent the enumerable source modified crash.
             {
                 if (agent == null)
                 {
@@ -57,8 +57,8 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     }
                 }
             }
-            
-            while (_unprocessedAgents.Count>0)
+
+            while (_unprocessedAgents.Count > 0)
             {
                 var queueAgent = _unprocessedAgents.Dequeue();
                 CheckUnitForAddingPermanentEffects(queueAgent);
@@ -69,18 +69,18 @@ namespace TOR_Core.BattleMechanics.StatusEffect
         private void CheckUnitForAddingPermanentEffects(Agent agent)
         {
             if (agent?.Character == null) return;
-            
+
             if (agent.WieldedWeapon.IsEmpty) return;
-            
+
             if (agent.GetOriginMobileParty()?.HasBlessing("cult_of_loec") == true)
             {
-                CareerHelper.AddDefaultPermanentMissionEffect(agent,"loec_blessing_mvs");
-                CareerHelper.AddDefaultPermanentMissionEffect(agent,"loec_blessing_ats");
+                CareerHelper.AddDefaultPermanentMissionEffect(agent, "loec_blessing_mvs");
+                CareerHelper.AddDefaultPermanentMissionEffect(agent, "loec_blessing_ats");
             }
 
 
-            if(!agent.BelongsToMainParty()) return;
-            
+            if (!agent.BelongsToMainParty()) return;
+
             //a player can only have one career so don't bother checking more once it finds what it needs
             var mainHero = Hero.MainHero;
             if (mainHero.HasCareer(TORCareers.ImperialMagister))
@@ -106,17 +106,17 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 CareerHelper.ExtorsionAssignment(agent);
                 return;
             }
-            
+
             if (mainHero.HasCareer(TORCareers.Waywatcher))
             {
                 var partyExtendedInfo = mainHero.PartyBelongedTo.GetPartyInfo();
 
                 var infos = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == agent.Character.StringId);
-                if (infos.Key!=null) //Sly : can dictionaries in c# even take a null key? I think that's a reserved value, so this check is in case FirstOrDefault gave a null default?
+                if (infos.Key != null) //Sly : can dictionaries in c# even take a null key? I think that's a reserved value, so this check is in case FirstOrDefault gave a null default?
                 {
                     foreach (var id in infos.Value)
                     {
-                        CareerHelper.AddDefaultPermanentMissionEffect(agent,id);
+                        CareerHelper.AddDefaultPermanentMissionEffect(agent, id);
                     }
                 }
                 return;

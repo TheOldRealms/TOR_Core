@@ -19,7 +19,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 if (effect == null || string.IsNullOrEmpty(effect)) continue;
                 if (CasterAgent.GetHero() == null) continue;
-                
+
                 var info = CasterAgent.GetHero().GetExtendedInfo();
                 if (info != null && !string.IsNullOrEmpty(info.CareerID))
                 {

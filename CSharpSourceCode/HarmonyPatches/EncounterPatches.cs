@@ -1,6 +1,6 @@
-﻿using System.Windows.Forms;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Helpers;
+using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
@@ -39,8 +39,8 @@ namespace TOR_Core.HarmonyPatches
             }
             else return true;
         }
-        
-        
+
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior), "wait_menu_start_raiding_on_condition")]
         public static bool Prefix1(ref bool __result)

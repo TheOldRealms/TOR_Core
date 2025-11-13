@@ -24,10 +24,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public CareerScreenVM(Action closeAction)
         {
             _closeAction = closeAction;
-            _currentCareerVM = new CareerObjectVM(Hero.MainHero.GetCareer()); 
+            _currentCareerVM = new CareerObjectVM(Hero.MainHero.GetCareer());
             HasBattlePrayers = CareerHelper.IsPriestCareer(Hero.MainHero.GetCareer());
-            CareerScreenTitle = GameTexts.FindText("str_career_screen","title").ToString();
-            
+            CareerScreenTitle = GameTexts.FindText("str_career_screen", "title").ToString();
+
             DoneLbl = GameTexts.FindText("str_done").ToString();
         }
 
@@ -41,7 +41,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             var state = Game.Current.GameStateManager.CreateState<BattlePrayerBookState>();
             Game.Current.GameStateManager.PushState(state);
         }
-        
+
         [DataSourceProperty]
         public string DoneLbl
         {
@@ -58,7 +58,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public string CareerScreenTitle
         {
@@ -92,7 +92,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
         }
-        
+
         [DataSourceProperty]
         public bool HasBattlePrayers
         {

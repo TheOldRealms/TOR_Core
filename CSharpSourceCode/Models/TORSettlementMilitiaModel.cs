@@ -17,7 +17,7 @@ namespace TOR_Core.Models
             var result = base.CalculateMilitiaChange(settlement, includeDescriptions);
             if (settlement.IsCastle)
             {
-                if (settlement.IsBloodKeep() && settlement.Owner.IsVampire()&&!settlement.IsUnderSiege)
+                if (settlement.IsBloodKeep() && settlement.Owner.IsVampire() && !settlement.IsUnderSiege)
                 {
                     if (settlement.Militia < 2000)
                     {
@@ -34,7 +34,7 @@ namespace TOR_Core.Models
                         result.LimitMin(10);
                     }
                 }
-                
+
                 switch (settlement.OwnerClan.Culture.StringId)
                 {
                     case TORConstants.Cultures.SYLVANIA:
@@ -63,7 +63,7 @@ namespace TOR_Core.Models
                         break;
                 }
             }
-            if(settlement.OwnerClan != null && settlement.OwnerClan.Leader != null)
+            if (settlement.OwnerClan != null && settlement.OwnerClan.Leader != null)
             {
                 PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.DivineMission, settlement.OwnerClan.Leader.CharacterObject, false, ref result);
             }
@@ -72,10 +72,11 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasAttribute("DwarfWarriorIII"))
                 {
-                    result.Add(4,new TextObject("Warriors Guild"));
-                }else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
+                    result.Add(4, new TextObject("Warriors Guild"));
+                }
+                else if (Hero.MainHero.HasAttribute("DwarfWarriorII"))
                 {
-                    result.Add(2,new TextObject("Warriors Guild"));
+                    result.Add(2, new TextObject("Warriors Guild"));
                 }
             }
             return result;

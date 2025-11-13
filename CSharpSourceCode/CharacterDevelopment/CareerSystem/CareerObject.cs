@@ -1,7 +1,7 @@
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -62,7 +62,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             MaxCharge = maxCharge;
             AbilityTemplateID = abilityID;
             AbilityScriptType = abilityScriptType;
-            
+
             _chargeFunction = function;
             if (_chargeFunction == null)
                 ChargeType = ChargeType.CooldownOnly;
@@ -70,7 +70,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             {
                 ChargeType = ChargeType.Custom;     //you can either have cooldown or custom, but in game the Charge types are still applicable. 
             }
-            
+
             AfterInitialized();
         }
 
@@ -99,7 +99,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         {
             if (triggererAgent != null && triggererAgent.GetHero()?.GetExtendedInfo() != null)
             {
-         
+
                 var root = triggererAgent.GetHero().GetCareer().RootNode;
                 var info = triggererAgent.GetHero().GetExtendedInfo();
                 if (info.CareerID == StringId)

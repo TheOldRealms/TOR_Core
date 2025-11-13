@@ -53,12 +53,12 @@ namespace TOR_Core.HarmonyPatches
                 */
                 if (codes[i].opcode == OpCodes.Div)
                 {
-                    replaceIndex = i+2;
+                    replaceIndex = i + 2;
                     break;
                 }
             }
 
-            if (replaceIndex < 0) { throw new ArgumentException("Didn't find CreateTownOrder division instruction for removing problematic crafting orders.");}
+            if (replaceIndex < 0) { throw new ArgumentException("Didn't find CreateTownOrder division instruction for removing problematic crafting orders."); }
             else
             {
                 //remove the CraftingTemplate.All and GetRandom calls
@@ -68,7 +68,7 @@ namespace TOR_Core.HarmonyPatches
             }
             return codes.AsEnumerable();
         }
-        
+
         /// <summary>
         /// Prevents the game from selecting a crafting order using an npc weapon template.
         /// </summary>
@@ -76,7 +76,7 @@ namespace TOR_Core.HarmonyPatches
         public static CraftingTemplate ValidTemplate()
         {
             CraftingTemplate restrictedRandom = CraftingTemplate.All.GetRandomElementWithPredicate(x => !HiddenCraftingTemplateIds.Contains(x.StringId));
-            if (restrictedRandom == null) { throw new Exception("CraftingPatches.ValidTemplate selected a null template.");}
+            if (restrictedRandom == null) { throw new Exception("CraftingPatches.ValidTemplate selected a null template."); }
             //TORCommon.Log("Valid Template chose : " + restrictedRandom.StringId, NLog.LogLevel.Info);
             return restrictedRandom;
         }

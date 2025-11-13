@@ -32,7 +32,7 @@ public class TOREnchantmentCraftingModel : GameModel
 
     public int GetEffectiveIngredientAmount(List<Hero> heroes, ItemTrait itemTrait, TorTradeGoodType ingerdient)
     {
-        var explainedNumber =  new ExplainedNumber(itemTrait.IngredientAmount);
+        var explainedNumber = new ExplainedNumber(itemTrait.IngredientAmount);
 
         foreach (var hero in heroes)
         {
@@ -43,15 +43,15 @@ public class TOREnchantmentCraftingModel : GameModel
                     if (Hero.MainHero.HasCareerChoice("TeachingsOfThungniPassive1"))
                     {
                         var choice = TORCareerChoices.GetChoice("TeachingsOfThungniPassive1");
-                        
+
                         explainedNumber.AddFactor(choice.GetPassiveValue());
                     }
                 }
             }
         }
-        
-        
-        
-        return (int) explainedNumber.ResultNumber;
+
+
+
+        return (int)explainedNumber.ResultNumber;
     }
 }

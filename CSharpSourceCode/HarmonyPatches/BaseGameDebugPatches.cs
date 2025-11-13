@@ -52,7 +52,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(MobilePartyAi), "GetBehaviors")]
         public static Exception GetBehaviorsFinalizer(Exception __exception, MobileParty ____mobileParty, ref AiBehavior bestAiBehavior, ref IInteractablePoint behaviorObject, ref CampaignVec2 bestTargetPoint)
         {
-            if(__exception != null)
+            if (__exception != null)
             {
                 bestAiBehavior = AiBehavior.Hold;
                 behaviorObject = null;
@@ -70,7 +70,7 @@ namespace TOR_Core.HarmonyPatches
                 List<string> list = new List<string>();
                 List<Settlement> list2 = (from x in Settlement.All where x.IsTown && x != Settlement.CurrentSettlement select x).ToList();
                 Settlement settlement = list2.TakeRandom(1).FirstOrDefault();
-                if(settlement != null) MBTextManager.SetTextVariable("RANDOM_TOWN", settlement.Name, false);
+                if (settlement != null) MBTextManager.SetTextVariable("RANDOM_TOWN", settlement.Name, false);
                 list.Add("{=3n1KRLpZ}'My love is far \n I know not where \n Perhaps the winds shall tell me'");
                 list.Add("{=NQOQb0C9}'And many thousand bodies lay a-rotting in the sun \n But things like that must be you know for kingdoms to be won'");
                 list.Add("{=bs8ayCGX}'A warrior brave you might surely be \n With your blade and your helm and your bold fiery steed \n But I'll give you a warning you'd be wise to heed \n Don't toy with the fishwives of {RANDOM_TOWN}'");

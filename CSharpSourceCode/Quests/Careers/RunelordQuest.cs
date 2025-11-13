@@ -24,24 +24,24 @@ public class RunelordQuest : QuestBase
     private JournalLog _task4 = null;
     [SaveableField(5)]
     private int _currentContracts = 0;
-    
+
     [SaveableField(6)]
     private int _currentAbilities = 0;
     [SaveableField(7)]
     private int _currentReputation = 0;
-    
+
     public RunelordQuest(string questId, Hero questGiver, CampaignTime duration, int rewardGold) : base(questId, questGiver, duration, rewardGold)
     {
         InitializeQuest();
     }
-    
+
     private void InitializeQuest()
     {
         var currentKnownRunes = Hero.MainHero.GetExtendedInfo().KnownEnchantmentBlueprints.Count;
-        
+
         var dwarfBehavior = Campaign.Current.GetCampaignBehavior<OathGoldBehavior>();
-        
-        if(dwarfBehavior== null) return;
+
+        if (dwarfBehavior == null) return;
 
         var count = 0;
         foreach (var abilityID in Hero.MainHero.GetExtendedInfo().AcquiredAbilities)
@@ -61,14 +61,14 @@ public class RunelordQuest : QuestBase
         _currentContracts = dwarfBehavior.CraftingOrdersCompleted - 15;     //already done crafted orders of the original quest
         currentKnownRunes -= 7;             //Same as above
 
-        _task1 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log0_str}Learn 3 Rune abilities of the Anvil of Doom."), new TextObject("{=tor_engineer_quest_task0_str}Rune Magic"), _currentAbilities, 3); 
-        _task2 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log2_str}Learn 15 runes."), new TextObject("{=tor_engineer_quest_task0_str}Runes"), currentKnownRunes, 12); 
-        _task3 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log2_str}Finish up 20 smithing contracts."), new TextObject("{=tor_engineer_quest_task0_str}Contracts"), _currentContracts, 20); 
-        _task4 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log2_str}Reach Respected with the Runesmith Guild."), new TextObject("{=tor_engineer_quest_task0_str}Reputation"), reputation, OathGoldBehavior.MAXIMUMVALUE); 
+        _task1 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log0_str}Learn 3 Rune abilities of the Anvil of Doom."), new TextObject("{=tor_engineer_quest_task0_str}Rune Magic"), _currentAbilities, 3);
+        _task2 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log2_str}Learn 15 runes."), new TextObject("{=tor_engineer_quest_task0_str}Runes"), currentKnownRunes, 12);
+        _task3 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log2_str}Finish up 20 smithing contracts."), new TextObject("{=tor_engineer_quest_task0_str}Contracts"), _currentContracts, 20);
+        _task4 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log2_str}Reach Respected with the Runesmith Guild."), new TextObject("{=tor_engineer_quest_task0_str}Reputation"), reputation, OathGoldBehavior.MAXIMUMVALUE);
 
 
     }
-    
+
     protected override void RegisterEvents()
     {
         base.RegisterEvents();
@@ -80,13 +80,13 @@ public class RunelordQuest : QuestBase
 
     private void OathLevelChanged(object sender, OathLevelChangedEventArgs e)
     {
-        if (e.Guild != "runesmith") 
+        if (e.Guild != "runesmith")
             return;
-        
+
         var value = e.NewValue;
 
         _currentReputation = value;
-        
+
         _task4.UpdateCurrentProgress(_currentReputation);
     }
 
@@ -100,35 +100,35 @@ public class RunelordQuest : QuestBase
         }
 
         var ability = AbilityFactory.GetAllTemplates().FirstOrDefault(x => x.StringID == e.AbilityId);
-        
-        if(ability == null)
+
+        if (ability == null)
             return;
 
         if (ability.BelongsToLoreID == "RuneMagic")
         {
             _currentAbilities++;
         }
-        
+
         _task1.UpdateCurrentProgress(_currentAbilities);
     }
 
     private void RuneLearned(object sender, EnchantmentLearnedEventArgs enchantmentLearnedEventArgs)
     {
         var currentProgress = _task2.CurrentProgress;
-            
-        _task2.UpdateCurrentProgress(currentProgress+1);
+
+        _task2.UpdateCurrentProgress(currentProgress + 1);
         //UpdateQuestTaskStage(_task2,currentProgress+1);
 
         UpdateQuest();
     }
 
-    public override bool IsSpecialQuest  =>  true;
+    public override bool IsSpecialQuest => true;
 
     private void UpdateQuest()
     {
         if (AreAllTasksFinished())
         {
-            AddLog(new TextObject("Talk to the rune smith")); 
+            AddLog(new TextObject("Talk to the rune smith"));
 
         }
     }
@@ -142,27 +142,27 @@ public class RunelordQuest : QuestBase
     private void CraftingOrderCompleted(Town town, CraftingOrder order, ItemObject resultItem, Hero hero)
     {
         var currentProgress = _task1.CurrentProgress;
-        _task1.UpdateCurrentProgress(currentProgress+15);
+        _task1.UpdateCurrentProgress(currentProgress + 15);
         UpdateQuest();
     }
 
 
     protected override void SetDialogs()
     {
-        
+
     }
 
 
     protected override void InitializeQuestOnGameLoad()
     {
-        
+
     }
 
     protected override void HourlyTick()
     {
     }
 
-    public override TextObject Title =>  new TextObject("Runelord Quest");
+    public override TextObject Title => new TextObject("Runelord Quest");
 
     public override bool IsRemainingTimeHidden => true;
 

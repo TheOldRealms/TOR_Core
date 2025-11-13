@@ -22,19 +22,19 @@ namespace TOR_Core.Extensions
             var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORFaithModel));
             return result == null ? null : (TORFaithModel)result;
         }
-        
+
         public static TORCustomResourceModel GetCustomResourceModel(this GameModels models)
         {
             var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORCustomResourceModel));
             return result == null ? null : (TORCustomResourceModel)result;
         }
-        
+
         public static TOREnchantmentIngredientsModel GetEnchantmentIngredientModel(this GameModels models)
         {
             var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentIngredientsModel));
             return result == null ? null : (TOREnchantmentIngredientsModel)result;
         }
-        
+
         public static TORCompanionTrainingModel GetCompanionTrainingModel(this GameModels models)
         {
             var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORCompanionTrainingModel));

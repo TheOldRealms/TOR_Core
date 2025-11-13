@@ -20,10 +20,10 @@ namespace TOR_Core.AbilitySystem.Scripts
                 if (effect.EffectRadius > radius)
                     radius = effect.EffectRadius;
             }
-            
+
             _radius = radius;
         }
-        
+
         protected override void HandleCollision(Vec3 position, Vec3 normal)
         {
             if (Agent.Main == null)

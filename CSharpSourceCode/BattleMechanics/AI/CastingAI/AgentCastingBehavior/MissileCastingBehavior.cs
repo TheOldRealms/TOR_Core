@@ -35,7 +35,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             else
             {
                 var medianAgent = targetFormation?.GetMedianAgent(true, false, targetFormation.GetAveragePositionOfUnits(true, false));
-                if (medianAgent != null) 
+                if (medianAgent != null)
                     target.Agent = medianAgent;
             }
 
@@ -50,7 +50,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             Agent collidedAgent;
             float distance;
 
-            using(new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
+            using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
             {
                 collidedAgent = Mission.Current.RayCastForClosestAgent(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, Agent.Index, 0.25f, out _);
                 Mission.Current.Scene.RayCastForClosestEntityOrTerrain(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, out distance, out _, out _, 0.25f);

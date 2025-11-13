@@ -21,173 +21,173 @@ namespace TOR_Core.Items
 {
     public class TorItemMenuVM : ItemMenuVM
     {
-		private ItemObject _lastSetItem;
-		private bool _isMagicItem = false;
-		private MBBindingList<TorItemTraitVM> _itemTraitList;
+        private ItemObject _lastSetItem;
+        private bool _isMagicItem = false;
+        private MBBindingList<TorItemTraitVM> _itemTraitList;
         private readonly TextObject speedText = new("{=74dc1908cb0b990e80fb977b5a0ef10d}Speed: ", null);
-		private readonly TextObject damageText = new("{=c9c5dfed2ca6bcb7a73d905004c97b23}Damage: ", null);
-		private readonly TextObject accuracyText = new("{=5dec16fa0be433ade3c4cb0074ef366d}Accuracy: ", null);
-		private readonly TextObject missileSpeedText = GameTexts.FindText("str_missile_speed", null);
-		private readonly TextObject ammoLimitText = new("{=6adabc1f82216992571c3e22abc164d7}Ammo Limit: ", null);
+        private readonly TextObject damageText = new("{=c9c5dfed2ca6bcb7a73d905004c97b23}Damage: ", null);
+        private readonly TextObject accuracyText = new("{=5dec16fa0be433ade3c4cb0074ef366d}Accuracy: ", null);
+        private readonly TextObject missileSpeedText = GameTexts.FindText("str_missile_speed", null);
+        private readonly TextObject ammoLimitText = new("{=6adabc1f82216992571c3e22abc164d7}Ammo Limit: ", null);
 
-		// Description Text
-		private string _itemDescription = "";
-		private bool _hasDescription = false;
+        // Description Text
+        private string _itemDescription = "";
+        private bool _hasDescription = false;
 
-		// Use Button
-		private HintViewModel _useHint;
-		private bool _isUsableItem = false;
+        // Use Button
+        private HintViewModel _useHint;
+        private bool _isUsableItem = false;
 
-		public BasicCharacterObject CurrentCharacter => AccessTools.Field(typeof(ItemMenuVM), "_character").GetValue(this) as BasicCharacterObject;
+        public BasicCharacterObject CurrentCharacter => AccessTools.Field(typeof(ItemMenuVM), "_character").GetValue(this) as BasicCharacterObject;
 
         public TorItemMenuVM(Action<ItemVM, int> resetComparedItems, InventoryLogic inventoryLogic, Func<WeaponComponentData, ItemObject.ItemUsageSetFlags> getItemUsageSetFlags, Func<EquipmentIndex, SPItemVM> getEquipmentAtIndex) : base(resetComparedItems, inventoryLogic, getItemUsageSetFlags, getEquipmentAtIndex)
         {
-			_itemTraitList = [];
-			_useHint = new HintViewModel(new TextObject("{=tor_item_hint_read_scroll_str}Read scroll"));
+            _itemTraitList = [];
+            _useHint = new HintViewModel(new TextObject("{=tor_item_hint_read_scroll_str}Read scroll"));
             inventoryLogic.AfterTransfer += CheckItem;
         }
 
-		private void CheckItem(InventoryLogic inventoryLogic, List<TransferCommandResult> results)
-		{
-			foreach (var result in results)
-			{
-				if(result.ResultSide != InventoryLogic.InventorySide.BattleEquipment)
-					continue;
-				
-				var movedItem = result.EffectedItemRosterElement.EquipmentElement.Item;
-				
-				if(!movedItem.IsAmmunitionItem()) //skip  check if no ammunition item is involved.
-					continue;
-				
-				var targetEquipment = result.TransferCharacter.GetCharacterEquipment(EquipmentIndex.Weapon0,
-					EquipmentIndex.NumAllWeaponSlots);
-				
-				foreach (var equipmentItem in targetEquipment.Where(x => x.ToString() !=result.EffectedItemRosterElement.EquipmentElement.Item.ToString()))
-				{
-					if(!equipmentItem.IsAmmunitionItem())
-						continue; //we are only interested for now in ranged and ammo items
+        private void CheckItem(InventoryLogic inventoryLogic, List<TransferCommandResult> results)
+        {
+            foreach (var result in results)
+            {
+                if (result.ResultSide != InventoryLogic.InventorySide.BattleEquipment)
+                    continue;
 
-					if ((movedItem.PrimaryWeapon.WeaponClass != WeaponClass.Musket && movedItem.PrimaryWeapon.WeaponClass != WeaponClass.Cartridge) || 
-					    movedItem.PrimaryWeapon.AmmoClass != WeaponClass.Undefined && movedItem.PrimaryWeapon.AmmoClass != WeaponClass.Cartridge)
-					{
-						continue; // the only problematic ones are gun powder weapons - grenades, buckshots flames throwers. rest is allowed. 
-					}
+                var movedItem = result.EffectedItemRosterElement.EquipmentElement.Item;
 
-					var invalid = false;
-					if (equipmentItem.IsSpecialAmmunitionItem() || equipmentItem.IsFlameThrowerItem())
-					{
-						if (equipmentItem.IsSpecialAmmunitionItem())
-						{
-							if (!movedItem.IsSpecialAmmunitionItem())
-							{
-								invalid = true;
-							}
-						}
+                if (!movedItem.IsAmmunitionItem()) //skip  check if no ammunition item is involved.
+                    continue;
 
-						if (equipmentItem.IsFlameThrowerItem())
-						{
-							if (!movedItem.IsFlameThrowerItem())
-							{
-								invalid = true;
-							}
-						}
-					}
+                var targetEquipment = result.TransferCharacter.GetCharacterEquipment(EquipmentIndex.Weapon0,
+                    EquipmentIndex.NumAllWeaponSlots);
 
-					if (movedItem.IsSpecialAmmunitionItem() || movedItem.IsFlameThrowerItem())
-					{
-						if (movedItem.IsSpecialAmmunitionItem() && !equipmentItem.IsSpecialAmmunitionItem())
-						{
-							invalid = true;
-						}
+                foreach (var equipmentItem in targetEquipment.Where(x => x.ToString() != result.EffectedItemRosterElement.EquipmentElement.Item.ToString()))
+                {
+                    if (!equipmentItem.IsAmmunitionItem())
+                        continue; //we are only interested for now in ranged and ammo items
 
-						if (movedItem.IsFlameThrowerItem() && !equipmentItem.IsFlameThrowerItem())
-						{
-							invalid = true;
-						}
-					}
-					
-					
-					if(!invalid)
-						continue;
-					
-					
-					//no you don't... items were not compatible return to sender
-					var command = TransferCommand.Transfer(1,
-						InventoryLogic.InventorySide.BattleEquipment,
-						InventoryLogic.InventorySide.PlayerInventory,
-						result.EffectedItemRosterElement,
-						result.EffectedEquipmentIndex,
-						EquipmentIndex.None,
-						result.TransferCharacter);
+                    if ((movedItem.PrimaryWeapon.WeaponClass != WeaponClass.Musket && movedItem.PrimaryWeapon.WeaponClass != WeaponClass.Cartridge) ||
+                        movedItem.PrimaryWeapon.AmmoClass != WeaponClass.Undefined && movedItem.PrimaryWeapon.AmmoClass != WeaponClass.Cartridge)
+                    {
+                        continue; // the only problematic ones are gun powder weapons - grenades, buckshots flames throwers. rest is allowed. 
+                    }
 
-					inventoryLogic.AddTransferCommand(command);
-					
-					break;
-				}
-			}
-		}
+                    var invalid = false;
+                    if (equipmentItem.IsSpecialAmmunitionItem() || equipmentItem.IsFlameThrowerItem())
+                    {
+                        if (equipmentItem.IsSpecialAmmunitionItem())
+                        {
+                            if (!movedItem.IsSpecialAmmunitionItem())
+                            {
+                                invalid = true;
+                            }
+                        }
+
+                        if (equipmentItem.IsFlameThrowerItem())
+                        {
+                            if (!movedItem.IsFlameThrowerItem())
+                            {
+                                invalid = true;
+                            }
+                        }
+                    }
+
+                    if (movedItem.IsSpecialAmmunitionItem() || movedItem.IsFlameThrowerItem())
+                    {
+                        if (movedItem.IsSpecialAmmunitionItem() && !equipmentItem.IsSpecialAmmunitionItem())
+                        {
+                            invalid = true;
+                        }
+
+                        if (movedItem.IsFlameThrowerItem() && !equipmentItem.IsFlameThrowerItem())
+                        {
+                            invalid = true;
+                        }
+                    }
+
+
+                    if (!invalid)
+                        continue;
+
+
+                    //no you don't... items were not compatible return to sender
+                    var command = TransferCommand.Transfer(1,
+                        InventoryLogic.InventorySide.BattleEquipment,
+                        InventoryLogic.InventorySide.PlayerInventory,
+                        result.EffectedItemRosterElement,
+                        result.EffectedEquipmentIndex,
+                        EquipmentIndex.None,
+                        result.TransferCharacter);
+
+                    inventoryLogic.AddTransferCommand(command);
+
+                    break;
+                }
+            }
+        }
 
         public void SetItemExtra(SPItemVM item, ItemVM comparedItem = null, BasicCharacterObject character = null, int alternativeUsageIndex = 0)
         {
-			AddTooltipForGunpowderWeapons(item, comparedItem);
-			AddTooltipForRaceLock(item, comparedItem);
+            AddTooltipForGunpowderWeapons(item, comparedItem);
+            AddTooltipForRaceLock(item, comparedItem);
             ItemTraitList.Clear();
-			IsMagicItem = false;
-			_lastSetItem = item.ItemRosterElement.EquipmentElement.Item;
-			ItemDescription = _lastSetItem.GetTorSpecificData().Description;
-			HasDescription = !ItemDescription.IsEmpty();
-			UpdateUseableButton(_lastSetItem);
+            IsMagicItem = false;
+            _lastSetItem = item.ItemRosterElement.EquipmentElement.Item;
+            ItemDescription = _lastSetItem.GetTorSpecificData().Description;
+            HasDescription = !ItemDescription.IsEmpty();
+            UpdateUseableButton(_lastSetItem);
 
-			if (_lastSetItem != null && _lastSetItem.GetTorSpecificData() != null)
+            if (_lastSetItem != null && _lastSetItem.GetTorSpecificData() != null)
             {
-				var info = _lastSetItem.GetTorSpecificData();
-				if(_lastSetItem.IsMagicalItem())
-				{
-					IsMagicItem = true;
-					if(info.ItemTraits.Count > 0)
+                var info = _lastSetItem.GetTorSpecificData();
+                if (_lastSetItem.IsMagicalItem())
+                {
+                    IsMagicItem = true;
+                    if (info.ItemTraits.Count > 0)
                     {
-						foreach(var itemTrait in info.ItemTraits)
+                        foreach (var itemTrait in info.ItemTraits)
                         {
-							ItemTraitList.Add(new TorItemTraitVM(itemTrait));
+                            ItemTraitList.Add(new TorItemTraitVM(itemTrait));
                         }
                     }
-					else if(_lastSetItem.HasWeaponComponent)
-					{
-						ItemTraitList.Add(TorItemTraitVM.CreateDamageOnlyTraitVM());
-					}
+                    else if (_lastSetItem.HasWeaponComponent)
+                    {
+                        ItemTraitList.Add(TorItemTraitVM.CreateDamageOnlyTraitVM());
+                    }
                 }
                 if (_lastSetItem.HasWeaponComponent)
                 {
-					var damageprops = base.TargetItemProperties.Where(x => x.DefinitionLabel.Contains (damageText.ToString()));
-					foreach(var prop in damageprops)
+                    var damageprops = base.TargetItemProperties.Where(x => x.DefinitionLabel.Contains(damageText.ToString()));
+                    foreach (var prop in damageprops)
                     {
                         var text = prop.ValueLabel.Split(' ')[0];
                         bool success = int.TryParse(prop.ValueLabel.Split(' ')[0], out int damagenum);
-						if (!success)
-						{ 
-							success = int.TryParse(prop.ValueLabel.Split(' ')[1], out damagenum);	//in foreign languages the order is swapped for what ever reason
-						}
-							
+                        if (!success)
+                        {
+                            success = int.TryParse(prop.ValueLabel.Split(' ')[1], out damagenum);   //in foreign languages the order is swapped for what ever reason
+                        }
+
                         if (success)
                         {
-							prop.ValueLabel = "";
-							if(info != null && info.DamageProportions.Count > 1)
+                            prop.ValueLabel = "";
+                            if (info != null && info.DamageProportions.Count > 1)
                             {
-								prop.ValueLabel += damagenum.ToString() + " (";
-								for (int i = 0; i < info.DamageProportions.Count; i++)
-								{
-									var tuple = info.DamageProportions[i];
-									prop.ValueLabel += ((int)(tuple.Percent * damagenum)).ToString() + " " + GameTexts.FindText("tor_damagetype",tuple.DamageType.ToString()) + (i == info.DamageProportions.Count - 1 ? "" : "+");
-								}
-								prop.ValueLabel += ")";
-							}
-							else if (info != null && info.DamageProportions.Count == 1)
-							{
-								prop.ValueLabel = damagenum.ToString() + " " + GameTexts.FindText ("tor_damagetype", DamageType.Physical.ToString());
-							}
-							if(prop.ValueLabel == "")
+                                prop.ValueLabel += damagenum.ToString() + " (";
+                                for (int i = 0; i < info.DamageProportions.Count; i++)
+                                {
+                                    var tuple = info.DamageProportions[i];
+                                    prop.ValueLabel += ((int)(tuple.Percent * damagenum)).ToString() + " " + GameTexts.FindText("tor_damagetype", tuple.DamageType.ToString()) + (i == info.DamageProportions.Count - 1 ? "" : "+");
+                                }
+                                prop.ValueLabel += ")";
+                            }
+                            else if (info != null && info.DamageProportions.Count == 1)
                             {
-								prop.ValueLabel = damagenum.ToString() + " "+GameTexts.FindText("tor_damagetype",DamageType.Physical.ToString());
+                                prop.ValueLabel = damagenum.ToString() + " " + GameTexts.FindText("tor_damagetype", DamageType.Physical.ToString());
+                            }
+                            if (prop.ValueLabel == "")
+                            {
+                                prop.ValueLabel = damagenum.ToString() + " " + GameTexts.FindText("tor_damagetype", DamageType.Physical.ToString());
                             }
                         }
                     }
@@ -197,42 +197,42 @@ namespace TOR_Core.Items
 
         private void AddTooltipForGunpowderWeapons(SPItemVM item, ItemVM comparedItem)
         {
-			var equipmentElement = item.ItemRosterElement.EquipmentElement;
-			if (!equipmentElement.Item.HasWeaponComponent) return;
-			var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
-			var weaponData = equipmentElement.Item.GetWeaponWithUsageIndex(AlternativeUsageIndex);
+            var equipmentElement = item.ItemRosterElement.EquipmentElement;
+            if (!equipmentElement.Item.HasWeaponComponent) return;
+            var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
+            var weaponData = equipmentElement.Item.GetWeaponWithUsageIndex(AlternativeUsageIndex);
 
-			int comparedWeaponUsageIndex = -1;
-			if(!comparedEquipmentElement.IsEmpty) ItemHelper.IsWeaponComparableWithUsage(comparedEquipmentElement.Item, weaponData.WeaponDescriptionId, out comparedWeaponUsageIndex);
+            int comparedWeaponUsageIndex = -1;
+            if (!comparedEquipmentElement.IsEmpty) ItemHelper.IsWeaponComparableWithUsage(comparedEquipmentElement.Item, weaponData.WeaponDescriptionId, out comparedWeaponUsageIndex);
             var comparedWeaponData = comparedEquipmentElement.Item?.GetWeaponWithUsageIndex(comparedWeaponUsageIndex);
-			
-			var weaponClass = weaponData.WeaponClass;
-			if (weaponClass != WeaponClass.Musket && weaponClass != WeaponClass.Pistol) return;
+
+            var weaponClass = weaponData.WeaponClass;
+            if (weaponClass != WeaponClass.Musket && weaponClass != WeaponClass.Pistol) return;
 
             AddIntProperty(speedText, equipmentElement.GetModifiedSwingSpeedForUsage(AlternativeUsageIndex), comparedEquipmentElement.IsEmpty ? null : new int?(comparedEquipmentElement.GetModifiedSwingSpeedForUsage(AlternativeUsageIndex)));
             AddThrustDamageProperty(damageText, equipmentElement, AlternativeUsageIndex, comparedEquipmentElement, AlternativeUsageIndex);
             AddIntProperty(accuracyText, weaponData.Accuracy, (comparedWeaponData != null) ? new int?(comparedWeaponData.Accuracy) : null);
             AddIntProperty(missileSpeedText, equipmentElement.GetModifiedMissileSpeedForUsage(AlternativeUsageIndex), comparedEquipmentElement.IsEmpty ? null : new int?(comparedEquipmentElement.GetModifiedMissileSpeedForUsage(AlternativeUsageIndex)));
-			short? num = (comparedWeaponData != null) ? new short?(comparedWeaponData.MaxDataValue) : null;
+            short? num = (comparedWeaponData != null) ? new short?(comparedWeaponData.MaxDataValue) : null;
             AddIntProperty(ammoLimitText, weaponData.MaxDataValue, (num != null) ? new int?(num.GetValueOrDefault()) : null);
-		}
+        }
 
-		private void AddTooltipForRaceLock(SPItemVM item, ItemVM comparedItem)
-		{
+        private void AddTooltipForRaceLock(SPItemVM item, ItemVM comparedItem)
+        {
             var equipmentElement = item.ItemRosterElement.EquipmentElement;
             if (!equipmentElement.Item.HasArmorComponent) return;
-			var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
-			var info = equipmentElement.Item.GetTorSpecificData();
+            var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
+            var info = equipmentElement.Item.GetTorSpecificData();
             CreateColoredProperty(TargetItemProperties, GameTexts.FindText("str_inventory_race_lock").ToString(), info.RaceLock.ToString(), GetColorFromBool(ExtendedItemObjectManager.CanCharacterUseItemBasedOnRace(equipmentElement.Item, CurrentCharacter)), 0, null, TooltipProperty.TooltipPropertyFlags.None);
         }
 
         private Color GetColorFromBool(bool value)
         {
             if (value)
-			{
-				return UIColors.PositiveIndicator;
+            {
+                return UIColors.PositiveIndicator;
             }
-			else return UIColors.NegativeIndicator;
+            else return UIColors.NegativeIndicator;
         }
 
         private void UpdateUseableButton(ItemObject selectedItem)
@@ -240,19 +240,19 @@ namespace TOR_Core.Items
             IsUsableItem = selectedItem.IsInventoryUsable() && GetActiveInventoryState().InventoryMode == InventoryMode.Default;
         }
 
-		private void ExecuteUseItem()
-		{
-			foreach (var trait in _lastSetItem.GetTraits())
-			{
+        private void ExecuteUseItem()
+        {
+            foreach (var trait in _lastSetItem.GetTraits())
+            {
                 if (trait.OnInventoryUseScript != null && !string.IsNullOrWhiteSpace(trait.OnInventoryUseScript.InventoryScriptName) && trait.OnInventoryUseScript.InventoryScriptName != "invalid")
                 {
-					object script;
-					if (trait.OnInventoryUseScript.InventoryScriptArguments != null && trait.OnInventoryUseScript.InventoryScriptArguments.Count > 0)
-					{
+                    object script;
+                    if (trait.OnInventoryUseScript.InventoryScriptArguments != null && trait.OnInventoryUseScript.InventoryScriptArguments.Count > 0)
+                    {
                         script = Activator.CreateInstance(Type.GetType(trait.OnInventoryUseScript.InventoryScriptName), [trait.OnInventoryUseScript.InventoryScriptArguments.ToArray()]);
                     }
-					else
-					{
+                    else
+                    {
                         script = Activator.CreateInstance(Type.GetType(trait.OnInventoryUseScript.InventoryScriptName));
                     }
                     if (script is BaseInventoryUseScript inventoryUseScript)
@@ -282,204 +282,204 @@ namespace TOR_Core.Items
                 return;
                 */
             }
-		}
+        }
 
-		private void AddThrustDamageProperty(TextObject description, in EquipmentElement targetWeapon, int targetWeaponUsageIndex, in EquipmentElement comparedWeapon, int comparedWeaponUsageIndex)
-		{
-			EquipmentElement equipmentElement = targetWeapon;
-			int modifiedThrustDamageForUsage = equipmentElement.GetModifiedThrustDamageForUsage(targetWeaponUsageIndex);
-			equipmentElement = targetWeapon;
-			WeaponComponentData weaponWithUsageIndex = equipmentElement.Item.GetWeaponWithUsageIndex(targetWeaponUsageIndex);
-			equipmentElement = targetWeapon;
-			string value = ItemHelper.GetThrustDamageText(weaponWithUsageIndex, equipmentElement.ItemModifier).ToString();
-			if (this.IsComparing)
-			{
-				equipmentElement = comparedWeapon;
-				if (!equipmentElement.IsEmpty)
-				{
-					equipmentElement = comparedWeapon;
-					int modifiedThrustDamageForUsage2 = equipmentElement.GetModifiedThrustDamageForUsage(comparedWeaponUsageIndex);
-					equipmentElement = comparedWeapon;
-					WeaponComponentData weaponWithUsageIndex2 = equipmentElement.Item.GetWeaponWithUsageIndex(comparedWeaponUsageIndex);
-					equipmentElement = comparedWeapon;
-					string value2 = ItemHelper.GetThrustDamageText(weaponWithUsageIndex2, equipmentElement.ItemModifier).ToString();
-					int result = CompareValues(modifiedThrustDamageForUsage, modifiedThrustDamageForUsage2);
-					CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
-					CreateColoredProperty(this.ComparedItemProperties, " ", value2, GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
-					return;
-				}
-			}
-			CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(0, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
-		}
-
-		private void AddIntProperty(TextObject description, int targetValue, int? comparedValue)
-		{
-			string value = targetValue.ToString();
-			if (this.IsComparing && comparedValue != null)
-			{
-				string value2 = comparedValue.Value.ToString();
-				int result = CompareValues(targetValue, comparedValue.Value);
-				CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
-				CreateColoredProperty(this.ComparedItemProperties, " ", value2, GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
-				return;
-			}
-			CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(0, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
-		}
-
-		private ItemMenuTooltipPropertyVM CreateColoredProperty(MBBindingList<ItemMenuTooltipPropertyVM> targetList, string definition, string value, Color color, int textHeight = 0, HintViewModel hint = null, TooltipProperty.TooltipPropertyFlags propertyFlags = TooltipProperty.TooltipPropertyFlags.None)
-		{
-			if (color == Colors.Black)
-			{
-				CreateProperty(targetList, definition, value, textHeight, hint);
-				return null;
-			}
-			ItemMenuTooltipPropertyVM itemMenuTooltipPropertyVM = new(definition, value, textHeight, color, false, hint, propertyFlags);
-			targetList.Add(itemMenuTooltipPropertyVM);
-			return itemMenuTooltipPropertyVM;
-		}
-
-		private ItemMenuTooltipPropertyVM CreateProperty(MBBindingList<ItemMenuTooltipPropertyVM> targetList, string definition, string value, int textHeight = 0, HintViewModel hint = null)
-		{
-			ItemMenuTooltipPropertyVM itemMenuTooltipPropertyVM = new(definition, value, textHeight, false, hint);
-			targetList.Add(itemMenuTooltipPropertyVM);
-			return itemMenuTooltipPropertyVM;
-		}
-
-		private int CompareValues(float currentValue, float comparedValue)
-		{
-			int num = (int)(currentValue * 10000f);
-			int num2 = (int)(comparedValue * 10000f);
-			if ((num != 0 && (float)MathF.Abs(num) <= MathF.Abs(currentValue)) || (num2 != 0 && (float)MathF.Abs(num2) <= MathF.Abs(currentValue)))
-			{
-				return 0;
-			}
-			return this.CompareValues(num, num2);
-		}
-
-		private Color GetColorFromComparison(int result, bool isCompared)
-		{
-			if (result != -1)
-			{
-				if (result != 1)
-				{
-					return Colors.Black;
-				}
-				if (!isCompared)
-				{
-					return UIColors.PositiveIndicator;
-				}
-				return UIColors.NegativeIndicator;
-			}
-			else
-			{
-				if (!isCompared)
-				{
-					return UIColors.NegativeIndicator;
-				}
-				return UIColors.PositiveIndicator;
-			}
-		}
-
-		[DataSourceProperty]
-		public bool IsMagicItem
-		{
-			get
-			{
-				return this._isMagicItem;
-			}
-			set
-			{
-				if (value != this._isMagicItem)
-				{
-					this._isMagicItem = value;
-					base.OnPropertyChangedWithValue(value, "IsMagicItem");
-				}
-			}
-		}
-
-		[DataSourceProperty]
-		public string ItemDescription
-		{
-			get
-			{
-				return this._itemDescription;
-			}
-			set
-			{
-				if (value != this._itemDescription)
-				{
-					this._itemDescription = value;
-					base.OnPropertyChangedWithValue(value, "ItemDescription");
-				}
-			}
-		}
-
-		[DataSourceProperty]
-		public bool HasDescription
-		{
-			get
-			{
-				return this._hasDescription;
-			}
-			set
-			{
-				if (value != this._hasDescription)
-				{
-					this._hasDescription = value;
-					base.OnPropertyChangedWithValue(value, "HasDescription");
-				}
-			}
-		}
-
-		[DataSourceProperty]
-		public MBBindingList<TorItemTraitVM> ItemTraitList
-		{
-			get
-			{
-				return this._itemTraitList;
-			}
-			set
-			{
-				if (value != this._itemTraitList)
-				{
-					this._itemTraitList = value;
-					base.OnPropertyChangedWithValue(value, "ItemTraitList");
-				}
-			}
-		}
-
-		[DataSourceProperty]
-		public HintViewModel UseHint
+        private void AddThrustDamageProperty(TextObject description, in EquipmentElement targetWeapon, int targetWeaponUsageIndex, in EquipmentElement comparedWeapon, int comparedWeaponUsageIndex)
         {
-			get
-			{
-				return this._useHint;
-			}
-			set
-			{
-				if (value != this._useHint)
-				{
-					this._useHint = value;
-					base.OnPropertyChangedWithValue(value, "UseHint");
-				}
-			}
-		}
+            EquipmentElement equipmentElement = targetWeapon;
+            int modifiedThrustDamageForUsage = equipmentElement.GetModifiedThrustDamageForUsage(targetWeaponUsageIndex);
+            equipmentElement = targetWeapon;
+            WeaponComponentData weaponWithUsageIndex = equipmentElement.Item.GetWeaponWithUsageIndex(targetWeaponUsageIndex);
+            equipmentElement = targetWeapon;
+            string value = ItemHelper.GetThrustDamageText(weaponWithUsageIndex, equipmentElement.ItemModifier).ToString();
+            if (this.IsComparing)
+            {
+                equipmentElement = comparedWeapon;
+                if (!equipmentElement.IsEmpty)
+                {
+                    equipmentElement = comparedWeapon;
+                    int modifiedThrustDamageForUsage2 = equipmentElement.GetModifiedThrustDamageForUsage(comparedWeaponUsageIndex);
+                    equipmentElement = comparedWeapon;
+                    WeaponComponentData weaponWithUsageIndex2 = equipmentElement.Item.GetWeaponWithUsageIndex(comparedWeaponUsageIndex);
+                    equipmentElement = comparedWeapon;
+                    string value2 = ItemHelper.GetThrustDamageText(weaponWithUsageIndex2, equipmentElement.ItemModifier).ToString();
+                    int result = CompareValues(modifiedThrustDamageForUsage, modifiedThrustDamageForUsage2);
+                    CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+                    CreateColoredProperty(this.ComparedItemProperties, " ", value2, GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+                    return;
+                }
+            }
+            CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(0, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+        }
 
-		[DataSourceProperty]
-		public bool IsUsableItem
+        private void AddIntProperty(TextObject description, int targetValue, int? comparedValue)
         {
-			get
-			{
-				return this._isUsableItem;
-			}
-			set
-			{
-				if (value != this._isUsableItem)
-				{
-					this._isUsableItem = value;
-					base.OnPropertyChangedWithValue(value, "IsUsableItem");
-				}
-			}
-		}
-	}
+            string value = targetValue.ToString();
+            if (this.IsComparing && comparedValue != null)
+            {
+                string value2 = comparedValue.Value.ToString();
+                int result = CompareValues(targetValue, comparedValue.Value);
+                CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(result, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+                CreateColoredProperty(this.ComparedItemProperties, " ", value2, GetColorFromComparison(result, true), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+                return;
+            }
+            CreateColoredProperty(this.TargetItemProperties, description.ToString(), value, GetColorFromComparison(0, false), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+        }
+
+        private ItemMenuTooltipPropertyVM CreateColoredProperty(MBBindingList<ItemMenuTooltipPropertyVM> targetList, string definition, string value, Color color, int textHeight = 0, HintViewModel hint = null, TooltipProperty.TooltipPropertyFlags propertyFlags = TooltipProperty.TooltipPropertyFlags.None)
+        {
+            if (color == Colors.Black)
+            {
+                CreateProperty(targetList, definition, value, textHeight, hint);
+                return null;
+            }
+            ItemMenuTooltipPropertyVM itemMenuTooltipPropertyVM = new(definition, value, textHeight, color, false, hint, propertyFlags);
+            targetList.Add(itemMenuTooltipPropertyVM);
+            return itemMenuTooltipPropertyVM;
+        }
+
+        private ItemMenuTooltipPropertyVM CreateProperty(MBBindingList<ItemMenuTooltipPropertyVM> targetList, string definition, string value, int textHeight = 0, HintViewModel hint = null)
+        {
+            ItemMenuTooltipPropertyVM itemMenuTooltipPropertyVM = new(definition, value, textHeight, false, hint);
+            targetList.Add(itemMenuTooltipPropertyVM);
+            return itemMenuTooltipPropertyVM;
+        }
+
+        private int CompareValues(float currentValue, float comparedValue)
+        {
+            int num = (int)(currentValue * 10000f);
+            int num2 = (int)(comparedValue * 10000f);
+            if ((num != 0 && (float)MathF.Abs(num) <= MathF.Abs(currentValue)) || (num2 != 0 && (float)MathF.Abs(num2) <= MathF.Abs(currentValue)))
+            {
+                return 0;
+            }
+            return this.CompareValues(num, num2);
+        }
+
+        private Color GetColorFromComparison(int result, bool isCompared)
+        {
+            if (result != -1)
+            {
+                if (result != 1)
+                {
+                    return Colors.Black;
+                }
+                if (!isCompared)
+                {
+                    return UIColors.PositiveIndicator;
+                }
+                return UIColors.NegativeIndicator;
+            }
+            else
+            {
+                if (!isCompared)
+                {
+                    return UIColors.NegativeIndicator;
+                }
+                return UIColors.PositiveIndicator;
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsMagicItem
+        {
+            get
+            {
+                return this._isMagicItem;
+            }
+            set
+            {
+                if (value != this._isMagicItem)
+                {
+                    this._isMagicItem = value;
+                    base.OnPropertyChangedWithValue(value, "IsMagicItem");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string ItemDescription
+        {
+            get
+            {
+                return this._itemDescription;
+            }
+            set
+            {
+                if (value != this._itemDescription)
+                {
+                    this._itemDescription = value;
+                    base.OnPropertyChangedWithValue(value, "ItemDescription");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool HasDescription
+        {
+            get
+            {
+                return this._hasDescription;
+            }
+            set
+            {
+                if (value != this._hasDescription)
+                {
+                    this._hasDescription = value;
+                    base.OnPropertyChangedWithValue(value, "HasDescription");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public MBBindingList<TorItemTraitVM> ItemTraitList
+        {
+            get
+            {
+                return this._itemTraitList;
+            }
+            set
+            {
+                if (value != this._itemTraitList)
+                {
+                    this._itemTraitList = value;
+                    base.OnPropertyChangedWithValue(value, "ItemTraitList");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public HintViewModel UseHint
+        {
+            get
+            {
+                return this._useHint;
+            }
+            set
+            {
+                if (value != this._useHint)
+                {
+                    this._useHint = value;
+                    base.OnPropertyChangedWithValue(value, "UseHint");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsUsableItem
+        {
+            get
+            {
+                return this._isUsableItem;
+            }
+            set
+            {
+                if (value != this._isUsableItem)
+                {
+                    this._isUsableItem = value;
+                    base.OnPropertyChangedWithValue(value, "IsUsableItem");
+                }
+            }
+        }
+    }
 }

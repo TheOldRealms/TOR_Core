@@ -28,7 +28,7 @@ namespace TOR_Core.BattleMechanics.CustomArenaModes
 
         protected override void OnTickOccasionally(float currentFrameDeltaTime)
         {
-            if(_missionController != null && _teamIndex >= 0 && _missionController.CurrentState == JoustFightMissionController.JoustFightState.MountedCombat)
+            if (_missionController != null && _teamIndex >= 0 && _missionController.CurrentState == JoustFightMissionController.JoustFightState.MountedCombat)
             {
                 MBList<Agent> agents = [];
                 agents = Mission.Current.GetNearbyAgents(GameEntity.GetGlobalFrame().origin.AsVec2, 7, agents);

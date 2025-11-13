@@ -14,7 +14,7 @@ public class TORCompanionTrainingModel : GameModel
         {
             return false;
         }
-        
+
         var skillValue = hero.GetSkillValue(skillObject);
         switch (GetMainHeroLevelForTraining())
         {
@@ -22,20 +22,20 @@ public class TORCompanionTrainingModel : GameModel
                 break;
             case MainHeroTierForSkillTraining.Novice when skillValue <= 100:
             case MainHeroTierForSkillTraining.Adept when skillValue <= 200:
-            case MainHeroTierForSkillTraining.Master when skillValue <=300:
+            case MainHeroTierForSkillTraining.Master when skillValue <= 300:
                 return true;
         }
 
         return false;
     }
-    
-    
+
+
     public int DailySkillGainForTraining(Hero hero, SkillObject skillObject)
     {
         var skillValue = hero.GetSkillValue(skillObject);
 
 
-        skillValue = Math.Max(skillValue,1);
+        skillValue = Math.Max(skillValue, 1);
         var gain = MBRandom.RandomInt(100, 250) * skillValue;
 
         return gain;
@@ -50,7 +50,7 @@ public class TORCompanionTrainingModel : GameModel
         {
             return true;
         }
-        
+
 
         return false;
 
@@ -86,36 +86,36 @@ public class TORCompanionTrainingModel : GameModel
 
         switch (skillValue)
         {
-            case <100:
-            customResourceFactor = 1;
-            goldCostFactor = 1;
-            skillCapForLevel = 100;
+            case < 100:
+                customResourceFactor = 1;
+                goldCostFactor = 1;
+                skillCapForLevel = 100;
                 break;
-            case <200:
-            customResourceFactor = 2;
-            goldCostFactor = 5;
-            skillCapForLevel = 200;
+            case < 200:
+                customResourceFactor = 2;
+                goldCostFactor = 5;
+                skillCapForLevel = 200;
                 break;
-            case >200:
+            case > 200:
                 customResourceFactor = 3;
                 goldCostFactor = 5;
                 skillCapForLevel = 300;
                 break;
         }
-        
+
 
         var basegoldCost = 1000f;
 
         var crModel = Campaign.Current.Models.GetCustomResourceModel();
-        
+
 
         var baseCRCost = 5f * crModel.GetFactorForGeneralizedCosts(Hero.MainHero.GetCultureSpecificCustomResource());
-        
-        var goldCostForCurrentSkill = (int) basegoldCost * (skillCapForLevel- skillValue) * goldCostFactor;
-        
-        var cRForCurrentSkill = (int) baseCRCost * (skillCapForLevel- skillValue) * customResourceFactor;
-        
-        
+
+        var goldCostForCurrentSkill = (int)basegoldCost * (skillCapForLevel - skillValue) * goldCostFactor;
+
+        var cRForCurrentSkill = (int)baseCRCost * (skillCapForLevel - skillValue) * customResourceFactor;
+
+
         return (goldCostForCurrentSkill, cRForCurrentSkill);
 
 
@@ -133,7 +133,7 @@ public class TORCompanionTrainingModel : GameModel
             >= 25 => MainHeroTierForSkillTraining.Master
         };
     }
-    
+
     public enum MainHeroTierForSkillTraining
     {
         None = 0,

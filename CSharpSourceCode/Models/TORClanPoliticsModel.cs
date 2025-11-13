@@ -13,7 +13,7 @@ namespace TOR_Core.Models
         {
             var result = base.CalculateInfluenceChange(clan, includeDescriptions);
             PerkHelper.AddPerkBonusForCharacter(TORPerks.Faith.Blessed, clan.Leader.CharacterObject, true, ref result);
-            if(clan != Clan.PlayerClan && clan.Influence < INFLUENCE_TRESHHOLD)
+            if (clan != Clan.PlayerClan && clan.Influence < INFLUENCE_TRESHHOLD)
             {
                 result.Add(clan.Tier * 15f, new("AI Bonus"));
             }

@@ -37,7 +37,7 @@ namespace TOR_Core.Models
             {
                 number.Add(250f, new TextObject("Minotaur bonus"));
             }
-            if(character.IsTreeSpirit() && character.Race != FaceGen.GetRaceOrDefault("large_humanoid_monster"))
+            if (character.IsTreeSpirit() && character.Race != FaceGen.GetRaceOrDefault("large_humanoid_monster"))
             {
                 number.Add(100f, new TextObject("Dryad bonus"));
             }
@@ -73,7 +73,7 @@ namespace TOR_Core.Models
                     number.Add(character.Tier * 10);
                     break;
             }
-            if (character.IsUndead()&&!character.IsHero && !character.HasAttribute("NecromancerChampion"))
+            if (character.IsUndead() && !character.IsHero && !character.HasAttribute("NecromancerChampion"))
             {
                 number.Add(-25);
             }
@@ -107,7 +107,7 @@ namespace TOR_Core.Models
                 }
                 number.Add((int)value);
             }
-            
+
             return number;
         }
 
@@ -132,7 +132,7 @@ namespace TOR_Core.Models
                 {
                     number.Add(300, new TextObject("Tier4"));
                 }
-                if (hero.IsVampire()&&!hero.IsHumanPlayerCharacter)
+                if (hero.IsVampire() && !hero.IsHumanPlayerCharacter)
                 {
                     number.Add(100, new TextObject("Vampire body"));
                 }
@@ -141,7 +141,7 @@ namespace TOR_Core.Models
                 {
                     number.Add(2000);
                 }
-                
+
                 if (hero.IsDwarf())
                 {
                     number.Add(20);
@@ -170,21 +170,21 @@ namespace TOR_Core.Models
                     if (Hero.MainHero.HasCareerChoice("GuiltyByAssociationPassive3"))
                     {
                         var choice = TORCareerChoices.GetChoice("GuiltyByAssociationPassive3");
-                        number.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                        number.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                     }
-                    
+
                     if (Hero.MainHero.HasCareerChoice("CommanderPassive4"))
                     {
                         var choice = TORCareerChoices.GetChoice("CommanderPassive4");
-                        number.Add(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                        number.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                     }
-                    
+
                     if (Hero.MainHero.HasCareerChoice("EnvoyOfTheLadyPassive2"))
                     {
                         if (hero.IsBretonnianKnight())
                         {
                             var choice = TORCareerChoices.GetChoice("EnvoyOfTheLadyPassive2");
-                            number.AddFactor(choice.GetPassiveValue(),choice.BelongsToGroup.Name);
+                            number.AddFactor(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
                         }
                     }
 
@@ -195,7 +195,7 @@ namespace TOR_Core.Models
                             var choice = TORCareerChoices.GetChoice("HolyCrusaderPassive2");
                             var heroes = MobileParty.MainParty.GetMemberHeroes().Where(knight => knight.IsBretonnianKnight());
                             var extraHealth = heroes.Count() * choice.GetPassiveValue();
-                            number.Add(extraHealth,choice.BelongsToGroup.Name);
+                            number.Add(extraHealth, choice.BelongsToGroup.Name);
                         }
                     }
 
@@ -220,7 +220,7 @@ namespace TOR_Core.Models
 
                 }
 
-                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.PartyBelongedTo != null && (hero.PartyBelongedTo.IsMainParty ||  hero == Hero.MainHero))
+                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.PartyBelongedTo != null && (hero.PartyBelongedTo.IsMainParty || hero == Hero.MainHero))
                 {
 
                     if (!Hero.MainHero.HasAttribute("WEWandererSymbol"))
@@ -233,14 +233,14 @@ namespace TOR_Core.Models
                                 number.AddFactor(ForestHarmonyHelper.HealthDebuffUnBound, new TextObject(ForestHarmonyLevel.Unbound.ToString()));
                                 break;
                             case ForestHarmonyLevel.Bound:
-                                number.AddFactor(ForestHarmonyHelper.HealthDebuffBound,new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                                number.AddFactor(ForestHarmonyHelper.HealthDebuffBound, new TextObject(ForestHarmonyLevel.Bound.ToString()));
                                 break;
                         }
                     }
-                    
+
                     var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
                     var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WEHealthUpgrade");
-                    foreach (var attribute in  list)
+                    foreach (var attribute in list)
                     {
                         number.AddFactor(0.1f, new TextObject("Oak of Ages"));
                     }
@@ -250,14 +250,14 @@ namespace TOR_Core.Models
                     {
                         number.AddFactor(0.25f, ForestHarmonyHelper.TreeSymbolText("WEWardancerSymbol"));
                     }
-                    
-                    if(hero == Hero.MainHero&& Hero.MainHero.HasAttribute("WEDurthuSymbol"))
+
+                    if (hero == Hero.MainHero && Hero.MainHero.HasAttribute("WEDurthuSymbol"))
                     {
                         number.AddFactor(0.25f);
                     }
 
                 }
-                
+
 
                 if (hero.HasAttribute("GiftOfNurgle")) number.Add(20, new TextObject("Gift of Nurgle"));
             }
@@ -265,7 +265,7 @@ namespace TOR_Core.Models
             {
                 number.Add(TORPerks.Faith.Devotee.PrimaryBonus * hero.GetAttributeValue(TORAttributes.Discipline), new TextObject("Perks"));
             }
-            
+
             var healthFromEquipment = hero.GetAggregatedStatEffectFromEquipment(ItemTraitStatType.HealthMax);
             if (healthFromEquipment > 0)
             {

@@ -8,6 +8,7 @@ using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
 
@@ -72,14 +73,14 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
         MBTextManager.SetTextVariable("STARFIRESHAFT_ICON", string.Format("<img src=\"{0}\"/>", _starfireShaftsIcon));
     }
 
-    public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClicked=false)
+    public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClicked = false)
     {
         _setCharacter = characterObject;
         var list = new List<InquiryElement>();
 
         for (var i = 0; i < _allArrows.Count; i++)
         {
-            if (!Hero.MainHero.HasUnlockedCareerChoiceTier(i+1))
+            if (!Hero.MainHero.HasUnlockedCareerChoiceTier(i + 1))
                 break;
             var arrow = _allArrows[i];
             var icon = GetArrowIconAsText(arrow);
@@ -90,13 +91,13 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 continue;
             }
             list.Add(new InquiryElement(arrow, new TextObject($"{{{icon}}} {arrow.Name}").ToString(), null, true, $"{arrow.Description}, {price}{Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText()}"));
-        
+
         }
 
         var arrowType = GetCurrentActiveArrowType(_setCharacter);
 
         if (arrowType != null) list.Add(new InquiryElement("remove", $"Remove {arrowType.Name}", null));
-        
+
         var inquirydata = new MultiSelectionInquiryData("Choose special arrows.", "Empower your ranged Unit with a permanent magical effect.", list,
             true, 1, 1, "Accept", "Cancel", OnSelectedOption, OnCancel, "", false);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
@@ -109,7 +110,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
 
     private void OnSelectedOption(List<InquiryElement> elements)
     {
-        var arrow = elements[0].Identifier as ArrowType ;
+        var arrow = elements[0].Identifier as ArrowType;
         if (arrow == null)
         {
             if ((string)elements[0].Identifier != "remove")
@@ -117,13 +118,13 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
                 return;
             }
         }
-        
+
         var partyExtendedInfo = ExtendedInfoManager.Instance.GetPartyInfoFor(Hero.MainHero.PartyBelongedTo.StringId);
-        
+
         var arrowType = GetCurrentActiveArrowType(_setCharacter);
 
         if (arrowType != null) partyExtendedInfo.RemoveTroopAttribute(_setCharacter.StringId, arrowType.Effect);
-        
+
         if (arrow != null)
         {
             partyExtendedInfo.AddTroopAttribute(_setCharacter, arrow.Effect);

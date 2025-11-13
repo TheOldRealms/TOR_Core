@@ -160,7 +160,7 @@ namespace TOR_Core.BattleMechanics
 
                 if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
                 {
-                   //TODO find replacement
+                    //TODO find replacement
                 }
 
                 if (Hero.MainHero.HasCareerChoice("HawkeyedPassive3") && Agent.Main != null)
@@ -301,21 +301,21 @@ namespace TOR_Core.BattleMechanics
             {
                 if (affectedAgent.BelongsToMainParty())
                 {
-                    if (Hero.MainHero.HasCareerChoice("ShameOfTheAncestorsKeystone")  && affectedAgent.IsSlayer())
+                    if (Hero.MainHero.HasCareerChoice("ShameOfTheAncestorsKeystone") && affectedAgent.IsSlayer())
                     {
-                        CareerMissionVariables[0] ++;
+                        CareerMissionVariables[0]++;
                     }
                 }
-            
+
                 if (affectorAgent.BelongsToMainParty())
                 {
-                    if (Hero.MainHero.HasCareerChoice("TheLastJourneyKeystone")  && affectorAgent.IsSlayer())
+                    if (Hero.MainHero.HasCareerChoice("TheLastJourneyKeystone") && affectorAgent.IsSlayer())
                     {
-                        CareerMissionVariables[0] ++;
+                        CareerMissionVariables[0]++;
                     }
                 }
             }
-            
+
 
             if (affectorAgent.IsMainAgent)
             {
@@ -325,7 +325,7 @@ namespace TOR_Core.BattleMechanics
                 {
                     CareerMissionVariables[0]++;
                 }
-                
+
                 if (hitBodyPart == BoneBodyPartType.Head || hitBodyPart == BoneBodyPartType.Neck)
                 {
                     if (choices.Contains("CourtleyPassive4"))
@@ -368,7 +368,7 @@ namespace TOR_Core.BattleMechanics
                         {
                             Hero.MainHero.AddSkillXp(TORSkills.SpellCraft, value);
                         }
-              
+
                     }
                 }
 
@@ -416,15 +416,15 @@ namespace TOR_Core.BattleMechanics
 
                 if (affectedAgent.IsUndead() || affectedAgent.Character.IsCultist())
                 {
-                    if (choices.Contains("SilverHammerPassive1") || 
+                    if (choices.Contains("SilverHammerPassive1") ||
                         choices.Contains("TemplarOrdersPassive2"))
                     {
-               
+
                         Hero.MainHero.AddSkillXp(TORSkills.Faith, 10);
                     }
-                }  
-               
-                
+                }
+
+
                 if (choices.Contains("AxeOfGrimnirPassive3"))
                 {
                     Hero.MainHero.AddSkillXp(TORSkills.Faith, 10);

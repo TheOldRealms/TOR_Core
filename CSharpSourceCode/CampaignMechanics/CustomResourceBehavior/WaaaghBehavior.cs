@@ -23,7 +23,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
     {
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
-        CampaignEvents.MapEventEnded.AddNonSerializedListener(this,CalculateWaaaghGainFromBattle);
+        CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
     }
 
     private void InitialCombatStrengthCalculation(IMission mission)
@@ -49,8 +49,8 @@ public class WaaaghBehavior : CampaignBehaviorBase
     {
         // Only apply to Greenskin players
         if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN) return;
-        
-        if(!mapEvent.IsPlayerMapEvent) return;
+
+        if (!mapEvent.IsPlayerMapEvent) return;
 
         var playerWon = mapEvent.WinningSide == mapEvent.PlayerSide;
 
@@ -83,7 +83,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
             var waaaghLoss = 20; // Base loss for defeat
             Hero.MainHero.AddCustomResource("Waaagh", -waaaghLoss);
         }
-        
+
         UpdateWaaaghState();
     }
 

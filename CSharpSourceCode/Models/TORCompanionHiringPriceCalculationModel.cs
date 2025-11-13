@@ -19,7 +19,7 @@ namespace TOR_Core.Models
                 {
                     return 20000;
                 }
-                else if(companion.BattleEquipment.GetHumanBodyArmorSum() > 40) 
+                else if (companion.BattleEquipment.GetHumanBodyArmorSum() > 40)
                 {
                     return 15000;
                 }

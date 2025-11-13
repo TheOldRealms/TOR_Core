@@ -14,13 +14,13 @@ namespace TOR_Core.HarmonyPatches
         {
             if (variationId == "" || string.IsNullOrEmpty(variationId)) return;
             var list = ____variationList.Where(x => x.Id == variationId).ToList();
-            if(list.Count() > 0)
+            if (list.Count() > 0)
             {
-                foreach(var item in list)
+                foreach (var item in list)
                 {
                     ____variationList.Remove(item);
                 }
             }
-		}
+        }
     }
 }

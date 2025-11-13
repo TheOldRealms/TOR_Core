@@ -22,7 +22,7 @@ namespace TOR_Core.Utilities
             starter.RemoveBehaviors<SallyOutsCampaignBehavior>();
 
             var issues = starter.CampaignBehaviors.Where(x => x.GetType().FullName.Contains("Issue")).ToList();
-            foreach(var issue in issues)
+            foreach (var issue in issues)
             {
                 starter.RemoveBehavior(issue);
             }

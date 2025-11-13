@@ -113,7 +113,7 @@ namespace TOR_Core.BattleMechanics.AI.ArtilleryAI
 
         private Target GetTargetValueOfFormation(Formation formation)
         {
-            var target = new Target {Formation = formation};
+            var target = new Target { Formation = formation };
             target.UtilityValue = targetDecisionFunctions.GeometricMean(target); //ProcessTargetValue(, RangedSiegeWeaponAi.ThreatSeeker.GetTargetFlagsOfFormation());
             return target;
         }
@@ -122,14 +122,14 @@ namespace TOR_Core.BattleMechanics.AI.ArtilleryAI
         {
             return from f in (from t in Mission.Current.Teams where t.Side.GetOppositeSide() == _fieldSiegeWeapon.Side select t)
                     .SelectMany((Team t) => t.GetFormationsIncludingSpecial())
-                where f.CountOfUnits > 0
-                select f;
+                   where f.CountOfUnits > 0
+                   select f;
         }
 
         private List<Axis> CreateTargetingFunctions()
         {
             var targetingFunctions = new List<Axis>();
-            targetingFunctions.Add(new Axis(0, 300, x => 0.7f - 3 * (float) Math.Pow(x - 0.3f, 3) + (float) Math.Pow(x, 2), CommonAIDecisionFunctions.DistanceToTarget(() => _fieldSiegeWeapon.GameEntity.GlobalPosition))); // 0.7 - 3(x-0.3)^3 + x^2
+            targetingFunctions.Add(new Axis(0, 300, x => 0.7f - 3 * (float)Math.Pow(x - 0.3f, 3) + (float)Math.Pow(x, 2), CommonAIDecisionFunctions.DistanceToTarget(() => _fieldSiegeWeapon.GameEntity.GlobalPosition))); // 0.7 - 3(x-0.3)^3 + x^2
             targetingFunctions.Add(new Axis(0, CommonAIDecisionFunctions.CalculateEnemyTotalPower(_fieldSiegeWeapon.Team), x => x, CommonAIDecisionFunctions.FormationPower()));
             targetingFunctions.Add(new Axis(0, 70, x => x, CommonAIDecisionFunctions.UnitCount()));
             targetingFunctions.Add(new Axis(0, 10, x => x, CommonAIDecisionFunctions.TargetDistanceToHostiles()));

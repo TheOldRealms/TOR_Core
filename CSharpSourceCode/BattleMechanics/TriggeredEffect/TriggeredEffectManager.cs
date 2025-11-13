@@ -45,10 +45,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         public static List<TriggeredEffectTemplate> GetTemplatesWithIds(List<string> ids)
         {
             List<TriggeredEffectTemplate> result = new List<TriggeredEffectTemplate>();
-            foreach(var id in ids)
+            foreach (var id in ids)
             {
                 TriggeredEffectTemplate template = null;
-                if(_dictionary.TryGetValue(id, out template))
+                if (_dictionary.TryGetValue(id, out template))
                 {
                     result.Add(template);
                 }

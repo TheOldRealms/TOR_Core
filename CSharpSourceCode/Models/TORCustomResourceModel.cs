@@ -33,7 +33,7 @@ public class TORCustomResourceModel : GameModel
     {
         if (hero.PartyBelongedTo == null) return new ExplainedNumber(); //does this imply that the player has no custom resource changes while a prisoner? If they are captured, do they stop paying for garrison upkeep?
 
-        var number = new ExplainedNumber(0,true);
+        var number = new ExplainedNumber(0, true);
         if (hero.GetCultureSpecificCustomResource() == null) return number;
 
         var party = hero.PartyBelongedTo;
@@ -46,21 +46,21 @@ public class TORCustomResourceModel : GameModel
         {
             CareerHelper.ApplyBasicCareerPassives(hero, ref number, PassiveEffectType.CustomResourceGain, false);
 
-                foreach (var clanmember in clan.Heroes)
+            foreach (var clanmember in clan.Heroes)
+            {
+                var list = clanmember.CharacterObject.GetCharacterEquipment();
+                foreach (var item in list)
                 {
-                    var list = clanmember.CharacterObject.GetCharacterEquipment();
-                    foreach (var item in list)
+                    var traits = item.GetTraits();
+                    foreach (var trait in traits)
                     {
-                        var traits = item.GetTraits();
-                        foreach (var trait in traits)
+                        if (trait.StatsTuple?.StatType == ItemTraitStatType.CustomResourceGain)
                         {
-                            if (trait.StatsTuple?.StatType == ItemTraitStatType.CustomResourceGain)
-                            {
-                                number.Add(trait.StatsTuple.Value, ENCHANTEDEQUIPMENTTEXT);
-                            }
+                            number.Add(trait.StatsTuple.Value, ENCHANTEDEQUIPMENTTEXT);
                         }
                     }
                 }
+            }
 
             if (hero.IsEnlisted())
             {
@@ -155,7 +155,7 @@ public class TORCustomResourceModel : GameModel
 
             if (clan != null && (culture.StringId == TORConstants.Cultures.GREENSKIN))
             {
-                var playerSettlements = clan.Fiefs.WhereQ(x=> x.Settlement.Owner == Hero.MainHero && x.Settlement.IsGreenskinCamp());
+                var playerSettlements = clan.Fiefs.WhereQ(x => x.Settlement.Owner == Hero.MainHero && x.Settlement.IsGreenskinCamp());
 
                 var tribute = 0;
                 foreach (var settlement in playerSettlements)
@@ -166,7 +166,7 @@ public class TORCustomResourceModel : GameModel
 
                 number.Add(tribute, new TextObject("Teef Tribute"));
 
-                if (hero.HasCareer(TORCareers.OrcBoss) )
+                if (hero.HasCareer(TORCareers.OrcBoss))
                 {
                     if (hero.HasCareerChoice("MeanestanDaBaddestPassive4"))
                     {
@@ -184,10 +184,10 @@ public class TORCustomResourceModel : GameModel
 
                     foreach (var attributePair in info.TroopAttributes)
                     {
-                        var attributes =  attributePair.Value;
+                        var attributes = attributePair.Value;
                         if (!attributes.Contains("Extorsion"))
                             continue;
-                            
+
                         var troopId = attributePair.Key;
                         var troop = MBObjectManager.Instance.GetObject<CharacterObject>(troopId);
                         if (troop != null)
@@ -195,9 +195,9 @@ public class TORCustomResourceModel : GameModel
                             var element = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster().First(x => x.Character == troop);
                             if (element.Character != null)
                             {
-                                number.Add(troop.Tier * factor *element.Number, new TextObject("Teef Extorsion"));
+                                number.Add(troop.Tier * factor * element.Number, new TextObject("Teef Extorsion"));
                             }
-                     
+
                         }
                     }
                 }
@@ -219,7 +219,7 @@ public class TORCustomResourceModel : GameModel
                     {
                         foreach (var village in x.Settlement.BoundVillages) //No need to check the id because all WE villages should be correctly assigned to starting WE fortifications.
                         {
-                                weVillages.Add(village);
+                            weVillages.Add(village);
                         }
                     }
                 });
@@ -263,7 +263,7 @@ public class TORCustomResourceModel : GameModel
                     var harmonyFactor = 0.2f * list.Count; //20% per upgrade
                     if (harmonyFactor > 0) number.Add(harmonyFactor * settlementGain, GameTexts.FindText("tor_custom_resource_we_oakSettlementIncomeBonus"));
                 }
-                
+
                 //apply symbol penalty to all gains
                 priorHarmonyGains += settlementGain;
                 if (priorHarmonyGains > 0)
@@ -331,7 +331,7 @@ public class TORCustomResourceModel : GameModel
                 }
             }
         }
-            
+
         //upkeep after to manipulate gains and deductions separately
         var upkeep = GetCalculatedCustomResourceUpkeep(hero, resourceid);
         if (upkeep.ResultNumber < 0)
@@ -344,7 +344,7 @@ public class TORCustomResourceModel : GameModel
 
     //Sly : do we want this capable of holding descriptions allowing a detailed breakdown when holding alt?
     //this would probably cause issues for a dwarf player with the size of the UI element, but it may make it more evident for players how different sources of bonuses are contributing
-    public ExplainedNumber GetCalculatedCustomResourceUpkeep(Hero hero, string resourceID="")
+    public ExplainedNumber GetCalculatedCustomResourceUpkeep(Hero hero, string resourceID = "")
     {
         if (resourceID == "")
         {
@@ -352,47 +352,48 @@ public class TORCustomResourceModel : GameModel
         }
 
 
-        var upkeep = new ExplainedNumber(0,true, UPKEEPTEXT);
+        var upkeep = new ExplainedNumber(0, true, UPKEEPTEXT);
         foreach (var element in hero.PartyBelongedTo.MemberRoster.GetTroopRoster())
         {
             if (element.Character.HasCustomResourceUpkeepRequirement())
             {
                 var resource = element.Character.GetCustomResourceRequiredForUpkeep();
-                
-                if(resource.Item1.StringId !=resourceID) continue;
-                var unitUpkeep = new ExplainedNumber(resource.Item2*element.Number); 
+
+                if (resource.Item1.StringId != resourceID) continue;
+                var unitUpkeep = new ExplainedNumber(resource.Item2 * element.Number);
                 if (hero == Hero.MainHero)
                 {
-                    CareerHelper.ApplyBasicCareerPassives(hero, ref unitUpkeep,PassiveEffectType.CustomResourceUpkeepModifier, true, element.Character);
-                    
+                    CareerHelper.ApplyBasicCareerPassives(hero, ref unitUpkeep, PassiveEffectType.CustomResourceUpkeepModifier, true, element.Character);
+
                     if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
                     {
-                            
-                        if (hero.HasAttribute("WETreekinSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+
+                        if (hero.HasAttribute("WETreekinSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
                         {
                             unitUpkeep.AddFactor(-0.5f, ForestHarmonyHelper.TreeSymbolText("WETreekinSymbol"));
                         }
-                            
-                        if (hero.HasAttribute("WEOrionSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId== TORConstants.Cultures.ASRAI)
+
+                        if (hero.HasAttribute("WEOrionSymbol") && !element.Character.IsElf() && element.Character.Culture.StringId == TORConstants.Cultures.ASRAI)
                         {
                             unitUpkeep.AddFactor(1f, ForestHarmonyHelper.TreeSymbolText("WEOrionSymbol"));
                         }
                     }
 
-                    if (hero.Culture.StringId ==  TORConstants.Cultures.SYLVANIA || hero.Culture.StringId ==  TORConstants.Cultures.MOUSILLON)
+                    if (hero.Culture.StringId == TORConstants.Cultures.SYLVANIA || hero.Culture.StringId == TORConstants.Cultures.MOUSILLON)
                     {
                         if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.Army != null && hero.PartyBelongedTo.Army.LeaderParty != MobileParty.MainParty)
                         {
                             unitUpkeep.AddFactor(-0.5f, GameTexts.FindText("tor_generic_armyMember"));
-                        }else if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.BesiegedSettlement != null)
+                        }
+                        else if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.BesiegedSettlement != null)
                         {
                             unitUpkeep.AddFactor(-0.5f, GameTexts.FindText("tor_generic_siegeCampBonus"));
                         }
                     }
                 }
-                    
+
                 upkeep.Add(-unitUpkeep.ResultNumber, UPKEEPTEXT);
-                    
+
             }
         }
         if (!hero.IsClanLeader) return upkeep;
@@ -400,43 +401,43 @@ public class TORCustomResourceModel : GameModel
         foreach (var settlement in hero.Clan.Settlements)
         {
             if (!settlement.IsCastle && !settlement.IsTown) continue;
-            if(settlement.Town.GarrisonParty==null) continue;
+            if (settlement.Town.GarrisonParty == null) continue;
             var garrison = settlement.Town.GarrisonParty.MemberRoster.GetTroopRoster();
             foreach (var elem in garrison)
             {
                 if (elem.Character.HasCustomResourceUpkeepRequirement())
                 {
                     var resource = elem.Character.GetCustomResourceRequiredForUpkeep();
-                        
-                    if(resource==null) continue;
-                
-                    if(resource.Item1.StringId !=resourceID) continue;
+
+                    if (resource == null) continue;
+
+                    if (resource.Item1.StringId != resourceID) continue;
                     var garrisonFactor = 0.25f; //base reduction bonus 
-                    var garrisonUnitUpkeep = new ExplainedNumber(resource.Item2*elem.Number*garrisonFactor);
+                    var garrisonUnitUpkeep = new ExplainedNumber(resource.Item2 * elem.Number * garrisonFactor);
 
                     if (hero == Hero.MainHero)
                     {
-                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref garrisonUnitUpkeep,PassiveEffectType.CustomResourceUpkeepModifier, true, elem.Character); 
+                        CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref garrisonUnitUpkeep, PassiveEffectType.CustomResourceUpkeepModifier, true, elem.Character);
                     }
-                    
-                    upkeep.Add(-garrisonUnitUpkeep.ResultNumber,GameTexts.FindText("tor_generic_garrisonUpkeep"));
+
+                    upkeep.Add(-garrisonUnitUpkeep.ResultNumber, GameTexts.FindText("tor_generic_garrisonUpkeep"));
                 }
             }
         }
-            
+
         return upkeep;
     }
-        
+
     public float GetFactorForGeneralizedCosts(CustomResource resource)
     {
 
         switch (resource.StringId)
         {
-            case "Prestige": 
+            case "Prestige":
             case "CouncilFavor":
             case "OathGold":
                 return 1;
-            case "Chivalry":  
+            case "Chivalry":
                 return 2;
             case "ForestHarmony":
             case "DarkEnergy":
@@ -445,6 +446,6 @@ public class TORCustomResourceModel : GameModel
 
         return 1;
     }
-        
-        
+
+
 }

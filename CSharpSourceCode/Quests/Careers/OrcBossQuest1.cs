@@ -229,8 +229,8 @@ namespace TOR_Core.Quests.Careers
             // Re-register events on game load
             //Sly : do events need to be registered here or RegisterEvents is sufficient? ie. does EngineerQuest have a potential issue because it doesn't do that.
             //Or, is it not necessary because QuestBase has InitializeQuestOnLoadWithQuestManager which calls RegisterEvents, InitializeQuestOnGameLoad, and AddDialogs for each quest?
-        }                                                                                                     
-                                                                                                              
+        }
+
         protected override void HourlyTick()
         {
             // Check if ready to complete and finalize quest when safe

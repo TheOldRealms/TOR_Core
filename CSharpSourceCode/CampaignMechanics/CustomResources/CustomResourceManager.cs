@@ -26,6 +26,7 @@ using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Models;
 using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;

@@ -15,12 +15,12 @@ namespace TOR_Core.Extensions.UI
         private ViewModelExtensionManager()
         {
             Instance = this;
-            CollectViewModelExtensions();
+            RegisterExtensions();
         }
 
         internal void RegisterExtension(IViewModelExtension extension, ViewModel vm)
         {
-            if(vm != null && extension != null && extension.GetType().GetCustomAttribute<ViewModelExtensionAttribute>() != null)
+            if (vm != null && extension != null && extension.GetType().GetCustomAttribute<ViewModelExtensionAttribute>() != null)
             {
                 _extensionInstances.Add(vm, extension);
             }
@@ -36,24 +36,30 @@ namespace TOR_Core.Extensions.UI
 
         public static void Initialize() => _ = new ViewModelExtensionManager();
 
-        public void CollectViewModelExtensions()
+        public void RegisterExtensions()
         {
-            IEnumerable<Assembly> assemblies = AccessTools.AllAssemblies();
-			foreach (Assembly assembly in assemblies)
-			{
-                if (assembly.IsDynamic) continue;
-                foreach(var type in assembly.GetExportedTypes())
+            Type[] types =
                 {
-                    if ((typeof(IViewModelExtension)).IsAssignableFrom(type))
+                    typeof(CharacterDeveloperVMExtension),
+                    typeof(HeroEncyclopediaVMExtension),
+                    typeof(MissionConversationVMExtension),
+                    typeof(PartyCharacterVMExtension),
+                    typeof(PartyNameplateItemVMExtension),
+                    typeof(PartyVMExtension),
+                    typeof(TORMapInfoVMExtension),
+                    typeof(UnitEncyclopediaVMExtension),
+                };
+            foreach (var type in types)
+            {
+                if ((typeof(IViewModelExtension)).IsAssignableFrom(type))
+                {
+                    if (type.GetCustomAttribute<ViewModelExtensionAttribute>()?.BaseType != null)
                     {
-                        if(type.GetCustomAttribute<ViewModelExtensionAttribute>()?.BaseType != null)
-                        {
-                            ExtensionTypes.Add(type.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType, type);
-                        }
+                        ExtensionTypes.Add(type.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType, type);
                     }
                 }
-			}
-		}
+            }
+        }
 
         public bool HasViewModelExtensionType(ViewModel vm)
         {
@@ -77,6 +83,6 @@ namespace TOR_Core.Extensions.UI
         public IViewModelExtension GetExtensionInstance(ViewModel vm)
         {
             return _extensionInstances.FirstOrDefaultQ(x => x.Key == vm).Value;
-        }       
+        }
     }
 }

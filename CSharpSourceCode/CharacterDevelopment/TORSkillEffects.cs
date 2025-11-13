@@ -28,7 +28,7 @@ namespace TOR_Core.CharacterDevelopment
         public static SkillEffect SpellEffectiveness => Instance._spellEffectiveness;
         public static SkillEffect PrayerEffectiveness => Instance._prayerEffectiveness;
         public static SkillEffect SpellDuration => Instance._spellDuration;
-        
+
         public static SkillEffect PrayerDuration => Instance._prayerDuration;
         public static SkillEffect WindsRechargeRate => Instance._windsRechargeRate;
         public static SkillEffect MaxWinds => Instance._maxWinds;
@@ -72,10 +72,10 @@ namespace TOR_Core.CharacterDevelopment
 
             _blessingDuration.Initialize(new TextObject("{=tor_skills_blessing_duration_str}Blessing duration increase: +{a0} %", null),
             TORSkills.Faith, PartyRole.PartyLeader, 1f, EffectIncrementType.AddFactor, 0f, 0f);
-            
+
             _prayerEffectiveness.Initialize(new TextObject("{=tor_skills_spell_effectiveness_str}Prayer effectiveness(Only Priests): +{a0} %", null),
             TORSkills.Faith, PartyRole.Personal, 0.025f, EffectIncrementType.AddFactor, 0f, 0f);
-            
+
             _prayerDuration.Initialize(new TextObject("{=tor_skills_blessing_duration_str}Prayer duration increase(Only Priests): +{a0} %", null),
             TORSkills.Faith, PartyRole.Personal, 0.025f, EffectIncrementType.AddFactor, 0f, 0f);
         }

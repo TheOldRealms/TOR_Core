@@ -11,13 +11,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 {
     public static class CareerChoicesHelper
     {
-        
+
         public static bool ArmorWeightCheck(Agent agent, float targetWeight, bool undershoot = true)
         {
             if (agent == null) return false;
             if (!agent.IsHero) return false;
             if (!agent.BelongsToMainParty()) return false;
-            var model =  (TORAgentStatCalculateModel) MissionGameModels.Current.AgentStatCalculateModel;
+            var model = (TORAgentStatCalculateModel)MissionGameModels.Current.AgentStatCalculateModel;
             var encumbrance = model?.GetEffectiveArmorEncumbrance(agent, agent.SpawnEquipment);
 
             if (undershoot)
@@ -44,7 +44,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
             return false;
         }
-        
+
         public static bool ContainsSpellType(AbilityComponent component, int spellCount, AbilityTargetType excludedTargetType)
         {
             var wrongSpell = false;
@@ -52,7 +52,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             for (int i = 0; i < spellCount; i++)
             {
                 var ability = component.GetAbility(i);
-                if(ability.Template==null) continue;
+                if (ability.Template == null) continue;
                 if (ability.Template.AbilityTargetType == excludedTargetType)
                 {
                     return true;
@@ -60,7 +60,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
             return false;
         }
-        
+
         public static bool ContainsSpellType(AbilityComponent component, AbilityTargetType[] excludedTargetTypes)
         {
             var wrongSpell = false;
@@ -69,10 +69,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             for (int i = 0; i < spellCount; i++)
             {
                 var ability = component.GetAbility(i);
-                if(ability is CareerAbility) continue;
-                if(ability.Template==null) continue;
-                
-                if(excludedTargetTypes.AnyQ(x=> x == ability.Template.AbilityTargetType ))
+                if (ability is CareerAbility) continue;
+                if (ability.Template == null) continue;
+
+                if (excludedTargetTypes.AnyQ(x => x == ability.Template.AbilityTargetType))
                 {
                     return true;
                 }

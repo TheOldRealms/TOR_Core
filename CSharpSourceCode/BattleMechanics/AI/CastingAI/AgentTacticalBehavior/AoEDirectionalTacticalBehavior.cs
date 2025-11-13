@@ -45,7 +45,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentTacticalBehavior
                 Agent.SetScriptedPosition(ref castingWorldPosition, false);
             }
         }
-        
+
         public override void SetCurrentTarget(Target target)
         {
             CastingBehavior.SetCurrentTarget(target);

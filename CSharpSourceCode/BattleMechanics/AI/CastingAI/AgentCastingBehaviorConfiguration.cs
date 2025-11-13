@@ -76,7 +76,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                 abilityTemplate.AssociatedTriggeredEffectTemplates.Count > 0 && abilityTemplate.AssociatedTriggeredEffectTemplates[0].TargetType == TargetType.Friendly)
                 return agent.Team.GetAllyTeams()
                     .SelectMany(team => team.GetFormations())
-                    .Select(form => new Target {Formation = form})
+                    .Select(form => new Target { Formation = form })
                     .ToList();
             if (abilityTemplate.AbilityEffectType == AbilityEffectType.Summoning ||
                 abilityTemplate.AbilityTargetType == AbilityTargetType.Self)
@@ -100,7 +100,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                 TORCommon.Log("AgentCastingBehaviorConfig : access violation exception when creating the list of enemy formations.", NLog.LogLevel.Fatal);
                 Process.GetCurrentProcess().Kill();
             }
-            
+
             return agent.Team.GetEnemyTeams()
                 .SelectMany(team => team.GetFormations())
                 .Select(form => new Target { Formation = form })
@@ -136,7 +136,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                 index++;
             }
 
-            castingBehaviors.Add(new PreserveWindsAgentCastingBehavior(agent, new AbilityTemplate {AbilityTargetType = AbilityTargetType.Self}, index));
+            castingBehaviors.Add(new PreserveWindsAgentCastingBehavior(agent, new AbilityTemplate { AbilityTargetType = AbilityTargetType.Self }, index));
             return castingBehaviors;
         }
 

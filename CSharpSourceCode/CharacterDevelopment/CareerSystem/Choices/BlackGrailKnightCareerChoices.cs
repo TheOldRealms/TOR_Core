@@ -161,7 +161,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     }
                 });
-            
+
             _swampRiderKeystone.Initialize(CareerID, "{=swamp_rider_keystone_str}+20% speed during the ability, which now scales with the Polearm skill and starts recharged.", "SwampRider", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
@@ -343,7 +343,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _swampRiderPassive2.Initialize(CareerID, "{=swamp_rider_passive2_str}10% extra melee damage while on horseback.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && attacker.HasMount));
             _swampRiderPassive3.Initialize(CareerID, "{=swamp_rider_passive3_str}Every melee kill gives roguery XP.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true)); //
-            _swampRiderPassive4.Initialize(CareerID, "{=swamp_rider_passive4_str}All Knight troops receive 20 bonus points in their One and Two-handed skill.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>(){nameof(DefaultSkills.OneHanded),nameof(DefaultSkills.TwoHanded)}, characterObject => characterObject.IsKnightUnit()));
+            _swampRiderPassive4.Initialize(CareerID, "{=swamp_rider_passive4_str}All Knight troops receive 20 bonus points in their One and Two-handed skill.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.OneHanded), nameof(DefaultSkills.TwoHanded) }, characterObject => characterObject.IsKnightUnit()));
 
             _unbreakableArmyPassive1.Initialize(CareerID, "{=unbreable_army_passive1_str}All mousillon peasant troops wages are reduced by 75%.", "UnbreakableArmy", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-75, PassiveEffectType.TroopWages, true,
                 characterObject => !characterObject.IsKnightUnit() && characterObject.Culture.StringId == "mousillon"));//this will probably affect companions of mousillon culture - this should actually check for something like BasicTroop if it's meant to only be t1, otherwise something like occupation = Soldier + char.Level < X
@@ -359,7 +359,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _robberKnightPassive1.Initialize(CareerID, "{=robber_knight_passive1_str}Horse charge damage is increased by 50%.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
             _robberKnightPassive2.Initialize(CareerID, "{=robber_knight_passive2_str}Party movement speed is increased by 2.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.PartyMovementSpeed));
-            _robberKnightPassive3.Initialize(CareerID, "{=robber_knight_passive3_str}All mousillon Knight units gain 10% Physical resistance.", "RobberKnight", false, ChoiceType.Passive, null,new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
+            _robberKnightPassive3.Initialize(CareerID, "{=robber_knight_passive3_str}All mousillon Knight units gain 10% Physical resistance.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
                     (attacker, victim, mask) => victim.BelongsToMainParty() && isMousillonKnight(attacker.Character as CharacterObject)));
             _robberKnightPassive4.Initialize(CareerID, "{=robber_knight_passive4_str}Pillaging is 50% faster  and gains dark energy.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-50, PassiveEffectType.Special, true,
                 characterObject => isMousillonKnight(characterObject)));
@@ -377,26 +377,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 (attacker, victim, mask) => victim.BelongsToMainParty() && isMousillonKnight(victim.Character as CharacterObject)));
             _blackGrailVowPassive4.Initialize(CareerID, "{=black_grail_vow_passive4_str}Every necromancer and Vampire companion gains 10 dark energy per day.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.CompanionLimit)); //why is this typed as companion limit? it's implemented manually so it doesn't matter, but odd.
         }
-        
+
         public override void InitialCareerSetup()
         {
-            ReligionObject lady= ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_lady");
+            ReligionObject lady = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_lady");
             if (lady != null)
             {
-                Hero.MainHero.AddReligiousInfluence(lady,-100,false);
+                Hero.MainHero.AddReligiousInfluence(lady, -100, false);
             }
-            ReligionObject nagash= ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
+            ReligionObject nagash = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash");
             if (nagash != null)
             {
-                Hero.MainHero.AddReligiousInfluence(nagash,25,true);
+                Hero.MainHero.AddReligiousInfluence(nagash, 25, true);
             }
-            
-            var spendAttributePoints =Hero.MainHero.GetAttributeValue(TORAttributes.Discipline)-1;
-            Hero.MainHero.HeroDeveloper.RemoveAttribute(TORAttributes.Discipline,spendAttributePoints);
+
+            var spendAttributePoints = Hero.MainHero.GetAttributeValue(TORAttributes.Discipline) - 1;
+            Hero.MainHero.HeroDeveloper.RemoveAttribute(TORAttributes.Discipline, spendAttributePoints);
             Hero.MainHero.HeroDeveloper.UnspentAttributePoints += spendAttributePoints;
-            
-            
-            CultureObject mousillonCulture= MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
+
+
+            CultureObject mousillonCulture = MBObjectManager.Instance.GetObject<CultureObject>("mousillon");
             Hero.MainHero.Culture = mousillonCulture;
         }
 

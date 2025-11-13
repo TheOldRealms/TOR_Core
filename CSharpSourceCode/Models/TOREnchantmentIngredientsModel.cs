@@ -14,7 +14,7 @@ namespace TOR_Core.CampaignMechanics.Crafting;
 
 public class TOREnchantmentIngredientsModel : GameModel
 {
-    
+
     public int GetCustomResourceValueForIngredient(TorTradeGoodType ingredient)
     {
         switch (ingredient)
@@ -44,15 +44,15 @@ public class TOREnchantmentIngredientsModel : GameModel
 
         return factor;
     }
-    
-    
-    
-    public int CalculateResultAmount(float dropscore, TorTradeGoodType ingredient, float percentageOfLoot=1)
+
+
+
+    public int CalculateResultAmount(float dropscore, TorTradeGoodType ingredient, float percentageOfLoot = 1)
     {
-        return (int)(dropscore * GetDropAmplitude(ingredient) * RandomMultiplier(ingredient)*(percentageOfLoot/100));
+        return (int)(dropscore * GetDropAmplitude(ingredient) * RandomMultiplier(ingredient) * (percentageOfLoot / 100));
     }
-    
-    
+
+
     /// <summary>
     /// Returns a drop factor for a defeated unit in a battle. The Resulting factor is later used for calculating the real dropChance in CalculateResultAmount()
     /// </summary>
@@ -60,7 +60,7 @@ public class TOREnchantmentIngredientsModel : GameModel
     /// <param name="ingredient">the enchantment ingredient. If ever - never calculate here a drop chance for non enchantment ingredients - use a seperate model for it</param>
     /// <param name="mapEvent">optional - used as an additonal parameter for locations and such</param>
     /// <returns></returns>
-    public float GetIngredientDropFactorForCharacter(CharacterObject character, TorTradeGoodType ingredient, MapEvent mapEvent =null)
+    public float GetIngredientDropFactorForCharacter(CharacterObject character, TorTradeGoodType ingredient, MapEvent mapEvent = null)
     {
         float result = 0f;
 
@@ -68,42 +68,42 @@ public class TOREnchantmentIngredientsModel : GameModel
         {
             //amber
             case TorTradeGoodType.AmberCrystal:
-            {
-
-                var inAthelLoren = false;
-                if (mapEvent != null)
                 {
-                    var settlement = TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 150f,
-                        x =>  x.Culture.StringId == TORConstants.Cultures.ASRAI);
 
-                    if (settlement.AnyQ(x => x.Culture.StringId == TORConstants.Cultures.ASRAI))
+                    var inAthelLoren = false;
+                    if (mapEvent != null)
                     {
-                        inAthelLoren = true;
-                    }
-                }
-                
-                
-                if (character.StringId.Contains("treeman"))
-                {
-                    result += 5f;
-                }
-                if (character.IsTreeSpirit())
-                {
-                    result+=2.5f;
-                }
-                if (character.IsBeastman() || character.IsElf())
-                {
-                    result++;
-                }
+                        var settlement = TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 150f,
+                            x => x.Culture.StringId == TORConstants.Cultures.ASRAI);
 
-                if (inAthelLoren)
-                {
-                    result *= 2;
+                        if (settlement.AnyQ(x => x.Culture.StringId == TORConstants.Cultures.ASRAI))
+                        {
+                            inAthelLoren = true;
+                        }
+                    }
+
+
+                    if (character.StringId.Contains("treeman"))
+                    {
+                        result += 5f;
+                    }
+                    if (character.IsTreeSpirit())
+                    {
+                        result += 2.5f;
+                    }
+                    if (character.IsBeastman() || character.IsElf())
+                    {
+                        result++;
+                    }
+
+                    if (inAthelLoren)
+                    {
+                        result *= 2;
+                    }
+                    break;
                 }
-                break;
-            }
             case TorTradeGoodType.ArcaneScroll:
-            
+
                 //arcane scrolls
                 if (character.Culture.StringId == TORConstants.Cultures.EMPIRE && character.IsHero && character.HeroObject.IsSpellCaster())
                 {
@@ -122,7 +122,7 @@ public class TOREnchantmentIngredientsModel : GameModel
 
                 if (character.IsHero && character.IsVampire() && !character.IsBloodDragon())
                     result += 5;
-               
+
                 if (character.IsVampire() && character.HasAttribute("Necrach"))
                 {
                     result += 10;
@@ -131,9 +131,9 @@ public class TOREnchantmentIngredientsModel : GameModel
             case TorTradeGoodType.BlessedWater:
                 var inLaurelorn = false;
                 if (mapEvent != null)
-                { 
-                    inLaurelorn= TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 50f,
-                        x =>  x.StringId.Contains("LL")).Count>0;
+                {
+                    inLaurelorn = TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 50f,
+                        x => x.StringId.Contains("LL")).Count > 0;
                 }
                 if (character.IsReligiousUnit() && character.Culture.StringId == TORConstants.Cultures.BRETONNIA || character.Culture.StringId == TORConstants.Cultures.EMPIRE)
                 {
@@ -142,11 +142,11 @@ public class TOREnchantmentIngredientsModel : GameModel
 
                 if (character.StringId == "tor_br_quest_knight")
                 {
-                    result+=2.5f;
+                    result += 2.5f;
                 }
                 if (character.StringId == "tor_br_quest_knight" || (character.IsHero && character.HeroObject.IsPriest()))
                 {
-                    result+=5;
+                    result += 5;
                 }
 
                 if (character.Culture.StringId == TORConstants.Cultures.EONIR)
@@ -160,30 +160,30 @@ public class TOREnchantmentIngredientsModel : GameModel
                 }
                 break;
             case TorTradeGoodType.WarpstoneDust:
-                var inSylvania = false; 
-                
+                var inSylvania = false;
+
                 if (mapEvent != null)
                 {
-                    
-                    
-                    inSylvania= TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 150f,
-                        x =>  x.StringId.Contains("SY")).Count>0;
+
+
+                    inSylvania = TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 150f,
+                        x => x.StringId.Contains("SY")).Count > 0;
                 }
-                
-                
-                if (character.IsVampire() )
+
+
+                if (character.IsVampire())
                 {
-                    result+=2.5f;
+                    result += 2.5f;
                 }
 
                 if (character.Culture.StringId == TORConstants.Cultures.SYLVANIA ||
                     character.Culture.StringId == TORConstants.Cultures.MOUSILLON)
                 {
-                    result ++;
+                    result++;
                 }
                 if (character.IsCultist())
                 {
-                    result ++;
+                    result++;
                 }
 
                 if (inSylvania)
@@ -194,7 +194,7 @@ public class TOREnchantmentIngredientsModel : GameModel
             case TorTradeGoodType.DragonBlood:
                 if (character.IsHero && character.HeroObject.IsLord)
                 {
-                    result+=5;
+                    result += 5;
                 }
                 if (character.IsVampire() && character.StringId == "tor_bd_blooddragon_kastelan")
                 {
@@ -204,23 +204,23 @@ public class TOREnchantmentIngredientsModel : GameModel
             case TorTradeGoodType.GemStone:
                 if (character.Culture.StringId == TORConstants.Cultures.DAWI || character.Culture.StringId == TORConstants.Cultures.GREENSKIN)
                 {
-                    result+=1;
+                    result += 1;
                 }
                 if (character.StringId.Contains("iron") && character.Culture.StringId == TORConstants.Cultures.DAWI)
                 {
-                    result+=2;  //Ironbreaker bonus
+                    result += 2;  //Ironbreaker bonus
                 }
                 if (character.Tier > 4 && character.Culture.StringId == TORConstants.Cultures.DAWI || character.Culture.StringId == TORConstants.Cultures.GREENSKIN)
                 {
                     result++;
                 }
-                
+
                 break;
             case TorTradeGoodType.Invalid:
                 return 0f;
         }
-            
-        
+
+
         return result;
 
     }
@@ -259,7 +259,7 @@ public class TOREnchantmentIngredientsModel : GameModel
             default:
                 throw new ArgumentOutOfRangeException(nameof(ingredient), ingredient, null);
         }
-        
+
         return amplitude;
     }
 
@@ -300,5 +300,5 @@ public class TOREnchantmentIngredientsModel : GameModel
         }
         return MBRandom.RandomFloatRanged(randomMin, randomMax);
     }
-    
+
 }

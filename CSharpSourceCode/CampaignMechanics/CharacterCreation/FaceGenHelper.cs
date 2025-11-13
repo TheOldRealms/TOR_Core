@@ -39,7 +39,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     else return string.Empty;
                 }
             }
-            
+
             return null;
         }
 
@@ -47,7 +47,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             if (SkinDocument == null) LoadSkinsXML();
 
-            if(SkinDocument != null)
+            if (SkinDocument != null)
             {
                 var raceList = SkinDocument.GetElementsByTagName("race");
                 var selectedRace = raceList[race];
@@ -72,7 +72,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             if (SkinDocument == null) LoadSkinsXML();
 
-            if(SkinDocument != null)
+            if (SkinDocument != null)
             {
                 var raceList = SkinDocument.GetElementsByTagName("race");
                 var selectedRace = raceList[race];
@@ -100,7 +100,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var settings = new XmlReaderSettings();
                 settings.IgnoreComments = true;
                 var reader = XmlReader.Create(SkinFilePath, settings);
-                
+
                 SkinDocument = new XmlDocument();
                 SkinDocument.Load(reader);
             }

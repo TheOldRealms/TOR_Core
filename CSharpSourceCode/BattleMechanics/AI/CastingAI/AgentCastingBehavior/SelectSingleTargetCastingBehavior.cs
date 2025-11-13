@@ -16,15 +16,15 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             switch (AbilityTemplate.AbilityTargetType)
             {
                 case AbilityTargetType.Self:
-                {
-                    target.Agent = Agent;
-                    break;
-                }
+                    {
+                        target.Agent = Agent;
+                        break;
+                    }
                 default:
-                {
-                    target = base.UpdateTarget(target);
-                    break;
-                }
+                    {
+                        target = base.UpdateTarget(target);
+                        break;
+                    }
             }
 
             //  target.Agent = PowerfulSingleAgentTrackerMissionLogic.ProvideAgentForTeam(Agent.Team);

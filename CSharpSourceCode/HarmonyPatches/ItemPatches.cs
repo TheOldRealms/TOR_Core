@@ -17,6 +17,7 @@ using TOR_Core.Extensions;
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
+    [HarmonyPatchCategory("LatePatches")]
     public static class ItemPatches
     {
         [HarmonyPrefix]

@@ -19,35 +19,35 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
 {
     [SaveableField(1)]
     private string blueprintId;
-    
+
     [SaveableField(2)]
     private string _requiredSkill;
 
     [SaveableField(3)]
     private int _requiredSkillValue;
-    
+
     [SaveableField(4)]
     private List<string> _requiredAttributesOrLores;
-    
-    
+
+
     public EnchantmentBlueprintScript(string[] arguments) : base(arguments)
     {
-        if(arguments.Count() >= 3)
+        if (arguments.Count() >= 3)
         {
-            
+
             blueprintId = arguments[0];
-            
+
             if (ItemTrait.All.All(itemTrait => itemTrait.ItemTraitStringId != blueprintId))
             {
                 throw new TORUseScriptArgumentException($"EnchantmentBluePrintScript failed to find itemtraitID with ID: {blueprintId}.");
             }
-            
+
             _requiredSkill = arguments[1];
             if (Campaign.Current.ObjectManager.GetObject<SkillObject>(_requiredSkill) == null)
             {
                 throw new TORUseScriptArgumentException($"EnchantmentBluePrintScript failed to find skill with ID: {_requiredSkill}.");
             }
-            
+
             if (!int.TryParse(arguments[2], out _requiredSkillValue))
             {
                 throw new TORUseScriptArgumentException($"EnchantmentBluePrintScript failed to parse XP amount from argument: {arguments[1]}.");
@@ -57,12 +57,12 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
             {
                 throw new TORUseScriptArgumentException($"EnchantmentBluePrintScript failed to parse required Skill Value. Number must be between 0 and 300.");
             }
-            
+
             _requiredAttributesOrLores = new List<string>();
-            
+
             if (_arguments.Length > 3)
             {
-      
+
                 for (int i = 3; i < _arguments.Length; i++)
                 {
                     _requiredAttributesOrLores.Add(_arguments[i]);
@@ -73,7 +73,7 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
         {
             throw new TORUseScriptArgumentException("EnchantmentBluePrintScript requires at least 2 arguments: SkillId, XP amount, and learning time in hours.");
         }
-        
+
     }
     public override void OnUse(MobileParty userParty, ItemObject item)
     {
@@ -81,7 +81,7 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
 
         List<SkillObject> skills = Game.Current.DefaultSkills.GetDefaultSkills();
 
-        skills.AddRange (TORSkills.Instance.GetTorSkills());
+        skills.AddRange(TORSkills.Instance.GetTorSkills());
 
         var selectableHeroes = new List<InquiryElement>();
 
@@ -90,7 +90,7 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
             var isValid = false;
             if (!_requiredAttributesOrLores.IsEmpty())
             {
-                
+
                 if (_requiredAttributesOrLores.Any(attribute => hero.HasAttribute(attribute)))
                 {
                     isValid = true;
@@ -128,31 +128,31 @@ public class EnchantmentBlueprintScript : BaseInventoryUseScript
                     }
                 }
             }
-            
-            
+
+
             if (isValid)
             {
                 selectableHeroes.Add(new InquiryElement(hero, hero.Name.ToString(), new CharacterImageIdentifier(CampaignUIHelper.GetCharacterCode(hero.CharacterObject))));
             }
         }
-        
+
         if (selectableHeroes.IsEmpty())
         {
             TORCommon.Say("The manuscript is of no use for you.");
             return;
         }
-        
+
         var inquirydata = new MultiSelectionInquiryData("Choose hero to learn new enchantment",
-            "The scribing entails a powerful new enchantment effect for one of your party members to learn. Choose who will specialize in", selectableHeroes,true, 1, 1, "Accept", "Cancel", OnSelectedOption, null, "", false);
+            "The scribing entails a powerful new enchantment effect for one of your party members to learn. Choose who will specialize in", selectableHeroes, true, 1, 1, "Accept", "Cancel", OnSelectedOption, null, "", false);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
-        
-        
+
+
         void OnSelectedOption(List<InquiryElement> inquiryElements)
         {
-            var hero =(Hero) inquiryElements[0].Identifier;
-            hero.AddEnchantmentBlueprint(blueprintId,true);
-            
+            var hero = (Hero)inquiryElements[0].Identifier;
+            hero.AddEnchantmentBlueprint(blueprintId, true);
+
         }
-        
+
     }
 }

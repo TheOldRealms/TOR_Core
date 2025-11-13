@@ -15,7 +15,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior
 
         private void RecieveNewTacticalDecision(in TacticalDecision decision)
         {
-            TORCommon.Say(string.Format("Team {0} recieved new tactic: {1}", Team.ToString(), CurrentTactic.ToString() ));
+            TORCommon.Say(string.Format("Team {0} recieved new tactic: {1}", Team.ToString(), CurrentTactic.ToString()));
         }
 
         public override void OnUnitAddedToFormationForTheFirstTime(Formation formation)

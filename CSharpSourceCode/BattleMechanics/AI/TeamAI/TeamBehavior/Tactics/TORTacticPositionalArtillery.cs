@@ -1,7 +1,7 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -35,9 +35,9 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
         public TORTacticPositionalArtillery(Team Team) : base(Team)
         {
-            _artilleryFormation = new Formation(this.Team, (int) TORFormationClass.Artillery);
+            _artilleryFormation = new Formation(this.Team, (int)TORFormationClass.Artillery);
             this.Team.FormationsIncludingSpecialAndEmpty.Add(_artilleryFormation);
-            _guardFormation = new Formation(this.Team, (int) TORFormationClass.ArtilleryGuard);
+            _guardFormation = new Formation(this.Team, (int)TORFormationClass.ArtilleryGuard);
             this.Team.FormationsIncludingSpecialAndEmpty.Add(_guardFormation);
 
             _artilleryPlacerComponents = new List<WizardAIComponent>();
@@ -85,7 +85,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             var infantryFormations = Team.GetFormationsIncludingSpecial().ToList().FindAll(formation => formation.QuerySystem.IsInfantryFormation);
             var updatedFormations = new List<Formation>();
 
-            allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit).ToList().ForEach(agent =>
+            allFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent)unit).ToList().ForEach(agent =>
             {
                 if (agent.HasAttribute("ArtilleryCrew"))
                 {
@@ -112,7 +112,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
                 count -= _guardFormation.Arrangement.UnitCount;
 
 
-                infantryFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent) unit).ToList().ForEach(agent =>
+                infantryFormations.SelectMany(form => form.Arrangement.GetAllUnits()).ToList().Select(unit => (Agent)unit).ToList().ForEach(agent =>
                 {
                     count += -1;
                     if (count >= 0)
@@ -135,7 +135,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
         {
             if (!AreFormationsCreated)
                 return;
-         
+
             bool battleJoinedNew = HasBattleBeenJoined();
             var checkAndSetAvailableFormationsChanged = CheckAndSetAvailableFormationsChanged();
             DeterminePositions();
@@ -173,7 +173,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             if (_chosenArtilleryPosition == null || !IsArtilleryAtPosition(_chosenArtilleryPosition.TacticalPosition))
             {
                 _latestScoredPositions = GatherCandidatePositions()
-                    .Select(pos => new Target {TacticalPosition = pos})
+                    .Select(pos => new Target { TacticalPosition = pos })
                     .Select(target =>
                     {
                         target.UtilityValue = PositionScoring.GeometricMean(target);
@@ -304,7 +304,7 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
 
 
         private bool HasBattleBeenJoined() => _mainInfantry?.QuerySystem.ClosestSignificantlyLargeEnemyFormation == null || _mainInfantry.AI.ActiveBehavior is BehaviorCharge || _mainInfantry.AI.ActiveBehavior is BehaviorTacticalCharge ||
-                                              _mainInfantry.CachedMedianPosition.AsVec2.Distance(_mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.Formation.CachedMedianPosition.AsVec2) / (double) _mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.MovementSpeedMaximum <=
+                                              _mainInfantry.CachedMedianPosition.AsVec2.Distance(_mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.Formation.CachedMedianPosition.AsVec2) / (double)_mainInfantry.QuerySystem.ClosestSignificantlyLargeEnemyFormation.MovementSpeedMaximum <=
                                               5.0 + (_hasBattleBeenJoined ? 5.0 : 0.0); //TODO: Need to improve logic for detecting that battle has started.
 
         protected override bool CheckAndSetAvailableFormationsChanged()
@@ -453,12 +453,12 @@ namespace TOR_Core.BattleMechanics.AI.TeamAI.TeamBehavior.Tactics
             _usingMachines = false;
             StopUsingAllMachines();
             _artilleryFormation.Arrangement.GetAllUnits()
-                .Select(unit => (Agent) unit)
+                .Select(unit => (Agent)unit)
                 .ToList()
                 .ForEach(agent => agent.Formation = _archers);
 
             _guardFormation.Arrangement.GetAllUnits()
-                .Select(unit => (Agent) unit)
+                .Select(unit => (Agent)unit)
                 .ToList()
                 .ForEach(agent => agent.Formation = _mainInfantry);
         }

@@ -2,16 +2,16 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
-using TOR_Core.Utilities;
-using TOR_Core.Extensions;
-using TaleWorlds.CampaignSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TaleWorlds.CampaignSystem.Party;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -24,14 +24,14 @@ namespace TOR_Core.AbilitySystem
         public event CurrentAbilityChangedHandler CurrentAbilityChanged;
         public CareerAbility CareerAbility { get; private set; }
         public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
-        
+
 
         public AbilityComponent(Agent agent) : base(agent)
         {
-            if(Game.Current.GameType is Campaign && agent?.GetHero() != null && agent.GetHero() == Hero.MainHero)
+            if (Game.Current.GameType is Campaign && agent?.GetHero() != null && agent.GetHero() == Hero.MainHero)
             {
                 var career = Hero.MainHero.GetCareer();
-                if(career != null)
+                if (career != null)
                 {
                     var ability = AbilityFactory.CreateNew(career.AbilityTemplateID, agent);
                     if (ability != null && ability is CareerAbility)
@@ -68,13 +68,13 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
             }
-            
+
             if (Agent.CanPlaceArtillery())
             {
                 var hero = agent?.GetHero();
                 if (hero != null)
                 {
-                    if(hero == Hero.MainHero)
+                    if (hero == Hero.MainHero)
                     {
                         var artilleryRoster = hero.PartyBelongedTo.GetArtilleryItems();
                         if (MobileParty.MainParty.GetMaxNumberOfArtillery() > 0 && artilleryRoster.Count > 0)
@@ -93,7 +93,7 @@ namespace TOR_Core.AbilitySystem
                             }
                         }
                     }
-                    else if(hero.Culture?.StringId == TORConstants.Cultures.EMPIRE)
+                    else if (hero.Culture?.StringId == TORConstants.Cultures.EMPIRE)
                     {
                         var ability1 = (ItemBoundAbility)AbilityFactory.CreateNew("GreatCannonSpawner", agent);
                         if (ability1 != null)
@@ -127,7 +127,7 @@ namespace TOR_Core.AbilitySystem
 
 
                 }
-                else if(Game.Current.GameType is CustomGame)
+                else if (Game.Current.GameType is CustomGame)
                 {
                     var heroChar = Agent.Character;
                     if (heroChar.Culture?.StringId == TORConstants.Cultures.EMPIRE)
@@ -195,10 +195,10 @@ namespace TOR_Core.AbilitySystem
                 ability.SetCrosshair(crosshair);
             }
         }
-        
+
         public void SelectAbility(Ability ability)
         {
-            if(KnownAbilitySystem.Contains(ability)) CurrentAbility = ability;
+            if (KnownAbilitySystem.Contains(ability)) CurrentAbility = ability;
         }
 
         public void SelectAbility(int index)
@@ -211,7 +211,7 @@ namespace TOR_Core.AbilitySystem
 
         public void OnInterrupt()
         {
-            if(CareerAbility.AbilityScript != null && CareerAbility.AbilityScript is ShadowStepScript)
+            if (CareerAbility.AbilityScript != null && CareerAbility.AbilityScript is ShadowStepScript)
             {
                 ((ShadowStepScript)CareerAbility.AbilityScript)?.Stop();
             }
@@ -231,7 +231,7 @@ namespace TOR_Core.AbilitySystem
 
             return null;
         }
-        
+
         public int GetCurrentAbilityIndex()
         {
             for (var index = 0; index < _knownAbilitySystem.Count; index++)
@@ -246,7 +246,7 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnTick(float dt)
         {
-            foreach(var ability in _knownAbilitySystem)
+            foreach (var ability in _knownAbilitySystem)
             {
                 if (ability.IsActivationPending) ability.ActivateAbility(Agent);
             }
@@ -264,7 +264,7 @@ namespace TOR_Core.AbilitySystem
 
         public void SetIntialPrayerCoolDown()
         {
-            foreach (var ability in _knownAbilitySystem.Where(ability => ability.Template.AbilityType == AbilityType.Prayer || ability.Template.BelongsToLoreID== "RuneMagic"))
+            foreach (var ability in _knownAbilitySystem.Where(ability => ability.Template.AbilityType == AbilityType.Prayer || ability.Template.BelongsToLoreID == "RuneMagic"))
             {
                 ExplainedNumber cooldown = new ExplainedNumber(ability.Template.CoolDown);
                 if (this.Agent.IsMainAgent)
@@ -281,8 +281,8 @@ namespace TOR_Core.AbilitySystem
                         }
                     }
                 }
-                
-                ability.SetCoolDown((int)cooldown.ResultNumber-15);
+
+                ability.SetCoolDown((int)cooldown.ResultNumber - 15);
             }
         }
         public void SetPrayerCoolDown(int time)
@@ -291,7 +291,7 @@ namespace TOR_Core.AbilitySystem
             {
                 if (ability.Template.AbilityType == AbilityType.Prayer)
                 {
-                    if (!ability.IsOnCooldown()||(ability.GetCoolDownLeft()<time))
+                    if (!ability.IsOnCooldown() || (ability.GetCoolDownLeft() < time))
                     {
                         ability.SetCoolDown(time);
                     }

@@ -13,7 +13,7 @@ public static class FavorHelper
         if (Hero.MainHero.GetCustomResourceValue("Prestige") > 0)
         {
             var prestige = CustomResourceManager.GetResourceObject("Prestige");
-            list.Add(new TooltipProperty(prestige.GetCustomResourceIconAsText(), Hero.MainHero.GetCustomResourceValue(prestige.StringId).ToString,3, false, TooltipProperty.TooltipPropertyFlags.Title));
+            list.Add(new TooltipProperty(prestige.GetCustomResourceIconAsText(), Hero.MainHero.GetCustomResourceValue(prestige.StringId).ToString, 3, false, TooltipProperty.TooltipPropertyFlags.Title));
         }
 
         return list;

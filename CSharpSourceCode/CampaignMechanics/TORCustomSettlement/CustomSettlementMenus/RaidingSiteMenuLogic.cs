@@ -24,7 +24,7 @@ public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettleme
     {
         starter.AddGameMenu("raidingsite_menu", "{LOCATION_DESCRIPTION}", RaidingSiteMenuInit);
         starter.AddGameMenuOption("raidingsite_menu", "dobattle", "{BATTLE_OPTION_TEXT}", RaidingSiteBattleCondition, RaidingSiteBattleConsequence);
-        starter.AddGameMenuOption("raidingsite_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate(MenuCallbackArgs args)
+        starter.AddGameMenuOption("raidingsite_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
@@ -76,5 +76,5 @@ public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettleme
         CampaignMission.OpenBattleMission(component.BattleSceneName, false);
     }
 
-   
+
 }

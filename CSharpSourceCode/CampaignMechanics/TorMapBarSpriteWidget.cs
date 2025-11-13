@@ -8,26 +8,30 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI;
 using TaleWorlds.GauntletUI.BaseTypes;
+using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.CampaignMechanics
 {
-    public class TORMapBarSpriteWidget : Widget
+    public class TORMapBarSpriteWidget : IconBrushWidget
     {
         public TORMapBarSpriteWidget(UIContext context) : base(context) { }
 
         protected override void OnLateUpdate(float dt)
         {
-            if(Game.Current.GameType is Campaign && Hero.MainHero != null)
+            if(IconID == "resources")
             {
-                var resource = Hero.MainHero.GetCultureSpecificCustomResource();
-                if(resource != null)
+                if (Game.Current.GameType is Campaign && Hero.MainHero != null)
                 {
-                    Sprite = Context.SpriteData.GetSprite(resource.SmallIconName);
+                    var resource = Hero.MainHero.GetCultureSpecificCustomResource();
+                    if (resource != null)
+                    {
+                        Sprite = Context.SpriteData.GetSprite(resource.SmallIconName);
+                    }
                 }
-            }   
+            }
         }
     }
 }

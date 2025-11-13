@@ -13,7 +13,7 @@ namespace TOR_Core.Quests
         {
             StartCareerQuestwithQuestPath(questPath);
         }
-        private  static void StartCareerQuestwithQuestPath(string questPath)
+        private static void StartCareerQuestwithQuestPath(string questPath)
         {
             if (questPath == null)
                 return;
@@ -21,19 +21,19 @@ namespace TOR_Core.Quests
             CampaignTime time = CampaignTime.YearsFromNow(1000);
             var id = questPath.Split('.').LastOrDefault();
             var reward = 0;
-            var type = Type.GetType("TOR_Core."+questPath);
+            var type = Type.GetType("TOR_Core." + questPath);
             if (Campaign.Current.QuestManager.Quests.Any(x => x.StringId == id && x.IsOngoing))
             {
                 return;
             }
 
-            if (Activator.CreateInstance(type, [id,hero,time,reward]) is QuestBase quest)
+            if (Activator.CreateInstance(type, [id, hero, time, reward]) is QuestBase quest)
             {
                 quest.StartQuest();
             }
 
         }
-        
+
         public static T GetCurrentActiveIfExists<T>() where T : QuestBase
         {
             QuestBase returnvalue = null;
@@ -51,11 +51,11 @@ namespace TOR_Core.Quests
 
 
         public delegate bool HeroFunction(Hero hero);
-        
-        public static T GetCurrentQuest<T> (string id, bool checkForExistence, HeroFunction heroRetrievalFunction, out bool existent) where T : QuestBase
+
+        public static T GetCurrentQuest<T>(string id, bool checkForExistence, HeroFunction heroRetrievalFunction, out bool existent) where T : QuestBase
         {
-             existent = false;
-            
+            existent = false;
+
             if (checkForExistence)
             {
                 var quest = GetCurrentActiveIfExists<T>();
@@ -66,15 +66,15 @@ namespace TOR_Core.Quests
                 }
             }
             var hero = Hero.OneToOneConversationHero;
-            if(hero == null || !heroRetrievalFunction(hero))
+            if (hero == null || !heroRetrievalFunction(hero))
             {
                 hero = Hero.AllAliveHeroes.FirstOrDefault(x => heroRetrievalFunction(x));
             }
-            
+
             var result = (T)Activator.CreateInstance(typeof(T), id, hero, CampaignTime.YearsFromNow(10000), 100);
             return result;
         }
-        
+
 
         public static EngineerQuest GetNewEngineerQuest(bool checkForExisting)
         {
@@ -84,7 +84,7 @@ namespace TOR_Core.Quests
                 if (quest != null) return quest;
             }
             var hero = Hero.OneToOneConversationHero;
-            if(hero == null || !hero.IsMasterEngineer())
+            if (hero == null || !hero.IsMasterEngineer())
             {
                 hero = Hero.AllAliveHeroes.Where(x => x.IsMasterEngineer()).TakeRandom(1).FirstOrDefault();
             }
@@ -103,7 +103,7 @@ namespace TOR_Core.Quests
                 if (quest != null) return quest;
             }
             var hero = Hero.OneToOneConversationHero;
-            if(hero == null || !hero.IsSpellTrainer())
+            if (hero == null || !hero.IsSpellTrainer())
             {
                 hero = Hero.AllAliveHeroes.Where(x => x.IsSpellTrainer()).TakeRandom(1).FirstOrDefault();
             }

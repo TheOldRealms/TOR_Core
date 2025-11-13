@@ -16,21 +16,21 @@ namespace TOR_Core.AbilitySystem.Scripts
         protected override void OnInit()
         {
             base.OnInit();
-            
+
             propagateToCompanions = Hero.MainHero.HasCareerChoice("BlackGrailVowKeystone") || Hero.MainHero.HasCareerChoice("HolyCrusaderKeystone");
         }
 
         protected override void OnBeforeTick(float dt)
         {
             if (!propagateToCompanions) return;
-            
+
             MBList<Agent> list = new MBList<Agent>();
 
             var heroes = Agent.Main.GetOriginMobileParty().GetMemberHeroes();
 
             foreach (var hero in heroes)
             {
-                var agentHero= Mission.Current.Agents.WhereQ(x => x.GetHero() == hero).FirstOrDefault();
+                var agentHero = Mission.Current.Agents.WhereQ(x => x.GetHero() == hero).FirstOrDefault();
 
                 if (agentHero != null)
                 {
@@ -40,7 +40,7 @@ namespace TOR_Core.AbilitySystem.Scripts
                     {
                         list.AddRange(targets);
                     }
-                    
+
                 }
             }
 
@@ -48,7 +48,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 return;
             }
-                
+
             SetExplicitTargetAgents(list);
         }
     }

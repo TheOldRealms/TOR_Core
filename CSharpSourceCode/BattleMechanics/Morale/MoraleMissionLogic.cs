@@ -16,7 +16,7 @@ namespace TOR_Core.BattleMechanics.Morale
             {
                 agent.AddComponent(new UndeadMoraleAgentComponent(agent));
             }
-            else if(agent.IsHuman)
+            else if (agent.IsHuman)
             {
                 agent.AddComponent(new AgentVoiceComponent(agent));
             }

@@ -42,7 +42,7 @@ namespace TOR_Core.HarmonyPatches
                 {
                     var value = node.Attributes["owner"].Value;
                     var clanName = value.Split('.')[1];
-                    clan = Clan.All.FirstOrDefault(x=>x.StringId == clanName);
+                    clan = Clan.All.FirstOrDefault(x => x.StringId == clanName);
                 }
                 if (clan != null)
                 {
@@ -97,7 +97,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(PropertyBasedTooltipVM), "Refresh")]
         public static void AddExtrasToSettlementInfo(PropertyBasedTooltipVM __instance, Type ____invokedType, object[] ____invokedArgs)
         {
-            if(____invokedType == typeof(Settlement))
+            if (____invokedType == typeof(Settlement))
             {
                 var settlement = ____invokedArgs[0] as Settlement;
                 if (settlement.SettlementComponent is ShrineComponent)
@@ -112,7 +112,7 @@ namespace TOR_Core.HarmonyPatches
                     }
                 }
             }
-            else if(____invokedType == typeof(MobileParty) && __instance.IsExtended)
+            else if (____invokedType == typeof(MobileParty) && __instance.IsExtended)
             {
                 if (____invokedArgs[0] is MobileParty party)
                 {
@@ -134,8 +134,8 @@ namespace TOR_Core.HarmonyPatches
                                                                     where !x.Item1.IsHideout
                                                                     select x;
             var hideouts = from x in settlements
-                                where x.Item1.IsHideout
-                                select x;
+                           where x.Item1.IsHideout
+                           select x;
 
             foreach (Tuple<Settlement, GameEntity> tuple in enumerable)
             {
@@ -277,7 +277,7 @@ namespace TOR_Core.HarmonyPatches
             if (settlement.IsRoRSettlement())
             {
                 var template = settlement.GetRoRTemplate();
-                if(template != null)
+                if (template != null)
                 {
                     textObject.SetTextVariable("ROR_INFO", "{newline} " + "{newline}" + template.MenuHeaderText);
                     MBTextManager.SetTextVariable("newline", "\n", false);

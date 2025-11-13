@@ -53,8 +53,8 @@ namespace TOR_Core.AbilitySystem
                 }
 
                 if (Hero.MainHero.HasCareer(TORCareers.WitchHunter)
-                    ||Hero.MainHero.HasCareer(TORCareers.Runelord)
-                    ||Hero.MainHero.HasCareerChoice("LegendsOfMalokKeystone")
+                    || Hero.MainHero.HasCareer(TORCareers.Runelord)
+                    || Hero.MainHero.HasCareerChoice("LegendsOfMalokKeystone")
                     || Hero.MainHero.HasCareerChoice("CourtleyKeystone")
                     || Hero.MainHero.HasCareerChoice("EnhancedHorseCombatKeystone")
                     || Hero.MainHero.HasCareerChoice("SwampRiderKeystone")
@@ -64,12 +64,12 @@ namespace TOR_Core.AbilitySystem
                     || Hero.MainHero.HasCareerChoice("ArielsBlessingKeystone")
                     || Hero.MainHero.HasCareerChoice("SecularOrdersKeystone")
                     || Hero.MainHero.HasCareerChoice("TunnelWatchKeystone")
-                    ||Hero.MainHero.HasCareerChoice("GiantSlayerKeystone")
-                    ||Hero.MainHero.HasCareerChoice("WardenOfCythralKeystone"))
+                    || Hero.MainHero.HasCareerChoice("GiantSlayerKeystone")
+                    || Hero.MainHero.HasCareerChoice("WardenOfCythralKeystone"))
                     _currentCharge = _maxCharge;
                 else
                     SetCoolDown(Template.CoolDown);
-                
+
             }
         }
 
@@ -98,7 +98,7 @@ namespace TOR_Core.AbilitySystem
 
             var choices = Hero.MainHero.GetAllCareerChoices();
 
-            if ((choices.Contains("SecretsOfTheGrailKeystone")||
+            if ((choices.Contains("SecretsOfTheGrailKeystone") ||
                  choices.Contains("EverlingsSecretKeystone")
                 ) && _doubleUse == false)
             {
@@ -116,13 +116,13 @@ namespace TOR_Core.AbilitySystem
                 disabledReason = new TextObject("{=tor_career_ability_disable_reason_not_charged}Ability not charged");
                 return true;
             }
-            if (casterAgent.HasMount&& IsNotUsableMounted(Template.StringID))
+            if (casterAgent.HasMount && IsNotUsableMounted(Template.StringID))
             {
                 disabledReason = new TextObject("{=tor_career_ability_disable_reason_not_usable_with_mount}Not usable mounted");
                 return true;
             }
-            
-            if ( casterAgent.WieldedWeapon.IsEmpty&&IsNotUsableWithoutWeapon(Template.StringID))
+
+            if (casterAgent.WieldedWeapon.IsEmpty && IsNotUsableWithoutWeapon(Template.StringID))
             {
                 disabledReason = new TextObject("{=tor_career_ability_disable_reason_not_usable_without_weapon}Not usable without weapon");
                 return true;
@@ -133,8 +133,8 @@ namespace TOR_Core.AbilitySystem
 
         private static bool IsNotUsableMounted(string templateID)
         {
-            return templateID.Contains("ShadowStep" ) ||
-                   templateID.Contains("AxeOfUlric")||
+            return templateID.Contains("ShadowStep") ||
+                   templateID.Contains("AxeOfUlric") ||
                    templateID.Contains("ArmedToDaTeef");
         }
 
@@ -174,13 +174,13 @@ namespace TOR_Core.AbilitySystem
 
         public void AddCharge(float amount)
         {
-            if (amount>=0 && _currentCharge >= _maxCharge)
+            if (amount >= 0 && _currentCharge >= _maxCharge)
                 return;
-            
+
             if (!IsActive)
             {
                 _currentCharge += amount;
-                _currentCharge = Mathf.Clamp(_currentCharge,0, _maxCharge);
+                _currentCharge = Mathf.Clamp(_currentCharge, 0, _maxCharge);
             }
 
             if (_doubleUse) //remove doubleUse in case of special perks that allow for a "second" usage.

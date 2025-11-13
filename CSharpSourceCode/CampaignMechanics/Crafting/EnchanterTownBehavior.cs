@@ -1,8 +1,8 @@
+using HarmonyLib;
+using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.GameMenus;
@@ -378,7 +378,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             campaignGameStarter.AddDialogLine("enchanter_donate_items_2" + cultures[i], "enchanter_donate_items_2" + cultures[i],
                 "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("enchanter_donate_items_2", cultures[i]).ToString(), null, null, 200);
-            
+
 
             // enchantment info hub
             campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_enchanter_first_visit" + cultures[i],
@@ -394,13 +394,13 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
             campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_enchanter_first_visit" + cultures[i],
                 "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
                 GameTexts.FindText("enchanter_info_hub_intro_enchanter_first_visit", cultures[i]).ToString(), null,
-                () => { spokeFirstTime();}, 200);
+                () => { spokeFirstTime(); }, 200);
 
 
 
             void spokeFirstTime()
             {
-                _spokeToEnchanter = true; 
+                _spokeToEnchanter = true;
                 AddManual();
             }
 
@@ -417,16 +417,16 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                         itemId = "tor_book_learn_runecraft";
                         break;
                 }
-                
-                if(itemId == "")
+
+                if (itemId == "")
                     return;
 
                 var item = MBObjectManager.Instance.GetObject<ItemObject>(itemId);
                 Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(item, 1);
             }
-            
-            
-            
+
+
+
             void AddBeginnerBlueprintsForEnchantment()
             {
                 var career = Hero.MainHero.GetCareer();
@@ -532,20 +532,20 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
 
                         foreach (var trait in item.GetTraits())
-                        foreach (TorTradeGoodType type in Enum.GetValues(typeof(TorTradeGoodType)))
-                        {
-                            if (trait.IngredientItem != type) continue;
-
-                            if (trait.IngredientAmount > 0)
+                            foreach (TorTradeGoodType type in Enum.GetValues(typeof(TorTradeGoodType)))
                             {
-                                var factor = model.GetPercentOfIngredientForRecycleItems(type, item);
+                                if (trait.IngredientItem != type) continue;
 
-                                resources[(int)type] += (int)Mathf.Max(1, trait.IngredientAmount * factor);
+                                if (trait.IngredientAmount > 0)
+                                {
+                                    var factor = model.GetPercentOfIngredientForRecycleItems(type, item);
 
-                                customResourceElem += model.GetCustomResourceValueForIngredient(type) * trait.IngredientAmount;
-                                customResourceFactor += customResourceFactor;
+                                    resources[(int)type] += (int)Mathf.Max(1, trait.IngredientAmount * factor);
+
+                                    customResourceElem += model.GetCustomResourceValueForIngredient(type) * trait.IngredientAmount;
+                                    customResourceFactor += customResourceFactor;
+                                }
                             }
-                        }
 
                         customResourceElem = (int)(customResourceElem * customResourceFactor);
 
@@ -580,7 +580,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                     MBInformationManager.AddQuickInformation(new TextObject("Gained " + text), 2000, Hero.MainHero.CharacterObject);
                 }
             }
-            
+
             bool EnchanterCondition(string culture)
             {
                 var partner = CharacterObject.OneToOneConversationCharacter;

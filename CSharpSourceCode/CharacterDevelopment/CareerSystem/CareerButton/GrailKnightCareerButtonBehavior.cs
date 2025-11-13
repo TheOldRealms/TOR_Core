@@ -38,14 +38,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             {
                 return;
             }
-            
+
             _currentCharacterTemplate = heroTemplate;
             ConversationCharacterData characterData = new ConversationCharacterData(heroTemplate, null);
             ConversationCharacterData playerData = new ConversationCharacterData(Hero.MainHero.CharacterObject, Hero.MainHero.PartyBelongedTo.Party);
             Campaign.Current.CurrentConversationContext = ConversationContext.Default;
             Campaign.Current.ConversationManager.OpenMapConversation(playerData, characterData);
         }
-        
+
         public void MakeGrailKnightCompanion()
         {
             Hero.MainHero.AddCultureSpecificCustomResource(-100);
@@ -57,22 +57,22 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             AddHeroToPartyAction.Apply(hero, MobileParty.MainParty);
             MobileParty.MainParty.MemberRoster.AddToCountsAtIndex(MobileParty.MainParty.MemberRoster.FindIndexOfTroop(_currentCharacterTemplate), -1);
         }
-        
-        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner=false, bool shiftClick=false)
+
+        public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClick = false)
         {
             InitiateDialog(characterObject.StringId);
         }
 
-        public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner=false)
+        public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
         {
             if (PartyScreenHelper.GetActivePartyState().PartyScreenMode != PartyScreenMode.Normal) return false;
-            
+
             if (characterObject.IsHero) return false;
             if (characterObject.StringId != "tor_br_grail_knight") return false;
 
             var choices = Hero.MainHero.GetAllCareerChoices();
 
-            if (choices.Contains("HolyCrusaderPassive3")&& Hero.MainHero.GetCultureSpecificCustomResourceValue()>=100)
+            if (choices.Contains("HolyCrusaderPassive3") && Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 100)
             {
                 return true;
             }
@@ -80,7 +80,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             return false;
         }
 
-        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner=false)
+        public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
             var icon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
             displayText = new TextObject($"Promotes your Grail Knight to a companion (Cost 100{icon})");

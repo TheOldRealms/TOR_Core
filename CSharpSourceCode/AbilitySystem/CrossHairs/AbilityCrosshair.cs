@@ -218,6 +218,6 @@ namespace TOR_Core.AbilitySystem.Crosshairs
 
         protected MissionScreen _missionScreen = ScreenManager.TopScreen as MissionScreen;
 
-        protected Agent _caster = Agent.Main; 
+        protected Agent _caster = Agent.Main;
     }
 }

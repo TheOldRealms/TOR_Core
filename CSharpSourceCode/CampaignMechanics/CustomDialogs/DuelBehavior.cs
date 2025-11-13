@@ -1,8 +1,8 @@
+using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Helpers;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
@@ -37,7 +37,7 @@ public class DuelBehavior : CampaignBehaviorBase
         AddDuelMenus(campaignGameStarter);
     }
 
-    private void AddDuelDialogs(CampaignGameStarter campaignGameStarter , bool isDuelInProgress)
+    private void AddDuelDialogs(CampaignGameStarter campaignGameStarter, bool isDuelInProgress)
     {
         if (isDuelInProgress)   //if we ever add another duel we can clarify for advanced
         {
@@ -64,13 +64,13 @@ public class DuelBehavior : CampaignBehaviorBase
             WillAcceptGreenskinDuel, () => StartGreenskinDuel(), 100);
 
         // Target declines due to recent duel (cooldown)
-        campaignGameStarter.AddDialogLine("tor_greenskin_duel_decline_cooldown", "tor_greenskin_duel_response", "lord_talk_speak_diplomacy_2", 
+        campaignGameStarter.AddDialogLine("tor_greenskin_duel_decline_cooldown", "tor_greenskin_duel_response", "lord_talk_speak_diplomacy_2",
             "{DUEL_DECLINE_TEXT}",
             () =>
-            { 
+            {
                 var text = GameTexts.FindText("tor_greenskin_duel_decline_cooldown");
-                MBTextManager.SetTextVariable("DUEL_DECLINE_TEXT", text); 
-                return IsOnDuelCooldown(); 
+                MBTextManager.SetTextVariable("DUEL_DECLINE_TEXT", text);
+                return IsOnDuelCooldown();
             }, null, 100);
 
         // Target declines Greenskin challenge (other reasons)
@@ -81,7 +81,7 @@ public class DuelBehavior : CampaignBehaviorBase
 
         bool CanOfferGreenskinDuel()
         {
-            
+
             if (Hero.OneToOneConversationHero?.IsLord != true) return false;
             if (_isDuelInProgress) return false;
 
@@ -94,7 +94,7 @@ public class DuelBehavior : CampaignBehaviorBase
             return playerCulture == TORConstants.Cultures.GREENSKIN && targetCulture == TORConstants.Cultures.GREENSKIN;
         }
 
-      
+
 
         bool WillAcceptGreenskinDuel()
         {
@@ -123,7 +123,7 @@ public class DuelBehavior : CampaignBehaviorBase
 
             StartDuel(HandleGreenskinVictory, HandleGreenskinDefeat, "greenskin");
         }
-        
+
         void HandleGreenskinVictory()
         {
             // Gain teef from victory
@@ -150,8 +150,8 @@ public class DuelBehavior : CampaignBehaviorBase
 
             Hero.MainHero.AddCultureSpecificCustomResource(teefGain);
             GameTexts.SetVariable("TEEF_GAIN_DUEL", teefGain);
-            
-            
+
+
             // Filter for received troops - create a random selection from enemy party
             var filteredRoster = TaleWorlds.CampaignSystem.Roster.TroopRoster.CreateDummyTroopRoster();
             if (enemyTroops != null)
@@ -159,7 +159,7 @@ public class DuelBehavior : CampaignBehaviorBase
                 var availableTroops = enemyTroops.GetTroopRoster().Where(t => !t.Character.IsHero).ToList();
                 var baseTroopsToGain = Math.Min(enemyTroops.TotalManCount / 4, 10); // Same calculation as before
                 var troopsAdded = 0;
-                
+
                 foreach (var troopElement in availableTroops)
                 {
                     if (troopsAdded >= baseTroopsToGain) break;
@@ -174,27 +174,27 @@ public class DuelBehavior : CampaignBehaviorBase
                         troopsAdded += countToAdd;
                     }
                 }
-                
+
                 _currentTroopRoster = filteredRoster.CloneRosterData();
             }
             PartyScreenHelper.OpenScreenAsReceiveTroops(filteredRoster, GameTexts.FindText("tor_duel_troop_selection_title"),
-                (party, roster, prisonRoster, ownerParty, memberRoster, rightPrisonRoster, cancel) => 
+                (party, roster, prisonRoster, ownerParty, memberRoster, rightPrisonRoster, cancel) =>
             {
                 //troops taken need to be removed from the original party.
 
                 roster.GetTroopRoster();
-                
+
                 foreach (var element in _currentTroopRoster.GetTroopRoster())
-                { 
+                {
                     //find out how many elements have been taken
-                    var count = element.Number- roster.GetTroopCount(element.Character);
+                    var count = element.Number - roster.GetTroopCount(element.Character);
                     _currentDuelTarget.PartyBelongedTo.MemberRoster.AddToCounts(element.Character, -count);
                 }
                 PlayerEncounter.Finish();
                 _currentDuelTarget = null;
                 _currentTroopRoster = null;
             });
-            
+
         }
 
         void HandleGreenskinDefeat()
@@ -243,7 +243,7 @@ public class DuelBehavior : CampaignBehaviorBase
 
         }
     }
-    
+
     private bool IsOnDuelCooldown()
     {
         var targetId = Hero.OneToOneConversationHero?.StringId;
@@ -260,8 +260,8 @@ public class DuelBehavior : CampaignBehaviorBase
                 // Set variables for the cooldown message
                 var remainingHours = cooldownPeriod.ToHours - timeSinceLastDuel;
                 var remainingDays = (int)Math.Ceiling(remainingHours / CampaignTime.HoursInDay);
-                MBTextManager.SetTextVariable("COOLDOWN_DAYS",remainingDays);
-                
+                MBTextManager.SetTextVariable("COOLDOWN_DAYS", remainingDays);
+
                 return true; // Still on cooldown
             }
         }
@@ -283,15 +283,15 @@ public class DuelBehavior : CampaignBehaviorBase
             GameTexts.FindText("tor_duel_start_combat").ToString(),
             args => MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty()), args =>
             {
-                ExecuteDuel(); 
-        
+                ExecuteDuel();
+
             }, false, -1, false, null);
-        
-        
+
+
         // Defeat menu
         campaignGameStarter.AddGameMenu("duel_defeat", "{DUEL_DEFEAT_TEXT}",
             SetDuelDefeatText, GameMenu.MenuOverlayType.None);
-      //"army encounter" is the menu we look for, if the player is in a town its "town" in castle "castle"
+        //"army encounter" is the menu we look for, if the player is in a town its "town" in castle "castle"
         campaignGameStarter.AddGameMenuOption("duel_defeat", "duel_accept_defeat",
             GameTexts.FindText("tor_duel_accept_defeat").ToString(),
             args => MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty()), args =>
@@ -314,7 +314,7 @@ public class DuelBehavior : CampaignBehaviorBase
     private void SetDuelPreparationText(MenuCallbackArgs args)
     {
         var duelTextDescription = GameTexts.FindText("tor_duel_prep");
-        if (_textOverride!=null)
+        if (_textOverride != null)
         {
             duelTextDescription = GameTexts.FindText("tor_duel_prep", _textOverride);
         }
@@ -329,7 +329,7 @@ public class DuelBehavior : CampaignBehaviorBase
         {
             defeatTextDescription = GameTexts.FindText("tor_duel_defeat", _textOverride);
         }
-        defeatTextDescription.SetTextVariable("DUEL_TARGET_NAME", _currentDuelTarget==null? _currentDuelTarget.Name.ToString(): "Unkown");
+        defeatTextDescription.SetTextVariable("DUEL_TARGET_NAME", _currentDuelTarget == null ? _currentDuelTarget.Name.ToString() : "Unkown");
         MBTextManager.SetTextVariable("DUEL_DEFEAT_TEXT", defeatTextDescription);
     }
 
@@ -341,13 +341,13 @@ public class DuelBehavior : CampaignBehaviorBase
             victoryTextDescription = GameTexts.FindText("tor_duel_victory", _textOverride);
         }
 
-        victoryTextDescription.SetTextVariable("DUEL_TARGET_NAME", _currentDuelTarget==null? _currentDuelTarget.Name.ToString(): "Unkown");
+        victoryTextDescription.SetTextVariable("DUEL_TARGET_NAME", _currentDuelTarget == null ? _currentDuelTarget.Name.ToString() : "Unkown");
         MBTextManager.SetTextVariable("DUEL_VICTORY_TEXT", victoryTextDescription);
     }
 
     private void StartDuel(Action onVictory, Action onDefeat, string textOverride)
     {
-        _textOverride =  textOverride;
+        _textOverride = textOverride;
         _currentDuelTarget = Hero.OneToOneConversationHero;
         _isDuelInProgress = true;
         _currentVictoryAction = onVictory;
@@ -355,8 +355,8 @@ public class DuelBehavior : CampaignBehaviorBase
 
         // Switch to the duel preparation menu
         GameMenu.SwitchToMenu("duel_preparation");
-        
-        
+
+
     }
 
     private void ExecuteDuel()
@@ -365,10 +365,10 @@ public class DuelBehavior : CampaignBehaviorBase
         // For now, we'll simulate the outcome
 
         _isDuelInProgress = false;
-        
-        
-        TorMissionManager.OpenDuelMission(EvaluateDuel,_currentDuelTarget);
-        
+
+
+        TorMissionManager.OpenDuelMission(EvaluateDuel, _currentDuelTarget);
+
 
         // Return to the town or wherever the player was
     }

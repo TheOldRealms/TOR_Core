@@ -50,7 +50,7 @@
     <Constant Name="TransferAllButton.Width" BrushLayer="Default" BrushName="ButtonLeftDoubleArrowBrush1" BrushValueType="Width" />
     <Constant Name="TransferAllButton.Height" BrushLayer="Default" BrushName="ButtonLeftDoubleArrowBrush1" BrushValueType="Height" />
 
-    <Constant Name="PartyNameLabel.Height" Value="55" />
+    <Constant Name="PartyNameLabel.Height" Value="50" />
     <Constant Name="PartyToggle.LabelContainer.Margin" Value="10" />
 
     <Constant Name="Prisoners.MarginTop" Value="4" />
@@ -69,17 +69,18 @@
   <Variables>
   </Variables>
   <VisualDefinitions>
-    <VisualDefinition Name="LeftMenu" EaseIn="true" TransitionDuration="0.45">
+    <VisualDefinition Name="LeftMenu" EaseType="EaseOut" EaseFunction="Quint" TransitionDuration="0.45">
       <VisualState PositionXOffset="-5" State="Default" />
     </VisualDefinition>
-    <VisualDefinition Name="RightMenu" EaseIn="true" TransitionDuration="0.45">
+    <VisualDefinition Name="RightMenu" EaseType="EaseOut" EaseFunction="Quint" TransitionDuration="0.45">
       <VisualState PositionXOffset="5" State="Default" />
     </VisualDefinition>
-    <VisualDefinition Name="TopMenu" EaseIn="true" TransitionDuration="0.45">
+    <VisualDefinition Name="TopMenu" EaseType="EaseOut" EaseFunction="Quint" TransitionDuration="0.45">
       <VisualState PositionYOffset="-6" State="Default" />
     </VisualDefinition>
-    <VisualDefinition Name="BottomMenu" EaseIn="true" TransitionDuration="0.45">
+    <VisualDefinition Name="BottomMenu" EaseType="EaseOut" EaseFunction="Quint" TransitionDuration="0.45">
       <VisualState PositionYOffset="6" State="Default" />
+      <VisualState PositionYOffset="100" State="Opened" />
     </VisualDefinition>
     <VisualDefinition Name="FormationListPanel" TransitionDuration="0.2">
       <VisualState PositionYOffset="!FormationListPanel.NegativeHeight" State="Default" />
@@ -100,7 +101,7 @@
 
   </VisualDefinitions>
   <Window>
-    <PartyScreenWidget Id="PartyScreen" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="InventoryBackground" FirstUpgradeButton="UpgradeButton1" MainPartyTroopSize="@MainPartySize" NumOfUpgrades="@UpgradeAmount" SecondUpgradeButton="UpgradeButton2" IsPrisonerWarningEnabled="@IsMainPrisonersLimitWarningEnabled" IsTroopWarningEnabled="@IsMainTroopsLimitWarningEnabled" IsOtherTroopWarningEnabled="@IsOtherTroopsLimitWarningEnabled" TroopLabel="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyTroopsToggleWidget\Description\MainPartyTroopsLabel" PrisonerLabel="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyPrisonersToggleWidget\Description\MainPartyPrisonersLabel" OtherTroopLabel="OtherPartyPanel\OtherPartyScrollablePanel\MyClipRect\OtherPartyTroopsToggleWidget\Description\OtherPartyTroopsLabel" TransferInputKeyVisual="TransferInputKeyVisual" TakeAllPrisonersInputKeyVisualParent="OtherPartyPanel\OtherPartyScrollablePanel\MyClipRect\OtherPartyPrisonersToggleWidget\OtherPartyPrisonersTransferButton\TakeAllPrisonersInputKeyParent" DismissAllPrisonersInputKeyVisualParent="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyPrisonersToggleWidget\TransferMainPrisonersButton\DismissAllPrisonersInputKeyParent" Command.RemoveZeroCounts="ExecuteRemoveZeroCounts" OtherMemberList="OtherPartyPanel\OtherPartyScrollablePanel\MyClipRect\OtherPartyInnerPanel\OtherPartyTroopsList\List" OtherPrisonerList="OtherPartyPanel\OtherPartyScrollablePanel\MyClipRect\OtherPartyInnerPanel\OtherPartyPrisonersList\List" MainMemberList="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyInnerPanel\MainPartyTroopsList\List" MainPrisonerList="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyInnerPanel\MainPartyPrisonersList\List" MainScrollPanel="MainPartyPanel\MainPartyScrollablePanel" OtherScrollPanel="OtherPartyPanel\OtherPartyScrollablePanel" UpgradePopupParent="UpgradePopup" RecruitPopupParent="RecruitPopup">
+    <PartyScreenWidget Id="PartyScreen" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="InventoryBackground" FirstUpgradeButton="UpgradeButton1" MainPartyTroopSize="@MainPartySize" NumOfUpgrades="@UpgradeAmount" SecondUpgradeButton="UpgradeButton2" IsPrisonerWarningEnabled="@IsMainPrisonersLimitWarningEnabled" IsTroopWarningEnabled="@IsMainTroopsLimitWarningEnabled" IsOtherTroopWarningEnabled="@IsOtherTroopsLimitWarningEnabled" TroopLabel="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyTroopsToggleWidget\Description\MainPartyTroopsLabel" PrisonerLabel="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyPrisonersToggleWidget\Description\MainPartyPrisonersLabel" OtherTroopLabel="OtherPartyPanel\OtherPartyScrollablePanel\MyClipRect\OtherPartyTroopsToggleWidget\Description\OtherPartyTroopsLabel" TransferInputKeyVisual="TransferInputKeyVisual" TakeAllPrisonersInputKeyVisualParent="OtherPartyPanel\OtherPartyScrollablePanel\MyClipRect\OtherPartyPrisonersToggleWidget\OtherPartyPrisonersTransferButton\TakeAllPrisonersInputKeyParent" DismissAllPrisonersInputKeyVisualParent="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyPrisonersToggleWidget\TransferMainPrisonersButton\DismissAllPrisonersInputKeyParent" Command.RemoveZeroCounts="ExecuteRemoveZeroCounts" OtherMemberList="OtherPartyPanel\OtherPartyScrollablePanel\MyClipRect\OtherPartyInnerPanel\OtherPartyTroopsList\List" OtherPrisonerList="OtherPartyPanel\OtherPartyScrollablePanel\MyClipRect\OtherPartyInnerPanel\OtherPartyPrisonersList\List" MainMemberList="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyInnerPanel\MainPartyTroopsList\List" MainPrisonerList="MainPartyPanel\MainPartyScrollablePanel\MyClipRect\MainPartyInnerPanel\MainPartyPrisonersList\List" MainScrollPanel="MainPartyPanel\MainPartyScrollablePanel" OtherScrollPanel="OtherPartyPanel\OtherPartyScrollablePanel" UpgradePopupParent="UpgradePopup" RecruitPopupParent="RecruitPopup" Command.OnEmptyClick="ExecuteClearSelectedCharacterTuple" ScrollToCharacter="@ScrollToCharacter" IsScrollTargetPrisoner="@IsScrollTargetPrisoner" ScrollCharacterId="@ScrollCharacterId">
       <Children>
 
         <!--Center Tableau-->
@@ -197,7 +198,8 @@
         </Widget>
         -->
         
-        <Standard.TripleDialogCloseButtons VisualDefinition="BottomMenu" PositionYOffset="200" Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="@CancelLbl" Parameter.CancelButtonDisabled="@IsCancelDisabled" Parameter.ResetInputKeyDataSource="{ResetInputKey}" Parameter.CancelInputKeyDataSource="{CancelInputKey}" Parameter.DoneButtonAction="ExecuteDone" Parameter.DoneButtonDisabled="@IsDoneDisabled" Parameter.DoneButtonText="@DoneLbl" Parameter.DoneInputKeyDataSource="{DoneInputKey}" Parameter.DoneButtonHintDataSource="{DoneHint}" Parameter.ResetButtonAction="ExecuteReset" Parameter.ResetButtonHintDataSource="{ResetHint}"/>
+        <BoolStateChangerWidget DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" BooleanCheck="@IsAnyPopUpOpen" FalseState="Default" TargetWidget="..\TripleDialogCloseButtons" TrueState="Opened"/>
+        <Standard.TripleDialogCloseButtons VisualDefinition="BottomMenu" Id="TripleDialogCloseButtons" PositionYOffset="200" Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="@CancelLbl" Parameter.CancelButtonDisabled="@IsCancelDisabled" Parameter.ResetInputKeyDataSource="{ResetInputKey}" Parameter.CancelInputKeyDataSource="{CancelInputKey}" Parameter.DoneButtonAction="ExecuteDone" Parameter.DoneButtonDisabled="@IsDoneDisabled" Parameter.DoneButtonText="@DoneLbl" Parameter.DoneInputKeyDataSource="{DoneInputKey}" Parameter.DoneButtonHintDataSource="{DoneHint}" Parameter.ResetButtonAction="ExecuteReset" Parameter.ResetButtonHintDataSource="{ResetHint}"/>
 
         <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="125" StackLayout.LayoutMethod="VerticalBottomToTop">
           <Children>
@@ -273,7 +275,7 @@
 
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!TopBackground.Width" SuggestedHeight="!TopBackground.Height" HorizontalAlignment="Left" VerticalAlignment="Top" Sprite="PartyScreen\header_left" ExtendBottom="40"/>
 
-            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="!PartyNameLabel.Height" SuggestedWidth="380" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="25" MarginRight="210" MarginTop="2" Brush="Party.Text.Name" Brush.FontSize="28" Text="@OtherPartyNameLbl" />
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="!PartyNameLabel.Height" SuggestedWidth="380" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="25" MarginRight="210" MarginTop="7" Brush="Party.Text.Name" Brush.FontSize="28" Text="@OtherPartyNameLbl" />
 
             <Standard.VerticalScrollbar Id="OtherPartyScrollbar" HeightSizePolicy="StretchToParent" HorizontalAlignment="Left" VerticalAlignment="Bottom" MarginRight="!Scrollbar.Margin" MarginTop="!SidePanel.ScrollablePanel.MarginTop" MarginBottom="!SidePanel.ScrollablePanel.MarginBottom" />
 
@@ -295,11 +297,11 @@
                           <Children>
 
                             <!--_____Other Party Troops_______-->
-                            <NavigatableListPanel Id="List" DataSource="{OtherPartyTroops}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="OtherPartyTroops" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1" MaxIndex="1000000" StepSize="10" AutoScrollYOffset="150">
+                            <PartyListPanel Id="List" DataSource="{OtherPartyTroops}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="OtherPartyTroops" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1" MaxIndex="1000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
                               <ItemTemplate>
-                                <PartyTroopTupleLeft ButtonType="Radio" />
+                                <PartyTroopTupleLeft/>
                               </ItemTemplate>
-                            </NavigatableListPanel>
+                            </PartyListPanel>
 
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="0" VerticalAlignment="Top" IsDisabled="true">
                               <Children>
@@ -318,12 +320,11 @@
                           <Children>
 
                             <!--_____Other Party Prisoners_______-->
-                            <NavigatableListPanel Id="List" DataSource="{OtherPartyPrisoners}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="OtherPartyPrisoners" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1000002" MaxIndex="2000000" StepSize="10" AutoScrollYOffset="150">
+                            <PartyListPanel Id="List" DataSource="{OtherPartyPrisoners}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="OtherPartyPrisoners" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1000002" MaxIndex="2000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
                               <ItemTemplate>
-                                <PartyTroopTupleLeft ButtonType="Radio">
-                                </PartyTroopTupleLeft>
+                                <PartyTroopTupleLeft/>
                               </ItemTemplate>
-                            </NavigatableListPanel>
+                            </PartyListPanel>
 
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="0" VerticalAlignment="Top" IsDisabled="true">
                               <Children>
@@ -423,12 +424,11 @@
                           <Children>
 
                             <!--_____Main Party Troops_______-->
-                            <NavigatableListPanel Id="List" DataSource="{MainPartyTroops}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="MainPartyTroops" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1" MaxIndex="1000000" StepSize="10" AutoScrollYOffset="150">
+                            <PartyListPanel Id="List" DataSource="{MainPartyTroops}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="MainPartyTroops" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1" MaxIndex="1000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
                               <ItemTemplate>
-                                <PartyTroopTuple ButtonType="Radio">
-                                </PartyTroopTuple>
+                                <PartyTroopTuple/>
                               </ItemTemplate>
-                            </NavigatableListPanel>
+                            </PartyListPanel>
 
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="0" VerticalAlignment="Top" IsDisabled="true">
                               <Children>
@@ -447,12 +447,11 @@
                         <Widget Id="MainPartyPrisonersList" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginBottom="20">
                           <Children>
 
-                            <NavigatableListPanel Id="List" DataSource="{MainPartyPrisoners}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="MainPartyPrisoners" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1000002" MaxIndex="2000000" StepSize="10" AutoScrollYOffset="150">
+                            <PartyListPanel Id="List" DataSource="{MainPartyPrisoners}" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" AcceptDrop="true" Command.Drop="..\ExecuteTransferWithParameters" CommandParameter.Drop="MainPartyPrisoners" StackLayout.LayoutMethod="VerticalBottomToTop" MinIndex="1000002" MaxIndex="2000000" StepSize="10" AutoScrollTopOffset="150" AutoScrollBottomOffset="150">
                               <ItemTemplate>
-                                <PartyTroopTuple ButtonType="Radio">
-                                </PartyTroopTuple>
+                                <PartyTroopTuple/>
                               </ItemTemplate>
-                            </NavigatableListPanel>
+                            </PartyListPanel>
 
                             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="0" VerticalAlignment="Top" IsDisabled="true">
                               <Children>
@@ -524,7 +523,7 @@
 
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!TopBackground.Width" SuggestedHeight="!TopBackground.Height" HorizontalAlignment="Right" VerticalAlignment="Top" Sprite="PartyScreen\header_right" ExtendBottom="40"/>
 
-            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="!PartyNameLabel.Height" SuggestedWidth="380" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="25" MarginRight="210" MarginTop="2" Brush="Party.Text.Name" Brush.FontSize="28" Text="@MainPartyNameLbl"/>
+            <TextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="!PartyNameLabel.Height" SuggestedWidth="380" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="25" MarginRight="210" MarginTop="7" Brush="Party.Text.Name" Brush.FontSize="28" Text="@MainPartyNameLbl"/>
 
             <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Top" HorizontalAlignment="Right" MarginTop="10" StackLayout.LayoutImp="HorizontalLeftToRight" MarginRight="65">
               <Children>
@@ -544,11 +543,12 @@
                         
                         <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"  SuggestedWidth="80" SuggestedHeight="40" DoNotPassEventsToChildren="true" Command.Click="ExecuteOpenUpgradePopUp"  Brush="Inventory.Tuple.Extension.StockButton" UpdateChildrenStates="true" IsDisabled="@IsUpgradePopUpDisabled">
                           <Children>
-                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="12" Brush="Party.Text.UpgradeAmount" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontSize="22" IntText="@UpgradableTroopCount" IsDisabled="true">
+                            <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="15" MarginRight="10" StackLayout.LayoutMethod="HorizontalCentered">
                               <Children>
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="20" HorizontalAlignment="Right" MarginRight="-28" VerticalAlignment="Center" Sprite="PartyScreen\upgrade_icon" />
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Party.Text.UpgradeAmount" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontSize="22" IntText="@UpgradableTroopCount" IsDisabled="true"/>
+                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="20" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="PartyScreen\upgrade_icon" />
                               </Children>
-                            </TextWidget>
+                            </ListPanel>
                             <TutorialHighlightItemBrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="TutorialHighlightBrush" IsHighlightEnabled="@IsUpgradePopupButtonHighlightEnabled" IsVisible="false" />
                             <HintWidget DataSource="{UpgradePopUp\OpenButtonHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true"/>
                           </Children>
@@ -570,11 +570,12 @@
                       <Children>
                         <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"  SuggestedWidth="80" SuggestedHeight="40" DoNotPassEventsToChildren="true" Command.Click="ExecuteOpenRecruitPopUp" Brush="Inventory.Tuple.Extension.StockButton" UpdateChildrenStates="true" IsDisabled="@IsRecruitPopUpDisabled">
                           <Children>
-                            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="12" Brush="Party.Text.UpgradeAmount" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontSize="22" IntText="@RecruitableTroopCount" IsDisabled="true">
+                            <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="15" MarginRight="10" StackLayout.LayoutMethod="HorizontalCentered">
                               <Children>
-                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="23" HorizontalAlignment="Right" MarginRight="-28" PositionYOffset="-2" VerticalAlignment="Center" Sprite="PartyScreen\recruit_prisoner" />
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="Fixed" SuggestedHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Party.Text.UpgradeAmount" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontSize="22" IntText="@RecruitableTroopCount" IsDisabled="true"/>
+                                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="24" SuggestedHeight="23" PositionYOffset="-2" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="PartyScreen\recruit_prisoner" />
                               </Children>
-                            </TextWidget>
+                            </ListPanel>
 
                             <HintWidget DataSource="{RecruitPopUp\OpenButtonHint}" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" IsDisabled="true"/>
                           </Children>

@@ -29,7 +29,7 @@ namespace TOR_Core.Quests
 
         private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero hero)
         {
-            if(party == MobileParty.MainParty)
+            if (party == MobileParty.MainParty)
             {
                 Hero master = settlement.HeroesWithoutParty.FirstOrDefault(x => x.IsBountyMaster());
                 int rng = MBRandom.RandomInt(0, 100);

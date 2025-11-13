@@ -6,7 +6,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
     public abstract class CareerButtonBehaviorBase
     {
-        
+
         public virtual bool isDialogStart { get; protected set; }
 
         public virtual void DeactivateDialog()
@@ -14,7 +14,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             isDialogStart = false;
         }
 
-        public delegate void OnCareerButtonClickedEvent(CharacterObject troopID, bool isPrisoner,bool isShiftClick);
+        public delegate void OnCareerButtonClickedEvent(CharacterObject troopID, bool isPrisoner, bool isShiftClick);
 
         public delegate bool OnShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner);
 
@@ -30,7 +30,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             SpecialbuttonEventManagerHandler.Instance.RegisterNewButton(this);
         }
-        
+
         public abstract void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner, bool shiftClick);
 
         public abstract bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner);

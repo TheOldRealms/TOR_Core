@@ -21,16 +21,16 @@ namespace TOR_Core.HarmonyPatches
         public static bool Prefix(MetaMesh horseMesh, MountCreationKey mountCreationKey)
         {
             bool result = true;
-			for (int i = 0; i < horseMesh.MeshCount; i++)
-			{
-				Mesh meshAtIndex = horseMesh.GetMeshAtIndex(i);
-				if (meshAtIndex.HasTag("DoNotOverrideVectorArguments"))
-				{
+            for (int i = 0; i < horseMesh.MeshCount; i++)
+            {
+                Mesh meshAtIndex = horseMesh.GetMeshAtIndex(i);
+                if (meshAtIndex.HasTag("DoNotOverrideVectorArguments"))
+                {
                     result = false;
                     break;
-				}
-			}
-			return result;
+                }
+            }
+            return result;
         }
     }
 }

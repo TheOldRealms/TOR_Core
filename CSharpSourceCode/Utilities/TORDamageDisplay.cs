@@ -44,7 +44,7 @@ namespace TOR_Core.Utilities
             InformationManager.DisplayMessage(new InformationMessage(resultDamage + " cast damage consisting of  " + " (" + displayDamageType + ") was applied " + "which was modified by " + (1 + damageAmplifier).ToString("##%", CultureInfo.InvariantCulture), displayColor));
         }
 
-        public static void DisplayDamageResult(int resultDamage, float[] categories, float[] percentages,float wardsaveFactor, bool isVictim)
+        public static void DisplayDamageResult(int resultDamage, float[] categories, float[] percentages, float wardsaveFactor, bool isVictim)
         {
             var displaycolor = Color.White;
             var dominantAdditionalEffect = DamageType.Physical;
@@ -65,13 +65,13 @@ namespace TOR_Core.Utilities
                 {
                     var categorysign = "";
                     if (percentages[i] > 0) categorysign = "+";
-                    
+
                     DamageType t = (DamageType)i;
                     string s = $", {(int)categories[i]} was dealt in {t} [{categorysign}{percentages[i].ToString(".%")}]";
                     if (additionalDamageTypeText == "")
                         additionalDamageTypeText = s;
                     else
-                        additionalDamageTypeText= additionalDamageTypeText.Add(s, false);
+                        additionalDamageTypeText = additionalDamageTypeText.Add(s, false);
                 }
             }
 
@@ -104,10 +104,10 @@ namespace TOR_Core.Utilities
             var wardsaveFactorText = "";
             if (wardsaveFactor < 1)
             {
-                wardsaveFactorText = $", {(1-wardsaveFactor).ToString( ".%")} was absorbed";
+                wardsaveFactorText = $", {(1 - wardsaveFactor).ToString(".%")} was absorbed";
             }
 
-            var resultText = $"{resultDamage} damage was dealt which was {(int)categories[1]}{sign}{(percentages[1] != 0 ? "("+percentages[1].ToString(".%")+")": "")} {DamageType.Physical}{additionalDamageTypeText}{wardsaveFactorText}";
+            var resultText = $"{resultDamage} damage was dealt which was {(int)categories[1]}{sign}{(percentages[1] != 0 ? "(" + percentages[1].ToString(".%") + ")" : "")} {DamageType.Physical}{additionalDamageTypeText}{wardsaveFactorText}";
             InformationManager.DisplayMessage(new InformationMessage(resultText, displaycolor));
 
 
