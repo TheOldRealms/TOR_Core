@@ -18,7 +18,7 @@ using TOR_Core.Utilities;
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
-    [HarmonyPatchCategory("DamagePatch")]
+    [HarmonyPatchCategory("LatePatches")]
     public static class DamagePatch
     {
         [HarmonyPrefix]

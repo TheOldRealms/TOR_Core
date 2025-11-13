@@ -311,4 +311,24 @@
             </EventSounds>
         </SoundProperties>
     </Brush>
+    <Brush Name="TorMapBar.Right.Icons">
+    <Layers>
+      <BrushLayer Name="gold" Sprite="General\Icons\Coin@2x" />
+      <BrushLayer Name="influence" Sprite="General\Icons\Influence@2x" />
+      <BrushLayer Name="hit_points" Sprite="General\Icons\Health@2x" />
+      <BrushLayer Name="hit_points_sick" Sprite="General\Icons\Health_Sick@2x" />
+      <BrushLayer Name="troops" Sprite="General\Icons\Party@2x" />
+      <BrushLayer Name="food" Sprite="General\Icons\Food@2x" />
+      <BrushLayer Name="morale" Sprite="General\Icons\Morale@2x" />
+      <BrushLayer Name="speed" Sprite="General\Icons\Speed@2x" />
+      <BrushLayer Name="speed_at_sea" Sprite="Map\ship_speed" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="view_distance" Sprite="MapBar\monocular_icon" ExtendLeft="-3" ExtendRight="-3" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="troop_wage" Sprite="General\Icons\PartyCost@2x" />
+      <BrushLayer Name="ship_health" Sprite="Map\ship_hp" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="winds" Sprite="winds_icon_45" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="artillery" Sprite="cannon_icon" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="resources" Sprite="special" ExtendTop="-3" ExtendBottom="-3" />
+      <BrushLayer Name="blessing" Sprite="blessing_icon_45" ExtendTop="-3" ExtendBottom="-3" />
+    </Layers>
+  </Brush>
 </Brushes>

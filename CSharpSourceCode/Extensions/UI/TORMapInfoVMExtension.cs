@@ -1,6 +1,8 @@
+using Ink.Parsed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
@@ -15,28 +17,26 @@ namespace TOR_Core.Extensions.UI
     [ViewModelExtension(typeof(MapInfoVM), "Refresh")]
     public class TORMapInfoVMExtension : BaseViewModelExtension
     {
-        private string _windsOfMagic = "0";
-        private string _cultureResourceText = "0";
-        private string _artilleryText = "0";
-        private bool _isSpellCaster = false;
-        private BasicTooltipViewModel _blessingHint;
-        private BasicTooltipViewModel _windsHint;
-        private BasicTooltipViewModel _cultureResourceHint;
-        private BasicTooltipViewModel _artilleryHint;
+        private int _windsOfMagic = 0;
         private float _windRechargeRate = 0f;
         private int _maxWinds = 0;
         private int _maxArtillery = 0;
         private int _currentArtilleryItems = 0;
-        private bool _hasCultureResource;
         private string _remainingBlessingTime;
+        private bool _hasBaseVMBeenInitialized = false;
+        private bool _haveInfoItemsBeenAdded = false;
+
+        private MapInfoItemVM _windsInfo;
+        private MapInfoItemVM _artilleryInfo;
+        private MapInfoItemVM _resourceInfo;
+        private MapInfoItemVM _blessingInfo;
 
         public TORMapInfoVMExtension(ViewModel vm) : base(vm)
         {
-            _windsHint = new BasicTooltipViewModel(GetWindsHintText);
-            _windsHint.RefreshValues();
-            _artilleryHint = new BasicTooltipViewModel(GetArtilleryHintText);
-            _cultureResourceHint = new BasicTooltipViewModel(GetCultureResourceHintText);
-            _blessingHint = new BasicTooltipViewModel(GetBlessingHintText);
+            _windsInfo = new MapInfoItemVM("winds", GetWindsHintText);
+            _artilleryInfo = new MapInfoItemVM("artillery", GetArtilleryHintText);
+            _resourceInfo = new MapInfoItemVM("resources", GetCultureResourceHintText);
+            _blessingInfo = new MapInfoItemVM("blessing", GetBlessingHintText);
             RefreshValues();
         }
 
@@ -72,9 +72,6 @@ namespace TOR_Core.Extensions.UI
                     list.Add(new TooltipProperty(elem.name, elem.number.ToString("+#;-#;0"), 0, false, TooltipProperty.TooltipPropertyFlags.None));
                 }
             }
-
-
-
             return list;
         }
 
@@ -101,7 +98,7 @@ namespace TOR_Core.Extensions.UI
 
             var list = new List<TooltipProperty>
             {
-                new(womTitle, WindsOfMagic, 0, false, TooltipProperty.TooltipPropertyFlags.Title),
+                new(womTitle, _windsOfMagic.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.Title),
                 new(womMaximum, _maxWinds.ToString(), 0, false, TooltipProperty.TooltipPropertyFlags.None),
                 new(womRechargeRate, string.Format("{0:0.00}", _windRechargeRate), 0, false, TooltipProperty.TooltipPropertyFlags.None)
             };
@@ -138,8 +135,8 @@ namespace TOR_Core.Extensions.UI
 
             list.Add(new TooltipProperty(blessingTitle, blessingText.ToString, 0, false,
                 TooltipProperty.TooltipPropertyFlags.Title));
-            RemainingBlessingTime = GetBlessingTimeInDays(duration);
-            var BlessingTextTime = $"{RemainingBlessingTime} days";
+            _remainingBlessingTime = GetBlessingTimeInDays(duration);
+            var BlessingTextTime = $"{_remainingBlessingTime} days";
             list.Add(new TooltipProperty(durationTitle, BlessingTextTime, 0, false,
                 TooltipProperty.TooltipPropertyFlags.None));
 
@@ -153,206 +150,49 @@ namespace TOR_Core.Extensions.UI
         public override void RefreshValues()
         {
             base.RefreshValues();
-            IsSpellCaster = Hero.MainHero.IsSpellCaster();
-            if (IsSpellCaster)
+            if (_hasBaseVMBeenInitialized && !_haveInfoItemsBeenAdded)
             {
-                var info = Hero.MainHero.GetExtendedInfo();
-                WindsOfMagic = ((int)info.GetCustomResourceValue("WindsOfMagic")).ToString();
-                _maxWinds = (int)info.MaxWindsOfMagic;
-                _windRechargeRate = info.WindsOfMagicRechargeRate;
-                _windsHint.RefreshValues();
+                (_vm as MapInfoVM).SecondaryInfoItems.Add(_windsInfo);
+                (_vm as MapInfoVM).SecondaryInfoItems.Add(_artilleryInfo);
+                (_vm as MapInfoVM).SecondaryInfoItems.Add(_resourceInfo);
+                (_vm as MapInfoVM).SecondaryInfoItems.Add(_blessingInfo);
+                _haveInfoItemsBeenAdded = true;
             }
 
-            if (Hero.MainHero.PartyBelongedTo != null && Hero.MainHero.PartyBelongedTo.HasAnyActiveBlessing())
-            {
-                var time = Hero.MainHero.PartyBelongedTo.GetPartyInfo().CurrentBlessingRemainingDuration;
-                RemainingBlessingTime = GetBlessingTimeInDays(time);
-            }
+            _windsOfMagic = (int)Hero.MainHero.GetExtendedInfo().GetCustomResourceValue("WindsOfMagic");
 
-            var artilleryItems = MobileParty.MainParty.GetArtilleryItems();
-            _currentArtilleryItems = 0;
-            foreach (var item in artilleryItems) _currentArtilleryItems += item.Amount;
+            _windsInfo.HasWarning = _windsOfMagic < 0;
+            _windsInfo.Value = _windsOfMagic.ToString();
+            _windsInfo.IntValue = _windsOfMagic;
+
             _maxArtillery = MobileParty.MainParty.GetMaxNumberOfArtillery();
-            ArtilleryText = _currentArtilleryItems.ToString() + "/" + _maxArtillery.ToString();
-            var resource = Hero.MainHero.GetCultureSpecificCustomResource();
-            HasCultureResource = resource != null;
-            if (HasCultureResource)
-                CultureResourceText = ((int)Hero.MainHero.GetCultureSpecificCustomResourceValue()).ToString();
+            _artilleryInfo.HasWarning = false;
+            _artilleryInfo.Value = _maxArtillery.ToString();
+            _artilleryInfo.IntValue = _maxArtillery;
+
+            var resourceValue = Hero.MainHero.GetCultureSpecificCustomResourceValue();
+            _resourceInfo.HasWarning = resourceValue < 0f;
+            _resourceInfo.Value = resourceValue.ToString();
+            _resourceInfo.IntValue = (int)resourceValue;
+            _resourceInfo.FloatValue = resourceValue;
+
+            var info = Hero.MainHero.PartyBelongedTo.GetPartyInfo();
+            _remainingBlessingTime = GetBlessingTimeInDays(info.CurrentBlessingRemainingDuration);
+            var blessing = info.CurrentBlessingStringId;
+            if (blessing == null)
+            {
+                _blessingInfo.Value = "-";
+            }
+            else
+            {
+                _blessingInfo.Value = _remainingBlessingTime;
+            }
+            _hasBaseVMBeenInitialized = true;
         }
 
         private String GetBlessingTimeInDays(int blessingHours)
         {
             return $"{(float)blessingHours / CampaignTime.HoursInDay:0.0}";
-        }
-
-        [DataSourceProperty]
-        public bool IsSpellCaster
-        {
-            get
-            {
-                return this._isSpellCaster;
-            }
-            set
-            {
-                if (value != this._isSpellCaster)
-                {
-                    this._isSpellCaster = value;
-                    _vm.OnPropertyChangedWithValue(value, "IsSpellCaster");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public string RemainingBlessingTime
-        {
-            get
-            {
-                return this._remainingBlessingTime;
-            }
-            set
-            {
-                if (value != this._remainingBlessingTime)
-                {
-                    this._remainingBlessingTime = value;
-                    _vm.OnPropertyChangedWithValue(value, "RemainingBlessingTime");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public string WindsOfMagic
-        {
-            get
-            {
-                return this._windsOfMagic;
-            }
-            set
-            {
-                if (value != this._windsOfMagic)
-                {
-                    this._windsOfMagic = value;
-                    _vm.OnPropertyChangedWithValue(value, "WindsOfMagic");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public string CultureResourceText
-        {
-            get
-            {
-                return this._cultureResourceText;
-            }
-            set
-            {
-                if (value != this._cultureResourceText)
-                {
-                    this._cultureResourceText = value;
-                    _vm.OnPropertyChangedWithValue(value, "CultureResourceText");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public string ArtilleryText
-        {
-            get
-            {
-                return this._artilleryText;
-            }
-            set
-            {
-                if (value != this._artilleryText)
-                {
-                    this._artilleryText = value;
-                    _vm.OnPropertyChangedWithValue(value, "ArtilleryText");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public BasicTooltipViewModel BlessingHint
-        {
-            get
-            {
-                return this._blessingHint;
-            }
-            set
-            {
-                if (value != this._blessingHint)
-                {
-                    this._blessingHint = value;
-                    _vm.OnPropertyChangedWithValue(value, "BlessingHint");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public BasicTooltipViewModel WindsHint
-        {
-            get
-            {
-                return this._windsHint;
-            }
-            set
-            {
-                if (value != this._windsHint)
-                {
-                    this._windsHint = value;
-                    _vm.OnPropertyChangedWithValue(value, "WindsHint");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public BasicTooltipViewModel ArtilleryHint
-        {
-            get
-            {
-                return this._artilleryHint;
-            }
-            set
-            {
-                if (value != this._artilleryHint)
-                {
-                    this._artilleryHint = value;
-                    _vm.OnPropertyChangedWithValue(value, "ArtilleryHint");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public BasicTooltipViewModel CultureResourceHint
-        {
-            get
-            {
-                return this._cultureResourceHint;
-            }
-            set
-            {
-                if (value != this._cultureResourceHint)
-                {
-                    this._cultureResourceHint = value;
-                    _vm.OnPropertyChangedWithValue(value, "CultureResourceHint");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public bool HasCultureResource
-        {
-            get
-            {
-                return this._hasCultureResource;
-            }
-            set
-            {
-                if (value != this._hasCultureResource)
-                {
-                    this._hasCultureResource = value;
-                    _vm.OnPropertyChangedWithValue(value, "HasCultureResource");
-                }
-            }
         }
     }
 }

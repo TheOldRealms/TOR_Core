@@ -8,7 +8,7 @@ using TOR_Core.Extensions;
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
-    [HarmonyPatchCategory("AgentPatches")]
+    [HarmonyPatchCategory("LatePatches")]
     public static class AgentPatches
     {
         [HarmonyPostfix]

@@ -195,9 +195,7 @@ namespace TOR_Core
 
         public override void AfterRegisterSubModuleObjects(bool isSavedCampaign)
         {
-            HarmonyInstance.PatchCategory("AgentPatches");
-            HarmonyInstance.PatchCategory("DamagePatch");
-            HarmonyInstance.PatchCategory("ItemPatches");
+            HarmonyInstance.PatchCategory("LatePatches");
         }
 
         protected override void OnGameStart(Game game, IGameStarter gameStarterObject)
