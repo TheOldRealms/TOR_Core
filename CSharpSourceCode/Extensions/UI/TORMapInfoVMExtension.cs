@@ -176,7 +176,6 @@ namespace TOR_Core.Extensions.UI
             _resourceInfo.HasWarning = resourceValue < 0f;
             _resourceInfo.Value = resourceValue.ToString();
             _resourceInfo.IntValue = (int)resourceValue;
-            _resourceInfo.FloatValue = resourceValue;
 
             var info = MobileParty.MainParty.GetPartyInfo();
             if (info != null)
