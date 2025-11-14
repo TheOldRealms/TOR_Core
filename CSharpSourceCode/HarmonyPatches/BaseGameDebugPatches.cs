@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using SandBox.CampaignBehaviors;
+using SandBox.ViewModelCollection.Nameplate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -93,6 +95,21 @@ namespace TOR_Core.HarmonyPatches
             List<GameKeyContext> newcontexts = contexts.ToList();
             if (!newcontexts.Any(x => x is TORGameKeyContext)) newcontexts.Add(new TORGameKeyContext());
             contexts = newcontexts;
+            return true;
+        }
+
+
+        //For some reason, sometimes on a hideout becoming visible this fires off without the lists of settlement tuples being initialized
+        //which should happen on nameplate creation of the new visible hideout.
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(SettlementNameplatesVM), "OnPartyBaseVisibilityChange")]
+        public static bool PreventSettlementNameplateCrash(SettlementNameplatesVM __instance, PartyBase party, IEnumerable<Tuple<Settlement, GameEntity>> ____allHideouts, IEnumerable<Tuple<Settlement, GameEntity>> ____allRetreats, IEnumerable<Tuple<Settlement, GameEntity>> ____allRegularSettlements)
+        {
+            if (____allHideouts == null || ____allRetreats == null || ____allRegularSettlements == null)
+            {
+                return false;
+            }
+
             return true;
         }
     }

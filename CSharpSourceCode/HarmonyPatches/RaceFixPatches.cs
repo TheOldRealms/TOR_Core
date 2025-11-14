@@ -2,11 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
+using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
+using TaleWorlds.MountAndBlade.View;
+using TaleWorlds.MountAndBlade.View.Tableaus;
 using FaceGen = TaleWorlds.Core.FaceGen;
 
 namespace TOR_Core.HarmonyPatches
@@ -14,18 +18,30 @@ namespace TOR_Core.HarmonyPatches
     /// <summary>
     /// This class contains all harmonypatches required for TOR custom races to work correctly
     /// </summary>
-    [HarmonyPatch(typeof(BodyGeneratorView), "RefreshCharacterEntityAux")]
+    [HarmonyPatch]
+    [HarmonyPatchCategory("LatePatches")]
     public class RaceFixPatches
     {
         // This patch makes the created AgentVisuals use the correct action set and so the correct skeleton when it is refreshed
         // Method to avoid having to insert a bunch of instructions and instead only insert 2 (LdArg0 and Call)
         public static MBActionSet GetActionSet(BodyGeneratorView bodyGeneratorView)
         {
-            var baseMonsterFromRace = FaceGen.GetBaseMonsterFromRace(bodyGeneratorView.BodyGen.Race);
-            return MBGlobals.GetActionSetWithSuffix(baseMonsterFromRace, bodyGeneratorView.BodyGen.IsFemale, "_facegen");
+            var monsterName = FaceGen.GetRaceNames()[bodyGeneratorView.BodyGen.Race];
+            var monster = FaceGen.GetMonster(monsterName);
+            string isFemale = bodyGeneratorView.BodyGen.IsFemale ? "_female_" : "";
+            return MBGlobals.GetActionSet($"as_{monsterName}{isFemale}_facegen");
+        }
+
+        public static MBActionSet GetActionSetTableau(int raceId, bool isFemale)
+        {
+            var monsterName = FaceGen.GetRaceNames()[raceId];
+            var monster = FaceGen.GetMonster(monsterName);
+            string isFemaleText = isFemale ? "_female_" : "";
+            return MBGlobals.GetActionSet($"as_{monsterName}{isFemaleText}_warrior");
         }
 
         [HarmonyTranspiler]
+        [HarmonyPatch(typeof(BodyGeneratorView), "RefreshCharacterEntityAux")]
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator ilGen)
         {
             var newInstructions = new List<CodeInstruction>(instructions);
@@ -59,6 +75,28 @@ namespace TOR_Core.HarmonyPatches
                 newInstructions.InsertRange(insertionIndex, insertedInstructions);
             }
             return newInstructions.AsEnumerable();
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ActionSetCode), "GenerateActionSetNameWithSuffix")]
+        public static bool OverrideForActionSet(ref string __result, Monster monster, bool isFemale, string suffix)
+        {
+            if (monster == null)
+            {
+                __result = "as_human" + (isFemale ? "_female" : "") + suffix;
+            }
+            __result = "as_" + monster.StringId + (isFemale ? "_female" : "") + suffix;
+            return false;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(CharacterTableau), "RefreshCharacterTableau")]
+        public static void SetEarlyActionSet(ref AgentVisuals ____oldAgentVisuals, ref AgentVisuals ____agentVisuals, int ____race)
+        {
+            var newdata = ____oldAgentVisuals.GetCopyAgentVisualsData();
+            var raceName = FaceGen.GetRaceNames()[____race];
+            newdata.ActionSet(GetActionSetTableau(____race, false)).Race(____race).Monster(FaceGen.GetMonster(raceName));
+            ____oldAgentVisuals = AgentVisuals.Create(newdata, "CharacterTableau", false, false, false);
         }
 
         [HarmonyPrefix]
