@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <Window>
+    <Widget DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+      <!-- Semi-transparent black background -->
+      <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Color="#000000" Alpha="0.7" />
+
+      <!-- Main content panel -->
+      <Widget WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        <!-- Title -->
+        <TextWidget DataSource="{TitleText}"
+                    WidthSizePolicy="Fixed"
+                    HeightSizePolicy="CoverChildren"
+                    SuggestedWidth="800"
+                    PositionYOffset="0"
+                    HorizontalAlignment="Center"
+                    Brush.FontSize="36"
+                    Brush.Font="TitleFont"
+                    Brush.TextHorizontalAlignment="Center"
+                    Brush.Color="#FFFFFFFF" />
+
+        <!-- Description -->
+        <TextWidget DataSource="{DescriptionText}"
+                    WidthSizePolicy="Fixed"
+                    HeightSizePolicy="CoverChildren"
+                    SuggestedWidth="700"
+                    PositionYOffset="100"
+                    HorizontalAlignment="Center"
+                    Brush.FontSize="24"
+                    Brush.Font="GalatiaRegularFont"
+                    Brush.TextHorizontalAlignment="Center"
+                    Brush.Color="#FFFFFFFF" />
+
+        <!-- Navigation Buttons Container -->
+        <Widget WidthSizePolicy="StretchToParent"
+                HeightSizePolicy="Fixed"
+                SuggestedHeight="60"
+                PositionYOffset="250"
+                HorizontalAlignment="Center">
+
+          <!-- Back Button -->
+          <ButtonWidget Command.Click="OnPreviousStage"
+                        WidthSizePolicy="Fixed"
+                        HeightSizePolicy="Fixed"
+                        SuggestedWidth="200"
+                        SuggestedHeight="50"
+                        PositionXOffset="-250"
+                        HorizontalAlignment="Center"
+                        Brush="ButtonBrush1">
+            <Children>
+              <TextWidget DataSource="{NegativeText}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          Brush.TextHorizontalAlignment="Center"
+                          Brush.TextVerticalAlignment="Center"
+                          Brush.Color="#FFFFFFFF" />
+            </Children>
+          </ButtonWidget>
+
+          <!-- Continue Button -->
+          <ButtonWidget Command.Click="OnNextStage"
+                        IsEnabled="@CanAdvance"
+                        WidthSizePolicy="Fixed"
+                        HeightSizePolicy="Fixed"
+                        SuggestedWidth="200"
+                        SuggestedHeight="50"
+                        PositionXOffset="250"
+                        HorizontalAlignment="Center"
+                        Brush="ButtonBrush1">
+            <Children>
+              <TextWidget DataSource="{AffirmativeText}"
+                          WidthSizePolicy="StretchToParent"
+                          HeightSizePolicy="StretchToParent"
+                          Brush.TextHorizontalAlignment="Center"
+                          Brush.TextVerticalAlignment="Center"
+                          Brush.Color="#FFFFFFFF" />
+            </Children>
+          </ButtonWidget>
+
+        </Widget>
+
+      </Widget>
+
+    </Widget>
+  </Window>
+</Prefab>

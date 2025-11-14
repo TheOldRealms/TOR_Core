@@ -99,13 +99,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             NarrativeMenu stage3Menu = new NarrativeMenu(
                 "tor_profession_menu",
                 "tor_growth_menu",
-                "narrative_face_generator_menu",  // Exit narrative stage, go to next stage (TORSpecializationStage)
+                "narrative_face_generator_menu",  // Exit narrative stage → TORSpecializationStage handles stage 4
                 new TextObject("{=tor_cc_profession_summary_str}Profession"),
                 new TextObject("{TOR_CC_PROFESSION}"),
                 playerCharacterList,
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
                     GetPlayerMenuCharacterArgs("player_character", manager))
             );
+            
 
             // NEW 1.3.1 Pattern: Create NarrativeMenuOption for each option
             foreach (var option in _options)
@@ -134,6 +135,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 targetMenu.AddNarrativeMenuOption(narrativeOption);
             }
+
+            // NOTE: Stage 4 (specialization) is handled by TORSpecializationStage + TORSpecializationStageView
+            // No menu needed - the stage view creates its own UI using native CharacterCreationNarrativeStageVM
 
             characterCreation.AddNewMenu(stage1Menu);
             characterCreation.AddNewMenu(stage2Menu);
@@ -915,7 +919,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             AddMenus(manager);
         }
 
-        private CharacterCreationManager _manager; // Store reference for stage skipping
+        private CharacterCreationManager _manager; // Store reference for stage management
 
         public void AfterInitializeContent(CharacterCreationManager manager)
         {
@@ -924,8 +928,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Store manager reference for later use
             _manager = manager;
 
-            // Insert TORSpecializationStage at a specific position using reflection
-            // We need it AFTER CharacterCreationNarrativeStage but BEFORE CharacterCreationFaceGeneratorStage
+            // ALWAYS insert TORSpecializationStage - it will handle skip logic internally
             try
             {
                 var stagesField = typeof(CharacterCreationManager).GetField("_stages",
@@ -936,13 +939,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     var stages = stagesField.GetValue(manager) as MBList<CharacterCreationStageBase>;
                     if (stages != null)
                     {
-                        // Log current stages
-                        TORCommon.Log($"[TOR CharacterCreation] Current stage count: {stages.Count}", NLog.LogLevel.Info);
-                        for (int i = 0; i < stages.Count; i++)
-                        {
-                            TORCommon.Log($"[TOR CharacterCreation] Stage {i}: {stages[i].GetType().Name}", NLog.LogLevel.Info);
-                        }
-
                         // Find CharacterCreationNarrativeStage and insert our stage after it
                         int narrativeIndex = -1;
                         for (int i = 0; i < stages.Count; i++)
@@ -956,15 +952,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                         if (narrativeIndex >= 0)
                         {
-                            // Insert after narrative stage
                             stages.Insert(narrativeIndex + 1, new TORSpecializationStage());
                             TORCommon.Log($"[TOR CharacterCreation] Inserted TORSpecializationStage at index {narrativeIndex + 1}", NLog.LogLevel.Info);
-                        }
-                        else
-                        {
-                            // Fallback: just add at the end
-                            stages.Add(new TORSpecializationStage());
-                            TORCommon.Log("[TOR CharacterCreation] Added TORSpecializationStage at end (narrative stage not found)", NLog.LogLevel.Warn);
                         }
                     }
                 }
@@ -972,8 +961,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             catch (Exception ex)
             {
                 TORCommon.Log($"[TOR CharacterCreation] Failed to insert stage: {ex.Message}", NLog.LogLevel.Error);
-                // Fallback
-                manager.AddStage(new TORSpecializationStage());
             }
         }
 
@@ -993,20 +980,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 OnCultureSelected();
             }
-            
-            /*// Check if this is our TORSpecializationStage completing
-            if (stages.GetType() == typeof(CharacterCreationNarrativeStage))
-            {
-                var t = _manager.GetIndexOfCurrentStage();
-                if (NeedsSpecialization())
-                {
-                    _manager.TrySwitchToNextMenu();
-                }
-                else
-                {
-                    _manager.
-                }
-            }*/
         }
 
         public bool NeedsSpecialization(string narrativeStep)
