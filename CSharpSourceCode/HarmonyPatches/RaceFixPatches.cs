@@ -96,7 +96,7 @@ namespace TOR_Core.HarmonyPatches
             var newdata = ____oldAgentVisuals.GetCopyAgentVisualsData();
             var raceName = FaceGen.GetRaceNames()[____race];
             newdata.ActionSet(GetActionSetTableau(____race, false)).Race(____race).Monster(FaceGen.GetMonster(raceName));
-            ____oldAgentVisuals = AgentVisuals.Create(newdata, "CharacterTableau", false, false, false);
+            ____oldAgentVisuals.Refresh(false, newdata, false);
         }
 
         [HarmonyPrefix]
