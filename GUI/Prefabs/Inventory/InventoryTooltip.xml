@@ -39,12 +39,6 @@
                 </ListPanel>
               </Children>
             </ListPanel>
-            <ButtonWidget Id="UseButton" IsVisible="@IsUsableItem" IsHighlightEnabled="true" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Inventory.Tuple.Extension.SpecialButton.Width" SuggestedHeight="!Inventory.Tuple.Extension.SpecialButton.Height" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="10" MarginRight="10" Command.Click="ExecuteUseItem" Brush="Inventory.Tuple.Extension.SpecialButton">
-              <Children>
-                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Inventory.Tuple.Extension.PreviewButtonIcon.Width" SuggestedHeight="!Inventory.Tuple.Extension.PreviewButtonIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="Inventory\inspect"/>
-                <HintWidget DataSource="{UseHint}" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>
-              </Children>
-            </ButtonWidget>
           </Children>
         </Widget>
 

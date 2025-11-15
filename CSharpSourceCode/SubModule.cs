@@ -101,7 +101,7 @@ namespace TOR_Core
             ExtendedItemObjectManager.LoadXML();
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
-            //InkStoryManager.Initialize(); TODO: need to solve early binding of external functions before enabling
+            InkStoryManager.Initialize();
             AnimationTriggerManager.LoadAnimationTriggers();
             ItemTraitManager.LoadItemTraits();
         }
@@ -159,7 +159,7 @@ namespace TOR_Core
                 //starter.AddBehavior(new TORCompanionsCampaignBehavior());
                 starter.AddBehavior(new CareerSwitchCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
-                //starter.AddBehavior(new InkStoryCampaignBehavior());
+                starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());

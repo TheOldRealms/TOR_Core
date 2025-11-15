@@ -48,6 +48,7 @@ namespace TOR_Core.Extensions.UI
                     typeof(PartyVMExtension),
                     typeof(TORMapInfoVMExtension),
                     typeof(UnitEncyclopediaVMExtension),
+                    typeof(SPItemVMExtension)
                 };
             foreach (var type in types)
             {
