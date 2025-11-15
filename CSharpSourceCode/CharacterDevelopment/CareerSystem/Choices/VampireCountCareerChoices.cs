@@ -305,6 +305,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             var playerHero = Hero.MainHero;
 
             playerHero.ClearPerks();
+            //this should probably be something like a call to ClearPerksForSkill(faith) which would trigger the normal cascade of calls to clear bonuses
             playerHero.SetSkillValue(TORSkills.Faith, 0);
             var toRemoveFaith = Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.Faith);
             Hero.MainHero.HeroDeveloper.RemoveFocus(TORSkills.Faith, toRemoveFaith);

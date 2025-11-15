@@ -36,6 +36,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(Formation), "GetMedianAgent")]
         public static void MedianAgentPatch(ref Agent __result, Formation __instance)
         {
+            //Sly : was this an attempt to patch the crashes from ai ability targeting? If it had a null result, it would try to find other units, but Arrangement is only the troops in the formation - detached units and loose detached ones are likely not getting found by Arrangement.GetAllUnits which probably explains why hideouts could crash for projectile spells that failed to find a median agent as the bandits are probably detached in some form.
             if (__result == null)
             {
                 List<Agent> units = [];

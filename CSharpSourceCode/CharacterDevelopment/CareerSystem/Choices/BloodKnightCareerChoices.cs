@@ -401,6 +401,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             var playerHero = Hero.MainHero;
 
             playerHero.ClearPerks(); //this doesn't pass through any of the perk reseting methods which causes all permanent bonuses to be retained (smithing, faith, gunpowder, etc...), unfortunately methods like ClearPermanentBonusesIfExists are private/internal
+            //this should probably be something like a call to ClearPerksForSkill(faith) which would trigger the normal cascade of calls to clear bonuses
             playerHero.SetSkillValue(TORSkills.Faith, 0);
             var toRemoveFaith = Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.Faith);
             playerHero.HeroDeveloper.RemoveFocus(TORSkills.Faith, toRemoveFaith);

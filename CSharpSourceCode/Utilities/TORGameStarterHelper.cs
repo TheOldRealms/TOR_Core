@@ -4,6 +4,7 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Issues;
+using TOR_Core.CampaignMechanics.Companions;
 
 namespace TOR_Core.Utilities
 {
@@ -20,6 +21,7 @@ namespace TOR_Core.Utilities
             starter.RemoveBehaviors<KingdomDecisionProposalBehavior>();
             starter.RemoveBehaviors<RebellionsCampaignBehavior>();
             starter.RemoveBehaviors<SallyOutsCampaignBehavior>();
+            //starter.RemoveBehaviors<CompanionsCampaignBehavior>();
 
             var issues = starter.CampaignBehaviors.Where(x => x.GetType().FullName.Contains("Issue")).ToList();
             foreach (var issue in issues)

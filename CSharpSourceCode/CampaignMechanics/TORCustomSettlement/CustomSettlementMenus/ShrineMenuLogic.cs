@@ -180,6 +180,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 
     private void PrayingTick(MenuCallbackArgs args, CampaignTime dt)
     {
+        //Sly : with blessings able to be refreshed before the current one has ran out, do we care that someone can sit at a shrine and spam out praying to acquire a bunch of religious troops in a row?
         var progress = args.MenuContext.GameMenu.Progress;
         var diff = (int)_startWaitTime.ElapsedHoursUntilNow;
         if (diff > 0)

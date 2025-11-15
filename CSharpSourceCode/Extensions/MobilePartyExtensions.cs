@@ -30,6 +30,7 @@ namespace TOR_Core.Extensions
             model?.AddBlessingToParty(party, blessingId);
         }
 
+        //Sly : I wonder if this would be more efficient with out variables to allow us to check for a blessing, and if there is one then you get it back from the same method call rather than needing to fetch the info again and find the blessing details from it
         public static bool HasAnyActiveBlessing(this MobileParty party)
         {
             var info = party.GetPartyInfo();

@@ -14,7 +14,7 @@ using TaleWorlds.InputSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
-namespace TOR_Core.CampaignMechanics.AICompanions
+namespace TOR_Core.CampaignMechanics.Companions
 {
     public class TORAICompanionCampaignBehavior : CampaignBehaviorBase
     {
@@ -35,14 +35,14 @@ namespace TOR_Core.CampaignMechanics.AICompanions
         /// </remarks>
         private void CanHeroBecomePrisoner(Hero hero, ref bool result)
         {
-            if (hero.IsAICompanion()) { result = false; }
+            if (hero.IsAICompanion()) result = false;
         }
 
         private void OnNewGameCreated(CampaignGameStarter starter, int index)
         {
             if (index == CampaignEvents.OnNewGameCreatedPartialFollowUpEventMaxIndex - 1)
             {
-                foreach (var party in MobileParty.AllLordParties)
+                foreach(var party in MobileParty.AllLordParties)
                 {
                     OnPartyCreated(party);
                 }
@@ -79,10 +79,10 @@ namespace TOR_Core.CampaignMechanics.AICompanions
 
         private void OnPartyCreated(MobileParty party)
         {
-            if (party != null && party.LeaderHero != null && party.LeaderHero.Clan != null && party.LeaderHero.Clan.Leader != null && party.LeaderHero.Clan.Leader == party.LeaderHero)
+            if(party != null && party.LeaderHero != null && party.LeaderHero.Clan != null && party.LeaderHero.Clan.Leader != null && party.LeaderHero.Clan.Leader == party.LeaderHero)
             {
                 var companions = party.LeaderHero.Clan.Heroes.Where(x => x.IsAICompanion());
-                foreach (var companion in companions)
+                foreach(var companion in companions)
                 {
                     if (!party.GetMemberHeroes().Contains(companion)) AddHeroToPartyAction.Apply(companion, party);
                 }
@@ -95,18 +95,18 @@ namespace TOR_Core.CampaignMechanics.AICompanions
             var location = settlement.LocationComplex?.GetLocationWithId(Keep);
             if (location == null) return;
             List<Hero> companions = new List<Hero>();
-            foreach (var partyInSettlement in settlement.Parties)
+            foreach(var partyInSettlement in settlement.Parties)
             {
                 foreach (var companion in partyInSettlement.GetMemberHeroes().Where(x => x.IsAICompanion()))
                 {
                     companions.Add(companion);
                 }
             }
-            foreach (var companion in settlement.HeroesWithoutParty.Where(x => x.IsAICompanion()))
+            foreach(var companion in settlement.HeroesWithoutParty.Where(x=>x.IsAICompanion()))
             {
                 companions.Add(companion);
             }
-            foreach (var companion in companions)
+            foreach(var companion in companions)
             {
                 AddLocationCharacterToLocation(companion, location);
             }

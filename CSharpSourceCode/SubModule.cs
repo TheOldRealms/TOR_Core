@@ -28,7 +28,7 @@ using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics;
-using TOR_Core.CampaignMechanics.AICompanions;
+using TOR_Core.CampaignMechanics.Companions;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Careers;
@@ -156,6 +156,7 @@ namespace TOR_Core
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
                 starter.AddBehavior(new TORAICompanionCampaignBehavior());
+                //starter.AddBehavior(new TORCompanionsCampaignBehavior());
                 starter.AddBehavior(new CareerSwitchCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 //starter.AddBehavior(new InkStoryCampaignBehavior());

@@ -113,7 +113,8 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
     private void OnMissionEnded(IMission obj)
     {
-        var battleSettlement = Settlement.FindFirst(delegate (Settlement settlement)
+        //Sly : can this be found from the settlement of the PlayerEncounter?
+        var battleSettlement = Settlement.FindFirst(delegate(Settlement settlement)
         {
             {
                 var comp = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
@@ -250,6 +251,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         }
     }
 
+    //Sly : this should be transfered over into the relevant settlement component's OnPartyEntered override method; we can perform this without needing to evaluate every party entering every settlement. See hideouts in native for an example.
     private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero leaderHero)
     {
         var settleComp = settlement.SettlementComponent;

@@ -9,6 +9,7 @@ namespace TOR_Core.Models
     {
         public override string GetEncounterMenu(PartyBase attackerParty, PartyBase defenderParty, out bool startBattle, out bool joinBattle)
         {
+            //Sly : can we control the encounter menu here so that an enlisted player doesn't get the native encounter menu after retreating from a battle and returning to the campaign map with a now-existant PlayerEncounter?
             var settlement = MapEventHelper.GetEncounteredPartyBase(attackerParty, defenderParty).Settlement;
             if (settlement != null && settlement.SettlementComponent is TORBaseSettlementComponent)
             {
