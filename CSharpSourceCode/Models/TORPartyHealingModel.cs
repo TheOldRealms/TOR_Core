@@ -33,7 +33,11 @@ namespace TOR_Core.Models
 
             var result = base.GetSurvivalChance(party, character, damageType, canDamageKillEvenIfBlunt, enemyParty);
 
-            if (result < 0.5f && party != null && party.LeaderHero != null && party.LeaderHero.GetPerkValue(TORPerks.Faith.Revival)) result = TORPerks.Faith.Revival.PrimaryBonus; //Sly : perk description does not match functionality
+            if (party?.LeaderHero != null && party.LeaderHero.GetPerkValue(TORPerks.Faith.Revival))
+            {
+                var secondChance = TORPerks.Faith.Revival.PrimaryBonus;
+                result = result + (1f - result) * secondChance; // chance to survive if would have died
+            }
 
             if (!character.IsUndead())
                 return result;
@@ -82,23 +86,24 @@ namespace TOR_Core.Models
                 return base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
             }
 
-            if (party.MobileParty.IsAffectedByCurse() && party.MobileParty.CurrentSettlement == null && party.MobileParty.BesiegedSettlement == null)
+            var mobileParty = party.MobileParty;
+
+            if (mobileParty.IsAffectedByCurse() && mobileParty.CurrentSettlement == null && mobileParty.BesiegedSettlement == null)
             {
                 return new ExplainedNumber(0, true, GameTexts.FindText("tor_customSettlement_generic_inCursedRegion"));
             }
 
             var result = base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
 
+            if (mobileParty != MobileParty.MainParty)
+                return result;
 
-            if (party.MobileParty != MobileParty.MainParty) return result;
-
-
-            if (party.MobileParty.HasBlessing("cult_of_sigmar"))
+            if (mobileParty.HasBlessing("cult_of_sigmar"))
             {
                 result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_sigmar"));
             }
 
-            AddCareerPassivesForTroopRegeneration(party.MobileParty, ref result);
+            AddCareerPassivesForTroopRegeneration(mobileParty, ref result);
 
             if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
             {
@@ -108,6 +113,7 @@ namespace TOR_Core.Models
             return result;
         }
 
+
         public override ExplainedNumber GetDailyHealingHpForHeroes(PartyBase party, bool isPrisoners, bool includeDescriptions = false)
         {
             if (party?.MobileParty == null || !party.MobileParty.IsLordParty)
@@ -115,12 +121,10 @@ namespace TOR_Core.Models
                 return base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
             }
 
-
             if (party.MobileParty.IsAffectedByCurse())
             {
                 return new ExplainedNumber(0, true, GameTexts.FindText("tor_customSettlement_generic_inCursedRegion"));
             }
-
 
             var result = base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
 
@@ -129,10 +133,11 @@ namespace TOR_Core.Models
                 result.AddFactor(0.2f);
             }
 
-            if (!party.MobileParty.IsMainParty) return result;
+            if (!party.MobileParty.IsMainParty)
+                return result;
 
-
-            if (party.MobileParty.HasBlessing("cult_of_shallya")) result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_shallya"));
+            if (party.MobileParty.HasBlessing("cult_of_shallya"))
+                result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_shallya"));
 
             AddCareerPassivesForHeroRegeneration(party.MobileParty, ref result);
 
@@ -162,6 +167,7 @@ namespace TOR_Core.Models
 
             return result;
         }
+
 
         private void AddCareerPassivesForTroopRegeneration(MobileParty party, ref ExplainedNumber explainedNumber)
         {

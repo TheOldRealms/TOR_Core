@@ -22,8 +22,8 @@ namespace TOR_Core.CampaignMechanics.CustomResourceBehavior;
 
 public class TeefBehavior : CampaignBehaviorBase
 {
-    private const int ItemExchange = 100; // item of price of X gets X/100 of teef in return
-    private const int GoldExchange = 150;
+    private const int ItemExchange = 400; // item of price of X gets X/400 of teef in return
+    private const int GoldExchange = 100;
     private const string QuartermasterId = "tor_kwartamasta_greenskins_0";
 
     public override void RegisterEvents()
@@ -151,63 +151,65 @@ public class TeefBehavior : CampaignBehaviorBase
 
         void OpenForSpending()
         {
-            var currentRoster = new ItemRoster(Hero.MainHero.PartyBelongedTo.ItemRoster);
-            var currentRosterWithEquipment = new ItemRoster();
-            var equipment = Hero.MainHero.GetHeroEquipment();
-
-            foreach (var item in currentRoster)
-            {
-                if (item.EquipmentElement.Item == null) continue;
-                currentRosterWithEquipment.AddToCounts(item.EquipmentElement.Item, item.Amount);
-            }
-
-            foreach (var item in equipment)
-            {
-                if (item == null) continue;
-                currentRosterWithEquipment.AddToCounts(item, 1);
-            }
+            var beforeSnapshot = new ItemRoster(Hero.MainHero.PartyBelongedTo.ItemRoster);
 
             var emptyRoster = new ItemRoster();
-            InventoryScreenHelper.OpenScreenAsReceiveItems(emptyRoster, new TextObject("Give Items to the Big boss"), () => AfterDonation(currentRosterWithEquipment));
+            InventoryScreenHelper.OpenScreenAsReceiveItems(
+                emptyRoster,
+                new TextObject("Give Items to the Big boss"),
+                () => AfterDonation(beforeSnapshot)
+            );
 
-            void AfterDonation(ItemRoster beforeTransferRoster)
+            void AfterDonation(ItemRoster beforeSnapshotLocal)
             {
-                var roster = beforeTransferRoster;
-                var currentRoster = new ItemRoster();
-
-                foreach (var item in Hero.MainHero.PartyBelongedTo.ItemRoster)
+                var beforeMap = new Dictionary<ItemObject, int>();
+                foreach (var e in beforeSnapshotLocal)
                 {
-                    currentRoster.Add(item);
+                    var it = e.EquipmentElement.Item;
+                    if (it == null) continue;
+                    if (it.StringId != null && it.StringId.StartsWith("tor_gs_")) continue;
+
+                    if (beforeMap.TryGetValue(it, out var cnt))
+                        beforeMap[it] = cnt + e.Amount;
+                    else
+                        beforeMap[it] = e.Amount;
                 }
 
-                var equipment = Hero.MainHero.GetHeroEquipment();
-
-                foreach (var item in equipment)
+                var afterMap = new Dictionary<ItemObject, int>();
+                foreach (var e in Hero.MainHero.PartyBelongedTo.ItemRoster)
                 {
-                    if (item == null) continue;
-                    currentRoster.AddToCounts(item, 1);
+                    var it = e.EquipmentElement.Item;
+                    if (it == null) continue;
+
+                    if (afterMap.TryGetValue(it, out var cnt))
+                        afterMap[it] = cnt + e.Amount;
+                    else
+                        afterMap[it] = e.Amount;
                 }
 
-                var difference = new ItemRoster();
-                foreach (var item in roster)
+                long totalItemValue = 0;
+                foreach (var kv in beforeMap)
                 {
-                    if (currentRoster.FindIndexOfElement(item.EquipmentElement) != -1)
-                    {
-                        continue;
-                    }
-                    difference.Add(item);
+                    var item = kv.Key;
+                    var beforeCount = kv.Value;
+
+                    afterMap.TryGetValue(item, out var afterCount);
+                    var removed = beforeCount - afterCount;
+                    if (removed <= 0) continue;
+
+                    var unitValue = Math.Max(0, item.Value);
+                    totalItemValue += (long)unitValue * removed;
                 }
 
-                var rawTeefValue = difference.Sum(item => item.EquipmentElement.Item.Value);
-
-                var teef = rawTeefValue / ItemExchange;
+                var teef = (int)(totalItemValue / ItemExchange);
                 if (teef > 0)
                 {
                     Hero.MainHero.AddCultureSpecificCustomResource(teef);
-                    TORCampaignEvents.Instance.OnTeefTransferred(Hero.MainHero, rawTeefValue);
+                    TORCampaignEvents.Instance.OnTeefTransferred(Hero.MainHero, (int)totalItemValue);
                 }
             }
         }
+
 
         void OpenForCreatingLootPiles()
         {

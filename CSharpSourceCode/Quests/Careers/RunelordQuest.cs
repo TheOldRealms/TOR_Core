@@ -141,8 +141,8 @@ public class RunelordQuest : QuestBase
 
     private void CraftingOrderCompleted(Town town, CraftingOrder order, ItemObject resultItem, Hero hero)
     {
-        var currentProgress = _task1.CurrentProgress;
-        _task1.UpdateCurrentProgress(currentProgress + 15);
+        var currentProgress = _task3.CurrentProgress;
+        _task3.UpdateCurrentProgress(currentProgress + 1);
         UpdateQuest();
     }
 

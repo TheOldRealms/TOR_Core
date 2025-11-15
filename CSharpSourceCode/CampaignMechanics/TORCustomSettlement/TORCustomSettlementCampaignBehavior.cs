@@ -14,6 +14,7 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
@@ -33,6 +34,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     [SaveableField(4)] private List<string> _unlockedOakUpgrades = [];
 
     private TORFaithModel _model;
+    private static HashSet<string> _xmlItemIds;
 
     public static MBReadOnlyList<Settlement> AllCustomSettlements { get; private set; } = [];
 
@@ -145,11 +147,29 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
                 var items = itemIds.Select(id => MBObjectManager.Instance.GetObject<ItemObject>(id)).ToList();
 
+                var artifactIds = ReligionObject.All?
+                    .SelectMany(r => r.ReligiousArtifacts)
+                    .Select(i => i.StringId)
+                    .ToHashSet() ?? new HashSet<string>();
+
+                items = items
+                    .Where(i => i != null
+                        && _xmlItemIds.Contains(i.StringId)
+                        && (i.IsWeapon() || i.IsArmor())
+                        && i.Culture == Hero.MainHero.Culture
+                        && !i.IsCraftedByPlayer
+                        && !artifactIds.Contains(i.StringId))
+                    .ToList();
 
                 var cultureItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
-                    .Where(x => x.Culture == Hero.MainHero.Culture && x.IsWeapon() || x.IsArmor()).ToList();
+                    .Where(i => _xmlItemIds.Contains(i.StringId))
+                    .Where(i => i.Culture == Hero.MainHero.Culture && (i.IsWeapon() || i.IsArmor()))
+                    .Where(i => !i.IsCraftedByPlayer)
+                    .Where(i => !artifactIds.Contains(i.StringId))
+                    .ToList();
 
-                items.AddRange(cultureItems.TakeRandom(2).ToList());
+                items.AddRange(cultureItems.TakeRandom(2).Where(i => !items.Contains(i)));
+
 
 
                 var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
@@ -359,6 +379,10 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         }
 
         CollectSettlementData();
+        if (_xmlItemIds == null)
+            _xmlItemIds = MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+                .Select(i => i.StringId)
+                .ToHashSet();
     }
 
     private void OnSettlementHourlyTick(Settlement settlement)

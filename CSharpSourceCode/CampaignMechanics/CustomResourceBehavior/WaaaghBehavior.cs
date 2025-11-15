@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -15,6 +16,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
 {
     private const float DailyWaaaghDecay = 5f; // Daily passive Waaagh decrease
     private const float MaxWaaagh = 1000f; // Maximum Waaagh value
+    private float _renownBefore;
     private float _initialCombatRatio;
     private WaaaghLevel _previousWaaaghLevel = WaaaghLevel.InternalFightin;
     private List<CharacterObject> _troops;
@@ -28,6 +30,8 @@ public class WaaaghBehavior : CampaignBehaviorBase
 
     private void InitialCombatStrengthCalculation(IMission mission)
     {
+        _renownBefore = Clan.PlayerClan?.Renown ?? 0f;
+
         if (Campaign.Current != null)
         {
             _initialCombatRatio = 0;
@@ -49,42 +53,79 @@ public class WaaaghBehavior : CampaignBehaviorBase
     {
         // Only apply to Greenskin players
         if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN) return;
+        if (mapEvent == null || !mapEvent.IsPlayerMapEvent) return;
 
-        if (!mapEvent.IsPlayerMapEvent) return;
+        if (!IsPlayerLeaderOrInitiator(mapEvent))
+        {
+            UpdateWaaaghState();
+            return;
+        }
 
         var playerWon = mapEvent.WinningSide == mapEvent.PlayerSide;
 
+        // Calculate Waaagh gain based on battle difficulty
+        var ratio = _initialCombatRatio;
+        if (ratio <= 0f)
+        {
+            mapEvent.GetStrengthsRelativeToParty(mapEvent.PlayerSide,
+                out var playerStrength, out var enemyStrength);
+            if (enemyStrength > 0f) ratio = playerStrength / enemyStrength;
+        }
+
+        var renownAfter = Clan.PlayerClan?.Renown ?? 0f;
+        var renownDelta = Math.Max(0.0, renownAfter - _renownBefore);
+
+        // Scale based on battle difficulty (small battles give less)
+        double scale;
+        if (ratio > 2.0f) // Easy battle (player much stronger)
+        {
+            scale = 0.20; // Only 20% Waaagh gain
+        }
+        else if (ratio > 1.5f)
+        {
+            scale = 0.50; // 50% Waaagh gain
+        }
+        else if (ratio < 0.8f) // Hard battle (player weaker)
+        {
+            scale = 2.00; // Double Waaagh gain
+        }
+        else
+        {
+            scale = 1.0;
+        }
+
+        int delta;
         if (playerWon)
         {
-            // Calculate Waaagh gain based on battle difficulty
-            mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out var renownChange, out _, out _, out _, out _);
-
-            var waaaghGain = renownChange * 10;
-
-            // Scale based on battle difficulty (small battles give less)
-            if (_initialCombatRatio > 2f) // Easy battle (player much stronger)
-            {
-                waaaghGain *= 0.2f; // Only 20% Waaagh gain
-            }
-            else if (_initialCombatRatio > 1.5f)
-            {
-                waaaghGain *= 0.5f; // 50% Waaagh gain
-            }
-            else if (_initialCombatRatio < 0.8f) // Hard battle (player weaker)
-            {
-                waaaghGain *= 2f; // Double Waaagh gain
-            }
-
-            Hero.MainHero.AddCustomResource("Waaagh", (int)waaaghGain);
+            delta = (int)Math.Round(renownDelta * 10.0 * scale, MidpointRounding.AwayFromZero);
         }
         else
         {
             // Player lost - decrease Waaagh
             var waaaghLoss = 20; // Base loss for defeat
-            Hero.MainHero.AddCustomResource("Waaagh", -waaaghLoss);
+            delta = -waaaghLoss;
+        }
+
+        if (delta != 0)
+        {
+            Hero.MainHero.AddCustomResource("Waaagh", delta);
         }
 
         UpdateWaaaghState();
+    }
+
+
+    private static bool IsPlayerLeaderOrInitiator(MapEvent mapEvent)
+    {
+        var playerParty = MobileParty.MainParty;
+        var side = mapEvent.GetMapEventSide(mapEvent.PlayerSide);
+
+        var leaderPartyBase = side?.LeaderParty;
+        var playerPartyBase = playerParty?.Party;
+        var playerArmyLeaderBase = playerParty?.Army?.LeaderParty?.Party;
+
+        return leaderPartyBase == playerPartyBase
+               || (playerArmyLeaderBase != null && leaderPartyBase == playerArmyLeaderBase);
     }
 
     private void OnDailyTick()

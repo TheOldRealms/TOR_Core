@@ -36,12 +36,10 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 
     public override void RegisterEvents()
     {
-        CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, CalculatePotentialLootedEnchantmentResources);
-
         CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, SetLootedIngredients);
-
         CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, SettlementDailyTickEvent);
     }
+
 
     private void SettlementDailyTickEvent(Settlement settlement)
     {
@@ -58,25 +56,56 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 
     private void SetLootedIngredients(MapEvent mapEvent)
     {
-        float renownChange, influenceChange, moraleChange, goldChange, playerEarnedLootPercentage;
-        mapEvent.GetBattleRewards(PartyBase.MainParty, out renownChange, out influenceChange, out moraleChange, out goldChange,
-            out playerEarnedLootPercentage);
+        if (mapEvent == null) return;
+
+        var ingredientKeys = _goodAmounts.Keys.ToList();
+        foreach (var key in ingredientKeys)
+            _goodAmounts[key] = 0f;
+
+        var enemySideEnum = mapEvent.PlayerSide == BattleSideEnum.Attacker
+            ? BattleSideEnum.Defender
+            : BattleSideEnum.Attacker;
+
+        var enemySide = mapEvent.GetMapEventSide(enemySideEnum);
+        if (enemySide == null) return;
 
         var model = Campaign.Current.Models.GetEnchantmentIngredientModel();
 
-        var itemRosterToReceive = PlayerEncounter.Current.RosterToReceiveLootItems;
-
-        foreach (var pair in _goodAmounts)
+        foreach (var party in enemySide.Parties)
         {
-            var amount = model.CalculateResultAmount(pair.Value, pair.Key, playerEarnedLootPercentage);
-            var item = TorEnchantingIngredients.GetItemObjectForIngredient(pair.Key);
-            itemRosterToReceive.Add(new ItemRosterElement(item, amount));
+            foreach (var troop in party.Troops)
+            {
+                var character = troop.Troop;
+                foreach (var ingredientType in ingredientKeys)
+                {
+                    _goodAmounts[ingredientType] += model.GetIngredientDropFactorForCharacter(character, ingredientType, mapEvent);
+                }
+            }
+        }
+
+        mapEvent.GetBattleRewards(
+            PartyBase.MainParty,
+            out var _renown, out var _influence, out var _morale, out var _gold,
+            out var playerLootShare
+        );
+
+        var targetRoster = PlayerEncounter.Current?.RosterToReceiveLootItems ?? PartyBase.MainParty.ItemRoster;
+
+        foreach (var ingredientType in ingredientKeys)
+        {
+            var factorSum = _goodAmounts[ingredientType];
+            var amount = model.CalculateResultAmount(factorSum, ingredientType, playerLootShare);
+            if (amount <= 0) continue;
+
+            var item = TorEnchantingIngredients.GetItemObjectForIngredient(ingredientType);
+            targetRoster.Add(new ItemRosterElement(item, amount));
         }
 
         // clear value for next battle
-        var keys = _goodAmounts.Keys.ToList();
-        foreach (var key in keys) _goodAmounts[key] = 0;
+        foreach (var key in ingredientKeys)
+            _goodAmounts[key] = 0f;
     }
+
 
     private void CalculatePotentialLootedEnchantmentResources(IMission obj)
     {

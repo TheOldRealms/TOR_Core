@@ -48,6 +48,12 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
             {
                 agent.SetWatchState(Agent.WatchState.Alarmed);
             }
+
+            if (agent == Agent.Main || !agent.IsHero) continue;
+            if (agent.Team != Mission.PlayerTeam) continue;
+            var h = agent.GetHero();
+            var wom = h.GetCustomResourceValue("WindsOfMagic");
+            if (wom != 0) h.AddCustomResource("WindsOfMagic", -(int)wom);
         }
 
         _scores = new Dictionary<Hero, int>();
