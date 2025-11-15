@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using SandBox.View.CharacterCreation;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.Core.ViewModelCollection;
@@ -11,6 +12,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
 using TaleWorlds.ScreenSystem;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CharacterCreation
@@ -75,7 +77,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 return;
             }
 
-            // Initialize UI for specialists
+            // Initialize UI for specialists (will pre-select if there's a stored choice)
             InitializeUI(handler);
         }
 
@@ -149,33 +151,124 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (handler.IsSpellcaster(professionId))
             {
-                // Add lore options - TODO: Get actual lores from handler
-                _dataSource.AddOption("Lore of Fire", "Master the destructive power of flames and infernos.", "lore_fire");
-                _dataSource.AddOption("Lore of Death", "Command the dark arts and raise the dead to serve you.", "lore_death");
-                _dataSource.AddOption("Lore of Life", "Harness nature's healing energies to mend wounds and cure disease.", "lore_life");
-                _dataSource.AddOption("Lore of Light", "Wield holy magic to smite the undead and protect the innocent.", "lore_light");
-                _dataSource.AddOption("Lore of Shadow", "Manipulate darkness and illusion to confuse and defeat your enemies.", "lore_shadow");
+                // Add only the 8 Winds of Magic lore options
+                var allLores = TOR_Core.AbilitySystem.Spells.LoreObject.GetAll();
+                var playerCulture = TaleWorlds.CampaignSystem.Hero.MainHero.Culture.StringId;
+
+                // Only include the 8 base winds of magic
+                var allowedLoreIds = new HashSet<string>
+                {
+                    "LoreOfLife", "LoreOfFire", "LoreOfDeath", "LoreOfLight",
+                    "LoreOfHeavens", "LoreOfBeasts", "LoreOfMetal", "LoreOfShadow"
+                };
+
+                TORCommon.Log($"[TORSpecializationStageView] Found {allLores.Count} total lores, player culture: {playerCulture}", NLog.LogLevel.Info);
+
+                foreach (var lore in allLores)
+                {
+                    // Only include the 8 winds of magic
+                    if (!allowedLoreIds.Contains(lore.ID))
+                    {
+                        continue;
+                    }
+
+                    // Skip lores that are disabled for player's culture
+                    if (lore.DisabledForCultures.Contains(playerCulture))
+                    {
+                        TORCommon.Log($"[TORSpecializationStageView] Skipping {lore.Name} (disabled for {playerCulture})", NLog.LogLevel.Info);
+                        continue;
+                    }
+
+                    string description = $"Master the {lore.Name}.";
+                    _dataSource.AddOption(lore.Name, description, lore);
+                    TORCommon.Log($"[TORSpecializationStageView] Added lore option: {lore.Name} ({lore.ID})", NLog.LogLevel.Info);
+                }
             }
             else if (handler.IsVampire(professionId))
             {
-                // Add bloodline options - TODO: Get actual bloodlines from handler
-                _dataSource.AddOption("Von Carstein", "The most powerful vampire bloodline, rulers of Sylvania.", "bloodline_von_carstein");
-                _dataSource.AddOption("Lahmian", "Masters of seduction and political intrigue.", "bloodline_lahmian");
-                _dataSource.AddOption("Blood Dragon", "Honorable warriors seeking worthy opponents in battle.", "bloodline_blood_dragon");
-                _dataSource.AddOption("Necrarch", "Obsessed with necromantic knowledge and dark sorcery.", "bloodline_necrarch");
-                _dataSource.AddOption("Strigoi", "Feral and bestial vampires, shunned by other bloodlines.", "bloodline_strigoi");
+                // Add only the 3 vampire bloodline/career options
+                AddCareerOption("MinorVampire", "Von Carstein", "The most powerful vampire bloodline, rulers of Sylvania.");
+                AddCareerOption("BloodKnight", "Blood Dragon", "Honorable warriors seeking worthy opponents in battle.");
+                AddCareerOption("Necrarch", "Necrarch", "Obsessed with necromantic knowledge and dark sorcery.");
             }
             else if (handler.IsPriest(professionId))
             {
-                // Add god options - TODO: Get actual gods/priesthoods from handler
-                _dataSource.AddOption("Sigmar", "The patron god of the Empire, protector of mankind.", "god_sigmar");
-                _dataSource.AddOption("Ulric", "God of winter, wolves, and war.", "god_ulric");
-                _dataSource.AddOption("Taal", "God of nature and wild places.", "god_taal");
-                _dataSource.AddOption("Morr", "God of death and dreams.", "god_morr");
-                _dataSource.AddOption("Shallya", "Goddess of healing and mercy.", "god_shallya");
+                // Add only the 2 Warrior Priest careers
+                AddCareerOption("WarriorPriest", "Warrior Priest of Sigmar", "A warrior-priest devoted to Sigmar, protector of mankind.");
+                AddCareerOption("WarriorPriestUlric", "Warrior Priest of Ulric", "A warrior-priest of Ulric, god of winter, wolves, and war.");
             }
 
-            TORCommon.Log($"[TORSpecializationStageView] Added {_dataSource.Options.Count} options", NLog.LogLevel.Info);
+            TORCommon.Log($"[TORSpecializationStageView] Added {_dataSource.Options.Count} total options", NLog.LogLevel.Info);
+
+            // Pre-select stored option if it exists
+            PreSelectStoredOption(handler, professionId);
+        }
+
+        /// <summary>
+        /// Pre-select the previously chosen option if one is stored in the handler
+        /// </summary>
+        private void PreSelectStoredOption(TorCharacterCreationContentHandler handler, string professionId)
+        {
+            string storedId = null;
+
+            if (handler.IsSpellcaster(professionId))
+            {
+                storedId = handler.GetStoredLoreId();
+            }
+            else if (handler.IsVampire(professionId) || handler.IsPriest(professionId))
+            {
+                storedId = handler.GetStoredCareerId();
+            }
+
+            if (string.IsNullOrEmpty(storedId))
+            {
+                TORCommon.Log("[TORSpecializationStageView] No stored selection to pre-select", NLog.LogLevel.Info);
+                return;
+            }
+
+            // Find and select the matching option
+            foreach (var option in _dataSource.Options)
+            {
+                if (handler.IsSpellcaster(professionId) && option.Data is TOR_Core.AbilitySystem.Spells.LoreObject lore)
+                {
+                    if (lore.ID == storedId)
+                    {
+                        option.ExecuteSelect(); // This will mark it as selected and enable Continue
+                        TORCommon.Log($"[TORSpecializationStageView] Pre-selected lore: {lore.Name} ({lore.ID})", NLog.LogLevel.Info);
+                        break;
+                    }
+                }
+                else if ((handler.IsVampire(professionId) || handler.IsPriest(professionId)) && option.Data is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
+                {
+                    if (career.StringId == storedId)
+                    {
+                        option.ExecuteSelect(); // This will mark it as selected and enable Continue
+                        TORCommon.Log($"[TORSpecializationStageView] Pre-selected career: {career.Name} ({career.StringId})", NLog.LogLevel.Info);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void AddCareerOption(string careerId, string displayName, string description)
+        {
+            try
+            {
+                var career = TaleWorlds.Core.Game.Current.ObjectManager.GetObject<TOR_Core.CharacterDevelopment.CareerSystem.CareerObject>(careerId);
+                if (career != null)
+                {
+                    _dataSource.AddOption(displayName, description, career);
+                    TORCommon.Log($"[TORSpecializationStageView] Added career option: {displayName} ({careerId})", NLog.LogLevel.Info);
+                }
+                else
+                {
+                    TORCommon.Log($"[TORSpecializationStageView] Career not found: {careerId}", NLog.LogLevel.Warn);
+                }
+            }
+            catch (Exception ex)
+            {
+                TORCommon.Log($"[TORSpecializationStageView] Error adding career {careerId}: {ex.Message}", NLog.LogLevel.Error);
+            }
         }
 
         public override void SetGenericScene(Scene scene)
@@ -281,12 +374,69 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public override void NextStage()
         {
             TORCommon.Log("[TORSpecializationStageView] NextStage called", NLog.LogLevel.Info);
+
+            // Store the selected specialization (will be applied at the very end of character creation)
+            StoreSpecialization();
+
             _affirmativeAction();
+        }
+
+        /// <summary>
+        /// Store the selected specialization in the handler to be applied at character creation finalization.
+        /// This prevents issues where going back and changing profession would keep the old specialization.
+        /// </summary>
+        private void StoreSpecialization()
+        {
+            if (_dataSource == null)
+            {
+                //TODO storing should only happen when a selection actually happened, currently the y
+                TORCommon.Log("[TORSpecializationStageView] Cannot store specialization - no data source", NLog.LogLevel.Warn);
+                return;
+            }
+
+            var selectedData = _dataSource.GetSelectedData();
+            if (selectedData == null)
+            {
+                TORCommon.Log("[TORSpecializationStageView] No specialization selected", NLog.LogLevel.Warn);
+                return;
+            }
+
+            var handler = GetHandler();
+            if (handler == null)
+            {
+                TORCommon.Log("[TORSpecializationStageView] Cannot store specialization - handler not found", NLog.LogLevel.Error);
+                return;
+            }
+
+            // Store based on type
+            if (selectedData is TOR_Core.AbilitySystem.Spells.LoreObject lore)
+            {
+                TORCommon.Log($"[TORSpecializationStageView] Storing lore selection: {lore.Name} ({lore.ID})", NLog.LogLevel.Info);
+                handler.SetSelectedLore(lore.ID);
+            }
+            else if (selectedData is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
+            {
+                TORCommon.Log($"[TORSpecializationStageView] Storing career selection: {career.Name} ({career.StringId})", NLog.LogLevel.Info);
+                handler.SetSelectedCareer(career.StringId);
+            }
+            else
+            {
+                TORCommon.Log($"[TORSpecializationStageView] Unknown specialization type: {selectedData.GetType().Name}", NLog.LogLevel.Error);
+            }
         }
 
         public override void PreviousStage()
         {
-            TORCommon.Log("[TORSpecializationStageView] PreviousStage called", NLog.LogLevel.Info);
+            TORCommon.Log("[TORSpecializationStageView] PreviousStage (Back button) called", NLog.LogLevel.Info);
+
+            // Clear stored selections when going back (user might change profession)
+            var handler = GetHandler();
+            if (handler != null)
+            {
+                handler.ClearStoredSpecializations();
+                TORCommon.Log("[TORSpecializationStageView] Cleared stored selections (user clicked Back)", NLog.LogLevel.Info);
+            }
+
             _negativeAction();
         }
 

@@ -33,6 +33,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private Equipment PlayerStartEquipment;
         private string _currentEquipmentRosterId = "player_char_creation_childhood_age_empire_default_m";
         private string _selectedProfessionId = ""; // Track stage 3 selection for stage 4 conditions
+        private string _selectedLoreId = null; // Store selected lore for spellcasters (applied at finalization)
+        private string _selectedCareerId = null; // Store selected career for vampires/priests (applied at finalization)
         private const int FocusToAdd = 1;
         private const int SkillLevelToAdd = 10;
         private const int AttributeLevelToAdd = 1;
@@ -373,6 +375,45 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             string id = professionId ?? _selectedProfessionId;
             return id == "option_3_empire_priest_acolyte";
         }
+
+        /// <summary>
+        /// Store the selected lore ID to be applied at character creation finalization
+        /// </summary>
+        public void SetSelectedLore(string loreId)
+        {
+            _selectedLoreId = loreId;
+            TORCommon.Log($"[TorCharacterCreationContentHandler] Stored lore selection: {loreId}", NLog.LogLevel.Info);
+        }
+
+        /// <summary>
+        /// Store the selected career ID to be applied at character creation finalization
+        /// </summary>
+        public void SetSelectedCareer(string careerId)
+        {
+            _selectedCareerId = careerId;
+            TORCommon.Log($"[TorCharacterCreationContentHandler] Stored career selection: {careerId}", NLog.LogLevel.Info);
+        }
+
+        /// <summary>
+        /// Clear any stored specialization selections.
+        /// Called when clicking Back to ensure old selections are cleared if user changes profession.
+        /// </summary>
+        public void ClearStoredSpecializations()
+        {
+            _selectedLoreId = null;
+            _selectedCareerId = null;
+            TORCommon.Log("[TorCharacterCreationContentHandler] Cleared stored specialization selections", NLog.LogLevel.Info);
+        }
+
+        /// <summary>
+        /// Get the currently stored lore ID (null if none selected)
+        /// </summary>
+        public string GetStoredLoreId() => _selectedLoreId;
+
+        /// <summary>
+        /// Get the currently stored career ID (null if none selected)
+        /// </summary>
+        public string GetStoredCareerId() => _selectedCareerId;
 
         private void OnLoreSelected(string loreId)
         {
@@ -753,10 +794,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         
         private void OnCharacterCreationFinalized()
         {
+            // Apply stored specialization selections at the very end
+            ApplyStoredSpecializations();
+
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
             Hero.MainHero.AddCultureSpecificCustomResource(0);
             CampaignVec2 position2D = default;
- 
+
             position2D = culture.StringId switch
             {
                 TORConstants.Cultures.EMPIRE => new CampaignVec2(new Vec2(1281.157f, 1058.522f),true),
@@ -775,6 +819,64 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 mapState.Handler.TeleportCameraToMainParty();
             }
             SetHeroAge(25);
+        }
+
+        /// <summary>
+        /// Apply stored specializations (lore/career) at the very end of character creation
+        /// This prevents issues where going back and changing profession would keep the old specialization
+        /// </summary>
+        private void ApplyStoredSpecializations()
+        {
+            var hero = Hero.MainHero;
+
+            // Apply stored lore for spellcasters
+            if (!string.IsNullOrEmpty(_selectedLoreId))
+            {
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Applying stored lore: {_selectedLoreId}", NLog.LogLevel.Info);
+                hero.AddKnownLore(_selectedLoreId);
+                var info = hero.GetExtendedInfo();
+                if (info.SpellCastingLevel < SpellCastingLevel.Entry)
+                {
+                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                }
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Successfully applied lore {_selectedLoreId}", NLog.LogLevel.Info);
+            }
+
+            // Apply stored career for vampires/priests
+            if (!string.IsNullOrEmpty(_selectedCareerId))
+            {
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Applying stored career: {_selectedCareerId}", NLog.LogLevel.Info);
+                var career = Game.Current.ObjectManager.GetObject<CharacterDevelopment.CareerSystem.CareerObject>(_selectedCareerId);
+                if (career != null)
+                {
+                    hero.AddCareer(career);
+                    TORCommon.Log($"[TorCharacterCreationContentHandler] Successfully applied career {_selectedCareerId}", NLog.LogLevel.Info);
+
+                    // For priest careers, also add devotion to the corresponding god
+                    if (_selectedCareerId == "WarriorPriest")
+                    {
+                        var sigmar = ReligionObject.All.FirstOrDefault(r => r.StringId == "tor_sigmar");
+                        if (sigmar != null)
+                        {
+                            hero.AddReligiousInfluence(sigmar, TORConstants.DEVOTED_TRESHOLD, shouldNotify: false);
+                            TORCommon.Log($"[TorCharacterCreationContentHandler] Added devotion to Sigmar", NLog.LogLevel.Info);
+                        }
+                    }
+                    else if (_selectedCareerId == "WarriorPriestUlric")
+                    {
+                        var ulric = ReligionObject.All.FirstOrDefault(r => r.StringId == "tor_ulric");
+                        if (ulric != null)
+                        {
+                            hero.AddReligiousInfluence(ulric, TORConstants.DEVOTED_TRESHOLD, shouldNotify: false);
+                            TORCommon.Log($"[TorCharacterCreationContentHandler] Added devotion to Ulric", NLog.LogLevel.Info);
+                        }
+                    }
+                }
+                else
+                {
+                    TORCommon.Log($"[TorCharacterCreationContentHandler] Career not found: {_selectedCareerId}", NLog.LogLevel.Error);
+                }
+            }
         }
 
         protected void SetHeroAge(float age)
