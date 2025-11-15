@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using SandBox.View.CharacterCreation;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.Core.ViewModelCollection;
+using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.Utilities;
 
@@ -28,6 +30,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private TORSpecializationStageVM _dataSource;
         private GauntletMovieIdentifier _movie;
         private bool _shouldAutoSkip;
+
+        private Scene _characterScene;
+        private Camera _camera;
+
+        public SceneLayer CharacterLayer { get; private set; }
 
         public TORSpecializationStageView(
             CharacterCreationManager characterCreationManager,
@@ -97,12 +104,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 description = "As a priest, you must choose which god you serve. This will determine your divine powers.";
             }
 
-            // Create GauntletLayer (UI overlay)
-            _gauntletLayer = new GauntletLayer(1);
-            _gauntletLayer.InputRestrictions.SetInputRestrictions();
+            // Create GauntletLayer (UI overlay) - use high layer order to ensure it's on top
+            _gauntletLayer = new GauntletLayer(100, "GauntletLayer", true);
+            _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.IsFocusLayer = true;
             _gauntletLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
             ScreenManager.TrySetFocus(_gauntletLayer);
+
+            TORCommon.Log($"[TORSpecializationStageView] GauntletLayer created, IsActive={_gauntletLayer.IsActive}", NLog.LogLevel.Info);
 
             // Create custom ViewModel
             _dataSource = new TORSpecializationStageVM(
@@ -114,17 +123,89 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 _negativeActionText
             );
 
-            // Load custom Gauntlet movie
+            // Populate options based on profession type
+            PopulateOptions(handler, professionId);
+
+            // TEST: Try loading a native movie that we know works to verify GauntletLayer can render
             try
             {
+                // Try loading our custom movie first
                 _movie = _gauntletLayer.LoadMovie("TORSpecializationStage", _dataSource);
-                TORCommon.Log("[TORSpecializationStageView] UI initialized successfully", NLog.LogLevel.Info);
+                TORCommon.Log($"[TORSpecializationStageView] LoadMovie returned: {(_movie != null ? "success" : "null")}", NLog.LogLevel.Info);
+
+                // Log layer status
+                TORCommon.Log($"[TORSpecializationStageView] GauntletLayer IsActive: {_gauntletLayer.IsActive}", NLog.LogLevel.Info);
             }
             catch (Exception ex)
             {
-                TORCommon.Log($"[TORSpecializationStageView] Failed to load movie: {ex.Message}", NLog.LogLevel.Error);
+                TORCommon.Log($"[TORSpecializationStageView] Failed to load movie: {ex.Message}\nStack: {ex.StackTrace}", NLog.LogLevel.Error);
                 _shouldAutoSkip = true;
             }
+        }
+
+        private void PopulateOptions(TorCharacterCreationContentHandler handler, string professionId)
+        {
+            TORCommon.Log($"[TORSpecializationStageView] Populating options for profession: {professionId}", NLog.LogLevel.Info);
+
+            if (handler.IsSpellcaster(professionId))
+            {
+                // Add lore options - TODO: Get actual lores from handler
+                _dataSource.AddOption("Lore of Fire", "Master the destructive power of flames and infernos.", "lore_fire");
+                _dataSource.AddOption("Lore of Death", "Command the dark arts and raise the dead to serve you.", "lore_death");
+                _dataSource.AddOption("Lore of Life", "Harness nature's healing energies to mend wounds and cure disease.", "lore_life");
+                _dataSource.AddOption("Lore of Light", "Wield holy magic to smite the undead and protect the innocent.", "lore_light");
+                _dataSource.AddOption("Lore of Shadow", "Manipulate darkness and illusion to confuse and defeat your enemies.", "lore_shadow");
+            }
+            else if (handler.IsVampire(professionId))
+            {
+                // Add bloodline options - TODO: Get actual bloodlines from handler
+                _dataSource.AddOption("Von Carstein", "The most powerful vampire bloodline, rulers of Sylvania.", "bloodline_von_carstein");
+                _dataSource.AddOption("Lahmian", "Masters of seduction and political intrigue.", "bloodline_lahmian");
+                _dataSource.AddOption("Blood Dragon", "Honorable warriors seeking worthy opponents in battle.", "bloodline_blood_dragon");
+                _dataSource.AddOption("Necrarch", "Obsessed with necromantic knowledge and dark sorcery.", "bloodline_necrarch");
+                _dataSource.AddOption("Strigoi", "Feral and bestial vampires, shunned by other bloodlines.", "bloodline_strigoi");
+            }
+            else if (handler.IsPriest(professionId))
+            {
+                // Add god options - TODO: Get actual gods/priesthoods from handler
+                _dataSource.AddOption("Sigmar", "The patron god of the Empire, protector of mankind.", "god_sigmar");
+                _dataSource.AddOption("Ulric", "God of winter, wolves, and war.", "god_ulric");
+                _dataSource.AddOption("Taal", "God of nature and wild places.", "god_taal");
+                _dataSource.AddOption("Morr", "God of death and dreams.", "god_morr");
+                _dataSource.AddOption("Shallya", "Goddess of healing and mercy.", "god_shallya");
+            }
+
+            TORCommon.Log($"[TORSpecializationStageView] Added {_dataSource.Options.Count} options", NLog.LogLevel.Info);
+        }
+
+        public override void SetGenericScene(Scene scene)
+        {
+            TORCommon.Log("[TORSpecializationStageView] SetGenericScene called", NLog.LogLevel.Info);
+            _characterScene = scene;
+            _characterScene.SetShadow(true);
+            _characterScene.SetDynamicShadowmapCascadesRadiusMultiplier(0.1f);
+            _characterScene.SetDoNotWaitForLoadingStatesToRender(true);
+            _characterScene.DisableStaticShadows(true);
+
+            _camera = Camera.CreateCamera();
+            BodyGeneratorView.InitCamera(_camera, _cameraPosition);
+
+            CharacterLayer = new SceneLayer(clearSceneOnFinalize: false);
+            CharacterLayer.SetScene(_characterScene);
+            CharacterLayer.SetCamera(_camera);
+            CharacterLayer.SetSceneUsesShadows(true);
+            CharacterLayer.SetRenderWithPostfx(true);
+            CharacterLayer.SetPostfxFromConfig();
+            CharacterLayer.SceneView.SetResolutionScaling(true);
+            CharacterLayer.SetPostfxConfigParams(-1 & -5);
+
+            // Ensure GauntletLayer input is registered after scene is set up
+            if (_gauntletLayer != null)
+            {
+                CharacterLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
+            }
+
+            TORCommon.Log("[TORSpecializationStageView] Scene initialized successfully", NLog.LogLevel.Info);
         }
 
         private TorCharacterCreationContentHandler GetHandler()
@@ -171,6 +252,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 return;
             }
 
+            // Tick the scene if it exists
+            if (_characterScene != null)
+            {
+                _characterScene.Tick(dt);
+            }
+
             // Handle hotkey input
             HandleLayerInput();
         }
@@ -205,15 +292,23 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public override IEnumerable<ScreenLayer> GetLayers()
         {
-            // MVP: Return only GauntletLayer (UI overlay)
-            // SceneLayer (3D character) can be added later if desired
-            if (_gauntletLayer != null)
+            // Return both layers like native stages - order matters: SceneLayer first, GauntletLayer on top
+            var layers = new List<ScreenLayer>();
+
+            if (CharacterLayer != null)
             {
-                return new List<ScreenLayer> { _gauntletLayer };
+                layers.Add(CharacterLayer);
+                TORCommon.Log($"[TORSpecializationStageView] GetLayers: CharacterLayer added", NLog.LogLevel.Debug);
             }
 
-            // Auto-skip case: return empty list
-            return new List<ScreenLayer>();
+            if (_gauntletLayer != null)
+            {
+                layers.Add(_gauntletLayer);
+                TORCommon.Log($"[TORSpecializationStageView] GetLayers: GauntletLayer added, IsActive={_gauntletLayer.IsActive}", NLog.LogLevel.Debug);
+            }
+
+            TORCommon.Log($"[TORSpecializationStageView] GetLayers: Returning {layers.Count} layers", NLog.LogLevel.Debug);
+            return layers;
         }
 
         public override int GetVirtualStageCount() => 1;
@@ -238,8 +333,20 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _dataSource?.OnFinalize();
             _dataSource = null;
 
-            // Clean up GauntletLayer (just set to null, cleanup is automatic)
+            // Clean up GauntletLayer
             _gauntletLayer = null;
+
+            // Clean up SceneLayer
+            if (CharacterLayer != null)
+            {
+                CharacterLayer.SceneView.SetEnable(false);
+                CharacterLayer.SceneView.ClearAll(false, false);
+                CharacterLayer = null;
+            }
+
+            // Clean up Scene and Camera
+            _characterScene = null;
+            _camera = null;
 
             TORCommon.Log("[TORSpecializationStageView] Finalized successfully", NLog.LogLevel.Info);
         }
