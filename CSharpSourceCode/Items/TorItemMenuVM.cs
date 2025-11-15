@@ -34,16 +34,11 @@ namespace TOR_Core.Items
         private string _itemDescription = "";
         private bool _hasDescription = false;
 
-        // Use Button
-        private HintViewModel _useHint;
-        private bool _isUsableItem = false;
-
         public BasicCharacterObject CurrentCharacter => AccessTools.Field(typeof(ItemMenuVM), "_character").GetValue(this) as BasicCharacterObject;
 
         public TorItemMenuVM(Action<ItemVM, int> resetComparedItems, InventoryLogic inventoryLogic, Func<WeaponComponentData, ItemObject.ItemUsageSetFlags> getItemUsageSetFlags, Func<EquipmentIndex, SPItemVM> getEquipmentAtIndex) : base(resetComparedItems, inventoryLogic, getItemUsageSetFlags, getEquipmentAtIndex)
         {
             _itemTraitList = [];
-            _useHint = new HintViewModel(new TextObject("{=tor_item_hint_read_scroll_str}Read scroll"));
             inventoryLogic.AfterTransfer += CheckItem;
         }
 
@@ -136,7 +131,7 @@ namespace TOR_Core.Items
             _lastSetItem = item.ItemRosterElement.EquipmentElement.Item;
             ItemDescription = _lastSetItem.GetTorSpecificData().Description;
             HasDescription = !ItemDescription.IsEmpty();
-            UpdateUseableButton(_lastSetItem);
+            item.UpdateCanBeSlaughtered();
 
             if (_lastSetItem != null && _lastSetItem.GetTorSpecificData() != null)
             {
@@ -233,55 +228,6 @@ namespace TOR_Core.Items
                 return UIColors.PositiveIndicator;
             }
             else return UIColors.NegativeIndicator;
-        }
-
-        private void UpdateUseableButton(ItemObject selectedItem)
-        {
-            IsUsableItem = selectedItem.IsInventoryUsable() && GetActiveInventoryState().InventoryMode == InventoryMode.Default;
-        }
-
-        private void ExecuteUseItem()
-        {
-            foreach (var trait in _lastSetItem.GetTraits())
-            {
-                if (trait.OnInventoryUseScript != null && !string.IsNullOrWhiteSpace(trait.OnInventoryUseScript.InventoryScriptName) && trait.OnInventoryUseScript.InventoryScriptName != "invalid")
-                {
-                    object script;
-                    if (trait.OnInventoryUseScript.InventoryScriptArguments != null && trait.OnInventoryUseScript.InventoryScriptArguments.Count > 0)
-                    {
-                        script = Activator.CreateInstance(Type.GetType(trait.OnInventoryUseScript.InventoryScriptName), [trait.OnInventoryUseScript.InventoryScriptArguments.ToArray()]);
-                    }
-                    else
-                    {
-                        script = Activator.CreateInstance(Type.GetType(trait.OnInventoryUseScript.InventoryScriptName));
-                    }
-                    if (script is BaseInventoryUseScript inventoryUseScript)
-                    {
-                        inventoryUseScript.UseScript(MobileParty.MainParty, _lastSetItem);
-                    }
-                }
-                /*
-                if (!IsUsableItem
-                    || !TORSkillBookCampaignBehavior.Instance.IsBookUseful(_lastSetItem))
-                {
-                    MBTextManager.SetTextVariable("TOR_LAST_READ_BOOK", _lastSetItem.Name);
-                    TORCommon.Say (new TextObject ("{tor_item_hint_read_scroll_finished_str} It seems that there is nothing more to gain from studying {TOR_LAST_READ_BOOK}."));
-                    return;
-                }
-                if (TORSkillBookCampaignBehavior.Instance.CurrentBook.Equals(_lastSetItem.StringId ?? "")) {
-                    MBTextManager.SetTextVariable("TOR_LAST_READ_BOOK", _lastSetItem.Name);
-                    TORCommon.Say (new TextObject ("{tor_item_hint_read_scroll_finished_str} You are already reading {TOR_LAST_READ_BOOK}."));
-                    return;
-                }
-
-                TORSkillBookCampaignBehavior.Instance.CurrentBook =
-                    _lastSetItem.StringId ?? "";
-                UpdateUseableButton(_lastSetItem);
-                MBTextManager.SetTextVariable("TOR_LAST_READ_BOOK", _lastSetItem.Name);
-                TORCommon.Say (new TextObject ("{tor_item_hint_read_scroll_selected_str} Selected {TOR_LAST_READ_BOOK} for reading!"));
-                return;
-                */
-            }
         }
 
         private void AddThrustDamageProperty(TextObject description, in EquipmentElement targetWeapon, int targetWeaponUsageIndex, in EquipmentElement comparedWeapon, int comparedWeaponUsageIndex)
@@ -444,40 +390,6 @@ namespace TOR_Core.Items
                 {
                     this._itemTraitList = value;
                     base.OnPropertyChangedWithValue(value, "ItemTraitList");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public HintViewModel UseHint
-        {
-            get
-            {
-                return this._useHint;
-            }
-            set
-            {
-                if (value != this._useHint)
-                {
-                    this._useHint = value;
-                    base.OnPropertyChangedWithValue(value, "UseHint");
-                }
-            }
-        }
-
-        [DataSourceProperty]
-        public bool IsUsableItem
-        {
-            get
-            {
-                return this._isUsableItem;
-            }
-            set
-            {
-                if (value != this._isUsableItem)
-                {
-                    this._isUsableItem = value;
-                    base.OnPropertyChangedWithValue(value, "IsUsableItem");
                 }
             }
         }
