@@ -32,6 +32,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private int _originalRace = 0;
         private Equipment PlayerStartEquipment;
         private string _currentEquipmentRosterId = "player_char_creation_childhood_age_empire_default_m";
+        private string _selectedStage2OptionId = ""; // Track stage 2 selection (Wood Elf gods, Dwarf grudges)
         private string _selectedProfessionId = ""; // Track stage 3 selection for stage 4 conditions
         private string _selectedLoreId = null; // Store selected lore for spellcasters (applied at finalization)
         private string _selectedCareerId = null; // Store selected career for vampires/priests (applied at finalization)
@@ -259,99 +260,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 GameTexts.SetVariable("TOR_CC_SPECIALIZATION", "Choose your specialization...");
             }
         }
-
-        private void AddLoreSelectionOptions(NarrativeMenu menu)
-        {
-            // Add lore selection options for spellcasters
-            // Dynamically load from LoreObject.GetAll() like the original popup did
-            var allLores = LoreObject.GetAll();
-
-            foreach (var lore in allLores)
-            {
-                // Skip MinorMagic and vampire-only lores (same filters as original)
-                if (lore.ID == "MinorMagic" || lore.IsRestrictedToVampires)
-                    continue;
-
-                var option = new NarrativeMenuOption(
-                    "lore_" + lore.ID,  // Prefix with "lore_" for unique IDs
-                    new TextObject(lore.Name),
-                    new TextObject( ""), // Use lore description if available
-                    new GetNarrativeMenuOptionArgsDelegate(args => { /* Empty for now */ }),
-                    new NarrativeMenuOptionOnConditionDelegate(manager => IsSpellcasterAndLoreAvailable(lore)),
-                    new NarrativeMenuOptionOnSelectDelegate(manager => { /* Handle selection */ }),
-                    new NarrativeMenuOptionOnConsequenceDelegate(manager => OnLoreSelected(lore.ID))
-                );
-                menu.AddNarrativeMenuOption(option);
-            }
-        }
-
-        private bool IsSpellcasterAndLoreAvailable(LoreObject lore)
-        {
-            bool isSpellcaster = IsSpellcaster();
-            TORCommon.Log($"[IsSpellcasterAndLoreAvailable] Lore: {lore.ID}, IsSpellcaster: {isSpellcaster}, _selectedProfessionId: '{_selectedProfessionId}'", NLog.LogLevel.Info);
-
-            if (!isSpellcaster) return false;
-
-            // Filter out lores disabled for current culture (same as original)
-            if (lore.DisabledForCultures.Contains(CharacterObject.PlayerCharacter.Culture.StringId))
-                return false;
-
-            // Don't show lores already known
-            if (Hero.MainHero.GetExtendedInfo().HasKnownLore(lore.ID))
-                return false;
-
-            return true;
-        }
-
-        private void AddBloodlineSelectionOptions(NarrativeMenu menu)
-        {
-            // Add bloodline selection options for vampires
-            var bloodlines = new[]
-            {
-                ("bloodline_von_carstein", "Von Carstein Vampire", "The noble bloodline of Sylvania"),
-                ("bloodline_blood_knight", "Blood Knight", "An undead warrior of terrible prowess"),
-                ("bloodline_necrarch", "Necrarch", "A scholar of the dark arts"),
-            };
-
-            foreach (var (id, name, desc) in bloodlines)
-            {
-                var option = new NarrativeMenuOption(
-                    id,
-                    new TextObject(name),
-                    new TextObject(desc),
-                    new GetNarrativeMenuOptionArgsDelegate(args => { /* Empty for now */ }),
-                    new NarrativeMenuOptionOnConditionDelegate(manager => IsVampire()),
-                    new NarrativeMenuOptionOnSelectDelegate(manager => { /* Handle selection */ }),
-                    new NarrativeMenuOptionOnConsequenceDelegate(manager => OnBloodlineSelected(id))
-                );
-                menu.AddNarrativeMenuOption(option);
-            }
-        }
-
-        private void AddPriesthoodSelectionOptions(NarrativeMenu menu)
-        {
-            // Add priesthood selection options for Empire priests
-            var gods = new[]
-            {
-                ("god_sigmar", "Sigmar", "The Warrior God, founder of the Empire"),
-                ("god_ulric", "Ulric", "The God of Winter, Wolves, and War"),
-            };
-
-            foreach (var (id, name, desc) in gods)
-            {
-                var option = new NarrativeMenuOption(
-                    id,
-                    new TextObject(name),
-                    new TextObject(desc),
-                    new GetNarrativeMenuOptionArgsDelegate(args => { /* Empty for now */ }),
-                    new NarrativeMenuOptionOnConditionDelegate(manager => IsPriest()),
-                    new NarrativeMenuOptionOnSelectDelegate(manager => { /* Handle selection */ }),
-                    new NarrativeMenuOptionOnConsequenceDelegate(manager => OnPriesthoodSelected(id))
-                );
-                menu.AddNarrativeMenuOption(option);
-            }
-        }
-
+        
         public string GetSelectedProfessionId() => _selectedProfessionId;
 
         public bool IsSpellcaster(string professionId = null)
@@ -414,6 +323,70 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// Get the currently stored career ID (null if none selected)
         /// </summary>
         public string GetStoredCareerId() => _selectedCareerId;
+
+        /// <summary>
+        /// Clear profession-specific bonuses that were applied during character creation.
+        /// Called when user goes back from specialization stage to change profession.
+        /// </summary>
+        public void ClearProfessionBonuses()
+        {
+            var hero = Hero.MainHero;
+            var info = hero.GetExtendedInfo();
+
+            TORCommon.Log("[TorCharacterCreationContentHandler] Clearing profession-specific bonuses", NLog.LogLevel.Info);
+
+            // Remove all lores - they'll be re-added if the profession still needs them
+            var allLores = LoreObject.GetAll();
+            foreach (var lore in allLores)
+            {
+                if (info.HasKnownLore(lore.ID))
+                {
+                    info.RemoveKnownLore(lore.ID);
+                    TORCommon.Log($"[TorCharacterCreationContentHandler] Removed lore: {lore.ID}", NLog.LogLevel.Info);
+                }
+            }
+
+            // Remove careers - they'll be re-added when profession is finalized again
+            var currentCareer = hero.GetCareer();
+            if (currentCareer != null)
+            {
+                info.CareerID = null;
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Removed career: {currentCareer.StringId}", NLog.LogLevel.Info);
+            }
+
+            // Remove profession-specific attributes
+            string[] professionAttributes =
+            {
+                "SpellCaster", "Necromancer", "Vampire", "Priest",
+                "PriestSigmar", "PriestUlric", "PriestLady", "RuneCraft"
+            };
+            foreach (var attribute in professionAttributes)
+            {
+                hero.RemoveAttribute(attribute);
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Removed attribute: {attribute}", NLog.LogLevel.Info);
+            }
+
+            // Remove profession-specific abilities
+            string[] professionAbilities =
+            {
+                "Dart", "NagashGaze", "SummerHeat", "AmberSpear",
+                "BoltOfAqshy", "AuraOfTheLady", "SummonSkeleton"
+            };
+            foreach (var ability in professionAbilities)
+            {
+                info.RemoveAbility(ability);
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Removed ability: {ability}", NLog.LogLevel.Info);
+            }
+
+            // Reset spell casting level if it was set
+            if (info.SpellCastingLevel != SpellCastingLevel.None)
+            {
+                hero.SetSpellCastingLevel(SpellCastingLevel.None);
+                TORCommon.Log("[TorCharacterCreationContentHandler] Reset spell casting level to None", NLog.LogLevel.Info);
+            }
+
+            TORCommon.Log("[TorCharacterCreationContentHandler] Profession bonuses cleared", NLog.LogLevel.Info);
+        }
 
         private void OnLoreSelected(string loreId)
         {
@@ -498,6 +471,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var race = _originalRace;
             var isFemale = _isFemale;
 
+            // Track stage 2 selection for deferred application
+            if (selectedOption != null && selectedOption.StageNumber == 2)
+            {
+                _selectedStage2OptionId = optionId;
+                TORCommon.Log($"[OnOptionSelected] Stage 2 option selected: {_selectedStage2OptionId}", NLog.LogLevel.Info);
+            }
+
             // Track stage 3 (profession) selection for stage 4 skip logic
             if (selectedOption != null && selectedOption.StageNumber == 3)
             {
@@ -569,6 +549,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private void OnOptionFinalize(CharacterCreationManager manager, string id)
         {
+            // DEFERRED APPLICATION: All bonuses are now applied in OnCharacterCreationFinalized()
+            // Stage 2 bonuses (Wood Elf gods, Dwarf grudges) handled by ApplyStage2Bonuses()
+            // Stage 3 bonuses (professions) handled by ApplyProfessionBonuses()
+
+            /* COMMENTED OUT - Now handled by ApplyStage2Bonuses() and ApplyProfessionBonuses() at character creation finalization
             Hero.MainHero.AddAttribute("AbilityUser");
             Hero.MainHero.AddAttribute("CanPlaceArtillery");
 
@@ -581,7 +566,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 Hero.MainHero.AddCareer(TORCareers.KnightOldWorld);
             }
-            
+
             if (id == "option_3_empire_magister_apprentice" || id == "option_3_bretonnia_damsel")
             {
                 Hero.MainHero.AddAttribute("SpellCaster");
@@ -614,12 +599,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 Hero.MainHero.AddCareer(TORCareers.Ironbreaker);
             }
-            
+
             if (id == "option_3_dw_slayer")
             {
                 Hero.MainHero.AddCareer(TORCareers.Slayer);
             }
-            
+
             if (id == "option_3_empire_witch_hunter")
             {
                 Hero.MainHero.AddCareer(TORCareers.WitchHunter);
@@ -637,7 +622,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
             {
-                
+
                 var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
                 string symbol = null;
                 ReligionObject religion = null;
@@ -645,13 +630,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 {
                     case "option_2_we_kurnous":
                     {
-                        symbol = "WEKithbandSymbol"; 
+                        symbol = "WEKithbandSymbol";
                         religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_kurnous");
                         break;
                     }
                     case "option_2_we_isha":
-                    { 
-                        symbol = "WETreekinSymbol"; 
+                    {
+                        symbol = "WETreekinSymbol";
                         religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_isha");
                         break;
                     }
@@ -660,12 +645,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_loec");
                         break;
                     case "option_2_we_vaul":
-                        symbol = "WEKithbandSymbol"; 
+                        symbol = "WEKithbandSymbol";
                         religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_vaul");
                         break;
                     case "option_2_we_khaine":
                         Hero.MainHero.AddAttribute("WEKithbandSymbol");
-                        symbol = "WEKithbandSymbol"; 
+                        symbol = "WEKithbandSymbol";
                         religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_anath_raema");
                         break;
                 }
@@ -685,22 +670,22 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 {
                     case "option_2_dw_umgi":
                     {
-                        grudge = "HumanGrudge"; 
+                        grudge = "HumanGrudge";
                         break;
                     }
                     case "option_2_dw_elgi":
-                    { 
-                        grudge = "ElfGrudge"; 
+                    {
+                        grudge = "ElfGrudge";
                         break;
                     }
                     case "option_2_dw_urks":
                         grudge = "GreenskinGrudge";
                         break;
                     case "option_2_dw_zanguzaz":
-                        grudge = "UndeadGrudge"; 
+                        grudge = "UndeadGrudge";
                         break;
                     case "option_2_dw_thaggoraki":
-                        grudge = "SkavenGrudge"; 
+                        grudge = "SkavenGrudge";
                         break;
                 }
 
@@ -709,8 +694,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     Hero.MainHero.AddAttribute(grudge); // benefits from battles against people
                 }
             }
+            */
 
-
+            /* COMMENTED OUT - Now handled by ApplyProfessionBonuses() at character creation finalization
             if (id == "option_3_we_waywatcher" || id == "option_3_eo_ghost_strider")
             {
                 Hero.MainHero.AddCareer(TORCareers.Waywatcher);
@@ -723,12 +709,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddKnownLore("HighMagic");
                 Hero.MainHero.AddKnownLore("LoreOfFire");
                 Hero.MainHero.AddAbility("BoltOfAqshy");
-                
+
                 var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
             }
-            
+
             if(id == "option_3_bretonnia_damsel")
             {
                 Hero.MainHero.AddAttribute("PriestLady");
@@ -787,14 +773,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 Hero.MainHero.AddCareer(TORCareers.Mercenary);
             }
+            */
 
             // NOTE: Specialization selection now handled by TORSpecializationStageView
-            // No need to call NextStage() or do anything here
+            // All profession bonuses are now applied at character creation finalization via ApplyProfessionBonuses()
         }
         
         private void OnCharacterCreationFinalized()
         {
-            // Apply stored specialization selections at the very end
+            // Apply bonuses in order: Stage 2 (gods/grudges) -> Stage 3 (professions) -> Stage 4 (specializations)
+            ApplyStage2Bonuses();
+            ApplyProfessionBonuses();
             ApplyStoredSpecializations();
 
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
@@ -819,6 +808,261 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 mapState.Handler.TeleportCameraToMainParty();
             }
             SetHeroAge(25);
+        }
+
+        /// <summary>
+        /// Apply Stage 2 bonuses (Wood Elf gods/symbols, Dwarf grudges) at character creation finalization.
+        /// This is called BEFORE applying profession bonuses to ensure proper application order.
+        /// </summary>
+        private void ApplyStage2Bonuses()
+        {
+            var hero = Hero.MainHero;
+            string stage2OptionId = _selectedStage2OptionId;
+
+            if (string.IsNullOrEmpty(stage2OptionId))
+            {
+                TORCommon.Log("[TorCharacterCreationContentHandler] No Stage 2 option selected, skipping Stage 2 bonuses", NLog.LogLevel.Info);
+                return;
+            }
+
+            TORCommon.Log($"[TorCharacterCreationContentHandler] Applying Stage 2 bonuses for: {stage2OptionId}", NLog.LogLevel.Info);
+
+            // Wood Elf god/symbol selection
+            if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
+            {
+                var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+                string symbol = null;
+                ReligionObject religion = null;
+
+                switch (stage2OptionId)
+                {
+                    case "option_2_we_kurnous":
+                        symbol = "WEKithbandSymbol";
+                        religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_kurnous");
+                        break;
+                    case "option_2_we_isha":
+                        symbol = "WETreekinSymbol";
+                        religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_isha");
+                        break;
+                    case "option_2_we_loec":
+                        symbol = "WEWardancerSymbol";
+                        religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_loec");
+                        break;
+                    case "option_2_we_vaul":
+                        symbol = "WEKithbandSymbol";
+                        religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_vaul");
+                        break;
+                    case "option_2_we_khaine":
+                        symbol = "WEKithbandSymbol";
+                        religion = ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_anath_raema");
+                        break;
+                }
+
+                if (symbol != null && religion != null)
+                {
+                    hero.AddAttribute(symbol);
+                    if (settlementBehavior != null)
+                    {
+                        settlementBehavior.UnlockOakUpgrade(symbol);
+                    }
+                    hero.AddReligiousInfluence(religion, 40);
+                    TORCommon.Log($"[TorCharacterCreationContentHandler] Added Wood Elf symbol {symbol} and religion {religion.StringId}", NLog.LogLevel.Info);
+                }
+            }
+
+            // Dwarf grudge selection
+            if (hero.Culture.StringId == TORConstants.Cultures.DAWI)
+            {
+                string grudge = null;
+
+                switch (stage2OptionId)
+                {
+                    case "option_2_dw_umgi":
+                        grudge = "HumanGrudge";
+                        break;
+                    case "option_2_dw_elgi":
+                        grudge = "ElfGrudge";
+                        break;
+                    case "option_2_dw_urks":
+                        grudge = "GreenskinGrudge";
+                        break;
+                    case "option_2_dw_zanguzaz":
+                        grudge = "UndeadGrudge";
+                        break;
+                    case "option_2_dw_thaggoraki":
+                        grudge = "SkavenGrudge";
+                        break;
+                }
+
+                if (grudge != null)
+                {
+                    hero.AddAttribute(grudge);
+                    TORCommon.Log($"[TorCharacterCreationContentHandler] Added Dwarf grudge: {grudge}", NLog.LogLevel.Info);
+                }
+            }
+
+            TORCommon.Log($"[TorCharacterCreationContentHandler] Stage 2 bonuses applied for: {stage2OptionId}", NLog.LogLevel.Info);
+        }
+
+        /// <summary>
+        /// Apply profession-specific bonuses based on the selected profession at character creation finalization.
+        /// This is called BEFORE applying specializations, so base profession bonuses are set first.
+        /// </summary>
+        private void ApplyProfessionBonuses()
+        {
+            var hero = Hero.MainHero;
+            string professionId = _selectedProfessionId;
+
+            if (string.IsNullOrEmpty(professionId))
+            {
+                TORCommon.Log("[TorCharacterCreationContentHandler] No profession selected, skipping profession bonuses", NLog.LogLevel.Warn);
+                return;
+            }
+
+            TORCommon.Log($"[TorCharacterCreationContentHandler] Applying profession bonuses for: {professionId}", NLog.LogLevel.Info);
+
+            // Everyone gets these base attributes
+            hero.AddAttribute("AbilityUser");
+            hero.AddAttribute("CanPlaceArtillery");
+
+            // Apply profession-specific bonuses based on selected profession
+            switch (professionId)
+            {
+                case "option_3_empire_magister_apprentice":
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddAbility("Dart");
+                    hero.AddKnownLore("MinorMagic");
+                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.AddCareer(TORCareers.ImperialMagister);
+                    break;
+
+                case "option_3_bretonnia_damsel":
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddAttribute("PriestLady");
+                    hero.AddAbility("Dart");
+                    hero.AddAbility("AuraOfTheLady");
+                    hero.AddKnownLore("MinorMagic");
+                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.AddCareer(TORCareers.GrailDamsel);
+                    // Add Realm Knight companion
+                    var knight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_realm_knight");
+                    if (knight != null) hero.PartyBelongedTo.Party.AddMember(knight, 1, 0);
+                    break;
+
+                case "option_3_we_spellsinger":
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddKnownLore("MinorMagic");
+                    hero.AddKnownLore("LoreOfLife");
+                    hero.AddKnownLore("LoreOfBeasts");
+                    hero.AddAbility("SummerHeat");
+                    hero.AddAbility("AmberSpear");
+                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.AddCareer(TORCareers.Spellsinger);
+                    break;
+
+                case "option_3_eo_greylord_apprentice":
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddKnownLore("HighMagic");
+                    hero.AddKnownLore("LoreOfFire");
+                    hero.AddAbility("BoltOfAqshy");
+                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.AddCareer(TORCareers.GreyLord);
+                    break;
+
+                case "option_3_empire_priest_acolyte":
+                    hero.AddAttribute("Priest");
+                    // Specialization (Sigmar/Ulric) will be applied by ApplyStoredSpecializations
+                    break;
+
+                case "option_3_vc_vampire":
+                case "option_3_mousillon_vampire":
+                    hero.AddAttribute("Vampire");
+                    hero.AddAttribute("Necromancer");
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
+                    // Bloodline career will be applied by ApplyStoredSpecializations
+                    break;
+
+                case "option_3_vc_necromancer":
+                case "option_3_mousillon_necromancer":
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddAttribute("Necromancer");
+                    hero.AddAbility("SummonSkeleton");
+                    hero.AddKnownLore("MinorMagic");
+                    hero.AddKnownLore("Necromancy");
+                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.AddCareer(TORCareers.Necromancer);
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
+                    break;
+
+                case "option_3_dw_shield_breaker":
+                    hero.AddCareer(TORCareers.Ironbreaker);
+                    break;
+
+                case "option_3_dw_slayer":
+                    hero.AddCareer(TORCareers.Slayer);
+                    break;
+
+                case "option_3_dw_rune_smith":
+                    hero.AddCareer(TORCareers.Runelord);
+                    hero.AddAttribute("RuneCraft");
+                    break;
+
+                case "option_3_empire_witch_hunter":
+                    hero.AddCareer(TORCareers.WitchHunter);
+                    break;
+
+                case "option_3_bretonnia_knight_errant":
+                    hero.AddCareer(TORCareers.GrailKnight);
+                    break;
+
+                case "option_3_mousillon_knight_errant":
+                    hero.AddCareer(TORCareers.BlackGrailKnight);
+                    break;
+
+                case "option_3_we_waywatcher":
+                case "option_3_eo_ghost_strider":
+                    hero.AddCareer(TORCareers.Waywatcher);
+                    break;
+
+                case "option_3_gs_path_of_boss":
+                case "option_3_gs_path_of_bully":
+                case "option_3_gs_path_of_boar_boys":
+                case "option_3_gs_path_of_savage_boys":
+                case "option_3_gs_path_of_shaman":
+                    hero.AddCareer(TORCareers.OrcBoss);
+                    break;
+
+                // Empire knight from stage 2 (not stage 3, but included for completeness)
+                case "option_empire_knight":
+                    hero.AddCareer(TORCareers.KnightOldWorld);
+                    break;
+            }
+
+            // Default career if none was set
+            if (hero.GetCareer() == null)
+            {
+                if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
+                {
+                    hero.AddCareer(TORCareers.Warden);
+                }
+                else
+                {
+                    hero.AddCareer(TORCareers.Mercenary);
+                }
+            }
+
+            TORCommon.Log($"[TorCharacterCreationContentHandler] Profession bonuses applied for: {professionId}", NLog.LogLevel.Info);
         }
 
         /// <summary>

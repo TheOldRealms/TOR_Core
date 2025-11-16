@@ -389,7 +389,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             if (_dataSource == null)
             {
-                //TODO storing should only happen when a selection actually happened, currently the y
                 TORCommon.Log("[TORSpecializationStageView] Cannot store specialization - no data source", NLog.LogLevel.Warn);
                 return;
             }
@@ -430,11 +429,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             TORCommon.Log("[TORSpecializationStageView] PreviousStage (Back button) called", NLog.LogLevel.Info);
 
             // Clear stored selections when going back (user might change profession)
+            // With deferred application, we don't need to clear bonuses since nothing is applied yet
             var handler = GetHandler();
             if (handler != null)
             {
                 handler.ClearStoredSpecializations();
-                TORCommon.Log("[TORSpecializationStageView] Cleared stored selections (user clicked Back)", NLog.LogLevel.Info);
+                TORCommon.Log("[TORSpecializationStageView] Cleared stored specialization selections (user clicked Back)", NLog.LogLevel.Info);
             }
 
             _negativeAction();
