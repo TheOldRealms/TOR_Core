@@ -51,7 +51,21 @@
                               <ItemTemplate>
                                 <ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" Brush="TorEnchantingItemBrush" MarginBottom="2" Command.Click="ExecuteSelectItem" IsSelected="@IsSelected">
                                   <Children>
-                                    <InventoryImageIdentifierWidget Id="ImageIdentifier" DoNotAcceptEvents="true" DataSource="{ImageIdentifier}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="60" SuggestedHeight="30" VerticalAlignment="Center" MarginLeft="2" MarginTop="2" ImageId="@Id" ImageTypeCode="@ImageTypeCode" AdditionalArgs="@AdditionalArgs" LoadingIconWidget="LoadingIconWidget">
+                                    <InventoryImageIdentifierWidget 
+                                    Id="ImageIdentifier" 
+                                    DoNotAcceptEvents="true" 
+                                    DataSource="{ImageIdentifier}" 
+                                    WidthSizePolicy="Fixed" 
+                                    HeightSizePolicy="Fixed" 
+                                    SuggestedWidth="60" 
+                                    SuggestedHeight="30" 
+                                    VerticalAlignment="Center" 
+                                    MarginLeft="2" 
+                                    MarginTop="2" 
+                                    ImageId="@Id" 
+                                    TextureProviderName="@TextureProviderName" 
+                                    AdditionalArgs="@AdditionalArgs" 
+                                    LoadingIconWidget="LoadingIconWidget">
                                       <Children>
                                         <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="Inventory\tuple_shadow" AlphaFactor="0.7"/>
                                         <Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="LoadingIconWidget"/>
@@ -159,10 +173,10 @@
                             <EnchantingIngredientWidget Text="@PendingAmountText" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" VerticalAlignment="Center" MarginTop="5" MarginLeft="5" MarginRight="5" />
                             <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="40" VerticalAlignment="Center" MarginTop="5" MarginLeft="5" MarginRight="5">
                               <Children>
-                                <ImageIdentifierWidget Id="ImageIdentifierIngredient" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" SuggestedWidth="80" SuggestedHeight="40" VerticalAlignment="Center" MarginLeft="2" MarginTop="2" ImageId="@IngredientId" ImageTypeCode="1" AdditionalArgs="" LoadingIconWidget="IngredientLoadingWidget">
+                                <ImageIdentifierWidget Id="ImageIdentifierIngredient" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" SuggestedWidth="80" SuggestedHeight="40" VerticalAlignment="Center" MarginLeft="2" MarginTop="2" ImageId="@IngredientId" TextureProviderName="@TextureProviderName" AdditionalArgs="@AdditionalArgs" LoadingIconWidget="IngredientLoadingWidget">
                                   <Children>
                                     <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="Inventory\tuple_shadow" AlphaFactor="0.7"/>
-                                    <Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="IngredientLoadingWidget"/>
+                                    <!--<Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="IngredientLoadingWidget"/>-->
                                     <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Popup.Frame" IsEnabled="false" />
                                   </Children>
                                 </ImageIdentifierWidget>
