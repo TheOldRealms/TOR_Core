@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
+﻿using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade.View.Tableaus;
 using TOR_Core.Items;
 
 namespace TOR_Core.CampaignMechanics.Crafting
@@ -23,6 +16,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
         private string _pendingAmountString;
         private BasicTooltipViewModel _ingredientTooltip;
         private readonly TorTradeGoodType _torTradeGoodType = TorTradeGoodType.Invalid;
+        private string _itemImageTextureProviderName = "ItemImageTextureProvider";
 
         public ItemObject Item => _ingredient;
         public TorTradeGoodType IngredientType => _torTradeGoodType;
@@ -70,6 +64,20 @@ namespace TOR_Core.CampaignMechanics.Crafting
             _pendingAmount = 0;
             PendingAmountText = _pendingAmount.ToString();
             RefreshValues();
+        }
+
+        [DataSourceProperty]
+        public string TextureProviderName
+        {
+            get => _itemImageTextureProviderName;
+            set
+            {
+                if (_itemImageTextureProviderName != value)
+                {
+                    _itemImageTextureProviderName = value;
+                    OnPropertyChangedWithValue(value, "TextureProviderName");
+                }
+            }
         }
 
         [DataSourceProperty]

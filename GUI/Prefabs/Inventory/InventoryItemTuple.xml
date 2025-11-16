@@ -262,7 +262,20 @@
                         <InventoryItemValueTextWidget Id="CostText" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IntText="@ItemCost" DoNotAcceptEvents="true"  Brush="InventoryItemCostFont" Brush.TextHorizontalAlignment="Center" ProfitType="@ProfitType" IsVisible="@IsTransferable"/>
                       </Children>
                     </Widget>
-                    <InventoryImageIdentifierWidget Id="ImageIdentifier" DoNotAcceptEvents="true" DataSource="{ImageIdentifier}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="111" SuggestedHeight="51" MarginLeft="!Inventory.Tuple.ThumbnailMargin" MarginTop="2" ImageId="@Id" TextureProviderName="@TextureProviderName" AdditionalArgs="@AdditionalArgs" LoadingIconWidget="LoadingIconWidget">
+                    <InventoryImageIdentifierWidget 
+                    Id="ImageIdentifier" 
+                    DoNotAcceptEvents="true" 
+                    DataSource="{ImageIdentifier}" 
+                    WidthSizePolicy="Fixed" 
+                    HeightSizePolicy="Fixed" 
+                    SuggestedWidth="111" 
+                    SuggestedHeight="51" 
+                    MarginLeft="!Inventory.Tuple.ThumbnailMargin" 
+                    MarginTop="2" 
+                    ImageId="@Id" 
+                    TextureProviderName="@TextureProviderName" 
+                    AdditionalArgs="@AdditionalArgs" 
+                    LoadingIconWidget="LoadingIconWidget">
                       <Children>
                         <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="Inventory\tuple_shadow" AlphaFactor="0.7"/>
                         <Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="LoadingIconWidget"/>
