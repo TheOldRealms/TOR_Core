@@ -26,6 +26,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
+        CampaignEvents.HeroPrisonerTaken.AddNonSerializedListener(this, OnHeroPrisonerTaken);
     }
 
     private void InitialCombatStrengthCalculation(IMission mission)
@@ -54,12 +55,6 @@ public class WaaaghBehavior : CampaignBehaviorBase
         // Only apply to Greenskin players
         if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN) return;
         if (mapEvent == null || !mapEvent.IsPlayerMapEvent) return;
-
-        if (!IsPlayerLeaderOrInitiator(mapEvent))
-        {
-            UpdateWaaaghState();
-            return;
-        }
 
         var playerWon = mapEvent.WinningSide == mapEvent.PlayerSide;
 
@@ -112,20 +107,6 @@ public class WaaaghBehavior : CampaignBehaviorBase
         }
 
         UpdateWaaaghState();
-    }
-
-
-    private static bool IsPlayerLeaderOrInitiator(MapEvent mapEvent)
-    {
-        var playerParty = MobileParty.MainParty;
-        var side = mapEvent.GetMapEventSide(mapEvent.PlayerSide);
-
-        var leaderPartyBase = side?.LeaderParty;
-        var playerPartyBase = playerParty?.Party;
-        var playerArmyLeaderBase = playerParty?.Army?.LeaderParty?.Party;
-
-        return leaderPartyBase == playerPartyBase
-               || (playerArmyLeaderBase != null && leaderPartyBase == playerArmyLeaderBase);
     }
 
     private void OnDailyTick()
@@ -287,6 +268,23 @@ public class WaaaghBehavior : CampaignBehaviorBase
                 Hero.MainHero.AddAttribute("Wargh4");
                 break;
         }
+    }
+    private void OnHeroPrisonerTaken(PartyBase capturer, Hero prisoner)
+    {
+        if (prisoner != Hero.MainHero)
+            return;
+
+        if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN)
+            return;
+
+        var currentWaaagh = Hero.MainHero.GetCustomResourceValue("Waaagh");
+        if (currentWaaagh <= 0f)
+        {
+            UpdateWaaaghState();
+            return;
+        }
+        Hero.MainHero.AddCustomResource("Waaagh", -(int)currentWaaagh);
+        UpdateWaaaghState();
     }
 
     public override void SyncData(IDataStore dataStore)

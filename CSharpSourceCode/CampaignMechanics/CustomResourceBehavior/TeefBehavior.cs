@@ -151,64 +151,14 @@ public class TeefBehavior : CampaignBehaviorBase
 
         void OpenForSpending()
         {
-            var beforeSnapshot = new ItemRoster(Hero.MainHero.PartyBelongedTo.ItemRoster);
+            var donatedItems = new ItemRoster();
 
-            var emptyRoster = new ItemRoster();
             InventoryScreenHelper.OpenScreenAsReceiveItems(
-                emptyRoster,
+                donatedItems,
                 new TextObject("Give Items to the Big boss"),
-                () => AfterDonation(beforeSnapshot)
-            );
-
-            void AfterDonation(ItemRoster beforeSnapshotLocal)
-            {
-                var beforeMap = new Dictionary<ItemObject, int>();
-                foreach (var e in beforeSnapshotLocal)
-                {
-                    var it = e.EquipmentElement.Item;
-                    if (it == null) continue;
-                    if (it.StringId != null && it.StringId.StartsWith("tor_gs_")) continue;
-
-                    if (beforeMap.TryGetValue(it, out var cnt))
-                        beforeMap[it] = cnt + e.Amount;
-                    else
-                        beforeMap[it] = e.Amount;
-                }
-
-                var afterMap = new Dictionary<ItemObject, int>();
-                foreach (var e in Hero.MainHero.PartyBelongedTo.ItemRoster)
-                {
-                    var it = e.EquipmentElement.Item;
-                    if (it == null) continue;
-
-                    if (afterMap.TryGetValue(it, out var cnt))
-                        afterMap[it] = cnt + e.Amount;
-                    else
-                        afterMap[it] = e.Amount;
-                }
-
-                long totalItemValue = 0;
-                foreach (var kv in beforeMap)
-                {
-                    var item = kv.Key;
-                    var beforeCount = kv.Value;
-
-                    afterMap.TryGetValue(item, out var afterCount);
-                    var removed = beforeCount - afterCount;
-                    if (removed <= 0) continue;
-
-                    var unitValue = Math.Max(0, item.Value);
-                    totalItemValue += (long)unitValue * removed;
-                }
-
-                var teef = (int)(totalItemValue / ItemExchange);
-                if (teef > 0)
-                {
-                    Hero.MainHero.AddCultureSpecificCustomResource(teef);
-                    TORCampaignEvents.Instance.OnTeefTransferred(Hero.MainHero, (int)totalItemValue);
-                }
-            }
+                () => OnItemsDiscarded(donatedItems));
         }
+
 
 
         void OpenForCreatingLootPiles()
@@ -362,6 +312,32 @@ public class TeefBehavior : CampaignBehaviorBase
         Hero.MainHero.AddCultureSpecificCustomResource(teefValue);
         Hero.MainHero.Gold -= gold;
     }
+
+    private void OnItemsDiscarded(ItemRoster itemRoster)
+    {
+        long totalItemValue = 0;
+
+        foreach (var element in itemRoster)
+        {
+            var item = element.EquipmentElement.Item;
+            if (item == null)
+                continue;
+
+            if (item.StringId != null && item.StringId.StartsWith("tor_gs_"))
+                continue;
+
+            var unitValue = Math.Max(0, item.Value);
+            totalItemValue += (long)unitValue * element.Amount;
+        }
+
+        var teef = (int)(totalItemValue / ItemExchange);
+        if (teef <= 0)
+            return;
+
+        Hero.MainHero.AddCultureSpecificCustomResource(teef);
+        TORCampaignEvents.Instance.OnTeefTransferred(Hero.MainHero, (int)totalItemValue);
+    }
+
 
     public override void SyncData(IDataStore dataStore)
     {

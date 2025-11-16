@@ -100,9 +100,9 @@ namespace TOR_Core.Quests.Careers
                 RequiredBattlesWon);
 
             _taskArenaFights = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest1_log_arena}Win {REQUIRED} arena fights")
+                new TextObject("{=tor_orc_boss_quest1_log_arena}Win {REQUIRED} tournaments")
                     .SetTextVariable("REQUIRED", RequiredArenaFights),
-                new TextObject("{=tor_orc_boss_quest1_task_arena}Arena Fights"),
+                new TextObject("{=tor_orc_boss_quest1_task_arena}Tournaments"),
                 _currentArenaFights,
                 RequiredArenaFights);
 

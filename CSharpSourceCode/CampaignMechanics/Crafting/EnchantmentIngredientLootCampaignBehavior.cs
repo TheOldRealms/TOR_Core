@@ -57,6 +57,9 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
     private void SetLootedIngredients(MapEvent mapEvent)
     {
         if (mapEvent == null) return;
+        if (Hero.MainHero.IsEnlisted()) return;
+        if (!mapEvent.HasWinner) return;
+        if (mapEvent.PlayerSide != mapEvent.WinningSide) return;
 
         var ingredientKeys = _goodAmounts.Keys.ToList();
         foreach (var key in ingredientKeys)
