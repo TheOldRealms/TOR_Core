@@ -40,6 +40,68 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private const int SkillLevelToAdd = 10;
         private const int AttributeLevelToAdd = 1;
 
+        /// <summary>
+        /// Career-specific spawn location overrides. If a career is not in this dictionary,
+        /// the culture-based default spawn location will be used instead.
+        /// Format: CareerStringId -> CampaignVec2(Vec2(X, Y), true)
+        /// </summary>
+        private static readonly Dictionary<string, CampaignVec2> CareerSpawnOverrides = new()
+        {
+            // Empire
+            ["WarriorPriest"] = new CampaignVec2(new Vec2(1283.261f, 1067.676f), true), // Altdorf gate - Sigmar's holy city
+            ["WarriorPriestUlric"] = new CampaignVec2(new Vec2(1346.493f, 1244.102f), true), // Middenheim gate - Ulric's holy city
+            // Knight Orders
+            ["KnightBlazingSun"] = new CampaignVec2(new Vec2(1428.939f, 1114.684f), true), // Talabheim - Order of the Blazing Sun (Myrmidia)
+            ["KnightPanthers"] = new CampaignVec2(new Vec2(1232.193f, 1105.359f), true), // Carroburg - Knight Panthers (Secular)
+            ["KnightWhiteWolf"] = new CampaignVec2(new Vec2(1346.493f, 1244.102f), true), // Middenheim - Knights of the White Wolf (Ulric)
+            ["KnightGriphon"] = new CampaignVec2(new Vec2(1283.261f, 1067.676f), true), // Altdorf - Order of the Griphon (Sigmar)
+            ["Reiksguard"] = new CampaignVec2(new Vec2(1306.128f, 1044.178f), true), // Castle Reiksguard - Reiksguard (Secular)
+            ["KnightOldWorld"] = new CampaignVec2(new Vec2(1434.869f, 917.6942f), true),
+            ["ImperialMagister"] = new CampaignVec2(new Vec2(1278.084f, 1056.505f), true),
+            ["WitchHunter"] = new CampaignVec2(new Vec2(1560.23f, 974.5349f), true),
+
+            // Vampire Counts
+            ["Necromancer"] = new CampaignVec2(new Vec2(1666.918f, 1019.001f), true),
+            ["BloodKnight"] = new CampaignVec2(new Vec2(1277.776f, 942.5178f), true),
+            ["Necrarch"] = new CampaignVec2(new Vec2(1565.885f, 1095.13f), true),
+            ["MinorVampire"] = new CampaignVec2(new Vec2(1594.974f, 988.7784f), true),
+
+            // Wood Elves
+            ["Spellsinger"] = new CampaignVec2(new Vec2(1233.78f, 781.862f), true),
+            ["Waywatcher"] = new CampaignVec2(new Vec2(1243.44f, 910.1643f), true),
+            ["Warden"] = new CampaignVec2(new Vec2(1187.113f, 864.41f), true),
+
+            // Eonir
+            ["GreyLord"] = new CampaignVec2(new Vec2(1216.198f, 1345.101f), true),
+
+            // Dwarfs
+            ["Slayer"] = new CampaignVec2(new Vec2(1787.716f, 1021.437f), true),
+            ["Ironbreaker"] = new CampaignVec2(new Vec2(1306.575f, 838.3152f), true),
+            ["Runelord"] = new CampaignVec2(new Vec2(1222.444f, 692.9744f), true),
+
+            // Bretonnia
+            ["GrailDamsel"] = new CampaignVec2(new Vec2(941.8889f, 1249.213f), true),
+            ["GrailKnight"] = new CampaignVec2(new Vec2(941.8889f, 1249.213f), true),
+
+            // Mousillon
+            ["BlackGrailKnight"] = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true),
+        };
+
+        /// <summary>
+        /// Culture-specific fallback spawn locations for Mercenary and other careers without specific overrides.
+        /// These are used when a career doesn't have a specific spawn override.
+        /// </summary>
+        private static readonly Dictionary<string, CampaignVec2> CultureMercenarySpawns = new()
+        {
+            [TORConstants.Cultures.EMPIRE] = new CampaignVec2(new Vec2(1135.848f, 1176.32f), true),
+            [TORConstants.Cultures.SYLVANIA] = new CampaignVec2(new Vec2(1655.133f, 1059.423f), true),
+            [TORConstants.Cultures.MOUSILLON] = new CampaignVec2(new Vec2(918.8679f, 1025.561f), true),
+            [TORConstants.Cultures.ASRAI] = new CampaignVec2(new Vec2(1164.307f, 822.5884f), true),
+            [TORConstants.Cultures.EONIR] = new CampaignVec2(new Vec2(1295.974f, 1336.11f), true),
+            [TORConstants.Cultures.DAWI] = new CampaignVec2(new Vec2(1485.11f, 809.4648f), true),
+            [TORConstants.Cultures.BRETONNIA] = new CampaignVec2(new Vec2(1070.923f, 1116.021f), true),
+        };
+
         public TorCharacterCreationContentHandler()
         {
             try
@@ -283,6 +345,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             string id = professionId ?? _selectedProfessionId;
             return id == "option_3_empire_priest_acolyte";
+        }
+
+        public bool IsKnight(string professionId = null)
+        {
+            string id = professionId ?? _selectedProfessionId;
+            return id == "option_3_empire_knight";
         }
 
         /// <summary>
@@ -547,234 +615,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        private void OnOptionFinalize(CharacterCreationManager manager, string id)
+        private void 
+            OnOptionFinalize(CharacterCreationManager manager, string id)
         {
-            // DEFERRED APPLICATION: All bonuses are now applied in OnCharacterCreationFinalized()
-            // Stage 2 bonuses (Wood Elf gods, Dwarf grudges) handled by ApplyStage2Bonuses()
-            // Stage 3 bonuses (professions) handled by ApplyProfessionBonuses()
-
-            /* COMMENTED OUT - Now handled by ApplyStage2Bonuses() and ApplyProfessionBonuses() at character creation finalization
-            Hero.MainHero.AddAttribute("AbilityUser");
-            Hero.MainHero.AddAttribute("CanPlaceArtillery");
-
-            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.MOUSILLON)
-            {
-                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60, false);
-            }
-
-            if (id == "option_empire_knight")
-            {
-                Hero.MainHero.AddCareer(TORCareers.KnightOldWorld);
-            }
-
-            if (id == "option_3_empire_magister_apprentice" || id == "option_3_bretonnia_damsel")
-            {
-                Hero.MainHero.AddAttribute("SpellCaster");
-                Hero.MainHero.AddAbility("Dart");
-                Hero.MainHero.AddKnownLore("MinorMagic");
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-            }
-
-            if (id == "option_3_empire_magister_apprentice")
-            {
-                Hero.MainHero.AddCareer(TORCareers.ImperialMagister);
-            }
-
-            if (id == "option_3_we_spellsinger")
-            {
-                Hero.MainHero.AddCareer(TORCareers.Spellsinger);
-                Hero.MainHero.AddAttribute("SpellCaster");
-                Hero.MainHero.AddKnownLore("LoreOfLife");
-                Hero.MainHero.AddKnownLore("LoreOfBeasts");
-                Hero.MainHero.AddAbility("SummerHeat");
-                Hero.MainHero.AddAbility("AmberSpear");
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-            }
-
-            if (id == "option_3_dw_shield_breaker")
-            {
-                Hero.MainHero.AddCareer(TORCareers.Ironbreaker);
-            }
-
-            if (id == "option_3_dw_slayer")
-            {
-                Hero.MainHero.AddCareer(TORCareers.Slayer);
-            }
-
-            if (id == "option_3_empire_witch_hunter")
-            {
-                Hero.MainHero.AddCareer(TORCareers.WitchHunter);
-            }
-
-            if (id == "option_3_bretonnia_knight_errant")
-            {
-                Hero.MainHero.AddCareer(TORCareers.GrailKnight);
-            }
-
-            if (id == "option_3_mousillon_knight_errant")
-            {
-                Hero.MainHero.AddCareer(TORCareers.BlackGrailKnight);
-            }
-
-            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
-            {
-
-                var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
-                string symbol = null;
-                ReligionObject religion = null;
-                switch (id)
-                {
-                    case "option_2_we_kurnous":
-                    {
-                        symbol = "WEKithbandSymbol";
-                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_kurnous");
-                        break;
-                    }
-                    case "option_2_we_isha":
-                    {
-                        symbol = "WETreekinSymbol";
-                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_isha");
-                        break;
-                    }
-                    case "option_2_we_loec":
-                        symbol = "WEWardancerSymbol";
-                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_loec");
-                        break;
-                    case "option_2_we_vaul":
-                        symbol = "WEKithbandSymbol";
-                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_vaul");
-                        break;
-                    case "option_2_we_khaine":
-                        Hero.MainHero.AddAttribute("WEKithbandSymbol");
-                        symbol = "WEKithbandSymbol";
-                        religion = ReligionObject.All.FirstOrDefault(x=> x.StringId == "cult_of_anath_raema");
-                        break;
-                }
-
-                if (symbol != null && religion!=null)
-                {
-                    Hero.MainHero.AddAttribute(symbol); // is active
-                    settlementBehavior.UnlockOakUpgrade(symbol); // has unlocked it from tree
-                    Hero.MainHero.AddReligiousInfluence(religion,40);
-                }
-            }
-
-            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI)
-            {
-                string grudge = null;
-                switch (id)
-                {
-                    case "option_2_dw_umgi":
-                    {
-                        grudge = "HumanGrudge";
-                        break;
-                    }
-                    case "option_2_dw_elgi":
-                    {
-                        grudge = "ElfGrudge";
-                        break;
-                    }
-                    case "option_2_dw_urks":
-                        grudge = "GreenskinGrudge";
-                        break;
-                    case "option_2_dw_zanguzaz":
-                        grudge = "UndeadGrudge";
-                        break;
-                    case "option_2_dw_thaggoraki":
-                        grudge = "SkavenGrudge";
-                        break;
-                }
-
-                if (grudge != null)
-                {
-                    Hero.MainHero.AddAttribute(grudge); // benefits from battles against people
-                }
-            }
-            */
-
-            /* COMMENTED OUT - Now handled by ApplyProfessionBonuses() at character creation finalization
-            if (id == "option_3_we_waywatcher" || id == "option_3_eo_ghost_strider")
-            {
-                Hero.MainHero.AddCareer(TORCareers.Waywatcher);
-            }
-
-            if (id == "option_3_eo_greylord_apprentice")
-            {
-                Hero.MainHero.AddCareer(TORCareers.GreyLord);
-                Hero.MainHero.AddAttribute("SpellCaster");
-                Hero.MainHero.AddKnownLore("HighMagic");
-                Hero.MainHero.AddKnownLore("LoreOfFire");
-                Hero.MainHero.AddAbility("BoltOfAqshy");
-
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-            }
-
-            if(id == "option_3_bretonnia_damsel")
-            {
-                Hero.MainHero.AddAttribute("PriestLady");
-                Hero.MainHero.AddCareer(TORCareers.GrailDamsel);
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
-                var knight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_realm_knight");
-                Hero.MainHero.AddAbility("AuraOfTheLady");
-                Hero.MainHero.PartyBelongedTo.Party.AddMember(knight, 1, 0);
-            }
-
-            if (id == "option_3_empire_priest_acolyte")
-            {
-                Hero.MainHero.AddAttribute("Priest");
-            }
-            else if (id == "option_3_vc_necromancer" || id == "option_3_mousillon_necromancer")
-            {
-                Hero.MainHero.AddAttribute("SpellCaster");
-                Hero.MainHero.AddAttribute("Necromancer");
-                Hero.MainHero.AddAbility("SummonSkeleton");
-                Hero.MainHero.AddKnownLore("MinorMagic");
-                Hero.MainHero.AddKnownLore("Necromancy");
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                Hero.MainHero.AddCareer(TORCareers.Necromancer);
-                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
-            }
-            else if (id == "option_3_vc_vampire" || id == "option_3_mousillon_vampire")
-            {
-                Hero.MainHero.AddAttribute("Vampire");
-                Hero.MainHero.AddAttribute("Necromancer");
-                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
-            }
-
-            if (id == "option_3_dw_rune_smith")
-            {
-                Hero.MainHero.AddCareer(TORCareers.Runelord);
-                Hero.MainHero.AddAttribute("RuneCraft");
-            }
-
-            if (id == "option_3_gs_path_of_boss" || id == "option_3_gs_path_of_bully" ||
-                id == "option_3_gs_path_of_boar_boys" || id == "option_3_gs_path_of_savage_boys" ||
-                id == "option_3_gs_path_of_shaman")
-            {
-                Hero.MainHero.AddCareer(TORCareers.OrcBoss);
-            }
-
-            if (Hero.MainHero.GetCareer() == null)
-            {
-                if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI)
-                {
-                    Hero.MainHero.AddCareer(TORCareers.Warden);
-                    return;
-                }
-
-                Hero.MainHero.AddCareer(TORCareers.Mercenary);
-            }
-            */
-
             // NOTE: Specialization selection now handled by TORSpecializationStageView
             // All profession bonuses are now applied at character creation finalization via ApplyProfessionBonuses()
         }
@@ -788,18 +631,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
             Hero.MainHero.AddCultureSpecificCustomResource(0);
-            CampaignVec2 position2D = default;
 
-            position2D = culture.StringId switch
-            {
-                TORConstants.Cultures.EMPIRE => new CampaignVec2(new Vec2(1281.157f, 1058.522f),true),
-                TORConstants.Cultures.SYLVANIA => new CampaignVec2(new Vec2(1617.54f, 969.70f),true),
-                TORConstants.Cultures.BRETONNIA => new CampaignVec2(new Vec2(998.96f, 830.02f),true),
-                TORConstants.Cultures.MOUSILLON => new CampaignVec2(new Vec2(932.531f, 1049.944f),true),
-                TORConstants.Cultures.ASRAI => new CampaignVec2(new Vec2(1153.082f, 846.777f),true),
-                TORConstants.Cultures.EONIR => new CampaignVec2(new Vec2(1245.375f, 1292.193f),true),
-                _ => new CampaignVec2(new Vec2(1420.97f, 981.37f),true)
-            };
+            // Determine spawn location with priority: Career override > Culture-specific mercenary > Culture default
+            CampaignVec2 position2D = GetSpawnLocation(culture);
+
             MobileParty.MainParty.Position = position2D;
             MapState mapState;
             if ((mapState = (GameStateManager.Current.ActiveState as MapState)) != null)
@@ -808,6 +643,34 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 mapState.Handler.TeleportCameraToMainParty();
             }
             SetHeroAge(25);
+        }
+
+        /// <summary>
+        /// Get the spawn location for the player character based on their career and culture.
+        /// Priority: Career-specific override > Culture-specific mercenary spawn > Culture default
+        /// </summary>
+        private CampaignVec2 GetSpawnLocation(CultureObject culture)
+        {
+            var career = Hero.MainHero.GetCareer();
+
+            // Priority 1: Check for career-specific spawn override
+            if (career != null && CareerSpawnOverrides.TryGetValue(career.StringId, out var careerSpawn))
+            {
+                TORCommon.Log($"[GetSpawnLocation] Using career-specific spawn for {career.StringId}: X={careerSpawn.X}, Y={careerSpawn.Y}", NLog.LogLevel.Info);
+                return careerSpawn;
+            }
+
+            // Priority 2: Check for culture-specific mercenary/default spawn
+            if (CultureMercenarySpawns.TryGetValue(culture.StringId, out var mercenarySpawn))
+            {
+                TORCommon.Log($"[GetSpawnLocation] Using culture mercenary spawn for {culture.StringId}: X={mercenarySpawn.X}, Y={mercenarySpawn.Y}", NLog.LogLevel.Info);
+                return mercenarySpawn;
+            }
+
+            // Priority 3: Read spawn position from culture XML (start_point_position_x/y attributes)
+            var cultureSpawn = culture.StartingPoint;
+            TORCommon.Log($"[GetSpawnLocation] Using culture XML spawn for {culture.StringId}: X={cultureSpawn.X}, Y={cultureSpawn.Y}", NLog.LogLevel.Info);
+            return cultureSpawn;
         }
 
         /// <summary>

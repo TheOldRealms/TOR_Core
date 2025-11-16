@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SandBox.View.CharacterCreation;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
+using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
@@ -10,7 +12,9 @@ using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
+using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ScreenSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -35,6 +39,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private Scene _characterScene;
         private Camera _camera;
+        private Vec3 _cameraPosition = new Vec3(0.65f, 1.55f, 1.27f, -1f);
+
+        // Character model display
+        private List<AgentVisuals> _characterVisuals;
+        private bool _isCharacterVisualsReady;
 
         public SceneLayer CharacterLayer { get; private set; }
 
@@ -115,14 +124,25 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             TORCommon.Log($"[TORSpecializationStageView] GauntletLayer created, IsActive={_gauntletLayer.IsActive}", NLog.LogLevel.Info);
 
-            // Create custom ViewModel
+            // Create custom ViewModel with equipment preview callback
             _dataSource = new TORSpecializationStageVM(
                 title,
                 description,
                 new Action(NextStage),
                 _affirmativeActionText,
                 new Action(PreviousStage),
-                _negativeActionText
+                _negativeActionText,
+                (selectedOption) =>
+                {
+                    // Update character visual when option is selected
+                    TORCommon.Log($"[TORSpecializationStageView] Equipment preview callback triggered", NLog.LogLevel.Info);
+                    if (selectedOption?.Data != null)
+                    {
+                        var equipment = Hero.MainHero.CharacterObject.Equipment;
+                        //TaleWorlds.Core.Equipment equipment = GetEquipmentForOption(selectedOption.Data);
+                        CreateCharacterVisual(equipment);
+                    }
+                }
             );
 
             // Populate options based on profession type
@@ -196,6 +216,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 // Add only the 2 Warrior Priest careers
                 AddCareerOption("WarriorPriest", "Warrior Priest of Sigmar", "A warrior-priest devoted to Sigmar, protector of mankind.");
                 AddCareerOption("WarriorPriestUlric", "Warrior Priest of Ulric", "A warrior-priest of Ulric, god of winter, wolves, and war.");
+            }
+            else if (handler.IsKnight(professionId))
+            {
+                // Add the 5 Knight Order careers
+                AddCareerOption("KnightBlazingSun", "Order of the Blazing Sun", "Knights of Myrmidia, masters of strategy and warfare from Talabheim.");
+                AddCareerOption("KnightPanthers", "Knight Panthers", "Elite secular knights from Carroburg, known for their ferocity.");
+                AddCareerOption("KnightWhiteWolf", "Knights of the White Wolf", "Devoted followers of Ulric from Middenheim, fierce and relentless.");
+                AddCareerOption("KnightGriphon", "Order of the Griphon", "Noble knights of Sigmar from Altdorf, defenders of the faithful.");
+                AddCareerOption("Reiksguard", "Reiksguard", "The Emperor's personal guard, elite secular knights from Castle Reiksguard.");
             }
 
             TORCommon.Log($"[TORSpecializationStageView] Added {_dataSource.Options.Count} total options", NLog.LogLevel.Info);
@@ -271,6 +300,120 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
+        private TaleWorlds.Core.Equipment GetEquipmentForOption(object optionData)
+        {
+            string rosterId = null;
+
+            if (optionData is TOR_Core.AbilitySystem.Spells.LoreObject)
+            {
+                rosterId = "tor_magister_equipment"; // All magisters same for now
+            }
+            else if (optionData is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
+            {
+                rosterId = career.StringId switch
+                {
+                    "MinorVampire" => "tor_vampire_noble_equipment",
+                    "BloodKnight" => "tor_blood_dragon_equipment",
+                    "Necrarch" => "tor_necrarch_equipment",
+                    "WarriorPriest" => "tor_sigmar_priest_equipment",
+                    "WarriorPriestUlric" => "tor_ulric_priest_equipment",
+                    // Knight orders - all use same equipment
+                    "KnightBlazingSun" => "tor_empire_knight_equipment",
+                    "KnightPanthers" => "tor_empire_knight_equipment",
+                    "KnightWhiteWolf" => "tor_empire_knight_equipment",
+                    "KnightGriphon" => "tor_empire_knight_equipment",
+                    "Reiksguard" => "tor_empire_knight_equipment",
+                    _ => null
+                };
+            }
+
+            if (string.IsNullOrEmpty(rosterId))
+            {
+                TORCommon.Log($"[TORSpecializationStageView] No equipment roster ID for option type {optionData?.GetType().Name}, using player equipment", NLog.LogLevel.Warn);
+                // Fallback: Use player's current equipment for testing
+                return TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment.Clone();
+            }
+
+            // Try to find the equipment roster
+            try
+            {
+                var roster = TaleWorlds.Core.Game.Current.ObjectManager.GetObject<TaleWorlds.Core.MBEquipmentRoster>(rosterId);
+                if (roster != null && roster.AllEquipments.Count > 0)
+                {
+                    // Get first equipment from roster
+                    TORCommon.Log($"[TORSpecializationStageView] Loaded equipment from roster '{rosterId}'", NLog.LogLevel.Info);
+                    return roster.AllEquipments[0].Clone();
+                }
+                else
+                {
+                    TORCommon.Log($"[TORSpecializationStageView] Equipment roster '{rosterId}' not found or empty, using player equipment", NLog.LogLevel.Warn);
+                    // Fallback: Use player's current equipment for testing
+                    return TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment.Clone();
+                }
+            }
+            catch (Exception ex)
+            {
+                TORCommon.Log($"[TORSpecializationStageView] Error loading equipment roster '{rosterId}': {ex.Message}, using player equipment", NLog.LogLevel.Error);
+                // Fallback: Use player's current equipment for testing
+                return TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment.Clone();
+            }
+        }
+
+        private void CreateCharacterVisual(Equipment equipment)
+        {
+            if (_characterScene == null) return;
+
+            ClearCharacterVisuals();
+
+            MatrixFrame frame = MatrixFrame.Identity;
+            GameEntity spawnPoint = _characterScene.FindEntityWithTag("strategycamera_1");
+            if (spawnPoint != null)
+            {
+                frame = spawnPoint.GetGlobalFrame();
+            }
+            frame.origin.z = 0.0f;
+
+            ActionIndexCache actionCode = ActionIndexCache.Create("act_childhood_schooled");
+            Monster baseMonster = TaleWorlds.Core.FaceGen.GetBaseMonsterFromRace(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Race);
+
+            AgentVisualsData visualData = new AgentVisualsData()
+                .UseMorphAnims(true)
+                .Equipment(equipment)
+                .BodyProperties(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.GetBodyProperties(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment, -1))
+                .Frame(frame)
+                .ActionSet(MBGlobals.GetActionSetWithSuffix(baseMonster, TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.IsFemale, "_facegen"))
+                .ActionCode(actionCode)
+                .Scene(_characterScene)
+                .Monster(baseMonster)
+                .UseTranslucency(true)
+                .UseTesselation(true)
+                .Race(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Race)
+                .SkeletonType(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.IsFemale ? SkeletonType.Female : SkeletonType.Male);
+
+            AgentVisuals agentVisuals = AgentVisuals.Create(visualData, "specialization_character", false, false, false);
+            agentVisuals.SetVisible(false);
+            agentVisuals.SetAgentLodZeroOrMax(true);
+            agentVisuals.GetEntity().SetEnforcedMaximumLodLevel(0);
+            agentVisuals.GetEntity().CheckResources(true, true);
+
+            _characterVisuals.Add(agentVisuals);
+            _isCharacterVisualsReady = false;
+
+            TORCommon.Log("[TORSpecializationStageView] Created character visual", NLog.LogLevel.Info);
+        }
+
+        private void ClearCharacterVisuals()
+        {
+            if (_characterVisuals != null)
+            {
+                foreach (var visual in _characterVisuals)
+                {
+                    visual.Reset();
+                }
+                _characterVisuals.Clear();
+            }
+        }
+
         public override void SetGenericScene(Scene scene)
         {
             TORCommon.Log("[TORSpecializationStageView] SetGenericScene called", NLog.LogLevel.Info);
@@ -297,6 +440,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 CharacterLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
             }
+
+            // Initialize character visuals list
+            _characterVisuals = new List<AgentVisuals>();
 
             TORCommon.Log("[TORSpecializationStageView] Scene initialized successfully", NLog.LogLevel.Info);
         }
@@ -349,6 +495,30 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (_characterScene != null)
             {
                 _characterScene.Tick(dt);
+            }
+
+            // Make character visuals visible once resources are loaded
+            if (!_isCharacterVisualsReady && _characterVisuals != null && _characterVisuals.Count > 0)
+            {
+                bool allReady = true;
+                foreach (var visual in _characterVisuals)
+                {
+                    if (!visual.GetEntity().CheckResources(addToQueue: false, true))
+                    {
+                        allReady = false;
+                        break;
+                    }
+                }
+
+                if (allReady)
+                {
+                    foreach (var visual in _characterVisuals)
+                    {
+                        visual.SetVisible(true);
+                    }
+                    _isCharacterVisualsReady = true;
+                    TORCommon.Log("[TORSpecializationStageView] Character visuals are now visible", NLog.LogLevel.Info);
+                }
             }
 
             // Handle hotkey input
@@ -478,6 +648,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             base.OnFinalize();
 
             TORCommon.Log("[TORSpecializationStageView] OnFinalize called", NLog.LogLevel.Info);
+
+            // Clean up character visuals
+            ClearCharacterVisuals();
+            _characterVisuals = null;
 
             // Clean up ViewModel
             _dataSource?.OnFinalize();

@@ -92,6 +92,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private readonly Action _onNextStage;
         private readonly Action _onPreviousStage;
+        private readonly Action<SpecializationOptionVM> _onOptionSelected;
 
         public TORSpecializationStageVM(
             string title,
@@ -99,12 +100,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             Action onNextStage,
             TextObject affirmativeText,
             Action onPreviousStage,
-            TextObject negativeText)
+            TextObject negativeText,
+            Action<SpecializationOptionVM> onOptionSelected = null)
         {
             _titleText = title;
             _descriptionText = description;
             _onNextStage = onNextStage;
             _onPreviousStage = onPreviousStage;
+            _onOptionSelected = onOptionSelected;
             _affirmativeText = affirmativeText?.ToString() ?? "Continue";
             _negativeText = negativeText?.ToString() ?? "Back";
             _canAdvance = false; // Disabled until an option is selected
@@ -220,6 +223,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             _selectedOption = selectedOption;
             CanAdvance = true; // Enable Continue button
+
+            // Notify callback for equipment preview
+            _onOptionSelected?.Invoke(selectedOption);
 
             TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Selected option: {selectedOption.Name}, CanAdvance={CanAdvance}", NLog.LogLevel.Info);
         }
