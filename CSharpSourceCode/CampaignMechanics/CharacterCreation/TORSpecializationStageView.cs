@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SandBox.View.CharacterCreation;
+using System.Numerics;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.Core;
@@ -361,20 +362,45 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private void CreateCharacterVisual(Equipment equipment)
         {
-            if (_characterScene == null) return;
+            if (_characterScene == null)
+            {
+                TORCommon.Log("[TORSpecializationStageView] Cannot create character visual - scene is null", NLog.LogLevel.Error);
+                return;
+            }
+
+            TORCommon.Log($"[TORSpecializationStageView] CreateCharacterVisual called with equipment: {equipment != null}", NLog.LogLevel.Info);
 
             ClearCharacterVisuals();
 
             MatrixFrame frame = MatrixFrame.Identity;
-            GameEntity spawnPoint = _characterScene.FindEntityWithTag("strategycamera_1");
-            if (spawnPoint != null)
+
+            // Try multiple spawn point tags that might exist in the scene
+            string[] spawnTags = { "spawnpoint_player", "sp_player", "strategycamera_1", "character_spawn", "player_spawn" };
+            GameEntity spawnPoint = null;
+
+            foreach (var tag in spawnTags)
             {
-                frame = spawnPoint.GetGlobalFrame();
+                spawnPoint = _characterScene.FindEntityWithTag(tag);
+                if (spawnPoint != null)
+                {
+                    frame = spawnPoint.GetGlobalFrame();
+                    TORCommon.Log($"[TORSpecializationStageView] Found spawn point with tag '{tag}', position: {frame.origin}", NLog.LogLevel.Info);
+                    break;
+                }
             }
-            frame.origin.z = 0.0f;
+
+            if (spawnPoint == null)
+            {
+                // Position character in front of camera at proper height
+                // Camera is at (0.65, 1.55, 1.27), so place character centered in view
+                frame.origin = new Vec3(0f, 1.5f, 0f, -1f);
+                frame.rotation.RotateAboutUp(MathF.PI); // Face the camera
+                TORCommon.Log($"[TORSpecializationStageView] No spawn point found in scene, positioning at: {frame.origin}", NLog.LogLevel.Warn);
+            }
 
             ActionIndexCache actionCode = ActionIndexCache.Create("act_childhood_schooled");
             Monster baseMonster = TaleWorlds.Core.FaceGen.GetBaseMonsterFromRace(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Race);
+            TORCommon.Log($"[TORSpecializationStageView] Using monster: {baseMonster.StringId}, action: {actionCode.Index}", NLog.LogLevel.Info);
 
             AgentVisualsData visualData = new AgentVisualsData()
                 .UseMorphAnims(true)
@@ -385,21 +411,55 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 .ActionCode(actionCode)
                 .Scene(_characterScene)
                 .Monster(baseMonster)
-                .UseTranslucency(true)
+                .UseTranslucency(false)  // CHANGED: Try without translucency
                 .UseTesselation(true)
                 .Race(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Race)
                 .SkeletonType(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.IsFemale ? SkeletonType.Female : SkeletonType.Male);
 
+            TORCommon.Log($"[TORSpecializationStageView] Created AgentVisualsData with frame position: {frame.origin}, rotation: {frame.rotation}", NLog.LogLevel.Info);
+
             AgentVisuals agentVisuals = AgentVisuals.Create(visualData, "specialization_character", false, false, false);
-            agentVisuals.SetVisible(false);
+            if (agentVisuals == null)
+            {
+                TORCommon.Log("[TORSpecializationStageView] Failed to create AgentVisuals - returned null", NLog.LogLevel.Error);
+                return;
+            }
+
+            TORCommon.Log($"[TORSpecializationStageView] AgentVisuals created successfully, entity: {agentVisuals.GetEntity() != null}", NLog.LogLevel.Info);
+
+            // CRITICAL: Force initial animation update (from native code line 149)
+            agentVisuals.GetVisuals().GetSkeleton().TickAnimationsAndForceUpdate(MBRandom.RandomFloat, frame, true);
+            TORCommon.Log("[TORSpecializationStageView] Initial animation update completed", NLog.LogLevel.Info);
+
+            // CHANGED: Keep visible immediately - don't wait for resources
+            agentVisuals.SetVisible(true);
             agentVisuals.SetAgentLodZeroOrMax(true);
             agentVisuals.GetEntity().SetEnforcedMaximumLodLevel(0);
             agentVisuals.GetEntity().CheckResources(true, true);
 
-            _characterVisuals.Add(agentVisuals);
-            _isCharacterVisualsReady = false;
+            // CRITICAL: Set focused shadowmap on CHARACTER position (native code line 161)
+            CharacterLayer.SetFocusedShadowmap(true, ref frame.origin, 0.59999996f);
+            TORCommon.Log($"[TORSpecializationStageView] SetFocusedShadowmap on character position: {frame.origin}", NLog.LogLevel.Info);
 
-            TORCommon.Log("[TORSpecializationStageView] Created character visual", NLog.LogLevel.Info);
+            // Point camera at character
+            if (_camera != null)
+            {
+                TaleWorlds.Library.Vec3 lookAtTarget = new TaleWorlds.Library.Vec3(frame.origin.x, frame.origin.y + 1.0f, frame.origin.z); // Look at character's head height
+                TaleWorlds.Library.Vec3 cameraPos = new TaleWorlds.Library.Vec3(_cameraPosition.x, _cameraPosition.y, _cameraPosition.z);
+                _camera.LookAt(cameraPos, lookAtTarget, TaleWorlds.Library.Vec3.Up);
+                TORCommon.Log($"[TORSpecializationStageView] Camera looking at: {lookAtTarget} from {cameraPos}", NLog.LogLevel.Info);
+            }
+
+            _characterVisuals.Add(agentVisuals);
+
+            // Force scene to update
+            if (_characterScene != null)
+            {
+                _characterScene.ForceLoadResources();
+                TORCommon.Log("[TORSpecializationStageView] Forced scene resource load", NLog.LogLevel.Info);
+            }
+
+            TORCommon.Log($"[TORSpecializationStageView] Created character visual (total visuals: {_characterVisuals.Count})", NLog.LogLevel.Info);
         }
 
         private void ClearCharacterVisuals()
@@ -423,6 +483,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _characterScene.SetDoNotWaitForLoadingStatesToRender(true);
             _characterScene.DisableStaticShadows(true);
 
+            // Add lighting to the scene
+            uint sunLightColor = 0xFFFFFFFF; // White light
+            Vec3 sunDirection = new Vec3(-0.5f, -1f, -0.5f); // Direction pointing down and towards character
+            _characterScene.SetDefaultLighting();
+            TORCommon.Log($"[TORSpecializationStageView] Set sun light with direction: {sunDirection}", NLog.LogLevel.Info);
+
             _camera = Camera.CreateCamera();
             BodyGeneratorView.InitCamera(_camera, _cameraPosition);
 
@@ -434,6 +500,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             CharacterLayer.SetPostfxFromConfig();
             CharacterLayer.SceneView.SetResolutionScaling(true);
             CharacterLayer.SetPostfxConfigParams(-1 & -5);
+
+            // CRITICAL: Explicitly enable the scene view for rendering
+            CharacterLayer.SceneView.SetEnable(true);
+
+            // CRITICAL: Set focused shadowmap for proper character lighting/rendering
+            MatrixFrame cameraFrame = MatrixFrame.Identity;
+            cameraFrame.origin = _cameraPosition;
+            CharacterLayer.SetFocusedShadowmap(true, ref cameraFrame.origin, 0.59999996f);
 
             // Ensure GauntletLayer input is registered after scene is set up
             if (_gauntletLayer != null)
@@ -497,27 +571,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 _characterScene.Tick(dt);
             }
 
-            // Make character visuals visible once resources are loaded
-            if (!_isCharacterVisualsReady && _characterVisuals != null && _characterVisuals.Count > 0)
+            // CRITICAL: Tick visuals every frame to update their rendering state
+            if (_characterVisuals != null && _characterVisuals.Count > 0)
             {
-                bool allReady = true;
                 foreach (var visual in _characterVisuals)
                 {
-                    if (!visual.GetEntity().CheckResources(addToQueue: false, true))
-                    {
-                        allReady = false;
-                        break;
-                    }
-                }
-
-                if (allReady)
-                {
-                    foreach (var visual in _characterVisuals)
-                    {
-                        visual.SetVisible(true);
-                    }
-                    _isCharacterVisualsReady = true;
-                    TORCommon.Log("[TORSpecializationStageView] Character visuals are now visible", NLog.LogLevel.Info);
+                    visual.TickVisuals();
                 }
             }
 
