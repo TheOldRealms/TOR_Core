@@ -139,8 +139,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     TORCommon.Log($"[TORSpecializationStageView] Equipment preview callback triggered", NLog.LogLevel.Info);
                     if (selectedOption?.Data != null)
                     {
-                        var equipment = Hero.MainHero.CharacterObject.Equipment;
-                        //TaleWorlds.Core.Equipment equipment = GetEquipmentForOption(selectedOption.Data);
+                        TaleWorlds.Core.Equipment equipment = GetEquipmentForOption(selectedOption.Data);
                         CreateCharacterVisual(equipment);
                     }
                 }
@@ -482,7 +481,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _characterScene.SetDynamicShadowmapCascadesRadiusMultiplier(0.1f);
             _characterScene.SetDoNotWaitForLoadingStatesToRender(true);
             _characterScene.DisableStaticShadows(true);
-
             // Add lighting to the scene
             uint sunLightColor = 0xFFFFFFFF; // White light
             Vec3 sunDirection = new Vec3(-0.5f, -1f, -0.5f); // Direction pointing down and towards character
@@ -517,6 +515,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Initialize character visuals list
             _characterVisuals = new List<AgentVisuals>();
+
+            // Create initial character visual with default equipment
+            CreateCharacterVisual(Hero.MainHero.CharacterObject.Equipment.Clone());
 
             TORCommon.Log("[TORSpecializationStageView] Scene initialized successfully", NLog.LogLevel.Info);
         }
