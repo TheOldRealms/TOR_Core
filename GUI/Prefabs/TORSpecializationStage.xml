@@ -60,7 +60,7 @@
             <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                        SuggestedWidth="800" SuggestedHeight="350"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
-                       MarginTop="20"
+                       MarginTop="80"
                        DataSource="{Options}"
                        StackLayout.LayoutMethod="VerticalBottomToTop">
               <ItemTemplate>

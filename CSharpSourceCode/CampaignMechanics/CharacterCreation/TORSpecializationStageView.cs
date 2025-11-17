@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using SandBox.View.CharacterCreation;
@@ -447,11 +447,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 TORCommon.Log($"[TORSpecializationStageView] Storing lore selection: {lore.Name} ({lore.ID})", NLog.LogLevel.Info);
                 handler.SetSelectedLore(lore.ID);
+
+                // Apply equipment immediately so it shows in banner editor
+                ApplyEquipmentForLore(lore.ID);
             }
             else if (selectedData is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
             {
                 TORCommon.Log($"[TORSpecializationStageView] Storing career selection: {career.Name} ({career.StringId})", NLog.LogLevel.Info);
                 handler.SetSelectedCareer(career.StringId);
+
+                // Apply equipment immediately so it shows in banner editor
+                ApplyEquipmentForCareer(career.StringId);
             }
             else
             {
@@ -511,6 +517,83 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _gauntletLayer = null;
 
             TORCommon.Log("[TORSpecializationStageView] Finalized successfully", NLog.LogLevel.Info);
+        }
+
+        /// <summary>
+        /// Apply equipment for selected career immediately (shows in banner editor)
+        /// </summary>
+        private void ApplyEquipmentForCareer(string careerId)
+        {
+            if (string.IsNullOrEmpty(careerId)) return;
+
+            string equipmentRosterId = careerId switch
+            {
+                "MinorVampire" => "tor_vampire_noble_equipment",
+                "BloodKnight" => "tor_blood_dragon_equipment",
+                "Necrarch" => "tor_necrarch_equipment",
+                "WarriorPriest" => "tor_sigmar_priest_equipment",
+                "WarriorPriestUlric" => "tor_ulric_priest_equipment",
+                // Knight orders
+                "KnightBlazingSun" => "tor_empire_knight_equipment",
+                "KnightPanthers" => "tor_empire_knight_equipment",
+                "KnightWhiteWolf" => "tor_empire_knight_equipment",
+                "KnightGriphon" => "tor_empire_knight_equipment",
+                "Reiksguard" => "tor_empire_knight_equipment",
+                _ => null
+            };
+
+            if (!string.IsNullOrEmpty(equipmentRosterId))
+            {
+                ApplyEquipmentFromRoster(equipmentRosterId, careerId);
+            }
+        }
+
+        /// <summary>
+        /// Apply equipment for selected lore immediately (shows in banner editor)
+        /// </summary>
+        private void ApplyEquipmentForLore(string loreId)
+        {
+            if (string.IsNullOrEmpty(loreId)) return;
+
+            // All magisters use the same equipment for now
+            ApplyEquipmentFromRoster("tor_magister_equipment", loreId);
+        }
+
+        /// <summary>
+        /// Load equipment from roster and apply to player character
+        /// Only copies equipment items, preserves character's face and body customization
+        /// </summary>
+        private void ApplyEquipmentFromRoster(string rosterId, string specializationId)
+        {
+            try
+            {
+                var roster = Game.Current.ObjectManager.GetObject<MBEquipmentRoster>(rosterId);
+                if (roster != null && roster.AllEquipments.Count > 0)
+                {
+                    var sourceEquipment = roster.AllEquipments[0];
+                    var playerEquipment = CharacterObject.PlayerCharacter.Equipment;
+
+                    // Copy only equipment items slot by slot, preserving character customization
+                    for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumEquipmentSetSlots; i++)
+                    {
+                        var equipmentElement = sourceEquipment.GetEquipmentFromSlot(i);
+                        if (!equipmentElement.IsEmpty)
+                        {
+                            playerEquipment.AddEquipmentToSlotWithoutAgent(i, equipmentElement);
+                        }
+                    }
+
+                    TORCommon.Log($"[TORSpecializationStageView] Applied equipment items from '{rosterId}' for specialization '{specializationId}' (face/body preserved)", NLog.LogLevel.Info);
+                }
+                else
+                {
+                    TORCommon.Log($"[TORSpecializationStageView] Equipment roster '{rosterId}' not found or empty", NLog.LogLevel.Warn);
+                }
+            }
+            catch (Exception ex)
+            {
+                TORCommon.Log($"[TORSpecializationStageView] Error loading equipment roster '{rosterId}': {ex.Message}", NLog.LogLevel.Error);
+            }
         }
     }
 }

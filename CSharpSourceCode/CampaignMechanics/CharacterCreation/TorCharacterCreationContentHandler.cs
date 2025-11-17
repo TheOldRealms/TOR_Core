@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -978,11 +978,96 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                             TORCommon.Log($"[TorCharacterCreationContentHandler] Added devotion to Ulric", NLog.LogLevel.Info);
                         }
                     }
+
+                    // Apply career-specific equipment
+                    ApplyCareerEquipment(_selectedCareerId);
                 }
                 else
                 {
                     TORCommon.Log($"[TorCharacterCreationContentHandler] Career not found: {_selectedCareerId}", NLog.LogLevel.Error);
                 }
+            }
+
+            // Apply lore-specific equipment for spellcasters
+            if (!string.IsNullOrEmpty(_selectedLoreId))
+            {
+                ApplyLoreEquipment(_selectedLoreId);
+            }
+        }
+
+        /// <summary>
+        /// Apply equipment based on the selected career
+        /// </summary>
+        private void ApplyCareerEquipment(string careerId)
+        {
+            if (string.IsNullOrEmpty(careerId)) return;
+
+            string equipmentRosterId = careerId switch
+            {
+                "MinorVampire" => "tor_vampire_noble_equipment",
+                "BloodKnight" => "tor_blood_dragon_equipment",
+                "Necrarch" => "tor_necrarch_equipment",
+                "WarriorPriest" => "tor_sigmar_priest_equipment",
+                "WarriorPriestUlric" => "tor_ulric_priest_equipment",
+                // Knight orders
+                "KnightBlazingSun" => "tor_empire_knight_equipment",
+                "KnightPanthers" => "tor_empire_knight_equipment",
+                "KnightWhiteWolf" => "tor_empire_knight_equipment",
+                "KnightGriphon" => "tor_empire_knight_equipment",
+                "Reiksguard" => "tor_empire_knight_equipment",
+                _ => null
+            };
+
+            if (!string.IsNullOrEmpty(equipmentRosterId))
+            {
+                ApplyEquipmentFromRoster(equipmentRosterId, "career");
+            }
+        }
+
+        /// <summary>
+        /// Apply equipment based on the selected lore
+        /// </summary>
+        private void ApplyLoreEquipment(string loreId)
+        {
+            if (string.IsNullOrEmpty(loreId)) return;
+
+            // All magisters use the same equipment for now
+            ApplyEquipmentFromRoster("tor_magister_equipment", "lore");
+        }
+
+        /// <summary>
+        /// Load equipment from a roster and apply it to the player character
+        /// </summary>
+        private void ApplyEquipmentFromRoster(string rosterId, string equipmentType)
+        {
+            try
+            {
+                var roster = Game.Current.ObjectManager.GetObject<MBEquipmentRoster>(rosterId);
+                if (roster != null && roster.AllEquipments.Count > 0)
+                {
+                    var sourceEquipment = roster.AllEquipments[0];
+                    var playerEquipment = CharacterObject.PlayerCharacter.Equipment;
+
+                    // Copy only equipment items slot by slot, preserving character customization
+                    for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumEquipmentSetSlots; i++)
+                    {
+                        var equipmentElement = sourceEquipment.GetEquipmentFromSlot(i);
+                        if (!equipmentElement.IsEmpty)
+                        {
+                            playerEquipment.AddEquipmentToSlotWithoutAgent(i, equipmentElement);
+                        }
+                    }
+
+                    TORCommon.Log($"[TorCharacterCreationContentHandler] Applied {equipmentType} equipment from roster '{rosterId}' (face/body preserved)", NLog.LogLevel.Info);
+                }
+                else
+                {
+                    TORCommon.Log($"[TorCharacterCreationContentHandler] Equipment roster '{rosterId}' not found or empty", NLog.LogLevel.Warn);
+                }
+            }
+            catch (Exception ex)
+            {
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Error loading equipment roster '{rosterId}': {ex.Message}", NLog.LogLevel.Error);
             }
         }
 
