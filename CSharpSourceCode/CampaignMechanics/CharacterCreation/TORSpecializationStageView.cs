@@ -478,35 +478,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             TORCommon.Log("[TORSpecializationStageView] SetGenericScene called", NLog.LogLevel.Info);
 
-            // CRITICAL: Create our own scene and load custom scene file instead of using passed scene
-            _characterScene = Scene.CreateNewScene(enable_decals: false);
-            _characterScene.DisableStaticShadows(true);
-
-            SceneInitializationData initData = new SceneInitializationData()
-            {
-                InitPhysicsWorld = false
-            };
-
-           _characterScene.Read("character_menu_new", ref initData);
-           var sceneLoaded = this._characterScene != null;
-            TORCommon.Log($"[TORSpecializationStageView] Scene.Read returned: {sceneLoaded}, scene: character_menu_new", NLog.LogLevel.Info);
-
-            if (!sceneLoaded)
-            {
-                TORCommon.Log("[TORSpecializationStageView] WARNING: Failed to load scene 'character_menu_new'", NLog.LogLevel.Error);
-            }
+            // TRY: Use the scene passed by the framework instead of creating our own
+            _characterScene = scene;
+            TORCommon.Log($"[TORSpecializationStageView] Using scene provided by framework", NLog.LogLevel.Info);
 
             // Log all entities in the scene for debugging
             int entityCount = _characterScene.RootEntityCount;
             TORCommon.Log($"[TORSpecializationStageView] Scene has {entityCount} entities", NLog.LogLevel.Info);
-
-            // Hide any 'cradle' entity like native does (from banner editor scene)
-            GameEntity cradleEntity = _characterScene.FindEntityWithName("cradle");
-            if (cradleEntity != null)
-            {
-                cradleEntity.SetVisibilityExcludeParents(false);
-                TORCommon.Log("[TORSpecializationStageView] Hidden 'cradle' entity", NLog.LogLevel.Info);
-            }
 
             _characterScene.SetClothSimulationState(true);
             _characterScene.SetShadow(true);
