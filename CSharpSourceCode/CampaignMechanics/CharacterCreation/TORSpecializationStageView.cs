@@ -40,11 +40,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private Scene _characterScene;
         private Camera _camera;
-        private Vec3 _cameraPosition = new Vec3(0.65f, 1.55f, 1.27f, -1f);
+        private Vec3 _cameraPosition = new Vec3(5.350f, 3.440f, 0.681f, -1f); // Banner editor camera position
 
         // Character model display
         private List<AgentVisuals> _characterVisuals;
         private bool _isCharacterVisualsReady;
+        private MBAgentRendererSceneController _agentRendererSceneController;
 
         public SceneLayer CharacterLayer { get; private set; }
 
@@ -116,8 +117,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 description = "As a priest, you must choose which god you serve. This will determine your divine powers.";
             }
 
-            // Create GauntletLayer (UI overlay) - use high layer order to ensure it's on top
-            _gauntletLayer = new GauntletLayer(100, "GauntletLayer", true);
+            // Create GauntletLayer (UI overlay) - use layer order 1 like native
+            _gauntletLayer = new GauntletLayer(1, "GauntletLayer", true);
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.IsFocusLayer = true;
             _gauntletLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
@@ -476,31 +477,68 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public override void SetGenericScene(Scene scene)
         {
             TORCommon.Log("[TORSpecializationStageView] SetGenericScene called", NLog.LogLevel.Info);
-            _characterScene = scene;
+
+            // CRITICAL: Create our own scene and load custom scene file instead of using passed scene
+            _characterScene = Scene.CreateNewScene(enable_decals: false);
+            _characterScene.DisableStaticShadows(true);
+
+            SceneInitializationData initData = new SceneInitializationData()
+            {
+                InitPhysicsWorld = false
+            };
+
+           _characterScene.Read("character_menu_new", ref initData);
+           var sceneLoaded = this._characterScene != null;
+            TORCommon.Log($"[TORSpecializationStageView] Scene.Read returned: {sceneLoaded}, scene: character_menu_new", NLog.LogLevel.Info);
+
+            if (!sceneLoaded)
+            {
+                TORCommon.Log("[TORSpecializationStageView] WARNING: Failed to load scene 'character_menu_new'", NLog.LogLevel.Error);
+            }
+
+            // Log all entities in the scene for debugging
+            int entityCount = _characterScene.RootEntityCount;
+            TORCommon.Log($"[TORSpecializationStageView] Scene has {entityCount} entities", NLog.LogLevel.Info);
+
+            // Hide any 'cradle' entity like native does (from banner editor scene)
+            GameEntity cradleEntity = _characterScene.FindEntityWithName("cradle");
+            if (cradleEntity != null)
+            {
+                cradleEntity.SetVisibilityExcludeParents(false);
+                TORCommon.Log("[TORSpecializationStageView] Hidden 'cradle' entity", NLog.LogLevel.Info);
+            }
+
+            _characterScene.SetClothSimulationState(true);
             _characterScene.SetShadow(true);
             _characterScene.SetDynamicShadowmapCascadesRadiusMultiplier(0.1f);
             _characterScene.SetDoNotWaitForLoadingStatesToRender(true);
             _characterScene.DisableStaticShadows(true);
-            // Add lighting to the scene
-            uint sunLightColor = 0xFFFFFFFF; // White light
-            Vec3 sunDirection = new Vec3(-0.5f, -1f, -0.5f); // Direction pointing down and towards character
-            _characterScene.SetDefaultLighting();
-            TORCommon.Log($"[TORSpecializationStageView] Set sun light with direction: {sunDirection}", NLog.LogLevel.Info);
 
+            // CRITICAL: Create agent renderer scene controller for proper agent rendering
+            _agentRendererSceneController = MBAgentRendererSceneController.CreateNewAgentRendererSceneController(_characterScene);
+            TORCommon.Log("[TORSpecializationStageView] Created MBAgentRendererSceneController", NLog.LogLevel.Info);
+
+            // Add comprehensive lighting to the scene (banner scene is dark, need more light)
+            _characterScene.SetDefaultLighting();
+            
             _camera = Camera.CreateCamera();
             BodyGeneratorView.InitCamera(_camera, _cameraPosition);
 
             CharacterLayer = new SceneLayer(clearSceneOnFinalize: false);
+            CharacterLayer.IsFocusLayer = true;  // CRITICAL: Allow scene to receive focus
             CharacterLayer.SetScene(_characterScene);
+            CharacterLayer.SetSceneUsesSkybox(false);  // CRITICAL: Disable skybox like native
             CharacterLayer.SetCamera(_camera);
             CharacterLayer.SetSceneUsesShadows(true);
             CharacterLayer.SetRenderWithPostfx(true);
             CharacterLayer.SetPostfxFromConfig();
+            CharacterLayer.SetPostfxFromConfig();  // CRITICAL: Native calls this TWICE
             CharacterLayer.SceneView.SetResolutionScaling(true);
             CharacterLayer.SetPostfxConfigParams(-1 & -5);
 
             // CRITICAL: Explicitly enable the scene view for rendering
             CharacterLayer.SceneView.SetEnable(true);
+            CharacterLayer.SceneView.SetAcceptGlobalDebugRenderObjects(true);
 
             // CRITICAL: Set focused shadowmap for proper character lighting/rendering
             MatrixFrame cameraFrame = MatrixFrame.Identity;
@@ -570,6 +608,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (_characterScene != null)
             {
                 _characterScene.Tick(dt);
+            }
+
+            // Debug: Check if CharacterLayer is rendering (every 2 seconds)
+            if (CharacterLayer != null && Time.ApplicationTime % 2.0f < dt)
+            {
+                TORCommon.Log($"[DEBUG] CharacterLayer - SceneView.IsActive: ", NLog.LogLevel.Info);
             }
 
             // CRITICAL: Tick visuals every frame to update their rendering state
@@ -720,6 +764,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Clean up character visuals
             ClearCharacterVisuals();
             _characterVisuals = null;
+
+            // Clean up agent renderer scene controller
+            if (_agentRendererSceneController != null && _characterScene != null)
+            {
+                MBAgentRendererSceneController.DestructAgentRendererSceneController(_characterScene, _agentRendererSceneController, false);
+                _agentRendererSceneController = null;
+                TORCommon.Log("[TORSpecializationStageView] Destroyed MBAgentRendererSceneController", NLog.LogLevel.Info);
+            }
 
             // Clean up ViewModel
             _dataSource?.OnFinalize();
