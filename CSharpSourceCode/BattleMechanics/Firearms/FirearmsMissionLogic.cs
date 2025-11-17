@@ -18,12 +18,14 @@ namespace TOR_Core.BattleMechanics.Firearms
 {
     public class FirearmsMissionLogic : MissionLogic
     {
-        private readonly int[] _grenadeSoundIndex = new int[5];
-        private readonly int[] _soundIndex = new int[5];
+        private readonly string[] _grenadeSoundNames = new string[5];
+        private readonly string[] _soundNames = new string[5];
         private readonly Random _random;
         private readonly Dictionary<int, ContinousFiringData> _continousFiringAgents = [];
         private readonly float _continousFiringInterval = 100f;
         private readonly float _continousFiringBurstLength = 1.5f;
+        private readonly Dictionary<int, SoundEvent> _activeSounds = [];
+        private readonly List<int> _soundsToRemove = [];
 
         private const int _explosionDamage = 125;
         private const float _explosionRadius = 6;
@@ -31,14 +33,14 @@ namespace TOR_Core.BattleMechanics.Firearms
 
         public FirearmsMissionLogic()
         {
-            for (int i = 0; i < _grenadeSoundIndex.Length; i++)
+            for (int i = 0; i < _grenadeSoundNames.Length; i++)
             {
-                _grenadeSoundIndex[i] = SoundEvent.GetEventIdFromString("grenadelauncher_muzzle_" + (i + 1));
+                _grenadeSoundNames[i] = "grenadelauncher_muzzle_" + (i + 1);
             }
 
-            for (int i = 0; i < _soundIndex.Length; i++)
+            for (int i = 0; i < _soundNames.Length; i++)
             {
-                _soundIndex[i] = SoundEvent.GetEventIdFromString("musket_fire_sound_" + (i + 1));
+                _soundNames[i] = "musket_fire_sound_" + (i + 1);
             }
 
             _random = new Random();
@@ -66,6 +68,21 @@ namespace TOR_Core.BattleMechanics.Firearms
                     firingData.LastFiredTime = MissionTime.Now.ToMilliseconds;
                     BurstFireShot(agent, 0.2f, firingData.FireAmmoId);
                 }
+            }
+
+            _soundsToRemove.Clear();
+            foreach (var sound in _activeSounds) 
+            { 
+                if(!sound.Value.IsValid || !sound.Value.IsPlaying())
+                {
+                    _soundsToRemove.Add(sound.Key);
+                }
+            }
+            foreach (int id in _soundsToRemove)
+            {
+                var sound = _activeSounds[id];
+                sound?.Release();
+                _activeSounds.Remove(id);
             }
         }
 
@@ -129,18 +146,24 @@ namespace TOR_Core.BattleMechanics.Firearms
             switch (soundTypetype)
             {
                 case MuzzleFireSoundType.Musket:
-                    if (_soundIndex.Length > 0)
+                    if (_soundNames.Length > 0)
                     {
-                        selected = _random.Next(0, _soundIndex.Length - 1);
-                        //Mission.MakeSound(_soundIndex[selected], position, false, true, -1, -1); crashes
+                        selected = _random.Next(0, _soundNames.Length - 1);
+                        var soundIndex = SoundEvent.GetEventIdFromString(_soundNames[selected]);
+                        var soundEvent = SoundEvent.CreateEvent(soundIndex, Mission.Scene);
+                        _activeSounds.Add(soundEvent.GetSoundId(), soundEvent);
+                        soundEvent.PlayInPosition(position);
                     }
 
                     break;
                 case MuzzleFireSoundType.Grenadelauncher:
-                    if (_grenadeSoundIndex.Length > 0)
+                    if (_grenadeSoundNames.Length > 0)
                     {
-                        selected = _random.Next(0, _grenadeSoundIndex.Length - 1);
-                        //Mission.MakeSound(_grenadeSoundIndex[selected], position, false, true, -1, -1); crashes
+                        selected = _random.Next(0, _grenadeSoundNames.Length - 1);
+                        var soundIndex = SoundEvent.GetEventIdFromString(_grenadeSoundNames[selected]);
+                        var soundEvent = SoundEvent.CreateEvent(soundIndex, Mission.Scene);
+                        _activeSounds.Add(soundEvent.GetSoundId(), soundEvent);
+                        soundEvent.PlayInPosition(position);
                     }
 
                     break;

@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Extensions;
@@ -29,6 +31,27 @@ namespace TOR_Core.HarmonyPatches
             {
                 var logic = Mission.Current.GetMissionBehavior<AbilityManagerMissionLogic>();
                 if (logic != null && logic.ShouldSuppressCombatActions) __result = false;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Agent), "GetMissileRange")]
+        public static void AdjustHandgunMaxRange(ref float __result, Agent __instance)
+        {
+            if (!__instance.Equipment.ContainsNonConsumableRangedWeaponWithAmmo()) return;
+            
+            int i;
+            for (i = (int)EquipmentIndex.WeaponItemBeginSlot; i < (int)EquipmentIndex.NumAllWeaponSlots; i++)
+            {
+                var weapon = __instance.Equipment[i];
+                if (weapon.HasAnyUsageWithWeaponClass(WeaponClass.Musket) && (bool)weapon.CurrentUsageItem?.IsRangedWeapon)
+                {
+                    var rangedWeapon = weapon.Item;
+                    if (rangedWeapon.IsGunPowderWeapon() && !rangedWeapon.IsSpecialAmmunitionItem() && !rangedWeapon.IsFlameThrowerItem())
+                    {
+                        __result = Math.Min(100f, __result);
+                    }
+                }
             }
         }
 

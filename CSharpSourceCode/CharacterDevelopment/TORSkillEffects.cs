@@ -50,10 +50,10 @@ namespace TOR_Core.CharacterDevelopment
             _prayerDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("PrayerDuration"));
 
             _gunReloadSpeed.Initialize(new TextObject("{=tor_skills_gun_reload_speed_str}Gunpowder firearms reload speed: +{a0} %", null),
-            TORSkills.GunPowder, PartyRole.Personal, 0.07f, EffectIncrementType.AddFactor, 0f, 0f);
+            TORSkills.GunPowder, PartyRole.Personal, 0.0007f, EffectIncrementType.AddFactor, 0f, 0f);
 
             _gunAccuracy.Initialize(new TextObject("{=tor_skills_gun_accuracy_str}Gunpowder firearms accuracy: +{a0} %", null),
-            TORSkills.GunPowder, PartyRole.Personal, 0.05f, EffectIncrementType.AddFactor, 0f, 0f);
+            TORSkills.GunPowder, PartyRole.Personal, 0.0005f, EffectIncrementType.AddFactor, 0f, 0f);
 
             _spellEffectiveness.Initialize(new TextObject("{=tor_skills_spell_effectiveness_str}Spell effectiveness: +{a0} %", null),
             TORSkills.SpellCraft, PartyRole.Personal, 0.05f, EffectIncrementType.AddFactor, 0f, 0f);
