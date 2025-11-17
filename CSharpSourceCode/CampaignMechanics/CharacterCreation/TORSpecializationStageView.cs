@@ -453,7 +453,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _characterVisuals.Add(agentVisuals);
 
             // Force scene to update
-            if (_characterScene != null)
+             if (_characterScene != null)
             {
                 _characterScene.ForceLoadResources();
                 TORCommon.Log("[TORSpecializationStageView] Forced scene resource load", NLog.LogLevel.Info);
@@ -577,6 +577,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 foreach (var visual in _characterVisuals)
                 {
                     visual.TickVisuals();
+                }
+
+                // Debug: Log entity state every 2 seconds
+                if (Time.ApplicationTime % 2.0f < dt)
+                {
+                    var visual = _characterVisuals[0];
+                    var entity = visual.GetEntity();
+                    TORCommon.Log($"[DEBUG] Character - Visible: {visual.GetVisuals().GetVisible()}, Entity exists: {entity != null}, Entity visible: {entity?.IsVisibleIncludeParents()}, Position: {entity?.GetGlobalFrame().origin}", NLog.LogLevel.Info);
                 }
             }
 

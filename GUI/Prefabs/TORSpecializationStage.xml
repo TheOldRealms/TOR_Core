@@ -4,14 +4,15 @@
     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
       <Children>
 
-        <!-- Semi-transparent background overlay -->
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                Sprite="BlankWhiteSquare_9" Color="#000000" AlphaFactor="0.7" />
+        <!-- Semi-transparent background overlay - TEMPORARILY DISABLED FOR TESTING -->
+        <!-- <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                Sprite="BlankWhiteSquare_9" Color="#000000" AlphaFactor="0.7" /> -->
 
-        <!-- Main content panel -->
+        <!-- Main content panel - MOVED TO RIGHT to show character on left -->
         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                 SuggestedWidth="900" SuggestedHeight="700"
-                HorizontalAlignment="Center" VerticalAlignment="Center"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                MarginRight="50"
                 Sprite="StdAssets\Popup\canvas">
           <Children>
 
