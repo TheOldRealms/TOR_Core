@@ -4,9 +4,29 @@
     <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
       <Children>
 
-        <!-- Semi-transparent background overlay - TEMPORARILY DISABLED FOR TESTING -->
-        <!-- <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                Sprite="BlankWhiteSquare_9" Color="#000000" AlphaFactor="0.7" /> -->
+          <!-- Standard Background -->
+
+
+          <!-- Character Display on Left (using CharacterTableauWidget like SpellBook) -->
+          <CharacterTableauWidget DataSource="{CurrentCharacter}"
+                                  WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                                  SuggestedWidth="550" SuggestedHeight="1000"
+                                  HorizontalAlignment="Left" VerticalAlignment="Center"
+                                  MarginLeft="100"
+                                  BannerCodeText="@BannerCodeText"
+                                  BodyProperties="@BodyProperties"
+                                  CharStringId="@CharStringId"
+                                  EquipmentCode="@EquipmentCode"
+                                  IsFemale="@IsFemale"
+                                  MountCreationKey="@MountCreationKey"
+                                  Race="@Race"
+                                  StanceIndex="@StanceIndex"
+                                  ArmorColor1="@ArmorColor1"
+                                  ArmorColor2="@ArmorColor2"
+                                  IsEnabled="false"
+                                  DoNotUseCustomScale="true" />
+
+          <!-- Main content panel - POSITIONED ON RIGHT to show character on left -->
 
         <!-- Main content panel - MOVED TO RIGHT to show character on left -->
         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"

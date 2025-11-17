@@ -1,258 +1,293 @@
 using System;
-using TaleWorlds.Core.ViewModelCollection;
-using TaleWorlds.Library;
-using TaleWorlds.Localization;
+  using TaleWorlds.CampaignSystem;
+  using TaleWorlds.CampaignSystem.ViewModelCollection;
+  using TaleWorlds.Core;
+  using TaleWorlds.Core.ViewModelCollection;
+  using TaleWorlds.Library;
+  using TaleWorlds.Localization;
 
-namespace TOR_Core.CampaignMechanics.CharacterCreation
-{
-    /// <summary>
-    /// ViewModel for individual specialization option (lore, bloodline, or priesthood)
-    /// </summary>
-    public class SpecializationOptionVM : ViewModel
-    {
-        private string _name;
-        private string _description;
-        private bool _isSelected;
-        private object _data;
-        private readonly Action<SpecializationOptionVM> _onSelect;
+  namespace TOR_Core.CampaignMechanics.CharacterCreation
+  {
+      /// <summary>
+      /// ViewModel for individual specialization option (lore, bloodline, or priesthood)
+      /// </summary>
+      public class SpecializationOptionVM : ViewModel
+      {
+          private string _name;
+          private string _description;
+          private bool _isSelected;
+          private object _data;
+          private readonly Action<SpecializationOptionVM> _onSelect;
 
-        public SpecializationOptionVM(string name, string description, object data, Action<SpecializationOptionVM> onSelect)
-        {
-            _name = name;
-            _description = description;
-            _data = data;
-            _onSelect = onSelect;
-            _isSelected = false;
-        }
+          public SpecializationOptionVM(string name, string description, object data, Action<SpecializationOptionVM> onSelect)
+          {
+              _name = name;
+              _description = description;
+              _data = data;
+              _onSelect = onSelect;
+              _isSelected = false;
+          }
 
-        [DataSourceProperty]
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    OnPropertyChangedWithValue(value, nameof(Name));
-                }
-            }
-        }
+          [DataSourceProperty]
+          public string Name
+          {
+              get => _name;
+              set
+              {
+                  if (_name != value)
+                  {
+                      _name = value;
+                      OnPropertyChangedWithValue(value, nameof(Name));
+                  }
+              }
+          }
 
-        [DataSourceProperty]
-        public string Description
-        {
-            get => _description;
-            set
-            {
-                if (_description != value)
-                {
-                    _description = value;
-                    OnPropertyChangedWithValue(value, nameof(Description));
-                }
-            }
-        }
+          [DataSourceProperty]
+          public string Description
+          {
+              get => _description;
+              set
+              {
+                  if (_description != value)
+                  {
+                      _description = value;
+                      OnPropertyChangedWithValue(value, nameof(Description));
+                  }
+              }
+          }
 
-        [DataSourceProperty]
-        public bool IsSelected
-        {
-            get => _isSelected;
-            set
-            {
-                if (_isSelected != value)
-                {
-                    _isSelected = value;
-                    OnPropertyChangedWithValue(value, nameof(IsSelected));
-                }
-            }
-        }
+          [DataSourceProperty]
+          public bool IsSelected
+          {
+              get => _isSelected;
+              set
+              {
+                  if (_isSelected != value)
+                  {
+                      _isSelected = value;
+                      OnPropertyChangedWithValue(value, nameof(IsSelected));
+                  }
+              }
+          }
 
-        public object Data => _data;
+          public object Data => _data;
 
-        public void ExecuteSelect()
-        {
-            TOR_Core.Utilities.TORCommon.Log($"[SpecializationOptionVM] Option selected: {_name}", NLog.LogLevel.Info);
-            _onSelect?.Invoke(this);
-        }
-    }
+          public void ExecuteSelect()
+          {
+              TOR_Core.Utilities.TORCommon.Log($"[SpecializationOptionVM] Option selected: {_name}", NLog.LogLevel.Info);
+              _onSelect?.Invoke(this);
+          }
+      }
 
-    /// <summary>
-    /// ViewModel for TORSpecializationStage
-    /// Shows title, description, and selectable options
-    /// </summary>
-    public class TORSpecializationStageVM : ViewModel
-    {
-        private string _titleText;
-        private string _descriptionText;
-        private string _affirmativeText;
-        private string _negativeText;
-        private bool _canAdvance;
-        private MBBindingList<SpecializationOptionVM> _options;
-        private SpecializationOptionVM _selectedOption;
+      /// <summary>
+      /// ViewModel for TORSpecializationStage
+      /// Shows title, description, and selectable options with character preview
+      /// </summary>
+      public class TORSpecializationStageVM : ViewModel
+      {
+          private string _titleText;
+          private string _descriptionText;
+          private string _affirmativeText;
+          private string _negativeText;
+          private bool _canAdvance;
+          private MBBindingList<SpecializationOptionVM> _options;
+          private SpecializationOptionVM _selectedOption;
+          private HeroViewModel _currentCharacter;
 
-        private readonly Action _onNextStage;
-        private readonly Action _onPreviousStage;
-        private readonly Action<SpecializationOptionVM> _onOptionSelected;
+          private readonly Action _onNextStage;
+          private readonly Action _onPreviousStage;
+          private readonly Action<SpecializationOptionVM> _onOptionSelected;
 
-        public TORSpecializationStageVM(
-            string title,
-            string description,
-            Action onNextStage,
-            TextObject affirmativeText,
-            Action onPreviousStage,
-            TextObject negativeText,
-            Action<SpecializationOptionVM> onOptionSelected = null)
-        {
-            _titleText = title;
-            _descriptionText = description;
-            _onNextStage = onNextStage;
-            _onPreviousStage = onPreviousStage;
-            _onOptionSelected = onOptionSelected;
-            _affirmativeText = affirmativeText?.ToString() ?? "Continue";
-            _negativeText = negativeText?.ToString() ?? "Back";
-            _canAdvance = false; // Disabled until an option is selected
-            _options = new MBBindingList<SpecializationOptionVM>();
+          public TORSpecializationStageVM(
+              string title,
+              string description,
+              Action onNextStage,
+              TextObject affirmativeText,
+              Action onPreviousStage,
+              TextObject negativeText,
+              Action<SpecializationOptionVM> onOptionSelected = null)
+          {
+              _titleText = title;
+              _descriptionText = description;
+              _onNextStage = onNextStage;
+              _onPreviousStage = onPreviousStage;
+              _onOptionSelected = onOptionSelected;
+              _affirmativeText = affirmativeText?.ToString() ?? "Continue";
+              _negativeText = negativeText?.ToString() ?? "Back";
+              _canAdvance = false; // Disabled until an option is selected
+              _options = new MBBindingList<SpecializationOptionVM>();
 
-            TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Created with Title='{_titleText}', Desc='{_descriptionText}', Affirmative='{_affirmativeText}', Negative='{_negativeText}'", NLog.LogLevel.Info);
-        }
+              // Create HeroViewModel for character display
+              _currentCharacter = new HeroViewModel();
+              _currentCharacter.FillFrom(Hero.MainHero);
 
-        [DataSourceProperty]
-        public string TitleText
-        {
-            get => _titleText;
-            set
-            {
-                if (_titleText != value)
-                {
-                    _titleText = value;
-                    OnPropertyChangedWithValue(value, nameof(TitleText));
-                }
-            }
-        }
+              TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Created with Title='{_titleText}', Desc='{_descriptionText}', Affirmative='{_affirmativeText}', Negative='{_negativeText}'", NLog.LogLevel.Info);
+          }
 
-        [DataSourceProperty]
-        public string DescriptionText
-        {
-            get => _descriptionText;
-            set
-            {
-                if (_descriptionText != value)
-                {
-                    _descriptionText = value;
-                    OnPropertyChangedWithValue(value, nameof(DescriptionText));
-                }
-            }
-        }
+          [DataSourceProperty]
+          public string TitleText
+          {
+              get => _titleText;
+              set
+              {
+                  if (_titleText != value)
+                  {
+                      _titleText = value;
+                      OnPropertyChangedWithValue(value, nameof(TitleText));
+                  }
+              }
+          }
 
-        [DataSourceProperty]
-        public string AffirmativeText
-        {
-            get => _affirmativeText;
-            set
-            {
-                if (_affirmativeText != value)
-                {
-                    _affirmativeText = value;
-                    OnPropertyChangedWithValue(value, nameof(AffirmativeText));
-                }
-            }
-        }
+          [DataSourceProperty]
+          public string DescriptionText
+          {
+              get => _descriptionText;
+              set
+              {
+                  if (_descriptionText != value)
+                  {
+                      _descriptionText = value;
+                      OnPropertyChangedWithValue(value, nameof(DescriptionText));
+                  }
+              }
+          }
 
-        [DataSourceProperty]
-        public string NegativeText
-        {
-            get => _negativeText;
-            set
-            {
-                if (_negativeText != value)
-                {
-                    _negativeText = value;
-                    OnPropertyChangedWithValue(value, nameof(NegativeText));
-                }
-            }
-        }
+          [DataSourceProperty]
+          public string AffirmativeText
+          {
+              get => _affirmativeText;
+              set
+              {
+                  if (_affirmativeText != value)
+                  {
+                      _affirmativeText = value;
+                      OnPropertyChangedWithValue(value, nameof(AffirmativeText));
+                  }
+              }
+          }
 
-        [DataSourceProperty]
-        public bool CanAdvance
-        {
-            get => _canAdvance;
-            set
-            {
-                if (_canAdvance != value)
-                {
-                    _canAdvance = value;
-                    OnPropertyChangedWithValue(value, nameof(CanAdvance));
-                }
-            }
-        }
+          [DataSourceProperty]
+          public string NegativeText
+          {
+              get => _negativeText;
+              set
+              {
+                  if (_negativeText != value)
+                  {
+                      _negativeText = value;
+                      OnPropertyChangedWithValue(value, nameof(NegativeText));
+                  }
+              }
+          }
 
-        [DataSourceProperty]
-        public MBBindingList<SpecializationOptionVM> Options
-        {
-            get => _options;
-            set
-            {
-                if (_options != value)
-                {
-                    _options = value;
-                    OnPropertyChangedWithValue(value, nameof(Options));
-                }
-            }
-        }
+          [DataSourceProperty]
+          public bool CanAdvance
+          {
+              get => _canAdvance;
+              set
+              {
+                  if (_canAdvance != value)
+                  {
+                      _canAdvance = value;
+                      OnPropertyChangedWithValue(value, nameof(CanAdvance));
+                  }
+              }
+          }
 
-        /// <summary>
-        /// Add a selectable option to the list
-        /// </summary>
-        public void AddOption(string name, string description, object data)
-        {
-            var option = new SpecializationOptionVM(name, description, data, OnOptionSelected);
-            _options.Add(option);
-            TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Added option: {name}", NLog.LogLevel.Info);
-        }
+          [DataSourceProperty]
+          public MBBindingList<SpecializationOptionVM> Options
+          {
+              get => _options;
+              set
+              {
+                  if (_options != value)
+                  {
+                      _options = value;
+                      OnPropertyChangedWithValue(value, nameof(Options));
+                  }
+              }
+          }
 
-        /// <summary>
-        /// Called when an option is selected
-        /// </summary>
-        private void OnOptionSelected(SpecializationOptionVM selectedOption)
-        {
-            // Deselect all other options
-            foreach (var option in _options)
-            {
-                option.IsSelected = (option == selectedOption);
-            }
+          [DataSourceProperty]
+          public HeroViewModel CurrentCharacter
+          {
+              get => _currentCharacter;
+              set
+              {
+                  if (_currentCharacter != value)
+                  {
+                      _currentCharacter = value;
+                      OnPropertyChangedWithValue(value, nameof(CurrentCharacter));
+                  }
+              }
+          }
 
-            _selectedOption = selectedOption;
-            CanAdvance = true; // Enable Continue button
+          /// <summary>
+          /// Add a selectable option to the list
+          /// </summary>
+          public void AddOption(string name, string description, object data)
+          {
+              var option = new SpecializationOptionVM(name, description, data, OnOptionSelected);
+              _options.Add(option);
+              TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Added option: {name}", NLog.LogLevel.Info);
+          }
 
-            // Notify callback for equipment preview
-            _onOptionSelected?.Invoke(selectedOption);
+          /// <summary>
+          /// Update character equipment for preview
+          /// </summary>
+          public void UpdateCharacterEquipment(Equipment equipment)
+          {
+              if (_currentCharacter != null && equipment != null)
+              {
+                  _currentCharacter.SetEquipment(equipment);
+                  TOR_Core.Utilities.TORCommon.Log("[TORSpecializationStageVM] Updated character equipment", NLog.LogLevel.Info);
+              }
+          }
 
-            TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Selected option: {selectedOption.Name}, CanAdvance={CanAdvance}", NLog.LogLevel.Info);
-        }
+          /// <summary>
+          /// Called when an option is selected
+          /// </summary>
+          private void OnOptionSelected(SpecializationOptionVM selectedOption)
+          {
+              // Deselect all other options
+              foreach (var option in _options)
+              {
+                  option.IsSelected = (option == selectedOption);
+              }
 
-        /// <summary>
-        /// Get the currently selected option data
-        /// </summary>
-        public object GetSelectedData()
-        {
-            return _selectedOption?.Data;
-        }
+              _selectedOption = selectedOption;
+              CanAdvance = true; // Enable Continue button
 
-        public void OnNextStage()
-        {
-            TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] OnNextStage called, selected option: {_selectedOption?.Name ?? "none"}", NLog.LogLevel.Info);
-            _onNextStage?.Invoke();
-        }
+              // Notify callback for equipment preview
+              _onOptionSelected?.Invoke(selectedOption);
 
-        public void OnPreviousStage()
-        {
-            TOR_Core.Utilities.TORCommon.Log("[TORSpecializationStageVM] OnPreviousStage called from button", NLog.LogLevel.Info);
-            _onPreviousStage?.Invoke();
-        }
+              TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Selected option: {selectedOption.Name}, CanAdvance={CanAdvance}", NLog.LogLevel.Info);
+          }
 
-        public override void OnFinalize()
-        {
-            base.OnFinalize();
-        }
-    }
-}
+          /// <summary>
+          /// Get the currently selected option data
+          /// </summary>
+          public object GetSelectedData()
+          {
+              return _selectedOption?.Data;
+          }
+
+          public void OnNextStage()
+          {
+              TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] OnNextStage called, selected option: {_selectedOption?.Name ?? "none"}", NLog.LogLevel.Info);
+              _onNextStage?.Invoke();
+          }
+
+          public void OnPreviousStage()
+          {
+              TOR_Core.Utilities.TORCommon.Log("[TORSpecializationStageVM] OnPreviousStage called from button", NLog.LogLevel.Info);
+              _onPreviousStage?.Invoke();
+          }
+
+          public override void OnFinalize()
+          {
+              base.OnFinalize();
+              _currentCharacter?.OnFinalize();
+          }
+      }
+  }

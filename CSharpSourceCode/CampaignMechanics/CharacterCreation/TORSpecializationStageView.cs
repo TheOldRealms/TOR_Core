@@ -2,22 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SandBox.View.CharacterCreation;
-using System.Numerics;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
-using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.Engine.Screens;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.MountAndBlade.GauntletUI.BodyGenerator;
-using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.ScreenSystem;
-using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CharacterCreation
@@ -37,17 +30,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private TORSpecializationStageVM _dataSource;
         private GauntletMovieIdentifier _movie;
         private bool _shouldAutoSkip;
-
-        private Scene _characterScene;
-        private Camera _camera;
-        private Vec3 _cameraPosition = new Vec3(5.350f, 3.440f, 0.681f, -1f); // Banner editor camera position
-
-        // Character model display
-        private List<AgentVisuals> _characterVisuals;
-        private bool _isCharacterVisualsReady;
-        private MBAgentRendererSceneController _agentRendererSceneController;
-
-        public SceneLayer CharacterLayer { get; private set; }
 
         public TORSpecializationStageView(
             CharacterCreationManager characterCreationManager,
@@ -136,12 +118,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 _negativeActionText,
                 (selectedOption) =>
                 {
-                    // Update character visual when option is selected
+                    // Update character equipment when option is selected
                     TORCommon.Log($"[TORSpecializationStageView] Equipment preview callback triggered", NLog.LogLevel.Info);
                     if (selectedOption?.Data != null)
                     {
                         TaleWorlds.Core.Equipment equipment = GetEquipmentForOption(selectedOption.Data);
-                        CreateCharacterVisual(equipment);
+                        _dataSource.UpdateCharacterEquipment(equipment);
                     }
                 }
             );
@@ -360,184 +342,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        private void CreateCharacterVisual(Equipment equipment)
-        {
-            if (_characterScene == null)
-            {
-                TORCommon.Log("[TORSpecializationStageView] Cannot create character visual - scene is null", NLog.LogLevel.Error);
-                return;
-            }
-
-            TORCommon.Log($"[TORSpecializationStageView] CreateCharacterVisual called with equipment: {equipment != null}", NLog.LogLevel.Info);
-
-            ClearCharacterVisuals();
-
-            MatrixFrame frame = MatrixFrame.Identity;
-
-            // Try multiple spawn point tags that might exist in the scene
-            string[] spawnTags = { "spawnpoint_player", "sp_player", "strategycamera_1", "character_spawn", "player_spawn" };
-            GameEntity spawnPoint = null;
-
-            foreach (var tag in spawnTags)
-            {
-                spawnPoint = _characterScene.FindEntityWithTag(tag);
-                if (spawnPoint != null)
-                {
-                    frame = spawnPoint.GetGlobalFrame();
-                    TORCommon.Log($"[TORSpecializationStageView] Found spawn point with tag '{tag}', position: {frame.origin}", NLog.LogLevel.Info);
-                    break;
-                }
-            }
-
-            if (spawnPoint == null)
-            {
-                // Position character in front of camera at proper height
-                // Camera is at (0.65, 1.55, 1.27), so place character centered in view
-                frame.origin = new Vec3(0f, 1.5f, 0f, -1f);
-                frame.rotation.RotateAboutUp(MathF.PI); // Face the camera
-                TORCommon.Log($"[TORSpecializationStageView] No spawn point found in scene, positioning at: {frame.origin}", NLog.LogLevel.Warn);
-            }
-
-            ActionIndexCache actionCode = ActionIndexCache.Create("act_childhood_schooled");
-            Monster baseMonster = TaleWorlds.Core.FaceGen.GetBaseMonsterFromRace(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Race);
-            TORCommon.Log($"[TORSpecializationStageView] Using monster: {baseMonster.StringId}, action: {actionCode.Index}", NLog.LogLevel.Info);
-
-            AgentVisualsData visualData = new AgentVisualsData()
-                .UseMorphAnims(true)
-                .Equipment(equipment)
-                .BodyProperties(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.GetBodyProperties(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment, -1))
-                .Frame(frame)
-                .ActionSet(MBGlobals.GetActionSetWithSuffix(baseMonster, TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.IsFemale, "_facegen"))
-                .ActionCode(actionCode)
-                .Scene(_characterScene)
-                .Monster(baseMonster)
-                .UseTranslucency(false)  // CHANGED: Try without translucency
-                .UseTesselation(true)
-                .Race(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Race)
-                .SkeletonType(TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.IsFemale ? SkeletonType.Female : SkeletonType.Male);
-
-            TORCommon.Log($"[TORSpecializationStageView] Created AgentVisualsData with frame position: {frame.origin}, rotation: {frame.rotation}", NLog.LogLevel.Info);
-
-            AgentVisuals agentVisuals = AgentVisuals.Create(visualData, "specialization_character", false, false, false);
-            if (agentVisuals == null)
-            {
-                TORCommon.Log("[TORSpecializationStageView] Failed to create AgentVisuals - returned null", NLog.LogLevel.Error);
-                return;
-            }
-
-            TORCommon.Log($"[TORSpecializationStageView] AgentVisuals created successfully, entity: {agentVisuals.GetEntity() != null}", NLog.LogLevel.Info);
-
-            // CRITICAL: Force initial animation update (from native code line 149)
-            agentVisuals.GetVisuals().GetSkeleton().TickAnimationsAndForceUpdate(MBRandom.RandomFloat, frame, true);
-            TORCommon.Log("[TORSpecializationStageView] Initial animation update completed", NLog.LogLevel.Info);
-
-            // CHANGED: Keep visible immediately - don't wait for resources
-            agentVisuals.SetVisible(true);
-            agentVisuals.SetAgentLodZeroOrMax(true);
-            agentVisuals.GetEntity().SetEnforcedMaximumLodLevel(0);
-            agentVisuals.GetEntity().CheckResources(true, true);
-
-            // CRITICAL: Set focused shadowmap on CHARACTER position (native code line 161)
-            CharacterLayer.SetFocusedShadowmap(true, ref frame.origin, 0.59999996f);
-            TORCommon.Log($"[TORSpecializationStageView] SetFocusedShadowmap on character position: {frame.origin}", NLog.LogLevel.Info);
-
-            // Point camera at character
-            if (_camera != null)
-            {
-                TaleWorlds.Library.Vec3 lookAtTarget = new TaleWorlds.Library.Vec3(frame.origin.x, frame.origin.y + 1.0f, frame.origin.z); // Look at character's head height
-                TaleWorlds.Library.Vec3 cameraPos = new TaleWorlds.Library.Vec3(_cameraPosition.x, _cameraPosition.y, _cameraPosition.z);
-                _camera.LookAt(cameraPos, lookAtTarget, TaleWorlds.Library.Vec3.Up);
-                TORCommon.Log($"[TORSpecializationStageView] Camera looking at: {lookAtTarget} from {cameraPos}", NLog.LogLevel.Info);
-            }
-
-            _characterVisuals.Add(agentVisuals);
-
-            // Force scene to update
-             if (_characterScene != null)
-            {
-                _characterScene.ForceLoadResources();
-                TORCommon.Log("[TORSpecializationStageView] Forced scene resource load", NLog.LogLevel.Info);
-            }
-
-            TORCommon.Log($"[TORSpecializationStageView] Created character visual (total visuals: {_characterVisuals.Count})", NLog.LogLevel.Info);
-        }
-
-        private void ClearCharacterVisuals()
-        {
-            if (_characterVisuals != null)
-            {
-                foreach (var visual in _characterVisuals)
-                {
-                    visual.Reset();
-                }
-                _characterVisuals.Clear();
-            }
-        }
-
-        public override void SetGenericScene(Scene scene)
-        {
-            TORCommon.Log("[TORSpecializationStageView] SetGenericScene called", NLog.LogLevel.Info);
-
-            // TRY: Use the scene passed by the framework instead of creating our own
-            _characterScene = scene;
-            TORCommon.Log($"[TORSpecializationStageView] Using scene provided by framework", NLog.LogLevel.Info);
-
-            // Log all entities in the scene for debugging
-            int entityCount = _characterScene.RootEntityCount;
-            TORCommon.Log($"[TORSpecializationStageView] Scene has {entityCount} entities", NLog.LogLevel.Info);
-
-            _characterScene.SetClothSimulationState(true);
-            _characterScene.SetShadow(true);
-            _characterScene.SetDynamicShadowmapCascadesRadiusMultiplier(0.1f);
-            _characterScene.SetDoNotWaitForLoadingStatesToRender(true);
-            _characterScene.DisableStaticShadows(true);
-
-            // CRITICAL: Create agent renderer scene controller for proper agent rendering
-            _agentRendererSceneController = MBAgentRendererSceneController.CreateNewAgentRendererSceneController(_characterScene);
-            TORCommon.Log("[TORSpecializationStageView] Created MBAgentRendererSceneController", NLog.LogLevel.Info);
-
-            // Add comprehensive lighting to the scene (banner scene is dark, need more light)
-            _characterScene.SetDefaultLighting();
-            
-            _camera = Camera.CreateCamera();
-            BodyGeneratorView.InitCamera(_camera, _cameraPosition);
-
-            CharacterLayer = new SceneLayer(clearSceneOnFinalize: false);
-            CharacterLayer.IsFocusLayer = true;  // CRITICAL: Allow scene to receive focus
-            CharacterLayer.SetScene(_characterScene);
-            CharacterLayer.SetSceneUsesSkybox(false);  // CRITICAL: Disable skybox like native
-            CharacterLayer.SetCamera(_camera);
-            CharacterLayer.SetSceneUsesShadows(true);
-            CharacterLayer.SetRenderWithPostfx(true);
-            CharacterLayer.SetPostfxFromConfig();
-            CharacterLayer.SetPostfxFromConfig();  // CRITICAL: Native calls this TWICE
-            CharacterLayer.SceneView.SetResolutionScaling(true);
-            CharacterLayer.SetPostfxConfigParams(-1 & -5);
-
-            // CRITICAL: Explicitly enable the scene view for rendering
-            CharacterLayer.SceneView.SetEnable(true);
-            CharacterLayer.SceneView.SetAcceptGlobalDebugRenderObjects(true);
-
-            // CRITICAL: Set focused shadowmap for proper character lighting/rendering
-            MatrixFrame cameraFrame = MatrixFrame.Identity;
-            cameraFrame.origin = _cameraPosition;
-            CharacterLayer.SetFocusedShadowmap(true, ref cameraFrame.origin, 0.59999996f);
-
-            // Ensure GauntletLayer input is registered after scene is set up
-            if (_gauntletLayer != null)
-            {
-                CharacterLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
-            }
-
-            // Initialize character visuals list
-            _characterVisuals = new List<AgentVisuals>();
-
-            // Create initial character visual with default equipment
-            CreateCharacterVisual(Hero.MainHero.CharacterObject.Equipment.Clone());
-
-            TORCommon.Log("[TORSpecializationStageView] Scene initialized successfully", NLog.LogLevel.Info);
-        }
-
         private TorCharacterCreationContentHandler GetHandler()
         {
             // Access handler from manager using reflection
@@ -580,35 +384,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 _shouldAutoSkip = false;
                 NextStage();
                 return;
-            }
-
-            // Tick the scene if it exists
-            if (_characterScene != null)
-            {
-                _characterScene.Tick(dt);
-            }
-
-            // Debug: Check if CharacterLayer is rendering (every 2 seconds)
-            if (CharacterLayer != null && Time.ApplicationTime % 2.0f < dt)
-            {
-                TORCommon.Log($"[DEBUG] CharacterLayer - SceneView.IsActive: ", NLog.LogLevel.Info);
-            }
-
-            // CRITICAL: Tick visuals every frame to update their rendering state
-            if (_characterVisuals != null && _characterVisuals.Count > 0)
-            {
-                foreach (var visual in _characterVisuals)
-                {
-                    visual.TickVisuals();
-                }
-
-                // Debug: Log entity state every 2 seconds
-                if (Time.ApplicationTime % 2.0f < dt)
-                {
-                    var visual = _characterVisuals[0];
-                    var entity = visual.GetEntity();
-                    TORCommon.Log($"[DEBUG] Character - Visible: {visual.GetVisuals().GetVisible()}, Entity exists: {entity != null}, Entity visible: {entity?.IsVisibleIncludeParents()}, Position: {entity?.GetGlobalFrame().origin}", NLog.LogLevel.Info);
-                }
             }
 
             // Handle hotkey input
@@ -702,23 +477,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public override IEnumerable<ScreenLayer> GetLayers()
         {
-            // Return both layers like native stages - order matters: SceneLayer first, GauntletLayer on top
-            var layers = new List<ScreenLayer>();
-
-            if (CharacterLayer != null)
-            {
-                layers.Add(CharacterLayer);
-                TORCommon.Log($"[TORSpecializationStageView] GetLayers: CharacterLayer added", NLog.LogLevel.Debug);
-            }
-
+            // Return only GauntletLayer (CharacterTableauWidget handles character rendering)
             if (_gauntletLayer != null)
             {
-                layers.Add(_gauntletLayer);
-                TORCommon.Log($"[TORSpecializationStageView] GetLayers: GauntletLayer added, IsActive={_gauntletLayer.IsActive}", NLog.LogLevel.Debug);
+                return new List<ScreenLayer> { _gauntletLayer };
             }
-
-            TORCommon.Log($"[TORSpecializationStageView] GetLayers: Returning {layers.Count} layers", NLog.LogLevel.Debug);
-            return layers;
+            return new List<ScreenLayer>();
         }
 
         public override int GetVirtualStageCount() => 1;
@@ -739,36 +503,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             TORCommon.Log("[TORSpecializationStageView] OnFinalize called", NLog.LogLevel.Info);
 
-            // Clean up character visuals
-            ClearCharacterVisuals();
-            _characterVisuals = null;
-
-            // Clean up agent renderer scene controller
-            if (_agentRendererSceneController != null && _characterScene != null)
-            {
-                MBAgentRendererSceneController.DestructAgentRendererSceneController(_characterScene, _agentRendererSceneController, false);
-                _agentRendererSceneController = null;
-                TORCommon.Log("[TORSpecializationStageView] Destroyed MBAgentRendererSceneController", NLog.LogLevel.Info);
-            }
-
             // Clean up ViewModel
             _dataSource?.OnFinalize();
             _dataSource = null;
 
             // Clean up GauntletLayer
             _gauntletLayer = null;
-
-            // Clean up SceneLayer
-            if (CharacterLayer != null)
-            {
-                CharacterLayer.SceneView.SetEnable(false);
-                CharacterLayer.SceneView.ClearAll(false, false);
-                CharacterLayer = null;
-            }
-
-            // Clean up Scene and Camera
-            _characterScene = null;
-            _camera = null;
 
             TORCommon.Log("[TORSpecializationStageView] Finalized successfully", NLog.LogLevel.Info);
         }
