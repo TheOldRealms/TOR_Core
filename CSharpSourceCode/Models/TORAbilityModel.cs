@@ -185,10 +185,12 @@ namespace TOR_Core.Models
                 //Sly : these are probably safe outside the Agent.Main check because they draw from the CharacterObject which exists regardless of the agent being dead/removed from the agent array
                 var equipment = character.GetCharacterEquipment();
 
-                foreach (var trait in equipment.Select(item => item.GetTraits()).SelectMany(traits => traits.WhereQ(trait => trait.StatsTuple?.StatType == ItemTraitStatType.SpellRadius)))
+                foreach (var trait in equipment.Select(item => item.GetTraits())
+                    .SelectMany(traits => traits.WhereQ(trait => trait.StatsTuple?.StatType == ItemTraitStatType.SpellRadius)))
                 {
-                    explainedNumber.AddFactor(trait.StatsTuple.Value);
+                    explainedNumber.AddFactor(trait.StatsTuple.Value / 100f);
                 }
+
 
                 CareerHelper.ApplyBasicCareerPassives(playerHero, ref explainedNumber, PassiveEffectType.SpellRadius, true);
 

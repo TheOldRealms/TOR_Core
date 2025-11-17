@@ -234,7 +234,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
                 "tor_he_weapon_2h_sword_001",
                 "tor_vc_weapon_thaxe_black_axe_of_krell",
                 "tor_empire_weapon_sword_runefang_001",
-                "tor_we_weapon_bow_legendary",
                 "tor_vc_weapon_sword_khopesh_001",
 
                 "tor_empire_staff_cw_001_combined",
@@ -296,8 +295,6 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             "tor_he_weapon_2h_axe_whitelion_001",
 
             "tor_he_weapon_halberd_phoenix_001",
-
-            "tor_we_weapon_bow_legendary",
 
             "tor_vc_weapon_sword_khopesh_001",
 

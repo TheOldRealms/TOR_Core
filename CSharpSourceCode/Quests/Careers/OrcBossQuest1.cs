@@ -14,11 +14,11 @@ namespace TOR_Core.Quests.Careers
     public class OrcBossQuest1 : QuestBase
     {
         // Quest requirements constants
-        private const int RequiredWeaponSkillLevels = 150;
-        private const int RequiredBattlesWon = 50;
-        private const int RequiredArenaFights = 20;
-        private const int RequiredTeefTransferred = 150000;
-        private const int RequiredBrawlsWon = 50;
+        private const int RequiredWeaponSkillLevels = 175;
+        private const int RequiredSingleBattleRenown = 100;
+        private const int RequiredArenaFights = 10;
+        private const int RequiredTeefTransferred = 450000;
+        private const int RequiredBrawlsWon = 15;
 
         [SaveableField(1)]
         private JournalLog _taskOneHandedSkill = null;
@@ -93,11 +93,11 @@ namespace TOR_Core.Quests.Careers
                 RequiredWeaponSkillLevels);
 
             _taskBattlesWon = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest1_log_battles}Win {REQUIRED} battles")
-                    .SetTextVariable("REQUIRED", RequiredBattlesWon),
-                new TextObject("{=tor_orc_boss_quest1_task_battles}Battles Won"),
+                new TextObject("{=tor_orc_boss_quest1_log_battles}Earn {REQUIRED} renown from a single battle")
+                    .SetTextVariable("REQUIRED", RequiredSingleBattleRenown),
+                new TextObject("{=tor_orc_boss_quest1_task_battles}Legendary Battle Won"),
                 _currentBattlesWon,
-                RequiredBattlesWon);
+                1);
 
             _taskArenaFights = AddDiscreteLog(
                 new TextObject("{=tor_orc_boss_quest1_log_arena}Win {REQUIRED} tournaments")
@@ -163,9 +163,29 @@ namespace TOR_Core.Quests.Careers
 
         private void OnMapEventEnded(MapEvent mapEvent)
         {
-            _currentBattlesWon++;
-            _taskBattlesWon.UpdateCurrentProgress(_currentBattlesWon);
-            UpdateQuest();
+            if (_currentBattlesWon == 1)
+                return;
+            // GetBattleRewards vomits all these values as out params. OnPlayerBattleEndEvent timing and how it handles back-to-back renown gains is vague. 
+            float renownChange;
+            float influenceChange;
+            float moraleChange;
+            float goldChange;
+            float playerEarnedLootPercentage;
+
+            mapEvent.GetBattleRewards(
+                MobileParty.MainParty.Party,
+                out renownChange,
+                out influenceChange,
+                out moraleChange,
+                out goldChange,
+                out playerEarnedLootPercentage);
+
+            if (renownChange >= RequiredSingleBattleRenown)
+            {
+                _currentBattlesWon = 1;
+                _taskBattlesWon.UpdateCurrentProgress(_currentBattlesWon);
+                UpdateQuest();
+            }
         }
 
         private void OnBrawlWon(object sender, BrawlWonEventArgs e)

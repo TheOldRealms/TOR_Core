@@ -116,7 +116,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     private void OnMissionEnded(IMission obj)
     {
         //Sly : can this be found from the settlement of the PlayerEncounter?
-        var battleSettlement = Settlement.FindFirst(delegate(Settlement settlement)
+        var battleSettlement = Settlement.FindFirst(delegate (Settlement settlement)
         {
             {
                 var comp = settlement.SettlementComponent as BaseRaiderSpawnerComponent;
@@ -124,68 +124,121 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 {
                     return comp.IsBattleUnderway;
                 }
-
             }
 
             return false;
         });
+
         if (battleSettlement != null)
         {
             var comp = battleSettlement.SettlementComponent as BaseRaiderSpawnerComponent;
             comp.IsBattleUnderway = false;
             var mission = obj as Mission;
-            if (mission.MissionResult != null && mission.MissionResult.BattleResolved && mission.MissionResult.PlayerVictory)
+
+            if (mission?.MissionResult != null && mission.MissionResult.BattleResolved && mission.MissionResult.PlayerVictory)
             {
                 comp.IsActive = false;
                 var list = new List<InquiryElement>();
-                var itemIds = comp.RewardItemIds;
 
-                if (itemIds.Count > 2)
-                {
-                    itemIds = itemIds.TakeRandom(2).ToList();
-                }
-
-                var items = itemIds.Select(id => MBObjectManager.Instance.GetObject<ItemObject>(id)).ToList();
-
+                // no artifacts
                 var artifactIds = ReligionObject.All?
                     .SelectMany(r => r.ReligiousArtifacts)
                     .Select(i => i.StringId)
                     .ToHashSet() ?? new HashSet<string>();
 
-                items = items
-                    .Where(i => i != null
-                        && _xmlItemIds.Contains(i.StringId)
-                        && (i.IsWeapon() || i.IsArmor())
-                        && i.Culture == Hero.MainHero.Culture
-                        && !i.IsCraftedByPlayer
-                        && !artifactIds.Contains(i.StringId))
-                    .ToList();
+                var heroCulture = Hero.MainHero.Culture;
 
-                var cultureItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+                var rewardItems = comp.RewardItemIds
+                    .Select(id => MBObjectManager.Instance.GetObject<ItemObject>(id))
+                    .Where(i => i != null)
                     .Where(i => _xmlItemIds.Contains(i.StringId))
-                    .Where(i => i.Culture == Hero.MainHero.Culture && (i.IsWeapon() || i.IsArmor()))
-                    .Where(i => !i.IsCraftedByPlayer)
                     .Where(i => !artifactIds.Contains(i.StringId))
                     .ToList();
 
-                items.AddRange(cultureItems.TakeRandom(2).Where(i => !items.Contains(i)));
+                List<ItemObject> blueprintRewardItems = new();
+                if (rewardItems.Count > 0)
+                {
+                    var rewardSelection = rewardItems;
+                    if (rewardItems.Count > 2)
+                    {
+                        rewardSelection = rewardItems.TakeRandom(2).ToList();
+                    }
 
+                    blueprintRewardItems = rewardSelection
+                        .Where(i => i.StringId.StartsWith("tor_learn_"))
+                        .ToList();
+                }
 
+                var specificItems = comp.RewardItemIds
+                    .Select(id => MBObjectManager.Instance.GetObject<ItemObject>(id))
+                    .Where(i => i != null)
+                    .Where(i => _xmlItemIds.Contains(i.StringId))
+                    .Where(i => i.IsTorItem()) // no vanilla
+                    .Where(i => (i.IsWeapon() || i.IsArmor()))
+                    .Where(i => i.Culture == heroCulture)
+                    .Where(i => !i.IsCraftedByPlayer)
+                    .Where(i => !artifactIds.Contains(i.StringId));
+
+                var cultureItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+                    .Where(i => _xmlItemIds.Contains(i.StringId))
+                    .Where(i => i.IsTorItem()) // no vanilla
+                    .Where(i => i.Culture == heroCulture && (i.IsWeapon() || i.IsArmor()))
+                    .Where(i => !i.IsCraftedByPlayer)
+                    .Where(i => !artifactIds.Contains(i.StringId));
+
+                var equipmentPool = specificItems
+                    .Concat(cultureItems)
+                    .GroupBy(i => i.StringId)
+                    .Select(g => g.First())
+                    .ToList();
+
+                const int maxEquipmentSlots = 4;
+                var equipmentSlots = maxEquipmentSlots - blueprintRewardItems.Count;
+                if (equipmentSlots < 0)
+                {
+                    equipmentSlots = 0;
+                }
+
+                var equipmentItems = equipmentPool
+                    .OrderBy(_ => MBRandom.RandomFloat)
+                    .Take(equipmentSlots)
+                    .ToList();
+
+                var items = new List<ItemObject>();
+                items.AddRange(equipmentItems);
+
+                foreach (var blueprint in blueprintRewardItems)
+                {
+                    if (!items.Contains(blueprint))
+                    {
+                        items.Add(blueprint);
+                    }
+                }
+
+                items = items
+                    .OrderBy(_ => MBRandom.RandomFloat)
+                    .ToList();
 
                 var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
 
                 var newItems = new List<ItemObject>(items);
                 foreach (var item in items)
                 {
-                    if (!item.IsWeapon() && (!item.IsArmor() || item.HasAnyTrait())) continue;
-                    var traitCount = MBRandom.RandomInt(0, model.MaximumFindableTraitsOnItems());
+                    if (!item.IsWeapon() && (!item.IsArmor() || item.HasAnyTrait()))
+                        continue;
 
-                    if (traitCount <= 0) continue;
+                    var traitCount = MBRandom.RandomInt(0, model.MaximumFindableTraitsOnItems());
+                    if (traitCount <= 0)
+                        continue;
+
                     var traits = ItemTrait.All
-                        .Where(x => x.ItemTraitStringId.Contains("lesser_loot") && ItemTrait.IsValidFor(x, item.ItemType)).TakeRandom(traitCount);
+                        .Where(x => x.ItemTraitStringId.Contains("lesser_loot") && ItemTrait.IsValidFor(x, item.ItemType))
+                        .TakeRandom(traitCount);
+
                     var ids = traits.Select(x => x.ItemTraitStringId).ToList();
                     var name = model.GetNameModifierForTraits(traitCount);
                     var newItem = EnchantmentHelper.CreateEnchantedItem(item, ids, name + " " + item.Name, false);
+
                     newItems.Add(newItem);
                     newItems.Remove(item);
                 }
@@ -214,11 +267,21 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                         text.AppendLine(trait.ItemTraitDescription);
                     }
 
-
                     list.Add(new InquiryElement(item, item.Name.ToString(), new ItemImageIdentifier(item), true, text.ToStringAndRelease()));
                 }
 
-                var inq = new MultiSelectionInquiryData("Victory!", new TextObject("{=tor_custom_settlement_chaos_portal_victory_str}You are Victorious! Claim your reward! Select one!").ToString(), list, false, 1, 1, "OK", null, OnRewardClaimed, null);
+                var inq = new MultiSelectionInquiryData(
+                    "Victory!",
+                    new TextObject("{=tor_custom_settlement_chaos_portal_victory_str}You are Victorious! Claim your reward! Select one!").ToString(),
+                    list,
+                    false,
+                    1,
+                    1,
+                    "OK",
+                    null,
+                    OnRewardClaimed,
+                    null);
+
                 MBInformationManager.ShowMultiSelectionInquiry(inq);
             }
             else
@@ -228,6 +291,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             }
         }
     }
+
 
     private void OnRewardClaimed(List<InquiryElement> obj)
     {

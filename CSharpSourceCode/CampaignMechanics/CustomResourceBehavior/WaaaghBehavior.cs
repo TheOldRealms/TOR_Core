@@ -203,13 +203,33 @@ public class WaaaghBehavior : CampaignBehaviorBase
 
         if (_troops.Count == 0) return;
 
-        // Pick random troop type
+        var party = Hero.MainHero.PartyBelongedTo;
+        if (party == null) return;
+
+        var sizeLimit = Campaign.Current.Models.PartySizeLimitModel
+            .GetPartyMemberSizeLimit(party.Party, false)
+            .ResultNumber;
+
+        var currentSize = party.MemberRoster.TotalManCount;
+
+        var freeSlots = (int)sizeLimit - currentSize;
+        if (freeSlots <= 0)
+        {
+            // exceed size -> skip
+            return;
+        }
+
+        // pick random troop type
         var randomTroop = _troops.GetRandomElement();
 
-        // Recruit 1-3 troops
+        // 1 - 3 troops
         int troopCount = MBRandom.RandomInt(1, 4);
+        troopCount = Math.Min(troopCount, freeSlots);
 
-        Hero.MainHero.PartyBelongedTo.MemberRoster.AddToCounts(randomTroop, troopCount);
+        if (troopCount <= 0)
+            return;
+
+        party.MemberRoster.AddToCounts(randomTroop, troopCount);
     }
 
     private void UpdateWaaaghState()

@@ -15,13 +15,15 @@ namespace TOR_Core.Quests.Careers
     public class OrcBossQuest2 : QuestBase
     {
         // Quest requirements constants (from task notes)
-        private const int RequiredWeaponSkillLevels = 225;  // or 250
-        private const int RequiredBattlesWon = 300;
-        private const int RequiredArenaFights = 50;
-        private const int RequiredBrawlsWon = 100;
+        private const int RequiredWeaponSkillLevels = 250;
+        private const int RequiredHighRenownBattles = 3;
+        private const int RequiredSingleBattleRenown = 200;
+        private const int RequiredArenaFights = 15;
+        private const int RequiredBrawlsWon = 20;
         private const int RequiredCitiesCaptured = 5;
         private const int RequiredLordDuels = 15;
-        private const int RequiredTeefTransferred = 500000;
+        private const int RequiredTeefTransferred = 1000000;
+
 
         [SaveableField(1)]
         private JournalLog _taskOneHandedSkill = null;
@@ -106,11 +108,12 @@ namespace TOR_Core.Quests.Careers
                 RequiredWeaponSkillLevels);
 
             _taskBattlesWon = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_battles}Win {REQUIRED} battles")
-                    .SetTextVariable("REQUIRED", RequiredBattlesWon),
-                new TextObject("{=tor_orc_boss_quest2_task_battles}Battles Won"),
+                new TextObject("{=tor_orc_boss_quest2_log_battles}Win {REQUIRED} battles with 200 renown or above")
+                    .SetTextVariable("REQUIRED", RequiredHighRenownBattles),
+                new TextObject("{=tor_orc_boss_quest2_task_battles}Legendary Battles Won"),
                 _currentBattlesWon,
-                RequiredBattlesWon);
+                RequiredHighRenownBattles);
+
 
             _taskArenaFights = AddDiscreteLog(
                 new TextObject("{=tor_orc_boss_quest2_log_arena}Win {REQUIRED} tournaments")
@@ -194,9 +197,28 @@ namespace TOR_Core.Quests.Careers
 
         private void OnMapEventEnded(MapEvent mapEvent)
         {
-            _currentBattlesWon++;
-            _taskBattlesWon.UpdateCurrentProgress(_currentBattlesWon);
-            UpdateQuest();
+            if (_currentBattlesWon >= RequiredHighRenownBattles)
+                return;
+            float renownChange;
+            float influenceChange;
+            float moraleChange;
+            float goldChange;
+            float playerEarnedLootPercentage;
+
+            mapEvent.GetBattleRewards(
+                MobileParty.MainParty.Party,
+                out renownChange,
+                out influenceChange,
+                out moraleChange,
+                out goldChange,
+                out playerEarnedLootPercentage);
+
+            if (renownChange >= RequiredSingleBattleRenown)
+            {
+                _currentBattlesWon++;
+                _taskBattlesWon.UpdateCurrentProgress(_currentBattlesWon);
+                UpdateQuest();
+            }
         }
 
         private void OnSettlementOwnerChanged(Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
