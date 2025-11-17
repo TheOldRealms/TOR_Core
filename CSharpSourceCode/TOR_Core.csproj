@@ -429,10 +429,12 @@
     <Compile Include="BattleMechanics\AI\TeamAI\TeamBehavior\Tactics\TORTacticPositionalArtillery.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\TeamBehavior\TORTeamAIGeneral.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\TORMissionCombatantsLogic.cs" />
+    <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
     <Compile Include="BattleMechanics\Artillery\Ballistics.cs" />
     <Compile Include="BattleMechanics\Artillery\BaseFieldSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\CannonBallPile.cs" />
+    <Compile Include="BattleMechanics\Artillery\FieldTrebuchet.cs" />
     <Compile Include="BattleMechanics\Atmosphere\ForceAtmosphereMissionLogic.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
