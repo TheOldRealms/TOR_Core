@@ -105,6 +105,37 @@
                                     Brush.Color="#CCCCCCCC" />
                       </Children>
                     </Widget>
+
+                    <!-- Effects container (right side of button) -->
+                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                            SuggestedWidth="150"
+                            HorizontalAlignment="Right" VerticalAlignment="Center"
+                            MarginRight="10">
+                      <Children>
+                        <!-- Positive effect (green) -->
+                        <TextWidget DoNotAcceptEvents="true"
+                                    Text="@PositiveEffect"
+                                    WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                                    MarginTop="5"
+                                    Brush.FontSize="18"
+                                    Brush.TextHorizontalAlignment="Right"
+                                    Brush.Color="#00FF00"
+                                    IsVisible="@PositiveEffect" />
+
+                        <!-- Negative effect (red) -->
+                        <TextWidget DoNotAcceptEvents="true"
+                                    Text="@NegativeEffect"
+                                    WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                    MarginBottom="5"
+                                    Brush.FontSize="18"
+                                    Brush.TextHorizontalAlignment="Right"
+                                    Brush.Color="#FF0000"
+                                    IsVisible="@NegativeEffect" />
+                      </Children>
+                    </Widget>
+
                   </Children>
                 </ButtonWidget>
               </ItemTemplate>

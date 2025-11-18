@@ -16,14 +16,18 @@
       {
           private string _name;
           private string _description;
+          private string _positiveEffect;
+          private string _negativeEffect;
           private bool _isSelected;
           private object _data;
           private readonly Action<SpecializationOptionVM> _onSelect;
 
-          public SpecializationOptionVM(string name, string description, object data, Action<SpecializationOptionVM> onSelect)
+          public SpecializationOptionVM(string name, string description, object data, Action<SpecializationOptionVM> onSelect, string positiveEffect = "", string negativeEffect = "")
           {
               _name = name;
               _description = description;
+              _positiveEffect = positiveEffect ?? "";
+              _negativeEffect = negativeEffect ?? "";
               _data = data;
               _onSelect = onSelect;
               _isSelected = false;
@@ -53,6 +57,34 @@
                   {
                       _description = value;
                       OnPropertyChangedWithValue(value, nameof(Description));
+                  }
+              }
+          }
+
+          [DataSourceProperty]
+          public string PositiveEffect
+          {
+              get => _positiveEffect;
+              set
+              {
+                  if (_positiveEffect != value)
+                  {
+                      _positiveEffect = value;
+                      OnPropertyChangedWithValue(value, nameof(PositiveEffect));
+                  }
+              }
+          }
+
+          [DataSourceProperty]
+          public string NegativeEffect
+          {
+              get => _negativeEffect;
+              set
+              {
+                  if (_negativeEffect != value)
+                  {
+                      _negativeEffect = value;
+                      OnPropertyChangedWithValue(value, nameof(NegativeEffect));
                   }
               }
           }
@@ -234,9 +266,9 @@
           /// <summary>
           /// Add a selectable option to the list
           /// </summary>
-          public void AddOption(string name, string description, object data)
+          public void AddOption(string name, string description, object data, string positiveEffect = "", string negativeEffect = "")
           {
-              var option = new SpecializationOptionVM(name, description, data, OnOptionSelected);
+              var option = new SpecializationOptionVM(name, description, data, OnOptionSelected, positiveEffect, negativeEffect);
               _options.Add(option);
               TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Added option: {name}", NLog.LogLevel.Info);
           }

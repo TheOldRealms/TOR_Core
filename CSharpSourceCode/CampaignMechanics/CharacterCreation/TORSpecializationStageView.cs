@@ -168,6 +168,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 // Get the display name (handles translation keys)
                 string displayName = new TaleWorlds.Localization.TextObject(option.Name).ToString();
                 string description = new TaleWorlds.Localization.TextObject(option.Description).ToString();
+                string positiveEffect = new TaleWorlds.Localization.TextObject(option.PositiveEffect).ToString();
+                string negativeEffect = new TaleWorlds.Localization.TextObject(option.NegativeEffect).ToString();
 
                 // Determine what data object to attach
                 object dataObject = null;
@@ -208,7 +210,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 // Add the option if we successfully loaded the data object
                 if (dataObject != null)
                 {
-                    _dataSource.AddOption(displayName, description, dataObject);
+                    _dataSource.AddOption(displayName, description, dataObject, positiveEffect, negativeEffect);
                 }
                 else
                 {
