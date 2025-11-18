@@ -242,21 +242,6 @@
           }
 
           /// <summary>
-          /// Set customized body properties from face editor (preserves player's face customization)
-          /// </summary>
-          public void SetCustomizedBodyProperties(BodyProperties bodyProperties)
-          {
-              if (_currentCharacter != null)
-              {
-                  // Apply the stored body properties to the character preview
-
-                  _currentCharacter.BodyProperties = bodyProperties.ToString();
-                  
-                  TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Applied customized BodyProperties: {bodyProperties}", NLog.LogLevel.Info);
-              }
-          }
-
-          /// <summary>
           /// Update character equipment for preview
           /// </summary>
           public void UpdateCharacterEquipment(Equipment equipment)

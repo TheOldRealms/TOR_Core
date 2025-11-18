@@ -36,7 +36,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private string _selectedProfessionId = ""; // Track stage 3 selection for stage 4 conditions
         private string _selectedLoreId = null; // Store selected lore for spellcasters (applied at finalization)
         private string _selectedCareerId = null; // Store selected career for vampires/priests (applied at finalization)
-        private BodyProperties? _customizedBodyProperties = null; // Store body properties from face editor (for specialization stage preview)
         private NarrativeMenuCharacter _narrativePlayerCharacter = null; // Reference to narrative menu character for updating face
         private const int FocusToAdd = 1;
         private const int SkillLevelToAdd = 10;
@@ -287,18 +286,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _isFemale = CharacterObject.PlayerCharacter.IsFemale;
             _originalRace = CharacterObject.PlayerCharacter.Race;
 
-            // Get and store the customized body properties
+            // Get the customized body properties from face editor
             var bodyProps = CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1);
-            SetCustomizedBodyProperties(bodyProps);
 
             // CRITICAL: Update the NarrativeMenuCharacter so Origin/Growth/Profession stages show the customized face
+            // This also automatically updates CharacterObject.PlayerCharacter which the specialization stage uses
             if (_narrativePlayerCharacter != null)
             {
                 _narrativePlayerCharacter.UpdateBodyProperties(bodyProps, CharacterObject.PlayerCharacter.Race, CharacterObject.PlayerCharacter.IsFemale);
                 TORCommon.Log($"[OnFinalizeFaceCreation] Updated narrative menu character with customized face", NLog.LogLevel.Info);
             }
 
-            TORCommon.Log($"[OnFinalizeFaceCreation] Stored face customization: Race={_originalRace}, IsFemale={_isFemale}", NLog.LogLevel.Info);
+            TORCommon.Log($"[OnFinalizeFaceCreation] Finalized face customization: Race={_originalRace}, IsFemale={_isFemale}", NLog.LogLevel.Info);
         }
         
         private void SetMenuLabelTexts()
@@ -409,19 +408,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// </summary>
         public string GetStoredCareerId() => _selectedCareerId;
 
-        /// <summary>
-        /// Get the customized body properties from face editor (null if not set yet)
-        /// </summary>
-        public BodyProperties? GetCustomizedBodyProperties() => _customizedBodyProperties;
-
-        /// <summary>
-        /// Store body properties from face editor for use in specialization stage preview
-        /// </summary>
-        public void SetCustomizedBodyProperties(BodyProperties bodyProperties)
-        {
-            _customizedBodyProperties = bodyProperties;
-            TORCommon.Log($"[TorCharacterCreationContentHandler] Stored customized BodyProperties: {bodyProperties}", NLog.LogLevel.Info);
-        }
 
         /// <summary>
         /// Clear profession-specific bonuses that were applied during character creation.
