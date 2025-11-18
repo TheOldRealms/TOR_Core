@@ -859,7 +859,7 @@
 
 	<Kingdom id="karak_hirn"
              owner="Hero.tor_dw_lord_karak_hirn_factionleader"
-             banner_key="11.2.140.1398.1615.785.765.0.0.90.505.2.18.620.620.764.764.0.0.0:kingdom_hirn"
+             banner_key="11.113.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_hirn"
              primary_banner_color="0xfff0f0f0"
              secondary_banner_color="0xff050505"
              label_color="FFfde217"
