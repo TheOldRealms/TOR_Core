@@ -1,6 +1,7 @@
-using System;
+﻿using System;
   using TaleWorlds.CampaignSystem;
   using TaleWorlds.CampaignSystem.ViewModelCollection;
+  using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterCreation;
   using TaleWorlds.Core;
   using TaleWorlds.Core.ViewModelCollection;
   using TaleWorlds.Library;
@@ -92,7 +93,7 @@ using System;
           private bool _canAdvance;
           private MBBindingList<SpecializationOptionVM> _options;
           private SpecializationOptionVM _selectedOption;
-          private HeroViewModel _currentCharacter;
+          private CharacterViewModel _currentCharacter;
 
           private readonly Action _onNextStage;
           private readonly Action _onPreviousStage;
@@ -117,9 +118,17 @@ using System;
               _canAdvance = false; // Disabled until an option is selected
               _options = new MBBindingList<SpecializationOptionVM>();
 
-              // Create HeroViewModel for character display
-              _currentCharacter = new HeroViewModel();
-              _currentCharacter.FillFrom(Hero.MainHero);
+              // Create CharacterViewModel for character display (better suited for character creation)
+              _currentCharacter = new CharacterViewModel();
+              // Set the customized body properties from CharacterObject (preserves face editor changes)
+             // var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1);
+              
+              
+              _currentCharacter.FillFrom(CharacterObject.PlayerCharacter);
+              _currentCharacter.OnPropertyChangedWithValue("BodyProperties",CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1).ToString());
+              //_currentCharacter.FillFrom(Hero.MainHero);
+              
+              TOR_Core.Utilities.TORCommon.Log("[TORSpecializationStageVM] Set customized BodyProperties to preserve face/body from editor", NLog.LogLevel.Info);
 
               TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Created with Title='{_titleText}', Desc='{_descriptionText}', Affirmative='{_affirmativeText}', Negative='{_negativeText}'", NLog.LogLevel.Info);
           }
@@ -209,7 +218,7 @@ using System;
           }
 
           [DataSourceProperty]
-          public HeroViewModel CurrentCharacter
+          public CharacterViewModel CurrentCharacter
           {
               get => _currentCharacter;
               set
@@ -230,6 +239,21 @@ using System;
               var option = new SpecializationOptionVM(name, description, data, OnOptionSelected);
               _options.Add(option);
               TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Added option: {name}", NLog.LogLevel.Info);
+          }
+
+          /// <summary>
+          /// Set customized body properties from face editor (preserves player's face customization)
+          /// </summary>
+          public void SetCustomizedBodyProperties(BodyProperties bodyProperties)
+          {
+              if (_currentCharacter != null)
+              {
+                  // Apply the stored body properties to the character preview
+
+                  _currentCharacter.BodyProperties = bodyProperties.ToString();
+                  
+                  TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Applied customized BodyProperties: {bodyProperties}", NLog.LogLevel.Info);
+              }
           }
 
           /// <summary>

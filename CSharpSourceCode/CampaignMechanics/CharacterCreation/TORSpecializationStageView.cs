@@ -128,6 +128,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 }
             );
 
+            // Get customized face from handler (stored after face editor finalization)
+            var customizedBodyProps = handler.GetCustomizedBodyProperties();
+            if (customizedBodyProps.HasValue)
+            {
+                _dataSource.SetCustomizedBodyProperties(customizedBodyProps.Value);
+                TORCommon.Log("[TORSpecializationStageView] Applied customized BodyProperties from face editor", NLog.LogLevel.Info);
+            }
+            else
+            {
+                TORCommon.Log("[TORSpecializationStageView] WARNING: No customized BodyProperties found, character may show default face", NLog.LogLevel.Warn);
+            }
+
             // Populate options based on profession type
             PopulateOptions(handler, professionId);
 
