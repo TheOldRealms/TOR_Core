@@ -1,0 +1,283 @@
+<?xml version="1.0"?>
+<ArrayOfSpecializationOption xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--
+	Specialization options for Stage 4 of character creation
+	Simplified structure matching cc_options.xml format
+
+	ProfessionRequirement values:
+		- option_3_empire_magister_apprentice (Spellcasters)
+		- option_3_vc_vampire / option_3_mousillon_vampire (Vampires)
+		- option_3_empire_priest_acolyte (Priests)
+		- option_3_empire_knight (Knights)
+	-->
+
+	<!-- =============================================== -->
+	<!-- SPELLCASTERS - 8 Winds of Magic                -->
+	<!-- =============================================== -->
+
+	<SpecializationOption Id="lore_of_life" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment">
+		<Name>{=tor_lore_life_name}Lore of Life</Name>
+		<Description>{=tor_lore_life_desc}Master the Lore of Life, the magic of healing and growth.</Description>
+		<PositiveEffect>{=tor_lore_life_positive}Powerful healing and regeneration spells</PositiveEffect>
+		<NegativeEffect>{=tor_lore_life_negative}Limited offensive capabilities</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Medicine</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_fire" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment">
+		<Name>{=tor_lore_fire_name}Lore of Fire</Name>
+		<Description>{=tor_lore_fire_desc}Master the Lore of Fire, the magic of destruction and flames.</Description>
+		<PositiveEffect>{=tor_lore_fire_positive}Devastating offensive spells</PositiveEffect>
+		<NegativeEffect>{=tor_lore_fire_negative}Impulsive and aggressive nature</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_death" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment">
+		<Name>{=tor_lore_death_name}Lore of Death</Name>
+		<Description>{=tor_lore_death_desc}Master the Lore of Death, the magic of endings and mortality.</Description>
+		<PositiveEffect>{=tor_lore_death_positive}Life-draining and debilitating spells</PositiveEffect>
+		<NegativeEffect>{=tor_lore_death_negative}Morbid and feared by common folk</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Roguery</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_light" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment">
+		<Name>{=tor_lore_light_name}Lore of Light</Name>
+		<Description>{=tor_lore_light_desc}Master the Lore of Light, the magic of purity and illumination.</Description>
+		<PositiveEffect>{=tor_lore_light_positive}Banishes darkness and evil</PositiveEffect>
+		<NegativeEffect>{=tor_lore_light_negative}Weak against physical threats</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Charm</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_heavens" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment">
+		<Name>{=tor_lore_heavens_name}Lore of Heavens</Name>
+		<Description>{=tor_lore_heavens_desc}Master the Lore of Heavens, the magic of weather and divination.</Description>
+		<PositiveEffect>{=tor_lore_heavens_positive}Control over weather and lightning</PositiveEffect>
+		<NegativeEffect>{=tor_lore_heavens_negative}Distant and contemplative nature</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_beasts" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment">
+		<Name>{=tor_lore_beasts_name}Lore of Beasts</Name>
+		<Description>{=tor_lore_beasts_desc}Master the Lore of Beasts, the magic of wild nature and animals.</Description>
+		<PositiveEffect>{=tor_lore_beasts_positive}Command over beasts and savage strength</PositiveEffect>
+		<NegativeEffect>{=tor_lore_beasts_negative}Crude and uncivilized manner</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Scouting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_metal" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment">
+		<Name>{=tor_lore_metal_name}Lore of Metal</Name>
+		<Description>{=tor_lore_metal_desc}Master the Lore of Metal, the magic of transformation and alchemy.</Description>
+		<PositiveEffect>{=tor_lore_metal_positive}Transmutation and metallurgy mastery</PositiveEffect>
+		<NegativeEffect>{=tor_lore_metal_negative}Obsessed with perfection and logic</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Crafting</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="lore_of_shadow" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment">
+		<Name>{=tor_lore_shadow_name}Lore of Shadow</Name>
+		<Description>{=tor_lore_shadow_desc}Master the Lore of Shadow, the magic of illusion and deception.</Description>
+		<PositiveEffect>{=tor_lore_shadow_positive}Stealth and illusion mastery</PositiveEffect>
+		<NegativeEffect>{=tor_lore_shadow_negative}Suspicious and paranoid tendencies</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Roguery</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<!-- =============================================== -->
+	<!-- VAMPIRES - 3 Bloodlines                        -->
+	<!-- =============================================== -->
+
+	<SpecializationOption Id="bloodline_von_carstein" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_vampire_noble_equipment" CareerId="MinorVampire">
+		<Name>{=tor_vampire_von_carstein_name}Von Carstein</Name>
+		<Description>{=tor_vampire_von_carstein_desc}The most powerful vampire bloodline, rulers of Sylvania.</Description>
+		<PositiveEffect>{=tor_vampire_von_carstein_positive}Necromantic powers and commanding presence</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_von_carstein_negative}Arrogant and power-hungry</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="bloodline_blood_dragon" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_blood_dragon_equipment" CareerId="BloodKnight">
+		<Name>{=tor_vampire_blood_dragon_name}Blood Dragon</Name>
+		<Description>{=tor_vampire_blood_dragon_desc}Honorable warriors seeking worthy opponents in battle.</Description>
+		<PositiveEffect>{=tor_vampire_blood_dragon_positive}Martial excellence and honor code</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_blood_dragon_negative}Disdains cowardice and weakness</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="bloodline_necrarch" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_necrarch_equipment" CareerId="Necrarch">
+		<Name>{=tor_vampire_necrarch_name}Necrarch</Name>
+		<Description>{=tor_vampire_necrarch_desc}Obsessed with necromantic knowledge and dark sorcery.</Description>
+		<PositiveEffect>{=tor_vampire_necrarch_positive}Unmatched necromantic mastery</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_necrarch_negative}Physically withered and hideous</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Medicine</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<!-- Mousillon vampires use same bloodline options -->
+	<SpecializationOption Id="bloodline_von_carstein_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_vampire_noble_equipment" CareerId="MinorVampire">
+		<Name>{=tor_vampire_von_carstein_name}Von Carstein</Name>
+		<Description>{=tor_vampire_von_carstein_desc}The most powerful vampire bloodline, rulers of Sylvania.</Description>
+		<PositiveEffect>{=tor_vampire_von_carstein_positive}Necromantic powers and commanding presence</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_von_carstein_negative}Arrogant and power-hungry</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="bloodline_blood_dragon_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_blood_dragon_equipment" CareerId="BloodKnight">
+		<Name>{=tor_vampire_blood_dragon_name}Blood Dragon</Name>
+		<Description>{=tor_vampire_blood_dragon_desc}Honorable warriors seeking worthy opponents in battle.</Description>
+		<PositiveEffect>{=tor_vampire_blood_dragon_positive}Martial excellence and honor code</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_blood_dragon_negative}Disdains cowardice and weakness</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>TwoHanded</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="bloodline_necrarch_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_necrarch_equipment" CareerId="Necrarch">
+		<Name>{=tor_vampire_necrarch_name}Necrarch</Name>
+		<Description>{=tor_vampire_necrarch_desc}Obsessed with necromantic knowledge and dark sorcery.</Description>
+		<PositiveEffect>{=tor_vampire_necrarch_positive}Unmatched necromantic mastery</PositiveEffect>
+		<NegativeEffect>{=tor_vampire_necrarch_negative}Physically withered and hideous</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Spellcraft</string>
+			<string>Medicine</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<!-- =============================================== -->
+	<!-- PRIESTS - 2 Gods                               -->
+	<!-- =============================================== -->
+
+	<SpecializationOption Id="priest_sigmar" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_sigmar_priest_equipment" CareerId="WarriorPriest">
+		<Name>{=tor_priest_sigmar_name}Warrior Priest of Sigmar</Name>
+		<Description>{=tor_priest_sigmar_desc}A warrior-priest devoted to Sigmar, protector of mankind.</Description>
+		<PositiveEffect>{=tor_priest_sigmar_positive}Divine protection of Sigmar</PositiveEffect>
+		<NegativeEffect>{=tor_priest_sigmar_negative}Sworn enemy of Chaos</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Faith</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="priest_ulric" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_ulric_priest_equipment" CareerId="WarriorPriestUlric">
+		<Name>{=tor_priest_ulric_name}Warrior Priest of Ulric</Name>
+		<Description>{=tor_priest_ulric_desc}A warrior-priest of Ulric, god of winter, wolves, and war.</Description>
+		<PositiveEffect>{=tor_priest_ulric_positive}Blessing of the Winter Wolf</PositiveEffect>
+		<NegativeEffect>{=tor_priest_ulric_negative}Disdains ranged combat</NegativeEffect>
+		<SkillsToIncrease>
+			<string>TwoHanded</string>
+			<string>Faith</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+	</SpecializationOption>
+
+	<!-- =============================================== -->
+	<!-- KNIGHTS - 5 Orders                             -->
+	<!-- =============================================== -->
+
+	<SpecializationOption Id="knight_blazing_sun" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="KnightBlazingSun">
+		<Name>{=tor_knight_blazing_sun_name}Order of the Blazing Sun</Name>
+		<Description>{=tor_knight_blazing_sun_desc}Knights of Myrmidia, masters of strategy and warfare from Talabheim.</Description>
+		<PositiveEffect>{=tor_knight_blazing_sun_positive}Strategic brilliance and martial prowess</PositiveEffect>
+		<NegativeEffect>{=tor_knight_blazing_sun_negative}Devoted to foreign goddess</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Tactics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="knight_panthers" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="KnightPanthers">
+		<Name>{=tor_knight_panthers_name}Knight Panthers</Name>
+		<Description>{=tor_knight_panthers_desc}Elite secular knights from Carroburg, known for their ferocity.</Description>
+		<PositiveEffect>{=tor_knight_panthers_positive}Ferocious and relentless in battle</PositiveEffect>
+		<NegativeEffect>{=tor_knight_panthers_negative}Aggressive and territorial</NegativeEffect>
+		<SkillsToIncrease>
+			<string>Polearm</string>
+			<string>Riding</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="knight_white_wolf" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="KnightWhiteWolf">
+		<Name>{=tor_knight_white_wolf_name}Knights of the White Wolf</Name>
+		<Description>{=tor_knight_white_wolf_desc}Devoted followers of Ulric from Middenheim, fierce and relentless.</Description>
+		<PositiveEffect>{=tor_knight_white_wolf_positive}Ulric's blessing in winter warfare</PositiveEffect>
+		<NegativeEffect>{=tor_knight_white_wolf_negative}Contempt for cowardice</NegativeEffect>
+		<SkillsToIncrease>
+			<string>TwoHanded</string>
+			<string>Athletics</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Endurance</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="knight_griphon" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="KnightGriphon">
+		<Name>{=tor_knight_griphon_name}Order of the Griphon</Name>
+		<Description>{=tor_knight_griphon_desc}Noble knights of Sigmar from Altdorf, defenders of the faithful.</Description>
+		<PositiveEffect>{=tor_knight_griphon_positive}Sigmar's divine protection</PositiveEffect>
+		<NegativeEffect>{=tor_knight_griphon_negative}Zealous and unforgiving</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Leadership</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Social</AttributeToIncrease>
+	</SpecializationOption>
+
+	<SpecializationOption Id="knight_reiksguard" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="Reiksguard">
+		<Name>{=tor_knight_reiksguard_name}Reiksguard</Name>
+		<Description>{=tor_knight_reiksguard_desc}The Emperor's personal guard, elite secular knights from Castle Reiksguard.</Description>
+		<PositiveEffect>{=tor_knight_reiksguard_positive}Elite training and Imperial favor</PositiveEffect>
+		<NegativeEffect>{=tor_knight_reiksguard_negative}Bound to serve the Emperor</NegativeEffect>
+		<SkillsToIncrease>
+			<string>OneHanded</string>
+			<string>Riding</string>
+		</SkillsToIncrease>
+		<AttributeToIncrease>Control</AttributeToIncrease>
+	</SpecializationOption>
+
+</ArrayOfSpecializationOption>

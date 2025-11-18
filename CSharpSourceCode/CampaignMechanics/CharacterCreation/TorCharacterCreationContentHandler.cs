@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,6 +27,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
     public class TorCharacterCreationContentHandler : ICharacterCreationContentHandler
     {
         private readonly List<CharacterCreationOption> _options;
+        private readonly List<SpecializationOption> _specializationOptions;
         private readonly int _maxStageNumber = 3;
         private bool _isFemale = false;
         private int _originalRace = 0;
@@ -115,7 +116,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 TORCommon.Log("Failed to open tor_cc_options.xml for character creation.", NLog.LogLevel.Error);
                 throw;
+            }            try
+            {
+                var specPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_specialization_options.xml";
+                XmlSerializer specSer = new(typeof(List<SpecializationOption>));
+                _specializationOptions = specSer.Deserialize(File.OpenRead(specPath)) as List<SpecializationOption>;
             }
+            catch (Exception)
+            {
+                TORCommon.Log("Failed to open tor_specialization_options.xml for character creation.", NLog.LogLevel.Error);
+                throw;
+            }
+
             ExtendedInfoManager.Instance.ClearInfo(Hero.MainHero);
         }
 
@@ -167,7 +179,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             NarrativeMenu stage3Menu = new NarrativeMenu(
                 "tor_profession_menu",
                 "tor_growth_menu",
-                "narrative_face_generator_menu",  // Exit narrative stage → TORSpecializationStage handles stage 4
+                "narrative_face_generator_menu",  // Exit narrative stage ? TORSpecializationStage handles stage 4
                 new TextObject("{=tor_cc_profession_summary_str}Profession"),
                 new TextObject("{TOR_CC_PROFESSION}"),
                 playerCharacterList,
@@ -406,7 +418,22 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// <summary>
         /// Get the currently stored career ID (null if none selected)
         /// </summary>
-        public string GetStoredCareerId() => _selectedCareerId;
+        
+        /// <summary>
+        /// Get all specialization options for the given profession
+        /// </summary>
+        /// <param name="professionId">The profession ID to filter by (e.g., "option_3_empire_knight")</param>
+        /// <returns>List of specialization options matching the profession requirement</returns>
+        public List<SpecializationOption> GetSpecializationOptions(string professionId)
+        {
+            if (string.IsNullOrEmpty(professionId))
+            {
+                return new List<SpecializationOption>();
+            }
+
+            return _specializationOptions?.Where(opt => opt.ProfessionRequirement == professionId).ToList()
+                   ?? new List<SpecializationOption>();
+        }
 
 
         /// <summary>
@@ -1378,3 +1405,4 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
     }
 }
+

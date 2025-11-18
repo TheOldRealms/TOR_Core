@@ -485,7 +485,7 @@
     <Compile Include="CampaignMechanics\Careers\GrailDamselEnvoyOfTheLadyPerkDialog.cs" />
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" /><Compile Include="CampaignMechanics\CharacterCreation\SpecializationOption.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\FaceGenHelper.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TorCharacterCreationContentHandler.cs" />
     <Compile Include="CampaignMechanics\Combat\GreenskinBrawlBehavior.cs" />

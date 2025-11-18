@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using SandBox.View.CharacterCreation;
@@ -148,66 +148,72 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        private void PopulateOptions(TorCharacterCreationContentHandler handler, string professionId)
+                private void PopulateOptions(TorCharacterCreationContentHandler handler, string professionId)
         {
             TORCommon.Log($"[TORSpecializationStageView] Populating options for profession: {professionId}", NLog.LogLevel.Info);
 
-            if (handler.IsSpellcaster(professionId))
+            // Get specialization options from XML
+            var specializationOptions = handler.GetSpecializationOptions(professionId);
+
+            if (specializationOptions == null || specializationOptions.Count == 0)
             {
-                // Add only the 8 Winds of Magic lore options
-                var allLores = TOR_Core.AbilitySystem.Spells.LoreObject.GetAll();
-                var playerCulture = TaleWorlds.CampaignSystem.Hero.MainHero.Culture.StringId;
+                TORCommon.Log($"[TORSpecializationStageView] No specialization options found for profession: {professionId}", NLog.LogLevel.Warn);
+                return;
+            }
 
-                // Only include the 8 base winds of magic
-                var allowedLoreIds = new HashSet<string>
+            bool isSpellcaster = handler.IsSpellcaster(professionId);
+
+            foreach (var option in specializationOptions)
+            {
+                // Get the display name (handles translation keys)
+                string displayName = new TaleWorlds.Localization.TextObject(option.Name).ToString();
+                string description = new TaleWorlds.Localization.TextObject(option.Description).ToString();
+
+                // Determine what data object to attach
+                object dataObject = null;
+
+                if (isSpellcaster)
                 {
-                    "LoreOfLife", "LoreOfFire", "LoreOfDeath", "LoreOfLight",
-                    "LoreOfHeavens", "LoreOfBeasts", "LoreOfMetal", "LoreOfShadow"
-                };
-
-                TORCommon.Log($"[TORSpecializationStageView] Found {allLores.Count} total lores, player culture: {playerCulture}", NLog.LogLevel.Info);
-
-                foreach (var lore in allLores)
-                {
-                    // Only include the 8 winds of magic
-                    if (!allowedLoreIds.Contains(lore.ID))
+                    // For spellcasters, derive lore ID from option ID
+                    // e.g., "lore_of_fire" -> "LoreOfFire"
+                    string loreId = ConvertOptionIdToLoreId(option.Id);
+                    var lore = TOR_Core.AbilitySystem.Spells.LoreObject.GetAll()
+                        .FirstOrDefault(l => l.ID == loreId);
+                    if (lore != null)
                     {
-                        continue;
+                        dataObject = lore;
+                        TORCommon.Log($"[TORSpecializationStageView] Added lore option: {displayName} -> {loreId}", NLog.LogLevel.Info);
                     }
-
-                    // Skip lores that are disabled for player's culture
-                    if (lore.DisabledForCultures.Contains(playerCulture))
+                    else
                     {
-                        TORCommon.Log($"[TORSpecializationStageView] Skipping {lore.Name} (disabled for {playerCulture})", NLog.LogLevel.Info);
-                        continue;
+                        TORCommon.Log($"[TORSpecializationStageView] Lore not found for ID: {loreId}", NLog.LogLevel.Warn);
                     }
-
-                    string description = $"Master the {lore.Name}.";
-                    _dataSource.AddOption(lore.Name, description, lore);
-                    TORCommon.Log($"[TORSpecializationStageView] Added lore option: {lore.Name} ({lore.ID})", NLog.LogLevel.Info);
                 }
-            }
-            else if (handler.IsVampire(professionId))
-            {
-                // Add only the 3 vampire bloodline/career options
-                AddCareerOption("MinorVampire", "Von Carstein", "The most powerful vampire bloodline, rulers of Sylvania.");
-                AddCareerOption("BloodKnight", "Blood Dragon", "Honorable warriors seeking worthy opponents in battle.");
-                AddCareerOption("Necrarch", "Necrarch", "Obsessed with necromantic knowledge and dark sorcery.");
-            }
-            else if (handler.IsPriest(professionId))
-            {
-                // Add only the 2 Warrior Priest careers
-                AddCareerOption("WarriorPriest", "Warrior Priest of Sigmar", "A warrior-priest devoted to Sigmar, protector of mankind.");
-                AddCareerOption("WarriorPriestUlric", "Warrior Priest of Ulric", "A warrior-priest of Ulric, god of winter, wolves, and war.");
-            }
-            else if (handler.IsKnight(professionId))
-            {
-                // Add the 5 Knight Order careers
-                AddCareerOption("KnightBlazingSun", "Order of the Blazing Sun", "Knights of Myrmidia, masters of strategy and warfare from Talabheim.");
-                AddCareerOption("KnightPanthers", "Knight Panthers", "Elite secular knights from Carroburg, known for their ferocity.");
-                AddCareerOption("KnightWhiteWolf", "Knights of the White Wolf", "Devoted followers of Ulric from Middenheim, fierce and relentless.");
-                AddCareerOption("KnightGriphon", "Order of the Griphon", "Noble knights of Sigmar from Altdorf, defenders of the faithful.");
-                AddCareerOption("Reiksguard", "Reiksguard", "The Emperor's personal guard, elite secular knights from Castle Reiksguard.");
+                else if (!string.IsNullOrEmpty(option.CareerId))
+                {
+                    // For vampires/priests/knights, use the career ID from XML
+                    var career = TaleWorlds.Core.Game.Current.ObjectManager
+                        .GetObject<TOR_Core.CharacterDevelopment.CareerSystem.CareerObject>(option.CareerId);
+                    if (career != null)
+                    {
+                        dataObject = career;
+                        TORCommon.Log($"[TORSpecializationStageView] Added career option: {displayName} ({option.CareerId})", NLog.LogLevel.Info);
+                    }
+                    else
+                    {
+                        TORCommon.Log($"[TORSpecializationStageView] Career not found: {option.CareerId}", NLog.LogLevel.Warn);
+                    }
+                }
+
+                // Add the option if we successfully loaded the data object
+                if (dataObject != null)
+                {
+                    _dataSource.AddOption(displayName, description, dataObject);
+                }
+                else
+                {
+                    TORCommon.Log($"[TORSpecializationStageView] Failed to load data object for option: {option.Id}", NLog.LogLevel.Error);
+                }
             }
 
             TORCommon.Log($"[TORSpecializationStageView] Added {_dataSource.Options.Count} total options", NLog.LogLevel.Info);
@@ -262,25 +268,22 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        private void AddCareerOption(string careerId, string displayName, string description)
+        /// <summary>
+        /// Convert option ID to lore ID format
+        /// e.g., "lore_of_fire" -> "LoreOfFire"
+        /// </summary>
+        private string ConvertOptionIdToLoreId(string optionId)
         {
-            try
+            // Remove "lore_of_" prefix and convert to PascalCase
+            if (optionId.StartsWith("lore_of_"))
             {
-                var career = TaleWorlds.Core.Game.Current.ObjectManager.GetObject<TOR_Core.CharacterDevelopment.CareerSystem.CareerObject>(careerId);
-                if (career != null)
-                {
-                    _dataSource.AddOption(displayName, description, career);
-                    TORCommon.Log($"[TORSpecializationStageView] Added career option: {displayName} ({careerId})", NLog.LogLevel.Info);
-                }
-                else
-                {
-                    TORCommon.Log($"[TORSpecializationStageView] Career not found: {careerId}", NLog.LogLevel.Warn);
-                }
+                string loreName = optionId.Substring(8); // Remove "lore_of_"
+                // Capitalize first letter: "fire" -> "Fire"
+                loreName = char.ToUpper(loreName[0]) + loreName.Substring(1);
+                return "LoreOf" + loreName;
             }
-            catch (Exception ex)
-            {
-                TORCommon.Log($"[TORSpecializationStageView] Error adding career {careerId}: {ex.Message}", NLog.LogLevel.Error);
-            }
+
+            return optionId;
         }
 
         private TaleWorlds.Core.Equipment GetEquipmentForOption(object optionData)
@@ -597,3 +600,4 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
     }
 }
+
