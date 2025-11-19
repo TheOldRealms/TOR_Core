@@ -115,7 +115,7 @@
 	<!-- VAMPIRES - 3 Bloodlines                        -->
 	<!-- =============================================== -->
 
-	<SpecializationOption Id="bloodline_von_carstein" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_vampire_noble_equipment" CareerId="MinorVampire">
+	<SpecializationOption Id="bloodline_von_carstein" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_vampire_noble_equipment">
 		<Name>{=tor_vampire_von_carstein_name}Von Carstein</Name>
 		<Description>{=tor_vampire_von_carstein_desc}The most powerful vampire bloodline, rulers of Sylvania.</Description>
 		<PositiveEffect>{=tor_vampire_von_carstein_positive}Necromantic powers and commanding presence</PositiveEffect>
@@ -127,7 +127,7 @@
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="bloodline_blood_dragon" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_blood_dragon_equipment" CareerId="BloodKnight">
+	<SpecializationOption Id="bloodline_blood_dragon" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_blood_dragon_equipment">
 		<Name>{=tor_vampire_blood_dragon_name}Blood Dragon</Name>
 		<Description>{=tor_vampire_blood_dragon_desc}Honorable warriors seeking worthy opponents in battle.</Description>
 		<PositiveEffect>{=tor_vampire_blood_dragon_positive}Martial excellence and honor code</PositiveEffect>
@@ -139,7 +139,7 @@
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="bloodline_necrarch" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_necrarch_equipment" CareerId="Necrarch">
+	<SpecializationOption Id="bloodline_necrarch" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_necrarch_equipment">
 		<Name>{=tor_vampire_necrarch_name}Necrarch</Name>
 		<Description>{=tor_vampire_necrarch_desc}Obsessed with necromantic knowledge and dark sorcery.</Description>
 		<PositiveEffect>{=tor_vampire_necrarch_positive}Unmatched necromantic mastery</PositiveEffect>
@@ -152,7 +152,7 @@
 	</SpecializationOption>
 
 	<!-- Mousillon vampires use same bloodline options -->
-	<SpecializationOption Id="bloodline_von_carstein_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_vampire_noble_equipment" CareerId="MinorVampire">
+	<SpecializationOption Id="bloodline_von_carstein_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_vampire_noble_equipment">
 		<Name>{=tor_vampire_von_carstein_name}Von Carstein</Name>
 		<Description>{=tor_vampire_von_carstein_desc}The most powerful vampire bloodline, rulers of Sylvania.</Description>
 		<PositiveEffect>{=tor_vampire_von_carstein_positive}Necromantic powers and commanding presence</PositiveEffect>
@@ -164,7 +164,7 @@
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="bloodline_blood_dragon_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_blood_dragon_equipment" CareerId="BloodKnight">
+	<SpecializationOption Id="bloodline_blood_dragon_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_blood_dragon_equipment">
 		<Name>{=tor_vampire_blood_dragon_name}Blood Dragon</Name>
 		<Description>{=tor_vampire_blood_dragon_desc}Honorable warriors seeking worthy opponents in battle.</Description>
 		<PositiveEffect>{=tor_vampire_blood_dragon_positive}Martial excellence and honor code</PositiveEffect>
@@ -176,7 +176,7 @@
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="bloodline_necrarch_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_necrarch_equipment" CareerId="Necrarch">
+	<SpecializationOption Id="bloodline_necrarch_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_necrarch_equipment">
 		<Name>{=tor_vampire_necrarch_name}Necrarch</Name>
 		<Description>{=tor_vampire_necrarch_desc}Obsessed with necromantic knowledge and dark sorcery.</Description>
 		<PositiveEffect>{=tor_vampire_necrarch_positive}Unmatched necromantic mastery</PositiveEffect>
@@ -192,7 +192,7 @@
 	<!-- PRIESTS - 2 Gods                               -->
 	<!-- =============================================== -->
 
-	<SpecializationOption Id="priest_sigmar" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_sigmar_priest_equipment" CareerId="WarriorPriest">
+	<SpecializationOption Id="priest_sigmar" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_sigmar_priest_equipment">
 		<Name>{=tor_priest_sigmar_name}Warrior Priest of Sigmar</Name>
 		<Description>{=tor_priest_sigmar_desc}A warrior-priest devoted to Sigmar, protector of mankind.</Description>
 		<PositiveEffect>{=tor_priest_sigmar_positive}Divine protection of Sigmar</PositiveEffect>
@@ -204,7 +204,7 @@
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="priest_ulric" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_ulric_priest_equipment" CareerId="WarriorPriestUlric">
+	<SpecializationOption Id="priest_ulric" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_ulric_priest_equipment">
 		<Name>{=tor_priest_ulric_name}Warrior Priest of Ulric</Name>
 		<Description>{=tor_priest_ulric_desc}A warrior-priest of Ulric, god of winter, wolves, and war.</Description>
 		<PositiveEffect>{=tor_priest_ulric_positive}Blessing of the Winter Wolf</PositiveEffect>
@@ -220,7 +220,7 @@
 	<!-- KNIGHTS - 5 Orders                             -->
 	<!-- =============================================== -->
 
-	<SpecializationOption Id="knight_blazing_sun" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="KnightBlazingSun">
+	<SpecializationOption Id="knight_blazing_sun" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment">
 		<Name>{=tor_knight_blazing_sun_name}Order of the Blazing Sun</Name>
 		<Description>{=tor_knight_blazing_sun_desc}Knights of Myrmidia, masters of strategy and warfare from Talabheim.</Description>
 		<PositiveEffect>{=tor_knight_blazing_sun_positive}Strategic brilliance and martial prowess</PositiveEffect>
@@ -232,7 +232,7 @@
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_panthers" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="KnightPanthers">
+	<SpecializationOption Id="knight_panthers" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment">
 		<Name>{=tor_knight_panthers_name}Knight Panthers</Name>
 		<Description>{=tor_knight_panthers_desc}Elite secular knights from Carroburg, known for their ferocity.</Description>
 		<PositiveEffect>{=tor_knight_panthers_positive}Ferocious and relentless in battle</PositiveEffect>
@@ -244,7 +244,7 @@
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_white_wolf" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="KnightWhiteWolf">
+	<SpecializationOption Id="knight_white_wolf" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment">
 		<Name>{=tor_knight_white_wolf_name}Knights of the White Wolf</Name>
 		<Description>{=tor_knight_white_wolf_desc}Devoted followers of Ulric from Middenheim, fierce and relentless.</Description>
 		<PositiveEffect>{=tor_knight_white_wolf_positive}Ulric's blessing in winter warfare</PositiveEffect>
@@ -256,7 +256,7 @@
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_griphon" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="KnightGriphon">
+	<SpecializationOption Id="knight_griphon" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment">
 		<Name>{=tor_knight_griphon_name}Order of the Griphon</Name>
 		<Description>{=tor_knight_griphon_desc}Noble knights of Sigmar from Altdorf, defenders of the faithful.</Description>
 		<PositiveEffect>{=tor_knight_griphon_positive}Sigmar's divine protection</PositiveEffect>
@@ -268,7 +268,7 @@
 		<AttributeToIncrease>Social</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_reiksguard" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment" CareerId="Reiksguard">
+	<SpecializationOption Id="knight_reiksguard" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment">
 		<Name>{=tor_knight_reiksguard_name}Reiksguard</Name>
 		<Description>{=tor_knight_reiksguard_desc}The Emperor's personal guard, elite secular knights from Castle Reiksguard.</Description>
 		<PositiveEffect>{=tor_knight_reiksguard_positive}Elite training and Imperial favor</PositiveEffect>

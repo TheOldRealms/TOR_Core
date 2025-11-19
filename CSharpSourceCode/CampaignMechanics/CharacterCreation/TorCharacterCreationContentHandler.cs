@@ -37,6 +37,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private string _selectedProfessionId = ""; // Track stage 3 selection for stage 4 conditions
         private string _selectedLoreId = null; // Store selected lore for spellcasters (applied at finalization)
         private string _selectedCareerId = null; // Store selected career for vampires/priests (applied at finalization)
+        private string _selectedSpecializationOptionId = null; // Store selected specialization option ID from XML (applied at finalization)
         private NarrativeMenuCharacter _narrativePlayerCharacter = null; // Reference to narrative menu character for updating face
         private const int FocusToAdd = 1;
         private const int SkillLevelToAdd = 10;
@@ -116,7 +117,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 TORCommon.Log("Failed to open tor_cc_options.xml for character creation.", NLog.LogLevel.Error);
                 throw;
-            }            try
+            }
+
+            try
             {
                 var specPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_specialization_options.xml";
                 XmlSerializer specSer = new(typeof(List<SpecializationOption>));
@@ -407,6 +410,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             _selectedLoreId = null;
             _selectedCareerId = null;
+            _selectedSpecializationOptionId = null;
             TORCommon.Log("[TorCharacterCreationContentHandler] Cleared stored specialization selections", NLog.LogLevel.Info);
         }
 
@@ -418,7 +422,23 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// <summary>
         /// Get the currently stored career ID (null if none selected)
         /// </summary>
-        
+        public string GetStoredCareerId() => _selectedCareerId;
+
+        /// <summary>
+        /// Check if the given profession has any specialization options available
+        /// </summary>
+        /// <param name="professionId">The profession ID to check (e.g., "option_3_empire_knight")</param>
+        /// <returns>True if at least one specialization option exists for this profession</returns>
+        public bool HasSpecializationOptions(string professionId)
+        {
+            if (string.IsNullOrEmpty(professionId) || _specializationOptions == null)
+            {
+                return false;
+            }
+
+            return _specializationOptions.Any(opt => opt.ProfessionRequirement == professionId);
+        }
+
         /// <summary>
         /// Get all specialization options for the given profession
         /// </summary>
@@ -433,6 +453,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             return _specializationOptions?.Where(opt => opt.ProfessionRequirement == professionId).ToList()
                    ?? new List<SpecializationOption>();
+        }
+
+        /// <summary>
+        /// Store the selected specialization option ID to be processed at character creation finalization.
+        /// This is the new XML-driven approach - the option ID determines which career/lore to apply.
+        /// </summary>
+        public void SetSelectedSpecializationOptionId(string optionId)
+        {
+            _selectedSpecializationOptionId = optionId;
+            TORCommon.Log($"[TorCharacterCreationContentHandler] Stored specialization option ID: {optionId}", NLog.LogLevel.Info);
         }
 
 
@@ -975,28 +1005,144 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// <summary>
         /// Apply stored specializations (lore/career) at the very end of character creation
         /// This prevents issues where going back and changing profession would keep the old specialization
+        /// NEW: Uses _selectedSpecializationOptionId from XML with hard-coded mapping to careers/lores
         /// </summary>
         private void ApplyStoredSpecializations()
         {
             var hero = Hero.MainHero;
 
-            // Apply stored lore for spellcasters
-            if (!string.IsNullOrEmpty(_selectedLoreId))
+            // NEW: Apply specialization based on option ID from XML
+            if (!string.IsNullOrEmpty(_selectedSpecializationOptionId))
             {
-                TORCommon.Log($"[TorCharacterCreationContentHandler] Applying stored lore: {_selectedLoreId}", NLog.LogLevel.Info);
-                hero.AddKnownLore(_selectedLoreId);
-                var info = hero.GetExtendedInfo();
-                if (info.SpellCastingLevel < SpellCastingLevel.Entry)
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Applying specialization for option: {_selectedSpecializationOptionId}", NLog.LogLevel.Info);
+
+                // Get the XML option to apply skill/attribute bonuses
+                var option = _specializationOptions?.FirstOrDefault(opt => opt.Id == _selectedSpecializationOptionId);
+                if (option != null)
                 {
-                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    // Apply skill bonuses
+                    if (option.SkillsToIncrease != null)
+                    {
+                        foreach (var skillId in option.SkillsToIncrease)
+                        {
+                            var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
+                            if (skill != null)
+                            {
+                                hero.HeroDeveloper.AddFocus(skill, FocusToAdd, false);
+                                hero.HeroDeveloper.ChangeSkillLevel(skill, SkillLevelToAdd, false);
+                                TORCommon.Log($"[ApplyStoredSpecializations] Added skill: {skillId} (+{FocusToAdd} focus, +{SkillLevelToAdd} level)", NLog.LogLevel.Info);
+                            }
+                        }
+                    }
+
+                    // Apply attribute bonus
+                    if (!string.IsNullOrEmpty(option.AttributeToIncrease))
+                    {
+                        var attribute = Attributes.All.FirstOrDefault(x => x.StringId == option.AttributeToIncrease.ToLower());
+                        if (attribute != null)
+                        {
+                            hero.HeroDeveloper.AddAttribute(attribute, AttributeLevelToAdd, false);
+                            TORCommon.Log($"[ApplyStoredSpecializations] Added attribute: {option.AttributeToIncrease} (+{AttributeLevelToAdd})", NLog.LogLevel.Info);
+                        }
+                    }
                 }
-                TORCommon.Log($"[TorCharacterCreationContentHandler] Successfully applied lore {_selectedLoreId}", NLog.LogLevel.Info);
+
+                // Hard-coded logic to map option IDs to careers/lores
+                // PRIEST OPTIONS
+                if (_selectedSpecializationOptionId == "priest_sigmar")
+                {
+                    hero.AddCareer(TORCareers.WarriorPriest);
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
+                    hero.AddAttribute("PriestSigmar");
+                    var skill = hero.GetSkillValue(TORSkills.Faith);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+                    hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Warrior Priest of Sigmar", NLog.LogLevel.Info);
+                }
+                else if (_selectedSpecializationOptionId == "priest_ulric")
+                {
+                    hero.AddCareer(TORCareers.WarriorPriestUlric);
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 60);
+                    hero.AddAttribute("PriestUlric");
+                    var skill = hero.GetSkillValue(TORSkills.Faith);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+                    hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Warrior Priest of Ulric", NLog.LogLevel.Info);
+                }
+                // VAMPIRE BLOODLINE OPTIONS
+                else if (_selectedSpecializationOptionId == "bloodline_von_carstein")
+                {
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddAbility("NagashGaze");
+                    hero.AddKnownLore("MinorMagic");
+                    hero.AddKnownLore("Necromancy");
+                    var skill = hero.GetSkillValue(TORSkills.SpellCraft);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.AddCareer(TORCareers.MinorVampire);
+                    MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Von Carstein Vampire", NLog.LogLevel.Info);
+                }
+                else if (_selectedSpecializationOptionId == "bloodline_blood_dragon")
+                {
+                    hero.AddCareer(TORCareers.BloodKnight);
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Blood Dragon Vampire", NLog.LogLevel.Info);
+                }
+                else if (_selectedSpecializationOptionId == "bloodline_necrarch")
+                {
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddAbility("NagashGaze");
+                    hero.AddKnownLore("MinorMagic");
+                    hero.AddKnownLore("Necromancy");
+                    hero.AddCareer(TORCareers.Necrarch);
+                    var skill = hero.GetSkillValue(TORSkills.SpellCraft);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Necrarch Vampire", NLog.LogLevel.Info);
+                }
+                // KNIGHT ORDER OPTIONS
+                else if (_selectedSpecializationOptionId == "knight_blazing_sun")
+                {
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Knight of the Blazing Sun", NLog.LogLevel.Info);
+                }
+                else if (_selectedSpecializationOptionId == "knight_panthers")
+                {
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Knight Panther", NLog.LogLevel.Info);
+                }
+                else if (_selectedSpecializationOptionId == "knight_white_wolf")
+                {
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Knight of the White Wolf", NLog.LogLevel.Info);
+                }
+                else if (_selectedSpecializationOptionId == "knight_gryphon")
+                {
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Order of the Gryphon", NLog.LogLevel.Info);
+                }
+                else if (_selectedSpecializationOptionId == "knight_reiksguard")
+                {
+                    
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Reiksguard Knight", NLog.LogLevel.Info);
+                }
+                // SPELLCASTER LORE OPTIONS
+                else if (_selectedSpecializationOptionId.StartsWith("lore_"))
+                {
+                    // Extract lore ID from option ID (e.g., "lore_fire" -> "LoreOfFire")
+                    string loreId = ConvertOptionIdToLoreId(_selectedSpecializationOptionId);
+                    hero.AddKnownLore(loreId);
+                    var info = hero.GetExtendedInfo();
+                    if (info.SpellCastingLevel < SpellCastingLevel.Entry)
+                    {
+                        hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    }
+                    TORCommon.Log($"[ApplyStoredSpecializations] Applied lore: {loreId}", NLog.LogLevel.Info);
+                }
+
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Specialization applied for option: {_selectedSpecializationOptionId}", NLog.LogLevel.Info);
             }
 
-            // Apply stored career for vampires/priests
             if (!string.IsNullOrEmpty(_selectedCareerId))
             {
-                TORCommon.Log($"[TorCharacterCreationContentHandler] Applying stored career: {_selectedCareerId}", NLog.LogLevel.Info);
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Applying stored career (LEGACY): {_selectedCareerId}", NLog.LogLevel.Info);
                 var career = Game.Current.ObjectManager.GetObject<CharacterDevelopment.CareerSystem.CareerObject>(_selectedCareerId);
                 if (career != null)
                 {
@@ -1037,6 +1183,30 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 ApplyLoreEquipment(_selectedLoreId);
             }
+        }
+
+        /// <summary>
+        /// Convert specialization option ID to lore ID
+        /// E.g., "lore_fire" -> "LoreOfFire", "lore_beasts" -> "LoreOfBeasts"
+        /// </summary>
+        private string ConvertOptionIdToLoreId(string optionId)
+        {
+            // Remove "lore_" prefix
+            string loreName = optionId.Replace("lore_", "");
+
+            // Map to actual lore IDs
+            return loreName switch
+            {
+                "fire" => "LoreOfFire",
+                "light" => "LoreOfLight",
+                "metal" => "LoreOfMetal",
+                "death" => "LoreOfDeath",
+                "shadows" => "LoreOfShadows",
+                "beasts" => "LoreOfBeasts",
+                "heavens" => "LoreOfHeavens",
+                "life" => "LoreOfLife",
+                _ => loreName // Fallback to original name with capitalization
+            };
         }
 
         /// <summary>

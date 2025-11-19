@@ -71,6 +71,7 @@
                   {
                       _positiveEffect = value;
                       OnPropertyChangedWithValue(value, nameof(PositiveEffect));
+                      OnPropertyChangedWithValue(!string.IsNullOrEmpty(value), nameof(HasPositiveEffect));
                   }
               }
           }
@@ -85,9 +86,16 @@
                   {
                       _negativeEffect = value;
                       OnPropertyChangedWithValue(value, nameof(NegativeEffect));
+                      OnPropertyChangedWithValue(!string.IsNullOrEmpty(value), nameof(HasNegativeEffect));
                   }
               }
           }
+
+          [DataSourceProperty]
+          public bool HasPositiveEffect => !string.IsNullOrEmpty(_positiveEffect);
+
+          [DataSourceProperty]
+          public bool HasNegativeEffect => !string.IsNullOrEmpty(_negativeEffect);
 
           [DataSourceProperty]
           public bool IsSelected

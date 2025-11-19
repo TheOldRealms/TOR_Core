@@ -69,12 +69,5 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// Valid values: Vigor, Control, Endurance, Cunning, Social, Intelligence
         /// </summary>
         public string AttributeToIncrease;
-
-        /// <summary>
-        /// Career to apply (CareerObject StringId)
-        /// Used for knight orders, priests, vampires
-        /// Example: "KnightBlazingSun", "WarriorPriest", "MinorVampire"
-        /// </summary>
-        public string CareerId;
     }
 }

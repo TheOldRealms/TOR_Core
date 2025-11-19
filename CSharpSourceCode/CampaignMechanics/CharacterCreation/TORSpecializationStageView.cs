@@ -30,6 +30,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private TORSpecializationStageVM _dataSource;
         private GauntletMovieIdentifier _movie;
         private bool _shouldAutoSkip;
+        // Static flag to track if we've visited this stage before (persists across reconstructions)
+        private static bool _wasVisited = false;
 
         public TORSpecializationStageView(
             CharacterCreationManager characterCreationManager,
@@ -50,6 +52,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             TORCommon.Log("[TORSpecializationStageView] Constructed", NLog.LogLevel.Info);
 
+            // Detect direction: if we've visited before, we're coming back from banner editor
+            if (_wasVisited)
+            {
+                TORCommon.Log("[TORSpecializationStageView] Direction: BACKWARD (coming from banner editor)", NLog.LogLevel.Info);
+            }
+            else
+            {
+                TORCommon.Log("[TORSpecializationStageView] Direction: FORWARD (coming from narrative stage)", NLog.LogLevel.Info);
+            }
+
             // Check if specialization is needed
             var handler = GetHandler();
             if (handler == null)
@@ -59,18 +71,25 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 return;
             }
 
-            bool needsSpec = handler.NeedsSpecialization(handler.GetSelectedProfessionId());
-            TORCommon.Log($"[TORSpecializationStageView] NeedsSpecialization: {needsSpec}, ProfessionId: '{handler.GetSelectedProfessionId()}'", NLog.LogLevel.Info);
+            // NEW: Check if there are any specialization options available for this profession in XML
+            string professionId = handler.GetSelectedProfessionId();
+            bool hasOptions = handler.HasSpecializationOptions(professionId);
 
-            if (!needsSpec)
+            TORCommon.Log($"[TORSpecializationStageView] ProfessionId: '{professionId}', HasOptions: {hasOptions}", NLog.LogLevel.Info);
+
+            if (!hasOptions)
             {
-                // Auto-skip for non-specialists
-                TORCommon.Log("[TORSpecializationStageView] Will auto-skip for non-specialist", NLog.LogLevel.Info);
+                // Auto-skip if no specialization options available for this profession
+                TORCommon.Log("[TORSpecializationStageView] Will auto-skip - no specialization options for this profession", NLog.LogLevel.Info);
                 _shouldAutoSkip = true;
                 return;
             }
 
-            // Initialize UI for specialists (will pre-select if there's a stored choice)
+            // NEVER auto-skip if we're just showing the UI - let the user interact
+            // Auto-skip is only for professions without options
+            _shouldAutoSkip = false;
+
+            // Initialize UI for professions with specialization options
             InitializeUI(handler);
         }
 
@@ -161,8 +180,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 return;
             }
 
-            bool isSpellcaster = handler.IsSpellcaster(professionId);
-
             foreach (var option in specializationOptions)
             {
                 // Get the display name (handles translation keys)
@@ -171,51 +188,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 string positiveEffect = new TaleWorlds.Localization.TextObject(option.PositiveEffect).ToString();
                 string negativeEffect = new TaleWorlds.Localization.TextObject(option.NegativeEffect).ToString();
 
-                // Determine what data object to attach
-                object dataObject = null;
-
-                if (isSpellcaster)
-                {
-                    // For spellcasters, derive lore ID from option ID
-                    // e.g., "lore_of_fire" -> "LoreOfFire"
-                    string loreId = ConvertOptionIdToLoreId(option.Id);
-                    var lore = TOR_Core.AbilitySystem.Spells.LoreObject.GetAll()
-                        .FirstOrDefault(l => l.ID == loreId);
-                    if (lore != null)
-                    {
-                        dataObject = lore;
-                        TORCommon.Log($"[TORSpecializationStageView] Added lore option: {displayName} -> {loreId}", NLog.LogLevel.Info);
-                    }
-                    else
-                    {
-                        TORCommon.Log($"[TORSpecializationStageView] Lore not found for ID: {loreId}", NLog.LogLevel.Warn);
-                    }
-                }
-                else if (!string.IsNullOrEmpty(option.CareerId))
-                {
-                    // For vampires/priests/knights, use the career ID from XML
-                    var career = TaleWorlds.Core.Game.Current.ObjectManager
-                        .GetObject<TOR_Core.CharacterDevelopment.CareerSystem.CareerObject>(option.CareerId);
-                    if (career != null)
-                    {
-                        dataObject = career;
-                        TORCommon.Log($"[TORSpecializationStageView] Added career option: {displayName} ({option.CareerId})", NLog.LogLevel.Info);
-                    }
-                    else
-                    {
-                        TORCommon.Log($"[TORSpecializationStageView] Career not found: {option.CareerId}", NLog.LogLevel.Warn);
-                    }
-                }
-
-                // Add the option if we successfully loaded the data object
-                if (dataObject != null)
-                {
-                    _dataSource.AddOption(displayName, description, dataObject, positiveEffect, negativeEffect);
-                }
-                else
-                {
-                    TORCommon.Log($"[TORSpecializationStageView] Failed to load data object for option: {option.Id}", NLog.LogLevel.Error);
-                }
+                // Just pass the option itself as data - handler will process it based on option.Id
+                // Equipment preview will use option.EquipmentSetId
+                _dataSource.AddOption(displayName, description, option, positiveEffect, negativeEffect);
+                TORCommon.Log($"[TORSpecializationStageView] Added option: {displayName} (ID: {option.Id})", NLog.LogLevel.Info);
             }
 
             TORCommon.Log($"[TORSpecializationStageView] Added {_dataSource.Options.Count} total options", NLog.LogLevel.Info);
@@ -230,21 +206,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void PreSelectStoredOption(TorCharacterCreationContentHandler handler, string professionId)
         {
             string storedId = null;
-
-            if (handler.IsSpellcaster(professionId))
-            {
-                storedId = handler.GetStoredLoreId();
-            }
-            else if (handler.IsVampire(professionId) || handler.IsPriest(professionId))
-            {
-                storedId = handler.GetStoredCareerId();
-            }
-
-            if (string.IsNullOrEmpty(storedId))
-            {
-                TORCommon.Log("[TORSpecializationStageView] No stored selection to pre-select", NLog.LogLevel.Info);
-                return;
-            }
+            
 
             // Find and select the matching option
             foreach (var option in _dataSource.Options)
@@ -270,81 +232,36 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        /// <summary>
-        /// Convert option ID to lore ID format
-        /// e.g., "lore_of_fire" -> "LoreOfFire"
-        /// </summary>
-        private string ConvertOptionIdToLoreId(string optionId)
-        {
-            // Remove "lore_of_" prefix and convert to PascalCase
-            if (optionId.StartsWith("lore_of_"))
-            {
-                string loreName = optionId.Substring(8); // Remove "lore_of_"
-                // Capitalize first letter: "fire" -> "Fire"
-                loreName = char.ToUpper(loreName[0]) + loreName.Substring(1);
-                return "LoreOf" + loreName;
-            }
-
-            return optionId;
-        }
-
         private TaleWorlds.Core.Equipment GetEquipmentForOption(object optionData)
         {
-            string rosterId = null;
-
-            if (optionData is TOR_Core.AbilitySystem.Spells.LoreObject)
+            // optionData is now a SpecializationOption - get equipment from its EquipmentSetId
+            if (optionData is SpecializationOption option && !string.IsNullOrEmpty(option.EquipmentSetId))
             {
-                rosterId = "tor_magister_equipment"; // All magisters same for now
-            }
-            else if (optionData is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
-            {
-                rosterId = career.StringId switch
+                try
                 {
-                    "MinorVampire" => "tor_vampire_noble_equipment",
-                    "BloodKnight" => "tor_blood_dragon_equipment",
-                    "Necrarch" => "tor_necrarch_equipment",
-                    "WarriorPriest" => "tor_sigmar_priest_equipment",
-                    "WarriorPriestUlric" => "tor_ulric_priest_equipment",
-                    // Knight orders - all use same equipment
-                    "KnightBlazingSun" => "tor_empire_knight_equipment",
-                    "KnightPanthers" => "tor_empire_knight_equipment",
-                    "KnightWhiteWolf" => "tor_empire_knight_equipment",
-                    "KnightGriphon" => "tor_empire_knight_equipment",
-                    "Reiksguard" => "tor_empire_knight_equipment",
-                    _ => null
-                };
-            }
-
-            if (string.IsNullOrEmpty(rosterId))
-            {
-                TORCommon.Log($"[TORSpecializationStageView] No equipment roster ID for option type {optionData?.GetType().Name}, using player equipment", NLog.LogLevel.Warn);
-                // Fallback: Use player's current equipment for testing
-                return TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment.Clone();
-            }
-
-            // Try to find the equipment roster
-            try
-            {
-                var roster = TaleWorlds.Core.Game.Current.ObjectManager.GetObject<TaleWorlds.Core.MBEquipmentRoster>(rosterId);
-                if (roster != null && roster.AllEquipments.Count > 0)
-                {
-                    // Get first equipment from roster
-                    TORCommon.Log($"[TORSpecializationStageView] Loaded equipment from roster '{rosterId}'", NLog.LogLevel.Info);
-                    return roster.AllEquipments[0].Clone();
+                    var roster = TaleWorlds.Core.Game.Current.ObjectManager.GetObject<TaleWorlds.Core.MBEquipmentRoster>(option.EquipmentSetId);
+                    if (roster != null && roster.AllEquipments.Count > 0)
+                    {
+                        TORCommon.Log($"[TORSpecializationStageView] Loaded equipment from roster '{option.EquipmentSetId}'", NLog.LogLevel.Info);
+                        return roster.AllEquipments[0].Clone();
+                    }
+                    else
+                    {
+                        TORCommon.Log($"[TORSpecializationStageView] Equipment roster '{option.EquipmentSetId}' not found or empty", NLog.LogLevel.Warn);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    TORCommon.Log($"[TORSpecializationStageView] Equipment roster '{rosterId}' not found or empty, using player equipment", NLog.LogLevel.Warn);
-                    // Fallback: Use player's current equipment for testing
-                    return TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment.Clone();
+                    TORCommon.Log($"[TORSpecializationStageView] Error loading equipment roster '{option.EquipmentSetId}': {ex.Message}", NLog.LogLevel.Error);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                TORCommon.Log($"[TORSpecializationStageView] Error loading equipment roster '{rosterId}': {ex.Message}, using player equipment", NLog.LogLevel.Error);
-                // Fallback: Use player's current equipment for testing
-                return TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment.Clone();
+                TORCommon.Log($"[TORSpecializationStageView] Invalid option data or missing EquipmentSetId", NLog.LogLevel.Warn);
             }
+
+            // Fallback: Use player's current equipment
+            return TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment.Clone();
         }
 
         private TorCharacterCreationContentHandler GetHandler()
@@ -382,14 +299,25 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             base.Tick(dt);
 
-            // Handle auto-skip on first tick
+            // auto skip back to previous menu
             if (_shouldAutoSkip)
             {
+              
                 TORCommon.Log("[TORSpecializationStageView] Auto-skipping stage", NLog.LogLevel.Info);
                 _shouldAutoSkip = false;
-                NextStage();
+                if (_wasVisited)
+                {
+                    PreviousStage();
+                }
+                else
+                {
+                     NextStage(); 
+                }
+
                 return;
             }
+
+            // Reset the banner editor flag after first tick
 
             // Handle hotkey input
             HandleLayerInput();
@@ -417,6 +345,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Store the selected specialization (will be applied at the very end of character creation)
             StoreSpecialization();
+
+            // Mark this stage as visited
+            _wasVisited = true;
+            TORCommon.Log("[TORSpecializationStageView] Set _wasVisited = true", NLog.LogLevel.Info);
 
             _affirmativeAction();
         }
@@ -447,22 +379,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 return;
             }
 
-            // Store based on type
-            if (selectedData is TOR_Core.AbilitySystem.Spells.LoreObject lore)
+            // selectedData is now a SpecializationOption - just store the option ID
+            if (selectedData is SpecializationOption option)
             {
-                TORCommon.Log($"[TORSpecializationStageView] Storing lore selection: {lore.Name} ({lore.ID})", NLog.LogLevel.Info);
-                handler.SetSelectedLore(lore.ID);
+                TORCommon.Log($"[TORSpecializationStageView] Storing specialization selection: {option.Name} (ID: {option.Id})", NLog.LogLevel.Info);
+                handler.SetSelectedSpecializationOptionId(option.Id);
 
                 // Apply equipment immediately so it shows in banner editor
-                ApplyEquipmentForLore(lore.ID);
-            }
-            else if (selectedData is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
-            {
-                TORCommon.Log($"[TORSpecializationStageView] Storing career selection: {career.Name} ({career.StringId})", NLog.LogLevel.Info);
-                handler.SetSelectedCareer(career.StringId);
-
-                // Apply equipment immediately so it shows in banner editor
-                ApplyEquipmentForCareer(career.StringId);
+                if (!string.IsNullOrEmpty(option.EquipmentSetId))
+                {
+                    ApplyEquipmentFromRoster(option.EquipmentSetId, option.Id);
+                }
             }
             else
             {
@@ -482,6 +409,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 handler.ClearStoredSpecializations();
                 TORCommon.Log("[TORSpecializationStageView] Cleared stored specialization selections (user clicked Back)", NLog.LogLevel.Info);
             }
+
+            // Reset the visited flag so next time we come forward it's treated as a fresh visit
+            _wasVisited = false;
+            TORCommon.Log("[TORSpecializationStageView] Set _wasVisited = false", NLog.LogLevel.Info);
 
             _negativeAction();
         }

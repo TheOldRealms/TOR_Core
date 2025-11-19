@@ -121,7 +121,7 @@
                                     Brush.FontSize="18"
                                     Brush.TextHorizontalAlignment="Right"
                                     Brush.Color="#00FF00"
-                                    IsVisible="@PositiveEffect" />
+                                    IsVisible="@HasPositiveEffect" />
 
                         <!-- Negative effect (red) -->
                         <TextWidget DoNotAcceptEvents="true"
@@ -132,7 +132,7 @@
                                     Brush.FontSize="18"
                                     Brush.TextHorizontalAlignment="Right"
                                     Brush.Color="#FF0000"
-                                    IsVisible="@NegativeEffect" />
+                                    IsVisible="@HasNegativeEffect" />
                       </Children>
                     </Widget>
 
