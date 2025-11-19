@@ -29,22 +29,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private GauntletLayer _gauntletLayer;
         private TORSpecializationStageVM _dataSource;
         private GauntletMovieIdentifier _movie;
+
         private bool _shouldAutoSkip;
+
         // Static flag to track if we've visited this stage before (persists across reconstructions)
         private static bool _wasVisited = false;
 
-        public TORSpecializationStageView(
-            CharacterCreationManager characterCreationManager,
-            ControlCharacterCreationStage affirmativeAction,
-            TextObject affirmativeActionText,
-            ControlCharacterCreationStage negativeAction,
-            TextObject negativeActionText,
-            ControlCharacterCreationStage onRefresh,
-            ControlCharacterCreationStageReturnInt getCurrentStageIndexAction,
-            ControlCharacterCreationStageReturnInt getTotalStageCountAction,
-            ControlCharacterCreationStageReturnInt getFurthestIndexAction,
-            ControlCharacterCreationStageWithInt goToIndexAction)
-            : base(affirmativeAction, negativeAction, onRefresh, getTotalStageCountAction, getCurrentStageIndexAction, getFurthestIndexAction, goToIndexAction)
+        public TORSpecializationStageView(CharacterCreationManager characterCreationManager, ControlCharacterCreationStage affirmativeAction,
+            TextObject affirmativeActionText, ControlCharacterCreationStage negativeAction, TextObject negativeActionText,
+            ControlCharacterCreationStage onRefresh, ControlCharacterCreationStageReturnInt getCurrentStageIndexAction,
+            ControlCharacterCreationStageReturnInt getTotalStageCountAction, ControlCharacterCreationStageReturnInt getFurthestIndexAction,
+            ControlCharacterCreationStageWithInt goToIndexAction) : base(affirmativeAction, negativeAction, onRefresh, getTotalStageCountAction,
+            getCurrentStageIndexAction, getFurthestIndexAction, goToIndexAction)
         {
             _characterCreationManager = characterCreationManager;
             _affirmativeActionText = affirmativeActionText;
@@ -117,6 +113,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 title = "Choose Your God";
                 description = "As a priest, you must choose which god you serve. This will determine your divine powers.";
             }
+            else if (handler.IsKnight(professionId))
+            {
+                title = "Choose Your Order";
+                description =
+                    "As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.";
+            }
 
             // Create GauntletLayer (UI overlay) - use layer order 1 like native
             _gauntletLayer = new GauntletLayer(1, "GauntletLayer", true);
@@ -128,14 +130,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             TORCommon.Log($"[TORSpecializationStageView] GauntletLayer created, IsActive={_gauntletLayer.IsActive}", NLog.LogLevel.Info);
 
             // Create custom ViewModel with equipment preview callback
-            _dataSource = new TORSpecializationStageVM(
-                title,
-                description,
-                new Action(NextStage),
-                _affirmativeActionText,
-                new Action(PreviousStage),
-                _negativeActionText,
-                (selectedOption) =>
+            _dataSource = new TORSpecializationStageVM(title, description, new Action(NextStage), _affirmativeActionText, new Action(PreviousStage),
+                _negativeActionText, (selectedOption) =>
                 {
                     // Update character equipment when option is selected
                     TORCommon.Log($"[TORSpecializationStageView] Equipment preview callback triggered", NLog.LogLevel.Info);
@@ -144,8 +140,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         TaleWorlds.Core.Equipment equipment = GetEquipmentForOption(selectedOption.Data);
                         _dataSource.UpdateCharacterEquipment(equipment);
                     }
-                }
-            );
+                });
 
             // Populate options based on profession type
             PopulateOptions(handler, professionId);
@@ -167,7 +162,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-                private void PopulateOptions(TorCharacterCreationContentHandler handler, string professionId)
+        private void PopulateOptions(TorCharacterCreationContentHandler handler, string professionId)
         {
             TORCommon.Log($"[TORSpecializationStageView] Populating options for profession: {professionId}", NLog.LogLevel.Info);
 
@@ -183,10 +178,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             foreach (var option in specializationOptions)
             {
                 // Get the display name (handles translation keys)
-                string displayName = new TaleWorlds.Localization.TextObject(option.Name).ToString();
-                string description = new TaleWorlds.Localization.TextObject(option.Description).ToString();
-                string positiveEffect = new TaleWorlds.Localization.TextObject(option.PositiveEffect).ToString();
-                string negativeEffect = new TaleWorlds.Localization.TextObject(option.NegativeEffect).ToString();
+                string displayName = new TextObject(option.Name).ToString();
+                string description = new TextObject(option.Description).ToString();
+                string positiveEffect = new TextObject(option.PositiveEffect).ToString();
+                string negativeEffect = new TextObject(option.NegativeEffect).ToString();
                 string iconSprite = string.IsNullOrEmpty(option.IconSprite) ? "traits_magic_icon" : option.IconSprite;
 
                 // Pass icon sprite along with other data
@@ -206,7 +201,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void PreSelectStoredOption(TorCharacterCreationContentHandler handler, string professionId)
         {
             string storedId = null;
-            
+
 
             // Find and select the matching option
             foreach (var option in _dataSource.Options)
@@ -220,7 +215,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         break;
                     }
                 }
-                else if ((handler.IsVampire(professionId) || handler.IsPriest(professionId)) && option.Data is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
+                else if ((handler.IsVampire(professionId) || handler.IsPriest(professionId)) &&
+                         option.Data is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
                 {
                     if (career.StringId == storedId)
                     {
@@ -247,12 +243,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     }
                     else
                     {
-                        TORCommon.Log($"[TORSpecializationStageView] Equipment roster '{option.EquipmentSetId}' not found or empty", NLog.LogLevel.Warn);
+                        TORCommon.Log($"[TORSpecializationStageView] Equipment roster '{option.EquipmentSetId}' not found or empty",
+                            NLog.LogLevel.Warn);
                     }
                 }
                 catch (Exception ex)
                 {
-                    TORCommon.Log($"[TORSpecializationStageView] Error loading equipment roster '{option.EquipmentSetId}': {ex.Message}", NLog.LogLevel.Error);
+                    TORCommon.Log($"[TORSpecializationStageView] Error loading equipment roster '{option.EquipmentSetId}': {ex.Message}",
+                        NLog.LogLevel.Error);
                 }
             }
             else
@@ -274,7 +272,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 if (handlersField != null)
                 {
-                    var handlers = handlersField.GetValue(_characterCreationManager) as System.Collections.Generic.SortedList<int, ICharacterCreationContentHandler>;
+                    var handlers =
+                        handlersField.GetValue(_characterCreationManager) as
+                            System.Collections.Generic.SortedList<int, ICharacterCreationContentHandler>;
                     if (handlers != null)
                     {
                         foreach (var handler in handlers.Values)
@@ -302,7 +302,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // auto skip back to previous menu
             if (_shouldAutoSkip)
             {
-              
                 TORCommon.Log("[TORSpecializationStageView] Auto-skipping stage", NLog.LogLevel.Info);
                 _shouldAutoSkip = false;
                 if (_wasVisited)
@@ -311,7 +310,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 }
                 else
                 {
-                     NextStage(); 
+                    NextStage();
                 }
 
                 return;
@@ -424,6 +423,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 return new List<ScreenLayer> { _gauntletLayer };
             }
+
             return new List<ScreenLayer>();
         }
 
@@ -519,7 +519,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         }
                     }
 
-                    TORCommon.Log($"[TORSpecializationStageView] Applied equipment items from '{rosterId}' for specialization '{specializationId}' (face/body preserved)", NLog.LogLevel.Info);
+                    TORCommon.Log(
+                        $"[TORSpecializationStageView] Applied equipment items from '{rosterId}' for specialization '{specializationId}' (face/body preserved)",
+                        NLog.LogLevel.Info);
                 }
                 else
                 {
@@ -533,4 +535,3 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
     }
 }
-

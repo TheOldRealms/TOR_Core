@@ -89,22 +89,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Mousillon
             ["BlackGrailKnight"] = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true),
         };
-
-        /// <summary>
-        /// Culture-specific fallback spawn locations for Mercenary and other careers without specific overrides.
-        /// These are used when a career doesn't have a specific spawn override.
-        /// </summary>
-        private static readonly Dictionary<string, CampaignVec2> CultureMercenarySpawns = new()
-        {
-            [TORConstants.Cultures.EMPIRE] = new CampaignVec2(new Vec2(1135.848f, 1176.32f), true),
-            [TORConstants.Cultures.SYLVANIA] = new CampaignVec2(new Vec2(1655.133f, 1059.423f), true),
-            [TORConstants.Cultures.MOUSILLON] = new CampaignVec2(new Vec2(918.8679f, 1025.561f), true),
-            [TORConstants.Cultures.ASRAI] = new CampaignVec2(new Vec2(1164.307f, 822.5884f), true),
-            [TORConstants.Cultures.EONIR] = new CampaignVec2(new Vec2(1295.974f, 1336.11f), true),
-            [TORConstants.Cultures.DAWI] = new CampaignVec2(new Vec2(1485.11f, 809.4648f), true),
-            [TORConstants.Cultures.BRETONNIA] = new CampaignVec2(new Vec2(1070.923f, 1116.021f), true),
-        };
-
+        
+        
         public TorCharacterCreationContentHandler()
         {
             try
@@ -143,53 +129,35 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Menu flow: start -> origin_menu -> growth_menu -> profession_menu -> (continues to face gen, etc.)
 
             // Create player character for display
-            _narrativePlayerCharacter = new NarrativeMenuCharacter(
-                "player_character",
+            _narrativePlayerCharacter = new NarrativeMenuCharacter("player_character",
                 CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1),
-                CharacterObject.PlayerCharacter.Race,
-                CharacterObject.PlayerCharacter.IsFemale);
+                CharacterObject.PlayerCharacter.Race, CharacterObject.PlayerCharacter.IsFemale);
 
-            List<NarrativeMenuCharacter> playerCharacterList = new List<NarrativeMenuCharacter>
-            {
-                _narrativePlayerCharacter
-            };
+            List<NarrativeMenuCharacter> playerCharacterList = new List<NarrativeMenuCharacter> { _narrativePlayerCharacter };
 
             // Stage 1: Origin Menu
-            NarrativeMenu stage1Menu = new NarrativeMenu(
-                "tor_origin_menu",                              // stringId
-                "start",                                        // inputMenuId (from culture selection)
-                "tor_growth_menu",                              // outputMenuId (to stage 2)
-                new TextObject("{=tor_cc_origin_summary_str}Origin"),  // title
-                new TextObject("{TOR_CC_ORIGIN}"),              // description
-                playerCharacterList,                            // characters to display
+            NarrativeMenu stage1Menu = new NarrativeMenu("tor_origin_menu", // stringId
+                "start", // inputMenuId (from culture selection)
+                "tor_growth_menu", // outputMenuId (to stage 2)
+                new TextObject("{=tor_cc_origin_summary_str}Origin"), // title
+                new TextObject("{TOR_CC_ORIGIN}"), // description
+                playerCharacterList, // characters to display
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
-                    GetPlayerMenuCharacterArgs("player_character", manager))
-            );
+                    GetPlayerMenuCharacterArgs("player_character", manager)));
 
             // Stage 2: Growth Menu
-            NarrativeMenu stage2Menu = new NarrativeMenu(
-                "tor_growth_menu",
-                "tor_origin_menu",
-                "tor_profession_menu",
-                new TextObject("{=tor_cc_growth_summary_str}Growth"),
-                new TextObject("{TOR_CC_GROWTH}"),
-                playerCharacterList,
+            NarrativeMenu stage2Menu = new NarrativeMenu("tor_growth_menu", "tor_origin_menu", "tor_profession_menu",
+                new TextObject("{=tor_cc_growth_summary_str}Growth"), new TextObject("{TOR_CC_GROWTH}"), playerCharacterList,
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
-                    GetPlayerMenuCharacterArgs("player_character", manager))
-            );
+                    GetPlayerMenuCharacterArgs("player_character", manager)));
 
             // Stage 3: Profession Menu
-            NarrativeMenu stage3Menu = new NarrativeMenu(
-                "tor_profession_menu",
-                "tor_growth_menu",
-                "narrative_face_generator_menu",  // Exit narrative stage ? TORSpecializationStage handles stage 4
-                new TextObject("{=tor_cc_profession_summary_str}Profession"),
-                new TextObject("{TOR_CC_PROFESSION}"),
-                playerCharacterList,
+            NarrativeMenu stage3Menu = new NarrativeMenu("tor_profession_menu", "tor_growth_menu",
+                "narrative_face_generator_menu", // Exit narrative stage ? TORSpecializationStage handles stage 4
+                new TextObject("{=tor_cc_profession_summary_str}Profession"), new TextObject("{TOR_CC_PROFESSION}"), playerCharacterList,
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
-                    GetPlayerMenuCharacterArgs("player_character", manager))
-            );
-            
+                    GetPlayerMenuCharacterArgs("player_character", manager)));
+
 
             // NEW 1.3.1 Pattern: Create NarrativeMenuOption for each option
             foreach (var option in _options)
@@ -206,14 +174,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (targetMenu == null) continue;
 
                 // Create the option with all delegates
-                NarrativeMenuOption narrativeOption = new NarrativeMenuOption(
-                    option.Id,                                          // stringId
-                    new TextObject(option.OptionText),                  // text
-                    new TextObject(option.OptionFlavourText),           // description
-                    new GetNarrativeMenuOptionArgsDelegate(args => GetOptionArgs(args, option)),  // argsDelegate
-                    new NarrativeMenuOptionOnConditionDelegate(manager => OptionCondition(manager, option)),  // conditionDelegate
-                    new NarrativeMenuOptionOnSelectDelegate(manager => OnOptionSelected(manager, option.Id)),  // selectDelegate
-                    new NarrativeMenuOptionOnConsequenceDelegate(manager => OnOptionFinalize(manager, option.Id))  // consequenceDelegate
+                NarrativeMenuOption narrativeOption = new(option.Id, // stringId
+                    new TextObject(option.OptionText), // text
+                    new TextObject(option.OptionFlavourText), // description
+                    args => GetOptionArgs(args, option), // argsDelegate
+                    manager => OptionCondition(manager, option), // conditionDelegate
+                    manager => OnOptionSelected(manager, option.Id), // selectDelegate
+                    manager => OnOptionFinalize(manager, option.Id) // consequenceDelegate
                 );
 
                 targetMenu.AddNarrativeMenuOption(narrativeOption);
@@ -226,18 +193,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             characterCreation.AddNewMenu(stage2Menu);
             characterCreation.AddNewMenu(stage3Menu);
         }
-        
+
         private List<NarrativeMenuCharacterArgs> GetPlayerMenuCharacterArgs(string characterId, CharacterCreationManager manager)
         {
             List<NarrativeMenuCharacterArgs> list = new List<NarrativeMenuCharacterArgs>();
-            list.Add(new NarrativeMenuCharacterArgs(
-                characterId,
-                25,  // age
-                _currentEquipmentRosterId,  // equipment roster ID (updated when option is selected)
-                "act_childhood_schooled",    // standard character creation animation
-                "spawnpoint_player_1",       // standard spawn point
-                isFemale: CharacterObject.PlayerCharacter.IsFemale
-            ));
+            list.Add(new NarrativeMenuCharacterArgs(characterId, 25, // age
+                _currentEquipmentRosterId, // equipment roster ID (updated when option is selected)
+                "act_childhood_schooled", // standard character creation animation
+                "spawnpoint_player_1", // standard spawn point
+                isFemale: CharacterObject.PlayerCharacter.IsFemale));
             return list;
         }
 
@@ -308,13 +272,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // This also automatically updates CharacterObject.PlayerCharacter which the specialization stage uses
             if (_narrativePlayerCharacter != null)
             {
-                _narrativePlayerCharacter.UpdateBodyProperties(bodyProps, CharacterObject.PlayerCharacter.Race, CharacterObject.PlayerCharacter.IsFemale);
+                _narrativePlayerCharacter.UpdateBodyProperties(bodyProps, CharacterObject.PlayerCharacter.Race,
+                    CharacterObject.PlayerCharacter.IsFemale);
                 TORCommon.Log($"[OnFinalizeFaceCreation] Updated narrative menu character with customized face", NLog.LogLevel.Info);
             }
 
             TORCommon.Log($"[OnFinalizeFaceCreation] Finalized face customization: Race={_originalRace}, IsFemale={_isFemale}", NLog.LogLevel.Info);
         }
-        
+
         private void SetMenuLabelTexts()
         {
             if (GameTexts.TryGetText("str_tor_cc_origin", out var stage1Text, CharacterObject.PlayerCharacter.Culture.StringId))
@@ -343,33 +308,22 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 GameTexts.SetVariable("TOR_CC_PROFESSION", "Your starting profession...");
             }
-
-            if (GameTexts.TryGetText("str_tor_cc_specialization", out var stage4Text, CharacterObject.PlayerCharacter.Culture.StringId))
-            {
-                GameTexts.SetVariable("TOR_CC_SPECIALIZATION", stage4Text);
-            }
-            else
-            {
-                GameTexts.SetVariable("TOR_CC_SPECIALIZATION", "Choose your specialization...");
-            }
+            
         }
-        
+
         public string GetSelectedProfessionId() => _selectedProfessionId;
 
         public bool IsSpellcaster(string professionId = null)
         {
             string id = professionId ?? _selectedProfessionId;
-            return id == "option_3_empire_magister_apprentice" ||
-                   id == "option_3_bretonnia_damsel" ||
-                   id == "option_3_we_spellsinger" ||
+            return id == "option_3_empire_magister_apprentice" || id == "option_3_bretonnia_damsel" || id == "option_3_we_spellsinger" ||
                    id == "option_3_eo_greylord_apprentice";
         }
 
         public bool IsVampire(string professionId = null)
         {
             string id = professionId ?? _selectedProfessionId;
-            return id == "option_3_vc_vampire" ||
-                   id == "option_3_mousillon_vampire";
+            return id == "option_3_vc_vampire" || id == "option_3_mousillon_vampire";
         }
 
         public bool IsPriest(string professionId = null)
@@ -385,24 +339,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
 
         /// <summary>
-        /// Store the selected lore ID to be applied at character creation finalization
-        /// </summary>
-        public void SetSelectedLore(string loreId)
-        {
-            _selectedLoreId = loreId;
-            TORCommon.Log($"[TorCharacterCreationContentHandler] Stored lore selection: {loreId}", NLog.LogLevel.Info);
-        }
-
-        /// <summary>
-        /// Store the selected career ID to be applied at character creation finalization
-        /// </summary>
-        public void SetSelectedCareer(string careerId)
-        {
-            _selectedCareerId = careerId;
-            TORCommon.Log($"[TorCharacterCreationContentHandler] Stored career selection: {careerId}", NLog.LogLevel.Info);
-        }
-
-        /// <summary>
         /// Clear any stored specialization selections.
         /// Called when clicking Back to ensure old selections are cleared if user changes profession.
         /// </summary>
@@ -413,16 +349,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _selectedSpecializationOptionId = null;
             TORCommon.Log("[TorCharacterCreationContentHandler] Cleared stored specialization selections", NLog.LogLevel.Info);
         }
-
-        /// <summary>
-        /// Get the currently stored lore ID (null if none selected)
-        /// </summary>
-        public string GetStoredLoreId() => _selectedLoreId;
-
-        /// <summary>
-        /// Get the currently stored career ID (null if none selected)
-        /// </summary>
-        public string GetStoredCareerId() => _selectedCareerId;
 
         /// <summary>
         /// Check if the given profession has any specialization options available
@@ -451,8 +377,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 return new List<SpecializationOption>();
             }
 
-            return _specializationOptions?.Where(opt => opt.ProfessionRequirement == professionId).ToList()
-                   ?? new List<SpecializationOption>();
+            return _specializationOptions?.Where(opt => opt.ProfessionRequirement == professionId).ToList() ?? new List<SpecializationOption>();
         }
 
         /// <summary>
@@ -463,148 +388,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             _selectedSpecializationOptionId = optionId;
             TORCommon.Log($"[TorCharacterCreationContentHandler] Stored specialization option ID: {optionId}", NLog.LogLevel.Info);
-        }
-
-
-        /// <summary>
-        /// Clear profession-specific bonuses that were applied during character creation.
-        /// Called when user goes back from specialization stage to change profession.
-        /// </summary>
-        public void ClearProfessionBonuses()
-        {
-            var hero = Hero.MainHero;
-            var info = hero.GetExtendedInfo();
-
-            TORCommon.Log("[TorCharacterCreationContentHandler] Clearing profession-specific bonuses", NLog.LogLevel.Info);
-
-            // Remove all lores - they'll be re-added if the profession still needs them
-            var allLores = LoreObject.GetAll();
-            foreach (var lore in allLores)
-            {
-                if (info.HasKnownLore(lore.ID))
-                {
-                    info.RemoveKnownLore(lore.ID);
-                    TORCommon.Log($"[TorCharacterCreationContentHandler] Removed lore: {lore.ID}", NLog.LogLevel.Info);
-                }
-            }
-
-            // Remove careers - they'll be re-added when profession is finalized again
-            var currentCareer = hero.GetCareer();
-            if (currentCareer != null)
-            {
-                info.CareerID = null;
-                TORCommon.Log($"[TorCharacterCreationContentHandler] Removed career: {currentCareer.StringId}", NLog.LogLevel.Info);
-            }
-
-            // Remove profession-specific attributes
-            string[] professionAttributes =
-            {
-                "SpellCaster", "Necromancer", "Vampire", "Priest",
-                "PriestSigmar", "PriestUlric", "PriestLady", "RuneCraft"
-            };
-            foreach (var attribute in professionAttributes)
-            {
-                hero.RemoveAttribute(attribute);
-                TORCommon.Log($"[TorCharacterCreationContentHandler] Removed attribute: {attribute}", NLog.LogLevel.Info);
-            }
-
-            // Remove profession-specific abilities
-            string[] professionAbilities =
-            {
-                "Dart", "NagashGaze", "SummerHeat", "AmberSpear",
-                "BoltOfAqshy", "AuraOfTheLady", "SummonSkeleton"
-            };
-            foreach (var ability in professionAbilities)
-            {
-                info.RemoveAbility(ability);
-                TORCommon.Log($"[TorCharacterCreationContentHandler] Removed ability: {ability}", NLog.LogLevel.Info);
-            }
-
-            // Reset spell casting level if it was set
-            if (info.SpellCastingLevel != SpellCastingLevel.None)
-            {
-                hero.SetSpellCastingLevel(SpellCastingLevel.None);
-                TORCommon.Log("[TorCharacterCreationContentHandler] Reset spell casting level to None", NLog.LogLevel.Info);
-            }
-
-            TORCommon.Log("[TorCharacterCreationContentHandler] Profession bonuses cleared", NLog.LogLevel.Info);
-        }
-
-        private void OnLoreSelected(string loreId)
-        {
-            TORCommon.Log($"[OnLoreSelected] Lore selected: {loreId}", NLog.LogLevel.Info);
-
-            // Remove "lore_" prefix to get actual lore ID
-            string actualLoreId = loreId.Replace("lore_", "");
-
-            var info = Hero.MainHero.GetExtendedInfo();
-            Hero.MainHero.AddKnownLore(actualLoreId);
-            if (info.SpellCastingLevel < SpellCastingLevel.Entry)
-            {
-                Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-            }
-
-            var lore = LoreObject.GetAll().FirstOrDefault(x => x.ID == actualLoreId);
-            if (lore != null)
-            {
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned lore: " + lore.Name), 0, CharacterObject.PlayerCharacter);
-            }
-        }
-
-        private void OnBloodlineSelected(string bloodlineId)
-        {
-            TORCommon.Log($"[OnBloodlineSelected] Bloodline selected: {bloodlineId}", NLog.LogLevel.Info);
-
-            if (bloodlineId == "bloodline_von_carstein")
-            {
-                Hero.MainHero.AddAttribute("SpellCaster");
-                Hero.MainHero.AddAbility("NagashGaze");
-                Hero.MainHero.AddKnownLore("MinorMagic");
-                Hero.MainHero.AddKnownLore("Necromancy");
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
-                Hero.MainHero.AddCareer(TORCareers.MinorVampire);
-            }
-            else if (bloodlineId == "bloodline_blood_knight")
-            {
-                Hero.MainHero.AddCareer(TORCareers.BloodKnight);
-            }
-            else if (bloodlineId == "bloodline_necrarch")
-            {
-                Hero.MainHero.AddAttribute("SpellCaster");
-                Hero.MainHero.AddAbility("NagashGaze");
-                Hero.MainHero.AddKnownLore("MinorMagic");
-                Hero.MainHero.AddKnownLore("Necromancy");
-                Hero.MainHero.AddCareer(TORCareers.Necrarch);
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
-            }
-        }
-
-        private void OnPriesthoodSelected(string godId)
-        {
-            TORCommon.Log($"[OnPriesthoodSelected] God selected: {godId}", NLog.LogLevel.Info);
-
-            if (godId == "god_sigmar")
-            {
-                Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
-                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
-                Hero.MainHero.AddAttribute("PriestSigmar");
-            }
-            else if (godId == "god_ulric")
-            {
-                Hero.MainHero.AddCareer(TORCareers.WarriorPriestUlric);
-                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 60);
-                Hero.MainHero.AddAttribute("PriestUlric");
-            }
-
-            var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
-            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
-            Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
         }
 
         private void OnOptionSelected(CharacterCreationManager manager, string optionId)
@@ -631,11 +414,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 race = FaceGen.GetRaceOrDefault("vampire");
             }
-            else if(optionId == "option_3_bretonnia_damsel" && !CharacterObject.PlayerCharacter.IsFemale)
+            else if (optionId == "option_3_bretonnia_damsel" && !CharacterObject.PlayerCharacter.IsFemale)
             {
                 isFemale = true;
             }
-            else if(optionId == "option_3_bretonnia_knight_errant" && CharacterObject.PlayerCharacter.IsFemale)
+            else if (optionId == "option_3_bretonnia_knight_errant" && CharacterObject.PlayerCharacter.IsFemale)
             {
                 isFemale = false;
             }
@@ -654,7 +437,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             MBEquipmentRoster roster = null;
             try
-            { 
+            {
                 roster = MBObjectManager.Instance.GetObject<MBEquipmentRoster>(selectedOption.EquipmentSetId);
                 if (roster == null)
                 {
@@ -669,7 +452,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             catch (NullReferenceException)
             {
-                TORCommon.Log("Attempted to read characterobject " + selectedOption.EquipmentSetId + " in Character Creation, but no such entry exists in XML. Falling back to default.", NLog.LogLevel.Error);
+                TORCommon.Log(
+                    "Attempted to read characterobject " + selectedOption.EquipmentSetId +
+                    " in Character Creation, but no such entry exists in XML. Falling back to default.", NLog.LogLevel.Error);
                 throw;
             }
 
@@ -679,23 +464,22 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 var equipment = roster.DefaultEquipment;
                 var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
-                
+
                 character.SetEquipment(roster);
                 CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, CharacterObject.PlayerCharacter.Race, isfemale);
                 character.IsFemale = isfemale;
-                
+
                 CharacterObject.PlayerCharacter.Equipment.FillFrom(roster.DefaultEquipment);
                 CharacterObject.PlayerCharacter.FirstCivilianEquipment.FillFrom(equipment);
             }
         }
 
-        private void 
-            OnOptionFinalize(CharacterCreationManager manager, string id)
+        private void OnOptionFinalize(CharacterCreationManager manager, string id)
         {
             // NOTE: Specialization selection now handled by TORSpecializationStageView
             // All profession bonuses are now applied at character creation finalization via ApplyProfessionBonuses()
         }
-        
+
         private void OnCharacterCreationFinalized()
         {
             // Apply bonuses in order: Stage 2 (gods/grudges) -> Stage 3 (professions) -> Stage 4 (specializations)
@@ -716,6 +500,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 mapState.Handler.ResetCamera(true, true);
                 mapState.Handler.TeleportCameraToMainParty();
             }
+
             SetHeroAge(25);
         }
 
@@ -730,20 +515,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Priority 1: Check for career-specific spawn override
             if (career != null && CareerSpawnOverrides.TryGetValue(career.StringId, out var careerSpawn))
             {
-                TORCommon.Log($"[GetSpawnLocation] Using career-specific spawn for {career.StringId}: X={careerSpawn.X}, Y={careerSpawn.Y}", NLog.LogLevel.Info);
+                TORCommon.Log($"[GetSpawnLocation] Using career-specific spawn for {career.StringId}: X={careerSpawn.X}, Y={careerSpawn.Y}",
+                    NLog.LogLevel.Info);
                 return careerSpawn;
             }
-
-            // Priority 2: Check for culture-specific mercenary/default spawn
-            if (CultureMercenarySpawns.TryGetValue(culture.StringId, out var mercenarySpawn))
-            {
-                TORCommon.Log($"[GetSpawnLocation] Using culture mercenary spawn for {culture.StringId}: X={mercenarySpawn.X}, Y={mercenarySpawn.Y}", NLog.LogLevel.Info);
-                return mercenarySpawn;
-            }
-
-            // Priority 3: Read spawn position from culture XML (start_point_position_x/y attributes)
+            
+            // Priority 2: Read spawn position from culture XML (start_point_position_x/y attributes)
             var cultureSpawn = culture.StartingPoint;
-            TORCommon.Log($"[GetSpawnLocation] Using culture XML spawn for {culture.StringId}: X={cultureSpawn.X}, Y={cultureSpawn.Y}", NLog.LogLevel.Info);
+            TORCommon.Log($"[GetSpawnLocation] Using culture XML spawn for {culture.StringId}: X={cultureSpawn.X}, Y={cultureSpawn.Y}",
+                NLog.LogLevel.Info);
             return cultureSpawn;
         }
 
@@ -802,8 +582,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     {
                         settlementBehavior.UnlockOakUpgrade(symbol);
                     }
+
                     hero.AddReligiousInfluence(religion, 40);
-                    TORCommon.Log($"[TorCharacterCreationContentHandler] Added Wood Elf symbol {symbol} and religion {religion.StringId}", NLog.LogLevel.Info);
+                    TORCommon.Log($"[TorCharacterCreationContentHandler] Added Wood Elf symbol {symbol} and religion {religion.StringId}",
+                        NLog.LogLevel.Info);
                 }
             }
 
@@ -873,6 +655,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
                     hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
                     hero.AddCareer(TORCareers.ImperialMagister);
+                    break;
+                case "option_3_empire_knight":
+                    hero.AddCareer(TORCareers.KnightOldWorld);
                     break;
 
                 case "option_3_bretonnia_damsel":
@@ -1014,7 +799,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // NEW: Apply specialization based on option ID from XML
             if (!string.IsNullOrEmpty(_selectedSpecializationOptionId))
             {
-                TORCommon.Log($"[TorCharacterCreationContentHandler] Applying specialization for option: {_selectedSpecializationOptionId}", NLog.LogLevel.Info);
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Applying specialization for option: {_selectedSpecializationOptionId}",
+                    NLog.LogLevel.Info);
 
                 // Get the XML option to apply skill/attribute bonuses
                 var option = _specializationOptions?.FirstOrDefault(opt => opt.Id == _selectedSpecializationOptionId);
@@ -1030,7 +816,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                             {
                                 hero.HeroDeveloper.AddFocus(skill, FocusToAdd, false);
                                 hero.HeroDeveloper.ChangeSkillLevel(skill, SkillLevelToAdd, false);
-                                TORCommon.Log($"[ApplyStoredSpecializations] Added skill: {skillId} (+{FocusToAdd} focus, +{SkillLevelToAdd} level)", NLog.LogLevel.Info);
+                                TORCommon.Log($"[ApplyStoredSpecializations] Added skill: {skillId} (+{FocusToAdd} focus, +{SkillLevelToAdd} level)",
+                                    NLog.LogLevel.Info);
                             }
                         }
                     }
@@ -1042,7 +829,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         if (attribute != null)
                         {
                             hero.HeroDeveloper.AddAttribute(attribute, AttributeLevelToAdd, false);
-                            TORCommon.Log($"[ApplyStoredSpecializations] Added attribute: {option.AttributeToIncrease} (+{AttributeLevelToAdd})", NLog.LogLevel.Info);
+                            TORCommon.Log($"[ApplyStoredSpecializations] Added attribute: {option.AttributeToIncrease} (+{AttributeLevelToAdd})",
+                                NLog.LogLevel.Info);
                         }
                     }
                 }
@@ -1101,26 +889,26 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                     TORCommon.Log($"[ApplyStoredSpecializations] Applied Necrarch Vampire", NLog.LogLevel.Info);
                 }
-                // KNIGHT ORDER OPTIONS
+                
                 else if (_selectedSpecializationOptionId == "knight_blazing_sun")
                 {
-                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Knight of the Blazing Sun", NLog.LogLevel.Info);
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_myrmidia"), 30);
+                    
                 }
                 else if (_selectedSpecializationOptionId == "knight_panthers")
                 {
-                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Knight Panther", NLog.LogLevel.Info);
                 }
                 else if (_selectedSpecializationOptionId == "knight_white_wolf")
                 {
-                    TORCommon.Log($"[ApplyStoredSpecializations] Applied Knight of the White Wolf", NLog.LogLevel.Info);
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 30);
                 }
                 else if (_selectedSpecializationOptionId == "knight_gryphon")
                 {
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 30);
                     TORCommon.Log($"[ApplyStoredSpecializations] Applied Order of the Gryphon", NLog.LogLevel.Info);
                 }
                 else if (_selectedSpecializationOptionId == "knight_reiksguard")
                 {
-                    
                     TORCommon.Log($"[ApplyStoredSpecializations] Applied Reiksguard Knight", NLog.LogLevel.Info);
                 }
                 // SPELLCASTER LORE OPTIONS
@@ -1134,10 +922,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     {
                         hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
                     }
+
                     TORCommon.Log($"[ApplyStoredSpecializations] Applied lore: {loreId}", NLog.LogLevel.Info);
                 }
 
-                TORCommon.Log($"[TorCharacterCreationContentHandler] Specialization applied for option: {_selectedSpecializationOptionId}", NLog.LogLevel.Info);
+                TORCommon.Log($"[TorCharacterCreationContentHandler] Specialization applied for option: {_selectedSpecializationOptionId}",
+                    NLog.LogLevel.Info);
             }
 
             if (!string.IsNullOrEmpty(_selectedCareerId))
@@ -1272,7 +1062,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         }
                     }
 
-                    TORCommon.Log($"[TorCharacterCreationContentHandler] Applied {equipmentType} equipment from roster '{rosterId}' (face/body preserved)", NLog.LogLevel.Info);
+                    TORCommon.Log(
+                        $"[TorCharacterCreationContentHandler] Applied {equipmentType} equipment from roster '{rosterId}' (face/body preserved)",
+                        NLog.LogLevel.Info);
                 }
                 else
                 {
@@ -1297,12 +1089,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var lores = LoreObject.GetAll();
             foreach (var item in lores)
             {
-                if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.PlayerCharacter.Culture.StringId) && !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID)&&!item.IsRestrictedToVampires) list.Add(new InquiryElement(item, item.Name, null)) ;
+                if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.PlayerCharacter.Culture.StringId) &&
+                    !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID) &&
+                    !item.IsRestrictedToVampires) list.Add(new InquiryElement(item, item.Name, null));
             }
 
             if (list.IsEmpty()) return;
-            
-            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, false, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancel);
+
+            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, false, 1, 1, "Confirm", "Cancel",
+                OnChooseLore, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
 
@@ -1313,8 +1108,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 Hero.MainHero.AddKnownLore(choice.ID);
                 if (info.SpellCastingLevel < SpellCastingLevel.Entry) Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned lore: " + choice.Name), 0, CharacterObject.PlayerCharacter);
+                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned lore: " + choice.Name), 0,
+                    CharacterObject.PlayerCharacter);
             }
+
             InformationManager.HideInquiry();
         }
 
@@ -1331,10 +1128,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 new InquiryElement("blood_knight", "Blood Knight", null),
                 new InquiryElement("necrarch", "Necrarch", null),
             ];
-            var inquirydata = new MultiSelectionInquiryData("Choose Bloodline", "Choose your vampiric bloodline.", list, false, 1, 1, "Confirm", "Cancel", OnChooseBloodline, OnCancel);
+            var inquirydata = new MultiSelectionInquiryData("Choose Bloodline", "Choose your vampiric bloodline.", list, false, 1, 1, "Confirm",
+                "Cancel", OnChooseBloodline, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
-        
+
         private void PromptChoosePriesthood()
         {
             List<InquiryElement> list =
@@ -1342,14 +1140,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 new InquiryElement("WarriorPriest", "Sigmar", null),
                 new InquiryElement("WarriorPriestUlric", "Ulric", null),
             ];
-            var inquirydata = new MultiSelectionInquiryData("Choose God", "You are a priest of the Empire. Choose the God you are devoted to.", list, false, 1, 1, "Confirm", "Cancel", OnChoosePriesthood, OnCancel);
+            var inquirydata = new MultiSelectionInquiryData("Choose God", "You are a priest of the Empire. Choose the God you are devoted to.", list,
+                false, 1, 1, "Confirm", "Cancel", OnChoosePriesthood, OnCancel);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
 
         private void OnChoosePriesthood(List<InquiryElement> obj)
         {
             var choice = obj[0].Identifier as string;
-            if(choice == "WarriorPriest")
+            if (choice == "WarriorPriest")
             {
                 Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
@@ -1362,15 +1161,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 60);
                 Hero.MainHero.AddAttribute("PriestUlric");
             }
-            
+
             var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
             Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
             Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
         }
+
         private void OnChooseBloodline(List<InquiryElement> obj)
         {
             var choice = obj[0].Identifier as string;
-            if(choice == "generic_vampire")
+            if (choice == "generic_vampire")
             {
                 Hero.MainHero.AddAttribute("SpellCaster");
                 Hero.MainHero.AddAbility("NagashGaze");
@@ -1399,12 +1199,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
                 Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
                 Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("necrarch");
-                
+
                 Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("necrarch");
                 var equipment = Hero.MainHero.CharacterObject.Equipment;
                 var properties = Hero.MainHero.CharacterObject.GetBodyProperties(equipment);
-                Hero.MainHero.CharacterObject.UpdatePlayerCharacterBodyProperties(properties,FaceGen.GetRaceOrDefault("necrarch"),false);
-                
+                Hero.MainHero.CharacterObject.UpdatePlayerCharacterBodyProperties(properties, FaceGen.GetRaceOrDefault("necrarch"), false);
+
                 MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
             }
         }
@@ -1412,8 +1212,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public void InitializeContent(CharacterCreationManager manager)
         {
             TORCommon.Log("[TOR CharacterCreation] InitializeContent called", NLog.LogLevel.Info);
-            
-            foreach (var cultureId  in TORConstants.Cultures.All)
+
+            foreach (var cultureId in TORConstants.Cultures.All)
             {
                 var culture = MBObjectManager.Instance.GetObject<CultureObject>(cultureId);
                 if (culture != null)
@@ -1422,8 +1222,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     TORCommon.Log($"[TOR CharacterCreation] Added culture: {cultureId}", NLog.LogLevel.Info);
                 }
             }
-            
-            
+
+
             AddMenus(manager);
         }
 
@@ -1461,7 +1261,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         if (narrativeIndex >= 0)
                         {
                             stages.Insert(narrativeIndex + 1, new TORSpecializationStage());
-                            TORCommon.Log($"[TOR CharacterCreation] Inserted TORSpecializationStage at index {narrativeIndex + 1}", NLog.LogLevel.Info);
+                            TORCommon.Log($"[TOR CharacterCreation] Inserted TORSpecializationStage at index {narrativeIndex + 1}",
+                                NLog.LogLevel.Info);
                         }
                     }
                 }
@@ -1478,12 +1279,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var stages = stage;
 
             // DEBUG: Log stage type to understand what's completing
-            TORCommon.Log($"[OnStageCompleted] Stage completed: {stages.GetType().Name}, _selectedProfessionId: '{_selectedProfessionId}'", NLog.LogLevel.Info);
+            TORCommon.Log($"[OnStageCompleted] Stage completed: {stages.GetType().Name}, _selectedProfessionId: '{_selectedProfessionId}'",
+                NLog.LogLevel.Info);
 
             if (stages.GetType() == typeof(CharacterCreationFaceGeneratorStage))
             {
                 this.OnFinalizeFaceCreation();
             }
+
             if (stages.GetType() == typeof(CharacterCreationCultureStage))
             {
                 OnCultureSelected();
@@ -1515,12 +1318,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void OnCultureSelected()
         {
             // Set race and default body properties based on selected culture
-            string default_elf = "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='000BAC088000100DB976648E6774B835537D86629511323BDCB177278A84F667017776140748B49500000000000000000000000000000000000000003EFC5002'/>";
-            string default_empire = "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='000500000000000D797664884754DCBAA35E866295A0967774414A498C8336860F7776F20BA7B7A500000000000000000000000000000000000000003CFC2002'/>";
-            string default_bretonnia = "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='001CB80CC000300D7C7664876753888A7577866254C69643C4B647398C95A0370077760307A7497300000000000000000000000000000000000000003AF47002'/>";
-            string default_vc = "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='0028C80FC000100DBA756445533377873CD1833B3101B44A21C3C5347CA32C260F7776F20BBC35E8000000000000000000000000000000000000000042F41002'/>";
-            string default_dwarf = "<BodyProperties version='4' age='25' weight='0.4182' build='0.1898' key='0005000F00000280F77664884754DCBAFF9E566095F09F1F74414A49893F81FE0F77760307A7B7A536000000000000000000000000000007000000003CFC0002'/>";
-            string default_orc = "<BodyProperties version='4' age='25' weight='0.3657' build='0.2978'  key='0005100000CC00005C12429361532471D9656C584FA9A47724B588AAD7B53C5DDACBA6130657877845CCBADBCCBCBABC0000000000000016000000002ECC0000'/>";
+            string default_elf =
+                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='000BAC088000100DB976648E6774B835537D86629511323BDCB177278A84F667017776140748B49500000000000000000000000000000000000000003EFC5002'/>";
+            string default_empire =
+                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='000500000000000D797664884754DCBAA35E866295A0967774414A498C8336860F7776F20BA7B7A500000000000000000000000000000000000000003CFC2002'/>";
+            string default_bretonnia =
+                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='001CB80CC000300D7C7664876753888A7577866254C69643C4B647398C95A0370077760307A7497300000000000000000000000000000000000000003AF47002'/>";
+            string default_vc =
+                "<BodyProperties version='4' age='25.84' weight='0.5000' build='0.5000'  key='0028C80FC000100DBA756445533377873CD1833B3101B44A21C3C5347CA32C260F7776F20BBC35E8000000000000000000000000000000000000000042F41002'/>";
+            string default_dwarf =
+                "<BodyProperties version='4' age='25' weight='0.4182' build='0.1898' key='0005000F00000280F77664884754DCBAFF9E566095F09F1F74414A49893F81FE0F77760307A7B7A536000000000000000000000000000007000000003CFC0002'/>";
+            string default_orc =
+                "<BodyProperties version='4' age='25' weight='0.3657' build='0.2978'  key='0005100000CC00005C12429361532471D9656C584FA9A47724B588AAD7B53C5DDACBA6130657877845CCBADBCCBCBABC0000000000000016000000002ECC0000'/>";
             string keyValue;
 
             var culture = CharacterObject.PlayerCharacter.Culture;
@@ -1563,10 +1372,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (BodyProperties.FromString(keyValue, out BodyProperties properties))
             {
-                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(properties, CharacterObject.PlayerCharacter.Race, CharacterObject.PlayerCharacter.IsFemale);
+                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(properties, CharacterObject.PlayerCharacter.Race,
+                    CharacterObject.PlayerCharacter.IsFemale);
             }
 
-            TORCommon.Log($"[OnCultureSelected] Set race for culture {culture.StringId} to {CharacterObject.PlayerCharacter.Race}", NLog.LogLevel.Info);
+            TORCommon.Log($"[OnCultureSelected] Set race for culture {culture.StringId} to {CharacterObject.PlayerCharacter.Race}",
+                NLog.LogLevel.Info);
         }
 
         public void OnCharacterCreationFinalize(CharacterCreationManager manager)
@@ -1575,4 +1386,3 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
     }
 }
-
