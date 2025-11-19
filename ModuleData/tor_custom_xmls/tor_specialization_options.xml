@@ -98,19 +98,6 @@
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 	</SpecializationOption>
-
-	<SpecializationOption Id="lore_of_shadow" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment">
-		<Name>{=tor_lore_shadow_name}Lore of Shadow</Name>
-		<Description>{=tor_lore_shadow_desc}Master the Lore of Shadow, the magic of illusion and deception.</Description>
-		<PositiveEffect>{=tor_lore_shadow_positive}Stealth and illusion mastery</PositiveEffect>
-		<NegativeEffect>{=tor_lore_shadow_negative}Suspicious and paranoid tendencies</NegativeEffect>
-		<SkillsToIncrease>
-			<string>Spellcraft</string>
-			<string>Roguery</string>
-		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
-	</SpecializationOption>
-
 	<!-- =============================================== -->
 	<!-- VAMPIRES - 3 Bloodlines                        -->
 	<!-- =============================================== -->
