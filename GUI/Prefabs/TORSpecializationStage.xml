@@ -30,7 +30,7 @@
 
         <!-- Main content panel - MOVED TO RIGHT to show character on left -->
         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                SuggestedWidth="900" SuggestedHeight="700"
+                SuggestedWidth="900" SuggestedHeight="850"
                 HorizontalAlignment="Right" VerticalAlignment="Center"
                 MarginRight="50"
                 Sprite="StdAssets\Popup\canvas">
@@ -56,96 +56,101 @@
                             Brush.TextHorizontalAlignment="Center"
                             Brush.Color="#FFFFFFFF" />
 
-            <!-- Options List -->
+            <!-- Options List - Simplified to show only icon + name -->
             <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                       SuggestedWidth="800" SuggestedHeight="350"
-                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                       MarginTop="80"
+                       SuggestedWidth="800" SuggestedHeight="250"
+                       HorizontalAlignment="Center" VerticalAlignment="Top"
+                       MarginTop="230"
                        DataSource="{Options}"
                        StackLayout.LayoutMethod="VerticalBottomToTop">
               <ItemTemplate>
                 <ButtonWidget DoNotPassEventsToChildren="true"
                               Command.Click="ExecuteSelect"
                               WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                              SuggestedWidth="780" SuggestedHeight="65"
-                              MarginBottom="5"
+                              SuggestedWidth="780" SuggestedHeight="80"
+                              MarginBottom="8"
                               Sprite="StdAssets\Popup\buttonbase2">
                   <Children>
-                    <!-- Selection indicator (shown when selected) -->
+
+                    <!-- Icon -->
+                    <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                                 SuggestedWidth="80" SuggestedHeight="80"
+                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                 MarginLeft="10"
+                                 Sprite="@IconSprite" />
+
+                    <!-- Option name -->
+                    <TextWidget DoNotAcceptEvents="true"
+                                Text="@Name"
+                                WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                                HorizontalAlignment="Left" VerticalAlignment="Center"
+                                MarginLeft="105"
+                                Brush.FontSize="30"
+                                Brush.TextVerticalAlignment="Center"
+                                Brush.Color="#FFFFFFFF" />
+
+                    <!-- Selection indicator (checkmark or border when selected) -->
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                            SuggestedWidth="50" SuggestedHeight="50"
-                            HorizontalAlignment="Left" VerticalAlignment="Center"
-                            MarginLeft="10"
+                            SuggestedWidth="40" SuggestedHeight="40"
+                            HorizontalAlignment="Right" VerticalAlignment="Center"
+                            MarginRight="15"
                             Sprite="BlankWhiteSquare_9"
                             Color="#FFD700"
                             IsVisible="@IsSelected" />
-
-                    <!-- Option name and description container -->
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                            SuggestedWidth="700"
-                            HorizontalAlignment="Left" VerticalAlignment="Center"
-                            MarginLeft="70">
-                      <Children>
-                        <!-- Option name -->
-                        <TextWidget DoNotAcceptEvents="true"
-                                    Text="@Name"
-                                    WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-                                    HorizontalAlignment="Left" VerticalAlignment="Top"
-                                    MarginTop="5"
-                                    Brush.FontSize="32"
-                                    Brush.Color="#FFFFFFFF" />
-
-                        <!-- Option description -->
-                        <TextWidget DoNotAcceptEvents="true"
-                                    Text="@Description"
-                                    WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-                                    HorizontalAlignment="Left" VerticalAlignment="Top"
-                                    MarginTop="35"
-                                    Brush.FontSize="20"
-                                    Brush.Color="#CCCCCCCC" />
-                      </Children>
-                    </Widget>
-
-                    <!-- Effects container (right side of button) -->
-                    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
-                            SuggestedWidth="150"
-                            HorizontalAlignment="Right" VerticalAlignment="Center"
-                            MarginRight="10">
-                      <Children>
-                        <!-- Positive effect (green) -->
-                        <TextWidget DoNotAcceptEvents="true"
-                                    Text="@PositiveEffect"
-                                    WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-                                    HorizontalAlignment="Right" VerticalAlignment="Top"
-                                    MarginTop="5"
-                                    Brush.FontSize="18"
-                                    Brush.TextHorizontalAlignment="Right"
-                                    Brush.Color="#00FF00"
-                                    IsVisible="@HasPositiveEffect" />
-
-                        <!-- Negative effect (red) -->
-                        <TextWidget DoNotAcceptEvents="true"
-                                    Text="@NegativeEffect"
-                                    WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-                                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                    MarginBottom="5"
-                                    Brush.FontSize="18"
-                                    Brush.TextHorizontalAlignment="Right"
-                                    Brush.Color="#FF0000"
-                                    IsVisible="@HasNegativeEffect" />
-                      </Children>
-                    </Widget>
 
                   </Children>
                 </ButtonWidget>
               </ItemTemplate>
             </ListPanel>
 
+            <!-- Detail Panel - Shows selected option details below selection window -->
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                    SuggestedWidth="800" SuggestedHeight="250"
+                    HorizontalAlignment="Center" VerticalAlignment="Top"
+                    MarginTop="490"
+                    IsVisible="@HasSelection">
+              <Children>
+
+                <!-- Description -->
+                <TextWidget Text="@SelectedDescription"
+                            WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren"
+                            SuggestedWidth="780"
+                            HorizontalAlignment="Left" VerticalAlignment="Top"
+                            MarginLeft="10" MarginTop="10"
+                            Brush.FontSize="24"
+                            Brush.TextHorizontalAlignment="Left"
+                            Brush.Color="#FFFFFFFF" />
+
+                <!-- Positive Effect -->
+                <TextWidget Text="@SelectedPositiveEffect"
+                            WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren"
+                            SuggestedWidth="780"
+                            HorizontalAlignment="Left" VerticalAlignment="Top"
+                            MarginLeft="10" MarginTop="100"
+                            Brush.FontSize="22"
+                            Brush.TextHorizontalAlignment="Left"
+                            Brush.Color="#00FF00"
+                            IsVisible="@HasPositiveEffect" />
+
+                <!-- Negative Effect -->
+                <TextWidget Text="@SelectedNegativeEffect"
+                            WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren"
+                            SuggestedWidth="780"
+                            HorizontalAlignment="Left" VerticalAlignment="Top"
+                            MarginLeft="10" MarginTop="150"
+                            Brush.FontSize="22"
+                            Brush.TextHorizontalAlignment="Left"
+                            Brush.Color="#FF0000"
+                            IsVisible="@HasNegativeEffect" />
+
+              </Children>
+            </Widget>
+
             <!-- Button container -->
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                     SuggestedWidth="600" SuggestedHeight="80"
                     HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                    MarginBottom="80">
+                    MarginBottom="50">
               <Children>
 
                 <!-- Back Button -->

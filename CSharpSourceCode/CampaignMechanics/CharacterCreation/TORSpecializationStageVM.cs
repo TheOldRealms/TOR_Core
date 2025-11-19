@@ -19,15 +19,17 @@
           private string _positiveEffect;
           private string _negativeEffect;
           private bool _isSelected;
+          private string _iconSprite;
           private object _data;
           private readonly Action<SpecializationOptionVM> _onSelect;
 
-          public SpecializationOptionVM(string name, string description, object data, Action<SpecializationOptionVM> onSelect, string positiveEffect = "", string negativeEffect = "")
+          public SpecializationOptionVM(string name, string description, object data, Action<SpecializationOptionVM> onSelect, string iconSprite = "", string positiveEffect = "", string negativeEffect = "")
           {
               _name = name;
               _description = description;
               _positiveEffect = positiveEffect ?? "";
               _negativeEffect = negativeEffect ?? "";
+              _iconSprite = iconSprite ?? "traits_magic_icon"; // Default placeholder
               _data = data;
               _onSelect = onSelect;
               _isSelected = false;
@@ -98,6 +100,20 @@
           public bool HasNegativeEffect => !string.IsNullOrEmpty(_negativeEffect);
 
           [DataSourceProperty]
+          public string IconSprite
+          {
+              get => _iconSprite;
+              set
+              {
+                  if (_iconSprite != value)
+                  {
+                      _iconSprite = value;
+                      OnPropertyChangedWithValue(value, nameof(IconSprite));
+                  }
+              }
+          }
+
+          [DataSourceProperty]
           public bool IsSelected
           {
               get => _isSelected;
@@ -131,6 +147,12 @@
           private string _affirmativeText;
           private string _negativeText;
           private bool _canAdvance;
+          private bool _hasSelection;
+          private string _selectedDescription;
+          private string _selectedPositiveEffect;
+          private string _selectedNegativeEffect;
+          private bool _hasPositiveEffect;
+          private bool _hasNegativeEffect;
           private MBBindingList<SpecializationOptionVM> _options;
           private SpecializationOptionVM _selectedOption;
           private CharacterViewModel _currentCharacter;
@@ -271,14 +293,122 @@
               }
           }
 
+          [DataSourceProperty]
+          public SpecializationOptionVM SelectedOption
+          {
+              get => _selectedOption;
+              set
+              {
+                  if (_selectedOption != value)
+                  {
+                      _selectedOption = value;
+                      OnPropertyChangedWithValue(value, nameof(SelectedOption));
+                      HasSelection = value != null;
+                      TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] SelectedOption set to: {value?.Name ?? "null"}, HasSelection={HasSelection}", NLog.LogLevel.Info);
+                  }
+              }
+          }
+
+          [DataSourceProperty]
+          public bool HasSelection
+          {
+              get => _hasSelection;
+              set
+              {
+                  if (_hasSelection != value)
+                  {
+                      _hasSelection = value;
+                      OnPropertyChangedWithValue(value, nameof(HasSelection));
+                      TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] HasSelection set to: {value}", NLog.LogLevel.Info);
+                  }
+              }
+          }
+
+          [DataSourceProperty]
+          public string SelectedDescription
+          {
+              get => _selectedDescription;
+              set
+              {
+                  if (_selectedDescription != value)
+                  {
+                      _selectedDescription = value;
+                      OnPropertyChangedWithValue(value, nameof(SelectedDescription));
+                  }
+              }
+          }
+
+          [DataSourceProperty]
+          public string SelectedPositiveEffect
+          {
+              get => _selectedPositiveEffect;
+              set
+              {
+                  if (_selectedPositiveEffect != value)
+                  {
+                      _selectedPositiveEffect = value;
+                      OnPropertyChangedWithValue(value, nameof(SelectedPositiveEffect));
+                  }
+              }
+          }
+
+          [DataSourceProperty]
+          public string SelectedNegativeEffect
+          {
+              get => _selectedNegativeEffect;
+              set
+              {
+                  if (_selectedNegativeEffect != value)
+                  {
+                      _selectedNegativeEffect = value;
+                      OnPropertyChangedWithValue(value, nameof(SelectedNegativeEffect));
+                  }
+              }
+          }
+
+          [DataSourceProperty]
+          public bool HasPositiveEffect
+          {
+              get => _hasPositiveEffect;
+              set
+              {
+                  if (_hasPositiveEffect != value)
+                  {
+                      _hasPositiveEffect = value;
+                      OnPropertyChangedWithValue(value, nameof(HasPositiveEffect));
+                  }
+              }
+          }
+
+          [DataSourceProperty]
+          public bool HasNegativeEffect
+          {
+              get => _hasNegativeEffect;
+              set
+              {
+                  if (_hasNegativeEffect != value)
+                  {
+                      _hasNegativeEffect = value;
+                      OnPropertyChangedWithValue(value, nameof(HasNegativeEffect));
+                  }
+              }
+          }
+
           /// <summary>
           /// Add a selectable option to the list
           /// </summary>
-          public void AddOption(string name, string description, object data, string positiveEffect = "", string negativeEffect = "")
+          public void AddOption(string name, string description, object data, string iconSprite = "", string positiveEffect = "", string negativeEffect = "")
           {
-              var option = new SpecializationOptionVM(name, description, data, OnOptionSelected, positiveEffect, negativeEffect);
+              var option = new SpecializationOptionVM(name, description, data, OnOptionSelected, iconSprite, positiveEffect, negativeEffect);
               _options.Add(option);
               TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Added option: {name}", NLog.LogLevel.Info);
+
+              // Pre-select the first option
+              if (_options.Count == 1)
+              {
+                  OnOptionSelected(option);
+                  TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Pre-selected first option: {name}", NLog.LogLevel.Info);
+              }
           }
 
           /// <summary>
@@ -304,8 +434,15 @@
                   option.IsSelected = (option == selectedOption);
               }
 
-              _selectedOption = selectedOption;
+              SelectedOption = selectedOption; // Update the property for detail panel binding
               CanAdvance = true; // Enable Continue button
+
+              // Update detail panel properties
+              SelectedDescription = selectedOption.Description;
+              SelectedPositiveEffect = selectedOption.PositiveEffect;
+              SelectedNegativeEffect = selectedOption.NegativeEffect;
+              HasPositiveEffect = selectedOption.HasPositiveEffect;
+              HasNegativeEffect = selectedOption.HasNegativeEffect;
 
               // Notify callback for equipment preview
               _onOptionSelected?.Invoke(selectedOption);

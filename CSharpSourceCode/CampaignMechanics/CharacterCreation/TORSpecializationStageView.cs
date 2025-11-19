@@ -187,11 +187,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 string description = new TaleWorlds.Localization.TextObject(option.Description).ToString();
                 string positiveEffect = new TaleWorlds.Localization.TextObject(option.PositiveEffect).ToString();
                 string negativeEffect = new TaleWorlds.Localization.TextObject(option.NegativeEffect).ToString();
+                string iconSprite = string.IsNullOrEmpty(option.IconSprite) ? "traits_magic_icon" : option.IconSprite;
 
-                // Just pass the option itself as data - handler will process it based on option.Id
-                // Equipment preview will use option.EquipmentSetId
-                _dataSource.AddOption(displayName, description, option, positiveEffect, negativeEffect);
-                TORCommon.Log($"[TORSpecializationStageView] Added option: {displayName} (ID: {option.Id})", NLog.LogLevel.Info);
+                // Pass icon sprite along with other data
+                _dataSource.AddOption(displayName, description, option, iconSprite, positiveEffect, negativeEffect);
+                TORCommon.Log($"[TORSpecializationStageView] Added option: {displayName} (ID: {option.Id}, Icon: {iconSprite})", NLog.LogLevel.Info);
             }
 
             TORCommon.Log($"[TORSpecializationStageView] Added {_dataSource.Options.Count} total options", NLog.LogLevel.Info);

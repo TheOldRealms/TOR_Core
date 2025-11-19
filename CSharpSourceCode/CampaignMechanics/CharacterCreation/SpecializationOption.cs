@@ -30,6 +30,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public string EquipmentSetId;
 
         /// <summary>
+        /// Icon sprite name for UI display (from TOR_Armory/GUI/SpriteParts/ui_hud)
+        /// Example: "traits_fire_icon", "traits_holy_icon", "gork_icon"
+        /// If not specified, defaults to "traits_magic_icon"
+        /// </summary>
+        [XmlAttribute]
+        public string IconSprite;
+
+        /// <summary>
         /// Display name with translation key support
         /// Format: {=translation_key}Default Text
         /// Example: {=knight_blazing_sun_name}Order of the Blazing Sun
