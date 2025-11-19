@@ -18,6 +18,7 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 {
+    //Sly : OnPartyEntered can be implemented as an override here to handle wraith recruitment for Ai parties directly rather than making use of the SettlementEntered events
     public class CursedSiteComponent : TORBaseSettlementComponent, IDisposable
     {
         private int _wardHours = 0;
@@ -100,6 +101,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         }
     }
 
+    //Sly : OnPartyEntered can be implemented as an override here to handle blessing on Ai parties directly rather than making use of the SettlementEntered events
     public class ShrineComponent : TORBaseSettlementComponent
     {
         public override IFaction MapFaction => Settlement.Owner.Clan;
@@ -115,6 +117,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public override IFaction MapFaction => Settlement.Owner.Clan;
     }
 
+    //Sly : I wonder if we could send out large armies from these components that target settlements to capture. Unsure what would happen if the siege was a success; would it be attributed to the chaos clan?
+    //OnPartLefty to announce an invasion beginning, then the player can react to it as they wish.
     public class ChaosPortalComponent : BaseRaiderSpawnerComponent
     {
         public override int BattlePartySize => 550;

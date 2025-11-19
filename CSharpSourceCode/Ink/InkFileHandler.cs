@@ -25,7 +25,7 @@ namespace TOR_Core.Ink
             var path = TORPaths.TORCoreModuleRootPath + "InkStories" + Path.DirectorySeparatorChar + includeName;
             if (File.Exists(path))
             {
-                return File.ReadAllText(path);
+                return path;
             }
             return string.Empty;
         }

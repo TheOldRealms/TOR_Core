@@ -78,8 +78,14 @@ namespace TOR_Core.Items.InventoryUseScripts
 
         public override void OnUse(MobileParty userParty, ItemObject item)
         {
-            InventoryUseScriptsCampaignBehavior.Instance.AddScriptToParty(userParty, this);
-            TORCommon.Say($"Started reading skill book for {_skillId}.");
+            if (InventoryUseScriptsCampaignBehavior.Instance.TryAddScriptToParty(userParty, this))
+            {
+                TORCommon.Say($"Started reading skill book for {_skillId}.");
+            }
+            else
+            {
+                TORCommon.Say("Already reading a skill book. Finish it before starting a new one.");
+            }
         }
     }
 }

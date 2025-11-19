@@ -20,6 +20,8 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class PerkResetRelatedPatch
     {
+        //Sly : when a perk is reset via say an arena master, this eventually reaches Hero.SetPerkValueInternal which dispatches an OnPerkReset event that we can receive instead of patching
+        //the normal flow is ClearPermanentBonusesIfExists -> SetPerkValueInternal -> PerkReset event; we can clear our permanent bonuses on the event instead
         [HarmonyPostfix]
         [HarmonyPatch(typeof(PerkResetCampaignBehavior), "ClearPermanentBonusesIfExists")]
         public static void ResetExtraPerks(Hero hero, PerkObject perk)

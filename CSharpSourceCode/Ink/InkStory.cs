@@ -1,15 +1,10 @@
-﻿using HarmonyLib;
-using Helpers;
+﻿using Helpers;
 using Ink;
 using Ink.Runtime;
-using psai.net;
-using SandBox;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
@@ -20,22 +15,17 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
-using TaleWorlds.Engine;
-using TaleWorlds.InputSystem;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Audio;
 using TOR_Core.CampaignMechanics.CustomEvents;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
-using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
 using TOR_Core.Quests;
-using TOR_Core.Quests.Careers;
 using TOR_Core.Utilities;
 using static Helpers.InventoryScreenHelper;
-using Object = Ink.Runtime.Object;
 using Path = Ink.Runtime.Path;
 
 namespace TOR_Core.Ink
@@ -65,7 +55,7 @@ namespace TOR_Core.Ink
                     };
                     var compiler = new Compiler(ink, options);
                     _story = compiler.Compile();
-                    //_story.allowExternalFunctionFallbacks = true;
+                    _story.allowExternalFunctionFallbacks = true;
                 }
 
                 if (Title == null) Title = "Invalid title, bad tag settings";
@@ -397,9 +387,7 @@ namespace TOR_Core.Ink
             }
         }
 
-
-
-        private void SetTextVariable(string variableName, string variant)
+        void SetTextVariable(string variableName, string variant)
         {
             var textID = "inky_" + StringId;
             var variable = GetVariable(variableName);

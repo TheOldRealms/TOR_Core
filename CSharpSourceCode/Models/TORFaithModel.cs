@@ -30,8 +30,8 @@ namespace TOR_Core.Models
 
             if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.HasAnyActiveBlessing())
             {//when refreshing an active blessing, xp is only granted for the extension
-                var t = hero.PartyBelongedTo.GetPartyInfo();
-                blessingDuration = blessingDuration - t.CurrentBlessingRemainingDuration;
+                var partyInfo = hero.PartyBelongedTo.GetPartyInfo();
+                blessingDuration -= partyInfo.CurrentBlessingRemainingDuration;
             }
             result.AddFactor(blessingDuration - 1);
             return (int)result.ResultNumber;

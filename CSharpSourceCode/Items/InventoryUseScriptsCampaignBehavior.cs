@@ -80,7 +80,7 @@ namespace TOR_Core.Items
             }
         }
 
-        public void AddScriptToParty(MobileParty party, BaseInventoryUseScript script)
+        public bool TryAddScriptToParty(MobileParty party, BaseInventoryUseScript script)
         {
             if (!_activeScripts.ContainsKey(party.StringId))
             {
@@ -89,9 +89,10 @@ namespace TOR_Core.Items
             if (_activeScripts[party.StringId].Contains(script))
             {
                 TORCommon.Say($"Script {script} already exists in party {party.StringId}. Not adding again.");
-                return;
+                return false;
             }
             _activeScripts[party.StringId].Add(script);
+            return true;
         }
         public void RemoveScriptFromParty(MobileParty party, BaseInventoryUseScript script)
         {

@@ -1033,7 +1033,7 @@
              super_faction="Kingdom.karak_hirn"
              is_noble="true"
 			 text="{=str_tor_clan_karak_hirn_clan_1_desc}Clan Drazhkarak has stood since the founding of Karak Hirn, and has ruled the hold ever since. Fierce traditionalists, the clan has upheld the ancient customs of the Dwarfs with unwavering resolve, each successive generation more staunchly conservative than the last. This rigid adherence to ancestral ways is seen as both a source of strength and stubbornness by those within and beyond the hold. The current head of Clan Drazhkarak is Alrik Ranulfsson, great-great-great-grandson of Kurgaz Drazhkarak, the clan’s esteemed founder and first patriarch. Alrik’s steadfast traditionalism often brings him into conflict with the Engineer’s Guild, as he favours tried-and-true methods of warfare. Under his leadership, the clan fields more quarrellers and grudge-throwers than thunderers or flame cannons, placing greater trust in ancient craft and proven steel than in newer innovations. "
-             banner_key="11.2.140.1398.1615.785.765.0.0.90.505.2.18.620.620.764.764.0.0.0:kingdom_hirn" />
+             banner_key="11.113.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_hirn" />
 	<Faction id="karak_izor_clan_1"
              name="{=str_tor_clan_karak_izor_clan_1_name}Clan Izorgrung"
              tier="6"

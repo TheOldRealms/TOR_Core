@@ -159,8 +159,10 @@ namespace TOR_Core.Extensions.UI
                 _haveInfoItemsBeenAdded = true;
             }
 
-            _windsOfMagic = (int)Hero.MainHero.GetExtendedInfo().GetCustomResourceValue("WindsOfMagic");
-
+            var heroInfo = Hero.MainHero.GetExtendedInfo();
+            _windsOfMagic = (int)heroInfo.GetCustomResourceValue("WindsOfMagic");
+            _maxWinds = (int)heroInfo.MaxWindsOfMagic;
+            _windRechargeRate = heroInfo.WindsOfMagicRechargeRate;
             _windsInfo.HasWarning = _windsOfMagic < 0;
             _windsInfo.Value = _windsOfMagic.ToString();
             _windsInfo.IntValue = _windsOfMagic;
@@ -174,7 +176,6 @@ namespace TOR_Core.Extensions.UI
             _resourceInfo.HasWarning = resourceValue < 0f;
             _resourceInfo.Value = resourceValue.ToString();
             _resourceInfo.IntValue = (int)resourceValue;
-            _resourceInfo.FloatValue = resourceValue;
 
             var info = MobileParty.MainParty.GetPartyInfo();
             if (info != null)

@@ -429,10 +429,12 @@
     <Compile Include="BattleMechanics\AI\TeamAI\TeamBehavior\Tactics\TORTacticPositionalArtillery.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\TeamBehavior\TORTeamAIGeneral.cs" />
     <Compile Include="BattleMechanics\AI\TeamAI\TORMissionCombatantsLogic.cs" />
+    <Compile Include="BattleMechanics\Artillery\ArtilleryRangedSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\ArtilleryStandingPoint.cs" />
     <Compile Include="BattleMechanics\Artillery\Ballistics.cs" />
     <Compile Include="BattleMechanics\Artillery\BaseFieldSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\CannonBallPile.cs" />
+    <Compile Include="BattleMechanics\Artillery\FieldTrebuchet.cs" />
     <Compile Include="BattleMechanics\Atmosphere\ForceAtmosphereMissionLogic.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
@@ -475,7 +477,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
-    <Compile Include="CampaignMechanics\AICompanions\TORAICompanionCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Companions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\BountyMaster\BountyMasterCampaignBehavior.cs" />
@@ -490,6 +492,7 @@
     <Compile Include="CampaignMechanics\CharacterCreation\FaceGenHelper.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\TorCharacterCreationContentHandler.cs" />
     <Compile Include="CampaignMechanics\Combat\GreenskinBrawlBehavior.cs" />
+    <Compile Include="CampaignMechanics\Companions\TORCompanionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableItemVM.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableTraitVM.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchanterTownBehavior.cs" />
@@ -567,6 +570,7 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementMenuHelpers.cs" />
     <Compile Include="CampaignMechanics\TORFactionDiscontinuationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
+    <Compile Include="Extensions\UI\SPItemVMExtension.cs" />
     <Compile Include="Extensions\UI\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />

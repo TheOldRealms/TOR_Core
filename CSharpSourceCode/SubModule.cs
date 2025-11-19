@@ -28,7 +28,7 @@ using TOR_Core.BattleMechanics.Morale;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics;
-using TOR_Core.CampaignMechanics.AICompanions;
+using TOR_Core.CampaignMechanics.Companions;
 using TOR_Core.CampaignMechanics.Assimilation;
 using TOR_Core.CampaignMechanics.BountyMaster;
 using TOR_Core.CampaignMechanics.Careers;
@@ -101,7 +101,7 @@ namespace TOR_Core
             ExtendedItemObjectManager.LoadXML();
             CustomBannerManager.LoadXML();
             RORManager.LoadTemplates();
-            //InkStoryManager.Initialize(); TODO: need to solve early binding of external functions before enabling
+            InkStoryManager.Initialize();
             AnimationTriggerManager.LoadAnimationTriggers();
             ItemTraitManager.LoadItemTraits();
         }
@@ -156,9 +156,10 @@ namespace TOR_Core
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
                 starter.AddBehavior(new TORAICompanionCampaignBehavior());
+                //starter.AddBehavior(new TORCompanionsCampaignBehavior());
                 starter.AddBehavior(new CareerSwitchCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
-                //starter.AddBehavior(new InkStoryCampaignBehavior());
+                starter.AddBehavior(new InkStoryCampaignBehavior());
                 starter.AddBehavior(new ReligionCampaignBehavior());
                 starter.AddBehavior(new BountyMasterCampaignBehavior());
                 starter.AddBehavior(new HuntCultistsQuestCampaignBehavior());

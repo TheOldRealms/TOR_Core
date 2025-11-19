@@ -205,6 +205,15 @@
                       </Children>
                     </ButtonWidget>
 
+                    <!-- TOR Specific use item button -->
+                    <NavigationAutoScrollWidget TrackedWidget="..\UseItemButton" AutoScrollTopOffset="150" AutoScrollBottomOffset="150" />
+                    <ButtonWidget Id="UseItemButton" IsVisible="@IsUsableItem" UpdateChildrenStates="true" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Inventory.Tuple.Extension.SpecialButton.Width" SuggestedHeight="!Inventory.Tuple.Extension.SpecialButton.Height" HorizontalAlignment="Right" VerticalAlignment="Center" MarginRight="60"  Brush="Inventory.Tuple.Extension.SpecialButton" Command.Click="ExecuteUseItem" GamepadNavigationIndex="2">
+                      <Children>
+                        <ImageWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Inventory.Tuple.Extension.SlaughterButtonIcon.Width" SuggestedHeight="!Inventory.Tuple.Extension.SlaughterButtonIcon.Height" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Inventory.Tuple.Extension.EquipButtonIcon"/>
+                        <HintWidget DoNotAcceptEvents="true" IsVisible="*IsPlayerItem" DataSource="{UseHint}" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent"/>
+                      </Children>
+                    </ButtonWidget>
+
                     <NavigationAutoScrollWidget TrackedWidget="..\PreviewButton" AutoScrollTopOffset="150" AutoScrollBottomOffset="150" />
                     <ButtonWidget Id="PreviewButton" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="!Inventory.Tuple.Extension.SpecialButton.Width" SuggestedHeight="!Inventory.Tuple.Extension.SpecialButton.Height" HorizontalAlignment="Right" VerticalAlignment="Center" Command.Click="ExecutePreviewItem" Brush="Inventory.Tuple.Extension.SpecialButton" GamepadNavigationIndex="3">
                       <Children>
@@ -253,7 +262,20 @@
                         <InventoryItemValueTextWidget Id="CostText" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IntText="@ItemCost" DoNotAcceptEvents="true"  Brush="InventoryItemCostFont" Brush.TextHorizontalAlignment="Center" ProfitType="@ProfitType" IsVisible="@IsTransferable"/>
                       </Children>
                     </Widget>
-                    <InventoryImageIdentifierWidget Id="ImageIdentifier" DoNotAcceptEvents="true" DataSource="{ImageIdentifier}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="111" SuggestedHeight="51" MarginLeft="!Inventory.Tuple.ThumbnailMargin" MarginTop="2" ImageId="@Id" TextureProviderName="@TextureProviderName" AdditionalArgs="@AdditionalArgs" LoadingIconWidget="LoadingIconWidget">
+                    <InventoryImageIdentifierWidget 
+                    Id="ImageIdentifier" 
+                    DoNotAcceptEvents="true" 
+                    DataSource="{ImageIdentifier}" 
+                    WidthSizePolicy="Fixed" 
+                    HeightSizePolicy="Fixed" 
+                    SuggestedWidth="111" 
+                    SuggestedHeight="51" 
+                    MarginLeft="!Inventory.Tuple.ThumbnailMargin" 
+                    MarginTop="2" 
+                    ImageId="@Id" 
+                    TextureProviderName="@TextureProviderName" 
+                    AdditionalArgs="@AdditionalArgs" 
+                    LoadingIconWidget="LoadingIconWidget">
                       <Children>
                         <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="Inventory\tuple_shadow" AlphaFactor="0.7"/>
                         <Standard.CircleLoadingWidget HorizontalAlignment="Center" VerticalAlignment="Center" Id="LoadingIconWidget"/>

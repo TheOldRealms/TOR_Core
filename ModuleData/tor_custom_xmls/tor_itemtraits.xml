@@ -305,56 +305,56 @@
     <ItemTraitDescription>10 extra magic damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_weapon_frost_dmg" ItemTraitName="Aspect of Frost" IsCraftable="false" IconName="">
+  <ItemTrait ItemTraitStringId="lesser_loot_weapon_frost_dmg" ItemTraitName="Aspect of Frost" IsCraftable="false" IconName="traits_frost_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>10 extra frost damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Frost" Percent="0.10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_weapon_armor_penetraiton" ItemTraitName="Aspect of Piercing" IsCraftable="false" IconName="">
+  <ItemTrait ItemTraitStringId="lesser_loot_weapon_armor_penetraiton" ItemTraitName="Aspect of Piercing" IsCraftable="false" IconName="traits_holy_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>10% extra armor penetration</ItemTraitDescription>
     <StatsTuple StatType="ArmorPenetration" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_weapon_swiftness" ItemTraitName="Aspect of Speed" IsCraftable="false" IconName="">
+  <ItemTrait ItemTraitStringId="lesser_loot_weapon_swiftness" ItemTraitName="Aspect of Speed" IsCraftable="false" IconName="traits_lightning_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>10% extra swing speed</ItemTraitDescription>
     <StatsTuple StatType="SwingSpeed" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_weapon_reloadspeed" ItemTraitName="Aspect of Reloading" IsCraftable="false" IconName="">
+  <ItemTrait ItemTraitStringId="lesser_loot_weapon_reloadspeed" ItemTraitName="Aspect of Reloading" IsCraftable="false" IconName="traits_lightning_icon">
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>10% extra reload speed</ItemTraitDescription>
     <StatsTuple StatType="ReloadSpeed" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_armor_health" ItemTraitName="Aspect of Vitality" IsCraftable="false" IconName="">
+  <ItemTrait ItemTraitStringId="lesser_loot_armor_health" ItemTraitName="Aspect of Vitality" IsCraftable="false" IconName="traits_holy_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>3 extra HP</ItemTraitDescription>
     <StatsTuple StatType="HealthMax" Value="3" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_armor_winds" ItemTraitName="Aspect of Enlightment" IsCraftable="false" IconName="">
+  <ItemTrait ItemTraitStringId="lesser_loot_armor_winds" ItemTraitName="Aspect of Enlightment" IsCraftable="false" IconName="traits_magic_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>2 extra Winds of Magic</ItemTraitDescription>
     <StatsTuple StatType="WindsOfMagicMax" Value="2" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_armor_phy_res" ItemTraitName="Aspect of Protection" IsCraftable="false" IconName="">
+  <ItemTrait ItemTraitStringId="lesser_loot_armor_phy_res" ItemTraitName="Aspect of Protection" IsCraftable="false" IconName="traits_holy_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>4% extra physical resistance</ItemTraitDescription>
     <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.04" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_armor_magic_res" ItemTraitName="Aspect of Superstition" IsCraftable="false" IconName="">
+  <ItemTrait ItemTraitStringId="lesser_loot_armor_magic_res" ItemTraitName="Aspect of Superstition" IsCraftable="false" IconName="traits_magic_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
