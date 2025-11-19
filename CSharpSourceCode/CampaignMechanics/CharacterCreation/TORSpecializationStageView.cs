@@ -94,30 +94,29 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             TORCommon.Log("[TORSpecializationStageView] Initializing UI", NLog.LogLevel.Info);
 
             string professionId = handler.GetSelectedProfessionId();
-            string title = "Specialization";
-            string description = "Choose your specialization";
+            string title = new TextObject("{=str_tor_cc_specialization_title_generic}Specialization").ToString();
+            string description = new TextObject("{=str_tor_cc_specialization_desc_generic}Choose your specialization").ToString();
 
             // Set description based on profession type
             if (handler.IsSpellcaster(professionId))
             {
-                title = "Choose Your Lore";
-                description = "As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn.";
+                title = new TextObject("{=str_tor_cc_specialization_title_lore}Choose Your Lore").ToString();
+                description = new TextObject("{=str_tor_cc_specialization_desc_lore}As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn.").ToString();
             }
             else if (handler.IsVampire(professionId))
             {
-                title = "Choose Your Bloodline";
-                description = "As a vampire, you must choose your bloodline. This will determine your abilities and strengths.";
+                title = new TextObject("{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline").ToString();
+                description = new TextObject("{=str_tor_cc_specialization_desc_bloodline}As a vampire, you must choose your bloodline. This will determine your abilities and strengths.").ToString();
             }
             else if (handler.IsPriest(professionId))
             {
-                title = "Choose Your God";
-                description = "As a priest, you must choose which god you serve. This will determine your divine powers.";
+                title = new TextObject("{=str_tor_cc_specialization_title_god}Choose Your God").ToString();
+                description = new TextObject("{=str_tor_cc_specialization_desc_god}As a priest, you must choose which god you serve. This will determine your divine powers.").ToString();
             }
             else if (handler.IsKnight(professionId))
             {
-                title = "Choose Your Order";
-                description =
-                    "As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.";
+                title = new TextObject("{=str_tor_cc_specialization_title_order}Choose Your Order").ToString();
+                description = new TextObject("{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.").ToString();
             }
 
             // Create GauntletLayer (UI overlay) - use layer order 1 like native

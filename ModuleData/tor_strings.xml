@@ -23,14 +23,27 @@
   <!-- CC Options -->
   <string id="str_tor_cc_growth.battania" text= "{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities..."/>
   <string id="str_tor_cc_profession.battania" text= "{=str_tor_cc_profession_battania}Choose your path..."/>
-  
+
   <string id="str_tor_cc_origin.sturgia" text= "{=str_tor_cc_origin_sturgia}Your Clan is famous for its…"/>
   <string id="str_tor_cc_growth.sturgia" text= "{=str_tor_cc_growth_sturgia}The proud Dawi cultivate every grudge aimed at their kin…"/>
   <string id="str_tor_cc_profession.sturgia" text= "{=str_tor_cc_profession_sturgia}Your current profession…"/>
-  
+
   <string id="str_tor_cc_origin.aserai" text= "{=str_tor_cc_origin_aserai}Greenskins reproduce via spores, and yours landed on…"/>
   <string id="str_tor_cc_growth.aserai" text= "{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…"/>
   <string id="str_tor_cc_profession.aserai" text= "{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…"/>
+
+  <!-- CC Specialization Stage -->
+  <string id="str_tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore"/>
+  <string id="str_tor_cc_specialization_desc_lore" text="{=str_tor_cc_specialization_desc_lore}As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn."/>
+
+  <string id="str_tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline"/>
+  <string id="str_tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}As a vampire, you must choose your bloodline. This will determine your abilities and strengths."/>
+
+  <string id="str_tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your God"/>
+  <string id="str_tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}As a priest, you must choose which god you serve. This will determine your divine powers."/>
+
+  <string id="str_tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order"/>
+  <string id="str_tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses."/>
   
   
    <!-- priest blessings -->
