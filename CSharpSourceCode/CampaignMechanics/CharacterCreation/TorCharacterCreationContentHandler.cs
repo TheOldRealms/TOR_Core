@@ -28,15 +28,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
     {
         private readonly List<CharacterCreationOption> _options;
         private readonly List<SpecializationOption> _specializationOptions;
-        private readonly int _maxStageNumber = 3;
         private bool _isFemale = false;
         private int _originalRace = 0;
-        private Equipment PlayerStartEquipment;
         private string _currentEquipmentRosterId = "player_char_creation_childhood_age_empire_default_m";
         private string _selectedStage2OptionId = ""; // Track stage 2 selection (Wood Elf gods, Dwarf grudges)
         private string _selectedProfessionId = ""; // Track stage 3 selection for stage 4 conditions
-        private string _selectedLoreId = null; // Store selected lore for spellcasters (applied at finalization)
-        private string _selectedCareerId = null; // Store selected career for vampires/priests (applied at finalization)
         private string _selectedSpecializationOptionId = null; // Store selected specialization option ID from XML (applied at finalization)
         private NarrativeMenuCharacter _narrativePlayerCharacter = null; // Reference to narrative menu character for updating face
         private CampaignVec2? _storedSpawnPosition = null; // Store spawn position from specialization option (if specified)
@@ -132,7 +128,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     args => GetOptionArgs(args, option), // argsDelegate
                     manager => OptionCondition(manager, option), // conditionDelegate
                     manager => OnOptionSelected(manager, option.Id), // selectDelegate
-                    manager => OnOptionFinalize(manager, option.Id) // consequenceDelegate
+                    null // consequenceDelegate
                 );
 
                 targetMenu.AddNarrativeMenuOption(narrativeOption);
@@ -148,12 +144,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private List<NarrativeMenuCharacterArgs> GetPlayerMenuCharacterArgs(string characterId, CharacterCreationManager manager)
         {
-            List<NarrativeMenuCharacterArgs> list = new List<NarrativeMenuCharacterArgs>();
-            list.Add(new NarrativeMenuCharacterArgs(characterId, 25, // age
-                _currentEquipmentRosterId, // equipment roster ID (updated when option is selected)
-                "act_childhood_schooled", // standard character creation animation
-                "spawnpoint_player_1", // standard spawn point
-                isFemale: CharacterObject.PlayerCharacter.IsFemale));
+            List<NarrativeMenuCharacterArgs> list =
+            [
+                new(characterId, 25, // age
+                    _currentEquipmentRosterId, // equipment roster ID (updated when option is selected)
+                    "act_childhood_schooled", // standard character creation animation
+                    "spawnpoint_player_1", // standard spawn point
+                    isFemale: CharacterObject.PlayerCharacter.IsFemale)
+
+            ];
             return list;
         }
 
@@ -205,7 +204,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         // Helper method: Checks if option should be visible (culture filter)
         private bool OptionCondition(CharacterCreationManager manager, CharacterCreationOption option)
         {
-            var stage = manager.CurrentStage;
             // Check if option's culture matches currently selected culture
             CultureObject currentCulture = manager.CharacterCreationContent.SelectedCulture;
             return currentCulture != null && currentCulture.StringId == option.Culture;
@@ -217,7 +215,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _originalRace = CharacterObject.PlayerCharacter.Race;
 
             // Get the customized body properties from face editor
-            var bodyProps = CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1);
+            var bodyProps = CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment);
 
             // CRITICAL: Update the NarrativeMenuCharacter so Origin/Growth/Profession stages show the customized face
             // This also automatically updates CharacterObject.PlayerCharacter which the specialization stage uses
@@ -262,31 +260,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public string GetSelectedProfessionId() => _selectedProfessionId;
 
-        public bool IsSpellcaster(string professionId = null)
-        {
-            string id = professionId ?? _selectedProfessionId;
-            return id == "option_3_empire_magister_apprentice" || id == "option_3_bretonnia_damsel" || id == "option_3_we_spellsinger" ||
-                   id == "option_3_eo_greylord_apprentice";
-        }
-
-        public bool IsVampire(string professionId = null)
-        {
-            string id = professionId ?? _selectedProfessionId;
-            return id == "option_3_vc_vampire" || id == "option_3_mousillon_vampire";
-        }
-
-        public bool IsPriest(string professionId = null)
-        {
-            string id = professionId ?? _selectedProfessionId;
-            return id == "option_3_empire_priest_acolyte";
-        }
-
-        public bool IsKnight(string professionId = null)
-        {
-            string id = professionId ?? _selectedProfessionId;
-            return id == "option_3_empire_knight";
-        }
-
         /// <summary>
         /// Clear any stored specialization selections.
         /// Called when clicking Back to ensure old selections are cleared if user changes profession.
@@ -294,8 +267,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// </summary>
         public void ClearStoredSpecializations()
         {
-            _selectedLoreId = null;
-            _selectedCareerId = null;
             _selectedSpecializationOptionId = null;
             _storedSpawnPosition = null;
         }
@@ -380,7 +351,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             CharacterObject.PlayerCharacter.Race = race;
         }
 
-        private void UpdateEquipment(CharacterCreationManager manager, CharacterCreationOption selectedOption, bool isfemale)
+        private void UpdateEquipment(CharacterCreationManager manager, CharacterCreationOption selectedOption, bool isFemale)
         {
             MBEquipmentRoster roster = null;
             try
@@ -408,24 +379,19 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(equipment);
 
                 character.SetEquipment(roster);
-                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, CharacterObject.PlayerCharacter.Race, isfemale);
-                character.IsFemale = isfemale;
+                CharacterObject.PlayerCharacter.UpdatePlayerCharacterBodyProperties(bodyProperties, CharacterObject.PlayerCharacter.Race, isFemale);
+                character.IsFemale = isFemale;
 
                 CharacterObject.PlayerCharacter.Equipment.FillFrom(roster.DefaultEquipment);
                 CharacterObject.PlayerCharacter.FirstCivilianEquipment.FillFrom(equipment);
             }
         }
-
-        private void OnOptionFinalize(CharacterCreationManager manager, string id)
-        {
-            // NOTE: Specialization selection now handled by TORSpecializationStageView
-            // All profession bonuses are now applied at character creation finalization via ApplyProfessionBonuses()
-        }
-
-        private void OnCharacterCreationFinalized()
+        
+        public void OnCharacterCreationFinalize(CharacterCreationManager manager)
         {
             // Apply bonuses in order: Stage 2 (gods/grudges) -> Stage 3 (professions) -> Stage 4 (specializations)
             ApplyStage2Bonuses();
+            // All profession bonuses are now applied at character creation finalization via ApplyProfessionBonuses()
             ApplyProfessionBonuses();
             ApplyStoredSpecializations();
 
@@ -598,7 +564,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     _storedSpawnPosition = new CampaignVec2(new Vec2(941.8889f, 1249.213f), true); // Grail Chapel
                     // Add Realm Knight companion
                     var knight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_realm_knight");
-                    if (knight != null) hero.PartyBelongedTo.Party.AddMember(knight, 1, 0);
+                    if (knight != null) hero.PartyBelongedTo.Party.AddMember(knight, 1);
                     break;
 
                 case "option_3_we_spellsinger":
@@ -845,87 +811,30 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1306.128f, 1044.178f), true); // Castle Reiksguard - Reiksguard
                     break;
                 // SPELLCASTER LORE OPTIONS
-                default:
-                    {
-                        if (_selectedSpecializationOptionId.StartsWith("lore_"))
-                        {
-                            // Extract lore ID from option ID (e.g., "lore_fire" -> "LoreOfFire")
-                            string loreId = ConvertOptionIdToLoreId(_selectedSpecializationOptionId);
-                            hero.AddKnownLore(loreId);
-                            var info = hero.GetExtendedInfo();
-                            if (info.SpellCastingLevel < SpellCastingLevel.Entry)
-                            {
-                                hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                            }
-
-                        }
-
-                        break;
-                    }
-            }
-        }
-
-        /// <summary>
-        /// Convert specialization option ID to lore ID
-        /// E.g., "lore_fire" -> "LoreOfFire", "lore_beasts" -> "LoreOfBeasts"
-        /// </summary>
-        private string ConvertOptionIdToLoreId(string optionId)
-        {
-            // Remove "lore_" prefix
-            string loreName = optionId.Replace("lore_", "");
-
-            // Map to actual lore IDs
-            return loreName switch
-            {
-                "fire" => "LoreOfFire",
-                "light" => "LoreOfLight",
-                "metal" => "LoreOfMetal",
-                "death" => "LoreOfDeath",
-                "shadows" => "LoreOfShadows",
-                "beasts" => "LoreOfBeasts",
-                "heavens" => "LoreOfHeavens",
-                "life" => "LoreOfLife",
-                _ => loreName // Fallback to original name with capitalization
-            };
-        }
-
-        /// <summary>
-        /// Apply equipment based on the selected lore
-        /// </summary>
-        private void ApplyLoreEquipment(string loreId)
-        {
-            if (string.IsNullOrEmpty(loreId)) return;
-
-            // All magisters use the same equipment for now
-            ApplyEquipmentFromRoster("tor_magister_equipment", "lore");
-        }
-
-        /// <summary>
-        /// Load equipment from a roster and apply it to the player character
-        /// </summary>
-        private void ApplyEquipmentFromRoster(string rosterId, string equipmentType)
-        {
-            try
-            {
-                var roster = Game.Current.ObjectManager.GetObject<MBEquipmentRoster>(rosterId);
-                if (roster != null && roster.AllEquipments.Count > 0)
-                {
-                    var sourceEquipment = roster.AllEquipments[0];
-                    var playerEquipment = CharacterObject.PlayerCharacter.Equipment;
-
-                    // Copy only equipment items slot by slot, preserving character customization
-                    for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumEquipmentSetSlots; i++)
-                    {
-                        var equipmentElement = sourceEquipment.GetEquipmentFromSlot(i);
-                        if (!equipmentElement.IsEmpty)
-                        {
-                            playerEquipment.AddEquipmentToSlotWithoutAgent(i, equipmentElement);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
+                case "lore_fire":
+                    hero.AddKnownLore("LoreOfFire");
+                    break;
+                case "lore_light":
+                    hero.AddKnownLore("LoreOfLight");
+                    break;
+                case "lore_metal":
+                    hero.AddKnownLore("LoreOfMetal");
+                    break;
+                case "lore_death":
+                    hero.AddKnownLore("LoreOfDeath");
+                    break;
+                case "lore_shadows":
+                    hero.AddKnownLore("LoreOfShadows");
+                    break;
+                case "lore_beasts":
+                    hero.AddKnownLore("LoreOfBeasts");
+                    break;
+                case "lore_heavens":
+                    hero.AddKnownLore("LoreOfHeavens");
+                    break;
+                case "lore_life":
+                    hero.AddKnownLore("LoreOfLife");
+                    break;
             }
         }
 
@@ -945,50 +854,44 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     manager.CharacterCreationContent.AddCharacterCreationCulture(culture, 1, 10);
                 }
             }
-
-
+            
             AddMenus(manager);
         }
-
-        private CharacterCreationManager _manager; // Store reference for stage management
-
+        
         public void AfterInitializeContent(CharacterCreationManager manager)
         {
-
-            // Store manager reference for later use
-            _manager = manager;
-
-            // ALWAYS insert TORSpecializationStage - it will handle skip logic internally
+            //Intialize Specialization stage. No easy way to access stage field (if not current) therefore we use reflection
             try
             {
-                var stagesField = typeof(CharacterCreationManager).GetField("_stages",
-                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                var stagesField = typeof(CharacterCreationManager).GetField("_stages", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
                 if (stagesField != null)
                 {
-                    var stages = stagesField.GetValue(manager) as MBList<CharacterCreationStageBase>;
-                    if (stages != null)
+                    if (stagesField.GetValue(manager) is not MBList<CharacterCreationStageBase> stages)
                     {
-                        // Find CharacterCreationNarrativeStage and insert our stage after it
-                        int narrativeIndex = -1;
-                        for (int i = 0; i < stages.Count; i++)
-                        {
-                            if (stages[i].GetType().Name == "CharacterCreationNarrativeStage")
-                            {
-                                narrativeIndex = i;
-                                break;
-                            }
-                        }
+                        return;
+                    }
 
-                        if (narrativeIndex >= 0)
+                    // Find CharacterCreationNarrativeStage and insert our stage after it
+                    int narrativeIndex = -1;
+                    for (int i = 0; i < stages.Count; i++)
+                    {
+                        if (stages[i].GetType().Name == "CharacterCreationNarrativeStage")
                         {
-                            stages.Insert(narrativeIndex + 1, new TORSpecializationStage());
+                            narrativeIndex = i;
+                            break;
                         }
+                    }
+
+                    if (narrativeIndex >= 0)
+                    {
+                        stages.Insert(narrativeIndex + 1, new TORSpecializationStage());
                     }
                 }
             }
             catch (Exception ex)
             {
+                //TODO throw TORSpecializationLoadErrorException
             }
         }
 
@@ -997,14 +900,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Called when a character creation stage is completed
             var stages = stage;
 
-            // DEBUG: Log stage type to understand what's completing
-
             if (stages.GetType() == typeof(CharacterCreationFaceGeneratorStage))
             {
                 this.OnFinalizeFaceCreation();
             }
 
             if (stages.GetType() == typeof(CharacterCreationCultureStage))
+            {
+                OnCultureSelected();
+            }
+            
+            if (stages.GetType() == typeof(CharacterCreationNarrativeStage))
             {
                 OnCultureSelected();
             }
@@ -1071,11 +977,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     CharacterObject.PlayerCharacter.IsFemale);
             }
 
-        }
-
-        public void OnCharacterCreationFinalize(CharacterCreationManager manager)
-        {
-            OnCharacterCreationFinalized();
         }
     }
 }

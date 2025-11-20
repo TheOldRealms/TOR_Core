@@ -91,22 +91,22 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             string description = new TextObject("{=str_tor_cc_specialization_desc_generic}Choose your specialization").ToString();
 
             // Set description based on profession type
-            if (handler.IsSpellcaster(professionId))
+            if (IsSpellcaster(professionId))
             {
                 title = new TextObject("{=str_tor_cc_specialization_title_lore}Choose Your Lore").ToString();
                 description = new TextObject("{=str_tor_cc_specialization_desc_lore}As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn.").ToString();
             }
-            else if (handler.IsVampire(professionId))
+            else if (professionId == "option_3_vc_vampire" || professionId == "option_3_mousillon_vampire")
             {
                 title = new TextObject("{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline").ToString();
                 description = new TextObject("{=str_tor_cc_specialization_desc_bloodline}As a vampire, you must choose your bloodline. This will determine your abilities and strengths.").ToString();
             }
-            else if (handler.IsPriest(professionId))
+            else if (professionId == "option_3_empire_priest_acolyte")
             {
                 title = new TextObject("{=str_tor_cc_specialization_title_god}Choose Your God").ToString();
                 description = new TextObject("{=str_tor_cc_specialization_desc_god}As a priest, you must choose which god you serve. This will determine your divine powers.").ToString();
             }
-            else if (handler.IsKnight(professionId))
+            else if (professionId == "option_3_empire_knight")
             {
                 title = new TextObject("{=str_tor_cc_specialization_title_order}Choose Your Order").ToString();
                 description = new TextObject("{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.").ToString();
@@ -195,7 +195,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Find and select the matching option
             foreach (var option in _dataSource.Options)
             {
-                if (handler.IsSpellcaster(professionId) && option.Data is TOR_Core.AbilitySystem.Spells.LoreObject lore)
+                if (IsSpellcaster(professionId) && option.Data is TOR_Core.AbilitySystem.Spells.LoreObject lore)
                 {
                     if (lore.ID == storedId)
                     {
@@ -203,7 +203,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         break;
                     }
                 }
-                else if ((handler.IsVampire(professionId) || handler.IsPriest(professionId)) &&
+                else if ((professionId == "option_3_vc_vampire" || professionId == "option_3_mousillon_vampire" || professionId == "option_3_empire_priest_acolyte") &&
                          option.Data is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
                 {
                     if (career.StringId == storedId)
@@ -355,13 +355,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 // Apply equipment immediately so it shows in banner editor
                 if (!string.IsNullOrEmpty(option.EquipmentSetId))
                 {
-                    ApplyEquipmentFromRoster(option.EquipmentSetId, option.Id);
+                    ApplyEquipmentFromRoster(option.EquipmentSetId);
                 }
-
-                // NOTE: Race is applied in the equipment preview callback when option is selected
-            }
-            else
-            {
             }
         }
 
@@ -427,36 +422,30 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (string.IsNullOrEmpty(loreId)) return;
 
             // All magisters use the same equipment for now
-            ApplyEquipmentFromRoster("tor_magister_equipment", loreId);
+            ApplyEquipmentFromRoster("tor_magister_equipment");
         }
 
         /// <summary>
         /// Load equipment from roster and apply to player character
         /// Only copies equipment items, preserves character's face and body customization
         /// </summary>
-        private void ApplyEquipmentFromRoster(string rosterId, string specializationId)
+        private void ApplyEquipmentFromRoster(string rosterId)
         {
-            try
+            var roster = Game.Current.ObjectManager.GetObject<MBEquipmentRoster>(rosterId);
+            if (roster != null && roster.AllEquipments.Count > 0)
             {
-                var roster = Game.Current.ObjectManager.GetObject<MBEquipmentRoster>(rosterId);
-                if (roster != null && roster.AllEquipments.Count > 0)
-                {
-                    var sourceEquipment = roster.AllEquipments[0];
-                    var playerEquipment = CharacterObject.PlayerCharacter.Equipment;
+                var sourceEquipment = roster.AllEquipments[0];
+                var playerEquipment = CharacterObject.PlayerCharacter.Equipment;
 
-                    // Copy only equipment items slot by slot, preserving character customization
-                    for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumEquipmentSetSlots; i++)
+                // Copy only equipment items slot by slot, preserving character customization
+                for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumEquipmentSetSlots; i++)
+                {
+                    var equipmentElement = sourceEquipment.GetEquipmentFromSlot(i);
+                    if (!equipmentElement.IsEmpty)
                     {
-                        var equipmentElement = sourceEquipment.GetEquipmentFromSlot(i);
-                        if (!equipmentElement.IsEmpty)
-                        {
-                            playerEquipment.AddEquipmentToSlotWithoutAgent(i, equipmentElement);
-                        }
+                        playerEquipment.AddEquipmentToSlotWithoutAgent(i, equipmentElement);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
             }
         }
 
@@ -507,6 +496,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             catch (Exception ex)
             {
             }
+        }
+
+        /// <summary>
+        /// Check if profession is a spellcaster (multiple professions share this trait)
+        /// </summary>
+        private bool IsSpellcaster(string professionId)
+        {
+            return professionId == "option_3_empire_magister_apprentice" ||
+                   professionId == "option_3_bretonnia_damsel" ||
+                   professionId == "option_3_we_spellsinger" ||
+                   professionId == "option_3_eo_greylord_apprentice";
         }
     }
 }

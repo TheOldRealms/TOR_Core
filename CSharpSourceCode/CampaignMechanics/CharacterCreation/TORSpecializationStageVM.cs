@@ -164,17 +164,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public TORSpecializationStageVM(string title, string description, Action onNextStage, TextObject affirmativeText, Action onPreviousStage,
             TextObject negativeText, Action<SpecializationOptionVM> onOptionSelected = null)
         {
-            _titleText = title;
-            _descriptionText = description;
+            TitleText = title;
+            DescriptionText = description;
             _onNextStage = onNextStage;
             _onPreviousStage = onPreviousStage;
             _onOptionSelected = onOptionSelected;
-            _affirmativeText = affirmativeText?.ToString() ?? "Continue";
+            AffirmativeText = affirmativeText?.ToString() ?? "Continue";
             _negativeText = negativeText?.ToString() ?? "Back";
             _canAdvance = false; // Disabled until an option is selected
             _options = new MBBindingList<SpecializationOptionVM>();
-
-            // Create CharacterViewModel for character display (better suited for character creation)
+            
             _currentCharacter = new CharacterViewModel();
             // Set the customized body properties from CharacterObject (preserves face editor changes)
             // var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1);
