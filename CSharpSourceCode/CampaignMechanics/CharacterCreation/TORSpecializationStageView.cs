@@ -188,7 +188,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             if (optionData is not SpecializationOption)
             {
-                //TODO throw exception
+                throw new TORCCInvalidOptionTypeException(typeof(SpecializationOption), optionData?.GetType());
             }
 
             SpecializationOption option = (SpecializationOption)optionData;
@@ -238,7 +238,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             catch (Exception ex)
             {
-                //TODO exception
+                throw new TORCCReflectionException("_handlers", ex);
             }
 
             return null;

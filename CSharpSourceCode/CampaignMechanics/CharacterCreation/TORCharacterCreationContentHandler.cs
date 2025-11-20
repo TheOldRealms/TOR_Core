@@ -49,9 +49,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 XmlSerializer ser = new(typeof(List<CharacterCreationOption>));
                 _options = ser.Deserialize(File.OpenRead(path)) as List<CharacterCreationOption>;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //TODO exception
+                var path = TORPaths.TORCoreModuleExtendedDataPath + "tor_cc_options.xml";
+                throw new TORCCXmlLoadException(path, ex);
             }
 
             try
@@ -60,9 +61,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 XmlSerializer specSer = new(typeof(List<SpecializationOption>));
                 _specializationOptions = specSer.Deserialize(File.OpenRead(specPath)) as List<SpecializationOption>;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-               //TODO Exception
+                var specPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_specialization_options.xml";
+                throw new TORCCXmlLoadException(specPath, ex);
             }
 
             ExtendedInfoManager.Instance.ClearInfo(Hero.MainHero);
@@ -368,9 +370,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     _currentEquipmentRosterId = selectedOption.EquipmentSetId;
                 }
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException ex)
             {
-                throw; //TODO add proper exception
+                throw new TORCCEquipmentUpdateException(selectedOption?.EquipmentSetId ?? "unknown", ex);
             }
 
             if (roster != null && !roster.DefaultEquipment.IsEmpty())
@@ -893,7 +895,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             catch (Exception ex)
             {
-                //TODO throw TORSpecializationLoadErrorException
+                throw new TORCCSpecializationStageLoadException("Failed to inject specialization stage into character creation flow", ex);
             }
         }
 
@@ -980,5 +982,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
 
         }
+        
     }
 }
