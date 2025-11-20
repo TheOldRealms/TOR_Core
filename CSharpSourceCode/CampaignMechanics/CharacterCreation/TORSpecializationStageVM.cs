@@ -132,7 +132,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public void ExecuteSelect()
         {
-            TOR_Core.Utilities.TORCommon.Log($"[SpecializationOptionVM] Option selected: {_name}", NLog.LogLevel.Info);
             _onSelect?.Invoke(this);
         }
     }
@@ -186,10 +185,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1).ToString());
             //_currentCharacter.FillFrom(Hero.MainHero);
 
-            TOR_Core.Utilities.TORCommon.Log("[TORSpecializationStageVM] Set customized BodyProperties to preserve face/body from editor",
                 NLog.LogLevel.Info);
 
-            TOR_Core.Utilities.TORCommon.Log(
                 $"[TORSpecializationStageVM] Created with Title='{_titleText}', Desc='{_descriptionText}', Affirmative='{_affirmativeText}', Negative='{_negativeText}'",
                 NLog.LogLevel.Info);
         }
@@ -303,7 +300,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     _selectedOption = value;
                     OnPropertyChangedWithValue(value, nameof(SelectedOption));
                     HasSelection = value != null;
-                    TOR_Core.Utilities.TORCommon.Log(
                         $"[TORSpecializationStageVM] SelectedOption set to: {value?.Name ?? "null"}, HasSelection={HasSelection}",
                         NLog.LogLevel.Info);
                 }
@@ -320,7 +316,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 {
                     _hasSelection = value;
                     OnPropertyChangedWithValue(value, nameof(HasSelection));
-                    TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] HasSelection set to: {value}", NLog.LogLevel.Info);
                 }
             }
         }
@@ -403,13 +398,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             var option = new SpecializationOptionVM(name, description, data, OnOptionSelected, iconSprite, positiveEffect, negativeEffect);
             _options.Add(option);
-            TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Added option: {name}", NLog.LogLevel.Info);
 
             // Pre-select the first option
             if (_options.Count == 1)
             {
                 OnOptionSelected(option);
-                TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Pre-selected first option: {name}", NLog.LogLevel.Info);
             }
         }
 
@@ -421,7 +414,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (_currentCharacter != null && equipment != null)
             {
                 _currentCharacter.SetEquipment(equipment);
-                TOR_Core.Utilities.TORCommon.Log("[TORSpecializationStageVM] Updated character equipment", NLog.LogLevel.Info);
             }
         }
 
@@ -449,7 +441,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Notify callback for equipment preview
             _onOptionSelected?.Invoke(selectedOption);
 
-            TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] Selected option: {selectedOption.Name}, CanAdvance={CanAdvance}",
                 NLog.LogLevel.Info);
         }
 
@@ -463,14 +454,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public void OnNextStage()
         {
-            TOR_Core.Utilities.TORCommon.Log($"[TORSpecializationStageVM] OnNextStage called, selected option: {_selectedOption?.Name ?? "none"}",
                 NLog.LogLevel.Info);
             _onNextStage?.Invoke();
         }
 
         public void OnPreviousStage()
         {
-            TOR_Core.Utilities.TORCommon.Log("[TORSpecializationStageVM] OnPreviousStage called from button", NLog.LogLevel.Info);
             _onPreviousStage?.Invoke();
         }
 
