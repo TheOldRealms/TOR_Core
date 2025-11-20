@@ -161,67 +161,49 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 _dataSource.AddOption(displayName, description, option, iconSprite, positiveEffect, negativeEffect);
             }
 
-
-            // Pre-select stored option if it exists
-            PreSelectStoredOption(handler, professionId);
+            // Restore previously selected option if returning to this stage
+            RestorePreviousSelection(handler);
         }
-
-        /// <summary>
-        /// Pre-select the previously chosen option if one is stored in the handler
-        /// </summary>
-        private void PreSelectStoredOption(TORCharacterCreationContentHandler handler, string professionId)
+        
+        private void RestorePreviousSelection(TORCharacterCreationContentHandler handler)
         {
-            string storedId = null;
+            string storedId = handler.GetSelectedSpecializationOptionId();
+            if (string.IsNullOrEmpty(storedId))
+            {
+                return;
+            }
 
-
-            // Find and select the matching option
+            // Find and select the matching option by ID
             foreach (var option in _dataSource.Options)
             {
-                if (IsSpellcaster(professionId) && option.Data is AbilitySystem.Spells.LoreObject lore)
+                if (option.Data is SpecializationOption specOption && specOption.Id == storedId)
                 {
-                    if (lore.ID == storedId)
-                    {
-                        option.ExecuteSelect(); // This will mark it as selected and enable Continue
-                        break;
-                    }
-                }
-                else if ((professionId == "option_3_vc_vampire" || professionId == "option_3_mousillon_vampire" || professionId == "option_3_empire_priest_acolyte") &&
-                         option.Data is CharacterDevelopment.CareerSystem.CareerObject career)
-                {
-                    if (career.StringId == storedId)
-                    {
-                        option.ExecuteSelect(); // This will mark it as selected and enable Continue
-                        break;
-                    }
+                    option.ExecuteSelect();
+                    break;
                 }
             }
         }
 
         private Equipment GetEquipmentForOption(object optionData)
         {
-            // optionData is now a SpecializationOption - get equipment from its EquipmentSetId
-            if (optionData is SpecializationOption option && !string.IsNullOrEmpty(option.EquipmentSetId))
+            if (optionData is not SpecializationOption)
             {
-                try
-                {
-                    var roster = TaleWorlds.Core.Game.Current.ObjectManager.GetObject<TaleWorlds.Core.MBEquipmentRoster>(option.EquipmentSetId);
-                    if (roster != null && roster.AllEquipments.Count > 0)
-                    {
-                        return roster.AllEquipments[0].Clone();
-                    }
-                    else
-                    {
-                    }
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-            else
-            {
+                //TODO throw exception
             }
 
-            // Fallback: Use player's current equipment
+            SpecializationOption option = (SpecializationOption)optionData;
+            // optionData is now a SpecializationOption - get equipment from its EquipmentSetId
+            if ( string.IsNullOrEmpty(option.EquipmentSetId))
+            {
+                return CharacterObject.PlayerCharacter.Equipment.Clone();
+            }
+
+            MBEquipmentRoster roster = Game.Current.ObjectManager.GetObject<MBEquipmentRoster>(option.EquipmentSetId);
+            if (roster != null && roster.AllEquipments.Count > 0)
+            {
+                return roster.AllEquipments[0].Clone();
+            }
+            
             return CharacterObject.PlayerCharacter.Equipment.Clone();
         }
 
@@ -445,7 +427,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         /// <summary>
         /// Apply race change immediately (for specializations like Necrarch that change appearance)
-        /// Stores the default race in the handler for restoration when going back
         /// </summary>
         private void ApplyRaceChangeImmediate(string raceIdString)
         {
