@@ -542,9 +542,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     return;
                 }
 
-                // Store default race int in handler before changing (for restoration when going back)
-                handler.StoreDefaultRaceIfNeeded();
-
                 // Get the race int from the string ID
                 var newRace = FaceGen.GetRaceOrDefault(raceIdString);
                 var playerCharacter = CharacterObject.PlayerCharacter;
