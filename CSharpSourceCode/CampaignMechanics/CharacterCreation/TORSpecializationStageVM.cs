@@ -184,11 +184,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _currentCharacter.OnPropertyChangedWithValue("BodyProperties",
                 CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1).ToString());
             //_currentCharacter.FillFrom(Hero.MainHero);
-
-                NLog.LogLevel.Info);
-
-                $"[TORSpecializationStageVM] Created with Title='{_titleText}', Desc='{_descriptionText}', Affirmative='{_affirmativeText}', Negative='{_negativeText}'",
-                NLog.LogLevel.Info);
         }
 
         [DataSourceProperty]
@@ -300,8 +295,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     _selectedOption = value;
                     OnPropertyChangedWithValue(value, nameof(SelectedOption));
                     HasSelection = value != null;
-                        $"[TORSpecializationStageVM] SelectedOption set to: {value?.Name ?? "null"}, HasSelection={HasSelection}",
-                        NLog.LogLevel.Info);
                 }
             }
         }
@@ -440,8 +433,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Notify callback for equipment preview
             _onOptionSelected?.Invoke(selectedOption);
-
-                NLog.LogLevel.Info);
         }
 
         /// <summary>
@@ -454,7 +445,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public void OnNextStage()
         {
-                NLog.LogLevel.Info);
             _onNextStage?.Invoke();
         }
 

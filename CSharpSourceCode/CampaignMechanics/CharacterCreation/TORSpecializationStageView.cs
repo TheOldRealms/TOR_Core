@@ -229,12 +229,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     }
                     else
                     {
-                            NLog.LogLevel.Warn);
                     }
                 }
                 catch (Exception ex)
                 {
-                        NLog.LogLevel.Error);
                 }
             }
             else
@@ -455,12 +453,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                             playerEquipment.AddEquipmentToSlotWithoutAgent(i, equipmentElement);
                         }
                     }
-
-                        $"[TORSpecializationStageView] Applied equipment items from '{rosterId}' for specialization '{specializationId}' (face/body preserved)",
-                        NLog.LogLevel.Info);
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)

@@ -730,169 +730,138 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var hero = Hero.MainHero;
 
             // NEW: Apply specialization based on option ID from XML
-            if (!string.IsNullOrEmpty(_selectedSpecializationOptionId))
+            if (string.IsNullOrEmpty(_selectedSpecializationOptionId))
             {
-
-                // Get the XML option to apply skill/attribute bonuses
-                var option = _specializationOptions?.FirstOrDefault(opt => opt.Id == _selectedSpecializationOptionId);
-                if (option != null)
-                {
-                    // Apply skill bonuses
-                    if (option.SkillsToIncrease != null)
-                    {
-                        foreach (var skillId in option.SkillsToIncrease)
-                        {
-                            var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
-                            if (skill != null)
-                            {
-                                hero.HeroDeveloper.AddFocus(skill, FocusToAdd, false);
-                                hero.HeroDeveloper.ChangeSkillLevel(skill, SkillLevelToAdd, false);
-                            }
-                        }
-                    }
-
-                    // Apply attribute bonus
-                    if (!string.IsNullOrEmpty(option.AttributeToIncrease))
-                    {
-                        var attribute = Attributes.All.FirstOrDefault(x => x.StringId == option.AttributeToIncrease.ToLower());
-                        if (attribute != null)
-                        {
-                            hero.HeroDeveloper.AddAttribute(attribute, AttributeLevelToAdd, false);
-                        }
-                    }
-
-                    // NOTE: Race is applied immediately in TORSpecializationStageView when option is selected
-                    // This ensures the race change is visible in the banner editor stage
-                }
-
-                switch (_selectedSpecializationOptionId)
-                {
-                    // Hard-coded logic to map option IDs to careers/lores
-                    // PRIEST OPTIONS
-                    case "priest_sigmar":
-                        {
-                            hero.AddCareer(TORCareers.WarriorPriest);
-                            hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
-                            hero.AddAttribute("PriestSigmar");
-                            var skill = hero.GetSkillValue(TORSkills.Faith);
-                            hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
-                            hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
-                            _storedSpawnPosition = new CampaignVec2(new Vec2(1283.261f, 1067.676f), true); // Altdorf gate - Sigmar's holy city
-                            break;
-                        }
-                    case "priest_ulric":
-                        {
-                            hero.AddCareer(TORCareers.WarriorPriestUlric);
-                            hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 60);
-                            hero.AddAttribute("PriestUlric");
-                            var skill = hero.GetSkillValue(TORSkills.Faith);
-                            hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
-                            hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
-                            _storedSpawnPosition = new CampaignVec2(new Vec2(1346.493f, 1244.102f), true); // Middenheim gate - Ulric's holy city
-                            break;
-                        }
-                    // VAMPIRE BLOODLINE OPTIONS
-                    case "bloodline_von_carstein":
-                        {
-                            hero.AddAttribute("SpellCaster");
-                            hero.AddAbility("NagashGaze");
-                            hero.AddKnownLore("MinorMagic");
-                            hero.AddKnownLore("Necromancy");
-                            var skill = hero.GetSkillValue(TORSkills.SpellCraft);
-                            hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                            hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                            hero.AddCareer(TORCareers.MinorVampire);
-                            _storedSpawnPosition = new CampaignVec2(new Vec2(1594.974f, 988.7784f), true); // Von Carstein territory
-                            MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
-                            break;
-                        }
-                    case "bloodline_blood_dragon":
-                        hero.AddCareer(TORCareers.BloodKnight);
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(1277.776f, 942.5178f), true); // Blood Dragon location
-                        break;
-                    case "bloodline_necrarch":
-                        {
-                            hero.AddAttribute("SpellCaster");
-                            hero.AddAbility("NagashGaze");
-                            hero.AddKnownLore("MinorMagic");
-                            hero.AddKnownLore("Necromancy");
-                            hero.AddCareer(TORCareers.Necrarch);
-                            var skill = hero.GetSkillValue(TORSkills.SpellCraft);
-                            hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                            hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                            _storedSpawnPosition = new CampaignVec2(new Vec2(1565.885f, 1095.13f), true); // Necrarch location
-                            MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
-                            break;
-                        }
-                    case "knight_blazing_sun":
-                        hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_myrmidia"), 30);
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(1428.939f, 1114.684f), true); // Talabheim - Order of the Blazing Sun
-                        break;
-                    case "knight_panthers":
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(1232.193f, 1105.359f), true); // Carroburg - Knight Panthers
-                        break;
-                    case "knight_white_wolf":
-                        hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 30);
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(1346.493f, 1244.102f), true); // Middenheim - Knights of the White Wolf
-                        break;
-                    case "knight_gryphon":
-                        hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 30);
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(1283.261f, 1067.676f), true); // Altdorf - Order of the Gryphon
-                        break;
-                    case "knight_reiksguard":
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(1306.128f, 1044.178f), true); // Castle Reiksguard - Reiksguard
-                        break;
-                    // SPELLCASTER LORE OPTIONS
-                    default:
-                        {
-                            if (_selectedSpecializationOptionId.StartsWith("lore_"))
-                            {
-                                // Extract lore ID from option ID (e.g., "lore_fire" -> "LoreOfFire")
-                                string loreId = ConvertOptionIdToLoreId(_selectedSpecializationOptionId);
-                                hero.AddKnownLore(loreId);
-                                var info = hero.GetExtendedInfo();
-                                if (info.SpellCastingLevel < SpellCastingLevel.Entry)
-                                {
-                                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                                }
-
-                            }
-
-                            break;
-                        }
-                }
-
+                return;
             }
 
-            if (!string.IsNullOrEmpty(_selectedCareerId))
+            // Get the XML option to apply skill/attribute bonuses
+            var option = _specializationOptions?.FirstOrDefault(opt => opt.Id == _selectedSpecializationOptionId);
+            if (option != null)
             {
-                var career = Game.Current.ObjectManager.GetObject<CharacterDevelopment.CareerSystem.CareerObject>(_selectedCareerId);
-                if (career != null)
+                // Apply skill bonuses
+                if (option.SkillsToIncrease != null)
                 {
-                    hero.AddCareer(career);
+                    foreach (var skillId in option.SkillsToIncrease)
+                    {
+                        var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
+                        if (skill != null)
+                        {
+                            hero.HeroDeveloper.AddFocus(skill, FocusToAdd, false);
+                            hero.HeroDeveloper.ChangeSkillLevel(skill, SkillLevelToAdd, false);
+                        }
+                    }
+                }
 
-                    // For priest careers, also add devotion to the corresponding god
-                    if (_selectedCareerId == "WarriorPriest")
-                    {
-                        var sigmar = ReligionObject.All.FirstOrDefault(r => r.StringId == "tor_sigmar");
-                        if (sigmar != null)
-                        {
-                            hero.AddReligiousInfluence(sigmar, TORConstants.DEVOTED_TRESHOLD, shouldNotify: false);
-                        }
-                    }
-                    else if (_selectedCareerId == "WarriorPriestUlric")
-                    {
-                        var ulric = ReligionObject.All.FirstOrDefault(r => r.StringId == "tor_ulric");
-                        if (ulric != null)
-                        {
-                            hero.AddReligiousInfluence(ulric, TORConstants.DEVOTED_TRESHOLD, shouldNotify: false);
-                        }
-                    }
-                    
-                }
-                else
+                // Apply attribute bonus
+                if (!string.IsNullOrEmpty(option.AttributeToIncrease))
                 {
+                    var attribute = Attributes.All.FirstOrDefault(x => x.StringId == option.AttributeToIncrease.ToLower());
+                    if (attribute != null)
+                    {
+                        hero.HeroDeveloper.AddAttribute(attribute, AttributeLevelToAdd, false);
+                    }
                 }
+
+                // NOTE: Race is applied immediately in TORSpecializationStageView when option is selected
+                // This ensures the race change is visible in the banner editor stage
+            }
+
+            switch (_selectedSpecializationOptionId)
+            {
+                // Hard-coded logic to map option IDs to careers/lores
+                // PRIEST OPTIONS
+                case "priest_sigmar":
+                    {
+                        hero.AddCareer(TORCareers.WarriorPriest);
+                        hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
+                        hero.AddAttribute("PriestSigmar");
+                        var skill = hero.GetSkillValue(TORSkills.Faith);
+                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+                        hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
+                        _storedSpawnPosition = new CampaignVec2(new Vec2(1283.261f, 1067.676f), true); // Altdorf gate - Sigmar's holy city
+                        break;
+                    }
+                case "priest_ulric":
+                    {
+                        hero.AddCareer(TORCareers.WarriorPriestUlric);
+                        hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 60);
+                        hero.AddAttribute("PriestUlric");
+                        var skill = hero.GetSkillValue(TORSkills.Faith);
+                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
+                        hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
+                        _storedSpawnPosition = new CampaignVec2(new Vec2(1346.493f, 1244.102f), true); // Middenheim gate - Ulric's holy city
+                        break;
+                    }
+                // VAMPIRE BLOODLINE OPTIONS
+                case "bloodline_von_carstein":
+                    {
+                        hero.AddAttribute("SpellCaster");
+                        hero.AddAbility("NagashGaze");
+                        hero.AddKnownLore("MinorMagic");
+                        hero.AddKnownLore("Necromancy");
+                        var skill = hero.GetSkillValue(TORSkills.SpellCraft);
+                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                        hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                        hero.AddCareer(TORCareers.MinorVampire);
+                        _storedSpawnPosition = new CampaignVec2(new Vec2(1594.974f, 988.7784f), true); // Von Carstein territory
+                        MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                        break;
+                    }
+                case "bloodline_blood_dragon":
+                    hero.AddCareer(TORCareers.BloodKnight);
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(1277.776f, 942.5178f), true); // Blood Dragon location
+                    break;
+                case "bloodline_necrarch":
+                    {
+                        hero.AddAttribute("SpellCaster");
+                        hero.AddAbility("NagashGaze");
+                        hero.AddKnownLore("MinorMagic");
+                        hero.AddKnownLore("Necromancy");
+                        hero.AddCareer(TORCareers.Necrarch);
+                        var skill = hero.GetSkillValue(TORSkills.SpellCraft);
+                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+                        hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                        _storedSpawnPosition = new CampaignVec2(new Vec2(1565.885f, 1095.13f), true); // Necrarch location
+                        MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                        break;
+                    }
+                case "knight_blazing_sun":
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_myrmidia"), 30);
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(1428.939f, 1114.684f), true); // Talabheim - Order of the Blazing Sun
+                    break;
+                case "knight_panthers":
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(1232.193f, 1105.359f), true); // Carroburg - Knight Panthers
+                    break;
+                case "knight_white_wolf":
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 30);
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(1346.493f, 1244.102f), true); // Middenheim - Knights of the White Wolf
+                    break;
+                case "knight_gryphon":
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 30);
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(1283.261f, 1067.676f), true); // Altdorf - Order of the Gryphon
+                    break;
+                case "knight_reiksguard":
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(1306.128f, 1044.178f), true); // Castle Reiksguard - Reiksguard
+                    break;
+                // SPELLCASTER LORE OPTIONS
+                default:
+                    {
+                        if (_selectedSpecializationOptionId.StartsWith("lore_"))
+                        {
+                            // Extract lore ID from option ID (e.g., "lore_fire" -> "LoreOfFire")
+                            string loreId = ConvertOptionIdToLoreId(_selectedSpecializationOptionId);
+                            hero.AddKnownLore(loreId);
+                            var info = hero.GetExtendedInfo();
+                            if (info.SpellCastingLevel < SpellCastingLevel.Entry)
+                            {
+                                hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                            }
+
+                        }
+
+                        break;
+                    }
             }
         }
 
@@ -963,133 +932,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         protected void SetHeroAge(float age)
         {
             Hero.MainHero.SetBirthDay(CampaignTime.YearsFromNow(-age));
-        }
-
-
-        private void PromptChooseLore()
-        {
-            List<InquiryElement> list = [];
-            var lores = LoreObject.GetAll();
-            foreach (var item in lores)
-            {
-                if (item.ID != "MinorMagic" && !item.DisabledForCultures.Contains(CharacterObject.PlayerCharacter.Culture.StringId) &&
-                    !Hero.MainHero.GetExtendedInfo().HasKnownLore(item.ID) &&
-                    !item.IsRestrictedToVampires) list.Add(new InquiryElement(item, item.Name, null));
-            }
-
-            if (list.IsEmpty()) return;
-
-            var inquirydata = new MultiSelectionInquiryData("Choose Lore", "Choose a lore to specialize in.", list, false, 1, 1, "Confirm", "Cancel",
-                OnChooseLore, OnCancel);
-            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
-        }
-
-        private void OnChooseLore(List<InquiryElement> obj)
-        {
-            var info = Hero.MainHero.GetExtendedInfo();
-            if (obj?[0].Identifier is LoreObject choice)
-            {
-                Hero.MainHero.AddKnownLore(choice.ID);
-                if (info.SpellCastingLevel < SpellCastingLevel.Entry) Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned lore: " + choice.Name), 0,
-                    CharacterObject.PlayerCharacter);
-            }
-
-            InformationManager.HideInquiry();
-        }
-
-        private void OnCancel(List<InquiryElement> obj)
-        {
-            MBInformationManager.AddQuickInformation(new TextObject("You MUST choose."));
-        }
-
-        private void PromptChooseBloodline()
-        {
-            List<InquiryElement> list =
-            [
-                new InquiryElement("generic_vampire", "Von Carstein Vampire", null),
-                new InquiryElement("blood_knight", "Blood Knight", null),
-                new InquiryElement("necrarch", "Necrarch", null),
-            ];
-            var inquirydata = new MultiSelectionInquiryData("Choose Bloodline", "Choose your vampiric bloodline.", list, false, 1, 1, "Confirm",
-                "Cancel", OnChooseBloodline, OnCancel);
-            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
-        }
-
-        private void PromptChoosePriesthood()
-        {
-            List<InquiryElement> list =
-            [
-                new InquiryElement("WarriorPriest", "Sigmar", null),
-                new InquiryElement("WarriorPriestUlric", "Ulric", null),
-            ];
-            var inquirydata = new MultiSelectionInquiryData("Choose God", "You are a priest of the Empire. Choose the God you are devoted to.", list,
-                false, 1, 1, "Confirm", "Cancel", OnChoosePriesthood, OnCancel);
-            MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
-        }
-
-        private void OnChoosePriesthood(List<InquiryElement> obj)
-        {
-            var choice = obj[0].Identifier as string;
-            if (choice == "WarriorPriest")
-            {
-                Hero.MainHero.AddCareer(TORCareers.WarriorPriest);
-                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_sigmar"), 60);
-                Hero.MainHero.AddAttribute("PriestSigmar");
-            }
-
-            if (choice == "WarriorPriestUlric")
-            {
-                Hero.MainHero.AddCareer(TORCareers.WarriorPriestUlric);
-                Hero.MainHero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_ulric"), 60);
-                Hero.MainHero.AddAttribute("PriestUlric");
-            }
-
-            var skill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
-            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
-            Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
-        }
-
-        private void OnChooseBloodline(List<InquiryElement> obj)
-        {
-            var choice = obj[0].Identifier as string;
-            if (choice == "generic_vampire")
-            {
-                Hero.MainHero.AddAttribute("SpellCaster");
-                Hero.MainHero.AddAbility("NagashGaze");
-                Hero.MainHero.AddKnownLore("MinorMagic");
-                Hero.MainHero.AddKnownLore("Necromancy");
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
-                Hero.MainHero.AddCareer(TORCareers.MinorVampire);
-            }
-
-            if (choice == "blood_knight")
-            {
-                Hero.MainHero.AddCareer(TORCareers.BloodKnight);
-            }
-
-            if (choice == "necrarch")
-            {
-                Hero.MainHero.AddAttribute("SpellCaster");
-                Hero.MainHero.AddAbility("NagashGaze");
-                Hero.MainHero.AddKnownLore("MinorMagic");
-                Hero.MainHero.AddKnownLore("Necromancy");
-                Hero.MainHero.AddCareer(TORCareers.Necrarch);
-                var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-                Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
-                Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("necrarch");
-
-                Hero.MainHero.CharacterObject.Race = FaceGen.GetRaceOrDefault("necrarch");
-                var equipment = Hero.MainHero.CharacterObject.Equipment;
-                var properties = Hero.MainHero.CharacterObject.GetBodyProperties(equipment);
-                Hero.MainHero.CharacterObject.UpdatePlayerCharacterBodyProperties(properties, FaceGen.GetRaceOrDefault("necrarch"), false);
-
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
-            }
         }
 
         public void InitializeContent(CharacterCreationManager manager)
