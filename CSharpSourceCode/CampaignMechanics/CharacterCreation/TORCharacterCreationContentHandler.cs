@@ -24,7 +24,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 {
     // TODO: Native 1.3.1 changed from CharacterCreationContentBase (removed) to ICharacterCreationContentHandler
     // This class needs complete refactoring for the new handler pattern
-    public class TorCharacterCreationContentHandler : ICharacterCreationContentHandler
+    public class TORCharacterCreationContentHandler : ICharacterCreationContentHandler
     {
         private readonly List<CharacterCreationOption> _options;
         private readonly List<SpecializationOption> _specializationOptions;
@@ -41,7 +41,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private const int AttributeLevelToAdd = 1;
 
 
-        public TorCharacterCreationContentHandler()
+        public TORCharacterCreationContentHandler()
         {
             try
             {
@@ -51,7 +51,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             catch (Exception)
             {
-                throw;
+                //TODO exception
             }
 
             try
@@ -62,7 +62,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             catch (Exception)
             {
-                throw;
+               //TODO Exception
             }
 
             ExtendedInfoManager.Instance.ClearInfo(Hero.MainHero);
@@ -368,7 +368,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             catch (NullReferenceException)
             {
-                throw;
+                throw; //TODO add proper exception
             }
 
             if (roster != null && !roster.DefaultEquipment.IsEmpty())

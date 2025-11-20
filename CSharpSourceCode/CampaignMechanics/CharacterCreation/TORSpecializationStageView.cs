@@ -83,7 +83,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             InitializeUI(handler);
         }
 
-        private void InitializeUI(TorCharacterCreationContentHandler handler)
+        private void InitializeUI(TORCharacterCreationContentHandler handler)
         {
 
             string professionId = handler.GetSelectedProfessionId();
@@ -155,7 +155,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        private void PopulateOptions(TorCharacterCreationContentHandler handler, string professionId)
+        private void PopulateOptions(TORCharacterCreationContentHandler handler, string professionId)
         {
 
             // Get specialization options from XML
@@ -187,7 +187,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// <summary>
         /// Pre-select the previously chosen option if one is stored in the handler
         /// </summary>
-        private void PreSelectStoredOption(TorCharacterCreationContentHandler handler, string professionId)
+        private void PreSelectStoredOption(TORCharacterCreationContentHandler handler, string professionId)
         {
             string storedId = null;
 
@@ -243,7 +243,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             return CharacterObject.PlayerCharacter.Equipment.Clone();
         }
 
-        private TorCharacterCreationContentHandler GetHandler()
+        private TORCharacterCreationContentHandler GetHandler()
         {
             // Access handler from manager using reflection
             try
@@ -257,7 +257,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     {
                         foreach (var handler in handlers.Values)
                         {
-                            if (handler is TorCharacterCreationContentHandler torHandler)
+                            if (handler is TORCharacterCreationContentHandler torHandler)
                             {
                                 return torHandler;
                             }
