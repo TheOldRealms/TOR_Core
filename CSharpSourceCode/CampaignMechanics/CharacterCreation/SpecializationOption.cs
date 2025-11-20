@@ -38,6 +38,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public string IconSprite;
 
         /// <summary>
+        /// Race ID string to apply when this specialization is selected (optional)
+        /// Example: "necrarch" for Necrarch vampires
+        /// Will be resolved to race int via FaceGen.GetRaceOrDefault()
+        /// If not specified, the player's race remains unchanged
+        /// </summary>
+        [XmlAttribute]
+        public string RaceId;
+
+        /// <summary>
         /// Display name with translation key support
         /// Format: {=translation_key}Default Text
         /// Example: {=knight_blazing_sun_name}Order of the Blazing Sun

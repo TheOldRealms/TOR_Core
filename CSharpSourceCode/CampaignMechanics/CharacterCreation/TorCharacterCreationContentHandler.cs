@@ -341,6 +341,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// <summary>
         /// Clear any stored specialization selections.
         /// Called when clicking Back to ensure old selections are cleared if user changes profession.
+        /// NOTE: Race restoration is handled by the narrative menu when going back.
         /// </summary>
         public void ClearStoredSpecializations()
         {
@@ -487,6 +488,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             ApplyProfessionBonuses();
             ApplyStoredSpecializations();
 
+            // Everyone gets these base attributes
+            Hero.MainHero.AddAttribute("AbilityUser");
+            Hero.MainHero.AddAttribute("CanPlaceArtillery");
+            
             CultureObject culture = CharacterObject.PlayerCharacter.Culture;
             Hero.MainHero.AddCultureSpecificCustomResource(0);
 
@@ -631,19 +636,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             var hero = Hero.MainHero;
             string professionId = _selectedProfessionId;
-
-            if (string.IsNullOrEmpty(professionId))
-            {
-                TORCommon.Log("[TorCharacterCreationContentHandler] No profession selected, skipping profession bonuses", NLog.LogLevel.Warn);
-                return;
-            }
-
-            TORCommon.Log($"[TorCharacterCreationContentHandler] Applying profession bonuses for: {professionId}", NLog.LogLevel.Info);
-
-            // Everyone gets these base attributes
-            hero.AddAttribute("AbilityUser");
-            hero.AddAttribute("CanPlaceArtillery");
-
+            
             // Apply profession-specific bonuses based on selected profession
             switch (professionId)
             {
@@ -783,8 +776,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.AddCareer(TORCareers.Mercenary);
                 }
             }
-
-            TORCommon.Log($"[TorCharacterCreationContentHandler] Profession bonuses applied for: {professionId}", NLog.LogLevel.Info);
         }
 
         /// <summary>
@@ -833,6 +824,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                                 NLog.LogLevel.Info);
                         }
                     }
+
+                    // NOTE: Race is applied immediately in TORSpecializationStageView when option is selected
+                    // This ensures the race change is visible in the banner editor stage
                 }
 
                 // Hard-coded logic to map option IDs to careers/lores
@@ -1291,28 +1285,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 OnCultureSelected();
             }
-        }
-
-        public bool NeedsSpecialization(string narrativeStep)
-        {
-            // Check if selected profession requires specialization (lore, bloodline, or priesthood choice)
-            return narrativeStep switch
-            {
-                // Spellcasters need lore selection
-                "option_3_empire_magister_apprentice" => true,
-                "option_3_bretonnia_damsel" => true,
-                "option_3_we_spellsinger" => true,
-                "option_3_eo_greylord_apprentice" => true,
-
-                // Vampires need bloodline selection
-                "option_3_vc_vampire" => true,
-                "option_3_mousillon_vampire" => true,
-
-                // Empire priests need god selection
-                "option_3_empire_priest_acolyte" => true,
-
-                _ => false
-            };
         }
 
         private void OnCultureSelected()

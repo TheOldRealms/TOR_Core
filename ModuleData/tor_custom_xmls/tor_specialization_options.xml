@@ -102,7 +102,7 @@
 	<!-- VAMPIRES - 3 Bloodlines                        -->
 	<!-- =============================================== -->
 
-	<SpecializationOption Id="bloodline_von_carstein" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_vampire_noble_equipment">
+	<SpecializationOption Id="bloodline_von_carstein" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_vampire_noble_equipment" RaceId="vampire">
 		<Name>{=tor_vampire_von_carstein_name}Von Carstein</Name>
 		<Description>{=tor_vampire_von_carstein_desc}The most powerful vampire bloodline, rulers of Sylvania.</Description>
 		<PositiveEffect>{=tor_vampire_von_carstein_positive}Necromantic powers and commanding presence</PositiveEffect>
@@ -114,7 +114,7 @@
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="bloodline_blood_dragon" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_blood_dragon_equipment">
+	<SpecializationOption Id="bloodline_blood_dragon" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_blood_dragon_equipment" RaceId="vampire">
 		<Name>{=tor_vampire_blood_dragon_name}Blood Dragon</Name>
 		<Description>{=tor_vampire_blood_dragon_desc}Honorable warriors seeking worthy opponents in battle.</Description>
 		<PositiveEffect>{=tor_vampire_blood_dragon_positive}Martial excellence and honor code</PositiveEffect>
@@ -126,7 +126,7 @@
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="bloodline_necrarch" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_necrarch_equipment">
+	<SpecializationOption Id="bloodline_necrarch" ProfessionRequirement="option_3_vc_vampire" EquipmentSetId="tor_necrarch_equipment" RaceId="necrarch">
 		<Name>{=tor_vampire_necrarch_name}Necrarch</Name>
 		<Description>{=tor_vampire_necrarch_desc}Obsessed with necromantic knowledge and dark sorcery.</Description>
 		<PositiveEffect>{=tor_vampire_necrarch_positive}Unmatched necromantic mastery</PositiveEffect>
@@ -139,7 +139,7 @@
 	</SpecializationOption>
 
 	<!-- Mousillon vampires use same bloodline options -->
-	<SpecializationOption Id="bloodline_von_carstein_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_vampire_noble_equipment">
+	<SpecializationOption Id="bloodline_von_carstein_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_vampire_noble_equipment" RaceId="vampire">
 		<Name>{=tor_vampire_von_carstein_name}Von Carstein</Name>
 		<Description>{=tor_vampire_von_carstein_desc}The most powerful vampire bloodline, rulers of Sylvania.</Description>
 		<PositiveEffect>{=tor_vampire_von_carstein_positive}Necromantic powers and commanding presence</PositiveEffect>
@@ -151,7 +151,7 @@
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="bloodline_blood_dragon_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_blood_dragon_equipment">
+	<SpecializationOption Id="bloodline_blood_dragon_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_blood_dragon_equipment" RaceId="vampire">
 		<Name>{=tor_vampire_blood_dragon_name}Blood Dragon</Name>
 		<Description>{=tor_vampire_blood_dragon_desc}Honorable warriors seeking worthy opponents in battle.</Description>
 		<PositiveEffect>{=tor_vampire_blood_dragon_positive}Martial excellence and honor code</PositiveEffect>
@@ -163,7 +163,7 @@
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="bloodline_necrarch_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_necrarch_equipment">
+	<SpecializationOption Id="bloodline_necrarch_mous" ProfessionRequirement="option_3_mousillon_vampire" EquipmentSetId="tor_necrarch_equipment" RaceId="necrarch">
 		<Name>{=tor_vampire_necrarch_name}Necrarch</Name>
 		<Description>{=tor_vampire_necrarch_desc}Obsessed with necromantic knowledge and dark sorcery.</Description>
 		<PositiveEffect>{=tor_vampire_necrarch_positive}Unmatched necromantic mastery</PositiveEffect>

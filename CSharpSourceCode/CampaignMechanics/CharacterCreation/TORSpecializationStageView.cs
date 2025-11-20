@@ -132,12 +132,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _dataSource = new TORSpecializationStageVM(title, description, new Action(NextStage), _affirmativeActionText, new Action(PreviousStage),
                 _negativeActionText, (selectedOption) =>
                 {
-                    // Update character equipment when option is selected
+                    // Update character equipment and race when option is selected
                     TORCommon.Log($"[TORSpecializationStageView] Equipment preview callback triggered", NLog.LogLevel.Info);
                     if (selectedOption?.Data != null)
                     {
                         TaleWorlds.Core.Equipment equipment = GetEquipmentForOption(selectedOption.Data);
                         _dataSource.UpdateCharacterEquipment(equipment);
+
+                        // Apply race change immediately if this option has a race
+                        if (selectedOption.Data is SpecializationOption option && !string.IsNullOrEmpty(option.RaceId))
+                        {
+                            ApplyRaceChangeImmediate(option.RaceId);
+                        }
                     }
                 });
 
@@ -227,7 +233,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        private TaleWorlds.Core.Equipment GetEquipmentForOption(object optionData)
+        private Equipment GetEquipmentForOption(object optionData)
         {
             // optionData is now a SpecializationOption - get equipment from its EquipmentSetId
             if (optionData is SpecializationOption option && !string.IsNullOrEmpty(option.EquipmentSetId))
@@ -258,7 +264,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
 
             // Fallback: Use player's current equipment
-            return TaleWorlds.CampaignSystem.CharacterObject.PlayerCharacter.Equipment.Clone();
+            return CharacterObject.PlayerCharacter.Equipment.Clone();
         }
 
         private TorCharacterCreationContentHandler GetHandler()
@@ -271,10 +277,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 if (handlersField != null)
                 {
-                    var handlers =
-                        handlersField.GetValue(_characterCreationManager) as
-                            System.Collections.Generic.SortedList<int, ICharacterCreationContentHandler>;
-                    if (handlers != null)
+                    if (handlersField.GetValue(_characterCreationManager) is SortedList<int, ICharacterCreationContentHandler> handlers)
                     {
                         foreach (var handler in handlers.Values)
                         {
@@ -388,6 +391,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 {
                     ApplyEquipmentFromRoster(option.EquipmentSetId, option.Id);
                 }
+
+                // NOTE: Race is applied in the equipment preview callback when option is selected
             }
             else
             {
@@ -455,35 +460,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
 
         /// <summary>
-        /// Apply equipment for selected career immediately (shows in banner editor)
-        /// </summary>
-        private void ApplyEquipmentForCareer(string careerId)
-        {
-            if (string.IsNullOrEmpty(careerId)) return;
-
-            string equipmentRosterId = careerId switch
-            {
-                "MinorVampire" => "tor_vampire_noble_equipment",
-                "BloodKnight" => "tor_blood_dragon_equipment",
-                "Necrarch" => "tor_necrarch_equipment",
-                "WarriorPriest" => "tor_sigmar_priest_equipment",
-                "WarriorPriestUlric" => "tor_ulric_priest_equipment",
-                // Knight orders
-                "KnightBlazingSun" => "tor_empire_knight_equipment",
-                "KnightPanthers" => "tor_empire_knight_equipment",
-                "KnightWhiteWolf" => "tor_empire_knight_equipment",
-                "KnightGriphon" => "tor_empire_knight_equipment",
-                "Reiksguard" => "tor_empire_knight_equipment",
-                _ => null
-            };
-
-            if (!string.IsNullOrEmpty(equipmentRosterId))
-            {
-                ApplyEquipmentFromRoster(equipmentRosterId, careerId);
-            }
-        }
-
-        /// <summary>
         /// Apply equipment for selected lore immediately (shows in banner editor)
         /// </summary>
         private void ApplyEquipmentForLore(string loreId)
@@ -530,6 +506,62 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             catch (Exception ex)
             {
                 TORCommon.Log($"[TORSpecializationStageView] Error loading equipment roster '{rosterId}': {ex.Message}", NLog.LogLevel.Error);
+            }
+        }
+
+        /// <summary>
+        /// Refresh the character preview in the ViewModel to reflect race/equipment changes
+        /// </summary>
+        private void RefreshCharacterPreview()
+        {
+            if (_dataSource?.CurrentCharacter != null)
+            {
+                var playerCharacter = CharacterObject.PlayerCharacter;
+                _dataSource.CurrentCharacter.FillFrom(playerCharacter);
+
+                // Force update of body properties to reflect race change
+                var bodyProperties = playerCharacter.GetBodyProperties(playerCharacter.Equipment, -1);
+                _dataSource.CurrentCharacter.OnPropertyChangedWithValue(bodyProperties.ToString(), "BodyProperties");
+
+                TORCommon.Log("[TORSpecializationStageView] Refreshed character preview", NLog.LogLevel.Info);
+            }
+        }
+
+        /// <summary>
+        /// Apply race change immediately (for specializations like Necrarch that change appearance)
+        /// Stores the default race in the handler for restoration when going back
+        /// </summary>
+        private void ApplyRaceChangeImmediate(string raceIdString)
+        {
+            try
+            {
+                var handler = GetHandler();
+                if (handler == null)
+                {
+                    TORCommon.Log("[TORSpecializationStageView] Cannot apply race - handler not found", NLog.LogLevel.Error);
+                    return;
+                }
+
+                // Store default race int in handler before changing (for restoration when going back)
+                handler.StoreDefaultRaceIfNeeded();
+
+                // Get the race int from the string ID
+                var newRace = FaceGen.GetRaceOrDefault(raceIdString);
+                var playerCharacter = CharacterObject.PlayerCharacter;
+
+                playerCharacter.Race = newRace;
+                var equipment = playerCharacter.Equipment;
+                var properties = playerCharacter.GetBodyProperties(equipment);
+                playerCharacter.UpdatePlayerCharacterBodyProperties(properties, newRace, false);
+
+                // Refresh the character preview to show the race change
+                RefreshCharacterPreview();
+
+                TORCommon.Log($"[TORSpecializationStageView] Applied race change: {raceIdString} (race: {newRace})", NLog.LogLevel.Info);
+            }
+            catch (Exception ex)
+            {
+                TORCommon.Log($"[TORSpecializationStageView] Error applying race '{raceIdString}': {ex.Message}", NLog.LogLevel.Error);
             }
         }
     }
