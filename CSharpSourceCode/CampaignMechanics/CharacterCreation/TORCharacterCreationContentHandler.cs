@@ -309,6 +309,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             _selectedSpecializationOptionId = optionId;
         }
+        
+        public string GetSelectedSpecializationOptionId() => _selectedSpecializationOptionId;
 
         private void OnOptionSelected(CharacterCreationManager manager, string optionId)
         {

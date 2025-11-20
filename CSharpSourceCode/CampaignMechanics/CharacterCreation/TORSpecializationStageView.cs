@@ -46,15 +46,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _characterCreationManager = characterCreationManager;
             _affirmativeActionText = affirmativeActionText;
             _negativeActionText = negativeActionText;
-
-
-            // Detect direction: if we've visited before, we're coming back from banner editor
-            if (_wasVisited)
-            {
-            }
-            else
-            {
-            }
+            
 
             // Check if specialization is needed
             var handler = GetHandler();
@@ -112,8 +104,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 title = new TextObject("{=str_tor_cc_specialization_title_order}Choose Your Order").ToString();
                 description = new TextObject("{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.").ToString();
             }
-
-            // Create GauntletLayer (UI overlay) - use layer order 1 like native
+            
             _gauntletLayer = new GauntletLayer(1, "GauntletLayer", true);
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.IsFocusLayer = true;
@@ -125,35 +116,25 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _dataSource = new TORSpecializationStageVM(title, description, new Action(NextStage), _affirmativeActionText, new Action(PreviousStage),
                 _negativeActionText, (selectedOption) =>
                 {
-                    // Update character equipment and race when option is selected
-                    if (selectedOption?.Data != null)
+                    if (selectedOption?.Data == null)
                     {
-                        TaleWorlds.Core.Equipment equipment = GetEquipmentForOption(selectedOption.Data);
-                        _dataSource.UpdateCharacterEquipment(equipment);
+                        return;
+                    }
 
-                        // Apply race change immediately if this option has a race
-                        if (selectedOption.Data is SpecializationOption option && !string.IsNullOrEmpty(option.RaceId))
-                        {
-                            ApplyRaceChangeImmediate(option.RaceId);
-                        }
+                    Equipment equipment = GetEquipmentForOption(selectedOption.Data);
+                    _dataSource.UpdateCharacterEquipment(equipment);
+
+                    // Apply race change immediately if this option has a race
+                    if (selectedOption.Data is SpecializationOption option && !string.IsNullOrEmpty(option.RaceId))
+                    {
+                        ApplyRaceChangeImmediate(option.RaceId);
                     }
                 });
 
             // Populate options based on profession type
             PopulateOptions(handler, professionId);
-
-            // TEST: Try loading a native movie that we know works to verify GauntletLayer can render
-            try
-            {
-                // Try loading our custom movie first
-                _movie = _gauntletLayer.LoadMovie("TORSpecializationStage", _dataSource);
-
-                // Log layer status
-            }
-            catch (Exception ex)
-            {
-                _shouldAutoSkip = true;
-            }
+            
+            _movie = _gauntletLayer.LoadMovie("TORSpecializationStage", _dataSource);
         }
 
         private void PopulateOptions(TORCharacterCreationContentHandler handler, string professionId)
@@ -196,7 +177,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Find and select the matching option
             foreach (var option in _dataSource.Options)
             {
-                if (IsSpellcaster(professionId) && option.Data is TOR_Core.AbilitySystem.Spells.LoreObject lore)
+                if (IsSpellcaster(professionId) && option.Data is AbilitySystem.Spells.LoreObject lore)
                 {
                     if (lore.ID == storedId)
                     {
@@ -205,7 +186,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     }
                 }
                 else if ((professionId == "option_3_vc_vampire" || professionId == "option_3_mousillon_vampire" || professionId == "option_3_empire_priest_acolyte") &&
-                         option.Data is TOR_Core.CharacterDevelopment.CareerSystem.CareerObject career)
+                         option.Data is CharacterDevelopment.CareerSystem.CareerObject career)
                 {
                     if (career.StringId == storedId)
                     {
@@ -275,6 +256,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             catch (Exception ex)
             {
+                //TODO exception
             }
 
             return null;
@@ -354,8 +336,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 return;
             }
-
-            // selectedData is now a SpecializationOption - just store the option ID
+            
             if (selectedData is SpecializationOption option)
             {
                 handler.SetSelectedSpecializationOptionId(option.Id);
@@ -400,12 +381,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public override void LoadEscapeMenuMovie()
         {
-            // Not needed for MVP
         }
 
         public override void ReleaseEscapeMenuMovie()
         {
-            // Not needed for MVP
+            
         }
 
         protected override void OnFinalize()
@@ -420,17 +400,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Clean up GauntletLayer
             _gauntletLayer = null;
 
-        }
-
-        /// <summary>
-        /// Apply equipment for selected lore immediately (shows in banner editor)
-        /// </summary>
-        private void ApplyEquipmentForLore(string loreId)
-        {
-            if (string.IsNullOrEmpty(loreId)) return;
-
-            // All magisters use the same equipment for now
-            ApplyEquipmentFromRoster("tor_magister_equipment");
         }
 
         /// <summary>
@@ -480,30 +449,23 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// </summary>
         private void ApplyRaceChangeImmediate(string raceIdString)
         {
-            try
+            var handler = GetHandler();
+            if (handler == null)
             {
-                var handler = GetHandler();
-                if (handler == null)
-                {
-                    return;
-                }
-
-                // Get the race int from the string ID
-                var newRace = FaceGen.GetRaceOrDefault(raceIdString);
-                var playerCharacter = CharacterObject.PlayerCharacter;
-
-                playerCharacter.Race = newRace;
-                var equipment = playerCharacter.Equipment;
-                var properties = playerCharacter.GetBodyProperties(equipment);
-                playerCharacter.UpdatePlayerCharacterBodyProperties(properties, newRace, false);
-
-                // Refresh the character preview to show the race change
-                RefreshCharacterPreview();
-
+                return;
             }
-            catch (Exception ex)
-            {
-            }
+
+            // Get the race int from the string ID
+            var newRace = FaceGen.GetRaceOrDefault(raceIdString);
+            var playerCharacter = CharacterObject.PlayerCharacter;
+
+            playerCharacter.Race = newRace;
+            var equipment = playerCharacter.Equipment;
+            var properties = playerCharacter.GetBodyProperties(equipment);
+            playerCharacter.UpdatePlayerCharacterBodyProperties(properties, newRace, false);
+
+            // Refresh the character preview to show the race change
+            RefreshCharacterPreview();
         }
 
         /// <summary>
