@@ -31,6 +31,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private GauntletMovieIdentifier _movie;
 
         private bool _shouldAutoSkip;
+        private TORCharacterCreationContentHandler _cachedHandler;
 
         // Static flag to track if we've visited this stage before (persists across reconstructions)
         private static bool _wasVisited = false;
@@ -245,7 +246,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private TORCharacterCreationContentHandler GetHandler()
         {
-            // Access handler from manager using reflection
+            // Return cached handler if already retrieved
+            if (_cachedHandler != null)
+            {
+                return _cachedHandler;
+            }
+
+            // Access handler from manager using reflection (only done once)
             try
             {
                 var handlersField = typeof(CharacterCreationManager).GetField("_handlers",
@@ -259,7 +266,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         {
                             if (handler is TORCharacterCreationContentHandler torHandler)
                             {
-                                return torHandler;
+                                _cachedHandler = torHandler;
+                                return _cachedHandler;
                             }
                         }
                     }

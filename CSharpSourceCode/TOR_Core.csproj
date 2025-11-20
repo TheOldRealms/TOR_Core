@@ -490,7 +490,7 @@
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\SpecializationOption.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\FaceGenHelper.cs" />
-    <Compile Include="CampaignMechanics\CharacterCreation\TorCharacterCreationContentHandler.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationContentHandler.cs" />
     <Compile Include="CampaignMechanics\Combat\GreenskinBrawlBehavior.cs" />
     <Compile Include="CampaignMechanics\Companions\TORCompanionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableItemVM.cs" />
