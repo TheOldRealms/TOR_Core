@@ -140,17 +140,17 @@ namespace TOR_Core.HarmonyPatches
             foreach (Tuple<Settlement, GameEntity> tuple in enumerable)
             {
                 ToRSettlementNameplateVM item = new(tuple.Item1, tuple.Item2, ____mapCamera, ____fastMoveCameraToPosition);
-                __instance.Nameplates.Add(item);
+                __instance.AllNameplates.Add(item);
             }
             foreach (Tuple<Settlement, GameEntity> tuple2 in hideouts)
             {
                 if (tuple2.Item1.Hideout.IsSpotted)
                 {
                     ToRSettlementNameplateVM item2 = new(tuple2.Item1, tuple2.Item2, ____mapCamera, ____fastMoveCameraToPosition);
-                    __instance.Nameplates.Add(item2);
+                    __instance.AllNameplates.Add(item2);
                 }
             }
-            foreach (SettlementNameplateVM settlementNameplateVM in __instance.Nameplates)
+            foreach (SettlementNameplateVM settlementNameplateVM in __instance.AllNameplates)
             {
                 Settlement settlement = settlementNameplateVM.Settlement;
                 if ((settlement?.SiegeEvent) != null)
@@ -168,12 +168,12 @@ namespace TOR_Core.HarmonyPatches
                     }
                 }
             }
-            RefreshRelationsOfNameplates(__instance.Nameplates);
+            RefreshRelationsOfNameplates(__instance.AllNameplates);
 
             return false;
         }
 
-        private static void RefreshRelationsOfNameplates(MBBindingList<SettlementNameplateVM> namePlates)
+        private static void RefreshRelationsOfNameplates(MBReadOnlyList<SettlementNameplateVM> namePlates)
         {
             foreach (SettlementNameplateVM settlementNameplateVM in namePlates)
             {

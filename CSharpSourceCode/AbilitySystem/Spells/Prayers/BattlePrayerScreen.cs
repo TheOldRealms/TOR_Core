@@ -32,7 +32,7 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
         {
             base.OnActivate();
             _vm = new BattlePrayersVM(CloseScreen);
-            _gauntletLayer = new GauntletLayer(1, "GauntletLayer", true);
+            _gauntletLayer = new GauntletLayer("GauntletLayer",1, true);
             _gauntletLayer.LoadMovie("BattlePrayerBook", _vm);
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.Input.RegisterHotKeyCategory(

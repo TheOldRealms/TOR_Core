@@ -16,7 +16,7 @@ namespace TOR_Core.Extensions.UI
             if (Hero.MainHero.IsEnlisted())
             {
                 var pvm = vm as PartyNameplateVM;
-                pvm.IsPrisoner = true;
+                //pvm.IsPrisoner = true; //TODO I am not sure what needs to be set here. the IsPrisoner, was required i think for disabling the nameplate?
             }
         }
 
