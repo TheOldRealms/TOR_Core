@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
@@ -157,18 +158,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private MBBindingList<SpecializationOptionVM> _options;
         private SpecializationOptionVM _selectedOption;
         private CharacterViewModel _currentCharacter;
-        private CharacterCreationGainedPropertiesVM _gainedPropertiesController;
+        private TORSpecializationGainedPropertiesVM _gainedPropertiesController;
 
         private readonly Action _onNextStage;
         private readonly Action _onPreviousStage;
         private readonly Action<SpecializationOptionVM> _onOptionSelected;
-        private readonly CharacterCreationManager _characterCreationManager;
 
         public TORSpecializationStageVM(CharacterCreationManager characterCreationManager, string title, string description,
             Action onNextStage, TextObject affirmativeText, Action onPreviousStage,
             TextObject negativeText, Action<SpecializationOptionVM> onOptionSelected = null)
         {
-            _characterCreationManager = characterCreationManager;
             TitleText = title;
             DescriptionText = description;
             _onNextStage = onNextStage;
@@ -189,8 +188,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1).ToString());
             //_currentCharacter.FillFrom(Hero.MainHero);
 
-            // Initialize gained properties controller to show real-time bonuses
-            _gainedPropertiesController = new CharacterCreationGainedPropertiesVM(characterCreationManager);
+            // Initialize custom gained properties controller to show specialization bonuses/penalties
+            _gainedPropertiesController = new TORSpecializationGainedPropertiesVM();
         }
 
         [DataSourceProperty]
@@ -391,7 +390,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
 
         [DataSourceProperty]
-        public CharacterCreationGainedPropertiesVM GainedPropertiesController
+        public TORSpecializationGainedPropertiesVM GainedPropertiesController
         {
             get => _gainedPropertiesController;
             set
@@ -455,8 +454,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Notify callback for equipment preview
             _onOptionSelected?.Invoke(selectedOption);
 
-            // Update gained properties display to show attribute/skill bonuses
-            _gainedPropertiesController?.UpdateValues();
+            // Update custom gained properties display to show specialization bonuses/penalties
+            _gainedPropertiesController?.UpdateFromOption(selectedOption.Data as SpecializationOption);
         }
 
         /// <summary>
@@ -482,6 +481,268 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             base.OnFinalize();
             _currentCharacter?.OnFinalize();
             _gainedPropertiesController?.OnFinalize();
+        }
+    }
+
+    /// <summary>
+    /// Custom gained properties display for specialization stage
+    /// Shows only the bonuses/penalties from the selected specialization option
+    /// Supports negative effects (skill/attribute decreases)
+    /// </summary>
+    public class TORSpecializationGainedPropertiesVM : ViewModel
+    {
+        private MBBindingList<SpecializationAttributeItemVM> _attributes;
+        private MBBindingList<SpecializationSkillItemVM> _skills;
+
+        public TORSpecializationGainedPropertiesVM()
+        {
+            _attributes = new MBBindingList<SpecializationAttributeItemVM>();
+            _skills = new MBBindingList<SpecializationSkillItemVM>();
+        }
+
+        [DataSourceProperty]
+        public MBBindingList<SpecializationAttributeItemVM> Attributes
+        {
+            get => _attributes;
+            set
+            {
+                if (_attributes != value)
+                {
+                    _attributes = value;
+                    OnPropertyChangedWithValue(value, nameof(Attributes));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public MBBindingList<SpecializationSkillItemVM> Skills
+        {
+            get => _skills;
+            set
+            {
+                if (_skills != value)
+                {
+                    _skills = value;
+                    OnPropertyChangedWithValue(value, nameof(Skills));
+                }
+            }
+        }
+
+        public void UpdateFromOption(SpecializationOption option)
+        {
+            _attributes.Clear();
+            _skills.Clear();
+
+            if (option == null) return;
+
+            // Add attribute change if any
+            if (!string.IsNullOrEmpty(option.AttributeToIncrease))
+            {
+                bool isDecrease = option.AttributeToIncrease.StartsWith("-");
+                string attributeId = isDecrease ? option.AttributeToIncrease.Substring(1) : option.AttributeToIncrease;
+                int amount = isDecrease ? -1 : 1;
+
+                var attribute = Game.Current.ObjectManager.GetObject<CharacterAttribute>(attributeId);
+                if (attribute != null)
+                {
+                    _attributes.Add(new SpecializationAttributeItemVM(attribute, amount));
+                }
+            }
+
+            // Add skill changes
+            if (option.SkillsToIncrease != null)
+            {
+                // Group skills by ID to handle duplicates
+                var skillChanges = new Dictionary<string, int>();
+                foreach (var skillIdRaw in option.SkillsToIncrease)
+                {
+                    bool isDecrease = skillIdRaw.StartsWith("-");
+                    string skillId = isDecrease ? skillIdRaw.Substring(1) : skillIdRaw;
+                    int amount = isDecrease ? -1 : 1;
+
+                    if (skillChanges.ContainsKey(skillId))
+                        skillChanges[skillId] += amount;
+                    else
+                        skillChanges[skillId] = amount;
+                }
+
+                // Create VM items for each unique skill
+                foreach (var kvp in skillChanges)
+                {
+                    var skill = Game.Current.ObjectManager.GetObject<SkillObject>(kvp.Key);
+                    if (skill != null)
+                    {
+                        _skills.Add(new SpecializationSkillItemVM(skill, kvp.Value));
+                    }
+                }
+            }
+        }
+
+        public override void OnFinalize()
+        {
+            base.OnFinalize();
+            _attributes?.Clear();
+            _skills?.Clear();
+        }
+    }
+
+    /// <summary>
+    /// ViewModel for a single attribute change in specialization
+    /// </summary>
+    public class SpecializationAttributeItemVM : ViewModel
+    {
+        private CharacterAttribute _attribute;
+        private int _change;
+        private string _nameText;
+        private bool _isPositive;
+        private bool _isNegative;
+
+        public SpecializationAttributeItemVM(CharacterAttribute attribute, int change)
+        {
+            _attribute = attribute;
+            _change = change;
+            _nameText = attribute.Name.ToString();
+            _isPositive = change > 0;
+            _isNegative = change < 0;
+        }
+
+        [DataSourceProperty]
+        public string NameText
+        {
+            get => _nameText;
+            set
+            {
+                if (_nameText != value)
+                {
+                    _nameText = value;
+                    OnPropertyChangedWithValue(value, nameof(NameText));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public int Change
+        {
+            get => _change;
+            set
+            {
+                if (_change != value)
+                {
+                    _change = value;
+                    OnPropertyChangedWithValue(value, nameof(Change));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsPositive
+        {
+            get => _isPositive;
+            set
+            {
+                if (_isPositive != value)
+                {
+                    _isPositive = value;
+                    OnPropertyChangedWithValue(value, nameof(IsPositive));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsNegative
+        {
+            get => _isNegative;
+            set
+            {
+                if (_isNegative != value)
+                {
+                    _isNegative = value;
+                    OnPropertyChangedWithValue(value, nameof(IsNegative));
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// ViewModel for a single skill focus change in specialization
+    /// </summary>
+    public class SpecializationSkillItemVM : ViewModel
+    {
+        private SkillObject _skill;
+        private int _focusChange;
+        private string _skillId;
+        private bool _isPositive;
+        private bool _isNegative;
+
+        public SpecializationSkillItemVM(SkillObject skill, int focusChange)
+        {
+            _skill = skill;
+            _focusChange = focusChange;
+            _skillId = skill.StringId;
+            _isPositive = focusChange > 0;
+            _isNegative = focusChange < 0;
+        }
+
+        [DataSourceProperty]
+        public string SkillId
+        {
+            get => _skillId;
+            set
+            {
+                if (_skillId != value)
+                {
+                    _skillId = value;
+                    OnPropertyChangedWithValue(value, nameof(SkillId));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public int FocusChange
+        {
+            get => _focusChange;
+            set
+            {
+                if (_focusChange != value)
+                {
+                    _focusChange = value;
+                    OnPropertyChangedWithValue(value, nameof(FocusChange));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string FocusChangeText
+        {
+            get => _focusChange > 0 ? "+" + _focusChange.ToString() : _focusChange.ToString();
+        }
+
+        [DataSourceProperty]
+        public bool IsPositive
+        {
+            get => _isPositive;
+            set
+            {
+                if (_isPositive != value)
+                {
+                    _isPositive = value;
+                    OnPropertyChangedWithValue(value, nameof(IsPositive));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsNegative
+        {
+            get => _isNegative;
+            set
+            {
+                if (_isNegative != value)
+                {
+                    _isNegative = value;
+                    OnPropertyChangedWithValue(value, nameof(IsNegative));
+                }
+            }
         }
     }
 }

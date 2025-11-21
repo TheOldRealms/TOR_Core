@@ -88,29 +88,29 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
 
             string professionId = handler.GetSelectedProfessionId();
-            string title = new TextObject("{=str_tor_cc_specialization_title_generic}Specialization").ToString();
-            string description = new TextObject("{=str_tor_cc_specialization_desc_generic}Choose your specialization").ToString();
+            string title = GameTexts.FindText("str_tor_cc_specialization_title_generic")?.ToString() ?? "Specialization";
+            string description = GameTexts.FindText("str_tor_cc_specialization_desc_generic")?.ToString() ?? "Choose your specialization";
 
             // Set description based on profession type
             if (IsSpellcaster(professionId))
             {
-                title = new TextObject("{=str_tor_cc_specialization_title_lore}Choose Your Lore").ToString();
-                description = new TextObject("{=str_tor_cc_specialization_desc_lore}As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn.").ToString();
+                title = GameTexts.FindText("str_tor_cc_specialization_title_lore")?.ToString() ?? "Choose Your Lore";
+                description = GameTexts.FindText("str_tor_cc_specialization_desc_lore")?.ToString() ?? "As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn.";
             }
             else if (professionId == "option_3_vc_vampire" || professionId == "option_3_mousillon_vampire")
             {
-                title = new TextObject("{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline").ToString();
-                description = new TextObject("{=str_tor_cc_specialization_desc_bloodline}As a vampire, you must choose your bloodline. This will determine your abilities and strengths.").ToString();
+                title = GameTexts.FindText("str_tor_cc_specialization_title_bloodline")?.ToString() ?? "Choose Your Bloodline";
+                description = GameTexts.FindText("str_tor_cc_specialization_desc_bloodline")?.ToString() ?? "As a vampire, you must choose your bloodline. This will determine your abilities and strengths.";
             }
             else if (professionId == "option_3_empire_priest_acolyte")
             {
-                title = new TextObject("{=str_tor_cc_specialization_title_god}Choose Your God").ToString();
-                description = new TextObject("{=str_tor_cc_specialization_desc_god}As a priest, you must choose which god you serve. This will determine your divine powers.").ToString();
+                title = GameTexts.FindText("str_tor_cc_specialization_title_god")?.ToString() ?? "Choose Your God";
+                description = GameTexts.FindText("str_tor_cc_specialization_desc_god")?.ToString() ?? "As a priest, you must choose which god you serve. This will determine your divine powers.";
             }
             else if (professionId == "option_3_empire_knight")
             {
-                title = new TextObject("{=str_tor_cc_specialization_title_order}Choose Your Order").ToString();
-                description = new TextObject("{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.").ToString();
+                title = GameTexts.FindText("str_tor_cc_specialization_title_order")?.ToString() ?? "Choose Your Order";
+                description = GameTexts.FindText("str_tor_cc_specialization_desc_order")?.ToString() ?? "As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.";
             }
             
             _gauntletLayer = new GauntletLayer("GauntletLayer",1, true);
@@ -543,8 +543,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             _currentPreviewOption = null;
 
-            // Update the display to reflect cleared bonuses
-            _dataSource.GainedPropertiesController?.UpdateValues();
+            // Clear the display (show empty list)
+            _dataSource.GainedPropertiesController?.UpdateFromOption(null);
         }
 
         /// <summary>
@@ -597,8 +597,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Store current option as the active preview
             _currentPreviewOption = option;
 
-            // Update the gained properties display
-            _dataSource.GainedPropertiesController?.UpdateValues();
+            // Update the custom gained properties display (happens automatically through ViewModel)
+            // The display is already updated by OnOptionSelected in the ViewModel
         }
 
         /// <summary>
