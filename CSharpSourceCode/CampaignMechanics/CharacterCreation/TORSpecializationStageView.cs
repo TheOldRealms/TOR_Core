@@ -4,6 +4,7 @@ using System.Linq;
 using SandBox.View.CharacterCreation;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
+using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Engine.GauntletUI;
@@ -79,6 +80,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // This ensures clean state if user went back and is returning
             TORCommon.Log($"[TORCC] TORSpecializationStageView: Constructor - Clearing any existing preview bonuses", NLog.LogLevel.Info);
             handler.ClearSpecializationBonuses();
+
+            // Log complete hero state when entering specialization stage
+            LogHeroState("ENTERING SPECIALIZATION STAGE");
 
             // Initialize UI for professions with specialization options
             InitializeUI(handler);
@@ -610,6 +614,32 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                    professionId == "option_3_bretonnia_damsel" ||
                    professionId == "option_3_we_spellsinger" ||
                    professionId == "option_3_eo_greylord_apprentice";
+        }
+
+        private void LogHeroState(string context)
+        {
+            TORCommon.Log($"======== {context} ========", NLog.LogLevel.Info);
+
+            // Log all attributes
+            TORCommon.Log($"[Hero State] ATTRIBUTES:", NLog.LogLevel.Info);
+            foreach (var attribute in Attributes.All)
+            {
+                int value = Hero.MainHero?.GetAttributeValue(attribute) ?? 0;
+                TORCommon.Log($"  {attribute.Name}: {value}", NLog.LogLevel.Info);
+            }
+
+            // Log all skills with focus
+            TORCommon.Log($"[Hero State] SKILLS (with focus > 0):", NLog.LogLevel.Info);
+            foreach (var skill in Skills.All)
+            {
+                int focus = Hero.MainHero?.HeroDeveloper.GetFocus(skill) ?? 0;
+                if (focus > 0)
+                {
+                    TORCommon.Log($"  {skill.Name}: {focus} focus", NLog.LogLevel.Info);
+                }
+            }
+
+            TORCommon.Log($"========================================", NLog.LogLevel.Info);
         }
     }
 }

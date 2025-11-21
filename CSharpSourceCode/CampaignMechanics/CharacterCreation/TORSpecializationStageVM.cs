@@ -11,6 +11,7 @@ using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CharacterCreation
 {
@@ -493,6 +494,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
     /// </summary>
     public class TORSpecializationGainedPropertiesVM : ViewModel
     {
+        // All attributes start at 2 in character creation (not 1)
+        public const int BaseAttributeValue = 2;
+
         private MBBindingList<SpecializationAttributeGroupVM> _gainGroups;
         private CharacterCreationManager _manager;
 
@@ -519,23 +523,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private void InitializeAttributeGroups()
         {
-            // Calculate bonuses from previous narrative stages (origin, growth, profession)
-            var attributeBonuses = new Dictionary<CharacterAttribute, int>();
+            // Use the Hero's current values which include ALL bonuses from previous stages
+            // This is more reliable than trying to sum up SelectedOptions
             var skillBonuses = new Dictionary<SkillObject, int>();
 
-            // Iterate through all selected options from previous stages
+            TORCommon.Log($"[Specialization] Initializing gained properties display", NLog.LogLevel.Info);
+            TORCommon.Log($"[Specialization] Total selected options: {_manager.SelectedOptions.Count}", NLog.LogLevel.Info);
+
+            // Calculate skill bonuses from previous stages
             foreach (var selectedOption in _manager.SelectedOptions)
             {
                 var option = selectedOption.Value;
-
-                // Add attribute bonuses
-                if (option.Args.EffectedAttribute != null && option.Args.AttributeLevelToAdd > 0)
-                {
-                    if (!attributeBonuses.ContainsKey(option.Args.EffectedAttribute))
-                        attributeBonuses[option.Args.EffectedAttribute] = 0;
-
-                    attributeBonuses[option.Args.EffectedAttribute] += option.Args.AttributeLevelToAdd;
-                }
+                TORCommon.Log($"[Specialization] Option: {option.StringId}, Focus: {option.Args.FocusToAdd}, Skills: {option.Args.AffectedSkills.Count}", NLog.LogLevel.Info);
 
                 // Add skill bonuses
                 if (option.Args.FocusToAdd > 0)
@@ -546,14 +545,21 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                             skillBonuses[skill] = 0;
 
                         skillBonuses[skill] += option.Args.FocusToAdd;
+                        TORCommon.Log($"[Specialization]   Skill {skill.StringId}: +{option.Args.FocusToAdd} (total: {skillBonuses[skill]})", NLog.LogLevel.Info);
                     }
                 }
             }
 
-            // Create all attribute groups with bonuses from previous stages
+            // Create all attribute groups - get current attribute values from Hero
             foreach (var attribute in Attributes.All)
             {
-                int attributeBonus = attributeBonuses.ContainsKey(attribute) ? attributeBonuses[attribute] : 0;
+                // Get the hero's current attribute value (includes all bonuses applied so far)
+                int currentAttributeValue = Hero.MainHero?.GetAttributeValue(attribute) ?? BaseAttributeValue;
+                // The "bonus" is current value minus starting base value
+                int attributeBonus = currentAttributeValue - BaseAttributeValue;
+
+                TORCommon.Log($"[Specialization] {attribute.Name}: current={currentAttributeValue}, bonus={attributeBonus}", NLog.LogLevel.Info);
+
                 _gainGroups.Add(new SpecializationAttributeGroupVM(attribute, attributeBonus, skillBonuses));
             }
         }
@@ -773,8 +779,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _attribute = attribute;
             _nameText = attribute.Name.ToString();
             _change = 0;
-            // Base value is the starting value (1) plus bonuses from previous narrative stages
-            _baseValue = 1 + previousStageBonus; // Characters start with 1 in each attribute
+            // Base value is the starting value (BASE_ATTRIBUTE_VALUE) plus bonuses from previous narrative stages
+            _baseValue = TORSpecializationGainedPropertiesVM.BaseAttributeValue + previousStageBonus;
             _currentValue = _baseValue;
             _hasIncreasedInCurrentStage = false;
         }
