@@ -86,7 +86,13 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
-        // Patch PopulateGainedAttributeValues to only show bonuses from current menu and earlier menus (not future ones)
+        /// <summary>
+        /// Patches PopulateGainedAttributeValues to implement layer-by-layer bonus display during character creation navigation.
+        /// When navigating backward through narrative stages, only shows bonuses from the current menu and earlier menus in the pathway.
+        /// This prevents "future" selections (e.g., Stage 3 when viewing Stage 2) from being displayed, providing clear visual feedback
+        /// of what bonuses apply at each stage. Uses pathway-based filtering: start -> tor_origin_menu -> tor_growth_menu -> tor_profession_menu.
+        /// Selections remain intact in SelectedOptions, but are filtered from display calculations based on menu position in pathway.
+        /// </summary>
         [HarmonyPatch(typeof(TaleWorlds.CampaignSystem.ViewModelCollection.CharacterCreation.CharacterCreationGainedPropertiesVM), "PopulateGainedAttributeValues")]
         public class PopulateGainedAttributeValuesPatch
         {
@@ -116,9 +122,7 @@ namespace TOR_Core.HarmonyPatches
 
                     // Find current menu index in pathway
                     int currentMenuIndex = menuPathway.IndexOf(manager.CurrentMenu?.StringId);
-
-                    TORCommon.Log($"[TORCC] PopulateGainedAttributeValues: Current menu = {manager.CurrentMenu?.StringId}, index = {currentMenuIndex}", NLog.LogLevel.Info);
-
+                    
                     // Iterate through selected options, but only include current and previous menus
                     foreach (KeyValuePair<NarrativeMenu, NarrativeMenuOption> selectedOption in manager.SelectedOptions)
                     {
@@ -129,12 +133,9 @@ namespace TOR_Core.HarmonyPatches
 
                         // Skip menus that come AFTER the current menu in the pathway
                         if (menuIndex > currentMenuIndex)
-                        {
-                            TORCommon.Log($"[TORCC]   Skipping future menu: {menu.StringId} (index {menuIndex} > current {currentMenuIndex})", NLog.LogLevel.Info);
+                        { 
                             continue;
                         }
-
-                        TORCommon.Log($"[TORCC]   Including menu: {menu.StringId} (index {menuIndex} <= current {currentMenuIndex})", NLog.LogLevel.Info);
 
                         // Apply the logic from the original method
                         int attributeCurrent = 0;
