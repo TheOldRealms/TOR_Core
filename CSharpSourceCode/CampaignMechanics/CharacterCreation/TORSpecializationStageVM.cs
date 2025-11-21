@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
+using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterCreation;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CharacterDevelopment;
 
 namespace TOR_Core.CampaignMechanics.CharacterCreation
 {
@@ -486,30 +489,200 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
     /// <summary>
     /// Custom gained properties display for specialization stage
-    /// Shows only the bonuses/penalties from the selected specialization option
-    /// Supports negative effects (skill/attribute decreases)
+    /// Shows full attribute/skill table like native, highlighting specialization bonuses/penalties
     /// </summary>
     public class TORSpecializationGainedPropertiesVM : ViewModel
     {
-        private MBBindingList<SpecializationAttributeItemVM> _attributes;
-        private MBBindingList<SpecializationSkillItemVM> _skills;
+        private MBBindingList<SpecializationAttributeGroupVM> _gainGroups;
 
         public TORSpecializationGainedPropertiesVM()
         {
-            _attributes = new MBBindingList<SpecializationAttributeItemVM>();
-            _skills = new MBBindingList<SpecializationSkillItemVM>();
+            _gainGroups = new MBBindingList<SpecializationAttributeGroupVM>();
+            InitializeAttributeGroups();
         }
 
         [DataSourceProperty]
-        public MBBindingList<SpecializationAttributeItemVM> Attributes
+        public MBBindingList<SpecializationAttributeGroupVM> GainGroups
         {
-            get => _attributes;
+            get => _gainGroups;
             set
             {
-                if (_attributes != value)
+                if (_gainGroups != value)
                 {
-                    _attributes = value;
-                    OnPropertyChangedWithValue(value, nameof(Attributes));
+                    _gainGroups = value;
+                    OnPropertyChangedWithValue(value, nameof(GainGroups));
+                }
+            }
+        }
+
+        private void InitializeAttributeGroups()
+        {
+            // Create all 6 attribute groups with their skills (like native)
+            foreach (var attribute in Attributes.All)
+            {
+                _gainGroups.Add(new SpecializationAttributeGroupVM(attribute));
+            }
+        }
+
+        public void UpdateFromOption(SpecializationOption option)
+        {
+            // Reset all changes
+            foreach (var group in _gainGroups)
+            {
+                group.ResetChanges();
+            }
+
+            if (option == null) return;
+
+            // Calculate skill changes
+            var skillChanges = new Dictionary<string, int>();
+            if (option.SkillsToIncrease != null)
+            {
+                foreach (var skillIdRaw in option.SkillsToIncrease)
+                {
+                    bool isDecrease = skillIdRaw.StartsWith("-");
+                    string skillId = isDecrease ? skillIdRaw.Substring(1) : skillIdRaw;
+                    int amount = isDecrease ? -1 : 1;
+
+                    if (skillChanges.ContainsKey(skillId))
+                        skillChanges[skillId] += amount;
+                    else
+                        skillChanges[skillId] = amount;
+                }
+            }
+
+            // Apply attribute change
+            if (!string.IsNullOrEmpty(option.AttributeToIncrease))
+            {
+                bool isDecrease = option.AttributeToIncrease.StartsWith("-");
+                string attributeId = isDecrease ? option.AttributeToIncrease.Substring(1) : option.AttributeToIncrease;
+                int amount = isDecrease ? -1 : 1;
+
+                var group = _gainGroups.FirstOrDefault(g => g.Attribute.StringId == attributeId);
+                if (group != null)
+                {
+                    group.SetAttributeChange(amount);
+                }
+            }
+
+            // Apply skill changes to appropriate groups
+            foreach (var kvp in skillChanges)
+            {
+                var skill = Skills.All.FirstOrDefault(s => s.StringId == kvp.Key);
+                if (skill != null)
+                {
+                    // Find the group that contains this skill
+                    var group = _gainGroups.FirstOrDefault(g => g.Skills.Any(s => s.SkillId == skill.StringId));
+                    group?.SetSkillChange(skill, kvp.Value);
+                }
+            }
+        }
+
+        public override void OnFinalize()
+        {
+            base.OnFinalize();
+            foreach (var group in _gainGroups)
+            {
+                group.OnFinalize();
+            }
+            _gainGroups?.Clear();
+        }
+    }
+
+    /// <summary>
+    /// ViewModel for an attribute group (like Vigor, Control, etc.) with its associated skills
+    /// </summary>
+    public class SpecializationAttributeGroupVM : ViewModel
+    {
+        private CharacterAttribute _attribute;
+        private SpecializationAttributeVM _attributeVM;
+        private MBBindingList<SpecializationSkillItemVM> _skills;
+
+        public SpecializationAttributeGroupVM(CharacterAttribute attribute)
+        {
+            _attribute = attribute;
+            _attributeVM = new SpecializationAttributeVM(attribute);
+            _skills = new MBBindingList<SpecializationSkillItemVM>();
+
+            // Add all skills for this attribute using the mapping from native character creation
+            // Vigor: OneHanded, TwoHanded, Polearm
+            // Control: Bow, Crossbow, Throwing
+            // Endurance: Riding, Athletics, Smithing
+            // Cunning: Scouting, Tactics, Roguery
+            // Social: Charm, Leadership, Trade
+            // Intelligence: Steward, Medicine, Engineering
+            // Plus TOR custom skills
+            var skillsForAttribute = GetSkillsForAttribute(attribute);
+            foreach (var skill in skillsForAttribute)
+            {
+                _skills.Add(new SpecializationSkillItemVM(skill, 0));
+            }
+        }
+
+        private List<SkillObject> GetSkillsForAttribute(CharacterAttribute attribute)
+        {
+            var skills = new List<SkillObject>();
+
+            // Map attributes to their skills based on native game structure
+            if (attribute == DefaultCharacterAttributes.Vigor)
+            {
+                skills.Add(DefaultSkills.OneHanded);
+                skills.Add(DefaultSkills.TwoHanded);
+                skills.Add(DefaultSkills.Polearm);
+            }
+            else if (attribute == DefaultCharacterAttributes.Control)
+            {
+                skills.Add(DefaultSkills.Bow);
+                skills.Add(DefaultSkills.Crossbow);
+                skills.Add(DefaultSkills.Throwing);
+            }
+            else if (attribute == DefaultCharacterAttributes.Endurance)
+            {
+                skills.Add(DefaultSkills.Riding);
+                skills.Add(DefaultSkills.Athletics);
+                skills.Add(DefaultSkills.Crafting);
+            }
+            else if (attribute == DefaultCharacterAttributes.Cunning)
+            {
+                skills.Add(DefaultSkills.Scouting);
+                skills.Add(DefaultSkills.Tactics);
+                skills.Add(DefaultSkills.Roguery);
+            }
+            else if (attribute == DefaultCharacterAttributes.Social)
+            {
+                skills.Add(DefaultSkills.Charm);
+                skills.Add(DefaultSkills.Leadership);
+                skills.Add(DefaultSkills.Trade);
+            }
+            else if (attribute == DefaultCharacterAttributes.Intelligence)
+            {
+                skills.Add(DefaultSkills.Steward);
+                skills.Add(DefaultSkills.Medicine);
+                skills.Add(DefaultSkills.Engineering);
+            }
+            else if (attribute == TORAttributes.Discipline)
+            {
+                skills.Add(TORSkills.Faith);
+                skills.Add(TORSkills.SpellCraft);
+                skills.Add(TORSkills.GunPowder);
+            }
+
+            return skills;
+        }
+
+        [DataSourceProperty]
+        public CharacterAttribute Attribute => _attribute;
+
+        [DataSourceProperty]
+        public SpecializationAttributeVM AttributeVM
+        {
+            get => _attributeVM;
+            set
+            {
+                if (_attributeVM != value)
+                {
+                    _attributeVM = value;
+                    OnPropertyChangedWithValue(value, nameof(AttributeVM));
                 }
             }
         }
@@ -528,82 +701,51 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        public void UpdateFromOption(SpecializationOption option)
+        public void SetAttributeChange(int amount)
         {
-            _attributes.Clear();
-            _skills.Clear();
+            _attributeVM.SetChange(amount);
+        }
 
-            if (option == null) return;
+        public void SetSkillChange(SkillObject skill, int amount)
+        {
+            var skillVM = _skills.FirstOrDefault(s => s.SkillId == skill.StringId);
+            skillVM?.SetChange(amount);
+        }
 
-            // Add attribute change if any
-            if (!string.IsNullOrEmpty(option.AttributeToIncrease))
+        public void ResetChanges()
+        {
+            _attributeVM.SetChange(0);
+            foreach (var skill in _skills)
             {
-                bool isDecrease = option.AttributeToIncrease.StartsWith("-");
-                string attributeId = isDecrease ? option.AttributeToIncrease.Substring(1) : option.AttributeToIncrease;
-                int amount = isDecrease ? -1 : 1;
-
-                var attribute = Game.Current.ObjectManager.GetObject<CharacterAttribute>(attributeId);
-                if (attribute != null)
-                {
-                    _attributes.Add(new SpecializationAttributeItemVM(attribute, amount));
-                }
-            }
-
-            // Add skill changes
-            if (option.SkillsToIncrease != null)
-            {
-                // Group skills by ID to handle duplicates
-                var skillChanges = new Dictionary<string, int>();
-                foreach (var skillIdRaw in option.SkillsToIncrease)
-                {
-                    bool isDecrease = skillIdRaw.StartsWith("-");
-                    string skillId = isDecrease ? skillIdRaw.Substring(1) : skillIdRaw;
-                    int amount = isDecrease ? -1 : 1;
-
-                    if (skillChanges.ContainsKey(skillId))
-                        skillChanges[skillId] += amount;
-                    else
-                        skillChanges[skillId] = amount;
-                }
-
-                // Create VM items for each unique skill
-                foreach (var kvp in skillChanges)
-                {
-                    var skill = Game.Current.ObjectManager.GetObject<SkillObject>(kvp.Key);
-                    if (skill != null)
-                    {
-                        _skills.Add(new SpecializationSkillItemVM(skill, kvp.Value));
-                    }
-                }
+                skill.SetChange(0);
             }
         }
 
         public override void OnFinalize()
         {
             base.OnFinalize();
-            _attributes?.Clear();
             _skills?.Clear();
         }
     }
 
     /// <summary>
-    /// ViewModel for a single attribute change in specialization
+    /// ViewModel for a single attribute
     /// </summary>
-    public class SpecializationAttributeItemVM : ViewModel
+    public class SpecializationAttributeVM : ViewModel
     {
         private CharacterAttribute _attribute;
         private int _change;
+        private int _currentValue;
         private string _nameText;
-        private bool _isPositive;
-        private bool _isNegative;
+        private bool _hasIncreasedInCurrentStage;
 
-        public SpecializationAttributeItemVM(CharacterAttribute attribute, int change)
+        public SpecializationAttributeVM(CharacterAttribute attribute)
         {
             _attribute = attribute;
-            _change = change;
             _nameText = attribute.Name.ToString();
-            _isPositive = change > 0;
-            _isNegative = change < 0;
+            _change = 0;
+            _currentValue = Hero.MainHero?.GetAttributeValue(attribute) ?? 0;
+            _hasIncreasedInCurrentStage = false;
         }
 
         [DataSourceProperty]
@@ -621,45 +763,43 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
 
         [DataSourceProperty]
-        public int Change
+        public int CurrentValue
         {
-            get => _change;
+            get => _currentValue;
             set
             {
-                if (_change != value)
+                if (_currentValue != value)
                 {
-                    _change = value;
-                    OnPropertyChangedWithValue(value, nameof(Change));
+                    _currentValue = value;
+                    OnPropertyChangedWithValue(value, nameof(CurrentValue));
+                    OnPropertyChangedWithValue(value.ToString(), nameof(CurrentValueText));
                 }
             }
         }
 
         [DataSourceProperty]
-        public bool IsPositive
+        public string CurrentValueText => _currentValue.ToString();
+
+        [DataSourceProperty]
+        public bool HasIncreasedInCurrentStage
         {
-            get => _isPositive;
+            get => _hasIncreasedInCurrentStage;
             set
             {
-                if (_isPositive != value)
+                if (_hasIncreasedInCurrentStage != value)
                 {
-                    _isPositive = value;
-                    OnPropertyChangedWithValue(value, nameof(IsPositive));
+                    _hasIncreasedInCurrentStage = value;
+                    OnPropertyChangedWithValue(value, nameof(HasIncreasedInCurrentStage));
                 }
             }
         }
 
-        [DataSourceProperty]
-        public bool IsNegative
+        public void SetChange(int amount)
         {
-            get => _isNegative;
-            set
-            {
-                if (_isNegative != value)
-                {
-                    _isNegative = value;
-                    OnPropertyChangedWithValue(value, nameof(IsNegative));
-                }
-            }
+            _change = amount;
+            _currentValue = (Hero.MainHero?.GetAttributeValue(_attribute) ?? 0) + amount;
+            HasIncreasedInCurrentStage = amount != 0;
+            OnPropertyChangedWithValue(_currentValue, nameof(CurrentValue));
         }
     }
 
@@ -670,17 +810,25 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
     {
         private SkillObject _skill;
         private int _focusChange;
+        private int _currentFocus;
         private string _skillId;
-        private bool _isPositive;
-        private bool _isNegative;
+        private bool _hasIncreasedInCurrentStage;
+        private MBBindingList<FocusIconVM> _focusPointGainList;
 
         public SpecializationSkillItemVM(SkillObject skill, int focusChange)
         {
             _skill = skill;
             _focusChange = focusChange;
             _skillId = skill.StringId;
-            _isPositive = focusChange > 0;
-            _isNegative = focusChange < 0;
+            _currentFocus = Hero.MainHero?.HeroDeveloper.GetFocus(skill) ?? 0;
+            _hasIncreasedInCurrentStage = focusChange != 0;
+
+            // Initialize focus point list (max 5 focus points)
+            _focusPointGainList = new MBBindingList<FocusIconVM>();
+            for (int i = 0; i < 5; i++)
+            {
+                _focusPointGainList.Add(new FocusIconVM(i < _currentFocus));
+            }
         }
 
         [DataSourceProperty]
@@ -698,49 +846,94 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
 
         [DataSourceProperty]
-        public int FocusChange
+        public int CurrentFocus
         {
-            get => _focusChange;
+            get => _currentFocus;
             set
             {
-                if (_focusChange != value)
+                if (_currentFocus != value)
                 {
-                    _focusChange = value;
-                    OnPropertyChangedWithValue(value, nameof(FocusChange));
+                    _currentFocus = value;
+                    OnPropertyChangedWithValue(value, nameof(CurrentFocus));
+                    OnPropertyChangedWithValue(value.ToString(), nameof(CurrentFocusText));
                 }
             }
         }
 
         [DataSourceProperty]
-        public string FocusChangeText
-        {
-            get => _focusChange > 0 ? "+" + _focusChange.ToString() : _focusChange.ToString();
-        }
+        public string CurrentFocusText => _currentFocus.ToString();
 
         [DataSourceProperty]
-        public bool IsPositive
+        public MBBindingList<FocusIconVM> FocusPointGainList
         {
-            get => _isPositive;
+            get => _focusPointGainList;
             set
             {
-                if (_isPositive != value)
+                if (_focusPointGainList != value)
                 {
-                    _isPositive = value;
-                    OnPropertyChangedWithValue(value, nameof(IsPositive));
+                    _focusPointGainList = value;
+                    OnPropertyChangedWithValue(value, nameof(FocusPointGainList));
                 }
             }
         }
 
         [DataSourceProperty]
-        public bool IsNegative
+        public bool HasIncreasedInCurrentStage
         {
-            get => _isNegative;
+            get => _hasIncreasedInCurrentStage;
             set
             {
-                if (_isNegative != value)
+                if (_hasIncreasedInCurrentStage != value)
                 {
-                    _isNegative = value;
-                    OnPropertyChangedWithValue(value, nameof(IsNegative));
+                    _hasIncreasedInCurrentStage = value;
+                    OnPropertyChangedWithValue(value, nameof(HasIncreasedInCurrentStage));
+                }
+            }
+        }
+
+        public void SetChange(int amount)
+        {
+            _focusChange = amount;
+            _currentFocus = (Hero.MainHero?.HeroDeveloper.GetFocus(_skill) ?? 0) + amount;
+            HasIncreasedInCurrentStage = amount != 0;
+            OnPropertyChangedWithValue(_currentFocus, nameof(CurrentFocus));
+
+            // Update focus bars
+            for (int i = 0; i < _focusPointGainList.Count && i < 5; i++)
+            {
+                _focusPointGainList[i].IsActive = (i < _currentFocus);
+            }
+        }
+
+        public override void OnFinalize()
+        {
+            base.OnFinalize();
+            _focusPointGainList?.Clear();
+        }
+    }
+
+    /// <summary>
+    /// ViewModel for a single focus point bar
+    /// </summary>
+    public class FocusIconVM : ViewModel
+    {
+        private bool _isActive;
+
+        public FocusIconVM(bool isActive)
+        {
+            _isActive = isActive;
+        }
+
+        [DataSourceProperty]
+        public bool IsActive
+        {
+            get => _isActive;
+            set
+            {
+                if (_isActive != value)
+                {
+                    _isActive = value;
+                    OnPropertyChangedWithValue(value, nameof(IsActive));
                 }
             }
         }
