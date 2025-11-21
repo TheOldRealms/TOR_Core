@@ -27,17 +27,17 @@ namespace TOR_Core.AbilitySystem
             Mission.Current.OnMainAgentChanged += CheckMainAgent;
 
             _abilityHUD_VM = new AbilityHUD_VM();
-            _abilityLayer = new GauntletLayer(100);
+            _abilityLayer = new GauntletLayer("GauntletLayer",100);
             _abilityLayer.LoadMovie("AbilityHUD", _abilityHUD_VM);
             MissionScreen.AddLayer(_abilityLayer);
 
             _careerAbilityHUD_VM = new CareerAbilityHUD_VM();
-            _careerAbilityLayer = new GauntletLayer(99);
+            _careerAbilityLayer = new GauntletLayer("GauntletLayer",99);
             _careerAbilityLayer.LoadMovie("SpecialMoveHUD", _careerAbilityHUD_VM);
             MissionScreen.AddLayer(_careerAbilityLayer);
 
             _abilityRadialSelection_VM = new AbilityRadialSelection_VM();
-            _radialMenuLayer = new GauntletLayer(98);
+            _radialMenuLayer = new GauntletLayer("GauntletLayer", 98);
             _radialMenuLayer.LoadMovie("AbilityRadialSelection", _abilityRadialSelection_VM);
             MissionScreen.AddLayer(_radialMenuLayer);
 

@@ -19,7 +19,7 @@ namespace TOR_Core.AbilitySystem.CrossHairs
             _missionScreen = ScreenManager.TopScreen as MissionScreen;
             CombatLogManager.OnGenerateCombatLog += OnCombatLogGenerated;
             _crosshairVM = new CrosshairVM();
-            _weaponLayer = new GauntletLayer(1, "GauntletLayer", false);
+            _weaponLayer = new GauntletLayer("GauntletLayer",1, false);
             _weaponMovie = _weaponLayer.LoadMovie("Crosshair", _crosshairVM);
             if (_mission.Mode != MissionMode.Conversation && _mission.Mode != MissionMode.CutScene)
             {

@@ -49,7 +49,7 @@ namespace TOR_Core.Ink
         {
             base.CreateLayout();
             _vm = new InkStoryVM();
-            Layer = new GauntletLayer(4399) { IsFocusLayer = true };
+            Layer = new GauntletLayer("GaunltletLayer",4399) { IsFocusLayer = true };
             _layer = Layer as GauntletLayer;
             _movie = _layer.LoadMovie("InkStory", _vm);
             Layer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);

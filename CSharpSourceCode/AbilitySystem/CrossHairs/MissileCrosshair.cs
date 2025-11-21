@@ -9,7 +9,7 @@ namespace TOR_Core.AbilitySystem.Crosshairs
         public MissileCrosshair(AbilityTemplate template) : base(template)
         {
             _vm = new ProjectileCrosshair_VM();
-            _layer = new GauntletLayer(100, "GauntletLayer", false);
+            _layer = new GauntletLayer("GauntletLayer",100 , false);
             _movie = _layer.LoadMovie("ProjectileCrosshair", _vm);
             _missionScreen.AddLayer(_layer);
         }

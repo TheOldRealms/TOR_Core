@@ -47,7 +47,7 @@ namespace TOR_Core.BattleMechanics.AI.CommonAIFunctions
                     return SelectedWorldPosition;
                 if (TacticalPosition != null)
                     return TacticalPosition.Position.GetGroundVec3MT();
-                return base.Position;
+                return Vec3.Zero;   //TODO most likely wrong
             }
             catch (NullReferenceException)
             {
