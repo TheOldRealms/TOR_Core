@@ -84,10 +84,6 @@ namespace TOR_Core
             ConfigureLogging();
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
 
-            //creating the manager early enough that FindText calls from harmony won't lead to a null instance
-            //hopefully the morale text is there
-            var gameTextManager = new GameTextManager();
-            GameTexts.Initialize(gameTextManager);
 
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
             HarmonyInstance.PatchAllUncategorized();
@@ -156,7 +152,7 @@ namespace TOR_Core
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
                 starter.AddBehavior(new TORAICompanionCampaignBehavior());
-                //starter.AddBehavior(new TORCompanionsCampaignBehavior());
+                starter.AddBehavior(new TORCompanionsCampaignBehavior());
                 starter.AddBehavior(new CareerSwitchCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
@@ -196,7 +192,7 @@ namespace TOR_Core
 
         public override void AfterRegisterSubModuleObjects(bool isSavedCampaign)
         {
-            HarmonyInstance.PatchCategory("LatePatches");
+            HarmonyInstance.PatchCategory("LatePatches");//Sly : Campaign.OnInitialize starts the cascade that reaches this method; if each time a campaign is started/loaded this is patched, will we end up patching a given method multiple times?
         }
 
         protected override void OnGameStart(Game game, IGameStarter gameStarterObject)

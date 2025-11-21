@@ -9,6 +9,7 @@ using TOR_Core.Extensions.UI;
 namespace TOR_Core.HarmonyPatches
 {
     [HarmonyPatch]
+    [HarmonyPatchCategory("LatePatches")]
     public static class ViewModelRefreshPatch
     {
         [HarmonyTargetMethods]

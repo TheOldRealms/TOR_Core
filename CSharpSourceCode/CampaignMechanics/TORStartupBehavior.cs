@@ -39,7 +39,7 @@ namespace TOR_Core.CampaignMechanics
             //Campaign.Current.GameStarted is still false at this point in campaign initialization; it will be set to true on the first game tick
             foreach (Clan clan in Campaign.Current.Clans)
             {
-                var methodInvoke = considerSpawningLordPartiesMethod.Invoke(heroSpawnCampaignBehaviorInstance, new object[] { clan, true });
+                considerSpawningLordPartiesMethod.Invoke(heroSpawnCampaignBehaviorInstance, new object[] { clan, true });
             }
             //place chaos, beastmen, and bandit nobles on top of settlements of their culture maybe?
 

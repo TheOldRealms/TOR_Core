@@ -112,7 +112,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 var partyExtendedInfo = mainHero.PartyBelongedTo.GetPartyInfo();
 
                 var infos = partyExtendedInfo.TroopAttributes.FirstOrDefault(x => x.Key == agent.Character.StringId);
-                if (infos.Key != null) //Sly : can dictionaries in c# even take a null key? I think that's a reserved value, so this check is in case FirstOrDefault gave a null default?
+                if (infos.Key != null) //Sly : dictionaries in c# don't take null keys, if you try to fetch null from them it will crash. I think this check is in case FirstOrDefault gave a null default.
                 {
                     foreach (var id in infos.Value)
                     {

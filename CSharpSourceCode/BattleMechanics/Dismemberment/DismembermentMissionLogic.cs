@@ -38,6 +38,8 @@ namespace TOR_Core.BattleMechanics.Dismemberment
 
         public override void AfterStart()
         {
+            if (Mission.IsFriendlyMission) return;
+
             _pooledDismemberedLimbs = new GameEntity[poolSize][];
             for (int i = 0; i < poolSize; i++)
             {
@@ -107,7 +109,7 @@ namespace TOR_Core.BattleMechanics.Dismemberment
             return item;
         }
 
-        public override void OnMissionTick(float dt)
+        public override void OnMissionTick(float dt) 
         {
             if (slowMotionEndTime > 0 && Mission.CurrentTime >= slowMotionEndTime)
             {
@@ -196,6 +198,8 @@ namespace TOR_Core.BattleMechanics.Dismemberment
         }
         private void MoveCorpseParts(MatrixFrame frame)
         {
+            if (_pooledDismemberedLimbs == null) return;//Sly : dismemberment won't initialize the body part game entities for friendly missions (eg. talking to a companion when outside of a settlement)
+
             if (_index >= poolSize)
             {
                 _index = 0;
