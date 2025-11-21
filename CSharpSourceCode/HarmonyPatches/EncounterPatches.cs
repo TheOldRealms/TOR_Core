@@ -18,8 +18,8 @@ namespace TOR_Core.HarmonyPatches
     public static class EncounterPatches
     {
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior), "hostile_action_village_on_init")]
-        public static bool Prefix1()
+        [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior), "village_raid_game_menu_init")]
+        public static bool VillageRaidGameMenuInitPrefix(MenuCallbackArgs args)
         {
             if (PlayerEncounter.EncounterSettlement == null)
             {
@@ -43,7 +43,7 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(VillageHostileActionCampaignBehavior), "wait_menu_start_raiding_on_condition")]
-        public static bool Prefix1(ref bool __result)
+        public static bool WaitMenuStartRaidingOnConditionPrefix(MenuCallbackArgs args, ref bool __result)
         {
             if (Hero.MainHero.IsEnlisted())
             {

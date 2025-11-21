@@ -61,7 +61,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             _craftingSpriteCategory = spriteData.SpriteCategories["ui_crafting"];
             _craftingSpriteCategory.Load(resourceContext, uiresourceDepot);
             _vm = new EnchantingVM(CloseScreen);
-            _gauntletLayer = new GauntletLayer(1, "GauntletLayer", true);
+            _gauntletLayer = new GauntletLayer("GauntletLayer", 1, true);
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory"));
             _gauntletLayer.LoadMovie("Enchanting", _vm);

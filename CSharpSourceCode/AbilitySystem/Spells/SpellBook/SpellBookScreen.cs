@@ -39,7 +39,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
             var heroes = MobileParty.MainParty.GetSpellCasterMemberHeroes();
             if (heroes.Count == 0) heroes.Add(Hero.MainHero);
             _vm = new SpellBookVM(CloseScreen, heroes, _state.IsTrainerMode, _state.TrainerCulture);
-            _gauntletLayer = new GauntletLayer(1, "GauntletLayer", true);
+            _gauntletLayer = new GauntletLayer("GauntletLayer",1 , true);
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericCampaignPanelsGameKeyCategory"));
             _gauntletLayer.LoadMovie("SpellBook", _vm);

@@ -35,8 +35,8 @@ namespace TOR_Core.BattleMechanics.Artillery
             Agent agent;
             using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
             {
-                agent = Mission.Current.RayCastForClosestAgent(MissileStartingPositionForSimulation, MissileStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 60, -1, 0.05f, out distanceA);
-                Mission.Current.Scene.RayCastForClosestEntityOrTerrain(MissileStartingPositionForSimulation, MissileStartingPositionForSimulation + ShootingDirection.NormalizedCopy() * 25, out distanceE, out _, out _, 0.05f);
+                agent = Mission.Current.RayCastForClosestAgent(MissileStartingGlobalPositionForSimulation, MissileStartingGlobalPositionForSimulation + ShootingDirection.NormalizedCopy() * 60, -1, 0.05f, out distanceA);
+                Mission.Current.Scene.RayCastForClosestEntityOrTerrain(MissileStartingGlobalPositionForSimulation, MissileStartingGlobalPositionForSimulation + ShootingDirection.NormalizedCopy() * 25, out distanceE, out _, out _, 0.05f);
             }
             return !(distanceA < 50 && agent != null && !agent.IsEnemyOf(PilotAgent) || distanceE < 15);
         }
@@ -45,7 +45,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         {
             //return 0;
             if (Target == null) return 0;
-            var diff = Target.SelectedWorldPosition - MissileStartingPositionForSimulation;
+            var diff = Target.SelectedWorldPosition - MissileStartingGlobalPositionForSimulation;
             return Ballistics.GetTimeOfProjectileFlight(ShootingSpeed, CurrentReleaseAngle, diff.Length);
         }
 
@@ -62,7 +62,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             Vec3 high = Vec3.Zero;
             launchVec = Vec3.Zero;
             float angle = 0;
-            int numSolutions = Ballistics.GetLaunchVectorForProjectileToHitTarget(MissileStartingPositionForSimulation, ShootingSpeed, target, out low, out high);
+            int numSolutions = Ballistics.GetLaunchVectorForProjectileToHitTarget(MissileStartingGlobalPositionForSimulation, ShootingSpeed, target, out low, out high);
             if (numSolutions <= 0) return float.NaN;
 
             if (numSolutions == 2)
