@@ -259,6 +259,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 _shouldAutoSkip = false;
                 if (_wasVisited)
                 {
+                    // Coming back from banner editor - set flag to jump to Stage 3
+                    HarmonyPatches.CharacterCreationPatches.ShouldJumpToProfessionStage = true;
+                    TORCommon.Log($"[TORCC] Auto-skip backward: Setting flag to jump to Stage 3 (Profession)", NLog.LogLevel.Info);
                     PreviousStage();
                 }
                 else
@@ -367,6 +370,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Reset the visited flag so next time we come forward it's treated as a fresh visit
             _wasVisited = false;
+
+            // Set flag to jump directly to Stage 3 (Profession) instead of Stage 1
+            HarmonyPatches.CharacterCreationPatches.ShouldJumpToProfessionStage = true;
+            TORCommon.Log($"[TORCC] PreviousStage: Setting flag to jump to Stage 3 (Profession)", NLog.LogLevel.Info);
 
             _negativeAction();
         }
