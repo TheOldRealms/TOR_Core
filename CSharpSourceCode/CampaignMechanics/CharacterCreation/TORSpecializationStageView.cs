@@ -72,6 +72,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Auto-skip is only for professions without options
             _shouldAutoSkip = false;
 
+            // Clear any previously applied preview bonuses when entering this stage
+            // This ensures clean state if user went back and is returning
+            TORCommon.Log($"[TORCC] TORSpecializationStageView: Constructor - Clearing any existing preview bonuses", NLog.LogLevel.Info);
+            handler.ClearSpecializationBonuses();
+
             // Initialize UI for professions with specialization options
             InitializeUI(handler);
         }
@@ -286,9 +291,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public override void NextStage()
         {
+            TORCommon.Log($"[TORCC] TORSpecializationStageView.NextStage() called", NLog.LogLevel.Info);
 
-            // Store the selected specialization (will be applied at the very end of character creation)
+            // Store the selected specialization
             StoreSpecialization();
+
+            // Apply bonuses immediately when clicking Next
+            var handler = GetHandler();
+            if (handler != null)
+            {
+                TORCommon.Log($"[TORCC] TORSpecializationStageView.NextStage: Calling ApplySpecializationBonuses", NLog.LogLevel.Info);
+                handler.ApplySpecializationBonuses();
+            }
 
             // Mark this stage as visited
             _wasVisited = true;
@@ -304,24 +318,31 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             if (_dataSource == null)
             {
+                TORCommon.Log($"[TORCC] StoreSpecialization: _dataSource is null", NLog.LogLevel.Warn);
                 return;
             }
 
             var selectedData = _dataSource.GetSelectedData();
             if (selectedData == null)
             {
+                TORCommon.Log($"[TORCC] StoreSpecialization: No data selected", NLog.LogLevel.Warn);
                 return;
             }
 
             var handler = GetHandler();
             if (handler == null)
             {
+                TORCommon.Log($"[TORCC] StoreSpecialization: Handler is null", NLog.LogLevel.Warn);
                 return;
             }
-            
+
             if (selectedData is SpecializationOption option)
             {
+                TORCommon.Log($"[TORCC] StoreSpecialization: Storing option '{option.Name}' (ID: {option.Id})", NLog.LogLevel.Info);
                 handler.SetSelectedSpecializationOptionId(option.Id);
+
+                // NOTE: Skill/attribute bonuses are applied in NextStage() when user clicks Next
+                // Equipment is applied immediately so it shows in banner editor
 
                 // Apply equipment immediately so it shows in banner editor
                 if (!string.IsNullOrEmpty(option.EquipmentSetId))
@@ -333,12 +354,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public override void PreviousStage()
         {
+            TORCommon.Log($"[TORCC] TORSpecializationStageView.PreviousStage() called", NLog.LogLevel.Info);
 
-            // Clear stored selections when going back (user might change profession)
-            // With deferred application, we don't need to clear bonuses since nothing is applied yet
+            // Clear stored selections and remove applied bonuses when going back (user might change profession)
+            // ClearStoredSpecializations() will call ClearSpecializationBonuses() to revert stat changes
             var handler = GetHandler();
             if (handler != null)
             {
+                TORCommon.Log($"[TORCC] TORSpecializationStageView.PreviousStage: Calling handler.ClearStoredSpecializations()", NLog.LogLevel.Info);
                 handler.ClearStoredSpecializations();
             }
 

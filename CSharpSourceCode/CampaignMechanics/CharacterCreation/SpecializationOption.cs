@@ -74,16 +74,19 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public string NegativeEffect = "";
 
         /// <summary>
-        /// Skills to increase (array of skill StringIds)
+        /// Skills to increase or decrease (array of skill StringIds)
         /// Same format as CharacterCreationOption.SkillsToIncrease
-        /// Example: ["OneHanded", "Leadership", "Faith"]
+        /// Prefix with "-" to decrease instead of increase
+        /// Example: ["OneHanded", "Leadership", "-Athletics", "-Athletics", "-Athletics"]
+        /// Each entry adds/removes FocusToAdd (1) and SkillLevelToAdd (10)
         /// </summary>
         public string[] SkillsToIncrease;
 
         /// <summary>
-        /// Single attribute to increase by 1 point
+        /// Single attribute to increase or decrease by 1 point
         /// Same format as CharacterCreationOption.AttributeToIncrease
-        /// Valid values: Vigor, Control, Endurance, Cunning, Social, Intelligence
+        /// Prefix with "-" to decrease instead of increase
+        /// Valid values: Vigor, Control, Endurance, Cunning, Social, Intelligence, -Vigor, -Control, etc.
         /// </summary>
         public string AttributeToIncrease;
     }

@@ -132,6 +132,11 @@
 		<PositiveEffect>{=tor_vampire_necrarch_positive}Unmatched necromantic mastery</PositiveEffect>
 		<NegativeEffect>{=tor_vampire_necrarch_negative}Physically withered and hideous</NegativeEffect>
 		<SkillsToIncrease>
+			<string>-Athletics</string>
+			<string>-Athletics</string>
+			<string>-Athletics</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
 			<string>Spellcraft</string>
 			<string>Medicine</string>
 		</SkillsToIncrease>
@@ -169,6 +174,11 @@
 		<PositiveEffect>{=tor_vampire_necrarch_positive}Unmatched necromantic mastery</PositiveEffect>
 		<NegativeEffect>{=tor_vampire_necrarch_negative}Physically withered and hideous</NegativeEffect>
 		<SkillsToIncrease>
+			<string>-Athletics</string>
+			<string>-Athletics</string>
+			<string>-Athletics</string>
+			<string>Spellcraft</string>
+			<string>Spellcraft</string>
 			<string>Spellcraft</string>
 			<string>Medicine</string>
 		</SkillsToIncrease>
@@ -201,6 +211,7 @@
 			<string>Faith</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
+		<AttributeToIncrease>Faith</AttributeToIncrease>
 	</SpecializationOption>
 
 	<!-- =============================================== -->

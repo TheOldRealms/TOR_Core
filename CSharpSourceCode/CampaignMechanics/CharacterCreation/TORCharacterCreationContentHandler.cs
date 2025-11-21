@@ -36,9 +36,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private string _selectedSpecializationOptionId = null; // Store selected specialization option ID from XML (applied at finalization)
         private NarrativeMenuCharacter _narrativePlayerCharacter = null; // Reference to narrative menu character for updating face
         private CampaignVec2? _storedSpawnPosition = null; // Store spawn position from specialization option (if specified)
+
         private const int FocusToAdd = 1;
         private const int SkillLevelToAdd = 10;
         private const int AttributeLevelToAdd = 1;
+
+        // Store original skill levels before applying bonuses (ChangeSkillLevel with negative values doesn't work)
+        private Dictionary<string, int> _originalSkillLevels = new Dictionary<string, int>();
+        private Dictionary<string, int> _originalSkillFocus = new Dictionary<string, int>();
 
 
         public TORCharacterCreationContentHandler()
@@ -189,7 +194,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             CharacterAttribute attribute = Attributes.All.FirstOrDefault(x => x.StringId == option.AttributeToIncrease?.ToLower());
 
-            // Set values so they get applied (via ApplyFinalEffects)
+            // Set values so they get applied (via ApplyFinalEffects) AND displayed in UI
             if (effectedSkills.Count > 0)
             {
                 args.SetAffectedSkills(effectedSkills.ToArray());
@@ -269,8 +274,151 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// </summary>
         public void ClearStoredSpecializations()
         {
+            TORCommon.Log($"[TORCC] ClearStoredSpecializations: Called (current ID: {_selectedSpecializationOptionId ?? "null"})", NLog.LogLevel.Info);
+
+            // Remove previously applied bonuses BEFORE clearing the ID
+            ClearSpecializationBonuses();
+
+            // Clear stored data
             _selectedSpecializationOptionId = null;
             _storedSpawnPosition = null;
+
+            TORCommon.Log($"[TORCC] ClearStoredSpecializations: Completed (ID now: null)", NLog.LogLevel.Info);
+        }
+
+
+        /// <summary>
+        /// Clear skill and attribute bonuses from specialization
+        /// Called when entering specialization stage or going back
+        /// </summary>
+        public void ClearSpecializationBonuses()
+        {
+            if (string.IsNullOrEmpty(_selectedSpecializationOptionId))
+            {
+                TORCommon.Log($"[TORCC] ClearSpecializationBonuses: No specialization to clear", NLog.LogLevel.Info);
+                return;
+            }
+
+            var hero = Hero.MainHero;
+            var option = _specializationOptions?.FirstOrDefault(opt => opt.Id == _selectedSpecializationOptionId);
+
+            if (option == null)
+            {
+                TORCommon.Log($"[TORCC] ClearSpecializationBonuses: Option not found for ID '{_selectedSpecializationOptionId}'", NLog.LogLevel.Warn);
+                return;
+            }
+
+            TORCommon.Log($"[TORCC] ClearSpecializationBonuses: Removing bonuses for '{option.Name}' (ID: {_selectedSpecializationOptionId})", NLog.LogLevel.Info);
+
+            // Restore skills to original values
+            // We iterate through stored originals (unique skills only), not the full array with duplicates
+            foreach (var kvp in _originalSkillLevels)
+            {
+                string skillId = kvp.Key;
+                int originalLevel = kvp.Value;
+                int originalFocus = _originalSkillFocus.ContainsKey(skillId) ? _originalSkillFocus[skillId] : 0;
+
+                var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
+                if (skill != null)
+                {
+                    int beforeFocus = hero.HeroDeveloper.GetFocus(skill);
+                    int beforeSkill = hero.GetSkillValue(skill);
+
+                    // Restore focus by calculating the difference
+                    int focusDiff = originalFocus - beforeFocus;
+                    if (focusDiff != 0)
+                    {
+                        hero.HeroDeveloper.AddFocus(skill, focusDiff, false);
+                    }
+
+                    // Restore skill level to original value
+                    hero.HeroDeveloper.SetInitialSkillLevel(skill, originalLevel);
+
+                    TORCommon.Log($"[TORCC]   Skill {skillId}: Focus {beforeFocus} -> {hero.HeroDeveloper.GetFocus(skill)}, Level {beforeSkill} -> {originalLevel} (restored)", NLog.LogLevel.Info);
+                }
+            }
+
+            // Clear stored originals after restoring
+            _originalSkillLevels.Clear();
+            _originalSkillFocus.Clear();
+
+            // Remove attribute bonus
+            if (!string.IsNullOrEmpty(option.AttributeToIncrease))
+            {
+                var attribute = Attributes.All.FirstOrDefault(x => x.StringId == option.AttributeToIncrease.ToLower());
+                if (attribute != null)
+                {
+                    int beforeAttr = hero.GetAttributeValue(attribute);
+                    hero.HeroDeveloper.AddAttribute(attribute, -AttributeLevelToAdd, false);
+                    int afterAttr = hero.GetAttributeValue(attribute);
+
+                    TORCommon.Log($"[TORCC]   Attribute {option.AttributeToIncrease}: {beforeAttr} -> {afterAttr}", NLog.LogLevel.Info);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Calculate final skill/attribute bonuses by combining profession + specialization.
+        /// Specialization can modify (add/remove from) profession bonuses.
+        /// Returns net skill changes and attribute change.
+        /// </summary>
+        private (Dictionary<string, int> skillChanges, string attributeChange) CalculateFinalBonuses()
+        {
+            var netSkillChanges = new Dictionary<string, int>();
+            string netAttributeChange = null;
+
+            // Start with profession bonuses
+            var professionOption = _options?.FirstOrDefault(opt => opt.Id == _selectedProfessionId);
+            if (professionOption != null)
+            {
+                // Add profession skills
+                if (professionOption.SkillsToIncrease != null)
+                {
+                    foreach (var skillId in professionOption.SkillsToIncrease)
+                    {
+                        if (!netSkillChanges.ContainsKey(skillId))
+                        {
+                            netSkillChanges[skillId] = 0;
+                        }
+                        netSkillChanges[skillId] += 1; // Each entry is +1
+                    }
+                }
+
+                // Set profession attribute
+                netAttributeChange = professionOption.AttributeToIncrease;
+            }
+
+            // Apply specialization modifications (if any)
+            if (!string.IsNullOrEmpty(_selectedSpecializationOptionId))
+            {
+                var specializationOption = _specializationOptions?.FirstOrDefault(opt => opt.Id == _selectedSpecializationOptionId);
+                if (specializationOption != null)
+                {
+                    // Modify skills (can add or remove)
+                    if (specializationOption.SkillsToIncrease != null)
+                    {
+                        foreach (var skillIdRaw in specializationOption.SkillsToIncrease)
+                        {
+                            bool isDecrease = skillIdRaw.StartsWith("-");
+                            string skillId = isDecrease ? skillIdRaw.Substring(1) : skillIdRaw;
+
+                            if (!netSkillChanges.ContainsKey(skillId))
+                            {
+                                netSkillChanges[skillId] = 0;
+                            }
+                            netSkillChanges[skillId] += isDecrease ? -1 : 1;
+                        }
+                    }
+
+                    // Override attribute if specialization specifies one
+                    if (!string.IsNullOrEmpty(specializationOption.AttributeToIncrease))
+                    {
+                        netAttributeChange = specializationOption.AttributeToIncrease;
+                    }
+                }
+            }
+
+            return (netSkillChanges, netAttributeChange);
         }
 
         /// <summary>
@@ -705,37 +853,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 return;
             }
 
-            // Get the XML option to apply skill/attribute bonuses
-            var option = _specializationOptions?.FirstOrDefault(opt => opt.Id == _selectedSpecializationOptionId);
-            if (option != null)
-            {
-                // Apply skill bonuses
-                if (option.SkillsToIncrease != null)
-                {
-                    foreach (var skillId in option.SkillsToIncrease)
-                    {
-                        var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
-                        if (skill != null)
-                        {
-                            hero.HeroDeveloper.AddFocus(skill, FocusToAdd, false);
-                            hero.HeroDeveloper.ChangeSkillLevel(skill, SkillLevelToAdd, false);
-                        }
-                    }
-                }
+            // NOTE: Skill/Attribute bonuses are applied when user clicks Next on specialization stage
+            // via TORSpecializationStageView.NextStage() -> ApplySpecializationBonuses()
+            // This makes them visible in the character creation final screen.
+            // We only apply careers, lores, and other non-stat bonuses here at finalization.
 
-                // Apply attribute bonus
-                if (!string.IsNullOrEmpty(option.AttributeToIncrease))
-                {
-                    var attribute = Attributes.All.FirstOrDefault(x => x.StringId == option.AttributeToIncrease.ToLower());
-                    if (attribute != null)
-                    {
-                        hero.HeroDeveloper.AddAttribute(attribute, AttributeLevelToAdd, false);
-                    }
-                }
-
-                // NOTE: Race is applied immediately in TORSpecializationStageView when option is selected
-                // This ensures the race change is visible in the banner editor stage
-            }
+            // NOTE: Race is applied immediately in TORSpecializationStageView when option is selected
+            // This ensures the race change is visible in the banner editor stage
 
             switch (_selectedSpecializationOptionId)
             {
@@ -849,7 +973,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public void InitializeContent(CharacterCreationManager manager)
         {
-
             foreach (var cultureId in TORConstants.Cultures.All)
             {
                 var culture = MBObjectManager.Instance.GetObject<CultureObject>(cultureId);
@@ -858,7 +981,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     manager.CharacterCreationContent.AddCharacterCreationCulture(culture, 1, 10);
                 }
             }
-            
+
             AddMenus(manager);
         }
         
@@ -903,6 +1026,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             // Called when a character creation stage is completed
             var stages = stage;
+            TORCommon.Log($"[TORCC] OnStageCompleted: {stages.GetType().Name}", NLog.LogLevel.Info);
 
             if (stages.GetType() == typeof(CharacterCreationFaceGeneratorStage))
             {
@@ -913,10 +1037,129 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 OnCultureSelected();
             }
-            
+
             if (stages.GetType() == typeof(CharacterCreationNarrativeStage))
             {
                 OnCultureSelected();
+            }
+        }
+
+        /// <summary>
+        /// Apply ONLY specialization modifications (profession bonuses will be applied by engine)
+        /// Called when user clicks Next on specialization stage
+        /// Stores originals so we can revert if user goes back
+        /// </summary>
+        public void ApplySpecializationBonuses()
+        {
+            if (string.IsNullOrEmpty(_selectedSpecializationOptionId))
+            {
+                TORCommon.Log($"[TORCC] ApplySpecializationBonuses: No specialization selected, skipping", NLog.LogLevel.Info);
+                return;
+            }
+
+            var hero = Hero.MainHero;
+            var specializationOption = _specializationOptions?.FirstOrDefault(opt => opt.Id == _selectedSpecializationOptionId);
+            if (specializationOption == null)
+            {
+                TORCommon.Log($"[TORCC] ApplySpecializationBonuses: Option not found", NLog.LogLevel.Warn);
+                return;
+            }
+
+            TORCommon.Log($"[TORCC] ApplySpecializationBonuses: Applying ONLY specialization changes (profession bonuses handled by engine)", NLog.LogLevel.Info);
+
+            // Clear any stored original values from previous applications
+            _originalSkillLevels.Clear();
+            _originalSkillFocus.Clear();
+
+            // Calculate ONLY specialization's modifications
+            var skillChanges = new Dictionary<string, int>();
+            if (specializationOption.SkillsToIncrease != null)
+            {
+                foreach (var skillIdRaw in specializationOption.SkillsToIncrease)
+                {
+                    bool isDecrease = skillIdRaw.StartsWith("-");
+                    string skillId = isDecrease ? skillIdRaw.Substring(1) : skillIdRaw;
+
+                    if (!skillChanges.ContainsKey(skillId))
+                    {
+                        skillChanges[skillId] = 0;
+                    }
+                    skillChanges[skillId] += isDecrease ? -1 : 1;
+                }
+            }
+
+            // Store originals for ALL skills that will be modified
+            foreach (var kvp in skillChanges)
+            {
+                string skillId = kvp.Key;
+                var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
+                if (skill != null)
+                {
+                    _originalSkillLevels[skillId] = hero.GetSkillValue(skill);
+                    _originalSkillFocus[skillId] = hero.HeroDeveloper.GetFocus(skill);
+                    TORCommon.Log($"[TORCC]   Storing original for {skillId}: Focus {_originalSkillFocus[skillId]}, Level {_originalSkillLevels[skillId]}", NLog.LogLevel.Info);
+                }
+            }
+
+            // Apply combined skill changes as preview
+            foreach (var kvp in skillChanges)
+            {
+                string skillId = kvp.Key;
+                int netChange = kvp.Value;
+
+                if (netChange == 0)
+                {
+                    continue; // No net change for this skill
+                }
+
+                var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
+                if (skill != null)
+                {
+                    int beforeFocus = hero.HeroDeveloper.GetFocus(skill);
+                    int beforeSkill = hero.GetSkillValue(skill);
+
+                    // Apply focus change
+                    int focusChange = netChange * FocusToAdd;
+                    hero.HeroDeveloper.AddFocus(skill, focusChange, false);
+
+                    // Apply skill level change
+                    int skillChange = netChange * SkillLevelToAdd;
+                    if (netChange > 0)
+                    {
+                        hero.HeroDeveloper.ChangeSkillLevel(skill, skillChange, false);
+                    }
+                    else
+                    {
+                        int newLevel = Math.Max(0, beforeSkill + skillChange);
+                        hero.HeroDeveloper.SetInitialSkillLevel(skill, newLevel);
+                    }
+
+                    TORCommon.Log($"[TORCC]   Skill {skillId} ({netChange:+0;-0}): Focus {beforeFocus} -> {hero.HeroDeveloper.GetFocus(skill)}, Level {beforeSkill} -> {hero.GetSkillValue(skill)}", NLog.LogLevel.Info);
+                }
+            }
+
+            // Apply attribute if specialization specifies one DIFFERENT from profession
+            if (!string.IsNullOrEmpty(specializationOption.AttributeToIncrease))
+            {
+                var professionOption = _options?.FirstOrDefault(opt => opt.Id == _selectedProfessionId);
+                string professionAttribute = professionOption?.AttributeToIncrease;
+
+                // Only apply if specialization changes the attribute from profession
+                if (specializationOption.AttributeToIncrease != professionAttribute)
+                {
+                    bool isDecrease = specializationOption.AttributeToIncrease.StartsWith("-");
+                    string attributeName = isDecrease ? specializationOption.AttributeToIncrease.Substring(1) : specializationOption.AttributeToIncrease;
+
+                    var attribute = Attributes.All.FirstOrDefault(x => x.StringId == attributeName.ToLower());
+                    if (attribute != null)
+                    {
+                        int beforeAttr = hero.GetAttributeValue(attribute);
+                        int changeAmount = isDecrease ? -AttributeLevelToAdd : AttributeLevelToAdd;
+                        hero.HeroDeveloper.AddAttribute(attribute, changeAmount, false);
+
+                        TORCommon.Log($"[TORCC]   Attribute {attributeName}: {beforeAttr} -> {hero.GetAttributeValue(attribute)} (replaces profession attribute)", NLog.LogLevel.Info);
+                    }
+                }
             }
         }
 
