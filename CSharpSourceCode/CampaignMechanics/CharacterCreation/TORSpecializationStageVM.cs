@@ -523,14 +523,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private void InitializeAttributeGroups()
         {
-            // Use the Hero's current values which include ALL bonuses from previous stages
-            // This is more reliable than trying to sum up SelectedOptions
+            // Calculate bonuses from previous stages by examining SelectedOptions
+            // NOTE: Attribute bonuses aren't applied to Hero until finalization, so we must calculate manually
             var skillBonuses = new Dictionary<SkillObject, int>();
+            var attributeBonuses = new Dictionary<CharacterAttribute, int>();
 
             TORCommon.Log($"[Specialization] Initializing gained properties display", NLog.LogLevel.Info);
             TORCommon.Log($"[Specialization] Total selected options: {_manager.SelectedOptions.Count}", NLog.LogLevel.Info);
 
-            // Calculate skill bonuses from previous stages
+            // Calculate skill AND attribute bonuses from previous stages
             foreach (var selectedOption in _manager.SelectedOptions)
             {
                 var option = selectedOption.Value;
@@ -548,17 +549,24 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         TORCommon.Log($"[Specialization]   Skill {skill.StringId}: +{option.Args.FocusToAdd} (total: {skillBonuses[skill]})", NLog.LogLevel.Info);
                     }
                 }
+
+                // Add attribute bonuses (using EffectedAttribute and AttributeLevelToAdd)
+                if (option.Args.EffectedAttribute != null && option.Args.AttributeLevelToAdd > 0)
+                {
+                    var attr = option.Args.EffectedAttribute;
+                    if (!attributeBonuses.ContainsKey(attr))
+                        attributeBonuses[attr] = 0;
+
+                    attributeBonuses[attr] += option.Args.AttributeLevelToAdd;
+                    TORCommon.Log($"[Specialization]   Attribute {attr.Name}: +{option.Args.AttributeLevelToAdd} (total: {attributeBonuses[attr]})", NLog.LogLevel.Info);
+                }
             }
 
-            // Create all attribute groups - get current attribute values from Hero
+            // Create all attribute groups with calculated bonuses
             foreach (var attribute in Attributes.All)
             {
-                // Get the hero's current attribute value (includes all bonuses applied so far)
-                int currentAttributeValue = Hero.MainHero?.GetAttributeValue(attribute) ?? BaseAttributeValue;
-                // The "bonus" is current value minus starting base value
-                int attributeBonus = currentAttributeValue - BaseAttributeValue;
-
-                TORCommon.Log($"[Specialization] {attribute.Name}: current={currentAttributeValue}, bonus={attributeBonus}", NLog.LogLevel.Info);
+                int attributeBonus = attributeBonuses.ContainsKey(attribute) ? attributeBonuses[attribute] : 0;
+                TORCommon.Log($"[Specialization] {attribute.Name}: bonus={attributeBonus} (base={BaseAttributeValue}, display={BaseAttributeValue + attributeBonus})", NLog.LogLevel.Info);
 
                 _gainGroups.Add(new SpecializationAttributeGroupVM(attribute, attributeBonus, skillBonuses));
             }
@@ -783,6 +791,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _baseValue = TORSpecializationGainedPropertiesVM.BaseAttributeValue + previousStageBonus;
             _currentValue = _baseValue;
             _hasIncreasedInCurrentStage = false;
+
+            TORCommon.Log($"[SpecAttributeVM] {attribute.Name}: previousBonus={previousStageBonus}, base={_baseValue}, current={_currentValue}", NLog.LogLevel.Info);
         }
 
         [DataSourceProperty]

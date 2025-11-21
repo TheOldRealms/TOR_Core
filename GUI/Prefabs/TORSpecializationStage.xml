@@ -39,7 +39,7 @@
                       <!--Gain Group (Attribute + Skills)-->
                       <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginBottom="2" DoNotUseCustomScaleAndChildren="true">
                         <Children>
-                          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="290" SuggestedHeight="2" Sprite="GradientDivider_9" Color="#CDA970FF" MarginBottom="5" />
+                          <SiblingIndexVisibilityWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="290" SuggestedHeight="2" Sprite="GradientDivider_9" Color="#CDA970FF" IndexToBeVisible="0" WatchType="BiggerThan" WidgetToWatch="..\." MarginBottom="5" />
 
                           <!--Attribute Name and Value-->
                           <Widget DataSource="{AttributeVM}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" DoNotPassEventsToChildren="true">
