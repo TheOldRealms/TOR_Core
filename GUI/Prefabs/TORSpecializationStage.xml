@@ -47,19 +47,16 @@
                               <!-- Normal state (no change) -->
                               <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsHidden="@HasIncreasedInCurrentStage" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                 <Children>
-                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="10" />
-                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="20" Brush.FontColor="#AAAAAAFF" Text="@CurrentValueText" ClipContents="false" />
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#AAAAAAFF" Text="@CurrentValueText" ClipContents="false" />
                                 </Children>
                               </ListPanel>
                               <!-- Highlighted state (has change) -->
                               <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasIncreasedInCurrentStage" DoNotPassEventsToChildren="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                 <Children>
-                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontColor="#E3E172FF" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="10">
-                                    <Children>
-                                      <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" PositionXOffset="15" VerticalAlignment="Center" HorizontalAlignment="Right" Sprite="General\CharacterCreation\increasing_icon" Color="#ACAC48FF" />
-                                    </Children>
-                                  </TextWidget>
-                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="20" Brush.FontColor="#E3E172FF" Text="@CurrentValueText" ClipContents="false" />
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontColor="#E3E172FF" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
+                                  <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" MarginRight="5" VerticalAlignment="Center" Sprite="General\CharacterCreation\increasing_icon" Color="#ACAC48FF" />
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#E3E172FF" Text="@CurrentValueText" ClipContents="false" />
                                 </Children>
                               </ListPanel>
                             </Children>
@@ -73,14 +70,16 @@
                                   <SkillIconVisualWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="61" SuggestedHeight="61" SkillId="@SkillId" UseSmallVariation="true" />
 
                                   <!-- Focus bars (native style) -->
-                                  <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="25" MarginTop="5">
+                                  <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="33" MarginTop="5">
                                     <Children>
                                       <ListPanel DataSource="{FocusPointGainList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="25" Sprite="General\CharacterCreation\focus_amount_frame" Color="#6E5324FF" ForcePixelPerfectPlacement="true">
                                         <ItemTemplate>
-                                          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="6" SuggestedHeight="16" MarginLeft="5" MarginRight="1" VerticalAlignment="Center" DoNotUseCustomScaleAndChildren="true">
+                                          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="7" SuggestedHeight="18" MarginLeft="5" MarginRight="1" VerticalAlignment="Center" DoNotUseCustomScaleAndChildren="true">
                                             <Children>
-                                              <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#99DC30FF" IsVisible="@IsActive" />
-                                              <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#99DC30FF" ColorFactor="0.5" IsHidden="@IsActive" />
+                                              <!-- Light green for newly gained (current stage) -->
+                                              <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#99DC30FF" IsVisible="@IsNew" />
+                                              <!-- Dark green for previously gained -->
+                                              <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#2D6B22FF" IsVisible="@IsOld" />
                                             </Children>
                                           </Widget>
                                         </ItemTemplate>

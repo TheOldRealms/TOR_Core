@@ -192,7 +192,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             //_currentCharacter.FillFrom(Hero.MainHero);
 
             // Initialize custom gained properties controller to show specialization bonuses/penalties
-            _gainedPropertiesController = new TORSpecializationGainedPropertiesVM();
+            _gainedPropertiesController = new TORSpecializationGainedPropertiesVM(characterCreationManager);
         }
 
         [DataSourceProperty]
@@ -494,9 +494,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
     public class TORSpecializationGainedPropertiesVM : ViewModel
     {
         private MBBindingList<SpecializationAttributeGroupVM> _gainGroups;
+        private CharacterCreationManager _manager;
 
-        public TORSpecializationGainedPropertiesVM()
+        public TORSpecializationGainedPropertiesVM(CharacterCreationManager manager)
         {
+            _manager = manager;
             _gainGroups = new MBBindingList<SpecializationAttributeGroupVM>();
             InitializeAttributeGroups();
         }
@@ -517,10 +519,42 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         private void InitializeAttributeGroups()
         {
-            // Create all 6 attribute groups with their skills (like native)
+            // Calculate bonuses from previous narrative stages (origin, growth, profession)
+            var attributeBonuses = new Dictionary<CharacterAttribute, int>();
+            var skillBonuses = new Dictionary<SkillObject, int>();
+
+            // Iterate through all selected options from previous stages
+            foreach (var selectedOption in _manager.SelectedOptions)
+            {
+                var option = selectedOption.Value;
+
+                // Add attribute bonuses
+                if (option.Args.EffectedAttribute != null && option.Args.AttributeLevelToAdd > 0)
+                {
+                    if (!attributeBonuses.ContainsKey(option.Args.EffectedAttribute))
+                        attributeBonuses[option.Args.EffectedAttribute] = 0;
+
+                    attributeBonuses[option.Args.EffectedAttribute] += option.Args.AttributeLevelToAdd;
+                }
+
+                // Add skill bonuses
+                if (option.Args.FocusToAdd > 0)
+                {
+                    foreach (var skill in option.Args.AffectedSkills)
+                    {
+                        if (!skillBonuses.ContainsKey(skill))
+                            skillBonuses[skill] = 0;
+
+                        skillBonuses[skill] += option.Args.FocusToAdd;
+                    }
+                }
+            }
+
+            // Create all attribute groups with bonuses from previous stages
             foreach (var attribute in Attributes.All)
             {
-                _gainGroups.Add(new SpecializationAttributeGroupVM(attribute));
+                int attributeBonus = attributeBonuses.ContainsKey(attribute) ? attributeBonuses[attribute] : 0;
+                _gainGroups.Add(new SpecializationAttributeGroupVM(attribute, attributeBonus, skillBonuses));
             }
         }
 
@@ -598,24 +632,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private SpecializationAttributeVM _attributeVM;
         private MBBindingList<SpecializationSkillItemVM> _skills;
 
-        public SpecializationAttributeGroupVM(CharacterAttribute attribute)
+        public SpecializationAttributeGroupVM(CharacterAttribute attribute, int attributeBonus, Dictionary<SkillObject, int> skillBonuses)
         {
             _attribute = attribute;
-            _attributeVM = new SpecializationAttributeVM(attribute);
+            _attributeVM = new SpecializationAttributeVM(attribute, attributeBonus);
             _skills = new MBBindingList<SpecializationSkillItemVM>();
 
-            // Add all skills for this attribute using the mapping from native character creation
-            // Vigor: OneHanded, TwoHanded, Polearm
-            // Control: Bow, Crossbow, Throwing
-            // Endurance: Riding, Athletics, Smithing
-            // Cunning: Scouting, Tactics, Roguery
-            // Social: Charm, Leadership, Trade
-            // Intelligence: Steward, Medicine, Engineering
-            // Plus TOR custom skills
+            // Add all skills for this attribute with their bonuses from previous stages
             var skillsForAttribute = GetSkillsForAttribute(attribute);
             foreach (var skill in skillsForAttribute)
             {
-                _skills.Add(new SpecializationSkillItemVM(skill, 0));
+                int skillBonus = skillBonuses.ContainsKey(skill) ? skillBonuses[skill] : 0;
+                _skills.Add(new SpecializationSkillItemVM(skill, skillBonus));
             }
         }
 
@@ -736,15 +764,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private CharacterAttribute _attribute;
         private int _change;
         private int _currentValue;
+        private int _baseValue; // Value before this specialization
         private string _nameText;
         private bool _hasIncreasedInCurrentStage;
 
-        public SpecializationAttributeVM(CharacterAttribute attribute)
+        public SpecializationAttributeVM(CharacterAttribute attribute, int previousStageBonus)
         {
             _attribute = attribute;
             _nameText = attribute.Name.ToString();
             _change = 0;
-            _currentValue = Hero.MainHero?.GetAttributeValue(attribute) ?? 0;
+            // Base value is the starting value (1) plus bonuses from previous narrative stages
+            _baseValue = 1 + previousStageBonus; // Characters start with 1 in each attribute
+            _currentValue = _baseValue;
             _hasIncreasedInCurrentStage = false;
         }
 
@@ -797,9 +828,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public void SetChange(int amount)
         {
             _change = amount;
-            _currentValue = (Hero.MainHero?.GetAttributeValue(_attribute) ?? 0) + amount;
+            _currentValue = _baseValue + amount;
             HasIncreasedInCurrentStage = amount != 0;
             OnPropertyChangedWithValue(_currentValue, nameof(CurrentValue));
+            OnPropertyChangedWithValue(_currentValue.ToString(), nameof(CurrentValueText));
         }
     }
 
@@ -811,23 +843,28 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private SkillObject _skill;
         private int _focusChange;
         private int _currentFocus;
+        private int _baseFocus; // Focus before this specialization
         private string _skillId;
         private bool _hasIncreasedInCurrentStage;
         private MBBindingList<FocusIconVM> _focusPointGainList;
 
-        public SpecializationSkillItemVM(SkillObject skill, int focusChange)
+        public SpecializationSkillItemVM(SkillObject skill, int previousStageBonus)
         {
             _skill = skill;
-            _focusChange = focusChange;
+            _focusChange = 0;
             _skillId = skill.StringId;
-            _currentFocus = Hero.MainHero?.HeroDeveloper.GetFocus(skill) ?? 0;
-            _hasIncreasedInCurrentStage = focusChange != 0;
+            // Base focus is the bonuses from previous narrative stages (no starting focus)
+            _baseFocus = previousStageBonus;
+            _currentFocus = _baseFocus;
+            _hasIncreasedInCurrentStage = false;
 
             // Initialize focus point list (max 5 focus points)
             _focusPointGainList = new MBBindingList<FocusIconVM>();
             for (int i = 0; i < 5; i++)
             {
-                _focusPointGainList.Add(new FocusIconVM(i < _currentFocus));
+                bool isOld = i < _baseFocus;
+                bool isNew = false;
+                _focusPointGainList.Add(new FocusIconVM(isOld, isNew));
             }
         }
 
@@ -894,14 +931,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public void SetChange(int amount)
         {
             _focusChange = amount;
-            _currentFocus = (Hero.MainHero?.HeroDeveloper.GetFocus(_skill) ?? 0) + amount;
+            _currentFocus = _baseFocus + amount;
             HasIncreasedInCurrentStage = amount != 0;
             OnPropertyChangedWithValue(_currentFocus, nameof(CurrentFocus));
 
-            // Update focus bars
+            // Update focus bars: old (dark green) vs new (light green)
             for (int i = 0; i < _focusPointGainList.Count && i < 5; i++)
             {
-                _focusPointGainList[i].IsActive = (i < _currentFocus);
+                bool isOld = i < _baseFocus; // Previously existing focus
+                bool isNew = i >= _baseFocus && i < _currentFocus; // Newly added focus
+
+                _focusPointGainList[i].IsOld = isOld;
+                _focusPointGainList[i].IsNew = isNew;
             }
         }
 
@@ -917,23 +958,39 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
     /// </summary>
     public class FocusIconVM : ViewModel
     {
-        private bool _isActive;
+        private bool _isOld; // Dark green (previously existing)
+        private bool _isNew; // Light green (newly added this stage)
 
-        public FocusIconVM(bool isActive)
+        public FocusIconVM(bool isOld, bool isNew)
         {
-            _isActive = isActive;
+            _isOld = isOld;
+            _isNew = isNew;
         }
 
         [DataSourceProperty]
-        public bool IsActive
+        public bool IsOld
         {
-            get => _isActive;
+            get => _isOld;
             set
             {
-                if (_isActive != value)
+                if (_isOld != value)
                 {
-                    _isActive = value;
-                    OnPropertyChangedWithValue(value, nameof(IsActive));
+                    _isOld = value;
+                    OnPropertyChangedWithValue(value, nameof(IsOld));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsNew
+        {
+            get => _isNew;
+            set
+            {
+                if (_isNew != value)
+                {
+                    _isNew = value;
+                    OnPropertyChangedWithValue(value, nameof(IsNew));
                 }
             }
         }
