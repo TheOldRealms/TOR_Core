@@ -36,6 +36,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         // Static flag to track if we've visited this stage before (persists across reconstructions)
         private static bool _wasVisited = false;
 
+        // Track currently applied preview bonuses to properly clear them when switching options
+        private SpecializationOption _currentPreviewOption = null;
+
         public TORSpecializationStageView(CharacterCreationManager characterCreationManager, ControlCharacterCreationStage affirmativeAction,
             TextObject affirmativeActionText, ControlCharacterCreationStage negativeAction, TextObject negativeActionText,
             ControlCharacterCreationStage onRefresh, ControlCharacterCreationStageReturnInt getCurrentStageIndexAction,
@@ -118,7 +121,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
 
             // Create custom ViewModel with equipment preview callback
-            _dataSource = new TORSpecializationStageVM(title, description, new Action(NextStage), _affirmativeActionText, new Action(PreviousStage),
+            _dataSource = new TORSpecializationStageVM(_characterCreationManager, title, description, new Action(NextStage), _affirmativeActionText, new Action(PreviousStage),
                 _negativeActionText, (selectedOption) =>
                 {
                     if (selectedOption?.Data == null)
@@ -134,6 +137,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     {
                         ApplyRaceChangeImmediate(option.RaceId);
                     }
+
+                    // Apply preview bonuses so they show in the gained properties panel
+                    ApplyPreviewBonuses(selectedOption.Data as SpecializationOption);
                 });
 
             // Populate options based on profession type
@@ -296,16 +302,23 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             TORCommon.Log($"[TORCC] TORSpecializationStageView.NextStage() called", NLog.LogLevel.Info);
 
+            // Clear preview bonuses before applying final bonuses
+            ClearCurrentPreviewBonuses();
+
             // Store the selected specialization
             StoreSpecialization();
 
             // Apply bonuses immediately when clicking Next
+            // This will apply final bonuses with proper tracking for removal later
             var handler = GetHandler();
             if (handler != null)
             {
                 TORCommon.Log($"[TORCC] TORSpecializationStageView.NextStage: Calling ApplySpecializationBonuses", NLog.LogLevel.Info);
                 handler.ApplySpecializationBonuses();
             }
+
+            // Reset preview tracking since we've applied final bonuses
+            _currentPreviewOption = null;
 
             // Mark this stage as visited
             _wasVisited = true;
@@ -359,6 +372,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             TORCommon.Log($"[TORCC] TORSpecializationStageView.PreviousStage() called", NLog.LogLevel.Info);
 
+            // Clear preview bonuses before leaving
+            ClearCurrentPreviewBonuses();
+
             // Clear stored selections and remove applied bonuses when going back (user might change profession)
             // ClearStoredSpecializations() will call ClearSpecializationBonuses() to revert stat changes
             var handler = GetHandler();
@@ -367,6 +383,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 TORCommon.Log($"[TORCC] TORSpecializationStageView.PreviousStage: Calling handler.ClearStoredSpecializations()", NLog.LogLevel.Info);
                 handler.ClearStoredSpecializations();
             }
+
+            // Reset preview tracking since we're clearing everything
+            _currentPreviewOption = null;
 
             // Reset the visited flag so next time we come forward it's treated as a fresh visit
             _wasVisited = false;
@@ -477,6 +496,109 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Refresh the character preview to show the race change
             RefreshCharacterPreview();
+        }
+
+        /// <summary>
+        /// Clear currently applied preview bonuses without applying new ones
+        /// </summary>
+        private void ClearCurrentPreviewBonuses()
+        {
+            if (_currentPreviewOption == null) return;
+
+            var hero = Hero.MainHero;
+            TORCommon.Log($"[TORCC] ClearCurrentPreviewBonuses: Clearing preview for '{_currentPreviewOption.Name}'", NLog.LogLevel.Info);
+
+            // Remove skill focus points
+            if (_currentPreviewOption.SkillsToIncrease != null)
+            {
+                foreach (var skillIdRaw in _currentPreviewOption.SkillsToIncrease)
+                {
+                    bool isDecrease = skillIdRaw.StartsWith("-");
+                    string skillId = isDecrease ? skillIdRaw.Substring(1) : skillIdRaw;
+                    int amount = isDecrease ? 1 : -1; // Reverse the operation
+
+                    var skill = Game.Current.ObjectManager.GetObject<SkillObject>(skillId);
+                    if (skill != null)
+                    {
+                        hero.HeroDeveloper.AddFocus(skill, amount, false);
+                        TORCommon.Log($"[TORCC]   Cleared: {skill.Name} focus by {amount}", NLog.LogLevel.Info);
+                    }
+                }
+            }
+
+            // Remove attribute points
+            if (!string.IsNullOrEmpty(_currentPreviewOption.AttributeToIncrease))
+            {
+                bool isDecrease = _currentPreviewOption.AttributeToIncrease.StartsWith("-");
+                string attributeId = isDecrease ? _currentPreviewOption.AttributeToIncrease.Substring(1) : _currentPreviewOption.AttributeToIncrease;
+                int amount = isDecrease ? 1 : -1; // Reverse the operation
+
+                var attribute = Game.Current.ObjectManager.GetObject<CharacterAttribute>(attributeId);
+                if (attribute != null)
+                {
+                    hero.HeroDeveloper.AddAttribute(attribute, amount, false);
+                    TORCommon.Log($"[TORCC]   Cleared: {attribute.Name} by {amount}", NLog.LogLevel.Info);
+                }
+            }
+
+            _currentPreviewOption = null;
+
+            // Update the display to reflect cleared bonuses
+            _dataSource.GainedPropertiesController?.UpdateValues();
+        }
+
+        /// <summary>
+        /// Apply preview bonuses from specialization option to the hero so they show in gained properties panel
+        /// This is a temporary preview - actual application happens in NextStage()
+        /// </summary>
+        private void ApplyPreviewBonuses(SpecializationOption option)
+        {
+            if (option == null) return;
+
+            // Clear previous preview bonuses if any
+            ClearCurrentPreviewBonuses();
+
+            var hero = Hero.MainHero;
+            TORCommon.Log($"[TORCC] ApplyPreviewBonuses: Applying preview for '{option.Name}'", NLog.LogLevel.Info);
+
+            // Apply skill focus points
+            if (option.SkillsToIncrease != null)
+            {
+                foreach (var skillIdRaw in option.SkillsToIncrease)
+                {
+                    bool isDecrease = skillIdRaw.StartsWith("-");
+                    string skillId = isDecrease ? skillIdRaw.Substring(1) : skillIdRaw;
+                    int amount = isDecrease ? -1 : 1;
+
+                    var skill = Game.Current.ObjectManager.GetObject<SkillObject>(skillId);
+                    if (skill != null)
+                    {
+                        hero.HeroDeveloper.AddFocus(skill, amount, false);
+                        TORCommon.Log($"[TORCC]   Preview: {(isDecrease ? "Decreasing" : "Increasing")} {skill.Name} focus by {amount}", NLog.LogLevel.Info);
+                    }
+                }
+            }
+
+            // Apply attribute points
+            if (!string.IsNullOrEmpty(option.AttributeToIncrease))
+            {
+                bool isDecrease = option.AttributeToIncrease.StartsWith("-");
+                string attributeId = isDecrease ? option.AttributeToIncrease.Substring(1) : option.AttributeToIncrease;
+                int amount = isDecrease ? -1 : 1;
+
+                var attribute = Game.Current.ObjectManager.GetObject<CharacterAttribute>(attributeId);
+                if (attribute != null)
+                {
+                    hero.HeroDeveloper.AddAttribute(attribute, amount, false);
+                    TORCommon.Log($"[TORCC]   Preview: {(isDecrease ? "Decreasing" : "Increasing")} {attribute.Name} by {amount}", NLog.LogLevel.Info);
+                }
+            }
+
+            // Store current option as the active preview
+            _currentPreviewOption = option;
+
+            // Update the gained properties display
+            _dataSource.GainedPropertiesController?.UpdateValues();
         }
 
         /// <summary>

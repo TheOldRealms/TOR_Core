@@ -1,5 +1,6 @@
 ﻿using System;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterCreationContent;
 using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterCreation;
 using TaleWorlds.Core;
@@ -156,14 +157,18 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private MBBindingList<SpecializationOptionVM> _options;
         private SpecializationOptionVM _selectedOption;
         private CharacterViewModel _currentCharacter;
+        private CharacterCreationGainedPropertiesVM _gainedPropertiesController;
 
         private readonly Action _onNextStage;
         private readonly Action _onPreviousStage;
         private readonly Action<SpecializationOptionVM> _onOptionSelected;
+        private readonly CharacterCreationManager _characterCreationManager;
 
-        public TORSpecializationStageVM(string title, string description, Action onNextStage, TextObject affirmativeText, Action onPreviousStage,
+        public TORSpecializationStageVM(CharacterCreationManager characterCreationManager, string title, string description,
+            Action onNextStage, TextObject affirmativeText, Action onPreviousStage,
             TextObject negativeText, Action<SpecializationOptionVM> onOptionSelected = null)
         {
+            _characterCreationManager = characterCreationManager;
             TitleText = title;
             DescriptionText = description;
             _onNextStage = onNextStage;
@@ -173,7 +178,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _negativeText = negativeText?.ToString() ?? "Back";
             _canAdvance = false; // Disabled until an option is selected
             _options = new MBBindingList<SpecializationOptionVM>();
-            
+
             _currentCharacter = new CharacterViewModel();
             // Set the customized body properties from CharacterObject (preserves face editor changes)
             // var bodyProperties = CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1);
@@ -183,6 +188,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _currentCharacter.OnPropertyChangedWithValue("BodyProperties",
                 CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1).ToString());
             //_currentCharacter.FillFrom(Hero.MainHero);
+
+            // Initialize gained properties controller to show real-time bonuses
+            _gainedPropertiesController = new CharacterCreationGainedPropertiesVM(characterCreationManager);
         }
 
         [DataSourceProperty]
@@ -382,6 +390,20 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
+        [DataSourceProperty]
+        public CharacterCreationGainedPropertiesVM GainedPropertiesController
+        {
+            get => _gainedPropertiesController;
+            set
+            {
+                if (_gainedPropertiesController != value)
+                {
+                    _gainedPropertiesController = value;
+                    OnPropertyChangedWithValue(value, nameof(GainedPropertiesController));
+                }
+            }
+        }
+
         /// <summary>
         /// Add a selectable option to the list
         /// </summary>
@@ -432,6 +454,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Notify callback for equipment preview
             _onOptionSelected?.Invoke(selectedOption);
+
+            // Update gained properties display to show attribute/skill bonuses
+            _gainedPropertiesController?.UpdateValues();
         }
 
         /// <summary>
@@ -456,6 +481,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             base.OnFinalize();
             _currentCharacter?.OnFinalize();
+            _gainedPropertiesController?.OnFinalize();
         }
     }
 }
