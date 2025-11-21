@@ -110,7 +110,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 description = new TextObject("{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.").ToString();
             }
             
-            _gauntletLayer = new GauntletLayer(1, "GauntletLayer", true);
+            _gauntletLayer = new GauntletLayer("GauntletLayer",1, true);
             _gauntletLayer.InputRestrictions.SetInputRestrictions(true, InputUsageMask.All);
             _gauntletLayer.IsFocusLayer = true;
             _gauntletLayer.Input.RegisterHotKeyCategory(HotKeyManager.GetCategory("GenericPanelGameKeyCategory"));
