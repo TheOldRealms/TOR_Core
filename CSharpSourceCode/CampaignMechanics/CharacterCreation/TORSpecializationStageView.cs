@@ -76,6 +76,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Auto-skip is only for professions without options
             _shouldAutoSkip = false;
 
+            // Mark that we're now past the narrative stages (Stage 4+)
+            // This helps the Harmony patch know to show all bonuses as "previous" on final review stage
+            TORCharacterCreationContentHandler.IsPastNarrativeStages = true;
+
             // Clear any previously applied preview bonuses when entering this stage
             // This ensures clean state if user went back and is returning
             TORCommon.Log($"[TORCC] TORSpecializationStageView: Constructor - Clearing any existing preview bonuses", NLog.LogLevel.Info);
@@ -375,6 +379,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public override void PreviousStage()
         {
             TORCommon.Log($"[TORCC] TORSpecializationStageView.PreviousStage() called", NLog.LogLevel.Info);
+
+            // Reset the "past narrative stages" flag when going back
+            // This allows stages 1-3 to show light green highlighting normally
+            TORCharacterCreationContentHandler.IsPastNarrativeStages = false;
+            TORCommon.Log($"[TORCC] PreviousStage: Reset IsPastNarrativeStages flag", NLog.LogLevel.Info);
 
             // Clear preview bonuses before leaving
             ClearCurrentPreviewBonuses();

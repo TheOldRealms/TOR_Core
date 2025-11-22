@@ -26,6 +26,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
     // This class needs complete refactoring for the new handler pattern
     public class TORCharacterCreationContentHandler : ICharacterCreationContentHandler
     {
+        // Static instance for access from Harmony patches
+        public static TORCharacterCreationContentHandler Instance { get; private set; }
+
+        // Static flag to indicate we're past narrative stages (Stage 4 or later)
+        public static bool IsPastNarrativeStages { get; set; } = false;
+
         private readonly List<CharacterCreationOption> _options;
         private readonly List<SpecializationOption> _specializationOptions;
         private bool _isFemale = false;
@@ -48,6 +54,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public TORCharacterCreationContentHandler()
         {
+            // Set static instance for Harmony patch access
+            Instance = this;
+
+            // Reset flag for fresh character creation
+            IsPastNarrativeStages = false;
+
             try
             {
                 var path = TORPaths.TORCoreModuleExtendedDataPath + "tor_cc_options.xml";
@@ -459,8 +471,19 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             _selectedSpecializationOptionId = optionId;
         }
-        
+
         public string GetSelectedSpecializationOptionId() => _selectedSpecializationOptionId;
+
+        /// <summary>
+        /// Get the currently selected specialization option object (for Harmony patch access to bonuses)
+        /// </summary>
+        public SpecializationOption GetSelectedSpecializationOption()
+        {
+            if (string.IsNullOrEmpty(_selectedSpecializationOptionId))
+                return null;
+
+            return _specializationOptions?.FirstOrDefault(opt => opt.Id == _selectedSpecializationOptionId);
+        }
 
         private void OnOptionSelected(CharacterCreationManager manager, string optionId)
         {

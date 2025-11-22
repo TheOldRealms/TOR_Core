@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterCreationContent;
+using TaleWorlds.CampaignSystem.Extensions;
 using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterCreation;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -92,6 +94,7 @@ namespace TOR_Core.HarmonyPatches
         /// This prevents "future" selections (e.g., Stage 3 when viewing Stage 2) from being displayed, providing clear visual feedback
         /// of what bonuses apply at each stage. Uses pathway-based filtering: start -> tor_origin_menu -> tor_growth_menu -> tor_profession_menu.
         /// Selections remain intact in SelectedOptions, but are filtered from display calculations based on menu position in pathway.
+        /// ALSO handles final review stage: applies specialization bonuses/penalties from Stage 4 to show correct final values.
         /// </summary>
         [HarmonyPatch(typeof(TaleWorlds.CampaignSystem.ViewModelCollection.CharacterCreation.CharacterCreationGainedPropertiesVM), "PopulateGainedAttributeValues")]
         public class PopulateGainedAttributeValuesPatch
@@ -122,7 +125,17 @@ namespace TOR_Core.HarmonyPatches
 
                     // Find current menu index in pathway
                     int currentMenuIndex = menuPathway.IndexOf(manager.CurrentMenu?.StringId);
-                    
+
+                    // Log current menu for debugging
+                    string currentMenuId = manager.CurrentMenu?.StringId ?? "null";
+
+                    // Check if we're past narrative stages (Stage 4+ including final review)
+                    // This flag is set when entering Stage 4 and reset when going back to stages 1-3
+                    // So if it's true, we're either on Stage 4 or final review (not navigating back to 1-3)
+                    bool isFinalStage = TOR_Core.CampaignMechanics.CharacterCreation.TORCharacterCreationContentHandler.IsPastNarrativeStages;
+
+                    TORCommon.Log($"[TORCC] PopulateGainedAttributeValues: CurrentMenu = '{currentMenuId}', Index = {currentMenuIndex}, IsPastNarrativeStages = {isFinalStage}", NLog.LogLevel.Info);
+
                     // Iterate through selected options, but only include current and previous menus
                     foreach (KeyValuePair<NarrativeMenu, NarrativeMenuOption> selectedOption in manager.SelectedOptions)
                     {
@@ -131,9 +144,9 @@ namespace TOR_Core.HarmonyPatches
 
                         int menuIndex = menuPathway.IndexOf(menu.StringId);
 
-                        // Skip menus that come AFTER the current menu in the pathway
-                        if (menuIndex > currentMenuIndex)
-                        { 
+                        // Skip menus that come AFTER the current menu in the pathway (unless we're on final stage)
+                        if (!isFinalStage && menuIndex > currentMenuIndex)
+                        {
                             continue;
                         }
 
@@ -143,10 +156,21 @@ namespace TOR_Core.HarmonyPatches
                         int focusCurrent = 0;
                         int focusPrevious = 0;
 
-                        if (menu == manager.CurrentMenu)
-                            attributeCurrent = option.Args.AttributeLevelToAdd;
-                        else
+                        // On final stage, ALL bonuses from narrative stages should show as "previous" (dark green)
+                        // Otherwise, check if this menu is the current menu to determine "current" vs "previous"
+                        if (isFinalStage)
+                        {
+                            // Everything is "previous" on final stage
                             attributePrevious += option.Args.AttributeLevelToAdd;
+                        }
+                        else if (menu == manager.CurrentMenu)
+                        {
+                            attributeCurrent = option.Args.AttributeLevelToAdd;
+                        }
+                        else
+                        {
+                            attributePrevious += option.Args.AttributeLevelToAdd;
+                        }
 
                         if (option.Args.EffectedAttribute != null)
                         {
@@ -159,10 +183,19 @@ namespace TOR_Core.HarmonyPatches
                                 existingTuple.Item2 + attributeCurrent);
                         }
 
-                        if (menu == manager.CurrentMenu)
-                            focusCurrent = option.Args.FocusToAdd;
-                        else
+                        // Same logic for focus points
+                        if (isFinalStage)
+                        {
                             focusPrevious += option.Args.FocusToAdd;
+                        }
+                        else if (menu == manager.CurrentMenu)
+                        {
+                            focusCurrent = option.Args.FocusToAdd;
+                        }
+                        else
+                        {
+                            focusPrevious += option.Args.FocusToAdd;
+                        }
 
                         foreach (SkillObject skill in option.Args.AffectedSkills)
                         {
@@ -176,6 +209,10 @@ namespace TOR_Core.HarmonyPatches
                         }
                     }
 
+                    // NOTE: We do NOT need to apply specialization bonuses to the display here
+                    // because they are already applied to Hero.MainHero stats by ApplySpecializationBonuses()
+                    // The final review screen will read from the actual Hero stats, not from SelectedOptions
+
                     return false; // Skip original method
                 }
                 catch (System.Exception ex)
@@ -184,6 +221,7 @@ namespace TOR_Core.HarmonyPatches
                     return true; // Fall back to original method
                 }
             }
+
         }
     }
 }
