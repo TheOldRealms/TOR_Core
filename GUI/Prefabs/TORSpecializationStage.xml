@@ -29,15 +29,14 @@
           <!-- Gained Properties Display (Full Native Style) -->
           <Widget DataSource="{GainedPropertiesController}"
                   WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"
-                  HorizontalAlignment="Left" VerticalAlignment="Center"
-                  MarginLeft="20">
+                  HorizontalAlignment="Left" VerticalAlignment="Center">
             <Children>
               <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" MarginLeft="20" DoNotUseCustomScaleAndChildren="true" StackLayout.LayoutMethod="VerticalBottomToTop">
                 <Children>
                   <ListPanel Id="GainedProperties" DataSource="{GainGroups}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop">
                     <ItemTemplate>
                       <!--Gain Group (Attribute + Skills)-->
-                      <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginBottom="2" DoNotUseCustomScaleAndChildren="true">
+                      <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" MarginTop="5" MarginBottom="3" DoNotUseCustomScaleAndChildren="true">
                         <Children>
                           <SiblingIndexVisibilityWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="290" SuggestedHeight="2" Sprite="GradientDivider_9" Color="#CDA970FF" IndexToBeVisible="0" WatchType="BiggerThan" WidgetToWatch="..\." MarginBottom="5" />
 
@@ -69,12 +68,12 @@
                                 <Children>
                                   <SkillIconVisualWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="61" SuggestedHeight="61" SkillId="@SkillId" UseSmallVariation="true" />
 
-                                  <!-- Focus bars (native style) -->
-                                  <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="33" MarginTop="5">
+                                  <!-- Focus bars (scaled to match native visually - taller) -->
+                                  <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="32" MarginTop="5">
                                     <Children>
-                                      <ListPanel DataSource="{FocusPointGainList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="25" Sprite="General\CharacterCreation\focus_amount_frame" Color="#6E5324FF" ForcePixelPerfectPlacement="true">
+                                      <ListPanel DataSource="{FocusPointGainList}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="63" SuggestedHeight="32" Sprite="General\CharacterCreation\focus_amount_frame" Color="#6E5324FF" ForcePixelPerfectPlacement="true">
                                         <ItemTemplate>
-                                          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="7" SuggestedHeight="18" MarginLeft="5" MarginRight="1" VerticalAlignment="Center" DoNotUseCustomScaleAndChildren="true">
+                                          <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="6" SuggestedHeight="20" MarginLeft="5" MarginRight="1" VerticalAlignment="Center" DoNotUseCustomScaleAndChildren="true">
                                             <Children>
                                               <!-- Light green for newly gained (current stage) -->
                                               <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#99DC30FF" IsVisible="@IsNew" />

@@ -705,8 +705,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             else if (attribute == TORAttributes.Discipline)
             {
                 skills.Add(TORSkills.Faith);
-                skills.Add(TORSkills.SpellCraft);
                 skills.Add(TORSkills.GunPowder);
+                skills.Add(TORSkills.SpellCraft);
             }
 
             return skills;
@@ -785,7 +785,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public SpecializationAttributeVM(CharacterAttribute attribute, int previousStageBonus)
         {
             _attribute = attribute;
-            _nameText = attribute.Name.ToString();
+            _nameText = attribute.Name.ToString() + ":";
             _change = 0;
             // Base value is the starting value (BASE_ATTRIBUTE_VALUE) plus bonuses from previous narrative stages
             _baseValue = TORSpecializationGainedPropertiesVM.BaseAttributeValue + previousStageBonus;
