@@ -328,6 +328,24 @@
   <FactionBannerOverride CultureOrFactionId="karak_hirn">
 	<BannerCode>11.113.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_hirn</BannerCode>
   </FactionBannerOverride>
+  <FactionBannerOverride CultureOrFactionId="karak_angazhar">
+	 <BannerCode>11.101.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_angazhar</BannerCode>
+  </FactionBannerOverride>
+  <FactionBannerOverride CultureOrFactionId="karak_azgaraz">
+	 <BannerCode>11.146.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_azgaraz</BannerCode>
+  </FactionBannerOverride>
+  <FactionBannerOverride CultureOrFactionId="karak_eksfilaz">
+	 <BannerCode>11.129.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_eksfilaz</BannerCode>
+  </FactionBannerOverride>
+  <FactionBannerOverride CultureOrFactionId="karak_gantuk">
+	 <BannerCode>11.92.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_gantuk</BannerCode>
+  </FactionBannerOverride>
+  <FactionBannerOverride CultureOrFactionId="karak_ziflin">
+	 <BannerCode>11.38.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_ziflin</BannerCode>
+  </FactionBannerOverride>
+  <FactionBannerOverride CultureOrFactionId="karak_norn">
+	 <BannerCode>1.142.127.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_norn</BannerCode>
+  </FactionBannerOverride>
    <FactionBannerOverride CultureOrFactionId="karak_kadrin">
 	<BannerCode>11.123.140.1398.1615.785.765.0.0.90.505.123.18.620.620.764.764.0.0.0:kingdom_kadrin</BannerCode>
   </FactionBannerOverride>

@@ -127,57 +127,29 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(SettlementNameplatesVM), "Initialize")]
-        public static bool AddCustomNamePlateVM(SettlementNameplatesVM __instance, IEnumerable<Tuple<Settlement, GameEntity>> settlements, Camera ____mapCamera, Action<CampaignVec2> ____fastMoveCameraToPosition)
+        [HarmonyPatch(typeof(SettlementNameplatesVM), "AddNameplate")]
+        public static bool AddCustomNamePlateVM(SettlementNameplatesVM __instance, SettlementNameplateVM nameplate, 
+            MBList<SettlementNameplateVM> ____allNameplates, Dictionary<Settlement, SettlementNameplateVM> ____allNameplatesBySettlements,
+            Camera ____mapCamera, Action<CampaignVec2> ____fastMoveCameraToPosition)
         {
-            IEnumerable<Tuple<Settlement, GameEntity>> enumerable = from x in settlements
-                                                                    where !x.Item1.IsHideout
-                                                                    select x;
-            var hideouts = from x in settlements
-                           where x.Item1.IsHideout
-                           select x;
+            GameEntity entity = AccessTools.Field(typeof(SettlementNameplateVM), "_entity").GetValue(nameplate) as GameEntity;
+            ToRSettlementNameplateVM torNameplate = new(nameplate.Settlement, entity, ____mapCamera, ____fastMoveCameraToPosition);
 
-            foreach (Tuple<Settlement, GameEntity> tuple in enumerable)
+            if (!____allNameplates.Contains(torNameplate)) ____allNameplates.Add(torNameplate);
+            ____allNameplatesBySettlements[nameplate.Settlement] = torNameplate;
+            switch (nameplate.SettlementTypeEnum)
             {
-                ToRSettlementNameplateVM item = new(tuple.Item1, tuple.Item2, ____mapCamera, ____fastMoveCameraToPosition);
-                __instance.AllNameplates.Add(item);
-            }
-            foreach (Tuple<Settlement, GameEntity> tuple2 in hideouts)
-            {
-                if (tuple2.Item1.Hideout.IsSpotted)
-                {
-                    ToRSettlementNameplateVM item2 = new(tuple2.Item1, tuple2.Item2, ____mapCamera, ____fastMoveCameraToPosition);
-                    __instance.AllNameplates.Add(item2);
-                }
-            }
-            foreach (SettlementNameplateVM settlementNameplateVM in __instance.AllNameplates)
-            {
-                Settlement settlement = settlementNameplateVM.Settlement;
-                if ((settlement?.SiegeEvent) != null)
-                {
-                    SettlementNameplateVM settlementNameplateVM2 = settlementNameplateVM;
-                    Settlement settlement2 = settlementNameplateVM.Settlement;
-                    settlementNameplateVM2.OnSiegeEventStartedOnSettlement(settlement2?.SiegeEvent);
-                }
-                else if (settlementNameplateVM.Settlement.IsTown || settlementNameplateVM.Settlement.IsCastle)
-                {
-                    Clan ownerClan = settlementNameplateVM.Settlement.OwnerClan;
-                    if (ownerClan != null && ownerClan.IsRebelClan)
-                    {
-                        settlementNameplateVM.OnRebelliousClanFormed(settlementNameplateVM.Settlement.OwnerClan);
-                    }
-                }
-            }
-            RefreshRelationsOfNameplates(__instance.AllNameplates);
-
-            return false;
-        }
-
-        private static void RefreshRelationsOfNameplates(MBReadOnlyList<SettlementNameplateVM> namePlates)
-        {
-            foreach (SettlementNameplateVM settlementNameplateVM in namePlates)
-            {
-                settlementNameplateVM.RefreshRelationStatus();
+                case SettlementNameplateVM.Type.Village:
+                    __instance.SmallNameplates.Add(torNameplate);
+                    return false;
+                case SettlementNameplateVM.Type.Castle:
+                    __instance.MediumNameplates.Add(torNameplate);
+                    return false;
+                case SettlementNameplateVM.Type.Town:
+                    __instance.LargeNameplates.Add(torNameplate);
+                    return false;
+                default:
+                    return false;
             }
         }
 
