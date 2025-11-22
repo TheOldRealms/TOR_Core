@@ -1163,6 +1163,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
+
         private void OnCultureSelected()
         {
             // Set race and default body properties based on selected culture

@@ -525,13 +525,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             // Calculate bonuses from previous stages by examining SelectedOptions
             // NOTE: Attribute bonuses aren't applied to Hero until finalization, so we must calculate manually
+            // All bonuses from stages 1-3 are shown as "old" (dark green)
+            // Only specialization bonuses (stage 4) will be shown as "new" (light green) via UpdateFromOption
             var skillBonuses = new Dictionary<SkillObject, int>();
             var attributeBonuses = new Dictionary<CharacterAttribute, int>();
 
             TORCommon.Log($"[Specialization] Initializing gained properties display", NLog.LogLevel.Info);
             TORCommon.Log($"[Specialization] Total selected options: {_manager.SelectedOptions.Count}", NLog.LogLevel.Info);
 
-            // Calculate skill AND attribute bonuses from previous stages
+            // Calculate skill AND attribute bonuses from ALL previous stages (1-3)
             foreach (var selectedOption in _manager.SelectedOptions)
             {
                 var option = selectedOption.Value;
@@ -574,6 +576,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public void UpdateFromOption(SpecializationOption option)
         {
+            TORCommon.Log($"[UpdateFromOption] Called with option: {option?.Name ?? "NULL"}", NLog.LogLevel.Info);
+
             // Reset all changes
             foreach (var group in _gainGroups)
             {
@@ -586,6 +590,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var skillChanges = new Dictionary<string, int>();
             if (option.SkillsToIncrease != null)
             {
+                TORCommon.Log($"[UpdateFromOption] Processing {option.SkillsToIncrease.Length} skill changes", NLog.LogLevel.Info);
                 foreach (var skillIdRaw in option.SkillsToIncrease)
                 {
                     bool isDecrease = skillIdRaw.StartsWith("-");
@@ -596,6 +601,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         skillChanges[skillId] += amount;
                     else
                         skillChanges[skillId] = amount;
+
+                    TORCommon.Log($"[UpdateFromOption]   {skillIdRaw} -> skillId={skillId}, amount={amount}, total={skillChanges[skillId]}", NLog.LogLevel.Info);
                 }
             }
 
@@ -616,12 +623,25 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Apply skill changes to appropriate groups
             foreach (var kvp in skillChanges)
             {
+                TORCommon.Log($"[UpdateFromOption] Applying skill change: {kvp.Key} = {kvp.Value}", NLog.LogLevel.Info);
                 var skill = Skills.All.FirstOrDefault(s => s.StringId == kvp.Key);
                 if (skill != null)
                 {
                     // Find the group that contains this skill
                     var group = _gainGroups.FirstOrDefault(g => g.Skills.Any(s => s.SkillId == skill.StringId));
-                    group?.SetSkillChange(skill, kvp.Value);
+                    if (group != null)
+                    {
+                        TORCommon.Log($"[UpdateFromOption]   Found group for skill {kvp.Key}, calling SetSkillChange", NLog.LogLevel.Info);
+                        group.SetSkillChange(skill, kvp.Value);
+                    }
+                    else
+                    {
+                        TORCommon.Log($"[UpdateFromOption]   ERROR: Could not find group for skill {kvp.Key}", NLog.LogLevel.Error);
+                    }
+                }
+                else
+                {
+                    TORCommon.Log($"[UpdateFromOption]   ERROR: Could not find skill object for {kvp.Key}", NLog.LogLevel.Error);
                 }
             }
         }
@@ -778,7 +798,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private CharacterAttribute _attribute;
         private int _change;
         private int _currentValue;
-        private int _baseValue; // Value before this specialization
+        private int _baseValue; // Value before specialization (includes all bonuses from stages 1-3)
         private string _nameText;
         private bool _hasIncreasedInCurrentStage;
 
@@ -787,7 +807,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _attribute = attribute;
             _nameText = attribute.Name.ToString() + ":";
             _change = 0;
-            // Base value is the starting value (BASE_ATTRIBUTE_VALUE) plus bonuses from previous narrative stages
+            // Base value is the starting value (2) plus bonuses from ALL previous stages (1-3)
             _baseValue = TORSpecializationGainedPropertiesVM.BaseAttributeValue + previousStageBonus;
             _currentValue = _baseValue;
             _hasIncreasedInCurrentStage = false;
@@ -841,11 +861,30 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
+        private bool _hasDecreasedInCurrentStage;
+
+        [DataSourceProperty]
+        public bool HasDecreasedInCurrentStage
+        {
+            get => _hasDecreasedInCurrentStage;
+            set
+            {
+                if (_hasDecreasedInCurrentStage != value)
+                {
+                    _hasDecreasedInCurrentStage = value;
+                    OnPropertyChangedWithValue(value, nameof(HasDecreasedInCurrentStage));
+                }
+            }
+        }
+
         public void SetChange(int amount)
         {
             _change = amount;
+            // Current value = base (all stages 1-3) + specialization change
             _currentValue = _baseValue + amount;
-            HasIncreasedInCurrentStage = amount != 0;
+            // Show as increased/decreased based on specialization change
+            HasIncreasedInCurrentStage = amount > 0;
+            HasDecreasedInCurrentStage = amount < 0;
             OnPropertyChangedWithValue(_currentValue, nameof(CurrentValue));
             OnPropertyChangedWithValue(_currentValue.ToString(), nameof(CurrentValueText));
         }
@@ -859,7 +898,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private SkillObject _skill;
         private int _focusChange;
         private int _currentFocus;
-        private int _baseFocus; // Focus before this specialization
+        private int _baseFocus; // Focus from ALL previous stages (1-3), shown as "old"/dark green
         private string _skillId;
         private bool _hasIncreasedInCurrentStage;
         private MBBindingList<FocusIconVM> _focusPointGainList;
@@ -869,7 +908,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _skill = skill;
             _focusChange = 0;
             _skillId = skill.StringId;
-            // Base focus is the bonuses from previous narrative stages (no starting focus)
+            // Base focus is from ALL previous stages (1-3)
             _baseFocus = previousStageBonus;
             _currentFocus = _baseFocus;
             _hasIncreasedInCurrentStage = false;
@@ -878,10 +917,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _focusPointGainList = new MBBindingList<FocusIconVM>();
             for (int i = 0; i < 5; i++)
             {
+                // All bonuses from stages 1-3 show as "old" (dark green)
                 bool isOld = i < _baseFocus;
                 bool isNew = false;
                 _focusPointGainList.Add(new FocusIconVM(isOld, isNew));
             }
+
+            TORCommon.Log($"[SpecSkillVM] {skill.StringId}: previousBonus={previousStageBonus}, current={_currentFocus}", NLog.LogLevel.Info);
         }
 
         [DataSourceProperty]
@@ -948,17 +990,39 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             _focusChange = amount;
             _currentFocus = _baseFocus + amount;
-            HasIncreasedInCurrentStage = amount != 0;
+            HasIncreasedInCurrentStage = amount > 0;
             OnPropertyChangedWithValue(_currentFocus, nameof(CurrentFocus));
 
-            // Update focus bars: old (dark green) vs new (light green)
+            TORCommon.Log($"[SpecSkillVM] {_skill.StringId}: baseFocus={_baseFocus}, amount={amount}, currentFocus={_currentFocus}", NLog.LogLevel.Info);
+
+            // Update focus bars: old (dark green) vs new (light green) vs removed (red)
             for (int i = 0; i < _focusPointGainList.Count && i < 5; i++)
             {
-                bool isOld = i < _baseFocus; // Previously existing focus
-                bool isNew = i >= _baseFocus && i < _currentFocus; // Newly added focus
+                bool isOld = false;
+                bool isNew = false;
+                bool isRemoved = false;
+
+                if (amount >= 0)
+                {
+                    // Increase or no change
+                    isOld = i < _baseFocus; // Previously existing focus (dark green)
+                    isNew = i >= _baseFocus && i < _currentFocus; // Newly added focus (light green)
+                }
+                else
+                {
+                    // Decrease
+                    isOld = i < _currentFocus; // Remaining focus (dark green)
+                    isRemoved = i >= _currentFocus && i < _baseFocus; // Removed focus (red)
+                }
 
                 _focusPointGainList[i].IsOld = isOld;
                 _focusPointGainList[i].IsNew = isNew;
+                _focusPointGainList[i].IsRemoved = isRemoved;
+
+                if (isOld || isNew || isRemoved)
+                {
+                    TORCommon.Log($"[SpecSkillVM]   Bar {i}: isOld={isOld}, isNew={isNew}, isRemoved={isRemoved}", NLog.LogLevel.Info);
+                }
             }
         }
 
@@ -976,11 +1040,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
     {
         private bool _isOld; // Dark green (previously existing)
         private bool _isNew; // Light green (newly added this stage)
+        private bool _isRemoved; // Red (removed this stage)
 
         public FocusIconVM(bool isOld, bool isNew)
         {
             _isOld = isOld;
             _isNew = isNew;
+            _isRemoved = false;
         }
 
         [DataSourceProperty]
@@ -1007,6 +1073,20 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 {
                     _isNew = value;
                     OnPropertyChangedWithValue(value, nameof(IsNew));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public bool IsRemoved
+        {
+            get => _isRemoved;
+            set
+            {
+                if (_isRemoved != value)
+                {
+                    _isRemoved = value;
+                    OnPropertyChangedWithValue(value, nameof(IsRemoved));
                 }
             }
         }

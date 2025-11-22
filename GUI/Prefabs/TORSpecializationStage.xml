@@ -44,18 +44,26 @@
                           <Widget DataSource="{AttributeVM}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" DoNotPassEventsToChildren="true">
                             <Children>
                               <!-- Normal state (no change) -->
-                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsHidden="@HasIncreasedInCurrentStage" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasIncreasedInCurrentStage" IsHidden="@HasDecreasedInCurrentStage" Parameter.IsNotVisible="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                 <Children>
                                   <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
                                   <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#AAAAAAFF" Text="@CurrentValueText" ClipContents="false" />
                                 </Children>
                               </ListPanel>
-                              <!-- Highlighted state (has change) -->
+                              <!-- Highlighted state (increased) -->
                               <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasIncreasedInCurrentStage" DoNotPassEventsToChildren="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                 <Children>
                                   <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontColor="#E3E172FF" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
                                   <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" MarginRight="5" VerticalAlignment="Center" Sprite="General\CharacterCreation\increasing_icon" Color="#ACAC48FF" />
                                   <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#E3E172FF" Text="@CurrentValueText" ClipContents="false" />
+                                </Children>
+                              </ListPanel>
+                              <!-- Decreased state (red) -->
+                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasDecreasedInCurrentStage" DoNotPassEventsToChildren="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                <Children>
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontColor="#FF5555FF" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
+                                  <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" MarginRight="5" VerticalAlignment="Center" Sprite="General\CharacterCreation\increasing_icon" Color="#DD3333FF" RenderTransformPivot="0.5,0.5" RenderTransform="Scale(1,-1)" />
+                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#FF5555FF" Text="@CurrentValueText" ClipContents="false" />
                                 </Children>
                               </ListPanel>
                             </Children>
@@ -79,6 +87,8 @@
                                               <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#99DC30FF" IsVisible="@IsNew" />
                                               <!-- Dark green for previously gained -->
                                               <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#2D6B22FF" IsVisible="@IsOld" />
+                                              <!-- Red for removed (current stage) -->
+                                              <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare" Color="#FF5555FF" IsVisible="@IsRemoved" />
                                             </Children>
                                           </Widget>
                                         </ItemTemplate>
