@@ -27,6 +27,10 @@ namespace TOR_Core.AbilitySystem.Spells
 
         protected override void DoCast(Agent casterAgent)
         {
+            if (SpellMiscastModel.TryHandleMiscast(casterAgent, this))
+            {
+                return;
+            }
             base.DoCast(casterAgent);
             var hero = casterAgent.GetHero();
             if (hero != null && hero.GetExtendedInfo() != null)
