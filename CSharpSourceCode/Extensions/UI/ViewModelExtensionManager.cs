@@ -44,7 +44,6 @@ namespace TOR_Core.Extensions.UI
                     typeof(HeroEncyclopediaVMExtension),
                     typeof(MissionConversationVMExtension),
                     typeof(PartyCharacterVMExtension),
-                    typeof(PartyNameplateItemVMExtension),
                     typeof(PartyVMExtension),
                     typeof(TORMapInfoVMExtension),
                     typeof(UnitEncyclopediaVMExtension),
