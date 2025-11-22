@@ -1,5 +1,8 @@
+using Ink.Runtime;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -20,24 +23,42 @@ namespace TOR_Core.Models
 {
     public class TORPartyWageModel : DefaultPartyWageModel
     {
+        private static readonly Dictionary<CharacterObject, int> _wageCache = [];
+
+        private int CalculateCharacterWageCache(CharacterObject character)
+        {
+            if (!_wageCache.ContainsKey(character))
+            {
+                int wage = 0;
+                if(!character.IsUndead() && !character.IsTreeSpirit())
+                {
+                    wage = GetWageForTier(character.Tier);
+                    if (character.Culture.StringId == TORConstants.Cultures.BRETONNIA && character.IsKnightUnit())
+                    {
+                        wage *= 2;
+                    }
+
+                    if (character.Culture.StringId == TORConstants.Cultures.EONIR && character.IsEliteTroop())
+                    {
+                        wage *= 2;
+                    }
+                }
+                _wageCache[character] = wage;
+                return wage;
+            }
+            return _wageCache[character];
+        }
+
         public override int GetCharacterWage(CharacterObject character)
         {
-            if (character.IsUndead()) return 0;
-            if (character.IsTreeSpirit()) return 0;
-            var value = 0;
-            value = GetWageForTier(character.Tier);
-
-            if (character.Culture.StringId == TORConstants.Cultures.BRETONNIA && character.IsKnightUnit())
+            if (_wageCache.TryGetValue(character, out int wage))
             {
-                value *= 2;
+                return wage;
             }
-
-            if (character.Culture.StringId == TORConstants.Cultures.EONIR && character.IsEliteTroop())
+            else
             {
-                value *= 2;
+                return CalculateCharacterWageCache(character);
             }
-
-            return value;
         }
 
         private static int GetWageForTier(int tier)
