@@ -223,12 +223,6 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        internal void ForceExitAbilityModeAfterMiscast()
-        {
-            DisableAbilityMode(false, null);
-        }
-
-
         internal void OnCastStart(Ability ability, Agent agent)
         {
             if (agent == Agent.Main)
@@ -729,64 +723,55 @@ namespace TOR_Core.AbilitySystem
 
         private void AddPerkEffectsToStartingWindsOfMagic()
         {
-            if (!IsCastingMission())
-                return;
-
-            if (Game.Current?.GameType is not Campaign)
-                return;
-            var mainParty = Campaign.Current.MainParty;
+            if (!IsCastingMission()) return;
 
             // apply to all heroes
-            var roster = mainParty.MemberRoster.GetTroopRoster();
-            for (int i = 0; i < roster.Count; i++)
+            var mainParty = MobileParty.MainParty;
+            if (mainParty != null)
             {
-                var element = roster[i];
-                if (!element.Character.IsHero)
-                    continue;
-
-                var hero = element.Character.HeroObject;
-                if (hero == null)
-                    continue;
-
-                var info = hero.GetExtendedInfo();
-                if (info == null)
-                    continue;
-
-                if (hero.GetPerkValue(TORPerks.SpellCraft.Improvision) &&
-                    info.GetCustomResourceValue("WindsOfMagic") < TORPerks.SpellCraft.Improvision.PrimaryBonus)
+                var roster = mainParty.MemberRoster.GetTroopRoster();
+                for (int i = 0; i < roster.Count; i++)
                 {
-                    info.SetCustomResourceValue("WindsOfMagic", TORPerks.SpellCraft.Improvision.PrimaryBonus);
-                }
+                    var element = roster[i];
+                    if (!element.Character.IsHero) continue;
 
-                if (hero.GetPerkValue(TORPerks.SpellCraft.Catalyst))
-                {
-                    int magicItemCount = 0;
-                    for (int slotIndex = 0; slotIndex < (int)EquipmentIndex.NumEquipmentSetSlots; slotIndex++)
+                    var hero = element.Character.HeroObject;
+                    if (hero == null) continue;
+
+                    var info = hero.GetExtendedInfo();
+                    if (info == null) continue;
+
+                    if (hero.GetPerkValue(TORPerks.SpellCraft.Improvision) &&
+                        info.GetCustomResourceValue("WindsOfMagic") < TORPerks.SpellCraft.Improvision.PrimaryBonus)
                     {
-                        var equipmentElement = hero.BattleEquipment.GetEquipmentFromSlot((EquipmentIndex)slotIndex);
-                        var equippedItem = equipmentElement.Item;
-                        if (equippedItem != null && equippedItem.IsMagicalItem())
-                        {
-                            magicItemCount++;
-                        }
+                        info.SetCustomResourceValue("WindsOfMagic", TORPerks.SpellCraft.Improvision.PrimaryBonus);
                     }
-
-                    if (magicItemCount > 0)
+                    if (hero.GetPerkValue(TORPerks.SpellCraft.Catalyst))
                     {
-                        info.AddCustomResource(
-                            "WindsOfMagic",
-                            magicItemCount * TORPerks.SpellCraft.Catalyst.PrimaryBonus
-                        );
+                        int magicItemCount = 0;
+                        for (int slotIndex = 0; slotIndex < (int)EquipmentIndex.NumEquipmentSetSlots; slotIndex++)
+                        {
+                            var equipmentElement = hero.BattleEquipment.GetEquipmentFromSlot((EquipmentIndex)slotIndex);
+                            var equippedItem = equipmentElement.Item;
+                            if (equippedItem != null && equippedItem.IsMagicalItem())
+                            {
+                                magicItemCount++;
+                            }
+                        }
+
+                        if (magicItemCount > 0)
+                        {
+                            info.AddCustomResource("WindsOfMagic",
+                                magicItemCount * TORPerks.SpellCraft.Catalyst.PrimaryBonus);
+                        }
                     }
                 }
             }
 
             var mainHero = Agent.Main?.GetHero();
-            if (mainHero != null && mainHero.HasAnyCareer())
+            if (mainHero != null && Game.Current.GameType is Campaign && mainHero.HasAnyCareer())
             {
-                Agent.Main
-                    .GetComponent<AbilityComponent>()
-                    .SetIntialPrayerCoolDown();
+                Agent.Main.GetComponent<AbilityComponent>().SetIntialPrayerCoolDown();
             }
         }
 

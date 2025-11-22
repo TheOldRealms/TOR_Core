@@ -230,30 +230,6 @@
 		type="DamageOverTime"
 		damage_type="Fire">
 	</StatusEffectTemplate> 
-    <StatusEffectTemplate 
-        id="tor_miscast_aqshy_entry" 
-        particle_id="torch_fire_sparks"
-        particle_intensity="Low"
-        base_effect_value="3"
-        type="DamageOverTime"
-        damage_type="Fire">
-    </StatusEffectTemplate>
-    <StatusEffectTemplate 
-        id="tor_miscast_aqshy_adept" 
-        particle_id="torch_fire_sparks"
-        particle_intensity="Low"
-        base_effect_value="5"
-        type="DamageOverTime"
-        damage_type="Fire">
-    </StatusEffectTemplate>
-    <StatusEffectTemplate 
-        id="tor_miscast_aqshy_master" 
-        particle_id="torch_fire_sparks"
-        particle_intensity="Low"
-        base_effect_value="7"
-        type="DamageOverTime"
-        damage_type="Fire">
-    </StatusEffectTemplate>
   	<StatusEffectTemplate
 		id="word_of_pain"
 		particle_id="psys_game_step_dust_on_default"
