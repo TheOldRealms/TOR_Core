@@ -174,7 +174,7 @@ namespace TOR_Core.Extensions.UI
 
             var resourceValue = Hero.MainHero.GetCultureSpecificCustomResourceValue();
             _resourceInfo.HasWarning = resourceValue < 0f;
-            _resourceInfo.Value = resourceValue.ToString();
+            _resourceInfo.Value = ((int)resourceValue).ToString();
             _resourceInfo.IntValue = (int)resourceValue;
 
             var info = MobileParty.MainParty.GetPartyInfo();
