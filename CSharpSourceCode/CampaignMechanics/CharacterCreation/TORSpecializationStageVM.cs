@@ -536,14 +536,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var skillBonuses = new Dictionary<SkillObject, int>();
             var attributeBonuses = new Dictionary<CharacterAttribute, int>();
 
-            TORCommon.Log($"[Specialization] Initializing gained properties display", NLog.LogLevel.Info);
-            TORCommon.Log($"[Specialization] Total selected options: {_manager.SelectedOptions.Count}", NLog.LogLevel.Info);
-
             // Calculate skill AND attribute bonuses from ALL previous stages (1-3)
             foreach (var selectedOption in _manager.SelectedOptions)
             {
                 var option = selectedOption.Value;
-                TORCommon.Log($"[Specialization] Option: {option.StringId}, Focus: {option.Args.FocusToAdd}, Skills: {option.Args.AffectedSkills.Count}", NLog.LogLevel.Info);
 
                 // Add skill bonuses
                 if (option.Args.FocusToAdd > 0)
@@ -558,7 +554,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         {
                             skillBonuses[skill] = option.Args.FocusToAdd;
                         }
-                        TORCommon.Log($"[Specialization]   Skill {skill.StringId}: +{option.Args.FocusToAdd} (total: {skillBonuses[skill]})", NLog.LogLevel.Info);
                     }
                 }
 
@@ -574,7 +569,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     {
                         attributeBonuses[attr] = option.Args.AttributeLevelToAdd;
                     }
-                    TORCommon.Log($"[Specialization]   Attribute {attr.Name}: +{option.Args.AttributeLevelToAdd} (total: {attributeBonuses[attr]})", NLog.LogLevel.Info);
                 }
             }
 
@@ -582,7 +576,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             foreach (var attribute in Attributes.All)
             {
                 int attributeBonus = attributeBonuses.ContainsKey(attribute) ? attributeBonuses[attribute] : 0;
-                TORCommon.Log($"[Specialization] {attribute.Name}: bonus={attributeBonus} (base={BaseAttributeValue}, display={BaseAttributeValue + attributeBonus})", NLog.LogLevel.Info);
 
                 _gainGroups.Add(new SpecializationAttributeGroupVM(attribute, attributeBonus, skillBonuses));
             }
@@ -590,8 +583,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public void UpdateFromOption(SpecializationOption option)
         {
-            TORCommon.Log($"[UpdateFromOption] Called with option: {option?.Name ?? "NULL"}", NLog.LogLevel.Info);
-
             // Reset all changes
             foreach (var group in _gainGroups)
             {
@@ -604,7 +595,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var skillChanges = new Dictionary<string, int>();
             if (option.SkillsToIncrease != null)
             {
-                TORCommon.Log($"[UpdateFromOption] Processing {option.SkillsToIncrease.Length} skill changes", NLog.LogLevel.Info);
                 foreach (var skillIdRaw in option.SkillsToIncrease)
                 {
                     bool isDecrease = skillIdRaw.StartsWith("-");
@@ -619,16 +609,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     {
                         skillChanges[skillId] = amount;
                     }
-
-                    TORCommon.Log($"[UpdateFromOption]   {skillIdRaw} -> skillId={skillId}, amount={amount}, total={skillChanges[skillId]}", NLog.LogLevel.Info);
                 }
             }
 
             // Apply attribute changes (can have multiple)
             if (option.AttributesToIncrease != null && option.AttributesToIncrease.Length > 0)
             {
-                TORCommon.Log($"[UpdateFromOption] Processing {option.AttributesToIncrease.Length} attribute changes", NLog.LogLevel.Info);
-
                 // Calculate net attribute changes (in case same attribute appears multiple times)
                 var attributeChanges = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
                 foreach (var attributeRaw in option.AttributesToIncrease)
@@ -641,19 +627,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         attributeChanges[attributeId] += amount;
                     else
                         attributeChanges[attributeId] = amount;
-
-                    TORCommon.Log($"[UpdateFromOption]   {attributeRaw} -> attributeId={attributeId}, amount={amount}, total={attributeChanges[attributeId]}", NLog.LogLevel.Info);
                 }
 
                 // Apply each attribute change to the appropriate group
                 foreach (var kvp in attributeChanges)
                 {
-                    TORCommon.Log($"[UpdateFromOption] Applying attribute change: {kvp.Key} = {kvp.Value}", NLog.LogLevel.Info);
-
                     var group = _gainGroups.FirstOrDefault(g => g.Attribute.StringId.Equals(kvp.Key, StringComparison.OrdinalIgnoreCase));
                     if (group != null)
                     {
-                        TORCommon.Log($"[UpdateFromOption]   Found attribute group, calling SetAttributeChange", NLog.LogLevel.Info);
                         group.SetAttributeChange(kvp.Value);
                     }
                     else
@@ -666,7 +647,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Apply skill changes to appropriate groups
             foreach (var kvp in skillChanges)
             {
-                TORCommon.Log($"[UpdateFromOption] Applying skill change: {kvp.Key} = {kvp.Value}", NLog.LogLevel.Info);
                 var skill = Skills.All.FirstOrDefault(s => s.StringId == kvp.Key);
                 if (skill != null)
                 {
@@ -674,7 +654,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     var group = _gainGroups.FirstOrDefault(g => g.Skills.Any(s => s.SkillId == skill.StringId));
                     if (group != null)
                     {
-                        TORCommon.Log($"[UpdateFromOption]   Found group for skill {kvp.Key}, calling SetSkillChange", NLog.LogLevel.Info);
                         group.SetSkillChange(skill, kvp.Value);
                     }
                     else
@@ -854,8 +833,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _baseValue = TORSpecializationGainedPropertiesVM.BaseAttributeValue + previousStageBonus;
             _currentValue = _baseValue;
             _hasIncreasedInCurrentStage = false;
-
-            TORCommon.Log($"[SpecAttributeVM] {attribute.Name}: previousBonus={previousStageBonus}, base={_baseValue}, current={_currentValue}", NLog.LogLevel.Info);
         }
 
         [DataSourceProperty]
@@ -965,8 +942,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 bool isNew = false;
                 _focusPointGainList.Add(new FocusIconVM(isOld, isNew));
             }
-
-            TORCommon.Log($"[SpecSkillVM] {skill.StringId}: previousBonus={previousStageBonus}, current={_currentFocus}", NLog.LogLevel.Info);
         }
 
         [DataSourceProperty]
@@ -1053,8 +1028,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             HasDecreasedInCurrentStage = amount < 0;
             OnPropertyChangedWithValue(_currentFocus, nameof(CurrentFocus));
 
-            TORCommon.Log($"[SpecSkillVM] {_skill.StringId}: baseFocus={_baseFocus}, amount={amount}, currentFocus={_currentFocus}", NLog.LogLevel.Info);
-
             // Update focus bars: old (dark green) vs new (light green) vs removed (red)
             for (int i = 0; i < _focusPointGainList.Count && i < 5; i++)
             {
@@ -1078,11 +1051,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 _focusPointGainList[i].IsOld = isOld;
                 _focusPointGainList[i].IsNew = isNew;
                 _focusPointGainList[i].IsRemoved = isRemoved;
-
-                if (isOld || isNew || isRemoved)
-                {
-                    TORCommon.Log($"[SpecSkillVM]   Bar {i}: isOld={isOld}, isNew={isNew}, isRemoved={isRemoved}", NLog.LogLevel.Info);
-                }
             }
         }
 

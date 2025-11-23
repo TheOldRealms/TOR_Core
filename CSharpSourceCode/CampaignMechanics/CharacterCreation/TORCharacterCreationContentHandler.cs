@@ -296,16 +296,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// </summary>
         public void ClearStoredSpecializations()
         {
-            TORCommon.Log($"[TORCC] ClearStoredSpecializations: Called (current ID: {_selectedSpecializationOptionId ?? "null"})", NLog.LogLevel.Info);
-
             // Remove previously applied bonuses BEFORE clearing the ID
             ClearSpecializationBonuses();
 
             // Clear stored data
             _selectedSpecializationOptionId = null;
             _storedSpawnPosition = null;
-
-            TORCommon.Log($"[TORCC] ClearStoredSpecializations: Completed (ID now: null)", NLog.LogLevel.Info);
         }
 
 
@@ -317,7 +313,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             if (string.IsNullOrEmpty(_selectedSpecializationOptionId))
             {
-                TORCommon.Log($"[TORCC] ClearSpecializationBonuses: No specialization to clear", NLog.LogLevel.Info);
                 return;
             }
 
@@ -329,8 +324,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 TORCommon.Log($"[TORCC] ClearSpecializationBonuses: Option not found for ID '{_selectedSpecializationOptionId}'", NLog.LogLevel.Warn);
                 return;
             }
-
-            TORCommon.Log($"[TORCC] ClearSpecializationBonuses: Removing bonuses for '{option.Name}' (ID: {_selectedSpecializationOptionId})", NLog.LogLevel.Info);
 
             // Restore skills to original values
             // We iterate through stored originals (unique skills only), not the full array with duplicates
@@ -344,7 +337,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (skill != null)
                 {
                     int beforeFocus = hero.HeroDeveloper.GetFocus(skill);
-                    int beforeSkill = hero.GetSkillValue(skill);
 
                     // Restore focus by calculating the difference
                     int focusDiff = originalFocus - beforeFocus;
@@ -355,8 +347,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                     // Restore skill level to original value
                     hero.HeroDeveloper.SetInitialSkillLevel(skill, originalLevel);
-
-                    TORCommon.Log($"[TORCC]   Skill {skillId}: Focus {beforeFocus} -> {hero.HeroDeveloper.GetFocus(skill)}, Level {beforeSkill} -> {originalLevel} (restored)", NLog.LogLevel.Info);
                 }
             }
 
@@ -375,13 +365,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     var attribute = Attributes.All.FirstOrDefault(x => x.StringId == attributeName.ToLower());
                     if (attribute != null)
                     {
-                        int beforeAttr = hero.GetAttributeValue(attribute);
                         // Reverse the change: if it was +1, now -1; if it was -1, now +1
                         int changeAmount = isDecrease ? AttributeLevelToAdd : -AttributeLevelToAdd;
                         hero.HeroDeveloper.AddAttribute(attribute, changeAmount, false);
-                        int afterAttr = hero.GetAttributeValue(attribute);
-
-                        TORCommon.Log($"[TORCC]   Attribute {attributeName}: {beforeAttr} -> {afterAttr} (reversed {attributeRaw})", NLog.LogLevel.Info);
                     }
                 }
             }
@@ -1067,7 +1053,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             // Called when a character creation stage is completed
             var stages = stage;
-            TORCommon.Log($"[TORCC] OnStageCompleted: {stages.GetType().Name}", NLog.LogLevel.Info);
 
             if (stages.GetType() == typeof(CharacterCreationFaceGeneratorStage))
             {
@@ -1094,7 +1079,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             if (string.IsNullOrEmpty(_selectedSpecializationOptionId))
             {
-                TORCommon.Log($"[TORCC] ApplySpecializationBonuses: No specialization selected, skipping", NLog.LogLevel.Info);
                 return;
             }
 
@@ -1105,8 +1089,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 TORCommon.Log($"[TORCC] ApplySpecializationBonuses: Option not found", NLog.LogLevel.Warn);
                 return;
             }
-
-            TORCommon.Log($"[TORCC] ApplySpecializationBonuses: Applying ONLY specialization changes (profession bonuses handled by engine)", NLog.LogLevel.Info);
 
             // Clear any stored original values from previous applications
             _originalSkillLevels.Clear();
@@ -1138,7 +1120,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 {
                     _originalSkillLevels[skillId] = hero.GetSkillValue(skill);
                     _originalSkillFocus[skillId] = hero.HeroDeveloper.GetFocus(skill);
-                    TORCommon.Log($"[TORCC]   Storing original for {skillId}: Focus {_originalSkillFocus[skillId]}, Level {_originalSkillLevels[skillId]}", NLog.LogLevel.Info);
                 }
             }
 
@@ -1156,7 +1137,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var skill = Skills.All.FirstOrDefault(x => x.StringId == skillId);
                 if (skill != null)
                 {
-                    int beforeFocus = hero.HeroDeveloper.GetFocus(skill);
                     int beforeSkill = hero.GetSkillValue(skill);
 
                     // Apply focus change
@@ -1174,8 +1154,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         int newLevel = Math.Max(0, beforeSkill + skillChange);
                         hero.HeroDeveloper.SetInitialSkillLevel(skill, newLevel);
                     }
-
-                    TORCommon.Log($"[TORCC]   Skill {skillId} ({netChange:+0;-0}): Focus {beforeFocus} -> {hero.HeroDeveloper.GetFocus(skill)}, Level {beforeSkill} -> {hero.GetSkillValue(skill)}", NLog.LogLevel.Info);
                 }
             }
 
@@ -1184,8 +1162,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 CharacterCreationOption professionOption = _options?.FirstOrDefault(opt => opt.Id == _selectedProfessionId);
                 string professionAttribute = professionOption?.AttributeToIncrease;
-
-                TORCommon.Log($"[TORCC]   Processing {specializationOption.AttributesToIncrease.Length} attribute changes", NLog.LogLevel.Info);
 
                 foreach (var attributeRaw in specializationOption.AttributesToIncrease)
                 {
@@ -1210,7 +1186,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                             if (professionBonusAlreadyApplied && !isDecrease)
                             {
-                                TORCommon.Log($"[TORCC]     Skipping {attributeName} (same as profession attribute and already applied)", NLog.LogLevel.Info);
                                 continue;
                             }
                         }
@@ -1220,11 +1195,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     var attributeToModify = Attributes.All.FirstOrDefault(x => x.StringId == attributeName.ToLower());
                     if (attributeToModify != null)
                     {
-                        int beforeAttr = hero.GetAttributeValue(attributeToModify);
                         int changeAmount = isDecrease ? -AttributeLevelToAdd : AttributeLevelToAdd;
                         hero.HeroDeveloper.AddAttribute(attributeToModify, changeAmount, false);
-
-                        TORCommon.Log($"[TORCC]     Attribute {attributeName}: {beforeAttr} -> {hero.GetAttributeValue(attributeToModify)} (change: {(isDecrease ? "-" : "+")}{AttributeLevelToAdd})", NLog.LogLevel.Info);
                     }
                     else
                     {

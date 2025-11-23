@@ -80,11 +80,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Clear any previously applied preview bonuses when entering this stage
             // This ensures clean state if user went back and is returning
-            TORCommon.Log($"[TORCC] TORSpecializationStageView: Constructor - Clearing any existing preview bonuses", NLog.LogLevel.Info);
             handler.ClearSpecializationBonuses();
-
-            // Log complete hero state when entering specialization stage
-            LogHeroState("ENTERING SPECIALIZATION STAGE");
 
             // Initialize UI for professions with specialization options
             InitializeUI(handler);
@@ -308,8 +304,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public override void NextStage()
         {
-            TORCommon.Log($"[TORCC] TORSpecializationStageView.NextStage() called", NLog.LogLevel.Info);
-
             // Clear preview bonuses before applying final bonuses
             ClearCurrentPreviewBonuses();
 
@@ -362,7 +356,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (selectedData is SpecializationOption option)
             {
-                TORCommon.Log($"[TORCC] StoreSpecialization: Storing option '{option.Name}' (ID: {option.Id})", NLog.LogLevel.Info);
                 handler.SetSelectedSpecializationOptionId(option.Id);
 
                 // NOTE: Skill/attribute bonuses are applied in NextStage() when user clicks Next
@@ -378,12 +371,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         public override void PreviousStage()
         {
-            TORCommon.Log($"[TORCC] TORSpecializationStageView.PreviousStage() called", NLog.LogLevel.Info);
-
             // Reset the "past narrative stages" flag when going back
             // This allows stages 1-3 to show light green highlighting normally
             TORCharacterCreationContentHandler.IsPastNarrativeStages = false;
-            TORCommon.Log($"[TORCC] PreviousStage: Reset IsPastNarrativeStages flag", NLog.LogLevel.Info);
 
             // Clear preview bonuses before leaving
             ClearCurrentPreviewBonuses();
@@ -393,7 +383,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             var handler = GetHandler();
             if (handler != null)
             {
-                TORCommon.Log($"[TORCC] TORSpecializationStageView.PreviousStage: Calling handler.ClearStoredSpecializations()", NLog.LogLevel.Info);
                 handler.ClearStoredSpecializations();
             }
 
@@ -517,7 +506,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (_currentPreviewOption == null) return;
 
             var hero = Hero.MainHero;
-            TORCommon.Log($"[TORCC] ClearCurrentPreviewBonuses: Clearing preview for '{_currentPreviewOption.Name}'", NLog.LogLevel.Info);
 
             // Remove skill focus points
             if (_currentPreviewOption.SkillsToIncrease != null)
@@ -532,7 +520,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     if (skill != null)
                     {
                         hero.HeroDeveloper.AddFocus(skill, amount, false);
-                        TORCommon.Log($"[TORCC]   Cleared: {skill.Name} focus by {amount}", NLog.LogLevel.Info);
                     }
                 }
             }
@@ -550,7 +537,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     if (attribute != null)
                     {
                         hero.HeroDeveloper.AddAttribute(attribute, amount, false);
-                        TORCommon.Log($"[TORCC]   Cleared: {attribute.Name} by {amount}", NLog.LogLevel.Info);
                     }
                 }
             }
@@ -573,7 +559,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             ClearCurrentPreviewBonuses();
 
             var hero = Hero.MainHero;
-            TORCommon.Log($"[TORCC] ApplyPreviewBonuses: Applying preview for '{option.Name}'", NLog.LogLevel.Info);
 
             // Apply skill focus points
             if (option.SkillsToIncrease != null)
@@ -588,7 +573,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     if (skill != null)
                     {
                         hero.HeroDeveloper.AddFocus(skill, amount, false);
-                        TORCommon.Log($"[TORCC]   Preview: {(isDecrease ? "Decreasing" : "Increasing")} {skill.Name} focus by {amount}", NLog.LogLevel.Info);
                     }
                 }
             }
@@ -606,7 +590,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     if (attribute != null)
                     {
                         hero.HeroDeveloper.AddAttribute(attribute, amount, false);
-                        TORCommon.Log($"[TORCC]   Preview: {(isDecrease ? "Decreasing" : "Increasing")} {attribute.Name} by {amount}", NLog.LogLevel.Info);
                     }
                 }
             }
@@ -626,30 +609,5 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             return professionId == "option_3_empire_magister_apprentice";
         }
 
-        private void LogHeroState(string context)
-        {
-            TORCommon.Log($"======== {context} ========", NLog.LogLevel.Info);
-
-            // Log all attributes
-            TORCommon.Log($"[Hero State] ATTRIBUTES:", NLog.LogLevel.Info);
-            foreach (var attribute in Attributes.All)
-            {
-                int value = Hero.MainHero?.GetAttributeValue(attribute) ?? 0;
-                TORCommon.Log($"  {attribute.Name}: {value}", NLog.LogLevel.Info);
-            }
-
-            // Log all skills with focus
-            TORCommon.Log($"[Hero State] SKILLS (with focus > 0):", NLog.LogLevel.Info);
-            foreach (var skill in Skills.All)
-            {
-                int focus = Hero.MainHero?.HeroDeveloper.GetFocus(skill) ?? 0;
-                if (focus > 0)
-                {
-                    TORCommon.Log($"  {skill.Name}: {focus} focus", NLog.LogLevel.Info);
-                }
-            }
-
-            TORCommon.Log($"========================================", NLog.LogLevel.Info);
-        }
     }
 }
