@@ -35,7 +35,8 @@ namespace TOR_Core.HarmonyPatches
 
         private static void DisplayWindow()
         {
-            var text = new TextObject("{=tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.\n \n" +
+            var text = new TextObject("{=tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.\n" + 
+                       "When you see the deployment phase, the process is complete!\n \n" +
                        "THIS WILL TAKE A LONG TIME!!!\n" +
                        "Our users report anything between 20 and 70 minutes.\n \n" +
                        "This ensures that you won't need to compile the shaders individually during normal gameplay, as it can cause issues with stability.\n" +

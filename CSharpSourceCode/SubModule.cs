@@ -62,6 +62,7 @@ using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
+using TOR_Core.BattleMechanics.Voice;
 
 namespace TOR_Core
 {
@@ -84,10 +85,6 @@ namespace TOR_Core
             ConfigureLogging();
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
 
-            //creating the manager early enough that FindText calls from harmony won't lead to a null instance
-            //hopefully the morale text is there
-            var gameTextManager = new GameTextManager();
-            GameTexts.Initialize(gameTextManager);
 
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
             HarmonyInstance.PatchAllUncategorized();
@@ -104,6 +101,7 @@ namespace TOR_Core
             InkStoryManager.Initialize();
             AnimationTriggerManager.LoadAnimationTriggers();
             ItemTraitManager.LoadItemTraits();
+            TORVoiceManager.Initialize();
         }
 
         private Assembly ResolveDllPath(object sender, ResolveEventArgs args)
@@ -156,7 +154,7 @@ namespace TOR_Core
                 starter.AddBehavior(new EonirFavorEnvoyTownBehavior());
                 starter.AddBehavior(new TORPerkHandlerCampaignBehavior());
                 starter.AddBehavior(new TORAICompanionCampaignBehavior());
-                //starter.AddBehavior(new TORCompanionsCampaignBehavior());
+                starter.AddBehavior(new TORCompanionsCampaignBehavior());
                 starter.AddBehavior(new CareerSwitchCampaignBehavior());
                 starter.AddBehavior(new TORPartyUpgraderCampaignBehavior());
                 starter.AddBehavior(new InkStoryCampaignBehavior());
@@ -194,9 +192,9 @@ namespace TOR_Core
             }
         }
 
-        public override void AfterRegisterSubModuleObjects(bool isSavedCampaign)
+        public override void OnGameInitializationFinished(Game game)
         {
-            HarmonyInstance.PatchCategory("LatePatches");
+            HarmonyInstance.PatchCategory("LatePatches");//Sly : Campaign.OnInitialize starts the cascade that reaches this method; if each time a campaign is started/loaded this is patched, will we end up patching a given method multiple times?
         }
 
         protected override void OnGameStart(Game game, IGameStarter gameStarterObject)
@@ -290,7 +288,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new WeaponHitScriptsMissionLogic());
             mission.AddMissionBehavior(new CustomBannerMissionLogic());
             mission.AddMissionBehavior(new DismembermentMissionLogic());
-            mission.AddMissionBehavior(new MoraleMissionLogic());
+            mission.AddMissionBehavior(new AddAgentComponentsMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());

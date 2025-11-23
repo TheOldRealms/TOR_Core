@@ -68,8 +68,10 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             if (_markerEntity == null) CreateVisuals();
             if (_markerEntity != null)
             {
-                MatrixFrame frame = new MatrixFrame(Mat3.Identity, MobilePartyVisualManager.Current.GetPartyVisual(Settlement.Party).GetVisualPosition());
-                frame.Scale(new Vec3(32, 32, 1));
+                var vec3 = Settlement.GetPositionAsVec3();
+                vec3.z -= 10;//negative offset is towards the camera, positive is into the map
+                MatrixFrame frame = new MatrixFrame(Mat3.Identity, vec3);
+                frame.Scale(new Vec3(32, 32, 15));//Sly : the decal is slightly above the settlement's height and thicker (vertically) so it shows up better on uneven terrain
                 _markerEntity.SetGlobalFrame(frame);
                 _markerDecal.SetFactor1Linear(4281663744U);
                 _markerEntity.SetVisibilityExcludeParents(shouldShow);

@@ -9,21 +9,24 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORConstants;
+using TaleWorlds.DotNet;
 
 namespace TOR_Core.CampaignMechanics.Companions
 {
     public class TORCompanionsCampaignBehavior : CampaignBehaviorBase
     {
         //store by culture id, then manipulate the returned list
-        public Dictionary<string, List<CharacterObject>> _potentialCompanionTemplates = [];
+        public Dictionary<string, List<CharacterObject>> _companionTemplates = [];
 
-        //cache of companions to avoid going through AliveHeroes; there's something like 100 towns with dawi+greenskin update
-        private HashSet<Hero> _aliveCompanions = [];
+        //cache of companions to avoid going through AliveHeroes; there's 119 towns with dawi+greenskin update => minimum of 119 companions at 1 per town
+        private HashSet<Hero> _spawnedCompanions = [];
 
         public override void RegisterEvents()
         {
@@ -46,7 +49,7 @@ namespace TOR_Core.CampaignMechanics.Companions
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, AddDailySkillXpToCompanions); //checking all parties via the daily party event includes caravans, patrols, bandits, etc... which are a waste; because heroes must be part of clans (generally, and particularly in this case which ignores things like temporary heroes created for the engineer quest), and we patch clans to spawn as many parties as possible, we can interate through the clan members and check for their party to restrict the amount checked
         }
 
-        //Sly : tempted to put this into OnGameInitializationFinished in SubModule as it is called for both campaign creation and load, but nyeh
+        //Sly : tempted to put this into OnGameInitializationFinished in SubModule as it is called for both campaign creation and load, but nyeh, possibility of confusion
         private void OnGameLoadFinished()
         {
             CacheCompanionTemplates();
@@ -54,14 +57,14 @@ namespace TOR_Core.CampaignMechanics.Companions
 			{
 				if (hero.IsWanderer)
 				{
-					AddToAliveCompanions(hero);
+					AddToSpawnedCompanions(hero);
 				}
 			}
 			foreach (Hero hero2 in Hero.DeadOrDisabledHeroes)
 			{
-				if (hero2.IsAlive && hero2.IsWanderer)
+				if (hero2.IsWanderer)
 				{
-					AddToAliveCompanions(hero2);//add disabled wanderers so they get unregistered on the next weekly tick
+					AddToSpawnedCompanions(hero2);//add disabled wanderers so they get unregistered on the next weekly tick
 				}
 			}
         }
@@ -90,13 +93,20 @@ namespace TOR_Core.CampaignMechanics.Companions
                 SpawnWanderer(town.Settlement);
             }
 
-            foreach (var wanderer in _aliveCompanions)
+            var first = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>().WhereQ(x => x.Occupation == Occupation.Wanderer).ToHashSet();
+            TORCommon.Log("Wanderer count before unregister : " + first.Count.ToString(), NLog.LogLevel.Info);
+
+            foreach (var wandererToRemove in _spawnedCompanions.ToArray())
             {
-                if (wanderer.HeroState == Hero.CharacterStates.Disabled)
+                if (wandererToRemove.HeroState == Hero.CharacterStates.Disabled || wandererToRemove.HeroState == Hero.CharacterStates.Dead)
                 {
-                    UnregisterWandererObject(wanderer);
+                    UnregisterWandererObject(wandererToRemove);
+                    _spawnedCompanions.Remove(wandererToRemove);
                 }
             }
+
+            var diction = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>().WhereQ(x => x.Occupation == Occupation.Wanderer).ToHashSet();
+            TORCommon.Log("Wanderer count after unregister : " + diction.Count.ToString(), NLog.LogLevel.Info);
         }
 
         //Sly : this is here for centralizing the companion mechanics, but I'd prefer to put this into the PartyEntered for town components
@@ -104,11 +114,13 @@ namespace TOR_Core.CampaignMechanics.Companions
         {//I hope this event isn't thrown after a siege completes but before the settlement stops being considered under siege!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (hero != Hero.MainHero || hero.IsPrisoner || party != MobileParty.MainParty) return;
 
+            if (!settlement.IsTown) return;//don't spawn wanderers into the wrong settlement componenets
             
-            var clanlessWanderers = settlement.HeroesWithoutParty.WhereQ(x => x.IsWanderer && x.CompanionOf == null).ToList();
             if (settlement.IsUnderSiege) return;//Skip towns under siege : EnterSettlementAction unsafe
 
-            
+
+            var clanlessWanderers = settlement.HeroesWithoutParty.WhereQ(x => x.IsWanderer && x.CompanionOf == null).ToList();
+
             if (clanlessWanderers.AnyQ())
             {
                 int clanless = clanlessWanderers.Count();
@@ -126,18 +138,22 @@ namespace TOR_Core.CampaignMechanics.Companions
         /// <remarks>
         /// capturerHero is null for "peaceful" transitions (votes/gifts).
         /// 
-        /// Sly : I think the only way to have an incorrectly cultured companion in a settlement is if the settlement is transferred via cheat command which bypasses the event that this action is performed on.
+        /// Event reception ordering is probably responsible for this method running before tor changes the settlements culture to the new owners. This is handled by using the settlement's Owner's culture when spawning the new wanderer as the owner is changed before this event is dispatched.
         /// </remarks>
         private void SwapWandererWhenOwnerCultureChange (Settlement settlement, bool openToClaim, Hero newOwner, Hero oldOwner, Hero capturerHero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
         {
             if (settlement.Culture == newOwner.Culture) return;//nothing to do for transitions within culture
-
-            var existingWanderers = settlement.HeroesWithoutParty.WhereQ(x => x.IsWanderer && x.CompanionOf == null).ToList();
+            
+            if (!settlement.IsTown) return;//don't care about all the other types
+            
             if (settlement.IsUnderSiege)//please don't be under siege somehow at this point....!!!!!!!!!!
             {
                 //Skip towns under siege : EnterSettlementAction unsafe
                 return;
             }
+
+
+            var existingWanderers = settlement.HeroesWithoutParty.WhereQ(x => x.IsWanderer && x.CompanionOf == null).ToList();
             if (existingWanderers.Any())
             {
                 foreach (var wrongWanderer in existingWanderers)
@@ -154,7 +170,7 @@ namespace TOR_Core.CampaignMechanics.Companions
         {
             if (hero.IsAlive && hero.IsWanderer)
 			{
-				AddToAliveCompanions(hero);
+				AddToSpawnedCompanions(hero);
 			}
         }
 
@@ -162,10 +178,11 @@ namespace TOR_Core.CampaignMechanics.Companions
         {
 			if (victim.IsWanderer)
 			{
-                RemoveFromAliveCompanions(victim);
+                DisableWanderer(victim);//firing a companion kills them with a detail of Lost; those will be picked up by the weekly for removal as they are already met; if you make decisions that go against the traits of a companion, they will first warn you, then immediately disappear from your party on the next infraction. The encyclopedia entry is at least a vague way of knowing what happened if it occurs.
 
-                if (!victim.HasMet)//or do we wait for weekly tick?
+                if (!victim.HasMet)//not bothering to wait for weekly tick
                 {
+                    _spawnedCompanions.Remove(victim);
 				    UnregisterWandererObject(victim);
                 }
 			}
@@ -178,19 +195,24 @@ namespace TOR_Core.CampaignMechanics.Companions
         {
             if (oldOccupation == Occupation.Wanderer)
 			{
-				RemoveFromAliveCompanions(hero);
+				RemoveFromSpawnedCompanions(hero);
 				return;
 			}
 			if (hero.Occupation == Occupation.Wanderer)
 			{
-				AddToAliveCompanions(hero);
+				AddToSpawnedCompanions(hero);
 			}
         }
 
         private void CanHeroDie(Hero dyingHero, KillCharacterAction.KillCharacterActionDetail causeOfDeath, ref bool result)
         {
-            //Sly : prevents all hero deaths; I still need to look up what npc-npc execution details are.
-            if (causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Executed) {result = false;}
+            //Sly : prevents some hero deaths; I still need to look up what npc-npc execution details are. (maybe execution after battle?)
+            //Lost is for deleting notables (village raied, no workshops) and wanderers (companions fired).
+            if (!dyingHero.IsWanderer && !dyingHero.IsLord && !dyingHero.IsAICompanion())//whatever, ai companions can be here too
+            {
+                return;
+            }
+            if (causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Executed || causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Lost ) {result = false;}
         }
 
         private void AddDailySkillXpToCompanions(Clan clan)
@@ -214,30 +236,38 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void CacheCompanionTemplates()
         {
-            foreach (CharacterObject characterObject in MBObjectManager.Instance.GetObjectTypeList<CharacterObject>())
+            foreach (var characterObject in MBObjectManager.Instance.GetObjectTypeList<CharacterObject>())
 			{
 				if (characterObject.IsTemplate && characterObject.Occupation == Occupation.Wanderer)
 				{
                     var cultureId = characterObject.Culture.StringId;
-                    if (!_potentialCompanionTemplates.ContainsKey(cultureId))
+                    if (!_companionTemplates.ContainsKey(cultureId))
                     {
-                        _potentialCompanionTemplates.Add(cultureId, []);
+                        _companionTemplates.Add(cultureId, []);
                     }
-					_potentialCompanionTemplates[cultureId].Add(characterObject);
+					_companionTemplates[cultureId].Add(characterObject);
 				}
 			}
+
+            foreach (var culture in MBObjectManager.Instance.GetObjectTypeList<BasicCultureObject>().WhereQ(x => !x.IsBandit))
+            {
+                if (!_companionTemplates.ContainsKey(culture.StringId))
+                {
+                    _companionTemplates.Add(culture.StringId, []); //any culture that might have a town is present to avoid missing entry errors when trying to spawn wanderers; culture's with no template are added last so their key doesn't affect lookup times in normal usage
+                }
+            }
         }
 
         private void SpawnWanderer(Settlement settlement)
         {
-            var culture = settlement.Culture;
+            var culture = settlement.Owner.Culture;//the new owner is set before tor's culture swap takes place so base on the Owner's culture to guarantee that the wanderer spawned will match the upcoming town culture
             if (culture == null)
             {
                 TORCommon.Log("TORCompanionCampaignBehavior : null culture on " + settlement.StringId, NLog.LogLevel.Warn);
                 return;
             }
 
-            var companionTemplate = _potentialCompanionTemplates[culture.StringId].GetRandomElementInefficiently();
+            var companionTemplate = _companionTemplates[culture.StringId].GetRandomElementInefficiently();
 
             if (companionTemplate == null)
             {
@@ -256,7 +286,7 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void DisableWanderer(Hero wanderer)//should this kill them instead? still unsure on the nuance of dead/disable, except that death shows up in the encyclopedia and the obituary is default text of little relevance
         {
-            _aliveCompanions.Remove(wanderer);
+            //_aliveCompanions.Remove(wanderer);
             //wanderer is removed and disabled; clean up occurs on the weekly tick to clear out outdated wanderers from the object manager
             DisableHeroAction.Apply(wanderer);//takes care of party membership, settlement, prisonership, CharacterState
         }
@@ -264,8 +294,11 @@ namespace TOR_Core.CampaignMechanics.Companions
         private void UnregisterWandererObject(Hero hero)
         {
             //does this handle encyclopedia entries?
+            
             var objectManager = Campaign.Current.CampaignObjectManager;
-            var methodInvoke = AccessTools.Method(typeof(CampaignObjectManager), "UnregisterDeadHero").Invoke(objectManager, new object[] { hero });
+            //var objectManager = Activator.CreateInstance(typeof(CampaignObjectManager));
+            var method = AccessTools.Method(typeof(CampaignObjectManager), "UnregisterDeadHero");
+            method.Invoke(objectManager, new object[] { hero });
         }
 
         private void AdjustEquipment(Hero hero)
@@ -301,14 +334,14 @@ namespace TOR_Core.CampaignMechanics.Companions
 			}
 		}
 
-        private void AddToAliveCompanions(Hero hero)
+        private void AddToSpawnedCompanions(Hero hero)
         {
-            _aliveCompanions.Add(hero);
+            _spawnedCompanions.Add(hero);
         }
 
-        private void RemoveFromAliveCompanions(Hero hero)
+        private void RemoveFromSpawnedCompanions(Hero hero)
         {
-            if(!_aliveCompanions.Remove(hero))
+            if(!_spawnedCompanions.Remove(hero))
             {
                 TORCommon.Log("TORCompanionCampaignBehavior : " + hero.Name + " was not present in the living companion cache and removal was attempted", NLog.LogLevel.Info);
             }

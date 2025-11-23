@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.MountAndBlade;
+﻿using TaleWorlds.MountAndBlade;
+using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.BattleMechanics.Morale
 {
-    public class MoraleMissionLogic : MissionLogic
+    public class AddAgentComponentsMissionLogic : MissionLogic
     {
         public override void OnAgentCreated(Agent agent)
         {
@@ -16,7 +12,8 @@ namespace TOR_Core.BattleMechanics.Morale
             {
                 agent.AddComponent(new UndeadMoraleAgentComponent(agent));
             }
-            else if (agent.IsHuman)
+            
+            if (agent.IsHuman)
             {
                 agent.AddComponent(new AgentVoiceComponent(agent));
             }

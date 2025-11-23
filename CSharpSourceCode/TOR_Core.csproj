@@ -448,9 +448,9 @@
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Morale\AgentVoiceComponent.cs" />
-    <Compile Include="BattleMechanics\Morale\BattleShoutsMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Morale\MoraleMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Voice\AgentVoiceComponent.cs" />
+    <Compile Include="BattleMechanics\Voice\BattleShoutsMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Morale\AddAgentComponentsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
     <Compile Include="BattleMechanics\SFX\PlayerFlyableObjectScript.cs" />
     <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
@@ -477,6 +477,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
+    <Compile Include="BattleMechanics\Voice\TORVoiceManager.cs" />
     <Compile Include="CampaignMechanics\Companions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
@@ -666,7 +667,6 @@
     <Compile Include="Extensions\UI\HeroEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\MissionConversationVMExtension.cs" />
     <Compile Include="Extensions\UI\PartyCharacterVMExtension.cs" />
-    <Compile Include="Extensions\UI\PartyNameplateItemVMExtension.cs" />
     <Compile Include="Extensions\UI\UnitEncyclopediaVMExtension.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionAttribute.cs" />
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />

@@ -27,8 +27,15 @@ namespace TOR_Core.Items
         {
             if (propertyName == "ImageId")
             {
-                var item = MBObjectManager.Instance.GetObject<ItemObject>((string)identifier);
-                if (item != null) _isMagicItem = item.IsMagicalItem();
+                if (identifier != null)
+                {
+                    var item = MBObjectManager.Instance.GetObject<ItemObject>((string)identifier);
+                    if (item != null) _isMagicItem = item.IsMagicalItem();
+                }
+                else
+                {
+                    _isMagicItem = false;
+                }
             }
         }
 

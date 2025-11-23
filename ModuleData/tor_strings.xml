@@ -99,17 +99,25 @@
   
   
     <string id="priest_blessing_party_1.cult_of_shallya" text= "In the name of Shallya, I bless you."/>
-  <string id="priest_blessings_decline.cult_of_shallya" text= "You have been blessed recently, there is no need of giving you the blessing of a god."/>
+	<string id="priest_blessings_decline.cult_of_shallya" text= "You have been blessed recently, there is no need of giving you the blessing of a god."/>
   
   
   <!-- skill training -->
+	<string id="priest_train_hub_quit_p" text= "default train hub quit. defaulted to if no variant exists. If you don't want to write specific lines for every variant, make use of this generic default. Also, consider a more generic string id because this can likely be used in a variety of conversations and save a bunch of duplicate or almost identical lines."/>
+	<string id="teach_skills_dialog_p" text= "default teach_skills_dialog_p. defaulted to if no variant exists."/>
+	<string id="skill_teacher_train_1" text= "default skill_teacher_train_1. defaulted to if no variant exists."/>
+	<string id="skill_teacher_train_2" text= "skill_teacher_train_2. defaulted to if no variant exists."/>
+	<string id="skill_train_hub_select_companion_p" text= "default skill_train_hub_select_companion_p. defaulted to if no variant exists."/>
+	<string id="skill_train_hub_select_companion" text= "default skill_train_hub_select_companion. defaulted to if no variant exists."/>
+	<string id="skill_train_hub_select_companion_decline" text= "default skill_train_hub_select_companion_decline. defaulted to if no variant exists."/>
+	<string id="priest_train_hub_quit_p" text= "default train hub quit. defaulted to if no variant exists."/>
 	<string id="teach_skills_dialog_p.DwarfRunelord" text= "Can you teach my runesmith companion the sacred arts of the runes?"/>
 	<string id="skill_teacher_train_1.DwarfRunelord" text= "I can help, but it will take a substantial amount of time and gold to do so."/>
 	<string id="skill_teacher_train_2.DwarfRunelord" text= "Would you still like me to pass down my teachings?"/>
 	<string id="skill_train_hub_select_companion_p.DwarfRunelord" text= "Yes, please guide one of my companions."/>
 	<string id="skill_train_hub_select_companion.DwarfRunelord" text= "Very well, I will pass down my teachings. Your friend will be sent back when his training is finished."/>	
 	<string id="skill_train_hub_select_companion_decline.DwarfRunelord" text= "There is nobody worth teaching in your party."/>	
-	<string id="priest_train_hub_quit_p.DwarfRunelord" text= "Forgive me, Rhunrik, I've changed my mind."/>	
+	<string id="priest_train_hub_quit_p.DwarfRunelord" text= "Forgive me, Rhunrik, I've changed my mind."/>
   
   	<string id="teach_skills_dialog_p.EngineerEmpire" text= "Can you teach my companion more about Engineering?"/>
 	<string id="skill_teacher_train_1.EngineerEmpire" text= "Sure. I can teach your companions. They will stay here. But I can tell this will cost you dearly "/>
@@ -120,6 +128,10 @@
 	
 	<string id="priest_train_hub_select_companion.EngineerEmpire" text= "Choose a companion you want to teach."/>
 	<string id="skill_train_hub_select_companion_decline.EngineerEmpire" text= "Your companions are not ready yet."/>
+	
+	<string id="teach_skills_dialog_p.EmpireMagister" text= "teach_skills_dialog_p.EmpireMagister holding down the fort!"/>
+	<string id="skill_teacher_train_1.EmpireMagister" text= "skill_teacher_train_1.EmpireMagister place held!"/>
+	<string id="skill_teacher_train_2.EmpireMagister" text= "skill_teacher_train_2.EmpireMagister placeholder!"/>
 	
 	
   
