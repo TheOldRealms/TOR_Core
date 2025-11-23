@@ -15,7 +15,7 @@ namespace TOR_Core.Extensions.UI
         private ViewModelExtensionManager()
         {
             Instance = this;
-            RegisterExtensions();
+            CollectViewModelExtensions();
         }
 
         internal void RegisterExtension(IViewModelExtension extension, ViewModel vm)
@@ -36,26 +36,21 @@ namespace TOR_Core.Extensions.UI
 
         public static void Initialize() => _ = new ViewModelExtensionManager();
 
-        public void RegisterExtensions()
+        public void CollectViewModelExtensions()
         {
-            Type[] types =
-                {
-                    typeof(CharacterDeveloperVMExtension),
-                    typeof(HeroEncyclopediaVMExtension),
-                    typeof(MissionConversationVMExtension),
-                    typeof(PartyCharacterVMExtension),
-                    typeof(PartyVMExtension),
-                    typeof(TORMapInfoVMExtension),
-                    typeof(UnitEncyclopediaVMExtension),
-                    typeof(SPItemVMExtension)
-                };
-            foreach (var type in types)
+
+            IEnumerable<Assembly> assemblies = AccessTools.AllAssemblies();
+            foreach (Assembly assembly in assemblies)
             {
-                if ((typeof(IViewModelExtension)).IsAssignableFrom(type))
+                if (assembly.IsDynamic) continue;
+                foreach (var type in assembly.GetTypesSafe())
                 {
-                    if (type.GetCustomAttribute<ViewModelExtensionAttribute>()?.BaseType != null)
+                    if ((typeof(IViewModelExtension)).IsAssignableFrom(type))
                     {
-                        ExtensionTypes.Add(type.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType, type);
+                        if (type.GetCustomAttribute<ViewModelExtensionAttribute>()?.BaseType != null)
+                        {
+                            ExtensionTypes.Add(type.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType, type);
+                        }
                     }
                 }
             }

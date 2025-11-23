@@ -64,7 +64,7 @@ namespace TOR_Core.GameManagers
             foreach (var unit in characterslist)
             {
                 int num = 1;
-                if (unit.IsSoldier) num = 5;
+                if (unit.IsSoldier) num = 4;
                 party.AddCharacter(unit, num);
             }
             return party;
