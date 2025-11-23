@@ -207,8 +207,8 @@
 	<SpecializationOption Id="priest_ulric" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_ulric_priest_equipment">
 		<Name>{=tor_priest_ulric_name}Warrior Priest of Ulric</Name>
 		<Description>{=tor_priest_ulric_desc}A warrior-priest of Ulric, god of winter, wolves, and war.</Description>
-		<PositiveEffect>{=tor_priest_ulric_positive}Blessing of the Winter Wolf</PositiveEffect>
-		<NegativeEffect>{=tor_priest_ulric_negative}Disdains ranged combat</NegativeEffect>
+		<PositiveEffect></PositiveEffect>
+		<NegativeEffect></NegativeEffect>
 		<SkillsToIncrease>
 			<string>TwoHanded</string>
 			<string>Faith</string>
@@ -225,8 +225,6 @@
 	<SpecializationOption Id="knight_blazing_sun" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment">
 		<Name>{=tor_knight_blazing_sun_name}Order of the Blazing Sun</Name>
 		<Description>{=tor_knight_blazing_sun_desc}Knights of Myrmidia, masters of strategy and warfare from Talabheim.</Description>
-		<PositiveEffect>{=tor_knight_blazing_sun_positive}Strategic brilliance and martial prowess</PositiveEffect>
-		<NegativeEffect>{=tor_knight_blazing_sun_negative}Devoted to foreign goddess</NegativeEffect>
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Tactics</string>
@@ -237,8 +235,6 @@
 	<SpecializationOption Id="knight_panthers" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment">
 		<Name>{=tor_knight_panthers_name}Knight Panthers</Name>
 		<Description>{=tor_knight_panthers_desc}Elite secular knights from Carroburg, known for their ferocity.</Description>
-		<PositiveEffect>{=tor_knight_panthers_positive}Ferocious and relentless in battle</PositiveEffect>
-		<NegativeEffect>{=tor_knight_panthers_negative}Aggressive and territorial</NegativeEffect>
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>Riding</string>
@@ -249,8 +245,6 @@
 	<SpecializationOption Id="knight_white_wolf" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_empire_knight_equipment">
 		<Name>{=tor_knight_white_wolf_name}Knights of the White Wolf</Name>
 		<Description>{=tor_knight_white_wolf_desc}Devoted followers of Ulric from Middenheim, fierce and relentless.</Description>
-		<PositiveEffect>{=tor_knight_white_wolf_positive}Ulric's blessing in winter warfare</PositiveEffect>
-		<NegativeEffect>{=tor_knight_white_wolf_negative}Contempt for cowardice</NegativeEffect>
 		<SkillsToIncrease>
 			<string>TwoHanded</string>
 			<string>Athletics</string>
