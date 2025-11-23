@@ -434,14 +434,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
             base.OnFinalize();
 
-
             // Clean up ViewModel
             _dataSource?.OnFinalize();
             _dataSource = null;
 
             // Clean up GauntletLayer
+            // Note: CharacterCreationManager handles layer lifecycle via GetLayers() pattern
+            // The framework automatically calls GauntletLayer.OnFinalize() which does full cleanup
             _gauntletLayer = null;
-
         }
 
         /// <summary>

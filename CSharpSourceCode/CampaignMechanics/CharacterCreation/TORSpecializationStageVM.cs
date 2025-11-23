@@ -32,10 +32,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public SpecializationOptionVM(string name, string description, object data, Action<SpecializationOptionVM> onSelect, string iconSprite = "",
             string positiveEffect = "", string negativeEffect = "")
         {
+            // Validate required parameters
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException(nameof(name), "Specialization option name cannot be null or empty");
+            if (onSelect == null)
+                throw new ArgumentNullException(nameof(onSelect), "OnSelect callback cannot be null");
+
             _name = name;
-            _description = description;
-            _positiveEffect = positiveEffect ?? "";
-            _negativeEffect = negativeEffect ?? "";
+            _description = description ?? string.Empty;
+            _positiveEffect = positiveEffect ?? string.Empty;
+            _negativeEffect = negativeEffect ?? string.Empty;
             _iconSprite = iconSprite ?? "traits_magic_icon"; // Default placeholder
             _data = data;
             _onSelect = onSelect;

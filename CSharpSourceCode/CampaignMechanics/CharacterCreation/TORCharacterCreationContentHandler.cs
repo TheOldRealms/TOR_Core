@@ -1177,30 +1177,46 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 foreach (var attributeRaw in specializationOption.AttributesToIncrease)
                 {
-                    // Only apply if specialization changes a different attribute from profession
-                    // (Profession attribute is already applied by the native system)
-                    if (attributeRaw != professionAttribute)
-                    {
-                        bool isDecrease = attributeRaw.StartsWith("-");
-                        string attributeName = isDecrease ? attributeRaw.Substring(1) : attributeRaw;
+                    bool isDecrease = attributeRaw.StartsWith("-");
+                    string attributeName = isDecrease ? attributeRaw.Substring(1) : attributeRaw;
 
+                    // Check if this attribute matches the profession attribute
+                    bool matchesProfessionAttribute = !string.IsNullOrEmpty(professionAttribute) &&
+                                                      attributeName.Equals(professionAttribute, StringComparison.OrdinalIgnoreCase);
+
+                    // If it matches profession attribute, check if it's already been applied by native system
+                    if (matchesProfessionAttribute)
+                    {
                         var attribute = Attributes.All.FirstOrDefault(x => x.StringId == attributeName.ToLower());
                         if (attribute != null)
                         {
-                            int beforeAttr = hero.GetAttributeValue(attribute);
-                            int changeAmount = isDecrease ? -AttributeLevelToAdd : AttributeLevelToAdd;
-                            hero.HeroDeveloper.AddAttribute(attribute, changeAmount, false);
+                            int currentValue = hero.GetAttributeValue(attribute);
+                            const int BaseAttributeValue = 2; // Default starting value for attributes
 
-                            TORCommon.Log($"[TORCC]     Attribute {attributeName}: {beforeAttr} -> {hero.GetAttributeValue(attribute)} (change: {(isDecrease ? "-" : "+")}{AttributeLevelToAdd})", NLog.LogLevel.Info);
+                            // If attribute is already above base value, profession bonus was already applied
+                            bool professionBonusAlreadyApplied = currentValue > BaseAttributeValue;
+
+                            if (professionBonusAlreadyApplied && !isDecrease)
+                            {
+                                TORCommon.Log($"[TORCC]     Skipping {attributeName} (same as profession attribute and already applied)", NLog.LogLevel.Info);
+                                continue;
+                            }
                         }
-                        else
-                        {
-                            TORCommon.Log($"[TORCC]     ERROR: Could not find attribute '{attributeName}'", NLog.LogLevel.Error);
-                        }
+                    }
+
+                    // Apply the attribute change
+                    var attributeToModify = Attributes.All.FirstOrDefault(x => x.StringId == attributeName.ToLower());
+                    if (attributeToModify != null)
+                    {
+                        int beforeAttr = hero.GetAttributeValue(attributeToModify);
+                        int changeAmount = isDecrease ? -AttributeLevelToAdd : AttributeLevelToAdd;
+                        hero.HeroDeveloper.AddAttribute(attributeToModify, changeAmount, false);
+
+                        TORCommon.Log($"[TORCC]     Attribute {attributeName}: {beforeAttr} -> {hero.GetAttributeValue(attributeToModify)} (change: {(isDecrease ? "-" : "+")}{AttributeLevelToAdd})", NLog.LogLevel.Info);
                     }
                     else
                     {
-                        TORCommon.Log($"[TORCC]     Skipping {attributeRaw} (same as profession attribute)", NLog.LogLevel.Info);
+                        TORCommon.Log($"[TORCC]     ERROR: Could not find attribute '{attributeName}'", NLog.LogLevel.Error);
                     }
                 }
             }
