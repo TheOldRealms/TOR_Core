@@ -43,14 +43,18 @@
                           <!--Attribute Name and Value-->
                           <Widget DataSource="{AttributeVM}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" DoNotPassEventsToChildren="true">
                             <Children>
-                              <!-- Normal state (no change) -->
-                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasIncreasedInCurrentStage" IsHidden="@HasDecreasedInCurrentStage" Parameter.IsNotVisible="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                              <!-- Normal state (no change) - visible when NOT increased AND NOT decreased -->
+                              <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsHidden="@HasIncreasedInCurrentStage" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                 <Children>
-                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
-                                  <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#AAAAAAFF" Text="@CurrentValueText" ClipContents="false" />
+                                  <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsHidden="@HasDecreasedInCurrentStage" StackLayout.LayoutMethod="HorizontalLeftToRight">
+                                    <Children>
+                                      <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
+                                      <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#AAAAAAFF" Text="@CurrentValueText" ClipContents="false" />
+                                    </Children>
+                                  </ListPanel>
                                 </Children>
                               </ListPanel>
-                              <!-- Highlighted state (increased) -->
+                              <!-- Increased state (green) - visible when increased -->
                               <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasIncreasedInCurrentStage" DoNotPassEventsToChildren="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                 <Children>
                                   <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontColor="#E3E172FF" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
@@ -58,7 +62,7 @@
                                   <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontSize="24" Brush.TextHorizontalAlignment="Center" Brush.TextVerticalAlignment="Center" Brush.FontColor="#E3E172FF" Text="@CurrentValueText" ClipContents="false" />
                                 </Children>
                               </ListPanel>
-                              <!-- Decreased state (red) -->
+                              <!-- Decreased state (red) - visible when decreased -->
                               <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsVisible="@HasDecreasedInCurrentStage" DoNotPassEventsToChildren="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
                                 <Children>
                                   <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Brush.FontColor="#FF5555FF" Brush.FontSize="24" Text="@NameText" ClipContents="false" MarginRight="8" />
@@ -93,7 +97,10 @@
                                           </Widget>
                                         </ItemTemplate>
                                       </ListPanel>
+                                      <!-- Green up arrow for increased focus -->
                                       <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" Sprite="General\CharacterCreation\increasing_icon" Color="#99DC30FF" MarginLeft="5" IsVisible="@HasIncreasedInCurrentStage" VerticalAlignment="Center" />
+                                      <!-- Red down arrow for decreased focus -->
+                                      <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="9" SuggestedHeight="13" Sprite="General\CharacterCreation\increasing_icon" Color="#FF5555FF" MarginLeft="5" IsVisible="@HasDecreasedInCurrentStage" VerticalAlignment="Center" RenderTransformPivot="0.5,0.5" RenderTransform="Scale(1,-1)" />
                                     </Children>
                                   </ListPanel>
                                 </Children>

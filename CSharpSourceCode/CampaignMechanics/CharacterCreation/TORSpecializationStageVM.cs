@@ -51,7 +51,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_name != value)
                 {
                     _name = value;
-                    OnPropertyChangedWithValue(value, nameof(Name));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_description != value)
                 {
                     _description = value;
-                    OnPropertyChangedWithValue(value, nameof(Description));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_positiveEffect != value)
                 {
                     _positiveEffect = value;
-                    OnPropertyChangedWithValue(value, nameof(PositiveEffect));
+                    OnPropertyChangedWithValue(value);
                     OnPropertyChangedWithValue(!string.IsNullOrEmpty(value), nameof(HasPositiveEffect));
                 }
             }
@@ -94,7 +94,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_negativeEffect != value)
                 {
                     _negativeEffect = value;
-                    OnPropertyChangedWithValue(value, nameof(NegativeEffect));
+                    OnPropertyChangedWithValue(value);
                     OnPropertyChangedWithValue(!string.IsNullOrEmpty(value), nameof(HasNegativeEffect));
                 }
             }
@@ -115,7 +115,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_iconSprite != value)
                 {
                     _iconSprite = value;
-                    OnPropertyChangedWithValue(value, nameof(IconSprite));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -129,7 +129,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_isSelected != value)
                 {
                     _isSelected = value;
-                    OnPropertyChangedWithValue(value, nameof(IsSelected));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -189,7 +189,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             _currentCharacter.FillFrom(CharacterObject.PlayerCharacter);
             _currentCharacter.OnPropertyChangedWithValue("BodyProperties",
-                CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment, -1).ToString());
+                CharacterObject.PlayerCharacter.GetBodyProperties(CharacterObject.PlayerCharacter.Equipment).ToString());
             //_currentCharacter.FillFrom(Hero.MainHero);
 
             // Initialize custom gained properties controller to show specialization bonuses/penalties
@@ -205,7 +205,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_titleText != value)
                 {
                     _titleText = value;
-                    OnPropertyChangedWithValue(value, nameof(TitleText));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -219,7 +219,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_descriptionText != value)
                 {
                     _descriptionText = value;
-                    OnPropertyChangedWithValue(value, nameof(DescriptionText));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -233,7 +233,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_affirmativeText != value)
                 {
                     _affirmativeText = value;
-                    OnPropertyChangedWithValue(value, nameof(AffirmativeText));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -247,7 +247,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_negativeText != value)
                 {
                     _negativeText = value;
-                    OnPropertyChangedWithValue(value, nameof(NegativeText));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -261,7 +261,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_canAdvance != value)
                 {
                     _canAdvance = value;
-                    OnPropertyChangedWithValue(value, nameof(CanAdvance));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -275,7 +275,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_options != value)
                 {
                     _options = value;
-                    OnPropertyChangedWithValue(value, nameof(Options));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -289,7 +289,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_currentCharacter != value)
                 {
                     _currentCharacter = value;
-                    OnPropertyChangedWithValue(value, nameof(CurrentCharacter));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -303,7 +303,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_selectedOption != value)
                 {
                     _selectedOption = value;
-                    OnPropertyChangedWithValue(value, nameof(SelectedOption));
+                    OnPropertyChangedWithValue(value);
                     HasSelection = value != null;
                 }
             }
@@ -318,7 +318,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_hasSelection != value)
                 {
                     _hasSelection = value;
-                    OnPropertyChangedWithValue(value, nameof(HasSelection));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -332,7 +332,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_selectedDescription != value)
                 {
                     _selectedDescription = value;
-                    OnPropertyChangedWithValue(value, nameof(SelectedDescription));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -346,7 +346,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_selectedPositiveEffect != value)
                 {
                     _selectedPositiveEffect = value;
-                    OnPropertyChangedWithValue(value, nameof(SelectedPositiveEffect));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -360,7 +360,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_selectedNegativeEffect != value)
                 {
                     _selectedNegativeEffect = value;
-                    OnPropertyChangedWithValue(value, nameof(SelectedNegativeEffect));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -374,7 +374,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_hasPositiveEffect != value)
                 {
                     _hasPositiveEffect = value;
-                    OnPropertyChangedWithValue(value, nameof(HasPositiveEffect));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -388,7 +388,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_hasNegativeEffect != value)
                 {
                     _hasNegativeEffect = value;
-                    OnPropertyChangedWithValue(value, nameof(HasNegativeEffect));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -402,7 +402,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (_gainedPropertiesController != value)
                 {
                     _gainedPropertiesController = value;
-                    OnPropertyChangedWithValue(value, nameof(GainedPropertiesController));
+                    OnPropertyChangedWithValue(value);
                 }
             }
         }
@@ -606,17 +606,42 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 }
             }
 
-            // Apply attribute change
-            if (!string.IsNullOrEmpty(option.AttributeToIncrease))
+            // Apply attribute changes (can have multiple)
+            if (option.AttributesToIncrease != null && option.AttributesToIncrease.Length > 0)
             {
-                bool isDecrease = option.AttributeToIncrease.StartsWith("-");
-                string attributeId = isDecrease ? option.AttributeToIncrease.Substring(1) : option.AttributeToIncrease;
-                int amount = isDecrease ? -1 : 1;
+                TORCommon.Log($"[UpdateFromOption] Processing {option.AttributesToIncrease.Length} attribute changes", NLog.LogLevel.Info);
 
-                var group = _gainGroups.FirstOrDefault(g => g.Attribute.StringId == attributeId);
-                if (group != null)
+                // Calculate net attribute changes (in case same attribute appears multiple times)
+                var attributeChanges = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                foreach (var attributeRaw in option.AttributesToIncrease)
                 {
-                    group.SetAttributeChange(amount);
+                    bool isDecrease = attributeRaw.StartsWith("-");
+                    string attributeId = isDecrease ? attributeRaw.Substring(1) : attributeRaw;
+                    int amount = isDecrease ? -1 : 1;
+
+                    if (attributeChanges.ContainsKey(attributeId))
+                        attributeChanges[attributeId] += amount;
+                    else
+                        attributeChanges[attributeId] = amount;
+
+                    TORCommon.Log($"[UpdateFromOption]   {attributeRaw} -> attributeId={attributeId}, amount={amount}, total={attributeChanges[attributeId]}", NLog.LogLevel.Info);
+                }
+
+                // Apply each attribute change to the appropriate group
+                foreach (var kvp in attributeChanges)
+                {
+                    TORCommon.Log($"[UpdateFromOption] Applying attribute change: {kvp.Key} = {kvp.Value}", NLog.LogLevel.Info);
+
+                    var group = _gainGroups.FirstOrDefault(g => g.Attribute.StringId.Equals(kvp.Key, StringComparison.OrdinalIgnoreCase));
+                    if (group != null)
+                    {
+                        TORCommon.Log($"[UpdateFromOption]   Found attribute group, calling SetAttributeChange", NLog.LogLevel.Info);
+                        group.SetAttributeChange(kvp.Value);
+                    }
+                    else
+                    {
+                        TORCommon.Log($"[UpdateFromOption]   ERROR: Could not find attribute group for '{kvp.Key}'", NLog.LogLevel.Error);
+                    }
                 }
             }
 
@@ -986,11 +1011,28 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
+        private bool _hasDecreasedInCurrentStage;
+
+        [DataSourceProperty]
+        public bool HasDecreasedInCurrentStage
+        {
+            get => _hasDecreasedInCurrentStage;
+            set
+            {
+                if (_hasDecreasedInCurrentStage != value)
+                {
+                    _hasDecreasedInCurrentStage = value;
+                    OnPropertyChangedWithValue(value, nameof(HasDecreasedInCurrentStage));
+                }
+            }
+        }
+
         public void SetChange(int amount)
         {
             _focusChange = amount;
             _currentFocus = _baseFocus + amount;
             HasIncreasedInCurrentStage = amount > 0;
+            HasDecreasedInCurrentStage = amount < 0;
             OnPropertyChangedWithValue(_currentFocus, nameof(CurrentFocus));
 
             TORCommon.Log($"[SpecSkillVM] {_skill.StringId}: baseFocus={_baseFocus}, amount={amount}, currentFocus={_currentFocus}", NLog.LogLevel.Info);

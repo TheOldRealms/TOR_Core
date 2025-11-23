@@ -122,6 +122,8 @@
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>TwoHanded</string>
+			<string>-Spellcraft</string>
+			<string>-Spellcraft</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Vigor</AttributeToIncrease>
 	</SpecializationOption>
@@ -141,6 +143,7 @@
 			<string>Medicine</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease>-Vigor</AttributeToIncrease>
 	</SpecializationOption>
 
 	<!-- Mousillon vampires use same bloodline options -->
@@ -198,7 +201,7 @@
 			<string>OneHanded</string>
 			<string>Faith</string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<AttributeToIncrease>Discipline</AttributeToIncrease>
 	</SpecializationOption>
 
 	<SpecializationOption Id="priest_ulric" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_ulric_priest_equipment">
@@ -211,7 +214,8 @@
 			<string>Faith</string>
 		</SkillsToIncrease>
 		<AttributeToIncrease>Endurance</AttributeToIncrease>
-		<AttributeToIncrease>Faith</AttributeToIncrease>
+		<AttributeToIncrease>Vigor</AttributeToIncrease>
+		<AttributeToIncrease>-Discipline</AttributeToIncrease>
 	</SpecializationOption>
 
 	<!-- =============================================== -->

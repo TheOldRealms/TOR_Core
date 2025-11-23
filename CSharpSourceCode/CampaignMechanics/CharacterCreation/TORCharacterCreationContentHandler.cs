@@ -124,9 +124,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 new TextObject("{=tor_cc_profession_summary_str}Profession"), new TextObject("{TOR_CC_PROFESSION}"), playerCharacterList,
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
                     GetPlayerMenuCharacterArgs("player_character", manager)));
-
-
-            // NEW 1.3.1 Pattern: Create NarrativeMenuOption for each option
+            
             foreach (var option in _options)
             {
                 // Determine target menu based on stage number
@@ -354,17 +352,25 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _originalSkillLevels.Clear();
             _originalSkillFocus.Clear();
 
-            // Remove attribute bonus
-            if (!string.IsNullOrEmpty(option.AttributeToIncrease))
+            // Remove attribute bonuses (can have multiple)
+            if (option.AttributesToIncrease != null && option.AttributesToIncrease.Length > 0)
             {
-                var attribute = Attributes.All.FirstOrDefault(x => x.StringId == option.AttributeToIncrease.ToLower());
-                if (attribute != null)
+                foreach (var attributeRaw in option.AttributesToIncrease)
                 {
-                    int beforeAttr = hero.GetAttributeValue(attribute);
-                    hero.HeroDeveloper.AddAttribute(attribute, -AttributeLevelToAdd, false);
-                    int afterAttr = hero.GetAttributeValue(attribute);
+                    bool isDecrease = attributeRaw.StartsWith("-");
+                    string attributeName = isDecrease ? attributeRaw.Substring(1) : attributeRaw;
 
-                    TORCommon.Log($"[TORCC]   Attribute {option.AttributeToIncrease}: {beforeAttr} -> {afterAttr}", NLog.LogLevel.Info);
+                    var attribute = Attributes.All.FirstOrDefault(x => x.StringId == attributeName.ToLower());
+                    if (attribute != null)
+                    {
+                        int beforeAttr = hero.GetAttributeValue(attribute);
+                        // Reverse the change: if it was +1, now -1; if it was -1, now +1
+                        int changeAmount = isDecrease ? AttributeLevelToAdd : -AttributeLevelToAdd;
+                        hero.HeroDeveloper.AddAttribute(attribute, changeAmount, false);
+                        int afterAttr = hero.GetAttributeValue(attribute);
+
+                        TORCommon.Log($"[TORCC]   Attribute {attributeName}: {beforeAttr} -> {afterAttr} (reversed {attributeRaw})", NLog.LogLevel.Info);
+                    }
                 }
             }
         }
@@ -422,10 +428,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         }
                     }
 
+                    // TODO: Update for multiple attributes - this method is currently unused
                     // Override attribute if specialization specifies one
-                    if (!string.IsNullOrEmpty(specializationOption.AttributeToIncrease))
+                    if (specializationOption.AttributesToIncrease != null && specializationOption.AttributesToIncrease.Length > 0)
                     {
-                        netAttributeChange = specializationOption.AttributeToIncrease;
+                        // For now, just take the first attribute (this method isn't called anywhere)
+                        netAttributeChange = specializationOption.AttributesToIncrease[0];
                     }
                 }
             }
@@ -863,8 +871,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
         /// <summary>
         /// Apply stored specializations (lore/career) at the very end of character creation
-        /// This prevents issues where going back and changing profession would keep the old specialization
-        /// NEW: Uses _selectedSpecializationOptionId from XML with hard-coded mapping to careers/lores
         /// </summary>
         private void ApplyStoredSpecializations()
         {
@@ -989,7 +995,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
         }
 
-        protected void SetHeroAge(float age)
+        private void SetHeroAge(float age)
         {
             Hero.MainHero.SetBirthDay(CampaignTime.YearsFromNow(-age));
         }
@@ -1161,26 +1167,40 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 }
             }
 
-            // Apply attribute if specialization specifies one DIFFERENT from profession
-            if (!string.IsNullOrEmpty(specializationOption.AttributeToIncrease))
+            // Apply attributes (specialization can have multiple)
+            if (specializationOption.AttributesToIncrease != null && specializationOption.AttributesToIncrease.Length > 0)
             {
-                var professionOption = _options?.FirstOrDefault(opt => opt.Id == _selectedProfessionId);
+                CharacterCreationOption professionOption = _options?.FirstOrDefault(opt => opt.Id == _selectedProfessionId);
                 string professionAttribute = professionOption?.AttributeToIncrease;
 
-                // Only apply if specialization changes the attribute from profession
-                if (specializationOption.AttributeToIncrease != professionAttribute)
+                TORCommon.Log($"[TORCC]   Processing {specializationOption.AttributesToIncrease.Length} attribute changes", NLog.LogLevel.Info);
+
+                foreach (var attributeRaw in specializationOption.AttributesToIncrease)
                 {
-                    bool isDecrease = specializationOption.AttributeToIncrease.StartsWith("-");
-                    string attributeName = isDecrease ? specializationOption.AttributeToIncrease.Substring(1) : specializationOption.AttributeToIncrease;
-
-                    var attribute = Attributes.All.FirstOrDefault(x => x.StringId == attributeName.ToLower());
-                    if (attribute != null)
+                    // Only apply if specialization changes a different attribute from profession
+                    // (Profession attribute is already applied by the native system)
+                    if (attributeRaw != professionAttribute)
                     {
-                        int beforeAttr = hero.GetAttributeValue(attribute);
-                        int changeAmount = isDecrease ? -AttributeLevelToAdd : AttributeLevelToAdd;
-                        hero.HeroDeveloper.AddAttribute(attribute, changeAmount, false);
+                        bool isDecrease = attributeRaw.StartsWith("-");
+                        string attributeName = isDecrease ? attributeRaw.Substring(1) : attributeRaw;
 
-                        TORCommon.Log($"[TORCC]   Attribute {attributeName}: {beforeAttr} -> {hero.GetAttributeValue(attribute)} (replaces profession attribute)", NLog.LogLevel.Info);
+                        var attribute = Attributes.All.FirstOrDefault(x => x.StringId == attributeName.ToLower());
+                        if (attribute != null)
+                        {
+                            int beforeAttr = hero.GetAttributeValue(attribute);
+                            int changeAmount = isDecrease ? -AttributeLevelToAdd : AttributeLevelToAdd;
+                            hero.HeroDeveloper.AddAttribute(attribute, changeAmount, false);
+
+                            TORCommon.Log($"[TORCC]     Attribute {attributeName}: {beforeAttr} -> {hero.GetAttributeValue(attribute)} (change: {(isDecrease ? "-" : "+")}{AttributeLevelToAdd})", NLog.LogLevel.Info);
+                        }
+                        else
+                        {
+                            TORCommon.Log($"[TORCC]     ERROR: Could not find attribute '{attributeName}'", NLog.LogLevel.Error);
+                        }
+                    }
+                    else
+                    {
+                        TORCommon.Log($"[TORCC]     Skipping {attributeRaw} (same as profession attribute)", NLog.LogLevel.Info);
                     }
                 }
             }
@@ -1206,40 +1226,38 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             var culture = CharacterObject.PlayerCharacter.Culture;
 
-            if (culture.StringId == TORConstants.Cultures.ASRAI || culture.StringId == TORConstants.Cultures.EONIR)
+            switch (culture.StringId)
             {
-                keyValue = default_elf;
-                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("elf");
-            }
-            else if (culture.StringId == TORConstants.Cultures.EMPIRE)
-            {
-                keyValue = default_empire;
-                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
-            }
-            else if (culture.StringId == TORConstants.Cultures.BRETONNIA || culture.StringId == TORConstants.Cultures.MOUSILLON)
-            {
-                keyValue = default_bretonnia;
-                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
-            }
-            else if (culture.StringId == TORConstants.Cultures.SYLVANIA)
-            {
-                keyValue = default_vc;
-                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
-            }
-            else if (culture.StringId == TORConstants.Cultures.DAWI)
-            {
-                keyValue = default_dwarf;
-                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("dwarf");
-            }
-            else if (culture.StringId == TORConstants.Cultures.GREENSKIN)
-            {
-                keyValue = default_orc;
-                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("orc");
-            }
-            else
-            {
-                keyValue = default_empire;
-                CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+                case TORConstants.Cultures.ASRAI:
+                case TORConstants.Cultures.EONIR:
+                    keyValue = default_elf;
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("elf");
+                    break;
+                case TORConstants.Cultures.EMPIRE:
+                    keyValue = default_empire;
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+                    break;
+                case TORConstants.Cultures.BRETONNIA:
+                case TORConstants.Cultures.MOUSILLON:
+                    keyValue = default_bretonnia;
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+                    break;
+                case TORConstants.Cultures.SYLVANIA:
+                    keyValue = default_vc;
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+                    break;
+                case TORConstants.Cultures.DAWI:
+                    keyValue = default_dwarf;
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("dwarf");
+                    break;
+                case TORConstants.Cultures.GREENSKIN:
+                    keyValue = default_orc;
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("orc");
+                    break;
+                default:
+                    keyValue = default_empire;
+                    CharacterObject.PlayerCharacter.Race = FaceGen.GetRaceOrDefault("human");
+                    break;
             }
 
             if (BodyProperties.FromString(keyValue, out BodyProperties properties))

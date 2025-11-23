@@ -83,11 +83,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public string[] SkillsToIncrease;
 
         /// <summary>
-        /// Single attribute to increase or decrease by 1 point
-        /// Same format as CharacterCreationOption.AttributeToIncrease
+        /// Attributes to increase or decrease by 1 point each
+        /// Can have multiple attribute changes (e.g., +Vigor, +Endurance, -Discipline)
         /// Prefix with "-" to decrease instead of increase
         /// Valid values: Vigor, Control, Endurance, Cunning, Social, Intelligence, -Vigor, -Control, etc.
+        /// XML format: Multiple <AttributeToIncrease> elements
         /// </summary>
-        public string AttributeToIncrease;
+        [XmlElement("AttributeToIncrease")]
+        public string[] AttributesToIncrease;
     }
 }

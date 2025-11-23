@@ -43,15 +43,10 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
     }
 
-    public class TORCCEquipmentUpdateException : TORCharacterCreationException
+    public class TORCCEquipmentUpdateException(string equipmentSetId, Exception innerException)
+        : TORCharacterCreationException($"Failed to update equipment with roster '{equipmentSetId}'", innerException)
     {
-        public string EquipmentSetId { get; }
-
-        public TORCCEquipmentUpdateException(string equipmentSetId, Exception innerException)
-            : base($"Failed to update equipment with roster '{equipmentSetId}'", innerException)
-        {
-            EquipmentSetId = equipmentSetId;
-        }
+        public string EquipmentSetId { get; } = equipmentSetId;
     }
 
     public class TORCCInvalidOptionTypeException : TORCharacterCreationException

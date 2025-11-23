@@ -285,9 +285,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 return;
             }
-
-            // Reset the banner editor flag after first tick
-
+            
             // Handle hotkey input
             HandleLayerInput();
         }
@@ -539,18 +537,21 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 }
             }
 
-            // Remove attribute points
-            if (!string.IsNullOrEmpty(_currentPreviewOption.AttributeToIncrease))
+            // Remove attribute points (can have multiple)
+            if (_currentPreviewOption.AttributesToIncrease != null && _currentPreviewOption.AttributesToIncrease.Length > 0)
             {
-                bool isDecrease = _currentPreviewOption.AttributeToIncrease.StartsWith("-");
-                string attributeId = isDecrease ? _currentPreviewOption.AttributeToIncrease.Substring(1) : _currentPreviewOption.AttributeToIncrease;
-                int amount = isDecrease ? 1 : -1; // Reverse the operation
-
-                var attribute = Game.Current.ObjectManager.GetObject<CharacterAttribute>(attributeId);
-                if (attribute != null)
+                foreach (var attributeRaw in _currentPreviewOption.AttributesToIncrease)
                 {
-                    hero.HeroDeveloper.AddAttribute(attribute, amount, false);
-                    TORCommon.Log($"[TORCC]   Cleared: {attribute.Name} by {amount}", NLog.LogLevel.Info);
+                    bool isDecrease = attributeRaw.StartsWith("-");
+                    string attributeId = isDecrease ? attributeRaw.Substring(1) : attributeRaw;
+                    int amount = isDecrease ? 1 : -1; // Reverse the operation
+
+                    var attribute = Game.Current.ObjectManager.GetObject<CharacterAttribute>(attributeId);
+                    if (attribute != null)
+                    {
+                        hero.HeroDeveloper.AddAttribute(attribute, amount, false);
+                        TORCommon.Log($"[TORCC]   Cleared: {attribute.Name} by {amount}", NLog.LogLevel.Info);
+                    }
                 }
             }
 
@@ -592,18 +593,21 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 }
             }
 
-            // Apply attribute points
-            if (!string.IsNullOrEmpty(option.AttributeToIncrease))
+            // Apply attribute points (can have multiple)
+            if (option.AttributesToIncrease != null && option.AttributesToIncrease.Length > 0)
             {
-                bool isDecrease = option.AttributeToIncrease.StartsWith("-");
-                string attributeId = isDecrease ? option.AttributeToIncrease.Substring(1) : option.AttributeToIncrease;
-                int amount = isDecrease ? -1 : 1;
-
-                var attribute = Game.Current.ObjectManager.GetObject<CharacterAttribute>(attributeId);
-                if (attribute != null)
+                foreach (var attributeRaw in option.AttributesToIncrease)
                 {
-                    hero.HeroDeveloper.AddAttribute(attribute, amount, false);
-                    TORCommon.Log($"[TORCC]   Preview: {(isDecrease ? "Decreasing" : "Increasing")} {attribute.Name} by {amount}", NLog.LogLevel.Info);
+                    bool isDecrease = attributeRaw.StartsWith("-");
+                    string attributeId = isDecrease ? attributeRaw.Substring(1) : attributeRaw;
+                    int amount = isDecrease ? -1 : 1;
+
+                    var attribute = Game.Current.ObjectManager.GetObject<CharacterAttribute>(attributeId);
+                    if (attribute != null)
+                    {
+                        hero.HeroDeveloper.AddAttribute(attribute, amount, false);
+                        TORCommon.Log($"[TORCC]   Preview: {(isDecrease ? "Decreasing" : "Increasing")} {attribute.Name} by {amount}", NLog.LogLevel.Info);
+                    }
                 }
             }
 
