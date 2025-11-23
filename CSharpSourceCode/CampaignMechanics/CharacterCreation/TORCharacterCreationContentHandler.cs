@@ -65,8 +65,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var path = TORPaths.TORCoreModuleExtendedDataPath + "tor_cc_options.xml";
                 XmlSerializer ser = new(typeof(List<CharacterCreationOption>));
                 _options = ser.Deserialize(File.OpenRead(path)) as List<CharacterCreationOption>;
+
+                if (_options == null)
+                {
+                    throw new TORCCXmlLoadException(path,
+                        new InvalidOperationException("XML deserialization returned null - file may be empty or invalid"));
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is not TORCCXmlLoadException)
             {
                 var path = TORPaths.TORCoreModuleExtendedDataPath + "tor_cc_options.xml";
                 throw new TORCCXmlLoadException(path, ex);
@@ -77,8 +83,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var specPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_specialization_options.xml";
                 XmlSerializer specSer = new(typeof(List<SpecializationOption>));
                 _specializationOptions = specSer.Deserialize(File.OpenRead(specPath)) as List<SpecializationOption>;
+
+                if (_specializationOptions == null)
+                {
+                    throw new TORCCXmlLoadException(specPath,
+                        new InvalidOperationException("XML deserialization returned null - file may be empty or invalid"));
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is not TORCCXmlLoadException)
             {
                 var specPath = TORPaths.TORCoreModuleExtendedDataPath + "tor_specialization_options.xml";
                 throw new TORCCXmlLoadException(specPath, ex);

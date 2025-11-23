@@ -550,10 +550,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 {
                     foreach (var skill in option.Args.AffectedSkills)
                     {
-                        if (!skillBonuses.ContainsKey(skill))
-                            skillBonuses[skill] = 0;
-
-                        skillBonuses[skill] += option.Args.FocusToAdd;
+                        if (skillBonuses.TryGetValue(skill, out int currentBonus))
+                        {
+                            skillBonuses[skill] = currentBonus + option.Args.FocusToAdd;
+                        }
+                        else
+                        {
+                            skillBonuses[skill] = option.Args.FocusToAdd;
+                        }
                         TORCommon.Log($"[Specialization]   Skill {skill.StringId}: +{option.Args.FocusToAdd} (total: {skillBonuses[skill]})", NLog.LogLevel.Info);
                     }
                 }
@@ -562,10 +566,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (option.Args.EffectedAttribute != null && option.Args.AttributeLevelToAdd > 0)
                 {
                     var attr = option.Args.EffectedAttribute;
-                    if (!attributeBonuses.ContainsKey(attr))
-                        attributeBonuses[attr] = 0;
-
-                    attributeBonuses[attr] += option.Args.AttributeLevelToAdd;
+                    if (attributeBonuses.TryGetValue(attr, out int currentBonus))
+                    {
+                        attributeBonuses[attr] = currentBonus + option.Args.AttributeLevelToAdd;
+                    }
+                    else
+                    {
+                        attributeBonuses[attr] = option.Args.AttributeLevelToAdd;
+                    }
                     TORCommon.Log($"[Specialization]   Attribute {attr.Name}: +{option.Args.AttributeLevelToAdd} (total: {attributeBonuses[attr]})", NLog.LogLevel.Info);
                 }
             }
@@ -603,10 +611,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     string skillId = isDecrease ? skillIdRaw.Substring(1) : skillIdRaw;
                     int amount = isDecrease ? -1 : 1;
 
-                    if (skillChanges.ContainsKey(skillId))
-                        skillChanges[skillId] += amount;
+                    if (skillChanges.TryGetValue(skillId, out int currentAmount))
+                    {
+                        skillChanges[skillId] = currentAmount + amount;
+                    }
                     else
+                    {
                         skillChanges[skillId] = amount;
+                    }
 
                     TORCommon.Log($"[UpdateFromOption]   {skillIdRaw} -> skillId={skillId}, amount={amount}, total={skillChanges[skillId]}", NLog.LogLevel.Info);
                 }

@@ -34,8 +34,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private bool _shouldAutoSkip;
         private TORCharacterCreationContentHandler _cachedHandler;
 
-        // Static flag to track if we've visited this stage before (persists across reconstructions)
-        private static bool _wasVisited = false;
+        // Instance flag to track if we've visited this stage before (within this character creation session)
+        // Changed from static to prevent cross-session contamination when creating multiple characters
+        private bool _wasVisited = false;
 
         // Track currently applied preview bonuses to properly clear them when switching options
         private SpecializationOption _currentPreviewOption = null;
@@ -60,10 +61,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 return;
             }
 
-            // NEW: Check if there are any specialization options available for this profession in XML
+            // Check if there are any specialization options available for this profession in XML
             string professionId = handler.GetSelectedProfessionId();
             bool hasOptions = handler.HasSpecializationOptions(professionId);
-
 
             if (!hasOptions)
             {
@@ -72,8 +72,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 return;
             }
 
-            // NEVER auto-skip if we're just showing the UI - let the user interact
-            // Auto-skip is only for professions without options
             _shouldAutoSkip = false;
 
             // Mark that we're now past the narrative stages (Stage 4+)
@@ -129,31 +127,35 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
 
             // Create custom ViewModel with equipment preview callback
-            _dataSource = new TORSpecializationStageVM(_characterCreationManager, title, description, new Action(NextStage), _affirmativeActionText, new Action(PreviousStage),
-                _negativeActionText, (selectedOption) =>
-                {
-                    if (selectedOption?.Data == null)
-                    {
-                        return;
-                    }
-
-                    Equipment equipment = GetEquipmentForOption(selectedOption.Data);
-                    _dataSource.UpdateCharacterEquipment(equipment);
-
-                    // Apply race change immediately if this option has a race
-                    if (selectedOption.Data is SpecializationOption option && !string.IsNullOrEmpty(option.RaceId))
-                    {
-                        ApplyRaceChangeImmediate(option.RaceId);
-                    }
-
-                    // Apply preview bonuses so they show in the gained properties panel
-                    ApplyPreviewBonuses(selectedOption.Data as SpecializationOption);
-                });
+            _dataSource = new TORSpecializationStageVM(_characterCreationManager, title, description,
+                new Action(NextStage), _affirmativeActionText,
+                new Action(PreviousStage), _negativeActionText,
+                OnSpecializationOptionSelected);
 
             // Populate options based on profession type
             PopulateOptions(handler, professionId);
             
             _movie = _gauntletLayer.LoadMovie("TORSpecializationStage", _dataSource);
+        }
+
+        private void OnSpecializationOptionSelected(SpecializationOptionVM selectedOption)
+        {
+            if (selectedOption?.Data == null)
+            {
+                return;
+            }
+
+            Equipment equipment = GetEquipmentForOption(selectedOption.Data);
+            _dataSource.UpdateCharacterEquipment(equipment);
+
+            // Apply race change immediately if this option has a race
+            if (selectedOption.Data is SpecializationOption option && !string.IsNullOrEmpty(option.RaceId))
+            {
+                ApplyRaceChangeImmediate(option.RaceId);
+            }
+
+            // Apply preview bonuses so they show in the gained properties panel
+            ApplyPreviewBonuses(selectedOption.Data as SpecializationOption);
         }
 
         private void PopulateOptions(TORCharacterCreationContentHandler handler, string professionId)
@@ -433,14 +435,12 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         protected override void OnFinalize()
         {
             base.OnFinalize();
-
-            // Clean up ViewModel
+            
             _dataSource?.OnFinalize();
             _dataSource = null;
 
             // Clean up GauntletLayer
             // Note: CharacterCreationManager handles layer lifecycle via GetLayers() pattern
-            // The framework automatically calls GauntletLayer.OnFinalize() which does full cleanup
             _gauntletLayer = null;
         }
 
@@ -623,10 +623,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         /// </summary>
         private bool IsSpellcaster(string professionId)
         {
-            return professionId == "option_3_empire_magister_apprentice" ||
-                   professionId == "option_3_bretonnia_damsel" ||
-                   professionId == "option_3_we_spellsinger" ||
-                   professionId == "option_3_eo_greylord_apprentice";
+            return professionId == "option_3_empire_magister_apprentice";
         }
 
         private void LogHeroState(string context)
