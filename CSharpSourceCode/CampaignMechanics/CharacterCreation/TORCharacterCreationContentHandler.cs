@@ -254,37 +254,44 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     CharacterObject.PlayerCharacter.IsFemale);
             }
 
+            // Reload culture-specific menu label texts after face creation
+            SetMenuLabelTexts();
         }
 
         private void SetMenuLabelTexts()
         {
+            TextObject originText;
             if (GameTexts.TryGetText("str_tor_cc_origin", out var stage1Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
-                GameTexts.SetVariable("TOR_CC_ORIGIN", stage1Text);
+                originText = stage1Text;
             }
             else
             {
-                GameTexts.SetVariable("TOR_CC_ORIGIN", "Choose your family's background...");
+                originText = new TextObject("Choose your family's background...");
             }
+            MBTextManager.SetTextVariable("TOR_CC_ORIGIN", originText, false);
 
+            TextObject growthText;
             if (GameTexts.TryGetText("str_tor_cc_growth", out var stage2Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
-                GameTexts.SetVariable("TOR_CC_GROWTH", stage2Text);
+                growthText = stage2Text;
             }
             else
             {
-                GameTexts.SetVariable("TOR_CC_GROWTH", "Teenage years...");
+                growthText = new TextObject("Teenage years...");
             }
+            MBTextManager.SetTextVariable("TOR_CC_GROWTH", growthText, false);
 
+            TextObject professionText;
             if (GameTexts.TryGetText("str_tor_cc_profession", out var stage3Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
-                GameTexts.SetVariable("TOR_CC_PROFESSION", stage3Text);
+                professionText = stage3Text;
             }
             else
             {
-                GameTexts.SetVariable("TOR_CC_PROFESSION", "Your starting profession...");
+                professionText = new TextObject("Your starting profession...");
             }
-            
+            MBTextManager.SetTextVariable("TOR_CC_PROFESSION", professionText, false);
         }
 
         public string GetSelectedProfessionId() => _selectedProfessionId;
