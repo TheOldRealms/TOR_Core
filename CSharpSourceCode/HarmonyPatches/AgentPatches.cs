@@ -5,7 +5,9 @@ using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.Voice;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -13,6 +15,20 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatchCategory("LatePatches")]
     public static class AgentPatches
     {
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Agent), "MakeVoice")]
+        public static bool MakeVoicePatch(Agent __instance, SkinVoiceManager.SkinVoiceType voiceType)
+        {
+            if (__instance.IsFemale || !TORConfig.UseAlternativeVoiceManager) return true;
+
+            if (__instance.GetComponent<AgentVoiceComponent>() is AgentVoiceComponent voiceComponent)
+            {
+                voiceComponent.PlayVoiceNonVanilla(voiceType);
+            }
+
+            return false;
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Agent), "GetBattleImportance")]
         public static void BattleImportancePatch(ref float __result, Agent __instance)

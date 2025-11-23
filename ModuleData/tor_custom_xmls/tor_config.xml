@@ -21,4 +21,5 @@
     MinPeaceDays="20"
     MinWarDays="40"
     AIGoldAdjustmentAmount="20000"
+    UseAlternativeVoiceManager="false"
 />

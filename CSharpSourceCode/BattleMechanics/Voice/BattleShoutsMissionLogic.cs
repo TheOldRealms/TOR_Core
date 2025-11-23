@@ -1,11 +1,8 @@
-﻿using System;
-using TaleWorlds.Core;
-using TaleWorlds.LinQuick;
-using TaleWorlds.MountAndBlade;
+﻿using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
 using static TaleWorlds.MountAndBlade.SkinVoiceManager;
 
-namespace TOR_Core.BattleMechanics.Morale
+namespace TOR_Core.BattleMechanics.Voice
 {
     public class BattleShoutsMissionLogic : MissionLogic
     {
@@ -19,7 +16,6 @@ namespace TOR_Core.BattleMechanics.Morale
             {
                 _playerOrderController = team.PlayerOrderController;
                 _playerOrderController.OnOrderIssued += OnOrderIssued;
-                //_playerOrderController.OnSelectedFormationsChanged += OnSelectedFormationsChanged;
             }
         }
 
@@ -33,34 +29,14 @@ namespace TOR_Core.BattleMechanics.Morale
             if (_playerOrderController != null)
             {
                 _playerOrderController.OnOrderIssued -= OnOrderIssued;
-                //_playerOrderController.OnSelectedFormationsChanged -= OnSelectedFormationsChanged;
             }
             _battleEnded = true;
         }
 
-        private void OnSelectedFormationsChanged()
-        {
-            if (_battleEnded || !_deploymentFinished) return;
-            foreach (var formation in _playerOrderController.SelectedFormations)
-            {
-                formation.ApplyActionOnEachUnit(agent =>
-                {
-                    if (agent != null &&
-                    agent.IsActive() &&
-                    agent.IsHuman &&
-                    !agent.IsUndead() &&
-                    !agent.IsTreeSpirit() &&
-                    agent.CurrentlyUsedGameObject == null &&
-                    agent.GetComponent<AgentVoiceComponent>() is AgentVoiceComponent component)
-                    {
-                        component.SetWantsToPlayVoiceWithDelay(VoiceType.HorseStop, 0.5f);
-                    }
-                });
-            }
-        }
-
         private void OnOrderIssued(OrderType orderType, TaleWorlds.Library.MBReadOnlyList<Formation> appliedFormations, OrderController orderController, params object[] delegateParams)
         {
+            /* TODO: enable or delete this when TW has fixed base implementation. If we opt to use this, then we need to patch out
+             *  the vanilla voice call in OrderController
             if (_battleEnded || !_deploymentFinished) return;
 
             foreach (var formation in appliedFormations)
@@ -74,24 +50,10 @@ namespace TOR_Core.BattleMechanics.Morale
                     repeaterAgent.CurrentlyUsedGameObject == null &&
                     repeaterAgent.GetComponent<AgentVoiceComponent>() is AgentVoiceComponent component)
                 {
-                    component.SetWantsToPlayVoiceWithDelay(GetVoiceType(orderType), 0.5f);
+                    component.SetWantsToPlayVoiceWithDelay(GetVoiceType(orderType), 2f);
                 }
-
-                formation.ApplyActionOnEachUnit(agent =>
-                {
-                    if (agent != null &&
-                    agent != repeaterAgent &&
-                    agent.IsActive() &&
-                    agent.IsHuman &&
-                    !agent.IsUndead() &&
-                    !agent.IsTreeSpirit() &&
-                    agent.CurrentlyUsedGameObject == null &&
-                    agent.GetComponent<AgentVoiceComponent>() is AgentVoiceComponent component)
-                    {
-                        component.SetWantsToPlayVoiceWithDelay((orderType == OrderType.Charge || orderType == OrderType.ChargeWithTarget) ? VoiceType.Yell : VoiceType.HorseStop, 2f);
-                    }
-                });
             }
+            */
         }
 
 

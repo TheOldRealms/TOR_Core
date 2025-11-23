@@ -86,6 +86,18 @@ namespace TOR_Core.BattleMechanics.Firearms
             }
         }
 
+        protected override void OnEndMission()
+        {
+            //clean up any sounds if they are still playing
+            _soundsToRemove.Clear();
+            foreach (var item in _activeSounds)
+            {
+                item.Value?.Stop();
+                item.Value?.Release();
+            }
+            _activeSounds.Clear();
+        }
+
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody, int forcedMissileIndex)
         {
             var weaponData = shooterAgent.WieldedWeapon.CurrentUsageItem;
