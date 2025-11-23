@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <EquipmentRosters>
   <EquipmentRoster id="tor_empire_villager_template" culture="Culture.empire">
     <EquipmentSet>
@@ -18810,6 +18810,27 @@
       <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
       <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
       <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <!-- Character Creation Equipment Sets for Warrior Priests -->
+  <EquipmentRoster id="tor_sigmar_priest_equipment" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_empire_weapon_thmace_warrior_priest_001" />
+      <Equipment slot="Head" id="Item.tor_empire_head_helm_warrior_priest_001" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_warrior_priest_001" />
+      <Equipment slot="Cape" id="Item.tor_empire_shoulder_pauldron_warrior_priest_001" />
+      <Equipment slot="Gloves" id="Item.tor_empire_arm_bracers_warrior_priest_001" />
+      <Equipment slot="Leg" id="Item.tor_empire_leg_boots_warrior_priest_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_ulric_priest_equipment" culture="Culture.empire">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.black_heart_2haxe_t3" />
+      <Equipment slot="Head" id="Item.wolfhead" />
+      <Equipment slot="Body" id="Item.tor_empire_body_armor_pistolier_002" />
+      <Equipment slot="Cape" id="Item.wolf_shoulder" />
+      <Equipment slot="Gloves" id="Item.highland_gloves" />
+      <Equipment slot="Leg" id="Item.highland_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_light_wizard_template" culture="Culture.empire">

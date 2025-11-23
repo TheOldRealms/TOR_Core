@@ -488,8 +488,10 @@
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\SpecializationOption.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\FaceGenHelper.cs" />
-    <Compile Include="CampaignMechanics\CharacterCreation\TorCharacterCreationContentHandler.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationContentHandler.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationException.cs" />
     <Compile Include="CampaignMechanics\Combat\GreenskinBrawlBehavior.cs" />
     <Compile Include="CampaignMechanics\Companions\TORCompanionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableItemVM.cs" />
@@ -671,6 +673,9 @@
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
+      <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStage.cs" />
+      <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageView.cs" />
+      <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageVM.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />

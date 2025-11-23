@@ -43,7 +43,7 @@ namespace TOR_Core.GameManagers
         private void OnCharacterCreationInitialized(CharacterCreationManager manager)
         {
             // Register TOR's character creation handler with priority 0 (default)
-            manager.RegisterCharacterCreationContentHandler(new TorCharacterCreationContentHandler(), 0);
+            manager.RegisterCharacterCreationContentHandler(new TORCharacterCreationContentHandler(), 0);
             TORCommon.Log("[TOR Campaign] Registered TORCharacterCreationContentHandler", NLog.LogLevel.Info);
         }
     }
