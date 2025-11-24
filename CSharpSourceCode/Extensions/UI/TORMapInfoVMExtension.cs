@@ -194,7 +194,6 @@ namespace TOR_Core.Extensions.UI
             }
             else _blessingInfo.Value = "-";
 
-
             _hasBaseVMBeenInitialized = true;
         }
 

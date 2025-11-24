@@ -526,6 +526,8 @@
     <Compile Include="CampaignMechanics\CustomResourceBehavior\PrestigeNobleTownBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResourceBehavior\TeefBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResourceBehavior\WaaaghBehavior.cs" />
+    <Compile Include="CampaignMechanics\WaaaghMeter\WaaaghMeterVM.cs" />
+    <Compile Include="CampaignMechanics\WaaaghMeter\WaaaghMeterMapView.cs" />
     <Compile Include="CampaignMechanics\CustomResources\ChivalryHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResource.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResourceManager.cs" />

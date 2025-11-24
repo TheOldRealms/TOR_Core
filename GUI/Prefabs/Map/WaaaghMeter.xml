@@ -1,0 +1,85 @@
+<Prefab>
+  <Constants>
+    <Constant Name="WaaaghMeter.BarWidth" Value="35" />
+    <Constant Name="WaaaghMeter.BarHeight" Value="220" />
+    <Constant Name="WaaaghMeter.IconSize" Value="12" />
+  </Constants>
+
+  <Window>
+    <!-- Waaagh Meter - Single vertical bar with 4 level markers -->
+    <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+            SuggestedWidth="!WaaaghMeter.BarWidth" SuggestedHeight="!WaaaghMeter.BarHeight"
+            HorizontalAlignment="Left" VerticalAlignment="Bottom"
+            PositionXOffset="15" PositionYOffset="-80"
+            IsVisible="@IsVisible">
+      <Children>
+
+        <!-- Bar Background (dark) -->
+        <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                    Brush.Color="#1A1A1AFF" />
+
+        <!-- Progress Fill Container (fills from bottom to top, red color) -->
+        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
+                SuggestedHeight="@FillHeight"
+                VerticalAlignment="Bottom">
+          <Children>
+            <!-- Red fill -->
+            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                        Brush.Color="#FF0000FF" />
+          </Children>
+        </Widget>
+
+        <!-- Level Markers (4 simple circle shapes) -->
+
+        <!-- Level 0 marker - Bottom (at 10% - 22px from bottom) -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                SuggestedWidth="!WaaaghMeter.IconSize" SuggestedHeight="!WaaaghMeter.IconSize"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                PositionYOffset="22">
+          <Children>
+            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                        Brush.Color="#AA2020FF" />
+          </Children>
+        </Widget>
+
+        <!-- Level 1 marker (at 30% - 66px from bottom) -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                SuggestedWidth="!WaaaghMeter.IconSize" SuggestedHeight="!WaaaghMeter.IconSize"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                PositionYOffset="66">
+          <Children>
+            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                        Brush.Color="#AA2020FF" />
+          </Children>
+        </Widget>
+
+        <!-- Level 2 marker (at 50% - 110px from bottom) -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                SuggestedWidth="!WaaaghMeter.IconSize" SuggestedHeight="!WaaaghMeter.IconSize"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                PositionYOffset="110">
+          <Children>
+            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                        Brush.Color="#AA2020FF" />
+          </Children>
+        </Widget>
+
+        <!-- Level 3 marker - Top (at 75% - 165px from bottom) -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                SuggestedWidth="!WaaaghMeter.IconSize" SuggestedHeight="!WaaaghMeter.IconSize"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                PositionYOffset="165">
+          <Children>
+            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                        Brush.Color="#AA2020FF" />
+          </Children>
+        </Widget>
+
+        <!-- Outer Border -->
+        <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
+                    Brush.Color="#50463CFF" />
+
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

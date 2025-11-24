@@ -1,11 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
+using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Engine.GauntletUI;
+using TaleWorlds.GauntletUI.Data;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.WaaaghMeter;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -18,12 +24,46 @@ public class WaaaghBehavior : CampaignBehaviorBase
     private float _initialCombatRatio;
     private WaaaghLevel _previousWaaaghLevel = WaaaghLevel.InternalFightin;
     private List<CharacterObject> _troops;
+    private WaaaghMeterMapView _waaaghMeterView;
+    private MapScreen _mapScreen;
 
     public override void RegisterEvents()
     {
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
+        //CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+        CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+    }
+
+    private void OnSessionLaunched(CampaignGameStarter starter)
+    {
+        InitializeWaaaghMeterUI();
+        // Only create the Waaagh meter UI if player is Greenskin
+        if (Hero.MainHero?.Culture?.StringId == TORConstants.Cultures.GREENSKIN)
+        {
+       
+        }
+    }
+
+    private void InitializeWaaaghMeterUI()
+    {
+        if (ScreenManager.TopScreen is MapScreen mapScreen)
+        {
+            _mapScreen = mapScreen;
+            _waaaghMeterView = (WaaaghMeterMapView)_mapScreen.AddMapView<WaaaghMeterMapView>();
+            InformationManager.DisplayMessage(new InformationMessage("[WaaaghBehavior] Waaagh Meter UI initialized"));
+        }
+    }
+
+    private void CleanupWaaaghMeterUI()
+    {
+        if (_waaaghMeterView != null && _mapScreen != null)
+        {
+            _mapScreen.RemoveMapView(_waaaghMeterView);
+            _waaaghMeterView = null;
+            _mapScreen = null;
+        }
     }
 
     private void InitialCombatStrengthCalculation(IMission mission)
