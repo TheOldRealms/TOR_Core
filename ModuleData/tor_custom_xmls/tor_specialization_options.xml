@@ -16,87 +16,120 @@
 	<!-- =============================================== -->
 
 	<SpecializationOption Id="lore_of_life" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment" IconSprite="ghyran">
-		<Name>{=tor_lore_life_name}Lore of Life</Name>
-		<Description>{=tor_lore_life_desc}Master the Lore of Life, the magic of healing and growth.</Description>
-		<PositiveEffect>{=tor_lore_life_positive}Powerful healing and regeneration spells</PositiveEffect>
-		<NegativeEffect>{=tor_lore_life_negative}Limited offensive capabilities</NegativeEffect>
+		<Name>{=tor_lore_life_name}Ghyran, the Green Wind</Name>
+		<Description>{=tor_lore_life_desc}Verdant life along the stream
+										Water flowing through Jade deep
+										Bulwark of life, its keeper too
+										Growing strong at summer’s bloom
+										
+										Magisters of the Jade College are instinctively drawn to nature and living beings, be it man, animal, or plant. This unique connection also somewhat binds them to the passage of the seasons—weaker and enervated in winter but brimming with vitality during summer. Jade Wizards are unparalleled healers and overseers of all things natural: rivers, fields, forests, and even the soil itself.</Description>
+		<PositiveEffect>{=tor_lore_life_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_life_negative}</NegativeEffect>
 		<SkillsToIncrease>
-			<string>Spellcraft</string>
-			<string>Medicine</string>
+			<string></string>
+			<string></string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
 	<SpecializationOption Id="lore_of_fire" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment" IconSprite="aqshy">
-		<Name>{=tor_lore_fire_name}Lore of Fire</Name>
-		<Description>{=tor_lore_fire_desc}Master the Lore of Fire, the magic of destruction and flames.</Description>
-		<PositiveEffect>{=tor_lore_fire_positive}Devastating offensive spells</PositiveEffect>
-		<NegativeEffect>{=tor_lore_fire_negative}Impulsive and aggressive nature</NegativeEffect>
+		<Name>{=tor_lore_fire_name}Aqshy, the Red Wind</Name>
+		<Description>{=tor_lore_fire_desc}Ever-bright cinders and heat
+										Consume and destroy like wildfire
+										Subdue the blazing Bright magic
+										But take heed, for it is fickle
+										
+										Within the fiery spires of the Bright College, Bright Wizards, also called Pyromancers, study the red Wind of Aqshy – the most destructive and belligerent of all the 8 Winds. It is no wonder that Magisters of Aqshy are some of the most powerful war wizards the Empire can field. A timely conjured tornado of violent flame and ash could be all that is needed to triumph over the enemies of man.</Description>
+		<PositiveEffect>{=tor_lore_fire_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_fire_negative}</NegativeEffect>
 		<SkillsToIncrease>
-			<string>Spellcraft</string>
-			<string>Leadership</string>
+			<string></string>
+			<string></string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
 	<SpecializationOption Id="lore_of_death" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment" IconSprite="shyish">
-		<Name>{=tor_lore_death_name}Lore of Death</Name>
-		<Description>{=tor_lore_death_desc}Master the Lore of Death, the magic of endings and mortality.</Description>
-		<PositiveEffect>{=tor_lore_death_positive}Life-draining and debilitating spells</PositiveEffect>
-		<NegativeEffect>{=tor_lore_death_negative}Morbid and feared by common folk</NegativeEffect>
+		<Name>{=tor_lore_death_name}Shyish, the Purple Wind</Name>
+		<Description>{=tor_lore_death_desc}Pallid faces and death’s door
+										Ashes, dust and time’s flow
+										Chills the soul to the core
+										The Amethyst grip reaches all
+										
+										Time waits for no one; all succumb to its workings eventually. Amethyst Wizards know this all too well – They are a morbid folk of secretive nature that wield terrible powers. Draining a foe’s soul or causing the skin and muscles to decay are only some of the Spiriters’ abilities. For that and the frequent confusion with Necromancers, the Magisters of Shyish are likely the least trusted of all Imperial Colleges.</Description>
+		<PositiveEffect>{=tor_lore_death_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_death_negative}</NegativeEffect>
 		<SkillsToIncrease>
-			<string>Spellcraft</string>
-			<string>Roguery</string>
+			<string></string>
+			<string></string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
 	<SpecializationOption Id="lore_of_light" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment" IconSprite="hysh">
-		<Name>{=tor_lore_light_name}Lore of Light</Name>
-		<Description>{=tor_lore_light_desc}Master the Lore of Light, the magic of purity and illumination.</Description>
-		<PositiveEffect>{=tor_lore_light_positive}Banishes darkness and evil</PositiveEffect>
-		<NegativeEffect>{=tor_lore_light_negative}Weak against physical threats</NegativeEffect>
+		<Name>{=tor_lore_light_name}Hysh, the White Wind</Name>
+		<Description>{=tor_lore_light_desc}Accept the Wind of Hysh, friend
+										Let it enlighten the mind and soul
+										Let it scour the darkness
+										And be illuminated
+										
+										The wizards of the Light Order are sometimes known as Hierophants or Exorcists. For it is the brilliant, cleansing glimmer of Hysh that purges all things foul, be it Daemons or the Undead. One of the many burdens of White Wizards is to heal, protect, and banish the darkness from this world.</Description>
+		<PositiveEffect>{=tor_lore_light_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_light_negative}</NegativeEffect>
 		<SkillsToIncrease>
-			<string>Spellcraft</string>
-			<string>Charm</string>
+			<string></string>
+			<string></string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
 	<SpecializationOption Id="lore_of_heavens" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment" IconSprite="azyr">
-		<Name>{=tor_lore_heavens_name}Lore of Heavens</Name>
-		<Description>{=tor_lore_heavens_desc}Master the Lore of Heavens, the magic of weather and divination.</Description>
-		<PositiveEffect>{=tor_lore_heavens_positive}Control over weather and lightning</PositiveEffect>
-		<NegativeEffect>{=tor_lore_heavens_negative}Distant and contemplative nature</NegativeEffect>
+		<Name>{=tor_lore_heavens_name}Azyr, the Blue Wind</Name>
+		<Description>{=tor_lore_heavens_desc}Air and spheres moving high above
+											Thunderstrike and gust of wind
+											Coiling with Celestial magic
+											Of stars, moons and fate itself
+											
+											The Astromancers of the Celestial College are experts in divination, manipulating meteorological phenomena and invoking potent curses. They are exceptional researchers  invaluable to any captain who braves the seas of the Old World. One could certainly say the ability to call down bolts of lightning, offer support to one’s allies and hex the foe makes Heavens the most versatile Lore of Magic.</Description>
+		<PositiveEffect>{=tor_lore_heavens_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_heavens_negative}</NegativeEffect>
 		<SkillsToIncrease>
-			<string>Spellcraft</string>
-			<string>Scouting</string>
+			<string></string>
+			<string></string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
 	<SpecializationOption Id="lore_of_beasts" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment" IconSprite="ghur">
-		<Name>{=tor_lore_beasts_name}Lore of Beasts</Name>
-		<Description>{=tor_lore_beasts_desc}Master the Lore of Beasts, the magic of wild nature and animals.</Description>
-		<PositiveEffect>{=tor_lore_beasts_positive}Command over beasts and savage strength</PositiveEffect>
-		<NegativeEffect>{=tor_lore_beasts_negative}Crude and uncivilized manner</NegativeEffect>
+		<Name>{=tor_lore_beasts_name}Ghur, the Amber Wind</Name>
+		<Description>{=tor_lore_beasts_desc}Solitary, wild, untamed
+											Savage Amber of the pack
+											Amongst the beasts and groves unclaimed
+											A fierce glimmer of eyes jet black
+											Amber magic is the feral spirit of the Aethyr, the Realms of Chaos—the source of Winds of Magic. Beast Wizards, sometimes called Shamans, are often as ferocious as the Wind of Ghur itself. Tattered robes, unkempt looks, and trinkets of bones and feathers. They are usually loners that excel at commanding wild beasts or cursing the foe. It is also said these Shamans can shape-shift into various animalistic forms.</Description>
+		<PositiveEffect>{=tor_lore_beasts_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_beasts_negative}</NegativeEffect>
 		<SkillsToIncrease>
-			<string>Spellcraft</string>
-			<string>Scouting</string>
+			<string></string>
+			<string></string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
 	<SpecializationOption Id="lore_of_metal" ProfessionRequirement="option_3_empire_magister_apprentice" EquipmentSetId="tor_magister_equipment" IconSprite="chamon">
-		<Name>{=tor_lore_metal_name}Lore of Metal</Name>
-		<Description>{=tor_lore_metal_desc}Master the Lore of Metal, the magic of transformation and alchemy.</Description>
-		<PositiveEffect>{=tor_lore_metal_positive}Transmutation and metallurgy mastery</PositiveEffect>
-		<NegativeEffect>{=tor_lore_metal_negative}Obsessed with perfection and logic</NegativeEffect>
+		<Name>{=tor_lore_metal_name}Chamon, the Yellow Wind</Name>
+		<Description>{=tor_lore_metal_desc}The Soaring Eagle from the North
+										Seeding the world with metals and ore
+										The inscrutable enigma of matter to unlock
+										On the golden doors of knowledge forevermore knock
+										Gold Wizards, or Alchemists, are masters of the Lore of Metal and deal with practical aspects of magic such as metallurgy, chemistry, alchemy, or even herbalism. Indeed, to be a Metal Wizard is to pursue logic and rationality above all. This focus on earthly matters is what elevated the Golden Order as the richest of all Imperial Colleges. However, more envious or suspicious minds often accuse Alchemists of turning lead into gold.</Description>
+		<PositiveEffect>{=tor_lore_metal_positive}</PositiveEffect>
+		<NegativeEffect>{=tor_lore_metal_negative}</NegativeEffect>
 		<SkillsToIncrease>
-			<string>Spellcraft</string>
-			<string>Crafting</string>
+			<string></string>
+			<string></string>
 		</SkillsToIncrease>
-		<AttributeToIncrease>Intelligence</AttributeToIncrease>
+		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 	<!-- =============================================== -->
 	<!-- VAMPIRES - 3 Bloodlines                        -->

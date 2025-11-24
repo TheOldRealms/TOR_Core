@@ -33,16 +33,16 @@
   <string id="str_tor_cc_profession.aserai" text= "{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…"/>
 
   <!-- CC Specialization Stage -->
-  <string id="str_tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore"/>
-  <string id="str_tor_cc_specialization_desc_lore" text="{=str_tor_cc_specialization_desc_lore}As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn."/>
+  <string id="str_tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore of Magic…"/>
+  <string id="str_tor_cc_specialization_desc_lore" text="{=str_tor_cc_specialization_desc_lore}The gift of Witchsight allows you to channel one of the eight Winds of Magic:"/>
 
-  <string id="str_tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline"/>
+  <string id="str_tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline…"/>
   <string id="str_tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}As a vampire, you must choose your bloodline. This will determine your abilities and strengths."/>
 
-  <string id="str_tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your God"/>
+  <string id="str_tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your Deity…"/>
   <string id="str_tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}As a priest, you must choose which god you serve. This will determine your divine powers."/>
 
-  <string id="str_tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order"/>
+  <string id="str_tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order…"/>
   <string id="str_tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses."/>
   
   
@@ -99,7 +99,7 @@
   
   
     <string id="priest_blessing_party_1.cult_of_shallya" text= "In the name of Shallya, I bless you."/>
-	<string id="priest_blessings_decline.cult_of_shallya" text= "You have been blessed recently, there is no need of giving you the blessing of a god."/>
+  <string id="priest_blessings_decline.cult_of_shallya" text= "You have been blessed recently, there is no need of giving you the blessing of a god."/>
   
   
   <!-- skill training -->
