@@ -51,10 +51,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             _characterCreationManager = characterCreationManager;
             _affirmativeActionText = affirmativeActionText;
             _negativeActionText = negativeActionText;
-            
 
             // Check if specialization is needed
             var handler = GetHandler();
+
+            // Update last stage index when entering this stage
+            /*if (handler != null)
+            {
+                handler.LastStageIndex = getCurrentStageIndexAction();
+            }*/
             if (handler == null)
             {
                 _shouldAutoSkip = true;
@@ -269,7 +274,16 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             if (_shouldAutoSkip)
             {
                 _shouldAutoSkip = false;
-                if (_wasVisited)
+
+                // Determine direction based on last stage index
+                var handler = GetHandler();
+                int currentIndex = 3;
+                int lastIndex = handler?.LastStageIndex ?? -1;
+                bool comingFromLaterStage = lastIndex>= currentIndex;
+
+                TORCommon.Log($"[TORCC] Auto-skip detected: currentIndex={currentIndex}, lastIndex={lastIndex}, comingFromLaterStage={comingFromLaterStage}", NLog.LogLevel.Info);
+
+                if (comingFromLaterStage)
                 {
                     // Coming back from banner editor - set flag to jump to Stage 3
                     HarmonyPatches.CharacterCreationPatches.ShouldJumpToProfessionStage = true;
@@ -278,12 +292,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 }
                 else
                 {
+                    // Auto-skip forward - just continue to next stage
+                    TORCommon.Log($"[TORCC] Auto-skip forward: Skipping specialization stage", NLog.LogLevel.Info);
                     NextStage();
                 }
 
                 return;
             }
-            
+
             // Handle hotkey input
             HandleLayerInput();
         }
@@ -431,6 +447,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Clean up GauntletLayer
             // Note: CharacterCreationManager handles layer lifecycle via GetLayers() pattern
             _gauntletLayer = null;
+            
         }
 
         /// <summary>

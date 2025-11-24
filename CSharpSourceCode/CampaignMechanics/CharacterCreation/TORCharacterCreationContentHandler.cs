@@ -32,6 +32,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         // Static flag to indicate we're past narrative stages (Stage 4 or later)
         public static bool IsPastNarrativeStages { get; set; } = false;
 
+        // Track last stage index to determine navigation direction
+        public int LastStageIndex { get; set; } = -1;
+
         private readonly List<CharacterCreationOption> _options;
         private readonly List<SpecializationOption> _specializationOptions;
         private bool _isFemale = false;
@@ -1073,8 +1076,28 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             if (stages.GetType() == typeof(CharacterCreationNarrativeStage))
             {
-                OnCultureSelected();
+                OnNarrativeStageFinalized();
             }
+            
+            if (stages.GetType() == typeof(TORSpecializationStage))
+            {
+                OnSpecializationFinalized();
+            }
+            
+            if (stages.GetType() == typeof(BannerEditorState))
+            {
+                LastStageIndex = 4;
+            }
+        }
+
+        private void OnNarrativeStageFinalized()
+        {
+            LastStageIndex = 2;
+        }
+        
+        private void OnSpecializationFinalized()
+        {
+            LastStageIndex = 3;
         }
 
         /// <summary>
