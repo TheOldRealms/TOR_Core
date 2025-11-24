@@ -11,6 +11,7 @@ using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.CampaignMechanics.WaaaghMeter;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -30,6 +31,21 @@ namespace TOR_Core.Extensions.UI
         private MapInfoItemVM _artilleryInfo;
         private MapInfoItemVM _resourceInfo;
         private MapInfoItemVM _blessingInfo;
+        private WaaaghMeterVM _waaaghMeter;
+
+        [DataSourceProperty]
+        public WaaaghMeterVM WaaaghMeter
+        {
+            get => _waaaghMeter;
+            set
+            {
+                if (_waaaghMeter != value)
+                {
+                    _waaaghMeter = value;
+                    _vm.OnPropertyChangedWithValue(value, nameof(WaaaghMeter));
+                }
+            }
+        }
 
         public TORMapInfoVMExtension(ViewModel vm) : base(vm)
         {
@@ -37,6 +53,7 @@ namespace TOR_Core.Extensions.UI
             _artilleryInfo = new MapInfoItemVM("artillery", GetArtilleryHintText);
             _resourceInfo = new MapInfoItemVM("resources", GetCultureResourceHintText);
             _blessingInfo = new MapInfoItemVM("blessing", GetBlessingHintText);
+            _waaaghMeter = new WaaaghMeterVM();
             RefreshValues();
         }
 
@@ -193,6 +210,9 @@ namespace TOR_Core.Extensions.UI
                 }
             }
             else _blessingInfo.Value = "-";
+
+            // Refresh Waaagh Meter
+            _waaaghMeter?.RefreshValues();
 
             _hasBaseVMBeenInitialized = true;
         }
