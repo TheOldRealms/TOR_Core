@@ -1,3 +1,4 @@
+using SandBox.View.Map;
 using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI.Data;
@@ -32,16 +33,25 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 
             if (_dataSource != null)
             {
+                // Only show on MapScreen, hide in menus like party/troop screen, post-battle, etc.
+                var topScreen = ScreenManager.TopScreen;
+                bool isOnMapScreen = topScreen is MapScreen;
+
+                _dataSource.IsMapScreenActive = isOnMapScreen;
+
                 // Enable input restrictions set to false - allows mouse events but doesn't block input
                 // This is the key to making tooltips work on passive HUD elements
                 Layer.InputRestrictions.SetInputRestrictions(false);
 
-                // Periodic refresh
-                _timeSinceLastRefresh += dt;
-                if (_timeSinceLastRefresh >= RefreshInterval)
+                // Periodic refresh (only when visible)
+                if (isOnMapScreen)
                 {
-                    _dataSource.RefreshValues();
-                    _timeSinceLastRefresh = 0f;
+                    _timeSinceLastRefresh += dt;
+                    if (_timeSinceLastRefresh >= RefreshInterval)
+                    {
+                        _dataSource.RefreshValues();
+                        _timeSinceLastRefresh = 0f;
+                    }
                 }
             }
         }

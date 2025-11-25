@@ -21,6 +21,8 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
         private string _stateName;
         private Color _progressBarColor;
         private bool _isVisible;
+        private bool _isGreenskin;
+        private bool _isMapScreenActive = true;
 
         private BasicTooltipViewModel _level0Hint;
         private BasicTooltipViewModel _level1Hint;
@@ -172,17 +174,32 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
         public bool IsVisible
         {
             get => _isVisible;
-            set
+            private set
             {
                 if (_isVisible != value)
                 {
                     _isVisible = value;
                     OnPropertyChangedWithValue(value, nameof(IsVisible));
-
-                    // Debug logging
-                    InformationManager.DisplayMessage(new InformationMessage($"[WaaaghMeterVM] IsVisible changed to: {value}", new Color(134, 114, 250)));
                 }
             }
+        }
+
+        public bool IsMapScreenActive
+        {
+            get => _isMapScreenActive;
+            set
+            {
+                if (_isMapScreenActive != value)
+                {
+                    _isMapScreenActive = value;
+                    UpdateVisibility();
+                }
+            }
+        }
+
+        private void UpdateVisibility()
+        {
+            IsVisible = _isGreenskin && _isMapScreenActive;
         }
 
         public WaaaghMeterVM()
@@ -233,24 +250,21 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
         {
             base.RefreshValues();
 
-            // Only visible for Greenskin culture
+            // Only visible for Greenskin culture and when on MapScreen
             if (Hero.MainHero != null && Hero.MainHero.Culture != null)
             {
-                var isGreenskin = Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN;
-                IsVisible = isGreenskin;
+                _isGreenskin = Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN;
+                UpdateVisibility();
 
-                InformationManager.DisplayMessage(new InformationMessage($"[WaaaghMeterVM] RefreshValues - Culture: {Hero.MainHero.Culture.StringId}, IsGreenskin: {isGreenskin}", new Color(134, 114, 250)));
-
-                if (IsVisible)
+                if (_isGreenskin)
                 {
                     WaaaghValue = (int)Hero.MainHero.GetCustomResourceValue("Waaagh");
-                    InformationManager.DisplayMessage(new InformationMessage($"[WaaaghMeterVM] Waaagh Value: {WaaaghValue}, FillHeight: {FillHeight}", new Color(134, 114, 250)));
                 }
             }
             else
             {
-                IsVisible = false;
-                InformationManager.DisplayMessage(new InformationMessage("[WaaaghMeterVM] RefreshValues - Hero or Culture is null", new Color(134, 114, 250)));
+                _isGreenskin = false;
+                UpdateVisibility();
             }
         }
 

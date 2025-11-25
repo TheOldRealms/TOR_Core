@@ -20,8 +20,8 @@
 
         <!-- Level Icons (4 icons placed at level thresholds) with hover tooltips -->
         <!-- Level 0 icon: Bottom (0%) - Internal Fightin' -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="-13"
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="43" SuggestedHeight="43"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="-11"
                 Sprite="BlankWhiteSquare_9" Color="#00000040">
           <Children>
             <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
@@ -32,8 +32,8 @@
         </Widget>
 
         <!-- Level 1 icon: ~33% - Petty Squabblin' -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="92"
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="43" SuggestedHeight="43"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="94"
                 Sprite="BlankWhiteSquare_9" Color="#00000040">
           <Children>
             <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
@@ -44,8 +44,8 @@
         </Widget>
 
         <!-- Level 2 icon: ~66% - 'Ere We Go! -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="209"
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="43" SuggestedHeight="43"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="211"
                 Sprite="BlankWhiteSquare_9" Color="#00000040">
           <Children>
             <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
@@ -56,8 +56,8 @@
         </Widget>
 
         <!-- Level 3 icon: Top (100%) - WAAAGH!!!! -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="48" SuggestedHeight="48"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="315"
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="43" SuggestedHeight="43"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="318"
                 Sprite="BlankWhiteSquare_9" Color="#00000040">
           <Children>
             <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
