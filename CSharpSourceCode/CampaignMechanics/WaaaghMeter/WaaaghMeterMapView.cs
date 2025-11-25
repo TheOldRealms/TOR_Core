@@ -1,71 +1,36 @@
 using SandBox.View.Map;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.Library;
+using TaleWorlds.ScreenSystem;
 
 namespace TOR_Core.CampaignMechanics.WaaaghMeter
 {
     public class WaaaghMeterMapView : MapView
     {
-        private GauntletLayer _gauntletLayer;
-        private WaaaghMeterVM _waaaghMeterVM;
-        private GauntletMovieIdentifier _movie;
-        private float _timeSinceLastRefresh = 0f;
-        private const float RefreshInterval = 1f; // Refresh every second
+        private WaaaghMeterGlobalLayer _globalLayer;
 
         protected override void CreateLayout()
         {
             base.CreateLayout();
 
-            InformationManager.DisplayMessage(new InformationMessage("[WaaaghMeterMapView] CreateLayout called", new Color(134, 114, 250)));
+            // Create and initialize the global layer (like vanilla MapBar)
+            _globalLayer = new WaaaghMeterGlobalLayer();
+            _globalLayer.Initialize();
 
-            // Create the VM
-            _waaaghMeterVM = new WaaaghMeterVM();
-
-            // Create the gauntlet layer
-            _gauntletLayer = new GauntletLayer("GauntletLayer",210);
-
-            // Load the WaaaghMeter prefab
-            _movie = _gauntletLayer.LoadMovie("WaaaghMeter", _waaaghMeterVM);
-
-            // Add the layer to the screen
-            MapScreen.AddLayer(_gauntletLayer);
-
-            InformationManager.DisplayMessage(new InformationMessage($"[WaaaghMeterMapView] Layer added, IsVisible: {_waaaghMeterVM.IsVisible}", new Color(134, 114, 250)));
-        }
-
-        protected override void OnFrameTick(float dt)
-        {
-            base.OnFrameTick(dt);
-
-            // Update the ViewModel periodically (not every frame for performance)
-            if (_waaaghMeterVM != null)
-            {
-                _timeSinceLastRefresh += dt;
-                if (_timeSinceLastRefresh >= RefreshInterval)
-                {
-                    _waaaghMeterVM.RefreshValues();
-                    _timeSinceLastRefresh = 0f;
-                }
-            }
+            // Add as global layer so it receives mouse events properly for tooltips
+            ScreenManager.AddGlobalLayer(_globalLayer, false);
         }
 
         protected override void OnFinalize()
         {
-            InformationManager.DisplayMessage(new InformationMessage("[WaaaghMeterMapView] OnFinalize called", new Color(134, 114, 250)));
-
-            if (_gauntletLayer != null)
+            if (_globalLayer != null)
             {
-                MapScreen.RemoveLayer(_gauntletLayer);
-                _gauntletLayer.ReleaseMovie(_movie);
-                _movie = null;
-                _gauntletLayer = null;
+                _globalLayer.OnFinalize();
+                ScreenManager.RemoveGlobalLayer(_globalLayer);
+                _globalLayer = null;
             }
-
-            _waaaghMeterVM?.OnFinalize();
-            _waaaghMeterVM = null;
 
             base.OnFinalize();
         }

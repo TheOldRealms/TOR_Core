@@ -1,6 +1,7 @@
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
@@ -20,6 +21,67 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
         private string _stateName;
         private Color _progressBarColor;
         private bool _isVisible;
+
+        private BasicTooltipViewModel _level0Hint;
+        private BasicTooltipViewModel _level1Hint;
+        private BasicTooltipViewModel _level2Hint;
+        private BasicTooltipViewModel _level3Hint;
+
+        [DataSourceProperty]
+        public BasicTooltipViewModel Level0Hint
+        {
+            get => _level0Hint;
+            set
+            {
+                if (_level0Hint != value)
+                {
+                    _level0Hint = value;
+                    OnPropertyChangedWithValue(value, nameof(Level0Hint));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public BasicTooltipViewModel Level1Hint
+        {
+            get => _level1Hint;
+            set
+            {
+                if (_level1Hint != value)
+                {
+                    _level1Hint = value;
+                    OnPropertyChangedWithValue(value, nameof(Level1Hint));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public BasicTooltipViewModel Level2Hint
+        {
+            get => _level2Hint;
+            set
+            {
+                if (_level2Hint != value)
+                {
+                    _level2Hint = value;
+                    OnPropertyChangedWithValue(value, nameof(Level2Hint));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public BasicTooltipViewModel Level3Hint
+        {
+            get => _level3Hint;
+            set
+            {
+                if (_level3Hint != value)
+                {
+                    _level3Hint = value;
+                    OnPropertyChangedWithValue(value, nameof(Level3Hint));
+                }
+            }
+        }
 
         [DataSourceProperty]
         public int WaaaghValue
@@ -125,8 +187,46 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 
         public WaaaghMeterVM()
         {
-            InformationManager.DisplayMessage(new InformationMessage("[WaaaghMeterVM] Constructor called", new Color(134, 114, 250)));
+
+            // Initialize tooltip hints for each level
+            Level0Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.InternalFightin));
+            Level1Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.PettySquabblin));
+            Level2Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.EreWeGo));
+            Level3Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.WAAAGH));
+
             RefreshValues();
+        }
+
+        private string GetLevelTooltipText(WaaaghLevel level)
+        {
+            string levelName = level switch
+            {
+                WaaaghLevel.InternalFightin => "Internal Fightin'",
+                WaaaghLevel.PettySquabblin => "Petty Squabblin'",
+                WaaaghLevel.EreWeGo => "'Ere We Go!",
+                WaaaghLevel.WAAAGH => "WAAAGH!!!!",
+                _ => "Unknown"
+            };
+
+            string description = level switch
+            {
+                WaaaghLevel.InternalFightin => "Da boyz are scrapppin' amongst themselves. Not enough fightin' to go around!",
+                WaaaghLevel.PettySquabblin => "Some propa' fights breakin' out. Da boyz are gettin' restless!",
+                WaaaghLevel.EreWeGo => "Da WAAAGH! is buildin'! Time to krump some 'eads!",
+                WaaaghLevel.WAAAGH => "WAAAGH!!! DA BOYZ ARE READY FOR WAR!!!",
+                _ => ""
+            };
+
+            int threshold = level switch
+            {
+                WaaaghLevel.InternalFightin => 0,
+                WaaaghLevel.PettySquabblin => 250,
+                WaaaghLevel.EreWeGo => 500,
+                WaaaghLevel.WAAAGH => 750,
+                _ => 0
+            };
+
+            return $"{levelName}\n\nCurrent Waaagh: {_waaaghValue}/1000\nThreshold: {threshold}\n\n{description}";
         }
 
         public override void RefreshValues()

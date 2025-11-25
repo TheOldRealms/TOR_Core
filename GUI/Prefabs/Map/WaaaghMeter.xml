@@ -18,26 +18,42 @@
                 HorizontalAlignment="Center" VerticalAlignment="Bottom"
                 Sprite="BlankWhiteSquare_9" Color="#FF0000FF" />
 
-        <!-- Level Icons (4 icons placed at level thresholds) -->
-        <!-- Level 0 icon: Bottom (0%) - shyish placeholder -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+        <!-- Level Icons (4 icons placed at level thresholds) with hover tooltips -->
+        <!-- Level 0 icon: Bottom (0%) - Internal Fightin' -->
+        <HintWidget DataSource="{Level0Hint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
                 HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="-5"
-                Sprite="shyish" />
+                Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+          <Children>
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="shyish" />
+          </Children>
+        </HintWidget>
 
-        <!-- Level 1 icon: ~33% = 117px - ghur placeholder -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+        <!-- Level 1 icon: ~33% - Petty Squabblin' -->
+        <HintWidget DataSource="{Level1Hint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
                 HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="100"
-                Sprite="ghur" />
+                Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+          <Children>
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="ghur" />
+          </Children>
+        </HintWidget>
 
-        <!-- Level 2 icon: ~66% = 233px - chamon placeholder -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+        <!-- Level 2 icon: ~66% - 'Ere We Go! -->
+        <HintWidget DataSource="{Level2Hint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
                 HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="217"
-                Sprite="chamon" />
+                Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+          <Children>
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="chamon" />
+          </Children>
+        </HintWidget>
 
-        <!-- Level 3 icon: Top (100%) - aqshy placeholder -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+        <!-- Level 3 icon: Top (100%) - WAAAGH!!!! -->
+        <HintWidget DataSource="{Level3Hint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
                 HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="323"
-                Sprite="aqshy" />
+                Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint">
+          <Children>
+            <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="aqshy" />
+          </Children>
+        </HintWidget>
 
         <!-- Border -->
         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
