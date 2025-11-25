@@ -1,84 +1,48 @@
 <Prefab>
-  <Constants>
-    <Constant Name="WaaaghMeter.BarWidth" Value="35" />
-    <Constant Name="WaaaghMeter.BarHeight" Value="220" />
-    <Constant Name="WaaaghMeter.IconSize" Value="12" />
-  </Constants>
-
   <Window>
-    <!-- Waaagh Meter - Single vertical bar with 4 level markers -->
+    <!-- Waaagh Meter - Vertical bar with 4 level icons -->
     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-            SuggestedWidth="!WaaaghMeter.BarWidth" SuggestedHeight="!WaaaghMeter.BarHeight"
-            HorizontalAlignment="Left" VerticalAlignment="Bottom"
-            PositionXOffset="15" PositionYOffset="-80"
+            SuggestedWidth="50" SuggestedHeight="350"
+            HorizontalAlignment="Right" VerticalAlignment="Center"
+            MarginRight="15"
             IsVisible="@IsVisible">
       <Children>
+        <!-- Background -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                SuggestedWidth="20" HorizontalAlignment="Center"
+                Sprite="BlankWhiteSquare_9" Color="#1A1A1AFF" />
 
-        <!-- Bar Background (dark) -->
-        <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                    Brush.Color="#1A1A1AFF" />
-
-        <!-- Progress Fill Container (fills from bottom to top, red color) -->
-        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                SuggestedHeight="@FillHeight"
-                VerticalAlignment="Bottom">
-          <Children>
-            <!-- Red fill -->
-            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                        Brush.Color="#FF0000FF" />
-          </Children>
-        </Widget>
-
-        <!-- Level Markers (4 simple circle shapes) -->
-
-        <!-- Level 0 marker - Bottom (at 10% - 22px from bottom) -->
+        <!-- Progress Fill (red, from bottom) -->
         <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                SuggestedWidth="!WaaaghMeter.IconSize" SuggestedHeight="!WaaaghMeter.IconSize"
+                SuggestedWidth="20" SuggestedHeight="@FillHeight"
                 HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                PositionYOffset="22">
-          <Children>
-            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                        Brush.Color="#AA2020FF" />
-          </Children>
-        </Widget>
+                Sprite="BlankWhiteSquare_9" Color="#FF0000FF" />
 
-        <!-- Level 1 marker (at 30% - 66px from bottom) -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                SuggestedWidth="!WaaaghMeter.IconSize" SuggestedHeight="!WaaaghMeter.IconSize"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                PositionYOffset="66">
-          <Children>
-            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                        Brush.Color="#AA2020FF" />
-          </Children>
-        </Widget>
+        <!-- Level Icons (4 icons placed at level thresholds) -->
+        <!-- Level 0 icon: Bottom (0%) - shyish placeholder -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="-5"
+                Sprite="shyish" />
 
-        <!-- Level 2 marker (at 50% - 110px from bottom) -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                SuggestedWidth="!WaaaghMeter.IconSize" SuggestedHeight="!WaaaghMeter.IconSize"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                PositionYOffset="110">
-          <Children>
-            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                        Brush.Color="#AA2020FF" />
-          </Children>
-        </Widget>
+        <!-- Level 1 icon: ~33% = 117px - ghur placeholder -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="100"
+                Sprite="ghur" />
 
-        <!-- Level 3 marker - Top (at 75% - 165px from bottom) -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                SuggestedWidth="!WaaaghMeter.IconSize" SuggestedHeight="!WaaaghMeter.IconSize"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                PositionYOffset="165">
-          <Children>
-            <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                        Brush.Color="#AA2020FF" />
-          </Children>
-        </Widget>
+        <!-- Level 2 icon: ~66% = 233px - chamon placeholder -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="217"
+                Sprite="chamon" />
 
-        <!-- Outer Border -->
-        <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"
-                    Brush.Color="#50463CFF" />
+        <!-- Level 3 icon: Top (100%) - aqshy placeholder -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="323"
+                Sprite="aqshy" />
 
+        <!-- Border -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                SuggestedWidth="20" HorizontalAlignment="Center"
+                Sprite="BlankWhiteSquare_9" Color="#50463C44" />
       </Children>
     </Widget>
   </Window>

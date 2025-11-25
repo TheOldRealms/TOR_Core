@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
+using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.WaaaghMeter;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -18,12 +22,29 @@ public class WaaaghBehavior : CampaignBehaviorBase
     private float _initialCombatRatio;
     private WaaaghLevel _previousWaaaghLevel = WaaaghLevel.InternalFightin;
     private List<CharacterObject> _troops;
+    private WaaaghMeterMapView _waaaghMeterView;
+    private bool _hasTriedToInitializeUI = false;
 
     public override void RegisterEvents()
     {
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
+        CampaignEvents.TickEvent.AddNonSerializedListener(this, OnTick);
+    }
+
+    private void OnTick(float dt)
+    {
+        // Try to initialize UI once when MapScreen is available
+        if (!_hasTriedToInitializeUI && Hero.MainHero?.Culture?.StringId == TORConstants.Cultures.GREENSKIN)
+        {
+            if (ScreenManager.TopScreen is MapScreen mapScreen && _waaaghMeterView == null)
+            {
+                _waaaghMeterView = (WaaaghMeterMapView)mapScreen.AddMapView<WaaaghMeterMapView>();
+                _hasTriedToInitializeUI = true;
+                InformationManager.DisplayMessage(new InformationMessage("[WaaaghBehavior] Waaagh Meter UI initialized", new Color(134, 114, 250)));
+            }
+        }
     }
 
     private void InitialCombatStrengthCalculation(IMission mission)

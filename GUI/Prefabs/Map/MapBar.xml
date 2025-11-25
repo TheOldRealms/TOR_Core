@@ -215,38 +215,6 @@
           </Children>
         </MapInfoBarWidget>
 
-        <!-- Waaagh Meter Widget -->
-        <Widget DoNotAcceptEvents="true" DataSource="{WaaaghMeter}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                SuggestedWidth="35" SuggestedHeight="220"
-                HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                PositionXOffset="15" PositionYOffset="80">
-          <Children>
-            <!-- Background Bar -->
-            <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush.Color="#1A1A1AFF" />
-
-            <!-- Progress Fill (from bottom) - TESTING WITH FIXED HEIGHT -->
-            <Widget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
-                    SuggestedHeight="100" VerticalAlignment="Bottom">
-              <Children>
-                <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush.Color="#FF0000FF" />
-              </Children>
-            </Widget>
-
-            <!-- Level Markers (white circles) -->
-            <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="10" SuggestedHeight="10"
-                    HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="22" Brush.Color="#FFFFFFFF" />
-
-            <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="10" SuggestedHeight="10"
-                    HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="66" Brush.Color="#FFFFFFFF" />
-
-            <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="10" SuggestedHeight="10"
-                    HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="110" Brush.Color="#FFFFFFFF" />
-
-            <BrushWidget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="10" SuggestedHeight="10"
-                    HorizontalAlignment="Center" VerticalAlignment="Bottom" PositionYOffset="165" Brush.Color="#FFFFFFFF" />
-          </Children>
-        </Widget>
-
       </Children>
     </Widget>
   </Window>

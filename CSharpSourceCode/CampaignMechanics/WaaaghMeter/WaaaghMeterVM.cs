@@ -11,7 +11,7 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 {
     public class WaaaghMeterVM : ViewModel
     {
-        private const float MaxBarHeight = 220f; // Match the BarHeight constant in XML
+        private const float MaxBarHeight = 350f; // Match the BarHeight constant in XML
 
         private int _waaaghValue;
         private int _currentLevel;
