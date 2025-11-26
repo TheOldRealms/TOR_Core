@@ -329,22 +329,25 @@
 	<BannerCode>11.113.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_hirn</BannerCode>
   </FactionBannerOverride>
   <FactionBannerOverride CultureOrFactionId="karak_angazhar">
-	 <BannerCode>11.101.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_angazhar</BannerCode>
+	 <BannerCode>11.99.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_angazhar</BannerCode>
   </FactionBannerOverride>
   <FactionBannerOverride CultureOrFactionId="karak_azgaraz">
 	 <BannerCode>11.146.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_azgaraz</BannerCode>
   </FactionBannerOverride>
   <FactionBannerOverride CultureOrFactionId="karak_eksfilaz">
-	 <BannerCode>11.129.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_eksfilaz</BannerCode>
+	 <BannerCode>11.126.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_eksfilaz</BannerCode>
   </FactionBannerOverride>
   <FactionBannerOverride CultureOrFactionId="karak_gantuk">
 	 <BannerCode>11.92.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_gantuk</BannerCode>
+  </FactionBannerOverride>
+  <FactionBannerOverride CultureOrFactionId="karak_kaferkammaz">
+	 <BannerCode>11.71.142.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_kaferkammaz</BannerCode>
   </FactionBannerOverride>
   <FactionBannerOverride CultureOrFactionId="karak_ziflin">
 	 <BannerCode>11.38.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_ziflin</BannerCode>
   </FactionBannerOverride>
   <FactionBannerOverride CultureOrFactionId="karak_norn">
-	 <BannerCode>1.142.127.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_norn</BannerCode>
+	 <BannerCode>1.127.142.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_norn</BannerCode>
   </FactionBannerOverride>
    <FactionBannerOverride CultureOrFactionId="karak_kadrin">
 	<BannerCode>11.123.140.1398.1615.785.765.0.0.90.505.123.18.620.620.764.764.0.0.0:kingdom_kadrin</BannerCode>
@@ -353,7 +356,7 @@
 	<BannerCode>11.72.140.1398.1615.785.765.0.0.90.505.72.18.620.620.764.764.0.0.0:kingdom_izor</BannerCode>
   </FactionBannerOverride>
  	<FactionBannerOverride CultureOrFactionId="bad_axes">
-	<BannerCode>11.145.90.1449.1410.764.764.0.0.-90.505.145.142.787.787.764.764.0.1.0:kingdom_badaxes</BannerCode>
+	<BannerCode>11.142.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_badaxes</BannerCode>
   </FactionBannerOverride>
  	<FactionBannerOverride CultureOrFactionId="black_sunz">
 	<BannerCode>11.149.90.1449.1410.815.674.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_blacksunz</BannerCode>
