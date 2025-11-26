@@ -68,7 +68,7 @@ namespace TOR_Core.Models.CustomBattleModels
                 if (character != null)
                 {
                     if (Mission.Current.IsSiegeBattle)
-                        TOREquipmentHelper.RemoveLanceFromEquipment(agent, false);     //i would like to change that to knights not beeing in guard position anyhow
+                        TOREquipmentHelper.RemoveLanceFromEquipment(agent, false);   
                 }
             }
         }

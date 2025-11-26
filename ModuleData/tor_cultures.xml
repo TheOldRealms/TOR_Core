@@ -6818,8 +6818,8 @@
 		marriage_bride_equipment_roster="EquipmentRoster.marriage_female_emp_cutscene_template"
 		board_game_type="Tablut"
 		default_character_creation_body_property="BodyProperty.default_character_creation_body_property_empire"
-		start_point_position_x="1617.54"
-		start_point_position_y="969.70">
+		start_point_position_x="1485.11"
+		start_point_position_y="809.4648">
 		<caravan_party_templates>
 			<caravan_party_template
 				id="PartyTemplate.dawi_elite_caravan_template" />

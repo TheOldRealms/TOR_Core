@@ -207,7 +207,7 @@
 		<OptionFlavourText>{=tor_cc_option14_text_str}Heresy was the bane of the good people of the Empire, a rot that needed to be removed. Learning the arts of the Witch Hunters you readied yourself to face all manner of unholy beasts and magicians, with faith and silver. </OptionFlavourText>
 	</CharacterCreationOption> 
 
-	<CharacterCreationOption Id="option_empire_knight" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_empire_knight_3">
+	<CharacterCreationOption Id="option_3_empire_knight" Culture="empire" StageNumber="3" EquipmentSetId="tor_cc_empire_knight_3">
 		<SkillsToIncrease>
 			<string>Riding</string>
 			<string>Steward</string>			

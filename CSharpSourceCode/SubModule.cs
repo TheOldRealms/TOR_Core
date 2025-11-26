@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
@@ -19,8 +18,6 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.Battle.CrosshairMissionBehavior;
 using TOR_Core.BattleMechanics;
-using TOR_Core.BattleMechanics.AI.TeamAI;
-using TOR_Core.BattleMechanics.Atmosphere;
 using TOR_Core.BattleMechanics.Banners;
 using TOR_Core.BattleMechanics.Dismemberment;
 using TOR_Core.BattleMechanics.Firearms;
@@ -51,17 +48,16 @@ using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignSupport.TownBehaviours;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
-using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
 using TOR_Core.GameManagers;
-using TOR_Core.HarmonyPatches;
 using TOR_Core.Ink;
 using TOR_Core.Items;
 using TOR_Core.Models;
 using TOR_Core.Models.CustomBattleModels;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
+using TOR_Core.BattleMechanics.Voice;
 
 namespace TOR_Core
 {
@@ -100,6 +96,7 @@ namespace TOR_Core
             InkStoryManager.Initialize();
             AnimationTriggerManager.LoadAnimationTriggers();
             ItemTraitManager.LoadItemTraits();
+            TORVoiceManager.Initialize();
         }
 
         private Assembly ResolveDllPath(object sender, ResolveEventArgs args)
@@ -190,7 +187,7 @@ namespace TOR_Core
             }
         }
 
-        public override void AfterRegisterSubModuleObjects(bool isSavedCampaign)
+        public override void OnGameInitializationFinished(Game game)
         {
             HarmonyInstance.PatchCategory("LatePatches");//Sly : Campaign.OnInitialize starts the cascade that reaches this method; if each time a campaign is started/loaded this is patched, will we end up patching a given method multiple times?
         }
@@ -286,9 +283,8 @@ namespace TOR_Core
             mission.AddMissionBehavior(new WeaponHitScriptsMissionLogic());
             mission.AddMissionBehavior(new CustomBannerMissionLogic());
             mission.AddMissionBehavior(new DismembermentMissionLogic());
-            mission.AddMissionBehavior(new MoraleMissionLogic());
+            mission.AddMissionBehavior(new AddAgentComponentsMissionLogic());
             mission.AddMissionBehavior(new FirearmsMissionLogic());
-            mission.AddMissionBehavior(new ForceAtmosphereMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
             mission.AddMissionBehavior(new BattleShoutsMissionLogic());
 

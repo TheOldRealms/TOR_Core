@@ -85,7 +85,12 @@ namespace TOR_Core.HarmonyPatches
             {
                 __result = "as_human" + (isFemale ? "_female" : "") + suffix;
             }
-            __result = "as_" + monster.StringId + (isFemale ? "_female" : "") + suffix;
+            var monsterId = monster.StringId;
+            if (monsterId.Contains("_"))
+            {
+                monsterId = monsterId.Split('_')[0];
+            }
+            __result = "as_" + monsterId + (isFemale ? "_female" : "") + suffix;
             return false;
         }
 

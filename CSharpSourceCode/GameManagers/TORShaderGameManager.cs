@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using NLog;
+using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -55,10 +56,15 @@ namespace TOR_Core.GameManagers
             party.AddCharacter(playerCharacter, 1);
             party.SetGeneral(playerCharacter);
             party.Side = BattleSideEnum.Defender;
+            if (characterslist.Count() > 1999)
+            {
+                characterslist = characterslist.Take(1999);
+                TORCommon.Log("Too many characters for custom battle, truncating to 1999.", LogLevel.Warn);
+            }
             foreach (var unit in characterslist)
             {
                 int num = 1;
-                if (unit.IsSoldier) num = 5;
+                if (unit.IsSoldier) num = 4;
                 party.AddCharacter(unit, num);
             }
             return party;

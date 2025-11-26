@@ -437,7 +437,6 @@
     <Compile Include="BattleMechanics\Artillery\BaseFieldSiegeWeapon.cs" />
     <Compile Include="BattleMechanics\Artillery\CannonBallPile.cs" />
     <Compile Include="BattleMechanics\Artillery\FieldTrebuchet.cs" />
-    <Compile Include="BattleMechanics\Atmosphere\ForceAtmosphereMissionLogic.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
     <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
@@ -450,9 +449,9 @@
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Morale\AgentVoiceComponent.cs" />
-    <Compile Include="BattleMechanics\Morale\BattleShoutsMissionLogic.cs" />
-    <Compile Include="BattleMechanics\Morale\MoraleMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Voice\AgentVoiceComponent.cs" />
+    <Compile Include="BattleMechanics\Voice\BattleShoutsMissionLogic.cs" />
+    <Compile Include="BattleMechanics\Morale\AddAgentComponentsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Morale\UndeadMoraleAgentComponent.cs" />
     <Compile Include="BattleMechanics\SFX\PlayerFlyableObjectScript.cs" />
     <Compile Include="BattleMechanics\SFX\TORFaceEnemy.cs" />
@@ -479,6 +478,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffect.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\TriggeredEffectTemplate.cs" />
+    <Compile Include="BattleMechanics\Voice\TORVoiceManager.cs" />
     <Compile Include="CampaignMechanics\Companions\TORAICompanionCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\AssimilationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Assimilation\RaceFixCampaignBehavior.cs" />
@@ -490,8 +490,10 @@
     <Compile Include="CampaignMechanics\Careers\TORCareerPerkCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Chaos\ChaosCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\CharacterCreationOption.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\SpecializationOption.cs" />
     <Compile Include="CampaignMechanics\CharacterCreation\FaceGenHelper.cs" />
-    <Compile Include="CampaignMechanics\CharacterCreation\TorCharacterCreationContentHandler.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationContentHandler.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\TORCharacterCreationException.cs" />
     <Compile Include="CampaignMechanics\Combat\GreenskinBrawlBehavior.cs" />
     <Compile Include="CampaignMechanics\Companions\TORCompanionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\Crafting\EnchantableItemVM.cs" />
@@ -532,6 +534,7 @@
     <Compile Include="CampaignMechanics\CustomResources\FavorHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\ForestHarmonyHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\OathGoldHelper.cs" />
+    <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />
@@ -572,6 +575,7 @@
     <Compile Include="CampaignMechanics\TORFactionDiscontinuationCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="Extensions\UI\SPItemVMExtension.cs" />
+    <Compile Include="Extensions\UI\TORInitialScreen.cs" />
     <Compile Include="Extensions\UI\TORMapInfoVMExtension.cs" />
     <Compile Include="CampaignMechanics\TORPartyUpgraderCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorRecruitmentHelpers.cs" />
@@ -671,6 +675,9 @@
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
+      <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStage.cs" />
+      <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageView.cs" />
+      <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageVM.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
@@ -694,6 +701,7 @@
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
+    <Compile Include="HarmonyPatches\MBMusicManagerPatches.cs" />
     <Compile Include="HarmonyPatches\MissionPatches.cs" />
     <Compile Include="HarmonyPatches\MobilePartyPatches.cs" />
     <Compile Include="HarmonyPatches\ModelPatches.cs" />
