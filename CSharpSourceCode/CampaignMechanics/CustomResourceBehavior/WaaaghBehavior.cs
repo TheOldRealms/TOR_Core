@@ -231,7 +231,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
             waaaghValue = 0;
         }
 
-        var currentLevel = TeefHelper.GetWaaaghLevelForResource(waaaghValue);
+        var currentLevel = WaaaghHelper.GetWaaaghLevelForResource(waaaghValue);
 
         // Check if dropping from WAAAGH (level 4) to 'Ere We Go! (level 3) - apply steeper punishment
         if (_previousWaaaghLevel == WaaaghLevel.WAAAGH && currentLevel == WaaaghLevel.EreWeGo)

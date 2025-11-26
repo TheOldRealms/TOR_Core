@@ -4,7 +4,6 @@ using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -227,10 +226,20 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 
             string description = level switch
             {
-                WaaaghLevel.InternalFightin => "Da boyz are scrapppin' amongst themselves. Not enough fightin' to go around!",
-                WaaaghLevel.PettySquabblin => "Some propa' fights breakin' out. Da boyz are gettin' restless!",
-                WaaaghLevel.EreWeGo => "Da WAAAGH! is buildin'! Time to krump some 'eads!",
-                WaaaghLevel.WAAAGH => "WAAAGH!!! DA BOYZ ARE READY FOR WAR!!!",
+                WaaaghLevel.InternalFightin => "Da Boys uv da mob are demoralized. They 'ave no gits to focus on an' resort to fightin' each other.",
+                WaaaghLevel.PettySquabblin => "Da mob found sum gits to bash but smaller scraps are still occurin' among da tribe. Da Boys will soon start gettin' restless again.",
+                WaaaghLevel.EreWeGo => "Da recent exploits uv your mob 'ave been 'eard in other tribes as well. Greenskins from other tribes start gatherin', an' your Boys are preparin' fer a proppa big scrap.",
+                WaaaghLevel.WAAAGH => "Now da Boys are proppa eager an' killy! Wez gonna show all dem humies an' stunties an' all da uva gits too! DIS IZ WAAAAGH!!!",
+                _ => ""
+            };
+
+            
+            string effects = level switch
+            {
+                WaaaghLevel.InternalFightin => "Morale: -40\nDamage Dealt: -20%\nFood Consumed: -60%",
+                WaaaghLevel.PettySquabblin => "Morale: -20\nDamage Dealt: -10%\nFood Consumed: -30%\nDaily Wounded: Smaller chance",
+                WaaaghLevel.EreWeGo => "Damage Dealt: +10%\nFood Consumed: +25%\nParty Size: +60\nDaily Recruitment: Small chance (T1-3)",
+                WaaaghLevel.WAAAGH => "Damage Dealt: +20%\nFood Consumed: +100%\nParty Size: +120\nDaily Recruitment: Big chance (T1-3)",
                 _ => ""
             };
 
@@ -238,12 +247,12 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
             {
                 WaaaghLevel.InternalFightin => 0,
                 WaaaghLevel.PettySquabblin => 250,
-                WaaaghLevel.EreWeGo => 500,
-                WaaaghLevel.WAAAGH => 750,
+                WaaaghLevel.EreWeGo => 600,
+                WaaaghLevel.WAAAGH => 900,
                 _ => 0
             };
 
-            return $"{levelName}\n\nCurrent Waaagh: {_waaaghValue}/1000\nThreshold: {threshold}\n\n{description}";
+            return $"{levelName}\nThreshold: {threshold}\n\n{description}\n\nEffects:\n{effects}";
         }
 
         public override void RefreshValues()
@@ -271,7 +280,7 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
         private void UpdateMeterState()
         {
             // Get current Waaagh level
-            var waaaghLevel = TeefHelper.GetWaaaghLevelForResource(_waaaghValue);
+            var waaaghLevel = WaaaghHelper.GetWaaaghLevelForResource(_waaaghValue);
             CurrentLevel = (int)waaaghLevel;
 
             // Update state name
