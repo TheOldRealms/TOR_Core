@@ -993,7 +993,7 @@
              super_faction="Kingdom.karak_angazhar"
              is_noble="true"
              text="{=str_tor_clan_karak_angazhar_clan_1_desc}Clan Branmakaz holds dominion from Karak Angazhar, a sturdy hold situated east of the Black Mountains. These mountains are known for their plentiful deposits of iron, gold, and silver, though they are notably lacking in the rarer and more precious metals prized by the Dawi. However, the eastern ridges of the range are home to a modest yield of obsidian, a dark, glassy stone sharp enough to cleave steel, but brittle when mishandled. Due to its fragility, the Dwarfs of Karak Angazhar do not fashion warhammers from obsidian, as is more common among their kind. Instead, they forge axe-heads of exceptional sharpness from the material, each requiring considerable time and craft to perfect. These weapons are not wielded lightly. Only members of the Ebonshard Brotherhood, an elite fighting unit drawn from the heart of Clan Branmakaz, are permitted to bear such arms. To wield the black-edged axe is to have proven oneself in battle, through grit, resolve, and the spilling of no small amount of blood. Karak Angazhar serves primarily as a trading hub, dealing in finely wrought tools and valuable crafts with the men of the Empire. Meanwhile, the fortress of Mighdal Vongalbarak, perched near the fabled Black Fire Pass, stands as the bulwark of the region. There, Dwarf sentries keep eternal vigil. From its towers, signal fires can be lit and runes of distress dispatched, east to Karaz Ankor or north along the mountain roads, should enemies stir and reinforcements be called. "
-             banner_key="11.101.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_angazhar" />
+             banner_key="11.99.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_angazhar" />
 	<Faction id="karak_azgaraz_clan_1"
              name="{=str_tor_clan_karak_azgaraz_clan_1_name}Clan Azgaraz"
              tier="6"
@@ -1013,7 +1013,7 @@
              super_faction="Kingdom.karak_eksfilaz"
              is_noble="true"
 			 text="{=str_tor_clan_karak_eksfilaz_clan_1_desc}Many of the other ruling clans regard Clan Steelclad as one of the lesser lineages, unworthy of a seat upon the King’s council, and believe it ought to be absorbed into Karak Izor. In defiance of such scorn, King Hergar fights tooth and nail for his clan’s place in the world, forging numerous alliances throughout the southern realms. Though the Dwarfs of Karak Eksfilaz seldom involve themselves directly in the petty squabbles of Men, they are known to supply weapons to all sides and should the need arise, they will march to war alongside their allies against mutual foes, be it raiding Greenskins from the east or Skaven from the west. The southern princelings have each sworn oaths of loyalty to King Hergar, vowing to stand by him should the eastern Dwarfs ever attempt to enforce their claim to subsume Karak Eksfilaz into Karak Izor. "
-             banner_key="11.129.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_eksfilaz" />
+             banner_key="11.126.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_eksfilaz" />
 	<Faction id="karak_gantuk_clan_1"
              name="{=str_tor_clan_karak_gantuk_clan_1_name}Clan Grundbak"
              tier="6"
@@ -1053,7 +1053,7 @@
              super_faction="Kingdom.karak_kaferkammaz"
              is_noble="true"
 			 text="{=str_tor_clan_karak_kaferkammaz_clan_1_desc}Clan Zantromm is a clan that others see as insignificant and should just be absorbed by Karak Izor, worse still, the clan is accused of being Elgongi, elf-friends. While the clan tries to maintain good relations with the elves, their relations are strained at best. Though they are loath to admit, the elves are somewhat dependent on the metals the dwarfs provide, as the dwarfs are dependent on the trees the elves provide. The clan itself was founded shortly after the hold was established and its descendants have ruled the Karak Kaferkammaz ever since. "
-             banner_key="1.125.23.3065.1165.21.770.0.0.0.503.111.96.526.526.768.793.0.0.0.503.157.96.471.471.768.793.0.0.0.505.111.96.18.414.767.896.0.0.90.505.111.96.11.333.508.659.0.0.0.505.111.96.11.333.531.659.0.0.0.505.111.96.12.42.525.504.0.1.22.505.111.96.12.42.514.504.0.0.336.505.111.96.12.42.525.817.0.0.158.505.111.96.12.42.514.817.0.1.-156.505.111.96.11.333.508.1006.0.0.0.505.111.96.11.333.531.1006.0.0.0.505.111.96.12.42.525.851.0.1.22.505.111.96.12.42.514.851.0.0.336.505.111.96.12.42.525.1164.0.0.158.505.111.96.12.42.514.1164.0.1.-156.505.111.96.11.333.1001.659.0.0.0.505.111.96.11.333.1024.659.0.0.0.505.111.96.12.42.1018.504.0.1.22.505.111.96.12.42.1007.504.0.0.336.505.111.96.12.42.1018.817.0.0.158.505.111.96.12.42.1007.817.0.1.-156.505.111.96.11.333.1001.1006.0.0.0.505.111.96.11.333.1024.1006.0.0.0.505.111.96.12.42.1018.851.0.1.22.505.111.96.12.42.1007.851.0.0.336.505.111.96.12.42.1018.1164.0.0.158.505.111.96.12.42.1007.1164.0.1.-156.505.111.96.18.145.729.853.0.0.-43.505.111.96.18.145.805.853.0.1.42.502.111.111.110.110.769.673.1.1.45.505.111.96.12.93.743.764.0.0.-43.505.111.96.12.93.792.764.0.1.42" />
+             banner_key="11.71.142.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_kaferkammaz" />
 	<Faction id="karak_norn_clan_1"
              name="{=str_tor_clan_karak_norn_clan_1_name}Clan Angskrund"
              tier="6"
@@ -1063,7 +1063,7 @@
              super_faction="Kingdom.karak_norn"
              is_noble="true"
 			 text="{=str_tor_clan_karak_norn_clan_1_desc}Out of all the hills and mountains settled by the Dwarfs, the Grey Mountains are by far the poorest in minerals. The ore and gem deposits are also harder to mine because of the unstable bedrock. The Dwarfs who settled here were led by tales of untold riches underneath the earth, and their descendants cling to these tales with usual Dwarfen stubbornness, hoping to find these riches one day. Unfortunately, many years have passed, and more and more younger Dwarfs leave the Grey Mountains to seek their fortune elsewhere, the mood among those who remain is increasingly sombre and dour. The largest hold in the Grey Mountains is Karak Norn, Barren Earth Hold. Populated by displaced clans from several fallen holds such as Mount Silverspear and the watchtowers of Mad Dog Pass. Karak Norn sits on the only sizable deposit of ore and gemstones and is strategically placed with its upper level visible on a plateau high above the forest of Athel Loren. This allows the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance. While the Asrai haven't been a threat for over 4,000 years, and the grudge against the High Elves was officially settled with the taking of the Phoenix Crown at the end of the War of Vengeance, the Dwarfs see no harm in precautions. Karak Norn is the smallest of the main Dwarf holds outside the Worlds Edge Mountains, but it still has strong influence over the surrounding Dwarf settlements. The Grey Mountain Dwarfs enjoy a relatively peaceful co-existence with the Bretonnians to the west and a very uneasy truce with the Wood Elves of Athel Loren. They side with the Empire in times of war with Bretonnia, and have been known to close all major passes in the southern Grey Mountains, including the well-travelled Montdidier Pass that transverses the southern end of the range, near The Vaults. Karak Norn is defended by large Flame Cannons and powerful Bolt Throwers. Although clearly designed with the Wood Elves of Athel Loren in mind, the Dwarf defences are a formidable deterrent to any who might seek to invade their realm. "
-             banner_key="1.142.127.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_norn" />
+             banner_key="1.127.142.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_norn" />
 	<Faction id="karak_zhubar_clan_1"
              name="{=str_tor_clan_karak_zhubar_clan_1_name}Clan Zhufgrom"
              tier="6"
@@ -1095,7 +1095,7 @@
              super_faction="Kingdom.bad_axes"
              is_noble="true"
              text="{=str_tor_clan_bad_axes_1_desc}With heavy choppas in hand and riding the Hagranyms the Orcs of the Bad Axes Tribe plunder and raid the Bretonnian and Imperial territories surrounding the Pale Sisters. Feared for their predatory steeds, the Bad Axes and their leader Gromodrak bring terror and death to the puny humies foolish enough to cross their path. "
-             banner_key="11.145.90.1449.1410.764.764.0.0.-90.505.145.142.787.787.764.764.0.1.0:kingdom_badaxes" />
+             banner_key="11.142.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_badaxes" />
 	
 	<Faction id="bad_axes_clan_2"
              name="{=str_tor_clan_bad_axes_clan_2_name}Git-Bitaz"
@@ -1106,7 +1106,7 @@
              super_faction="Kingdom.bad_axes"
              is_noble="true"
              text="{=str_tor_clan_bad_axes_2_desc}How you doin?? "
-             banner_key="11.145.90.1449.1410.764.764.0.0.-90.505.145.142.787.787.764.764.0.1.0:kingdom_badaxes" />
+             banner_key="11.142.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_badaxes" />
 
 	<Faction id="black_sunz_clan_1"
              name="{=str_tor_clan_black_sunz_clan_1_name}Black Sunz"
