@@ -3,7 +3,6 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
-using TaleWorlds.Localization;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -11,14 +10,14 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 {
     public class WaaaghMeterVM : ViewModel
     {
-        private const float MaxBarHeight = 350f; // Match the BarHeight constant in XML
+        private const float BarHeight = 455f; // Must match SuggestedHeight in XML
+        private const float IconSize = 52f;   // Hover zone size for centering calculation
 
         private int _waaaghValue;
         private int _currentLevel;
         private float _fillPercentage;
         private float _fillHeight;
         private string _stateName;
-        private Color _progressBarColor;
         private bool _isVisible;
         private bool _isGreenskin;
         private bool _isMapScreenActive = true;
@@ -27,6 +26,25 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
         private BasicTooltipViewModel _level1Hint;
         private BasicTooltipViewModel _level2Hint;
         private BasicTooltipViewModel _level3Hint;
+
+        // Icon positions (MarginBottom) calculated from thresholds - centers icon on threshold line
+        [DataSourceProperty]
+        public float Level0Position => CalculateIconPosition(WaaaghLevel.InternalFightin);
+
+        [DataSourceProperty]
+        public float Level1Position => CalculateIconPosition(WaaaghLevel.PettySquabblin);
+
+        [DataSourceProperty]
+        public float Level2Position => CalculateIconPosition(WaaaghLevel.EreWeGo);
+
+        [DataSourceProperty]
+        public float Level3Position => CalculateIconPosition(WaaaghLevel.WAAAGH);
+
+        private float CalculateIconPosition(WaaaghLevel level)
+        {
+            // Position = (percentage * barHeight) - (iconSize / 2) to center icon on threshold
+            return (WaaaghHelper.GetThresholdPercentage(level) * BarHeight) - (IconSize / 2f);
+        }
 
         [DataSourceProperty]
         public BasicTooltipViewModel Level0Hint
@@ -156,20 +174,6 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
         }
 
         [DataSourceProperty]
-        public Color ProgressBarColor
-        {
-            get => _progressBarColor;
-            set
-            {
-                if (_progressBarColor != value)
-                {
-                    _progressBarColor = value;
-                    OnPropertyChangedWithValue(value, nameof(ProgressBarColor));
-                }
-            }
-        }
-
-        [DataSourceProperty]
         public bool IsVisible
         {
             get => _isVisible;
@@ -203,8 +207,7 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 
         public WaaaghMeterVM()
         {
-
-            // Initialize tooltip hints for each level
+            // Initialize tooltip hints for each level using helper methods
             Level0Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.InternalFightin));
             Level1Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.PettySquabblin));
             Level2Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.EreWeGo));
@@ -215,42 +218,10 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 
         private string GetLevelTooltipText(WaaaghLevel level)
         {
-            string levelName = level switch
-            {
-                WaaaghLevel.InternalFightin => "Internal Fightin'",
-                WaaaghLevel.PettySquabblin => "Petty Squabblin'",
-                WaaaghLevel.EreWeGo => "'Ere We Go!",
-                WaaaghLevel.WAAAGH => "WAAAGH!!!!",
-                _ => "Unknown"
-            };
-
-            string description = level switch
-            {
-                WaaaghLevel.InternalFightin => "Da Boys uv da mob are demoralized. They 'ave no gits to focus on an' resort to fightin' each other.",
-                WaaaghLevel.PettySquabblin => "Da mob found sum gits to bash but smaller scraps are still occurin' among da tribe. Da Boys will soon start gettin' restless again.",
-                WaaaghLevel.EreWeGo => "Da recent exploits uv your mob 'ave been 'eard in other tribes as well. Greenskins from other tribes start gatherin', an' your Boys are preparin' fer a proppa big scrap.",
-                WaaaghLevel.WAAAGH => "Now da Boys are proppa eager an' killy! Wez gonna show all dem humies an' stunties an' all da uva gits too! DIS IZ WAAAAGH!!!",
-                _ => ""
-            };
-
-            
-            string effects = level switch
-            {
-                WaaaghLevel.InternalFightin => "Morale: -40\nDamage Dealt: -20%\nFood Consumed: -60%",
-                WaaaghLevel.PettySquabblin => "Morale: -20\nDamage Dealt: -10%\nFood Consumed: -30%\nDaily Wounded: Smaller chance",
-                WaaaghLevel.EreWeGo => "Damage Dealt: +10%\nFood Consumed: +25%\nParty Size: +60\nDaily Recruitment: Small chance (T1-3)",
-                WaaaghLevel.WAAAGH => "Damage Dealt: +20%\nFood Consumed: +100%\nParty Size: +120\nDaily Recruitment: Big chance (T1-3)",
-                _ => ""
-            };
-
-            int threshold = level switch
-            {
-                WaaaghLevel.InternalFightin => 0,
-                WaaaghLevel.PettySquabblin => 250,
-                WaaaghLevel.EreWeGo => 600,
-                WaaaghLevel.WAAAGH => 900,
-                _ => 0
-            };
+            var levelName = WaaaghHelper.GetLevelName(level);
+            var description = WaaaghHelper.GetLevelDescription(level);
+            var effects = WaaaghHelper.GetLevelEffects(level);
+            var threshold = (int)WaaaghHelper.GetResourceMinimumForWaaaghRank(level);
 
             return $"{levelName}\nThreshold: {threshold}\n\n{description}\n\nEffects:\n{effects}";
         }
@@ -283,28 +254,14 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
             var waaaghLevel = WaaaghHelper.GetWaaaghLevelForResource(_waaaghValue);
             CurrentLevel = (int)waaaghLevel;
 
-            // Update state name
-            StateName = waaaghLevel switch
-            {
-                WaaaghLevel.InternalFightin => "Internal Fightin'",
-                WaaaghLevel.PettySquabblin => "Petty Squabblin'",
-                WaaaghLevel.EreWeGo => "'Ere We Go!",
-                WaaaghLevel.WAAAGH => "WAAAGH!!!!",
-                _ => "Unknown"
-            };
+            // Update state name using helper
+            StateName = WaaaghHelper.GetLevelName(waaaghLevel);
 
-            // Calculate fill percentage (0.0 to 1.0)
-            // Maximum Waaagh is 1000, so fill percentage is based on that
-            const float maxWaaagh = 1000f;
-            FillPercentage = Math.Min(_waaaghValue / maxWaaagh, 1.0f);
+            // Calculate fill percentage (0-100 scale)
+            FillPercentage = Math.Min(_waaaghValue / WaaaghHelper.MaxWaaagh * 100f, 100f);
 
-            // Calculate actual fill height in pixels for UI
-            FillHeight = FillPercentage * MaxBarHeight;
-
-            // Just use red color for now
-            ProgressBarColor = Color.FromUint(0xFF0000FF); // Red
-
-            InformationManager.DisplayMessage(new InformationMessage($"[WaaaghMeterVM] UpdateMeterState - Level: {CurrentLevel}, State: {StateName}, FillHeight: {FillHeight}", new Color(134, 114, 250)));
+            // Calculate fill height in pixels for UI binding
+            FillHeight = (FillPercentage / 100f) * BarHeight;
         }
     }
 }

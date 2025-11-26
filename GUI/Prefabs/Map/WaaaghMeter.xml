@@ -1,8 +1,9 @@
 <Prefab>
   <Window>
     <!-- Waaagh Meter - Vertical bar with 4 level icons -->
+    <!-- Icon positions are bound from VM (calculated from WaaaghHelper thresholds) -->
     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-            SuggestedWidth="80" SuggestedHeight="350"
+            SuggestedWidth="80" SuggestedHeight="455"
             HorizontalAlignment="Right" VerticalAlignment="Center"
             MarginRight="5"
             IsVisible="@IsVisible">
@@ -23,49 +24,50 @@
                 SuggestedWidth="10" HorizontalAlignment="Center"
                 Sprite="BlankWhiteSquare_9" Color="#50463C44" />
 
-        <!-- Level Icons (4 icons placed at level thresholds) with hover tooltips -->
-        <!-- Level 0 icon: Bottom (0%) - Internal Fightin' -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="43" SuggestedHeight="43"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="-11"
+        <!-- Level Icons with hover tooltips - positions bound from VM -->
+
+        <!-- Level 0: Internal Fightin' -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="52" SuggestedHeight="52"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="@Level0Position"
                 Sprite="BlankWhiteSquare_9" Color="#00000000">
           <Children>
-            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="38" SuggestedHeight="38"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Sprite="waagh1_icon" />
             <HintWidget DataSource="{Level0Hint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
           </Children>
         </Widget>
 
-        <!-- Level 1 icon: 25% (250/1000) - Petty Squabblin' -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="43" SuggestedHeight="43"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="66"
+        <!-- Level 1: Petty Squabblin' -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="52" SuggestedHeight="52"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="@Level1Position"
                 Sprite="BlankWhiteSquare_9" Color="#00000000">
           <Children>
-            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="38" SuggestedHeight="38"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Sprite="waagh2_icon" />
             <HintWidget DataSource="{Level1Hint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
           </Children>
         </Widget>
 
-        <!-- Level 2 icon: 60% (600/1000) - 'Ere We Go! -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="43" SuggestedHeight="43"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="189"
+        <!-- Level 2: 'Ere We Go! -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="52" SuggestedHeight="52"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="@Level2Position"
                 Sprite="BlankWhiteSquare_9" Color="#00000000">
           <Children>
-            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="38" SuggestedHeight="38"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Sprite="waagh3_icon" />
             <HintWidget DataSource="{Level2Hint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
           </Children>
         </Widget>
 
-        <!-- Level 3 icon: 90% (900/1000) - WAAAGH!!!! -->
-        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="43" SuggestedHeight="43"
-                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="294"
+        <!-- Level 3: WAAAGH!!!! -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="52" SuggestedHeight="52"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="@Level3Position"
                 Sprite="BlankWhiteSquare_9" Color="#00000000">
           <Children>
-            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="32" SuggestedHeight="32"
+            <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="38" SuggestedHeight="38"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Sprite="waagh4_icon" />
             <HintWidget DataSource="{Level3Hint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
