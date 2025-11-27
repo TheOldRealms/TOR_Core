@@ -533,7 +533,6 @@
     <Compile Include="CampaignMechanics\CustomResources\OathGoldHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghHelper.cs" />
-    <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterGlobalLayer.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterMapView.cs" />
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />

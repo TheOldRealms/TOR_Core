@@ -1,37 +1,40 @@
+using SandBox.GauntletUI.Map;
 using SandBox.View.Map;
-using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI.Data;
-using TaleWorlds.Library;
-using TaleWorlds.ScreenSystem;
 
 namespace TOR_Core.CampaignMechanics.WaaaghMeter
 {
     public class WaaaghMeterMapView : MapView
     {
-        private WaaaghMeterGlobalLayer _globalLayer;
+        private WaaaghMeterVM _vm;
+        private GauntletLayer _layer;
+        private GauntletMovieIdentifier _movie;
 
         protected override void CreateLayout()
         {
             base.CreateLayout();
+            _vm = new WaaaghMeterVM();
+            GauntletMapBasicView mapView = MapScreen.GetMapView<GauntletMapBasicView>();
+            Layer = mapView.GauntletLayer;
+            _layer = Layer as GauntletLayer;
+            _movie = _layer.LoadMovie("WaaaghMeter", _vm);
+        }
 
-            // Create and initialize the global layer (like vanilla MapBar)
-            _globalLayer = new WaaaghMeterGlobalLayer();
-            _globalLayer.Initialize();
-
-            // Add as global layer so it receives mouse events properly for tooltips
-            ScreenManager.AddGlobalLayer(_globalLayer, false);
+        protected override void OnMapScreenUpdate(float dt)
+        {
+            base.OnMapScreenUpdate(dt);
+            _vm.RefreshValues();
         }
 
         protected override void OnFinalize()
         {
-            if (_globalLayer != null)
-            {
-                _globalLayer.OnFinalize();
-                ScreenManager.RemoveGlobalLayer(_globalLayer);
-                _globalLayer = null;
-            }
-
+            _vm.OnFinalize();
+            _vm = null;
+            _layer.ReleaseMovie(_movie);
+            _movie = null;
+            _layer = null;
+            Layer = null;
             base.OnFinalize();
         }
     }

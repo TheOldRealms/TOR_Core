@@ -20,7 +20,6 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
         private string _stateName;
         private bool _isVisible;
         private bool _isGreenskin;
-        private bool _isMapScreenActive = true;
 
         private BasicTooltipViewModel _level0Hint;
         private BasicTooltipViewModel _level1Hint;
@@ -202,22 +201,11 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
             }
         }
 
-        public bool IsMapScreenActive
-        {
-            get => _isMapScreenActive;
-            set
-            {
-                if (_isMapScreenActive != value)
-                {
-                    _isMapScreenActive = value;
-                    UpdateVisibility();
-                }
-            }
-        }
-
         private void UpdateVisibility()
         {
-            IsVisible = _isGreenskin && _isMapScreenActive;
+            // With the SpellBook pattern, this MapView only exists on MapScreen
+            // so we only need to check if player is Greenskin
+            IsVisible = _isGreenskin;
         }
 
         public WaaaghMeterVM()
