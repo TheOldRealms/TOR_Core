@@ -255,7 +255,7 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
             CurrentLevel = (int)waaaghLevel;
 
             // Update state name using helper
-            StateName = WaaaghHelper.GetLevelName(waaaghLevel);
+            StateName = WaaaghHelper.GetLevelName(waaaghLevel).ToString();
 
             // Calculate fill percentage (0-100 scale)
             FillPercentage = Math.Min(_waaaghValue / WaaaghHelper.MaxWaaagh * 100f, 100f);

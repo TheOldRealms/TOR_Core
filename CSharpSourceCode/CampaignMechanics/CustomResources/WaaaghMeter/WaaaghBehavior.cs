@@ -42,7 +42,6 @@ public class WaaaghBehavior : CampaignBehaviorBase
             {
                 _waaaghMeterView = (WaaaghMeterMapView)mapScreen.AddMapView<WaaaghMeterMapView>();
                 _hasTriedToInitializeUI = true;
-                InformationManager.DisplayMessage(new InformationMessage("[WaaaghBehavior] Waaagh Meter UI initialized", new Color(134, 114, 250)));
             }
         }
     }
