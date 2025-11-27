@@ -83,6 +83,14 @@ public static class WaaaghHelper
             _ => TextObject.GetEmpty()
         };
     }
+
+    public static TextObject GetBarTooltip(float currentValue)
+    {
+        var text = new TextObject("{=tor_waaagh_bar_tooltip}Waaagh: {CURRENT} / {MAX}");
+        text.SetTextVariable("CURRENT", (int)currentValue);
+        text.SetTextVariable("MAX", (int)MaxWaaagh);
+        return text;
+    }
 }
 
 public enum WaaaghLevel

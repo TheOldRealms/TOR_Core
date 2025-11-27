@@ -26,6 +26,7 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
         private BasicTooltipViewModel _level1Hint;
         private BasicTooltipViewModel _level2Hint;
         private BasicTooltipViewModel _level3Hint;
+        private BasicTooltipViewModel _barHint;
 
         // Icon positions (MarginBottom) calculated from thresholds - centers icon on threshold line
         [DataSourceProperty]
@@ -98,6 +99,20 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
                 {
                     _level3Hint = value;
                     OnPropertyChangedWithValue(value, nameof(Level3Hint));
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public BasicTooltipViewModel BarHint
+        {
+            get => _barHint;
+            set
+            {
+                if (_barHint != value)
+                {
+                    _barHint = value;
+                    OnPropertyChangedWithValue(value, nameof(BarHint));
                 }
             }
         }
@@ -212,6 +227,7 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
             Level1Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.PettySquabblin));
             Level2Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.EreWeGo));
             Level3Hint = new BasicTooltipViewModel(() => GetLevelTooltipText(WaaaghLevel.WAAAGH));
+            BarHint = new BasicTooltipViewModel(() => GetBarTooltipText());
 
             RefreshValues();
         }
@@ -224,6 +240,11 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
             var threshold = (int)WaaaghHelper.GetResourceMinimumForWaaaghRank(level);
 
             return $"{levelName}\nThreshold: {threshold}\n\n{description}\n\nEffects:\n{effects}";
+        }
+
+        private string GetBarTooltipText()
+        {
+            return WaaaghHelper.GetBarTooltip(_waaaghValue).ToString();
         }
 
         public override void RefreshValues()

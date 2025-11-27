@@ -24,6 +24,15 @@
                 SuggestedWidth="10" HorizontalAlignment="Center"
                 Sprite="BlankWhiteSquare_9" Color="#50463C44" />
 
+        <!-- Bar hover zone for current/max tooltip (behind icons so icon tooltips take priority) -->
+        <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent"
+                SuggestedWidth="10" HorizontalAlignment="Center"
+                Sprite="BlankWhiteSquare_9" Color="#00000000">
+          <Children>
+            <HintWidget DataSource="{BarHint}" DoNotAcceptEvents="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint" />
+          </Children>
+        </Widget>
+
         <!-- Level Icons with hover tooltips - positions bound from VM -->
 
         <!-- Level 0: Internal Fightin' -->
