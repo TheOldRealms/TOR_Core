@@ -5674,4 +5674,343 @@
         <TriggeredEffect>armed_to_da_teef</TriggeredEffect>
     </AbilityTemplate>
 
+    <!-- Orc Shaman Career Ability -->
+    <AbilityTemplate StringID="CallOfDaGreen"
+                     Name="{=call_of_da_green_label_str}Call uf da Green"
+                     SpriteName="waaagh_symbol"
+                     CoolDown="60"
+                     WindsOfMagicCost="0"
+                     BaseMisCastChance="0"
+                     Duration="15"
+                     Radius="15"
+                     AbilityType="CareerAbility"
+                     AbilityEffectType="CareerAbilityEffect"
+                     BaseMovementSpeed="0"
+                     TickInterval="1"
+                     TriggerType="EveryTick"
+                     HasLight="true"
+                     LightIntensity="30"
+                     LightRadius="8"
+                     LightFlickeringMagnitude="2"
+                     LightFlickeringInterval="0.5"
+                     ShadowCastEnabled="false"
+                     ParticleEffectPrefab="waaagh_aura"
+                     ParticleEffectSizeModifier="1"
+                     SoundEffectToPlay="waaagh_chant"
+                     ShouldSoundLoopOverDuration="true"
+                     CastType="Instant"
+                     CastTime="0.5"
+                     AnimationActionName="act_cheer_1"
+                     Offset="0"
+                     AbilityTargetType="Self"
+                     CrosshairType="Self"
+                     TargetCapturingRadius="15"
+                     TooltipDescription="{=call_of_da_green_description_str}Focus on your connection to Da Great Green. For 15 seconds, nearby Greenskins dealing damage generate Winds of Magic. Beware - dying Greenskins drain your power!">
+        <LightColorRGB x="50"
+                       y="200"
+                       z="50"
+                       w="-1">
+            <AsVec2>
+                <x>50</x>
+                <y>200</y>
+                <z>50</z>
+            </AsVec2>
+        </LightColorRGB>
+        <TriggeredEffect>call_of_da_green_buff</TriggeredEffect>
+    </AbilityTemplate>
+
+    <!-- Big Waaagh Spells -->
+
+    <!-- Gaze uv Mork - Basic Missile -->
+    <AbilityTemplate StringID="GazeUvMork"
+                     Name="{=gaze_uv_mork_label_str}Gaze uv Mork"
+                     SpriteName="waaagh_symbol"
+                     CoolDown="15"
+                     WindsOfMagicCost="6"
+                     BaseMisCastChance="0.05"
+                     Duration="3"
+                     Radius="0.3"
+                     AbilityType="Spell"
+                     AbilityEffectType="Missile"
+                     BaseMovementSpeed="60"
+                     TickInterval="-1"
+                     TriggerType="OnCollision"
+                     HasLight="true"
+                     LightIntensity="40"
+                     LightRadius="6"
+                     LightFlickeringMagnitude="2"
+                     LightFlickeringInterval="0.3"
+                     ShadowCastEnabled="true"
+                     ParticleEffectPrefab="waaagh_gaze"
+                     ParticleEffectSizeModifier="1"
+                     SoundEffectToPlay="magic_missile"
+                     ShouldSoundLoopOverDuration="false"
+                     CastType="WindUp"
+                     CastTime="0.5"
+                     AnimationActionName="act_release_stone"
+                     Offset="0.5"
+                     AbilityTargetType="WorldPosition"
+                     CrosshairType="Missile"
+                     MinDistance="1"
+                     MaxDistance="80"
+                     TargetCapturingRadius="1"
+                     SpellTier="1"
+                     BelongsToLoreID="BigWaaagh"
+                     TooltipDescription="{=gaze_uv_mork_description_str}Da Shaman channels Mork's baleful gaze, hurling a bolt of green energy at a distant foe.">
+        <LightColorRGB x="50"
+                       y="200"
+                       z="50"
+                       w="-1">
+            <AsVec2>
+                <x>50</x>
+                <y>200</y>
+                <z>50</z>
+            </AsVec2>
+        </LightColorRGB>
+        <TriggeredEffect>gaze_uv_mork_hit</TriggeredEffect>
+    </AbilityTemplate>
+
+    <!-- 'Ard as Nails - Basic Buff -->
+    <AbilityTemplate StringID="ArdAsNails"
+                     Name="{=ard_as_nails_label_str}'Ard as Nails"
+                     SpriteName="waaagh_symbol"
+                     CoolDown="30"
+                     WindsOfMagicCost="8"
+                     BaseMisCastChance="0.05"
+                     Duration="0"
+                     Radius="10"
+                     AbilityType="Spell"
+                     AbilityEffectType="Augment"
+                     BaseMovementSpeed="0"
+                     TickInterval="-1"
+                     TriggerType="TickOnce"
+                     HasLight="true"
+                     LightIntensity="20"
+                     LightRadius="10"
+                     LightFlickeringMagnitude="1"
+                     LightFlickeringInterval="0.5"
+                     ShadowCastEnabled="false"
+                     ParticleEffectPrefab="waaagh_buff"
+                     ParticleEffectSizeModifier="1"
+                     SoundEffectToPlay="buff_cast"
+                     ShouldSoundLoopOverDuration="false"
+                     CastType="Instant"
+                     CastTime="0.5"
+                     AnimationActionName="act_cheer_1"
+                     Offset="0"
+                     AbilityTargetType="AlliesInAOE"
+                     CrosshairType="Self"
+                     MaxDistance="10"
+                     TargetCapturingRadius="10"
+                     SpellTier="1"
+                     BelongsToLoreID="BigWaaagh"
+                     TooltipDescription="{=ard_as_nails_description_str}Da Shaman toughens da skin of nearby Greenskins, making dem 'arder to hurt.">
+        <LightColorRGB x="50"
+                       y="200"
+                       z="50"
+                       w="-1">
+            <AsVec2>
+                <x>50</x>
+                <y>200</y>
+                <z>50</z>
+            </AsVec2>
+        </LightColorRGB>
+        <TriggeredEffect>ard_as_nails_buff</TriggeredEffect>
+    </AbilityTemplate>
+
+    <!-- Brain Bursta - Adept AoE Damage -->
+    <AbilityTemplate StringID="BrainBursta"
+                     Name="{=brain_bursta_label_str}Brain Bursta"
+                     SpriteName="waaagh_symbol"
+                     CoolDown="25"
+                     WindsOfMagicCost="12"
+                     BaseMisCastChance="0.08"
+                     Duration="0"
+                     Radius="3"
+                     AbilityType="Spell"
+                     AbilityEffectType="Blast"
+                     BaseMovementSpeed="0"
+                     TickInterval="-1"
+                     TriggerType="TickOnce"
+                     HasLight="true"
+                     LightIntensity="60"
+                     LightRadius="8"
+                     LightFlickeringMagnitude="3"
+                     LightFlickeringInterval="0.2"
+                     ShadowCastEnabled="true"
+                     ParticleEffectPrefab="waaagh_burst"
+                     ParticleEffectSizeModifier="1"
+                     SoundEffectToPlay="explosion_magic"
+                     ShouldSoundLoopOverDuration="false"
+                     CastType="WindUp"
+                     CastTime="0.7"
+                     AnimationActionName="act_release_heavy_thrown"
+                     Offset="10"
+                     AbilityTargetType="GroundAtPosition"
+                     CrosshairType="TargetedAOE"
+                     MinDistance="5"
+                     MaxDistance="40"
+                     TargetCapturingRadius="3"
+                     SpellTier="2"
+                     BelongsToLoreID="BigWaaagh"
+                     TooltipDescription="{=brain_bursta_description_str}Da Shaman reaches into da enemy's skull and makes deir brain explode, knocking down nearby foes.">
+        <LightColorRGB x="50"
+                       y="200"
+                       z="50"
+                       w="-1">
+            <AsVec2>
+                <x>50</x>
+                <y>200</y>
+                <z>50</z>
+            </AsVec2>
+        </LightColorRGB>
+        <TriggeredEffect>brain_bursta_explosion</TriggeredEffect>
+    </AbilityTemplate>
+
+    <!-- Da Hand uv Gork - Adept Teleport -->
+    <AbilityTemplate StringID="DaHandUvGork"
+                     Name="{=da_hand_uv_gork_label_str}Da Hand uv Gork"
+                     SpriteName="waaagh_symbol"
+                     CoolDown="45"
+                     WindsOfMagicCost="10"
+                     BaseMisCastChance="0.08"
+                     Duration="2"
+                     Radius="5"
+                     AbilityType="Spell"
+                     AbilityEffectType="Augment"
+                     BaseMovementSpeed="0"
+                     TickInterval="2"
+                     TriggerType="TickOnce"
+                     HasLight="true"
+                     LightIntensity="40"
+                     LightRadius="8"
+                     LightFlickeringMagnitude="2"
+                     LightFlickeringInterval="0.3"
+                     ShadowCastEnabled="false"
+                     ParticleEffectPrefab="waaagh_teleport"
+                     ParticleEffectSizeModifier="1"
+                     SoundEffectToPlay="teleport_cast"
+                     ShouldSoundLoopOverDuration="false"
+                     CastType="Instant"
+                     CastTime="0"
+                     AnimationActionName="act_release_heavy_thrown"
+                     Offset="10"
+                     AbilityTargetType="GroundAtPosition"
+                     CrosshairType="Pointer"
+                     MinDistance="1"
+                     MaxDistance="50"
+                     TargetCapturingRadius="5"
+                     SpellTier="2"
+                     BelongsToLoreID="BigWaaagh"
+                     TooltipDescription="{=da_hand_uv_gork_description_str}Gork reaches down and picks up da Shaman and nearby boyz, dropping dem where da Shaman points.">
+        <LightColorRGB x="50"
+                       y="200"
+                       z="50"
+                       w="-1">
+            <AsVec2>
+                <x>50</x>
+                <y>200</y>
+                <z>50</z>
+            </AsVec2>
+        </LightColorRGB>
+        <TriggeredEffect>da_hand_uv_gork_teleport</TriggeredEffect>
+    </AbilityTemplate>
+
+    <!-- 'Ere We Go! - Master Buff -->
+    <AbilityTemplate StringID="EreWeGo"
+                     Name="{=ere_we_go_label_str}'Ere We Go!"
+                     SpriteName="waaagh_symbol"
+                     CoolDown="60"
+                     WindsOfMagicCost="20"
+                     BaseMisCastChance="0.10"
+                     Duration="0"
+                     Radius="15"
+                     AbilityType="Spell"
+                     AbilityEffectType="Augment"
+                     BaseMovementSpeed="0"
+                     TickInterval="-1"
+                     TriggerType="TickOnce"
+                     HasLight="true"
+                     LightIntensity="50"
+                     LightRadius="15"
+                     LightFlickeringMagnitude="3"
+                     LightFlickeringInterval="0.4"
+                     ShadowCastEnabled="false"
+                     ParticleEffectPrefab="waaagh_ere_we_go"
+                     ParticleEffectSizeModifier="1.5"
+                     SoundEffectToPlay="waaagh_chant"
+                     ShouldSoundLoopOverDuration="false"
+                     CastType="WindUp"
+                     CastTime="1.0"
+                     AnimationActionName="act_cheer_1"
+                     Offset="0"
+                     AbilityTargetType="AlliesInAOE"
+                     CrosshairType="Self"
+                     MaxDistance="15"
+                     TargetCapturingRadius="15"
+                     SpellTier="3"
+                     BelongsToLoreID="BigWaaagh"
+                     TooltipDescription="{=ere_we_go_description_str}Da Shaman whips nearby Greenskins into a frenzy, increasing deir damage, attack speed, and movement speed.">
+        <LightColorRGB x="50"
+                       y="200"
+                       z="50"
+                       w="-1">
+            <AsVec2>
+                <x>50</x>
+                <y>200</y>
+                <z>50</z>
+            </AsVec2>
+        </LightColorRGB>
+        <TriggeredEffect>ere_we_go_buff</TriggeredEffect>
+    </AbilityTemplate>
+
+    <!-- Foot uv Gork - Master Explosion -->
+    <AbilityTemplate StringID="FootUvGork"
+                     Name="{=foot_uv_gork_label_str}Foot uv Gork"
+                     SpriteName="waaagh_symbol"
+                     CoolDown="90"
+                     WindsOfMagicCost="30"
+                     BaseMisCastChance="0.12"
+                     Duration="3"
+                     Radius="6"
+                     AbilityType="Spell"
+                     AbilityEffectType="Bombardment"
+                     BaseMovementSpeed="0"
+                     TickInterval="3"
+                     TriggerType="EveryTick"
+                     HasLight="true"
+                     LightIntensity="80"
+                     LightRadius="12"
+                     LightFlickeringMagnitude="4"
+                     LightFlickeringInterval="0.2"
+                     ShadowCastEnabled="true"
+                     ParticleEffectPrefab="waaagh_foot"
+                     ParticleEffectSizeModifier="2"
+                     SoundEffectToPlay="giant_stomp"
+                     ShouldSoundLoopOverDuration="false"
+                     CastType="WindUp"
+                     CastTime="1.5"
+                     AnimationActionName="act_release_heavy_thrown"
+                     Offset="20"
+                     AbilityTargetType="GroundAtPosition"
+                     CrosshairType="TargetedAOE"
+                     MinDistance="10"
+                     MaxDistance="60"
+                     TargetCapturingRadius="6"
+                     SpellTier="3"
+                     BelongsToLoreID="BigWaaagh"
+                     TooltipDescription="{=foot_uv_gork_description_str}Gork's massive green foot descends from da sky, stomping everything flat in a devastating explosion.">
+        <LightColorRGB x="50"
+                       y="200"
+                       z="50"
+                       w="-1">
+            <AsVec2>
+                <x>50</x>
+                <y>200</y>
+                <z>50</z>
+            </AsVec2>
+        </LightColorRGB>
+        <TriggeredEffect>foot_uv_gork_stomp</TriggeredEffect>
+    </AbilityTemplate>
+
 </AbilityTemplates>
