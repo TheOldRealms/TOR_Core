@@ -209,6 +209,15 @@ namespace TOR_Core.CharacterDevelopment
         private CareerChoiceGroupObject _leafNuffinBehin;
         private CareerChoiceGroupObject _bestofDaBest;
 
+        //Orc Shaman
+        private CareerChoiceGroupObject _bonesAnFirepitz;
+        private CareerChoiceGroupObject _visionsUvDaOrcayne;
+        private CareerChoiceGroupObject _giftzFromDaGreatGreen;
+        private CareerChoiceGroupObject _brutalCunnin;
+        private CareerChoiceGroupObject _cunninBrutality;
+        private CareerChoiceGroupObject _gorkAnMorkAreWatchin;
+        private CareerChoiceGroupObject _powerUvDaWaaagh;
+
 
         public TORCareerChoiceGroups()
         {
@@ -411,6 +420,15 @@ namespace TOR_Core.CharacterDevelopment
             _getToDaChoppas = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_getToDaChoppas).UnderscoreFirstCharToUpper()));
             _leafNuffinBehin = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_leafNuffinBehin).UnderscoreFirstCharToUpper()));
             _bestofDaBest = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_bestofDaBest).UnderscoreFirstCharToUpper()));
+
+            //OrcShaman
+            _bonesAnFirepitz = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_bonesAnFirepitz).UnderscoreFirstCharToUpper()));
+            _visionsUvDaOrcayne = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_visionsUvDaOrcayne).UnderscoreFirstCharToUpper()));
+            _giftzFromDaGreatGreen = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_giftzFromDaGreatGreen).UnderscoreFirstCharToUpper()));
+            _brutalCunnin = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_brutalCunnin).UnderscoreFirstCharToUpper()));
+            _cunninBrutality = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_cunninBrutality).UnderscoreFirstCharToUpper()));
+            _gorkAnMorkAreWatchin = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_gorkAnMorkAreWatchin).UnderscoreFirstCharToUpper()));
+            _powerUvDaWaaagh = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_powerUvDaWaaagh).UnderscoreFirstCharToUpper()));
 
         }
 
@@ -1298,6 +1316,59 @@ namespace TOR_Core.CharacterDevelopment
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerOrcBoss") && hero.HasAttribute("PlayerOrcBigBoss");
+            });
+
+            // Orc Shaman
+            _bonesAnFirepitz.Initialize("{=bones_an_firepitz_choice_group_str}Bones an' Firepitz", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+
+            _visionsUvDaOrcayne.Initialize("{=visions_uv_da_orcayne_choice_group_str}Visions uv da Orc-ayne", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return true;
+            });
+
+            _giftzFromDaGreatGreen.Initialize("{=giftz_from_da_great_green_choice_group_str}Giftz from Da Great Green", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
+            {
+                var hasUnlocked = hero.HasAttribute("PlayerOrcShaman");
+                text = "";
+                if (!hasUnlocked)
+                {
+                    text = "\n " + GameTexts.FindText("careerunlock_condition_1", "OrcShaman").ToString();
+                }
+                return hasUnlocked;
+            });
+
+            _brutalCunnin.Initialize("{=brutal_cunnin_choice_group_str}Brutal Cunnin'", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return hero.HasAttribute("PlayerOrcShaman");
+            });
+
+            _cunninBrutality.Initialize("{=cunnin_brutality_choice_group_str}Cunnin' Brutality", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return hero.HasAttribute("PlayerOrcShaman");
+            });
+
+            _gorkAnMorkAreWatchin.Initialize("{=gork_an_mork_are_watchin_choice_group_str}Gork an' Mork are watchin'", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
+            {
+                var hasUnlocked = hero.HasAttribute("PlayerOrcShaman") && hero.HasAttribute("PlayerOrcFavouredUvDaGodz");
+                text = "";
+                if (!hasUnlocked)
+                {
+                    text = GameTexts.FindText("careerunlock_condition_2", "OrcShaman").ToString();
+                }
+                return hasUnlocked;
+            });
+
+            _powerUvDaWaaagh.Initialize("{=power_uv_da_waaagh_choice_group_str}Power uv da Waaagh!", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
+            {
+                text = string.Empty;
+                return hero.HasAttribute("PlayerOrcShaman") && hero.HasAttribute("PlayerOrcFavouredUvDaGodz");
             });
 
         }

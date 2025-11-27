@@ -36,6 +36,7 @@ namespace TOR_Core.CharacterDevelopment
         private CareerObject _slayer;
         private CareerObject _runelord;
         private CareerObject _orcBoss;
+        private CareerObject _orcShaman;
 
         public TORCareers()
         {
@@ -92,6 +93,8 @@ namespace TOR_Core.CharacterDevelopment
 
         public static CareerObject OrcBoss => Instance._orcBoss;
 
+        public static CareerObject OrcShaman => Instance._orcShaman;
+
         private void RegisterAll()
         {
 
@@ -116,6 +119,7 @@ namespace TOR_Core.CharacterDevelopment
             _warden = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Warden"));
             _runelord = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("Runelord"));
             _orcBoss = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("OrcBoss"));
+            _orcShaman = Game.Current.ObjectManager.RegisterPresumedObject(new CareerObject("OrcShaman"));
 
             _allCareers =
             [
@@ -139,7 +143,8 @@ namespace TOR_Core.CharacterDevelopment
                 _slayer,
                 _warden,
                 _runelord,
-                _orcBoss
+                _orcBoss,
+                _orcShaman
             ];
         }
 
@@ -166,6 +171,7 @@ namespace TOR_Core.CharacterDevelopment
             _warden.Initialize("Warden", null, "HawkEye", null, 100, typeof(HawkEyeScript));
             _runelord.Initialize("Runelord", null, "WisdomOfThungni", CareerAbilityChargeSupplier.RunelordChargeSupplier, 500, typeof(WisdomOfThungniScript));
             _orcBoss.Initialize("Orc Boss", null, "ArmedToDaTeef", null, 100, typeof(ArmedToDaTeef));
+            _orcShaman.Initialize("Orc Shaman", null, "CallOfDaGreen", null, 100, typeof(CallOfDaGreen));
         }
     }
 }
