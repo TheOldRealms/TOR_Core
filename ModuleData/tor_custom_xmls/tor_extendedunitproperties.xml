@@ -10258,7 +10258,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_spelltrainer_greenskins_0">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>SkillTrainer</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eonir_druchii_envoy_0">
     <Abilities />

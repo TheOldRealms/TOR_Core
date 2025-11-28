@@ -340,6 +340,7 @@
     <Compile Include="AbilitySystem\Scripts\AccusationScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArcaneConduit.cs" />
     <Compile Include="AbilitySystem\Scripts\ArmedToDaTeef.cs" />
+    <Compile Include="AbilitySystem\Scripts\CallOfDaGreen.cs" />
     <Compile Include="AbilitySystem\Scripts\ArrowOfKurnousScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArtilleryPlacementScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
@@ -593,6 +594,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\MercenaryCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\NecrarchCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\OrcBossCareerButton.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\OrcShamanCareerButton.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\RunelordCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SlayerCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />
@@ -622,6 +624,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecrarchCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecromancerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\OrcBossCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\OrcShamanCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\RunelordCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\SlayerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\SpellsingerCareerChoices.cs" />

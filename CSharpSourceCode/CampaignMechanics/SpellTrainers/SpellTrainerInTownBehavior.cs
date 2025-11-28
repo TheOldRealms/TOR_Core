@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
+using TaleWorlds.CampaignSystem.Conversation;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.Party;
@@ -35,6 +36,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private readonly string _vampireTrainerId = "tor_spelltrainer_vc_0";
         private readonly string _prophetessTrainerId = "tor_spelltrainer_bretonnia_0";
         private readonly string _woodelfTrainerId = "tor_spelltrainer_woodelves_0";
+        private readonly string _greenskinTrainerId = "tor_spelltrainer_greenskins_0";
         private string _testResult = "";
         private Dictionary<string, string> _settlementToTrainerMap = new Dictionary<string, string>();
 
@@ -120,6 +122,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             if (settlement.Culture.StringId == TORConstants.Cultures.SYLVANIA || settlement.Culture.StringId == TORConstants.Cultures.MOUSILLON) template = MBObjectManager.Instance.GetObject<CharacterObject>(_vampireTrainerId);
             if (settlement.Culture.StringId == TORConstants.Cultures.EMPIRE) template = MBObjectManager.Instance.GetObject<CharacterObject>(_empireTrainerId);
             if (settlement.Culture.StringId == TORConstants.Cultures.ASRAI) template = MBObjectManager.Instance.GetObject<CharacterObject>(_woodelfTrainerId);
+            if (settlement.Culture.StringId == TORConstants.Cultures.GREENSKIN) template = MBObjectManager.Instance.GetObject<CharacterObject>(_greenskinTrainerId);
 
             if (template != null)
             {

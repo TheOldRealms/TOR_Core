@@ -5724,7 +5724,7 @@
     <!-- Gaze uv Mork - Basic Missile -->
     <AbilityTemplate StringID="GazeUvMork"
                      Name="{=gaze_uv_mork_label_str}Gaze uv Mork"
-                     SpriteName="waaagh_symbol"
+                     SpriteName="gazeofmork_icon"
                      CoolDown="15"
                      WindsOfMagicCost="6"
                      BaseMisCastChance="0.05"
@@ -5773,7 +5773,7 @@
     <!-- 'Ard as Nails - Basic Buff -->
     <AbilityTemplate StringID="ArdAsNails"
                      Name="{=ard_as_nails_label_str}'Ard as Nails"
-                     SpriteName="waaagh_symbol"
+                     SpriteName="ardasnails_icon"
                      CoolDown="30"
                      WindsOfMagicCost="8"
                      BaseMisCastChance="0.05"
@@ -5821,7 +5821,7 @@
     <!-- Brain Bursta - Adept AoE Damage -->
     <AbilityTemplate StringID="BrainBursta"
                      Name="{=brain_bursta_label_str}Brain Bursta"
-                     SpriteName="waaagh_symbol"
+                     SpriteName="brainbusta_icon"
                      CoolDown="25"
                      WindsOfMagicCost="12"
                      BaseMisCastChance="0.08"
@@ -5870,7 +5870,7 @@
     <!-- Da Hand uv Gork - Adept Teleport -->
     <AbilityTemplate StringID="DaHandUvGork"
                      Name="{=da_hand_uv_gork_label_str}Da Hand uv Gork"
-                     SpriteName="waaagh_symbol"
+                     SpriteName="handofgork_icon"
                      CoolDown="45"
                      WindsOfMagicCost="10"
                      BaseMisCastChance="0.08"
@@ -5967,7 +5967,7 @@
     <!-- Foot uv Gork - Master Explosion -->
     <AbilityTemplate StringID="FootUvGork"
                      Name="{=foot_uv_gork_label_str}Foot uv Gork"
-                     SpriteName="waaagh_symbol"
+                     SpriteName="footofgork_icon"
                      CoolDown="90"
                      WindsOfMagicCost="30"
                      BaseMisCastChance="0.12"

@@ -2261,20 +2261,21 @@
       <EquipmentSet id="tor_we_spellsinger_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_spelltrainer_greenskins_0" default_group="infantry" name="{=str_tor_spelltrainer_greenskins_0}{FIRSTNAME} the Greenskin Shaman" occupation="Special" culture="Culture.aserai" voice="ironic" age="30" race="orc" is_female="true" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_spelltrainer_greenskins_0" default_group="infantry" name="{=str_tor_spelltrainer_greenskins_0}{FIRSTNAME} the Greenskin Shaman" occupation="Special" culture="Culture.aserai" voice="ironic" age="40" race="orc" is_template="true" is_hero="false">
     <face>
-      <face_key_template value="BodyProperty.fey_enchantress" />
+      <face_key_template value="BodyProperty.orc_small" />
     </face>
     <Traits>
-      <Trait id="BalancedFightingSkills" value="8" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Calculating" value="5" />
-      <Trait id="Mercy" value="-1" />
-      <Trait id="Valor" value="-3" />
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Surgeon" value="5" />
+      <Trait id="Calculating" value="6" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_we_spellsinger_template" />
-      <EquipmentSet id="tor_we_spellsinger_template" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_template" />
+      <EquipmentSet id="tor_gs_orc_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_eonir_druchii_envoy_0" default_group="infantry" name="{=str_tor_eonir_druchii_envoy_0}Witch King Envoy" occupation="Special" culture="Culture.eonir" voice="ironic" age="30" race="elf" is_template="true" is_hero="false">

@@ -120,6 +120,9 @@ namespace TOR_Core.Utilities
                 case TORConstants.Cultures.EONIR:
                     args.MenuContext.SetBackgroundMeshName("wood_elves_captive");
                     return;
+                case TORConstants.Cultures.GREENSKIN:
+                    args.MenuContext.SetBackgroundMeshName("greenskin_captive");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_captive_male");
                     return;
