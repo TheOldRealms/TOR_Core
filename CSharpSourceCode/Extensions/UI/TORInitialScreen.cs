@@ -82,7 +82,7 @@ namespace TOR_Core.Extensions.UI
         {
             _scene = Scene.CreateNewScene(true, true, DecalAtlasGroup.All, "mono_renderscene");
             _scene.SetName("MainMenuScene");
-            SceneInitializationData sceneInitializationData = default;
+            SceneInitializationData sceneInitializationData = new SceneInitializationData(true);
             _scene.Read(_menuSceneNames.GetRandomElementInefficiently(), ref sceneInitializationData);
             _scene.DisableStaticShadows(true);
             _scene.SetShadow(true);
