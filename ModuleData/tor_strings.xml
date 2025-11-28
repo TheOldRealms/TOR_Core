@@ -21,8 +21,8 @@
   
   
   <!-- CC Options -->
-  <string id="str_tor_cc_growth.battania" text= "{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities..."/>
-  <string id="str_tor_cc_profession.battania" text= "{=str_tor_cc_profession_battania}Choose your path..."/>
+  <string id="str_tor_cc_growth.battania" text= "{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities…"/>
+  <string id="str_tor_cc_profession.battania" text= "{=str_tor_cc_profession_battania}Choose your path…"/>
 
   <string id="str_tor_cc_origin.sturgia" text= "{=str_tor_cc_origin_sturgia}Your Clan is famous for its…"/>
   <string id="str_tor_cc_growth.sturgia" text= "{=str_tor_cc_growth_sturgia}The proud Dawi cultivate every grudge aimed at their kin…"/>
@@ -37,13 +37,13 @@
   <string id="str_tor_cc_specialization_desc_lore" text="{=str_tor_cc_specialization_desc_lore}The gift of Witchsight allows you to channel one of the eight Winds of Magic:"/>
 
   <string id="str_tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline…"/>
-  <string id="str_tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}As a vampire, you must choose your bloodline. This will determine your abilities and strengths."/>
+  <string id="str_tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}The Vampirekind is divided into several distinct bloodlines:"/>
 
   <string id="str_tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your Deity…"/>
-  <string id="str_tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}As a priest, you must choose which god you serve. This will determine your divine powers."/>
+  <string id="str_tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}All Warrior Priests serve one particular god:"/>
 
   <string id="str_tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order…"/>
-  <string id="str_tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses."/>
+  <string id="str_tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}All knights are members of an esteemed knightly order:"/>
   
   
    <!-- priest blessings -->
@@ -61,7 +61,7 @@
   
   <string id="priest_start_accept.cult_of_sigmar" text= "Welcome friend of the empire"/>
   <string id="priest_start_decline.cult_of_sigmar" text= "Out of my sight. We don't share a common view"/>
-  <string id="priest_start_decline_hard.cult_of_sigmar" text= "Vile creature... out of my sight before I forget myself."/>
+  <string id="priest_start_decline_hard.cult_of_sigmar" text= "Vile creature… out of my sight before I forget myself."/>
   
   <string id="priest_hub_intro.cult_of_sigmar" text= "In the name of Sigmar, how can I help you?"/>
   <string id="priest_hub_reintro.cult_of_sigmar" text= "What else?"/>
@@ -84,7 +84,7 @@
   
   <string id="priest_start_accept.cult_of_shallya" text= "Welcome friend of Shallya."/>
   <string id="priest_start_decline.cult_of_shallya" text= "There is nothing that I can tell you. Begone"/>
-  <string id="priest_start_decline_hard.cult_of_shallya" text= "Vile creature... out of my sight before I forget myself."/>
+  <string id="priest_start_decline_hard.cult_of_shallya" text= "Vile creature… out of my sight before I forget myself."/>
   
   <string id="priest_hub_intro.cult_of_shallya" text= "In the name of Shallya, how can I help you?"/>
   <string id="priest_hub_reintro.cult_of_shallya" text= "What else?"/>
@@ -213,7 +213,7 @@
 	
   <string id="enchanter_donate_items_1.empire" text= "{=str_tor_cc_profession_battania}I am interested in your magical items you find in your journeys. What do you have to offer?"/>
   <string id="enchanter_donate_items_1_negative.empire" text= "{=str_tor_cc_profession_battania}You dont have anything of interest for me. I am not interested in the enchanted items of yours, but to study the artefacts of this world."/>  
-  <string id="enchanter_donate_items_hub_p.empire" text= "{=str_tor_cc_profession_battania}Let me provide you these items..."/> 
+  <string id="enchanter_donate_items_hub_p.empire" text= "{=str_tor_cc_profession_battania}Let me provide you these items…"/> 
   <string id="enchanter_gift_items_hub_return_p.empire" text= "{=str_tor_cc_profession_battania}I need to think about this."/>    
   
  <string id="enchanter_donate_items_2.empire" text= "{=str_tor_cc_profession_battania}Which items do you want to donate?"/>
@@ -258,7 +258,7 @@
   <string id="enchanter_info_resource_WarpstoneDust_2.empire" text= "{=str_tor_cc_profession_battania}If you are particularly daring, then Sylvania is rife with the foul stuff. I must warn you, the dead are more common than the living at times."/>
 
   <string id="enchanter_info_resource_Gemstones_1.empire" text= "{=str_tor_cc_profession_battania}Ahh gems! I hear tales of treasures found amidst Dwarfen mines, or carried into battle by the Dwarf folk. As a useful tool, those who use magic often carry them as well I should think."/>
-  <string id="enchanter_info_resource_DragonBlood_1.empire" text= "{=str_tor_cc_profession_battania}Few in life come across such potent a substance, were I to hazard a guess...perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
+  <string id="enchanter_info_resource_DragonBlood_1.empire" text= "{=str_tor_cc_profession_battania}Few in life come across such potent a substance, were I to hazard a guess… perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
   
   <!--enchantment start-->
    <string id="enchanter_start_p.sturgia" text= "{=str_tor_cc_profession_battania}I wish to know more about the art of runecraft."/>
@@ -287,7 +287,7 @@
 	
   <string id="enchanter_donate_items_1.sturgia" text= "{=str_tor_cc_profession_battania}I would be happy to receive and look over any magical gear you have collected. What do you have to offer?"/>
   <string id="enchanter_donate_items_1_negative.sturgia" text= "{=str_tor_cc_profession_battania}You dont have anything of interest for me. Remember, will not accept items you have made yourself, as all that you know, we already know."/>  
-  <string id="enchanter_donate_items_hub_p.sturgia" text= "{=str_tor_cc_profession_battania}Let me provide you these items..."/> 
+  <string id="enchanter_donate_items_hub_p.sturgia" text= "{=str_tor_cc_profession_battania}Let me provide you these items…"/> 
   <string id="enchanter_gift_items_hub_return_p.sturgia" text= "{=str_tor_cc_profession_battania}I need to think about this."/>    
   
  <string id="enchanter_donate_items_2.sturgia" text= "{=str_tor_cc_profession_battania}Which items do you want to donate?"/>
@@ -332,7 +332,7 @@
   <string id="enchanter_info_resource_WarpstoneDust_2.sturgia" text= "{=str_tor_cc_profession_battania}If you are particularly daring, then Sylvania is rife with the foul stuff. I must warn you, the dead are more common than the living at times."/>
 
   <string id="enchanter_info_resource_Gemstones_1.sturgia" text= "{=str_tor_cc_profession_battania}Ahh gems! I hear tales of treasures found amidst Dwarfen mines, or carried into battle by the Dwarf folk. As a useful tool, those who use magic often carry them as well I should think."/>
-  <string id="enchanter_info_resource_DragonBlood_1.sturgia" text= "{=str_tor_cc_profession_battania}Few in life come across such potent a substance, were I to hazard a guess...perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
+  <string id="enchanter_info_resource_DragonBlood_1.sturgia" text= "{=str_tor_cc_profession_battania}Few in life come across such potent a substance, were I to hazard a guess… perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
   
 
   <!-- oath gold mechanic-->
@@ -569,7 +569,7 @@
   <string id="str_quest_tor_engineer.cultistReturn0" text= "{=quest_tor_engineer_cultistReturn0_str}I have returned but without the stolen components, I am afraid to say they are still missing."/>
   <string id="str_quest_tor_engineer.cultistReturn1" text= "{=quest_tor_engineer_cultistReturn1_str}I see, this is not what I had hoped for. Were there any further clues, did you interrogate these scoundrels?"/>
   <string id="str_quest_tor_engineer.cultistReturn2" text= "{=quest_tor_engineer_cultistReturn2_str}One of the bandits did mention a name, {ROGUE_ENGINEER_NAME} I think?"/>
-  <string id="str_quest_tor_engineer.cultistReturn3" text="{=quest_tor_engineer_cultistReturn3_str}Blast! I should have known. If you are willing, I would ask for your assistance once more. This matter may be more dire than I originally imagined. {ROGUE_ENGINEER_NAME} is an engineer, a good one at that, but his works always seemed... wrong."/>
+  <string id="str_quest_tor_engineer.cultistReturn3" text="{=quest_tor_engineer_cultistReturn3_str}Blast! I should have known. If you are willing, I would ask for your assistance once more. This matter may be more dire than I originally imagined. {ROGUE_ENGINEER_NAME} is an engineer, a good one at that, but his works always seemed… wrong."/>
   <string id="str_quest_tor_engineer.rogueEngineerQuestStart" text="{=quest_tor_engineer_rogueEngineerQuestStart_str}If he has stolen these parts, it can only mean some heinous scheme. I must ask that you track him down, and put an end to whatever madness he is trying to concoct. Will you assist us?"/>
 
   <string id="str_quest_tor_engineer.cultistInProgressPlayer" text= "{=quest_tor_engineer_cultistInProgressPlayer_str}I have yet to track down the runaways."/>
@@ -787,7 +787,7 @@
   <string id="tor_feudal_oath_line1.averland" text="{=tor_feudal_oath_line1_averland_str}I hereby swear to serve the Grand County of Averland." />
   <string id="tor_feudal_oath_line2.averland" text="{=tor_feudal_oath_line2_averland_str}I proclaim the Elector Count, Marius Leitdorf as my rightful lord and better looking than Kurt Helboring." />
   <string id="tor_feudal_oath_line3.averland" text="{=tor_feudal_oath_line3.averland_str}I uphold my sword to protect the sun-kissed lands of Averland, its people, its cattle and above all: the sweet wines." />
-  <string id="tor_feudal_oath_line4.averland" text="{=tor_feudal_oath_line4_averland_str}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and... - ahem - back." />
+  <string id="tor_feudal_oath_line4.averland" text="{=tor_feudal_oath_line4_averland_str}I recognise you as My lord and Saviour, and will follow you to the depths of hell and back and back to hell and… - ahem - back." />
 
   <string id="tor_feudal_oath_line1.hochland" text="{=tor_feudal_oath_line1_hochland_str}I swear my loyalty to the Grand Barony of Hochland." />
   <string id="tor_feudal_oath_line2.hochland" text="{=tor_feudal_oath_line2_hochland_str}I acknowledge Aldebrand Ludenhof, the Grand Baron of Hochland and Baron of Hergig as my rightful ruler." />
@@ -1272,11 +1272,11 @@
   <string id="customsettlement_intro.worldroot_01" text="{=customsettlement_intro_worldroot_01_str}You found the world roots ends in the Arden forest." />
   <string id="customsettlement_disabled.worldroot_01" text="{=customsettlement_disabled_worldroot_01_str}You found the world roots ends in the Arden forest." />
   <string id="customsettlement_intro.worldroot_02" text="{=customsettlement_intro_worldroot_02_str}You found the world roots ends in the Laurelorn forest." />
-  <string id="customsettlement_intro.worldroot_02b" text="{=customsettlement_intro_worldroot_02b_str}You found the world roots ends in the Laurelorn forest. A friendly Spellsinger greets you. He is willing to take you with him to the Maisontaal forest for a fee. This fee however is not in gold... Are you willing to accept the offer?" />
+  <string id="customsettlement_intro.worldroot_02b" text="{=customsettlement_intro_worldroot_02b_str}You found the world roots ends in the Laurelorn forest. A friendly Spellsinger greets you. He is willing to take you with him to the Maisontaal forest for a fee. This fee however is not in gold… Are you willing to accept the offer?" />
   <string id="customsettlement_disabled.worldroot_02" text="{=customsettlement_disabled_worldroot_02_str}You found the world roots ends in the Laurelorn forest." />
   <string id="customsettlement_intro.worldroot_03" text="{=customsettlement_intro_worldroot_03_str}You found the world roots ends in the Gryphenwood." />
   <string id="customsettlement_disabled.worldroot_03" text="{=customsettlement_disabled_worldroot_03_str}You found the world roots ends in the Gryphenwood." />
-  <string id="customsettlement_intro.worldroot_04" text="{=customsettlement_intro_worldroot_04_str}You found an inconspicuous world roots end. A friendly Spellsinger greets you. He is willing to take you with him to the Laurelorn forest for a fee. This fee however is not in gold... Are you willing to accept the offer?" />
+  <string id="customsettlement_intro.worldroot_04" text="{=customsettlement_intro_worldroot_04_str}You found an inconspicuous world roots end. A friendly Spellsinger greets you. He is willing to take you with him to the Laurelorn forest for a fee. This fee however is not in gold… Are you willing to accept the offer?" />
   <string id="customsettlement_disabled.worldroot_04" text="{=customsettlement_disabled_worldroot_04_str}You found an inconspicuous world roots end." />
 
   <string id="customsettlement_intro.darkelf_camp_01" text="{=customsettlement_intro_darkelf_camp_01_str}You arrive at a druchii slaver camp. Ships are anchored in the bay and the cages are full of stock." />
@@ -1489,7 +1489,7 @@
   <string id="backstory_b.tor_wanderer_empire_7" text="{=backstory_b_tor_wanderer_empire_7_str}Now I track, hunt and do mercenary work for coin." />
   <string id="backstory_c.tor_wanderer_empire_7" text="{=backstory_c_tor_wanderer_empire_7_str}I have hunted all manner of beast and beastmen, even the occasional orc. My skills go to the highest bidder." />
   <string id="response_1.tor_wanderer_empire_7" text="{=response_1_tor_wanderer_empire_7_str}Mhm." />
-  <string id="response_2.tor_wanderer_empire_7" text="{=response_2_tor_wanderer_empire_7_str}Mhmm..." />
+  <string id="response_2.tor_wanderer_empire_7" text="{=response_2_tor_wanderer_empire_7_str}Mhmm…" />
   <string id="backstory_d.tor_wanderer_empire_7" text="{=backstory_d_tor_wanderer_empire_7_str}Right." />
   <string id="generic_backstory.tor_wanderer_empire_7" text="{=generic_backstory_tor_wanderer_empire_7_str}I am a Huntsman, many monsters have been slain by my hand in service of the Empire." />
 
@@ -1530,7 +1530,7 @@
   <string id="generic_backstory.tor_wanderer_empire_11" text="{=generic_backstory_tor_wanderer_empire_11_str}I am a priest of Ulric. You have certainly heard of our fighting skills." />
 
   <string id="prebackstory.tor_wanderer_empire_12" text="{=prebackstory_tor_wanderer_empire_12_str}I see you lead a war party, eh. Hope you're not like those sons of nobles that I've had the misfortune of knowing." />
-  <string id="backstory_a.tor_wanderer_empire_12" text="{=backstory_a_tor_wanderer_empire_12_str}I have spent much of my life commanding a wealthy nobleman's army. A great honor, they said... Bah! Bullshit." />
+  <string id="backstory_a.tor_wanderer_empire_12" text="{=backstory_a_tor_wanderer_empire_12_str}I have spent much of my life commanding a wealthy nobleman's army. A great honor, they said… Bah! Bullshit." />
   <string id="backstory_b.tor_wanderer_empire_12" text="{=backstory_b_tor_wanderer_empire_12_str}They've put me as captain subordinate to that noble's son, a beardless kid who knew nothing about commanding. He didn't even know how to get on a horse. I followed that stupid boy's instructions and it almost cost me my life. But unlike my men, I still have air in my lungs to denounce this negligence." />
   <string id="backstory_c.tor_wanderer_empire_12" text="{=backstory_c_tor_wanderer_empire_12_str}Of course that daddy's boy, hidden in his mommy's skirts, said the failure was due to my incompetence, and that I didn't know how to lead. The bastard didn't even show up in battle, he just gave the order to charge and that's it." />
   <string id="response_1.tor_wanderer_empire_12" text="{=response_1_tor_wanderer_empire_12_str}I've also had the misfortune of dealing with those types of commanders." />
@@ -1570,7 +1570,7 @@
   <string id="backstory_b.tor_wanderer_vampire_2" text="{=backstory_b_tor_wanderer_vampire_2_str}Much is lost, bloodshed, battle, death." />
   <string id="backstory_c.tor_wanderer_vampire_2" text="{=backstory_c_tor_wanderer_vampire_2_str}I serve, I fight, I destroy." />
   <string id="response_1.tor_wanderer_vampire_2" text="{=response_1_tor_wanderer_vampire_2_str}I see." />
-  <string id="response_2.tor_wanderer_vampire_2" text="{=response_2_tor_wanderer_vampire_2_str}Riiight..." />
+  <string id="response_2.tor_wanderer_vampire_2" text="{=response_2_tor_wanderer_vampire_2_str}Riiight…" />
   <string id="backstory_d.tor_wanderer_vampire_2" text="{=backstory_d_tor_wanderer_vampire_2_str}Mmm." />
   <string id="generic_backstory.tor_wanderer_vampire_2" text="{=generic_backstory_tor_wanderer_vampire_2_str}I am a Wight King, servant in death." />
 
@@ -1623,10 +1623,10 @@
   <string id="backstory_c.tor_wanderer_bretonnia_3" text="{=backstory_c_tor_wanderer_bretonnia_3_str}Sneaking up on the chief, I stabbed him in the back. But I couldn't deal with the other two. Well, at least I distracted them from that poor woman by chasing me. Now I spend my days hiding in places like this, trying to avoid the scaffold." />
   <string id="response_1.tor_wanderer_bretonnia_3" text="{=response_1_tor_wanderer_bretonnia_3_str}In this cruel world, no good deed goes unpunished." />
   <string id="response_2.tor_wanderer_bretonnia_3" text="{=response_2_tor_wanderer_bretonnia_3_str}You wanted to avoid one crime by committing another. You're not that different from that guy." />
-  <string id="backstory_d.tor_wanderer_bretonnia_3" text="{=backstory_d_tor_wanderer_bretonnia_3_str}Maybe you're right... If only you accepted me into your army they would stop looking for me, and I could stop hiding. I would be eternally grateful to you." />
+  <string id="backstory_d.tor_wanderer_bretonnia_3" text="{=backstory_d_tor_wanderer_bretonnia_3_str}Maybe you're right… If only you accepted me into your army they would stop looking for me, and I could stop hiding. I would be eternally grateful to you." />
 
   <string id="prebackstory.tor_wanderer_bretonnia_4" text="{=prebackstory_tor_wanderer_bretonnia_4_str}Greetings, is there a noble sending you who needs an architect?" />
-  <string id="backstory_a.tor_wanderer_bretonnia_4" text="{=backstory_a_tor_wanderer_bretonnia_4_str}There's not much to tell about me. I learned the trade from my father, who was a Wall Warden before me, as was his grandfather before him, and his father before him..." />
+  <string id="backstory_a.tor_wanderer_bretonnia_4" text="{=backstory_a_tor_wanderer_bretonnia_4_str}There's not much to tell about me. I learned the trade from my father, who was a Wall Warden before me, as was his grandfather before him, and his father before him…" />
   <string id="backstory_b.tor_wanderer_bretonnia_4" text="{=backstory_b_tor_wanderer_bretonnia_4_str}I had the knowledge and experience of several years building and maintaining the walls and towers of the cordon sanitaire that protect us from those cursed people of Mousillon. But Bretonnian lords also frequently hired me to build their own castles." />
   <string id="backstory_c.tor_wanderer_bretonnia_4" text="{=backstory_c_tor_wanderer_bretonnia_4_str}Have you been to Turris Vigilans? I was in charge of designing its new wall. The previous one would not have withstood a siege. Have you been to Libourne Castle? The lord there hired me to expand and renovate the fortress's rooms." />
   <string id="response_1.tor_wanderer_bretonnia_4" text="{=response_1_tor_wanderer_bretonnia_4_str}I'm sure you've won the sympathy of many dukes." />
@@ -1636,7 +1636,7 @@
   <string id="prebackstory.tor_wanderer_bretonnia_5" text="{=prebackstory_tor_wanderer_bretonnia_5_str}}Greetings. Are you by any chance looking for people interested in a large enterprise?" />
   <string id="backstory_a.tor_wanderer_bretonnia_5" text="{=backstory_a_tor_wanderer_bretonnia_5_str}I've traveled throughout the Old World, working in the sale and transportation of goods and merchandise. I have experience in logistics, am adept at trading and bargaining, and am fluent in languages ​​and personal contact." />
   <string id="backstory_b.tor_wanderer_bretonnia_5" text="{=backstory_b_tor_wanderer_bretonnia_5_str}My services have been requested before by bourgeois and noble people; and throughout my travels, I have traveled with all sorts of diverse characters." />
-  <string id="backstory_c.tor_wanderer_bretonnia_5" text="{=backstory_c_tor_wanderer_bretonnia_5_str}Other merchants, doctors, warriors... I even once shared the journey with a group of troubadours who enlivened the journey with their performing talents. Ah, I'll never forget their incomparable performance while singing 'West Bretonnia'. A delight to my ears." />
+  <string id="backstory_c.tor_wanderer_bretonnia_5" text="{=backstory_c_tor_wanderer_bretonnia_5_str}Other merchants, doctors, warriors… I even once shared the journey with a group of troubadours who enlivened the journey with their performing talents. Ah, I'll never forget their incomparable performance while singing 'West Bretonnia'. A delight to my ears." />
   <string id="response_1.tor_wanderer_bretonnia_5" text="{=response_1_tor_wanderer_bretonnia_5_str}I've heard of those wandering troubadours." />
   <string id="response_2.tor_wanderer_bretonnia_5" text="{=response_2_tor_wanderer_bretonnia_5_str}I don't know what you mean. But you seem to know what you're talking about." />
   <string id="backstory_d.tor_wanderer_bretonnia_5" text="{=backstory_d_tor_wanderer_bretonnia_5_str}Anyway, I recently finished my contract with a lucrative profit, and I'm open to a new contract." />
@@ -1663,7 +1663,7 @@
   <string id="backstory_a.tor_wanderer_mousillon_2" text="{=backstory_a_tor_wanderer_mousillon_2_str}I have no history, young man. I was born and raised in the swampy forests of Mousillon, living off whatever the rivers and forests could provide me." />
   <string id="backstory_b.tor_wanderer_mousillon_2" text="{=backstory_b_tor_wanderer_mousillon_2_str}Occasionally, a young village girl would come to my hut seeking help with someone sick or injured, and I would offer her my knowledge in exchange for their goodwill. This allowed me to eat something other than tasteless mushrooms and salted fish." />
   <string id="backstory_c.tor_wanderer_mousillon_2" text="{=backstory_c_tor_wanderer_mousillon_2_str}I also sell talismans that I make myself. Oh, if only you knew the healing power of talismans." />
-  <string id="response_1.tor_wanderer_mousillon_2" text="{=response_1_tor_wanderer_mousillon_2_str}Mmm... living in isolation in the dangerous Mousillon's swamps, creating protective talismans... I bet there's some magic behind it all." />
+  <string id="response_1.tor_wanderer_mousillon_2" text="{=response_1_tor_wanderer_mousillon_2_str}Mmm… living in isolation in the dangerous Mousillon's swamps, creating protective talismans… I bet there's some magic behind it all." />
   <string id="response_2.tor_wanderer_mousillon_2" text="{=response_2_tor_wanderer_mousillon_2_str}Keep the drama. I know what you're, and I'd like to use your knowledge." />
   <string id="backstory_d.tor_wanderer_mousillon_2" text="{=backstory_d_tor_wanderer_mousillon_2_str}Not magic! It's ancient knowledge from bygone eras, ancestral wisdom passed down from our ancestors. Although someone without the aptitude would surely call magic anything they can't understand." />
   <string id="generic_backstory.tor_wanderer_mousillon_2" text="{=generic_backstory_tor_wanderer_mousillon_2_str}Although for a price, anyone could benefit. Including you. Do we have a deal?" />
@@ -1674,7 +1674,7 @@
   <string id="backstory_c.tor_wanderer_mousillon_3" text="{=backstory_c_tor_wanderer_mousillon_3_str}If you want something or someone to move undetected, I'm your man." />
   <string id="response_1.tor_wanderer_mousillon_3" text="{=response_1_tor_wanderer_mousillon_3_str}Would you be interested in an even more lucrative business serving an army in war?" />
   <string id="response_2.tor_wanderer_mousillon_3" text="{=response_2_tor_wanderer_mousillon_3_str}A smuggler might be useful to me." />
-  <string id="backstory_d.tor_wanderer_mousillon_3" text="{=backstory_d_tor_wanderer_mousillon_3_str}Mmm... These people have less and less money on them and I barely cover the margin." />
+  <string id="backstory_d.tor_wanderer_mousillon_3" text="{=backstory_d_tor_wanderer_mousillon_3_str}Mmm… These people have less and less money on them and I barely cover the margin." />
   <string id="generic_backstory.tor_wanderer_mousillon_3" text="{=generic_backstory_tor_wanderer_mousillon_3_str}If you promise me good profits on a regular basis and a down payment, I'm all yours." />
   
   <string id="prebackstory.tor_wanderer_eonir_0" text="{=prebackstory_tor_wanderer_eonir_0_str}About me? There is not much to tell." />
@@ -1720,9 +1720,9 @@
   <string id="response_1.tor_wanderer_woodelf_2" text="{=response_1_tor_wanderer_woodelf_2_str}Certainly, you must be a prodigy" />
   <string id="response_2.tor_wanderer_woodelf_2" text="{=response_2_tor_wanderer_woodelf_2_str}Didn't the Asrai enjoy your company?" />
   <string id="backstory_d.tor_wanderer_woodelf_2" text="{=backstory_d_tor_wanderer_woodelf_2_str}I am adept in the arts of survival, disruption, and ambush. I can approach my quarry, strike swiftly, and vanish before its body hits the ground. Alternatively, I can subtly lead it into one of my traps." />
-  <string id="generic_backstory.tor_wanderer_woodelf_2" text="{=generic_backstory_tor_wanderer_woodelf_2_str}I have but one request. Although I seldom leave the forest, when I do, I seek the pleasures of civilised life. A fine wine in the tavern, pleasant company... I trust your group can provide these comforts." />
+  <string id="generic_backstory.tor_wanderer_woodelf_2" text="{=generic_backstory_tor_wanderer_woodelf_2_str}I have but one request. Although I seldom leave the forest, when I do, I seek the pleasures of civilised life. A fine wine in the tavern, pleasant company… I trust your group can provide these comforts." />
 
-  <string id="prebackstory.tor_wanderer_chaos_0" text="{=prebackstory_tor_wanderer_chaos_0_str}Do you hear them too? Those voices..." />
+  <string id="prebackstory.tor_wanderer_chaos_0" text="{=prebackstory_tor_wanderer_chaos_0_str}Do you hear them too? Those voices…" />
   <string id="backstory_a.tor_wanderer_chaos_0" text="{=backstory_a_tor_wanderer_chaos_0_str}Inside my head, those voices whisper to me, revealing to me the secrets of this world." />
   <string id="backstory_b.tor_wanderer_chaos_0" text="{=backstory_b_tor_wanderer_chaos_0_str}Before there was confusion, now I see everything clearly. My purpose has been revealed to me." />
   <string id="backstory_c.tor_wanderer_chaos_0" text="{=backstory_c_tor_wanderer_chaos_0_str}I must fulfill their will. I must open their eyes. There is no order without chaos, chaos itself is a purpose. The voices tell me that I have been chosen." />
@@ -1859,45 +1859,40 @@
    <string id="career_switch_title.Necrarch" text="{=tor_career_switch_title_necrarch_str}Become a Necrach" />
 
   <string id="career_switch_explaination.MinorVampire" text="{=tor_career_switch_explanation_minorvampire_str}
-  By accepting you are becoming a Vampire, this decision is permanent and can't be changed back for the rest of your playthrough.{newline}
+  Accept and you shall become a Von Carstein Vampire. This decision is permanent and cannot be reversed.{newline}
   {newline}
-  By Becoming a vampire, you will be stripped of your magic(beside Minor Magic ) and faith skill.{newline}
-  Beside that you will gain Vampire powers.... {newline}
-  See more in the Manual for more information.{newline}
+  By becoming a Vampire, you will be stripped of your original Lore of Magic as well as the Faith skill.{newline}
+  Instead you shall gain unholy powers of the undead…{newline}
   {newline}
-  The Dialog can be restarted if you decline.
+  The choice can be accessed later, should you decline now.
   " />
 
   <string id="career_switch_explaination.BloodKnight" text="{=tor_career_switch_explanation_bloodknight_str}
-  By accepting you are becoming a Blood Knight Vampire, this decision is permanent and can't be changed back for the rest of your playthrough.{newline}
+  Accept and you shall become a Blood Dragon Vampire. This decision is permanent and cannot be reversed.{newline}
   {newline}
-  By Becoming a Blood Knight Vampire, you will be stripped completly of your  spellcraft and faith skill, and will not be able to perform magic. {newline}
+  By becoming a Blood Dragon Vampire, you will be completly stripped of your Spellcraft and Faith skills, and will lose access to magic spells.{newline}
   {newline}
-  Beside that you will switch to the melee focused Bloodknight Career{newline}
-  See more in the Manual for more information.{newline}
+  Instead you shall gain ferocious martial powers of the Ordo Draconis…{newline}
   {newline}
-  The Dialog can be restarted if you decline.
+  The choice can be accessed later, should you decline now.
   " />
 
   <string id="career_switch_explaination.BlackGrailKnight" text="{=tor_career_switch_explanation_blackgrailknight_str}
-  By accepting you are becoming a Mousillon Knight, this decision is permanent and can't be changed back for the rest of your playthrough.{newline}
+  Accept and you shall enter the ranks of Mousillon Knights. This decision is permanent and cannot be reversed.{newline}
   {newline}
-  By Becoming a Knight of Mousillon, you will be stripped of your faith skill. {newline}
+  By gecoming a Knight of Mousillon, you will be stripped of your Faith skill. {newline}
   {newline}
-  See more in the Manual for more information.{newline}
-  {newline}
-  The Dialog can be restarted if you decline.
+  The choice can be accessed later, should you decline now.
   " />
 
 
   <string id="career_switch_explaination.Necrarch" text="{=tor_career_switch_title_explanation_necrarch_str}
-  By accepting you are becoming a Necrach Vampire, this decision is permanent and can't be changed back for the rest of your playthrough.{newline}
+  Accept and you shall become a Necrach Vampire. This decision is permanent and cannot be reversed.{newline}
   {newline}
-  By Becoming a vampire, you will be stripped of Life Magic or Light magic (if you posess it), and the  faith skill.{newline}
-  Beside that you will gain Necrach powers.... {newline}
-  See more in the Wiki for more information.{newline}
+  By becoming a Necrach Vampire, you shall be stripped of Life Magic or Light magic, if you possess it, as well as the Faith skill.{newline}
+  Instead you shall gain arcane powers of the Necrarch bloodline…{newline}
   {newline}
-  The Dialog can be restarted if you decline.
+  The choice can be accessed later, should you decline now.
   " />
 
   <string id="career_choicegroup1_name.WitchHunter" text="{=career_choicegroup1_witch_hunter_str}Witch Hunter Initiate" />
@@ -2188,7 +2183,7 @@
 	<string id="tor_custom_resource_description.Chivalry" text="{=str_tor_custom_resource_description.Chivalry}Is used for upgrading special units of Bretonnia and special actions." />
 	<string id="tor_custom_resource_description.DarkEnergy" text="{=str_tor_custom_resource_description.DarkEnergy}Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions." />
 	<string id="tor_custom_resource_description.ForestHarmony" text="{=str_tor_custom_resource_description.ForestHarmony}Forest Binding is used to upgrade and maintain troops of the woodelves, as well as retrieve upgrades at the Oak of Ages. - binding looks like it was an old term that was used temporarily and was never changed" />
-	<string id="tor_custom_resource_description.CouncilFavor" text="{=str_tor_custom_resource_description.CouncilFavor}Retrieve power in the Eonir council and use it to your benefit. - retrieve is not the right word, perhaps curry, gain, accumulate, consolidate, find(nyeh), build, etc..." />
+	<string id="tor_custom_resource_description.CouncilFavor" text="{=str_tor_custom_resource_description.CouncilFavor}Retrieve power in the Eonir council and use it to your benefit. - retrieve is not the right word, perhaps curry, gain, accumulate, consolidate, find(nyeh), build, etc…" />
 	<string id="tor_custom_resource_description.OathGold" text="{=str_tor_custom_resource_description.OathGold}Spend Oathgold to unlock various perks and support Dwarfen guilds." />
 	<string id="tor_custom_resource_description.Teef" text="{=str_tor_custom_resource_description.Teef}Teef is the proof of absolute dominance, and the currency that has actual value for green skins." />
 	<string id="tor_custom_resource_description.Meat" text="{=str_tor_custom_resource_description.Meat}Just a helper resource nothing to see here" />
@@ -2269,7 +2264,7 @@
 
   <!-- Inky translation related.  Do NOT add texts inside quotation marks!-->
   <!-- every inky story starts with "inky: "+ ID of the file name. While the Variation accounts for the specific text block -->
-  <string id="inky_continue" text="{inky_continue_str}Continue..." />
+  <string id="inky_continue" text="{inky_continue_str}Continue…" />
   <string id="inky_end" text="{inky_end_str}End." />
 
 
@@ -2648,7 +2643,7 @@
 	<string id="tor_empire_prestigeNoble_itemsIntro" text="{=str_tor_empire_prestigeNoble_itemsIntro}Hmm.. currently there is only one thing I have on hand, but it is very unique. A beast from the Imperial Menagerie, should you be interested? - If he only has one thing on hand, why are you prompted to select among demigryphs?" />
 	<string id="tor_empire_prestigeNoble_mountInquiry_p" text="{=str_tor_empire_prestigeNoble_mountInquiry_p}What sort of beast?" />
 	<string id="tor_empire_prestigeNoble_noInterestItems_p" text="{=str_tor_empire_prestigeNoble_noInterestItems_p}Maybe something different.(back)" />
-	<string id="tor_empire_prestigeNoble_demigryphExplain" text="{=str_tor_empire_prestigeNoble_demigryphExplain}Due to some rather unfortunate circumstances, we have a monstrous steed without a rider. A Demigryph, to be precise. While the rider will be missed, the keeper of the Imperial Menagerie doesn't know what to do with it. Luckily, I have contacts within the Order of the fallen Knight and they may be willing to entrust the mount to you... ({DEMIGRYPH_COST}{PRESTIGE_ICON})" />
+	<string id="tor_empire_prestigeNoble_demigryphExplain" text="{=str_tor_empire_prestigeNoble_demigryphExplain}Due to some rather unfortunate circumstances, we have a monstrous steed without a rider. A Demigryph, to be precise. While the rider will be missed, the keeper of the Imperial Menagerie doesn't know what to do with it. Luckily, I have contacts within the Order of the fallen Knight and they may be willing to entrust the mount to you… ({DEMIGRYPH_COST}{PRESTIGE_ICON})" />
 	<string id="tor_empire_prestigeNoble_demigryphBuy_p" text="{=str_tor_empire_prestigeNoble_demigryphBuy_p}Price is no issue, such a mighty steed would be worth it. ({DEMIGRYPH_COST}{PRESTIGE_ICON})" />
 	<string id="tor_empire_prestigeNoble_demigryphInquiryTitle" text="{=str_tor_empire_prestigeNoble_demigryphInquiryTitle}Choose your demigryph!" />
 	<string id="tor_empire_prestigeNoble_demigryphInquiryDescription" text="{=str_tor_empire_prestigeNoble_demigryphInquiryDescription}The Noble offers you his service, one of his demigryphens(ons?) he kept in the menagerie is available to you. - itemsIntro should concord with this" />
@@ -2656,7 +2651,7 @@
 	
 	<!-- Construction projects paid for with gold that are 1 time only -->
 	<string id="tor_empire_prestigeNoble_buildingAsk_p" text="{=str_tor_empire_prestigeNoble_buildingAsk_p}I would like to invest in infrastructure, what are my options?" />
-	<string id="tor_empire_prestigeNoble_buildingProjectHub" text="{=str_tor_empire_prestigeNoble_buildingProjectHub}An interesting choice, there are a number of projects slated for the future...but with the right amount of coin I can ensure you are known as the magnimonous benefactor behind their expedited construction." />
+	<string id="tor_empire_prestigeNoble_buildingProjectHub" text="{=str_tor_empire_prestigeNoble_buildingProjectHub}An interesting choice, there are a number of projects slated for the future… but with the right amount of coin I can ensure you are known as the magnimonous benefactor behind their expedited construction." />
 	<string id="tor_empire_prestigeNoble_buildingOption0" text="{=str_tor_empire_prestigeNoble_buildingOption0}[Dedicate a statue to Sigmar Heldenhammer]" />
 	<string id="tor_empire_prestigeNoble_buildingOption1" text="{=str_tor_empire_prestigeNoble_buildingOption1}[Help fund the construction of a Temple of Shallya]" />
 	<string id="tor_empire_prestigeNoble_buildingOption2" text="{=str_tor_empire_prestigeNoble_buildingOption2}[Construct a new dry dock]" />
@@ -2664,7 +2659,7 @@
 	<string id="tor_empire_prestigeNoble_buildingOption4" text="{=str_tor_empire_prestigeNoble_buildingOption4}[Renovate the Heldenhammer]" />
 	<string id="tor_empire_prestigeNoble_buildingExplain0" text="{=str_tor_empire_prestigeNoble_buildingExplain0}The Cult of Sigmar within Altdorf has ambitions to build a rather sizeable statue of our most glorious Sigmar upon a hill with a prestigous view of his beloved Empire. They are lacking in some funding to ensure it's timely completion, I can ensure your name is written upon such a wondrous memorial for a measly cost. ({BUILDING_COST} {GOLD_ICON}) - this can be formatted differently to read as something like 400K (gold icon) rather than 400000 (icon)" />
 	<string id="tor_empire_prestigeNoble_buildingExplain1" text="{=str_tor_empire_prestigeNoble_buildingExplain1}There are many who suffer across the Empire and Shallya's priestesses are needed more than ever, however funding a Temple to the Lady in White is no small endeavour. You can be sure that, for a little coin, your name will be praised for generations for aiding in such a selfless act. ({BUILDING_COST} {GOLD_ICON})" />
-	<string id="tor_empire_prestigeNoble_buildingExplain2" text="{=str_tor_empire_prestigeNoble_buildingExplain2}The threat we face from Norsca is ever present, the Elector Count of Nordland has called for the construction of a new dry dock to empower the Imperial Navy. It has already been funded by the local lords...however for a little extra I can ensure you are known as the prime contributor. ({BUILDING_COST} {GOLD_ICON})" />
+	<string id="tor_empire_prestigeNoble_buildingExplain2" text="{=str_tor_empire_prestigeNoble_buildingExplain2}The threat we face from Norsca is ever present, the Elector Count of Nordland has called for the construction of a new dry dock to empower the Imperial Navy. It has already been funded by the local lords… however for a little extra I can ensure you are known as the prime contributor. ({BUILDING_COST} {GOLD_ICON})" />
 	<string id="tor_empire_prestigeNoble_buildingExplain3" text="{=str_tor_empire_prestigeNoble_buildingExplain3}The forests and the hills of the Empire need constant patrols to ensure the safety of it's citizens, one of the local garrisons is in dire need of training equipment and you have an opportunity to provide it for them. ({BUILDING_COST} {GOLD_ICON})" />
 	<string id="tor_empire_prestigeNoble_buildingExplain4" text="{=str_tor_empire_prestigeNoble_buildingExplain4}It takes a lot of coin to keep the mighty Heldenhammer afloat, the Grand Theogonist and the Cult of Sigmar will look very favourably upon any who donate to ensure it is battle ready at all times. ({BUILDING_COST} {GOLD_ICON})" />
 	<string id="tor_empire_prestigeNoble_buildingPay_p" text="{=str_tor_empire_prestigeNoble_buildingPay_p}That sounds good, I will send you the funding. ({BUILDING_COST} {GOLD_ICON}) This can be reformated to seem less awkward with restating the cost - the player should see the npc's previous description on the left with this confirmation option on the right." />
@@ -2679,7 +2674,7 @@
 	<string id="tor_empire_prestigeNoble_influenceOption2" text="{=str_tor_empire_prestigeNoble_influenceOption2}[[Support the Engineers Guild technological innovation.]" />
 	<string id="tor_empire_prestigeNoble_influenceOption3" text="{=str_tor_empire_prestigeNoble_influenceOption3}[Help fund a Huntsmen Expedition to Lustria]" />
 	<string id="tor_empire_prestigeNoble_influenceOptionRepeatable" text="{=str_tor_empire_prestigeNoble_influenceOptionRepeatable}[Enlarge your Influence throughout the Empire (Repeatable)] - this option disappears from the list if the player has under 25 influence" />
-	<string id="tor_empire_prestigeNoble_influenceExplain0" text="{=str_tor_empire_prestigeNoble_influenceExplain0}A diplomatic mission is set to leave for Ulthuan, but they fear they are lacking in gifts elegent enough to appease the knife ears...elves. Perhaps you could help them? ({INFLUENCE_COST} {INFLUENCE_ICON})" />
+	<string id="tor_empire_prestigeNoble_influenceExplain0" text="{=str_tor_empire_prestigeNoble_influenceExplain0}A diplomatic mission is set to leave for Ulthuan, but they fear they are lacking in gifts elegent enough to appease the knife ears… elves. Perhaps you could help them? ({INFLUENCE_COST} {INFLUENCE_ICON})" />
 	<string id="tor_empire_prestigeNoble_influenceExplain1" text="{=str_tor_empire_prestigeNoble_influenceExplain1}It is with faith, steel and gunpowder that we protect the Empire and we need a lot of gunpowder. Cathay also also makes use of black powder and in a hope to bring our two peoples closer, the Trade Guild has sent an envoy to establish trade ties. Some Elector Counts are not convinced yet. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
 	<string id="tor_empire_prestigeNoble_influenceExplain2" text="{=str_tor_empire_prestigeNoble_influenceExplain2}The wonders of the Engineers Guild are many but they are equally as costly to invent, test and so forth. Funding their experimental endeavours would earn you an ample amount of public opinion. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
 	<string id="tor_empire_prestigeNoble_influenceExplain3" text="{=str_tor_empire_prestigeNoble_influenceExplain3}Beasts are myriad within the jungles of Lustria, the Huntsmen are set to go on a hunt soon but could use help acquiring provisions for such an arduous journey. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
@@ -2703,9 +2698,9 @@
 	<string id="tor_greenskin_brawl_disabled" text="{=tor_greenskin_brawl_disabled_str}You need to wait at least {COOLDOWN_DAYS} days" />
 	<!-- Goblin Recruitment Mechanic -->
 	<string id="tor_goblin_recruitment_start" text="{=tor_goblin_recruitment_start_str}Look for goblins" />
-	<string id="tor_goblin_recruitment_waiting" text="{=tor_goblin_recruitment_waiting_str}You start looking around for goblins to recruit..." />
-	<string id="tor_goblin_recruitment_no_goblins" text="{=tor_goblin_recruitment_no_goblins_str}No goblins found after searching..." />
-	<string id="tor_goblin_encounter_desc" text="{=tor_goblin_encounter_desc_str}You found a group of goblins! They notice your presence and are deciding whether to submit or fight..." />
+	<string id="tor_goblin_recruitment_waiting" text="{=tor_goblin_recruitment_waiting_str}You start looking around for goblins to recruit…" />
+	<string id="tor_goblin_recruitment_no_goblins" text="{=tor_goblin_recruitment_no_goblins_str}No goblins found after searching…" />
+	<string id="tor_goblin_encounter_desc" text="{=tor_goblin_encounter_desc_str}You found a group of goblins! They notice your presence and are deciding whether to submit or fight…" />
 	<string id="tor_goblin_encounter_continue" text="{=tor_goblin_encounter_continue_str}Continue" />
 
 	<!-- Bullying Success -->
@@ -2718,7 +2713,7 @@
 
 	<!-- Fight Defeat -->
 	<string id="tor_goblin_fight_defeat_desc" text="{=tor_goblin_fight_defeat_desc_str}Shame! You got beaten by mere goblins! Your orc boys are disgusted by this display. You lost {TEEF_LOSS}{CR_ICON}, {RENOWN_LOSS} renown, and {ORC_BOYS_LEFT} orc boys have left in shame!" />
-	<string id="tor_goblin_fight_defeat_accept" text="{=tor_goblin_fight_defeat_accept_str}Slink away in shame..." />
+	<string id="tor_goblin_fight_defeat_accept" text="{=tor_goblin_fight_defeat_accept_str}Slink away in shame…" />
 
 	<!-- Cooldown Messages -->
 	<string id="tor_goblin_recruitment_cooldown" text="{=tor_goblin_recruitment_cooldown_str}You can look for goblins again in {COOLDOWN_DAYS} days" />
@@ -2729,7 +2724,7 @@
 	<!-- Duel System - Greenskin -->
 	<string id="tor_greenskin_duel_challenge" text="{=tor_greenskin_duel_challenge_str}OI! Let's see who's da biggest an' strongest! WAAAGH!" />
 	<string id="tor_greenskin_duel_accept" text="{=tor_greenskin_duel_accept_str}WAAAGH! You're on! Let's scrap!" />
-	<string id="tor_greenskin_duel_decline" text="{=tor_greenskin_duel_decline_str}Gah! I ain't got time for dis..." />
+	<string id="tor_greenskin_duel_decline" text="{=tor_greenskin_duel_decline_str}Gah! I ain't got time for dis…" />
 	<string id="tor_greenskin_duel_decline_cooldown" text="{=tor_greenskin_duel_decline_cooldown_str}Oi! We already had a good scrap recently! Give it {COOLDOWN_DAYS} more days before we krump again, ya git!" />
 
 	<!-- Duel System - Blood Knight -->
