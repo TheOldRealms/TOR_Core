@@ -1880,7 +1880,7 @@
   <string id="career_switch_explaination.BlackGrailKnight" text="{=tor_career_switch_explanation_blackgrailknight_str}
   Accept and you shall enter the ranks of Mousillon Knights. This decision is permanent and cannot be reversed.{newline}
   {newline}
-  By gecoming a Knight of Mousillon, you will be stripped of your Faith skill. {newline}
+  By becoming a Knight of Mousillon, you will be stripped of your Faith skill. {newline}
   {newline}
   The choice can be accessed later, should you decline now.
   " />
