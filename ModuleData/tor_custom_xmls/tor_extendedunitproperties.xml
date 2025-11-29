@@ -9576,6 +9576,20 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_shaman_lord">
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_empire_0">
     <Abilities>
       <string>Dart</string>

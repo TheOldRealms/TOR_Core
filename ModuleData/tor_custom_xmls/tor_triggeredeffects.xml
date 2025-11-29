@@ -3447,15 +3447,15 @@
 	</TriggeredEffectTemplate>
 
 	<TriggeredEffectTemplate StringID="gaze_uv_mork_hit"
-                             BurstParticleEffectPrefab="green_particle_explosion"
-                             SoundEffectId="dart_explosion"
+                             BurstParticleEffectPrefab="psys_fireball_explosion_1"
+                             SoundEffectId="fireball_explosion"
                              SoundEffectLength="2.5"
                              DamageType="Magical"
-                             DamageAmount="90"
-                             Radius="2"
+                             DamageAmount="60"
+                             Radius="4"
                              HasShockWave="false"
                              TargetType="All"
-                             DamageVariance="0.15"
+                             DamageVariance="0.1"
                              ScriptNameToTrigger="none" />
 
 	<TriggeredEffectTemplate StringID="ard_as_nails_buff"
