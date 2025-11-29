@@ -82,14 +82,16 @@ namespace TOR_Core.Extensions.UI
         {
             _scene = Scene.CreateNewScene(true, true, DecalAtlasGroup.All, "mono_renderscene");
             _scene.SetName("MainMenuScene");
-            SceneInitializationData sceneInitializationData = default;
+            SceneInitializationData sceneInitializationData = new SceneInitializationData(true);
             _scene.Read(_menuSceneNames.GetRandomElementInefficiently(), ref sceneInitializationData);
             _scene.DisableStaticShadows(true);
             _scene.SetShadow(true);
             _scene.SetClothSimulationState(true);
             _scene.SetOcclusionMode(true);
             _scene.SetDynamicShadowmapCascadesRadiusMultiplier(0.1f);
-            _scene.SetDoNotWaitForLoadingStatesToRender(true);
+            _scene.SetDoNotWaitForLoadingStatesToRender(false);
+            _scene.PreloadForRendering();
+            _scene.Tick(0f);
 
             _camera = Camera.CreateCamera();
             var cameraEntity = _scene.FindEntityWithTag("mainmenu_camera");
@@ -118,7 +120,7 @@ namespace TOR_Core.Extensions.UI
         protected override void OnActivate()
         {
             base.OnActivate();
-            if (TaleWorlds.Engine.Utilities.renderingActive)
+            if (TaleWorlds.Engine.Utilities.renderingActive && _scenelayer?.SceneView?.ReadyToRender() == true)
             {
                 TaleWorlds.Engine.Utilities.DisableGlobalLoadingWindow();
             }
@@ -171,7 +173,11 @@ namespace TOR_Core.Extensions.UI
         protected override void OnFrameTick(float dt)
         {
             base.OnFrameTick(dt);
-            LoadingWindow.DisableGlobalLoadingWindow();
+            if(_scenelayer?.SceneView?.ReadyToRender() == true)
+            {
+                LoadingWindow.DisableGlobalLoadingWindow();
+            }
+            
             if (Input.IsKeyDown(InputKey.LeftControl) && Input.IsKeyReleased(InputKey.E))
             {
                 MBInitialScreenBase.OnEditModeEnterPress();
