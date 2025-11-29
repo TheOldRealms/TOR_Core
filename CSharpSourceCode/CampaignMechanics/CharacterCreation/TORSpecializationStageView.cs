@@ -147,7 +147,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
 
             Equipment equipment = GetEquipmentForOption(selectedOption.Data);
+
+            // Apply equipment to actual player character (clearing slots first)
+            ApplyEquipmentToPlayer(equipment);
+
+            // Update ViewModel and refresh preview
             _dataSource.UpdateCharacterEquipment(equipment);
+            RefreshCharacterPreview();
 
             // Apply race change immediately if this option has a race
             if (selectedOption.Data is SpecializationOption option && !string.IsNullOrEmpty(option.RaceId))
@@ -451,8 +457,34 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         }
 
         /// <summary>
+        /// Apply equipment directly to player character, clearing all slots first
+        /// </summary>
+        private void ApplyEquipmentToPlayer(Equipment sourceEquipment)
+        {
+            if (sourceEquipment == null) return;
+
+            var playerEquipment = CharacterObject.PlayerCharacter.Equipment;
+
+            // Clear all equipment slots first
+            for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumEquipmentSetSlots; i++)
+            {
+                playerEquipment.AddEquipmentToSlotWithoutAgent(i, EquipmentElement.Invalid);
+            }
+
+            // Apply new equipment
+            for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumEquipmentSetSlots; i++)
+            {
+                var equipmentElement = sourceEquipment.GetEquipmentFromSlot(i);
+                if (!equipmentElement.IsEmpty)
+                {
+                    playerEquipment.AddEquipmentToSlotWithoutAgent(i, equipmentElement);
+                }
+            }
+        }
+
+        /// <summary>
         /// Load equipment from roster and apply to player character
-        /// Only copies equipment items, preserves character's face and body customization
+        /// Clears all slots first, then applies new equipment (preserves face/body customization)
         /// </summary>
         private void ApplyEquipmentFromRoster(string rosterId)
         {
@@ -462,7 +494,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 var sourceEquipment = roster.AllEquipments[0];
                 var playerEquipment = CharacterObject.PlayerCharacter.Equipment;
 
-                // Copy only equipment items slot by slot, preserving character customization
+                // Clear all equipment slots first, then apply new equipment
+                for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumEquipmentSetSlots; i++)
+                {
+                    playerEquipment.AddEquipmentToSlotWithoutAgent(i, EquipmentElement.Invalid);
+                }
+
+                // Apply new equipment from roster
                 for (EquipmentIndex i = EquipmentIndex.WeaponItemBeginSlot; i < EquipmentIndex.NumEquipmentSetSlots; i++)
                 {
                     var equipmentElement = sourceEquipment.GetEquipmentFromSlot(i);

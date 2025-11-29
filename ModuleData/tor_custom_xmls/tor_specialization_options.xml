@@ -280,7 +280,7 @@
 	<!-- PRIESTS - 2 Gods                               -->
 	<!-- =============================================== -->
 
-	<SpecializationOption Id="priest_sigmar" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_cc_priest_sigmar_4">
+	<SpecializationOption Id="priest_sigmar" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_cc_priest_sigmar_4" IconSprite="sigmar_comet_icon">
 		<Name>{=tor_priest_sigmar_name}Warrior Priest of Sigmar</Name>
 		<Description>{=tor_priest_sigmar_desc}And Sigmar did rescue the high king of the dwarfs
 											And Sigmar did unite the tribes of elder days
@@ -297,7 +297,7 @@
 		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="priest_ulric" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_cc_priest_ulric_4">
+	<SpecializationOption Id="priest_ulric" ProfessionRequirement="option_3_empire_priest_acolyte" EquipmentSetId="tor_cc_priest_ulric_4" IconSprite="ulric_flame_icon">
 		<Name>{=tor_priest_ulric_name}Warrior Priest of Ulric</Name>
 		<Description>{=tor_priest_ulric_desc}Ulric give me the fangs of the wolf
 											Ulric give me the claws of the wolf
