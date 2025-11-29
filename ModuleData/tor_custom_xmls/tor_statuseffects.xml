@@ -2745,7 +2745,7 @@
 
 	<StatusEffectTemplate
 		id="ard_as_nails_res"
-		particle_id="waaagh_shield"
+		particle_id="redfury_rage"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.35"
@@ -2755,7 +2755,7 @@
 
 	<StatusEffectTemplate
 		id="ere_we_go_dmg"
-		particle_id="waaagh_frenzy"
+		particle_id="redfury_rage"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="0.25"
