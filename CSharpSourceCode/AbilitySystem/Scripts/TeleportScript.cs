@@ -92,12 +92,18 @@ namespace TOR_Core.AbilitySystem.Scripts
 
     /// <summary>
     /// Triggered script for teleportation effects used by spells (e.g., DaHandUvGork).
+    /// Collects allies from the caster's original position and teleports them to the target position.
     /// </summary>
     public class TeleportTriggeredScript : ITriggeredScript
     {
+        private const float TELEPORT_RADIUS = 8f;
+
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
         {
             if (triggeredByAgent == null || !triggeredByAgent.IsActive()) return;
+
+            // Save the caster's original position before teleporting
+            var originalPosition = triggeredByAgent.Position;
 
             // Camera fade effect for the teleportation
             var cameraView = Mission.Current?.GetMissionBehavior<MissionCameraFadeView>();
@@ -106,10 +112,14 @@ namespace TOR_Core.AbilitySystem.Scripts
             // Teleport the caster to the target position
             triggeredByAgent.TeleportToPosition(position);
 
-            // Teleport all affected agents (nearby allies) to random positions around the target
-            foreach (var agent in triggeredAgents)
+            // Collect allies from the caster's original position
+            var nearbyAllies = Mission.Current.GetNearbyAllyAgents(originalPosition.AsVec2, TELEPORT_RADIUS, triggeredByAgent.Team, new MBList<Agent>());
+            nearbyAllies.Remove(triggeredByAgent); // Don't teleport the caster again
+
+            // Teleport all nearby allies to random positions around the target
+            foreach (var agent in nearbyAllies)
             {
-                if (agent != null && agent != triggeredByAgent && agent.IsActive())
+                if (agent != null && agent.IsActive())
                 {
                     var randomPos = Mission.Current.GetRandomPositionAroundPoint(position, 1, 3);
                     agent.TeleportToPosition(randomPos);

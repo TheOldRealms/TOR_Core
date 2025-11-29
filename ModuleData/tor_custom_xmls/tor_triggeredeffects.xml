@@ -3495,7 +3495,7 @@
                              HasShockWave="false"
                              TargetType="Friendly"
                              DamageVariance="0"
-                             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.TeleportTriggeredScript" />
+                             ScriptNameToTrigger="TOR_Core.AbilitySystem.Scripts.TeleportTriggeredScript" />
 
 	<TriggeredEffectTemplate StringID="ere_we_go_buff"
                              BurstParticleEffectPrefab="none"
