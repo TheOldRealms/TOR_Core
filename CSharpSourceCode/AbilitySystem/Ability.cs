@@ -598,7 +598,8 @@ namespace TOR_Core.AbilitySystem
                 case AbilityEffectType.Summoning:
                     AddExactBehaviour<SummoningScript>(ref entity, casterAgent);
                     break;
-                case AbilityEffectType.CareerAbilityEffect:
+                case AbilityEffectType.
+                    CareerAbilityEffect:
                     AddExactBehaviour<CareerAbilityScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Hex:

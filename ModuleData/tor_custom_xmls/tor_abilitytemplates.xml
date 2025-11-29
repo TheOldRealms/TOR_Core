@@ -5815,7 +5815,7 @@
         <TriggeredEffect>ard_as_nails_buff</TriggeredEffect>
     </AbilityTemplate>
 
-    <!-- Brain Bursta - Adept AoE Damage -->
+    <!-- Brain Bursta - Adept AoE Damage (uses Fireball explosion pattern) -->
     <AbilityTemplate StringID="BrainBursta"
                      Name="{=brain_bursta_label_str}Brain Bursta"
                      SpriteName="brainbusta_icon"
@@ -5835,9 +5835,9 @@
                      LightFlickeringMagnitude="3"
                      LightFlickeringInterval="0.2"
                      ShadowCastEnabled="true"
-                     ParticleEffectPrefab="waaagh_burst"
+                     ParticleEffectPrefab="fireball_prefab"
                      ParticleEffectSizeModifier="1"
-                     SoundEffectToPlay="explosion_magic"
+                     SoundEffectToPlay="fireball"
                      ShouldSoundLoopOverDuration="false"
                      CastType="WindUp"
                      CastTime="0.7"
@@ -5871,12 +5871,12 @@
                      CoolDown="45"
                      WindsOfMagicCost="10"
                      BaseMisCastChance="0.08"
-                     Duration="2"
+                     Duration="0"
                      Radius="5"
                      AbilityType="Spell"
                      AbilityEffectType="Augment"
                      BaseMovementSpeed="0"
-                     TickInterval="2"
+                     TickInterval="-1"
                      TriggerType="TickOnce"
                      HasLight="true"
                      LightIntensity="40"
@@ -5884,10 +5884,10 @@
                      LightFlickeringMagnitude="2"
                      LightFlickeringInterval="0.3"
                      ShadowCastEnabled="false"
-                     ParticleEffectPrefab="waaagh_teleport"
+                     ParticleEffectPrefab=""
                      ParticleEffectSizeModifier="1"
-                     SoundEffectToPlay="teleport_cast"
-                     ShouldSoundLoopOverDuration="false"
+                     SoundEffectToPlay="rocks_grinding"
+                     ShouldSoundLoopOverDuration="true"
                      CastType="Instant"
                      CastTime="0"
                      AnimationActionName="act_release_heavy_thrown"
@@ -5961,7 +5961,7 @@
         <TriggeredEffect>ere_we_go_buff</TriggeredEffect>
     </AbilityTemplate>
 
-    <!-- Foot uv Gork - Master Explosion -->
+    <!-- Foot uv Gork - Master Explosion (uses Comet pattern) -->
     <AbilityTemplate StringID="FootUvGork"
                      Name="{=foot_uv_gork_label_str}Foot uv Gork"
                      SpriteName="footofgork_icon"
@@ -5981,9 +5981,9 @@
                      LightFlickeringMagnitude="4"
                      LightFlickeringInterval="0.2"
                      ShadowCastEnabled="true"
-                     ParticleEffectPrefab="waaagh_foot"
+                     ParticleEffectPrefab="comet_of_casandora"
                      ParticleEffectSizeModifier="2"
-                     SoundEffectToPlay="giant_stomp"
+                     SoundEffectToPlay="rocks_grinding"
                      ShouldSoundLoopOverDuration="false"
                      CastType="WindUp"
                      CastTime="1.5"
