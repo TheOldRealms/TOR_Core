@@ -673,9 +673,9 @@
     <Compile Include="Extensions\UI\ViewModelExtensionManager.cs" />
     <Compile Include="Extensions\ViewModelExtensions.cs" />
     <Compile Include="GameManagers\TORCampaignGameManager.cs" />
-      <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStage.cs" />
-      <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageView.cs" />
-      <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageVM.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStage.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageView.cs" />
+    <Compile Include="CampaignMechanics\CharacterCreation\TORSpecializationStageVM.cs" />
     <Compile Include="GameManagers\TORGameKeyContext.cs" />
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
