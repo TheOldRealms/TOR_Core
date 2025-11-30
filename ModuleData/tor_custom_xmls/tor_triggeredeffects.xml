@@ -3447,7 +3447,7 @@
 	</TriggeredEffectTemplate>
 
 	<TriggeredEffectTemplate StringID="gaze_uv_mork_hit"
-                             BurstParticleEffectPrefab="psys_fireball_explosion_1"
+                             BurstParticleEffectPrefab="gazeofmork_explosion"
                              SoundEffectId="fireball_explosion"
                              SoundEffectLength="2.5"
                              DamageType="Magical"
