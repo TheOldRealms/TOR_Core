@@ -438,6 +438,7 @@
     <Compile Include="BattleMechanics\Banners\CustomBannerManager.cs" />
     <Compile Include="BattleMechanics\Banners\CustomBannerMissionLogic.cs" />
     <Compile Include="BattleMechanics\CareerPerkMissionBehavior.cs" />
+    <Compile Include="BattleMechanics\CinematicCameraMissionView.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestAgentController.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\ArcheryContestTournamentGame.cs" />
     <Compile Include="BattleMechanics\CustomArenaModes\CustomTournamentBehaviors.cs" />
