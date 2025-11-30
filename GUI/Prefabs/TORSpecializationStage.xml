@@ -135,6 +135,14 @@
                         HorizontalAlignment="Right"
                         Brush="Stage.Title.Text" />
 
+            <!-- Description (in stone header area, below title - matches banner editor) -->
+            <TextWidget Text="@DescriptionText"
+                        WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
+                        SuggestedWidth="650" SuggestedHeight="90"
+                        MarginTop="100"
+                        HorizontalAlignment="Right"
+                        Brush="Stage.Description.Text" />
+
             <!-- Inner Panel Container (like native character creation) -->
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                     SuggestedWidth="573" SuggestedHeight="750"
@@ -142,19 +150,11 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center">
               <Children>
 
-            <!-- Description (fixed at top) -->
-            <TextWidget Text="@DescriptionText"
-                        WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-                        MarginTop="25" MarginLeft="20" MarginRight="20"
-                        HorizontalAlignment="Right" VerticalAlignment="Top"
-                        Brush="Stage.Description.Text"
-                        ClipContents="false" />
-
             <!-- Options List - Scrollable section for choices only (shows ~4-5 items) -->
             <ScrollablePanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed"
                              SuggestedHeight="320"
                              AutoHideScrollBars="true"
-                             MarginTop="140" MarginLeft="20" MarginRight="45"
+                             MarginTop="20" MarginLeft="20" MarginRight="45"
                              HorizontalAlignment="Right" VerticalAlignment="Top"
                              ClipRect="OptionsClipRect"
                              InnerPanel="OptionsClipRect\OptionsList"
@@ -173,27 +173,29 @@
                         <ButtonWidget DoNotPassEventsToChildren="true"
                                       Command.Click="ExecuteSelect"
                                       WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-                                      MarginBottom="8"
+                                      MarginBottom="10"
                                       Brush="FaceGen.Generic.Button"
                                       IsSelected="@IsSelected"
                                       MinHeight="10"
                                       UpdateChildrenStates="true">
                           <Children>
                             <ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-                                       MarginLeft="10" MarginRight="10" MarginTop="7" MarginBottom="7"
+                                       MarginLeft="15" MarginRight="15" MarginTop="12" MarginBottom="12"
                                        StackLayout.LayoutMethod="HorizontalLeftToRight">
                               <Children>
 
                                 <!-- Icon -->
                                 <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
-                                             SuggestedWidth="50" SuggestedHeight="50"
-                                             MarginRight="15"
+                                             SuggestedWidth="64" SuggestedHeight="64"
+                                             MarginRight="20"
+                                             VerticalAlignment="Center"
                                              Sprite="@IconSprite" />
 
                                 <!-- Option name -->
                                 <TextWidget DoNotAcceptEvents="true"
                                             Text="@Name"
                                             WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
+                                            VerticalAlignment="Center"
                                             Brush="Generic.Button.Text" />
 
                               </Children>
@@ -221,7 +223,7 @@
                              WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
                              SuggestedWidth="8" SuggestedHeight="320"
                              HorizontalAlignment="Right" VerticalAlignment="Top"
-                             MarginTop="140" MarginRight="20"
+                             MarginTop="20" MarginRight="20"
                              AlignmentAxis="Vertical"
                              Handle="OptionsScrollbarHandle"
                              MaxValue="100" MinValue="0">
@@ -242,7 +244,7 @@
 
             <!-- Detail Panel (fixed below options) -->
             <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren"
-                    MarginLeft="25" MarginRight="25" MarginTop="480"
+                    MarginLeft="25" MarginRight="25" MarginTop="360"
                     HorizontalAlignment="Right" VerticalAlignment="Top"
                     IsVisible="@HasSelection">
               <Children>

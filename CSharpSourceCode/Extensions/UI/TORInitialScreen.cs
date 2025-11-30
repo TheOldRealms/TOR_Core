@@ -160,6 +160,7 @@ namespace TOR_Core.Extensions.UI
             {
                 RemoveLayer(_scenelayer);
             }
+            _camera?.ReleaseCamera();
             _camera = null;
             _scenelayer = null;
             _scene = null;
