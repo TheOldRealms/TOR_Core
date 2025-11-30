@@ -5874,7 +5874,7 @@
                      Duration="0"
                      Radius="5"
                      AbilityType="Spell"
-                     AbilityEffectType="Augment"
+                     AbilityEffectType="TacticalReposition"
                      BaseMovementSpeed="0"
                      TickInterval="-1"
                      TriggerType="TickOnce"

@@ -55,6 +55,8 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                     }
                 },
 
+                {AbilityEffectType.TacticalReposition, (agent, abilityIndex, abilityTemplate) => new TacticalTeleportCastingBehavior(agent, abilityTemplate, abilityIndex)},
+
                 {AbilityEffectType.Missile, (agent, abilityIndex, abilityTemplate) => new MissileCastingBehavior(agent, abilityTemplate, abilityIndex)},
                 {AbilityEffectType.SeekerMissile, (agent, abilityIndex, abilityTemplate) => new MissileCastingBehavior(agent, abilityTemplate, abilityIndex)},
 
@@ -119,6 +121,8 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
 
                 {typeof(SelectMultiTargetCastingBehavior), CreateBuffSpellAxis()},
                 {typeof(SelectSingleTargetCastingBehavior), CreateBuffSpellAxis()},
+
+                {typeof(TacticalTeleportCastingBehavior), CreateTacticalTeleportAxis()},
 
                 {typeof(SummoningCastingBehavior), CreateSummoningAxis()},
                 {typeof(ArtilleryPlacementCastingBehavior), CreateArtilleryPlacementAxis()},
@@ -194,6 +198,19 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI
                 return new List<Axis>
                 {
                     new Axis(0, 1, x => (float)Math.Min(0.4, 1 - x), CommonAIDecisionFunctions.WindsOfMagicRemainingRatio(behavior.Agent))
+                };
+            };
+        }
+
+        private static Func<AbstractAgentCastingBehavior, List<Axis>> CreateTacticalTeleportAxis()
+        {
+            return behavior =>
+            {
+                // TacticalTeleportCastingBehavior handles utility calculation internally
+                // This axis just passes through the utility value calculated by the behavior
+                return new List<Axis>
+                {
+                    new Axis(0, 1, x => x, (target) => target.UtilityValue)
                 };
             };
         }

@@ -24,7 +24,8 @@ namespace TOR_Core.AbilitySystem
         Blast,
         ArtilleryPlacement,
         TimeWarpEffect,
-        CareerAbilityEffect
+        CareerAbilityEffect,
+        TacticalReposition
     }
 
     public enum AbilityTargetType

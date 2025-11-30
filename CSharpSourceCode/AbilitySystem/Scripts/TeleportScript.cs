@@ -105,9 +105,12 @@ namespace TOR_Core.AbilitySystem.Scripts
             // Save the caster's original position before teleporting
             var originalPosition = triggeredByAgent.Position;
 
-            // Camera fade effect for the teleportation
-            var cameraView = Mission.Current?.GetMissionBehavior<MissionCameraFadeView>();
-            cameraView?.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+            // Camera fade effect only for player-controlled agents
+            if (triggeredByAgent.IsPlayerControlled)
+            {
+                var cameraView = Mission.Current?.GetMissionBehavior<MissionCameraFadeView>();
+                cameraView?.BeginFadeOutAndIn(0.1f, 0.1f, 0.5f);
+            }
 
             // Teleport the caster to the target position
             triggeredByAgent.TeleportToPosition(position);
