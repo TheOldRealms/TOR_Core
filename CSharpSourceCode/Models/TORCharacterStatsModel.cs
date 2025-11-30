@@ -218,6 +218,16 @@ namespace TOR_Core.Models
                         }
                     }
 
+                    // Orc Shaman: +70 HP for Shaman Boss companion
+                    if (Hero.MainHero.HasCareerChoice("GorkAnMorkAreWatchinPassive4"))
+                    {
+                        if (hero.HasAttribute("ShamanBoss"))
+                        {
+                            var choice = TORCareerChoices.GetChoice("GorkAnMorkAreWatchinPassive4");
+                            number.Add(choice.GetPassiveValue(), choice.BelongsToGroup.Name);
+                        }
+                    }
+
                 }
 
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.ASRAI && hero.PartyBelongedTo != null && (hero.PartyBelongedTo.IsMainParty || hero == Hero.MainHero))

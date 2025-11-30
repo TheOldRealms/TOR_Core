@@ -537,6 +537,13 @@ namespace TOR_Core.Models
                         var choice = TORCareerChoices.GetChoice("WardenOfArgwylonPassive4");
                         explainedNumber.Add(choice.GetPassiveValue());
                     }
+
+                    // Orc Shaman: +30 WoM for Shaman companion
+                    if (careerChoices.Contains("PowerUvDaWaaaghPassive2") && hero.HasAttribute("ShamanBoss"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("PowerUvDaWaaaghPassive2");
+                        explainedNumber.Add(choice.GetPassiveValue());
+                    }
                 }
 
                 if (Hero.MainHero.HasCareer(TORCareers.ImperialMagister)) //Sly : penalizes all mages in party, don't care because it requires off-culture companions to occur - idk what the description is for powerstones
