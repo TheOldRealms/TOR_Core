@@ -2777,22 +2777,12 @@
 	<!-- Big Waaagh! Magic Status Effects -->
 
 	<StatusEffectTemplate
-		id="call_of_da_green_slow"
+		id="call_of_da_green_dmg_reduction"
 		particle_id=""
-		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="-0.35"
-		type="MovementManipulation"
-		damage_type="Physical">
-	</StatusEffectTemplate>
-
-	<StatusEffectTemplate
-		id="call_of_da_green_combat_slow"
-		particle_id=""
 		particle_intensity="Low"
-		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="-0.25"
-		type="AttackSpeedManipulation"
+		base_effect_value="-0.5"
+		type="DamageAmplification"
 		damage_type="Physical">
 	</StatusEffectTemplate>
 
