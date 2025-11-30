@@ -152,7 +152,17 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
         // Giftz from Da Great Green Keystone: Call uf da Green scales with Spellcraft skill
         _giftzFromDaGreatGreenKeystone.Initialize(CareerID, "Call uf da Green effectiveness scales with Spellcraft skill.", "GiftzFromDaGreatGreen", false, ChoiceType.Keystone,
-            new List<CareerChoiceObject.MutationObject>());
+            new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "CallOfDaGreen",
+                    PropertyName = "Duration",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft }, 0.05f),
+                    MutationType = OperationType.Add
+                }
+            });
 
         // Brutal Cunnin' Keystone: 10% extra resistance buff
         _brutalCunninKeystone.Initialize(CareerID, "Call uf da Green grants 10% extra physical resistance.", "BrutalCunnin", false, ChoiceType.Keystone,
@@ -164,7 +174,17 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
         // Gork an' Mork are watchin' Keystone: Career ability scales with Faith
         _gorkAnMorkAreWatchinKeystone.Initialize(CareerID, "Call uf da Green effectiveness scales with Faith skill.", "GorkAnMorkAreWatchin", false, ChoiceType.Keystone,
-            new List<CareerChoiceObject.MutationObject>());
+            new List<CareerChoiceObject.MutationObject>()
+            {
+                new CareerChoiceObject.MutationObject()
+                {
+                    MutationTargetType = typeof(AbilityTemplate),
+                    MutationTargetOriginalId = "CallOfDaGreen",
+                    PropertyName = "Duration",
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Faith }, 0.05f),
+                    MutationType = OperationType.Add
+                }
+            });
 
         // Power uv da Waaagh! Keystone: 50% physical resistance during Call uf da Green
         _powerUvDaWaaaghKeystone.Initialize(CareerID, "Gain 50% physical resistance during Call uf da Green.", "PowerUvDaWaaagh", false, ChoiceType.Keystone,

@@ -394,7 +394,26 @@
 		temporary_attribute="WindsDeathLink">
 	</StatusEffectTemplate>
 
-
+	<StatusEffectTemplate
+		id="callofdagreen_physical_resistance_10"
+		particle_id="waaagh_energy"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+		base_effect_value="0.1"
+		type="Resistance"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="callofdagreen_damage_15"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="Low"
+		base_effect_value="0.15"
+		type="DamageAmplification"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
 
 	<StatusEffectTemplate
 		id="drain_life_dot"

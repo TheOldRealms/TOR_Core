@@ -28,6 +28,9 @@ namespace TOR_Core.AbilitySystem.Scripts
         private const string GAZE_UV_MORK_ID = "GazeUvMork";
         private const string WINDS_LINK_EFFECT = "callofdagreen_windslink";
         private const string WINDS_DEATH_LINK_EFFECT = "callofdagreen_windsdeathlink";
+        private const string PHYSICAL_RESISTANCE_10_EFFECT = "callofdagreen_physical_resistance_10";
+        private const string PHYSICAL_RESISTANCE_50_EFFECT = "physical_resistance_50";
+        private const string DAMAGE_BONUS_15_EFFECT = "callofdagreen_damage_15";
 
         private bool _initialized;
 
@@ -40,6 +43,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             {
                 _initialized = true;
                 ApplyLinkAttributeToNearbyGreenskins();
+                ApplyResistanceBuffsToCaster();
             }
         }
 
@@ -75,7 +79,38 @@ namespace TOR_Core.AbilitySystem.Scripts
                     // Apply both WindsLink (for kill bonus) and WindsDeathLink (for death penalty)
                     agent.ApplyStatusEffect(WINDS_LINK_EFFECT, CasterAgent, duration, false);
                     agent.ApplyStatusEffect(WINDS_DEATH_LINK_EFFECT, CasterAgent, duration, false);
+                    
+                    // BrutalCunninKeystone: 10% physical resistance for Greenskins
+                    if (Hero.MainHero.HasCareerChoice("BrutalCunninKeystone"))
+                    {
+                        agent.ApplyStatusEffect(PHYSICAL_RESISTANCE_10_EFFECT, CasterAgent, duration, false);
+                    }
+
+                    // CunninBrutalityKeystone: 15% damage bonus for Greenskins
+                    if (Hero.MainHero.HasCareerChoice("CunninBrutalityKeystone"))
+                    {
+                        agent.ApplyStatusEffect(DAMAGE_BONUS_15_EFFECT, CasterAgent, duration, false);
+                    }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Applies resistance buffs to the caster based on active keystones.
+        /// - BrutalCunninKeystone: 10% physical resistance
+        /// - PowerUvDaWaaaghKeystone: 50% physical resistance
+        /// </summary>
+        private void ApplyResistanceBuffsToCaster()
+        {
+            if (CasterAgent == null || !CasterAgent.IsActive()) return;
+
+            float duration = Ability.Template.Duration;
+            
+            
+            // PowerUvDaWaaaghKeystone: 50% physical resistance
+            if (Hero.MainHero.HasCareerChoice("PowerUvDaWaaaghKeystone"))
+            {
+                CasterAgent.ApplyStatusEffect(PHYSICAL_RESISTANCE_50_EFFECT, CasterAgent, duration, false);
             }
         }
 
