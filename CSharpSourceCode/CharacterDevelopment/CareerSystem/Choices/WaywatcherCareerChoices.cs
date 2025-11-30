@@ -320,7 +320,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.RangedMovementPenalty, true));
 
         _pathfinderPassive1.Initialize(CareerID, "{=pathfinder_passive1_str}The Spotting range of the party is increased by 20%.", "Pathfinder",
-            false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartySpottingRange, true));
         _pathfinderPassive2.Initialize(CareerID, "{=pathfinder_passive2_str}Party movement speed is increased by 1", "Pathfinder", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
         _pathfinderPassive3.Initialize(CareerID, "{=pathfinder_passive3_str}Party travels unhindered through snow", "Pathfinder", false, ChoiceType.Passive);
         _pathfinderPassive4.Initialize(CareerID, "{=pathfinder_passive4_str}Ranged damage is shrugged off", "Pathfinder", false, ChoiceType.Passive);

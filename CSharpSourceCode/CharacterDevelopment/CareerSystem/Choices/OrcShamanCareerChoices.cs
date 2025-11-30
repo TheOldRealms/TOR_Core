@@ -205,7 +205,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
         // Visions uv da Orc-ayne Passives
         _visionsUvDaOrcaynePassive1.Initialize(CareerID, "{=visions_uv_da_orcayne_passive1_str}35% increased spotting range.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(35, PassiveEffectType.Special, true));
+            new CareerChoiceObject.PassiveEffect(35, PassiveEffectType.PartySpottingRange, true));
         _visionsUvDaOrcaynePassive2.Initialize(CareerID, "{=visions_uv_da_orcayne_passive2_str}10% extra spell damage if armor weight under 15kg.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Spell && IsWearingLightArmor(attacker)));
