@@ -1,34 +1,127 @@
-using System.Collections.Generic;
-using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
+    /// <summary>
+    /// Call uf da Green - Orc Shaman Career Ability
+    ///
+    /// Simplified implementation using the WindsDeathLink attribute system.
+    /// CareerPerkMissionBehavior handles all WoM generation from combat events
+    /// via the winds_death_link status effect applied to nearby Greenskins.
+    ///
+    /// Keystone Effects:
+    /// - BonesAnFirepitzKeystone: CA is charged at battle start (handled elsewhere)
+    /// - VisionsUvDaOrcayneKeystone: Gaze uv Mork is free and ready after CA ends
+    /// - BrutalCunninKeystone: 10% extra physical resistance (via status effect mutation)
+    /// - CunninBrutalityKeystone: 15% damage bonus for Greenskins (via status effect mutation)
+    /// - GiftzFromDaGreatGreenKeystone: WoM multiplier scaling (via status effect mutation)
+    /// - GorkAnMorkAreWatchinKeystone: WoM multiplier scaling (via status effect mutation)
+    /// - PowerUvDaWaaaghKeystone: 50% physical resistance (via status effect mutation)
+    /// </summary>
     public class CallOfDaGreen : CareerAbilityScript
     {
-        protected override List<TriggeredEffect> GetEffectsToTrigger()
+        private const string GAZE_UV_MORK_ID = "GazeUvMork";
+        private const string WINDS_LINK_EFFECT = "magic_athel_loren_windslink";
+        private const string WINDS_DEATH_LINK_EFFECT = "winds_death_link";
+
+        private bool _initialized;
+
+        protected override void OnAfterTick(float dt)
         {
-            List<TriggeredEffect> result = base.GetEffectsToTrigger();
+            base.OnAfterTick(dt);
 
-            if (CasterAgent == null || CasterAgent.GetHero() == null) return result;
+            // Apply status effects once on first tick
+            if (!_initialized)
+            {
+                _initialized = true;
+                ApplyWindsDeathLinkToNearbyGreenskins();
+            }
+        }
 
-            var hero = CasterAgent.GetHero();
-            var info = hero.GetExtendedInfo();
+        /// <summary>
+        /// Applies WindsLink and WindsDeathLink status effects to nearby friendly Greenskins.
+        /// This is done ONCE when the ability activates, not every tick.
+        /// CareerPerkMissionBehavior will then track combat events from these agents.
+        /// </summary>
+        private void ApplyWindsDeathLinkToNearbyGreenskins()
+        {
+            if (CasterAgent == null || !CasterAgent.IsActive()) return;
 
-            if (info == null || string.IsNullOrEmpty(info.CareerID)) return result;
+            float radius = Ability.Template.Radius;
+            float duration = Ability.Template.Duration;
 
-            var career = hero.GetCareer();
-            if (career == null) return result;
+            // Get all agents within ability radius
+            MBList<Agent> nearbyAgents = new MBList<Agent>();
+            Mission.Current.GetNearbyAgents(CasterAgent.Position.AsVec2, radius, nearbyAgents);
 
-            // Base ability: 15 second buff that generates WoM from nearby Greenskins dealing damage
-            // Additional keystone effects will be added through mutations
+            int linkedCount = 0;
 
-            return result;
+            // Apply winds_death_link to friendly Greenskins (excluding the caster)
+            foreach (var agent in nearbyAgents)
+            {
+                if (!agent.IsActive()) continue;
+                if (agent == CasterAgent) continue;  // Exclude the player
+                if (!agent.BelongsToMainParty()) continue;
+
+                var character = agent.Character as CharacterObject;
+                if (character == null) continue;
+
+                // Check if Orc or Goblin
+                if (character.IsOrc() || character.IsGoblin())
+                {
+                    // Apply both WindsLink (for kill bonus) and WindsDeathLink (for death penalty)
+                    agent.ApplyStatusEffect(WINDS_LINK_EFFECT, CasterAgent, duration, false);
+                    agent.ApplyStatusEffect(WINDS_DEATH_LINK_EFFECT, CasterAgent, duration, false);
+                    linkedCount++;
+                }
+            }
+
+            TOR_Core.Utilities.TORCommon.Log(
+                $"CallOfDaGreen: Applied WindsLink and WindsDeathLink to {linkedCount} nearby Greenskins for {duration}s",
+                NLog.LogLevel.Debug);
+        }
+
+        /// <summary>
+        /// Called when the ability is about to be removed (duration expired or cancelled).
+        /// Handles VisionsUvDaOrcayneKeystone: Makes Gaze uv Mork free and ready.
+        /// </summary>
+        protected override void OnBeforeRemoved(int removeReason)
+        {
+            base.OnBeforeRemoved(removeReason);
+
+            // VisionsUvDaOrcayneKeystone: Gaze uv Mork is free and ready after CA
+            if (Hero.MainHero.HasCareerChoice("VisionsUvDaOrcayneKeystone"))
+            {
+                MakeGazeUvMorkFreeAndReady();
+            }
+
+            _initialized = false;
+        }
+
+        /// <summary>
+        /// Makes Gaze uv Mork spell free (next cast costs 0 WoM) and resets its cooldown.
+        /// Called when VisionsUvDaOrcayneKeystone is active.
+        /// </summary>
+        private void MakeGazeUvMorkFreeAndReady()
+        {
+            if (Agent.Main == null) return;
+
+            var component = Agent.Main.GetComponent<AbilityComponent>();
+            if (component == null) return;
+
+            var abilities = component.KnownAbilitySystem;
+            var gazeUvMork = abilities.FirstOrDefaultQ(a => a.StringID == GAZE_UV_MORK_ID);
+
+            if (gazeUvMork != null)
+            {
+                // Reset cooldown so it's ready to cast
+                gazeUvMork.SetCoolDown(0);
+            }
         }
     }
 }

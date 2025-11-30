@@ -3443,7 +3443,8 @@
                              ImbuedStatusEffectDuration="15"
                              DamageVariance="0.0"
                              ScriptNameToTrigger="none">
-		<ImbuedStatusEffect>call_of_da_green_wom</ImbuedStatusEffect>
+		<ImbuedStatusEffect>call_of_da_green_slow</ImbuedStatusEffect>
+		<ImbuedStatusEffect>call_of_da_green_combat_slow</ImbuedStatusEffect>
 	</TriggeredEffectTemplate>
 
 	<TriggeredEffectTemplate StringID="gaze_uv_mork_hit"

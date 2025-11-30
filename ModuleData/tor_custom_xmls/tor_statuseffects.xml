@@ -371,9 +371,31 @@
 		damage_type="Fire"
 		temporary_attribute="WindsLink">
   	</StatusEffectTemplate>
-		
+	
+	<StatusEffectTemplate
+		id="callofdagreen_windslink"
+		particle_id="breath_of_darkness"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+    	base_effect_value="0"
+		type="TemporaryAttributeOnly"
+		damage_type="Fire"
+		temporary_attribute="WindsLink">
+  	</StatusEffectTemplate>
 
-		
+	<StatusEffectTemplate
+		id="callofdagreen_windsdeathlink"
+		particle_id="waaagh_energy"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="0"
+		type="TemporaryAttributeOnly"
+		damage_type="Physical"
+		temporary_attribute="WindsDeathLink">
+	</StatusEffectTemplate>
+
+
+
 	<StatusEffectTemplate
 		id="drain_life_dot"
 		particle_id="drain_life"
@@ -2734,13 +2756,25 @@
 	</StatusEffectTemplate>
 
 	<!-- Big Waaagh! Magic Status Effects -->
+
 	<StatusEffectTemplate
-		id="call_of_da_green_wom"
-		particle_id="waaagh_energy"
-		particle_intensity="High"
+		id="call_of_da_green_slow"
+		particle_id=""
+		particle_intensity="Low"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="3"
-		type="WindsOverTime">
+		base_effect_value="-0.35"
+		type="MovementManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="call_of_da_green_combat_slow"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="-0.25"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
 	</StatusEffectTemplate>
 
 	<StatusEffectTemplate
