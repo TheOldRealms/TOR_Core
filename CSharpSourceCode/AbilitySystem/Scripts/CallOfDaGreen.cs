@@ -26,8 +26,8 @@ namespace TOR_Core.AbilitySystem.Scripts
     public class CallOfDaGreen : CareerAbilityScript
     {
         private const string GAZE_UV_MORK_ID = "GazeUvMork";
-        private const string WINDS_LINK_EFFECT = "magic_athel_loren_windslink";
-        private const string WINDS_DEATH_LINK_EFFECT = "winds_death_link";
+        private const string WINDS_LINK_EFFECT = "callofdagreen_windslink";
+        private const string WINDS_DEATH_LINK_EFFECT = "callofdagreen_windsdeathlink";
 
         private bool _initialized;
 
@@ -39,7 +39,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (!_initialized)
             {
                 _initialized = true;
-                ApplyWindsDeathLinkToNearbyGreenskins();
+                ApplyLinkAttributeToNearbyGreenskins();
             }
         }
 
@@ -48,7 +48,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         /// This is done ONCE when the ability activates, not every tick.
         /// CareerPerkMissionBehavior will then track combat events from these agents.
         /// </summary>
-        private void ApplyWindsDeathLinkToNearbyGreenskins()
+        private void ApplyLinkAttributeToNearbyGreenskins()
         {
             if (CasterAgent == null || !CasterAgent.IsActive()) return;
 
@@ -58,8 +58,6 @@ namespace TOR_Core.AbilitySystem.Scripts
             // Get all agents within ability radius
             MBList<Agent> nearbyAgents = new MBList<Agent>();
             Mission.Current.GetNearbyAgents(CasterAgent.Position.AsVec2, radius, nearbyAgents);
-
-            int linkedCount = 0;
 
             // Apply winds_death_link to friendly Greenskins (excluding the caster)
             foreach (var agent in nearbyAgents)
@@ -77,13 +75,8 @@ namespace TOR_Core.AbilitySystem.Scripts
                     // Apply both WindsLink (for kill bonus) and WindsDeathLink (for death penalty)
                     agent.ApplyStatusEffect(WINDS_LINK_EFFECT, CasterAgent, duration, false);
                     agent.ApplyStatusEffect(WINDS_DEATH_LINK_EFFECT, CasterAgent, duration, false);
-                    linkedCount++;
                 }
             }
-
-            TOR_Core.Utilities.TORCommon.Log(
-                $"CallOfDaGreen: Applied WindsLink and WindsDeathLink to {linkedCount} nearby Greenskins for {duration}s",
-                NLog.LogLevel.Debug);
         }
 
         /// <summary>
@@ -119,7 +112,6 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             if (gazeUvMork != null)
             {
-                // Reset cooldown so it's ready to cast
                 gazeUvMork.SetCoolDown(0);
             }
         }
