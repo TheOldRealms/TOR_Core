@@ -405,6 +405,7 @@
     <Compile Include="BattleMechanics\AI\CastingAI\AgentCastingBehavior\SelectMultiTargetCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentCastingBehavior\SelectSingleTargetCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentCastingBehavior\SummoningCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\CastingAI\AgentCastingBehavior\TacticalTeleportCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentTacticalBehavior\AbstractAgentTacticalBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentTacticalBehavior\AoEAdjacentTacticalBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentTacticalBehavior\AoEDirectionalTacticalBehavior.cs" />

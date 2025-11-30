@@ -9578,12 +9578,12 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_shaman_lord">
     <Abilities>
-      <!--<string>GazeUvMork</string>-->
-      <!--<string>ArdAsNails</string>-->
-      <!--<string>BrainBursta</string>-->
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
       <string>DaHandUvGork</string>
-      <!--<string>EreWeGo</string>-->
-      <!--<string>FootUvGork</string>-->
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
