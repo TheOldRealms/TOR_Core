@@ -20,10 +20,12 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
     public class TacticalTeleportCastingBehavior : AbstractAgentCastingBehavior
     {
         private const float TELEPORT_RADIUS = 8f; // Must match TeleportTriggeredScript.TELEPORT_RADIUS
-        private const float MIN_ALLIES_FOR_TELEPORT = 3; // Minimum allies nearby to consider teleporting
+        private const int MIN_MELEE_ALLIES = 3; // Minimum melee allies nearby to consider teleporting
+        private const float MIN_POWER_RATIO = 0.5f; // Minimum power ratio vs target formation (0.5 = even fight)
+        private const float MIN_POWER_RATIO_LORD = 0.7f; // Lords require safer odds (0.7 = 70% power advantage)
         private const float MAX_TELEPORT_DISTANCE = 80f; // Maximum distance to teleport
-        private const float FLANK_OFFSET_DISTANCE = 15f; // Distance to offset from formation center when flanking
-        private const float MIN_DISTANCE_FROM_FORMATION = 8f; // Minimum safe distance from enemy formation edge
+        private const float FLANK_OFFSET_DISTANCE = 5f; // Distance to offset from formation center when flanking (reduced for aggressive positioning)
+        private const float MIN_DISTANCE_FROM_FORMATION = 3f; // Minimum safe distance from enemy formation edge (spawn almost into them)
 
         public TacticalTeleportCastingBehavior(Agent agent, AbilityTemplate template, int abilityIndex)
             : base(agent, template, abilityIndex)
@@ -42,7 +44,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
                 return behaviorOptions;
             }
 
-            // Count nearby allies that would be teleported
+            // Get nearby allies that would be teleported
             var nearbyAllies = Mission.Current.GetNearbyAllyAgents(
                 Agent.Position.AsVec2,
                 TELEPORT_RADIUS,
@@ -50,21 +52,50 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
                 new MBList<Agent>());
             nearbyAllies.Remove(Agent);
 
-            // Don't teleport if too few allies nearby
-            if (nearbyAllies.Count < MIN_ALLIES_FOR_TELEPORT)
+            // Analyze ally composition - count MELEE allies specifically (not ranged, not mounted)
+            var meleeAllies = nearbyAllies.Where(a =>
+                a != null &&
+                a.IsActive() &&
+                !a.HasMount &&
+                !a.IsRangedCached // Use cached ranged check for performance
+            ).ToList();
+
+            // Don't teleport if too few melee allies
+            if (meleeAllies.Count < MIN_MELEE_ALLIES)
             {
                 return behaviorOptions;
             }
 
+            // Calculate total power of allies we'd be teleporting (including the caster)
+            var teleportingPower = CalculateAllyGroupPower(meleeAllies) + (Agent.Character?.GetPower() ?? 20f);
+
             // Find potential teleport destinations (enemy formations)
+            // COMPLETELY EXCLUDE mounted formations (cavalry immunity)
             var enemyFormations = Agent.Team.GetEnemyTeams()
                 .SelectMany(team => team.GetFormations())
                 .Where(f => f.CountOfUnitsWithoutDetachedOnes > 0)
+                .Where(f => f.QuerySystem.CavalryUnitRatio < 0.5f) // Skip formations with 50%+ cavalry
                 .ToList();
+
+            // Lords are more cautious - require safer odds
+            var isLord = Agent.IsHero;
+            var requiredPowerRatio = isLord ? MIN_POWER_RATIO_LORD : MIN_POWER_RATIO;
 
             foreach (var enemyFormation in enemyFormations)
             {
-                var target = CreateTeleportTarget(enemyFormation, nearbyAllies.Count);
+                // Check if we have enough power to engage this formation
+                // Regular units: 0.5 = even fight
+                // Lords: 0.7 = safe bet (70% power advantage)
+                var enemyPower = enemyFormation.QuerySystem.FormationPower;
+                var powerRatio = teleportingPower / MathF.Max(enemyPower, 1f);
+
+                // Skip if we don't meet minimum power requirement
+                if (powerRatio < requiredPowerRatio)
+                {
+                    continue;
+                }
+
+                var target = CreateTeleportTarget(enemyFormation, meleeAllies, powerRatio);
                 if (target != null)
                 {
                     behaviorOptions.Add(new BehaviorOption
@@ -76,10 +107,23 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
                 }
             }
 
-                                        return behaviorOptions;
+            return behaviorOptions;
         }
 
-        private Target CreateTeleportTarget(Formation enemyFormation, int allyCount)
+        private float CalculateAllyGroupPower(List<Agent> allies)
+        {
+            float totalPower = 0f;
+            foreach (var ally in allies)
+            {
+                if (ally?.Character != null)
+                {
+                    totalPower += ally.Character.GetPower();
+                }
+            }
+            return totalPower;
+        }
+
+        private Target CreateTeleportTarget(Formation enemyFormation, List<Agent> meleeAllies, float powerRatio)
         {
             var formationCenter = enemyFormation.GetAveragePositionOfUnits(true, false).ToVec3();
             var formationDirection = enemyFormation.QuerySystem.EstimatedDirection;
@@ -144,7 +188,7 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             }
 
             // Calculate utility score
-            var utility = CalculateTeleportUtility(bestPosition.Value, enemyFormation, allyCount);
+            var utility = CalculateTeleportUtility(bestPosition.Value, enemyFormation, meleeAllies.Count, powerRatio);
 
             return new Target
             {
@@ -180,49 +224,92 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             return score;
         }
 
-        private float CalculateTeleportUtility(Vec3 targetPosition, Formation enemyFormation, int allyCount)
+        private float CalculateTeleportUtility(Vec3 targetPosition, Formation enemyFormation, int meleeAllyCount, float powerRatio)
         {
             float utility = 0f;
 
-            // Factor 1: Number of allies to teleport (more = better, up to a point)
-            var allyFactor = MathF.Min(allyCount / 10f, 0.5f);
-            utility += allyFactor;
-
-            // Factor 2: Distance from current position to target (prefer meaningful repositioning)
-            var teleportDistance = Agent.Position.Distance(targetPosition);
-            var distanceFactor = MathF.Clamp(teleportDistance / 50f, 0.1f, 0.4f);
-            utility += distanceFactor;
-
-            // Factor 3: Enemy formation power (prefer targeting valuable formations)
-            var powerFactor = MathF.Min(enemyFormation.QuerySystem.FormationPower /
-                CommonAIDecisionFunctions.CalculateEnemyTotalPower(Agent.Team) * 0.5f, 0.3f);
+            // Factor 1: Power ratio (higher is better, we already met minimum)
+            // Normalize: 0.5 -> 0.2, 1.0 -> 0.3, 2.0 -> 0.4
+            var powerFactor = MathF.Clamp((powerRatio - 0.5f) / 1.5f * 0.2f + 0.2f, 0.2f, 0.4f);
             utility += powerFactor;
 
-            // Factor 4: Ranged unit ratio (prefer teleporting near ranged units)
-            var rangedFactor = enemyFormation.QuerySystem.RangedUnitRatio * 0.3f;
+            // Factor 2: Number of melee allies to teleport (more = better, up to a point)
+            var allyFactor = MathF.Min(meleeAllyCount / 10f, 0.25f);
+            utility += allyFactor;
+
+            // Factor 3: STRONGLY prefer ranged formations (easier targets for melee)
+            var rangedFactor = enemyFormation.QuerySystem.RangedUnitRatio * 0.4f; // Boosted from 0.3 to 0.4
             utility += rangedFactor;
 
-            // Factor 5: Check if we're currently in danger (boost utility if surrounded)
-            var localPowerRatio = Agent.Formation?.QuerySystem.LocalPowerRatio ?? 1f;
-            if (localPowerRatio < 0.5f) // We're outnumbered
+            // Factor 4: Formation state considerations
+            // Boost utility for formations that are:
+            // - Already engaged (easier to disrupt)
+            // - Under missile fire (already weakened)
+            // - Retreating/moving (easier to flank)
+            var formationStateBonus = 0f;
+
+            // Check if formation is under pressure
+            if (enemyFormation.QuerySystem.UnderRangedAttackRatio > 0.3f)
             {
-                utility += 0.2f; // Escape factor
+                formationStateBonus += 0.15f; // Formation is being shot at
             }
+
+            // Check if formation is moving (easier to flank)
+            if (enemyFormation.QuerySystem.MovementSpeedMaximum > 0.5f)
+            {
+                formationStateBonus += 0.1f; // Formation is moving
+            }
+
+            // Check if formation is already in melee
+            if (enemyFormation.QuerySystem.MakingRangedAttackRatio < 0.5f &&
+                enemyFormation.QuerySystem.InfantryUnitRatio > 0.5f)
+            {
+                formationStateBonus += 0.1f; // Infantry formation in melee
+            }
+
+            utility += formationStateBonus;
+
+            // Factor 5: Teleport distance (prefer meaningful repositioning, not too close)
+            var teleportDistance = Agent.Position.Distance(targetPosition);
+            var distanceFactor = MathF.Clamp(teleportDistance / 60f, 0.05f, 0.15f);
+            utility += distanceFactor;
 
             return MathF.Min(utility, 1.0f);
         }
 
         protected override Target UpdateTarget(Target target)
         {
-            // Ensure we have a valid position selected
-            if (target.SelectedWorldPosition == Vec3.Zero && target.Formation != null)
+            // Recalculate position if needed (formation may have moved)
+            if (target.Formation != null)
             {
+                // Get current melee allies
                 var nearbyAllies = Mission.Current.GetNearbyAllyAgents(
                     Agent.Position.AsVec2, TELEPORT_RADIUS, Agent.Team, new MBList<Agent>());
-                var newTarget = CreateTeleportTarget(target.Formation, nearbyAllies.Count - 1);
-                if (newTarget != null)
+                nearbyAllies.Remove(Agent);
+
+                var meleeAllies = nearbyAllies.Where(a =>
+                    a != null && a.IsActive() && !a.HasMount && !a.IsRangedCached
+                ).ToList();
+
+                if (meleeAllies.Count >= MIN_MELEE_ALLIES)
                 {
-                    target.SelectedWorldPosition = newTarget.SelectedWorldPosition;
+                    var teleportingPower = CalculateAllyGroupPower(meleeAllies) + (Agent.Character?.GetPower() ?? 20f);
+                    var enemyPower = target.Formation.QuerySystem.FormationPower;
+                    var powerRatio = teleportingPower / MathF.Max(enemyPower, 1f);
+
+                    // Lords require safer odds
+                    var isLord = Agent.IsHero;
+                    var requiredPowerRatio = isLord ? MIN_POWER_RATIO_LORD : MIN_POWER_RATIO;
+
+                    if (powerRatio >= requiredPowerRatio)
+                    {
+                        var newTarget = CreateTeleportTarget(target.Formation, meleeAllies, powerRatio);
+                        if (newTarget != null)
+                        {
+                            target.SelectedWorldPosition = newTarget.SelectedWorldPosition;
+                            target.UtilityValue = newTarget.UtilityValue;
+                        }
+                    }
                 }
             }
             return target;
