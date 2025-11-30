@@ -70,11 +70,23 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             var teleportingPower = CalculateAllyGroupPower(meleeAllies) + (Agent.Character?.GetPower() ?? 20f);
 
             // Find potential teleport destinations (enemy formations)
-            // COMPLETELY EXCLUDE mounted formations (cavalry immunity)
+            // Smart cavalry handling: only consider cavalry formations if they're stationary
             var enemyFormations = Agent.Team.GetEnemyTeams()
                 .SelectMany(team => team.GetFormations())
                 .Where(f => f.CountOfUnitsWithoutDetachedOnes > 0)
-                .Where(f => f.QuerySystem.CavalryUnitRatio < 0.5f) // Skip formations with 50%+ cavalry
+                .Where(f =>
+                {
+                    // Check if this is a cavalry formation
+                    var isCavalry = f.QuerySystem.IsCavalryFormation;
+
+                    // Allow non-cavalry formations always
+                    if (!isCavalry)
+                        return true;
+
+                    // For cavalry formations, only allow if almost stationary (movement speed < 0.3)
+                    // This catches idle, stopped, or regrouping cavalry
+                    return f.QuerySystem.MovementSpeedMaximum < 0.3f;
+                })
                 .ToList();
 
             // Lords are more cautious - require safer odds
