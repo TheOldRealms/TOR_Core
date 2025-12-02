@@ -9,6 +9,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -28,6 +30,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="talabecland_clan_1" />
@@ -52,6 +56,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="ostland_clan_2" />
@@ -74,6 +80,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers> 
             <FollowerClan stringId="dog_clan_1" />
@@ -96,6 +104,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
 		    <FollowerClan stringId="nordland_clan_2" />
@@ -120,6 +130,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -137,6 +149,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -158,6 +172,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
 			<HostileReligion id="Religion.cult_of_ulric" />
             <HostileReligion id="Religion.cult_of_shallya" />
             <HostileReligion id="Religion.cult_of_asuryan" />
@@ -187,9 +203,10 @@
             <HostileReligion id="Religion.cult_of_isha" />
             <HostileReligion id="Religion.cult_of_anath_raema" />
             <HostileReligion id="Religion.cult_of_loec" />
-            <HostileReligion id="Religion.cult_of_nurgle" />
             <HostileReligion id="Religion.cult_of_vaul" />
             <HostileReligion id="Religion.cult_of_kurnous" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="chaos_clan_1" />
@@ -210,9 +227,10 @@
             <HostileReligion id="Religion.cult_of_isha" />
             <HostileReligion id="Religion.cult_of_anath_raema" />
             <HostileReligion id="Religion.cult_of_loec" />
-            <HostileReligion id="Religion.cult_of_nurgle" />
             <HostileReligion id="Religion.cult_of_vaul" />
             <HostileReligion id="Religion.cult_of_kurnous" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -231,9 +249,10 @@
             <HostileReligion id="Religion.cult_of_isha" />
             <HostileReligion id="Religion.cult_of_anath_raema" />
             <HostileReligion id="Religion.cult_of_loec" />
-            <HostileReligion id="Religion.cult_of_nurgle" />
             <HostileReligion id="Religion.cult_of_vaul" />
             <HostileReligion id="Religion.cult_of_kurnous" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="brasskeep_clan_1" />|
@@ -254,9 +273,10 @@
             <HostileReligion id="Religion.cult_of_isha" />
             <HostileReligion id="Religion.cult_of_anath_raema" />
             <HostileReligion id="Religion.cult_of_loec" />
-            <HostileReligion id="Religion.cult_of_nurgle" />
             <HostileReligion id="Religion.cult_of_vaul" />
             <HostileReligion id="Religion.cult_of_kurnous" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -275,9 +295,10 @@
             <HostileReligion id="Religion.cult_of_isha" />
             <HostileReligion id="Religion.cult_of_anath_raema" />
             <HostileReligion id="Religion.cult_of_loec" />
-            <HostileReligion id="Religion.cult_of_nurgle" />
             <HostileReligion id="Religion.cult_of_vaul" />
             <HostileReligion id="Religion.cult_of_kurnous" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="chs_cult_1" />
@@ -295,6 +316,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -309,6 +332,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="athel_loren_clan_6" />
@@ -326,6 +351,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="athel_loren_clan_11" />
@@ -341,6 +368,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="athel_loren_clan_9" />
@@ -360,6 +389,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -374,6 +405,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="athel_loren_clan_8" />
@@ -389,6 +422,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
         </Followers>
@@ -404,6 +439,8 @@
             <HostileReligion id="Religion.cult_of_khorne" />
             <HostileReligion id="Religion.cult_of_tzeentch" />
             <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
             <FollowerClan stringId="athel_loren_clan_8" />
@@ -411,4 +448,65 @@
         <ReligiousTroops>
         </ReligiousTroops>
     </Religion>
+	<!-- greenskin religions -->
+	<Religion id="cult_of_gork" Name="{=tor_religion_cult_name_cult_of_gork_str}Cult of Gork" Culture="Culture.aserai" Affinity="Destruction" DeityName="Gork">
+		<HostileReligions>
+			<HostileReligion id="Religion.cult_of_sigmar" />
+			<HostileReligion id="Religion.cult_of_taal" />
+			<HostileReligion id="Religion.cult_of_ulric" />
+			<HostileReligion id="Religion.cult_of_shallya" />
+			<HostileReligion id="Religion.cult_of_manaan" />
+			<HostileReligion id="Religion.cult_of_myrmidia" />
+			<HostileReligion id="Religion.cult_of_lady" />
+			<HostileReligion id="Religion.cult_of_asuryan" />
+			<HostileReligion id="Religion.cult_of_isha" />
+			<HostileReligion id="Religion.cult_of_kurnous" />
+			<HostileReligion id="Religion.cult_of_vaul" />
+			<HostileReligion id="Religion.cult_of_anath_raema" />
+			<HostileReligion id="Religion.cult_of_loec" />
+			<HostileReligion id="Religion.cult_of_grimnir" />
+			<HostileReligion id="Religion.cult_of_thungni" />
+			<HostileReligion id="Religion.cult_of_slaanesh" />
+			<HostileReligion id="Religion.cult_of_nurgle" />
+			<HostileReligion id="Religion.cult_of_khorne" />
+			<HostileReligion id="Religion.cult_of_tzeentch" />
+			<HostileReligion id="Religion.chaos_undivided" />
+		</HostileReligions>
+		<Followers>
+		</Followers>
+		<ReligiousTroops>
+		</ReligiousTroops>
+		<ReligiousArtifacts>
+		</ReligiousArtifacts>
+	</Religion>
+	<Religion id="cult_of_mork" Name="{=tor_religion_cult_name_cult_of_mork_str}Cult of Mork" Culture="Culture.aserai" Affinity="Destruction" DeityName="Mork">
+		<HostileReligions>
+			<HostileReligion id="Religion.cult_of_sigmar" />
+			<HostileReligion id="Religion.cult_of_taal" />
+			<HostileReligion id="Religion.cult_of_ulric" />
+			<HostileReligion id="Religion.cult_of_shallya" />
+			<HostileReligion id="Religion.cult_of_manaan" />
+			<HostileReligion id="Religion.cult_of_myrmidia" />
+			<HostileReligion id="Religion.cult_of_lady" />
+			<HostileReligion id="Religion.cult_of_asuryan" />
+			<HostileReligion id="Religion.cult_of_isha" />
+			<HostileReligion id="Religion.cult_of_kurnous" />
+			<HostileReligion id="Religion.cult_of_vaul" />
+			<HostileReligion id="Religion.cult_of_anath_raema" />
+			<HostileReligion id="Religion.cult_of_loec" />
+			<HostileReligion id="Religion.cult_of_grimnir" />
+			<HostileReligion id="Religion.cult_of_thungni" />
+			<HostileReligion id="Religion.cult_of_slaanesh" />
+			<HostileReligion id="Religion.cult_of_nurgle" />
+			<HostileReligion id="Religion.cult_of_khorne" />
+			<HostileReligion id="Religion.cult_of_tzeentch" />
+			<HostileReligion id="Religion.chaos_undivided" />
+		</HostileReligions>
+		<Followers>
+		</Followers>
+		<ReligiousTroops>
+		</ReligiousTroops>
+		<ReligiousArtifacts>
+		</ReligiousArtifacts>
+	</Religion>
 </Religions>

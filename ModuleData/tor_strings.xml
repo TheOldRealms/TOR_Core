@@ -1798,6 +1798,8 @@
   <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=tor_religion_name_of_god_cult_of_nurgle_str}Nurgle" />
   <string id="tor_religion_name_of_god.cult_of_khorne" text="{=tor_religion_name_of_god_cult_of_khorne_str}Khorne" />
   <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=tor_religion_name_of_god_cult_of_tzeentch_str}Tzeentch" />
+  <string id="tor_religion_name_of_god.cult_of_gork" text="{=tor_religion_name_of_god_cult_of_gork_str}Gork" />
+  <string id="tor_religion_name_of_god.cult_of_mork" text="{=tor_religion_name_of_god_cult_of_mork_str}Mork" />
 
   <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Earn 20% more prestige." />
   <string id="tor_religion_blessing_effect_description.cult_of_shallya" text="{=tor_religion_blessing_effect_description_cult_of_shallya}Your party members heal their wounds 20% faster." />
@@ -1811,6 +1813,8 @@
   <string id="tor_religion_blessing_effect_description.cult_of_vaul" text="{=tor_religion_blessing_effect_description_cult_of_vaul}All troops in your party gain 10% physical resistance." />
   <string id="tor_religion_blessing_effect_description.cult_of_anath_raema" text="{=tor_religion_blessing_effect_description_cult_of_raema}Get 7 copies of a random item looted post-battle." />
   <string id="tor_religion_blessing_effect_description.cult_of_kurnous" text="{=tor_religion_blessing_effect_description_cult_of_kurnous}All ranged troops in your party deal an extra 10% physical damage." />
+  <string id="tor_religion_blessing_effect_description.cult_of_gork" text="{=tor_religion_blessing_effect_description_cult_of_gork}All melee troops in your party deal an extra 10% physical damage." />
+  <string id="tor_religion_blessing_effect_description.cult_of_mork" text="{=tor_religion_blessing_effect_description_cult_of_mork}All troops in your party deal an extra 10% damage as fire damage." />
 
   <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=tor_religion_blessing_name_cult_of_sigmar_str}Blessing of Sigmar" />
   <string id="tor_religion_blessing_name.cult_of_shallya" text="{=tor_religion_blessing_name_cult_of_shallya_str}Blessing of Shallya" />
@@ -1824,6 +1828,8 @@
   <string id="tor_religion_blessing_name.cult_of_vaul" text="{=tor_religion_blessing_name_cult_of_vaul_str}Blessing of Vaul" />
   <string id="tor_religion_blessing_name.cult_of_anath_raema" text="{=tor_religion_blessing_name_cult_of_raema_str}Blessing of Anath Raema" />
   <string id="tor_religion_blessing_name.cult_of_kurnous" text="{=tor_religion_blessing_name_cult_of_kurnous_str}Blessing of Kurnous" />
+  <string id="tor_religion_blessing_name.cult_of_gork" text="{=tor_religion_blessing_name_cult_of_gork_str}Blessing of Gork" />
+  <string id="tor_religion_blessing_name.cult_of_mork" text="{=tor_religion_blessing_name_cult_of_mork_str}Blessing of Mork" />
 
 
 
@@ -2604,24 +2610,26 @@
 
   <string id="inky_OverturnedCart.AfterLiftMedicine1" text="{=inky_overturned_cart_after_Lift_Medicine_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
 
-  	<string id="tor_religion_cult_name_cult_of_sigmar_str" text="{.MA}Культ{.nn} Зигмара" />
-	<string id="tor_religion_cult_name_cult_of_taal_str" text="{.MA}Культ{.nn} Таала" />
-	<string id="tor_religion_cult_name_cult_of_ulric_str" text="{.MA}Культ{.nn} Ульрика" />
-	<string id="tor_religion_cult_name_cult_of_shallya_str" text="{.MA}Культ{.nn} Шаллии" />
-	<string id="tor_religion_cult_name_cult_of_manaan_str" text="{.MA}Культ{.nn} Мананна" />
-	<string id="tor_religion_cult_name_cult_of_lady_str" text="{.MA}Культ{.nn} Владычицы Озера" />
-	<string id="tor_religion_cult_name_cult_of_nagash_str" text="{.NA}Последователи{.nnp} Нагаша" />
-	<string id="tor_religion_cult_name_chaos_undivided_str" text="{.MA}Хаос{.MA} {.MA}Неделимый{.aj}" />
-	<string id="tor_religion_cult_name_cult_of_slaanesh_str" text="{.MA}Культ{.nn} Слаанеш" />
-	<string id="tor_religion_cult_name_cult_of_nurgle_str" text="{.MA}Культ{.nn} Нургла" />
-	<string id="tor_religion_cult_name_cult_of_khorne_str" text="{.MA}Культ{.nn} Кхорна" />
-	<string id="tor_religion_cult_name_cult_of_tzeentch_str" text="{.MA}Культ{.nn} Тзинча" />
-	<string id="tor_religion_cult_name_cult_of_isha_str" text="{.MA}Культ{.nn} Иши" />
-	<string id="tor_religion_cult_name_cult_of_kurnous_str" text="{.MA}Культ{.nn} Курноуса" />
-	<string id="tor_religion_cult_name_cult_of_vaul_str" text="{.MA}Культ{.nn} Ваула" />
-	<string id="tor_religion_cult_name_cult_of_anath_raema_str" text="{.MA}Культ{.nn} Анат Раэмы" />
-	<string id="tor_religion_cult_name_cult_of_asuryan_str" text="{.MA}Культ{.nn} Азуриана" />
-	<string id="tor_religion_cult_name_cult_of_loec_str" text="{.MA}Культ{.nn} Лоэка" />
+	<string id="tor_religion_cult_name_cult_of_sigmar" text="{=tor_religion_cult_name_cult_of_sigmar_str}Cult of Sigmar" />
+	<string id="tor_religion_cult_name_cult_of_taal" text="{=tor_religion_cult_name_cult_of_taal_str}Cult of Taal" />
+	<string id="tor_religion_cult_name_cult_of_ulric" text="{=tor_religion_cult_name_cult_of_ulric_str}Cult of Ulric" />
+	<string id="tor_religion_cult_name_cult_of_shallya" text="{=tor_religion_cult_name_cult_of_shallya_str}Cult of Shallya" />
+	<string id="tor_religion_cult_name_cult_of_manaan" text="{=tor_religion_cult_name_cult_of_manaan_str}Cult of Manaan" />
+	<string id="tor_religion_cult_name_cult_of_lady" text="{=tor_religion_cult_name_cult_of_lady_str}Cult of the Lady" />
+	<string id="tor_religion_cult_name_cult_of_nagash" text="{=tor_religion_cult_name_cult_of_nagash_str}Followers of Nagash" />
+	<string id="tor_religion_cult_name_chaos_undivided" text="{=tor_religion_cult_name_chaos_undivided_str}Chaos Undivided" />
+	<string id="tor_religion_cult_name_cult_of_slaanesh" text="{=tor_religion_cult_name_cult_of_slaanesh_str}Cult of Slaanesh" />
+	<string id="tor_religion_cult_name_cult_of_nurgle" text="{=tor_religion_cult_name_cult_of_nurgle_str}Cult of Nurgle" />
+	<string id="tor_religion_cult_name_cult_of_khorne" text="{=tor_religion_cult_name_cult_of_khorne_str}Cult of Khorne" />
+	<string id="tor_religion_cult_name_cult_of_tzeentch" text="{=tor_religion_cult_name_cult_of_tzeentch_str}Cult of Tzeentch" />
+	<string id="tor_religion_cult_name_cult_of_isha" text="{=tor_religion_cult_name_cult_of_isha_str}Cult of Isha" />
+	<string id="tor_religion_cult_name_cult_of_kurnous" text="{=tor_religion_cult_name_cult_of_kurnous_str}Cult of Kurnous" />
+	<string id="tor_religion_cult_name_cult_of_vaul" text="{=tor_religion_cult_name_cult_of_vaul_str}Cult of Vaul" />
+	<string id="tor_religion_cult_name_cult_of_anath_raema" text="{=tor_religion_cult_name_cult_of_anath_raema_str}Cult of Anath Raema" />
+	<string id="tor_religion_cult_name_cult_of_asuryan" text="{=tor_religion_cult_name_cult_of_asuryan_str}Cult of Asuryan" />
+	<string id="tor_religion_cult_name_cult_of_loec" text="{=tor_religion_cult_name_cult_of_loec_str}Cult of Loec" />
+	<string id="tor_religion_cult_name_cult_of_gork" text="{=tor_religion_cult_name_cult_of_gork_str}Cult of Gork" />
+	<string id="tor_religion_cult_name_cult_of_mork" text="{=tor_religion_cult_name_cult_of_mork_str}Cult of Mork" />
 
 
 

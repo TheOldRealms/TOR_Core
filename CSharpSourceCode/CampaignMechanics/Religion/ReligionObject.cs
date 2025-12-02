@@ -132,6 +132,7 @@ namespace TOR_Core.CampaignMechanics.Religion
     {
         Order,
         Chaos,
-        Vampire
+        Vampire,
+        Destruction
     }
 }
