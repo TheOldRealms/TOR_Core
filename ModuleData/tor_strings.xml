@@ -1855,8 +1855,11 @@
   <string id="career_title.Ironbreaker" text="{=tor_career_title_ironbreaker_str}Ironbreaker" />
   <string id="career_title.Slayer" text="{=tor_career_title_slayer_str}Slayer" />
   <string id="career_title.Warden" text="{=tor_career_title_warden_str}Glade Lord" />
-  
   <string id="career_title.Runelord" text="{=tor_career_title_warden_str}Runesmith" />
+  
+  <string id="career_title.OrcBoss" text="{=tor_career_title_warden_str}Orc Boss" />
+  <string id="career_title.OrcShaman" text="{=tor_career_title_warden_str}Orc Shaman" />
+
 
 
   <string id="career_switch_title.MinorVampire" text="{=tor_career_switch_title_minorvampire_str}Become a Carstein Vampire" />
@@ -2009,6 +2012,10 @@
   <string id="career_description.Warden" text="{=career_description_warden_str}All Elves comes to the defence of Athel Loren in times of need. Trained not only with bow, but also with spear, sword, mounted combat and in some cases magic, the Lords of the Glade herald in the might of the Wood Elves and the Spirits of Athel Loren. Leading the charge and conceiving battle plans like no other, these Lords and Ladies are great warriors on and off the field, out maneuvering and flanking with deadly strength." />
   
   <string id="career_description.Runelord" text="{=career_description_runelord_str}The Dwarfs are masters of craft, their forge-fires burning with the memory of ages past. Among their greatest artisans stand the Runesmiths, proud descendants of Thungni, the Ancestor God of Runelore. Gifted with the sacred knowledge of Runecraft, they bind power into steel with secret glyphs passed down since the Time of Woes.{newline}{newline}Sworn to secrecy and perfection, a Runesmith's every blow upon the anvil echoes with meaning. Their armor is warded, their weapons etched with runes that can break sorcery or strengthen allies. Runesmiths are both warriors and artisans, unflinching defenders of Dwarfen tradition and honour. " />
+ 
+ <string id="career_description.OrcBoss" text="{=career_description_orcboss_str}You sees, da Boss iz da meanest, baddest, greenest, an’ best git. Da biggest ‘un in any mob, wiv da biggest choppas an’ blockas eva’! To be proppa tuff an’ ded ‘ard kill- Oi! You dere! Woz you givin’ me da stink eye!? HUH!!?? You want sum of dis an’ dat!? Yeah, dat’s right, you betta run, ya git. Anywayz, I wuz sayin’… Errr… Dat’s right, wez’ gunna ‘ead out, boyz. Snap da necks of humies, stunties, an’ any uvva filthy gits in our way. Teach ‘em a lesson. Stikk ‘em an’ make ‘em squeal. We iz strong, an’ da strong ‘uns always win. Move it, ladz! Everyfing dere is will be mine, an’ we go until der is nuffin’ left! Iz time to WAAAAAGH!!!" />
+
+ <string id="career_description.OrcShaman" text="{=career_description_orcboss_str}You sees, da Boss iz da meanest, baddest, greenest, an’ best git. Da biggest ‘un in any mob, wiv da biggest choppas an’ blockas eva’! To be proppa tuff an’ ded ‘ard kill- Oi! You dere! Woz you givin’ me da stink eye!? HUH!!?? You want sum of dis an’ dat!? Yeah, dat’s right, you betta run, ya git. Anywayz, I wuz sayin’… Errr… Dat’s right, wez’ gunna ‘ead out, boyz. Snap da necks of humies, stunties, an’ any uvva filthy gits in our way. Teach ‘em a lesson. Stikk ‘em an’ make ‘em squeal. We iz strong, an’ da strong ‘uns always win. Move it, ladz! Everyfing dere is will be mine, an’ we go until der is nuffin’ left! Iz time to WAAAAAGH!!!" />
 
   <!-- Career Unlock Conditions -->
   <string id="careerunlock_condition_1.Runelord" text="Talk to the Runelord about the promotion" />
