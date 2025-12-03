@@ -211,8 +211,9 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 attacker.IsMainAgent && mask == AttackTypeMask.Spell && IsWearingLightArmor(attacker)));
         _visionsUvDaOrcaynePassive3.Initialize(CareerID, "{=visions_uv_da_orcayne_passive3_str}Shrine defilement provides more meat and shinies.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true)); // CUSTOM - needs implementation
-        _visionsUvDaOrcaynePassive4.Initialize(CareerID, "{=visions_uv_da_orcayne_passive4_str}Placeholder - awaiting design.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, true)); // UNDEFINED - needs design
+        _visionsUvDaOrcaynePassive4.Initialize(CareerID, "{=visions_uv_da_orcayne_passive4_str}10% extra damage when wielding a staff.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell, (attacker, victim, mask) =>
+                attacker.IsMainAgent && mask == AttackTypeMask.Melee && !attacker.WieldedWeapon.IsEmpty && attacker.WieldedWeapon.Item.IsMagicalStaff()));
 
         // Giftz from Da Great Green Passives
         _giftzFromDaGreatGreenPassive1.Initialize(CareerID, "{=giftz_from_da_great_green_passive1_str}Looting shrines grants Faith experience.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
