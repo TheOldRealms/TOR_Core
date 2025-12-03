@@ -1979,9 +1979,9 @@
   <string id="career_choicegroup2_name.Runelord" text="{=career_choicegroup2_runelord_str}Runesmith" />
   <string id="career_choicegroup3_name.Runelord" text="{=career_choicegroup3_runelord_str}Runelord" />
 
-  <string id="career_choicegroup1_name.OrcBoss" text="{=career_choicegroup1_orcboss_str}Da Boy" />
-  <string id="career_choicegroup2_name.OrcBoss" text="{=career_choicegroup2_orcboss_str}Da Boss" />
-  <string id="career_choicegroup3_name.OrcBoss" text="{=career_choicegroup3_orcboss_str}Da Big Boss" />
+  <string id="career_choicegroup1_name.OrcBoss" text="{=career_choicegroup1_orcboss_str}Orc Boss" />
+  <string id="career_choicegroup2_name.OrcBoss" text="{=career_choicegroup2_orcboss_str}Warboss" />
+  <string id="career_choicegroup3_name.OrcBoss" text="{=career_choicegroup3_orcboss_str}Greenskin Warlord" />
 
   <!--Career related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
@@ -2007,7 +2007,7 @@
   
   <string id="career_description.Runelord" text="{=career_description_runelord_str}The Dwarfs are masters of craft, their forge-fires burning with the memory of ages past. Among their greatest artisans stand the Runesmiths, proud descendants of Thungni, the Ancestor God of Runelore. Gifted with the sacred knowledge of Runecraft, they bind power into steel with secret glyphs passed down since the Time of Woes.{newline}{newline}Sworn to secrecy and perfection, a Runesmith's every blow upon the anvil echoes with meaning. Their armor is warded, their weapons etched with runes that can break sorcery or strengthen allies. Runesmiths are both warriors and artisans, unflinching defenders of Dwarfen tradition and honour. " />
  
- <string id="career_description.OrcBoss" text="{=career_description_orcboss_str}You sees, da Boss iz da meanest, baddest, greenest, an’ best git. Da biggest ‘un in any mob, wiv da biggest choppas an’ blockas eva’! To be proppa tuff an’ ded ‘ard kill- Oi! You dere! Woz you givin’ me da stink eye!? HUH!!?? You want sum of dis an’ dat!? Yeah, dat’s right, you betta run, ya git. Anywayz, I wuz sayin’… Errr… Dat’s right, wez’ gunna ‘ead out, boyz. Snap da necks of humies, stunties, an’ any uvva filthy gits in our way. Teach ‘em a lesson. Stikk ‘em an’ make ‘em squeal. We iz strong, an’ da strong ‘uns always win. Move it, ladz! Everyfing dere is will be mine, an’ we go until der is nuffin’ left! Iz time to WAAAAAGH!!!" />
+ <string id="career_description.OrcBoss" text="{=career_description_orcboss_str}Da Boss iz da meanest, greenest, an’ best git. Da biggest ‘un in any mob! To be proppa tuff an’ ded ‘ard kill- Oi! You dere! Woz you givin’ me da stink eye!? HUH!!?? You want sum of dis an’ dat!? Yeah, you betta run, ya git. Anywayz, I wuz sayin’… Errr… Dat’s right, wez’ gunna ‘ead out, boyz. Snap da necks o’ humies, stunties, an’ any uvva filthy gits in da way. Stikk ‘em an’ make ‘em squeal. We iz strong, an’ da strong ‘uns always win. Everyfing dere is will be mine, an’ we go ‘til der is nuffin’ left! Iz time to WAAAAAGH!!!" />
 
  <string id="career_description.OrcShaman" text="{=career_description_orcboss_str}You sees, da Boss iz da meanest, baddest, greenest, an’ best git. Da biggest ‘un in any mob, wiv da biggest choppas an’ blockas eva’! To be proppa tuff an’ ded ‘ard kill- Oi! You dere! Woz you givin’ me da stink eye!? HUH!!?? You want sum of dis an’ dat!? Yeah, dat’s right, you betta run, ya git. Anywayz, I wuz sayin’… Errr… Dat’s right, wez’ gunna ‘ead out, boyz. Snap da necks of humies, stunties, an’ any uvva filthy gits in our way. Teach ‘em a lesson. Stikk ‘em an’ make ‘em squeal. We iz strong, an’ da strong ‘uns always win. Move it, ladz! Everyfing dere is will be mine, an’ we go until der is nuffin’ left! Iz time to WAAAAAGH!!!" />
 

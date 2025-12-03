@@ -320,7 +320,7 @@
 	<!-- KNIGHTS - 5 Orders                             -->
 	<!-- =============================================== -->
 
-	<SpecializationOption Id="knight_blazing_sun" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_blazing_sun_4">
+	<SpecializationOption Id="knight_blazing_sun" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_blazing_sun_4" IconSprite="blazingsun_icon">
 		<Name>{=tor_knight_blazing_sun_name}The Order of the Blazing Sun</Name>
 		<Description>{=tor_knight_blazing_sun_desc}With backs to the wall, death had arrived
 												A god’s intervention, the sixty survived
@@ -337,7 +337,7 @@
 		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_panthers" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_panthers_4">
+	<SpecializationOption Id="knight_panthers" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_panthers_4" IconSprite="panther_icon">
 		<Name>{=tor_knight_panthers_name}The Knights Panther</Name>
 		<Description>{=tor_knight_panthers_desc}From Araby’s jungles to Empire’s fields
 												The Panther Knights shall never yield
@@ -354,7 +354,7 @@
 		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_white_wolf" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_white_wolf_4">
+	<SpecializationOption Id="knight_white_wolf" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_white_wolf_4" IconSprite="whitewolf_icon">
 		<Name>{=tor_knight_white_wolf_name}Knights of the White Wolf</Name>
 		<Description>{=tor_knight_white_wolf_desc}For Ulric they ride, for Ulric they die
 												They ride under winter’s frozen sky
@@ -371,7 +371,7 @@
 		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_griphon" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_griphon_4">
+	<SpecializationOption Id="knight_griphon" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_griphon_4" IconSprite="griffon_icon">
 		<Name>{=tor_knight_griphon_name}The Order of the Knights Griffon</Name>
 		<Description>{=tor_knight_griphon_desc}Sigmar’s chosen, the holy order
 											Guard the weak, protect the border
@@ -388,7 +388,7 @@
 		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_reiksguard" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_reiksguard_4">
+	<SpecializationOption Id="knight_reiksguard" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_reiksguard_4" IconSprite="reiksguard_icon">
 		<Name>{=tor_knight_reiksguard_name}The Grand Order of the Reiksguard</Name>
 		<Description>{=tor_knight_reiksguard_desc}Reikland’s finest, each a mighty knight
 												We come charging in, wearing red and white
