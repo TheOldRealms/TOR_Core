@@ -159,7 +159,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                 args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_greenskin_own}You can't loot your own shrine, ya git!", null);
                 args.IsEnabled = false;
                 return true;
-            }s
+            }
 
             var lastDefileTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastDefileTime(Hero.MainHero);
             if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)

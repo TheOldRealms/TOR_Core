@@ -145,6 +145,14 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as CursedSiteComponent;
         args.optionLeaveType = GameMenuOption.LeaveType.ForceToGiveTroops;
+
+        // Only Mousillon and Sylvania cultures can raise dead at cursed sites
+        if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.MOUSILLON &&
+            Hero.MainHero.Culture.StringId != TORConstants.Cultures.SYLVANIA)
+        {
+            return false;
+        }
+
         //all vampire types are tagged as necromancers; leaving the condition in for the moment even if the 2nd one is redundant
         if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire()))
         {
