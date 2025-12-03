@@ -441,6 +441,22 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         if (settlement.SettlementComponent is not ShrineComponent component) return;
         var shrineReligion = component.Religion;
 
+        // Orc Shaman perks - grant bonuses after successful looting
+        if (Hero.MainHero.HasCareerChoice("BonesAnFirepitzPassive4"))
+        {
+            Hero.MainHero.AddSkillXp(TORSkills.SpellCraft, 200);
+        }
+
+        if (Hero.MainHero.HasCareerChoice("GiftzFromDaGreatGreenPassive1"))
+        {
+            Hero.MainHero.AddSkillXp(TORSkills.Faith, 200);
+        }
+
+        if (Hero.MainHero.HasCareerChoice("VisionsUvDaOrcaynePassive3"))
+        {
+            Hero.MainHero.AddCustomResource("WindsOfMagic", 10);
+        }
+
         foreach (var hero in Campaign.Current.AliveHeroes)
         {
             if (hero.IsNotable) continue;
