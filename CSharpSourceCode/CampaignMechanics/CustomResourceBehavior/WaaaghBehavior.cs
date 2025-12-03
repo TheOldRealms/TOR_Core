@@ -225,25 +225,25 @@ public class WaaaghBehavior : CampaignBehaviorBase
         _previousWaaaghLevel = currentLevel;
 
         // Remove all Wargh state attributes
-        Hero.MainHero.RemoveAttribute("Wargh1");
-        Hero.MainHero.RemoveAttribute("Wargh2");
-        Hero.MainHero.RemoveAttribute("Wargh3");
-        Hero.MainHero.RemoveAttribute("Wargh4");
+        Hero.MainHero.RemoveAttribute("Waaagh0");
+        Hero.MainHero.RemoveAttribute("Waaagh1");
+        Hero.MainHero.RemoveAttribute("Waaagh2");
+        Hero.MainHero.RemoveAttribute("Waaagh3");
 
         // Add the appropriate attribute for the current state
         switch (currentLevel)
         {
             case WaaaghLevel.InternalFightin:
-                Hero.MainHero.AddAttribute("Wargh1");
+                Hero.MainHero.AddAttribute("Waaagh0");
                 break;
             case WaaaghLevel.PettySquabblin:
-                Hero.MainHero.AddAttribute("Wargh2");
+                Hero.MainHero.AddAttribute("Waaagh1");
                 break;
             case WaaaghLevel.EreWeGo:
-                Hero.MainHero.AddAttribute("Wargh3");
+                Hero.MainHero.AddAttribute("Waaagh2");
                 break;
             case WaaaghLevel.WAAAGH:
-                Hero.MainHero.AddAttribute("Wargh4");
+                Hero.MainHero.AddAttribute("Waaagh3");
                 break;
         }
     }

@@ -114,7 +114,17 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
     {
         var settlement = Settlement.CurrentSettlement;
         var religion = Hero.MainHero.GetDominantReligion();
-        if (settlement.SettlementComponent is CursedSiteComponent component && religion != null && component.Religion.HostileReligions.Contains(religion) && religion.Affinity == ReligionAffinity.Order)//all order religions contain nagash as a hostile one so both of these don't need to be checked - if this is extended to chaos sites as well in the future, that would also always hold true
+
+        // Vampires, Necromancers, and Black Grail Knights cannot ward cursed sites
+        if (Hero.MainHero.IsVampire() ||
+            Hero.MainHero.IsNecromancer() ||
+            Hero.MainHero.HasCareer(TORCareers.BlackGrailKnight))
+        {
+            return false;
+        }
+
+        // All non-vampires/non-necromancers can ward cursed sites if the site religion is hostile to their religion
+        if (settlement.SettlementComponent is CursedSiteComponent component && religion != null && component.Religion.HostileReligions.Contains(religion))
         {
             var godName = GameTexts.FindText("tor_religion_name_of_god", religion.StringId);
             MBTextManager.SetTextVariable("GOD_NAME", godName);

@@ -58,6 +58,12 @@ namespace TOR_Core.Extensions
                     return false;   // optional, might be better to make here a more deliberate check for enlisting lord check
             }
 
+            // Mousillon and Sylvania cultures are immune to cursed sites
+            if (party.LeaderHero?.Culture?.StringId == TORConstants.Cultures.MOUSILLON ||
+                party.LeaderHero?.Culture?.StringId == TORConstants.Cultures.SYLVANIA)
+            {
+                return false;
+            }
 
             var settlementFound = TORCommon.FindNearestSettlement(party, TORConstants.DEFAULT_CURSE_RADIUS, x => x.SettlementComponent is CursedSiteComponent);
             if (settlementFound == null) return false;
