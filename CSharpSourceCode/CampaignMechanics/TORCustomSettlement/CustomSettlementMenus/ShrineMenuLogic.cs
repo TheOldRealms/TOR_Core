@@ -477,13 +477,10 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                         continue;
                 }
             }
-            else
-            {
-                if (shrineReligion.Affinity == dominantReligion.Affinity) hero.SetPersonalRelation(Hero.MainHero, (int)relation - 10);
-            }
 
-            Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastDefileTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
+            if (shrineReligion.Affinity == dominantReligion.Affinity) hero.SetPersonalRelation(Hero.MainHero, (int)relation - 10);
         }
+        Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastDefileTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
     }
 
 
