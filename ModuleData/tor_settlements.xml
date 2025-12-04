@@ -286,6 +286,31 @@
       <Shrine id="isha_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="oak_of_ages" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
+  <Settlement id="gork_shrine_01" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.athel_loren_clan_1" posX="1056.317" posY="954.124" culture="Culture.aserai" text="{=!}Shrine of Kurnous">
+    <Components>
+      <Shrine id="gork_shrine_01" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="gork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.athel_loren_clan_1" posX="1279.005" posY="699.557" culture="Culture.aserai" text="{=!}Shrine of Kurnous">
+    <Components>
+      <Shrine id="gork_shrine_02" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="gork_shrine_03" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.athel_loren_clan_1" posX="1605.916" posY="935.799" culture="Culture.aserai" text="{=!}Shrine of Kurnous">
+    <Components>
+      <Shrine id="gork_shrine_03" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="mork_shrine_01" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.athel_loren_clan_1" posX="1778.073" posY="1119.793" culture="Culture.battania" text="{=!}Shrine of Kurnous">
+    <Components>
+      <Shrine id="gork_shrine_01" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="mork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.athel_loren_clan_1" posX="1620.704" posY="863.309" culture="Culture.battania" text="{=!}Shrine of Kurnous">
+    <Components>
+      <Shrine id="gork_shrine_02" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
   <Settlement id="haunted_site_01" name="{=str_tor_settlements_haunted_site1}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1582.078" posY="1016.387" culture="Culture.khuzait" text="{=!}Called Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs." gate_posX="1582.078" gate_posY="1016.387">
     <Components>
       <CursedSite id="haunted_site_01" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_swamp" wait_mesh="wait_empire_village" gate_rotation="0.0" />
@@ -4699,7 +4724,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Hochland -->
-  <Settlement id="town_HL1" name="{=Settlements.Settlement.name.town_HL1}Hergig" owner="Faction.hochland_clan_1" posX="1449.102" posY="1161.434" culture="Culture.empire" gate_posX="1442.835" gate_posY="1161.718" text="{=Settlements.Settlement.text.town_HL1}As the provincial capital of Hochland, Hergig is a bustling hub nestled in the dense Drakwald Forest. Known for its masterful woodcraft and the iconic Hochland College of Sorcery, the city is a blend of sturdy woodland architecture and sophisticated fortifications. The streets are often filled with the sounds of craftsmen at work and the occasional marching of soldiers, reflecting Hergig's strategic importance and cultural richness. The town's architecture, traditionally of stone and brick, reflects its more modern aspirations, partly driven by the skillful contributions of its Dwarf Quarter. The Gate of the East bridge, a site of historical battles between Ostland and Hochland, marks its strategic importance to the city. Despite suffering greatly in the war, including a devastating siege that led to the fall of the great keep, Hergig is in a phase of rebirth.">
+  <Settlement id="town_HL1" name="{=Settlements.Settlement.name.town_HL1}Hergig" owner="Faction.hochland_clan_1" posX="1449.102" posY="1161.434" culture="Culture.empire" gate_posX="1442.838" gate_posY="1161.781" text="{=Settlements.Settlement.text.town_HL1}As the provincial capital of Hochland, Hergig is a bustling hub nestled in the dense Drakwald Forest. Known for its masterful woodcraft and the iconic Hochland College of Sorcery, the city is a blend of sturdy woodland architecture and sophisticated fortifications. The streets are often filled with the sounds of craftsmen at work and the occasional marching of soldiers, reflecting Hergig's strategic importance and cultural richness. The town's architecture, traditionally of stone and brick, reflects its more modern aspirations, partly driven by the skillful contributions of its Dwarf Quarter. The Gate of the East bridge, a site of historical battles between Ostland and Hochland, marks its strategic importance to the city. Despite suffering greatly in the war, including a devastating siege that led to the fall of the great keep, Hergig is in a phase of rebirth.">
     <Components>
       <Town id="town_comp_HL1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="3500">
         <Buildings>
@@ -15822,7 +15847,7 @@
       <Hideout id="hideout_greenskin_54" map_icon="bandit_hideout_a" scene_name="TOR_troll_hideout_01" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_greenskin_55" name="{=Settlements.Settlement.name.hideout_greenskin_55}Orc Raiders" type="Hideout" posX="1704.49" posY="932.105" culture="Culture.greenskin_bandit">
+  <Settlement id="hideout_greenskin_55" name="{=Settlements.Settlement.name.hideout_greenskin_55}Orc Raiders" type="Hideout" posX="1701.875" posY="931.497" culture="Culture.greenskin_bandit">
     <Components>
       <Hideout id="hideout_greenskin_55" map_icon="bandit_hideout_a" scene_name="TOR_troll_hideout_01" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -15882,7 +15907,7 @@
       <Hideout id="hideout_greenskin_66" map_icon="bandit_hideout_a" scene_name="TOR_troll_hideout_01" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="hideout_greenskin_67" name="{=Settlements.Settlement.name.hideout_greenskin_67}Orc Raiders" type="Hideout" posX="1778.935" posY="1119.862" culture="Culture.greenskin_bandit">
+  <Settlement id="hideout_greenskin_67" name="{=Settlements.Settlement.name.hideout_greenskin_67}Orc Raiders" type="Hideout" posX="1745.98" posY="1112.245" culture="Culture.greenskin_bandit">
     <Components>
       <Hideout id="hideout_greenskin_67" map_icon="bandit_hideout_a" scene_name="TOR_troll_hideout_01" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
