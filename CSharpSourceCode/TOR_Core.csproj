@@ -806,6 +806,8 @@
     <Compile Include="Models\TORVolunteerModel.cs" />
     <Compile Include="Quests\Careers\OrcBossQuest1.cs" />
     <Compile Include="Quests\Careers\OrcBossQuest2.cs" />
+    <Compile Include="Quests\Careers\OrcShamanQuest1.cs" />
+    <Compile Include="Quests\Careers\OrcShamanQuest2.cs" />
     <Compile Include="Quests\Careers\RunelordQuest.cs" />
     <Compile Include="Quests\Careers\RunesmithQuest.cs" />
     <Compile Include="Quests\EngineerQuest.cs" />

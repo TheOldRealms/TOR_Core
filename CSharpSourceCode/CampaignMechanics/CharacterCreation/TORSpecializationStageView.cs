@@ -547,7 +547,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             playerCharacter.Race = newRace;
             var equipment = playerCharacter.Equipment;
             var properties = playerCharacter.GetBodyProperties(equipment);
-            playerCharacter.UpdatePlayerCharacterBodyProperties(properties, newRace, false);
+            playerCharacter.UpdatePlayerCharacterBodyProperties(properties, newRace, playerCharacter.IsFemale);
 
             // Refresh the character preview to show the race change
             RefreshCharacterPreview();

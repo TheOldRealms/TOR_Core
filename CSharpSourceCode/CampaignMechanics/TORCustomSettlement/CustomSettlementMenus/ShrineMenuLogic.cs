@@ -58,6 +58,9 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             var component = settlement.SettlementComponent as ShrineComponent;
             model.AddBlessingToParty(MobileParty.MainParty, component.Religion.StringId);
 
+            // Fire shrine prayer event for any systems that need to track it
+            TORCampaignEvents.Instance.OnShrinePrayer(Hero.MainHero, component.Religion, settlement);
+
             if (Hero.MainHero.GetDominantReligion() != null && Hero.MainHero.GetPerkValue(TORPerks.Faith.Miracle) && Hero.MainHero.GetDominantReligion() == component.Religion) //&& MBRandom.RandomInt(0, 100) <= TORConstants.MIRACLE_CHANCE) Sly : 100% chance to trigger if someone reaches high enough faith - will need to be better controlled to not trigger constantly when praying at a shrine. Should be considered if someone can receive multiple artifacts, if they can receive an extra copy if they lose it, etc... These items can probably be set to not be lost on becoming prisoner so the player will never lose it unless they discard it which would allow us to have it only trigger once per god/campaign.
             {
                 var religion = Hero.MainHero.GetDominantReligion();
@@ -296,6 +299,9 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         if (settlement.SettlementComponent is not ShrineComponent component) return;
         var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
+
+        // Fire shrine looted event
+        TORCampaignEvents.Instance.OnShrineLooted(Hero.MainHero, component.Religion, settlement);
 
         GameMenu.SwitchToMenu("shrine_menu_loot_result");
     }

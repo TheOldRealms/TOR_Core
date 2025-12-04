@@ -40,8 +40,12 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
         {
             _careerStories.Clear();
 
-            // For now, only OrcBoss career has an initial story
+            // OrcBoss career has an initial story that launches immediately
             _careerStories.Add("OrcBoss", "OrcBossQuest1");
+
+            // OrcShaman career requires praying at a shrine first
+            // The initial story "OrcShamanPrayerPrompt" is handled separately
+            _careerStories.Add("OrcShaman", "OrcShamanPrayerPrompt");
         }
 
         private void HourlyTick()
