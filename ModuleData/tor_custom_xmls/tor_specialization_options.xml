@@ -106,6 +106,7 @@
 											Savage Amber of the pack
 											Amongst the beasts and groves unclaimed
 											A fierce glimmer of eyes jet black
+											
 											Amber magic is the feral spirit of the Aethyr, the Realms of Chaos—the source of Winds of Magic. Beast Wizards, sometimes called Shamans, are often as ferocious as the Wind of Ghur itself. Tattered robes, unkempt looks, and trinkets of bones and feathers. They are usually loners that excel at commanding wild beasts or cursing the foe. It is also said these Shamans can shape-shift into various animalistic forms.</Description>
 		<PositiveEffect>{=tor_lore_beasts_positive}</PositiveEffect>
 		<NegativeEffect>{=tor_lore_beasts_negative}</NegativeEffect>
@@ -122,6 +123,7 @@
 										Seeding the world with metals and ore
 										The inscrutable enigma of matter to unlock
 										On the golden doors of knowledge forevermore knock
+										
 										Gold Wizards, or Alchemists, are masters of the Lore of Metal and deal with practical aspects of magic such as metallurgy, chemistry, alchemy, or even herbalism. Indeed, to be a Metal Wizard is to pursue logic and rationality above all. This focus on earthly matters is what elevated the Golden Order as the richest of all Imperial Colleges. However, more envious or suspicious minds often accuse Alchemists of turning lead into gold.</Description>
 		<PositiveEffect>{=tor_lore_metal_positive}</PositiveEffect>
 		<NegativeEffect>{=tor_lore_metal_negative}</NegativeEffect>
@@ -185,7 +187,7 @@
 												
 												The Necrarch bloodline is defined by its relentless pursuit of knowledge and arcane mastery. Necrarch libraries contain grimoires of forbidden lore that predate the fall of ancient empires. Yet with their brilliance comes madness. The Necrarchs are hopelessly deranged, consumed by jealousy and paranoia, and trust neither kin nor servant.</Description>
 		<PositiveEffect>{=tor_vampire_necrarch_positive}</PositiveEffect>
-		<NegativeEffect>{=tor_vampire_necrarch_negative}</NegativeEffect>
+		<NegativeEffect>{=tor_vampire_necrarch_negative}Physically feeble and repulsive</NegativeEffect>
 		<SkillsToIncrease>
 			<string>-OneHanded</string>
 			<string>-TwoHanded</string>
@@ -256,7 +258,7 @@
 												
 												The Necrarch bloodline is defined by its relentless pursuit of knowledge and arcane mastery. Necrarch libraries contain grimoires of forbidden lore that predate the fall of ancient empires. Yet with their brilliance comes madness. The Necrarchs are hopelessly deranged, consumed by jealousy and paranoia, and trust neither kin nor servant.</Description>
 		<PositiveEffect>{=tor_vampire_necrarch_positive}</PositiveEffect>
-		<NegativeEffect>{=tor_vampire_necrarch_negative}</NegativeEffect>
+		<NegativeEffect>{=tor_vampire_necrarch_negative}Physically feeble and repulsive</NegativeEffect>
 		<SkillsToIncrease>
 			<string>-OneHanded</string>
 			<string>-TwoHanded</string>
@@ -320,7 +322,7 @@
 	<!-- KNIGHTS - 5 Orders                             -->
 	<!-- =============================================== -->
 
-	<SpecializationOption Id="knight_blazing_sun" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_blazing_sun_4">
+	<SpecializationOption Id="knight_blazing_sun" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_blazing_sun_4" IconSprite="blazingsun_icon">
 		<Name>{=tor_knight_blazing_sun_name}The Order of the Blazing Sun</Name>
 		<Description>{=tor_knight_blazing_sun_desc}With backs to the wall, death had arrived
 												A god’s intervention, the sixty survived
@@ -337,7 +339,7 @@
 		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_panthers" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_panthers_4">
+	<SpecializationOption Id="knight_panthers" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_panthers_4" IconSprite="panther_icon">
 		<Name>{=tor_knight_panthers_name}The Knights Panther</Name>
 		<Description>{=tor_knight_panthers_desc}From Araby’s jungles to Empire’s fields
 												The Panther Knights shall never yield
@@ -354,14 +356,14 @@
 		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_white_wolf" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_white_wolf_4">
+	<SpecializationOption Id="knight_white_wolf" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_white_wolf_4" IconSprite="whitewolf_icon">
 		<Name>{=tor_knight_white_wolf_name}Knights of the White Wolf</Name>
 		<Description>{=tor_knight_white_wolf_desc}For Ulric they ride, for Ulric they die
 												They ride under winter’s frozen sky
 												For Ulric they fight, for Ulric they kill
 												For Ulric they brave the blizzard’s chill
 												
-												OOne of the most infamous knightly orders of the Empire, the Order of the White Wolf is sworn to the Ar-Ulric, High Priest of the Cult of Ulric, and to Ulric himself. The Knights’ distinctive appearance and brutal fighting style set them apart from all other orders. Clad in heavy armour and draped in the white pelts of mighty wolves, their hair and beards uncut, wild as a northern winter storm.</Description>
+												One of the most infamous knightly orders of the Empire, the Order of the White Wolf is sworn to the Ar-Ulric, High Priest of the Cult of Ulric, and to Ulric himself. The Knights’ distinctive appearance and brutal fighting style set them apart from all other orders. Clad in heavy armour and draped in the white pelts of mighty wolves, their hair and beards uncut, wild as a northern winter storm.</Description>
 		<PositiveEffect>{=tor_knight_white_wolf_positive}</PositiveEffect>
 		<NegativeEffect>{=tor_knight_white_wolf_negative}</NegativeEffect>
 		<SkillsToIncrease>
@@ -371,7 +373,7 @@
 		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_griphon" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_griphon_4">
+	<SpecializationOption Id="knight_griphon" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_griphon_4" IconSprite="griffon_icon">
 		<Name>{=tor_knight_griphon_name}The Order of the Knights Griffon</Name>
 		<Description>{=tor_knight_griphon_desc}Sigmar’s chosen, the holy order
 											Guard the weak, protect the border
@@ -388,7 +390,7 @@
 		<AttributeToIncrease></AttributeToIncrease>
 	</SpecializationOption>
 
-	<SpecializationOption Id="knight_reiksguard" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_reiksguard_4">
+	<SpecializationOption Id="knight_reiksguard" ProfessionRequirement="option_3_empire_knight" EquipmentSetId="tor_cc_empire_knight_reiksguard_4" IconSprite="reiksguard_icon">
 		<Name>{=tor_knight_reiksguard_name}The Grand Order of the Reiksguard</Name>
 		<Description>{=tor_knight_reiksguard_desc}Reikland’s finest, each a mighty knight
 												We come charging in, wearing red and white
