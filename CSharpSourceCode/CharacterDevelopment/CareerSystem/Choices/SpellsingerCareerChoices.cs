@@ -115,7 +115,7 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "WrathOfTheWood",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.001f),
+                    PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft}, 0.001f),
                     MutationType = OperationType.Add
                 }
             });

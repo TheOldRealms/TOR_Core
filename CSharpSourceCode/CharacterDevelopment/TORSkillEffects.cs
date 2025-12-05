@@ -56,16 +56,16 @@ namespace TOR_Core.CharacterDevelopment
             TORSkills.GunPowder, PartyRole.Personal, 0.0005f, EffectIncrementType.AddFactor, 0f, 0f);
 
             _spellEffectiveness.Initialize(new TextObject("{=tor_skills_spell_effectiveness_str}Spell effectiveness: +{a0} %", null),
-            TORSkills.SpellCraft, PartyRole.Personal, 0.0005f, EffectIncrementType.AddFactor, 0f, 0f);
+            TORSkills.Spellcraft, PartyRole.Personal, 0.0005f, EffectIncrementType.AddFactor, 0f, 0f);
 
             _spellDuration.Initialize(new TextObject("{=tor_skills_spell_duration_str}Spell duration: +{a0} %", null),
-            TORSkills.SpellCraft, PartyRole.Personal, 0.0005f, EffectIncrementType.AddFactor, 0f, 0f);
+            TORSkills.Spellcraft, PartyRole.Personal, 0.0005f, EffectIncrementType.AddFactor, 0f, 0f);
 
             _windsRechargeRate.Initialize(new TextObject("{=tor_skills_winds_recharge_rate_str}Winds of magic recharge rate: +{a0} / hour", null),
-            TORSkills.SpellCraft, PartyRole.Personal, 0.0075f, EffectIncrementType.Add, 0f, 0f);
+            TORSkills.Spellcraft, PartyRole.Personal, 0.0075f, EffectIncrementType.Add, 0f, 0f);
 
             _maxWinds.Initialize(new TextObject("{=tor_skills_max_winds_str}Maximum winds of magic: +{a0}", null),
-            TORSkills.SpellCraft, PartyRole.Personal, 0.3f, EffectIncrementType.Add, 0f, 0f);
+            TORSkills.Spellcraft, PartyRole.Personal, 0.3f, EffectIncrementType.Add, 0f, 0f);
 
             _faithWardSave.Initialize(new TextObject("{=tor_skills_ward_save_str}Ward save: +{a0} %", null),
             TORSkills.Faith, PartyRole.Personal, 0.0008f, EffectIncrementType.AddFactor, 0f, 0f);

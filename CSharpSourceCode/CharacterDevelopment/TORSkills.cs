@@ -17,7 +17,7 @@ namespace TOR_Core.CharacterDevelopment
         public static TORSkills Instance { get; private set; }
         public static SkillObject Faith => Instance._faith;
         public static SkillObject GunPowder => Instance._gunPowder;
-        public static SkillObject SpellCraft => Instance._spellCraft;
+        public static SkillObject Spellcraft => Instance._spellCraft;
 
         public TORSkills()
         {

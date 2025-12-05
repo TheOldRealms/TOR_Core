@@ -287,6 +287,7 @@ namespace TOR_Core
             mission.AddMissionBehavior(new FirearmsMissionLogic());
             mission.AddMissionBehavior(new AnimationTriggerMissionLogic());
             mission.AddMissionBehavior(new BattleShoutsMissionLogic());
+            mission.AddMissionBehavior(new CinematicCameraMissionView());
 
             if (Game.Current.GameType is Campaign)
             {

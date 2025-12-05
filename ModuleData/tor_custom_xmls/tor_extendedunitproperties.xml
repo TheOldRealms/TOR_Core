@@ -1168,7 +1168,7 @@
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
-      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
     </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
@@ -1186,7 +1186,7 @@
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
-      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
     </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
@@ -1204,7 +1204,7 @@
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.25" />
-      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.25" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
     </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
@@ -1804,7 +1804,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Teef" UpkeepCost="3" UpgradeCost="15" />
+    <ResourceCost ResourceType="Teef" UpkeepCost="2" UpgradeCost="15" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_black_orc_berzerka">
     <Abilities />
@@ -1816,7 +1816,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Teef" UpkeepCost="3" UpgradeCost="15" />
+    <ResourceCost ResourceType="Teef" UpkeepCost="2" UpgradeCost="15" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_goblin">
     <Abilities />
@@ -1911,7 +1911,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="4" />
+    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="5" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_goblin_boss">
     <Abilities />
@@ -1925,7 +1925,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="3" />
+    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="4" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_goblin_beast_prodda">
     <Abilities />

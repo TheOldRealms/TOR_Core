@@ -125,7 +125,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_blastofagony",
                         PropertyName = "Radius",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.01f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft}, 0.01f),
                         MutationType = OperationType.Add
                     },
                 });
@@ -336,8 +336,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             var properties = Hero.MainHero.CharacterObject.GetBodyProperties(equipment);
             Hero.MainHero.CharacterObject.UpdatePlayerCharacterBodyProperties(properties, FaceGen.GetRaceOrDefault("necrarch"), false);
 
-            var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+            var skill = Hero.MainHero.GetSkillValue(TORSkills.Spellcraft);
+            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
 
             Hero.MainHero.AddKnownLore("Necromancy");
             Hero.MainHero.AddAbility("SummonSkeleton");

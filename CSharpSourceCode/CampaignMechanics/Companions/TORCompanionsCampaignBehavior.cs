@@ -219,14 +219,14 @@ namespace TOR_Core.CampaignMechanics.Companions
         {
             foreach (Hero clanmember in clan.AliveLords)
             {
-                if (clanmember.IsPartyLeader && clanmember.GetPerkValue(TORPerks.SpellCraft.StoryTeller))//If prisoner, their mobile party would be null. CompanionsInParty iterates through the whole clan's companion cache and compares the parties for the source hero and the companion. For a clan with no companions it's possibly a faster check than looking at the perk value, but as the companion count grows there's more to check for each noble in the clan.
+                if (clanmember.IsPartyLeader && clanmember.GetPerkValue(TORPerks.Spellcraft.StoryTeller))//If prisoner, their mobile party would be null. CompanionsInParty iterates through the whole clan's companion cache and compares the parties for the source hero and the companion. For a clan with no companions it's possibly a faster check than looking at the perk value, but as the companion count grows there's more to check for each noble in the clan.
                 {
                     //Sly : CompanionsInParty in party is a yield return so we don't actually need to check for more than 0 companions; we can just execute and there will be no iterations if nothing is found.
                     foreach(var companion in clanmember.CompanionsInParty)
                     {
                         var skills = MBObjectManager.Instance.GetObjectTypeList<SkillObject>();
                         var randomskill = skills.TakeRandom(1).FirstOrDefault();
-                        var amount = TORPerks.SpellCraft.StoryTeller.PrimaryBonus;
+                        var amount = TORPerks.Spellcraft.StoryTeller.PrimaryBonus;
                         companion.AddSkillXp(randomskill, amount);
                     }
                 }

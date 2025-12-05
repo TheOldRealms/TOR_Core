@@ -5634,7 +5634,7 @@
     <!-- Orc Boss Career Ability -->
     <AbilityTemplate StringID="ArmedToDaTeef"
                      Name="{=armed_to_da_teef_label_str}Armed to da Teef"
-                     SpriteName="axe_of_ulric_icon"
+                     SpriteName="armedtoteef_icon"
                      CoolDown="15"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0"

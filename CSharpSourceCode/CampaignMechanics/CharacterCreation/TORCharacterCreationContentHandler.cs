@@ -731,8 +731,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.AddAbility("Dart");
                     hero.AddKnownLore("MinorMagic");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
-                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.ImperialMagister);
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1278.084f, 1056.505f), true); // Imperial College of Magic
                     break;
@@ -748,9 +748,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.AddAbility("AuraOfTheLady");
                     hero.AddKnownLore("MinorMagic");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
                     hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, 25);
-                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.GrailDamsel);
                     _storedSpawnPosition = new CampaignVec2(new Vec2(941.8889f, 1249.213f), true); // Grail Chapel
                     // Add Realm Knight companion
@@ -766,8 +766,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.AddAbility("SummerHeat");
                     hero.AddAbility("AmberSpear");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
-                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.Spellsinger);
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1233.78f, 781.862f), true); // Spellsinger location
                     break;
@@ -778,8 +778,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.AddKnownLore("LoreOfFire");
                     hero.AddAbility("BoltOfAqshy");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
-                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.GreyLord);
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1216.198f, 1345.101f), true); // Grey Lord location
                     break;
@@ -805,8 +805,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.AddKnownLore("MinorMagic");
                     hero.AddKnownLore("Necromancy");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
-                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.Necromancer);
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1666.918f, 1019.001f), true); // Necromancer location
@@ -940,9 +940,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         hero.AddAbility("NagashGaze");
                         hero.AddKnownLore("MinorMagic");
                         hero.AddKnownLore("Necromancy");
-                        var skill = hero.GetSkillValue(TORSkills.SpellCraft);
-                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                        hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                        var skill = hero.GetSkillValue(TORSkills.Spellcraft);
+                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
+                        hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                         hero.AddCareer(TORCareers.MinorVampire);
                         _storedSpawnPosition = new CampaignVec2(new Vec2(1594.974f, 988.7784f), true); // Von Carstein territory
                         MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
@@ -959,9 +959,9 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         hero.AddKnownLore("MinorMagic");
                         hero.AddKnownLore("Necromancy");
                         hero.AddCareer(TORCareers.Necrarch);
-                        var skill = hero.GetSkillValue(TORSkills.SpellCraft);
-                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
-                        hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                        var skill = hero.GetSkillValue(TORSkills.Spellcraft);
+                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
+                        hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                         _storedSpawnPosition = new CampaignVec2(new Vec2(1565.885f, 1095.13f), true); // Necrarch location
                         MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                         break;

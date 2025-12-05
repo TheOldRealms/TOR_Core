@@ -53,17 +53,17 @@ namespace TOR_Core.CharacterDevelopment
                 {
                     if (hero.IsSpellCaster())
                     {
-                        if (perk == TORPerks.SpellCraft.EntrySpells)
+                        if (perk == TORPerks.Spellcraft.EntrySpells)
                         {
                             if (info.SpellCastingLevel < SpellCastingLevel.Entry)
                                 hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
                         }
-                        if (perk == TORPerks.SpellCraft.AdeptSpells)
+                        if (perk == TORPerks.Spellcraft.AdeptSpells)
                         {
                             if (info.SpellCastingLevel < SpellCastingLevel.Adept)
                                 hero.SetSpellCastingLevel(SpellCastingLevel.Adept);
                         }
-                        if (perk == TORPerks.SpellCraft.MasterSpells)
+                        if (perk == TORPerks.Spellcraft.MasterSpells)
                         {
                             if (info.SpellCastingLevel < SpellCastingLevel.Master)
                                 hero.SetSpellCastingLevel(SpellCastingLevel.Master);

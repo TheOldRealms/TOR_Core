@@ -97,7 +97,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             {
                 foreach (var effect in _template.AssociatedStatusEffects)
                 {
-                    if (triggererAgent.Character is CharacterObject triggererCharacter && triggererCharacter.GetPerkValue(TORPerks.SpellCraft.ArcaneLink) && effect.IsBuffEffect)
+                    if (triggererAgent.Character is CharacterObject triggererCharacter && triggererCharacter.GetPerkValue(TORPerks.Spellcraft.ArcaneLink) && effect.IsBuffEffect)
                     {
                         if (!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
                     }

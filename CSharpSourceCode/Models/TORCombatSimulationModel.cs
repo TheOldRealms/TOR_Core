@@ -12,13 +12,13 @@ namespace TOR_Core.Models
             base.GetBattleAdvantage(mapEvent, out defenderAdvantage, out attackerAdvantage);
             var defenderLeader = mapEvent.GetLeaderParty(TaleWorlds.Core.BattleSideEnum.Attacker).LeaderHero;
             var attackerLeader = mapEvent.GetLeaderParty(TaleWorlds.Core.BattleSideEnum.Defender).LeaderHero;
-            if (defenderLeader != null && defenderLeader.GetPerkValue(TORPerks.SpellCraft.WellControlled))
+            if (defenderLeader != null && defenderLeader.GetPerkValue(TORPerks.Spellcraft.WellControlled))
             {
-                defenderAdvantage.Add(TORPerks.SpellCraft.WellControlled.SecondaryBonus);
+                defenderAdvantage.Add(TORPerks.Spellcraft.WellControlled.SecondaryBonus);
             }
-            if (attackerLeader != null && attackerLeader.GetPerkValue(TORPerks.SpellCraft.WellControlled))
+            if (attackerLeader != null && attackerLeader.GetPerkValue(TORPerks.Spellcraft.WellControlled))
             {
-                attackerAdvantage.Add(TORPerks.SpellCraft.WellControlled.SecondaryBonus);
+                attackerAdvantage.Add(TORPerks.Spellcraft.WellControlled.SecondaryBonus);
             }
         }
     }

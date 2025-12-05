@@ -1272,13 +1272,13 @@ namespace TOR_Core.CharacterDevelopment
                 return true;
             });
 
-            _youAnWotArmour.Initialize("{=you_an_wot_armour_choice_group_str}You An Wot Armour", TORCareers.OrcBoss, 1, (Hero hero, out string text) =>
+            _youAnWotArmour.Initialize("{=you_an_wot_armour_choice_group_str}You an' Wot Armour?", TORCareers.OrcBoss, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _goodwivBlockas.Initialize("{=goodwiv_blockas_choice_group_str}Goodwiv Blockas", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
+            _goodwivBlockas.Initialize("{=goodwiv_blockas_choice_group_str}Good wiv Blockas", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
                 var hasUnlocked = hero.HasAttribute("PlayerOrcBoss");
                 text = "";
@@ -1289,7 +1289,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hasUnlocked;
             });
 
-            _meanestanDaBaddest.Initialize("{=meanestan_da_baddest_choice_group_str}Meanestan Da Baddest", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
+            _meanestanDaBaddest.Initialize("{=meanestan_da_baddest_choice_group_str}Meanest an’ da Baddest", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerOrcBoss");
@@ -1301,7 +1301,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.HasAttribute("PlayerOrcBoss");
             });
 
-            _leafNuffinBehin.Initialize("{=leaf_nuffin_behin_choice_group_str}Leaf Nuffin Behin", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
+            _leafNuffinBehin.Initialize("{=leaf_nuffin_behin_choice_group_str}Leave nuffin’ behind", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
             {
                 var hasUnlocked = hero.HasAttribute("PlayerOrcBoss") && hero.HasAttribute("PlayerOrcBigBoss");
                 text = "";
@@ -1312,7 +1312,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hasUnlocked;
             });
 
-            _bestofDaBest.Initialize("{=bestof_da_best_choice_group_str}Best of Da Best", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
+            _bestofDaBest.Initialize("{=bestof_da_best_choice_group_str}Best of da Best!", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerOrcBoss") && hero.HasAttribute("PlayerOrcBigBoss");

@@ -21,7 +21,7 @@ public class MissionConversationVMExtension : BaseViewModelExtension
     {
         var resource = Hero.MainHero.GetCultureSpecificCustomResource();
 
-        CustomResourceValue = Hero.MainHero.GetCultureSpecificCustomResourceValue().ToString();
+        CustomResourceValue = ((int)Hero.MainHero.GetCultureSpecificCustomResourceValue()).ToString();
 
         CustomResourceSprite = UIResourceManager.SpriteData.GetSprite(resource.LargeIconName);
     }
