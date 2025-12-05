@@ -241,9 +241,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 {
                     var hero = Hero.FindFirst(x => x.StringId == entry.Key);
                     float bonusRegen = 1f;
-                    if (hero != null && hero.GetPerkValue(TORPerks.SpellCraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
+                    if (hero != null && hero.GetPerkValue(TORPerks.Spellcraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
                     {
-                        bonusRegen += TORPerks.SpellCraft.Catalyst.SecondaryBonus;
+                        bonusRegen += TORPerks.Spellcraft.Catalyst.SecondaryBonus;
                     }
                     entry.Value.AddCustomResource("WindsOfMagic", entry.Value.WindsOfMagicRechargeRate * bonusRegen);
                 }
@@ -379,9 +379,9 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
                 if (hero.IsSpellCaster())
                 {
                     if (!info.KnownLores.Contains(LoreObject.GetLore("MinorMagic"))) hero.AddKnownLore("MinorMagic");
-                    if (hero.GetPerkValue(TORPerks.SpellCraft.MasterSpells)) castingLevel = 4;
-                    else if (hero.GetPerkValue(TORPerks.SpellCraft.AdeptSpells)) castingLevel = 3;
-                    else if (hero.GetPerkValue(TORPerks.SpellCraft.EntrySpells)) castingLevel = 2;
+                    if (hero.GetPerkValue(TORPerks.Spellcraft.MasterSpells)) castingLevel = 4;
+                    else if (hero.GetPerkValue(TORPerks.Spellcraft.AdeptSpells)) castingLevel = 3;
+                    else if (hero.GetPerkValue(TORPerks.Spellcraft.EntrySpells)) castingLevel = 2;
                     else if (castingLevel < 1) castingLevel = 1; //minimally Minor since they're getting the lore
                 }
                 if (hero.IsPriest())

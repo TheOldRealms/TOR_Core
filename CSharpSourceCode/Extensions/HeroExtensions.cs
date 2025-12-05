@@ -115,7 +115,7 @@ namespace TOR_Core.Extensions
             if (!hero.IsNecromancer()) return 0f;
 
             var chance = new ExplainedNumber();
-            var skillValue = hero.GetSkillValue(TORSkills.SpellCraft);
+            var skillValue = hero.GetSkillValue(TORSkills.Spellcraft);
 
             var chanceValue = Mathf.Clamp(skillValue * 0.005f, 0.05f, 0.7f);
             chance.Add(chanceValue);
@@ -147,7 +147,7 @@ namespace TOR_Core.Extensions
             if (!hero.IsSpellCaster()) return 0f;
 
             var chance = new ExplainedNumber();
-            var skillValue = hero.GetSkillValue(TORSkills.SpellCraft);
+            var skillValue = hero.GetSkillValue(TORSkills.Spellcraft);
 
             var chanceValue = Mathf.Clamp(skillValue * 0.005f, 0.05f, 0.7f);
             chance.Add(chanceValue);

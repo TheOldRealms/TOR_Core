@@ -219,7 +219,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             obj.AddPlayerLine("trainer_spellsinger_learnmagic", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer", "{=tor_spelltrianer_spellsinger_learn_magic_warden_str}Greetings wise Spellsinger. I am seeking the capabilities of performing magic.", () => Hero.MainHero.HasCareer(TORCareers.Warden) && !Hero.MainHero.IsSpellCaster(), null, 200, null);
             obj.AddPlayerLine("trainer_spellsinger_learnmagic_second_lore", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer_secondlore", "{=tor_spelltrianer_spellsinger_learn_magic_warden_second_lore_str} I want to enhance my magic capabilities.", () => Hero.MainHero.HasCareer(TORCareers.Warden) &&
-                Hero.MainHero.HasUnlockedCareerChoiceTier(3) && Hero.MainHero.GetSkillValue(TORSkills.SpellCraft) > 200, null, 200, null);
+                Hero.MainHero.HasUnlockedCareerChoiceTier(3) && Hero.MainHero.GetSkillValue(TORSkills.Spellcraft) > 200, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_learnmagic_answer_secondlore", "trainer_spellsinger_learnmagic_answer_secondlore", "trainer_spellsinger_learnmagic_secondlore__answer_player", "{=tor_spelltrianer_spellsinger_learn_magic_warden_second_lore_answer_str}You truely choose the path of ariel. But the forest demand another tribute. Pay it and I will teach you more", isSpellsingerTrainer, null, 200, null);
 
             obj.AddPlayerLine("trainer_spellsinger_learnmagic_answer_player_secondlore_agree", "trainer_spellsinger_learnmagic_secondlore__answer_player", "hub_spellsinger", "{=tor_spelltrainer_spellsinger_learn_magic_warden_agree_str}Yes I am.", null, learnMagicWardenSecondLore, 200, null);

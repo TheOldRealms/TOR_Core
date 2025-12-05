@@ -366,7 +366,7 @@ namespace TOR_Core.BattleMechanics
                         var value = ((int)blow.InflictedDamage) / 10; //Not sure if this is too much can be adjusted
                         if (affectorAgent.WieldedWeapon.Item.HasAnyTrait())
                         {
-                            Hero.MainHero.AddSkillXp(TORSkills.SpellCraft, value);
+                            Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, value);
                         }
 
                     }
@@ -461,7 +461,7 @@ namespace TOR_Core.BattleMechanics
                         multiplier = affectedAgent.Character.Level;
                     }
 
-                    Hero.MainHero.AddSkillXp(TORSkills.SpellCraft, 5 * multiplier);
+                    Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, 5 * multiplier);
                     if (Hero.MainHero.HasCareerChoice("LiberNecrisPassive2"))
                     {
                         Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, 5 * multiplier);

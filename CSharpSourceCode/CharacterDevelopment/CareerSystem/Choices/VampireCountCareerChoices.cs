@@ -183,7 +183,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "ShadowStep",
                         PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { TORSkills.SpellCraft }, 0.03f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { TORSkills.Spellcraft }, 0.03f),
                         MutationType = OperationType.Add
                     }
                 }, new CareerChoiceObject.PassiveEffect(0));
@@ -358,8 +358,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             var race = FaceGen.GetRaceOrDefault("vampire");
             Hero.MainHero.CharacterObject.Race = race;
 
-            var skill = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
-            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, Math.Max(skill, 25));
+            var skill = Hero.MainHero.GetSkillValue(TORSkills.Spellcraft);
+            Hero.MainHero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
 
             Hero.MainHero.AddKnownLore("Necromancy");
             Hero.MainHero.AddAbility("SummonSkeleton");

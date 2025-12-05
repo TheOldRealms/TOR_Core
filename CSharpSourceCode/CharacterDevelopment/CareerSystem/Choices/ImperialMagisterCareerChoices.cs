@@ -128,7 +128,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_arcaneconduit",
                         PropertyName = "ImbuedStatusEffectDuration",
-                        PropertyValue = (choice, originalValue, agent) => (float) originalValue *  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.0025f),
+                        PropertyValue = (choice, originalValue, agent) => (float) originalValue *  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft}, 0.0025f),
                         MutationType = OperationType.Add
                     }
                 });
@@ -157,7 +157,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "arcane_conduit_res_buff",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft}, 0.0025f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft}, 0.0025f),
                         MutationType = OperationType.Add
                     },
                 });

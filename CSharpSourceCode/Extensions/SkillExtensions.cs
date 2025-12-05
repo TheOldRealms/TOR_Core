@@ -43,7 +43,7 @@ namespace TOR_Core.Extensions
             List<SkillObject> skills = new List<SkillObject>();
             skills.Add(TORSkills.Faith);
             skills.Add(TORSkills.GunPowder);
-            skills.Add(TORSkills.SpellCraft);
+            skills.Add(TORSkills.Spellcraft);
             return skills;
         }
 

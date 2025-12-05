@@ -437,9 +437,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 Hero.MainHero.AddReligiousInfluence(nagash, 25, true);
             }
 
-            playerHero.SetSkillValue(TORSkills.SpellCraft, 0);
-            var toRemoveSpellcraft = Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.SpellCraft);
-            playerHero.HeroDeveloper.RemoveFocus(TORSkills.SpellCraft, toRemoveSpellcraft);
+            playerHero.SetSkillValue(TORSkills.Spellcraft, 0);
+            var toRemoveSpellcraft = Hero.MainHero.HeroDeveloper.GetFocus(TORSkills.Spellcraft);
+            playerHero.HeroDeveloper.RemoveFocus(TORSkills.Spellcraft, toRemoveSpellcraft);
             playerHero.HeroDeveloper.UnspentFocusPoints += toRemoveSpellcraft;
 
             var spendAttributePoints = Hero.MainHero.GetAttributeValue(TORAttributes.Discipline) - 1;

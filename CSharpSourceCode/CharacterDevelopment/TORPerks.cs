@@ -172,69 +172,69 @@ namespace TOR_Core.CharacterDevelopment
                 "{=tor_perk_piercing_shots_1_str}Your shots ignore 50% of enemy armor and penetrate shields.",
                 PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, "{=tor_perk_piercing_shots_2_str}Gunpowder troops in your party pierce shields.", PartyRole.PartyLeader, 0, EffectIncrementType.Invalid);
 
-            _entrySpells.Initialize("{=tor_perk_novice_spellcaster_label_str}Novice Spellcaster", TORSkills.SpellCraft, 25, null,
+            _entrySpells.Initialize("{=tor_perk_novice_spellcaster_label_str}Novice Spellcaster", TORSkills.Spellcraft, 25, null,
                 "{=tor_perk_novice_spellcaster_1_str}Gain access to entry level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
-            _adeptSpells.Initialize("{=tor_perk_adept_spellcaster_label_str}Adept Spellcaster", TORSkills.SpellCraft, 100, null,
+            _adeptSpells.Initialize("{=tor_perk_adept_spellcaster_label_str}Adept Spellcaster", TORSkills.Spellcraft, 100, null,
                 "{=tor_perk_adept_spellcaster_1_str}Gain access to adept level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
-            _masterSpells.Initialize("{=tor_perk_master_spellcaster_label_str}Master Spellcaster", TORSkills.SpellCraft, 200, null,
+            _masterSpells.Initialize("{=tor_perk_master_spellcaster_label_str}Master Spellcaster", TORSkills.Spellcraft, 200, null,
                 "{=tor_perk_master_spellcaster_1_str}Gain access to master level spells.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
 
-            _selfish.Initialize("{=tor_perk_selfish_label_str}Selfish", TORSkills.SpellCraft, 50, _wellControlled,
+            _selfish.Initialize("{=tor_perk_selfish_label_str}Selfish", TORSkills.Spellcraft, 50, _wellControlled,
                 "{=tor_perk_selfish_1_str}Your damaging spells do 90% reduced damage to yourself.",
                 PartyRole.Personal, -0.9f, EffectIncrementType.AddFactor,
                 "{=tor_perk_selfish_2_str}Your self targeted buff spells have 50% more duration.",
                 PartyRole.Personal, 0.15f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
-            _wellControlled.Initialize("{=tor_perk_well_controlled_label_str}Well Controlled", TORSkills.SpellCraft, 50, _selfish,
+            _wellControlled.Initialize("{=tor_perk_well_controlled_label_str}Well Controlled", TORSkills.Spellcraft, 50, _selfish,
                 "{=tor_perk_well_controlled_1_str}Your damaging spells do 30% less damage to troops in your party.",
                 PartyRole.Personal, -0.3f, EffectIncrementType.AddFactor,
                 "{=tor_perk_well_controlled_2_str}Gain 5% advantage in simulation battles.",
                 PartyRole.PartyLeader, 0.05f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
-            _librarian.Initialize("{=tor_perk_librarian_label_str}Librarian", TORSkills.SpellCraft, 125, _storyTeller,
+            _librarian.Initialize("{=tor_perk_librarian_label_str}Librarian", TORSkills.Spellcraft, 125, _storyTeller,
                 "{=tor_perk_librarian_1_str}You gain double experience from reading books.",
                 PartyRole.Personal, 1f, EffectIncrementType.AddFactor,
                 "{=tor_perk_librarian_2_str}Learning new spells cost 50% less gold.",
                 PartyRole.Personal, -0.5f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
-            _storyTeller.Initialize("{=tor_perk_story_teller_label_str}Storyteller", TORSkills.SpellCraft, 125, _librarian,
+            _storyTeller.Initialize("{=tor_perk_story_teller_label_str}Storyteller", TORSkills.Spellcraft, 125, _librarian,
                 "{=tor_perk_story_teller_1_str}Every companion in your party gains 1000 experience in a random skill per day.",
                 PartyRole.PartyLeader, 1000f, EffectIncrementType.Add,
                 "{=tor_perk_story_teller_2_str}Your party gains a permanent +5 increase to party morale.",
                 PartyRole.PartyLeader, 5f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 
-            _overCaster.Initialize("{=tor_perk_overcaster_label_str}Overcaster", TORSkills.SpellCraft, 150, _efficientSpellCaster,
+            _overCaster.Initialize("{=tor_perk_overcaster_label_str}Overcaster", TORSkills.Spellcraft, 150, _efficientSpellCaster,
                 "{=tor_perk_overcaster_1_str}Your damaging spells do 20% more damage but cost 30% more winds of magic.",
                 PartyRole.Personal, 0.2f, EffectIncrementType.AddFactor,
                 string.Empty,
                 PartyRole.None, 0.15f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
-            _efficientSpellCaster.Initialize("{=tor_perk_effective_spellcaster_label_str}Efficient Spellcaster", TORSkills.SpellCraft, 150, _overCaster,
+            _efficientSpellCaster.Initialize("{=tor_perk_effective_spellcaster_label_str}Efficient Spellcaster", TORSkills.Spellcraft, 150, _overCaster,
                 "{=tor_perk_effective_spellcaster_1_str}Your damaging spells do 20% less damage, but cost 30% less winds of magic.",
                 PartyRole.Personal, -0.2f, EffectIncrementType.AddFactor,
                 string.Empty,
                 PartyRole.None, -0.15f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
-            _improvision.Initialize("{=tor_perk_improvision_label_str}Improvision", TORSkills.SpellCraft, 225, _catalyst,
+            _improvision.Initialize("{=tor_perk_improvision_label_str}Improvision", TORSkills.Spellcraft, 225, _catalyst,
                 "{=tor_perk_improvision_1_str}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle.",
                 PartyRole.Personal, 25f, EffectIncrementType.Add,
                 "{=tor_perk_improvision_2_str}+10% Persuasion chance during speech checks.",
                 PartyRole.Personal, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
-            _catalyst.Initialize("{=tor_perk_catalyst_label_str}Catalyst", TORSkills.SpellCraft, 225, _improvision,
+            _catalyst.Initialize("{=tor_perk_catalyst_label_str}Catalyst", TORSkills.Spellcraft, 225, _improvision,
                 "{=tor_perk_catalyst_1_str}For every magical item in your equipment slots you gain +5 extra Winds of magic at the start of battle.",
                 PartyRole.Personal, 5f, EffectIncrementType.Add,
                 "{=tor_perk_catalyst_2_str}You gain +20% Winds of Magic regeneration while waiting in a town.",
                 PartyRole.Personal, 0.2f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
-            _dampener.Initialize("{=tor_perk_dampener_label_str}Dampener", TORSkills.SpellCraft, 250, _arcaneLink,
+            _dampener.Initialize("{=tor_perk_dampener_label_str}Dampener", TORSkills.Spellcraft, 250, _arcaneLink,
                 "{=tor_perk_dampener_1_str}Damage dealt by your damaging spells is reduced by 15%, but troops in your formation take 30% less damage from spells.",
                 PartyRole.Personal, -0.15f, EffectIncrementType.AddFactor,
                 "{=tor_perk_dampener_2_str}You gain 5% ward save.",
                 PartyRole.Personal, -0.05f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
-            _arcaneLink.Initialize("{=tor_perk_arcane_link_label_str}Arcane Link", TORSkills.SpellCraft, 250, _dampener,
+            _arcaneLink.Initialize("{=tor_perk_arcane_link_label_str}Arcane Link", TORSkills.Spellcraft, 250, _dampener,
                 "{=tor_perk_arcane_link_1_str}Any buffs you cast on a friendly unit will now also apply to you even if you are not in range.",
                 PartyRole.Personal, 1f, EffectIncrementType.Add,
                 "{=tor_perk_arcane_link_2_str}As formation Captain, all troops in your formation deal additonal 10% magic damage.",
                 PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
-            _exchange.Initialize("{=tor_perk_exchange_label_str}Exchange", TORSkills.SpellCraft, 300, null,
+            _exchange.Initialize("{=tor_perk_exchange_label_str}Exchange", TORSkills.Spellcraft, 300, null,
                 "{=tor_perk_exchange_1_str}All physical damage done by your weapons is doubled and dealt again as magical damage.",
                 PartyRole.Personal, 2f, EffectIncrementType.AddFactor);
 
@@ -295,7 +295,7 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.Personal, 1f, EffectIncrementType.Add);
         }
 
-        public static class SpellCraft
+        public static class Spellcraft
         {
             public static PerkObject EntrySpells => Instance._entrySpells;
             public static PerkObject AdeptSpells => Instance._adeptSpells;
