@@ -397,10 +397,62 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             }
         }
 
+        private void GreenskinDialogs(CampaignGameStarter obj)
+        {
+            // Greenskin Shaman greeting and main hub
+            obj.AddDialogLine("trainer_greenskin_start", "start", "choices_greenskin",
+                "{=tor_spelltrainer_greenskin_start_str}Wot you want, git? Da Waaagh! don't wait fer nobody!",
+                isGreenskinTrainer, null, 200, null);
+            obj.AddDialogLine("trainer_greenskin_hub", "hub_greenskin", "choices_greenskin",
+                "{=tor_spelltrainer_greenskin_hub_str}Wot else ya need? Speak up!",
+                isGreenskinTrainer, null, 200, null);
+
+            // Learn spells (open spell book)
+            obj.AddPlayerLine("trainer_greenskin_learnspells", "choices_greenskin", "openbook_greenskin",
+                "{=tor_spelltrainer_greenskin_open_book_str}Teach me more of da Waaagh! magic.",
+                () => MobileParty.MainParty.HasSpellCasterMember() && greenskinCondition(), null, 200, null);
+            obj.AddDialogLine("trainer_greenskin_afterlearnspells", "openbook_greenskin", "hub_greenskin",
+                "{=tor_spelltrainer_greenskin_close_book_str}Right, ya got it now. Da godz favor ya!",
+                null, openbookconsequence, 200, null);
+            
+
+            // Goodbye
+            obj.AddPlayerLine("trainer_greenskin_playergoodbye", "choices_greenskin", "saygoodbye_greenskin",
+                "{=tor_spelltrainer_greenskin_player_goodbye_str}I'll be goin' now.",
+                null, null, 200, null);
+            obj.AddDialogLine("trainer_greenskin_goodbye", "saygoodbye_greenskin", "close_window",
+                "{=tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! An' don't forget - WAAAGH!",
+                isGreenskinTrainer, null, 200, null);
+
+            // Helper condition: is this a greenskin trainer?
+            bool isGreenskinTrainer()
+            {
+                if (!spelltrainerstartcondition()) return false;
+                var partner = CharacterObject.OneToOneConversationCharacter;
+                if (partner.HeroObject != null && partner.HeroObject.Template.StringId == _greenskinTrainerId)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            // Helper condition: is player/party eligible for greenskin spells?
+            bool greenskinCondition()
+            {
+                if (Hero.MainHero.HasCareer(TORCareers.OrcShaman)) return true;
+                if (Hero.MainHero.PartyBelongedTo != null &&
+                    Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x =>
+                        x.Culture.StringId == TORConstants.Cultures.GREENSKIN && x.IsSpellCaster()))
+                    return true;
+                return false;
+            }
+        }
+
         private void AddDialogs(CampaignGameStarter obj)
         {
             ProphetesseDialogs(obj);
             SpellsingerDialogs(obj);
+            GreenskinDialogs(obj);
 
             obj.AddDialogLine("trainer_start", "start", "choices", "{=tor_spelltrainer_start_str}Do I know you? What do you need, be quick I am a busy.", spelltrainerstartcondition, null, 200, null);
             obj.AddPlayerLine("trainer_test", "choices", "magictest", "{TEST_QUESTION}", magictestcondition, null, 200, null);

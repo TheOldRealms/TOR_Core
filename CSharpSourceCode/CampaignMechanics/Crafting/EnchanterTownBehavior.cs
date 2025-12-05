@@ -264,6 +264,12 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
                 if (cultures[i] == TORConstants.Cultures.DAWI) hub = "tor_dw_guildmaster_runesmith_hub";
 
+                if (cultures[i] == TORConstants.Cultures.GREENSKIN)
+                {
+                    hub = "choices_greenskin";
+                    quittoken = "hub_greenskin";
+                }
+
                 campaignGameStarter.AddPlayerLine("enchanter_start_p" + cultures[i], hub, "enchanter_start" + cultures[i],
                     GameTexts.FindText("enchanter_start_p", cultures[i]).ToString(),
                     () => EnchanterCondition(cultures[i]) && cultureCheck(cultures[i]), null, 210);

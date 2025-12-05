@@ -333,7 +333,39 @@
 
   <string id="enchanter_info_resource_Gemstones_1.sturgia" text= "{=str_tor_cc_profession_battania}Ahh gems! I hear tales of treasures found amidst Dwarfen mines, or carried into battle by the Dwarf folk. As a useful tool, those who use magic often carry them as well I should think."/>
   <string id="enchanter_info_resource_DragonBlood_1.sturgia" text= "{=str_tor_cc_profession_battania}Few in life come across such potent a substance, were I to hazard a guess… perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
-  
+
+  <!--enchantment start greenskins-->
+  <string id="enchanter_start_p.greenskins" text= "{=str_tor_cc_profession_battania}Oi, can ya teach me sum o' dat Waaagh! magic stuff?"/>
+
+  <string id="enchanter_start.greenskins" text= "{=str_tor_cc_profession_battania}Ah, a propa git wot knows da Waaagh! C'mere, let's talk!"/>
+  <string id="enchanter_start_enchanter.greenskins" text= "{=str_tor_cc_profession_battania}Oi! Anuvva shaman, eh? Good, good! Da godz favor ya!"/>
+  <string id="enchanter_dialog_start.greenskins" text= "{=str_tor_cc_profession_battania}Wot you want den? Speak up!"/>
+
+  <!--enchantment hub greenskins-->
+  <string id="enchanter_hub_intro.greenskins" text= "{=str_tor_cc_profession_battania}Roight, wot can I do fer ya?"/>
+  <string id="enchanter_hub_reintro.greenskins" text= "{=str_tor_cc_profession_battania}Wot else ya need?"/>
+
+  <string id="enchanter_hub_info_p.greenskins" text= "{=str_tor_cc_profession_battania}Teach me 'bout makin' magic stuff!"/>
+  <string id="enchanter_hub_blueprints_p.greenskins" text= "{=str_tor_cc_profession_battania}Got any new Waaagh! tricks fer me?"/>
+  <string id="enchanter_hub_donate_items_p.greenskins" text= "{=str_tor_cc_profession_battania}Got sum shiny bits 'ere I don't need no more."/>
+  <string id="enchanter_hub_open_enchanter_p.greenskins" text= "{=str_tor_cc_profession_battania}Lemme use yer magic place!"/>
+  <string id="enchanter_hub_return_p.greenskins" text= "{=str_tor_cc_profession_battania}Gotta go now. WAAAGH!"/>
+
+  <!-- donate hub greenskins-->
+  <string id="enchanter_donate_items_1.greenskins" text= "{=str_tor_cc_profession_battania}Got sum shiny magic gear? Lemme see wot ya got!"/>
+  <string id="enchanter_donate_items_1_negative.greenskins" text= "{=str_tor_cc_profession_battania}Dat's nuthin'! Ya got no propa loot fer me. Come back when ya krumped sum beakies or pointy-ears!"/>
+  <string id="enchanter_donate_items_hub_p.greenskins" text= "{=str_tor_cc_profession_battania}'Ere, take dese…"/>
+  <string id="enchanter_gift_items_hub_return_p.greenskins" text= "{=str_tor_cc_profession_battania}Lemme fink 'bout dis first."/>
+
+  <string id="enchanter_donate_items_2.greenskins" text= "{=str_tor_cc_profession_battania}Roight, wot ya givin' me?"/>
+
+  <!--enchantment info hub greenskins-->
+  <string id="enchanter_info_hub_intro_enchanter_first_visit.greenskins" text= "{=str_tor_cc_profession_battania}Roight! 'Ere's sum stuff ta get ya started. Da Waaagh! iz strong in dis one!"/>
+
+  <string id="enchanter_info_hub_intro.greenskins" text= "{=str_tor_cc_profession_battania}I'll tell ya, but ya gotta pay attention, git!"/>
+
+  <string id="enchanter_blueprints.greenskins" text= "{=str_tor_cc_profession_battania}Roight, 'ere's sum proppa Waaagh! magic fer ya!"/>
+  <string id="enchanter_blueprints_decline.greenskins" text= "{=str_tor_cc_profession_battania}Ya got no teef fer dat! Come back when yer not so poor!"/>
 
   <!-- oath gold mechanic-->
     <!-- rune lord guild-->
@@ -1989,6 +2021,10 @@
   <string id="career_choicegroup2_name.OrcBoss" text="{=career_choicegroup2_orcboss_str}Da Boss" />
   <string id="career_choicegroup3_name.OrcBoss" text="{=career_choicegroup3_orcboss_str}Da Big Boss" />
 
+  <string id="career_choicegroup1_name.OrcShaman" text="{=career_choicegroup1_orcshaman_str}Orc Shaman" />
+  <string id="career_choicegroup2_name.OrcShaman" text="{=career_choicegroup2_orcshaman_str}Favoured uv Da Godz" />
+  <string id="career_choicegroup3_name.OrcShaman" text="{=career_choicegroup3_orcshaman_str}Great Shaman Lord" />
+
   <!--Career related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
   <string id="career_description.WarriorPriestUlric" text="{=career_description_warriorpriest_ulric_str}To be a Wolf Priest is to be one of Ulrics champions, powerful, zealous, and blessed by the feral god himself. The battleground is where the word of Ulric is spread, and it is through bloodshed that he is honoured in worship." />
@@ -2806,5 +2842,64 @@
 	<string id="tor_orc_boss_quest2_task_duels" text="{=tor_orc_boss_quest2_task_duels}Lord Duels Won" />
 	<string id="tor_orc_boss_quest2_log_teef" text="{=tor_orc_boss_quest2_log_teef}Transfer {REQUIRED} worth of loot to teef" />
 	<string id="tor_orc_boss_quest2_task_teef" text="{=tor_orc_boss_quest2_task_teef}Teef Transferred" />
+
+	<!--Orc Shaman Quest 1-->
+	<string id="tor_orc_shaman_quest1_title" text="{=tor_orc_shaman_quest1_title}Favoured uv Da Godz" />
+	<string id="tor_orc_shaman_quest1_log_pray" text="{=tor_orc_shaman_quest1_log_pray}Pray at a Shrine of Gork or Mork" />
+	<string id="tor_orc_shaman_quest1_task_pray" text="{=tor_orc_shaman_quest1_task_pray}Shrine Prayer" />
+	<string id="tor_orc_shaman_quest1_log_spellcraft" text="{=tor_orc_shaman_quest1_log_spellcraft}Reach {REQUIRED} levels in Spellcraft skill" />
+	<string id="tor_orc_shaman_quest1_task_spellcraft" text="{=tor_orc_shaman_quest1_task_spellcraft}Spellcraft Skill" />
+	<string id="tor_orc_shaman_quest1_log_faith" text="{=tor_orc_shaman_quest1_log_faith}Reach {REQUIRED} levels in Faith skill" />
+	<string id="tor_orc_shaman_quest1_task_faith" text="{=tor_orc_shaman_quest1_task_faith}Faith Skill" />
+	<string id="tor_orc_shaman_quest1_log_enchants" text="{=tor_orc_shaman_quest1_log_enchants}Learn {REQUIRED} Orc enchantments" />
+	<string id="tor_orc_shaman_quest1_task_enchants" text="{=tor_orc_shaman_quest1_task_enchants}Enchantments Learned" />
+	<string id="tor_orc_shaman_quest1_log_teef" text="{=tor_orc_shaman_quest1_log_teef}Transfer {REQUIRED} worth of loot to teef" />
+	<string id="tor_orc_shaman_quest1_task_teef" text="{=tor_orc_shaman_quest1_task_teef}Teef Transferred" />
+	<string id="tor_orc_shaman_quest1_log_shrines" text="{=tor_orc_shaman_quest1_log_shrines}Loot {REQUIRED} shrines" />
+	<string id="tor_orc_shaman_quest1_task_shrines" text="{=tor_orc_shaman_quest1_task_shrines}Shrines Looted" />
+
+	<!--Orc Shaman Quest 2-->
+	<string id="tor_orc_shaman_quest2_title" text="{=tor_orc_shaman_quest2_title}Great Shaman Lord" />
+	<string id="tor_orc_shaman_quest2_log_spellcraft" text="{=tor_orc_shaman_quest2_log_spellcraft}Reach {REQUIRED} levels in Spellcraft skill" />
+	<string id="tor_orc_shaman_quest2_task_spellcraft" text="{=tor_orc_shaman_quest2_task_spellcraft}Spellcraft Skill" />
+	<string id="tor_orc_shaman_quest2_log_faith" text="{=tor_orc_shaman_quest2_log_faith}Reach {REQUIRED} levels in Faith skill" />
+	<string id="tor_orc_shaman_quest2_task_faith" text="{=tor_orc_shaman_quest2_task_faith}Faith Skill" />
+	<string id="tor_orc_shaman_quest2_log_enchants" text="{=tor_orc_shaman_quest2_log_enchants}Learn {REQUIRED} Orc enchantments total" />
+	<string id="tor_orc_shaman_quest2_task_enchants" text="{=tor_orc_shaman_quest2_task_enchants}Enchantments Learned" />
+	<string id="tor_orc_shaman_quest2_log_teef" text="{=tor_orc_shaman_quest2_log_teef}Transfer {REQUIRED} worth of loot to teef total" />
+	<string id="tor_orc_shaman_quest2_task_teef" text="{=tor_orc_shaman_quest2_task_teef}Teef Transferred" />
+	<string id="tor_orc_shaman_quest2_log_cities" text="{=tor_orc_shaman_quest2_log_cities}Capture {REQUIRED} cities or castles" />
+	<string id="tor_orc_shaman_quest2_task_cities" text="{=tor_orc_shaman_quest2_task_cities}Cities Captured" />
+	<string id="tor_orc_shaman_quest2_log_shrines" text="{=tor_orc_shaman_quest2_log_shrines}Loot {REQUIRED} shrines total" />
+	<string id="tor_orc_shaman_quest2_task_shrines" text="{=tor_orc_shaman_quest2_task_shrines}Shrines Looted" />
+
+	<!--Runesmith Quest-->
+	<string id="tor_runesmith_quest_title" text="{=tor_runesmith_quest_title}Runesmith Quest" />
+	<string id="tor_runesmith_quest_log_contracts" text="{=tor_runesmith_quest_log_contracts}Finish 15 Smithing contracts." />
+	<string id="tor_runesmith_quest_task_contracts" text="{=tor_runesmith_quest_task_contracts}Contracts" />
+	<string id="tor_runesmith_quest_log_runes" text="{=tor_runesmith_quest_log_runes}Learn 7 runes." />
+	<string id="tor_runesmith_quest_task_runes" text="{=tor_runesmith_quest_task_runes}Runes" />
+	<string id="tor_runesmith_quest_log_complete" text="{=tor_runesmith_quest_log_complete}Talk to the rune smith" />
+
+	<!--Runelord Quest-->
+	<string id="tor_runelord_quest_title" text="{=tor_runelord_quest_title}Runelord Quest" />
+	<string id="tor_runelord_quest_log_abilities" text="{=tor_runelord_quest_log_abilities}Learn 3 Rune abilities of the Anvil of Doom." />
+	<string id="tor_runelord_quest_task_abilities" text="{=tor_runelord_quest_task_abilities}Rune Magic" />
+	<string id="tor_runelord_quest_log_runes" text="{=tor_runelord_quest_log_runes}Learn 15 runes." />
+	<string id="tor_runelord_quest_task_runes" text="{=tor_runelord_quest_task_runes}Runes" />
+	<string id="tor_runelord_quest_log_contracts" text="{=tor_runelord_quest_log_contracts}Finish up 20 smithing contracts." />
+	<string id="tor_runelord_quest_task_contracts" text="{=tor_runelord_quest_task_contracts}Contracts" />
+	<string id="tor_runelord_quest_log_reputation" text="{=tor_runelord_quest_log_reputation}Reach Respected with the Runesmith Guild." />
+	<string id="tor_runelord_quest_task_reputation" text="{=tor_runelord_quest_task_reputation}Reputation" />
+	<string id="tor_runelord_quest_log_complete" text="{=tor_runelord_quest_log_complete}Talk to the rune smith" />
+
+	<!--Greenskin Spell Trainer Dialogs-->
+	<string id="tor_spelltrainer_greenskin_start_str" text="{=tor_spelltrainer_greenskin_start_str}Wot you want, git? Da Waaagh! don't wait fer nobody!" />
+	<string id="tor_spelltrainer_greenskin_hub_str" text="{=tor_spelltrainer_greenskin_hub_str}Wot else ya need? Speak up!" />
+	<string id="tor_spelltrainer_greenskin_open_book_str" text="{=tor_spelltrainer_greenskin_open_book_str}Teach me more of da Waaagh! magic." />
+	<string id="tor_spelltrainer_greenskin_close_book_str" text="{=tor_spelltrainer_greenskin_close_book_str}Right, ya got it now. Da godz favor ya!" />
+	<string id="tor_spelltrainer_greenskin_enchantments_str" text="{=tor_spelltrainer_greenskin_enchantments_str}I wanna learn how ta make some proppa gear wif da runes." />
+	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=tor_spelltrainer_greenskin_player_goodbye_str}I'll be goin' now." />
+	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! An' don't forget - WAAAGH!" />
 
 </strings>

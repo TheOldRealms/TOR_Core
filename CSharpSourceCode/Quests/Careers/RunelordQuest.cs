@@ -61,10 +61,10 @@ public class RunelordQuest : QuestBase
         _currentContracts = dwarfBehavior.CraftingOrdersCompleted - 15;     //already done crafted orders of the original quest
         currentKnownRunes -= 7;             //Same as above
 
-        _task1 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log0_str}Learn 3 Rune abilities of the Anvil of Doom."), new TextObject("{=tor_engineer_quest_task0_str}Rune Magic"), _currentAbilities, 3);
-        _task2 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log2_str}Learn 15 runes."), new TextObject("{=tor_engineer_quest_task0_str}Runes"), currentKnownRunes, 12);
-        _task3 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log2_str}Finish up 20 smithing contracts."), new TextObject("{=tor_engineer_quest_task0_str}Contracts"), _currentContracts, 20);
-        _task4 = AddDiscreteLog(new TextObject("{=tor_engineer_quest_log2_str}Reach Respected with the Runesmith Guild."), new TextObject("{=tor_engineer_quest_task0_str}Reputation"), reputation, OathGoldBehavior.MAXIMUMVALUE);
+        _task1 = AddDiscreteLog(new TextObject("{=tor_runelord_quest_log_abilities}Learn 3 Rune abilities of the Anvil of Doom."), new TextObject("{=tor_runelord_quest_task_abilities}Rune Magic"), _currentAbilities, 3);
+        _task2 = AddDiscreteLog(new TextObject("{=tor_runelord_quest_log_runes}Learn 15 runes."), new TextObject("{=tor_runelord_quest_task_runes}Runes"), currentKnownRunes, 12);
+        _task3 = AddDiscreteLog(new TextObject("{=tor_runelord_quest_log_contracts}Finish up 20 smithing contracts."), new TextObject("{=tor_runelord_quest_task_contracts}Contracts"), _currentContracts, 20);
+        _task4 = AddDiscreteLog(new TextObject("{=tor_runelord_quest_log_reputation}Reach Respected with the Runesmith Guild."), new TextObject("{=tor_runelord_quest_task_reputation}Reputation"), reputation, OathGoldBehavior.MAXIMUMVALUE);
 
 
     }
@@ -128,7 +128,7 @@ public class RunelordQuest : QuestBase
     {
         if (AreAllTasksFinished())
         {
-            AddLog(new TextObject("Talk to the rune smith"));
+            AddLog(new TextObject("{=tor_runelord_quest_log_complete}Talk to the rune smith"));
 
         }
     }
@@ -162,7 +162,7 @@ public class RunelordQuest : QuestBase
     {
     }
 
-    public override TextObject Title => new TextObject("Runelord Quest");
+    public override TextObject Title => new TextObject("{=tor_runelord_quest_title}Runelord Quest");
 
     public override bool IsRemainingTimeHidden => true;
 

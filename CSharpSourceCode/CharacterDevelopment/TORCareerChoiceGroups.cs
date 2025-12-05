@@ -1331,7 +1331,12 @@ namespace TOR_Core.CharacterDevelopment
                 return true;
             });
 
-            _giftzFromDaGreatGreen.Initialize("{=giftz_from_da_great_green_choice_group_str}Giftz from Da Great Green", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
+            _giftzFromDaGreatGreen.Initialize("{=giftz_from_da_great_green_choice_group_str}Giftz from Da Great Green", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
+            {
+
+            });
+
+            _brutalCunnin.Initialize("{=brutal_cunnin_choice_group_str}Brutal Cunnin'", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
             {
                 var hasUnlocked = hero.HasAttribute("PlayerOrcShaman");
                 text = "";
@@ -1340,12 +1345,6 @@ namespace TOR_Core.CharacterDevelopment
                     text = "\n " + GameTexts.FindText("careerunlock_condition_1", "OrcShaman").ToString();
                 }
                 return hasUnlocked;
-            });
-
-            _brutalCunnin.Initialize("{=brutal_cunnin_choice_group_str}Brutal Cunnin'", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
-            {
-                text = string.Empty;
-                return hero.HasAttribute("PlayerOrcShaman");
             });
 
             _cunninBrutality.Initialize("{=cunnin_brutality_choice_group_str}Cunnin' Brutality", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
