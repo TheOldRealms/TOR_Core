@@ -114,24 +114,35 @@ public static class EnchantmentHelper
         {
 
             var trait = item.GetTraits().FirstOrDefault();
-
-            var arguments = trait.OnInventoryUseScript.InventoryScriptArguments;
-
-            var included = false;
-
-            // Check if arguments has enough elements (need: traitId, skillId, skillValue)
-            if (arguments.Count < 3)
+            if (trait == null)
             {
-                TORCommon.Log($"Enchantment blueprint {item.StringId} has insufficient arguments (expected at least 3, got {arguments.Count})", LogLevel.Error);
+                TORCommon.Log($"Enchantment blueprint {item.StringId} has no traits. Skipping this item.", LogLevel.Error);
                 continue;
             }
+
+            if (trait.OnInventoryUseScript == null)
+            {
+                TORCommon.Log($"Enchantment blueprint {item.StringId} has no inventory use script. Skipping this item.", LogLevel.Error);
+                continue;
+            }
+
+            var arguments = trait.OnInventoryUseScript.InventoryScriptArguments;
+            if (arguments == null || arguments.Count < 3)
+            {
+                var argCount = arguments?.Count ?? 0;
+                TORCommon.Log($"Enchantment blueprint {item.StringId} has insufficient arguments (expected at least 3, got {argCount})", LogLevel.Error);
+                continue;
+            }
+
+            var included = false;
 
             var skills = Game.Current.DefaultSkills.GetDefaultSkills();
             skills.AddRange(TORSkills.Instance.GetTorSkills());
             var skill = skills.FirstOrDefault(x => x.StringId == arguments[1]);
             if (skill == null)
             {
-                TORCommon.Log("failed to load skill "+ arguments[1],LogLevel.Warn) ;
+                TORCommon.Log($"Failed to load skill '{arguments[1]}' for enchantment blueprint {item.StringId}. Skipping this item.", LogLevel.Error);
+                continue;
             }
             var skillValue = 0;
             var hintText = new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
