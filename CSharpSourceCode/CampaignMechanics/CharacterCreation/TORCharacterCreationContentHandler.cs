@@ -859,6 +859,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 case "option_3_gs_path_of_shaman":
                     hero.AddAttribute("SpellCaster");
                     hero.AddAbility("GazeOfMork");
+                    hero.AddKnownLore("BigWaaagh");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
                     hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
                     hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);

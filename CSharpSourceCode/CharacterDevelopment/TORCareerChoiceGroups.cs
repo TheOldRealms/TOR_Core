@@ -1333,7 +1333,8 @@ namespace TOR_Core.CharacterDevelopment
 
             _giftzFromDaGreatGreen.Initialize("{=giftz_from_da_great_green_choice_group_str}Giftz from Da Great Green", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
             {
-
+                text = string.Empty;
+                return true;
             });
 
             _brutalCunnin.Initialize("{=brutal_cunnin_choice_group_str}Brutal Cunnin'", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
