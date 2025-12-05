@@ -4,10 +4,8 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>ArcaneScroll</IngredientItem>
     <IngredientAmount>1</IngredientAmount>
-    <ItemTraitDescription>This weapon is enchanted. Deals partial magic damage and adds an extra 10% holy damage.</ItemTraitDescription>
-    <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.25" />
-    <AdditionalDamageTuple DamageType="Holy" Percent="0.10" />
-    <WeaponParticlePreset ParticlePrefab="magic_sparks" IsUniqueSingleCopy="true" />
+    <ItemTraitDescription>Runefangs are ancient Dwarf-crafted swords gifted to the Empire as tokens of friendship. Deals magic and physical damage.</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.50" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="flaming_weapon" ItemTraitName="Flaming Weapon" IsCraftable="false" ImbuedStatusEffectId="fireball_dot" ImbuedEffectChance="0.25" IconName="traits_fire_icon">
     <ValidItemType>Weapon</ValidItemType>
@@ -29,7 +27,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>1</IngredientAmount>
-    <ItemTraitDescription>This weapon is guided by Hysh. It deals an extra 40% magical damage and slows enemies on hit.</ItemTraitDescription>
+    <ItemTraitDescription>This weapon is guided by Hysh. It deals an extra 25% magical damage and slows enemies on hit.</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.40" />
     <WeaponParticlePreset ParticlePrefab="psys_light_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
@@ -37,7 +35,7 @@
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>WarpstoneDust</IngredientItem>
     <IngredientAmount>1</IngredientAmount>
-    <ItemTraitDescription>This weapon is guided by Hysh. It deals an extra 25% magical damage and slows enemies on hit.</ItemTraitDescription>
+    <ItemTraitDescription>This weapon is guided by Hysh. It deals an extra 40% magical damage and slows enemies on hit.</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.25" />
     <WeaponParticlePreset ParticlePrefab="psys_light_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
@@ -182,7 +180,7 @@
     <IngredientAmount>1</IngredientAmount>
     <ItemTraitDescription>Your Armor provides you 5 more health</ItemTraitDescription>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="fire_res_amp_10" ItemTraitName="Fire Resistance and Amplification" IsCraftable="false" IconName="traits_aqshy_icon">
+  <ItemTrait ItemTraitStringId="fire_res_amp_10" ItemTraitName="Fire Resistance and Amplification" IsCraftable="false" IconName="traits_fire_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>1</IngredientAmount>
@@ -190,7 +188,7 @@
     <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.10" />
     <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="0.10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="fire_res_10" ItemTraitName="Fire Resistance" IsCraftable="false" IconName="traits_aqshy_icon">
+  <ItemTrait ItemTraitStringId="fire_res_10" ItemTraitName="Fire Resistance" IsCraftable="false" IconName="traits_fire_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>1</IngredientAmount>
@@ -312,49 +310,49 @@
     <ItemTraitDescription>10 extra frost damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Frost" Percent="0.10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_weapon_armor_penetraiton" ItemTraitName="Aspect of Piercing" IsCraftable="false" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="lesser_loot_weapon_armor_penetraiton" ItemTraitName="Aspect of Piercing" IsCraftable="false" IconName="shiftshiver_shards">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>10% extra armor penetration</ItemTraitDescription>
     <StatsTuple StatType="ArmorPenetration" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_weapon_swiftness" ItemTraitName="Aspect of Speed" IsCraftable="false" IconName="traits_lightning_icon">
+  <ItemTrait ItemTraitStringId="lesser_loot_weapon_swiftness" ItemTraitName="Aspect of Speed" IsCraftable="false" IconName="winds_icon_100">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>10% extra swing speed</ItemTraitDescription>
     <StatsTuple StatType="SwingSpeed" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_weapon_reloadspeed" ItemTraitName="Aspect of Reloading" IsCraftable="false" IconName="traits_lightning_icon">
+  <ItemTrait ItemTraitStringId="lesser_loot_weapon_reloadspeed" ItemTraitName="Aspect of Reloading" IsCraftable="false" IconName="winds_icon_100">
     <ValidItemType>Ranged</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>10% extra reload speed</ItemTraitDescription>
     <StatsTuple StatType="ReloadSpeed" Value="10" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_armor_health" ItemTraitName="Aspect of Vitality" IsCraftable="false" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="lesser_loot_armor_health" ItemTraitName="Aspect of Vitality" IsCraftable="false" IconName="heart_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>3 extra HP</ItemTraitDescription>
     <StatsTuple StatType="HealthMax" Value="3" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_armor_winds" ItemTraitName="Aspect of Enlightment" IsCraftable="false" IconName="traits_magic_icon">
+  <ItemTrait ItemTraitStringId="lesser_loot_armor_winds" ItemTraitName="Aspect of Enlightment" IsCraftable="false" IconName="winds_icon_100">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>2 extra Winds of Magic</ItemTraitDescription>
     <StatsTuple StatType="WindsOfMagicMax" Value="2" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_armor_phy_res" ItemTraitName="Aspect of Protection" IsCraftable="false" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="lesser_loot_armor_phy_res" ItemTraitName="Aspect of Protection" IsCraftable="false" IconName="winds_icon_100">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>4% extra physical resistance</ItemTraitDescription>
     <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.04" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="lesser_loot_armor_magic_res" ItemTraitName="Aspect of Superstition" IsCraftable="false" IconName="traits_magic_icon">
+  <ItemTrait ItemTraitStringId="lesser_loot_armor_magic_res" ItemTraitName="Aspect of Superstition" IsCraftable="false" IconName="winds_icon_100">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -825,7 +823,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_retribution" ItemTraitName="Retribution of Sigmar" IsCraftable="true" ImbuedEffectChance="1.00" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_retribution" ItemTraitName="Retribution of Sigmar" IsCraftable="true" ImbuedEffectChance="1.00" IconName="sigmar_comet_icon">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>15</IngredientAmount>
@@ -838,7 +836,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_soulfire" ItemTraitName="Soulfire of Sigmar" IsCraftable="true" ImbuedEffectChance="0.10" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_soulfire" ItemTraitName="Soulfire of Sigmar" IsCraftable="true" ImbuedEffectChance="0.10" IconName="sigmar_comet_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>9</IngredientAmount>
@@ -852,7 +850,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_light" ItemTraitName="Light of Sigmar" IsCraftable="true" ImbuedEffectChance="0.10" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_light" ItemTraitName="Light of Sigmar" IsCraftable="true" ImbuedEffectChance="0.10" IconName="sigmar_comet_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>22</IngredientAmount>
@@ -866,7 +864,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_beacon" ItemTraitName="Beacon of Sigmar" IsCraftable="true" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_beacon" ItemTraitName="Beacon of Sigmar" IsCraftable="true" IconName="sigmar_comet_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>GemStone</IngredientItem>
     <IngredientAmount>10</IngredientAmount>
@@ -874,7 +872,7 @@
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
     <StatsTuple StatType="SpellRadius" Value="15" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_exorcism" ItemTraitName="Exorcism of Sigmar" IsCraftable="true" ImbuedEffectChance="0.10" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_exorcism" ItemTraitName="Exorcism of Sigmar" IsCraftable="true" ImbuedEffectChance="0.10" IconName="sigmar_comet_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>20</IngredientAmount>
@@ -886,14 +884,14 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_justice" ItemTraitName="Justice of Sigmar" IsCraftable="true" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_sigmar_justice" ItemTraitName="Justice of Sigmar" IsCraftable="true" IconName="sigmar_comet_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
     <ItemTraitDescription>12 extra holy damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Holy" Percent="0.12" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wrath" ItemTraitName="Wrath of Ulric" IsCraftable="true" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wrath" ItemTraitName="Wrath of Ulric" IsCraftable="true" IconName="whitewolf_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>12</IngredientAmount>
@@ -907,7 +905,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wolf-god_bite" ItemTraitName="Bite of the Wolf-God" IsCraftable="true" ImbuedEffectChance="1.00" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_wolf-god_bite" ItemTraitName="Bite of the Wolf-God" IsCraftable="true" ImbuedEffectChance="1.00" IconName="whitewolf_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>35</IngredientAmount>
@@ -921,14 +919,14 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_ulric_chill" ItemTraitName="Chill of Ulric" IsCraftable="true" ImbuedEffectChance="1.00" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_chill" ItemTraitName="Chill of Ulric" IsCraftable="true" ImbuedEffectChance="1.00" IconName="whitewolf_icon">
     <ValidItemType>Melee</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>5</IngredientAmount>
     <ItemTraitDescription>15 extra frost damage</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Frost" Percent="0.15" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_ulric_frenzy" ItemTraitName="Frenzy of Ulric" IsCraftable="true" ImbuedEffectChance="0.15" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_frenzy" ItemTraitName="Frenzy of Ulric" IsCraftable="true" ImbuedEffectChance="0.15" IconName="whitewolf_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>9</IngredientAmount>
@@ -941,7 +939,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_ulric_winterfather_gift" ItemTraitName="Gift of the Winterfather" IsCraftable="true" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="emp_blessing_ulric_winterfather_gift" ItemTraitName="Gift of the Winterfather" IsCraftable="true" IconName="whitewolf_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>6</IngredientAmount>
@@ -949,14 +947,14 @@
     <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.05" />
     <StatsTuple StatType="Skill" SkillId="TwoHanded" Value="20" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_shallya_mercy" ItemTraitName="Mercy of Shallya" IsCraftable="true" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="emp_blessing_shallya_mercy" ItemTraitName="Mercy of Shallya" IsCraftable="true" IconName="shallya_dove_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>22</IngredientAmount>
     <ItemTraitDescription>6 extra HP</ItemTraitDescription>
     <StatsTuple StatType="HealthMax" Value="6" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_shallya_pacifism" ItemTraitName="Pacifism of Shallya" IsCraftable="true" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="emp_blessing_shallya_pacifism" ItemTraitName="Pacifism of Shallya" IsCraftable="true" IconName="shallya_dove_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>26</IngredientAmount>
@@ -967,14 +965,14 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_shallya_purity" ItemTraitName="Purity of Shallya" IsCraftable="true" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="emp_blessing_shallya_purity" ItemTraitName="Purity of Shallya" IsCraftable="true" IconName="shallya_dove_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>BlessedWater</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
     <ItemTraitDescription>50% extra healing rate when travelling</ItemTraitDescription>
     <StatsTuple StatType="HealthRegen" Value="50" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_shallya_compassion" ItemTraitName="Compassion of Shallya" IsCraftable="false" ImbuedEffectChance="1.00" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="emp_blessing_shallya_compassion" ItemTraitName="Compassion of Shallya" IsCraftable="false" ImbuedEffectChance="1.00" IconName="shallya_dove_icon">
     <ValidItemType>Shield</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>20</IngredientAmount>
@@ -988,7 +986,7 @@
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="emp_blessing_shallya_martyrdom" ItemTraitName="Martyrdom of Shallya" IsCraftable="true" ImbuedEffectChance="0.33" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="emp_blessing_shallya_martyrdom" ItemTraitName="Martyrdom of Shallya" IsCraftable="true" ImbuedEffectChance="0.33" IconName="shallya_dove_icon">
     <ValidItemType>Armor</ValidItemType>
     <IngredientItem>DragonBlood</IngredientItem>
     <IngredientAmount>4</IngredientAmount>
@@ -2913,7 +2911,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_beacon" ItemTraitName="Beacon of Sigmar" IsCraftable="false" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_beacon" ItemTraitName="Beacon of Sigmar" IsCraftable="false" IconName="sigmar_comet_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -2927,7 +2925,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_retribution" ItemTraitName="Retribution of Sigmar" IsCraftable="false" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_retribution" ItemTraitName="Retribution of Sigmar" IsCraftable="false" IconName="sigmar_comet_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -2941,7 +2939,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_soulfire" ItemTraitName="Soulfire of Sigmar" IsCraftable="false" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_soulfire" ItemTraitName="Soulfire of Sigmar" IsCraftable="false" IconName="sigmar_comet_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -2955,7 +2953,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_light" ItemTraitName="Light of Sigmar" IsCraftable="false" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_light" ItemTraitName="Light of Sigmar" IsCraftable="false" IconName="sigmar_comet_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -2969,7 +2967,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_exorcism" ItemTraitName="Exorcism of Sigmar" IsCraftable="false" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_exorcism" ItemTraitName="Exorcism of Sigmar" IsCraftable="false" IconName="sigmar_comet_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -2983,7 +2981,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_justice" ItemTraitName="Justice of Sigmar" IsCraftable="false" IconName="traits_holy_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_sigmar_justice" ItemTraitName="Justice of Sigmar" IsCraftable="false" IconName="sigmar_comet_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -2997,7 +2995,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_wrath" ItemTraitName="Wrath of Ulric" IsCraftable="false" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_wrath" ItemTraitName="Wrath of Ulric" IsCraftable="false" IconName="whitewolf_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3011,7 +3009,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_wolf-god_bite_of_the" ItemTraitName="Bite of the Wolf-God" IsCraftable="false" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_wolf-god_bite_of_the" ItemTraitName="Bite of the Wolf-God" IsCraftable="false" IconName="whitewolf_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3025,7 +3023,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_chill" ItemTraitName="Chill of Ulric" IsCraftable="false" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_chill" ItemTraitName="Chill of Ulric" IsCraftable="false" IconName="whitewolf_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3039,7 +3037,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_frenzy" ItemTraitName="Frenzy of Ulric" IsCraftable="false" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_frenzy" ItemTraitName="Frenzy of Ulric" IsCraftable="false" IconName="whitewolf_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3053,7 +3051,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_winterfather_gift" ItemTraitName="Gift of the Winterfather" IsCraftable="false" IconName="traits_frost_icon">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_ulric_winterfather_gift" ItemTraitName="Gift of the Winterfather" IsCraftable="false" IconName="whitewolf_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3067,7 +3065,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_mercy" ItemTraitName="Mercy of Shallya" IsCraftable="false" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_mercy" ItemTraitName="Mercy of Shallya" IsCraftable="false" IconName="shallya_dove_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3081,7 +3079,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_purity" ItemTraitName="Pacifism of Shallya" IsCraftable="false" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_purity" ItemTraitName="Pacifism of Shallya" IsCraftable="false" IconName="shallya_dove_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3095,7 +3093,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_purity" ItemTraitName="Purity of Shallya" IsCraftable="false" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_purity" ItemTraitName="Purity of Shallya" IsCraftable="false" IconName="shallya_dove_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3109,7 +3107,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_compassion" ItemTraitName="Compassion of Shallya" IsCraftable="false" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_compassion" ItemTraitName="Compassion of Shallya" IsCraftable="false" IconName="shallya_dove_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3123,7 +3121,7 @@
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_martyrdom" ItemTraitName="Martyrdom of Shallya" IsCraftable="false" IconName="blessing_icon_100">
+  <ItemTrait ItemTraitStringId="learn_emp_blessing_shallya_martyrdom" ItemTraitName="Martyrdom of Shallya" IsCraftable="false" IconName="shallya_dove_icon">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
@@ -3908,6 +3906,9 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_brutality_gork</InventoryScriptArgument>
+        <InventoryScriptArgument>Spellcraft</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -3919,6 +3920,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_tuffness_gork</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -3930,6 +3933,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_clobberin_shield</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -3941,6 +3946,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_stunties_bane</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -3952,6 +3959,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_wallopin_krunch</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -3963,6 +3972,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_cunning_mork</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -3974,6 +3985,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_call_great_green</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -3985,6 +3998,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_backstabba_frenzy</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -3996,6 +4011,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_gaze_spider_god</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
@@ -4007,6 +4024,8 @@
     <OnInventoryUseScript InventoryScriptName="TOR_Core.Items.InventoryUseScripts.EnchantmentBlueprintScript">
       <InventoryScriptArguments>
         <InventoryScriptArgument>gs_enchant_shadow_bad_moon</InventoryScriptArgument>
+        <InventoryScriptArgument>100</InventoryScriptArgument>
+        <InventoryScriptArgument>BigWaaagh</InventoryScriptArgument>
       </InventoryScriptArguments>
     </OnInventoryUseScript>
   </ItemTrait>
