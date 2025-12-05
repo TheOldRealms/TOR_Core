@@ -67,7 +67,7 @@ namespace TOR_Core.Quests.Careers
         private void RevealMainQuestTasks()
         {
             // Calculate current skill levels
-            _currentSpellcraftLevel = Hero.MainHero?.GetSkillValue(TORSkills.SpellCraft) ?? 0;
+            _currentSpellcraftLevel = Hero.MainHero?.GetSkillValue(TORSkills.Spellcraft) ?? 0;
             _currentFaithLevel = Hero.MainHero?.GetSkillValue(TORSkills.Faith) ?? 0;
 
             // TODO: Get actual values from behaviors when they're implemented
@@ -152,9 +152,9 @@ namespace TOR_Core.Quests.Careers
             if (hero != Hero.MainHero) return;
             if (!_hasPrayedAtShrine) return; // Only track after shrine prayer
 
-            if (skill == TORSkills.SpellCraft)
+            if (skill == TORSkills.Spellcraft)
             {
-                _currentSpellcraftLevel = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                _currentSpellcraftLevel = Hero.MainHero.GetSkillValue(TORSkills.Spellcraft);
                 _taskSpellcraft.UpdateCurrentProgress(_currentSpellcraftLevel);
                 UpdateQuest();
             }
