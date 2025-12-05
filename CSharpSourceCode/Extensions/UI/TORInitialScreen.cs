@@ -32,7 +32,7 @@ namespace TOR_Core.Extensions.UI
         private SceneLayer _scenelayer;
         private Camera _camera;
         private Scene _scene;
-        private readonly List<string> _menuSceneNames = ["TOR_menuscene_01", "TOR_menuscene_02", "TOR_menuscene_03"];
+        private const int _maxMainMenuSceneIndex = 4; //TODO: need to change if we have scenes with at least 2 digits
 
         public TORInitialScreen(InitialState initialState)
         {
@@ -83,7 +83,7 @@ namespace TOR_Core.Extensions.UI
             _scene = Scene.CreateNewScene(true, true, DecalAtlasGroup.All, "mono_renderscene");
             _scene.SetName("MainMenuScene");
             SceneInitializationData sceneInitializationData = new SceneInitializationData(true);
-            _scene.Read(_menuSceneNames.GetRandomElementInefficiently(), ref sceneInitializationData);
+            _scene.Read($"TOR_menuscene_0{MBRandom.RandomInt(1, _maxMainMenuSceneIndex + 1)}", ref sceneInitializationData);
             _scene.DisableStaticShadows(true);
             _scene.SetShadow(true);
             _scene.SetClothSimulationState(true);
