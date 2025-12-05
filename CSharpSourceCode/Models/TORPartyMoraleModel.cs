@@ -27,9 +27,9 @@ namespace TOR_Core.Models
             if (!mobileParty.IsLordParty) return result;
 
 
-            if (mobileParty.HasPerk(TORPerks.SpellCraft.StoryTeller))
+            if (mobileParty.HasPerk(TORPerks.Spellcraft.StoryTeller))
             {
-                result.Add(TORPerks.SpellCraft.StoryTeller.SecondaryBonus, TORPerks.SpellCraft.StoryTeller.Name);
+                result.Add(TORPerks.Spellcraft.StoryTeller.SecondaryBonus, TORPerks.Spellcraft.StoryTeller.Name);
             }
 
 

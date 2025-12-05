@@ -22,9 +22,9 @@ namespace TOR_Core.Models
             float _failChance;
             ExplainedNumber bonusChance = new ExplainedNumber(1f, false, null);
             base.GetChances(optionArgs, out _successChance, out _critSuccessChance, out _critFailChance, out _failChance, difficultyMultiplier);
-            if (CharacterObject.PlayerCharacter.GetPerkValue(TORPerks.SpellCraft.Improvision))
+            if (CharacterObject.PlayerCharacter.GetPerkValue(TORPerks.Spellcraft.Improvision))
             {
-                PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.Improvision, CharacterObject.PlayerCharacter, false, ref bonusChance);
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Improvision, CharacterObject.PlayerCharacter, false, ref bonusChance);
             }
             successChance = MathF.Clamp(_successChance * bonusChance.ResultNumber, 0f, 1f);
             critFailChance = _critFailChance;

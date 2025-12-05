@@ -140,7 +140,7 @@ namespace TOR_Core.CampaignMechanics
                 }
 
                 Hero.MainHero.AddSkillXp(DefaultSkills.Crafting, value * 100);
-                Hero.MainHero.AddSkillXp(TORSkills.SpellCraft, value * 100);
+                Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, value * 100);
             }
         }
 

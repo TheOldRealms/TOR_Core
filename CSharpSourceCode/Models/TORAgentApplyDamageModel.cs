@@ -571,14 +571,14 @@ namespace TOR_Core.Models
             {
                 if (mask == PropertyMask.Attack || mask == PropertyMask.All)
                 {
-                    if (agentCharacter.GetPerkValue(TORPerks.SpellCraft.Exchange))
+                    if (agentCharacter.GetPerkValue(TORPerks.Spellcraft.Exchange))
                     {//Sly : description states that physical damage is converted to magical, nothing about bonuses - this should manipulate "propotions" and not "damageBonuses"
                         damageBonuses[(int)DamageType.Magical] += damageBonuses[(int)DamageType.Physical];
                     }
 
-                    if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.SpellCraft.ArcaneLink))
+                    if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.Spellcraft.ArcaneLink))
                     {
-                        damageBonuses[(int)DamageType.Magical] += (TORPerks.SpellCraft.ArcaneLink.SecondaryBonus);
+                        damageBonuses[(int)DamageType.Magical] += (TORPerks.Spellcraft.ArcaneLink.SecondaryBonus);
                     }
 
                     if (agentLeader != null && agentLeader.GetPerkValue(TORPerks.Faith.Superstitious) && agentCharacter.IsReligiousUnit())
@@ -831,9 +831,9 @@ namespace TOR_Core.Models
                 }
 
 
-                if (victimCharacter.GetPerkValue(TORPerks.SpellCraft.Dampener))
+                if (victimCharacter.GetPerkValue(TORPerks.Spellcraft.Dampener))
                 {
-                    result.AddFactor(TORPerks.SpellCraft.Dampener.SecondaryBonus);
+                    result.AddFactor(TORPerks.Spellcraft.Dampener.SecondaryBonus);
                 }
                 SkillHelper.AddSkillBonusForCharacter(TORSkillEffects.FaithWardSave, victimCharacter, ref result);
             }

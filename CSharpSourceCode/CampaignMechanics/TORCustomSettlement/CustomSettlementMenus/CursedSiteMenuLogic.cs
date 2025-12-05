@@ -268,7 +268,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
                 foreach (var hero in mainPartyHeroes)
                 {
                     if (hero == Hero.MainHero && hero.HasCareer(TORCareers.BloodKnight)) continue;
-                    if (hero.GetSkillValue(TORSkills.SpellCraft) > raisePower) raisePower = hero.GetSkillValue(TORSkills.SpellCraft);
+                    if (hero.GetSkillValue(TORSkills.Spellcraft) > raisePower) raisePower = hero.GetSkillValue(TORSkills.Spellcraft);
                 }
 
                 //a bloodknight has a chance! A 1 in 200 chance...

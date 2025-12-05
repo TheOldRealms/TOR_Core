@@ -316,8 +316,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
 
             var amount = 0;
 
-            var capableSpellsinger = MobileParty.MainParty.GetMemberHeroes().Where(x => x.IsSpellSinger()).MaxBy(x => x.GetSkillValue(TORSkills.SpellCraft));
-            amount += capableSpellsinger.GetSkillValue(TORSkills.SpellCraft) / 100;
+            var capableSpellsinger = MobileParty.MainParty.GetMemberHeroes().Where(x => x.IsSpellSinger()).MaxBy(x => x.GetSkillValue(TORSkills.Spellcraft));
+            amount += capableSpellsinger.GetSkillValue(TORSkills.Spellcraft) / 100;
 
             if (amount == 0) //Durthu symbol only increases the cap, it doesn't decrease the minimum spellcraft required
             {
@@ -368,7 +368,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
                     var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
                     if (freeSlots < 1) return;
 
-                    var capableSpellsinger = MobileParty.MainParty.GetMemberHeroes().Where(x => x.IsSpellSinger()).MaxBy(x => x.GetSkillValue(TORSkills.SpellCraft));
+                    var capableSpellsinger = MobileParty.MainParty.GetMemberHeroes().Where(x => x.IsSpellSinger()).MaxBy(x => x.GetSkillValue(TORSkills.Spellcraft));
 
                     var gainChance = TreeSpiritHelpers.GetSuccessChance(capableSpellsinger);
                     if (MBRandom.RandomFloat > gainChance) return;
