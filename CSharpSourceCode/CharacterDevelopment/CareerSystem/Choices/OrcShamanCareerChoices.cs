@@ -159,7 +159,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "CallOfDaGreen",
                     PropertyName = "Duration",
-                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft }, 0.05f),
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft }, 0.05f),
                     MutationType = OperationType.Add
                 }
             });

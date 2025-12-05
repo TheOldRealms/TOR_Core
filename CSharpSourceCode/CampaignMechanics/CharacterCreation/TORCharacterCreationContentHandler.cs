@@ -861,8 +861,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.AddAbility("GazeOfMork");
                     hero.AddKnownLore("BigWaaagh");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
-                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.SpellCraft, 25);
-                    hero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.OrcShaman);
                     break;
 

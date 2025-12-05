@@ -1,4 +1,5 @@
 using HarmonyLib;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,9 +118,21 @@ public static class EnchantmentHelper
             var arguments = trait.OnInventoryUseScript.InventoryScriptArguments;
 
             var included = false;
+
+            // Check if arguments has enough elements (need: traitId, skillId, skillValue)
+            if (arguments.Count < 3)
+            {
+                TORCommon.Log($"Enchantment blueprint {item.StringId} has insufficient arguments (expected at least 3, got {arguments.Count})", LogLevel.Error);
+                continue;
+            }
+
             var skills = Game.Current.DefaultSkills.GetDefaultSkills();
             skills.AddRange(TORSkills.Instance.GetTorSkills());
             var skill = skills.FirstOrDefault(x => x.StringId == arguments[1]);
+            if (skill == null)
+            {
+                TORCommon.Log("failed to load skill "+ arguments[1],LogLevel.Warn) ;
+            }
             var skillValue = 0;
             var hintText = new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
             var restriction = arguments.Count >= 4 ? arguments[3] : null;

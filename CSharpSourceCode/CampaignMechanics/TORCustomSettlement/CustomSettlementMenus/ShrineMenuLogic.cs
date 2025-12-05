@@ -450,7 +450,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         // Orc Shaman perks - grant bonuses after successful looting
         if (Hero.MainHero.HasCareerChoice("BonesAnFirepitzPassive4"))
         {
-            Hero.MainHero.AddSkillXp(TORSkills.SpellCraft, 200);
+            Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, 200);
         }
 
         if (Hero.MainHero.HasCareerChoice("GiftzFromDaGreatGreenPassive1"))
