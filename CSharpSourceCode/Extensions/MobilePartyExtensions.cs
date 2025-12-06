@@ -79,7 +79,7 @@ namespace TOR_Core.Extensions
         {
             if (party == MobileParty.MainParty)
             {
-                if (party.LeaderHero != null)
+                if (party.LeaderHero != null && !Hero.MainHero.IsPrisoner) //a game save occurring after the player is taken prisoner may end up with LeaderHero not yet being null, but no heroes will be in the party so MaxBy finds an empty enumerable
                 {
                     var engineers = party.GetMemberHeroes();
 

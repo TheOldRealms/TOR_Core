@@ -38,7 +38,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         {"tor_priest_trainer_empire_shallya_0",("ShallyaTrainRE","Medicine", "priest_hubcult_of_shallya","priest_hub_reintrocult_of_shallya",[])},
         {"tor_priest_trainer_empire_shallya_1",("ShallyaTrainCO","Medicine", "priest_hubcult_of_shallya","priest_hub_reintrocult_of_shallya",[])},
         {"tor_nulnengineernpc_empire",("EngineerEmpire","Engineering", "hub","hubaftermission",[])},
-        {"tor_spelltrainer_empire_0",("EmpireMagister","Spellcraft", "choices","choices",["SpellCaster"])},
+        {"tor_spelltrainer_empire_0",("EmpireMagister","Spellcraft", "choices","start",["SpellCaster"])},
         {"tor_dawi_runelord_trainer_0",("DwarfRunelord","Spellcraft", "tor_dw_guildmaster_runesmith_hub","tor_dw_guildmaster_runesmith_start_reintro",["Runesmith"])},
         {"tor_spelltrainer_vc_0",("Necromancer","Spellcraft", "priest_hubcult_of_sigmar","priest_hub_reintrocult_of_sigmar",[])},
     };

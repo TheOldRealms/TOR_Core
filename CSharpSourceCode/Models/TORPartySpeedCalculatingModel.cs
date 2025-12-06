@@ -103,19 +103,15 @@ namespace TOR_Core.Models
                 result.AddFactor(-0.9f, new TextObject("Burden of Dark Energy Costs is too high!"));
             }
 
-            if (leaderHero.IsVampire()) //player vamp
+            if (leaderHero.IsVampire())//player vamp
             {
-                if (Campaign.Current.IsNight)
+                if (Campaign.Current.IsNight || faceTerrainType == TerrainType.Forest || leaderHero.HasCareerChoice("NewBloodPassive4") || leaderHero.HasCareerChoice("ControlledHungerPassive1"))
                 {
-                    result.AddFactor(0.25f, new TextObject("Vampire Nighttime bonus"));
+                    result.AddFactor(0.50f, new TextObject("Vampire Nighttime bonus"));
                 }
-
-                int daytime = CampaignTime.Now.GetHourOfDay;
-                var isNight = daytime >= 18 || daytime < 6;
-
-                if (!isNight && faceTerrainType != TerrainType.Forest && !leaderHero.HasCareerChoice("NewBloodPassive4") && !leaderHero.HasCareerChoice("ControlledHungerPassive1"))
+                else
                 {
-                    result.AddFactor(-0.2f, new TextObject("Suffering from sun light"));
+                    result.AddFactor(-0.25f, new TextObject("Suffering from sun light"));
                 }
             }
             /*This requires editing the base speed calculation because it implements nighttime hours which are very restrictive and causes a mismatch between our night bonus and their night penalty. Not worth pursuing atm until more willing to understand and modify the speed calculation in more detail.
