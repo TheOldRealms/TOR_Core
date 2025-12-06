@@ -436,7 +436,7 @@
 
         <div class="controls">
             <div class="file-input-wrapper">
-                <label for="xmlFiles">Load XML Files (settlements, clans, kingdoms)</label>
+                <label for="xmlFiles">Load XML Files (settlements, clans, kingdoms, cultures)</label>
                 <input type="file" id="xmlFiles" accept=".xml" multiple>
                 <span class="file-name" id="fileName">No files selected</span>
             </div>
@@ -620,34 +620,18 @@
         let selectedSettlements = new Set();
         let lastSelectedId = null;
         let settlementsXMLContent = null;
+        let modifiedSettlements = new Set(); // Track which settlements have been modified
         let allFactions = new Set();
         let allVillageTypes = new Set();
         let allCultures = new Set();
 
-        // Culture display name mappings - matching TORConstants.Cultures
-        const cultureDisplayNames = {
-            'Culture.empire': 'Empire',
-            'Culture.vlandia': 'Bretonnia',
-            'Culture.battania': 'Asrai',
-            'Culture.sturgia': 'Dawi',
-            'Culture.aserai': 'Greenskin',
-            'Culture.khuzait': 'Sylvania',
-            'Culture.eonir': 'Eonir',
-            'Culture.druchii': 'Druchii',
-            'Culture.chaos_culture': 'Chaos',
-            'Culture.mousillon': 'Mousillon',
-            'Culture.steppe_bandits': 'Beastmen',
-            'Culture.desert_bandits': 'Herrimault',
-            'Culture.blooddragons': 'Blood Dragons',
-            'Culture.forest_bandits': 'Forest Bandits',
-            'Culture.mountain_bandits': 'Mountain Bandits',
-            'Culture.sea_raiders': 'Sea Raiders',
-            'Culture.greenskin_bandit': 'Greenskin Bandits'
-        };
+        // Culture display name mappings - will be populated from XML
+        let cultureDisplayNames = new Map();
 
         // Helper function to get display name for culture
         function getCultureDisplayName(culture) {
-            return cultureDisplayNames[culture] || culture.replace('Culture.', '');
+            // Return the name from XML if available, otherwise return the culture ID as-is
+            return cultureDisplayNames.get(culture) || culture;
         }
 
         // Helper function to get display name for faction/clan
@@ -680,6 +664,7 @@
                 let settlementsXML = null;
                 let clansXML = null;
                 let kingdomsXML = null;
+                let culturesXML = null;
                 let filesLoaded = 0;
 
                 files.forEach(file => {
@@ -693,12 +678,18 @@
                             kingdomsXML = content;
                         } else if (file.name.includes('clan')) {
                             clansXML = content;
+                        } else if (file.name.includes('culture')) {
+                            culturesXML = content;
                         }
 
                         filesLoaded++;
 
                         if (filesLoaded === files.length) {
-                            // Parse kingdoms first
+                            // Parse cultures first
+                            if (culturesXML) {
+                                parseCulturesXML(culturesXML);
+                            }
+                            // Parse kingdoms
                             if (kingdomsXML) {
                                 parseKingdomsXML(kingdomsXML);
                             }
@@ -753,6 +744,37 @@
             });
 
             console.log('Loaded ' + (kingdomColors.size / 2) + ' kingdom colors');
+        }
+
+        // Parse Culture XML to get culture display names
+        function parseCulturesXML(xmlString) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+            const parserError = xmlDoc.querySelector('parsererror');
+            if (parserError) {
+                console.error('Error parsing cultures XML:', parserError.textContent);
+                return;
+            }
+
+            cultureDisplayNames.clear();
+            const cultureNodes = xmlDoc.querySelectorAll('Culture');
+
+            cultureNodes.forEach(node => {
+                const id = node.getAttribute('id');
+                const name = node.getAttribute('name');
+
+                if (id && name) {
+                    // Extract display name from translation string {=id}Display Name
+                    const nameMatch = name.match(/^\{=([^\}]+)\}(.+)$/);
+                    const displayName = nameMatch ? nameMatch[2] : name;
+                    const fullId = id.startsWith('Culture.') ? id : 'Culture.' + id;
+                    cultureDisplayNames.set(fullId, displayName);
+                    console.log(`Loaded culture: ${fullId} -> ${displayName}`);
+                }
+            });
+
+            console.log('Loaded ' + cultureDisplayNames.size + ' culture names');
         }
 
         // Parse Clan XML
@@ -1043,11 +1065,17 @@
             const cultures = [...new Set(settlements.map(s => s.culture))].sort();
             const select = document.getElementById('filterCulture');
             select.innerHTML = '<option value="">All Cultures</option>';
-            cultures.forEach(culture => {
+            // Sort cultures by display name
+            const sortedCultures = cultures.sort((a, b) => {
+                const nameA = getCultureDisplayName(a);
+                const nameB = getCultureDisplayName(b);
+                return nameA.localeCompare(nameB);
+            });
+            sortedCultures.forEach(culture => {
                 if (culture) {
                     const option = document.createElement('option');
                     option.value = culture;
-                    option.textContent = culture;
+                    option.textContent = getCultureDisplayName(culture);
                     select.appendChild(option);
                 }
             });
@@ -1080,7 +1108,11 @@
             filteredSettlements = settlements.filter(s => {
                 if (filterName && !s.name.toLowerCase().includes(filterName)) return false;
                 if (filterId && !s.id.toLowerCase().includes(filterId)) return false;
-                if (filterOwner && !s.owner.toLowerCase().includes(filterOwner)) return false;
+                if (filterOwner) {
+                    const ownerLower = s.owner.toLowerCase();
+                    const clanName = getClanDisplayName(s.owner).toLowerCase();
+                    if (!ownerLower.includes(filterOwner) && !clanName.includes(filterOwner)) return false;
+                }
                 if (filterCulture && s.culture !== filterCulture) return false;
                 if (filterComponentType && s.componentType !== filterComponentType) return false;
                 if (filterVillageType && s.villageType !== filterVillageType) return false;
@@ -1138,14 +1170,16 @@
                     }
                 }
 
-                // Create owner dropdown with clan names
+                // Create owner dropdown with clan names and IDs
                 const ownerOptions = Array.from(allFactions).sort((a, b) => {
                     const nameA = getClanDisplayName(a);
                     const nameB = getClanDisplayName(b);
                     return nameA.localeCompare(nameB);
-                }).map(faction =>
-                    `<option value="${faction}" ${s.owner === faction ? 'selected' : ''}>${getClanDisplayName(faction)}</option>`
-                ).join('');
+                }).map(faction => {
+                    const displayName = getClanDisplayName(faction);
+                    const shortId = faction.replace('Faction.', '');
+                    return `<option value="${faction}" ${s.owner === faction ? 'selected' : ''}>${displayName} (${shortId})</option>`;
+                }).join('');
 
                 // Create village production dropdown
                 const villageTypeOptions = Array.from(allVillageTypes).sort().map(type =>
@@ -1229,7 +1263,7 @@
                             <div class="settlement-item-name">${s.name}</div>
                             <div class="settlement-item-details">
                                 <span class="type-badge type-${s.componentType}" style="margin-right: 5px; padding: 2px 5px;">${s.componentType}</span>
-                                ${s.owner.replace('Faction.', '')}
+                                ${s.id}
                             </div>
                         </div>
                     </div>
@@ -1377,6 +1411,7 @@
             const settlement = settlements.find(s => s.id === settlementId);
             if (settlement) {
                 settlement.owner = newValue;
+                modifiedSettlements.add(settlementId);
                 console.log(`Updated ${settlementId} owner to: ${settlement.owner}`);
                 renderMap(); // Update map colors if faction coloring is enabled
             }
@@ -1387,6 +1422,7 @@
             const settlement = settlements.find(s => s.id === settlementId);
             if (settlement && settlement.componentType === 'Village') {
                 settlement.villageType = newValue || null;
+                modifiedSettlements.add(settlementId);
                 console.log(`Updated ${settlementId} village type to: ${settlement.villageType}`);
                 renderMap(); // Update map colors if village production coloring is enabled
             }
@@ -1398,6 +1434,7 @@
             if (settlement) {
                 const prosperity = parseFloat(newValue);
                 settlement.prosperity = isNaN(prosperity) ? null : prosperity;
+                modifiedSettlements.add(settlementId);
                 console.log(`Updated ${settlementId} prosperity to: ${settlement.prosperity}`);
             }
         }
@@ -1407,6 +1444,7 @@
             const settlement = settlements.find(s => s.id === settlementId);
             if (settlement) {
                 settlement.text = newValue.trim() || '';
+                modifiedSettlements.add(settlementId);
                 console.log(`Updated ${settlementId} description to: ${settlement.text}`);
             }
         }
@@ -1416,6 +1454,7 @@
             const settlement = settlements.find(s => s.id === settlementId);
             if (settlement) {
                 settlement.translationId = newValue.trim() || '';
+                modifiedSettlements.add(settlementId);
                 console.log(`Updated ${settlementId} translation ID to: ${settlement.translationId}`);
             }
         }
@@ -1425,6 +1464,7 @@
             const settlement = settlements.find(s => s.id === settlementId);
             if (settlement) {
                 settlement.name = newValue.trim() || '';
+                modifiedSettlements.add(settlementId);
                 console.log(`Updated ${settlementId} name to: ${settlement.name}`);
             }
         }
@@ -1434,6 +1474,7 @@
             const settlement = settlements.find(s => s.id === settlementId);
             if (settlement) {
                 settlement.textTranslationId = newValue.trim() || '';
+                modifiedSettlements.add(settlementId);
                 console.log(`Updated ${settlementId} description translation ID to: ${settlement.textTranslationId}`);
             }
         }
@@ -1443,6 +1484,7 @@
             const settlement = settlements.find(s => s.id === settlementId);
             if (settlement) {
                 settlement.culture = newValue;
+                modifiedSettlements.add(settlementId);
                 console.log(`Updated ${settlementId} culture to: ${settlement.culture}`);
             }
         }
@@ -1457,11 +1499,18 @@
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(settlementsXMLContent, 'text/xml');
 
-            // Update each settlement in the XML
-            let updatedCount = 0;
-            settlements.forEach(settlement => {
-                const settlementNode = xmlDoc.querySelector(`Settlement[id="${settlement.id}"]`);
-                if (settlementNode) {
+            // Update only modified settlements in the XML
+            const updatedCount = modifiedSettlements.size;
+
+            if (updatedCount === 0) {
+                alert('No changes to save. Please modify some settlements first.');
+                return;
+            }
+
+            modifiedSettlements.forEach(settlementId => {
+                const settlement = settlements.find(s => s.id === settlementId);
+                const settlementNode = xmlDoc.querySelector(`Settlement[id="${settlementId}"]`);
+                if (settlementNode && settlement) {
                     // Update name (combine translation ID and name in format: {=translation_id}Name)
                     if (settlement.translationId && settlement.name) {
                         const fullName = `{=${settlement.translationId}}${settlement.name}`;
@@ -1488,7 +1537,6 @@
                     // Update owner (only for non-villages, villages don't have owner attribute)
                     if (settlement.componentType !== 'Village' && settlement.owner) {
                         settlementNode.setAttribute('owner', settlement.owner);
-                        updatedCount++;
                     }
 
                     // Find Components element
@@ -1872,6 +1920,7 @@
                 ctx.font = '12px Arial';
                 const lines = [
                     hoveredSettlement.name,
+                    `ID: ${hoveredSettlement.id}`,
                     `Type: ${hoveredSettlement.componentType}`,
                     `Owner: ${hoveredSettlement.owner.replace('Faction.', '')}`
                 ];
