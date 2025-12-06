@@ -71,15 +71,9 @@ public class TOREnchantmentIngredientsModel : GameModel
                 {
 
                     var inAthelLoren = false;
-                    if (mapEvent != null)
+                    if (mapEvent?.GetLeaderParty(BattleSideEnum.Defender)?.MobileParty?.InAthelLoren() == true)
                     {
-                        var settlement = TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 150f,
-                            x => x.Culture.StringId == TORConstants.Cultures.ASRAI);
-
-                        if (settlement.AnyQ(x => x.Culture.StringId == TORConstants.Cultures.ASRAI))
-                        {
-                            inAthelLoren = true;
-                        }
+                        inAthelLoren = true;
                     }
 
 
@@ -87,7 +81,7 @@ public class TOREnchantmentIngredientsModel : GameModel
                     {
                         result += 5f;
                     }
-                    if (character.IsTreeSpirit())
+                    if (character.IsTreeSpirit())//Sly : treemen are TreeSpirits so this grants 7.5 for them
                     {
                         result += 2.5f;
                     }

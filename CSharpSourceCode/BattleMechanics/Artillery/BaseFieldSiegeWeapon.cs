@@ -12,7 +12,8 @@ namespace TOR_Core.BattleMechanics.Artillery
     {
         public bool PreferHighAngle = false;
         public abstract float ProjectileVelocity { get; }
-        protected List<StandingPointWithWeaponRequirement> AmmoPickUpStandingPoints => base.StandingPoints.OfType<StandingPointWithWeaponRequirement>().ToList(); //Sly : alternatively, use base.AmmoPickUpPoints to have the untyped list of the ammo points
+        //protected List<StandingPoint> AmmoPickUpStandingPoints => base.AmmoPickUpPoints;
+        //base.StandingPoints.OfType<StandingPointWithWeaponRequirement>().ToList(); //Sly : alternatively, use base.AmmoPickUpPoints to have the untyped list of the ammo points
         private BattleSideEnum _side;
         public override BattleSideEnum Side => _side;
         public void SetSide(BattleSideEnum side) => _side = side;
@@ -99,8 +100,8 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         protected void ForceAmmoPointUsage()
         {
-            var standingPointWithWeaponRequirement = base.StandingPoints.OfType<StandingPointWithWeaponRequirement>().ToList();
-            var ammoPickUpPoints = base.AmmoPickUpPoints; //Sly : for my curiosity about the different standing point types and their relevance to ammo pickup
+            //var standingPointWithWeaponRequirement = base.StandingPoints.OfType<StandingPointWithWeaponRequirement>().ToList();
+            //var ammoPickUpPoints = base.AmmoPickUpPoints; //Sly : for my curiosity about the different standing point types and their relevance to ammo pickup
 
             if (State == WeaponState.LoadingAmmo && !LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.HasAIMovingTo)
                 if (State == WeaponState.LoadingAmmo && !LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.HasAIMovingTo)

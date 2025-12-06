@@ -105,10 +105,13 @@ namespace TOR_Core.BattleMechanics.Artillery
 			this._sling = list[0];
 			list = base.GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>("rope");
 			this._rope = list[0];
-			var list2 = new List<WeakGameEntity>();
-			base.GameEntity.GetChildrenRecursive( ref list2);
-			var verticalAdjusterWeak = list2.FirstOrDefault(x => x.HasTag("vertical_adjuster"));
-			this._verticalAdjuster = base.Scene.GetEntityWithGuid(verticalAdjusterWeak.GetGuid());
+			//var list2 = new List<WeakGameEntity>();
+			//base.GameEntity.GetChildrenRecursive( ref list2);
+			//var verticalAdjusterWeak = list2.FirstOrDefault(x => x.HasTag("vertical_adjuster"));
+            
+            List<WeakGameEntity> list2 = base.GameEntity.CollectChildrenEntitiesWithTag("vertical_adjuster");
+            this._verticalAdjuster = TaleWorlds.Engine.GameEntity.CreateFromWeakEntity(list2[0]);
+			//this._verticalAdjuster = base.Scene.GetEntityWithGuid(verticalAdjusterWeak.GetGuid());
 			this._verticalAdjusterSkeleton = this._verticalAdjuster.Skeleton;
 			this._verticalAdjusterSkeleton.SetAnimationAtChannel(this.VerticalAdjusterAnimation, 0, 1f, -1f, 0f);
 			this._verticalAdjusterStartingLocalFrame = this._verticalAdjuster.GetFrame();
@@ -315,7 +318,7 @@ namespace TOR_Core.BattleMechanics.Artillery
 			}
 			if (!GameNetwork.IsClientOrReplay)
 			{
-				foreach (StandingPointWithWeaponRequirement standingPointWithWeaponRequirement in this.AmmoPickUpStandingPoints)
+				foreach (StandingPointWithWeaponRequirement standingPointWithWeaponRequirement in AmmoPickUpPoints)
 				{
 					if (standingPointWithWeaponRequirement.HasUser)
 					{
@@ -530,7 +533,7 @@ namespace TOR_Core.BattleMechanics.Artillery
 				}
 				foreach (StandingPoint standingPoint2 in base.StandingPoints)
 				{
-					if (standingPoint2.HasUser && this.ReloadStandingPoints.IndexOf(standingPoint2) < 0 && (!(standingPoint2 is StandingPointWithWeaponRequirement) || (this._ammoLoadPoints.IndexOf((StandingPointWithWeaponRequirement)standingPoint2) < 0 && this.AmmoPickUpStandingPoints.IndexOf((StandingPointWithWeaponRequirement)standingPoint2) < 0)))
+					if (standingPoint2.HasUser && this.ReloadStandingPoints.IndexOf(standingPoint2) < 0 && (!(standingPoint2 is StandingPointWithWeaponRequirement) || (this._ammoLoadPoints.IndexOf((StandingPointWithWeaponRequirement)standingPoint2) < 0 && AmmoPickUpPoints.IndexOf((StandingPointWithWeaponRequirement)standingPoint2) < 0)))
 					{
 						Agent userAgent2 = standingPoint2.UserAgent;
 						if (!userAgent2.SetActionChannel(1, act_usage_trebuchet_reload_2_idle, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true) && userAgent2.Controller != AgentControllerType.AI)

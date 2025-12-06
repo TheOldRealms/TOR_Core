@@ -79,7 +79,7 @@ namespace TOR_Core
 
             ConfigureLogging();
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
-
+            
 
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
             HarmonyInstance.PatchAllUncategorized();
@@ -247,6 +247,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORCompanionTrainingModel());
                 gameStarterObject.AddModel(new TORVillageProductionCalculatorModel());
                 gameStarterObject.AddModel(new TOREnchantmentCraftingModel());
+                gameStarterObject.AddModel(new TORCampaignTimeModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

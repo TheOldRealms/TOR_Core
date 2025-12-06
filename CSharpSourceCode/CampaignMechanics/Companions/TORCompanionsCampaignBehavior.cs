@@ -80,6 +80,7 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void WeeklyTick()
         {
+            //this spawns new wanderers weekly to fill empty towns, but this will not shuffle/refresh the existing wanderers; a wanderer needs to be hired or the town changes culture in order to make space for a new wanderer to allow a turnover of wanderer type if the existing ones are not what a player wants
             foreach (var town in Town.AllTowns)
             {
                 //this assumes that all deletion of incorrect wanderers is correctly handled by other methods - tbd if that holds true
@@ -93,28 +94,22 @@ namespace TOR_Core.CampaignMechanics.Companions
                 SpawnWanderer(town.Settlement);
             }
 
-            var first = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>().WhereQ(x => x.Occupation == Occupation.Wanderer).ToHashSet();
-            TORCommon.Log("Wanderer count before unregister : " + first.Count.ToString(), NLog.LogLevel.Info);
 
             foreach (var wandererToRemove in _spawnedCompanions.ToArray())
             {
                 if (wandererToRemove.HeroState == Hero.CharacterStates.Disabled || wandererToRemove.HeroState == Hero.CharacterStates.Dead)
                 {
                     UnregisterWandererObject(wandererToRemove);
-                    _spawnedCompanions.Remove(wandererToRemove);
                 }
             }
-
-            var diction = MBObjectManager.Instance.GetObjectTypeList<CharacterObject>().WhereQ(x => x.Occupation == Occupation.Wanderer).ToHashSet();
-            TORCommon.Log("Wanderer count after unregister : " + diction.Count.ToString(), NLog.LogLevel.Info);
         }
 
-        //Sly : this is here for centralizing the companion mechanics, but I'd prefer to put this into the PartyEntered for town components
+        //Sly : this is here for centralizing the companion mechanics, but I'd prefer to put this into the PartyEntered for town components so that it's not checked for every other settlement component
         private void VerifyWanderersOnEnter(MobileParty party, Settlement settlement, Hero hero)
         {//I hope this event isn't thrown after a siege completes but before the settlement stops being considered under siege!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (hero != Hero.MainHero || hero.IsPrisoner || party != MobileParty.MainParty) return;
 
-            if (!settlement.IsTown) return;//don't spawn wanderers into the wrong settlement componenets
+            if (!settlement.IsTown) return;//don't spawn wanderers into the wrong settlement components
             
             if (settlement.IsUnderSiege) return;//Skip towns under siege : EnterSettlementAction unsafe
 
@@ -144,7 +139,7 @@ namespace TOR_Core.CampaignMechanics.Companions
         {
             if (settlement.Culture == newOwner.Culture) return;//nothing to do for transitions within culture
             
-            if (!settlement.IsTown) return;//don't care about all the other types
+            if (!settlement.IsTown) return;//don't care about all the other settlement components
             
             if (settlement.IsUnderSiege)//please don't be under siege somehow at this point....!!!!!!!!!!
             {
@@ -182,7 +177,6 @@ namespace TOR_Core.CampaignMechanics.Companions
 
                 if (!victim.HasMet)//not bothering to wait for weekly tick
                 {
-                    _spawnedCompanions.Remove(victim);
 				    UnregisterWandererObject(victim);
                 }
 			}
@@ -286,8 +280,7 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void DisableWanderer(Hero wanderer)//should this kill them instead? still unsure on the nuance of dead/disable, except that death shows up in the encyclopedia and the obituary is default text of little relevance
         {
-            //_aliveCompanions.Remove(wanderer);
-            //wanderer is removed and disabled; clean up occurs on the weekly tick to clear out outdated wanderers from the object manager
+            //wanderer is disabled, clean up occurs on the weekly tick to clear out outdated wanderers from the object managers
             DisableHeroAction.Apply(wanderer);//takes care of party membership, settlement, prisonership, CharacterState
         }
 
@@ -295,10 +288,21 @@ namespace TOR_Core.CampaignMechanics.Companions
         {
             //does this handle encyclopedia entries?
             
-            var objectManager = Campaign.Current.CampaignObjectManager;
-            //var objectManager = Activator.CreateInstance(typeof(CampaignObjectManager));
+            //UnregisterDeadHero takes care of calling methods to remove the hero from the cache lists, deleting their dictionary entries from hero-hero relations, etc...; it does *not* handle deleting their unique character object. In the case of wanderers, the template exists as a charObject, then upon creating the wanderer a new unique charObject is created and the template is copied onto it.
             var method = AccessTools.Method(typeof(CampaignObjectManager), "UnregisterDeadHero");
-            method.Invoke(objectManager, new object[] { hero });
+            method.Invoke(Campaign.Current.CampaignObjectManager, new object[] { hero });//if the object manager is stored locally, then passed as an argument it will cause a runtime mistmatch error because the method being invoked is internal. Passing the CampaignObjectManager into the invoke avoids that.
+
+            MBObjectManager.Instance.UnregisterObject(hero.CharacterObject);//heroes (Hero type) do not have entries in the object manager. They are references to character objects upon creation, but are then baked into the save file after that for things like their hero developer.
+
+            //a bit hefty, but wanderer deletion doesn't occur very often
+            if (MBObjectManager.Instance.GetObject<CharacterObject>(x => x.StringId == hero.CharacterObject.StringId) == null)
+            {
+                _spawnedCompanions.Remove(hero);
+            }
+            else
+            {
+                TORCommon.Log("TORCompanionCampaignBehavior : " + hero.Name + " is still present in the object manager and was not removed from _spawnedCompanions.", NLog.LogLevel.Info);
+            }
         }
 
         private void AdjustEquipment(Hero hero)
