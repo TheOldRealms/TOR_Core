@@ -288,27 +288,27 @@
   </Settlement>
   <Settlement id="gork_shrine_01" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.athel_loren_clan_1" posX="1056.317" posY="954.124" culture="Culture.aserai" text="{=!}Shrine of Kurnous">
     <Components>
-      <Shrine id="gork_shrine_01" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="gork_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="gork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.athel_loren_clan_1" posX="1279.005" posY="699.557" culture="Culture.aserai" text="{=!}Shrine of Kurnous">
     <Components>
-      <Shrine id="gork_shrine_02" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="gork_shrine_02" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="gork_shrine_03" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.athel_loren_clan_1" posX="1605.916" posY="935.799" culture="Culture.aserai" text="{=!}Shrine of Kurnous">
     <Components>
-      <Shrine id="gork_shrine_03" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="gork_shrine_03" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="mork_shrine_01" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.athel_loren_clan_1" posX="1778.073" posY="1119.793" culture="Culture.battania" text="{=!}Shrine of Kurnous">
     <Components>
-      <Shrine id="gork_shrine_01" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="gork_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="mork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.athel_loren_clan_1" posX="1620.704" posY="863.309" culture="Culture.battania" text="{=!}Shrine of Kurnous">
     <Components>
-      <Shrine id="gork_shrine_02" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="gork_shrine_02" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="haunted_site_01" name="{=str_tor_settlements_haunted_site1}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1582.078" posY="1016.387" culture="Culture.khuzait" text="{=!}Called Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs." gate_posX="1582.078" gate_posY="1016.387">
