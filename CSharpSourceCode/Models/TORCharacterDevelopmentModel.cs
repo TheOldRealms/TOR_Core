@@ -24,7 +24,7 @@ namespace TOR_Core.Models
             var spellCastingtraitLevel = character.GetTraitLevel(TORCharacterTraits.SpellCasterSkills);
             if(spellCastingtraitLevel > 0)
             {
-                list.Add(new Tuple<SkillObject, int>(TORSkills.SpellCraft, 100));
+                list.Add(new Tuple<SkillObject, int>(TORSkills.Spellcraft, 100));
             }
             
             var gunpowderSkill = character.GetTraitLevel(TORCharacterTraits.Gunner);

@@ -752,13 +752,13 @@ namespace TOR_Core.AbilitySystem
                 if (info == null)
                     continue;
 
-                if (hero.GetPerkValue(TORPerks.SpellCraft.Improvision) &&
-                    info.GetCustomResourceValue("WindsOfMagic") < TORPerks.SpellCraft.Improvision.PrimaryBonus)
+                if (hero.GetPerkValue(TORPerks.Spellcraft.Improvision) &&
+                    info.GetCustomResourceValue("WindsOfMagic") < TORPerks.Spellcraft.Improvision.PrimaryBonus)
                 {
-                    info.SetCustomResourceValue("WindsOfMagic", TORPerks.SpellCraft.Improvision.PrimaryBonus);
+                    info.SetCustomResourceValue("WindsOfMagic", TORPerks.Spellcraft.Improvision.PrimaryBonus);
                 }
 
-                if (hero.GetPerkValue(TORPerks.SpellCraft.Catalyst))
+                if (hero.GetPerkValue(TORPerks.Spellcraft.Catalyst))
                 {
                     int magicItemCount = 0;
                     for (int slotIndex = 0; slotIndex < (int)EquipmentIndex.NumEquipmentSetSlots; slotIndex++)
@@ -775,7 +775,7 @@ namespace TOR_Core.AbilitySystem
                     {
                         info.AddCustomResource(
                             "WindsOfMagic",
-                            magicItemCount * TORPerks.SpellCraft.Catalyst.PrimaryBonus
+                            magicItemCount * TORPerks.Spellcraft.Catalyst.PrimaryBonus
                         );
                     }
                 }

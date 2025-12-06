@@ -57,7 +57,7 @@ namespace TOR_Core.AbilitySystem.Spells
 
         private static float CalculateMiscastChance(Hero hero, Agent casterAgent, Spell spell)
         {
-            int spellcraftSkill = hero.GetSkillValue(TORSkills.SpellCraft);
+            int spellcraftSkill = hero.GetSkillValue(TORSkills.Spellcraft);
             int spellTier = spell.Template.SpellTier;
 
             float baseChance = GetBaseMiscastChance(spellcraftSkill, spellTier);
