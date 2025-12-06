@@ -1207,7 +1207,9 @@
                         style="cursor: text; background: #fffacd; min-width: 200px;"><strong>${s.name}</strong></td>
                     <td contenteditable="true" onblur="updateDescription('${s.id}', this.textContent)"
                         style="cursor: text; background: #fffacd; min-width: 200px;">${s.text || '-'}</td>
-                    <td><select onchange="updateOwner('${s.id}', this.value)" style="width: 100%; background: #fffacd; border: 1px solid #ddd; padding: 2px;">
+                    <td><select onchange="updateOwner('${s.id}', this.value)"
+                        style="width: 100%; background: ${s.componentType === 'Village' ? '#e0e0e0' : '#fffacd'}; border: 1px solid #ddd; padding: 2px;"
+                        ${s.componentType === 'Village' ? 'disabled' : ''}>
                         ${ownerOptions}
                     </select></td>
                     <td><select onchange="updateCulture('${s.id}', this.value)" style="min-width: 120px; background: #fffacd; border: 1px solid #ddd; padding: 2px;">
