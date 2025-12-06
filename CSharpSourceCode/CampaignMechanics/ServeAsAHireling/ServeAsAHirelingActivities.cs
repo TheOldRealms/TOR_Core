@@ -36,7 +36,7 @@ public class ServeAsAHirelingActivities
             {
                 TORCareers.GrailDamsel, [
                     DefaultSkills.Riding,
-                    TORSkills.SpellCraft,
+                    TORSkills.Spellcraft,
                     TORSkills.Faith,
                     DefaultSkills.Steward,
                     DefaultSkills.Medicine
@@ -46,7 +46,7 @@ public class ServeAsAHirelingActivities
             {
                 TORCareers.Necromancer, [
                     DefaultSkills.Riding,
-                    TORSkills.SpellCraft,
+                    TORSkills.Spellcraft,
                     TORSkills.Faith,
                     DefaultSkills.Steward,
                     DefaultSkills.Medicine
@@ -65,14 +65,14 @@ public class ServeAsAHirelingActivities
                 TORCareers.MinorVampire, [
                     DefaultSkills.OneHanded,
                     DefaultSkills.Charm,
-                    TORSkills.SpellCraft,
+                    TORSkills.Spellcraft,
                     DefaultSkills.Roguery,
                     DefaultSkills.Leadership,
                 ]
             },
             {
                 TORCareers.Necrarch, [
-                    TORSkills.SpellCraft,
+                    TORSkills.Spellcraft,
                     DefaultSkills.Roguery,
                     DefaultSkills.Medicine,
                     DefaultSkills.Engineering,
@@ -91,7 +91,7 @@ public class ServeAsAHirelingActivities
             },
             {
                 TORCareers.ImperialMagister, [
-                    TORSkills.SpellCraft,
+                    TORSkills.Spellcraft,
                     DefaultSkills.Steward,
                     DefaultSkills.OneHanded,
                     DefaultSkills.Medicine,
@@ -146,7 +146,7 @@ public class ServeAsAHirelingActivities
             },
             {
                 TORCareers.Spellsinger, [
-                    TORSkills.SpellCraft,
+                    TORSkills.Spellcraft,
                     DefaultSkills.Riding,
                     TORSkills.Faith,
                     DefaultSkills.Charm,
@@ -165,7 +165,7 @@ public class ServeAsAHirelingActivities
             //Eonir
             {
                 TORCareers.GreyLord, [
-                    TORSkills.SpellCraft,
+                    TORSkills.Spellcraft,
                     DefaultSkills.Steward,
                     DefaultSkills.Leadership,
                     DefaultSkills.Charm,
@@ -195,7 +195,7 @@ public class ServeAsAHirelingActivities
             },
             {
                 TORCareers.Runelord, [
-                    TORSkills.SpellCraft,
+                    TORSkills.Spellcraft,
                     TORSkills.Faith,
                     DefaultSkills.Crafting,
                     DefaultSkills.OneHanded,

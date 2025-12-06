@@ -32,7 +32,7 @@ namespace TOR_Core.Extensions.UI
         private SceneLayer _scenelayer;
         private Camera _camera;
         private Scene _scene;
-        private readonly List<string> _menuSceneNames = ["TOR_menuscene_01", "TOR_menuscene_02", "TOR_menuscene_03"];
+        private const int _maxMainMenuSceneIndex = 4; //TODO: need to change if we have scenes with at least 2 digits
 
         public TORInitialScreen(InitialState initialState)
         {
@@ -82,14 +82,16 @@ namespace TOR_Core.Extensions.UI
         {
             _scene = Scene.CreateNewScene(true, true, DecalAtlasGroup.All, "mono_renderscene");
             _scene.SetName("MainMenuScene");
-            SceneInitializationData sceneInitializationData = default;
-            _scene.Read(_menuSceneNames.GetRandomElementInefficiently(), ref sceneInitializationData);
+            SceneInitializationData sceneInitializationData = new SceneInitializationData(true);
+            _scene.Read($"TOR_menuscene_0{MBRandom.RandomInt(1, _maxMainMenuSceneIndex + 1)}", ref sceneInitializationData);
             _scene.DisableStaticShadows(true);
             _scene.SetShadow(true);
             _scene.SetClothSimulationState(true);
             _scene.SetOcclusionMode(true);
             _scene.SetDynamicShadowmapCascadesRadiusMultiplier(0.1f);
-            _scene.SetDoNotWaitForLoadingStatesToRender(true);
+            _scene.SetDoNotWaitForLoadingStatesToRender(false);
+            _scene.PreloadForRendering();
+            _scene.Tick(0f);
 
             _camera = Camera.CreateCamera();
             var cameraEntity = _scene.FindEntityWithTag("mainmenu_camera");
@@ -118,7 +120,7 @@ namespace TOR_Core.Extensions.UI
         protected override void OnActivate()
         {
             base.OnActivate();
-            if (TaleWorlds.Engine.Utilities.renderingActive)
+            if (TaleWorlds.Engine.Utilities.renderingActive && _scenelayer?.SceneView?.ReadyToRender() == true)
             {
                 TaleWorlds.Engine.Utilities.DisableGlobalLoadingWindow();
             }
@@ -158,6 +160,7 @@ namespace TOR_Core.Extensions.UI
             {
                 RemoveLayer(_scenelayer);
             }
+            _camera?.ReleaseCamera();
             _camera = null;
             _scenelayer = null;
             _scene = null;
@@ -171,7 +174,11 @@ namespace TOR_Core.Extensions.UI
         protected override void OnFrameTick(float dt)
         {
             base.OnFrameTick(dt);
-            LoadingWindow.DisableGlobalLoadingWindow();
+            if(_scenelayer?.SceneView?.ReadyToRender() == true)
+            {
+                LoadingWindow.DisableGlobalLoadingWindow();
+            }
+            
             if (Input.IsKeyDown(InputKey.LeftControl) && Input.IsKeyReleased(InputKey.E))
             {
                 MBInitialScreenBase.OnEditModeEnterPress();

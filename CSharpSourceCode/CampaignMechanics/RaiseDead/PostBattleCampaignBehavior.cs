@@ -45,7 +45,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 if (!MobileParty.MainParty.InElfForest()) return;
 
                 var heroes = Hero.MainHero.PartyBelongedTo.GetMemberHeroes();
-                var spellsinger = heroes.Where(x => x.IsSpellSinger()).MaxBy(x => x.GetSkillValue(TORSkills.SpellCraft));
+                var spellsinger = heroes.Where(x => x.IsSpellSinger()).MaxBy(x => x.GetSkillValue(TORSkills.Spellcraft));
                 var spiritCount = GetTreeSpiritCounts(spellsinger);
 
                 if (spiritCount > 0)

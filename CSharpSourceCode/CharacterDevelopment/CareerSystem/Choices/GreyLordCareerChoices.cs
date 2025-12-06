@@ -192,7 +192,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                             MutationTargetType = typeof(AbilityTemplate),
                             MutationTargetOriginalId = "MindControl",
                             PropertyName = "ScaleVariable1",
-                            PropertyValue = (choice, originalValue, agent) =>0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.SpellCraft }, 0.000625f),
+                            PropertyValue = (choice, originalValue, agent) =>0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft }, 0.000625f),
                             MutationType = OperationType.Add
                         }
                 });

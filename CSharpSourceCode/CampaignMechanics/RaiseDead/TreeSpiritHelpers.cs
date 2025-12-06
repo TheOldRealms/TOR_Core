@@ -13,7 +13,7 @@ public static class TreeSpiritHelpers
 {
     public static float GetSuccessChance(Hero spellsinger)
     {
-        return Mathf.Min(0.7f, spellsinger.GetSkillValue(TORSkills.SpellCraft) * 0.002f);//350 Spellcraft to reach 0.7
+        return Mathf.Min(0.7f, spellsinger.GetSkillValue(TORSkills.Spellcraft) * 0.002f);//350 Spellcraft to reach 0.7
     }
 
     public static bool CanBindTreeSpirits()

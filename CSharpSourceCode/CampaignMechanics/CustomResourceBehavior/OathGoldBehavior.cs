@@ -334,8 +334,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
             Hero.MainHero.AddAttribute("SpellCaster");
             Hero.MainHero.AddAbility("HearthAndHome");
 
-            Hero.MainHero.AddSkillXp(TORSkills.SpellCraft, 5000);
-            Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.SpellCraft.EntrySpells);
+            Hero.MainHero.AddSkillXp(TORSkills.Spellcraft, 5000);
+            Hero.MainHero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
             Hero.MainHero.SetSpellCastingLevel(SpellCastingLevel.Entry);
         }
         //Runelord Career real talk

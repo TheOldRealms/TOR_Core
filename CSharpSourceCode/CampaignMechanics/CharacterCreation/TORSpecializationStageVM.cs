@@ -748,7 +748,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             {
                 skills.Add(TORSkills.Faith);
                 skills.Add(TORSkills.GunPowder);
-                skills.Add(TORSkills.SpellCraft);
+                skills.Add(TORSkills.Spellcraft);
             }
 
             return skills;

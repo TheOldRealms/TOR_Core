@@ -29,9 +29,9 @@ namespace TOR_Core.Models
         {
             return ability.AbilityType switch
             {
-                AbilityType.Spell => TORSkills.SpellCraft,
+                AbilityType.Spell => TORSkills.Spellcraft,
                 AbilityType.Prayer => TORSkills.Faith,
-                _ => TORSkills.SpellCraft,
+                _ => TORSkills.Spellcraft,
             };
         }
 
@@ -107,7 +107,7 @@ namespace TOR_Core.Models
                         if (Agent.Main != null)
                         {
                             var comp = Agent.Main.GetComponent<AbilityComponent>();
-                            var spellcraftValue = Hero.MainHero.GetSkillValue(TORSkills.SpellCraft);
+                            var spellcraftValue = Hero.MainHero.GetSkillValue(TORSkills.Spellcraft);
                             explainedNumber.AddFactor(0.005f * spellcraftValue);
                         }
 
@@ -214,9 +214,9 @@ namespace TOR_Core.Models
         public float GetPerkEffectsOnAbilityDuration(CharacterObject character, AbilityTemplate template)
         {
             ExplainedNumber explainedNumber = new(1f, false, null);
-            if (character.GetPerkValue(TORPerks.SpellCraft.Selfish) && template.IsSpell)
+            if (character.GetPerkValue(TORPerks.Spellcraft.Selfish) && template.IsSpell)
             {
-                PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.Selfish, character, false, ref explainedNumber);
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Selfish, character, false, ref explainedNumber);
             }
 
             if (character.IsHero && character.HeroObject == Hero.MainHero && Agent.Main != null && Agent.Main.IsActive())
@@ -274,37 +274,37 @@ namespace TOR_Core.Models
 
             if (character != null && abilityTemplate != null)
             {
-                if (character.GetPerkValue(TORPerks.SpellCraft.Selfish) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (character.GetPerkValue(TORPerks.Spellcraft.Selfish) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
                     if (victim.Character is CharacterObject victimCharacter && character == victimCharacter)
                     {
-                        PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.Selfish, character, true, ref explainedNumber);
+                        PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Selfish, character, true, ref explainedNumber);
                     }
                 }
-                if (character.GetPerkValue(TORPerks.SpellCraft.WellControlled) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (character.GetPerkValue(TORPerks.Spellcraft.WellControlled) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
                     if (victimLeader != null && character == victimLeader)
                     {
-                        PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.WellControlled, character, true, ref explainedNumber);
+                        PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.WellControlled, character, true, ref explainedNumber);
                     }
                 }
                 if (character.IsPlayerCharacter && character.IsHero && character.HeroObject == Hero.MainHero)
                 {
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber, PassiveEffectType.SpellEffectiveness, true);
                 }
-                if (character.GetPerkValue(TORPerks.SpellCraft.OverCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (character.GetPerkValue(TORPerks.Spellcraft.OverCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.OverCaster, character, true, ref explainedNumber);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.OverCaster, character, true, ref explainedNumber);
                 }
-                if (character.GetPerkValue(TORPerks.SpellCraft.EfficientSpellCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (character.GetPerkValue(TORPerks.Spellcraft.EfficientSpellCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.EfficientSpellCaster, character, true, ref explainedNumber);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.EfficientSpellCaster, character, true, ref explainedNumber);
                 }
-                if (character.GetPerkValue(TORPerks.SpellCraft.Dampener) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (character.GetPerkValue(TORPerks.Spellcraft.Dampener) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.Dampener, character, true, ref explainedNumber);
+                    PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Dampener, character, true, ref explainedNumber);
                 }
-                if (victimCaptain != null && victimCaptain.GetPerkValue(TORPerks.SpellCraft.Dampener) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (victimCaptain != null && victimCaptain.GetPerkValue(TORPerks.Spellcraft.Dampener) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
                 {
                     explainedNumber.AddFactor(-0.3f);
                 }
@@ -330,9 +330,9 @@ namespace TOR_Core.Models
         public int GetSpellGoldCostForHero(Hero hero, AbilityTemplate spellTemplate)
         {
             ExplainedNumber goldCost = new(spellTemplate.GoldCost);
-            if (hero.GetPerkValue(TORPerks.SpellCraft.Librarian))
+            if (hero.GetPerkValue(TORPerks.Spellcraft.Librarian))
             {
-                PerkHelper.AddPerkBonusForCharacter(TORPerks.SpellCraft.Librarian, hero.CharacterObject, false, ref goldCost);
+                PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.Librarian, hero.CharacterObject, false, ref goldCost);
             }
             return (int)goldCost.ResultNumber;
         }
@@ -342,13 +342,13 @@ namespace TOR_Core.Models
             ExplainedNumber cost = new(template.WindsOfMagicCost);
             if (character != null && template != null)
             {
-                if (character.GetPerkValue(TORPerks.SpellCraft.OverCaster))
+                if (character.GetPerkValue(TORPerks.Spellcraft.OverCaster))
                 {
-                    cost.AddFactor(TORPerks.SpellCraft.OverCaster.SecondaryBonus);
+                    cost.AddFactor(TORPerks.Spellcraft.OverCaster.SecondaryBonus);
                 }
-                if (character.GetPerkValue(TORPerks.SpellCraft.EfficientSpellCaster))
+                if (character.GetPerkValue(TORPerks.Spellcraft.EfficientSpellCaster))
                 {
-                    cost.AddFactor(TORPerks.SpellCraft.EfficientSpellCaster.SecondaryBonus);
+                    cost.AddFactor(TORPerks.Spellcraft.EfficientSpellCaster.SecondaryBonus);
                 }
 
                 if (character.IsPlayerCharacter)
