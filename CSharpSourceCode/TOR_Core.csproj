@@ -762,6 +762,7 @@
     <Compile Include="Models\TORBattleMoraleModel.cs" />
     <Compile Include="Models\TORBattleRewardModel.cs" />
     <Compile Include="Models\TORBuildingEffectModel.cs" />
+    <Compile Include="Models\TORCampaignTimeModel.cs" />
     <Compile Include="Models\TORCharacterDevelopmentModel.cs" />
     <Compile Include="Models\TORCharacterStatsModel.cs" />
     <Compile Include="Models\TORClanFinanceModel.cs" />
