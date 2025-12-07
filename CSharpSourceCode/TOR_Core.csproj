@@ -703,6 +703,7 @@
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
     <Compile Include="HarmonyPatches\MBMusicManagerPatches.cs" />
+    <Compile Include="HarmonyPatches\MedicineSurgeryChancePatch.cs" />
     <Compile Include="HarmonyPatches\MissionPatches.cs" />
     <Compile Include="HarmonyPatches\MobilePartyPatches.cs" />
     <Compile Include="HarmonyPatches\ModelPatches.cs" />
@@ -712,6 +713,7 @@
     <Compile Include="HarmonyPatches\RaceFixPatches.cs" />
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />
     <Compile Include="HarmonyPatches\TableauRenderPatches.cs" />
+    <Compile Include="HarmonyPatches\VeterinarianPatch.cs" />
     <Compile Include="HarmonyPatches\ViewModelPatches.cs" />
     <Compile Include="HarmonyPatches\ViewModelRefreshPatch.cs" />
     <Compile Include="Ink\InkFakeMarketData.cs" />
