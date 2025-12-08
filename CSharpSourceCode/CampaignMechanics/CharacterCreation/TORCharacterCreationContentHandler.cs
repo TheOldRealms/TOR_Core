@@ -851,8 +851,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 case "option_3_gs_path_of_bully":
                 case "option_3_gs_path_of_boar_boys":
                 case "option_3_gs_path_of_savage_boys":
-                case "option_3_gs_path_of_shaman":
                     hero.AddCareer(TORCareers.OrcBoss);
+                    break;
+
+                case "option_3_gs_path_of_shaman":
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddAbility("GazeOfMork");
+                    hero.AddKnownLore("BigWaaagh");
+                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
+                    hero.AddCareer(TORCareers.OrcShaman);
                     break;
 
                 // Empire knight from stage 2 (not stage 3, but included for completeness)

@@ -36,6 +36,10 @@ namespace TOR_Core.Utilities
 
         public event EventHandler<LordDuelWonEventArgs> LordDuelWon;
 
+        public event EventHandler<ShrinePrayerEventArgs> ShrinePrayer;
+
+        public event EventHandler<ShrineLootedEventArgs> ShrineLooted;
+
         public TORCampaignEvents()
         {
             Instance = this;
@@ -161,6 +165,26 @@ namespace TOR_Core.Utilities
                 lordDuelWon(this, args);
             }
         }
+
+        public void OnShrinePrayer(Hero hero, ReligionObject religion, Settlement shrine)
+        {
+            var args = new ShrinePrayerEventArgs(hero, religion, shrine);
+            var shrinePrayer = ShrinePrayer;
+            if (shrinePrayer != null)
+            {
+                shrinePrayer(this, args);
+            }
+        }
+
+        public void OnShrineLooted(Hero hero, ReligionObject religion, Settlement shrine)
+        {
+            var args = new ShrineLootedEventArgs(hero, religion, shrine);
+            var shrineLooted = ShrineLooted;
+            if (shrineLooted != null)
+            {
+                shrineLooted(this, args);
+            }
+        }
     }
 
     public class HeroExtendedInfoCreatedEventArgs(Hero hero) : EventArgs
@@ -255,5 +279,19 @@ namespace TOR_Core.Utilities
     {
         public Hero Hero { get; set; } = hero;
         public Hero Opponent { get; set; } = opponent;
+    }
+
+    public class ShrinePrayerEventArgs(Hero hero, ReligionObject religion, Settlement shrine) : EventArgs
+    {
+        public Hero Hero { get; set; } = hero;
+        public ReligionObject Religion { get; set; } = religion;
+        public Settlement Shrine { get; set; } = shrine;
+    }
+
+    public class ShrineLootedEventArgs(Hero hero, ReligionObject religion, Settlement shrine) : EventArgs
+    {
+        public Hero Hero { get; set; } = hero;
+        public ReligionObject Religion { get; set; } = religion;
+        public Settlement Shrine { get; set; } = shrine;
     }
 }

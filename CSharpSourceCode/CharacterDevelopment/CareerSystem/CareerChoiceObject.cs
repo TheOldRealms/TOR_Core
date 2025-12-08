@@ -290,6 +290,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         WindsCooldownReduction, //player cooldown reduction as Percentage
         PrayerCoolDownReduction, //player cooldown reduction as Percentage
         PartyMovementSpeed, //general party speed
+        PartySpottingRange, //party spotting range on campaign map, percentage based
         PartySize,
         CompanionLimit,
         TroopDamage,

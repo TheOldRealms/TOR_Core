@@ -192,10 +192,12 @@
   <!-- Enchantment shop-->
   <string id="enchantmentshop_title.sturgia" text= "{=str_tor_cc_profession_battania}Make your choice…"/>
   <string id="enchantmentshop_title.empire" text= "{=str_tor_cc_profession_battania}Make your choice…"/>
+  <string id="enchantmentshop_title.aserai" text= "{=str_tor_cc_profession_battania}Make your choice…"/>
   <string id="enchantmentshop_title.blessings" text= "{=str_tor_cc_profession_battania}Make your choice…"/>
   
   <string id="enchantmentshop_description.empire" text= "{=str_tor_cc_profession_battania}Select an enchantment scroll to study"/>
   <string id="enchantmentshop_description.sturgia" text= "{=str_tor_cc_profession_battania}Select a rune carving to study"/>
+  <string id="enchantmentshop_description.aserai" text= "{=str_tor_cc_profession_battania}Select a shamanic totem to study"/>
   <string id="enchantmentshop_description.blessings" text= "{=str_tor_cc_profession_battania}Select a blessed tome to study"/>
   
   <string id="tor_enchantmentshop_restriction.Armor" text= "{=str_tor_enchantmentshop_restriction_armor}Applies to armour"/>
@@ -333,7 +335,31 @@
 
   <string id="enchanter_info_resource_Gemstones_1.sturgia" text= "{=str_tor_cc_profession_battania}Ahh gems! I hear tales of treasures found amidst Dwarfen mines, or carried into battle by the Dwarf folk. As a useful tool, those who use magic often carry them as well I should think."/>
   <string id="enchanter_info_resource_DragonBlood_1.sturgia" text= "{=str_tor_cc_profession_battania}Few in life come across such potent a substance, were I to hazard a guess… perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
-  
+
+  <!--enchantment start greenskins-->
+  <string id="enchanter_start_p.aserai" text= "{=str_tor_cc_profession_battania}Oi, can ya teach me sum o' dat Waaagh! magic stuff?"/>
+
+  <string id="enchanter_start.aserai" text= "{=str_tor_cc_profession_battania}Ah, a propa git wot knows da Waaagh! C'mere, let's talk!"/>
+  <string id="enchanter_start_enchanter.aserai" text= "{=str_tor_cc_profession_battania}Oi! Anuvva shaman, eh? Good, good! Da godz favor ya!"/>
+  <string id="enchanter_dialog_start.aserai" text= "{=str_tor_cc_profession_battania}Wot you want den? Speak up!"/>
+
+  <!--enchantment hub greenskins-->
+  <string id="enchanter_hub_intro.aserai" text= "{=str_tor_cc_profession_battania}Roight, wot can I do fer ya?"/>
+  <string id="enchanter_hub_reintro.aserai" text= "{=str_tor_cc_profession_battania}Wot else ya need?"/>
+
+  <string id="enchanter_hub_info_p.aserai" text= "{=str_tor_cc_profession_battania}Teach me 'bout makin' magic stuff!"/>
+  <string id="enchanter_hub_blueprints_p.aserai" text= "{=str_tor_cc_profession_battania}Got any new Waaagh! tricks fer me?"/>
+  <string id="enchanter_hub_donate_items_p.aserai" text= "{=str_tor_cc_profession_battania}Got sum shiny bits 'ere I don't need no more."/>
+  <string id="enchanter_hub_open_enchanter_p.aserai" text= "{=str_tor_cc_profession_battania}Lemme use yer magic place!"/>
+  <string id="enchanter_hub_return_p.aserai" text= "{=str_tor_cc_profession_battania}Gotta go now. WAAAGH!"/>
+
+  <!-- donate hub greenskins-->
+  <string id="enchanter_donate_items_1.aserai" text= "{=str_tor_cc_profession_battania}Got sum shiny magic gear? Lemme see wot ya got!"/>
+  <string id="enchanter_donate_items_1_negative.aserai" text= "{=str_tor_cc_profession_battania}Dat's nuthin'! Ya got no propa loot fer me. Come back when ya krumped sum beakies or pointy-ears!"/>
+  <string id="enchanter_donate_items_hub_p.aserai" text= "{=str_tor_cc_profession_battania}'Ere, take dese…"/>
+  <string id="enchanter_gift_items_hub_return_p.aserai" text= "{=str_tor_cc_profession_battania}Lemme fink 'bout dis first."/>
+
+  <string id="enchanter_donate_items_2.aserai" text= "{=str_tor_cc_profession_battania}Roight, wot ya givin' me?"/>
 
   <!-- oath gold mechanic-->
     <!-- rune lord guild-->
@@ -1798,6 +1824,8 @@
   <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=tor_religion_name_of_god_cult_of_nurgle_str}Nurgle" />
   <string id="tor_religion_name_of_god.cult_of_khorne" text="{=tor_religion_name_of_god_cult_of_khorne_str}Khorne" />
   <string id="tor_religion_name_of_god.cult_of_tzeentch" text="{=tor_religion_name_of_god_cult_of_tzeentch_str}Tzeentch" />
+  <string id="tor_religion_name_of_god.cult_of_gork" text="{=tor_religion_name_of_god_cult_of_gork_str}Gork" />
+  <string id="tor_religion_name_of_god.cult_of_mork" text="{=tor_religion_name_of_god_cult_of_mork_str}Mork" />
 
   <string id="tor_religion_blessing_effect_description.cult_of_sigmar" text="{=tor_religion_blessing_effect_description_cult_of_sigmar}Earn 20% more prestige." />
   <string id="tor_religion_blessing_effect_description.cult_of_shallya" text="{=tor_religion_blessing_effect_description_cult_of_shallya}Your party members heal their wounds 20% faster." />
@@ -1811,6 +1839,8 @@
   <string id="tor_religion_blessing_effect_description.cult_of_vaul" text="{=tor_religion_blessing_effect_description_cult_of_vaul}All troops in your party gain 10% physical resistance." />
   <string id="tor_religion_blessing_effect_description.cult_of_anath_raema" text="{=tor_religion_blessing_effect_description_cult_of_raema}Get 7 copies of a random item looted post-battle." />
   <string id="tor_religion_blessing_effect_description.cult_of_kurnous" text="{=tor_religion_blessing_effect_description_cult_of_kurnous}All ranged troops in your party deal an extra 10% physical damage." />
+  <string id="tor_religion_blessing_effect_description.cult_of_gork" text="{=tor_religion_blessing_effect_description_cult_of_gork}All melee troops in your party deal an extra 10% physical damage." />
+  <string id="tor_religion_blessing_effect_description.cult_of_mork" text="{=tor_religion_blessing_effect_description_cult_of_mork}All troops in your party deal an extra 10% damage as fire damage." />
 
   <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=tor_religion_blessing_name_cult_of_sigmar_str}Blessing of Sigmar" />
   <string id="tor_religion_blessing_name.cult_of_shallya" text="{=tor_religion_blessing_name_cult_of_shallya_str}Blessing of Shallya" />
@@ -1824,6 +1854,8 @@
   <string id="tor_religion_blessing_name.cult_of_vaul" text="{=tor_religion_blessing_name_cult_of_vaul_str}Blessing of Vaul" />
   <string id="tor_religion_blessing_name.cult_of_anath_raema" text="{=tor_religion_blessing_name_cult_of_raema_str}Blessing of Anath Raema" />
   <string id="tor_religion_blessing_name.cult_of_kurnous" text="{=tor_religion_blessing_name_cult_of_kurnous_str}Blessing of Kurnous" />
+  <string id="tor_religion_blessing_name.cult_of_gork" text="{=tor_religion_blessing_name_cult_of_gork_str}Blessing of Gork" />
+  <string id="tor_religion_blessing_name.cult_of_mork" text="{=tor_religion_blessing_name_cult_of_mork_str}Blessing of Mork" />
 
 
 
@@ -1982,6 +2014,10 @@
   <string id="career_choicegroup1_name.OrcBoss" text="{=career_choicegroup1_orcboss_str}Orc Boss" />
   <string id="career_choicegroup2_name.OrcBoss" text="{=career_choicegroup2_orcboss_str}Warboss" />
   <string id="career_choicegroup3_name.OrcBoss" text="{=career_choicegroup3_orcboss_str}Greenskin Warlord" />
+
+  <string id="career_choicegroup1_name.OrcShaman" text="{=career_choicegroup1_orcshaman_str}Orc Shaman" />
+  <string id="career_choicegroup2_name.OrcShaman" text="{=career_choicegroup2_orcshaman_str}Favoured uv Da Godz" />
+  <string id="career_choicegroup3_name.OrcShaman" text="{=career_choicegroup3_orcshaman_str}Great Shaman Lord" />
 
   <!--Career related !-->
   <string id="career_description.WarriorPriest" text="{=career_description_warriorpriest_str}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
@@ -2611,24 +2647,26 @@
 
   <string id="inky_OverturnedCart.AfterLiftMedicine1" text="{=inky_overturned_cart_after_Lift_Medicine_3_str}You tell the {inky_Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {inky_RewardText} as compensation for the assistance." />
 
-  	<string id="tor_religion_cult_name_cult_of_sigmar_str" text="{.MA}Культ{.nn} Зигмара" />
-	<string id="tor_religion_cult_name_cult_of_taal_str" text="{.MA}Культ{.nn} Таала" />
-	<string id="tor_religion_cult_name_cult_of_ulric_str" text="{.MA}Культ{.nn} Ульрика" />
-	<string id="tor_religion_cult_name_cult_of_shallya_str" text="{.MA}Культ{.nn} Шаллии" />
-	<string id="tor_religion_cult_name_cult_of_manaan_str" text="{.MA}Культ{.nn} Мананна" />
-	<string id="tor_religion_cult_name_cult_of_lady_str" text="{.MA}Культ{.nn} Владычицы Озера" />
-	<string id="tor_religion_cult_name_cult_of_nagash_str" text="{.NA}Последователи{.nnp} Нагаша" />
-	<string id="tor_religion_cult_name_chaos_undivided_str" text="{.MA}Хаос{.MA} {.MA}Неделимый{.aj}" />
-	<string id="tor_religion_cult_name_cult_of_slaanesh_str" text="{.MA}Культ{.nn} Слаанеш" />
-	<string id="tor_religion_cult_name_cult_of_nurgle_str" text="{.MA}Культ{.nn} Нургла" />
-	<string id="tor_religion_cult_name_cult_of_khorne_str" text="{.MA}Культ{.nn} Кхорна" />
-	<string id="tor_religion_cult_name_cult_of_tzeentch_str" text="{.MA}Культ{.nn} Тзинча" />
-	<string id="tor_religion_cult_name_cult_of_isha_str" text="{.MA}Культ{.nn} Иши" />
-	<string id="tor_religion_cult_name_cult_of_kurnous_str" text="{.MA}Культ{.nn} Курноуса" />
-	<string id="tor_religion_cult_name_cult_of_vaul_str" text="{.MA}Культ{.nn} Ваула" />
-	<string id="tor_religion_cult_name_cult_of_anath_raema_str" text="{.MA}Культ{.nn} Анат Раэмы" />
-	<string id="tor_religion_cult_name_cult_of_asuryan_str" text="{.MA}Культ{.nn} Азуриана" />
-	<string id="tor_religion_cult_name_cult_of_loec_str" text="{.MA}Культ{.nn} Лоэка" />
+	<string id="tor_religion_cult_name_cult_of_sigmar" text="{=tor_religion_cult_name_cult_of_sigmar_str}Cult of Sigmar" />
+	<string id="tor_religion_cult_name_cult_of_taal" text="{=tor_religion_cult_name_cult_of_taal_str}Cult of Taal" />
+	<string id="tor_religion_cult_name_cult_of_ulric" text="{=tor_religion_cult_name_cult_of_ulric_str}Cult of Ulric" />
+	<string id="tor_religion_cult_name_cult_of_shallya" text="{=tor_religion_cult_name_cult_of_shallya_str}Cult of Shallya" />
+	<string id="tor_religion_cult_name_cult_of_manaan" text="{=tor_religion_cult_name_cult_of_manaan_str}Cult of Manaan" />
+	<string id="tor_religion_cult_name_cult_of_lady" text="{=tor_religion_cult_name_cult_of_lady_str}Cult of the Lady" />
+	<string id="tor_religion_cult_name_cult_of_nagash" text="{=tor_religion_cult_name_cult_of_nagash_str}Followers of Nagash" />
+	<string id="tor_religion_cult_name_chaos_undivided" text="{=tor_religion_cult_name_chaos_undivided_str}Chaos Undivided" />
+	<string id="tor_religion_cult_name_cult_of_slaanesh" text="{=tor_religion_cult_name_cult_of_slaanesh_str}Cult of Slaanesh" />
+	<string id="tor_religion_cult_name_cult_of_nurgle" text="{=tor_religion_cult_name_cult_of_nurgle_str}Cult of Nurgle" />
+	<string id="tor_religion_cult_name_cult_of_khorne" text="{=tor_religion_cult_name_cult_of_khorne_str}Cult of Khorne" />
+	<string id="tor_religion_cult_name_cult_of_tzeentch" text="{=tor_religion_cult_name_cult_of_tzeentch_str}Cult of Tzeentch" />
+	<string id="tor_religion_cult_name_cult_of_isha" text="{=tor_religion_cult_name_cult_of_isha_str}Cult of Isha" />
+	<string id="tor_religion_cult_name_cult_of_kurnous" text="{=tor_religion_cult_name_cult_of_kurnous_str}Cult of Kurnous" />
+	<string id="tor_religion_cult_name_cult_of_vaul" text="{=tor_religion_cult_name_cult_of_vaul_str}Cult of Vaul" />
+	<string id="tor_religion_cult_name_cult_of_anath_raema" text="{=tor_religion_cult_name_cult_of_anath_raema_str}Cult of Anath Raema" />
+	<string id="tor_religion_cult_name_cult_of_asuryan" text="{=tor_religion_cult_name_cult_of_asuryan_str}Cult of Asuryan" />
+	<string id="tor_religion_cult_name_cult_of_loec" text="{=tor_religion_cult_name_cult_of_loec_str}Cult of Loec" />
+	<string id="tor_religion_cult_name_cult_of_gork" text="{=tor_religion_cult_name_cult_of_gork_str}Cult of Gork" />
+	<string id="tor_religion_cult_name_cult_of_mork" text="{=tor_religion_cult_name_cult_of_mork_str}Cult of Mork" />
 
 
 
@@ -2798,5 +2836,64 @@
 	<string id="tor_orc_boss_quest2_task_duels" text="{=tor_orc_boss_quest2_task_duels}Lord Duels Won" />
 	<string id="tor_orc_boss_quest2_log_teef" text="{=tor_orc_boss_quest2_log_teef}Transfer {REQUIRED} worth of loot to teef" />
 	<string id="tor_orc_boss_quest2_task_teef" text="{=tor_orc_boss_quest2_task_teef}Teef Transferred" />
+
+	<!--Orc Shaman Quest 1-->
+	<string id="tor_orc_shaman_quest1_title" text="{=tor_orc_shaman_quest1_title}Favoured uv Da Godz" />
+	<string id="tor_orc_shaman_quest1_log_pray" text="{=tor_orc_shaman_quest1_log_pray}Pray at a Shrine of Gork or Mork" />
+	<string id="tor_orc_shaman_quest1_task_pray" text="{=tor_orc_shaman_quest1_task_pray}Shrine Prayer" />
+	<string id="tor_orc_shaman_quest1_log_spellcraft" text="{=tor_orc_shaman_quest1_log_spellcraft}Reach {REQUIRED} levels in Spellcraft skill" />
+	<string id="tor_orc_shaman_quest1_task_spellcraft" text="{=tor_orc_shaman_quest1_task_spellcraft}Spellcraft Skill" />
+	<string id="tor_orc_shaman_quest1_log_faith" text="{=tor_orc_shaman_quest1_log_faith}Reach {REQUIRED} levels in Faith skill" />
+	<string id="tor_orc_shaman_quest1_task_faith" text="{=tor_orc_shaman_quest1_task_faith}Faith Skill" />
+	<string id="tor_orc_shaman_quest1_log_enchants" text="{=tor_orc_shaman_quest1_log_enchants}Learn {REQUIRED} Orc enchantments" />
+	<string id="tor_orc_shaman_quest1_task_enchants" text="{=tor_orc_shaman_quest1_task_enchants}Enchantments Learned" />
+	<string id="tor_orc_shaman_quest1_log_teef" text="{=tor_orc_shaman_quest1_log_teef}Transfer {REQUIRED} worth of loot to teef" />
+	<string id="tor_orc_shaman_quest1_task_teef" text="{=tor_orc_shaman_quest1_task_teef}Teef Transferred" />
+	<string id="tor_orc_shaman_quest1_log_shrines" text="{=tor_orc_shaman_quest1_log_shrines}Loot {REQUIRED} shrines" />
+	<string id="tor_orc_shaman_quest1_task_shrines" text="{=tor_orc_shaman_quest1_task_shrines}Shrines Looted" />
+
+	<!--Orc Shaman Quest 2-->
+	<string id="tor_orc_shaman_quest2_title" text="{=tor_orc_shaman_quest2_title}Great Shaman Lord" />
+	<string id="tor_orc_shaman_quest2_log_spellcraft" text="{=tor_orc_shaman_quest2_log_spellcraft}Reach {REQUIRED} levels in Spellcraft skill" />
+	<string id="tor_orc_shaman_quest2_task_spellcraft" text="{=tor_orc_shaman_quest2_task_spellcraft}Spellcraft Skill" />
+	<string id="tor_orc_shaman_quest2_log_faith" text="{=tor_orc_shaman_quest2_log_faith}Reach {REQUIRED} levels in Faith skill" />
+	<string id="tor_orc_shaman_quest2_task_faith" text="{=tor_orc_shaman_quest2_task_faith}Faith Skill" />
+	<string id="tor_orc_shaman_quest2_log_enchants" text="{=tor_orc_shaman_quest2_log_enchants}Learn {REQUIRED} Orc enchantments total" />
+	<string id="tor_orc_shaman_quest2_task_enchants" text="{=tor_orc_shaman_quest2_task_enchants}Enchantments Learned" />
+	<string id="tor_orc_shaman_quest2_log_teef" text="{=tor_orc_shaman_quest2_log_teef}Transfer {REQUIRED} worth of loot to teef total" />
+	<string id="tor_orc_shaman_quest2_task_teef" text="{=tor_orc_shaman_quest2_task_teef}Teef Transferred" />
+	<string id="tor_orc_shaman_quest2_log_cities" text="{=tor_orc_shaman_quest2_log_cities}Capture {REQUIRED} cities or castles" />
+	<string id="tor_orc_shaman_quest2_task_cities" text="{=tor_orc_shaman_quest2_task_cities}Cities Captured" />
+	<string id="tor_orc_shaman_quest2_log_shrines" text="{=tor_orc_shaman_quest2_log_shrines}Loot {REQUIRED} shrines total" />
+	<string id="tor_orc_shaman_quest2_task_shrines" text="{=tor_orc_shaman_quest2_task_shrines}Shrines Looted" />
+
+	<!--Runesmith Quest-->
+	<string id="tor_runesmith_quest_title" text="{=tor_runesmith_quest_title}Runesmith Quest" />
+	<string id="tor_runesmith_quest_log_contracts" text="{=tor_runesmith_quest_log_contracts}Finish 15 Smithing contracts." />
+	<string id="tor_runesmith_quest_task_contracts" text="{=tor_runesmith_quest_task_contracts}Contracts" />
+	<string id="tor_runesmith_quest_log_runes" text="{=tor_runesmith_quest_log_runes}Learn 7 runes." />
+	<string id="tor_runesmith_quest_task_runes" text="{=tor_runesmith_quest_task_runes}Runes" />
+	<string id="tor_runesmith_quest_log_complete" text="{=tor_runesmith_quest_log_complete}Talk to the rune smith" />
+
+	<!--Runelord Quest-->
+	<string id="tor_runelord_quest_title" text="{=tor_runelord_quest_title}Runelord Quest" />
+	<string id="tor_runelord_quest_log_abilities" text="{=tor_runelord_quest_log_abilities}Learn 3 Rune abilities of the Anvil of Doom." />
+	<string id="tor_runelord_quest_task_abilities" text="{=tor_runelord_quest_task_abilities}Rune Magic" />
+	<string id="tor_runelord_quest_log_runes" text="{=tor_runelord_quest_log_runes}Learn 15 runes." />
+	<string id="tor_runelord_quest_task_runes" text="{=tor_runelord_quest_task_runes}Runes" />
+	<string id="tor_runelord_quest_log_contracts" text="{=tor_runelord_quest_log_contracts}Finish up 20 smithing contracts." />
+	<string id="tor_runelord_quest_task_contracts" text="{=tor_runelord_quest_task_contracts}Contracts" />
+	<string id="tor_runelord_quest_log_reputation" text="{=tor_runelord_quest_log_reputation}Reach Respected with the Runesmith Guild." />
+	<string id="tor_runelord_quest_task_reputation" text="{=tor_runelord_quest_task_reputation}Reputation" />
+	<string id="tor_runelord_quest_log_complete" text="{=tor_runelord_quest_log_complete}Talk to the rune smith" />
+
+	<!--Greenskin Spell Trainer Dialogs-->
+	<string id="tor_spelltrainer_greenskin_start_str" text="{=tor_spelltrainer_greenskin_start_str}Wot you want, git? Da Waaagh! don't wait fer nobody!" />
+	<string id="tor_spelltrainer_greenskin_hub_str" text="{=tor_spelltrainer_greenskin_hub_str}Wot else ya need? Speak up!" />
+	<string id="tor_spelltrainer_greenskin_open_book_str" text="{=tor_spelltrainer_greenskin_open_book_str}Teach me more of da Waaagh! magic." />
+	<string id="tor_spelltrainer_greenskin_close_book_str" text="{=tor_spelltrainer_greenskin_close_book_str}Right, ya got it now. Da godz favor ya!" />
+	<string id="tor_spelltrainer_greenskin_enchantments_str" text="{=tor_spelltrainer_greenskin_enchantments_str}I wanna learn how ta make some proppa gear wif da runes." />
+	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=tor_spelltrainer_greenskin_player_goodbye_str}I'll be goin' now." />
+	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! An' don't forget - WAAAGH!" />
 
 </strings>

@@ -252,4 +252,22 @@
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_shaman_lord" default_group="infantry" name="{=str_tor_shaman_lord}Orc Shaman" occupation="Lord" culture="Culture.aserai" voice="curt" age="40" race="orc" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
+    <face>
+      <face_key_template value="BodyProperty.orc_mid" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="3" />
+      <Trait id="Commander" value="5" />
+      <Trait id="Politician" value="2" />
+      <Trait id="Manager" value="4" />
+      <Trait id="Honor" value="-2" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_template" />
+      <EquipmentSet id="tor_gs_orc_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
 </NPCCharacters>

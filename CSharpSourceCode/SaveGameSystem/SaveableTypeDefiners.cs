@@ -63,8 +63,10 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(SpecializeLoreQuest), 205);
             AddClassDefinition(typeof(RunesmithQuest), 206);
             AddClassDefinition(typeof(RunelordQuest), 207);
-            AddClassDefinition(typeof(OrcBossQuest1), 208); 
+            AddClassDefinition(typeof(OrcBossQuest1), 208);
             AddClassDefinition(typeof(OrcBossQuest2), 209);
+            AddClassDefinition(typeof(OrcShamanQuest1), 210);
+            AddClassDefinition(typeof(OrcShamanQuest2), 211);
         }
 
         protected override void DefineEnumTypes() //watch out for the save ids used for class definitions, conflicts will cause crashes on load

@@ -371,9 +371,50 @@
 		damage_type="Fire"
 		temporary_attribute="WindsLink">
   	</StatusEffectTemplate>
-		
+	
+	<StatusEffectTemplate
+		id="callofdagreen_windslink"
+		particle_id="breath_of_darkness"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+    	base_effect_value="0"
+		type="TemporaryAttributeOnly"
+		damage_type="Fire"
+		temporary_attribute="WindsLink">
+  	</StatusEffectTemplate>
 
-		
+	<StatusEffectTemplate
+		id="callofdagreen_windsdeathlink"
+		particle_id="waaagh_energy"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="High"
+		base_effect_value="0"
+		type="TemporaryAttributeOnly"
+		damage_type="Physical"
+		temporary_attribute="WindsDeathLink">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="callofdagreen_physical_resistance_10"
+		particle_id="waaagh_energy"
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="Low"
+		apply_particle_to_root_bone_only="true"
+		base_effect_value="0.1"
+		type="Resistance"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="callofdagreen_damage_15"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="Low"
+		base_effect_value="0.15"
+		type="DamageAmplification"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+
 	<StatusEffectTemplate
 		id="drain_life_dot"
 		particle_id="drain_life"
@@ -2731,5 +2772,56 @@
 		type="DamageAmplification"
 		damage_type="Physical"
 		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+
+	<!-- Big Waaagh! Magic Status Effects -->
+
+	<StatusEffectTemplate
+		id="call_of_da_green_dmg_reduction"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		particle_intensity="Low"
+		base_effect_value="-0.5"
+		type="DamageAmplification"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="ard_as_nails_res"
+		particle_id="ardasnails_buff"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.35"
+		type="Resistance"
+		damage_type="Physical">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="ere_we_go_dmg"
+		particle_id="erewego_buff"
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="DamageAmplification"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="ere_we_go_mvs"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.25"
+		type="MovementManipulation">
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="ere_we_go_ats"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.20"
+		type="AttackSpeedManipulation">
 	</StatusEffectTemplate>
 </StatusEffects>

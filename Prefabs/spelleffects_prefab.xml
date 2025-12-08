@@ -1341,5 +1341,13 @@
 			</game_entity>
 		</children>
 	</game_entity>
+	<game_entity name="gazeofmork_bolt" old_prefab_name="">
+		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
+		<components>
+			<particle_system_instanced_component>
+				<effect_ref base_effect="{5024CFAD-87FB-4F77-A275-E4205186AA39}"/>
+			</particle_system_instanced_component>
+		</components>
+	</game_entity>
 </prefabs>
 

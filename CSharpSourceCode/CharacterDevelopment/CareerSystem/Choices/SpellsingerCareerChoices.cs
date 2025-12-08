@@ -177,7 +177,7 @@ public class SpellsingerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
                 }
             });
 
-        _magicOfAthelLorenKeystone.Initialize(CareerID, "{=magic_of_athel_loren_keystone_str}for 10 seconds after casting, dryad kills gain 1 Wind.", "MagicOfAthelLoren", false,
+        _magicOfAthelLorenKeystone.Initialize(CareerID, "{=magic_of_athel_loren_keystone_str}for 10 seconds after casting, dryad kills gain 0.5 Wind.", "MagicOfAthelLoren", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));

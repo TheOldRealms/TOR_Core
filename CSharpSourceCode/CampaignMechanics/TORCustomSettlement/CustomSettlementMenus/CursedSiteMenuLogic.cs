@@ -114,7 +114,17 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
     {
         var settlement = Settlement.CurrentSettlement;
         var religion = Hero.MainHero.GetDominantReligion();
-        if (settlement.SettlementComponent is CursedSiteComponent component && religion != null && component.Religion.HostileReligions.Contains(religion) && religion.Affinity == ReligionAffinity.Order)//all order religions contain nagash as a hostile one so both of these don't need to be checked - if this is extended to chaos sites as well in the future, that would also always hold true
+
+        // Vampires, Necromancers, and Black Grail Knights cannot ward cursed sites
+        if (Hero.MainHero.IsVampire() ||
+            Hero.MainHero.IsNecromancer() ||
+            Hero.MainHero.HasCareer(TORCareers.BlackGrailKnight))
+        {
+            return false;
+        }
+
+        // All non-vampires/non-necromancers can ward cursed sites if the site religion is hostile to their religion
+        if (settlement.SettlementComponent is CursedSiteComponent component && religion != null && component.Religion.HostileReligions.Contains(religion))
         {
             var godName = GameTexts.FindText("tor_religion_name_of_god", religion.StringId);
             MBTextManager.SetTextVariable("GOD_NAME", godName);
@@ -135,6 +145,14 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as CursedSiteComponent;
         args.optionLeaveType = GameMenuOption.LeaveType.ForceToGiveTroops;
+
+        // Only Mousillon and Sylvania cultures can raise dead at cursed sites
+        if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.MOUSILLON &&
+            Hero.MainHero.Culture.StringId != TORConstants.Cultures.SYLVANIA)
+        {
+            return false;
+        }
+
         //all vampire types are tagged as necromancers; leaving the condition in for the moment even if the 2nd one is redundant
         if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire()))
         {
