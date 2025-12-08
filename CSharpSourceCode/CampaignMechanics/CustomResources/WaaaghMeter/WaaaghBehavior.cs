@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
+using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.WaaaghMeter;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -24,6 +28,21 @@ public class WaaaghBehavior : CampaignBehaviorBase
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
+        ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
+    }
+
+    private void ScreenManager_OnPushScreen(ScreenBase pushedScreen)
+    {
+        // Only add WaaaghMeter for Greenskin players
+        if (Hero.MainHero?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
+
+        if (pushedScreen is not MapScreen mapScreen) return;
+
+        var mapView = mapScreen.GetMapView<WaaaghMeterMapView>();
+        if (mapView == null)
+        {
+            mapScreen.AddMapView<WaaaghMeterMapView>();
+        }
     }
 
     private void InitialCombatStrengthCalculation(IMission mission)
@@ -210,7 +229,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
             waaaghValue = 0;
         }
 
-        var currentLevel = TeefHelper.GetWaaaghLevelForResource(waaaghValue);
+        var currentLevel = WaaaghHelper.GetWaaaghLevelForResource(waaaghValue);
 
         // Check if dropping from WAAAGH (level 4) to 'Ere We Go! (level 3) - apply steeper punishment
         if (_previousWaaaghLevel == WaaaghLevel.WAAAGH && currentLevel == WaaaghLevel.EreWeGo)

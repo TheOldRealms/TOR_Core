@@ -760,7 +760,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 case "option_3_we_spellsinger":
                     hero.AddAttribute("SpellCaster");
-                    hero.AddKnownLore("MinorMagic");
                     hero.AddKnownLore("LoreOfLife");
                     hero.AddKnownLore("LoreOfBeasts");
                     hero.AddAbility("SummerHeat");
@@ -774,7 +773,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 case "option_3_eo_greylord_apprentice":
                     hero.AddAttribute("SpellCaster");
-                    hero.AddKnownLore("HighMagic");
                     hero.AddKnownLore("LoreOfFire");
                     hero.AddAbility("BoltOfAqshy");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
@@ -987,27 +985,31 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 // SPELLCASTER LORE OPTIONS
                 case "lore_fire":
                     hero.AddKnownLore("LoreOfFire");
+                    hero.AddAbility("CinderBlast");
                     break;
                 case "lore_light":
                     hero.AddKnownLore("LoreOfLight");
+                    hero.AddAbility("ShemsBurningGaze");
                     break;
                 case "lore_metal":
                     hero.AddKnownLore("LoreOfMetal");
+                    hero.AddAbility("GleamingArrow");
                     break;
                 case "lore_death":
                     hero.AddKnownLore("LoreOfDeath");
-                    break;
-                case "lore_shadows":
-                    hero.AddKnownLore("LoreOfShadows");
+                    hero.AddAbility("AshesAndDust");
                     break;
                 case "lore_beasts":
                     hero.AddKnownLore("LoreOfBeasts");
+                    hero.AddAbility("AmberSpear");
                     break;
                 case "lore_heavens":
                     hero.AddKnownLore("LoreOfHeavens");
+                    hero.AddAbility("LightningBolt");
                     break;
                 case "lore_life":
                     hero.AddKnownLore("LoreOfLife");
+                    hero.AddAbility("DrainLife");
                     break;
             }
         }
