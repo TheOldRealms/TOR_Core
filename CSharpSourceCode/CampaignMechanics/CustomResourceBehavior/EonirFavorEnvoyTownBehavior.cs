@@ -199,7 +199,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                 "LoreOfBeasts",
                 "LoreOfLight",
                 "LoreOfHeavens",
-                "LoreOfDeath"
+                "LoreOfDeath",
+                "HighMagic"
             };
             var count = 0;
             foreach (var lore in lores)
