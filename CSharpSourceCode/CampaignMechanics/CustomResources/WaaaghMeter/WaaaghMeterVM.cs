@@ -10,8 +10,10 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 {
     public class WaaaghMeterVM : ViewModel
     {
-        private const float BarHeight = 455f; // Must match SuggestedHeight in XML
-        private const float IconSize = 52f;   // Hover zone size for centering calculation
+        private const float ContainerHeight = 455f; // Container height in XML
+        private const float BarHeight = 400f;       // Actual bar height in XML
+        private const float BarBottomMargin = 49f;  // Bar MarginBottom in XML
+        private const float IconSize = 52f;         // Hover zone size for centering calculation
 
         private int _waaaghValue;
         private int _currentLevel;
@@ -42,8 +44,8 @@ namespace TOR_Core.CampaignMechanics.WaaaghMeter
 
         private float CalculateIconPosition(WaaaghLevel level)
         {
-            // Position = (percentage * barHeight) - (iconSize / 2) to center icon on threshold
-            return (WaaaghHelper.GetThresholdPercentage(level) * BarHeight) - (IconSize / 2f);
+            // Position = (percentage * barHeight) + barBottomMargin - (iconSize / 2) to center icon on threshold
+            return (WaaaghHelper.GetThresholdPercentage(level) * BarHeight) + BarBottomMargin - (IconSize / 2f);
         }
 
         [DataSourceProperty]
