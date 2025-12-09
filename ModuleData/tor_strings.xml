@@ -59,17 +59,17 @@
   
   
   
-  <string id="priest_start_accept.cult_of_sigmar" text= "Welcome friend of the empire"/>
-  <string id="priest_start_decline.cult_of_sigmar" text= "Out of my sight. We don't share a common view"/>
-  <string id="priest_start_decline_hard.cult_of_sigmar" text= "Vile creature… out of my sight before I forget myself."/>
+  <string id="priest_start_accept.cult_of_sigmar" text= "Welcome, friends of the Empire."/>
+  <string id="priest_start_decline.cult_of_sigmar" text= "You need a follower of Sigmar if you wish to speak to me, stranger."/>
+  <string id="priest_start_decline_hard.cult_of_sigmar" text= "Begone from my sight, at once!"/>
   
   <string id="priest_hub_intro.cult_of_sigmar" text= "In the name of Sigmar, how can I help you?"/>
-  <string id="priest_hub_reintro.cult_of_sigmar" text= "What else?"/>
+  <string id="priest_hub_reintro.cult_of_sigmar" text= "Was there something else?"/>
   
   
   <string id="priest_hub_blessings_p.cult_of_sigmar" text= "Can you show me how to bless weapons in the name of Sigmar?"/>
-<string id="priest_hub_party_blessing_p.cult_of_sigmar" text= "Can you show me how to bless weapons in the name of Sigmar?"/>
-  <string id="priest_hub_quit_p.cult_of_sigmar" text= "Have a great day Mr Wolf man - Sir."/>
+<string id="priest_hub_party_blessing_p.cult_of_sigmar" text= "Can my party receive Sigmar's blessing?"/>
+  <string id="priest_hub_quit_p.cult_of_sigmar" text= "I must leave."/>
   
   <string id="priest_blessingshop_1.cult_of_sigmar" text= "Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
   <string id="priest_blessingshop_decline.cult_of_sigmar" text= "You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
@@ -82,19 +82,19 @@
 
   
   
-  <string id="priest_start_accept.cult_of_shallya" text= "Welcome friend of Shallya."/>
-  <string id="priest_start_decline.cult_of_shallya" text= "There is nothing that I can tell you. Begone"/>
-  <string id="priest_start_decline_hard.cult_of_shallya" text= "Vile creature… out of my sight before I forget myself."/>
+  <string id="priest_start_accept.cult_of_shallya" text= "Welcome, friend of Shallya."/>
+  <string id="priest_start_decline.cult_of_shallya" text= "You need a follower of Shallya in your party if you wish to speak to me, stranger."/>
+  <string id="priest_start_decline_hard.cult_of_shallya" text= "You are not welcome here, leave at once!"/>
   
-  <string id="priest_hub_intro.cult_of_shallya" text= "In the name of Shallya, how can I help you?"/>
-  <string id="priest_hub_reintro.cult_of_shallya" text= "What else?"/>
+  <string id="priest_hub_intro.cult_of_shallya" text= "Shallya welcomes you with open arms."/>
+  <string id="priest_hub_reintro.cult_of_shallya" text= "Was there something else you needed, friend?"/>
 	
-  <string id="priest_hub_blessingshop_p.cult_of_shallya" text= "Can you show me how to my equipment in the name of Shallya?"/>
+  <string id="priest_hub_blessingshop_p.cult_of_shallya" text= "Tell me more about blessing items in the name of Shallya."/>
   
-<string id="priest_hub_party_blessing_p.cult_of_shallya" text= "Can you give me your blessing?"/>
-  <string id="priest_hub_quit_p.cult_of_shallya" text= "Good bye"/>
+<string id="priest_hub_party_blessing_p.cult_of_shallya" text= "We wish to be blessed by the Lady in White."/>
+  <string id="priest_hub_quit_p.cult_of_shallya" text= "I must take my leave."/>
   
-  <string id="priest_blessingshop_1.cult_of_shallya" text= "Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
+  <string id="priest_blessingshop_1.cult_of_shallya" text= "For a small donation, you may access our tomes of healing and faith."/>
   <string id="priest_blessingshop_decline.cult_of_shallya" text= "You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
   
   
@@ -160,8 +160,8 @@
   <!--enchantment prompts-->
 
   <!--religion start-->
-   <string id="priest_start_accept.cult_of_sigmar" text= "{=str_tor_cc_profession_battania}Hello, Friend of Sigmar."/>
-   <string id="priest_start_accept.cult_of_sigmar" text= "{=str_tor_cc_profession_battania}Hello, Friend of Sigmar."/>
+   <string id="priest_start_accept.cult_of_sigmar" text= "{=str_tor_cc_profession_battania}Friends of Sigmar, welcome!"/>
+   <string id="priest_start_accept.cult_of_sigmar" text= "{=str_tor_cc_profession_battania}Friends of Sigmar, welcome!"/>
   
   
   <!--enchantment start-->
@@ -337,29 +337,29 @@
   <string id="enchanter_info_resource_DragonBlood_1.sturgia" text= "{=str_tor_cc_profession_battania}Few in life come across such potent a substance, were I to hazard a guess… perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
 
   <!--enchantment start greenskins-->
-  <string id="enchanter_start_p.aserai" text= "{=str_tor_cc_profession_battania}Oi, can ya teach me sum o' dat Waaagh! magic stuff?"/>
+  <string id="enchanter_start_p.aserai" text= "{=str_tor_cc_profession_battania}Oi, I wants ta know 'bout speshul bits an' choppas."/>
 
-  <string id="enchanter_start.aserai" text= "{=str_tor_cc_profession_battania}Ah, a propa git wot knows da Waaagh! C'mere, let's talk!"/>
-  <string id="enchanter_start_enchanter.aserai" text= "{=str_tor_cc_profession_battania}Oi! Anuvva shaman, eh? Good, good! Da godz favor ya!"/>
-  <string id="enchanter_dialog_start.aserai" text= "{=str_tor_cc_profession_battania}Wot you want den? Speak up!"/>
+  <string id="enchanter_start.aserai" text= "{=str_tor_cc_profession_battania}You come to look into da fire?"/>
+  <string id="enchanter_start_enchanter.aserai" text= "{=str_tor_cc_profession_battania}You come to look into da fire?"/>
+  <string id="enchanter_dialog_start.aserai" text= "{=str_tor_cc_profession_battania}You'z a big git, you'z. Gork'z wiv yoo."/>
 
   <!--enchantment hub greenskins-->
-  <string id="enchanter_hub_intro.aserai" text= "{=str_tor_cc_profession_battania}Roight, wot can I do fer ya?"/>
-  <string id="enchanter_hub_reintro.aserai" text= "{=str_tor_cc_profession_battania}Wot else ya need?"/>
+  <string id="enchanter_hub_intro.aserai" text= "{=str_tor_cc_profession_battania}Guhh, what yoo wants to know?"/>
+  <string id="enchanter_hub_reintro.aserai" text= "{=str_tor_cc_profession_battania}Wot you wants?"/>
 
-  <string id="enchanter_hub_info_p.aserai" text= "{=str_tor_cc_profession_battania}Teach me 'bout makin' magic stuff!"/>
-  <string id="enchanter_hub_blueprints_p.aserai" text= "{=str_tor_cc_profession_battania}Got any new Waaagh! tricks fer me?"/>
-  <string id="enchanter_hub_donate_items_p.aserai" text= "{=str_tor_cc_profession_battania}Got sum shiny bits 'ere I don't need no more."/>
-  <string id="enchanter_hub_open_enchanter_p.aserai" text= "{=str_tor_cc_profession_battania}Lemme use yer magic place!"/>
-  <string id="enchanter_hub_return_p.aserai" text= "{=str_tor_cc_profession_battania}Gotta go now. WAAAGH!"/>
+  <string id="enchanter_hub_info_p.aserai" text= "{=str_tor_cc_profession_battania}I'z lookin' fer… errrp… in-strukk-shuns…"/>
+  <string id="enchanter_hub_blueprints_p.aserai" text= "{=str_tor_cc_profession_battania}'Ow to make fings proppa shiny?"/>
+  <string id="enchanter_hub_donate_items_p.aserai" text= "{=str_tor_cc_profession_battania}I's got sum gud scrap fer Gork an' Mork."/>
+  <string id="enchanter_hub_open_enchanter_p.aserai" text= "{=str_tor_cc_profession_battania}(Look into the fire when the Shaman is busy dancing)"/>
+  <string id="enchanter_hub_return_p.aserai" text= "{=str_tor_cc_profession_battania}Nuffin'"/>
 
   <!-- donate hub greenskins-->
-  <string id="enchanter_donate_items_1.aserai" text= "{=str_tor_cc_profession_battania}Got sum shiny magic gear? Lemme see wot ya got!"/>
-  <string id="enchanter_donate_items_1_negative.aserai" text= "{=str_tor_cc_profession_battania}Dat's nuthin'! Ya got no propa loot fer me. Come back when ya krumped sum beakies or pointy-ears!"/>
-  <string id="enchanter_donate_items_hub_p.aserai" text= "{=str_tor_cc_profession_battania}'Ere, take dese…"/>
-  <string id="enchanter_gift_items_hub_return_p.aserai" text= "{=str_tor_cc_profession_battania}Lemme fink 'bout dis first."/>
+  <string id="enchanter_donate_items_1.aserai" text= "{=str_tor_cc_profession_battania}Da godz will be pleased with yer giftz."/>
+  <string id="enchanter_donate_items_1_negative.aserai" text= "{=str_tor_cc_profession_battania}Dis puny scrap? Da godz ain't interested in dat."/>
+  <string id="enchanter_donate_items_hub_p.aserai" text= "{=str_tor_cc_profession_battania}'Ere, 'erez sum scrap fer ya…"/>
+  <string id="enchanter_gift_items_hub_return_p.aserai" text= "{=str_tor_cc_profession_battania}Dis bits are actually fer da Boss…"/>
 
-  <string id="enchanter_donate_items_2.aserai" text= "{=str_tor_cc_profession_battania}Roight, wot ya givin' me?"/>
+  <string id="enchanter_donate_items_2.aserai" text= "{=str_tor_cc_profession_battania}Wot's dat fing?"/>
 
   <!-- oath gold mechanic-->
     <!-- rune lord guild-->
@@ -2218,7 +2218,7 @@
 	<string id="tor_custom_resource_name.OathGold" text="{=str_tor_custom_resource_name.OathGold}Oath Gold" />
 	<string id="tor_custom_resource_name.Teef" text="{=str_tor_custom_resource_name.Teef}Teef" />
 	<string id="tor_custom_resource_name.Meat" text="{=str_tor_custom_resource_name.Meat}Meat" />
-	<string id="tor_custom_resource_name.Waaagh" text="{=str_tor_custom_resource_name.Waaagh}Waaagh" />
+	<string id="tor_custom_resource_name.Waaagh" text="{=str_tor_custom_resource_name.Waaagh}Fightiness" />
 	<string id="tor_custom_resource_name.WindsOfMagic" text="{=str_tor_custom_resource_name.WindsOfMagic}Winds of Magic" />
 	
 	
@@ -2228,9 +2228,9 @@
 	<string id="tor_custom_resource_description.ForestHarmony" text="{=str_tor_custom_resource_description.ForestHarmony}Forest Binding is used to upgrade and maintain troops of the woodelves, as well as retrieve upgrades at the Oak of Ages. - binding looks like it was an old term that was used temporarily and was never changed" />
 	<string id="tor_custom_resource_description.CouncilFavor" text="{=str_tor_custom_resource_description.CouncilFavor}Retrieve power in the Eonir council and use it to your benefit. - retrieve is not the right word, perhaps curry, gain, accumulate, consolidate, find(nyeh), build, etc…" />
 	<string id="tor_custom_resource_description.OathGold" text="{=str_tor_custom_resource_description.OathGold}Spend Oathgold to unlock various perks and support Dwarfen guilds." />
-	<string id="tor_custom_resource_description.Teef" text="{=str_tor_custom_resource_description.Teef}Teef is the proof of absolute dominance, and the currency that has actual value for green skins." />
+	<string id="tor_custom_resource_description.Teef" text="{=str_tor_custom_resource_description.Teef}In Greenskin societies, Teef are proof of dominance, as well as the main currency of their tribes." />
 	<string id="tor_custom_resource_description.Meat" text="{=str_tor_custom_resource_description.Meat}Just a helper resource nothing to see here" />
-	<string id="tor_custom_resource_description.Waaagh" text="{=str_tor_custom_resource_description.Waaagh}Waaagh increases through glorious battles and decreases from inactivity or defeats. Greenskins thrive on constant warfare." />
+	<string id="tor_custom_resource_description.Waaagh" text="{=str_tor_custom_resource_description.Waaagh}Fightiness increases through smashing enemies and decreases during periods of inactivity or suffering defeats. Greenskins thrive on constant warfare." />
 	<string id="tor_custom_resource_description.WindsOfMagic" text="{=str_tor_custom_resource_description.WindsOfMagic}Winds of Magic is used by spellcasters to cast spells." />
 
 
@@ -2671,10 +2671,10 @@
 
 
 	<!-- Empire prestige noble -->
-	<string id="tor_empire_prestigeNoble_shorttitle" text="{=str_tor_empire_prestigeNoble_shorttitle}von Coughalot - before name. Must include a trailing space if used. There is no space between this variable and the firstname in case this is unused." />
+	<string id="tor_empire_prestigeNoble_shorttitle" text="{=str_tor_empire_prestigeNoble_shorttitle}Esteemed" />
 	<string id="tor_empire_prestigeNoble_firstname" text="{=str_tor_empire_prestigeNoble_firstname}Berthold" />
 	<string id="tor_empire_prestigeNoble_lastname" text="{=str_tor_empire_prestigeNoble_lastname}Wendehals" />
-	<string id="tor_empire_prestigeNoble_title" text="{=str_tor_empire_prestigeNoble_title},.;`^¸é Duke of Cat Petting - or whatever. This displays after his names - see his hero template's name. Must include a leading space if no leading punctuation is used - there is no space between this variable and the lastname that precedes it to permit punctuation use." />
+	<string id="tor_empire_prestigeNoble_title" text="{=str_tor_empire_prestigeNoble_title} of Altdorf Nobles" />
 	<string id="tor_empire_prestigeNoble_wrongCulture" text="{=str_tor_empire_prestigeNoble_wrongCulture}You do not serve the Empire, stranger, begone. This implies the player's faction despite the conditional checking culture - will need clarification." />
 	<string id="tor_empire_prestigeNoble_lowClanLevel" text="{=str_tor_empire_prestigeNoble_lowClanLevel}I do not do business with nobodies, stranger, and I do not know you. Now begone. (Low Renown)." />
 	<string id="tor_empire_prestigeNoble_nobleIntroduction1" text="{=str_tor_empire_prestigeNoble_nobleIntroduction1}It is a pleasure to make your acquaintance, I am {SHORTTITLE}{FIRSTNAME} {LASTNAME}{TITLE}. You have been making quite a name for yourself it would seem, many amongst the Imperial courts know of your exploits." />
@@ -2801,28 +2801,28 @@
 
 	<!--Orc Boss Quest 1-->
 	<string id="tor_orc_boss_quest1_title" text="{=tor_orc_boss_quest1_title}Da Path of Da Boss" />
-	<string id="tor_orc_boss_quest1_log_onehanded" text="{=tor_orc_boss_quest1_log_onehanded}Reach {REQUIRED} levels in One-Handed skill" />
+	<string id="tor_orc_boss_quest1_log_onehanded" text="{=tor_orc_boss_quest1_log_onehanded}Reach {REQUIRED} of the One-Handed skill" />
 	<string id="tor_orc_boss_quest1_task_onehanded" text="{=tor_orc_boss_quest1_task_onehanded}One-Handed Skill" />
-	<string id="tor_orc_boss_quest1_log_twohanded" text="{=tor_orc_boss_quest1_log_twohanded}Reach {REQUIRED} levels in Two-Handed skill" />
+	<string id="tor_orc_boss_quest1_log_twohanded" text="{=tor_orc_boss_quest1_log_twohanded}Reach {REQUIRED} of the Two-Handed skill" />
 	<string id="tor_orc_boss_quest1_task_twohanded" text="{=tor_orc_boss_quest1_task_twohanded}Two-Handed Skill" />
-	<string id="tor_orc_boss_quest1_log_polearm" text="{=tor_orc_boss_quest1_log_polearm}Reach {REQUIRED} levels in Polearm skill" />
+	<string id="tor_orc_boss_quest1_log_polearm" text="{=tor_orc_boss_quest1_log_polearm}Reach {REQUIRED} of the Polearm skill" />
 	<string id="tor_orc_boss_quest1_task_polearm" text="{=tor_orc_boss_quest1_task_polearm}Polearm Skill" />
 	<string id="tor_orc_boss_quest1_log_battles" text="{=tor_orc_boss_quest1_log_battles}Win {REQUIRED} battles" />
 	<string id="tor_orc_boss_quest1_task_battles" text="{=tor_orc_boss_quest1_task_battles}Battles Won" />
 	<string id="tor_orc_boss_quest1_log_arena" text="{=tor_orc_boss_quest1_log_arena}Win {REQUIRED} arena fights" />
 	<string id="tor_orc_boss_quest1_task_arena" text="{=tor_orc_boss_quest1_task_arena}Arena Fights" />
-	<string id="tor_orc_boss_quest1_log_teef" text="{=tor_orc_boss_quest1_log_teef}Transfer {REQUIRED} worth of loot to teef" />
-	<string id="tor_orc_boss_quest1_task_teef" text="{=tor_orc_boss_quest1_task_teef}Teef Transferred" />
+	<string id="tor_orc_boss_quest1_log_teef" text="{=tor_orc_boss_quest1_log_teef}Convert {REQUIRED} worth of loot to Teef" />
+	<string id="tor_orc_boss_quest1_task_teef" text="{=tor_orc_boss_quest1_task_teef}Teef received" />
 	<string id="tor_orc_boss_quest1_log_brawls" text="{=tor_orc_boss_quest1_log_brawls}Win {REQUIRED} brawls" />
 	<string id="tor_orc_boss_quest1_task_brawls" text="{=tor_orc_boss_quest1_task_brawls}Brawls Won" />
 
 	<!--Orc Boss Quest 2-->
 	<string id="tor_orc_boss_quest2_title" text="{=tor_orc_boss_quest2_title}Da Path of Da Big Boss" />
-	<string id="tor_orc_boss_quest2_log_onehanded" text="{=tor_orc_boss_quest2_log_onehanded}Reach {REQUIRED} levels in One-Handed skill" />
+	<string id="tor_orc_boss_quest2_log_onehanded" text="{=tor_orc_boss_quest2_log_onehanded}Reach {REQUIRED} of the One-Handed skill" />
 	<string id="tor_orc_boss_quest2_task_onehanded" text="{=tor_orc_boss_quest2_task_onehanded}One-Handed Skill" />
-	<string id="tor_orc_boss_quest2_log_twohanded" text="{=tor_orc_boss_quest2_log_twohanded}Reach {REQUIRED} levels in Two-Handed skill" />
+	<string id="tor_orc_boss_quest2_log_twohanded" text="{=tor_orc_boss_quest2_log_twohanded}Reach {REQUIRED} of the Two-Handed skill" />
 	<string id="tor_orc_boss_quest2_task_twohanded" text="{=tor_orc_boss_quest2_task_twohanded}Two-Handed Skill" />
-	<string id="tor_orc_boss_quest2_log_polearm" text="{=tor_orc_boss_quest2_log_polearm}Reach {REQUIRED} levels in Polearm skill" />
+	<string id="tor_orc_boss_quest2_log_polearm" text="{=tor_orc_boss_quest2_log_polearm}Reach {REQUIRED} of the Polearm skill" />
 	<string id="tor_orc_boss_quest2_task_polearm" text="{=tor_orc_boss_quest2_task_polearm}Polearm Skill" />
 	<string id="tor_orc_boss_quest2_log_battles" text="{=tor_orc_boss_quest2_log_battles}Win {REQUIRED} battles" />
 	<string id="tor_orc_boss_quest2_task_battles" text="{=tor_orc_boss_quest2_task_battles}Battles Won" />
@@ -2834,34 +2834,34 @@
 	<string id="tor_orc_boss_quest2_task_cities" text="{=tor_orc_boss_quest2_task_cities}Cities Captured" />
 	<string id="tor_orc_boss_quest2_log_duels" text="{=tor_orc_boss_quest2_log_duels}Beat {REQUIRED} Lords in duels" />
 	<string id="tor_orc_boss_quest2_task_duels" text="{=tor_orc_boss_quest2_task_duels}Lord Duels Won" />
-	<string id="tor_orc_boss_quest2_log_teef" text="{=tor_orc_boss_quest2_log_teef}Transfer {REQUIRED} worth of loot to teef" />
-	<string id="tor_orc_boss_quest2_task_teef" text="{=tor_orc_boss_quest2_task_teef}Teef Transferred" />
+	<string id="tor_orc_boss_quest2_log_teef" text="{=tor_orc_boss_quest2_log_teef}Convert {REQUIRED} worth of loot to teef" />
+	<string id="tor_orc_boss_quest2_task_teef" text="{=tor_orc_boss_quest2_task_teef}Teef received" />
 
 	<!--Orc Shaman Quest 1-->
 	<string id="tor_orc_shaman_quest1_title" text="{=tor_orc_shaman_quest1_title}Favoured uv Da Godz" />
 	<string id="tor_orc_shaman_quest1_log_pray" text="{=tor_orc_shaman_quest1_log_pray}Pray at a Shrine of Gork or Mork" />
 	<string id="tor_orc_shaman_quest1_task_pray" text="{=tor_orc_shaman_quest1_task_pray}Shrine Prayer" />
-	<string id="tor_orc_shaman_quest1_log_spellcraft" text="{=tor_orc_shaman_quest1_log_spellcraft}Reach {REQUIRED} levels in Spellcraft skill" />
+	<string id="tor_orc_shaman_quest1_log_spellcraft" text="{=tor_orc_shaman_quest1_log_spellcraft}Reach {REQUIRED} of the Spellcraft skill" />
 	<string id="tor_orc_shaman_quest1_task_spellcraft" text="{=tor_orc_shaman_quest1_task_spellcraft}Spellcraft Skill" />
-	<string id="tor_orc_shaman_quest1_log_faith" text="{=tor_orc_shaman_quest1_log_faith}Reach {REQUIRED} levels in Faith skill" />
+	<string id="tor_orc_shaman_quest1_log_faith" text="{=tor_orc_shaman_quest1_log_faith}Reach {REQUIRED} of the Faith skill" />
 	<string id="tor_orc_shaman_quest1_task_faith" text="{=tor_orc_shaman_quest1_task_faith}Faith Skill" />
 	<string id="tor_orc_shaman_quest1_log_enchants" text="{=tor_orc_shaman_quest1_log_enchants}Learn {REQUIRED} Orc enchantments" />
 	<string id="tor_orc_shaman_quest1_task_enchants" text="{=tor_orc_shaman_quest1_task_enchants}Enchantments Learned" />
-	<string id="tor_orc_shaman_quest1_log_teef" text="{=tor_orc_shaman_quest1_log_teef}Transfer {REQUIRED} worth of loot to teef" />
-	<string id="tor_orc_shaman_quest1_task_teef" text="{=tor_orc_shaman_quest1_task_teef}Teef Transferred" />
+	<string id="tor_orc_shaman_quest1_log_teef" text="{=tor_orc_shaman_quest1_log_teef}Convert {REQUIRED} worth of loot to teef" />
+	<string id="tor_orc_shaman_quest1_task_teef" text="{=tor_orc_shaman_quest1_task_teef}Teef received" />
 	<string id="tor_orc_shaman_quest1_log_shrines" text="{=tor_orc_shaman_quest1_log_shrines}Loot {REQUIRED} shrines" />
 	<string id="tor_orc_shaman_quest1_task_shrines" text="{=tor_orc_shaman_quest1_task_shrines}Shrines Looted" />
 
 	<!--Orc Shaman Quest 2-->
 	<string id="tor_orc_shaman_quest2_title" text="{=tor_orc_shaman_quest2_title}Great Shaman Lord" />
-	<string id="tor_orc_shaman_quest2_log_spellcraft" text="{=tor_orc_shaman_quest2_log_spellcraft}Reach {REQUIRED} levels in Spellcraft skill" />
+	<string id="tor_orc_shaman_quest2_log_spellcraft" text="{=tor_orc_shaman_quest2_log_spellcraft}Reach {REQUIRED} of the Spellcraft skill" />
 	<string id="tor_orc_shaman_quest2_task_spellcraft" text="{=tor_orc_shaman_quest2_task_spellcraft}Spellcraft Skill" />
-	<string id="tor_orc_shaman_quest2_log_faith" text="{=tor_orc_shaman_quest2_log_faith}Reach {REQUIRED} levels in Faith skill" />
+	<string id="tor_orc_shaman_quest2_log_faith" text="{=tor_orc_shaman_quest2_log_faith}Reach {REQUIRED} of the Faith skill" />
 	<string id="tor_orc_shaman_quest2_task_faith" text="{=tor_orc_shaman_quest2_task_faith}Faith Skill" />
 	<string id="tor_orc_shaman_quest2_log_enchants" text="{=tor_orc_shaman_quest2_log_enchants}Learn {REQUIRED} Orc enchantments total" />
 	<string id="tor_orc_shaman_quest2_task_enchants" text="{=tor_orc_shaman_quest2_task_enchants}Enchantments Learned" />
-	<string id="tor_orc_shaman_quest2_log_teef" text="{=tor_orc_shaman_quest2_log_teef}Transfer {REQUIRED} worth of loot to teef total" />
-	<string id="tor_orc_shaman_quest2_task_teef" text="{=tor_orc_shaman_quest2_task_teef}Teef Transferred" />
+	<string id="tor_orc_shaman_quest2_log_teef" text="{=tor_orc_shaman_quest2_log_teef}Convert {REQUIRED} worth of loot to teef total" />
+	<string id="tor_orc_shaman_quest2_task_teef" text="{=tor_orc_shaman_quest2_task_teef}Teef received" />
 	<string id="tor_orc_shaman_quest2_log_cities" text="{=tor_orc_shaman_quest2_log_cities}Capture {REQUIRED} cities or castles" />
 	<string id="tor_orc_shaman_quest2_task_cities" text="{=tor_orc_shaman_quest2_task_cities}Cities Captured" />
 	<string id="tor_orc_shaman_quest2_log_shrines" text="{=tor_orc_shaman_quest2_log_shrines}Loot {REQUIRED} shrines total" />
@@ -2888,12 +2888,12 @@
 	<string id="tor_runelord_quest_log_complete" text="{=tor_runelord_quest_log_complete}Talk to the rune smith" />
 
 	<!--Greenskin Spell Trainer Dialogs-->
-	<string id="tor_spelltrainer_greenskin_start_str" text="{=tor_spelltrainer_greenskin_start_str}Wot you want, git? Da Waaagh! don't wait fer nobody!" />
-	<string id="tor_spelltrainer_greenskin_hub_str" text="{=tor_spelltrainer_greenskin_hub_str}Wot else ya need? Speak up!" />
-	<string id="tor_spelltrainer_greenskin_open_book_str" text="{=tor_spelltrainer_greenskin_open_book_str}Teach me more of da Waaagh! magic." />
-	<string id="tor_spelltrainer_greenskin_close_book_str" text="{=tor_spelltrainer_greenskin_close_book_str}Right, ya got it now. Da godz favor ya!" />
+	<string id="tor_spelltrainer_greenskin_start_str" text="{=tor_spelltrainer_greenskin_start_str}You come to look into da fire?" />
+	<string id="tor_spelltrainer_greenskin_hub_str" text="{=tor_spelltrainer_greenskin_hub_str}Wot you want, git?" />
+	<string id="tor_spelltrainer_greenskin_open_book_str" text="{=tor_spelltrainer_greenskin_open_book_str}I'z here fer sum ju-ju spooks." />
+	<string id="tor_spelltrainer_greenskin_close_book_str" text="{=tor_spelltrainer_greenskin_close_book_str}Eat dis shroom an' dance wiv me." />
 	<string id="tor_spelltrainer_greenskin_enchantments_str" text="{=tor_spelltrainer_greenskin_enchantments_str}I wanna learn how ta make some proppa gear wif da runes." />
-	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=tor_spelltrainer_greenskin_player_goodbye_str}I'll be goin' now." />
-	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! An' don't forget - WAAAGH!" />
+	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=tor_spelltrainer_greenskin_player_goodbye_str}I'z outta 'ere." />
+	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'ze dispersin' my smoke." />
 
 </strings>
