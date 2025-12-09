@@ -370,7 +370,6 @@
     <Compile Include="AbilitySystem\SeekerController.cs" />
     <Compile Include="AbilitySystem\SeekerParameters.cs" />
     <Compile Include="AbilitySystem\Spells\LoreObject.cs" />
-    <Compile Include="AbilitySystem\Spells\SpellMiscastModel.cs" />
     <Compile Include="AbilitySystem\Spells\Prayers\BattlePrayerBookState.cs" />
     <Compile Include="AbilitySystem\Spells\Prayers\BattlePrayerScreen.cs" />
     <Compile Include="AbilitySystem\Spells\Prayers\BattlePrayersVM.cs" />
@@ -386,7 +385,6 @@
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\StatItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellCastingLevel.cs" />
-    <Compile Include="AbilitySystem\Spells\SpellMiscastEffects.cs" />
     <Compile Include="AbilitySystem\SummonedAgentOrigin.cs" />
     <Compile Include="Audio\CachedSound.cs" />
     <Compile Include="Audio\CachedSoundInstance.cs" />

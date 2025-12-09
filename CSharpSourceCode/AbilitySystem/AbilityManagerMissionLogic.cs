@@ -223,12 +223,6 @@ namespace TOR_Core.AbilitySystem
             }
         }
 
-        internal void ForceExitAbilityModeAfterMiscast()
-        {
-            DisableAbilityMode(false, null);
-        }
-
-
         internal void OnCastStart(Ability ability, Agent agent)
         {
             if (agent == Agent.Main)
