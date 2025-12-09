@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Helpers;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -291,7 +292,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
                 campaignGameStarter.AddDialogLine("enchanter_start_2" + cultures[i], "start", "enchanter_hub_intro" + cultures[i],
                     GameTexts.FindText("enchanter_dialog_start_2", cultures[i]).ToString(),
-                    () => EnchanterCondition(cultures[i]) && fullfillsFreeBeeCondition() && cultureCheck(cultures[i]), null, 200);
+                    () => EnchanterCondition(cultures[i])  && cultureCheck(cultures[i]) && enchanterCareer(), null, 200);
 
                 campaignGameStarter.AddDialogLine("enchanter_start_1" + cultures[i], "start", "enchanter_hub_intro" + cultures[i],
                     GameTexts.FindText("enchanter_dialog_start_1", cultures[i]).ToString(),
@@ -310,7 +311,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             bool fullfillsFreeBeeCondition()
             {
-                return !_learnedEnchantment && _careerEligableForFreebee.Contains(Hero.MainHero.GetCareer().StringId);
+                return !_learnedEnchantment  && _careerEligableForFreebee.Contains(Hero.MainHero.GetCareer().StringId);
             }
 
             //enchantment hub
@@ -391,16 +392,27 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
                 GameTexts.FindText("enchanter_info_hub_intro_enchanter_first_visit", cultures[i]).ToString(), fullfillsFreeBeeCondition, () =>
                 {
-                    _spokeToEnchanter = true;
+                    _learnedEnchantment = true;
                     spokeFirstTime();
                     AddBeginnerBlueprintsForEnchantment();
                 }, 200);
 
 
-            campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_enchanter_first_visit" + cultures[i],
+            campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_first_visit" + cultures[i],
                 "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
-                GameTexts.FindText("enchanter_info_hub_intro_enchanter_first_visit", cultures[i]).ToString(), null,
+                GameTexts.FindText("enchanter_info_hub_intro_first_visit", cultures[i]).ToString(), () => !_spokeToEnchanter,
                 () => { spokeFirstTime(); }, 200);
+            
+            campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_visit" + cultures[i],
+                "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
+                GameTexts.FindText("enchanter_info_hub_intro_first_visit", cultures[i]).ToString(), () => !HasManual(),
+                () => { spokeFirstTime(); }, 200);
+            
+            campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_read_book" + cultures[i],
+                "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
+                GameTexts.FindText("enchanter_info_hub_intro_read_book", cultures[i]).ToString(), null,
+                () => { spokeFirstTime(); }, 200);
+
 
 
 
@@ -414,21 +426,40 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
             void AddManual()
             {
                 var itemId = "";
-                switch (Hero.MainHero.Culture.StringId)
-                {
-                    case TORConstants.Cultures.EMPIRE:
-                        itemId = "tor_book_learn_enchanting";
-                        break;
-                    case TORConstants.Cultures.DAWI:
-                        itemId = "tor_book_learn_runecraft";
-                        break;
-                }
+                itemId= GetManual();
 
                 if (itemId == "")
                     return;
 
                 var item = MBObjectManager.Instance.GetObject<ItemObject>(itemId);
                 Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(item, 1);
+            }
+
+            bool HasManual()
+            {
+                var itemId = "";
+                itemId = GetManual();
+
+                if (itemId == "")
+                {
+                    return false;
+                }
+
+                return Hero.MainHero.PartyBelongedTo.ItemRoster.Any(x => x.EquipmentElement.Item.StringId == itemId);
+            }
+
+            string GetManual()
+            {
+                switch (Hero.MainHero.Culture.StringId)
+                {
+                    case TORConstants.Cultures.EMPIRE:
+                        return "tor_book_learn_enchanting";
+                    case TORConstants.Cultures.DAWI:
+                        return "tor_book_learn_runecraft";
+                }
+                
+                TORCommon.Log("ENCHANTMENT: could not find manual item for" + Hero.MainHero.Culture.StringId, LogLevel.Warn);
+                return "";
             }
 
 
@@ -439,19 +470,26 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
                 if (Hero.MainHero.IsSpellCaster() && career == TORCareers.ImperialMagister)
                 {
-                    if (Hero.MainHero.HasKnownLore("LoreOfDeath")) Hero.MainHero.AddEnchantmentBlueprint("lesser_shyish_weapon", true);
+                    if (Hero.MainHero.HasKnownLore("LoreOfDeath")) 
+                        Hero.MainHero.AddEnchantmentBlueprint("lesser_shyish_weapon", true);
 
-                    if (Hero.MainHero.HasKnownLore("LoreOfMetal")) Hero.MainHero.AddEnchantmentBlueprint("lesser_chamon_weapon", true);
+                    if (Hero.MainHero.HasKnownLore("LoreOfMetal")) 
+                        Hero.MainHero.AddEnchantmentBlueprint("lesser_chamon_weapon", true);
 
-                    if (Hero.MainHero.HasKnownLore("LoreOfLight")) Hero.MainHero.AddEnchantmentBlueprint("lesser_lumen_stone", true);
+                    if (Hero.MainHero.HasKnownLore("LoreOfLight"))
+                        Hero.MainHero.AddEnchantmentBlueprint("lesser_lumen_stone", true);
 
-                    if (Hero.MainHero.HasKnownLore("LoreOfHeavens")) Hero.MainHero.AddEnchantmentBlueprint("lesser_chamon_weapon", true);
+                    if (Hero.MainHero.HasKnownLore("LoreOfHeavens")) 
+                        Hero.MainHero.AddEnchantmentBlueprint("lesser_chamon_weapon", true);
 
-                    if (Hero.MainHero.HasKnownLore("LoreOfBeasts")) Hero.MainHero.AddEnchantmentBlueprint("lesser_ghost_amber", true);
+                    if (Hero.MainHero.HasKnownLore("LoreOfBeasts")) 
+                        Hero.MainHero.AddEnchantmentBlueprint("lesser_ghost_amber", true);
 
-                    if (Hero.MainHero.HasKnownLore("LoreOfLife")) Hero.MainHero.AddEnchantmentBlueprint("lesser_vitaellum_armor", true);
+                    if (Hero.MainHero.HasKnownLore("LoreOfLife")) 
+                        Hero.MainHero.AddEnchantmentBlueprint("lesser_vitaellum_armor", true);
 
-                    if (Hero.MainHero.HasKnownLore("LoreOfFire")) Hero.MainHero.AddEnchantmentBlueprint("lesser_fire_ruby", true);
+                    if (Hero.MainHero.HasKnownLore("LoreOfFire")) 
+                        Hero.MainHero.AddEnchantmentBlueprint("lesser_fire_ruby", true);
                 }
 
                 if (Hero.MainHero.IsSpellCaster() && Hero.MainHero.HasCareer(TORCareers.GrailDamsel))

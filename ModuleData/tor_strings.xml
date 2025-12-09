@@ -129,12 +129,15 @@
 	<string id="priest_train_hub_select_companion.EngineerEmpire" text= "Choose a companion you want to teach."/>
 	<string id="skill_train_hub_select_companion_decline.EngineerEmpire" text= "Your companions are not ready yet."/>
 	
-	<string id="teach_skills_dialog_p.EmpireMagister" text= "teach_skills_dialog_p.EmpireMagister holding down the fort!"/>
-	<string id="skill_teacher_train_1.EmpireMagister" text= "skill_teacher_train_1.EmpireMagister place held!"/>
-	<string id="skill_teacher_train_2.EmpireMagister" text= "skill_teacher_train_2.EmpireMagister placeholder!"/>
+	<string id="skill_teacher_train_1.EmpireMagister" text= "I can teach your companion magic. if you allow him to stay at the college"/>
+	<string id="skill_teacher_train_2.EmpireMagister" text= "Who should join the college and learn the art of the arkane?"/>
+	<string id="teach_skills_dialog_p.EmpireMagister" text= "Can you teach my wizard companion the sacred arts of the runes?"/>
+	<string id="skill_train_hub_select_companion_p.EmpireMagister" text= "Yes, please guide one of my companions."/>
+	<string id="skill_train_hub_select_companion.EmpireMagister" text= "Very well, I will pass down my teachings. Your friend will be sent back when his training is finished."/>	
+	<string id="skill_train_hub_select_companion_decline.EmpireMagister" text= "There is nobody worth teaching in your party."/>	
+	<string id="priest_train_hub_quit_p.EmpireMagister" text= "Forgive me, I've changed my mind."/>
 	
 	
-  
 	<string id="str_tor_skill_training_prompt.title" text= "Teach a companion {SKILL_NAME}"/>
 	<string id="str_tor_skill_training_prompt.skill_value" text= "Current Skill value: {SKILL_VALUE}"/>
 	<string id="str_tor_skill_training_prompt.description" text= "Training will cost you {GOLD_ICON} and {CUSTOMRESOURCE}. The selected companion will leave your party and remain here for a period of time. Cancelling this process will not refund any spent resources."/>
@@ -165,12 +168,13 @@
   
   
   <!--enchantment start-->
+  <string id="enchanter_dialog_start_quit.empire" text= "{=str_tor_cc_profession_battania}You are not serving the empire. begone"/>
    <string id="enchanter_start_p.vlandia" text= "{=str_tor_cc_profession_battania}What about enchantment?"/>
    <string id="enchanter_start_p.sturgia" text= "{=str_tor_cc_profession_battania}I wish to know more about the art of runecraft."/>
    
 
-  <string id="enchanter_start.empire" text= "{=str_tor_cc_profession_battania}It would appear you have made quite a name for yourself, those loyal to the Empire are always welcome here."/>
-  <string id="enchanter_start_enchanter.empire" text= "{=str_tor_cc_profession_battania}Ah, a fellow practioner! You are most welcome, there is much we can discuss as colleagues."/>
+  <string id="enchanter_dialog_start_1.empire" text= "{=str_tor_cc_profession_battania}It would appear you have made quite a name for yourself, those loyal to the Empire are always welcome here."/>
+  <string id="enchanter_dialog_start_2.empire" text= "{=str_tor_cc_profession_battania}Ah, a fellow practioner! You are most welcome, there is much we can discuss as colleagues."/>
   <string id="enchanter_start_quit.empire" text= "{=str_tor_cc_profession_battania}I do not have time for you, begone from my sight!"/>
   
   <string id="enchanter_dialog_start_1.vlandia" text= "{=str_tor_cc_profession_battania}Well well well who have we here? French edition"/>
@@ -222,49 +226,18 @@
     <!--enchantment info hub-->
 	
   <string id="enchanter_info_hub_intro_enchanter_first_visit.empire" text= "{=str_tor_cc_profession_battania}Of course! In fact, I have just the thing to get you started, take this, and we can discuss it all more detail."/>
-	
-  <string id="enchanter_info_hub_intro.empire" text= "{=str_tor_cc_profession_battania}I can explain with little difficulty, the burden of understanding lies with you."/>
+  <string id="enchanter_info_hub_intro_first_visit.empire" text= "{=str_tor_cc_profession_battania}Of course! I would read this book here."/>
+  <string id="enchanter_info_hub_intro_read_book.empire" text= "{=str_tor_cc_profession_battania}Just read the book I gave you."/>
+  
+
 
   <string id="enchanter_info_hub_beginner_p.empire" text= "{=str_tor_cc_profession_battania}What do I need, to be able to perform alchemy?"/>	
   <string id="enchanter_info_hub_resources_p.empire" text= "{=str_tor_cc_profession_battania}Can you tell me more about the magical ingredients?"/>
   <string id="enchanter_info_hub_give_items_p.empire" text= "{=str_tor_cc_profession_battania}What can I do with magical items I have no use for?"/>
   <string id="enchanter_info_hub_return_p.empire" text= "{=str_tor_cc_profession_battania}That will be all for now."/>
   
-  <!--enchantment info start - expand as you want by adding _NUMBER-->
-  <string id="enchanter_info_start_beginner_1.empire" text= "{=str_tor_cc_profession_battania}To start, you need to find enchanting blueprints. These can be found as after battles, or when clearing threats like the Chaos Portal or Herdstones. Alternatively, they can be purchased from Enchanting Vendors, like me."/>
-  <string id="enchanter_info_start_beginner_2.empire" text= "{=str_tor_cc_profession_battania}To learn an enchantment, you must click on the blueprint in your inventory and press the ‘learn’ button. This only needs to be done once. Of course, your career or your companions dictate what enchants you can learn; a Bright Wizard can understand a magical blueprints that a Warrior Priest cannot."/>
-  <string id="enchanter_info_start_beginner_3.empire" text= "{=str_tor_cc_profession_battania}Once learned, you can either speak to me or go to an enchanter in the artisan district in towns to open the enchanting menu. There, you can select and apply your blueprint to an item of your choosing.  It will cost special enchanting resources, which you can ask me about later."/>
-  <string id="enchanter_info_start_beginner_4.empire" text= "{=str_tor_cc_profession_battania}Across the Empire, priests offer blessings that in a similar fashion. They will speak to you if you serve the faith, or your companion does, then you can purchase blessings. These are learned and applied as much like regular enchantments I hear."/>
-  <string id="enchanter_info_start_beginner_5.empire" text= "{=str_tor_cc_profession_battania}But be aware, enchanters won't speak to you if you aren't of the same people. Dwarfs are secretive folk, you cannot learn and apply Dwarf enchants as a human. It will forever be a mystery to us."/>
-
-  <!--enchantment info give items-->
-  <string id="enchanter_info_give_items_1.empire" text= "{=str_tor_cc_profession_battania}enchant 1 "/>
-  <string id="enchanter_info_give_items_2.empire" text= "{=str_tor_cc_profession_battania}enchant 2"/>
-  
-  <!--enchantment info resources hub -->
-  
-  <string id="enchanter_info_resources_hub_intro.empire" text= "{=str_tor_cc_profession_battania}Which resources are you interested in?"/>
-  
-  <string id="enchanter_info_resource_ArcaneScroll_p.empire" text= "{=str_tor_cc_profession_battania}I need Arcane Scrolls, where can I find them?"/>
-  <string id="enchanter_info_resource_BlessedWater_p.empire" text= "{=str_tor_cc_profession_battania}Where should I search for Blessed Water?"/>
-  <string id="enchanter_info_resource_AmberCrystal_p.empire" text= "{=str_tor_cc_profession_battania}Where would I be able to find Amber?"/>
-  <string id="enchanter_info_resource_WarpstoneDust_p.empire" text= "{=str_tor_cc_profession_battania}I am curious about Warpstone Powder."/>
-  <string id="enchanter_info_resource_Gemstones_p.empire" text= "{=str_tor_cc_profession_battania}I would like to know more about Gems."/>
-  <string id="enchanter_info_resource_DragonBlood_p.empire" text= "{=str_tor_cc_profession_battania}I would like to know where to find Dragon Blood."/>
-  <string id="enchanter_info_resource_return_p.empire" text= "{=str_tor_cc_profession_battania}I have no further questions."/>
-  
-  <string id="enchanter_info_resource_ArcaneScroll_1.empire" text= "{=str_tor_cc_profession_battania}You seek the arcane? You would best search amidst the loot of the foul Beastmen or the servants of darkness. Those who use magic may also have in their possession, much like myself."/>
-  <string id="enchanter_info_resource_BlessedWater_1.empire" text= "{=str_tor_cc_profession_battania}You can always go to the many shrines of man to get holy water, but I hear that bandits and thieves across Bretonnia may have."/>
-  <string id="enchanter_info_resource_AmberCrystal_1.empire" text= "{=str_tor_cc_profession_battania}Amber you say? Perhaps search for those that lurk amidst the forests of the elves, the strange folk and stranger beasts that roam under the trees are bound to have amber."/>
-  <string id="enchanter_info_resource_WarpstoneDust_1.empire" text= "{=str_tor_cc_profession_battania}You would seek such a vile substance? You would need to fight at the very gates of chaos, or slay their fiendish cultists. I hear they use it for their dark trickery!"/>
-  <string id="enchanter_info_resource_WarpstoneDust_2.empire" text= "{=str_tor_cc_profession_battania}If you are particularly daring, then Sylvania is rife with the foul stuff. I must warn you, the dead are more common than the living at times."/>
-
-  <string id="enchanter_info_resource_Gemstones_1.empire" text= "{=str_tor_cc_profession_battania}Ahh gems! I hear tales of treasures found amidst Dwarfen mines, or carried into battle by the Dwarf folk. As a useful tool, those who use magic often carry them as well I should think."/>
-  <string id="enchanter_info_resource_DragonBlood_1.empire" text= "{=str_tor_cc_profession_battania}Few in life come across such potent a substance, were I to hazard a guess… perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
-  
   <!--enchantment start-->
    <string id="enchanter_start_p.sturgia" text= "{=str_tor_cc_profession_battania}I wish to know more about the art of runecraft."/>
-   
   <string id="enchanter_start.sturgia" text= "{=str_tor_cc_profession_battania}It would appear you have made quite a name for yourself, those loyal to the sturgia are always welcome here."/>
   <string id="enchanter_start_enchanter.sturgia" text= "{=str_tor_cc_profession_battania}Ah, a fellow Rhunki, you are most welcome in the Grongaz."/>
   <string id="enchanter_start_quit.sturgia" text= "{=str_tor_cc_profession_battania}I do not have time for you, begone from my sight!"/>

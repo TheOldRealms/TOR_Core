@@ -983,31 +983,31 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1306.128f, 1044.178f), true); // Castle Reiksguard - Reiksguard
                     break;
                 // SPELLCASTER LORE OPTIONS
-                case "lore_fire":
+                case "lore_of_fire":
                     hero.AddKnownLore("LoreOfFire");
                     hero.AddAbility("CinderBlast");
                     break;
-                case "lore_light":
+                case "lore_of_light":
                     hero.AddKnownLore("LoreOfLight");
                     hero.AddAbility("ShemsBurningGaze");
                     break;
-                case "lore_metal":
+                case "lore_of_metal":
                     hero.AddKnownLore("LoreOfMetal");
                     hero.AddAbility("GleamingArrow");
                     break;
-                case "lore_death":
+                case "lore_of_death":
                     hero.AddKnownLore("LoreOfDeath");
                     hero.AddAbility("AshesAndDust");
                     break;
-                case "lore_beasts":
+                case "lore_of_beasts":
                     hero.AddKnownLore("LoreOfBeasts");
                     hero.AddAbility("AmberSpear");
                     break;
-                case "lore_heavens":
+                case "lore_of_heavens":
                     hero.AddKnownLore("LoreOfHeavens");
                     hero.AddAbility("LightningBolt");
                     break;
-                case "lore_life":
+                case "lore_of_life":
                     hero.AddKnownLore("LoreOfLife");
                     hero.AddAbility("DrainLife");
                     break;

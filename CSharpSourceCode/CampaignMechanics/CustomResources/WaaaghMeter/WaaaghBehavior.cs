@@ -11,6 +11,7 @@ using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.WaaaghMeter;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CustomResourceBehavior;
@@ -33,10 +34,11 @@ public class WaaaghBehavior : CampaignBehaviorBase
 
     private void ScreenManager_OnPushScreen(ScreenBase pushedScreen)
     {
+        if (pushedScreen is not MapScreen mapScreen) return;
         // Only add WaaaghMeter for Greenskin players
         if (Hero.MainHero?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
 
-        if (pushedScreen is not MapScreen mapScreen) return;
+  
 
         var mapView = mapScreen.GetMapView<WaaaghMeterMapView>();
         if (mapView == null)
