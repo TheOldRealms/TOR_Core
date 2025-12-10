@@ -80,6 +80,11 @@
             font-style: italic;
         }
 
+        .file-name .loaded {
+            color: #28a745;
+            font-weight: 600;
+        }
+
         .filters {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -425,6 +430,227 @@
         .export-btn:hover {
             background: #229954;
         }
+
+        /* Column resizing styles */
+        th {
+            position: relative;
+        }
+
+        .column-resizer {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            cursor: col-resize;
+            background: transparent;
+            z-index: 100;
+        }
+
+        .column-resizer:hover,
+        .column-resizer.resizing {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        table {
+            table-layout: fixed;
+        }
+
+        td, th {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        td:hover {
+            overflow: visible;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+        /* Scene editor modal styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.4em;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .scene-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .scene-group h4 {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .scene-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .scene-row label {
+            min-width: 100px;
+            font-weight: 500;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .scene-row select,
+        .scene-row input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .scene-row select:focus,
+        .scene-row input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .scene-levels {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .scene-level-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .scene-level-group label {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .btn-scenes {
+            padding: 4px 10px;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: background 0.3s;
+        }
+
+        .btn-scenes:hover {
+            background: #8e44ad;
+        }
+
+        .modal-footer {
+            padding: 15px 25px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-save-scenes {
+            padding: 10px 25px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-save-scenes:hover {
+            background: #229954;
+        }
+
+        .btn-cancel {
+            padding: 10px 25px;
+            background: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-cancel:hover {
+            background: #7f8c8d;
+        }
+
+        .no-scenes-msg {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -515,7 +741,6 @@
 
             <div style="margin-top: 15px;">
                 <button class="btn-clear" onclick="clearFilters()">Clear All Filters</button>
-                <button class="export-btn" onclick="exportToCSV()">Export to CSV</button>
                 <button class="export-btn" onclick="saveModifiedXML()" style="background: #e67e22;">Save Changes to XML</button>
                 <label style="margin-left: 20px; cursor: pointer;">
                     <input type="checkbox" id="showTechnicalInfo" checked onchange="toggleTechnicalColumns()">
@@ -597,6 +822,7 @@
                         <th class="sortable" onclick="sortTable('villageType')">Village Production</th>
                         <th class="sortable" onclick="sortTable('boundTo')">Bound To</th>
                         <th class="sortable" onclick="sortTable('prosperity')">Prosperity</th>
+                        <th>Scenes</th>
                         <th class="sortable tech-col" onclick="sortTable('posX')">Position X</th>
                         <th class="sortable tech-col" onclick="sortTable('posY')">Position Y</th>
                     </tr>
@@ -607,6 +833,23 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Scene Editor Modal -->
+    <div id="sceneModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="sceneModalTitle">Edit Scenes</h2>
+                <button class="modal-close" onclick="closeSceneModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="sceneModalBody">
+                <!-- Dynamic content generated by JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeSceneModal()">Cancel</button>
+                <button class="btn-save-scenes" onclick="saveSceneChanges()">Set Scenes</button>
+            </div>
         </div>
     </div>
 
@@ -624,6 +867,17 @@
         let allFactions = new Set();
         let allVillageTypes = new Set();
         let allCultures = new Set();
+
+        // Scene data collections
+        let allScenes = {
+            center: new Set(),
+            arena: new Set(),
+            tavern: new Set(),
+            lordshall: new Set(),
+            prison: new Set(),
+            house: new Set(),
+            village_center: new Set()
+        };
 
         // Culture display name mappings - will be populated from XML
         let cultureDisplayNames = new Map();
@@ -659,7 +913,31 @@
         document.getElementById('xmlFiles').addEventListener('change', function(e) {
             const files = Array.from(e.target.files);
             if (files.length > 0) {
-                document.getElementById('fileName').textContent = files.map(f => f.name).join(', ');
+                const fileNameEl = document.getElementById('fileName');
+
+                // Track which file types were selected
+                const fileTypes = {
+                    settlement: null,
+                    clan: null,
+                    kingdom: null,
+                    culture: null
+                };
+
+                files.forEach(f => {
+                    if (f.name.includes('settlement')) fileTypes.settlement = f.name;
+                    else if (f.name.includes('clan')) fileTypes.clan = f.name;
+                    else if (f.name.includes('kingdom')) fileTypes.kingdom = f.name;
+                    else if (f.name.includes('culture')) fileTypes.culture = f.name;
+                });
+
+                // Display all file types - loaded ones will be marked green later, unloaded stay grey
+                const fileDisplays = [
+                    `<span data-type="settlement">${fileTypes.settlement || 'settlement.xml'}</span>`,
+                    `<span data-type="clan">${fileTypes.clan || 'clan.xml'}</span>`,
+                    `<span data-type="kingdom">${fileTypes.kingdom || 'kingdom.xml'}</span>`,
+                    `<span data-type="culture">${fileTypes.culture || 'culture.xml'}</span>`
+                ];
+                fileNameEl.innerHTML = fileDisplays.join(', ');
 
                 let settlementsXML = null;
                 let clansXML = null;
@@ -744,6 +1022,10 @@
             });
 
             console.log('Loaded ' + (kingdomColors.size / 2) + ' kingdom colors');
+
+            // Mark kingdom file as loaded (green)
+            const kingdomFileSpan = document.querySelector('#fileName span[data-type="kingdom"]');
+            if (kingdomFileSpan) kingdomFileSpan.classList.add('loaded');
         }
 
         // Parse Culture XML to get culture display names
@@ -775,6 +1057,10 @@
             });
 
             console.log('Loaded ' + cultureDisplayNames.size + ' culture names');
+
+            // Mark culture file as loaded (green)
+            const cultureFileSpan = document.querySelector('#fileName span[data-type="culture"]');
+            if (cultureFileSpan) cultureFileSpan.classList.add('loaded');
         }
 
         // Parse Clan XML
@@ -867,6 +1153,10 @@
             if (factionColors.size > 0) {
                 document.getElementById('factionColorLabel').style.display = 'inline';
             }
+
+            // Mark clan file as loaded (green)
+            const clanFileSpan = document.querySelector('#fileName span[data-type="clan"]');
+            if (clanFileSpan) clanFileSpan.classList.add('loaded');
         }
 
         // Parse Settlement XML
@@ -933,7 +1223,9 @@
                     componentType: '',
                     villageType: '',
                     isCastle: false,
-                    religion: ''
+                    religion: '',
+                    // Scene locations
+                    locations: {}
                 };
 
                 // Parse Components to determine type
@@ -994,6 +1286,47 @@
                     if (slaverCamp) {
                         settlement.componentType = 'SlaverCamp';
                     }
+                }
+
+                // Parse Locations for scene data
+                const locationsNode = node.querySelector('Locations');
+                if (locationsNode) {
+                    const locationNodes = locationsNode.querySelectorAll('Location');
+                    locationNodes.forEach(loc => {
+                        const locId = loc.getAttribute('id');
+                        if (locId) {
+                            const locationData = {
+                                scene_name: loc.getAttribute('scene_name') || '',
+                                scene_name_1: loc.getAttribute('scene_name_1') || '',
+                                scene_name_2: loc.getAttribute('scene_name_2') || '',
+                                scene_name_3: loc.getAttribute('scene_name_3') || ''
+                            };
+                            settlement.locations[locId] = locationData;
+
+                            // Collect scene names for dropdowns
+                            if (locationData.scene_name) {
+                                if (locId === 'village_center') {
+                                    allScenes.village_center.add(locationData.scene_name);
+                                } else if (locId === 'center') {
+                                    allScenes.center.add(locationData.scene_name);
+                                } else if (locId === 'arena') {
+                                    allScenes.arena.add(locationData.scene_name);
+                                } else if (locId === 'tavern') {
+                                    allScenes.tavern.add(locationData.scene_name);
+                                } else if (locId === 'prison') {
+                                    allScenes.prison.add(locationData.scene_name);
+                                } else if (locId.startsWith('house_')) {
+                                    allScenes.house.add(locationData.scene_name);
+                                }
+                            }
+                            // Collect lordshall scenes from scene_name_1/2/3
+                            if (locId === 'lordshall') {
+                                if (locationData.scene_name_1) allScenes.lordshall.add(locationData.scene_name_1);
+                                if (locationData.scene_name_2) allScenes.lordshall.add(locationData.scene_name_2);
+                                if (locationData.scene_name_3) allScenes.lordshall.add(locationData.scene_name_3);
+                            }
+                        }
+                    });
                 }
 
                 settlements.push(settlement);
@@ -1058,6 +1391,12 @@
             populateCultureDropdown();
             applyFilters();
             updateStats();
+
+            // Mark settlement file as loaded (green) to indicate successful parsing
+            const settlementFileSpan = document.querySelector('#fileName span[data-type="settlement"]');
+            if (settlementFileSpan) {
+                settlementFileSpan.classList.add('loaded');
+            }
         }
 
         // Populate dropdowns
@@ -1224,6 +1563,7 @@
                     <td style="font-size: 0.9em; color: #666;">${boundDisplay}</td>
                     <td contenteditable="true" onblur="updateProsperity('${s.id}', this.textContent)"
                         style="cursor: text; background: #fffacd;">${s.prosperity || '-'}</td>
+                    <td><button class="btn-scenes" onclick="openSceneModal('${s.id}')">Edit Scenes</button></td>
                     <td class="tech-col position-display">${s.posX.toFixed(3)}</td>
                     <td class="tech-col position-display">${s.posY.toFixed(3)}</td>
                 </tr>
@@ -1371,41 +1711,6 @@
             document.getElementById('filterPosX').value = '';
             document.getElementById('filterPosY').value = '';
             applyFilters();
-        }
-
-        // Export to CSV
-        function exportToCSV() {
-            if (filteredSettlements.length === 0) {
-                alert('No data to export');
-                return;
-            }
-
-            const headers = ['ID', 'Name', 'Owner', 'Culture', 'ComponentType', 'VillageType', 'IsCastle', 'Prosperity', 'PosX', 'PosY'];
-            const rows = filteredSettlements.map(s => [
-                s.id,
-                s.name,
-                s.owner,
-                s.culture,
-                s.componentType,
-                s.villageType || '',
-                s.isCastle ? 'Yes' : 'No',
-                s.prosperity,
-                s.posX,
-                s.posY
-            ]);
-
-            let csv = headers.join(',') + '\n';
-            rows.forEach(row => {
-                csv += row.map(cell => `"${cell}"`).join(',') + '\n';
-            });
-
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'tor_settlements_export.csv';
-            a.click();
-            window.URL.revokeObjectURL(url);
         }
 
         // Update owner
@@ -1577,6 +1882,37 @@
                                     console.log(`Updated Village ${settlement.id}: hearth=${settlement.prosperity}`);
                                 }
                             }
+                        }
+                    }
+
+                    // Update Locations (scenes)
+                    if (settlement.locations && Object.keys(settlement.locations).length > 0) {
+                        let locationsNode = settlementNode.querySelector('Locations');
+
+                        // If no Locations node exists, we can't add scenes without knowing the complex_template
+                        // So we only update existing Location elements
+                        if (locationsNode) {
+                            // Update each location
+                            Object.entries(settlement.locations).forEach(([locId, locData]) => {
+                                let locationNode = locationsNode.querySelector(`Location[id="${locId}"]`);
+
+                                if (locationNode) {
+                                    // Update existing location
+                                    if (locData.scene_name) {
+                                        locationNode.setAttribute('scene_name', locData.scene_name);
+                                    }
+                                    if (locData.scene_name_1) {
+                                        locationNode.setAttribute('scene_name_1', locData.scene_name_1);
+                                    }
+                                    if (locData.scene_name_2) {
+                                        locationNode.setAttribute('scene_name_2', locData.scene_name_2);
+                                    }
+                                    if (locData.scene_name_3) {
+                                        locationNode.setAttribute('scene_name_3', locData.scene_name_3);
+                                    }
+                                    console.log(`Updated location ${locId} for ${settlement.id}`);
+                                }
+                            });
                         }
                     }
                 } else {
@@ -2079,6 +2415,396 @@
             panOffsetY = 0;
             renderMap();
         }
+
+        // Scene Modal functionality
+        let currentSceneSettlementId = null;
+
+        function openSceneModal(settlementId) {
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (!settlement) return;
+
+            currentSceneSettlementId = settlementId;
+            document.getElementById('sceneModalTitle').textContent = `Edit Scenes - ${settlement.name}`;
+
+            const modalBody = document.getElementById('sceneModalBody');
+            let html = '';
+
+            // Generate different scene options based on settlement type
+            if (settlement.componentType === 'Town') {
+                html = generateTownSceneEditor(settlement);
+            } else if (settlement.componentType === 'Castle') {
+                html = generateCastleSceneEditor(settlement);
+            } else if (settlement.componentType === 'Village') {
+                html = generateVillageSceneEditor(settlement);
+            } else {
+                // For special settlements (Shrine, Hideout, etc.) - show basic info
+                html = `<p class="no-scenes-msg">This settlement type (${settlement.componentType}) uses predefined scenes that cannot be edited here.</p>`;
+            }
+
+            modalBody.innerHTML = html;
+            document.getElementById('sceneModal').classList.add('active');
+        }
+
+        function closeSceneModal() {
+            document.getElementById('sceneModal').classList.remove('active');
+            currentSceneSettlementId = null;
+        }
+
+        function generateSceneDropdown(id, currentValue, sceneSet, allowCustom = true) {
+            const scenes = Array.from(sceneSet).sort();
+            let options = `<option value="">-- Select Scene --</option>`;
+
+            // Check if current value is in the set
+            let currentInList = scenes.includes(currentValue);
+
+            scenes.forEach(scene => {
+                options += `<option value="${scene}" ${currentValue === scene ? 'selected' : ''}>${scene}</option>`;
+            });
+
+            // If current value is not in list and not empty, add it
+            if (currentValue && !currentInList) {
+                options += `<option value="${currentValue}" selected>${currentValue} (custom)</option>`;
+            }
+
+            if (allowCustom) {
+                return `
+                    <select id="${id}" onchange="handleSceneDropdownChange('${id}')">
+                        ${options}
+                        <option value="__custom__">Enter custom...</option>
+                    </select>
+                    <input type="text" id="${id}_custom" style="display: none; margin-top: 5px;"
+                           placeholder="Enter custom scene name" value="${currentValue || ''}"
+                           onchange="handleCustomSceneInput('${id}')">
+                `;
+            }
+            return `<select id="${id}">${options}</select>`;
+        }
+
+        function handleSceneDropdownChange(id) {
+            const select = document.getElementById(id);
+            const customInput = document.getElementById(id + '_custom');
+            if (select.value === '__custom__') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+            }
+        }
+
+        function handleCustomSceneInput(id) {
+            const customInput = document.getElementById(id + '_custom');
+            const select = document.getElementById(id);
+
+            // Add the custom value to the dropdown and select it
+            const customValue = customInput.value.trim();
+            if (customValue) {
+                // Check if option already exists
+                let found = false;
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === customValue) {
+                        select.selectedIndex = i;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    // Add new option before the "custom" option
+                    const newOption = new Option(customValue + ' (custom)', customValue, true, true);
+                    select.insertBefore(newOption, select.options[select.options.length - 1]);
+                }
+                customInput.style.display = 'none';
+            }
+        }
+
+        function generateTownSceneEditor(settlement) {
+            const locs = settlement.locations || {};
+
+            return `
+                <div class="scene-group">
+                    <h4>Town Center (Main Scene)</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_center', locs.center?.scene_name || '', allScenes.center)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Arena</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_arena', locs.arena?.scene_name || '', allScenes.arena)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Tavern</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_tavern', locs.tavern?.scene_name || '', allScenes.tavern)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Lord's Hall / Keep (by fortification level)</h4>
+                    <div class="scene-levels">
+                        <div class="scene-level-group">
+                            <label>Level 1:</label>
+                            ${generateSceneDropdown('scene_lordshall_1', locs.lordshall?.scene_name_1 || '', allScenes.lordshall)}
+                        </div>
+                        <div class="scene-level-group">
+                            <label>Level 2:</label>
+                            ${generateSceneDropdown('scene_lordshall_2', locs.lordshall?.scene_name_2 || '', allScenes.lordshall)}
+                        </div>
+                        <div class="scene-level-group">
+                            <label>Level 3:</label>
+                            ${generateSceneDropdown('scene_lordshall_3', locs.lordshall?.scene_name_3 || '', allScenes.lordshall)}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Prison / Dungeon</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_prison', locs.prison?.scene_name || '', allScenes.prison)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Houses</h4>
+                    <div class="scene-row">
+                        <label>House 1:</label>
+                        ${generateSceneDropdown('scene_house_1', locs.house_1?.scene_name || '', allScenes.house)}
+                    </div>
+                    <div class="scene-row">
+                        <label>House 2:</label>
+                        ${generateSceneDropdown('scene_house_2', locs.house_2?.scene_name || '', allScenes.house)}
+                    </div>
+                    <div class="scene-row">
+                        <label>House 3:</label>
+                        ${generateSceneDropdown('scene_house_3', locs.house_3?.scene_name || '', allScenes.house)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateCastleSceneEditor(settlement) {
+            const locs = settlement.locations || {};
+
+            return `
+                <div class="scene-group">
+                    <h4>Castle Center (Main Scene)</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_center', locs.center?.scene_name || '', allScenes.center)}
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Lord's Hall / Keep (by fortification level)</h4>
+                    <div class="scene-levels">
+                        <div class="scene-level-group">
+                            <label>Level 1:</label>
+                            ${generateSceneDropdown('scene_lordshall_1', locs.lordshall?.scene_name_1 || '', allScenes.lordshall)}
+                        </div>
+                        <div class="scene-level-group">
+                            <label>Level 2:</label>
+                            ${generateSceneDropdown('scene_lordshall_2', locs.lordshall?.scene_name_2 || '', allScenes.lordshall)}
+                        </div>
+                        <div class="scene-level-group">
+                            <label>Level 3:</label>
+                            ${generateSceneDropdown('scene_lordshall_3', locs.lordshall?.scene_name_3 || '', allScenes.lordshall)}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scene-group">
+                    <h4>Prison / Dungeon</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_prison', locs.prison?.scene_name || '', allScenes.prison)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateVillageSceneEditor(settlement) {
+            const locs = settlement.locations || {};
+
+            return `
+                <div class="scene-group">
+                    <h4>Village Center</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_village_center', locs.village_center?.scene_name || '', allScenes.village_center)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function getSceneValue(id) {
+            const select = document.getElementById(id);
+            const customInput = document.getElementById(id + '_custom');
+
+            if (!select) return '';
+
+            if (select.value === '__custom__' && customInput) {
+                return customInput.value.trim();
+            }
+            return select.value;
+        }
+
+        function saveSceneChanges() {
+            if (!currentSceneSettlementId) return;
+
+            const settlement = settlements.find(s => s.id === currentSceneSettlementId);
+            if (!settlement) return;
+
+            // Initialize locations if needed
+            if (!settlement.locations) {
+                settlement.locations = {};
+            }
+
+            if (settlement.componentType === 'Town') {
+                // Save town scenes
+                settlement.locations.center = {
+                    scene_name: getSceneValue('scene_center'),
+                    scene_name_1: getSceneValue('scene_center'),
+                    scene_name_2: getSceneValue('scene_center'),
+                    scene_name_3: getSceneValue('scene_center')
+                };
+                settlement.locations.arena = { scene_name: getSceneValue('scene_arena') };
+                settlement.locations.tavern = { scene_name: getSceneValue('scene_tavern') };
+                settlement.locations.lordshall = {
+                    scene_name_1: getSceneValue('scene_lordshall_1'),
+                    scene_name_2: getSceneValue('scene_lordshall_2'),
+                    scene_name_3: getSceneValue('scene_lordshall_3')
+                };
+                settlement.locations.prison = { scene_name: getSceneValue('scene_prison') };
+                settlement.locations.house_1 = { scene_name: getSceneValue('scene_house_1') };
+                settlement.locations.house_2 = { scene_name: getSceneValue('scene_house_2') };
+                settlement.locations.house_3 = { scene_name: getSceneValue('scene_house_3') };
+            } else if (settlement.componentType === 'Castle') {
+                // Save castle scenes
+                settlement.locations.center = {
+                    scene_name: getSceneValue('scene_center'),
+                    scene_name_1: getSceneValue('scene_center'),
+                    scene_name_2: getSceneValue('scene_center'),
+                    scene_name_3: getSceneValue('scene_center')
+                };
+                settlement.locations.lordshall = {
+                    scene_name_1: getSceneValue('scene_lordshall_1'),
+                    scene_name_2: getSceneValue('scene_lordshall_2'),
+                    scene_name_3: getSceneValue('scene_lordshall_3')
+                };
+                settlement.locations.prison = { scene_name: getSceneValue('scene_prison') };
+            } else if (settlement.componentType === 'Village') {
+                // Save village scenes
+                settlement.locations.village_center = { scene_name: getSceneValue('scene_village_center') };
+            }
+
+            modifiedSettlements.add(currentSceneSettlementId);
+            console.log(`Updated scenes for ${settlement.name}:`, settlement.locations);
+
+            closeSceneModal();
+
+            // Show confirmation
+            alert(`Scenes updated for ${settlement.name}!\n\nRemember to click "Save Changes to XML" to export your changes.`);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('sceneModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSceneModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('sceneModal').classList.contains('active')) {
+                closeSceneModal();
+            }
+        });
+
+        // Column resizing functionality
+        let isResizing = false;
+        let currentResizer = null;
+        let currentTh = null;
+        let startX = 0;
+        let startWidth = 0;
+
+        function initColumnResizers() {
+            const table = document.getElementById('settlementTable');
+            const headerCells = table.querySelectorAll('thead th');
+
+            headerCells.forEach((th, index) => {
+                // Remove existing resizer if any
+                const existingResizer = th.querySelector('.column-resizer');
+                if (existingResizer) {
+                    existingResizer.remove();
+                }
+
+                // Create resizer element
+                const resizer = document.createElement('div');
+                resizer.className = 'column-resizer';
+                th.appendChild(resizer);
+
+                // Set initial width if not set
+                if (!th.style.width) {
+                    th.style.width = th.offsetWidth + 'px';
+                }
+
+                // Mouse down - start resizing
+                resizer.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    isResizing = true;
+                    currentResizer = resizer;
+                    currentTh = th;
+                    startX = e.pageX;
+                    startWidth = th.offsetWidth;
+                    resizer.classList.add('resizing');
+                    document.body.style.cursor = 'col-resize';
+                    document.body.style.userSelect = 'none';
+                });
+            });
+        }
+
+        // Global mouse move for resizing
+        document.addEventListener('mousemove', function(e) {
+            if (!isResizing || !currentTh) return;
+
+            const diff = e.pageX - startX;
+            const newWidth = Math.max(50, startWidth + diff); // Minimum 50px width
+            currentTh.style.width = newWidth + 'px';
+        });
+
+        // Global mouse up - stop resizing
+        document.addEventListener('mouseup', function(e) {
+            if (isResizing) {
+                isResizing = false;
+                if (currentResizer) {
+                    currentResizer.classList.remove('resizing');
+                }
+                currentResizer = null;
+                currentTh = null;
+                document.body.style.cursor = '';
+                document.body.style.userSelect = '';
+            }
+        });
+
+        // Initialize resizers when table is rendered
+        const originalRenderTable = renderTable;
+        renderTable = function() {
+            originalRenderTable();
+            // Re-initialize resizers after table render
+            setTimeout(initColumnResizers, 0);
+        };
+
+        // Initialize on page load if table exists
+        document.addEventListener('DOMContentLoaded', function() {
+            initColumnResizers();
+        });
     </script>
 </body>
 </html>
