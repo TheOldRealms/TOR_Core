@@ -264,7 +264,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void SetMenuLabelTexts()
         {
             TextObject originText;
-            if (GameTexts.TryGetText("str_tor_cc_origin", out var stage1Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            if (GameTexts.TryGetText("tor_cc_origin", out var stage1Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
                 originText = stage1Text;
             }
@@ -275,7 +275,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             MBTextManager.SetTextVariable("TOR_CC_ORIGIN", originText, false);
 
             TextObject growthText;
-            if (GameTexts.TryGetText("str_tor_cc_growth", out var stage2Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            if (GameTexts.TryGetText("tor_cc_growth", out var stage2Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
                 growthText = stage2Text;
             }
@@ -286,7 +286,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             MBTextManager.SetTextVariable("TOR_CC_GROWTH", growthText, false);
 
             TextObject professionText;
-            if (GameTexts.TryGetText("str_tor_cc_profession", out var stage3Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            if (GameTexts.TryGetText("tor_cc_profession", out var stage3Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
                 professionText = stage3Text;
             }

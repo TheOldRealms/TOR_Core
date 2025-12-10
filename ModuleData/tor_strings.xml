@@ -21,85 +21,85 @@
   
   
   <!-- CC Options -->
-  <string id="str_tor_cc_growth.battania" text= "{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities…"/>
-  <string id="str_tor_cc_profession.battania" text= "{=str_tor_cc_profession_battania}Choose your path…"/>
+  <string id="tor_cc_growth.battania" text= "{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities…"/>
+  <string id="tor_cc_profession.battania" text= "{=str_tor_cc_profession_battania}Choose your path…"/>
 
-  <string id="str_tor_cc_origin.sturgia" text= "{=str_tor_cc_origin_sturgia}Your Clan is famous for its…"/>
-  <string id="str_tor_cc_growth.sturgia" text= "{=str_tor_cc_growth_sturgia}The proud Dawi cultivate every grudge aimed at their kin…"/>
-  <string id="str_tor_cc_profession.sturgia" text= "{=str_tor_cc_profession_sturgia}Your current profession…"/>
+  <string id="tor_cc_origin.sturgia" text= "{=str_tor_cc_origin_sturgia}Your Clan is famous for its…"/>
+  <string id="tor_cc_growth.sturgia" text= "{=str_tor_cc_growth_sturgia}The proud Dawi cultivate every grudge aimed at their kin…"/>
+  <string id="tor_cc_profession.sturgia" text= "{=str_tor_cc_profession_sturgia}Your current profession…"/>
 
-  <string id="str_tor_cc_origin.aserai" text= "{=str_tor_cc_origin_aserai}Greenskins reproduce via spores, and yours landed on…"/>
-  <string id="str_tor_cc_growth.aserai" text= "{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…"/>
-  <string id="str_tor_cc_profession.aserai" text= "{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…"/>
+  <string id="tor_cc_origin.aserai" text= "{=str_tor_cc_origin_aserai}Greenskins reproduce via spores, and yours landed on…"/>
+  <string id="tor_cc_growth.aserai" text= "{=str_tor_cc_growth_aserai}After joining a tribe your biggest achievement was…"/>
+  <string id="tor_cc_profession.aserai" text= "{=str_tor_cc_profession_aserai}Before leaving the tribe, you were one of the…"/>
 
   <!-- CC Specialization Stage -->
-  <string id="str_tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore of Magic…"/>
+  <string id="tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore of Magic…"/>
   <string id="str_tor_cc_specialization_desc_lore" text="{=str_tor_cc_specialization_desc_lore}The gift of Witchsight allows you to channel one of the eight Winds of Magic:"/>
 
-  <string id="str_tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline…"/>
-  <string id="str_tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}The Vampirekind is divided into several distinct bloodlines:"/>
+  <string id="tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline…"/>
+  <string id="tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}The Vampirekind is divided into several distinct bloodlines:"/>
 
-  <string id="str_tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your Deity…"/>
-  <string id="str_tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}All Warrior Priests serve one particular god:"/>
+  <string id="tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your Deity…"/>
+  <string id="tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}All Warrior Priests serve one particular god:"/>
 
-  <string id="str_tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order…"/>
-  <string id="str_tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}All knights are members of an esteemed knightly order:"/>
+  <string id="tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order…"/>
+  <string id="tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}All knights are members of an esteemed knightly order:"/>
   
   
    <!-- priest blessings -->
-  <string id="priest_hub_intro.cult_of_ulric" text= "In the name of Ulric, how can I help you?"/>
-  <string id="priest_hub_reintro.cult_of_ulric" text= "What else?"/>
+  <string id="priest_hub_intro.cult_of_ulric" text="{=str_priest_hub_intro_cult_of_ulric}In the name of Ulric, how can I help you?"/>
+  <string id="priest_hub_reintro.cult_of_ulric" text="{=str_priest_hub_reintro_cult_of_ulric}What else?"/>
   
-  <string id="priest_hub_blessings_p.cult_of_ulric" text= "Can you show me how to bless weapons in the name of Ulric?"/>
-  <string id="priest_hub_quit_p.cult_of_ulric" text= "Have a great day Mr Wolf man - Sir."/>
-  
-  <string id="priest_blessings_1.cult_of_ulric" text= "Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
-  <string id="priest_blessings_decline.cult_of_ulric" text= "You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
-  
-  
+  <string id="priest_hub_blessings_p.cult_of_ulric" text="{=str_priest_hub_blessings_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>
+  <string id="priest_hub_quit_p.cult_of_ulric" text="{=str_priest_hub_quit_p_cult_of_ulric}Have a great day Mr Wolf man - Sir."/>
+
+  <string id="priest_blessings_1.cult_of_ulric" text="{=str_priest_blessings_1_cult_of_ulric}Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
+  <string id="priest_blessings_decline.cult_of_ulric" text="{=str_priest_blessings_decline_cult_of_ulric}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
   
   
-  <string id="priest_start_accept.cult_of_sigmar" text= "Welcome, friends of the Empire."/>
-  <string id="priest_start_decline.cult_of_sigmar" text= "You need a follower of Sigmar if you wish to speak to me, stranger."/>
-  <string id="priest_start_decline_hard.cult_of_sigmar" text= "Begone from my sight, at once!"/>
-  
-  <string id="priest_hub_intro.cult_of_sigmar" text= "In the name of Sigmar, how can I help you?"/>
-  <string id="priest_hub_reintro.cult_of_sigmar" text= "Was there something else?"/>
   
   
-  <string id="priest_hub_blessings_p.cult_of_sigmar" text= "Can you show me how to bless weapons in the name of Sigmar?"/>
-<string id="priest_hub_party_blessing_p.cult_of_sigmar" text= "Can my party receive Sigmar's blessing?"/>
-  <string id="priest_hub_quit_p.cult_of_sigmar" text= "I must leave."/>
-  
-  <string id="priest_blessingshop_1.cult_of_sigmar" text= "Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
-  <string id="priest_blessingshop_decline.cult_of_sigmar" text= "You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
-  
-  
-    <string id="priest_blessing_party_1.cult_of_sigmar" text= "In the name of Sigmar, I bless you."/>
-  <string id="priest_blessings_decline.cult_of_sigmar" text= "You have been blessed recently, there is no need of giving you the blessing of a god."/>
+  <string id="priest_start_accept.cult_of_sigmar" text= "{=str_priest_start_accept_cult_of_sigmar}Welcome, friends of the Empire."/>
+  <string id="priest_start_decline.cult_of_sigmar" text= "{=str_priest_start_decline_cult_of_sigmar}You need a follower of Sigmar if you wish to speak to me, stranger."/>
+  <string id="priest_start_decline_hard.cult_of_sigmar" text= "{=str_priest_start_decline_hard_cult_of_sigmar}Begone from my sight, at once!"/>
+
+  <string id="priest_hub_intro.cult_of_sigmar" text= "{=str_priest_hub_intro_cult_of_sigmar}In the name of Sigmar, how can I help you?"/>
+  <string id="priest_hub_reintro.cult_of_sigmar" text= "{=str_priest_hub_reintro_cult_of_sigmar}Was there something else?"/>
+
+
+  <string id="priest_hub_blessings_p.cult_of_sigmar" text= "{=str_priest_hub_blessings_p_cult_of_sigmar}Can you show me how to bless weapons in the name of Sigmar?"/>
+<string id="priest_hub_party_blessing_p.cult_of_sigmar" text= "{=str_priest_hub_party_blessing_p_cult_of_sigmar}Can my party receive Sigmar's blessing?"/>
+  <string id="priest_hub_quit_p.cult_of_sigmar" text= "{=str_priest_hub_quit_p_cult_of_sigmar}I must leave."/>
+
+  <string id="priest_blessingshop_1.cult_of_sigmar" text= "{=str_priest_blessingshop_1_cult_of_sigmar}Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
+  <string id="priest_blessingshop_decline.cult_of_sigmar" text= "{=str_priest_blessingshop_decline_cult_of_sigmar}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
+
+
+    <string id="priest_blessing_party_1.cult_of_sigmar" text= "{=str_priest_blessing_party_1_cult_of_sigmar}In the name of Sigmar, I bless you."/>
+  <string id="priest_blessings_decline.cult_of_sigmar" text= "{=str_priest_blessings_decline_cult_of_sigmar}You have been blessed recently, there is no need of giving you the blessing of a god."/>
   
   
 
   
   
-  <string id="priest_start_accept.cult_of_shallya" text= "Welcome, friend of Shallya."/>
-  <string id="priest_start_decline.cult_of_shallya" text= "You need a follower of Shallya in your party if you wish to speak to me, stranger."/>
-  <string id="priest_start_decline_hard.cult_of_shallya" text= "You are not welcome here, leave at once!"/>
-  
-  <string id="priest_hub_intro.cult_of_shallya" text= "Shallya welcomes you with open arms."/>
-  <string id="priest_hub_reintro.cult_of_shallya" text= "Was there something else you needed, friend?"/>
-	
-  <string id="priest_hub_blessingshop_p.cult_of_shallya" text= "Tell me more about blessing items in the name of Shallya."/>
-  
-<string id="priest_hub_party_blessing_p.cult_of_shallya" text= "We wish to be blessed by the Lady in White."/>
-  <string id="priest_hub_quit_p.cult_of_shallya" text= "I must take my leave."/>
-  
-  <string id="priest_blessingshop_1.cult_of_shallya" text= "For a small donation, you may access our tomes of healing and faith."/>
-  <string id="priest_blessingshop_decline.cult_of_shallya" text= "You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
-  
-  
-    <string id="priest_blessing_party_1.cult_of_shallya" text= "In the name of Shallya, I bless you."/>
-  <string id="priest_blessings_decline.cult_of_shallya" text= "You have been blessed recently, there is no need of giving you the blessing of a god."/>
+  <string id="priest_start_accept.cult_of_shallya" text= "{=str_priest_start_accept_cult_of_shallya}Welcome, friend of Shallya."/>
+  <string id="priest_start_decline.cult_of_shallya" text= "{=str_priest_start_decline_cult_of_shallya}You need a follower of Shallya in your party if you wish to speak to me, stranger."/>
+  <string id="priest_start_decline_hard.cult_of_shallya" text= "{=str_priest_start_decline_hard_cult_of_shallya}You are not welcome here, leave at once!"/>
+
+  <string id="priest_hub_intro.cult_of_shallya" text= "{=str_priest_hub_intro_cult_of_shallya}Shallya welcomes you with open arms."/>
+  <string id="priest_hub_reintro.cult_of_shallya" text= "{=str_priest_hub_reintro_cult_of_shallya}Was there something else you needed, friend?"/>
+
+  <string id="priest_hub_blessingshop_p.cult_of_shallya" text= "{=str_priest_hub_blessingshop_p_cult_of_shallya}Tell me more about blessing items in the name of Shallya."/>
+
+<string id="priest_hub_party_blessing_p.cult_of_shallya" text= "{=str_priest_hub_party_blessing_p_cult_of_shallya}We wish to be blessed by the Lady in White."/>
+  <string id="priest_hub_quit_p.cult_of_shallya" text= "{=str_priest_hub_quit_p_cult_of_shallya}I must take my leave."/>
+
+  <string id="priest_blessingshop_1.cult_of_shallya" text= "{=str_priest_blessingshop_1_cult_of_shallya}For a small donation, you may access our tomes of healing and faith."/>
+  <string id="priest_blessingshop_decline.cult_of_shallya" text= "{=str_priest_blessingshop_decline_cult_of_shallya}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
+
+
+    <string id="priest_blessing_party_1.cult_of_shallya" text= "{=str_priest_blessing_party_1_cult_of_shallya}In the name of Shallya, I bless you."/>
+  <string id="priest_blessings_decline.cult_of_shallya" text= "{=str_priest_blessings_decline_cult_of_shallya}You have been blessed recently, there is no need of giving you the blessing of a god."/>
   
   
   <!-- skill training -->
@@ -110,7 +110,6 @@
 	<string id="skill_train_hub_select_companion_p" text= "default skill_train_hub_select_companion_p. defaulted to if no variant exists."/>
 	<string id="skill_train_hub_select_companion" text= "default skill_train_hub_select_companion. defaulted to if no variant exists."/>
 	<string id="skill_train_hub_select_companion_decline" text= "default skill_train_hub_select_companion_decline. defaulted to if no variant exists."/>
-	<string id="priest_train_hub_quit_p" text= "default train hub quit. defaulted to if no variant exists."/>
 	<string id="teach_skills_dialog_p.DwarfRunelord" text= "Can you teach my runesmith companion the sacred arts of the runes?"/>
 	<string id="skill_teacher_train_1.DwarfRunelord" text= "I can help, but it will take a substantial amount of time and gold to do so."/>
 	<string id="skill_teacher_train_2.DwarfRunelord" text= "Would you still like me to pass down my teachings?"/>
@@ -163,46 +162,44 @@
   <!--enchantment prompts-->
 
   <!--religion start-->
-   <string id="priest_start_accept.cult_of_sigmar" text= "{=str_tor_cc_profession_battania}Friends of Sigmar, welcome!"/>
-   <string id="priest_start_accept.cult_of_sigmar" text= "{=str_tor_cc_profession_battania}Friends of Sigmar, welcome!"/>
   
   
   <!--enchantment start-->
-  <string id="enchanter_dialog_start_quit.empire" text= "{=str_tor_cc_profession_battania}You are not serving the empire. begone"/>
-   <string id="enchanter_start_p.vlandia" text= "{=str_tor_cc_profession_battania}What about enchantment?"/>
-   <string id="enchanter_start_p.sturgia" text= "{=str_tor_cc_profession_battania}I wish to know more about the art of runecraft."/>
-   
+  <string id="enchanter_dialog_start_quit.empire" text= "{=str_enchanter_dialog_start_quit_empire}You are not serving the empire. begone"/>
+   <string id="enchanter_start_p.vlandia" text= "{=str_enchanter_start_p_vlandia}What about enchantment?"/>
+   <string id="enchanter_start_p.sturgia" text= "{=str_enchanter_start_p_sturgia}I wish to know more about the art of runecraft."/>
 
-  <string id="enchanter_dialog_start_1.empire" text= "{=str_tor_cc_profession_battania}It would appear you have made quite a name for yourself, those loyal to the Empire are always welcome here."/>
-  <string id="enchanter_dialog_start_2.empire" text= "{=str_tor_cc_profession_battania}Ah, a fellow practioner! You are most welcome, there is much we can discuss as colleagues."/>
-  <string id="enchanter_start_quit.empire" text= "{=str_tor_cc_profession_battania}I do not have time for you, begone from my sight!"/>
-  
-  <string id="enchanter_dialog_start_1.vlandia" text= "{=str_tor_cc_profession_battania}Well well well who have we here? French edition"/>
-  <string id="enchanter_dialog_start_2.vlandia" text= "{=str_tor_cc_profession_battania}Have a new blueprint or not. French edition"/>
-  
-  <string id="enchanter_dialog_start_1.sturgia" text= "{=str_tor_cc_profession_battania}Not so fast little man. I am the danger here."/>
-  <string id="enchanter_dialog_start_2.sturgia" text= "{=str_tor_cc_profession_battania}As one of our beloved rune smiths, i will show you one our basic scheme."/>
-  
+
+  <string id="enchanter_dialog_start_1.empire" text= "{=str_enchanter_dialog_start_1_empire}It would appear you have made quite a name for yourself, those loyal to the Empire are always welcome here."/>
+  <string id="enchanter_dialog_start_2.empire" text= "{=str_enchanter_dialog_start_2_empire}Ah, a fellow practioner! You are most welcome, there is much we can discuss as colleagues."/>
+  <string id="enchanter_start_quit.empire" text= "{=str_enchanter_start_quit_empire}I do not have time for you, begone from my sight!"/>
+
+  <string id="enchanter_dialog_start_1.vlandia" text= "{=str_enchanter_dialog_start_1_vlandia}Well well well who have we here? French edition"/>
+  <string id="enchanter_dialog_start_2.vlandia" text= "{=str_enchanter_dialog_start_2_vlandia}Have a new blueprint or not. French edition"/>
+
+  <string id="enchanter_dialog_start_1.sturgia" text= "{=str_enchanter_dialog_start_1_sturgia}Not so fast little man. I am the danger here."/>
+  <string id="enchanter_dialog_start_2.sturgia" text= "{=str_enchanter_dialog_start_2_sturgia}As one of our beloved rune smiths, i will show you one our basic scheme."/>
+
     <!--enchantment hub -->
-  <string id="enchanter_hub_intro.empire" text= "{=str_tor_cc_profession_battania}So, to what do I owe this visit?"/>
-  <string id="enchanter_hub_reintro.empire" text= "{=str_tor_cc_profession_battania}What else do you need?"/>
-  
-  <string id="enchanter_hub_info_p.empire" text= "{=str_tor_cc_profession_battania}Can you teach me the fundamentals of alchemy?"/>
-  <string id="enchanter_hub_blueprints_p.empire" text= "{=str_tor_cc_profession_battania}I would like to learn new alchemical formulas."/>
-  <string id="enchanter_hub_donate_items_p.empire" text= "{=str_tor_cc_profession_battania}I have magical items I no longer need, can you put them to good use?"/>
-  <string id="enchanter_hub_open_enchanter_p.empire" text= "{=str_tor_cc_profession_battania}May I use your laboratory?"/>
-  <string id="enchanter_hub_return_p.empire" text= "{=str_tor_cc_profession_battania}I must go, farewell."/>
+  <string id="enchanter_hub_intro.empire" text= "{=str_enchanter_hub_intro_empire}So, to what do I owe this visit?"/>
+  <string id="enchanter_hub_reintro.empire" text= "{=str_enchanter_hub_reintro_empire}What else do you need?"/>
+
+  <string id="enchanter_hub_info_p.empire" text= "{=str_enchanter_hub_info_p_empire}Can you teach me the fundamentals of alchemy?"/>
+  <string id="enchanter_hub_blueprints_p.empire" text= "{=str_enchanter_hub_blueprints_p_empire}I would like to learn new alchemical formulas."/>
+  <string id="enchanter_hub_donate_items_p.empire" text= "{=str_enchanter_hub_donate_items_p_empire}I have magical items I no longer need, can you put them to good use?"/>
+  <string id="enchanter_hub_open_enchanter_p.empire" text= "{=str_enchanter_hub_open_enchanter_p_empire}May I use your laboratory?"/>
+  <string id="enchanter_hub_return_p.empire" text= "{=str_enchanter_hub_return_p_empire}I must go, farewell."/>
   
   <!-- Enchantment shop-->
-  <string id="enchantmentshop_title.sturgia" text= "{=str_tor_cc_profession_battania}Make your choice…"/>
-  <string id="enchantmentshop_title.empire" text= "{=str_tor_cc_profession_battania}Make your choice…"/>
-  <string id="enchantmentshop_title.aserai" text= "{=str_tor_cc_profession_battania}Make your choice…"/>
-  <string id="enchantmentshop_title.blessings" text= "{=str_tor_cc_profession_battania}Make your choice…"/>
-  
-  <string id="enchantmentshop_description.empire" text= "{=str_tor_cc_profession_battania}Select an enchantment scroll to study"/>
-  <string id="enchantmentshop_description.sturgia" text= "{=str_tor_cc_profession_battania}Select a rune carving to study"/>
-  <string id="enchantmentshop_description.aserai" text= "{=str_tor_cc_profession_battania}Select a shamanic totem to study"/>
-  <string id="enchantmentshop_description.blessings" text= "{=str_tor_cc_profession_battania}Select a blessed tome to study"/>
+  <string id="enchantmentshop_title.sturgia" text= "{=str_enchantmentshop_title_sturgia}Make your choice…"/>
+  <string id="enchantmentshop_title.empire" text= "{=str_enchantmentshop_title_empire}Make your choice…"/>
+  <string id="enchantmentshop_title.aserai" text= "{=str_enchantmentshop_title_aserai}Make your choice…"/>
+  <string id="enchantmentshop_title.blessings" text= "{=str_enchantmentshop_title_blessings}Make your choice…"/>
+
+  <string id="enchantmentshop_description.empire" text= "{=str_enchantmentshop_description_empire}Select an enchantment scroll to study"/>
+  <string id="enchantmentshop_description.sturgia" text= "{=str_enchantmentshop_description_sturgia}Select a rune carving to study"/>
+  <string id="enchantmentshop_description.aserai" text= "{=str_enchantmentshop_description_aserai}Select a shamanic totem to study"/>
+  <string id="enchantmentshop_description.blessings" text= "{=str_enchantmentshop_description_blessings}Select a blessed tome to study"/>
   
   <string id="tor_enchantmentshop_restriction.Armor" text= "{=str_tor_enchantmentshop_restriction_armor}Applies to armour"/>
   <string id="tor_enchantmentshop_restriction.Melee" text= "{=str_tor_enchantmentshop_restriction_melee_weapon}Applies to melee weapons"/>
@@ -213,126 +210,126 @@
   <string id="tor_enchantmentshop_restriction.Thrown" text= "{=str_tor_enchantmentshop_restriction_thrown}Applies to thrown weapons"/>
   <string id="tor_enchantmentshop_restriction.Invalid" text= "{=str_tor_enchantmentshop_restriction_invalid}"/>
   <!-- donate hub-->
-	  
-  <string id="enchant_prompt_donate_items.title" text= "Donate Items"/>
-    <string id="enchant_prompt_donate_items.text" text= "Please select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. "/>
+
+  <string id="enchant_prompt_donate_items.title" text= "{=str_enchant_prompt_donate_items_title}Donate Items"/>
+    <string id="enchant_prompt_donate_items.text" text= "{=str_enchant_prompt_donate_items_text}Please select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. "/>
 	
-  <string id="enchanter_donate_items_1.empire" text= "{=str_tor_cc_profession_battania}I am interested in your magical items you find in your journeys. What do you have to offer?"/>
-  <string id="enchanter_donate_items_1_negative.empire" text= "{=str_tor_cc_profession_battania}You dont have anything of interest for me. I am not interested in the enchanted items of yours, but to study the artefacts of this world."/>  
-  <string id="enchanter_donate_items_hub_p.empire" text= "{=str_tor_cc_profession_battania}Let me provide you these items…"/> 
-  <string id="enchanter_gift_items_hub_return_p.empire" text= "{=str_tor_cc_profession_battania}I need to think about this."/>    
-  
- <string id="enchanter_donate_items_2.empire" text= "{=str_tor_cc_profession_battania}Which items do you want to donate?"/>
+  <string id="enchanter_donate_items_1.empire" text= "{=str_enchanter_donate_items_1_empire}I am interested in your magical items you find in your journeys. What do you have to offer?"/>
+  <string id="enchanter_donate_items_1_negative.empire" text= "{=str_enchanter_donate_items_1_negative_empire}You dont have anything of interest for me. I am not interested in the enchanted items of yours, but to study the artefacts of this world."/>
+  <string id="enchanter_donate_items_hub_p.empire" text= "{=str_enchanter_donate_items_hub_p_empire}Let me provide you these items…"/>
+  <string id="enchanter_gift_items_hub_return_p.empire" text= "{=str_enchanter_gift_items_hub_return_p_empire}I need to think about this."/>
+
+ <string id="enchanter_donate_items_2.empire" text= "{=str_enchanter_donate_items_2_empire}Which items do you want to donate?"/>
     <!--enchantment info hub-->
-	
-  <string id="enchanter_info_hub_intro_enchanter_first_visit.empire" text= "{=str_tor_cc_profession_battania}Of course! In fact, I have just the thing to get you started, take this, and we can discuss it all more detail."/>
-  <string id="enchanter_info_hub_intro_first_visit.empire" text= "{=str_tor_cc_profession_battania}Of course! I would read this book here."/>
-  <string id="enchanter_info_hub_intro_read_book.empire" text= "{=str_tor_cc_profession_battania}Just read the book I gave you."/>
-  
+
+  <string id="enchanter_info_hub_intro_enchanter_first_visit.empire" text= "{=str_enchanter_info_hub_intro_enchanter_first_visit_empire}Of course! In fact, I have just the thing to get you started, take this, and we can discuss it all more detail."/>
+  <string id="enchanter_info_hub_intro_first_visit.empire" text= "{=str_enchanter_info_hub_intro_first_visit_empire}Of course! I would read this book here."/>
+  <string id="enchanter_info_hub_intro_read_book.empire" text= "{=str_enchanter_info_hub_intro_read_book_empire}Just read the book I gave you."/>
 
 
-  <string id="enchanter_info_hub_beginner_p.empire" text= "{=str_tor_cc_profession_battania}What do I need, to be able to perform alchemy?"/>	
-  <string id="enchanter_info_hub_resources_p.empire" text= "{=str_tor_cc_profession_battania}Can you tell me more about the magical ingredients?"/>
-  <string id="enchanter_info_hub_give_items_p.empire" text= "{=str_tor_cc_profession_battania}What can I do with magical items I have no use for?"/>
-  <string id="enchanter_info_hub_return_p.empire" text= "{=str_tor_cc_profession_battania}That will be all for now."/>
+
+  <string id="enchanter_info_hub_beginner_p.empire" text= "{=str_enchanter_info_hub_beginner_p_empire}What do I need, to be able to perform alchemy?"/>
+  <string id="enchanter_info_hub_resources_p.empire" text= "{=str_enchanter_info_hub_resources_p_empire}Can you tell me more about the magical ingredients?"/>
+  <string id="enchanter_info_hub_give_items_p.empire" text= "{=str_enchanter_info_hub_give_items_p_empire}What can I do with magical items I have no use for?"/>
+  <string id="enchanter_info_hub_return_p.empire" text= "{=str_enchanter_info_hub_return_p_empire}That will be all for now."/>
   
   <!--enchantment start-->
-   <string id="enchanter_start_p.sturgia" text= "{=str_tor_cc_profession_battania}I wish to know more about the art of runecraft."/>
-  <string id="enchanter_start.sturgia" text= "{=str_tor_cc_profession_battania}It would appear you have made quite a name for yourself, those loyal to the sturgia are always welcome here."/>
-  <string id="enchanter_start_enchanter.sturgia" text= "{=str_tor_cc_profession_battania}Ah, a fellow Rhunki, you are most welcome in the Grongaz."/>
-  <string id="enchanter_start_quit.sturgia" text= "{=str_tor_cc_profession_battania}I do not have time for you, begone from my sight!"/>
-  
-  
+   <string id="enchanter_start_p.sturgia" text= "{=str_enchanter_start_p_sturgia}I wish to know more about the art of runecraft."/>
+  <string id="enchanter_start.sturgia" text= "{=str_enchanter_start_sturgia}It would appear you have made quite a name for yourself, those loyal to the sturgia are always welcome here."/>
+  <string id="enchanter_start_enchanter.sturgia" text= "{=str_enchanter_start_enchanter_sturgia}Ah, a fellow Rhunki, you are most welcome in the Grongaz."/>
+  <string id="enchanter_start_quit.sturgia" text= "{=str_enchanter_start_quit_sturgia}I do not have time for you, begone from my sight!"/>
+
+
     <!--enchantment hub -->
-  <string id="enchanter_hub_intro.sturgia" text= "{=str_tor_cc_profession_battania}So, what is it that you need?"/>
-  <string id="enchanter_hub_reintro.sturgia" text= "{=str_tor_cc_profession_battania}Was there something else?"/>
-  
-  <string id="enchanter_hub_info_p.sturgia" text= "{=str_tor_cc_profession_battania}Can you teach me the fundamentals of runecraft?"/>
-  <string id="enchanter_hub_blueprints_p.sturgia" text= "{=str_tor_cc_profession_battania}I am here to learn new Rhun carvings."/>
-  <string id="enchanter_hub_donate_items_p.sturgia" text= "{=str_tor_cc_profession_battania}I have magical items I no longer need, can you put them to good use?"/>
-  <string id="enchanter_hub_open_enchanter_p.sturgia" text= "{=str_tor_cc_profession_battania}I wish to use your forge, Master Smith."/>
-  <string id="enchanter_hub_return_p.sturgia" text= "{=str_tor_cc_profession_battania}Let us discuss other matters."/>
+  <string id="enchanter_hub_intro.sturgia" text= "{=str_enchanter_hub_intro_sturgia}So, what is it that you need?"/>
+  <string id="enchanter_hub_reintro.sturgia" text= "{=str_enchanter_hub_reintro_sturgia}Was there something else?"/>
+
+  <string id="enchanter_hub_info_p.sturgia" text= "{=str_enchanter_hub_info_p_sturgia}Can you teach me the fundamentals of runecraft?"/>
+  <string id="enchanter_hub_blueprints_p.sturgia" text= "{=str_enchanter_hub_blueprints_p_sturgia}I am here to learn new Rhun carvings."/>
+  <string id="enchanter_hub_donate_items_p.sturgia" text= "{=str_enchanter_hub_donate_items_p_sturgia}I have magical items I no longer need, can you put them to good use?"/>
+  <string id="enchanter_hub_open_enchanter_p.sturgia" text= "{=str_enchanter_hub_open_enchanter_p_sturgia}I wish to use your forge, Master Smith."/>
+  <string id="enchanter_hub_return_p.sturgia" text= "{=str_enchanter_hub_return_p_sturgia}Let us discuss other matters."/>
   
   
   
   <!-- donate hub-->
 	  
-  <string id="enchant_prompt_donate_items.title" text= "Donate items"/>
-    <string id="enchant_prompt_donate_items.text" text= "Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. "/>
+  <string id="enchant_prompt_donate_items.title" text= "{=str_enchant_prompt_donate_items_title}Donate items"/>
+    <string id="enchant_prompt_donate_items.text" text= "{=str_enchant_prompt_donate_items_text}Select the items you want to donate. You will obtain {CUSTOMRESOURCE_ICON} from this action. "/>
 	
-  <string id="enchanter_donate_items_1.sturgia" text= "{=str_tor_cc_profession_battania}I would be happy to receive and look over any magical gear you have collected. What do you have to offer?"/>
-  <string id="enchanter_donate_items_1_negative.sturgia" text= "{=str_tor_cc_profession_battania}You dont have anything of interest for me. Remember, will not accept items you have made yourself, as all that you know, we already know."/>  
-  <string id="enchanter_donate_items_hub_p.sturgia" text= "{=str_tor_cc_profession_battania}Let me provide you these items…"/> 
-  <string id="enchanter_gift_items_hub_return_p.sturgia" text= "{=str_tor_cc_profession_battania}I need to think about this."/>    
+  <string id="enchanter_donate_items_1.sturgia" text= "{=str_enchanter_donate_items_1_sturgia}I would be happy to receive and look over any magical gear you have collected. What do you have to offer?"/>
+  <string id="enchanter_donate_items_1_negative.sturgia" text= "{=str_enchanter_donate_items_1_negative_sturgia}You dont have anything of interest for me. Remember, will not accept items you have made yourself, as all that you know, we already know."/>  
+  <string id="enchanter_donate_items_hub_p.sturgia" text= "{=str_enchanter_donate_items_hub_p_sturgia}Let me provide you these items…"/> 
+  <string id="enchanter_gift_items_hub_return_p.sturgia" text= "{=str_enchanter_gift_items_hub_return_p_sturgia}I need to think about this."/>    
   
- <string id="enchanter_donate_items_2.sturgia" text= "{=str_tor_cc_profession_battania}Which items do you want to donate?"/>
+ <string id="enchanter_donate_items_2.sturgia" text= "{=str_enchanter_donate_items_2_sturgia}Which items do you want to donate?"/>
     <!--enchantment info hub-->
 	
-  <string id="enchanter_info_hub_intro_enchanter_first_visit.sturgia" text= "{=str_tor_cc_profession_battania}Take this Klinkarhun, upon which you can build the foundations of your own Rhunki future."/>
+  <string id="enchanter_info_hub_intro_enchanter_first_visit.sturgia" text= "{=str_enchanter_info_hub_intro_enchanter_first_visit_sturgia}Take this Klinkarhun, upon which you can build the foundations of your own Rhunki future."/>
 	
-  <string id="enchanter_info_hub_intro.sturgia" text= "{=str_tor_cc_profession_battania}I can explain with little difficulty, the burden of understanding lies with you."/>
+  <string id="enchanter_info_hub_intro.sturgia" text= "{=str_enchanter_info_hub_intro_sturgia}I can explain with little difficulty, the burden of understanding lies with you."/>
 
-  <string id="enchanter_info_hub_beginner_p.sturgia" text= "{=str_tor_cc_profession_battania}What do I need, to be able to perform alchemy?"/>	
-  <string id="enchanter_info_hub_resources_p.sturgia" text= "{=str_tor_cc_profession_battania}Can you tell me more about the magical ingredients?"/>
-  <string id="enchanter_info_hub_give_items_p.sturgia" text= "{=str_tor_cc_profession_battania}What can I do with magical items I have no use for?"/>
-  <string id="enchanter_info_hub_return_p.sturgia" text= "{=str_tor_cc_profession_battania}That will be all for now."/>
+  <string id="enchanter_info_hub_beginner_p.sturgia" text= "{=str_enchanter_info_hub_beginner_p_sturgia}What do I need, to be able to perform alchemy?"/>	
+  <string id="enchanter_info_hub_resources_p.sturgia" text= "{=str_enchanter_info_hub_resources_p_sturgia}Can you tell me more about the magical ingredients?"/>
+  <string id="enchanter_info_hub_give_items_p.sturgia" text= "{=str_enchanter_info_hub_give_items_p_sturgia}What can I do with magical items I have no use for?"/>
+  <string id="enchanter_info_hub_return_p.sturgia" text= "{=str_enchanter_info_hub_return_p_sturgia}That will be all for now."/>
   
   <!--enchantment info start - expand as you want by adding _NUMBER-->
-  <string id="enchanter_info_start_beginner_1.sturgia" text= "{=str_tor_cc_profession_battania}To start, you need to find enchanting blueprints. These can be found as after battles, or when clearing threats like the Chaos Portal or Herdstones. Alternatively, they can be purchased from Enchanting Vendors, like me."/>
-  <string id="enchanter_info_start_beginner_2.sturgia" text= "{=str_tor_cc_profession_battania}To learn an enchantment, you must click on the blueprint in your inventory and press the ‘learn’ button. This only needs to be done once. Of course, your career or your companions dictate what enchants you can learn; a Bright Wizard can understand a magical blueprints that a Warrior Priest cannot."/>
-  <string id="enchanter_info_start_beginner_3.sturgia" text= "{=str_tor_cc_profession_battania}Once learned, you can either speak to me or go to an enchanter in the artisan district in towns to open the enchanting menu. There, you can select and apply your blueprint to an item of your choosing.  It will cost special enchanting resources, which you can ask me about later."/>
-  <string id="enchanter_info_start_beginner_4.sturgia" text= "{=str_tor_cc_profession_battania}Across the sturgia, priests offer blessings that in a similar fashion. They will speak to you if you serve the faith, or your companion does, then you can purchase blessings. These are learned and applied as much like regular enchantments I hear."/>
-  <string id="enchanter_info_start_beginner_5.sturgia" text= "{=str_tor_cc_profession_battania}But be aware, enchanters won't speak to you if you aren't of the same people. Dwarfs are secretive folk, you cannot learn and apply Dwarf enchants as a human. It will forever be a mystery to us."/>
+  <string id="enchanter_info_start_beginner_1.sturgia" text= "{=str_enchanter_info_start_beginner_1_sturgia}To start, you need to find enchanting blueprints. These can be found as after battles, or when clearing threats like the Chaos Portal or Herdstones. Alternatively, they can be purchased from Enchanting Vendors, like me."/>
+  <string id="enchanter_info_start_beginner_2.sturgia" text= "{=str_enchanter_info_start_beginner_2_sturgia}To learn an enchantment, you must click on the blueprint in your inventory and press the 'learn' button. This only needs to be done once. Of course, your career or your companions dictate what enchants you can learn; a Bright Wizard can understand a magical blueprints that a Warrior Priest cannot."/>
+  <string id="enchanter_info_start_beginner_3.sturgia" text= "{=str_enchanter_info_start_beginner_3_sturgia}Once learned, you can either speak to me or go to an enchanter in the artisan district in towns to open the enchanting menu. There, you can select and apply your blueprint to an item of your choosing.  It will cost special enchanting resources, which you can ask me about later."/>
+  <string id="enchanter_info_start_beginner_4.sturgia" text= "{=str_enchanter_info_start_beginner_4_sturgia}Across the sturgia, priests offer blessings that in a similar fashion. They will speak to you if you serve the faith, or your companion does, then you can purchase blessings. These are learned and applied as much like regular enchantments I hear."/>
+  <string id="enchanter_info_start_beginner_5.sturgia" text= "{=str_enchanter_info_start_beginner_5_sturgia}But be aware, enchanters won't speak to you if you aren't of the same people. Dwarfs are secretive folk, you cannot learn and apply Dwarf enchants as a human. It will forever be a mystery to us."/>
 
   <!--enchantment info give items-->
-  <string id="enchanter_info_give_items_1.sturgia" text= "{=str_tor_cc_profession_battania}enchant 1 "/>
-  <string id="enchanter_info_give_items_2.sturgia" text= "{=str_tor_cc_profession_battania}enchant 2"/>
+  <string id="enchanter_info_give_items_1.sturgia" text= "{=str_enchanter_info_give_items_1_sturgia}enchant 1 "/>
+  <string id="enchanter_info_give_items_2.sturgia" text= "{=str_enchanter_info_give_items_2_sturgia}enchant 2"/>
   
   <!--enchantment info resources hub -->
   
-  <string id="enchanter_info_resources_hub_intro.sturgia" text= "{=str_tor_cc_profession_battania}Which resources are you interested in?"/>
+  <string id="enchanter_info_resources_hub_intro.sturgia" text= "{=str_enchanter_info_resources_hub_intro_sturgia}Which resources are you interested in?"/>
   
-  <string id="enchanter_info_resource_ArcaneScroll_p.sturgia" text= "{=str_tor_cc_profession_battania}I need Arcane Scrolls, where can I find them?"/>
-  <string id="enchanter_info_resource_BlessedWater_p.sturgia" text= "{=str_tor_cc_profession_battania}Where should I search for Blessed Water?"/>
-  <string id="enchanter_info_resource_AmberCrystal_p.sturgia" text= "{=str_tor_cc_profession_battania}Where would I be able to find Amber?"/>
-  <string id="enchanter_info_resource_WarpstoneDust_p.sturgia" text= "{=str_tor_cc_profession_battania}I am curious about Warpstone Powder."/>
-  <string id="enchanter_info_resource_Gemstones_p.sturgia" text= "{=str_tor_cc_profession_battania}I would like to know more about Gems."/>
-  <string id="enchanter_info_resource_DragonBlood_p.sturgia" text= "{=str_tor_cc_profession_battania}I would like to know where to find Dragon Blood."/>
-  <string id="enchanter_info_resource_return_p.sturgia" text= "{=str_tor_cc_profession_battania}I have no further questions."/>
+  <string id="enchanter_info_resource_ArcaneScroll_p.sturgia" text= "{=str_enchanter_info_resource_ArcaneScroll_p_sturgia}I need Arcane Scrolls, where can I find them?"/>
+  <string id="enchanter_info_resource_BlessedWater_p.sturgia" text= "{=str_enchanter_info_resource_BlessedWater_p_sturgia}Where should I search for Blessed Water?"/>
+  <string id="enchanter_info_resource_AmberCrystal_p.sturgia" text= "{=str_enchanter_info_resource_AmberCrystal_p_sturgia}Where would I be able to find Amber?"/>
+  <string id="enchanter_info_resource_WarpstoneDust_p.sturgia" text= "{=str_enchanter_info_resource_WarpstoneDust_p_sturgia}I am curious about Warpstone Powder."/>
+  <string id="enchanter_info_resource_Gemstones_p.sturgia" text= "{=str_enchanter_info_resource_Gemstones_p_sturgia}I would like to know more about Gems."/>
+  <string id="enchanter_info_resource_DragonBlood_p.sturgia" text= "{=str_enchanter_info_resource_DragonBlood_p_sturgia}I would like to know where to find Dragon Blood."/>
+  <string id="enchanter_info_resource_return_p.sturgia" text= "{=str_enchanter_info_resource_return_p_sturgia}I have no further questions."/>
   
-  <string id="enchanter_info_resource_ArcaneScroll_1.sturgia" text= "{=str_tor_cc_profession_battania}You seek the arcane? You would best search amidst the loot of the foul Beastmen or the servants of darkness. Those who use magic may also have in their possession, much like myself."/>
-  <string id="enchanter_info_resource_BlessedWater_1.sturgia" text= "{=str_tor_cc_profession_battania}You can always go to the many shrines of man to get holy water, but I hear that bandits and thieves across Bretonnia may have."/>
-  <string id="enchanter_info_resource_AmberCrystal_1.sturgia" text= "{=str_tor_cc_profession_battania}Amber you say? Perhaps search for those that lurk amidst the forests of the elves, the strange folk and stranger beasts that roam under the trees are bound to have amber."/>
-  <string id="enchanter_info_resource_WarpstoneDust_1.sturgia" text= "{=str_tor_cc_profession_battania}You would seek such a vile substance? You would need to fight at the very gates of chaos, or slay their fiendish cultists. I hear they use it for their dark trickery!"/>
-  <string id="enchanter_info_resource_WarpstoneDust_2.sturgia" text= "{=str_tor_cc_profession_battania}If you are particularly daring, then Sylvania is rife with the foul stuff. I must warn you, the dead are more common than the living at times."/>
+  <string id="enchanter_info_resource_ArcaneScroll_1.sturgia" text= "{=str_enchanter_info_resource_ArcaneScroll_1_sturgia}You seek the arcane? You would best search amidst the loot of the foul Beastmen or the servants of darkness. Those who use magic may also have in their possession, much like myself."/>
+  <string id="enchanter_info_resource_BlessedWater_1.sturgia" text= "{=str_enchanter_info_resource_BlessedWater_1_sturgia}You can always go to the many shrines of man to get holy water, but I hear that bandits and thieves across Bretonnia may have."/>
+  <string id="enchanter_info_resource_AmberCrystal_1.sturgia" text= "{=str_enchanter_info_resource_AmberCrystal_1_sturgia}Amber you say? Perhaps search for those that lurk amidst the forests of the elves, the strange folk and stranger beasts that roam under the trees are bound to have amber."/>
+  <string id="enchanter_info_resource_WarpstoneDust_1.sturgia" text= "{=str_enchanter_info_resource_WarpstoneDust_1_sturgia}You would seek such a vile substance? You would need to fight at the very gates of chaos, or slay their fiendish cultists. I hear they use it for their dark trickery!"/>
+  <string id="enchanter_info_resource_WarpstoneDust_2.sturgia" text= "{=str_enchanter_info_resource_WarpstoneDust_2_sturgia}If you are particularly daring, then Sylvania is rife with the foul stuff. I must warn you, the dead are more common than the living at times."/>
 
-  <string id="enchanter_info_resource_Gemstones_1.sturgia" text= "{=str_tor_cc_profession_battania}Ahh gems! I hear tales of treasures found amidst Dwarfen mines, or carried into battle by the Dwarf folk. As a useful tool, those who use magic often carry them as well I should think."/>
-  <string id="enchanter_info_resource_DragonBlood_1.sturgia" text= "{=str_tor_cc_profession_battania}Few in life come across such potent a substance, were I to hazard a guess… perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
+  <string id="enchanter_info_resource_Gemstones_1.sturgia" text= "{=str_enchanter_info_resource_Gemstones_1_sturgia}Ahh gems! I hear tales of treasures found amidst Dwarfen mines, or carried into battle by the Dwarf folk. As a useful tool, those who use magic often carry them as well I should think."/>
+  <string id="enchanter_info_resource_DragonBlood_1.sturgia" text= "{=str_enchanter_info_resource_DragonBlood_1_sturgia}Few in life come across such potent a substance, were I to hazard a guess… perhaps those who have tasted the blood of dragons, or reached the pinnacle of knighthood may have such a rare ingredient?"/>
 
   <!--enchantment start greenskins-->
-  <string id="enchanter_start_p.aserai" text= "{=str_tor_cc_profession_battania}Oi, I wants ta know 'bout speshul bits an' choppas."/>
+  <string id="enchanter_start_p.aserai" text= "{=str_enchanter_start_p_aserai}Oi, I wants ta know 'bout speshul bits an' choppas."/>
 
-  <string id="enchanter_start.aserai" text= "{=str_tor_cc_profession_battania}You come to look into da fire?"/>
-  <string id="enchanter_start_enchanter.aserai" text= "{=str_tor_cc_profession_battania}You come to look into da fire?"/>
-  <string id="enchanter_dialog_start.aserai" text= "{=str_tor_cc_profession_battania}You'z a big git, you'z. Gork'z wiv yoo."/>
+  <string id="enchanter_start.aserai" text= "{=str_enchanter_start_aserai}You come to look into da fire?"/>
+  <string id="enchanter_start_enchanter.aserai" text= "{=str_enchanter_start_enchanter_aserai}You come to look into da fire?"/>
+  <string id="enchanter_dialog_start.aserai" text= "{=str_enchanter_dialog_start_aserai}You'z a big git, you'z. Gork'z wiv yoo."/>
 
   <!--enchantment hub greenskins-->
-  <string id="enchanter_hub_intro.aserai" text= "{=str_tor_cc_profession_battania}Guhh, what yoo wants to know?"/>
-  <string id="enchanter_hub_reintro.aserai" text= "{=str_tor_cc_profession_battania}Wot you wants?"/>
+  <string id="enchanter_hub_intro.aserai" text= "{=str_enchanter_hub_intro_aserai}Guhh, what yoo wants to know?"/>
+  <string id="enchanter_hub_reintro.aserai" text= "{=str_enchanter_hub_reintro_aserai}Wot you wants?"/>
 
-  <string id="enchanter_hub_info_p.aserai" text= "{=str_tor_cc_profession_battania}I'z lookin' fer… errrp… in-strukk-shuns…"/>
-  <string id="enchanter_hub_blueprints_p.aserai" text= "{=str_tor_cc_profession_battania}'Ow to make fings proppa shiny?"/>
-  <string id="enchanter_hub_donate_items_p.aserai" text= "{=str_tor_cc_profession_battania}I's got sum gud scrap fer Gork an' Mork."/>
-  <string id="enchanter_hub_open_enchanter_p.aserai" text= "{=str_tor_cc_profession_battania}(Look into the fire when the Shaman is busy dancing)"/>
-  <string id="enchanter_hub_return_p.aserai" text= "{=str_tor_cc_profession_battania}Nuffin'"/>
+  <string id="enchanter_hub_info_p.aserai" text= "{=str_enchanter_hub_info_p_aserai}I'z lookin' fer… errrp… in-strukk-shuns…"/>
+  <string id="enchanter_hub_blueprints_p.aserai" text= "{=str_enchanter_hub_blueprints_p_aserai}'Ow to make fings proppa shiny?"/>
+  <string id="enchanter_hub_donate_items_p.aserai" text= "{=str_enchanter_hub_donate_items_p_aserai}I's got sum gud scrap fer Gork an' Mork."/>
+  <string id="enchanter_hub_open_enchanter_p.aserai" text= "{=str_enchanter_hub_open_enchanter_p_aserai}(Look into the fire when the Shaman is busy dancing)"/>
+  <string id="enchanter_hub_return_p.aserai" text= "{=str_enchanter_hub_return_p_aserai}Nuffin'"/>
 
   <!-- donate hub greenskins-->
-  <string id="enchanter_donate_items_1.aserai" text= "{=str_tor_cc_profession_battania}Da godz will be pleased with yer giftz."/>
-  <string id="enchanter_donate_items_1_negative.aserai" text= "{=str_tor_cc_profession_battania}Dis puny scrap? Da godz ain't interested in dat."/>
-  <string id="enchanter_donate_items_hub_p.aserai" text= "{=str_tor_cc_profession_battania}'Ere, 'erez sum scrap fer ya…"/>
-  <string id="enchanter_gift_items_hub_return_p.aserai" text= "{=str_tor_cc_profession_battania}Dis bits are actually fer da Boss…"/>
+  <string id="enchanter_donate_items_1.aserai" text= "{=str_enchanter_donate_items_1_aserai}Da godz will be pleased with yer giftz."/>
+  <string id="enchanter_donate_items_1_negative.aserai" text= "{=str_enchanter_donate_items_1_negative_aserai}Dis puny scrap? Da godz ain't interested in dat."/>
+  <string id="enchanter_donate_items_hub_p.aserai" text= "{=str_enchanter_donate_items_hub_p_aserai}'Ere, 'erez sum scrap fer ya…"/>
+  <string id="enchanter_gift_items_hub_return_p.aserai" text= "{=str_enchanter_gift_items_hub_return_p_aserai}Dis bits are actually fer da Boss…"/>
 
-  <string id="enchanter_donate_items_2.aserai" text= "{=str_tor_cc_profession_battania}Wot's dat fing?"/>
+  <string id="enchanter_donate_items_2.aserai" text= "{=str_enchanter_donate_items_2_aserai}Wot's dat fing?"/>
 
   <!-- oath gold mechanic-->
     <!-- rune lord guild-->
