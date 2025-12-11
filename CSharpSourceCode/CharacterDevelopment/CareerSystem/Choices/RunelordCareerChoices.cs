@@ -63,7 +63,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void RegisterAll()
     {
-        _runelorddRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("KnightOldWorldRoot"));
+        _runelorddRoot = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject("RunelordRoot"));
 
         _forgefireBurningKeystone = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_forgefireBurningKeystone).UnderscoreFirstCharToUpper()));
         _forgefireBurningPassive1 = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceObject(nameof(_forgefireBurningPassive1).UnderscoreFirstCharToUpper()));

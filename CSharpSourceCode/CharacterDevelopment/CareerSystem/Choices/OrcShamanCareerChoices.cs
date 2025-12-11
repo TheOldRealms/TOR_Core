@@ -139,7 +139,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializeKeyStones()
     {
-        _shamanRoot.Initialize(CareerID, "{=shaman_root_str}Shaman Root", null, true,
+        _shamanRoot.Initialize(CareerID, "{=shaman_root_str}Da Shaman opens 'iz mind to Da Great Green, channelin' da power of Gork an' Mork for 15 seconds. While focused, movin' an' fightin' iz 'arder, but every Greenskin nearby dealin' damage feeds da Shaman wiv Winds of Magic. Be warned - if da boyz start dyin' instead of killin', da connection backfires an' drains yer power!", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>());
 
         // Bones an' Firepitz Keystone: Ability is charged at battle start
