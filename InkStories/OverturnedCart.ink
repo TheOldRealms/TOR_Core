@@ -162,7 +162,7 @@ INCLUDE include.ink
     ->choices
     
     =choices
-        *[Ask what he can do for you if you help him]
+        *[Ask what he can do for you if you help him] #STR_RewardForHelp0
             You ask the man what he can do for you. #STR_RewardForHelp1
             The man replies, "I am just a simple {Profession} from {Settlement}, I cannot give you a reward other than my thanks." #STR_RewardForHelp2
             After a moment he says, "I am a friend of {Notable} and I will put in a good word for you." #STR_RewardForHelp3

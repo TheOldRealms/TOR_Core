@@ -97,23 +97,23 @@ public static class ServeAsAHirelingHelpers
     {
         var dialogPartner = Campaign.Current.ConversationManager.OneToOneConversationHero;
 
-        if (GameTexts.TryGetText("HirelingLordExplain", out var explainText, dialogPartner.Culture.StringId))
+        if (GameTexts.TryGetText("tor_hirelinglordexplain", out var explainText, dialogPartner.Culture.StringId))
         {
             GameTexts.SetVariable("HIRELING_EXPLAIN_TEXT", explainText);
         }
         else
         {
-            var text = GameTexts.FindText("HirelingLordExplain", "default");
+            var text = GameTexts.FindText("tor_hirelinglordexplain", "default");
             GameTexts.SetVariable("HIRELING_EXPLAIN_TEXT", text);
         }
 
-        if (GameTexts.TryGetText("HirelingLordResult", out var resultText, dialogPartner.Culture.StringId))
+        if (GameTexts.TryGetText("tor_hirelinglordresult", out var resultText, dialogPartner.Culture.StringId))
         {
             GameTexts.SetVariable("HIRELING_DECISION_TEXT", resultText);
         }
         else
         {
-            var text = GameTexts.FindText("HirelingLordResult", "default");
+            var text = GameTexts.FindText("tor_hirelinglordresult", "default");
             GameTexts.SetVariable("HIRELING_DECISION_TEXT", text);
         }
 

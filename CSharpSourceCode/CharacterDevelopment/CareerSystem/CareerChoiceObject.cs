@@ -33,7 +33,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             TextObject text;
             text = new TextObject(description);
             Passive = passiveEffect;
-            if (GameTexts.TryGetText("careerchoice_description", out var descriptionOverride, StringId))
+            if (GameTexts.TryGetText("tor_careerchoice_description", out var descriptionOverride, StringId))
             {
                 if (Passive != null)
                 {

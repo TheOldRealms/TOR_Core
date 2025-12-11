@@ -96,7 +96,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
     {
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as CursedSiteComponent;
-        var text = GameTexts.FindText("customsettlement_intro", settlement.StringId);
+        var text = GameTexts.FindText("tor_customsettlement_intro", settlement.StringId);
         if (component.IsActive)
         {
             MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);

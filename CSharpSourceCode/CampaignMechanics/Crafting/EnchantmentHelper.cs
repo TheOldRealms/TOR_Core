@@ -222,7 +222,7 @@ public static class EnchantmentHelper
 
             if (underlyingTrait != null)
             {
-                string typeRestriction = GameTexts.FindText("enchantmentshop_restriction", underlyingTrait.ValidItemType.ToString()).ToString();
+                string typeRestriction = GameTexts.FindText("tor_enchantmentshop_restriction", underlyingTrait.ValidItemType.ToString()).ToString();
                 GameTexts.SetVariable("VALIDTYPE_RESTRICTION", typeRestriction);
             }
 
@@ -253,8 +253,8 @@ public static class EnchantmentHelper
             shopvariation = culture;
         }
 
-        var title = GameTexts.FindText("enchantmentshop_title", shopvariation).ToString();
-        var description = GameTexts.FindText("enchantmentshop_description", shopvariation).ToString();
+        var title = GameTexts.FindText("tor_enchantmentshop_title", shopvariation).ToString();
+        var description = GameTexts.FindText("tor_enchantmentshop_description", shopvariation).ToString();
 
         var inquirydata = new MultiSelectionInquiryData(title, description, selectableItems, true, 1, 1, "Accept", "Cancel",
             AddEnchantment, null, "", true);

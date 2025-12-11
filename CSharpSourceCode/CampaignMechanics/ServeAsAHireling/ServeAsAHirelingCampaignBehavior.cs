@@ -282,13 +282,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (Campaign.Current.ConversationManager.OneToOneConversationHero != _hirelingEnlistingLord)
                 return false;
             var culture = Campaign.Current.ConversationManager.OneToOneConversationCharacter.Culture.StringId;
-            if (GameTexts.TryGetText("HirelingLordQuit", out var text, culture))
+            if (GameTexts.TryGetText("tor_hirelinglordquit", out var text, culture))
             {
                 GameTexts.SetVariable("HIRELING_QUIT_TEXT", text.Value);
             }
             else
             {
-                if (GameTexts.TryGetText("HirelingLordQuit", out var defaultText))
+                if (GameTexts.TryGetText("tor_hirelinglordquit", out var defaultText))
                 {
                     GameTexts.SetVariable("HIRELING_QUIT_TEXT", defaultText.Value);
                 }
@@ -298,8 +298,8 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void DisplayPrompt(Action enlistPlayer)
         {
-            var title = GameTexts.FindText("Hireling", "PromptTitle");
-            var explaination = GameTexts.FindText("Hireling", "PromptText");
+            var title = GameTexts.FindText("tor_hireling", "prompttitle");
+            var explaination = GameTexts.FindText("tor_hireling", "prompttext");
             _enlistInquiryDeclined = false;
             var inquiry = new InquiryData(title.ToString(),
                 explaination.ToString(),
@@ -349,11 +349,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             var text = new TextObject("{PAUSE_ONOFF_TEXT}");
             campaignGameStarter.AddGameMenuOption("hireling_menu", "pause_time_option", text.Value, null, PauseModeToggle);
-            var pauseText = GameTexts.FindText("Hireling", "PauseTime");
+            var pauseText = GameTexts.FindText("tor_hireling", "pausetime");
             pauseText.SetTextVariable("PAUSE_ONOFF", "off");
             GameTexts.SetVariable("PAUSE_ONOFF_TEXT", pauseText);
 
-            var lordTalkText = GameTexts.FindText("Hireling", "TalkToLord");
+            var lordTalkText = GameTexts.FindText("tor_hireling", "talktolord");
             campaignGameStarter.AddGameMenuOption("hireling_menu", "activity0_option", lordTalkText.Value, null, args => StartDialog());
 
             campaignGameStarter.AddGameMenuOption("hireling_menu", "empty", "", args =>
@@ -406,7 +406,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             var career = Hero.MainHero.GetCareer();
             for (var i = 0; i < 5; i++)
             {
-                if (GameTexts.TryGetText("HirelingActivity" + i, out var text, career.StringId))
+                if (GameTexts.TryGetText("tor_hirelingactivity" + i, out var text, career.StringId.ToLower()))
                 {
                     if (_currentActivityIndex == i)
                     {
@@ -540,7 +540,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 onOffText = "On";
             }
 
-            TextObject text2 = GameTexts.FindText("Hireling", "PauseTime");
+            TextObject text2 = GameTexts.FindText("tor_hireling", "pausetime");
             text2.SetTextVariable("PAUSE_ONOFF", onOffText);
 
             GameTexts.SetVariable("PAUSE_ONOFF_TEXT", text2);
@@ -630,7 +630,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             {
                 if (args.MenuContext?.GameMenu == null) return;
                 TextObject text1 = args.MenuContext.GameMenu.GetText();
-                TextObject text2 = GameTexts.FindText("Hireling", "MainText");
+                TextObject text2 = GameTexts.FindText("tor_hireling", "maintext");
                 text2.SetTextVariable("ENLISTING_LORD", _hirelingEnlistingLord.Name);
 
                 var days = $"{_durationInDays:0.0}";

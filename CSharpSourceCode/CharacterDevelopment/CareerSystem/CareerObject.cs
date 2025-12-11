@@ -56,7 +56,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public void Initialize(string name, Predicate<Hero> condition, string abilityID, ChargeFunction function = null, int maxCharge = 100, Type abilityScriptType = null)
         {
-            var description = GameTexts.FindText("career_description", StringId);
+            var description = GameTexts.FindText("tor_career_description", StringId);
             base.Initialize(new TextObject(name), description);
             _condition = condition;
             MaxCharge = maxCharge;

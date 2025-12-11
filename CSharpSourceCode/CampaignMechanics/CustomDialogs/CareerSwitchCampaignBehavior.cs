@@ -217,8 +217,8 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
 
         private void DisplayPrompt(CareerObject careerObject, Action switchCareer)
         {
-            var title = GameTexts.FindText("career_switch_title", careerObject.StringId);
-            var explaination = GameTexts.FindText("career_switch_explaination", careerObject.StringId);
+            var title = GameTexts.FindText("tor_career_switch_title", careerObject.StringId);
+            var explaination = GameTexts.FindText("tor_career_switch_explaination", careerObject.StringId);
             inquiryDeclined = false;
             var inquiry = new InquiryData(title.ToString(),
                 explaination.ToString(),

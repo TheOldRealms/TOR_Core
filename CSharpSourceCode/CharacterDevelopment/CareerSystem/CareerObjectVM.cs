@@ -44,7 +44,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public CareerObjectVM(CareerObject career)
         {
             _career = career;
-            _name = GameTexts.FindText("career_title", _career.StringId).ToString();
+            _name = GameTexts.FindText("tor_career_title", _career.StringId).ToString();
             _spriteName = "CareerSystem\\Illustrations\\" + career.StringId;
             _abilitySpriteName = _career.GetAbilityTemplate()?.SpriteName;      //in case no career ability is found deactivate this screen
             _abilityName = new TextObject(_career.GetAbilityTemplate()?.Name).ToString();
@@ -80,9 +80,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
             CareerAbilityTitle = GameTexts.FindText("str_career_screen", "ability_title").ToString();
-            _choiceGroup1Name = GameTexts.FindText("career_choicegroup1_name", _career.StringId).ToString();
-            _choiceGroup2Name = GameTexts.FindText("career_choicegroup2_name", _career.StringId).ToString();
-            _choiceGroup3Name = GameTexts.FindText("career_choicegroup3_name", _career.StringId).ToString();
+            _choiceGroup1Name = GameTexts.FindText("tor_career_choicegroup1_name", _career.StringId).ToString();
+            _choiceGroup2Name = GameTexts.FindText("tor_career_choicegroup2_name", _career.StringId).ToString();
+            _choiceGroup3Name = GameTexts.FindText("tor_career_choicegroup3_name", _career.StringId).ToString();
             _tier1Active = !_career.ChoiceGroups.Where(x => x.Tier == 1).All(x => x.IsActiveForHero(Hero.MainHero));
             _tier2Active = !_career.ChoiceGroups.Where(x => x.Tier == 2).All(x => x.IsActiveForHero(Hero.MainHero));
             _tier3Active = !_career.ChoiceGroups.Where(x => x.Tier == 3).All(x => x.IsActiveForHero(Hero.MainHero));

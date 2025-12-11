@@ -182,7 +182,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
     {
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return;
-        var text = component.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
+        var text = component.IsActive ? GameTexts.FindText("tor_customsettlement_intro", settlement.StringId) : GameTexts.FindText("tor_customsettlement_disabled", settlement.StringId);
         if (component.Religion != null) MBTextManager.SetTextVariable("RELIGION_LINK", component.Religion.EncyclopediaLinkWithName);
         MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);

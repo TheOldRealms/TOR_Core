@@ -1222,7 +1222,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = "\n " + GameTexts.FindText("careerunlock_condition_1", "Runelord").ToString();
+                    text = "\n " + GameTexts.FindText("tor_careerunlock_condition_1", "Runelord").ToString();
                 }
 
                 return hasUnlocked;
@@ -1253,7 +1253,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = GameTexts.FindText("careerunlock_condition_2", "Runelord").ToString();
+                    text = GameTexts.FindText("tor_careerunlock_condition_2", "Runelord").ToString();
                 }
 
                 return hasUnlocked;
@@ -1284,7 +1284,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = "\n " + GameTexts.FindText("careerunlock_condition_1", "OrcBoss").ToString();
+                    text = "\n " + GameTexts.FindText("tor_careerunlock_condition_1", "OrcBoss").ToString();
                 }
                 return hasUnlocked;
             });
@@ -1307,7 +1307,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = GameTexts.FindText("careerunlock_condition_2", "OrcBoss").ToString();
+                    text = GameTexts.FindText("tor_careerunlock_condition_2", "OrcBoss").ToString();
                 }
                 return hasUnlocked;
             });
@@ -1343,7 +1343,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = "\n " + GameTexts.FindText("careerunlock_condition_1", "OrcShaman").ToString();
+                    text = "\n " + GameTexts.FindText("tor_careerunlock_condition_1", "OrcShaman").ToString();
                 }
                 return hasUnlocked;
             });
@@ -1360,7 +1360,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = GameTexts.FindText("careerunlock_condition_2", "OrcShaman").ToString();
+                    text = GameTexts.FindText("tor_careerunlock_condition_2", "OrcShaman").ToString();
                 }
                 return hasUnlocked;
             });

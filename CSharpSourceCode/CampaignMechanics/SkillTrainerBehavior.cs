@@ -223,31 +223,31 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             var skillId = entry.Value.SkillId;
             var restrictions = entry.Value.Restrictions;
 
-            campaignStarter.AddPlayerLine("teach_skills_dialog_p" + trainerDialogId + skillId, hub, "skill_teacher_train_1" + trainerDialogId + skillId,
-                GameTexts.FindText("teach_skills_dialog_p", trainerDialogId).ToString(), () => TrainerCondition(trainerId, skillId), null, 210);
+            campaignStarter.AddPlayerLine("tor_teach_skills_dialog_p" + trainerDialogId + skillId, hub, "tor_skill_teacher_train_1" + trainerDialogId + skillId,
+                GameTexts.FindText("tor_teach_skills_dialog_p", trainerDialogId).ToString(), () => TrainerCondition(trainerId, skillId), null, 210);
 
 
             //train companion
-            campaignStarter.AddDialogLine("skill_teacher_train_1" + trainerDialogId + skillId, "skill_teacher_train_1" + trainerDialogId + skillId, "skill_teacher_train_2" + trainerDialogId + skillId,
-                GameTexts.FindText("skill_teacher_train_1", trainerDialogId).ToString(), null, null, 200);
+            campaignStarter.AddDialogLine("tor_skill_teacher_train_1" + trainerDialogId + skillId, "tor_skill_teacher_train_1" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
+                GameTexts.FindText("tor_skill_teacher_train_1", trainerDialogId).ToString(), null, null, 200);
 
-            campaignStarter.AddDialogLine("skill_teacher_train_2" + trainerDialogId + skillId, "skill_teacher_train_2" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId,
-                GameTexts.FindText("skill_teacher_train_2", trainerDialogId).ToString(), null, null, 200);
+            campaignStarter.AddDialogLine("tor_skill_teacher_train_2" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId,
+                GameTexts.FindText("tor_skill_teacher_train_2", trainerDialogId).ToString(), null, null, 200);
 
-            campaignStarter.AddPlayerLine("skill_train_hub_select_companion_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId,
-                GameTexts.FindText("skill_train_hub_select_companion_p", trainerDialogId).ToString(), null, null, 200);
+            campaignStarter.AddPlayerLine("tor_skill_train_hub_select_companion_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId,
+                GameTexts.FindText("tor_skill_train_hub_select_companion_p", trainerDialogId).ToString(), null, null, 200);
 
 
-            campaignStarter.AddDialogLine("skill_train_hub_select_companion" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "skill_teacher_train_2" + trainerDialogId,
-                GameTexts.FindText("priest_train_hub_select_companion", trainerDialogId).ToString(), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId), 200);
+            campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId,
+                GameTexts.FindText("tor_priest_train_hub_select_companion", trainerDialogId).ToString(), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId), 200);
 
-            campaignStarter.AddDialogLine("skill_train_hub_select_companion_decline" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "skill_teacher_train_2" + trainerDialogId + skillId,
-                GameTexts.FindText("skill_train_hub_select_companion_decline", trainerDialogId).ToString(), () => !IsAnyCompanionEligableForTraining(skillId, restrictions), null, 200);
+            campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion_decline" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
+                GameTexts.FindText("tor_skill_train_hub_select_companion_decline", trainerDialogId).ToString(), () => !IsAnyCompanionEligableForTraining(skillId, restrictions), null, 200);
 
 
 
             campaignStarter.AddPlayerLine("skilltrain_train_hub_quit_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, reintro_hub,
-                GameTexts.FindText("priest_train_hub_quit_p", trainerDialogId).ToString(), null, null, 200);
+                GameTexts.FindText("tor_priest_train_hub_quit_p", trainerDialogId).ToString(), null, null, 200);
         }
 
         bool TrainerCondition(string trainerId, string skillId)

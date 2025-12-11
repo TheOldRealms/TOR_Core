@@ -159,8 +159,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         if (settlement.SettlementComponent is not TORBaseSettlementComponent component) return;
 
         var text = component.IsActive
-            ? GameTexts.FindText("customsettlement_intro", settlement.StringId)
-            : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
+            ? GameTexts.FindText("tor_customsettlement_intro", settlement.StringId)
+            : GameTexts.FindText("tor_customsettlement_disabled", settlement.StringId);
         MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
 
@@ -833,8 +833,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as TORBaseSettlementComponent;
         var text = component.IsActive
-            ? GameTexts.FindText("customsettlement_intro", settlement.StringId)
-            : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
+            ? GameTexts.FindText("tor_customsettlement_intro", settlement.StringId)
+            : GameTexts.FindText("tor_customsettlement_disabled", settlement.StringId);
 
         MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
 
@@ -843,7 +843,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             Hero.MainHero.Culture.StringId == TORConstants.Cultures.BRETONNIA)
             && settlement.StringId == "worldroot_02")
         {
-            var textb = GameTexts.FindText("customsettlement_intro", settlement.StringId + "b");
+            var textb = GameTexts.FindText("tor_customsettlement_intro", settlement.StringId + "b");
             if (textb != null)
             {
                 MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", textb);

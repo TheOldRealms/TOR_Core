@@ -31,12 +31,12 @@ namespace TOR_Core.HarmonyPatches
                         ____previouslyMetWandererTemplates[Hero.OneToOneConversationHero.Template] = Hero.OneToOneConversationHero.CharacterObject;
                     }
                     MBTextManager.SetTextVariable("IMPERIALCAPITAL", new TextObject("Altdorf"));
-                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_A", GameTexts.FindText("backstory_a", stringId), false);
-                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_B", GameTexts.FindText("backstory_b", stringId), false);
-                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_C", GameTexts.FindText("backstory_c", stringId), false);
-                    MBTextManager.SetTextVariable("BACKSTORY_RESPONSE_1", GameTexts.FindText("response_1", stringId), false);
-                    MBTextManager.SetTextVariable("BACKSTORY_RESPONSE_2", GameTexts.FindText("response_2", stringId), false);
-                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_D", GameTexts.FindText("backstory_d", stringId), false);
+                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_A", GameTexts.FindText("tor_backstory_a", stringId), false);
+                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_B", GameTexts.FindText("tor_backstory_b", stringId), false);
+                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_C", GameTexts.FindText("tor_backstory_c", stringId), false);
+                    MBTextManager.SetTextVariable("BACKSTORY_RESPONSE_1", GameTexts.FindText("tor_response_1", stringId), false);
+                    MBTextManager.SetTextVariable("BACKSTORY_RESPONSE_2", GameTexts.FindText("tor_response_2", stringId), false);
+                    MBTextManager.SetTextVariable("WANDERER_BACKSTORY_D", GameTexts.FindText("tor_backstory_d", stringId), false);
                     StringHelpers.SetCharacterProperties("MET_WANDERER", Hero.OneToOneConversationHero.CharacterObject, null);
                     if (CampaignMission.Current.Location != null && CampaignMission.Current.Location.StringId != "tavern")
                     {
