@@ -36,7 +36,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     if (!nameOverride.Contains(nameText))
                     {
-                        TORCommon.Log(String.Format("Career choice group name has been modified in externalized strings. this should be adapted in code: \n CODE {0} \n XML {1}", nameText, nameOverride), LogLevel.Warn);
+                        TORCommon.Log(String.Format("Career choice group name has been modified in externalized strings(tor_strings). this should be adapted in code: \n CODE {0} \n XML {1}", nameText, nameOverride), LogLevel.Warn);
                     }
                     nameText = new TextObject(nameOverride.Value.ToString());
                 }

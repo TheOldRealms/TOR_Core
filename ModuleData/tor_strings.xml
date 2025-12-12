@@ -1896,17 +1896,17 @@
   The choice can be accessed later, should you decline now.
   " />
 
-  <string id="tor_career_rank1_name.WitchHunter" text="{=str_tor_career_choicegroup1_name_witchhunter}Witch Hunter Initiate" />
-  <string id="tor_career_rank2_name.WitchHunter" text="{=str_tor_career_choicegroup2_name_witchhunter}Witch Hunter Captain" />
-  <string id="tor_career_rank3_name.WitchHunter" text="{=str_tor_career_choicegroup3_name_witchhunter}Master Witch Hunter" />
+  <string id="tor_career_rank1_name.WitchHunter" text="{=str_tor_career_rank1_name_WitchHunter}Witch Hunter Initiate" />
+  <string id="tor_career_rank2_name.WitchHunter" text="{=str_tor_career_rank2_name_WitchHunter}Witch Hunter Captain" />
+  <string id="tor_career_rank3_name.WitchHunter" text="{=str_tor_career_rank3_name_WitchHunter}Master Witch Hunter" />
 
-  <string id="tor_career_rank1_name.WarriorPriestUlric" text="{=str_tor_career_choicegroup1_name_warriorpriestulric}Acolyte" />
-  <string id="tor_career_rank2_name.WarriorPriestUlric" text="{=str_tor_career_choicegroup2_name_warriorpriestulric}Wolf Priest" />
-  <string id="tor_career_rank3_name.WarriorPriestUlric" text="{=str_tor_career_choicegroup3_name_warriorpriestulric}High Priest of Ulric" />
+  <string id="tor_career_rank1_name.WarriorPriestUlric" text="{=str_tor_career_rank1_name_WarriorPriestUlric}Acolyte" />
+  <string id="tor_career_rank2_name.WarriorPriestUlric" text="{=str_tor_career_rank2_name_WarriorPriestUlric}Wolf Priest" />
+  <string id="tor_career_rank3_name.WarriorPriestUlric" text="{=str_tor_career_rank3_name_WarriorPriestUlric}High Priest of Ulric" />
 
-  <string id="tor_career_rank1_name.WarriorPriest" text="{=str_tor_career_choicegroup1_name_warriorpriest}Cultist of Sigmar" />
-  <string id="tor_career_rank2_name.WarriorPriest" text="{=str_tor_career_choicegroup2_name_warriorpriest}Warrior Priest" />
-  <string id="tor_career_rank3_name.WarriorPriest" text="{=str_tor_career_choicegroup3_name_warriorpriest}Arch Lector" />
+  <string id="tor_career_rank1_name.WarriorPriest" text="{=str_tor_career_rank1_name_WarriorPriest}Cultist of Sigmar" />
+  <string id="tor_career_rank2_name.WarriorPriest" text="{=str_tor_career_rank2_name_WarriorPriest}Warrior Priest" />
+  <string id="tor_career_rank3_name.WarriorPriest" text="{=str_tor_career_rank3_name_WarriorPriest}Arch Lector" />
 
   <!-- Warrior Priest Choice Group Names (by StringId) -->
   <string id="tor_career_choicegroup_name.BookOfSigmar" text="{=str_tor_career_choicegroup_name_BookOfSigmar}Book of Sigmar" />
@@ -1917,82 +1917,270 @@
   <string id="tor_career_choicegroup_name.ArchLector" text="{=str_tor_career_choicegroup_name_ArchLector}Arch Lector" />
   <string id="tor_career_choicegroup_name.TwinTailedComet" text="{=str_tor_career_choicegroup_name_TwinTailedComet}Twin Tailed Comet" />
 
-  <string id="tor_career_choicegroup1_name.Necromancer" text="{=str_tor_career_choicegroup1_name_necromancer}Apprentise" />
-  <string id="tor_career_choicegroup2_name.Necromancer" text="{=str_tor_career_choicegroup2_name_necromancer}Scholar" />
-  <string id="tor_career_choicegroup3_name.Necromancer" text="{=str_tor_career_choicegroup3_name_necromancer}Lichmaster" />
+  <!-- Witch Hunter Choice Group Names -->
+  <string id="tor_career_choicegroup_name.ToolsOfJudgement" text="{=str_tor_career_choicegroup_name_ToolsOfJudgement}Tools of Judgement" />
+  <string id="tor_career_choicegroup_name.HuntTheWicked" text="{=str_tor_career_choicegroup_name_HuntTheWicked}Hunt the Wicked" />
+  <string id="tor_career_choicegroup_name.SilverHammer" text="{=str_tor_career_choicegroup_name_SilverHammer}The Silver Hammer" />
+  <string id="tor_career_choicegroup_name.NoRestAgainstEvil" text="{=str_tor_career_choicegroup_name_NoRestAgainstEvil}No Rest Against Evil" />
+  <string id="tor_career_choicegroup_name.EndsJustifiesMeans" text="{=str_tor_career_choicegroup_name_EndsJustifiesMeans}Ends Justifies Means" />
+  <string id="tor_career_choicegroup_name.SwiftProcedure" text="{=str_tor_career_choicegroup_name_SwiftProcedure}Swift Procedure" />
+  <string id="tor_career_choicegroup_name.GuiltyByAssociation" text="{=str_tor_career_choicegroup_name_GuiltyByAssociation}Guilty by Association" />
 
-  <string id="tor_career_choicegroup1_name.MinorVampire" text="{=str_tor_career_choicegroup1_name_MinorVampire}New Blood" />
-  <string id="tor_career_choicegroup2_name.MinorVampire" text="{=str_tor_career_choicegroup2_name_MinorVampire}Vampire" />
-  <string id="tor_career_choicegroup3_name.MinorVampire" text="{=str_tor_career_choicegroup3_name_MinorVampire}Exalted" />
+  <!-- Necromancer Choice Group Names -->
+  <string id="tor_career_choicegroup_name.LiberNecris" text="{=str_tor_career_choicegroup_name_LiberNecris}Liber Necris" />
+  <string id="tor_career_choicegroup_name.DeArcanisKadon" text="{=str_tor_career_choicegroup_name_DeArcanisKadon}De Arcanis Kadon" />
+  <string id="tor_career_choicegroup_name.CodexMortifica" text="{=str_tor_career_choicegroup_name_CodexMortifica}Codex Mortifica" />
+  <string id="tor_career_choicegroup_name.LiberMortis" text="{=str_tor_career_choicegroup_name_LiberMortis}Liber Mortis" />
+  <string id="tor_career_choicegroup_name.BookOfWsoran" text="{=str_tor_career_choicegroup_name_BookOfWsoran}Book of W'soran" />
+  <string id="tor_career_choicegroup_name.GrimoireNecris" text="{=str_tor_career_choicegroup_name_GrimoireNecris}Grimore Necris" />
+  <string id="tor_career_choicegroup_name.BooksOfNagash" text="{=str_tor_career_choicegroup_name_BooksOfNagash}Books of Nagash" />
 
-  <string id="tor_career_choicegroup1_name.BloodKnight" text="{=str_tor_career_choicegroup1_name_BloodKnight}Initiate" />
-  <string id="tor_career_choicegroup2_name.BloodKnight" text="{=str_tor_career_choicegroup2_name_BloodKnight}Blood Knight" />
-  <string id="tor_career_choicegroup3_name.BloodKnight" text="{=str_tor_career_choicegroup3_name_BloodKnight}Master" />
+  <!-- Vampire Count Choice Group Names -->
+  <string id="tor_career_choicegroup_name.NewBlood" text="{=str_tor_career_choicegroup_name_NewBlood}New Blood" />
+  <string id="tor_career_choicegroup_name.Feral" text="{=str_tor_career_choicegroup_name_Feral}The Feral" />
+  <string id="tor_career_choicegroup_name.Arkayne" text="{=str_tor_career_choicegroup_name_Arkayne}The Arkayne" />
+  <string id="tor_career_choicegroup_name.Courtley" text="{=str_tor_career_choicegroup_name_Courtley}The Courtley" />
+  <string id="tor_career_choicegroup_name.Lordly" text="{=str_tor_career_choicegroup_name_Lordly}The Lordly" />
+  <string id="tor_career_choicegroup_name.Martialle" text="{=str_tor_career_choicegroup_name_Martialle}The Martialle" />
+  <string id="tor_career_choicegroup_name.MasterOfDead" text="{=str_tor_career_choicegroup_name_MasterOfDead}Master of the Dead" />
 
-  <string id="tor_career_choicegroup1_name.GrailKnight" text="{=str_tor_career_choicegroup1_name_GrailKnight}Knight Errant" />
-  <string id="tor_career_choicegroup2_name.GrailKnight" text="{=str_tor_career_choicegroup2_name_GrailKnight}Questing Knight" />
-  <string id="tor_career_choicegroup3_name.GrailKnight" text="{=str_tor_career_choicegroup3_name_GrailKnight}Grail Knight" />
+  <!-- Blood Knight Choice Group Names -->
+  <string id="tor_career_choicegroup_name.PeerlessWarrior" text="{=str_tor_career_choicegroup_name_PeerlessWarrior}Peerless Warrior" />
+  <string id="tor_career_choicegroup_name.NightRider" text="{=str_tor_career_choicegroup_name_NightRider}Night Rider" />
+  <string id="tor_career_choicegroup_name.BladeMaster" text="{=str_tor_career_choicegroup_name_BladeMaster}Blade Master" />
+  <string id="tor_career_choicegroup_name.DoomRider" text="{=str_tor_career_choicegroup_name_DoomRider}Doom Rider" />
+  <string id="tor_career_choicegroup_name.ControlledHunger" text="{=str_tor_career_choicegroup_name_ControlledHunger}Controlled Hunger" />
+  <string id="tor_career_choicegroup_name.AvatarOfDeath" text="{=str_tor_career_choicegroup_name_AvatarOfDeath}Avatar of Death" />
+  <string id="tor_career_choicegroup_name.DreadKnight" text="{=str_tor_career_choicegroup_name_DreadKnight}Dread Knight" />
 
-  <string id="tor_career_choicegroup1_name.Mercenary" text="{=str_tor_career_choicegroup1_name_Mercenary}Recruit" />
-  <string id="tor_career_choicegroup2_name.Mercenary" text="{=str_tor_career_choicegroup2_name_Mercenary}Sergeant" />
-  <string id="tor_career_choicegroup3_name.Mercenary" text="{=str_tor_career_choicegroup3_name_Mercenary}Commander" />
+  <!-- Mercenary Choice Group Names -->
+  <string id="tor_career_choicegroup_name.Survivalist" text="{=str_tor_career_choicegroup_name_Survivalist}The Survivalist" />
+  <string id="tor_career_choicegroup_name.Duelist" text="{=str_tor_career_choicegroup_name_Duelist}The Duelist" />
+  <string id="tor_career_choicegroup_name.Headhunter" text="{=str_tor_career_choicegroup_name_Headhunter}The Headhunter" />
+  <string id="tor_career_choicegroup_name.Veteran" text="{=str_tor_career_choicegroup_name_Veteran}The Knightly" />
+  <string id="tor_career_choicegroup_name.Paymaster" text="{=str_tor_career_choicegroup_name_Paymaster}The Paymaster" />
+  <string id="tor_career_choicegroup_name.MercenaryLord" text="{=str_tor_career_choicegroup_name_MercenaryLord}The Mercenary Lord" />
+  <string id="tor_career_choicegroup_name.Commander" text="{=str_tor_career_choicegroup_name_Commander}The Commander" />
 
-  <string id="tor_career_choicegroup1_name.GrailDamsel" text="{=str_tor_career_choicegroup1_name_GrailDamsel}Grail Maid" />
-  <string id="tor_career_choicegroup2_name.GrailDamsel" text="{=str_tor_career_choicegroup2_name_GrailDamsel}Grail Damsel" />
-  <string id="tor_career_choicegroup3_name.GrailDamsel" text="{=str_tor_career_choicegroup3_name_GrailDamsel}Prophetess" />
+  <!-- Grail Knight Choice Group Names -->
+  <string id="tor_career_choicegroup_name.ErrantryWar" text="{=str_tor_career_choicegroup_name_ErrantryWar}Errantry War" />
+  <string id="tor_career_choicegroup_name.EnhancedHorseCombat" text="{=str_tor_career_choicegroup_name_EnhancedHorseCombat}Enhanced Horse Combat" />
+  <string id="tor_career_choicegroup_name.QuestingVow" text="{=str_tor_career_choicegroup_name_QuestingVow}Questing Vow" />
+  <string id="tor_career_choicegroup_name.MonsterSlayer" text="{=str_tor_career_choicegroup_name_MonsterSlayer}Monster Slayer" />
+  <string id="tor_career_choicegroup_name.MasterHorseman" text="{=str_tor_career_choicegroup_name_MasterHorseman}Master Horseman" />
+  <string id="tor_career_choicegroup_name.GrailVow" text="{=str_tor_career_choicegroup_name_GrailVow}Grail Vow" />
+  <string id="tor_career_choicegroup_name.HolyCrusader" text="{=str_tor_career_choicegroup_name_HolyCrusader}Holy Crusader" />
 
-  <string id="tor_career_choicegroup1_name.BlackGrailKnight" text="{=str_tor_career_choicegroup1_name_BlackGrailKnight}Ill-fated Noble" />
-  <string id="tor_career_choicegroup2_name.BlackGrailKnight" text="{=str_tor_career_choicegroup2_name_BlackGrailKnight}Ill-fated Questing Knight" />
-  <string id="tor_career_choicegroup3_name.BlackGrailKnight" text="{=str_tor_career_choicegroup3_name_BlackGrailKnight}Knight of the Black Grail" />
+  <!-- Black Grail Knight Choice Group Names -->
+  <string id="tor_career_choicegroup_name.CurseOfMousillon" text="{=str_tor_career_choicegroup_name_CurseOfMousillon}Curse of Mousillon" />
+  <string id="tor_career_choicegroup_name.SwampRider" text="{=str_tor_career_choicegroup_name_SwampRider}Swamp Rider" />
+  <string id="tor_career_choicegroup_name.UnbreakableArmy" text="{=str_tor_career_choicegroup_name_UnbreakableArmy}Unbreakable Army" />
+  <string id="tor_career_choicegroup_name.ScourgeOfBretonnia" text="{=str_tor_career_choicegroup_name_ScourgeOfBretonnia}Scourge of Bretonnia" />
+  <string id="tor_career_choicegroup_name.RobberKnight" text="{=str_tor_career_choicegroup_name_RobberKnight}Robber Knight" />
+  <string id="tor_career_choicegroup_name.LieOfLady" text="{=str_tor_career_choicegroup_name_LieOfLady}The Lady's Lie" />
+  <string id="tor_career_choicegroup_name.BlackGrailVow" text="{=str_tor_career_choicegroup_name_BlackGrailVow}The Vow of the Black Grail" />
 
-  <string id="tor_career_choicegroup1_name.Necrarch" text="{=str_tor_career_choicegroup1_name_Necrarch}Apprentise" />
-  <string id="tor_career_choicegroup2_name.Necrarch" text="{=str_tor_career_choicegroup2_name_Necrarch}Seeker" />
-  <string id="tor_career_choicegroup3_name.Necrarch" text="{=str_tor_career_choicegroup3_name_Necrarch}Ascended" />
+  <!-- Grail Damsel Choice Group Names -->
+  <string id="tor_career_choicegroup_name.InspirationOfTheLady" text="{=str_tor_career_choicegroup_name_InspirationOfTheLady}Inspiration of the Lady" />
+  <string id="tor_career_choicegroup_name.TalesOfGiles" text="{=str_tor_career_choicegroup_name_TalesOfGiles}Tales of Gilles" />
+  <string id="tor_career_choicegroup_name.FeyEnchantment" text="{=str_tor_career_choicegroup_name_FeyEnchantment}Fey Enchantment" />
+  <string id="tor_career_choicegroup_name.VividVisions" text="{=str_tor_career_choicegroup_name_VividVisions}Vivid Visions" />
+  <string id="tor_career_choicegroup_name.JustCause" text="{=str_tor_career_choicegroup_name_JustCause}A Just Cause" />
+  <string id="tor_career_choicegroup_name.SecretsOfTheGrail" text="{=str_tor_career_choicegroup_name_SecretsOfTheGrail}Secrets of the Grail" />
+  <string id="tor_career_choicegroup_name.EnvoyOfTheLady" text="{=str_tor_career_choicegroup_name_EnvoyOfTheLady}Envoy of the Lady" />
 
-  <string id="tor_career_choicegroup1_name.ImperialMagister" text="{=str_tor_career_choicegroup1_name_ImperialMagister}Apprentice Magister" />
-  <string id="tor_career_choicegroup2_name.ImperialMagister" text="{=str_tor_career_choicegroup2_name_ImperialMagister}Battle Wizard" />
-  <string id="tor_career_choicegroup3_name.ImperialMagister" text="{=str_tor_career_choicegroup3_name_ImperialMagister}Lord Magister" />
+  <!-- Necrarch Choice Group Names -->
+  <string id="tor_career_choicegroup_name.DiscipleOfAccursed" text="{=str_tor_career_choicegroup_name_DiscipleOfAccursed}Disciple of the Accursed" />
+  <string id="tor_career_choicegroup_name.WitchSight" text="{=str_tor_career_choicegroup_name_WitchSight}Witch Sight" />
+  <string id="tor_career_choicegroup_name.DarkVision" text="{=str_tor_career_choicegroup_name_DarkVision}Dark Visions" />
+  <string id="tor_career_choicegroup_name.UnhallowedSoul" text="{=str_tor_career_choicegroup_name_UnhallowedSoul}Unhallowed Soul" />
+  <string id="tor_career_choicegroup_name.HungerForKnowledge" text="{=str_tor_career_choicegroup_name_HungerForKnowledge}Hunger for Knowledge" />
+  <string id="tor_career_choicegroup_name.WellspringOfDhar" text="{=str_tor_career_choicegroup_name_WellspringOfDhar}Wellspring of Dhar" />
+  <string id="tor_career_choicegroup_name.EverlingsSecret" text="{=str_tor_career_choicegroup_name_EverlingsSecret}The Everlings Secret" />
 
-  <string id="tor_career_choicegroup1_name.Waywatcher" text="{=str_tor_career_choicegroup1_name_Waywatcher}Scout" />
-  <string id="tor_career_choicegroup2_name.Waywatcher" text="{=str_tor_career_choicegroup2_name_Waywatcher}Waywatcher" />
-  <string id="tor_career_choicegroup3_name.Waywatcher" text="{=str_tor_career_choicegroup3_name_Waywatcher}Waystalker" />
+  <!-- Warrior Priest of Ulric Choice Group Names -->
+  <string id="tor_career_choicegroup_name.CrusherOfTheWeak" text="{=str_tor_career_choicegroup_name_CrusherOfTheWeak}Crusher of the Weak" />
+  <string id="tor_career_choicegroup_name.WildPack" text="{=str_tor_career_choicegroup_name_WildPack}Wild Pack" />
+  <string id="tor_career_choicegroup_name.TeachingsOfTheWinterfather" text="{=str_tor_career_choicegroup_name_TeachingsOfTheWinterfather}Teachings of the Winterfather" />
+  <string id="tor_career_choicegroup_name.FrostsBite" text="{=str_tor_career_choicegroup_name_FrostsBite}Frost's Bite" />
+  <string id="tor_career_choicegroup_name.RunesOfTheWhiteWolf" text="{=str_tor_career_choicegroup_name_RunesOfTheWhiteWolf}Runes of the White Wolf" />
+  <string id="tor_career_choicegroup_name.FuryOfWar" text="{=str_tor_career_choicegroup_name_FuryOfWar}Fury of War" />
+  <string id="tor_career_choicegroup_name.FlameOfUlric" text="{=str_tor_career_choicegroup_name_FlameOfUlric}Flame of Ulric" />
 
-  <string id="tor_career_choicegroup1_name.Spellsinger" text="{=str_tor_career_choicegroup1_name_Spellsinger}Spellsinger" />
-  <string id="tor_career_choicegroup2_name.Spellsinger" text="{=str_tor_career_choicegroup2_name_Spellsinger}Spellweaver" />
-  <string id="tor_career_choicegroup3_name.Spellsinger" text="{=str_tor_career_choicegroup3_name_Spellsinger}Ascended Spellweaver" />
+  <!-- Imperial Magister Choice Group Names -->
+  <string id="tor_career_choicegroup_name.StudyAndPractise" text="{=str_tor_career_choicegroup_name_StudyAndPractise}Study and Practise" />
+  <string id="tor_career_choicegroup_name.TeclisTeachings" text="{=str_tor_career_choicegroup_name_TeclisTeachings}Teclis' Teachings" />
+  <string id="tor_career_choicegroup_name.ImperialEnchantment" text="{=str_tor_career_choicegroup_name_ImperialEnchantment}Imperial Enchantment" />
+  <string id="tor_career_choicegroup_name.CollegeOrders" text="{=str_tor_career_choicegroup_name_CollegeOrders}College Orders" />
+  <string id="tor_career_choicegroup_name.MagicCombatTraining" text="{=str_tor_career_choicegroup_name_MagicCombatTraining}Magic Combat Training" />
+  <string id="tor_career_choicegroup_name.AncientScrolls" text="{=str_tor_career_choicegroup_name_AncientScrolls}Ancient Scrolls" />
+  <string id="tor_career_choicegroup_name.ArcaneKnowledge" text="{=str_tor_career_choicegroup_name_ArcaneKnowledge}Arcane Knowledge" />
 
-  <string id="tor_career_choicegroup1_name.GreyLord" text="{=str_tor_career_choicegroup1_name_GreyLord}Exile's Apprentice" />
-  <string id="tor_career_choicegroup2_name.GreyLord" text="{=str_tor_career_choicegroup2_name_GreyLord}Grey Mage" />
-  <string id="tor_career_choicegroup3_name.GreyLord" text="{=str_tor_career_choicegroup3_name_GreyLord}Grey Lord" />
-  
-  <string id="tor_career_choicegroup1_name.KnightOldWorld" text="{=str_tor_career_choicegroup1_name_KnightOldWorld}Initiate Knight" />
-  <string id="tor_career_choicegroup2_name.KnightOldWorld" text="{=str_tor_career_choicegroup2_name_KnightOldWorld}Seasoned Knight" />
-  <string id="tor_career_choicegroup3_name.KnightOldWorld" text="{=str_tor_career_choicegroup3_name_KnightOldWorld}Knight Commander" />
-  
-  
-  <string id="tor_career_choicegroup1_name.Ironbreaker" text="{=str_tor_career_choicegroup1_name_Ironbreaker}Aspirant Ironbreaker" />
-  <string id="tor_career_choicegroup2_name.Ironbreaker" text="{=str_tor_career_choicegroup2_name_Ironbreaker}Ironbreaker" />
-  <string id="tor_career_choicegroup3_name.Ironbreaker" text="{=str_tor_career_choicegroup3_name_Ironbreaker}Ironbeard" />
-  
-  <string id="tor_career_choicegroup1_name.Slayer" text="{=str_tor_career_choicegroup1_name_Slayer}Slayer" />
-  <string id="tor_career_choicegroup2_name.Slayer" text="{=str_tor_career_choicegroup2_name_Slayer}Trollslayer" />
-  <string id="tor_career_choicegroup3_name.Slayer" text="{=str_tor_career_choicegroup3_name_Slayer}Demonslayer" />
-  
-  <string id="tor_career_choicegroup1_name.Warden" text="{=str_tor_career_choicegroup1_name_Warden}Highborn" />
-  <string id="tor_career_choicegroup2_name.Warden" text="{=str_tor_career_choicegroup2_name_Warden}Glade Captain" />
-  <string id="tor_career_choicegroup3_name.Warden" text="{=str_tor_career_choicegroup3_name_Warden}Lord of Athel Loren" />
-  
-    <string id="tor_career_choicegroup1_name.Runelord" text="{=str_tor_career_choicegroup1_name_Runelord}Student of Runecraft" />
-  <string id="tor_career_choicegroup2_name.Runelord" text="{=str_tor_career_choicegroup2_name_Runelord}Runesmith" />
-  <string id="tor_career_choicegroup3_name.Runelord" text="{=str_tor_career_choicegroup3_name_Runelord}Runelord" />
+  <!-- Waywatcher Choice Group Names -->
+  <string id="tor_career_choicegroup_name.ProtectorOfTheWoods" text="{=str_tor_career_choicegroup_name_ProtectorOfTheWoods}Protector of the Woods" />
+  <string id="tor_career_choicegroup_name.Pathfinder" text="{=str_tor_career_choicegroup_name_Pathfinder}Pathfinder" />
+  <string id="tor_career_choicegroup_name.ForestStalker" text="{=str_tor_career_choicegroup_name_ForestStalker}Forest Stalker" />
+  <string id="tor_career_choicegroup_name.HailOfArrows" text="{=str_tor_career_choicegroup_name_HailOfArrows}Hail of Arrows" />
+  <string id="tor_career_choicegroup_name.Hawkeyed" text="{=str_tor_career_choicegroup_name_Hawkeyed}Hawkeyed" />
+  <string id="tor_career_choicegroup_name.StarfireEssence" text="{=str_tor_career_choicegroup_name_StarfireEssence}Starfire Essence" />
+  <string id="tor_career_choicegroup_name.EyeOfTheHunter" text="{=str_tor_career_choicegroup_name_EyeOfTheHunter}Eye of the Hunter" />
 
-  <string id="tor_career_choicegroup1_name.OrcBoss" text="{=str_tor_career_choicegroup1_name_OrcBoss}Orc Boss" />
-  <string id="tor_career_choicegroup2_name.OrcBoss" text="{=str_tor_career_choicegroup2_name_OrcBoss}Warboss" />
-  <string id="tor_career_choicegroup3_name.OrcBoss" text="{=str_tor_career_choicegroup3_name_OrcBoss}Greenskin Warlord" />
+  <!-- Spellsinger Choice Group Names -->
+  <string id="tor_career_choicegroup_name.PathShaping" text="{=str_tor_career_choicegroup_name_PathShaping}Path Shaping" />
+  <string id="tor_career_choicegroup_name.TreeSinging" text="{=str_tor_career_choicegroup_name_TreeSinging}Tree singing" />
+  <string id="tor_career_choicegroup_name.VitalSurge" text="{=str_tor_career_choicegroup_name_VitalSurge}Vital Surge" />
+  <string id="tor_career_choicegroup_name.HeartOfTheTree" text="{=str_tor_career_choicegroup_name_HeartOfTheTree}Heart of the Tree" />
+  <string id="tor_career_choicegroup_name.ArielsBlessing" text="{=str_tor_career_choicegroup_name_ArielsBlessing}Ariel's Blessing" />
+  <string id="tor_career_choicegroup_name.MagicOfAthelLoren" text="{=str_tor_career_choicegroup_name_MagicOfAthelLoren}Fey Magic" />
+  <string id="tor_career_choicegroup_name.FuryOfTheForest" text="{=str_tor_career_choicegroup_name_FuryOfTheForest}Fury of the Forest" />
 
-  <string id="tor_career_choicegroup1_name.OrcShaman" text="{=str_tor_career_choicegroup1_name_OrcShaman}Orc Shaman" />
-  <string id="tor_career_choicegroup2_name.OrcShaman" text="{=str_tor_career_choicegroup2_name_OrcShaman}Favoured uv Da Godz" />
-  <string id="tor_career_choicegroup3_name.OrcShaman" text="{=str_tor_career_choicegroup3_name_OrcShaman}Great Shaman Lord" />
+  <!-- Grey Lord Choice Group Names -->
+  <string id="tor_career_choicegroup_name.CaelithsWisdom" text="{=str_tor_career_choicegroup_name_CaelithsWisdom}Caelith's Wisdom" />
+  <string id="tor_career_choicegroup_name.SoulBinding" text="{=str_tor_career_choicegroup_name_SoulBinding}Soul Binding" />
+  <string id="tor_career_choicegroup_name.LegendsOfMalok" text="{=str_tor_career_choicegroup_name_LegendsOfMalok}Legends of Malok" />
+  <string id="tor_career_choicegroup_name.UnrestrictedMagic" text="{=str_tor_career_choicegroup_name_UnrestrictedMagic}Unrestricted Magic" />
+  <string id="tor_career_choicegroup_name.ForbiddenScrollsOfSaphery" text="{=str_tor_career_choicegroup_name_ForbiddenScrollsOfSaphery}Forbidden Scrolls of Saphery" />
+  <string id="tor_career_choicegroup_name.ByAllMeans" text="{=str_tor_career_choicegroup_name_ByAllMeans}By All Means" />
+  <string id="tor_career_choicegroup_name.SecretOfFellfang" text="{=str_tor_career_choicegroup_name_SecretOfFellfang}Secret of the Fellfang" />
+
+  <!-- Knight of the Old World Choice Group Names -->
+  <string id="tor_career_choicegroup_name.SecularOrders" text="{=str_tor_career_choicegroup_name_SecularOrders}Secular Orders" />
+  <string id="tor_career_choicegroup_name.PathOfConquest" text="{=str_tor_career_choicegroup_name_PathOfConquest}Path of Conquest" />
+  <string id="tor_career_choicegroup_name.Squires" text="{=str_tor_career_choicegroup_name_Squires}Squires" />
+  <string id="tor_career_choicegroup_name.TemplarOrders" text="{=str_tor_career_choicegroup_name_TemplarOrders}Templar Orders" />
+  <string id="tor_career_choicegroup_name.PathOfVigilance" text="{=str_tor_career_choicegroup_name_PathOfVigilance}Path of Vigilance" />
+  <string id="tor_career_choicegroup_name.WrathAgainstChaos" text="{=str_tor_career_choicegroup_name_WrathAgainstChaos}Wrath against Chaos" />
+  <string id="tor_career_choicegroup_name.PathOfGlory" text="{=str_tor_career_choicegroup_name_PathOfGlory}Path of Glory" />
+
+  <!-- Ironbreaker Choice Group Names -->
+  <string id="tor_career_choicegroup_name.NestCleansing" text="{=str_tor_career_choicegroup_name_NestCleansing}Nest Cleansing" />
+  <string id="tor_career_choicegroup_name.TunnelWatch" text="{=str_tor_career_choicegroup_name_TunnelWatch}Tunnel Watch" />
+  <string id="tor_career_choicegroup_name.IronPrice" text="{=str_tor_career_choicegroup_name_IronPrice}Iron Price" />
+  <string id="tor_career_choicegroup_name.ShieldWall" text="{=str_tor_career_choicegroup_name_ShieldWall}Shield Wall" />
+  <string id="tor_career_choicegroup_name.IronDrakes" text="{=str_tor_career_choicegroup_name_IronDrakes}Iron Drakes" />
+  <string id="tor_career_choicegroup_name.GromrilArmor" text="{=str_tor_career_choicegroup_name_GromrilArmor}Gromril Armor" />
+  <string id="tor_career_choicegroup_name.RuneWeapons" text="{=str_tor_career_choicegroup_name_RuneWeapons}Rune Weapons" />
+
+  <!-- Slayer Choice Group Names -->
+  <string id="tor_career_choicegroup_name.AxeOfGrimnir" text="{=str_tor_career_choicegroup_name_AxeOfGrimnir}Axe of Grimnir" />
+  <string id="tor_career_choicegroup_name.ShameOfTheAncestors" text="{=str_tor_career_choicegroup_name_ShameOfTheAncestors}Shame of the Ancestors" />
+  <string id="tor_career_choicegroup_name.DeadlyDetermination" text="{=str_tor_career_choicegroup_name_DeadlyDetermination}Deadly Determination" />
+  <string id="tor_career_choicegroup_name.UrkSlayer" text="{=str_tor_career_choicegroup_name_UrkSlayer}Urk Slayer" />
+  <string id="tor_career_choicegroup_name.GiantSlayer" text="{=str_tor_career_choicegroup_name_GiantSlayer}Giant Slayer" />
+  <string id="tor_career_choicegroup_name.BaneOfChaos" text="{=str_tor_career_choicegroup_name_BaneOfChaos}Bane of Chaos" />
+  <string id="tor_career_choicegroup_name.LastJourney" text="{=str_tor_career_choicegroup_name_LastJourney}The Last Journey" />
+
+  <!-- Warden Choice Group Names -->
+  <string id="tor_career_choicegroup_name.WardenOfCavaroc" text="{=str_tor_career_choicegroup_name_WardenOfCavaroc}Warden of Cavaroc" />
+  <string id="tor_career_choicegroup_name.WardenOfCythral" text="{=str_tor_career_choicegroup_name_WardenOfCythral}Warden of Cythral and Anmyr" />
+  <string id="tor_career_choicegroup_name.WardenOfWydrioth" text="{=str_tor_career_choicegroup_name_WardenOfWydrioth}Warden of Wydrioth" />
+  <string id="tor_career_choicegroup_name.WardenOfAtylwyth" text="{=str_tor_career_choicegroup_name_WardenOfAtylwyth}Warden of Atylwyth" />
+  <string id="tor_career_choicegroup_name.WardenOfTorgovann" text="{=str_tor_career_choicegroup_name_WardenOfTorgovann}Warden of Torgovann" />
+  <string id="tor_career_choicegroup_name.WardenOfTalsyn" text="{=str_tor_career_choicegroup_name_WardenOfTalsyn}Warden of Talsyn" />
+  <string id="tor_career_choicegroup_name.WardenOfArgwylon" text="{=str_tor_career_choicegroup_name_WardenOfArgwylon}Warden of Argwylon" />
+
+  <!-- Runelord Choice Group Names -->
+  <string id="tor_career_choicegroup_name.ForgefireBurning" text="{=str_tor_career_choicegroup_name_ForgefireBurning}Forgefire Burning" />
+  <string id="tor_career_choicegroup_name.TeachingsOfThungni" text="{=str_tor_career_choicegroup_name_TeachingsOfThungni}Teachings of Thungni" />
+  <string id="tor_career_choicegroup_name.ChiselAndHammer" text="{=str_tor_career_choicegroup_name_ChiselAndHammer}Chisel and Hammer" />
+  <string id="tor_career_choicegroup_name.ForHearthAndHome" text="{=str_tor_career_choicegroup_name_ForHearthAndHome}For Hearth and Home" />
+  <string id="tor_career_choicegroup_name.StoneAndSteel" text="{=str_tor_career_choicegroup_name_StoneAndSteel}Stone and Steel" />
+  <string id="tor_career_choicegroup_name.LegacyOfGrungni" text="{=str_tor_career_choicegroup_name_LegacyOfGrungni}Legacy of Grungni" />
+  <string id="tor_career_choicegroup_name.AnvilOfDoom" text="{=str_tor_career_choicegroup_name_AnvilOfDoom}Anvil of Doom" />
+
+  <!-- Orc Boss Choice Group Names -->
+  <string id="tor_career_choicegroup_name.TufferDanNails" text="{=str_tor_career_choicegroup_name_TufferDanNails}Tuffer Dan Nails" />
+  <string id="tor_career_choicegroup_name.YouAnWotArmour" text="{=str_tor_career_choicegroup_name_YouAnWotArmour}You an' Wot Armour?" />
+  <string id="tor_career_choicegroup_name.GoodwivBlockas" text="{=str_tor_career_choicegroup_name_GoodwivBlockas}Good wiv Blockas" />
+  <string id="tor_career_choicegroup_name.MeanestanDaBaddest" text="{=str_tor_career_choicegroup_name_MeanestanDaBaddest}Meanest an' da Baddest" />
+  <string id="tor_career_choicegroup_name.GetToDaChoppas" text="{=str_tor_career_choicegroup_name_GetToDaChoppas}Get To Da Choppas" />
+  <string id="tor_career_choicegroup_name.LeafNuffinBehin" text="{=str_tor_career_choicegroup_name_LeafNuffinBehin}Leave nuffin' behind" />
+  <string id="tor_career_choicegroup_name.BestofDaBest" text="{=str_tor_career_choicegroup_name_BestofDaBest}Best of da Best!" />
+
+  <!-- Orc Shaman Choice Group Names -->
+  <string id="tor_career_choicegroup_name.BonesAnFirepitz" text="{=str_tor_career_choicegroup_name_BonesAnFirepitz}Bones an' Firepitz" />
+  <string id="tor_career_choicegroup_name.VisionsUvDaOrcayne" text="{=str_tor_career_choicegroup_name_VisionsUvDaOrcayne}Visions uv da Orc-ayne" />
+  <string id="tor_career_choicegroup_name.GiftzFromDaGreatGreen" text="{=str_tor_career_choicegroup_name_GiftzFromDaGreatGreen}Giftz from Da Great Green" />
+  <string id="tor_career_choicegroup_name.BrutalCunnin" text="{=str_tor_career_choicegroup_name_BrutalCunnin}Brutal Cunnin'" />
+  <string id="tor_career_choicegroup_name.CunninBrutality" text="{=str_tor_career_choicegroup_name_CunninBrutality}Cunnin' Brutality" />
+  <string id="tor_career_choicegroup_name.GorkAnMorkAreWatchin" text="{=str_tor_career_choicegroup_name_GorkAnMorkAreWatchin}Gork an' Mork are watchin'" />
+  <string id="tor_career_choicegroup_name.PowerUvDaWaaagh" text="{=str_tor_career_choicegroup_name_PowerUvDaWaaagh}Power uv da Waaagh!" />
+
+  <string id="tor_career_rank1_name.Necromancer" text="{=str_tor_career_rank1_name_Necromancer}Apprentice" />
+  <string id="tor_career_rank2_name.Necromancer" text="{=str_tor_career_rank2_name_Necromancer}Scholar" />
+  <string id="tor_career_rank3_name.Necromancer" text="{=str_tor_career_rank3_name_Necromancer}Lichmaster" />
+
+  <string id="tor_career_rank1_name.MinorVampire" text="{=str_tor_career_rank1_name_MinorVampire}New Blood" />
+  <string id="tor_career_rank2_name.MinorVampire" text="{=str_tor_career_rank2_name_MinorVampire}Vampire" />
+  <string id="tor_career_rank3_name.MinorVampire" text="{=str_tor_career_rank3_name_MinorVampire}Exalted" />
+
+  <string id="tor_career_rank1_name.BloodKnight" text="{=str_tor_career_rank1_name_BloodKnight}Initiate" />
+  <string id="tor_career_rank2_name.BloodKnight" text="{=str_tor_career_rank2_name_BloodKnight}Blood Knight" />
+  <string id="tor_career_rank3_name.BloodKnight" text="{=str_tor_career_rank3_name_BloodKnight}Master" />
+
+  <string id="tor_career_rank1_name.GrailKnight" text="{=str_tor_career_rank1_name_GrailKnight}Knight Errant" />
+  <string id="tor_career_rank2_name.GrailKnight" text="{=str_tor_career_rank2_name_GrailKnight}Questing Knight" />
+  <string id="tor_career_rank3_name.GrailKnight" text="{=str_tor_career_rank3_name_GrailKnight}Grail Knight" />
+
+  <string id="tor_career_rank1_name.Mercenary" text="{=str_tor_career_rank1_name_Mercenary}Recruit" />
+  <string id="tor_career_rank2_name.Mercenary" text="{=str_tor_career_rank2_name_Mercenary}Sergeant" />
+  <string id="tor_career_rank3_name.Mercenary" text="{=str_tor_career_rank3_name_Mercenary}Commander" />
+
+  <string id="tor_career_rank1_name.GrailDamsel" text="{=str_tor_career_rank1_name_GrailDamsel}Grail Maid" />
+  <string id="tor_career_rank2_name.GrailDamsel" text="{=str_tor_career_rank2_name_GrailDamsel}Grail Damsel" />
+  <string id="tor_career_rank3_name.GrailDamsel" text="{=str_tor_career_rank3_name_GrailDamsel}Prophetess" />
+
+  <string id="tor_career_rank1_name.BlackGrailKnight" text="{=str_tor_career_rank1_name_BlackGrailKnight}Ill-fated Noble" />
+  <string id="tor_career_rank2_name.BlackGrailKnight" text="{=str_tor_career_rank2_name_BlackGrailKnight}Ill-fated Questing Knight" />
+  <string id="tor_career_rank3_name.BlackGrailKnight" text="{=str_tor_career_rank3_name_BlackGrailKnight}Knight of the Black Grail" />
+
+  <string id="tor_career_rank1_name.Necrarch" text="{=str_tor_career_rank1_name_Necrarch}Apprentice" />
+  <string id="tor_career_rank2_name.Necrarch" text="{=str_tor_career_rank2_name_Necrarch}Seeker" />
+  <string id="tor_career_rank3_name.Necrarch" text="{=str_tor_career_rank3_name_Necrarch}Ascended" />
+
+  <string id="tor_career_rank1_name.ImperialMagister" text="{=str_tor_career_rank1_name_ImperialMagister}Apprentice Magister" />
+  <string id="tor_career_rank2_name.ImperialMagister" text="{=str_tor_career_rank2_name_ImperialMagister}Battle Wizard" />
+  <string id="tor_career_rank3_name.ImperialMagister" text="{=str_tor_career_rank3_name_ImperialMagister}Lord Magister" />
+
+  <string id="tor_career_rank1_name.Waywatcher" text="{=str_tor_career_rank1_name_Waywatcher}Scout" />
+  <string id="tor_career_rank2_name.Waywatcher" text="{=str_tor_career_rank2_name_Waywatcher}Waywatcher" />
+  <string id="tor_career_rank3_name.Waywatcher" text="{=str_tor_career_rank3_name_Waywatcher}Waystalker" />
+
+  <string id="tor_career_rank1_name.Spellsinger" text="{=str_tor_career_rank1_name_Spellsinger}Spellsinger" />
+  <string id="tor_career_rank2_name.Spellsinger" text="{=str_tor_career_rank2_name_Spellsinger}Spellweaver" />
+  <string id="tor_career_rank3_name.Spellsinger" text="{=str_tor_career_rank3_name_Spellsinger}Ascended Spellweaver" />
+
+  <string id="tor_career_rank1_name.GreyLord" text="{=str_tor_career_rank1_name_GreyLord}Exile's Apprentice" />
+  <string id="tor_career_rank2_name.GreyLord" text="{=str_tor_career_rank2_name_GreyLord}Grey Mage" />
+  <string id="tor_career_rank3_name.GreyLord" text="{=str_tor_career_rank3_name_GreyLord}Grey Lord" />
+
+  <string id="tor_career_rank1_name.KnightOldWorld" text="{=str_tor_career_rank1_name_KnightOldWorld}Initiate Knight" />
+  <string id="tor_career_rank2_name.KnightOldWorld" text="{=str_tor_career_rank2_name_KnightOldWorld}Seasoned Knight" />
+  <string id="tor_career_rank3_name.KnightOldWorld" text="{=str_tor_career_rank3_name_KnightOldWorld}Knight Commander" />
+
+  <string id="tor_career_rank1_name.Ironbreaker" text="{=str_tor_career_rank1_name_Ironbreaker}Aspirant Ironbreaker" />
+  <string id="tor_career_rank2_name.Ironbreaker" text="{=str_tor_career_rank2_name_Ironbreaker}Ironbreaker" />
+  <string id="tor_career_rank3_name.Ironbreaker" text="{=str_tor_career_rank3_name_Ironbreaker}Ironbeard" />
+
+  <string id="tor_career_rank1_name.Slayer" text="{=str_tor_career_rank1_name_Slayer}Slayer" />
+  <string id="tor_career_rank2_name.Slayer" text="{=str_tor_career_rank2_name_Slayer}Trollslayer" />
+  <string id="tor_career_rank3_name.Slayer" text="{=str_tor_career_rank3_name_Slayer}Demonslayer" />
+
+  <string id="tor_career_rank1_name.Warden" text="{=str_tor_career_rank1_name_Warden}Highborn" />
+  <string id="tor_career_rank2_name.Warden" text="{=str_tor_career_rank2_name_Warden}Glade Captain" />
+  <string id="tor_career_rank3_name.Warden" text="{=str_tor_career_rank3_name_Warden}Lord of Athel Loren" />
+
+  <string id="tor_career_rank1_name.Runelord" text="{=str_tor_career_rank1_name_Runelord}Student of Runecraft" />
+  <string id="tor_career_rank2_name.Runelord" text="{=str_tor_career_rank2_name_Runelord}Runesmith" />
+  <string id="tor_career_rank3_name.Runelord" text="{=str_tor_career_rank3_name_Runelord}Runelord" />
+
+  <string id="tor_career_rank1_name.OrcBoss" text="{=str_tor_career_rank1_name_OrcBoss}Orc Boss" />
+  <string id="tor_career_rank2_name.OrcBoss" text="{=str_tor_career_rank2_name_OrcBoss}Warboss" />
+  <string id="tor_career_rank3_name.OrcBoss" text="{=str_tor_career_rank3_name_OrcBoss}Greenskin Warlord" />
+
+  <string id="tor_career_rank1_name.OrcShaman" text="{=str_tor_career_rank1_name_OrcShaman}Orc Shaman" />
+  <string id="tor_career_rank2_name.OrcShaman" text="{=str_tor_career_rank2_name_OrcShaman}Favoured uv Da Godz" />
+  <string id="tor_career_rank3_name.OrcShaman" text="{=str_tor_career_rank3_name_OrcShaman}Great Shaman Lord" />
 
   <!--Career related !-->
   <string id="tor_career_description.WarriorPriest" text="{=str_tor_career_description_warriorpriest}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />

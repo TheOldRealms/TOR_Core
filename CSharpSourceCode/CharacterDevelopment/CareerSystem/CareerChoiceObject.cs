@@ -40,7 +40,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     if (!descriptionOverride.Value.Contains(text.Value))
                     {
-                        TORCommon.Log(String.Format("Career perk text has been modified in externalized strings. this should be adapted in code: \n CODE {0} \n XML {1}",text.Value, descriptionOverride.Value),LogLevel.Warn);
+                        TORCommon.Log(String.Format("Career perk text has been modified in externalized strings (tor_strings). this should be adapted in code: \n CODE {0} \n XML {1}",text.Value, descriptionOverride.Value),LogLevel.Warn);
                     }
                     
                     text = new TextObject(descriptionOverride.Value.ToString());

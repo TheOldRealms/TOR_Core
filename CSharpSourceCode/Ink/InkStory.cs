@@ -87,7 +87,7 @@ namespace TOR_Core.Ink
         public void SetTitle()
         {
             var overrideText = TextObject.GetEmpty();
-            if (GameTexts.TryGetText("inky_" + StringId, out overrideText, "Title"))
+            if (GameTexts.TryGetText("tor_inky_" + StringId, out overrideText, "Title"))
             {
                 if (!overrideText.ToString().IsEmpty())
                 {
@@ -137,7 +137,7 @@ namespace TOR_Core.Ink
                 if (tag.StartsWith("STR_"))
                 {
                     TextObject overrideText = TextObject.GetEmpty();
-                    if (GameTexts.TryGetText("inky_" + StringId, out overrideText, tag))
+                    if (GameTexts.TryGetText("tor_inky_" + StringId, out overrideText, tag))
                     {
                         if (!overrideText.ToString().IsEmpty())
                         {
@@ -199,7 +199,7 @@ namespace TOR_Core.Ink
                 TextObject overrideText = TextObject.GetEmpty();
                 var variableState = _story.variablesState[varName].ToString();
                 var combinedVariableID = varName + "_" + variableState;
-                if (GameTexts.TryGetText("inky_" + StringId, out overrideText, combinedVariableID))
+                if (GameTexts.TryGetText("tor_inky_" + StringId, out overrideText, combinedVariableID))
                 {
                     if (!overrideText.ToString().IsEmpty())
                     {
@@ -389,7 +389,7 @@ namespace TOR_Core.Ink
 
         void SetTextVariable(string variableName, string variant)
         {
-            var textID = "inky_" + StringId;
+            var textID = "tor_inky_" + StringId;
             var variable = GetVariable(variableName);
             var variableVariant = variableName + "_" + variant;
 
@@ -398,53 +398,53 @@ namespace TOR_Core.Ink
                 resultText = new TextObject("{=!}" + variable);
             }
 
-            GameTexts.SetVariable("inky_" + variableName, resultText);
+            GameTexts.SetVariable("tor_inky_" + variableName, resultText);
 
         }
 
         private void SetPlayerSkillChance(string skillname, string skillChance)
         {
 
-            var idChance = "inky_Player_skill_CheckChance";
+            var idChance = "tor_inky_Player_skill_CheckChance";
             GameTexts.SetVariable(idChance, skillChance);
 
             var skillText = TORTextHelper.GetTextObjectOfSkillId(skillname);
-            GameTexts.SetVariable("inky_skill_check_skill_name", skillText);
-            var skillCheckResultText = GameTexts.FindText("inky_player_skill_check_result_template");
+            GameTexts.SetVariable("tor_inky_skill_check_skill_name", skillText);
+            var skillCheckResultText = GameTexts.FindText("tor_inky_player_skill_check_result_template");
 
-            GameTexts.SetVariable("inky_player_skill_check_result_" + skillname, skillChance);
+            GameTexts.SetVariable("tor_inky_player_skill_check_result_" + skillname, skillChance);
         }
         private void SetPartySkillChance(string skillname, string skillChance)
         {
 
-            var idChance = "inky_Party_skill_CheckChance";
+            var idChance = "tor_inky_Party_skill_CheckChance";
 
             GameTexts.SetVariable(idChance, skillChance);
 
             var skillText = TORTextHelper.GetTextObjectOfSkillId(skillname);
-            GameTexts.SetVariable("inky_skill_check_skill_name", skillText);
-            var skillCheckResultText = GameTexts.FindText("inky_party_skill_check_result_template");
-            GameTexts.SetVariable("inky_party_skill_check_result_" + skillname, skillCheckResultText.ToString());
+            GameTexts.SetVariable("tor_inky_skill_check_skill_name", skillText);
+            var skillCheckResultText = GameTexts.FindText("tor_inky_party_skill_check_result_template");
+            GameTexts.SetVariable("tor_inky_party_skill_check_result_" + skillname, skillCheckResultText.ToString());
         }
 
         private void SetPlayerAttributeChance(string attribute, string attributeChance)
         {
-            var idChance = "inky_Player_attribute_CheckChance";
+            var idChance = "tor_inky_Player_attribute_CheckChance";
             GameTexts.SetVariable(idChance, attributeChance);
             var attributeText = TORTextHelper.GetTextObjectOfAttribute(attribute);
-            GameTexts.SetVariable("inky_attribute_check_attribute_name", attributeText);
-            var attributeCheckResultText = GameTexts.FindText("inky_player_attribute_check_result_template");
-            GameTexts.SetVariable("inky_player_attribute_skill_check_result_" + attribute, attributeCheckResultText);
+            GameTexts.SetVariable("tor_inky_attribute_check_attribute_name", attributeText);
+            var attributeCheckResultText = GameTexts.FindText("tor_inky_player_attribute_check_result_template");
+            GameTexts.SetVariable("tor_inky_player_attribute_skill_check_result_" + attribute, attributeCheckResultText);
         }
 
         private void SetPartyAttributeChance(string attribute, string attributeChance)
         {
-            var idChance = "inky_Party_attribute_CheckChance";
+            var idChance = "tor_inky_Party_attribute_CheckChance";
             GameTexts.SetVariable(idChance, attributeChance);
             var attributeText = TORTextHelper.GetTextObjectOfAttribute(attribute);
-            GameTexts.SetVariable("inky_attribute_check_attribute_name", attributeText);
-            var attributeCheckResultText = GameTexts.FindText("inky_party_attribute_check_result_template");
-            GameTexts.SetVariable("inky_party_attribute_check_result_" + attribute, attributeCheckResultText);
+            GameTexts.SetVariable("tor_inky_attribute_check_attribute_name", attributeText);
+            var attributeCheckResultText = GameTexts.FindText("tor_inky_party_attribute_check_result_template");
+            GameTexts.SetVariable("tor_inky_party_attribute_check_result_" + attribute, attributeCheckResultText);
         }
 
         private void StartQuest(string questPath)
@@ -751,7 +751,7 @@ namespace TOR_Core.Ink
             var choiceLine = "";
             var pathExitID = GetPathExitID(choice.targetPath);
             var choiceID = choice.targetPath.ToString().Split('.').FirstOrDefault() + "_c" + pathExitID;
-            var stringId = "{=inky_" + StringId + "_" + choiceID + "}";
+            var stringId = "{=tor_inky_" + StringId + "_" + choiceID + "}";
             stringId = stringId.ToLowerInvariant();
             var overrideText = new TextObject(stringId).ToString();
 
