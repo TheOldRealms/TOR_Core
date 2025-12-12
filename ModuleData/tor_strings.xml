@@ -1896,17 +1896,26 @@
   The choice can be accessed later, should you decline now.
   " />
 
-  <string id="tor_career_choicegroup1_name.WitchHunter" text="{=str_tor_career_choicegroup1_name_witchhunter}Witch Hunter Initiate" />
-  <string id="tor_career_choicegroup2_name.WitchHunter" text="{=str_tor_career_choicegroup2_name_witchhunter}Witch Hunter Captain" />
-  <string id="tor_career_choicegroup3_name.WitchHunter" text="{=str_tor_career_choicegroup3_name_witchhunter}Master Witch Hunter" />
+  <string id="tor_career_rank1_name.WitchHunter" text="{=str_tor_career_choicegroup1_name_witchhunter}Witch Hunter Initiate" />
+  <string id="tor_career_rank2_name.WitchHunter" text="{=str_tor_career_choicegroup2_name_witchhunter}Witch Hunter Captain" />
+  <string id="tor_career_rank3_name.WitchHunter" text="{=str_tor_career_choicegroup3_name_witchhunter}Master Witch Hunter" />
 
-  <string id="tor_career_choicegroup1_name.WarriorPriestUlric" text="{=str_tor_career_choicegroup1_name_warriorpriestulric}Acolyte" />
-  <string id="tor_career_choicegroup2_name.WarriorPriestUlric" text="{=str_tor_career_choicegroup2_name_warriorpriestulric}Wolf Priest" />
-  <string id="tor_career_choicegroup3_name.WarriorPriestUlric" text="{=str_tor_career_choicegroup3_name_warriorpriestulric}High Priest of Ulric" />
+  <string id="tor_career_rank1_name.WarriorPriestUlric" text="{=str_tor_career_choicegroup1_name_warriorpriestulric}Acolyte" />
+  <string id="tor_career_rank2_name.WarriorPriestUlric" text="{=str_tor_career_choicegroup2_name_warriorpriestulric}Wolf Priest" />
+  <string id="tor_career_rank3_name.WarriorPriestUlric" text="{=str_tor_career_choicegroup3_name_warriorpriestulric}High Priest of Ulric" />
 
-  <string id="tor_career_choicegroup1_name.WarriorPriest" text="{=str_tor_career_choicegroup1_name_warriorpriest}Cultist of Sigmar" />
-  <string id="tor_career_choicegroup2_name.WarriorPriest" text="{=str_tor_career_choicegroup2_name_warriorpriest}Warrior Priest" />
-  <string id="tor_career_choicegroup3_name.WarriorPriest" text="{=str_tor_career_choicegroup3_name_warriorpriest}Arch Lector" />
+  <string id="tor_career_rank1_name.WarriorPriest" text="{=str_tor_career_choicegroup1_name_warriorpriest}Cultist of Sigmar" />
+  <string id="tor_career_rank2_name.WarriorPriest" text="{=str_tor_career_choicegroup2_name_warriorpriest}Warrior Priest" />
+  <string id="tor_career_rank3_name.WarriorPriest" text="{=str_tor_career_choicegroup3_name_warriorpriest}Arch Lector" />
+
+  <!-- Warrior Priest Choice Group Names (by StringId) -->
+  <string id="tor_career_choicegroup_name.BookOfSigmar" text="{=str_tor_career_choicegroup_name_BookOfSigmar}Book of Sigmar" />
+  <string id="tor_career_choicegroup_name.SigmarsProclaimer" text="{=str_tor_career_choicegroup_name_SigmarsProclaimer}Sigmar's Proclaimer" />
+  <string id="tor_career_choicegroup_name.RelentlessFanatic" text="{=str_tor_career_choicegroup_name_RelentlessFanatic}Relentless Fanatic" />
+  <string id="tor_career_choicegroup_name.ProtectorOfTheWeak" text="{=str_tor_career_choicegroup_name_ProtectorOfTheWeak}Protector of the Weak" />
+  <string id="tor_career_choicegroup_name.HolyPurge" text="{=str_tor_career_choicegroup_name_HolyPurge}Holy Purge" />
+  <string id="tor_career_choicegroup_name.ArchLector" text="{=str_tor_career_choicegroup_name_ArchLector}Arch Lector" />
+  <string id="tor_career_choicegroup_name.TwinTailedComet" text="{=str_tor_career_choicegroup_name_TwinTailedComet}Twin Tailed Comet" />
 
   <string id="tor_career_choicegroup1_name.Necromancer" text="{=str_tor_career_choicegroup1_name_necromancer}Apprentise" />
   <string id="tor_career_choicegroup2_name.Necromancer" text="{=str_tor_career_choicegroup2_name_necromancer}Scholar" />

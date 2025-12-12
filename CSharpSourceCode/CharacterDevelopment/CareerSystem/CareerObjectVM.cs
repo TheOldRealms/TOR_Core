@@ -80,9 +80,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 }
             }
             CareerAbilityTitle = GameTexts.FindText("str_career_screen", "ability_title").ToString();
-            _choiceGroup1Name = GameTexts.FindText("tor_career_choicegroup1_name", _career.StringId).ToString();
-            _choiceGroup2Name = GameTexts.FindText("tor_career_choicegroup2_name", _career.StringId).ToString();
-            _choiceGroup3Name = GameTexts.FindText("tor_career_choicegroup3_name", _career.StringId).ToString();
+            _choiceGroup1Name = GameTexts.FindText("tor_career_rank1_name", _career.StringId).ToString();
+            _choiceGroup2Name = GameTexts.FindText("tor_career_rank2_name", _career.StringId).ToString();
+            _choiceGroup3Name = GameTexts.FindText("tor_career_rank3_name", _career.StringId).ToString();
             _tier1Active = !_career.ChoiceGroups.Where(x => x.Tier == 1).All(x => x.IsActiveForHero(Hero.MainHero));
             _tier2Active = !_career.ChoiceGroups.Where(x => x.Tier == 2).All(x => x.IsActiveForHero(Hero.MainHero));
             _tier3Active = !_career.ChoiceGroups.Where(x => x.Tier == 3).All(x => x.IsActiveForHero(Hero.MainHero));
