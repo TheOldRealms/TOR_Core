@@ -114,18 +114,18 @@ namespace TOR_Core.AbilitySystem
         {
             if (!IsCharged)
             {
-                disabledReason = new TextObject("{=tor_career_ability_disable_reason_not_charged}Ability not charged");
+                disabledReason = new TextObject("{=str_tor_career_ability_not_charged}Ability not charged");
                 return true;
             }
             if (casterAgent.HasMount && IsNotUsableMounted(Template.StringID))
             {
-                disabledReason = new TextObject("{=tor_career_ability_disable_reason_not_usable_with_mount}Not usable mounted");
+                disabledReason = new TextObject("{=str_tor_career_ability_not_usable_mounted}Not usable mounted");
                 return true;
             }
 
             if (casterAgent.WieldedWeapon.IsEmpty && IsNotUsableWithoutWeapon(Template.StringID))
             {
-                disabledReason = new TextObject("{=tor_career_ability_disable_reason_not_usable_without_weapon}Not usable without weapon");
+                disabledReason = new TextObject("{=str_tor_career_ability_not_usable_without_weapon}Not usable without weapon");
                 return true;
             }
 

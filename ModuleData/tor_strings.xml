@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <strings>
   <!-- UI -->
   <string id="str_career_screen.title" text= "{=str_tor_career_screen_title}Career"/>
@@ -43,6 +43,177 @@
   <string id="tor_nagashcorrupted_trait_description" text="{=str_tor_nagashcorrupted_trait_description}This mind has been corrupted by the curse of nagash"/>
   <string id="tor_gunner_trait_name" text="{=str_tor_gunner_trait_name}Gunner"/>
   <string id="tor_gunner_trait_description" text="{=str_tor_gunner_trait_description}Expert of Blackpowder weapons"/>
+
+  <!-- Perks - Gunpowder -->
+  <string id="tor_perk_run_and_gun_label" text="{=str_tor_perk_run_and_gun_label}Run and Gun"/>
+  <string id="tor_perk_run_and_gun_1" text="{=str_tor_perk_run_and_gun_1}While on foot and using a pistol, your accuracy penalty for moving is reduced by 20%."/>
+  <string id="tor_perk_run_and_gun_2" text="{=str_tor_perk_run_and_gun_2}Gunpowder infantry troops in your party have their gunpowder skill increased by 30."/>
+  <string id="tor_perk_mounted_heritage_label" text="{=str_tor_perk_mounted_heritage_label}Mounted Heritage"/>
+  <string id="tor_perk_mounted_heritage_1" text="{=str_tor_perk_mounted_heritage_1}Your accuracy is increased by 20% with gunpowder weapons when mounted."/>
+  <string id="tor_perk_mounted_heritage_2" text="{=str_tor_perk_mounted_heritage_2}Mounted ranged troops in your party have their riding skill increased by 30."/>
+  <string id="tor_perk_firing_drills_label" text="{=str_tor_perk_firing_drills_label}Firing Drills"/>
+  <string id="tor_perk_firing_drills_1" text="{=str_tor_perk_firing_drills_1}Immediately gain +1 Discipline."/>
+  <string id="tor_perk_firing_drills_2" text="{=str_tor_perk_firing_drills_2}Gunpowder troops in your party recieve +5 experience per day."/>
+  <string id="tor_perk_ammunition_wagons_label" text="{=str_tor_perk_ammunition_wagons_label}Ammunition Wagons"/>
+  <string id="tor_perk_ammunition_wagons_1" text="{=str_tor_perk_ammunition_wagons_1}+50% starting ammunition for all gunpowder troops (including player)."/>
+  <string id="tor_perk_ammunition_wagons_2" text="{=str_tor_perk_ammunition_wagons_2}Increase your party's inventory capacity by 30%."/>
+  <string id="tor_perk_close_quarter_label" text="{=str_tor_perk_close_quarter_label}Close Quarters"/>
+  <string id="tor_perk_close_quarter_1" text="{=str_tor_perk_close_quarter_1}You deal 25% increased damage with gunpowder weapons to enemies within 7 meters."/>
+  <string id="tor_perk_close_quarter_2" text="{=str_tor_perk_close_quarter_2}Ranged troops in your party have their One-handed skill increased by 30."/>
+  <string id="tor_perk_dead_eye_label" text="{=str_tor_perk_dead_eye_label}Dead Eye"/>
+  <string id="tor_perk_dead_eye_1" text="{=str_tor_perk_dead_eye_1}You deal 30% increased damage with longrifles."/>
+  <string id="tor_perk_dead_eye_2" text="{=str_tor_perk_dead_eye_2}Two-Handed gunpowder troops in your formation have their accuracy increased by 20%."/>
+  <string id="tor_perk_bullet_proof_label" text="{=str_tor_perk_bullet_proof_label}Bullet Proof"/>
+  <string id="tor_perk_bullet_proof_1" text="{=str_tor_perk_bullet_proof_1}You take 15% less damage from handheld ranged weapons."/>
+  <string id="tor_perk_bullet_proof_2" text="{=str_tor_perk_bullet_proof_2}Troops in your formation receive 5% less damage from handheld ranged weapons."/>
+  <string id="tor_perk_bomb_suit_label" text="{=str_tor_perk_bomb_suit_label}Bomb Suit"/>
+  <string id="tor_perk_bomb_suit_1" text="{=str_tor_perk_bomb_suit_1}You take 25% less damage from siege artillery and explosions."/>
+  <string id="tor_perk_bomb_suit_2" text="{=str_tor_perk_bomb_suit_2}Troops in your formation receive 10% less damage from siege artillery and explosions."/>
+  <string id="tor_perk_pack_it_in_label" text="{=str_tor_perk_pack_it_in_label}Pack It In"/>
+  <string id="tor_perk_pack_it_in_1" text="{=str_tor_perk_pack_it_in_1}When you are using a multi-projectile gunpowder weapon, increase the number of projectiles by 50%."/>
+  <string id="tor_perk_pack_it_in_2" text="{=str_tor_perk_pack_it_in_2}Troops in your formation using explosive gunpowder weapons gain +10% bonus damage and the damage is converted to Fire Damage."/>
+  <string id="tor_perk_steel_terror_label" text="{=str_tor_perk_steel_terror_label}Steel Terror"/>
+  <string id="tor_perk_steel_terror_1" text="{=str_tor_perk_steel_terror_1}Artillery and explosive weapons in your party deal +10% morale damage in battle."/>
+  <string id="tor_perk_steel_terror_2" text="{=str_tor_perk_steel_terror_2}Artillery crews and engineers in your party become unbreakable due to morale loss."/>
+  <string id="tor_perk_piercing_shots_label" text="{=str_tor_perk_piercing_shots_label}Piercing Shots"/>
+  <string id="tor_perk_piercing_shots_1" text="{=str_tor_perk_piercing_shots_1}Your shots ignore 50% of enemy armor and penetrate shields."/>
+  <string id="tor_perk_piercing_shots_2" text="{=str_tor_perk_piercing_shots_2}Gunpowder troops in your party pierce shields."/>
+
+  <!-- Perks - Spellcraft -->
+  <string id="tor_perk_novice_spellcaster_label" text="{=str_tor_perk_novice_spellcaster_label}Novice Spellcaster"/>
+  <string id="tor_perk_novice_spellcaster_1" text="{=str_tor_perk_novice_spellcaster_1}Gain access to entry level spells."/>
+  <string id="tor_perk_adept_spellcaster_label" text="{=str_tor_perk_adept_spellcaster_label}Adept Spellcaster"/>
+  <string id="tor_perk_adept_spellcaster_1" text="{=str_tor_perk_adept_spellcaster_1}Gain access to adept level spells."/>
+  <string id="tor_perk_master_spellcaster_label" text="{=str_tor_perk_master_spellcaster_label}Master Spellcaster"/>
+  <string id="tor_perk_master_spellcaster_1" text="{=str_tor_perk_master_spellcaster_1}Gain access to master level spells."/>
+  <string id="tor_perk_selfish_label" text="{=str_tor_perk_selfish_label}Selfish"/>
+  <string id="tor_perk_selfish_1" text="{=str_tor_perk_selfish_1}Your damaging spells do 90% reduced damage to yourself."/>
+  <string id="tor_perk_selfish_2" text="{=str_tor_perk_selfish_2}Your self targeted buff spells have 50% more duration."/>
+  <string id="tor_perk_well_controlled_label" text="{=str_tor_perk_well_controlled_label}Well Controlled"/>
+  <string id="tor_perk_well_controlled_1" text="{=str_tor_perk_well_controlled_1}Your damaging spells do 30% less damage to troops in your party."/>
+  <string id="tor_perk_well_controlled_2" text="{=str_tor_perk_well_controlled_2}Gain 5% advantage in simulation battles."/>
+  <string id="tor_perk_librarian_label" text="{=str_tor_perk_librarian_label}Librarian"/>
+  <string id="tor_perk_librarian_1" text="{=str_tor_perk_librarian_1}You gain double experience from reading books."/>
+  <string id="tor_perk_librarian_2" text="{=str_tor_perk_librarian_2}Learning new spells cost 50% less gold."/>
+  <string id="tor_perk_story_teller_label" text="{=str_tor_perk_story_teller_label}Storyteller"/>
+  <string id="tor_perk_story_teller_1" text="{=str_tor_perk_story_teller_1}Every companion in your party gains 1000 experience in a random skill per day."/>
+  <string id="tor_perk_story_teller_2" text="{=str_tor_perk_story_teller_2}Your party gains a permanent +5 increase to party morale."/>
+  <string id="tor_perk_overcaster_label" text="{=str_tor_perk_overcaster_label}Overcaster"/>
+  <string id="tor_perk_overcaster_1" text="{=str_tor_perk_overcaster_1}Your damaging spells do 20% more damage but cost 30% more winds of magic."/>
+  <string id="tor_perk_effective_spellcaster_label" text="{=str_tor_perk_effective_spellcaster_label}Efficient Spellcaster"/>
+  <string id="tor_perk_effective_spellcaster_1" text="{=str_tor_perk_effective_spellcaster_1}Your damaging spells do 20% less damage, but cost 30% less winds of magic."/>
+  <string id="tor_perk_improvision_label" text="{=str_tor_perk_improvision_label}Improvision"/>
+  <string id="tor_perk_improvision_1" text="{=str_tor_perk_improvision_1}Your Winds of Magic is set to 25 if you have less than that at the beginning of the battle."/>
+  <string id="tor_perk_improvision_2" text="{=str_tor_perk_improvision_2}+10% Persuasion chance during speech checks."/>
+  <string id="tor_perk_catalyst_label" text="{=str_tor_perk_catalyst_label}Catalyst"/>
+  <string id="tor_perk_catalyst_1" text="{=str_tor_perk_catalyst_1}For every magical item in your equipment slots you gain +5 extra Winds of magic at the start of battle."/>
+  <string id="tor_perk_catalyst_2" text="{=str_tor_perk_catalyst_2}You gain +20% Winds of Magic regeneration while waiting in a town."/>
+  <string id="tor_perk_dampener_label" text="{=str_tor_perk_dampener_label}Dampener"/>
+  <string id="tor_perk_dampener_1" text="{=str_tor_perk_dampener_1}Damage dealt by your damaging spells is reduced by 15%, but troops in your formation take 30% less damage from spells."/>
+  <string id="tor_perk_dampener_2" text="{=str_tor_perk_dampener_2}You gain 5% ward save."/>
+  <string id="tor_perk_arcane_link_label" text="{=str_tor_perk_arcane_link_label}Arcane Link"/>
+  <string id="tor_perk_arcane_link_1" text="{=str_tor_perk_arcane_link_1}Any buffs you cast on a friendly unit will now also apply to you even if you are not in range."/>
+  <string id="tor_perk_arcane_link_2" text="{=str_tor_perk_arcane_link_2}As formation Captain, all troops in your formation deal additonal 10% magic damage."/>
+  <string id="tor_perk_exchange_label" text="{=str_tor_perk_exchange_label}Exchange"/>
+  <string id="tor_perk_exchange_1" text="{=str_tor_perk_exchange_1}All physical damage done by your weapons is doubled and dealt again as magical damage."/>
+
+  <!-- Perks - Faith -->
+  <string id="tor_perk_novice_prayer_label" text="{=str_tor_perk_novice_prayer_label}Novice Prayers"/>
+  <string id="tor_perk_novice_prayer_1" text="{=str_tor_perk_novice_prayer_1}Gain access to all novice level battle prayers."/>
+  <string id="tor_perk_adept_prayer_label" text="{=str_tor_perk_adept_prayer_label}Adept Prayers"/>
+  <string id="tor_perk_adept_prayer_1" text="{=str_tor_perk_adept_prayer_1}Gain access to all adept level battle prayers."/>
+  <string id="tor_perk_grand_prayer_label" text="{=str_tor_perk_grand_prayer_label}Grand Prayers"/>
+  <string id="tor_perk_grand_prayer_1" text="{=str_tor_perk_grand_prayer_1}Gain access to all grand level battle prayers."/>
+  <string id="tor_perk_devotee_label" text="{=str_tor_perk_devotee_label}Devotee"/>
+  <string id="tor_perk_devotee_1" text="{=str_tor_perk_devotee_1}You gain +3 hitpoints for every point in Discipline."/>
+  <string id="tor_perk_devotee_2" text="{=str_tor_perk_devotee_2}Praying at a shrine grants 50% increased devotion towards your chosen religion."/>
+  <string id="tor_perk_divine_mission_label" text="{=str_tor_perk_divine_mission_label}Divine Mission"/>
+  <string id="tor_perk_divine_mission_1" text="{=str_tor_perk_divine_mission_1}You gain 1 focus point in Medicine."/>
+  <string id="tor_perk_divine_mission_2" text="{=str_tor_perk_divine_mission_2}5% increased militia growth in settlements owned by your clan."/>
+  <string id="tor_perk_imperturbable_label" text="{=str_tor_perk_imperturbable_label}Imperturbable"/>
+  <string id="tor_perk_imperturbable_1" text="{=str_tor_perk_imperturbable_1}Gain 500 Faith skill experience every day while waiting at a settlement."/>
+  <string id="tor_perk_imperturbable_2" text="{=str_tor_perk_imperturbable_2}Religious units in your party gain 10% physical resistance."/>
+  <string id="tor_perk_superstitious_label" text="{=str_tor_perk_superstitious_label}Superstitious"/>
+  <string id="tor_perk_superstitious_1" text="{=str_tor_perk_superstitious_1}Cursed regions on the world map have 20% reduced damaging effect on your party."/>
+  <string id="tor_perk_superstitious_2" text="{=str_tor_perk_superstitious_2}Religious units in your party gain 10% bonus physical damage."/>
+  <string id="tor_perk_offering_label" text="{=str_tor_perk_offering_label}Offering"/>
+  <string id="tor_perk_offering_1" text="{=str_tor_perk_offering_1}Obtain the ability to donate items at shrines as sacrifical offering to gain Faith."/>
+  <string id="tor_perk_blessed_label" text="{=str_tor_perk_blessed_label}Blessed"/>
+  <string id="tor_perk_blessed_1" text="{=str_tor_perk_blessed_1}Your clan gains 3 Influence every day for every clan party with an active blessing."/>
+  <string id="tor_perk_blessed_2" text="{=str_tor_perk_blessed_2}While your party has an active blessing, religious units in your party gain 10xp every day."/>
+  <string id="tor_perk_foresight_label" text="{=str_tor_perk_foresight_label}Foresight"/>
+  <string id="tor_perk_foresight_1" text="{=str_tor_perk_foresight_1}Gain a free attribute point."/>
+  <string id="tor_perk_foresight_2" text="{=str_tor_perk_foresight_2}Increase your party's sight range on the campaign map by 10%."/>
+  <string id="tor_perk_revival_label" text="{=str_tor_perk_revival_label}Revival"/>
+  <string id="tor_perk_revival_1" text="{=str_tor_perk_revival_1}After all medicine/healing related skills fail, gain a second 50% chance for characters and units that would be killed to be wounded instead."/>
+  <string id="tor_perk_spirit_label" text="{=str_tor_perk_spirit_label}Spirit"/>
+  <string id="tor_perk_spirit_1" text="{=str_tor_perk_spirit_1}Whenever a tier 6 or higher unit dies, distribute their experience among the rest of the troops in the party."/>
+  <string id="tor_perk_miracle_label" text="{=str_tor_perk_miracle_label}Miracle"/>
+  <string id="tor_perk_miracle_1" text="{=str_tor_perk_miracle_1}Your faith is so strong that it is able to manifest miraculous events from time to time."/>
+
+  <!-- Ability System -->
+  <string id="tor_ability_enabled" text="{=str_tor_ability_enabled}Enabled"/>
+  <string id="tor_ability_missing_anvil" text="{=str_tor_ability_missing_anvil}Missing Anvil of Doom"/>
+  <string id="tor_ability_on_cooldown" text="{=str_tor_ability_on_cooldown}On cooldown"/>
+  <string id="tor_ability_mission_over" text="{=str_tor_ability_mission_over}Mission is over"/>
+  <string id="tor_ability_casting" text="{=str_tor_ability_casting}Casting"/>
+  <string id="tor_ability_in_mistform" text="{=str_tor_ability_in_mistform}In Mistform"/>
+  <string id="tor_career_ability_not_charged" text="{=str_tor_career_ability_not_charged}Ability not charged"/>
+  <string id="tor_career_ability_not_usable_mounted" text="{=str_tor_career_ability_not_usable_mounted}Not usable mounted"/>
+  <string id="tor_career_ability_not_usable_without_weapon" text="{=str_tor_career_ability_not_usable_without_weapon}Not usable without weapon"/>
+  <string id="tor_spell_not_enough_wom" text="{=str_tor_spell_not_enough_wom}Not enough winds of magic"/>
+
+  <!-- Spell/Prayer Stats -->
+  <string id="tor_spell_stat_name" text="{=str_tor_spell_stat_name}Spell Name: "/>
+  <string id="tor_spell_stat_wom_cost" text="{=str_tor_spell_stat_wom_cost}Winds of Magic cost: "/>
+  <string id="tor_spell_stat_tier" text="{=str_tor_spell_stat_tier}Spell Tier: "/>
+  <string id="tor_spell_stat_type" text="{=str_tor_spell_stat_type}Spell Type: "/>
+  <string id="tor_spell_stat_cooldown" text="{=str_tor_spell_stat_cooldown}Cooldown: "/>
+  <string id="tor_prayer_stat_name" text="{=str_tor_prayer_stat_name}Prayer Name: "/>
+  <string id="tor_prayer_stat_tier" text="{=str_tor_prayer_stat_tier}Prayer Tier: "/>
+  <string id="tor_prayer_stat_type" text="{=str_tor_prayer_stat_type}Prayer Type: "/>
+  <string id="tor_prayer_stat_cooldown" text="{=str_tor_prayer_stat_cooldown}Cooldown: "/>
+  <string id="tor_cooldown_seconds" text="{=str_tor_cooldown_seconds}{COOLDOWN} seconds"/>
+
+  <!-- SpellCastingLevel -->
+  <string id="tor_spellcasting_level.None" text="{=str_tor_spellcasting_level_none}None"/>
+  <string id="tor_spellcasting_level.Minor" text="{=str_tor_spellcasting_level_minor}Minor"/>
+  <string id="tor_spellcasting_level.Entry" text="{=str_tor_spellcasting_level_entry}Entry"/>
+  <string id="tor_spellcasting_level.Adept" text="{=str_tor_spellcasting_level_adept}Adept"/>
+  <string id="tor_spellcasting_level.Master" text="{=str_tor_spellcasting_level_master}Master"/>
+
+  <!-- PrayerLevel -->
+  <string id="tor_prayer_level.None" text="{=str_tor_prayer_level_none}None"/>
+  <string id="tor_prayer_level.Minor" text="{=str_tor_prayer_level_minor}Minor"/>
+  <string id="tor_prayer_level.Novice" text="{=str_tor_prayer_level_novice}Novice"/>
+  <string id="tor_prayer_level.Adept" text="{=str_tor_prayer_level_adept}Adept"/>
+  <string id="tor_prayer_level.Grand" text="{=str_tor_prayer_level_grand}Grand"/>
+
+  <!-- AbilityEffectType -->
+  <string id="tor_ability_effect_type.Projectile" text="{=str_tor_ability_effect_type_projectile}Projectile"/>
+  <string id="tor_ability_effect_type.Missile" text="{=str_tor_ability_effect_type_missile}Missile"/>
+  <string id="tor_ability_effect_type.SeekerMissile" text="{=str_tor_ability_effect_type_seeker_missile}Seeker Missile"/>
+  <string id="tor_ability_effect_type.Wind" text="{=str_tor_ability_effect_type_wind}Wind"/>
+  <string id="tor_ability_effect_type.Vortex" text="{=str_tor_ability_effect_type_vortex}Vortex"/>
+  <string id="tor_ability_effect_type.Heal" text="{=str_tor_ability_effect_type_heal}Heal"/>
+  <string id="tor_ability_effect_type.Augment" text="{=str_tor_ability_effect_type_augment}Augment"/>
+  <string id="tor_ability_effect_type.Hex" text="{=str_tor_ability_effect_type_hex}Hex"/>
+  <string id="tor_ability_effect_type.Summoning" text="{=str_tor_ability_effect_type_summoning}Summoning"/>
+  <string id="tor_ability_effect_type.Bombardment" text="{=str_tor_ability_effect_type_bombardment}Bombardment"/>
+  <string id="tor_ability_effect_type.Blast" text="{=str_tor_ability_effect_type_blast}Blast"/>
+  <string id="tor_ability_effect_type.ArtilleryPlacement" text="{=str_tor_ability_effect_type_artillery_placement}Artillery Placement"/>
+  <string id="tor_ability_effect_type.TimeWarpEffect" text="{=str_tor_ability_effect_type_time_warp}Time Warp"/>
+  <string id="tor_ability_effect_type.CareerAbilityEffect" text="{=str_tor_ability_effect_type_career_ability}Career Ability"/>
+  <string id="tor_ability_effect_type.TacticalReposition" text="{=str_tor_ability_effect_type_tactical_reposition}Tactical Reposition"/>
+
+  <!-- Ink Stories -->
+  <string id="tor_ink_end" text="{=str_tor_ink_end}End"/>
+  <string id="tor_ink_continue" text="{=str_tor_ink_continue}Continue"/>
+
+  <!-- Missions -->
+  <string id="tor_brawl_cannot_leave" text="{=str_tor_brawl_cannot_leave}You may not leave until finishing the brawl."/>
+  <string id="tor_quest_fight_cannot_leave" text="{=str_tor_quest_fight_cannot_leave}You may not leave until finishing the quest scenario."/>
+  <string id="tor_joust_dismount" text="{=str_tor_joust_dismount}You must dismount to continue with combat on foot."/>
 
   <!-- Generic Text -->
 	<string id="tor_generic_upkeep" text="{=str_tor_generic_upkeep}Upkeep" />

@@ -18,7 +18,7 @@ namespace TOR_Core.AbilitySystem.Spells
                 var info = hero.GetExtendedInfo();
                 if (info.GetCustomResourceValue("WindsOfMagic") < hero.GetEffectiveWindsCostForSpell(this))
                 {
-                    disabledReason = new TextObject("{=not_enough_wom_str}Not enough winds of magic");
+                    disabledReason = new TextObject("{=str_tor_spell_not_enough_wom}Not enough winds of magic");
                     return true;
                 }
             }
