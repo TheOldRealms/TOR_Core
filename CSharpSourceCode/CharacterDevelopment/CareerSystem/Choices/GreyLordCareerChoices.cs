@@ -184,7 +184,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void InitializeKeyStones()
         {
 
-            _greyLordRoot.Initialize(CareerID, "{=grey_lord_root_str}As a master of Winds of Magic and forbidden arts, the Grey Lord conjures subtle whispers inside the enemy’s mind and convinces the foes in the area to turn on their allies. After all, a true Grey Lord knows better than to cloud his judgment with trifling matters of morality. {newline} The chance to turn enemies rises with Spellcraft skills, the health and the level of targets as well as each keystone perk selected", null, true,
+            _greyLordRoot.Initialize(CareerID, "As a master of Winds of Magic and forbidden arts, the Grey Lord conjures subtle whispers inside the enemy's mind and convinces the foes in the area to turn on their allies. After all, a true Grey Lord knows better than to cloud his judgment with trifling matters of morality. {newline} The chance to turn enemies rises with Spellcraft skills, the health and the level of targets as well as each keystone perk selected", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -196,7 +196,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                             MutationType = OperationType.Add
                         }
                 });
-            _caelithsWisdomKeystone.Initialize(CareerID, "{=caeliths_wisdom_keystone_str}2 additional overtakes. Ability scales with Leadership. Melee damage can charge ability.", "CaelithsWisdom", false,
+            _caelithsWisdomKeystone.Initialize(CareerID, "2 additional overtakes. Ability scales with Leadership. Melee damage can charge ability.", "CaelithsWisdom", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -209,7 +209,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         },
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _soulBindingKeystone.Initialize(CareerID, "{=soul_binding_keystone_str}Controlled unit gets healed completely. Ability scales with medicine.", "SoulBinding", false,
+            _soulBindingKeystone.Initialize(CareerID, "Controlled unit gets healed completely. Ability scales with medicine.", "SoulBinding", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -222,7 +222,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         },
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _legendsOfMalokKeystone.Initialize(CareerID, "{=legend_of_malok_keystone_str}control chance is 15% higher. Ability starts charged. ", "LegendsOfMalok", false,
+            _legendsOfMalokKeystone.Initialize(CareerID, "control chance is 15% higher. Ability starts charged. ", "LegendsOfMalok", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -235,12 +235,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         },
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _unrestrictedMagicKeystone.Initialize(CareerID, "{=unrestricted_magic_keystone_str}When the controlled dies he explodes. Unsucessful control hurt the enemy by 40 HP.", "UnrestrictedMagic", false,
+            _unrestrictedMagicKeystone.Initialize(CareerID, "When the controlled dies he explodes. Unsucessful control hurt the enemy by 40 HP.", "UnrestrictedMagic", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _forbiddenScrollsOfSapheryKeystone.Initialize(CareerID, "{=forbidden_scrolls_of_saphery_keystone_str}Companion damage can charge ability. Range is doubled. Scale with Charm", "ForbiddenScrollsOfSaphery", false,
+            _forbiddenScrollsOfSapheryKeystone.Initialize(CareerID, "Companion damage can charge ability. Range is doubled. Scale with Charm", "ForbiddenScrollsOfSaphery", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -261,7 +261,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         },
                 }, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
-            _byAllMeansKeystone.Initialize(CareerID, "{=by_all_means_keystone_str}Ability scales with roguery. Units are easier to overtake", "ByAllMeans", false,
+            _byAllMeansKeystone.Initialize(CareerID, "Ability scales with roguery. Units are easier to overtake", "ByAllMeans", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                         new CareerChoiceObject.MutationObject()
@@ -280,46 +280,46 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _caelithsWisdomPassive1.Initialize(CareerID, "{=caeliths_wisdom_passive1_str}Increases Hitpoints by 25.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-            _caelithsWisdomPassive2.Initialize(CareerID, "{=caeliths_wisdom_passive2_str}Gain 25% fire resistance.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Fire, 25), AttackTypeMask.All));
-            _caelithsWisdomPassive3.Initialize(CareerID, "{=caeliths_wisdom_passive3_str}Cityborn upkeep is reduced by 25%.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true,
+            _caelithsWisdomPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _caelithsWisdomPassive2.Initialize(CareerID, "Gain 25% fire resistance.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Fire, 25), AttackTypeMask.All));
+            _caelithsWisdomPassive3.Initialize(CareerID, "Cityborn upkeep is reduced by 25%.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true,
                 characterObject => characterObject.IsEliteTroop() && characterObject.Culture.StringId == TORConstants.Cultures.EONIR));
-            _caelithsWisdomPassive4.Initialize(CareerID, "{=caeliths_wisdom_passive4_str}Cityborn troops gain 50% fire resistance.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Fire, 50), AttackTypeMask.All,
+            _caelithsWisdomPassive4.Initialize(CareerID, "Cityborn troops gain 50% fire resistance.", "CaelithsWisdom", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Fire, 50), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.BelongsToMainParty() && !victim.IsHero && victim.Character.Culture.StringId == TORConstants.Cultures.EONIR));
 
-            _soulBindingPassive1.Initialize(CareerID, "{=soul_binding_passive1_str}Increases maximum winds of magic capacities by 10.", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _soulBindingPassive2.Initialize(CareerID, "{=soul_binding_passive2_str}Increases Magic resistance against spells by 25%.", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 25), AttackTypeMask.All));
-            _soulBindingPassive3.Initialize(CareerID, "{=soul_binding_passive3_str}Wounded troops in your party heal faster.", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //can be more precise
-            _soulBindingPassive4.Initialize(CareerID, "{=soul_binding_passive4_str}Not wielding projectile spells increase spell duration for healing spells by 50%", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
+            _soulBindingPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _soulBindingPassive2.Initialize(CareerID, "Increases Magic resistance against spells by 25%.", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 25), AttackTypeMask.All));
+            _soulBindingPassive3.Initialize(CareerID, "Wounded troops in your party heal faster.", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //can be more precise
+            _soulBindingPassive4.Initialize(CareerID, "Not wielding projectile spells increase spell duration for healing spells by 50%", "SoulBinding", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
 
-            _legendsOfMalokPassive1.Initialize(CareerID, "{=legends_of_malok_passive1_str}Increases maximum winds of magic capacities by 10.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-            _legendsOfMalokPassive2.Initialize(CareerID, "{=legends_of_malok_passive2_str}Favor costs for cityborn  troop upgrades is reduced by 20%.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.CustomResourceUpgradeCostModifier, true));
-            _legendsOfMalokPassive3.Initialize(CareerID, "{=legends_of_malok_passive3_str}Adds 25% fire damage to all troops.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Fire, 25), AttackTypeMask.Melee,
+            _legendsOfMalokPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
+            _legendsOfMalokPassive2.Initialize(CareerID, "Favor costs for cityborn  troop upgrades is reduced by 20%.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.CustomResourceUpgradeCostModifier, true));
+            _legendsOfMalokPassive3.Initialize(CareerID, "Adds 25% fire damage to all troops.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Fire, 25), AttackTypeMask.Melee,
                 (attacker, victim, mask) => attacker.BelongsToMainParty() && !attacker.IsHero && attacker.Character.IsEliteTroop() && attacker.Character.Culture.StringId == TORConstants.Cultures.EONIR));
-            _legendsOfMalokPassive4.Initialize(CareerID, "{=legends_of_malok_passive4_str}If no hex spells are equipped you gain 50% spell radius.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); //Sly : this is implemented wrong - it checks known abilities, not equipped ones
+            _legendsOfMalokPassive4.Initialize(CareerID, "If no hex spells are equipped you gain 50% spell radius.", "LegendsOfMalok", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special)); //Sly : this is implemented wrong - it checks known abilities, not equipped ones
                                                                                                                                                                                                                                                                              //SpellRadius is also a passive effect type, this should be set up differently as the value used is also different from the description because passiveEffect is not accessed
 
 
-            _unrestrictedMagicPassive1.Initialize(CareerID, "{=unrestricted_magic_passive1_str}Increases maximum winds of magic capacities by 15.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
-            _unrestrictedMagicPassive2.Initialize(CareerID, "{=unrestricted_magic_passive2_str}Spell effect radius is increased by 20%.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.SpellRadius, true));
-            _unrestrictedMagicPassive3.Initialize(CareerID, "{=unrestricted_magic_passive3_str}Favor gain from battles is increased by 20%", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
-            _unrestrictedMagicPassive4.Initialize(CareerID, "{=unrestricted_magic_passive4_str}If no AOE effect is equipped, your projectile spells deal 200% extra damage.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
+            _unrestrictedMagicPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
+            _unrestrictedMagicPassive2.Initialize(CareerID, "Spell effect radius is increased by 20%.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.SpellRadius, true));
+            _unrestrictedMagicPassive3.Initialize(CareerID, "Favor gain from battles is increased by 20%", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special, true));
+            _unrestrictedMagicPassive4.Initialize(CareerID, "If no AOE effect is equipped, your projectile spells deal 200% extra damage.", "UnrestrictedMagic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
 
-            _forbiddenScrollsOfSapheryPassive1.Initialize(CareerID, "{=forbidden_scrolls_of_saphery_passive1_str}Increases Windsregeneration by 0.5.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.WindsRegeneration));
-            _forbiddenScrollsOfSapheryPassive2.Initialize(CareerID, "{=forbidden_scrolls_of_saphery_passive2_str}Increase hex durations by 20%.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration, true));
-            _forbiddenScrollsOfSapheryPassive3.Initialize(CareerID, "{=forbidden_scrolls_of_saphery_passive3_str}Increases maximum winds of magic capacities by 15.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
-            _forbiddenScrollsOfSapheryPassive4.Initialize(CareerID, "{=forbidden_scrolls_of_saphery_passive4_str}Not wielding any healing spells increase hex duration by 50%", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
+            _forbiddenScrollsOfSapheryPassive1.Initialize(CareerID, "Increases Windsregeneration by 0.5.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.WindsRegeneration));
+            _forbiddenScrollsOfSapheryPassive2.Initialize(CareerID, "Increase hex durations by 20%.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20f, PassiveEffectType.DebuffDuration, true));
+            _forbiddenScrollsOfSapheryPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
+            _forbiddenScrollsOfSapheryPassive4.Initialize(CareerID, "Not wielding any healing spells increase hex duration by 50%", "ForbiddenScrollsOfSaphery", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
 
-            _byAllMeansPassive1.Initialize(CareerID, "{=by_all_means_passive1_str}Extra 25% Wardsave if your armor weight does not exceed 11 weight.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.All,
+            _byAllMeansPassive1.Initialize(CareerID, "Extra 25% Wardsave if your armor weight does not exceed 11 weight.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.All,
                 (attacker, victim, attackmask) => victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim, 11)));
-            _byAllMeansPassive2.Initialize(CareerID, "{=by_all_means_passive2_str}Increases Lightning spell damage by 10%.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Spell));
-            _byAllMeansPassive3.Initialize(CareerID, "{=by_all_means_passive3_str}Increases magic spell damage by 10%.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
-            _byAllMeansPassive4.Initialize(CareerID, "{=by_all_means_passive4_str}If no buff spells are equipped, duration of vortex and area effects are doubled.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
+            _byAllMeansPassive2.Initialize(CareerID, "Increases Lightning spell damage by 10%.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 10), AttackTypeMask.Spell));
+            _byAllMeansPassive3.Initialize(CareerID, "Increases magic spell damage by 10%.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
+            _byAllMeansPassive4.Initialize(CareerID, "If no buff spells are equipped, duration of vortex and area effects are doubled.", "ByAllMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
 
-            _secretOfFellfangPassive1.Initialize(CareerID, "{=secrets_of_fellfang_passive1_str}50% cooldown reduction if you wield less than 11 spells", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(11, PassiveEffectType.Special));
-            _secretOfFellfangPassive2.Initialize(CareerID, "{=secrets_of_fellfang_passive2_str}Increases maximum winds of magic capacities by 25.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
-            _secretOfFellfangPassive3.Initialize(CareerID, "{=secrets_of_fellfang_passive3_str}After battle, 30% of your winds are regenerated.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true));
-            _secretOfFellfangPassive4.Initialize(CareerID, "{=secrets_of_fellfang_passive4_str}Increases fire spell damage by 15%.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
+            _secretOfFellfangPassive1.Initialize(CareerID, "50% cooldown reduction if you wield less than 11 spells", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(11, PassiveEffectType.Special));
+            _secretOfFellfangPassive2.Initialize(CareerID, "Increases maximum winds of magic capacities by 25.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
+            _secretOfFellfangPassive3.Initialize(CareerID, "After battle, 30% of your winds are regenerated.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true));
+            _secretOfFellfangPassive4.Initialize(CareerID, "Increases fire spell damage by 15%.", "SecretOfFellfang", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 10), AttackTypeMask.Spell));
         }
 
 

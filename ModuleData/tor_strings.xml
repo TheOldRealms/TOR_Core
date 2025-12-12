@@ -2106,6 +2106,846 @@
   <string id="tor_career_choicegroup_name.GorkAnMorkAreWatchin" text="{=str_tor_career_choicegroup_name_GorkAnMorkAreWatchin}Gork an' Mork are watchin'" />
   <string id="tor_career_choicegroup_name.PowerUvDaWaaagh" text="{=str_tor_career_choicegroup_name_PowerUvDaWaaagh}Power uv da Waaagh!" />
 
+  <!-- WarriorPriest Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.WarriorPriestRoot" text="{=str_tor_careerchoice_description_WarriorPriestRoot}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks. Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
+  <string id="tor_careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_careerchoice_description_BookOfSigmarKeyStone}Ability can also be charged by applying damage." />
+  <string id="tor_careerchoice_description.SigmarsProclaimerKeystone" text="{=str_tor_careerchoice_description_SigmarsProclaimerKeystone}Doubles the aura size of Righteous Fury." />
+  <string id="tor_careerchoice_description.RelentlessFanaticKeyStone" text="{=str_tor_careerchoice_description_RelentlessFanaticKeyStone}Righteous Fury scales with Leadership. Troops affected get unbreakable for the duration." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWeakKeyStone" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakKeyStone}Righteous Fury scales with the highest melee weapon skill. Adds 20% physical resistance." />
+  <string id="tor_careerchoice_description.HolyPurgeKeyStone" text="{=str_tor_careerchoice_description_HolyPurgeKeyStone}All units affected by Righteous Fury receive a burning weapon buff." />
+  <string id="tor_careerchoice_description.ArchLectorKeyStone" text="{=str_tor_careerchoice_description_ArchLectorKeyStone}Adds a healing buff to Righteous Fury that restores 3 Hitpoints per second." />
+  <string id="tor_careerchoice_description.TwinTailedCometKeystone" text="{=str_tor_careerchoice_description_TwinTailedCometKeystone}Righteous Fury adds a damaging aura. Its radius increases slightly when raising relevant skills." />
+  <string id="tor_careerchoice_description.BookOfSigmarPassive1" text="{=str_tor_careerchoice_description_BookOfSigmarPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_careerchoice_description_BookOfSigmarPassive2}Increases morale for all troops by 10." />
+  <string id="tor_careerchoice_description.BookOfSigmarPassive3" text="{=str_tor_careerchoice_description_BookOfSigmarPassive3}After battle, all wounded companions are healed for 20 Hitpoints." />
+  <string id="tor_careerchoice_description.BookOfSigmarPassive4" text="{=str_tor_careerchoice_description_BookOfSigmarPassive4}Wounded troops in your party heal faster." />
+  <string id="tor_careerchoice_description.SigmarsProclaimerPassive1" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive1}10% extra holy melee damage." />
+  <string id="tor_careerchoice_description.SigmarsProclaimerPassive2" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive2}All Sigmarite troops wages are reduced by 20%" />
+  <string id="tor_careerchoice_description.SigmarsProclaimerPassive3" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive3}Sigmarite troops get 25% resistance to physical ranged attacks." />
+  <string id="tor_careerchoice_description.SigmarsProclaimerPassive4" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive4}When praying at a shrine of Sigmar, all characters restore 50 Hitpoints." />
+  <string id="tor_careerchoice_description.RelentlessFanaticPassive1" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.RelentlessFanaticPassive2" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive2}10% extra holy melee damage." />
+  <string id="tor_careerchoice_description.RelentlessFanaticPassive3" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive3}Party movement speed is increased by 1." />
+  <string id="tor_careerchoice_description.RelentlessFanaticPassive4" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive4}Prayers aren't affected by global cooldowns." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive2" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive2}Increases melee physical resistance by 15%." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive3" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive3}Increases Magic resistance against spells by 25%." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive4" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive4}Hits below 15 damage do not stagger the player." />
+  <string id="tor_careerchoice_description.HolyPurgePassive1" text="{=str_tor_careerchoice_description_HolyPurgePassive1}10% extra holy melee damage." />
+  <string id="tor_careerchoice_description.HolyPurgePassive2" text="{=str_tor_careerchoice_description_HolyPurgePassive2}All battles against forces of Chaos and undead earn 20% more prestige." />
+  <string id="tor_careerchoice_description.HolyPurgePassive3" text="{=str_tor_careerchoice_description_HolyPurgePassive3}All troops deal 10% more melee damage to non-human enemies." />
+  <string id="tor_careerchoice_description.HolyPurgePassive4" text="{=str_tor_careerchoice_description_HolyPurgePassive4}All Sigmarite troops gain 10% extra Holy damage." />
+  <string id="tor_careerchoice_description.ArchLectorPassive1" text="{=str_tor_careerchoice_description_ArchLectorPassive1}Prayers are recharged on battle start." />
+  <string id="tor_careerchoice_description.ArchLectorPassive2" text="{=str_tor_careerchoice_description_ArchLectorPassive2}All neutral Empire troops now count as Sigmarite troops." />
+  <string id="tor_careerchoice_description.ArchLectorPassive3" text="{=str_tor_careerchoice_description_ArchLectorPassive3}Gain 15% Ward save." />
+  <string id="tor_careerchoice_description.ArchLectorPassive4" text="{=str_tor_careerchoice_description_ArchLectorPassive4}All Sigmarite troops gain 20% Ward save." />
+  <string id="tor_careerchoice_description.TwinTailedCometPassive1" text="{=str_tor_careerchoice_description_TwinTailedCometPassive1}10% extra holy melee damage." />
+  <string id="tor_careerchoice_description.TwinTailedCometPassive2" text="{=str_tor_careerchoice_description_TwinTailedCometPassive2}Increases Companion Limit by 5." />
+  <string id="tor_careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_careerchoice_description_TwinTailedCometPassive3}Extra 20% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}Increases Hitpoints by 30." />
+
+  <!-- WitchHunter Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}A single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 20%. After every hit there is a 50% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by 0.1% additional targets are marked." />
+  <string id="tor_careerchoice_description.ToolsOfJudgementKeystone" text="{=str_tor_careerchoice_description_ToolsOfJudgementKeystone}The Marker stays 6 seconds longer on the target. Ability scales with the higehest One- or Two-Handed-skill." />
+  <string id="tor_careerchoice_description.HuntTheWickedKeystone" text="{=str_tor_careerchoice_description_HuntTheWickedKeystone}20% additional physical damage for marked enemies. Melee damage can charge ability" />
+  <string id="tor_careerchoice_description.SilverHammerKeystone" text="{=str_tor_careerchoice_description_SilverHammerKeystone}Increases holy damage by 20% to the marked target. Ability scales with Faith." />
+  <string id="tor_careerchoice_description.NoRestAgainstEvilKeystone" text="{=str_tor_careerchoice_description_NoRestAgainstEvilKeystone}Shield penetration for the duration of the ability. Enemy stays marked" />
+  <string id="tor_careerchoice_description.SwiftProcedureKeystone" text="{=str_tor_careerchoice_description_SwiftProcedureKeystone}Marked enemies movement and swing speed is decreased. Ability scales with athletics" />
+  <string id="tor_careerchoice_description.GuiltyByAssociationKeystone" text="{=str_tor_careerchoice_description_GuiltyByAssociationKeystone}Companions and Retinues can trigger mark effects. Companions can charge ability" />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansKeystone" text="{=str_tor_careerchoice_description_EndsJustifiesMeansKeystone}Marked enemies suffering from overkill damage propagate mark. Scales with Rougery" />
+  <string id="tor_careerchoice_description.ToolsOfJudgementPassive1" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.ToolsOfJudgementPassive2" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive2}5 extra ammo" />
+  <string id="tor_careerchoice_description.ToolsOfJudgementPassive3" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive3}Extra melee damage (10%)." />
+  <string id="tor_careerchoice_description.ToolsOfJudgementPassive4" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive4}Every headshot kill gains you roguery, count twice for marked targets." />
+  <string id="tor_careerchoice_description.HuntTheWickedPassive1" text="{=str_tor_careerchoice_description_HuntTheWickedPassive1}Player healing rate increased by 3" />
+  <string id="tor_careerchoice_description.HuntTheWickedPassive2" text="{=str_tor_careerchoice_description_HuntTheWickedPassive2}Ranged Infantry wages are 15% reduced." />
+  <string id="tor_careerchoice_description.HuntTheWickedPassive3" text="{=str_tor_careerchoice_description_HuntTheWickedPassive3}Every equipped ranged weapon increases melee damage by 10%." />
+  <string id="tor_careerchoice_description.HuntTheWickedPassive4" text="{=str_tor_careerchoice_description_HuntTheWickedPassive4}Increases the damage of all ranged troops by 10%." />
+  <string id="tor_careerchoice_description.SilverHammerPassive1" text="{=str_tor_careerchoice_description_SilverHammerPassive1}Exterminated Undead and Ruinous powers increase faith per fallen Unit." />
+  <string id="tor_careerchoice_description.SilverHammerPassive2" text="{=str_tor_careerchoice_description_SilverHammerPassive2}All units deal more damage against undead and chaos." />
+  <string id="tor_careerchoice_description.SilverHammerPassive3" text="{=str_tor_careerchoice_description_SilverHammerPassive3}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.SilverHammerPassive4" text="{=str_tor_careerchoice_description_SilverHammerPassive4}Troops can be upgraded to Witch Hunter Retinues." />
+  <string id="tor_careerchoice_description.NoRestAgainstEvilPassive1" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive1}Extra holy melee damage (20%)." />
+  <string id="tor_careerchoice_description.NoRestAgainstEvilPassive2" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive2}All ranged troops have a 20 points higher ranged skill." />
+  <string id="tor_careerchoice_description.NoRestAgainstEvilPassive3" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive3}Increases accuracy by 15%." />
+  <string id="tor_careerchoice_description.NoRestAgainstEvilPassive4" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive4}Increases Companion Limit by 5." />
+  <string id="tor_careerchoice_description.SwiftProcedurePassive1" text="{=str_tor_careerchoice_description_SwiftProcedurePassive1}10 extra ammo" />
+  <string id="tor_careerchoice_description.SwitftProcedurePassive2" text="{=str_tor_careerchoice_description_SwitftProcedurePassive2}Reduce range Accuracy movement penalty by 15%." />
+  <string id="tor_careerchoice_description.SwitftProcedurePassive3" text="{=str_tor_careerchoice_description_SwitftProcedurePassive3}Party movement speed is increased by 1.5" />
+  <string id="tor_careerchoice_description.SwitftProcedurePassive4" text="{=str_tor_careerchoice_description_SwitftProcedurePassive4}Weapon swing speed increased by 15%." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive1" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive1}Extra ranged damage (10%)." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive2" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive2}Increases range resistance by 15%." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive3" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive3}Extra 25% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive4" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive4}Ranged shots can penetrate multiple targets." />
+  <string id="tor_careerchoice_description.GuiltyByAssociationPassive1" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive1}Increases troop regeneration by 2." />
+  <string id="tor_careerchoice_description.GuiltyByAssociationPassive2" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive2}Every ranged troop deals 15% extra holy damage." />
+  <string id="tor_careerchoice_description.GuiltyByAssociationPassive3" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive3}Companion health increases by 50." />
+  <string id="tor_careerchoice_description.GuiltyByAssociationPassive4" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive4}Killing blows in the head increase temporary reload and swing speed" />
+
+  <!-- Necromancer Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.NecromancerRoot" text="{=str_tor_careerchoice_description_NecromancerRoot}Summon a champion that the necromancer take control of. The Champion loses every 2 seconds 5 health points. For every 3 points in spell casting skill the champion gains 1 health point. Charging: applying spell- damage or healing. Alternatively, Let undead units inflict damage." />
+  <string id="tor_careerchoice_description.LiberNecrisKeystone" text="{=str_tor_careerchoice_description_LiberNecrisKeystone}Your Harbinger gains a two handed weapon. Ability scales with Roguery" />
+  <string id="tor_careerchoice_description.DeArcanisKadonKeystone" text="{=str_tor_careerchoice_description_DeArcanisKadonKeystone}Pressing Ability key allows to switch between characters; Harbinger acts independent." />
+  <string id="tor_careerchoice_description.CodexMortificaKeystone" text="{=str_tor_careerchoice_description_CodexMortificaKeystone}During Champion control gain 90% damage resistance for caster. Ability scales with Medicine." />
+  <string id="tor_careerchoice_description.LiberMortisKeystone" text="{=str_tor_careerchoice_description_LiberMortisKeystone}Your champion gains 25% extra melee damage. Ability starts charged" />
+  <string id="tor_careerchoice_description.BookofWsoranKeystone" text="{=str_tor_careerchoice_description_BookofWsoranKeystone}Your Champion gains 25% Wardsave and can't be staggered." />
+  <string id="tor_careerchoice_description.GrimoireNecrisKeystone" text="{=str_tor_careerchoice_description_GrimoireNecrisKeystone}Harbinger kills gain 2HP for caster and the Champion. Harbinger gains a plate armor" />
+  <string id="tor_careerchoice_description.BooksOfNagashKeystone" text="{=str_tor_careerchoice_description_BooksOfNagashKeystone}Regenerate per kill of your champion 1 winds of magic. Adds 20% magical damage to champion" />
+  <string id="tor_careerchoice_description.LiberNecrisPassive1" text="{=str_tor_careerchoice_description_LiberNecrisPassive1}Increases Party size by 10." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive2" text="{=str_tor_careerchoice_description_LiberNecrisPassive2}Harbinger kills increase rougery" />
+  <string id="tor_careerchoice_description.LiberNecrisPassive3" text="{=str_tor_careerchoice_description_LiberNecrisPassive3}Increases your health by 25." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive4" text="{=str_tor_careerchoice_description_LiberNecrisPassive4}Increases magic spell damage by 10%." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive1" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive1}10% extra melee damage for undead troops." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive2" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive2}Increases Party size by 10." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive3" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive3}15% cost reduction for spells." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive4" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive4}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive1" text="{=str_tor_careerchoice_description_CodexMortificaPassive1}Increases Party size by 10." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive2" text="{=str_tor_careerchoice_description_CodexMortificaPassive2}Increases maximum winds of magic capacities by 10." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive3" text="{=str_tor_careerchoice_description_CodexMortificaPassive3}Wounded troops in your party heal faster." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive4" text="{=str_tor_careerchoice_description_CodexMortificaPassive4}Tier 4 Undead troops can get wounded with a 20% lower chance." />
+  <string id="tor_careerchoice_description.LiberMortisPassive1" text="{=str_tor_careerchoice_description_LiberMortisPassive1}Increases Party size by 25." />
+  <string id="tor_careerchoice_description.LiberMortisPassive2" text="{=str_tor_careerchoice_description_LiberMortisPassive2}Attacks of undead troops can penetrate 15% armor." />
+  <string id="tor_careerchoice_description.LiberMortisPassive3" text="{=str_tor_careerchoice_description_LiberMortisPassive3}Undead troops gain 10% extra physical melee damage." />
+  <string id="tor_careerchoice_description.LiberMortisPassive4" text="{=str_tor_careerchoice_description_LiberMortisPassive4}20% Spell cooldown reduction." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive1" text="{=str_tor_careerchoice_description_BookofWsoranPassive1}Increases Party size by 50." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive2" text="{=str_tor_careerchoice_description_BookofWsoranPassive2}Increase hex durations by 50%." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive3" text="{=str_tor_careerchoice_description_BookofWsoranPassive3}Undead troops gain 25% Ward save." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive4" text="{=str_tor_careerchoice_description_BookofWsoranPassive4}Gain 0.5 Dark Energy for every Grave guard troop." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive1" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive1}Undead troops gain 10% extra magical melee damage." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive2" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive2}Dark Energy Upkeep costs are reduced by 25%" />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive3" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive3}Buffs and healing duration is increased by 50%." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive4" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive4}For every magical item equipped you summon 1 unit more." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive1" text="{=str_tor_careerchoice_description_BooksOfNagashPassive1}Gain 15 Dark Energy daily." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive2" text="{=str_tor_careerchoice_description_BooksOfNagashPassive2}Increases Party size by 100." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive3" text="{=str_tor_careerchoice_description_BooksOfNagashPassive3}Increases maximum winds of magic capacities by 25." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive4" text="{=str_tor_careerchoice_description_BooksOfNagashPassive4}Dark Energy cost for undead troop upgrades is reduced by 50%." />
+
+  <!-- VampireCount Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.VampireCountRoot" text="{=str_tor_careerchoice_description_VampireCountRoot}The player transforms into fog, which is impossible to catch and can fly in every direction. The ability lasts 5 seconds and the duration increases by 0.03 seconds for each point in Athletics. Mist Form can be deactivated at will by pressing attack." />
+  <string id="tor_careerchoice_description.NewBloodKeystone" text="{=str_tor_careerchoice_description_NewBloodKeystone}Ability needs 20% less damage to get charged." />
+  <string id="tor_careerchoice_description.NewBloodPassive1" text="{=str_tor_careerchoice_description_NewBloodPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.NewBloodPassive2" text="{=str_tor_careerchoice_description_NewBloodPassive2}Increases Party size by 25." />
+  <string id="tor_careerchoice_description.NewBloodPassive3" text="{=str_tor_careerchoice_description_NewBloodPassive3}Increases max Winds of Magic by 15." />
+  <string id="tor_careerchoice_description.NewBloodPassive4" text="{=str_tor_careerchoice_description_NewBloodPassive4}Immune to sunlight speed malus." />
+  <string id="tor_careerchoice_description.FeralKeystone" text="{=str_tor_careerchoice_description_FeralKeystone}Mistform speed is increased by 20%." />
+  <string id="tor_careerchoice_description.FeralPassive1" text="{=str_tor_careerchoice_description_FeralPassive1}10% extra melee damage." />
+  <string id="tor_careerchoice_description.FeralPassive2" text="{=str_tor_careerchoice_description_FeralPassive2}Player healing rate increased by 3" />
+  <string id="tor_careerchoice_description.FeralPassive3" text="{=str_tor_careerchoice_description_FeralPassive3}Party movement speed is increased by 1.5." />
+  <string id="tor_careerchoice_description.FeralPassive4" text="{=str_tor_careerchoice_description_FeralPassive4}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.ArkayneKeystone" text="{=str_tor_careerchoice_description_ArkayneKeystone}Mistform scales with Spellcraft. Spell damage can charge ability with 90% reduced power." />
+  <string id="tor_careerchoice_description.ArkaynePassive1" text="{=str_tor_careerchoice_description_ArkaynePassive1}Armor weight doesn't affect winds recharge rate" />
+  <string id="tor_careerchoice_description.ArkaynePassive2" text="{=str_tor_careerchoice_description_ArkaynePassive2}Increases Magical spell damage by 10%." />
+  <string id="tor_careerchoice_description.ArkaynePassive3" text="{=str_tor_careerchoice_description_ArkaynePassive3}10% extra Magical melee damage." />
+  <string id="tor_careerchoice_description.ArkaynePassive4" text="{=str_tor_careerchoice_description_ArkaynePassive4}10% cost reduction for spells." />
+  <string id="tor_careerchoice_description.CourtleyKeystone" text="{=str_tor_careerchoice_description_CourtleyKeystone}Mist Form is recharged on battle start and now also scales with Roguery." />
+  <string id="tor_careerchoice_description.CourtleyPassive1" text="{=str_tor_careerchoice_description_CourtleyPassive1}Increases positive Relation gains by 20%." />
+  <string id="tor_careerchoice_description.CourtleyPassive2" text="{=str_tor_careerchoice_description_CourtleyPassive2}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.CourtleyPassive3" text="{=str_tor_careerchoice_description_CourtleyPassive3}10% extra Magical spell and ranged damage." />
+  <string id="tor_careerchoice_description.CourtleyPassive4" text="{=str_tor_careerchoice_description_CourtleyPassive4}Killing blows in the head replenish 3 Winds of Magic." />
+  <string id="tor_careerchoice_description.LordlyKeystone" text="{=str_tor_careerchoice_description_LordlyKeystone}Mist Form heals 3 HP per second. The ability duration scales with the wielded weapon skill." />
+  <string id="tor_careerchoice_description.LordlyPassive1" text="{=str_tor_careerchoice_description_LordlyPassive1}Increases Companion Limit by 5." />
+  <string id="tor_careerchoice_description.LordlyPassive2" text="{=str_tor_careerchoice_description_LordlyPassive2}Party size is increased by 75." />
+  <string id="tor_careerchoice_description.LordlyPassive3" text="{=str_tor_careerchoice_description_LordlyPassive3}All Vampire troops wages are reduced by 15%." />
+  <string id="tor_careerchoice_description.LordlyPassive4" text="{=str_tor_careerchoice_description_LordlyPassive4}Upgrade costs are halved." />
+  <string id="tor_careerchoice_description.MartialleKeystone" text="{=str_tor_careerchoice_description_MartialleKeystone}+20% swing speed. Buffs are active after Mist Form (requires extra 30% damage dealt)." />
+  <string id="tor_careerchoice_description.MartiallePassive1" text="{=str_tor_careerchoice_description_MartiallePassive1}10% extra melee damage." />
+  <string id="tor_careerchoice_description.MartiallePassive2" text="{=str_tor_careerchoice_description_MartiallePassive2}Increases Hitpoints by 50." />
+  <string id="tor_careerchoice_description.MartiallePassive3" text="{=str_tor_careerchoice_description_MartiallePassive3}All troops gain 10% extra damage against human enemies." />
+  <string id="tor_careerchoice_description.MartiallePassive4" text="{=str_tor_careerchoice_description_MartiallePassive4}All attacks deal bonus damage against shields." />
+  <string id="tor_careerchoice_description.MasterOfDeadKeystone" text="{=str_tor_careerchoice_description_MasterOfDeadKeystone}All buffs are propagated while remaining in Mist Form (requires extra 30% damage dealt)." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive1" text="{=str_tor_careerchoice_description_MasterOfDeadPassive1}Increases Party size by 100." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive2" text="{=str_tor_careerchoice_description_MasterOfDeadPassive2}Undead troops gain 25% Ward save." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive3" text="{=str_tor_careerchoice_description_MasterOfDeadPassive3}20% higher chance for raised dead after battle." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive4" text="{=str_tor_careerchoice_description_MasterOfDeadPassive4}Tier 4 Undead troops can get wounded with a 20% lower chance." />
+
+  <!-- BloodKnight Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.BloodKnightRoot" text="{=str_tor_careerchoice_description_BloodKnightRoot}The Blood Knight is channeling focus and rage towards the enemies. Damage increased by 45% and physical resistance by 10% for the next 6 seconds. Both bonuses increase with the skill of the equipped weapon by 0.05% per point. Requires 5 kills to recharge, +1 kill per a final perk picked up to max 10." />
+  <string id="tor_careerchoice_description.PeerlessWarriorKeystone" text="{=str_tor_careerchoice_description_PeerlessWarriorKeystone}Career Ability scales with Athletics. Speed increased by 20% when the ability is active." />
+  <string id="tor_careerchoice_description.PeerlessWarriorPassive1" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.PeerlessWarriorPassive2" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive2}Extra melee damage (10%)." />
+  <string id="tor_careerchoice_description.PeerlessWarriorPassive3" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive3}Every troop of Tier 4 and above gains an extra 20% exp for kills." />
+  <string id="tor_careerchoice_description.PeerlessWarriorPassive4" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive4}You gain 100 exp in one of the melee combat skills at random every day." />
+  <string id="tor_careerchoice_description.NightRiderKeystone" text="{=str_tor_careerchoice_description_NightRiderKeystone}Companion Kills will count for career charge." />
+  <string id="tor_careerchoice_description.NightRiderPassive1" text="{=str_tor_careerchoice_description_NightRiderPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.NightRiderPassive2" text="{=str_tor_careerchoice_description_NightRiderPassive2}All undead and vampire troops receive 20 points to their melee skills." />
+  <string id="tor_careerchoice_description.NightRiderPassive3" text="{=str_tor_careerchoice_description_NightRiderPassive3}Raiding is at Night 50% faster." />
+  <string id="tor_careerchoice_description.NightRiderPassive4" text="{=str_tor_careerchoice_description_NightRiderPassive4}Attacks deal bonus damage against shields." />
+  <string id="tor_careerchoice_description.BladeMasterKeystone" text="{=str_tor_careerchoice_description_BladeMasterKeystone}All melee weapon skills, wielded or not, count towards the career ability effects." />
+  <string id="tor_careerchoice_description.BladeMasterPassive1" text="{=str_tor_careerchoice_description_BladeMasterPassive1}20% extra melee damage." />
+  <string id="tor_careerchoice_description.BladeMasterPassive2" text="{=str_tor_careerchoice_description_BladeMasterPassive2}Player healing rate increased by 5" />
+  <string id="tor_careerchoice_description.BladeMasterPassive3" text="{=str_tor_careerchoice_description_BladeMasterPassive3}Hits below 15 damage do not stagger the player." />
+  <string id="tor_careerchoice_description.BladeMasterPassive4" text="{=str_tor_careerchoice_description_BladeMasterPassive4}All troops, the player included, gain exp when raiding villages." />
+  <string id="tor_careerchoice_description.DoomRiderKeystone" text="{=str_tor_careerchoice_description_DoomRiderKeystone}The Career Ability scales with Tactics. Nearby troops receive the Red Fury buff." />
+  <string id="tor_careerchoice_description.DoomRiderPassive1" text="{=str_tor_careerchoice_description_DoomRiderPassive1}20% extra melee damage." />
+  <string id="tor_careerchoice_description.DoomRiderPassive2" text="{=str_tor_careerchoice_description_DoomRiderPassive2}Reduce the Dark Energy upkeep for vampire troops by 10%." />
+  <string id="tor_careerchoice_description.DoomRiderPassive3" text="{=str_tor_careerchoice_description_DoomRiderPassive3}Party speed increases by 2." />
+  <string id="tor_careerchoice_description.DoomRiderPassive4" text="{=str_tor_careerchoice_description_DoomRiderPassive4}Recruit defeated units as Blood Knights with a chance of 5% (10% for Tier >4)." />
+  <string id="tor_careerchoice_description.ControlledHungerKeystone" text="{=str_tor_careerchoice_description_ControlledHungerKeystone}The duration of Red Fury is doubled." />
+  <string id="tor_careerchoice_description.ControlledHungerPassive1" text="{=str_tor_careerchoice_description_ControlledHungerPassive1}Immune to sunlight malus." />
+  <string id="tor_careerchoice_description.ControlledHungerPassive2" text="{=str_tor_careerchoice_description_ControlledHungerPassive2}Increases Hitpoints by 50." />
+  <string id="tor_careerchoice_description.ControlledHungerPassive3" text="{=str_tor_careerchoice_description_ControlledHungerPassive3}Mount health is increased by 35%." />
+  <string id="tor_careerchoice_description.ControlledHungerPassive4" text="{=str_tor_careerchoice_description_ControlledHungerPassive4}For every 200 damage hit the player gets healed by 1 Hit point(Maximum 5)." />
+  <string id="tor_careerchoice_description.AvatarOfDeathKeystone" text="{=str_tor_careerchoice_description_AvatarOfDeathKeystone}Red Fury's resistance is now Ward save. The ability grants a scaling attack speed boost." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive1" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive1}Gain 25% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive2" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive2}Reduce the Dark Energy upkeep for vampire troops by 20%." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive3" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive3}The player gains 35% Magic resistance against spells." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive4" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive4}25% Ward save for all vampire units." />
+  <string id="tor_careerchoice_description.DreadKnightKeystone" text="{=str_tor_careerchoice_description_DreadKnightKeystone}Red Fury scales with Riding and consecutive kills during ability increase duration by 2 sec each." />
+  <string id="tor_careerchoice_description.DreadKnightPassive1" text="{=str_tor_careerchoice_description_DreadKnightPassive1}Increases Hitpoints by 75." />
+  <string id="tor_careerchoice_description.DreadKnightPassive2" text="{=str_tor_careerchoice_description_DreadKnightPassive2}Horse charge damage is increased by 50%." />
+  <string id="tor_careerchoice_description.DreadKnightPassive3" text="{=str_tor_careerchoice_description_DreadKnightPassive3}Cavalry units get a 20% damage increase in damage." />
+  <string id="tor_careerchoice_description.DreadKnightPassive4" text="{=str_tor_careerchoice_description_DreadKnightPassive4}Extra 25% armor penetration of melee attacks." />
+
+  <!-- Mercenary Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.MercenaryRoot" text="{=str_tor_careerchoice_description_MercenaryRoot}The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills" />
+  <string id="tor_careerchoice_description.SurvivalistKeystone" text="{=str_tor_careerchoice_description_SurvivalistKeystone}Adds 15% Melee and Ranged Resistance during the career ability." />
+  <string id="tor_careerchoice_description.SurvivalistPassive1" text="{=str_tor_careerchoice_description_SurvivalistPassive1}5 extra ammo" />
+  <string id="tor_careerchoice_description.SurvivalistPassive2" text="{=str_tor_careerchoice_description_SurvivalistPassive2}Increases ranged damage by 10%." />
+  <string id="tor_careerchoice_description.SurvivalistPassive3" text="{=str_tor_careerchoice_description_SurvivalistPassive3}Party movement speed is increased by 20% in forest, mountain and swamp terrain." />
+  <string id="tor_careerchoice_description.SurvivalistPassive4" text="{=str_tor_careerchoice_description_SurvivalistPassive4}Go for a hunt once a day (success chance based on Scouting, Polearm and ranged skills)." />
+  <string id="tor_careerchoice_description.DuelistKeystone" text="{=str_tor_careerchoice_description_DuelistKeystone}Increases melee attack speed during career ability by 15%." />
+  <string id="tor_careerchoice_description.DuelistPassive1" text="{=str_tor_careerchoice_description_DuelistPassive1}Increases Hitpoints by 20." />
+  <string id="tor_careerchoice_description.DuelistPassive2" text="{=str_tor_careerchoice_description_DuelistPassive2}Increases melee damage resistance of melee troops by 10%." />
+  <string id="tor_careerchoice_description.DuelistPassive3" text="{=str_tor_careerchoice_description_DuelistPassive3}Increases melee damage by 10%." />
+  <string id="tor_careerchoice_description.DuelistPassive4" text="{=str_tor_careerchoice_description_DuelistPassive4}Player healing rate increased by 3" />
+  <string id="tor_careerchoice_description.HeadhunterKeystone" text="{=str_tor_careerchoice_description_HeadhunterKeystone}Increases range damage during the career ability by 15%." />
+  <string id="tor_careerchoice_description.HeadhunterPassive1" text="{=str_tor_careerchoice_description_HeadhunterPassive1}10 extra ammo." />
+  <string id="tor_careerchoice_description.HeadhunterPassive2" text="{=str_tor_careerchoice_description_HeadhunterPassive2}Increases ranged damage by 10%." />
+  <string id="tor_careerchoice_description.HeadhunterPassive3" text="{=str_tor_careerchoice_description_HeadhunterPassive3}Companion limit of party is increased by 5." />
+  <string id="tor_careerchoice_description.HeadhunterPassive4" text="{=str_tor_careerchoice_description_HeadhunterPassive4}Increases ranged damage resistance by 15%." />
+  <string id="tor_careerchoice_description.VeteranKeystone" text="{=str_tor_careerchoice_description_VeteranKeystone}Increases melee damage during the career ability by 15%." />
+  <string id="tor_careerchoice_description.VeteranPassive1" text="{=str_tor_careerchoice_description_VeteranPassive1}Increases melee damage by 15%." />
+  <string id="tor_careerchoice_description.VeteranPassive2" text="{=str_tor_careerchoice_description_VeteranPassive2}Increases melee resistance by 15%." />
+  <string id="tor_careerchoice_description.VeteranPassive3" text="{=str_tor_careerchoice_description_VeteranPassive3}Increases Hitpoints by 40." />
+  <string id="tor_careerchoice_description.VeteranPassive4" text="{=str_tor_careerchoice_description_VeteranPassive4}Increases armor penetration of melee attacks by 15%." />
+  <string id="tor_careerchoice_description.PaymasterKeystone" text="{=str_tor_careerchoice_description_PaymasterKeystone}Values for career ability effects are doubled." />
+  <string id="tor_careerchoice_description.PaymasterPassive1" text="{=str_tor_careerchoice_description_PaymasterPassive1}Wounded troops in your party heal faster." />
+  <string id="tor_careerchoice_description.PaymasterPassive2" text="{=str_tor_careerchoice_description_PaymasterPassive2}40% chance to recruit an extra unit of the same type free of charge." />
+  <string id="tor_careerchoice_description.PaymasterPassive3" text="{=str_tor_careerchoice_description_PaymasterPassive3}Wages of Tier 4 troops and above are reduced by 20%." />
+  <string id="tor_careerchoice_description.PaymasterPassive4" text="{=str_tor_careerchoice_description_PaymasterPassive4}Hire your culture's basic troops as companions" />
+  <string id="tor_careerchoice_description.MercenaryLordKeystone" text="{=str_tor_careerchoice_description_MercenaryLordKeystone}The Career ability reduces reload time by 15%." />
+  <string id="tor_careerchoice_description.MercenaryLordPassive1" text="{=str_tor_careerchoice_description_MercenaryLordPassive1}4 extra special ammo like grenades or buckshot." />
+  <string id="tor_careerchoice_description.MercenaryLordPassive2" text="{=str_tor_careerchoice_description_MercenaryLordPassive2}Increases the damage of all ranged troops by 15%." />
+  <string id="tor_careerchoice_description.MercenaryLordPassive3" text="{=str_tor_careerchoice_description_MercenaryLordPassive3}Higher mercenary contract payment, lower Influence loss. Scales with the Trade skill." />
+  <string id="tor_careerchoice_description.MercenaryLordPassive4" text="{=str_tor_careerchoice_description_MercenaryLordPassive4}Ranged shots can penetrate multiple targets." />
+  <string id="tor_careerchoice_description.CommanderKeystone" text="{=str_tor_careerchoice_description_CommanderKeystone}Radius of ability is doubled." />
+  <string id="tor_careerchoice_description.CommanderPassive1" text="{=str_tor_careerchoice_description_CommanderPassive1}Companion limit of party is increased by 5." />
+  <string id="tor_careerchoice_description.CommanderPassive2" text="{=str_tor_careerchoice_description_CommanderPassive2}Increases the damage of all melee troops by 15%." />
+  <string id="tor_careerchoice_description.CommanderPassive3" text="{=str_tor_careerchoice_description_CommanderPassive3}Hits below 15 damage do not stagger the player." />
+  <string id="tor_careerchoice_description.CommanderPassive4" text="{=str_tor_careerchoice_description_CommanderPassive4}Companion health increases by 25." />
+
+  <!-- GrailKnight Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.GrailKnightRoot" text="{=str_tor_careerchoice_description_GrailKnightRoot}The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds, increasing the speed by 20%. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs." />
+  <string id="tor_careerchoice_description.ErrantryWarKeystone" text="{=str_tor_careerchoice_description_ErrantryWarKeystone}10% extra physical damage during Knightly Charge. The ability scales with the One Handed skill." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatKeystone" text="{=str_tor_careerchoice_description_EnhancedHorseCombatKeystone}Ability scales now  with the Polearm skill and starts recharged." />
+  <string id="tor_careerchoice_description.QuestingVowKeyStone" text="{=str_tor_careerchoice_description_QuestingVowKeyStone}Knightly Charge grants 20% physical resistance. Mount will not rear during the ability." />
+  <string id="tor_careerchoice_description.MonsterSlayerKeystone" text="{=str_tor_careerchoice_description_MonsterSlayerKeystone}Ability duration scales with Polearm and Riding. The lance attack scales with Two Handed." />
+  <string id="tor_careerchoice_description.MasterHorsemanKeystone" text="{=str_tor_careerchoice_description_MasterHorsemanKeystone}Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse." />
+  <string id="tor_careerchoice_description.GrailVowKeystone" text="{=str_tor_careerchoice_description_GrailVowKeystone}Ability scales with Faith. When active, get +20% holy damage and regen." />
+  <string id="tor_careerchoice_description.HolyCrusaderKeystone" text="{=str_tor_careerchoice_description_HolyCrusaderKeystone}Ability scales with Leadership and propagates from all Companions to units in a 5m radius " />
+  <string id="tor_careerchoice_description.ErrantryWarPassive1" text="{=str_tor_careerchoice_description_ErrantryWarPassive1}10% extra melee damage." />
+  <string id="tor_careerchoice_description.ErrantryWarPassive2" text="{=str_tor_careerchoice_description_ErrantryWarPassive2}Increases Hitpoints by 40." />
+  <string id="tor_careerchoice_description.ErrantryWarPassive3" text="{=str_tor_careerchoice_description_ErrantryWarPassive3}All Knight troops receive 20 bonus points in One and Two Handed skills." />
+  <string id="tor_careerchoice_description.ErrantryWarPassive4" text="{=str_tor_careerchoice_description_ErrantryWarPassive4}All melee troops in the party gain 25 exp per day." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive1" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive1}50% additional Hitpoints for the player's mount." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive2" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive2}10% extra melee damage while on horseback." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive3" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive3}Upgrade costs are reduced by 25%." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive4" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive4}All Knight troops receive 30 bonus points in their Polearm skill." />
+  <string id="tor_careerchoice_description.QuestingVowPassive1" text="{=str_tor_careerchoice_description_QuestingVowPassive1}Increases Hitpoints by 40." />
+  <string id="tor_careerchoice_description.QuestingVowPassive2" text="{=str_tor_careerchoice_description_QuestingVowPassive2}Kills gain Faith." />
+  <string id="tor_careerchoice_description.QuestingVowPassive3" text="{=str_tor_careerchoice_description_QuestingVowPassive3}All Knight troops gain 10% physical resistance." />
+  <string id="tor_careerchoice_description.QuestingVowPassive4" text="{=str_tor_careerchoice_description_QuestingVowPassive4}For every Knight Companion you gain 3 Chivalry per Day." />
+  <string id="tor_careerchoice_description.MonsterSlayerPassive1" text="{=str_tor_careerchoice_description_MonsterSlayerPassive1}10% extra melee fire damage." />
+  <string id="tor_careerchoice_description.MonsterSlayerPassive2" text="{=str_tor_careerchoice_description_MonsterSlayerPassive2}20% extra armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.MonsterSlayerPassive3" text="{=str_tor_careerchoice_description_MonsterSlayerPassive3}40% chance to recruit an extra unit of the same type free of charge." />
+  <string id="tor_careerchoice_description.MonsterSlayerPassive4" text="{=str_tor_careerchoice_description_MonsterSlayerPassive4}Hits below 15 damage do not stagger the player." />
+  <string id="tor_careerchoice_description.MasterHorsemanPassive1" text="{=str_tor_careerchoice_description_MasterHorsemanPassive1}Horse charge damage is increased by 40%." />
+  <string id="tor_careerchoice_description.MasterHorsemanPassive2" text="{=str_tor_careerchoice_description_MasterHorsemanPassive2}Party movement speed is increased by 2." />
+  <string id="tor_careerchoice_description.MasterHorsemanPassive3" text="{=str_tor_careerchoice_description_MasterHorsemanPassive3}Gain 15% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.MasterHorsemanPassive4" text="{=str_tor_careerchoice_description_MasterHorsemanPassive4}All Knight troops wages are reduced by 25%." />
+  <string id="tor_careerchoice_description.GrailVowPassive1" text="{=str_tor_careerchoice_description_GrailVowPassive1}Increases Hitpoints by 40." />
+  <string id="tor_careerchoice_description.GrailVowPassive2" text="{=str_tor_careerchoice_description_GrailVowPassive2}20% extra holy damage for Battle pilgrim troops." />
+  <string id="tor_careerchoice_description.GrailVowPassive3" text="{=str_tor_careerchoice_description_GrailVowPassive3}20% extra melee holy damage." />
+  <string id="tor_careerchoice_description.GrailVowPassive4" text="{=str_tor_careerchoice_description_GrailVowPassive4}Gain 15% Ward save." />
+  <string id="tor_careerchoice_description.HolyCrusaderPassive1" text="{=str_tor_careerchoice_description_HolyCrusaderPassive1}Increases Hitpoints by 40." />
+  <string id="tor_careerchoice_description.HolyCrusaderPassive2" text="{=str_tor_careerchoice_description_HolyCrusaderPassive2}Knight Companion health increases by 15 for each one in your party." />
+  <string id="tor_careerchoice_description.HolyCrusaderPassive3" text="{=str_tor_careerchoice_description_HolyCrusaderPassive3}Grail Knights can be upgraded to Companions." />
+  <string id="tor_careerchoice_description.HolyCrusaderPassive4" text="{=str_tor_careerchoice_description_HolyCrusaderPassive4}Companion limit of party is increased by 10." />
+
+  <!-- GrailDamsel Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.GrailDamselRoot" text="{=str_tor_careerchoice_description_GrailDamselRoot}The Damsel wanders on the fey paths. Instantly teleports the player to the targeted ground position. Charges with dealt or healed damage by magic" />
+  <string id="tor_careerchoice_description.FeyEnchantmentKeystone" text="{=str_tor_careerchoice_description_FeyEnchantmentKeystone}Enemies on the target area of the spell caster are knocked down" />
+  <string id="tor_careerchoice_description.TalesOfGilesKeystone" text="{=str_tor_careerchoice_description_TalesOfGilesKeystone}You are immune to physical Melee damage for 5 seconds after using the fey paths" />
+  <string id="tor_careerchoice_description.InspirationOfTheLadyKeystone" text="{=str_tor_careerchoice_description_InspirationOfTheLadyKeystone}Charge Amount is doubled but companion spell and heal effects count towards the ability" />
+  <string id="tor_careerchoice_description.JustCauseKeystone" text="{=str_tor_careerchoice_description_JustCauseKeystone}Magical damage for troops close to the exit of the teleport is increased by 30% for 5 seconds" />
+  <string id="tor_careerchoice_description.VividVisionsKeystone" text="{=str_tor_careerchoice_description_VividVisionsKeystone}Fey path charges 30% faster" />
+  <string id="tor_careerchoice_description.SecretsOfTheGrailKeystone" text="{=str_tor_careerchoice_description_SecretsOfTheGrailKeystone}After using Fey Paths, a second jump is available shortly after the first one." />
+  <string id="tor_careerchoice_description.EnvoyOfTheLadyKeystone" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyKeystone}When you teleport, you take all units in your closest surroundings(5m radius) with you." />
+  <string id="tor_careerchoice_description.FeyEnchantmentPassive1" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive1}Increases magic spell damage by 15%." />
+  <string id="tor_careerchoice_description.FeyEnchantmentPassive2" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive2}Increases max Winds of Magic by 10." />
+  <string id="tor_careerchoice_description.FeyEnchantmentPassive3" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive3}All troops gain 15% extra magic damage." />
+  <string id="tor_careerchoice_description.FeyEnchantmentPassive4" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive4}All Knight troops gain 15% Ward save." />
+  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive1" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive1}25% chance to recruit an extra unit free of charge." />
+  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive2" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive2}Wounded troops in your party heal faster." />
+  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive3" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive3}All Knight troops wages are reduced by 25%." />
+  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive4" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive4}10% Ward save if your armor weight does not exceed 11 weight." />
+  <string id="tor_careerchoice_description.TalesOfGilesPassive1" text="{=str_tor_careerchoice_description_TalesOfGilesPassive1}Increases max Winds of Magic by 10." />
+  <string id="tor_careerchoice_description.TalesOfGilesPassive2" text="{=str_tor_careerchoice_description_TalesOfGilesPassive2}Bretonnian units receive 10% Ward save." />
+  <string id="tor_careerchoice_description.TalesOfGilesPassive3" text="{=str_tor_careerchoice_description_TalesOfGilesPassive3}When praying at a shrine of the Lady, all wounded troops get healed." />
+  <string id="tor_careerchoice_description.TalesOfGilesPassive4" text="{=str_tor_careerchoice_description_TalesOfGilesPassive4}20% spell cooldown reduction." />
+  <string id="tor_careerchoice_description.VividVisionsPassive1" text="{=str_tor_careerchoice_description_VividVisionsPassive1}Increases max Winds of Magic by 10." />
+  <string id="tor_careerchoice_description.VividVisionsPassive2" text="{=str_tor_careerchoice_description_VividVisionsPassive2}Party movement speed is increased by 1." />
+  <string id="tor_careerchoice_description.VividVisionsPassive3" text="{=str_tor_careerchoice_description_VividVisionsPassive3}Increases Magic resistance against spells by 25%." />
+  <string id="tor_careerchoice_description.VividVisionsPassive4" text="{=str_tor_careerchoice_description_VividVisionsPassive4}The Spotting range of the party is increased by 20%." />
+  <string id="tor_careerchoice_description.JustCausePassive1" text="{=str_tor_careerchoice_description_JustCausePassive1}Upgrade costs are halved." />
+  <string id="tor_careerchoice_description.JustCausePassive2" text="{=str_tor_careerchoice_description_JustCausePassive2}Non-knight units in the party gain 100 XP every day." />
+  <string id="tor_careerchoice_description.JustCausePassive3" text="{=str_tor_careerchoice_description_JustCausePassive3}Extra 15% Wardsave if your armor weight does not exceed 11 weight." />
+  <string id="tor_careerchoice_description.JustCausePassive4" text="{=str_tor_careerchoice_description_JustCausePassive4}Increases positive Relation gains by 20%." />
+  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive1" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive1}Increases lightning spell damage by 30%." />
+  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive2" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive2}20% cost reduction for spells." />
+  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive3" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive3}Casting prayers has a 30% chance to restore 10 Winds of Magic." />
+  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive4" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive4}30% prayer cooldown reduction." />
+  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive1" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive1}Increases Magic damage by 20%." />
+  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive2" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive2}Knight Companion health increases by 100." />
+  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive3" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive3}Damsel Companion have 25 more Winds of Magic." />
+  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive4" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive4}Diplomatic force options for all Brettonnian Leaders." />
+
+  <!-- BlackGrailKnight Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.BlackGrailKnightRoot" text="{=str_tor_careerchoice_description_BlackGrailKnightRoot}The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs." />
+  <string id="tor_careerchoice_description.CurseOfMousillonKeystone" text="{=str_tor_careerchoice_description_CurseOfMousillonKeystone}10% extra physical damage during Knightly Charge. The ability scales with the One Handed skill." />
+  <string id="tor_careerchoice_description.SwampRiderKeystone" text="{=str_tor_careerchoice_description_SwampRiderKeystone}+20% speed during the ability, which now scales with the Polearm skill and starts recharged." />
+  <string id="tor_careerchoice_description.UnbreakableArmyKeystone" text="{=str_tor_careerchoice_description_UnbreakableArmyKeystone}Knightly Charge grants 20% physical resistance. Mount will not rear during the ability." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaKeystone" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaKeystone}Ability duration scales with Polearm and Riding. The lance attack scales with Two Handed." />
+  <string id="tor_careerchoice_description.RobberKnightKeystone" text="{=str_tor_careerchoice_description_RobberKnightKeystone}Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse." />
+  <string id="tor_careerchoice_description.LieOfLadyKeystone" text="{=str_tor_careerchoice_description_LieOfLadyKeystone}Ability scales with Roguery. When active, get +20% magic damage and health regen." />
+  <string id="tor_careerchoice_description.BlackGrailVowKeystone" text="{=str_tor_careerchoice_description_BlackGrailVowKeystone}Ability scales with Leadership and propagates from all heroes to units in a 5m radius." />
+  <string id="tor_careerchoice_description.CurseOfMousillonPassive1" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive1}Increases Hitpoints by 40." />
+  <string id="tor_careerchoice_description.CurseOfMousillonPassive2" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive2}All Knight troops receive 30 bonus points in their Polearm skill." />
+  <string id="tor_careerchoice_description.CurseOfMousillonPassive3" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive3}Mousillon ranged troops gain 15% extra ranged damage." />
+  <string id="tor_careerchoice_description.CurseOfMousillonPassive4" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive4}Ill fated Knight Companions occasionally train Bretonnian Peasants to Mousillon Peasants." />
+  <string id="tor_careerchoice_description.SwampRiderPassive1" text="{=str_tor_careerchoice_description_SwampRiderPassive1}50% additional Hitpoints for the player's mount." />
+  <string id="tor_careerchoice_description.SwampRiderPassive2" text="{=str_tor_careerchoice_description_SwampRiderPassive2}10% extra melee damage while on horseback." />
+  <string id="tor_careerchoice_description.SwampRiderPassive3" text="{=str_tor_careerchoice_description_SwampRiderPassive3}Every melee kill gives roguery XP." />
+  <string id="tor_careerchoice_description.SwampRiderPassive4" text="{=str_tor_careerchoice_description_SwampRiderPassive4}All Knight troops receive 20 bonus points in their One and Two-handed skill." />
+  <string id="tor_careerchoice_description.UnbreakableArmyPassive1" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive1}All mousillon peasant troops wages are reduced by 75%." />
+  <string id="tor_careerchoice_description.UnbreakableArmyPassive2" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive2}40% chance to recruit an extra unit of the same type free of charge." />
+  <string id="tor_careerchoice_description.UnbreakableArmyPassive3" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive3}Gain 15% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.UnbreakableArmyPassive4" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive4}Increases Party size by 50." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive1" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive1}Increases Hitpoints by 40." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive2" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive2}Gain 25 Dark Energy daily." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive3" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive3}Mousillon Knight damage against infantry  is increased by 15%." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive4" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive4}Any Bret. Knight units can be transformed to ill-fated mousillon units." />
+  <string id="tor_careerchoice_description.RobberKnightPassive1" text="{=str_tor_careerchoice_description_RobberKnightPassive1}Horse charge damage is increased by 50%." />
+  <string id="tor_careerchoice_description.RobberKnightPassive2" text="{=str_tor_careerchoice_description_RobberKnightPassive2}Party movement speed is increased by 2." />
+  <string id="tor_careerchoice_description.RobberKnightPassive3" text="{=str_tor_careerchoice_description_RobberKnightPassive3}All mousillon Knight units gain 10% Physical resistance." />
+  <string id="tor_careerchoice_description.RobberKnightPassive4" text="{=str_tor_careerchoice_description_RobberKnightPassive4}Pillaging is 50% faster  and gains dark energy." />
+  <string id="tor_careerchoice_description.LieOfLadyPassive1" text="{=str_tor_careerchoice_description_LieOfLadyPassive1}15% extra melee magic damage." />
+  <string id="tor_careerchoice_description.LieOfLadyPassive2" text="{=str_tor_careerchoice_description_LieOfLadyPassive2}Necromancer companions gain 25 Winds of magic." />
+  <string id="tor_careerchoice_description.LieOfLadyPassive3" text="{=str_tor_careerchoice_description_LieOfLadyPassive3}Dark Energy upkeep for Knights of the black grail is reduced by 25%." />
+  <string id="tor_careerchoice_description.LieOfLadyPassive4" text="{=str_tor_careerchoice_description_LieOfLadyPassive4}Knights of the black grail deal 15% magical damage." />
+  <string id="tor_careerchoice_description.BlackGrailVowPassive1" text="{=str_tor_careerchoice_description_BlackGrailVowPassive1}Companion limit of party is increased by 10." />
+  <string id="tor_careerchoice_description.BlackGrailVowPassive2" text="{=str_tor_careerchoice_description_BlackGrailVowPassive2}Hits below 15 damage do not stagger the player." />
+  <string id="tor_careerchoice_description.BlackGrailVowPassive3" text="{=str_tor_careerchoice_description_BlackGrailVowPassive3}Mousillon Knights gain 15% Wardsave." />
+  <string id="tor_careerchoice_description.BlackGrailVowPassive4" text="{=str_tor_careerchoice_description_BlackGrailVowPassive4}Every necromancer and Vampire companion gains 10 dark energy per day." />
+
+  <!-- Necrarch Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.NecrarchRoot" text="{=str_tor_careerchoice_description_NecrarchRoot}Summoned directly from the realm of the dead and cast by the Necrarch, this projectile spell deals 80 damage. The Blast of Agony grows in size for every point put into the Spellcraft skill, it can also be modified with several upgrades from the Career tree. It is free of any winds of magic cost to cast." />
+  <string id="tor_careerchoice_description.DiscipleOfAccursedKeystone" text="{=str_tor_careerchoice_description_DiscipleOfAccursedKeystone}Undead troops can charge career ability. Ability scales with Roguery" />
+  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive1" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive1}Increases Party size by 35." />
+  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive2" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive2}10% cost reduction for spells." />
+  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive3" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive3}Reduce the Dark Energy upkeep for wraith troops by 25%." />
+  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive4" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive4}For every magical item in your battle equipment you increase your maximum winds by 2." />
+  <string id="tor_careerchoice_description.WitchSightKeystone" text="{=str_tor_careerchoice_description_WitchSightKeystone}For every hit enemy gain 0.25% of your maximum Winds of magic" />
+  <string id="tor_careerchoice_description.WitchSightPassive1" text="{=str_tor_careerchoice_description_WitchSightPassive1}The Spotting range of the party is increased by 20%." />
+  <string id="tor_careerchoice_description.WitchSightPassive2" text="{=str_tor_careerchoice_description_WitchSightPassive2}Increases max Winds of Magic by 10." />
+  <string id="tor_careerchoice_description.WitchSightPassive3" text="{=str_tor_careerchoice_description_WitchSightPassive3}Increases Magic resistance against spells by 25%." />
+  <string id="tor_careerchoice_description.WitchSightPassive4" text="{=str_tor_careerchoice_description_WitchSightPassive4}Increases max Winds of Magic by 20 if your armor weight undershoots 11 stones." />
+  <string id="tor_careerchoice_description.DarkVisionKeystone" text="{=str_tor_careerchoice_description_DarkVisionKeystone}Summons a Wraith on impact. Spell damage charge is increased by 25%" />
+  <string id="tor_careerchoice_description.DarkVisionPassive1" text="{=str_tor_careerchoice_description_DarkVisionPassive1}Increases max Winds of Magic by 10." />
+  <string id="tor_careerchoice_description.DarkVisionPassive2" text="{=str_tor_careerchoice_description_DarkVisionPassive2}Gain 15 Dark Energy daily." />
+  <string id="tor_careerchoice_description.DarkVisionPassive3" text="{=str_tor_careerchoice_description_DarkVisionPassive3}Spell damage increase roguery." />
+  <string id="tor_careerchoice_description.DarkVisionPassive4" text="{=str_tor_careerchoice_description_DarkVisionPassive4}For every known spell your winds capacity rises by 1." />
+  <string id="tor_careerchoice_description.UnhallowedSoulKeystone" text="{=str_tor_careerchoice_description_UnhallowedSoulKeystone}Increase impact damage of netherball by 25%. The Projectile is now target seeking" />
+  <string id="tor_careerchoice_description.UnhallowedSoulPassive1" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive1}Increase buff durations by 25%." />
+  <string id="tor_careerchoice_description.UnhallowedSoulPassive2" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive2}Gain 30 Dark Energy daily." />
+  <string id="tor_careerchoice_description.UnhallowedSoulPassive3" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive3}Increases Spell effectiveness by 30% if your armor weight undershoots 11 stones." />
+  <string id="tor_careerchoice_description.UnhallowedSoulPassive4" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive4}Increases lightning spell damage by 10%." />
+  <string id="tor_careerchoice_description.HungerForKnowledgeKeystone" text="{=str_tor_careerchoice_description_HungerForKnowledgeKeystone}The Career ability is constantly slowly charged." />
+  <string id="tor_careerchoice_description.HungerForKnowledgePassive1" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive1}Increase hex durations by 25%." />
+  <string id="tor_careerchoice_description.HungerForKnowledgePassive2" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive2}Wraiths are immune to friendly fire spell damage." />
+  <string id="tor_careerchoice_description.HungerForKnowledgePassive3" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive3}Perform with your companion a dark ritual gaining 50 Winds each for 100 Dark Energy" />
+  <string id="tor_careerchoice_description.HungerForKnowledgePassive4" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive4}Increases Magic melee and spell damage by 10%." />
+  <string id="tor_careerchoice_description.WellspringOfDharKeystone" text="{=str_tor_careerchoice_description_WellspringOfDharKeystone}Ability scales with Medicine. Ability starts charged. Companions can charge ability." />
+  <string id="tor_careerchoice_description.WellspringOfDharPassive1" text="{=str_tor_careerchoice_description_WellspringOfDharPassive1}Increase buff durations by 25%." />
+  <string id="tor_careerchoice_description.WellspringOfDharPassive2" text="{=str_tor_careerchoice_description_WellspringOfDharPassive2}Tier 4 Undead troops can get wounded with a 20% lower chance." />
+  <string id="tor_careerchoice_description.WellspringOfDharPassive3" text="{=str_tor_careerchoice_description_WellspringOfDharPassive3}Necromancy companions gain 15 more Winds of Magic." />
+  <string id="tor_careerchoice_description.WellspringOfDharPassive4" text="{=str_tor_careerchoice_description_WellspringOfDharPassive4}Increases fire spell damage by 10%." />
+  <string id="tor_careerchoice_description.EverlingsSecretKeystone" text="{=str_tor_careerchoice_description_EverlingsSecretKeystone}After using nether ball, a second use is available shortly after the first one." />
+  <string id="tor_careerchoice_description.EverlingsSecretPassive1" text="{=str_tor_careerchoice_description_EverlingsSecretPassive1}Increases Windsregeneration by 1." />
+  <string id="tor_careerchoice_description.EverlingsSecretPassive2" text="{=str_tor_careerchoice_description_EverlingsSecretPassive2}35% spell cooldown reduction." />
+  <string id="tor_careerchoice_description.EverlingsSecretPassive3" text="{=str_tor_careerchoice_description_EverlingsSecretPassive3}Once your Winds are full, your winds recharge rate is counted towards your Dark Energy." />
+  <string id="tor_careerchoice_description.EverlingsSecretPassive4" text="{=str_tor_careerchoice_description_EverlingsSecretPassive4}Any non-physical damage count towards spell damage type." />
+
+  <!-- WarriorPriestUlric Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}The Wolf Priest unleashes a mighty blow in the name of his feral god, bringing the full might of his weapon crashing to the ground as if he were wielding Blitzbeil itself. This attack cannot be parried and affects targets in a 2-meter radius. For every point of the players highest weapon skill, damage is increased by 0.1%." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakKeystone" text="{=str_tor_careerchoice_description_CrusherOfTheWeakKeystone}Enemies are knocked down from the blow of the ability." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive1" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive2" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive2}Extra melee damage (10%)." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive3" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive3}Extra melee damage if the target is below tier 4 (10%)." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive4" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive4}Prayers are recharged on battle start." />
+  <string id="tor_careerchoice_description.WildPackKeystone" text="{=str_tor_careerchoice_description_WildPackKeystone}Leadership counts towards career ability" />
+  <string id="tor_careerchoice_description.WildPackPassive1" text="{=str_tor_careerchoice_description_WildPackPassive1}Increases melee physical resistance by 10%." />
+  <string id="tor_careerchoice_description.WildPackPassive2" text="{=str_tor_careerchoice_description_WildPackPassive2}Increases Party size by 10." />
+  <string id="tor_careerchoice_description.WildPackPassive3" text="{=str_tor_careerchoice_description_WildPackPassive3}Player healing rate increased by 2" />
+  <string id="tor_careerchoice_description.WildPackPassive4" text="{=str_tor_careerchoice_description_WildPackPassive4}Party movement speed is increased by 1." />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterfatherKeystone" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterfatherKeystone}The radius of the attack is increased by 1 meters. Faith counts towards ability" />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterfatherPassive1" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterfatherPassive1}Wounded troops in your party heal faster." />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterfatherPassive2" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterfatherPassive2}Praying at a shrine of ulric refills player health completely" />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterfatherPassive3" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterfatherPassive3}Attacks deal bonus damage against shields." />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterfatherPassive4" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterfatherPassive4}Increases range damage resistance of melee troops by 20%." />
+  <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Enemies affected by the attack are slowed down for 6 seconds. Damage of the attack is now Frost damage." />
+  <string id="tor_careerchoice_description.FrostsBitePassive1" text="{=str_tor_careerchoice_description_FrostsBitePassive1}Extra frost damage (10%)." />
+  <string id="tor_careerchoice_description.FrostsBitePassive2" text="{=str_tor_careerchoice_description_FrostsBitePassive2}Add 10% frost damage to melee troops." />
+  <string id="tor_careerchoice_description.FrostsBitePassive3" text="{=str_tor_careerchoice_description_FrostsBitePassive3}Party is not slowed by snow." />
+  <string id="tor_careerchoice_description.FrostsBitePassive4" text="{=str_tor_careerchoice_description_FrostsBitePassive4}Increase hex durations by 20%." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfKeystone" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfKeystone}All Enemies hit by the Axe of Ulric suffer from a damage over time effect" />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive1" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive1}Wearing wolf heads or pelts increases wardsave by 10%" />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive2" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive2}Increases Hitpoints by 50." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive3" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive3}Increase prayer durations by 20%." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive4" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive4}Ulrican troops gain 20% Ward save." />
+  <string id="tor_careerchoice_description.FuryOfWarKeystone" text="{=str_tor_careerchoice_description_FuryOfWarKeystone}Required charge for ability is halved." />
+  <string id="tor_careerchoice_description.FuryOfWarPassive1" text="{=str_tor_careerchoice_description_FuryOfWarPassive1}Every  equipped melee weapon increases melee damage by 5%." />
+  <string id="tor_careerchoice_description.FuryOfWarPassive2" text="{=str_tor_careerchoice_description_FuryOfWarPassive2}Weapon swing speed increased by 10%." />
+  <string id="tor_careerchoice_description.FuryOfWarPassive3" text="{=str_tor_careerchoice_description_FuryOfWarPassive3}Battles with even or unfavorable odds refresh your Ulric blessing." />
+  <string id="tor_careerchoice_description.FuryOfWarPassive4" text="{=str_tor_careerchoice_description_FuryOfWarPassive4}Hits below 25 damage do not stagger the player." />
+  <string id="tor_careerchoice_description.FlameOfUlricKeystone" text="{=str_tor_careerchoice_description_FlameOfUlricKeystone}For every executed Axe of Ulric one of your prayer cooldowns gets randomly reset." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive1" text="{=str_tor_careerchoice_description_FlameOfUlricPassive1}Increases range of prayers by 50%." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive2" text="{=str_tor_careerchoice_description_FlameOfUlricPassive2}Extra 20% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive3" text="{=str_tor_careerchoice_description_FlameOfUlricPassive3}Battles with even or unfavorable odds provide double Prestige." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}or every kill through abilities gain 0.25 health points" />
+
+  <!-- ImperialMagister Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}For 10 seconds, the wizard charges his own magical reserves by channeling Winds of Magic swirling in the air. While charging, the wizard is vulnerable to damage and moves at a greatly reduced pace. Every second, 3% of the total Winds of Magic reserve is regained. For every 50 points in Spellcraft, the duration is extended by 1 second, and every key stone picked grants an additional use of Arcane Conduit." />
+  <string id="tor_careerchoice_description.StudyAndPractiseKeystone" text="{=str_tor_careerchoice_description_StudyAndPractiseKeystone}Ability scaling adds 0.25% physical resistance per point." />
+  <string id="tor_careerchoice_description.StudyAndPractisePassive1" text="{=str_tor_careerchoice_description_StudyAndPractisePassive1}Increases max Winds of Magic by 5." />
+  <string id="tor_careerchoice_description.StudyAndPractisePassive2" text="{=str_tor_careerchoice_description_StudyAndPractisePassive2}10% Ward save if your armor weight does not exceed 11 weight." />
+  <string id="tor_careerchoice_description.StudyAndPractisePassive3" text="{=str_tor_careerchoice_description_StudyAndPractisePassive3}Increases magic spell damage by 10%." />
+  <string id="tor_careerchoice_description.StudyAndPractisePassive4" text="{=str_tor_careerchoice_description_StudyAndPractisePassive4}Increases Magic resistance against spells by 25%." />
+  <string id="tor_careerchoice_description.TeclisTeachingsKeystone" text="{=str_tor_careerchoice_description_TeclisTeachingsKeystone}You charge 25% longer. Ability scales with Steward." />
+  <string id="tor_careerchoice_description.TeclisTeachingsPassive1" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive1}Increases fire spell damage by 10%." />
+  <string id="tor_careerchoice_description.TeclisTeachingsPassive2" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive2}Increases electric spell damage by 10%." />
+  <string id="tor_careerchoice_description.TeclisTeachingsPassive3" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive3}Increases max Winds of Magic by 5." />
+  <string id="tor_careerchoice_description.TeclisTeachingsPassive4" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive4}Powerstones cost 35% less Prestige" />
+  <string id="tor_careerchoice_description.ImperialEnchantmentKeystone" text="{=str_tor_careerchoice_description_ImperialEnchantmentKeystone}You are less slowed down using Arcane Conduit. Scales with leadership" />
+  <string id="tor_careerchoice_description.ImperialEnchantmentPassive1" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive1}Increases max Winds of Magic by 5." />
+  <string id="tor_careerchoice_description.ImperialEnchantmentPassive2" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive2}Friendly fire damage is reduced by 30%" />
+  <string id="tor_careerchoice_description.ImperialEnchantmentPassive3" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive3}Buffs and healing duration is increased by 50%." />
+  <string id="tor_careerchoice_description.ImperialEnchantmentPassive4" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive4}Power stones reserve 25% less Winds." />
+  <string id="tor_careerchoice_description.CollegeOrdersKeystone" text="{=str_tor_careerchoice_description_CollegeOrdersKeystone}Arcane Conduit also refreshes Winds of Companions." />
+  <string id="tor_careerchoice_description.CollegeOrdersPassive1" text="{=str_tor_careerchoice_description_CollegeOrdersPassive1}Companion limit of party is increased by 5." />
+  <string id="tor_careerchoice_description.CollegeOrdersPassive2" text="{=str_tor_careerchoice_description_CollegeOrdersPassive2}Magister Companions have 25 more Winds of Magic." />
+  <string id="tor_careerchoice_description.CollegeOrdersPassive3" text="{=str_tor_careerchoice_description_CollegeOrdersPassive3}For every type of  College Wizard gain 10% more Prestige from combat" />
+  <string id="tor_careerchoice_description.CollegeOrdersPassive4" text="{=str_tor_careerchoice_description_CollegeOrdersPassive4}Gain access to Power stones of other College Orders" />
+  <string id="tor_careerchoice_description.MagicCombatTrainingKeystone" text="{=str_tor_careerchoice_description_MagicCombatTrainingKeystone}Your spell damage is increased for 30% during Arcane Conduit." />
+  <string id="tor_careerchoice_description.MagicCombatTrainingPassive1" text="{=str_tor_careerchoice_description_MagicCombatTrainingPassive1}Increases max Winds of Magic by 5." />
+  <string id="tor_careerchoice_description.MagicCombatTrainingPassive2" text="{=str_tor_careerchoice_description_MagicCombatTrainingPassive2}25% spell cooldown reduction." />
+  <string id="tor_careerchoice_description.MagicCombatTrainingPassive3" text="{=str_tor_careerchoice_description_MagicCombatTrainingPassive3}Increases Spell effectiveness by 15% if you wield an offhand staff." />
+  <string id="tor_careerchoice_description.MagicCombatTrainingPassive4" text="{=str_tor_careerchoice_description_MagicCombatTrainingPassive4}Extra 20% Wardsave if your armor weight does not exceed 11 weight." />
+  <string id="tor_careerchoice_description.AncientScrollsKeystone" text="{=str_tor_careerchoice_description_AncientScrollsKeystone}Cooldown reduction by 50%. Additional Usage" />
+  <string id="tor_careerchoice_description.AncientScrollsPassive1" text="{=str_tor_careerchoice_description_AncientScrollsPassive1}Increase hex durations by 50%." />
+  <string id="tor_careerchoice_description.AncientScrollsPassive2" text="{=str_tor_careerchoice_description_AncientScrollsPassive2}Increases Windsregeneration by 1." />
+  <string id="tor_careerchoice_description.AncientScrollsPassive3" text="{=str_tor_careerchoice_description_AncientScrollsPassive3}Recover 80% used Prestige from used Powerstones" />
+  <string id="tor_careerchoice_description.AncientScrollsPassive4" text="{=str_tor_careerchoice_description_AncientScrollsPassive4}For every varying imperial wizard, reduce the powerstone winds upkeep by 5%." />
+  <string id="tor_careerchoice_description.ArcaneKnowledgeKeystone" text="{=str_tor_careerchoice_description_ArcaneKnowledgeKeystone}Arcane Conduit resets cooldowns of spells. Halves duration and doubles gain. Additional usage" />
+  <string id="tor_careerchoice_description.ArcaneKnowledgePassive1" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive1}Spelldamage of companions is increased by 20%" />
+  <string id="tor_careerchoice_description.ArcaneKnowledgePassive2" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive2}Spell effect radius is increased by 20%." />
+  <string id="tor_careerchoice_description.ArcaneKnowledgePassive3" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive3}Increases Spell effectiveness by 20% if your armor weight undershoots 11 stones." />
+  <string id="tor_careerchoice_description.ArcaneKnowledgePassive4" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive4}For every imperial Magister in your party, your maximum winds increases by 4" />
+
+  <!-- Waywatcher Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Kurnous, Lord of the Hunt, blesses this fatal shot to travel straight through the heart of the enemy. This missile attack will seek out its target and trigger an explosion upon impact. With every skill point in Archery, the radius increases. For charging ability deal 1200 damage points with bows. Each Arrow charges a maximum of 150 points" />
+  <string id="tor_careerchoice_description.ProtectorOfTheWoodsKeystone" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsKeystone}Reduces the amount of ranged damage to unlock ability. Ability starts charged." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive1}Extra ranged damage (10%)." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive2" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive2}3 extra Arrows per equipped Quiver" />
+  <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive3" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive3}All ranged troops wages are reduced by 20%" />
+  <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive4" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive4}Reduce range Accuracy movement penalty by 15%." />
+  <string id="tor_careerchoice_description.PathfinderKeystone" text="{=str_tor_careerchoice_description_PathfinderKeystone}The range of Arrow of Kournous is doubled. Ability scales with Scouting" />
+  <string id="tor_careerchoice_description.PathfinderPassive1" text="{=str_tor_careerchoice_description_PathfinderPassive1}The Spotting range of the party is increased by 20%." />
+  <string id="tor_careerchoice_description.PathfinderPassive2" text="{=str_tor_careerchoice_description_PathfinderPassive2}Party movement speed is increased by 1" />
+  <string id="tor_careerchoice_description.PathfinderPassive3" text="{=str_tor_careerchoice_description_PathfinderPassive3}Party travels unhindered through snow" />
+  <string id="tor_careerchoice_description.PathfinderPassive4" text="{=str_tor_careerchoice_description_PathfinderPassive4}Ranged damage is shrugged off" />
+  <string id="tor_careerchoice_description.ForestStalkerKeystone" text="{=str_tor_careerchoice_description_ForestStalkerKeystone}All enemies suffer 50% more magical damage for 10 seconds. Allied troops charge ability." />
+  <string id="tor_careerchoice_description.ForestStalkerPassive1" text="{=str_tor_careerchoice_description_ForestStalkerPassive1}Once per day, go for a hunt." />
+  <string id="tor_careerchoice_description.ForestStalkerPassive2" text="{=str_tor_careerchoice_description_ForestStalkerPassive2}Gain 20% range resistance." />
+  <string id="tor_careerchoice_description.ForestStalkerPassive3" text="{=str_tor_careerchoice_description_ForestStalkerPassive3}Increases range damage resistance of melee troops by 20%." />
+  <string id="tor_careerchoice_description.ForestStalkerPassive4" text="{=str_tor_careerchoice_description_ForestStalkerPassive4}20% Equipment weight Reduction" />
+  <string id="tor_careerchoice_description.HailOfArrowsKeystone" text="{=str_tor_careerchoice_description_HailOfArrowsKeystone}Every affected enemy increases reload speed for 4 sec. The damage increased by 50%" />
+  <string id="tor_careerchoice_description.HailOfArrowsPassive1" text="{=str_tor_careerchoice_description_HailOfArrowsPassive1}6 extra Arrows per equipped Quiver" />
+  <string id="tor_careerchoice_description.HailOfArrowsPassive2" text="{=str_tor_careerchoice_description_HailOfArrowsPassive2}Ranged troops gain 25XP daily " />
+  <string id="tor_careerchoice_description.HailOfArrowsPassive3" text="{=str_tor_careerchoice_description_HailOfArrowsPassive3}Attacking unaware enemies adds 50% extra damage" />
+  <string id="tor_careerchoice_description.HailOfArrowsPassive4" text="{=str_tor_careerchoice_description_HailOfArrowsPassive4}Special shot: For every hit arrow, your magic damage increase. Bonus slowly decrease." />
+  <string id="tor_careerchoice_description.HawkeyedKeystone" text="{=str_tor_careerchoice_description_HawkeyedKeystone}All Enemies in the area are slowed on impact. The damage increased by 50%" />
+  <string id="tor_careerchoice_description.HawkeyedPassive1" text="{=str_tor_careerchoice_description_HawkeyedPassive1}20% Equipment weight Reduction" />
+  <string id="tor_careerchoice_description.HawkeyedPassive2" text="{=str_tor_careerchoice_description_HawkeyedPassive2}Headshots double the fill" />
+  <string id="tor_careerchoice_description.HawkeyedPassive3" text="{=str_tor_careerchoice_description_HawkeyedPassive3}Special shot: Every sixth arrow, applies a slow down effect on impact." />
+  <string id="tor_careerchoice_description.HawkeyedPassive4" text="{=str_tor_careerchoice_description_HawkeyedPassive4}While Zoomed in, the time is slowed down. Every second you lose 100 Career Charge." />
+  <string id="tor_careerchoice_description.StarfireEssenceKeystone" text="{=str_tor_careerchoice_description_StarfireEssenceKeystone}Enemies suffer from a damage over time effect on impact." />
+  <string id="tor_careerchoice_description.StarfireEssencePassive1" text="{=str_tor_careerchoice_description_StarfireEssencePassive1}6 extra Arrows per equipped Quiver" />
+  <string id="tor_careerchoice_description.StarfireEssencePassive2" text="{=str_tor_careerchoice_description_StarfireEssencePassive2}15% swing speed" />
+  <string id="tor_careerchoice_description.StarfireEssencePassive3" text="{=str_tor_careerchoice_description_StarfireEssencePassive3}Your arrows can penetrate shields" />
+  <string id="tor_careerchoice_description.StarfireEssencePassive4" text="{=str_tor_careerchoice_description_StarfireEssencePassive4}Special shot: Not shooting an arrows increase the chance your next arrow explode on impact." />
+  <string id="tor_careerchoice_description.EyeOfTheHunterKeystone" text="{=str_tor_careerchoice_description_EyeOfTheHunterKeystone}Arrow of Kurnous loses it's seeking ability. The damage is doubled." />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive1" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive1}20% Equipment weight Reduction" />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive2" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive2}Arrows can pierce multiple targets" />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive3" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive3}All archer troops gain 50 to their bow skill." />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive4" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive4}Special shot efficiency is doubled" />
+
+  <!-- Spellsinger Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.SpellSingerRoot" text="{=str_tor_careerchoice_description_SpellSingerRoot}Calls treespirits of the surouding forests. Every point in Spellcraft increases the chance by 0.05% additional treespirits join the combat." />
+  <string id="tor_careerchoice_description.PathShapingKeystone" text="{=str_tor_careerchoice_description_PathShapingKeystone}Upon casting, all forest spirits are moving faster for 10 seconds. Ability scales with Scouting" />
+  <string id="tor_careerchoice_description.PathShapingPassive1" text="{=str_tor_careerchoice_description_PathShapingPassive1}Party movement speed is increased by 1." />
+  <string id="tor_careerchoice_description.PathShapingPassive2" text="{=str_tor_careerchoice_description_PathShapingPassive2}Upkeep for elven units is reduced by 15%." />
+  <string id="tor_careerchoice_description.PathShapingPassive3" text="{=str_tor_careerchoice_description_PathShapingPassive3}The Spotting range of the party is increased by 20%." />
+  <string id="tor_careerchoice_description.PathShapingPassive4" text="{=str_tor_careerchoice_description_PathShapingPassive4}Gain 15% Ward save." />
+  <string id="tor_careerchoice_description.TreeSingingKeystone" text="{=str_tor_careerchoice_description_TreeSingingKeystone}Charge is increased by 50%. +5 base troops for summoning." />
+  <string id="tor_careerchoice_description.TreeSingingPassive1" text="{=str_tor_careerchoice_description_TreeSingingPassive1}Increases maximum winds of magic capacities by 10." />
+  <string id="tor_careerchoice_description.TreeSingingPassive2" text="{=str_tor_careerchoice_description_TreeSingingPassive2}Gain 20 Harmony daily." />
+  <string id="tor_careerchoice_description.TreeSingingPassive3" text="{=str_tor_careerchoice_description_TreeSingingPassive3}Upkeep for dryads units is reduced by 10%." />
+  <string id="tor_careerchoice_description.TreeSingingPassive4" text="{=str_tor_careerchoice_description_TreeSingingPassive4}For every known spell increase party size by 3" />
+  <string id="tor_careerchoice_description.VitalSurgeKeystone" text="{=str_tor_careerchoice_description_VitalSurgeKeystone}Every spawned unit heals 1 HP for all heroes. Ability scales with Medicine" />
+  <string id="tor_careerchoice_description.VitalSurgePassive1" text="{=str_tor_careerchoice_description_VitalSurgePassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.VitalSurgePassive2" text="{=str_tor_careerchoice_description_VitalSurgePassive2}Increases troop regeneration by 2." />
+  <string id="tor_careerchoice_description.VitalSurgePassive3" text="{=str_tor_careerchoice_description_VitalSurgePassive3}Buffs and healing duration is increased by 25%." />
+  <string id="tor_careerchoice_description.VitalSurgePassive4" text="{=str_tor_careerchoice_description_VitalSurgePassive4}Player healing rate increased by 4" />
+  <string id="tor_careerchoice_description.HeartOfTheTreeKeystone" text="{=str_tor_careerchoice_description_HeartOfTheTreeKeystone}Treespirit attacks charge Career Ability. Ability scales with Leadership" />
+  <string id="tor_careerchoice_description.HeartOfTheTreePassive1" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive1}tree spirits deal 15% extra damage." />
+  <string id="tor_careerchoice_description.HeartOfTheTreePassive2" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive2}dryads gain 25% Wardsave." />
+  <string id="tor_careerchoice_description.HeartOfTheTreePassive3" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive3}Upkeep for tree spirit units is reduced by 15%." />
+  <string id="tor_careerchoice_description.HeartOfTheTreePassive4" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive4}Every joining friendly tree spirit unit has a 25% chance to provide 1 wind." />
+  <string id="tor_careerchoice_description.ArielsBlessingKeystone" text="{=str_tor_careerchoice_description_ArielsBlessingKeystone}Ability starts charged. Ability scales with Faith" />
+  <string id="tor_careerchoice_description.ArielsBlessingPassive1" text="{=str_tor_careerchoice_description_ArielsBlessingPassive1}20% extra magical melee damage." />
+  <string id="tor_careerchoice_description.ArielsBlessingPassive2" text="{=str_tor_careerchoice_description_ArielsBlessingPassive2}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.ArielsBlessingPassive3" text="{=str_tor_careerchoice_description_ArielsBlessingPassive3}Isha's blessing also provides 20 Forest harmony daily" />
+  <string id="tor_careerchoice_description.ArielsBlessingPassive4" text="{=str_tor_careerchoice_description_ArielsBlessingPassive4}Spell effect radius is increased by 20%." />
+  <string id="tor_careerchoice_description.MagicOfAthelLorenKeystone" text="{=str_tor_careerchoice_description_MagicOfAthelLorenKeystone}for 10 seconds after casting, dryad kills gain 0.5 Wind." />
+  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive1" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive1}15% extra magical spell damage." />
+  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive2" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive2}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive3" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive3}tree spirits are not affected by friendly fire." />
+  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive4" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive4}Increase hex durations by 35%." />
+  <string id="tor_careerchoice_description.FuryOfTheForestKeystone" text="{=str_tor_careerchoice_description_FuryOfTheForestKeystone}Call 1 Treeman with ability (or 10 dryads in close quarter Missions)" />
+  <string id="tor_careerchoice_description.FuryOfTheForestPassive1" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive1}A Dark weaver provides 15% extra Maigcal damage to all heroes." />
+  <string id="tor_careerchoice_description.FuryOfTheForestPassive2" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive2}A High weaver provides 25% extra wardsave to all heroes." />
+  <string id="tor_careerchoice_description.FuryOfTheForestPassive3" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive3}Treeman Upkeep is reduced by 25%" />
+  <string id="tor_careerchoice_description.FuryOfTheForestPassive4" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive4}35% Spell cooldown reduction." />
+
+  <!-- GreyLord Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.GreyLordRoot" text="{=str_tor_careerchoice_description_GreyLordRoot}As a master of Winds of Magic and forbidden arts, the Grey Lord conjures subtle whispers inside the enemy's mind and convinces the foes in the area to turn on their allies. After all, a true Grey Lord knows better than to cloud his judgment with trifling matters of morality. {newline} The chance to turn enemies rises with Spellcraft skills, the health and the level of targets as well as each keystone perk selected" />
+  <string id="tor_careerchoice_description.CaelithsWisdomKeystone" text="{=str_tor_careerchoice_description_CaelithsWisdomKeystone}2 additional overtakes. Ability scales with Leadership. Melee damage can charge ability." />
+  <string id="tor_careerchoice_description.CaelithsWisdomPassive1" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.CaelithsWisdomPassive2" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive2}Gain 25% fire resistance." />
+  <string id="tor_careerchoice_description.CaelithsWisdomPassive3" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive3}Cityborn upkeep is reduced by 25%." />
+  <string id="tor_careerchoice_description.CaelithsWisdomPassive4" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive4}Cityborn troops gain 50% fire resistance." />
+  <string id="tor_careerchoice_description.SoulBindingKeystone" text="{=str_tor_careerchoice_description_SoulBindingKeystone}Controlled unit gets healed completely. Ability scales with medicine." />
+  <string id="tor_careerchoice_description.SoulBindingPassive1" text="{=str_tor_careerchoice_description_SoulBindingPassive1}Increases maximum winds of magic capacities by 10." />
+  <string id="tor_careerchoice_description.SoulBindingPassive2" text="{=str_tor_careerchoice_description_SoulBindingPassive2}Increases Magic resistance against spells by 25%." />
+  <string id="tor_careerchoice_description.SoulBindingPassive3" text="{=str_tor_careerchoice_description_SoulBindingPassive3}Wounded troops in your party heal faster." />
+  <string id="tor_careerchoice_description.SoulBindingPassive4" text="{=str_tor_careerchoice_description_SoulBindingPassive4}Not wielding projectile spells increase spell duration for healing spells by 50%" />
+  <string id="tor_careerchoice_description.LegendsOfMalokKeystone" text="{=str_tor_careerchoice_description_LegendsOfMalokKeystone}control chance is 15% higher. Ability starts charged. " />
+  <string id="tor_careerchoice_description.LegendsOfMalokPassive1" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive1}Increases maximum winds of magic capacities by 10." />
+  <string id="tor_careerchoice_description.LegendsOfMalokPassive2" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive2}Favor costs for cityborn  troop upgrades is reduced by 20%." />
+  <string id="tor_careerchoice_description.LegendsOfMalokPassive3" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive3}Adds 25% fire damage to all troops." />
+  <string id="tor_careerchoice_description.LegendsOfMalokPassive4" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive4}If no hex spells are equipped you gain 50% spell radius." />
+  <string id="tor_careerchoice_description.UnrestrictedMagicKeystone" text="{=str_tor_careerchoice_description_UnrestrictedMagicKeystone}When the controlled dies he explodes. Unsucessful control hurt the enemy by 40 HP." />
+  <string id="tor_careerchoice_description.UnrestrictedMagicPassive1" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive1}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.UnrestrictedMagicPassive2" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive2}Spell effect radius is increased by 20%." />
+  <string id="tor_careerchoice_description.UnrestrictedMagicPassive3" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive3}Favor gain from battles is increased by 20%" />
+  <string id="tor_careerchoice_description.UnrestrictedMagicPassive4" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive4}If no AOE effect is equipped, your projectile spells deal 200% extra damage." />
+  <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryKeystone" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryKeystone}Companion damage can charge ability. Range is doubled. Scale with Charm" />
+  <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryPassive1" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryPassive1}Increases Windsregeneration by 0.5." />
+  <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryPassive2" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryPassive2}Increase hex durations by 20%." />
+  <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryPassive3" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryPassive3}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryPassive4" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryPassive4}Not wielding any healing spells increase hex duration by 50%" />
+  <string id="tor_careerchoice_description.ByAllMeansKeystone" text="{=str_tor_careerchoice_description_ByAllMeansKeystone}Ability scales with roguery. Units are easier to overtake" />
+  <string id="tor_careerchoice_description.ByAllMeansPassive1" text="{=str_tor_careerchoice_description_ByAllMeansPassive1}Extra 25% Wardsave if your armor weight does not exceed 11 weight." />
+  <string id="tor_careerchoice_description.ByAllMeansPassive2" text="{=str_tor_careerchoice_description_ByAllMeansPassive2}Increases Lightning spell damage by 10%." />
+  <string id="tor_careerchoice_description.ByAllMeansPassive3" text="{=str_tor_careerchoice_description_ByAllMeansPassive3}Increases magic spell damage by 10%." />
+  <string id="tor_careerchoice_description.ByAllMeansPassive4" text="{=str_tor_careerchoice_description_ByAllMeansPassive4}If no buff spells are equipped, duration of vortex and area effects are doubled." />
+  <string id="tor_careerchoice_description.SecretOfFellfangKeystone" text="{=str_tor_careerchoice_description_SecretOfFellfangKeystone}Successful overtake grants 3 winds of magic." />
+  <string id="tor_careerchoice_description.SecretOfFellfangPassive1" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive1}50% cooldown reduction if you wield less than 11 spells" />
+  <string id="tor_careerchoice_description.SecretOfFellfangPassive2" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive2}Increases maximum winds of magic capacities by 25." />
+  <string id="tor_careerchoice_description.SecretOfFellfangPassive3" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive3}After battle, 30% of your winds are regenerated." />
+  <string id="tor_careerchoice_description.SecretOfFellfangPassive4" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive4}Increases fire spell damage by 15%." />
+
+  <!-- KnightOldWorld Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.KnightOldWorldRoot" text="{=str_tor_careerchoice_description_KnightOldWorldRoot}The Knight focuses on his grand mission, which results in a 20% boost to damage for the next melee hit. For every point in the One Handed skill, your damage increases by 1% during the effect. The boost lasts for a maximum of 15 seconds. For every Keystone enabled, you acquire another use, enhancing your strikes. Deal melee damage to recharge your ability." />
+  <string id="tor_careerchoice_description.SecularOrdersKeystone" text="{=str_tor_careerchoice_description_SecularOrdersKeystone}Knightly strike has 2 additional loads. starts charged" />
+  <string id="tor_careerchoice_description.SecularOrdersPassive1" text="{=str_tor_careerchoice_description_SecularOrdersPassive1}custom resource upgrade costs for knights are reduced by 25%." />
+  <string id="tor_careerchoice_description.SecularOrdersPassive2" text="{=str_tor_careerchoice_description_SecularOrdersPassive2}All Knight troops receive 20 bonus points in their One and Two-handed skill." />
+  <string id="tor_careerchoice_description.SecularOrdersPassive3" text="{=str_tor_careerchoice_description_SecularOrdersPassive3}All Knight troops wages are reduced by 25%." />
+  <string id="tor_careerchoice_description.SecularOrdersPassive4" text="{=str_tor_careerchoice_description_SecularOrdersPassive4}Secular Seals can be applied on any Knight unit" />
+  <string id="tor_careerchoice_description.PathOfConquestKeystone" text="{=str_tor_careerchoice_description_PathOfConquestKeystone}Adds cleaving attacks for ability. Ability scales with Two handed weapon skill" />
+  <string id="tor_careerchoice_description.PathOfConquestPassive1" text="{=str_tor_careerchoice_description_PathOfConquestPassive1}Extra melee damage (10%)." />
+  <string id="tor_careerchoice_description.PathOfConquestPassive2" text="{=str_tor_careerchoice_description_PathOfConquestPassive2}Party movement speed is increased by 2." />
+  <string id="tor_careerchoice_description.PathOfConquestPassive3" text="{=str_tor_careerchoice_description_PathOfConquestPassive3}Horse charge damage is increased by 40%." />
+  <string id="tor_careerchoice_description.PathOfConquestPassive4" text="{=str_tor_careerchoice_description_PathOfConquestPassive4}All Knight troops receive 30 bonus points in their Polearm skill." />
+  <string id="tor_careerchoice_description.SquiresKeystone" text="{=str_tor_careerchoice_description_SquiresKeystone}Ability scales with riding. Companions charge ability." />
+  <string id="tor_careerchoice_description.SquiresPassive1" text="{=str_tor_careerchoice_description_SquiresPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.SquiresPassive2" text="{=str_tor_careerchoice_description_SquiresPassive2}All Knight troops wages are reduced by 25%." />
+  <string id="tor_careerchoice_description.SquiresPassive3" text="{=str_tor_careerchoice_description_SquiresPassive3}Wounded troops in your party heal faster." />
+  <string id="tor_careerchoice_description.SquiresPassive4" text="{=str_tor_careerchoice_description_SquiresPassive4}Battles against non-humans provide 100% prestige gain." />
+  <string id="tor_careerchoice_description.TemplarOrdersKeystone" text="{=str_tor_careerchoice_description_TemplarOrdersKeystone}2 additional charges. Ability scales with Faith. Reduce base cooldown by 15 seconds" />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive1" text="{=str_tor_careerchoice_description_TemplarOrdersPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive2" text="{=str_tor_careerchoice_description_TemplarOrdersPassive2}kills add faith skill." />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive3" text="{=str_tor_careerchoice_description_TemplarOrdersPassive3}Having matching knights of deity increase their damage by 20%" />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive4" text="{=str_tor_careerchoice_description_TemplarOrdersPassive4}Bonus damage against undead" />
+  <string id="tor_careerchoice_description.PathOfVigilanceKeystone" text="{=str_tor_careerchoice_description_PathOfVigilanceKeystone}Couched Lance attacks are not removing loads. Ability scales with polearm" />
+  <string id="tor_careerchoice_description.PathOfVigilancePassive1" text="{=str_tor_careerchoice_description_PathOfVigilancePassive1}50% additional Hitpoints for the player's mount." />
+  <string id="tor_careerchoice_description.PathOfVigilancePassive2" text="{=str_tor_careerchoice_description_PathOfVigilancePassive2}Gain 15% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.PathOfVigilancePassive3" text="{=str_tor_careerchoice_description_PathOfVigilancePassive3}Hits below 15 damage do not stagger the player." />
+  <string id="tor_careerchoice_description.PathOfVigilancePassive4" text="{=str_tor_careerchoice_description_PathOfVigilancePassive4}Wielding a shield increases wardsave." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosKeystone" text="{=str_tor_careerchoice_description_WrathAgainstChaosKeystone}Every discharge hit adds a 25% Wardsave for 5 seconds. Ability charging is 20% more efficient" />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive1" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive1}All units deal more damage against chaos." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive2" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive2}Gain 35% Magic Resistance." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive3" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive3}Weapon swing speed increased by 15%." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive4" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive4}Extra 25% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.PathOfGloryKeystone" text="{=str_tor_careerchoice_description_PathOfGloryKeystone}Adds a Deity based weapon effect or 20% extra physical damage." />
+  <string id="tor_careerchoice_description.PathOfGloryPassive1" text="{=str_tor_careerchoice_description_PathOfGloryPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.PathOfGloryPassive2" text="{=str_tor_careerchoice_description_PathOfGloryPassive2}10% Ward save for all knight units." />
+  <string id="tor_careerchoice_description.PathOfGloryPassive3" text="{=str_tor_careerchoice_description_PathOfGloryPassive3}Gain 15% Ward save." />
+  <string id="tor_careerchoice_description.PathOfGloryPassive4" text="{=str_tor_careerchoice_description_PathOfGloryPassive4}Gain the option to add an additional seal on a troop." />
+
+  <!-- Ironbreaker Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.IronbreakerRoot" text="{=str_tor_careerchoice_description_IronbreakerRoot}The Character will not receive any damage for a short amount of time and will shrug any damage off. The movement speed is reduced by 25% though. The duration expands with growing athletics skill." />
+  <string id="tor_careerchoice_description.NestCleansingKeystone" text="{=str_tor_careerchoice_description_NestCleansingKeystone}Immune to fire damage, explosives and knockback resistance during ability" />
+  <string id="tor_careerchoice_description.NestCleansingPassive1" text="{=str_tor_careerchoice_description_NestCleansingPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.NestCleansingPassive2" text="{=str_tor_careerchoice_description_NestCleansingPassive2}Increases Fire resistance by 25%." />
+  <string id="tor_careerchoice_description.NestCleansingPassive3" text="{=str_tor_careerchoice_description_NestCleansingPassive3}Get 2 additional charges for explosive charges" />
+  <string id="tor_careerchoice_description.NestCleansingPassive4" text="{=str_tor_careerchoice_description_NestCleansingPassive4}Iron breaker troops gain 1 explosive charge" />
+  <string id="tor_careerchoice_description.TunnelWatchKeystone" text="{=str_tor_careerchoice_description_TunnelWatchKeystone}Scouting counts towards ability. Ability starts charged" />
+  <string id="tor_careerchoice_description.TunnelWatchPassive1" text="{=str_tor_careerchoice_description_TunnelWatchPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.TunnelWatchPassive2" text="{=str_tor_careerchoice_description_TunnelWatchPassive2}Party movement speed is increased by 1." />
+  <string id="tor_careerchoice_description.TunnelWatchPassive3" text="{=str_tor_careerchoice_description_TunnelWatchPassive3}15% extra melee damage against greenskins" />
+  <string id="tor_careerchoice_description.TunnelWatchPassive4" text="{=str_tor_careerchoice_description_TunnelWatchPassive4}10% extra melee damage." />
+  <string id="tor_careerchoice_description.IronPriceKeystone" text="{=str_tor_careerchoice_description_IronPriceKeystone}Leadership counts towards Careerability. Charge ability by dealing damage" />
+  <string id="tor_careerchoice_description.IronPricePassive1" text="{=str_tor_careerchoice_description_IronPricePassive1}Hits below 15 damage do not stagger the player." />
+  <string id="tor_careerchoice_description.IronPricePassive2" text="{=str_tor_careerchoice_description_IronPricePassive2}Attacks deal bonus damage against shields." />
+  <string id="tor_careerchoice_description.IronPricePassive3" text="{=str_tor_careerchoice_description_IronPricePassive3}custom resource upgrade costs for Ironbreaker units are reduced by 25%." />
+  <string id="tor_careerchoice_description.IronPricePassive4" text="{=str_tor_careerchoice_description_IronPricePassive4}Custom." />
+  <string id="tor_careerchoice_description.ShieldWallKeystone" text="{=str_tor_careerchoice_description_ShieldWallKeystone}Dwarfs in the immediate surrounding also benefit from effect. Scales with onehanded" />
+  <string id="tor_careerchoice_description.ShieldWallPassive1" text="{=str_tor_careerchoice_description_ShieldWallPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.ShieldWallPassive2" text="{=str_tor_careerchoice_description_ShieldWallPassive2}Onehanded combat skill for dwarf units is increased by 20" />
+  <string id="tor_careerchoice_description.ShieldWallPassive3" text="{=str_tor_careerchoice_description_ShieldWallPassive3}20% physical resistance while wearing a shield." />
+  <string id="tor_careerchoice_description.ShieldWallPassive4" text="{=str_tor_careerchoice_description_ShieldWallPassive4}For every point in smithing gain 0.5% shield hitpoints." />
+  <string id="tor_careerchoice_description.IronDrakesKeystone" text="{=str_tor_careerchoice_description_IronDrakesKeystone}During ability your reload speed is increased. ability scales with gunpowder skill " />
+  <string id="tor_careerchoice_description.IronDrakesPassive1" text="{=str_tor_careerchoice_description_IronDrakesPassive1}Increases the fire damage of iron drakes by 20%." />
+  <string id="tor_careerchoice_description.IronDrakesPassive2" text="{=str_tor_careerchoice_description_IronDrakesPassive2}Iron drakes custom resource cost is reduced." />
+  <string id="tor_careerchoice_description.IronDrakesPassive3" text="{=str_tor_careerchoice_description_IronDrakesPassive3}custom resource upgrade costs for knights are reduced by 25%." />
+  <string id="tor_careerchoice_description.IronDrakesPassive4" text="{=str_tor_careerchoice_description_IronDrakesPassive4}12 Extra ammo for drakfire gun" />
+  <string id="tor_careerchoice_description.GromrilArmorKeystone" text="{=str_tor_careerchoice_description_GromrilArmorKeystone}Receiving damage during ability will stack upon, and add for each taken hit 0.5% physical resistance post ability." />
+  <string id="tor_careerchoice_description.GromrilArmorPassive1" text="{=str_tor_careerchoice_description_GromrilArmorPassive1}20% extra phyiscal resistance for ironbreaker troops." />
+  <string id="tor_careerchoice_description.GromrilArmorPassive2" text="{=str_tor_careerchoice_description_GromrilArmorPassive2}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.GromrilArmorPassive3" text="{=str_tor_careerchoice_description_GromrilArmorPassive3}Extra 15% Wardsave if your armor weight exceed 25 weight." />
+  <string id="tor_careerchoice_description.GromrilArmorPassive4" text="{=str_tor_careerchoice_description_GromrilArmorPassive4}Iron breaker have 50% damage resistance against friendly fire." />
+  <string id="tor_careerchoice_description.RuneWeaponsKeystone" text="{=str_tor_careerchoice_description_RuneWeaponsKeystone}For every taken hit during  your ability, physical damage is increased by 0.5% for the next 5 seconds" />
+  <string id="tor_careerchoice_description.RuneWeaponsPassive1" text="{=str_tor_careerchoice_description_RuneWeaponsPassive1}Ironbreakers gain 10% extra damage" />
+  <string id="tor_careerchoice_description.RuneWeaponsPassive2" text="{=str_tor_careerchoice_description_RuneWeaponsPassive2}Increases Magic damage by 15%." />
+  <string id="tor_careerchoice_description.RuneWeaponsPassive3" text="{=str_tor_careerchoice_description_RuneWeaponsPassive3}Extra 25% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.RuneWeaponsPassive4" text="{=str_tor_careerchoice_description_RuneWeaponsPassive4}Weapon swing speed increased by 15%." />
+
+  <!-- Slayer Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.SlayerRoot" text="{=str_tor_careerchoice_description_SlayerRoot}For a limited time, the Slayer has a increased speed bonus and weapon speed bonus. The kills gained  during the ability, add a doom seeker stack which  permanently increasing the damage of the player. For every Keystone, the damage dealt bonus is increased by 0.05% \n \n The ability requires 500 damage to be charged. Every kill adds 100 additional charge. For every keystone(5th perk) you require 10% more damage. " />
+  <string id="tor_careerchoice_description.AxeOfGrimnirKeystone" text="{=str_tor_careerchoice_description_AxeOfGrimnirKeystone}Faith increases duration." />
+  <string id="tor_careerchoice_description.AxeOfGrimnirPassive1" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.AxeOfGrimnirPassive2" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive2}10% extra melee damage." />
+  <string id="tor_careerchoice_description.AxeOfGrimnirPassive3" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive3}Every melee kill adds faith" />
+  <string id="tor_careerchoice_description.AxeOfGrimnirPassive4" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive4}CUSTOM" />
+  <string id="tor_careerchoice_description.ShameOfTheAncestorsKeystone" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsKeystone}Losing a slayer units adds a Doom Seeker stack" />
+  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive1" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive2" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive2}Party movement speed is increased by 1." />
+  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive3" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive3}Player healing rate increased by 2" />
+  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive4" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive4}CUSTOM : All non slayer units can be converted to slayers providing extra oath gold." />
+  <string id="tor_careerchoice_description.DeadlyDeterminationKeystone" text="{=str_tor_careerchoice_description_DeadlyDeterminationKeystone}One handed scales ability." />
+  <string id="tor_careerchoice_description.DeadlyDeterminationPassive1" text="{=str_tor_careerchoice_description_DeadlyDeterminationPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.DeadlyDeterminationPassive2" text="{=str_tor_careerchoice_description_DeadlyDeterminationPassive2}Slayer units gain 50 extra one handed-melee skill." />
+  <string id="tor_careerchoice_description.DeadlyDeterminationPassive3" text="{=str_tor_careerchoice_description_DeadlyDeterminationPassive3}Weapon swing speed increased by 15%." />
+  <string id="tor_careerchoice_description.DeadlyDeterminationPassive4" text="{=str_tor_careerchoice_description_DeadlyDeterminationPassive4}Adds 10% extra base damage after losing 50 healthpoints and armor weight below 9." />
+  <string id="tor_careerchoice_description.UrkSlayerKeystone" text="{=str_tor_careerchoice_description_UrkSlayerKeystone}You deal 50% extra damage during ability" />
+  <string id="tor_careerchoice_description.UrkSlayerPassive1" text="{=str_tor_careerchoice_description_UrkSlayerPassive1}15% movement speed" />
+  <string id="tor_careerchoice_description.UrkSlayerPassive2" text="{=str_tor_careerchoice_description_UrkSlayerPassive2}10% extra melee damage while on horseback." />
+  <string id="tor_careerchoice_description.UrkSlayerPassive3" text="{=str_tor_careerchoice_description_UrkSlayerPassive3}Increases Range resistance by 40%." />
+  <string id="tor_careerchoice_description.UrkSlayerPassive4" text="{=str_tor_careerchoice_description_UrkSlayerPassive4}Any Attack adds bonus against shields" />
+  <string id="tor_careerchoice_description.GiantSlayerKeystone" text="{=str_tor_careerchoice_description_GiantSlayerKeystone}Ability starts charged. Scales with Two handed weapons" />
+  <string id="tor_careerchoice_description.GiantSlayerPassive1" text="{=str_tor_careerchoice_description_GiantSlayerPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.GiantSlayerPassive2" text="{=str_tor_careerchoice_description_GiantSlayerPassive2}25% Bonus damage against mounts if weight undershoots 9" />
+  <string id="tor_careerchoice_description.GiantSlayerPassive3" text="{=str_tor_careerchoice_description_GiantSlayerPassive3}Slayer units gain 50 extra two-handed  skill." />
+  <string id="tor_careerchoice_description.GiantSlayerPassive4" text="{=str_tor_careerchoice_description_GiantSlayerPassive4}Unable to be staggered by any damage." />
+  <string id="tor_careerchoice_description.BaneOfChaosKeystone" text="{=str_tor_careerchoice_description_BaneOfChaosKeystone}You gain 0.1% physical resistance for every kill during ability." />
+  <string id="tor_careerchoice_description.BaneOfChaosPassive1" text="{=str_tor_careerchoice_description_BaneOfChaosPassive1}15% spell damage resistance if weight undershoots 9" />
+  <string id="tor_careerchoice_description.BaneOfChaosPassive2" text="{=str_tor_careerchoice_description_BaneOfChaosPassive2}Player healing rate increased by 4" />
+  <string id="tor_careerchoice_description.BaneOfChaosPassive3" text="{=str_tor_careerchoice_description_BaneOfChaosPassive3}Extra 25% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.BaneOfChaosPassive4" text="{=str_tor_careerchoice_description_BaneOfChaosPassive4}20% bonus damage against chaos and beastmen." />
+  <string id="tor_careerchoice_description.LastJourneyKeystone" text="{=str_tor_careerchoice_description_LastJourneyKeystone}For every taken hit during  your ability, physical damage is increased by 0.5% for the next 5 seconds" />
+  <string id="tor_careerchoice_description.LastJourneyPassive1" text="{=str_tor_careerchoice_description_LastJourneyPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.LastJourneyPassive2" text="{=str_tor_careerchoice_description_LastJourneyPassive2}25% physical melee damage resistance if weight undershoots 9 stones" />
+  <string id="tor_careerchoice_description.LastJourneyPassive3" text="{=str_tor_careerchoice_description_LastJourneyPassive3}15% physical melee damage resistance for slayers" />
+  <string id="tor_careerchoice_description.LastJourneyPassive4" text="{=str_tor_careerchoice_description_LastJourneyPassive4}40% Range resistance for slayer units and heroes." />
+
+  <!-- Warden Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.WardenRoot" text="{=str_tor_careerchoice_description_WardenRoot}The Warden orders his trusty hawk to scout an area. The hawk marks enemies caught in the area as prey. Its ferocious dives instill fear in the foe, which causes penalties to received melee damage. The radius of the ability increases with every point in the Scouting skill.
+
+This ability refreshes automatically and gains additional effects with more Career perks unlocked." />
+  <string id="tor_careerchoice_description.WardenOfCavarocPassive1" text="{=str_tor_careerchoice_description_WardenOfCavarocPassive1}Party speed increases by 2." />
+  <string id="tor_careerchoice_description.WardenOfCavarocPassive2" text="{=str_tor_careerchoice_description_WardenOfCavarocPassive2}50% additional Hitpoints for the player's mount." />
+  <string id="tor_careerchoice_description.WardenOfCavarocPassive3" text="{=str_tor_careerchoice_description_WardenOfCavarocPassive3}10% extra damage while on horseback." />
+  <string id="tor_careerchoice_description.WardenOfCavarocPassive4" text="{=str_tor_careerchoice_description_WardenOfCavarocPassive4}Horse charge damage is increased by 50%." />
+  <string id="tor_careerchoice_description.WardenOfCavarocKeystone" text="{=str_tor_careerchoice_description_WardenOfCavarocKeystone}Riding counts towards ability. Enemy movement speed is reduced for all units in the zone." />
+  <string id="tor_careerchoice_description.WardenOfCythralPassive1" text="{=str_tor_careerchoice_description_WardenOfCythralPassive1}All Elves receive 20 bonus points in their Two-handed skill." />
+  <string id="tor_careerchoice_description.WardenOfCythralPassive2" text="{=str_tor_careerchoice_description_WardenOfCythralPassive2}Weapon swing speed increased by 15%." />
+  <string id="tor_careerchoice_description.WardenOfCythralPassive3" text="{=str_tor_careerchoice_description_WardenOfCythralPassive3}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.WardenOfCythralPassive4" text="{=str_tor_careerchoice_description_WardenOfCythralPassive4}10% extra melee damage against chaos and beastmen." />
+  <string id="tor_careerchoice_description.WardenOfCythralKeystone" text="{=str_tor_careerchoice_description_WardenOfCythralKeystone}Ability scales with two handed weapon skill. ability starts charged" />
+  <string id="tor_careerchoice_description.WardenOfWydriothPassive1" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive1}3 extra Arrows per equipped Quiver" />
+  <string id="tor_careerchoice_description.WardenOfWydriothPassive2" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive2}10% extra range damage." />
+  <string id="tor_careerchoice_description.WardenOfWydriothPassive3" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive3}All Elves receive 20 bonus points in their  bow skill." />
+  <string id="tor_careerchoice_description.WardenOfWydriothPassive4" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive4}All troops gain 10% extra damage with bows." />
+  <string id="tor_careerchoice_description.WardenOfWydriothKeystone" text="{=str_tor_careerchoice_description_WardenOfWydriothKeystone}Archery skill counts towards ability. Enemies in the zone suffer 25% more ranged damage" />
+  <string id="tor_careerchoice_description.WardenOfTorgovannPassive1" text="{=str_tor_careerchoice_description_WardenOfTorgovannPassive1}Wielding a shield increases wardsave." />
+  <string id="tor_careerchoice_description.WardenOfTorgovannPassive2" text="{=str_tor_careerchoice_description_WardenOfTorgovannPassive2}All Elves receive 20 bonus points in their  One-handed skill." />
+  <string id="tor_careerchoice_description.WardenOfTorgovannPassive3" text="{=str_tor_careerchoice_description_WardenOfTorgovannPassive3}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.WardenOfTorgovannPassive4" text="{=str_tor_careerchoice_description_WardenOfTorgovannPassive4}Hits below 15 damage do not stagger the player." />
+  <string id="tor_careerchoice_description.WardenOfTorgovannKeystone" text="{=str_tor_careerchoice_description_WardenOfTorgovannKeystone}One Handed counts towards ability. Enemy attack speed is reduced for all units in the zone." />
+  <string id="tor_careerchoice_description.WardenOfAtylwythPassive1" text="{=str_tor_careerchoice_description_WardenOfAtylwythPassive1}Increases Party size by 10." />
+  <string id="tor_careerchoice_description.WardenOfAtylwythPassive2" text="{=str_tor_careerchoice_description_WardenOfAtylwythPassive2}Eternal guard troops gain 15% physical resistance." />
+  <string id="tor_careerchoice_description.WardenOfAtylwythPassive3" text="{=str_tor_careerchoice_description_WardenOfAtylwythPassive3}For every Glade Captain in your party gain 10 party size." />
+  <string id="tor_careerchoice_description.WardenOfAtylwythPassive4" text="{=str_tor_careerchoice_description_WardenOfAtylwythPassive4}All Elves receive 20 bonus points in their polearm skill." />
+  <string id="tor_careerchoice_description.WardenOfAtylwythKeystone" text="{=str_tor_careerchoice_description_WardenOfAtylwythKeystone} Swing and movement speed increase for all friendly units in the zone." />
+  <string id="tor_careerchoice_description.WardenOfTalsynPassive1" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive1}Armor weight doesn't affect winds regeneration." />
+  <string id="tor_careerchoice_description.WardenOfTalsynPassive2" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive2}All troops gain 10% extra damage." />
+  <string id="tor_careerchoice_description.WardenOfTalsynPassive3" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive3}Companion limit of party is increased by 5." />
+  <string id="tor_careerchoice_description.WardenOfTalsynPassive4" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive4}Thrown spears can penetrate through multiple enemies." />
+  <string id="tor_careerchoice_description.WardenOfTalsynKeystone" text="{=str_tor_careerchoice_description_WardenOfTalsynKeystone} Leadership and Throwing counts towards ability. Cooldown reduction by 50%." />
+  <string id="tor_careerchoice_description.WardenOfArgwylonPassive1" text="{=str_tor_careerchoice_description_WardenOfArgwylonPassive1}10% extra magical melee and spell damage when weight undershoots 15" />
+  <string id="tor_careerchoice_description.WardenOfArgwylonPassive2" text="{=str_tor_careerchoice_description_WardenOfArgwylonPassive2}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.WardenOfArgwylonPassive3" text="{=str_tor_careerchoice_description_WardenOfArgwylonPassive3}Gain 20 Harmony daily." />
+  <string id="tor_careerchoice_description.WardenOfArgwylonPassive4" text="{=str_tor_careerchoice_description_WardenOfArgwylonPassive4}25 extra winds for all Spellsingers." />
+  <string id="tor_careerchoice_description.WardenOfArgwylonKeystone" text="{=str_tor_careerchoice_description_WardenOfArgwylonKeystone}Magical Damage against affected enemies is increased. Small direct damage effects for every enemy in the zone." />
+
+  <!-- Runelord Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The Runesmih utters ancient incantations passed down by venerable Thungni himself - the Ancestor God of Runecraft.
+Reduce the cooldown of the next Rune ability by 15 seconds. Every point of Smithing reduces the cooldown of Wisdom of Thungni by 0.1 seconds.
+If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be empowered." />
+  <string id="tor_careerchoice_description.ForgefireBurningPassive1" text="{=str_tor_careerchoice_description_ForgefireBurningPassive1}Gain 1 additional Charcoal from burning wood" />
+  <string id="tor_careerchoice_description.ForgefireBurningPassive2" text="{=str_tor_careerchoice_description_ForgefireBurningPassive2}Gain a second Ingot from forging metal." />
+  <string id="tor_careerchoice_description.ForgefireBurningPassive3" text="{=str_tor_careerchoice_description_ForgefireBurningPassive3}Stamina reduction 40% for smithing. Regenerate stamina while traveling" />
+  <string id="tor_careerchoice_description.ForgefireBurningPassive4" text="{=str_tor_careerchoice_description_ForgefireBurningPassive4}smithing and smelting also increases faith for the smelter" />
+  <string id="tor_careerchoice_description.ForgefireBurningKeystone" text="{=str_tor_careerchoice_description_ForgefireBurningKeystone}Cooldown of the next ability in line gets reduced by 50% of the current CD." />
+  <string id="tor_careerchoice_description.TeachingsOfThungniPassive1" text="{=str_tor_careerchoice_description_TeachingsOfThungniPassive1}Reduce costs for enchantments by 25%" />
+  <string id="tor_careerchoice_description.TeachingsOfThungniPassive2" text="{=str_tor_careerchoice_description_TeachingsOfThungniPassive2}Crafting Equipment runes also adds smithing and spellcraft skill." />
+  <string id="tor_careerchoice_description.TeachingsOfThungniPassive3" text="{=str_tor_careerchoice_description_TeachingsOfThungniPassive3}10% Wardsave for Unit wearing runes." />
+  <string id="tor_careerchoice_description.TeachingsOfThungniPassive4" text="{=str_tor_careerchoice_description_TeachingsOfThungniPassive4}Increase carrying capacity by 25%" />
+  <string id="tor_careerchoice_description.TeachingsOfThungniKeystone" text="{=str_tor_careerchoice_description_TeachingsOfThungniKeystone}Faith counts towards career ability. Units with runes can charge career ability." />
+  <string id="tor_careerchoice_description.ChiselAndHammerPassive1" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive1}15% extra damage for rune enchanted troops" />
+  <string id="tor_careerchoice_description.ChiselAndHammerPassive2" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive2}Eliminations with magical weapons give Spellcraft exp" />
+  <string id="tor_careerchoice_description.ChiselAndHammerPassive3" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive3}Spell effect radius is increased by 20%." />
+  <string id="tor_careerchoice_description.ChiselAndHammerPassive4" text="{=str_tor_careerchoice_description_ChiselAndHammerPassive4}Oathgold upgrade costs for Elite Units is reduced" />
+  <string id="tor_careerchoice_description.ChiselAndHammerKeystone" text="{=str_tor_careerchoice_description_ChiselAndHammerKeystone}Spellcraft counts towards career ability. the radius of all abilities is increased" />
+  <string id="tor_careerchoice_description.ForHearthAndHomePassive1" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive1}10% Wardsave for Unit wearing runes." />
+  <string id="tor_careerchoice_description.ForHearthAndHomePassive2" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive2}For every magic rune equipped your and companion rune HP increased by 3." />
+  <string id="tor_careerchoice_description.ForHearthAndHomePassive3" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive3}Units with runes heal 50% faster after battles." />
+  <string id="tor_careerchoice_description.ForHearthAndHomePassive4" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive4}Rune magic lasts 10% longer + 0.01% for every point in faith" />
+  <string id="tor_careerchoice_description.ForHearthAndHomeKeystone" text="{=str_tor_careerchoice_description_ForHearthAndHomeKeystone}Heart and Home also adds now 25% extra ranged damage" />
+  <string id="tor_careerchoice_description.StoneAndSteelPassive1" text="{=str_tor_careerchoice_description_StoneAndSteelPassive1}Gain 10% magic resistance to spells." />
+  <string id="tor_careerchoice_description.StoneAndSteelPassive2" text="{=str_tor_careerchoice_description_StoneAndSteelPassive2}10% magic resistance for troops" />
+  <string id="tor_careerchoice_description.StoneAndSteelPassive3" text="{=str_tor_careerchoice_description_StoneAndSteelPassive3}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.StoneAndSteelPassive4" text="{=str_tor_careerchoice_description_StoneAndSteelPassive4}reducing the cooldown to a rune to 0 gives you for 15 seconds 50% extra magical damage" />
+  <string id="tor_careerchoice_description.StoneAndSteelKeystone" text="{=str_tor_careerchoice_description_StoneAndSteelKeystone}The Spellbreaker rune now drains 50% more Winds of Magic" />
+  <string id="tor_careerchoice_description.LegacyOfGrungniPassive1" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive1}Increased gain of Oathgold from delivered steel." />
+  <string id="tor_careerchoice_description.LegacyOfGrungniPassive2" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive2}For every owned Ironsmelter workshop in a Karak gain 2 Oath Gold per day." />
+  <string id="tor_careerchoice_description.LegacyOfGrungniPassive3" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive3}Unit runes are 1/3 cheaper" />
+  <string id="tor_careerchoice_description.LegacyOfGrungniPassive4" text="{=str_tor_careerchoice_description_LegacyOfGrungniPassive4}For every point in smithing , range and radius of magic runes rises by 0.005" />
+  <string id="tor_careerchoice_description.LegacyOfGrungniKeystone" text="{=str_tor_careerchoice_description_LegacyOfGrungniKeystone}The Rune of Oath and Steel also increases fire damage of troops" />
+  <string id="tor_careerchoice_description.AnvilOfDoomPassive1" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive1}15% extra magical damage." />
+  <string id="tor_careerchoice_description.AnvilOfDoomPassive2" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive2}Gain daily 5 Oathgold if an Anvil of Doom is present" />
+  <string id="tor_careerchoice_description.AnvilOfDoomPassive3" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive3}Every alive rune smith in the battlefield reduce Rune magic cooldown by 2%" />
+  <string id="tor_careerchoice_description.AnvilOfDoomPassive4" text="{=str_tor_careerchoice_description_AnvilOfDoomPassive4}Gain the option to add an additional seal on a troop." />
+  <string id="tor_careerchoice_description.AnvilOfDoomKeystone" text="{=str_tor_careerchoice_description_AnvilOfDoomKeystone}Every point in spellcraft increase the damage of Wrath and Ruin by 0.05%" />
+
+  <!-- OrcBoss Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when yoos in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
+  <string id="tor_careerchoice_description.TufferDanNailsPassive1" text="{=str_tor_careerchoice_description_TufferDanNailsPassive1}10% resistance." />
+  <string id="tor_careerchoice_description.TufferDanNailsPassive2" text="{=str_tor_careerchoice_description_TufferDanNailsPassive2}Tripples health regeneration when traveling" />
+  <string id="tor_careerchoice_description.TufferDanNailsPassive3" text="{=str_tor_careerchoice_description_TufferDanNailsPassive3}75 Health" />
+  <string id="tor_careerchoice_description.TufferDanNailsPassive4" text="{=str_tor_careerchoice_description_TufferDanNailsPassive4}Double Renown Gain from battles" />
+  <string id="tor_careerchoice_description.TufferDanNailsKeystone" text="{=str_tor_careerchoice_description_TufferDanNailsKeystone}Armed to da Teef now applies bleeding." />
+  <string id="tor_careerchoice_description.YouAnWotArmourPassive1" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive1}Orc melee and cavalry deal 10% extra damage." />
+  <string id="tor_careerchoice_description.YouAnWotArmourPassive2" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive2}10% extra melee damage only when Polearm, 1h and 2h are equipped" />
+  <string id="tor_careerchoice_description.YouAnWotArmourPassive3" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive3}10% Armor penetration" />
+  <string id="tor_careerchoice_description.YouAnWotArmourPassive4" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive4}Attacks deal quadruple damage vs shields" />
+  <string id="tor_careerchoice_description.YouAnWotArmourKeystone" text="{=str_tor_careerchoice_description_YouAnWotArmourKeystone}Armed to da Teef damage scales with Two Handed skill." />
+  <string id="tor_careerchoice_description.GoodwivBlockasPassive1" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive1}Hits below 30 will not stagger." />
+  <string id="tor_careerchoice_description.GoodwivBlockasPassive2" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive2}Using shields grants 10% extra physical resistance." />
+  <string id="tor_careerchoice_description.GoodwivBlockasPassive3" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive3}Party size increase by 50" />
+  <string id="tor_careerchoice_description.GoodwivBlockasPassive4" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive4}Melee Orc Infantry gains 10% physical damage" />
+  <string id="tor_careerchoice_description.GoodwivBlockasKeystone" text="{=str_tor_careerchoice_description_GoodwivBlockasKeystone}Armed to da Teef damage scales with One Handed skill." />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive1" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive1}10% extra Melee damage." />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive2" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive2}5 extra companion slot." />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}Gain double the Teef when exchanging gold" />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestPassive4" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive4}Big Boss Companions adds daily 5 teef." />
+  <string id="tor_careerchoice_description.MeanestanDaBaddestKeystone" text="{=str_tor_careerchoice_description_MeanestanDaBaddestKeystone}Armed to da Teef damage scales with Polearm skill." />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive1" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive1}Da Boss hits harder wiv choppas. 15% extra damage with axes." />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive2" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive2}5 Extra Companion slots" />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive3" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive3}Extra 15% melee damage if 1h, 2h, and Polearm weapons are equipped" />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive4" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive4}50% extra Teef after dueling Warbosses." />
+  <string id="tor_careerchoice_description.GetToDaChoppasKeystone" text="{=str_tor_careerchoice_description_GetToDaChoppasKeystone}Armed to da Teef grants nearby allies a 20% damage buff." />
+  <string id="tor_careerchoice_description.LeafNuffinBehinPassive1" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive1}Reduce the custom upgrade resource cost for any troop by 25%." />
+  <string id="tor_careerchoice_description.LeafNuffinBehinPassive2" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive2}20% melee armour penetration" />
+  <string id="tor_careerchoice_description.LeafNuffinBehinPassive3" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive3}Party size increase by 75" />
+  <string id="tor_careerchoice_description.LeafNuffinBehinPassive4" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive4}less Teef morale penalty from extort teef" />
+  <string id="tor_careerchoice_description.LeafNuffinBehinKeystone" text="{=str_tor_careerchoice_description_LeafNuffinBehinKeystone}Armed to da Teef applies additional movement slow to enemies." />
+  <string id="tor_careerchoice_description.BestofDaBestPassive1" text="{=str_tor_careerchoice_description_BestofDaBestPassive1}10% Extra Physical damage." />
+  <string id="tor_careerchoice_description.BestofDaBestPassive2" text="{=str_tor_careerchoice_description_BestofDaBestPassive2}10% extra swing speed" />
+  <string id="tor_careerchoice_description.BestofDaBestPassive3" text="{=str_tor_careerchoice_description_BestofDaBestPassive3}75 more Health" />
+  <string id="tor_careerchoice_description.BestofDaBestPassive4" text="{=str_tor_careerchoice_description_BestofDaBestPassive4}Orc Big Bosses gain 100 health." />
+  <string id="tor_careerchoice_description.BestofDaBestKeystone" text="{=str_tor_careerchoice_description_BestofDaBestKeystone}Armed to da Teef slams enemies to the ground." />
+
+  <!-- OrcShaman Career Choice Descriptions -->
+  <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman opens 'iz mind to Da Great Green, channelin' da power of Gork an' Mork for 15 seconds. While focused, movin' an' fightin' iz 'arder, but every Greenskin nearby dealin' damage feeds da Shaman wiv Winds of Magic. Be warned - if da boyz start dyin' instead of killin', da connection backfires an' drains yer power!" />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive1}10% extra melee damage." />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}+10 Maximum Winds of Magic." />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Extra enchantment ingredients when looting." />
+  <string id="tor_careerchoice_description.BonesAnFirepitzPassive4" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive4}Looting shrines grants Spellcraft experience." />
+  <string id="tor_careerchoice_description.BonesAnFirepitzKeystone" text="{=str_tor_careerchoice_description_BonesAnFirepitzKeystone}Call uf da Green is charged at battle start." />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive1" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive1}35% increased spotting range." />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive2" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive2}10% extra spell damage if armor weight under 15kg." />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive3" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive3}Shrine defilement provides more meat and shinies." />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcaynePassive4" text="{=str_tor_careerchoice_description_VisionsUvDaOrcaynePassive4}10% extra damage when wielding a staff." />
+  <string id="tor_careerchoice_description.VisionsUvDaOrcayneKeystone" text="{=str_tor_careerchoice_description_VisionsUvDaOrcayneKeystone}Gaze uv Mork is free and ready after casting Call uf da Green." />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive1" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive1}Looting shrines grants Faith experience." />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive2" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive2}10% extra spell damage." />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive3" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive3}+50 Health." />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenPassive4" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenPassive4}5% physical resistance." />
+  <string id="tor_careerchoice_description.GiftzFromDaGreatGreenKeystone" text="{=str_tor_careerchoice_description_GiftzFromDaGreatGreenKeystone}Call uf da Green effectiveness scales with Spellcraft skill." />
+  <string id="tor_careerchoice_description.BrutalCunninPassive1" text="{=str_tor_careerchoice_description_BrutalCunninPassive1}+60 party size." />
+  <string id="tor_careerchoice_description.BrutalCunninPassive2" text="{=str_tor_careerchoice_description_BrutalCunninPassive2}+50 Health." />
+  <string id="tor_careerchoice_description.BrutalCunninPassive3" text="{=str_tor_careerchoice_description_BrutalCunninPassive3}10% extra physical damage with axes." />
+  <string id="tor_careerchoice_description.BrutalCunninPassive4" text="{=str_tor_careerchoice_description_BrutalCunninPassive4}Hits below 25 damage no longer stagger." />
+  <string id="tor_careerchoice_description.BrutalCunninKeystone" text="{=str_tor_careerchoice_description_BrutalCunninKeystone}Call uf da Green grants 10% extra physical resistance." />
+  <string id="tor_careerchoice_description.CunninBrutalityPassive1" text="{=str_tor_careerchoice_description_CunninBrutalityPassive1}10% extra spell damage if armor weight under 15kg." />
+  <string id="tor_careerchoice_description.CunninBrutalityPassive2" text="{=str_tor_careerchoice_description_CunninBrutalityPassive2}+10 Winds of Magic." />
+  <string id="tor_careerchoice_description.CunninBrutalityPassive3" text="{=str_tor_careerchoice_description_CunninBrutalityPassive3}10% Wardsave." />
+  <string id="tor_careerchoice_description.CunninBrutalityPassive4" text="{=str_tor_careerchoice_description_CunninBrutalityPassive4}20% Armor penetration." />
+  <string id="tor_careerchoice_description.CunninBrutalityKeystone" text="{=str_tor_careerchoice_description_CunninBrutalityKeystone}Nearby Greenskins deal 15% extra damage during Call uf da Green." />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive1" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive1}15% spell damage resistance when wearing under 15kg." />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive2" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive2}+10 Winds of Magic." />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive3" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive3}10% Wardsave for Greenskins." />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinPassive4" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinPassive4}+70 HP for Shaman Boss companion." />
+  <string id="tor_careerchoice_description.GorkAnMorkAreWatchinKeystone" text="{=str_tor_careerchoice_description_GorkAnMorkAreWatchinKeystone}Call uf da Green effectiveness scales with Faith skill." />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive1" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive1}10% extra spell damage." />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive2" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive2}+30 Winds of Magic for Shaman companion." />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive3" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive3}10% extra wardsave when wearing under 15kg." />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghPassive4" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghPassive4}+60 party size." />
+  <string id="tor_careerchoice_description.PowerUvDaWaaaghKeystone" text="{=str_tor_careerchoice_description_PowerUvDaWaaaghKeystone}Gain 50% physical resistance during Call uf da Green." />
+
   <string id="tor_career_rank1_name.Necromancer" text="{=str_tor_career_rank1_name_Necromancer}Apprentice" />
   <string id="tor_career_rank2_name.Necromancer" text="{=str_tor_career_rank2_name_Necromancer}Scholar" />
   <string id="tor_career_rank3_name.Necromancer" text="{=str_tor_career_rank3_name_Necromancer}Lichmaster" />
@@ -2514,68 +3354,6 @@
   <string id="str_facegen_skin.Weight2" text="{=str_str_facegen_skin_Weight2}Body Weight" />
   <string id="str_facegen_skin.Build2" text="{=str_str_facegen_skin_Build2}Body Muscle" />
   <!-- End FaceGen Entries -->
-
-
-  <!-- WarriorPriest Career Choices -->
-  <string id="tor_careerchoice_description.WarriorPriestRoot" text="{=str_tor_careerchoice_description_WarriorPriestRoot}The Warrior Priest unleashes Sigmar's wrath for 8 seconds, which empowers him and the surrounding allies with 20% stronger melee attacks. Every point in Faith increases the melee effect by 0.05% and the duration by 0.05 seconds. The ability recharges by taking 50% of damage of total health. Blocked damage counts as 10% of the damage taken." />
-  <string id="tor_careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_careerchoice_description_BookOfSigmarKeyStone}Ability can also be charged by applying damage." />
-  <string id="tor_careerchoice_description.BookOfSigmarPassive1" text="{=str_tor_careerchoice_description_BookOfSigmarPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_careerchoice_description_BookOfSigmarPassive2}Increases morale for all troops by 10." />
-  <string id="tor_careerchoice_description.BookOfSigmarPassive3" text="{=str_tor_careerchoice_description_BookOfSigmarPassive3}After battle, all wounded companions are healed for 20 Hitpoints." />
-  <string id="tor_careerchoice_description.BookOfSigmarPassive4" text="{=str_tor_careerchoice_description_BookOfSigmarPassive4}Wounded troops in your party heal faster." />
-  <string id="tor_careerchoice_description.SigmarsProclaimerKeystone" text="{=str_tor_careerchoice_description_SigmarsProclaimerKeystone}Doubles the aura size of Righteous Fury." />
-  <string id="tor_careerchoice_description.SigmarsProclaimerPassive1" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive1}10% extra holy melee damage." />
-  <string id="tor_careerchoice_description.SigmarsProclaimerPassive2" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive2}All Sigmarite troops wages are reduced by 20%." />
-  <string id="tor_careerchoice_description.SigmarsProclaimerPassive3" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive3}Sigmarite troops get 25% resistance to physical ranged attacks." />
-  <string id="tor_careerchoice_description.SigmarsProclaimerPassive4" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive4}When praying at a shrine of Sigmar, all characters restore 50 Hitpoints." />
-  <string id="tor_careerchoice_description.RelentlessFanaticKeyStone" text="{=str_tor_careerchoice_description_RelentlessFanaticKeyStone}Righteous Fury scales with Leadership. Troops affected get unbreakable for the duration." />
-  <string id="tor_careerchoice_description.RelentlessFanaticPassive1" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.RelentlessFanaticPassive2" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive2}10% extra holy melee damage." />
-  <string id="tor_careerchoice_description.RelentlessFanaticPassive3" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive3}Party movement speed is increased by 1." />
-  <string id="tor_careerchoice_description.RelentlessFanaticPassive4" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive4}Prayers aren't affected by global cooldowns." />
-  <string id="tor_careerchoice_description.ProtectorOfTheWeakKeyStone" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakKeyStone}Righteous Fury scales with the highest melee weapon skill. Adds 20% physical resistance." />
-  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive2" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive2}Increases melee physical resistance by 15%." />
-  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive3" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive3}Increases Magic resistance against spells by 25%." />
-  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive4" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive4}Hits below 15 damage do not stagger the player." />
-  <string id="tor_careerchoice_description.HolyPurgeKeyStone" text="{=str_tor_careerchoice_description_HolyPurgeKeyStone}All units affected by Righteous Fury receive a burning weapon buff." />
-  <string id="tor_careerchoice_description.HolyPurgePassive1" text="{=str_tor_careerchoice_description_HolyPurgePassive1}10% extra holy melee damage." />
-  <string id="tor_careerchoice_description.HolyPurgePassive2" text="{=str_tor_careerchoice_description_HolyPurgePassive2}All battles against forces of Chaos and undead earn 20% more prestige." />
-  <string id="tor_careerchoice_description.HolyPurgePassive3" text="{=str_tor_careerchoice_description_HolyPurgePassive3}All troops deal 10% more melee damage to non-human enemies." />
-  <string id="tor_careerchoice_description.HolyPurgePassive4" text="{=str_tor_careerchoice_description_HolyPurgePassive4}All Sigmarite troops gain 10% extra Holy damage." />
-  <string id="tor_careerchoice_description.ArchLectorKeyStone" text="{=str_tor_careerchoice_description_ArchLectorKeyStone}Adds a healing buff to Righteous Fury that restores 3 Hitpoints per second." />
-  <string id="tor_careerchoice_description.ArchLectorPassive1" text="{=str_tor_careerchoice_description_ArchLectorPassive1}Prayers are recharged on battle start." />
-  <string id="tor_careerchoice_description.ArchLectorPassive2" text="{=str_tor_careerchoice_description_ArchLectorPassive2}All neutral Empire troops now count as Sigmarite troops." />
-  <string id="tor_careerchoice_description.ArchLectorPassive3" text="{=str_tor_careerchoice_description_ArchLectorPassive3}Gain 15% Ward save." />
-  <string id="tor_careerchoice_description.ArchLectorPassive4" text="{=str_tor_careerchoice_description_ArchLectorPassive4}All Sigmarite troops gain 20% Ward save." />
-  <string id="tor_careerchoice_description.TwinTailedCometKeystone" text="{=str_tor_careerchoice_description_TwinTailedCometKeystone}Righteous Fury adds a damaging aura. Its radius increases slightly when raising relevant skills." />
-  <string id="tor_careerchoice_description.TwinTailedCometPassive1" text="{=str_tor_careerchoice_description_TwinTailedCometPassive1}10% extra holy melee damage." />
-  <string id="tor_careerchoice_description.TwinTailedCometPassive2" text="{=str_tor_careerchoice_description_TwinTailedCometPassive2}Increases Companion Limit by 5." />
-  <string id="tor_careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_careerchoice_description_TwinTailedCometPassive3}Extra 20% armor penetration of melee attacks." />
-  <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}Increases Hitpoints by 30." />
-
-  <!-- WarriorPriestUlric Career Choices -->
-  <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}The Wolf Priest unleashes a mighty blow in the name of his feral god, bringing the full might of his weapon crashing to the ground as if he were wielding Blitzbeil itself. This attack cannot be parried and affects targets in a 2-meter radius. For every point of the players highest weapon skill, damage is increased by 0.1%." />
-  <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}A single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 20%. After every hit there is a 50% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by 0.1% additional targets are marked." />
-  <string id="tor_careerchoice_description.BloodKnightRoot" text="{=str_tor_careerchoice_description_BloodKnightRoot}The Blood Knight is channeling focus and rage towards the enemies. Damage increased by 45% and physical resistance by 10% for the next 6 seconds. Both bonuses increase with the skill of the equipped weapon by 0.05% per point. Requires 5 kills to recharge, +1 kill per a final perk picked up to max 10." />
-  <string id="tor_careerchoice_description.GrailKnightRoot" text="{=str_tor_careerchoice_description_GrailKnightRoot}The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds, increasing the speed by 20%. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs." />
-  <string id="tor_careerchoice_description.GrailDamselRoot" text="{=str_tor_careerchoice_description_GrailDamselRoot}The Damsel wanders on the fey paths. Instantly teleports the player to the targeted ground position. Charges with dealt or healed damage by magic." />
-  <string id="tor_careerchoice_description.BlackGrailKnightRoot" text="{=str_tor_careerchoice_description_BlackGrailKnightRoot}The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs." />
-  <string id="tor_careerchoice_description.MercenaryRoot" text="{=str_tor_careerchoice_description_MercenaryRoot}The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills." />
-  <string id="tor_careerchoice_description.NecromancerRoot" text="{=str_tor_careerchoice_description_NecromancerRoot}Summon a champion that the necromancer take control of. The Champion loses every 2 seconds 5 health points. For every 3 points in spell casting skill the champion gains 1 health point. Charging: applying spell- damage or healing. Alternatively, Let undead units inflict damage." />
-  <string id="tor_careerchoice_description.VampireCountRoot" text="{=str_tor_careerchoice_description_VampireCountRoot}The player transforms into fog, which is impossible to catch and can fly in every direction. The ability lasts 5 seconds and the duration increases by 0.03 seconds for each point in Athletics. Mist Form can be deactivated at will by pressing attack." />
-  <string id="tor_careerchoice_description.NecrarchRoot" text="{=str_tor_careerchoice_description_NecrarchRoot}Summoned directly from the realm of the dead and cast by the Necrarch, this projectile spell deals 80 damage. The Blast of Agony grows in size for every point put into the Spellcraft skill, it can also be modified with several upgrades from the Career tree. It is free of any winds of magic cost to cast." />
-  <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}For 10 seconds, the wizard charges his own magical reserves by channeling Winds of Magic swirling in the air. While charging, the wizard is vulnerable to damage and moves at a greatly reduced pace. Every second, 3% of the total Winds of Magic reserve is regained. For every 50 points in Spellcraft, the duration is extended by 1 second, and every key stone picked grants an additional use of Arcane Conduit." />
-  <string id="tor_careerchoice_description.GreyLordRoot" text="{=str_tor_careerchoice_description_GreyLordRoot}As a master of Winds of Magic and forbidden arts, the Grey Lord conjures subtle whispers inside the enemy's mind and convinces the foes in the area to turn on their allies. After all, a true Grey Lord knows better than to cloud his judgment with trifling matters of morality. The chance to turn enemies rises with Spellcraft skills, the health and the level of targets as well as each keystone perk selected." />
-  <string id="tor_careerchoice_description.SpellSingerRoot" text="{=str_tor_careerchoice_description_SpellSingerRoot}Calls treespirits of the surrounding forests. Every point in Spellcraft increases the chance by 0.05% additional treespirits join the combat." />
-  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Kurnous, Lord of the Hunt, blesses this fatal shot to travel straight through the heart of the enemy. This missile attack will seek out its target and trigger an explosion upon impact. With every skill point in Archery, the radius increases. For charging ability deal 1200 damage points with bows. Each Arrow charges a maximum of 150 points." />
-  <string id="tor_careerchoice_description.WardenRoot" text="{=str_tor_careerchoice_description_WardenRoot}The Warden orders his trusty hawk to scout an area. The hawk marks enemies caught in the area as prey. Its ferocious dives instill fear in the foe, which causes penalties to received melee damage. The radius of the ability increases with every point in the Scouting skill. This ability refreshes automatically and gains additional effects with more Career perks unlocked." />
-  <string id="tor_careerchoice_description.KnightOldWorldRoot" text="{=str_tor_careerchoice_description_KnightOldWorldRoot}The Knight focuses on his grand mission, which results in a 20% boost to damage for the next melee hit. For every point in the One Handed skill, your damage increases by 1% during the effect. The boost lasts for a maximum of 15 seconds. For every Keystone enabled, you acquire another use, enhancing your strikes. Deal melee damage to recharge your ability." />
-  <string id="tor_careerchoice_description.IronbreakerRoot" text="{=str_tor_careerchoice_description_IronbreakerRoot}The Character will not receive any damage for a short amount of time and will shrug any damage off. The movement speed is reduced by 25% though. The duration expands with growing athletics skill." />
-  <string id="tor_careerchoice_description.SlayerRoot" text="{=str_tor_careerchoice_description_SlayerRoot}For a limited time, the Slayer has a increased speed bonus and weapon speed bonus. The kills gained during the ability, add a doom seeker stack which permanently increasing the damage of the player. For every Keystone, the damage dealt bonus is increased by 0.05%. The ability requires 500 damage to be charged. Every kill adds 100 additional charge. For every keystone(5th perk) you require 10% more damage." />
-  <string id="tor_careerchoice_description.RunelordRoot" text="{=str_tor_careerchoice_description_RunelordRoot}The Runesmith utters ancient incantations passed down by venerable Thungni himself - the Ancestor God of Runecraft. Reduce the cooldown of the next Rune ability by 15 seconds. Every point of Smithing reduces the cooldown of Wisdom of Thungni by 0.1 seconds. If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be empowered." />
-  <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when yoos in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
-  <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman opens 'iz mind to Da Great Green, channelin' da power of Gork an' Mork for 15 seconds. While focused, movin' an' fightin' iz 'arder, but every Greenskin nearby dealin' damage feeds da Shaman wiv Winds of Magic. Be warned - if da boyz start dyin' instead of killin', da connection backfires an' drains yer power!" />
 
   <!--Career perks related !-->
   <string id="tor_hunt_perk_result.CompletelyFailed" text="{=str_tor_hunt_perk_result_completelyfailed}Your daily hunt was not successful" />
