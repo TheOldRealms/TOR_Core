@@ -240,10 +240,10 @@ namespace TOR_Core.Models
                         {
                             case ForestHarmonyLevel.Harmony: break;
                             case ForestHarmonyLevel.Unbound:
-                                number.AddFactor(ForestHarmonyHelper.HealthDebuffUnBound, new TextObject(ForestHarmonyLevel.Unbound.ToString()));
+                                number.AddFactor(ForestHarmonyHelper.HealthDebuffUnBound, GameTexts.FindText("tor_forest_harmony_level", ForestHarmonyLevel.Unbound.ToString()));
                                 break;
                             case ForestHarmonyLevel.Bound:
-                                number.AddFactor(ForestHarmonyHelper.HealthDebuffBound, new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                                number.AddFactor(ForestHarmonyHelper.HealthDebuffBound, GameTexts.FindText("tor_forest_harmony_level", ForestHarmonyLevel.Bound.ToString()));
                                 break;
                         }
                     }
