@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Ink.Runtime;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,48 +36,56 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             Passive = passiveEffect;
             if (GameTexts.TryGetText("tor_careerchoice_description", out var descriptionOverride, StringId))
             {
-                if (Passive != null)
+                if (descriptionOverride != null)
                 {
-                    if (Passive.DamageProportionTuple != null)
+                    if (!descriptionOverride.Value.Contains(text.Value))
                     {
-                        var damageType = Passive.DamageProportionTuple.DamageType;
-                        GameTexts.TryGetText("tor_damagetype", out var damageTypeText, damageType.ToString());
-                        GameTexts.SetVariable("EFFECT_DAMAGE_TYPE", damageTypeText);
+                        TORCommon.Log(String.Format("Career perk text has been modified in externalized strings. this should be adapted in code: \n CODE {0} \n XML {1}",text.Value, descriptionOverride.Value),LogLevel.Warn);
+                    }
+                    
+                    text = new TextObject(descriptionOverride.Value.ToString());
+                }
 
-                        var attackType = Passive.AttackTypeMask;
-                        GameTexts.TryGetText("tor_attacktype", out var attackTypeText, attackType.ToString());
-                        GameTexts.SetVariable("EFFECT_ATTACK_TYPE", damageTypeText);
-                        GameTexts.SetVariable("EFFECT_VALUE", (Passive.DamageProportionTuple.Percent).ToString("R"));
+                if (descriptionOverride == null)
+                {
+                    TORCommon.Log(String.Format("tor_careerchoice_description {0} was not found in externalized strings (tor_strings)",StringId),LogLevel.Warn);
+                }
+            }
+            if (Passive != null)
+            {
+                if (Passive.DamageProportionTuple != null)
+                {
+                    var damageType = Passive.DamageProportionTuple.DamageType;
+                    GameTexts.TryGetText("tor_damagetype", out var damageTypeText, damageType.ToString());
+                    GameTexts.SetVariable("EFFECT_DAMAGE_TYPE", damageTypeText);
+
+                    var attackType = Passive.AttackTypeMask;
+                    GameTexts.TryGetText("tor_attacktype", out var attackTypeText, attackType.ToString());
+                    GameTexts.SetVariable("EFFECT_ATTACK_TYPE", damageTypeText);
+                    GameTexts.SetVariable("EFFECT_VALUE", (Passive.DamageProportionTuple.Percent).ToString("R"));
+                }
+                else
+                {
+                    if (Passive.InterpretAsPercentage)
+                    {
+                        if (Passive.PassiveEffectType == PassiveEffectType.ArmorPenetration)
+                        {
+                            GameTexts.SetVariable("EFFECT_VALUE", (-Passive.EffectMagnitude).ToString("R"));
+                        }
+                        else
+                        {
+                            GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
+                        }
                     }
                     else
                     {
 
-
-                        if (Passive.InterpretAsPercentage)
-                        {
-                            if (Passive.PassiveEffectType == PassiveEffectType.ArmorPenetration)
-                            {
-                                GameTexts.SetVariable("EFFECT_VALUE", (-Passive.EffectMagnitude).ToString("R"));
-                            }
-                            else
-                            {
-                                GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString("R"));
-                            }
-                        }
-                        else
-                        {
-
-                            GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString());
-                        }
+                        GameTexts.SetVariable("EFFECT_VALUE", Passive.EffectMagnitude.ToString());
                     }
-
                 }
 
-                if (descriptionOverride != null)
-                {
-                    text = new TextObject(descriptionOverride.ToString());
-                }
             }
+            
             base.Initialize(new TextObject(StringId), text);
             OwnerCareer = ownerCareer;
             if (!string.IsNullOrEmpty(belongsToGroup))

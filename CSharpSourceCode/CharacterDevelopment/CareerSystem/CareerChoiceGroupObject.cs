@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -25,7 +27,27 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public void Initialize(string name, CareerObject ownerCareer, int tier, ConditionDelegate conditionDelegate, UnlockDelegate unlockDelegate = null)
         {
-            base.Initialize(new TextObject(name), new TextObject("Choice group for " + name));
+            TextObject nameText = new TextObject(name);
+
+            // Look up externalized name by StringId (mirrors CareerChoiceObject pattern)
+            if (GameTexts.TryGetText("tor_career_choicegroup_name", out var nameOverride, StringId))
+            {
+                if (nameOverride != null)
+                {
+                    if (!nameOverride.Contains(nameText))
+                    {
+                        TORCommon.Log(String.Format("Career choice group name has been modified in externalized strings. this should be adapted in code: \n CODE {0} \n XML {1}", nameText, nameOverride), LogLevel.Warn);
+                    }
+                    nameText = new TextObject(nameOverride.Value.ToString());
+                }
+
+                if (nameOverride == null)
+                {
+                    TORCommon.Log(String.Format("tor_career_choicegroup_name {0} was not found in externalized strings (tor_strings)", StringId), LogLevel.Warn);
+                }
+            }
+
+            base.Initialize(nameText, new TextObject("Choice group for " + name));
             OwnerCareer = ownerCareer;
             Tier = tier;
             _conditionDelegate = conditionDelegate;
