@@ -49,34 +49,34 @@ namespace TOR_Core.CharacterDevelopment
             _prayerEffectiveness = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("PrayerEffectiveness"));
             _prayerDuration = Game.Current.ObjectManager.RegisterPresumedObject(new SkillEffect("PrayerDuration"));
 
-            _gunReloadSpeed.Initialize(new TextObject("{=tor_skills_gun_reload_speed_str}Gunpowder firearms reload speed: +{a0} %", null),
+            _gunReloadSpeed.Initialize(new TextObject("{=str_tor_skill_effect_gun_reload_speed}Gunpowder firearms reload speed: +{a0} %", null),
             TORSkills.GunPowder, PartyRole.Personal, 0.0007f, EffectIncrementType.AddFactor, 0f, 0f);
 
-            _gunAccuracy.Initialize(new TextObject("{=tor_skills_gun_accuracy_str}Gunpowder firearms accuracy: +{a0} %", null),
+            _gunAccuracy.Initialize(new TextObject("{=str_tor_skill_effect_gun_accuracy}Gunpowder firearms accuracy: +{a0} %", null),
             TORSkills.GunPowder, PartyRole.Personal, 0.0005f, EffectIncrementType.AddFactor, 0f, 0f);
 
-            _spellEffectiveness.Initialize(new TextObject("{=tor_skills_spell_effectiveness_str}Spell effectiveness: +{a0} %", null),
+            _spellEffectiveness.Initialize(new TextObject("{=str_tor_skill_effect_spell_effectiveness}Spell effectiveness: +{a0} %", null),
             TORSkills.Spellcraft, PartyRole.Personal, 0.0005f, EffectIncrementType.AddFactor, 0f, 0f);
 
-            _spellDuration.Initialize(new TextObject("{=tor_skills_spell_duration_str}Spell duration: +{a0} %", null),
+            _spellDuration.Initialize(new TextObject("{=str_tor_skill_effect_spell_duration}Spell duration: +{a0} %", null),
             TORSkills.Spellcraft, PartyRole.Personal, 0.0005f, EffectIncrementType.AddFactor, 0f, 0f);
 
-            _windsRechargeRate.Initialize(new TextObject("{=tor_skills_winds_recharge_rate_str}Winds of magic recharge rate: +{a0} / hour", null),
+            _windsRechargeRate.Initialize(new TextObject("{=str_tor_skill_effect_winds_recharge_rate}Winds of magic recharge rate: +{a0} / hour", null),
             TORSkills.Spellcraft, PartyRole.Personal, 0.0075f, EffectIncrementType.Add, 0f, 0f);
 
-            _maxWinds.Initialize(new TextObject("{=tor_skills_max_winds_str}Maximum winds of magic: +{a0}", null),
+            _maxWinds.Initialize(new TextObject("{=str_tor_skill_effect_max_winds}Maximum winds of magic: +{a0}", null),
             TORSkills.Spellcraft, PartyRole.Personal, 0.3f, EffectIncrementType.Add, 0f, 0f);
 
-            _faithWardSave.Initialize(new TextObject("{=tor_skills_ward_save_str}Ward save: +{a0} %", null),
+            _faithWardSave.Initialize(new TextObject("{=str_tor_skill_effect_ward_save}Ward save: +{a0} %", null),
             TORSkills.Faith, PartyRole.Personal, 0.0008f, EffectIncrementType.AddFactor, 0f, 0f);
 
-            _blessingDuration.Initialize(new TextObject("{=tor_skills_blessing_duration_str}Blessing duration increase: +{a0} %", null),
+            _blessingDuration.Initialize(new TextObject("{=str_tor_skill_effect_blessing_duration}Blessing duration increase: +{a0} %", null),
             TORSkills.Faith, PartyRole.PartyLeader, 0.01f, EffectIncrementType.AddFactor, 0f, 0f);
 
-            _prayerEffectiveness.Initialize(new TextObject("{=tor_skills_spell_effectiveness_str}Prayer effectiveness(Only Priests): +{a0} %", null),
+            _prayerEffectiveness.Initialize(new TextObject("{=str_tor_skill_effect_prayer_effectiveness}Prayer effectiveness(Only Priests): +{a0} %", null),
             TORSkills.Faith, PartyRole.Personal, 0.00025f, EffectIncrementType.AddFactor, 0f, 0f);
 
-            _prayerDuration.Initialize(new TextObject("{=tor_skills_blessing_duration_str}Prayer duration increase(Only Priests): +{a0} %", null),
+            _prayerDuration.Initialize(new TextObject("{=str_tor_skill_effect_prayer_duration}Prayer duration increase(Only Priests): +{a0} %", null),
             TORSkills.Faith, PartyRole.Personal, 0.00025f, EffectIncrementType.AddFactor, 0f, 0f);
         }
     }

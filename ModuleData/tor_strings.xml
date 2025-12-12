@@ -5,9 +5,45 @@
   <string id="str_career_screen.ability_title" text= "{=str_tor_career_ability_title}Career Ability"/>
   <string id="str_career_screen.free_points" text= "{=str_tor_career_free_points_label}Free career points: {FREE_CAREERPOINTS}"/>
   <string id="str_inventory_race_lock" text= "{=str_tor_inventory_race_lock_text}This item is only usable by"/>
-  
-  
-  
+
+
+
+  <!-- Skills -->
+  <string id="tor_skill_faith" text="{=str_tor_skill_faith}Faith"/>
+  <string id="tor_skill_faith_description" text="{=str_tor_skill_faith_description}Faith signifies your beliefs and your conviction in your chosen religion."/>
+  <string id="tor_skill_gunpowder" text="{=str_tor_skill_gunpowder}Gunpowder"/>
+  <string id="tor_skill_gunpowder_description" text="{=str_tor_skill_gunpowder_description}Gunpowder skill governs your ability to handle firearms and artillery."/>
+  <string id="tor_skill_spellcraft" text="{=str_tor_skill_spellcraft}Spellcraft"/>
+  <string id="tor_skill_spellcraft_description" text="{=str_tor_skill_spellcraft_description}Spellcraft is your ability to use magic."/>
+
+  <!-- Skill Effects -->
+  <string id="tor_skill_effect_gun_reload_speed" text="{=str_tor_skill_effect_gun_reload_speed}Gunpowder firearms reload speed: +{a0} %"/>
+  <string id="tor_skill_effect_gun_accuracy" text="{=str_tor_skill_effect_gun_accuracy}Gunpowder firearms accuracy: +{a0} %"/>
+  <string id="tor_skill_effect_spell_effectiveness" text="{=str_tor_skill_effect_spell_effectiveness}Spell effectiveness: +{a0} %"/>
+  <string id="tor_skill_effect_spell_duration" text="{=str_tor_skill_effect_spell_duration}Spell duration: +{a0} %"/>
+  <string id="tor_skill_effect_winds_recharge_rate" text="{=str_tor_skill_effect_winds_recharge_rate}Winds of magic recharge rate: +{a0} / hour"/>
+  <string id="tor_skill_effect_max_winds" text="{=str_tor_skill_effect_max_winds}Maximum winds of magic: +{a0}"/>
+  <string id="tor_skill_effect_ward_save" text="{=str_tor_skill_effect_ward_save}Ward save: +{a0} %"/>
+  <string id="tor_skill_effect_blessing_duration" text="{=str_tor_skill_effect_blessing_duration}Blessing duration increase: +{a0} %"/>
+  <string id="tor_skill_effect_prayer_effectiveness" text="{=str_tor_skill_effect_prayer_effectiveness}Prayer effectiveness(Only Priests): +{a0} %"/>
+  <string id="tor_skill_effect_prayer_duration" text="{=str_tor_skill_effect_prayer_duration}Prayer duration increase(Only Priests): +{a0} %"/>
+
+  <!-- Character Traits -->
+  <string id="tor_spellcaster_trait_name" text="{=str_tor_spellcaster_trait_name}Spellcaster"/>
+  <string id="tor_spellcaster_trait_description" text="{=str_tor_spellcaster_trait_description}Spellcaster Description"/>
+  <string id="tor_shallyadevoted_trait_name" text="{=str_tor_shallyadevoted_trait_name}Shallya Devoted"/>
+  <string id="tor_shallyadevoted_trait_description" text="{=str_tor_shallyadevoted_trait_description}Devoted priest to Shallya"/>
+  <string id="tor_sigmardevoted_trait_name" text="{=str_tor_sigmardevoted_trait_name}Sigmar Devoted"/>
+  <string id="tor_sigmardevoted_trait_description" text="{=str_tor_sigmardevoted_trait_description}Devoted priest to Sigmar"/>
+  <string id="tor_ladydevoted_trait_name" text="{=str_tor_ladydevoted_trait_name}Lady Devoted"/>
+  <string id="tor_ladydevoted_trait_description" text="{=str_tor_ladydevoted_trait_description}Devoted priestess to the Lady"/>
+  <string id="tor_ulricdevoted_trait_name" text="{=str_tor_ulricdevoted_trait_name}Ulric Devoted"/>
+  <string id="tor_ulricdevoted_trait_description" text="{=str_tor_ulricdevoted_trait_description}Devoted priest to Ulric"/>
+  <string id="tor_nagashcorrupted_trait_name" text="{=str_tor_nagashcorrupted_trait_name}Nagash Corrupted"/>
+  <string id="tor_nagashcorrupted_trait_description" text="{=str_tor_nagashcorrupted_trait_description}This mind has been corrupted by the curse of nagash"/>
+  <string id="tor_gunner_trait_name" text="{=str_tor_gunner_trait_name}Gunner"/>
+  <string id="tor_gunner_trait_description" text="{=str_tor_gunner_trait_description}Expert of Blackpowder weapons"/>
+
   <!-- Generic Text -->
 	<string id="tor_generic_upkeep" text="{=str_tor_generic_upkeep}Upkeep" />
 	<string id="tor_generic_garrisonUpkeep" text="{=str_tor_generic_garrisonUpkeep}Garrison Upkeep" />
