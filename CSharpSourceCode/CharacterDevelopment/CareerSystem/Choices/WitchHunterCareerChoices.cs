@@ -191,7 +191,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 });
 
 
-            _swiftProcedureKeystone.Initialize(CareerID, "Marked enemies movement & swing speed is decreased. Ability scales with athletics", "SwiftProcedure", false,
+            _swiftProcedureKeystone.Initialize(CareerID, "Marked enemies movement and swing speed is decreased. Ability scales with athletics", "SwiftProcedure", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -242,7 +242,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _huntTheWickedPassive1.Initialize(CareerID, "Player healing rate increased by 3", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.HealthRegeneration));
             _huntTheWickedPassive2.Initialize(CareerID, "Ranged Infantry wages are 15% reduced.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.TroopWages, true,
                 characterObject => !characterObject.IsHero && !characterObject.IsMounted && characterObject.IsRanged));
-            _huntTheWickedPassive3.Initialize(CareerID, "Every  equipped ranged weapon increases melee damage by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
+            _huntTheWickedPassive3.Initialize(CareerID, "Every equipped ranged weapon increases melee damage by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
             _huntTheWickedPassive4.Initialize(CareerID, "Increases the damage of all ranged troops by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,
                 (attacker, victim, mask) => !attacker.BelongsToMainParty() && !(attacker.IsMainAgent || attacker.IsHero) && mask == AttackTypeMask.Ranged));
 
@@ -272,7 +272,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _guiltyByAssociationPassive2.Initialize(CareerID, "Every ranged troop deals 15% extra holy damage.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Ranged,
                 (attacker, victim, mask) => attacker.BelongsToMainParty() && !attacker.IsMainAgent && mask == AttackTypeMask.Ranged));
             _guiltyByAssociationPassive3.Initialize(CareerID, "Companion health increases by 50.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));
-            _guiltyByAssociationPassive4.Initialize(CareerID, "Killing blows in the head increase temporary reload & swing speed", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special));
+            _guiltyByAssociationPassive4.Initialize(CareerID, "Killing blows in the head increase temporary reload and swing speed", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special));
         }
     }
 }

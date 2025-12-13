@@ -111,7 +111,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializeKeyStones()
     {
-        _runelorddRoot.Initialize(CareerID, "The Runesmih utters ancient incantations passed down by venerable Thungni himself - the Ancestor God of Runecraft.\nReduce the cooldown of the next Rune ability by 15 seconds. Every point of Smithing reduces the cooldown of Wisdom of Thungni by 0.1 seconds.\nIf a Rune ability is available to cast, the next Rune cast in 5 seconds shall be empowered.", null, true,
+        _runelorddRoot.Initialize(CareerID, "The Runesmih utters ancient incantations passed down by venerable Thungni himself - the Ancestor God of Runecraft. Reduce the cooldown of the next Rune ability by 15 seconds. Every point of Smithing reduces the cooldown of Wisdom of Thungni by 0.1 seconds. If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be empowered.", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
