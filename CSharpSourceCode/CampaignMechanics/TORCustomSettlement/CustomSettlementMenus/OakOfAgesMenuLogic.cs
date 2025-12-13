@@ -256,7 +256,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
                     500, 0, null, TranferCompleted, IsTransferableTreeSpirit, null),
             false);     //check if left side only contain tree spirits done button condition
 
-        starter.AddWaitGameMenu("oak_of_ages_tree_spirits_menu_bind_dryads", "{=tor_custom_settlement_cursed_site_ghosts_progress_str}Performing binding ritual...",
+        starter.AddWaitGameMenu("oak_of_ages_tree_spirits_menu_bind_dryads", "{=str_tor_custom_settlement_cursed_site_ghosts_progress}Performing binding ritual...",
             delegate (MenuCallbackArgs args)
             {
                 _startWaitTime = CampaignTime.Now;
@@ -672,7 +672,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             if (showAnyway)
             {
                 args.IsEnabled = false;
-                args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Already unlocked.");
+                args.Tooltip = new TextObject("{=str_tor_custom_settlement_we_not_enough_harmony}Already unlocked.");
                 return true;
             }
 
@@ -685,7 +685,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         }
         else
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Not enough Harmony.");
+            args.Tooltip = new TextObject("{=str_tor_custom_settlement_we_not_enough_harmony}Not enough Harmony.");
             args.IsEnabled = false;
 
             return true;
@@ -707,7 +707,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             return true;
         }
 
-        args.Tooltip = new TextObject("{=tor_custom_settlement_we_party_size_info_str}Not enough Harmony for traveling.");
+        args.Tooltip = new TextObject("{=str_tor_custom_settlement_we_not_enough_harmony}Not enough Harmony for traveling.");
         args.IsEnabled = false;
         return true;
     }

@@ -121,7 +121,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             NarrativeMenu stage1Menu = new NarrativeMenu("tor_origin_menu", // stringId
                 "start", // inputMenuId (from culture selection)
                 "tor_growth_menu", // outputMenuId (to stage 2)
-                new TextObject("{=tor_cc_origin_summary_str}Origin"), // title
+                new TextObject("{=str_tor_cc_origin_summary}Origin"), // title
                 new TextObject("{TOR_CC_ORIGIN}"), // description
                 playerCharacterList, // characters to display
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
@@ -129,14 +129,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Stage 2: Growth Menu
             NarrativeMenu stage2Menu = new NarrativeMenu("tor_growth_menu", "tor_origin_menu", "tor_profession_menu",
-                new TextObject("{=tor_cc_growth_summary_str}Growth"), new TextObject("{TOR_CC_GROWTH}"), playerCharacterList,
+                new TextObject("{=str_tor_cc_growth_summary}Growth"), new TextObject("{TOR_CC_GROWTH}"), playerCharacterList,
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
                     GetPlayerMenuCharacterArgs("player_character", manager)));
 
             // Stage 3: Profession Menu
             NarrativeMenu stage3Menu = new NarrativeMenu("tor_profession_menu", "tor_growth_menu",
                 "narrative_face_generator_menu", // Exit narrative stage ? TORSpecializationStage handles stage 4
-                new TextObject("{=tor_cc_profession_summary_str}Profession"), new TextObject("{TOR_CC_PROFESSION}"), playerCharacterList,
+                new TextObject("{=str_tor_cc_profession_summary}Profession"), new TextObject("{TOR_CC_PROFESSION}"), playerCharacterList,
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
                     GetPlayerMenuCharacterArgs("player_character", manager)));
             

@@ -42,7 +42,7 @@ namespace TOR_Core.Extensions.UI
                 if (_hero != null)
                 {
                     var list = ReligionObject.All;
-                    var religionText = new TextObject("{=tor_religion_follower_none_str}Not a follower of any religion").ToString();
+                    var religionText = new TextObject("{=str_tor_religion_follower_none}Not a follower of any religion").ToString();
                     if (_hero.HasAnyReligion())
                     {
                         var devotionLevelText = GameTexts.FindText("tor_religion_devotionlevel", _hero.GetDevotionLevelForReligion(_hero.GetDominantReligion()).ToString());

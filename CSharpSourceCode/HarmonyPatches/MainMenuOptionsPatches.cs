@@ -20,8 +20,8 @@ namespace TOR_Core.HarmonyPatches
         {
             List<InitialStateOption> newlist = new List<InitialStateOption>();
             newlist = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
-            var torOption = new InitialStateOption("TORNewgame", new TextObject("{=tor_menu_enter_game_label_str}Enter the Old World"), 3, OnCLick, IsDisabledAndReason);
-            var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=tor_menu_shader_cache_label_str}Build Shader Cache"), 4, OnForceClick, IsDisabledAndReason); 
+            var torOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 3, OnCLick, IsDisabledAndReason);
+            var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=str_tor_menu_shader_cache}Build Shader Cache"), 4, OnForceClick, IsDisabledAndReason); 
             newlist.Add(torOption);
             newlist.Add(torOption2);
             newlist.Sort((x, y) => x.OrderIndex.CompareTo(y.OrderIndex));

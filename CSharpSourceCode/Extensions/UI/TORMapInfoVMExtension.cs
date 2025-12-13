@@ -77,9 +77,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetArtilleryHintText()
         {
-            string artilleryTitle = new TextObject("{=tor_ui_artillery_title_str}Artillery").ToString();
-            string artilleryInventory = new TextObject("{=tor_ui_artillery_amount_str}Current Artillery Pieces in Inventory:").ToString();
-            string artilleryDeployable = new TextObject("{=tor_ui_winds_of_magic_recharge_rate_str}Maximum Deployable Artillery Pieces:").ToString();
+            string artilleryTitle = new TextObject("{=str_tor_ui_artillery_title}Artillery").ToString();
+            string artilleryInventory = new TextObject("{=str_tor_ui_artillery_amount}Current Artillery Pieces in Inventory:").ToString();
+            string artilleryDeployable = new TextObject("{=str_tor_ui_winds_of_magic_recharge_rate}Maximum Deployable Artillery Pieces:").ToString();
 
             List<TooltipProperty> list =
             [
@@ -92,9 +92,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetWindsHintText()
         {
-            string womTitle = new TextObject("{=tor_ui_winds_of_magic_title_str}Winds of Magic").ToString();
-            string womMaximum = new TextObject("{=tor_ui_winds_of_magic_maximum_str}Maximum:").ToString();
-            string womRechargeRate = new TextObject("{=tor_ui_winds_of_magic_recharge_rate_str}Recharge Rate:").ToString();
+            string womTitle = new TextObject("{=str_tor_ui_winds_of_magic_title}Winds of Magic").ToString();
+            string womMaximum = new TextObject("{=str_tor_ui_winds_of_magic_maximum}Maximum:").ToString();
+            string womRechargeRate = new TextObject("{=str_tor_ui_winds_of_magic_recharge_rate}Recharge Rate:").ToString();
 
             var list = new List<TooltipProperty>
             {
@@ -107,9 +107,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetBlessingHintText()
         {
-            var blessingTitle = new TextObject("{=tor_ui_winds_of_magic_title_str}Blessing: ").ToString();
-            var durationTitle = new TextObject("{=tor_ui_winds_of_magic_maximum_str}Duration:").ToString();
-            var effect = new TextObject("{=tor_ui_winds_of_magic_recharge_rate_str}Effect:").ToString();
+            var blessingTitle = new TextObject("{=str_tor_ui_winds_of_magic_title}Blessing: ").ToString();
+            var durationTitle = new TextObject("{=str_tor_ui_winds_of_magic_maximum}Duration:").ToString();
+            var effect = new TextObject("{=str_tor_ui_winds_of_magic_recharge_rate}Effect:").ToString();
 
             var list = new List<TooltipProperty>();
             if (Hero.MainHero.PartyBelongedTo == null) return list;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <strings>
   <!-- UI -->
   <string id="str_career_screen.title" text= "{=str_tor_career_screen_title}Career"/>
@@ -206,6 +206,24 @@
   <string id="tor_ability_effect_type.CareerAbilityEffect" text="{=str_tor_ability_effect_type_career_ability}Career Ability"/>
   <string id="tor_ability_effect_type.TacticalReposition" text="{=str_tor_ability_effect_type_tactical_reposition}Tactical Reposition"/>
 
+  <!-- SpellBook UI -->
+  <string id="tor_spellbook_hero_name" text="{=str_tor_spellbook_hero_name}Hero name: "/>
+  <string id="tor_spellbook_casting_level" text="{=str_tor_spellbook_casting_level}Spell casting level: "/>
+  <string id="tor_spellbook_max_wom" text="{=str_tor_spellbook_max_wom}Maximum Winds of Magic: "/>
+  <string id="tor_spellbook_current_wom" text="{=str_tor_spellbook_current_wom}Current Winds of Magic: "/>
+  <string id="tor_spellbook_wom_recharge" text="{=str_tor_spellbook_wom_recharge}Winds of Magic recharge rate: "/>
+  <string id="tor_spellbook_recharge_rate" text="{=str_tor_spellbook_recharge_rate}{RATE}{ICON}/ hour"/>
+  <string id="tor_spellbook_known_lores" text="{=str_tor_spellbook_known_lores}Known Magic Schools: "/>
+
+  <!-- PrayerBook UI -->
+  <string id="tor_prayerbook_devoted_to" text="{=str_tor_prayerbook_devoted_to}Devoted to: "/>
+  <string id="tor_prayerbook_prayer_level" text="{=str_tor_prayerbook_prayer_level}Prayer level: "/>
+
+  <!-- ForestHarmonyLevel -->
+  <string id="tor_forest_harmony_level.Harmony" text="{=str_tor_forest_harmony_level_harmony}Harmony"/>
+  <string id="tor_forest_harmony_level.Bound" text="{=str_tor_forest_harmony_level_bound}Bound"/>
+  <string id="tor_forest_harmony_level.Unbound" text="{=str_tor_forest_harmony_level_unbound}Unbound"/>
+
   <!-- Ink Stories -->
   <string id="tor_ink_end" text="{=str_tor_ink_end}End"/>
   <string id="tor_ink_continue" text="{=str_tor_ink_continue}Continue"/>
@@ -214,6 +232,46 @@
   <string id="tor_brawl_cannot_leave" text="{=str_tor_brawl_cannot_leave}You may not leave until finishing the brawl."/>
   <string id="tor_quest_fight_cannot_leave" text="{=str_tor_quest_fight_cannot_leave}You may not leave until finishing the quest scenario."/>
   <string id="tor_joust_dismount" text="{=str_tor_joust_dismount}You must dismount to continue with combat on foot."/>
+
+  <!-- Quests - Specialize Lore -->
+  <string id="tor_quest_specialize_lore_title" text="{=str_tor_quest_specialize_lore_title}Practice Spellcasting"/>
+
+  <!-- Quests - Engineer -->
+  <string id="tor_quest_engineer_cultists_skip" text="{=str_tor_quest_engineer_cultists_skip}Your victory here is meaningless...you will never find what we took..."/>
+  <string id="tor_quest_engineer_skip" text="{=str_tor_quest_engineer_skip}You have no idea what you are interfering with..."/>
+
+  <!-- Quests - Hunt Cultists -->
+  <string id="tor_quest_hunt_cultist_issue_brief" text="{=str_tor_quest_hunt_cultist_issue_brief}As a matter of fact, I have a lead on a potential cultist. A grave accusation that needs investigating."/>
+  <string id="tor_quest_hunt_cultist_issue_accept_player" text="{=str_tor_quest_hunt_cultist_issue_accept_player}What needs to be done?"/>
+  <string id="tor_quest_hunt_cultist_issue_explanation" text="{=str_tor_quest_hunt_cultist_issue_explanation}I need you to travel to {TARGET_SETTLEMENT}. Investigate the local populace and root out any cultists. On successful completion, the order will pay you {REWARD}{GOLD_ICON}."/>
+  <string id="tor_quest_hunt_cultist_accept_player" text="{=str_tor_quest_hunt_cultist_accept_player}Consider it done."/>
+  <string id="tor_quest_hunt_cultist_title" text="{=str_tor_quest_hunt_cultist_title}A cultist in our midst"/>
+  <string id="tor_quest_hunt_cultist_description" text="{=str_tor_quest_hunt_cultist_description}Travel to target settlement and root out any cultist who may be hiding there."/>
+  <string id="tor_quest_hunt_cultist_quest_title" text="{=str_tor_quest_hunt_cultist_quest_title}A cultist in our midst"/>
+  <string id="tor_quest_hunt_cultist_offer_dialog" text="{=str_tor_quest_hunt_cultist_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"/>
+  <string id="tor_quest_hunt_cultist_discuss_dialog" text="{=str_tor_quest_hunt_cultist_discuss_dialog}It was good doing business with you."/>
+  <string id="tor_quest_hunt_cultist_prepare_to_die" text="{=str_tor_quest_hunt_cultist_prepare_to_die}Prepare to die!"/>
+  <string id="tor_quest_hunt_cultist_out_of_time_log" text="{=str_tor_quest_hunt_cultist_out_of_time_log}You failed to complete the investigation in time. Any potential cultists are surely in the wind now."/>
+  <string id="tor_quest_hunt_cultist_village_raided_info" text="{=str_tor_quest_hunt_cultist_village_raided_info}The village is raided, no chance to find any cultists now. Come back when the village is repopulated."/>
+  <string id="tor_quest_hunt_cultist_log_updated_success" text="{=str_tor_quest_hunt_cultist_log_updated_success}You were successful in uncovering the cultists."/>
+  <string id="tor_quest_hunt_cultist_log_updated_fail" text="{=str_tor_quest_hunt_cultist_log_updated_fail}The cultists escaped."/>
+  <string id="tor_quest_hunt_cultist_started" text="{=str_tor_quest_hunt_cultist_started}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there."/>
+
+  <!-- Quests - Plagued Village -->
+  <string id="tor_quest_plagued_village_issue_brief" text="{=str_tor_quest_plagued_village_issue_brief}As a matter of fact, I have a lead on potential cultist activity. A village is struck by a terrible, unnatural plague. A grave matter that needs investigating."/>
+  <string id="tor_quest_plagued_village_issue_accept_player" text="{=str_tor_quest_plagued_village_issue_accept_player}What needs to be done?"/>
+  <string id="tor_quest_plagued_village_issue_explanation" text="{=str_tor_quest_plagued_village_issue_explanation}I need you to travel to {TARGET_SETTLEMENT}. Investigate the situation and find root cause of the plague. On successful completion, the order will pay you {REWARD}{GOLD_ICON}."/>
+  <string id="tor_quest_plagued_village_accept_player" text="{=str_tor_quest_plagued_village_accept_player}Consider it done."/>
+  <string id="tor_quest_plagued_village_title" text="{=str_tor_quest_plagued_village_title}The plague ridden village"/>
+  <string id="tor_quest_plagued_village_description" text="{=str_tor_quest_plagued_village_description}Travel to target settlement and find the cause of the unnatural epidemic that plagues the village."/>
+  <string id="tor_quest_plagued_village_quest_title" text="{=str_tor_quest_plagued_village_quest_title}The plague ridden village"/>
+  <string id="tor_quest_plagued_village_offer_dialog" text="{=str_tor_quest_plagued_village_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"/>
+  <string id="tor_quest_plagued_village_discuss_dialog" text="{=str_tor_quest_plagued_village_discuss_dialog}It was good doing business with you."/>
+  <string id="tor_quest_plagued_village_out_of_time_log" text="{=str_tor_quest_plagued_village_out_of_time_log}You failed to complete the investigation in time."/>
+  <string id="tor_quest_plagued_village_raided_info" text="{=str_tor_quest_plagued_village_raided_info}The village is raided, no chance to find any cultists now. Come back when the village is repopulated."/>
+  <string id="tor_quest_plagued_village_log_updated_success" text="{=str_tor_quest_plagued_village_log_updated_success}You were successful in lifting the plague."/>
+  <string id="tor_quest_plagued_village_log_updated_fail" text="{=str_tor_quest_plagued_village_log_updated_fail}You abandoned the mission."/>
+  <string id="tor_quest_plagued_village_started" text="{=str_tor_quest_plagued_village_started}You were tasked to travel to {TARGET_SETTLEMENT} and investigate the epidemic that plagues it."/>
 
   <!-- Generic Text -->
 	<string id="tor_generic_upkeep" text="{=str_tor_generic_upkeep}Upkeep" />
@@ -4283,13 +4341,241 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_runelord_quest_task_reputation" text="{=str_tor_runelord_quest_task_reputation}Reputation" />
 	<string id="tor_runelord_quest_log_complete" text="{=str_tor_runelord_quest_log_complete}Talk to the rune smith" />
 
-	<!--Greenskin Spell Trainer Dialogs-->
-	<string id="tor_spelltrainer_greenskin_start_str" text="{=str_tor_spelltrainer_greenskin_start}You come to look into da fire?" />
-	<string id="tor_spelltrainer_greenskin_hub_str" text="{=str_tor_spelltrainer_greenskin_hub}Wot you want, git?" />
-	<string id="tor_spelltrainer_greenskin_open_book_str" text="{=str_tor_spelltrainer_greenskin_open_book}I'z here fer sum ju-ju spooks." />
-	<string id="tor_spelltrainer_greenskin_close_book_str" text="{=str_tor_spelltrainer_greenskin_close_book}Eat dis shroom an' dance wiv me." />
-	<string id="tor_spelltrainer_greenskin_enchantments_str" text="{=str_tor_spelltrainer_greenskin_enchantments}I wanna learn how ta make some proppa gear wif da runes." />
-	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=str_tor_spelltrainer_greenskin_player_goodbye}I'z outta 'ere." />
-	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=str_tor_spelltrainer_greenskin_goodbye}Get outta 'ere! You'ze dispersin' my smoke." />
+	<!--UI Strings-->
+	<string id="str_tor_ui_artillery_title" text="{=str_tor_ui_artillery_title}Artillery"/>
+	<string id="str_tor_ui_artillery_amount" text="{=str_tor_ui_artillery_amount}Current Artillery Pieces in Inventory:"/>
+	<string id="str_tor_ui_winds_of_magic_title" text="{=str_tor_ui_winds_of_magic_title}Winds of Magic"/>
+	<string id="str_tor_ui_winds_of_magic_maximum" text="{=str_tor_ui_winds_of_magic_maximum}Maximum:"/>
+	<string id="str_tor_ui_winds_of_magic_recharge_rate" text="{=str_tor_ui_winds_of_magic_recharge_rate}Recharge Rate:"/>
+	<string id="str_tor_menu_enter_game" text="{=str_tor_menu_enter_game}Enter the Old World"/>
+	<string id="str_tor_menu_shader_cache" text="{=str_tor_menu_shader_cache}Build Shader Cache"/>
+	<string id="str_tor_item_hint_use" text="{=str_tor_item_hint_use}Use Item"/>
+	<string id="str_tor_religion_follower_none" text="{=str_tor_religion_follower_none}Not a follower of any religion"/>
+	<string id="str_tor_bloodkiss_player_notification" text="{=str_tor_bloodkiss_player_notification}Player recieves the Blood Kiss."/>
+
+	<!--Engineer Quest-->
+	<string id="str_tor_engineer_quest_log0" text="{=str_tor_engineer_quest_log0}The Master Engineer has tasked me with hunting down thieving runaways, I should find them and bring back what they stole."/>
+	<string id="str_tor_engineer_quest_log1" text="{=str_tor_engineer_quest_log1}I found the thieves, but they did not have the stolen components. I should return to the Master Engineer with the news."/>
+	<string id="str_tor_engineer_quest_log1_fail" text="{=str_tor_engineer_quest_log1_fail}I failed... I was beaten. I need to return to the Master Engineer with the news."/>
+	<string id="str_tor_engineer_quest_log2" text="{=str_tor_engineer_quest_log2}It would appear a traitorous Engineer has the stolen parts, the Master Engineer has asked for my help in finding him."/>
+	<string id="str_tor_engineer_quest_log3" text="{=str_tor_engineer_quest_log3}I have slain Goswin and retrieved the stolen components, I should return to the Master Engineer and let him know."/>
+	<string id="str_tor_engineer_quest_log3_fail" text="{=str_tor_engineer_quest_log3_fail}I failed... I was beaten. I need to return to the Master Engineer with the news."/>
+	<string id="str_tor_engineer_quest_task0" text="{=str_tor_engineer_quest_task0}Track down runaway thieves"/>
+	<string id="str_tor_engineer_quest_task1" text="{=str_tor_engineer_quest_task1}Return to the Master Engineer in Nuln"/>
+	<string id="str_tor_engineer_quest_task2" text="{=str_tor_engineer_quest_task2}Track down Goswin and retrieve the stolen components."/>
+	<string id="str_tor_engineer_quest_task3" text="{=str_tor_engineer_quest_task3}Return to the Master Engineer in Nuln"/>
+	<string id="str_tor_quest_engineer_skip" text="{=str_tor_quest_engineer_skip}You have no idea what you are interfering with..."/>
+	<string id="str_tor_quest_engineer_cultists_skip" text="{=str_tor_quest_engineer_cultists_skip}Your victory here is meaningless...you will never find what we took..."/>
+	<string id="str_tor_rogue_engineer_name" text="{=str_tor_rogue_engineer_name}Goswin"/>
+
+	<!--Mercenary Career Button-->
+	<string id="str_tor_career_button_mercenary_default" text="{=str_tor_career_button_mercenary_default}Makes the selected troop a companion."/>
+	<string id="str_tor_career_button_mercenary_companion_limit" text="{=str_tor_career_button_mercenary_companion_limit}Clan companion limit has been reached."/>
+	<string id="str_tor_career_button_mercenary_no_knightly" text="{=str_tor_career_button_mercenary_no_knightly}Only works for non-knightly units."/>
+	<string id="str_tor_career_button_mercenary_no_tree_undead" text="{=str_tor_career_button_mercenary_no_tree_undead}Only works for humans or elves"/>
+	<string id="str_tor_career_button_mercenary_not_tier5" text="{=str_tor_career_button_mercenary_not_tier5}Troop needs to reach tier 5 or higher."/>
+	<string id="str_tor_career_button_mercenary_wrong_culture" text="{=str_tor_career_button_mercenary_wrong_culture}Troop must be of your culture."/>
+
+	<!--Cursed Site Menus-->
+	<string id="str_tor_custom_settlement_cursed_site_ghosts_progress" text="{=str_tor_custom_settlement_cursed_site_ghosts_progress}Performing binding ritual..."/>
+	<string id="str_tor_custom_settlement_cursed_site_ghosts_result" text="{=str_tor_custom_settlement_cursed_site_ghosts_result}You successfully bind {GHOST_RESULT_NUMBER} spirits to your command."/>
+	<string id="str_tor_custom_settlement_cursed_site_not_enough_free_slots" text="{=str_tor_custom_settlement_cursed_site_not_enough_free_slots}You have not enough space in your party."/>
+	<string id="str_tor_custom_settlement_cursed_site_not_necromancer" text="{=str_tor_custom_settlement_cursed_site_not_necromancer}You are not a practitioner of necromancy."/>
+	<string id="str_tor_custom_settlement_cursed_site_once_a_day" text="{=str_tor_custom_settlement_cursed_site_once_a_day}You can only perform this action once a day."/>
+	<string id="str_tor_custom_settlement_cursed_site_purify_fail" text="{=str_tor_custom_settlement_cursed_site_purify_fail}You need at least 10 healthy party members to perform the ritual."/>
+	<string id="str_tor_custom_settlement_cursed_site_purify_progress" text="{=str_tor_custom_settlement_cursed_site_purify_progress}Performing purification ritual..."/>
+	<string id="str_tor_custom_settlement_cursed_site_purify_success" text="{=str_tor_custom_settlement_cursed_site_purify_success}Your party succeeds in placing seals and wards around the area dampening the effects of the curse. You estimate the wards will hold for {PURIFICATION_DURATION} hours."/>
+	<string id="str_tor_custom_settlement_cursed_site_purify_text" text="{=str_tor_custom_settlement_cursed_site_purify_text}Perform a ritual of warding in the name of {GOD_NAME}."/>
+	<string id="str_tor_custom_settlement_cursed_site_purify_wounded_result" text="{=str_tor_custom_settlement_cursed_site_purify_wounded_result}Staying in the cursed area while performing the ritual has taken a toll on your men. {PURIFICATION_WOUNDED_RESULT_NUMBER} of your party members have become wounded."/>
+	<string id="str_tor_custom_settlement_cursed_site_ward" text="{=str_tor_custom_settlement_cursed_site_ward}Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more"/>
+
+	<!--Shrine Menus-->
+	<string id="str_tor_custom_settlement_donation_perk_info" text="{=str_tor_custom_settlement_donation_perk_info}You need the Offering perk in the Faith skill line to perform this action."/>
+	<string id="str_tor_custom_settlement_shrine_blessing_already_active" text="{=str_tor_custom_settlement_shrine_blessing_already_active}You devoted your live to {CAREERGOD_NAME}. You can't pray here."/>
+	<string id="str_tor_custom_settlement_shrine_follower_result" text="{=str_tor_custom_settlement_shrine_follower_result}Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party."/>
+	<string id="str_tor_custom_settlement_shrine_offering_label" text="{=str_tor_custom_settlement_shrine_offering_label}Give items as an offering"/>
+	<string id="str_tor_custom_settlement_shrine_pray_result" text="{=str_tor_custom_settlement_shrine_pray_result}You received the blessing of {GOD_NAME}."/>
+	<string id="str_tor_custom_settlement_shrine_pray_text" text="{=str_tor_custom_settlement_shrine_pray_text}Pray to receive the blessing of {GOD_NAME}"/>
+
+	<!--Oak of Ages Menus-->
+	<string id="str_tor_custom_settlement_we_not_enough_harmony" text="{=str_tor_custom_settlement_we_not_enough_harmony}Not enough Harmony."/>
+
+	<!--Chaos Portal Menus-->
+	<string id="str_tor_custom_settlement_chaos_portal_victory" text="{=str_tor_custom_settlement_chaos_portal_victory}You are Victorious! Claim your reward! Select one!"/>
+	<string id="str_tor_custom_settlement_chaos_portal_lose" text="{=str_tor_custom_settlement_chaos_portal_lose}The enemy proved more than a match for you. Better luck next time!"/>
+	<string id="str_tor_beastmen_raiders" text="{=str_tor_beastmen_raiders}Beastmen Raiders"/>
+	<string id="str_tor_chaos_raiders" text="{=str_tor_chaos_raiders}Chaos Raiders"/>
+
+	<!--Blood Kiss Dialogs-->
+	<string id="str_tor_bloodkiss_request" text="{=str_tor_bloodkiss_request}My lord von Carstein, I wish to shed my mortal shell and serve you eternally."/>
+	<string id="str_tor_bloodkiss_answer_line2" text="{=str_tor_bloodkiss_answer_line2}Thou hast served me and mine loyally, I shall grant thee the Blood kiss if thou so desireth."/>
+	<string id="str_tor_bloodkiss_answer_line3" text="{=str_tor_bloodkiss_answer_line3}However, this gift does not come without cost, to be granted the blood kiss thou canst never go back. Art thou sure?"/>
+	<string id="str_tor_bloodkiss_player_notready" text="{=str_tor_bloodkiss_player_notready}On a second thought, I need to think about it."/>
+	<string id="str_tor_bloodkiss_player_ready" text="{=str_tor_bloodkiss_player_ready}I am ready my lord."/>
+	<string id="str_tor_bloodkiss_player_dontbotherme" text="{=str_tor_bloodkiss_player_dontbotherme}Then think about it someplace else, thou disturbeth mine plans. "/>
+	<string id="str_tor_bloodkiss_receive" text="{=str_tor_bloodkiss_receive}Prepare thine self for thine dark awakening."/>
+	<string id="str_tor_bloodkiss_player_receive_end" text="{=str_tor_bloodkiss_player_receive_end}Rise, von Carstein scion."/>
+
+	<!--Blood Dragon Dialogs-->
+	<string id="str_tor_bloodkiss_request_blooddragon" text="{=str_tor_bloodkiss_request_blooddragon}Grandmaster, I wish to join your ranks of the Blood dragons as a Blood Knight."/>
+	<string id="str_tor_bloodkiss_blooddragon_answer_line2" text="{=str_tor_bloodkiss_blooddragon_answer_line2}Ah, indeed, a Warrior of incredible prowess stands before me, daring to seek the Blood Kiss from none other than Walach Harkon. While you are besmirched by your mortality, your valor and devotion to the ideals of knighthood are truly commendable, and I find myself intrigued by your unwavering pursuit of perfection."/>
+	<string id="str_tor_bloodkiss_blooddragon_answer_line3" text="{=str_tor_bloodkiss_blooddragon_answer_line3}To be worthy of the Blood Kiss is no small feat, and yet, I sense in you a rare dedication to the principles that guide the Order of the Blood Dragons. Your thirst for excellence and your unwavering discipline resonate strongly. The vows you have sworn, the code of chivalry you uphold – they mirror the very foundations upon which the Blood Dragons stand."/>
+	<string id="str_tor_bloodkiss_blooddragon_answer_ready" text="{=str_tor_bloodkiss_blooddragon_answer_ready}Know this, knight, the Blood Kiss is not a gift to be granted lightly. It is an eternal bond, a oath of fealty to kindred and I. All pathetic mortal senses of mercy and weakness will be purged from you (MAGIC ABILITIES WILL BE REMOVED!). Your desires for power and dominance shall be sated forevermore."/>
+	<string id="str_tor_bloodkiss_blooddragon_player_notready" text="{=str_tor_bloodkiss_blooddragon_player_notready}On a second thought, I need to think about it."/>
+	<string id="str_tor_bloodkiss_blooddragon_player_ready" text="{=str_tor_bloodkiss_blooddragon_player_ready}I am ready, Grandmaster."/>
+	<string id="str_tor_bloodkiss_blooddragon_receive" text="{=str_tor_bloodkiss_blooddragon_receive}Embrace the Bloodkiss, become one with the night, and ascend to greatness alongside the Blood Dragons."/>
+	<string id="str_tor_bloodkiss_blooddragon_player_receive_end" text="{=str_tor_bloodkiss_blooddragon_player_receive_end}Rise, young blood dragon."/>
+
+	<!--Necrarch Dialogs-->
+	<string id="str_tor_bloodkiss_necrach_request" text="{=str_tor_bloodkiss_necrach_request}My lord. Zacharias. The Everliving. The disciple of Melkihor the Ancient. The most powerful of necrarchs. I wish to shed my mortal shell and serve you eternally. -"/>
+
+	<!--Black Grail Dialogs-->
+	<string id="str_tor_blackgrail_request" text="{=str_tor_blackgrail_request}You keep saying the Lady is not real. What exactly do you mean?"/>
+	<string id="str_tor_blackgrail_answer_line1" text="{=str_tor_blackgrail_answer_line1}Not every Bretonne is ready for the truth. Are you willing to cleanse yourself from the Lie that we Bretonnes dogmatically follow?"/>
+	<string id="str_tor_blackgrail_answer_line2" text="{=str_tor_blackgrail_answer_line2}I can tell you once you take the path I am wandering on, there is no salvation, and before we open the eyes of all Bretonnes, you will be an enemy of the King."/>
+	<string id="str_tor_blackgrail_answer_ready" text="{=str_tor_blackgrail_answer_ready}So I ask you again, are you really willing to to know the truth about the lady?"/>
+	<string id="str_tor_blackgrail_answer_player_notready" text="{=str_tor_blackgrail_answer_player_notready}On a second thought, I need to think about it."/>
+	<string id="str_tor_blackgrail_answer_player_ready" text="{=str_tor_blackgrail_answer_player_ready}I am ready, mylord."/>
+	<string id="str_tor_blackgrail_dontbotherme" text="{=str_tor_blackgrail_dontbotherme}Then think about it someplace else. We are done here."/>
+	<string id="str_tor_blackgrail_receive" text="{=str_tor_blackgrail_receive}The truth is: The Bretonnes, proud humans follow the whisperings of an Elf. The Lady is nothing more than a Elven Witch, not a goddess or saint. Our whole Kingdom is build upon the Lie of Lady. I will clean you from these lies, drink from this grail, and gain the true powers of Bretonnia!"/>
+	<string id="str_tor_blackgrail_receive_end" text="{=str_tor_blackgrail_receive_end}Rise my young Knight. Let us clean this world from this non sense."/>
+
+	<!--Spell Trainer Common Dialogs-->
+	<string id="str_tor_spelltrainer_start" text="{=str_tor_spelltrainer_start}Do I know you? What do you need, be quick I am a busy."/>
+	<string id="str_tor_spelltrainer_open_book" text="{=str_tor_spelltrainer_open_book}I have come seeking further knowledge."/>
+	<string id="str_tor_spelltrainer_close_book" text="{=str_tor_spelltrainer_close_book}Hmm, come then. I will teach you what I can."/>
+	<string id="str_tor_spelltrainer_scrolls" text="{=str_tor_spelltrainer_scrolls}Do you sell any scrolls?"/>
+	<string id="str_tor_spelltrainer_player_goodbye" text="{=str_tor_spelltrainer_player_goodbye}Farewell Magister."/>
+	<string id="str_tor_spelltrainer_goodbye" text="{=str_tor_spelltrainer_goodbye}Hmm, yes. Farewell."/>
+
+	<!--Spell Trainer Magic Test-->
+	<string id="str_tor_spelltrainer_magictest_empire" text="{=str_tor_spelltrainer_magictest_empire}I have come seeking knowledge, I wish to learn the arcane arts. Can you help me?"/>
+	<string id="str_tor_spelltrainer_magictest_begin_empire" text="{=str_tor_spelltrainer_magictest_begin_empire}Hmm. To understand the Winds of magic you must have the aethyric senses. Let me perform an experiment on you to determine your potential..."/>
+	<string id="str_tor_spelltrainer_magictest_result_success" text="{=str_tor_spelltrainer_magictest_result_success}Hmm...interesting. It would seem you do have an aptitude, perhaps even potential."/>
+	<string id="str_tor_spelltrainer_magictest_result_failure" text="{=str_tor_spelltrainer_magictest_result_failure}Pah, it is beyond you. Begone before you waste more of my time."/>
+	<string id="str_tor_spelltrainer_magictest_empire_specialize_lore" text="{=str_tor_spelltrainer_magictest_empire_specialize_lore}You have proven yourself and have a strong aptitude for the wind of magic, which college will you be joining? You can only dedicate yourself to one, choose wisely."/>
+	<string id="str_tor_spelltrainer_magictest_empire_player_specialize_lore" text="{=str_tor_spelltrainer_magictest_empire_player_specialize_lore}I am ready to join the colleges and become a true wizard of the Empire."/>
+
+	<!--Spell Trainer Vampire Dialogs-->
+	<string id="str_tor_spelltrainer_magictest_vc" text="{=str_tor_spelltrainer_magictest_vc}I need the power to escape death, to rule over this world as something more. Can you teach me the ways of your power?"/>
+	<string id="str_tor_spelltrainer_magictest_begin_vc" text="{=str_tor_spelltrainer_magictest_begin_vc}I can sense the you might have some grasp on the Winds of magic. Let me subject you to an examination to see your potential..."/>
+	<string id="str_tor_spelltrainer_magictest_vc_specialize_lore" text="{=str_tor_spelltrainer_magictest_vc_specialize_lore}You have potential Dark One, serve me and I will teach you all that I know in time. Come let me consult my grimoire."/>
+	<string id="str_tor_spelltrainer_magictest_vc_player_specialize_lore" text="{=str_tor_spelltrainer_magictest_vc_player_specialize_lore}My Lord, I beseech you to teach me your dark magic. I have learned all that I can on my own and would be a most loyal apprentice to you."/>
+	<string id="str_tor_spelltrainer_magictest_vc_vampire_specialize_lore" text="{=str_tor_spelltrainer_magictest_vc_vampire_specialize_lore}Yes sire! Right away my good and merciful lord."/>
+	<string id="str_tor_spelltrainer_magictest_vc_vampire_player_specialize_lore" text="{=str_tor_spelltrainer_magictest_vc_vampire_player_specialize_lore}I can feel my dark power continuing to grow, teach me more lest I find myself a new 'tutor'. Hurry on to find your Grimoire, lest I grow thirsty in your absence..."/>
+
+	<!--Spell Trainer Prophetesse Dialogs-->
+	<string id="str_tor_spelltrainer_prophetesse_start" text="{=str_tor_spelltrainer_prophetesse_start}Welcome, child of Bretonnia. The Lady has guided you to my presence. Speak, and let your intentions unfold."/>
+	<string id="str_tor_spelltrainer_prophetesse_open_book" text="{=str_tor_spelltrainer_prophetesse_open_book}Revered Fay Enchantress, share with me some of your magic teachings."/>
+	<string id="str_tor_spelltrainer_prophetesse_close_book" text="{=str_tor_spelltrainer_prophetesse_close_book}You have grasped this weave with prowess. Carry this knowledge, and may it serve you well, as a beacon of the Lady's blessings."/>
+	<string id="str_tor_spelltrainer_prophetesse_choices" text="{=str_tor_spelltrainer_prophetesse_choices}Is there more you seek? Speak your desires."/>
+	<string id="str_tor_spelltrainer_prophetesse_scrolls" text="{=str_tor_spelltrainer_prophetesse_scrolls}Gracious Enchantress, I ask you for the tomes and scrolls that hold the keys to the Lady's wisdom."/>
+	<string id="str_tor_spelltrainer_prophetesse_player_goodbye" text="{=str_tor_spelltrainer_prophetesse_player_goodbye}Until we meet again, my Fay Enchantress."/>
+	<string id="str_tor_spelltrainer_prophetesse_goodbye" text="{=str_tor_spelltrainer_prophetesse_goodbye}Go forth, and may the Lady's grace illuminate your path."/>
+	<string id="str_tor_spelltrainer_prophetesse_damselsecond_lore" text="{=str_tor_spelltrainer_prophetesse_damselsecond_lore}My Fay Enchantress, I feel that {DAMSELNAME} has reached  a new level of magical potential, is there anything you can teach her?"/>
+
+	<!--Spell Trainer Spellsinger Dialogs-->
+	<string id="str_tor_spelltrainer_spellsinger_start" text="{=str_tor_spelltrainer_spellsinger_start}I welcome you child of Athel Loren."/>
+	<string id="str_tor_spelltrainer_spellsinger_open_book" text="{=str_tor_spelltrainer_spellsinger_open_book}I seek further knowledge of Athel Loren's Magic."/>
+	<string id="str_tor_spelltrainer_spellsinger_close_book" text="{=str_tor_spelltrainer_spellsinger_close_book}A new Facette of Ariels infinte knowledge."/>
+	<string id="str_tor_spelltrainer_spellsinger_choices" text="{=str_tor_spelltrainer_spellsinger_choices}Is there more you seek? Speak your desires."/>
+	<string id="str_tor_spelltrainer_spellsinger_player_goodbye" text="{=str_tor_spelltrainer_spellsinger_player_goodbye}Ariel with you. "/>
+	<string id="str_tor_spelltrainer_spellsinger_goodbye" text="{=str_tor_spelltrainer_spellsinger_goodbye}May Ariel guide you on all your paths through her garden."/>
+	<string id="str_tor_spelltrainer_spellsinger_learn_magic_warden" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden}Greetings wise Spellsinger. I am seeking the capabilities of performing magic."/>
+	<string id="str_tor_spelltrainer_spellsinger_learn_magic_warden_answer" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_answer}Hm. You are not a spellsinger, yet I see your potential. If you are willing to show me how much you are bound to the forest. I am willing to teach you the first steps of the path of Ariel"/>
+	<string id="str_tor_spelltrainer_spellsinger_learn_magic_warden_agree" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_agree}Yes I am."/>
+	<string id="str_tor_spelltrainer_spellsinger_learn_magic_warden_decline" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_decline}I have to think about this."/>
+	<string id="str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore} I want to enhance my magic capabilities."/>
+	<string id="str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore_answer" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore_answer}You truely choose the path of ariel. But the forest demand another tribute. Pay it and I will teach you more"/>
+	<string id="str_tor_spelltrainer_spellweaver" text="{=str_tor_spelltrainer_spellweaver}I want to become a spellweaver."/>
+	<string id="str_tor_spelltrainer_spellweaver_choice" text="{=str_tor_spelltrainer_spellweaver_choice}Let me choose."/>
+	<string id="str_tor_spelltrainer_spellweaver_companion" text="{=str_tor_spelltrainer_spellweaver_companion}My companion is ready to become a spellweaver."/>
+
+	<!--Spell Trainer Greenskin Dialogs-->
+	<string id="str_tor_spelltrainer_greenskin_start" text="{=str_tor_spelltrainer_greenskin_start}Wot you want, git? Da Waaagh! don't wait fer nobody!"/>
+	<string id="str_tor_spelltrainer_greenskin_hub" text="{=str_tor_spelltrainer_greenskin_hub}Wot else ya need? Speak up!"/>
+	<string id="str_tor_spelltrainer_greenskin_open_book" text="{=str_tor_spelltrainer_greenskin_open_book}Teach me more of da Waaagh! magic."/>
+	<string id="str_tor_spelltrainer_greenskin_close_book" text="{=str_tor_spelltrainer_greenskin_close_book}Right, ya got it now. Da godz favor ya!"/>
+	<string id="str_tor_spelltrainer_greenskin_player_goodbye" text="{=str_tor_spelltrainer_greenskin_player_goodbye}I'll be goin' now."/>
+	<string id="str_tor_spelltrainer_greenskin_goodbye" text="{=str_tor_spelltrainer_greenskin_goodbye}Get outta 'ere! An' don't forget - WAAAGH!"/>
+
+	<!--Spell Trainer Eonir Dialogs-->
+	<string id="str_tor_spelltrainer_eonir_open_book" text="{=str_tor_spelltrainer_eonir_open_book}I seek to further my knowledge of the Winds of Magic, can you help me achieve this?"/>
+
+	<!--Magic Lore Prompt-->
+	<string id="str_tor_magic_lore_prompt_label" text="{=str_tor_magic_lore_prompt_label}Choose Lore"/>
+	<string id="str_tor_magic_lore_prompt_description" text="{=str_tor_magic_lore_prompt_description}Choose a lore to specialize in."/>
+	<string id="str_tor_magic_lore_prompt_notification" text="{=str_tor_magic_lore_prompt_notification}Successfully learned lore: "/>
+
+	<!--Hunt Cultist Quest-->
+	<string id="str_tor_quest_hunt_cultist_title" text="{=str_tor_quest_hunt_cultist_title}A cultist in our midst"/>
+	<string id="str_tor_quest_hunt_cultist_quest_title" text="{=str_tor_quest_hunt_cultist_quest_title}A cultist in our midst"/>
+	<string id="str_tor_quest_hunt_cultist_description" text="{=str_tor_quest_hunt_cultist_description}Travel to target settlement and root out any cultist who may be hiding there."/>
+	<string id="str_tor_quest_hunt_cultist_issue_brief" text="{=str_tor_quest_hunt_cultist_issue_brief}As a matter of fact, I have a lead on a potential cultist. A grave accusation that needs investigating."/>
+	<string id="str_tor_quest_hunt_cultist_issue_accept_player" text="{=str_tor_quest_hunt_cultist_issue_accept_player}What needs to be done?"/>
+	<string id="str_tor_quest_hunt_cultist_issue_explanation" text="{=str_tor_quest_hunt_cultist_issue_explanation}I need you to travel to {TARGET_SETTLEMENT}. Investigate the local populace and root out any cultists. On successful completion, the order will pay you {REWARD}{GOLD_ICON}."/>
+	<string id="str_tor_quest_hunt_cultist_accept_player" text="{=str_tor_quest_hunt_cultist_accept_player}Consider it done."/>
+	<string id="str_tor_quest_hunt_cultist_offer_dialog" text="{=str_tor_quest_hunt_cultist_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"/>
+	<string id="str_tor_quest_hunt_cultist_started" text="{=str_tor_quest_hunt_cultist_started}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there."/>
+	<string id="str_tor_quest_hunt_cultist_log_updated_success" text="{=str_tor_quest_hunt_cultist_log_updated_success}You were successful in uncovering the cultists."/>
+	<string id="str_tor_quest_hunt_cultist_log_updated_fail" text="{=str_tor_quest_hunt_cultist_log_updated_fail}The cultists escaped."/>
+	<string id="str_tor_quest_hunt_cultist_out_of_time_log" text="{=str_tor_quest_hunt_cultist_out_of_time_log}You failed to complete the investigation in time. Any potential cultists are surely in the wind now."/>
+	<string id="str_tor_quest_hunt_cultist_discuss_dialog" text="{=str_tor_quest_hunt_cultist_discuss_dialog}It was good doing business with you."/>
+	<string id="str_tor_quest_hunt_cultist_prepare_to_die" text="{=str_tor_quest_hunt_cultist_prepare_to_die}Prepare to die!"/>
+	<string id="str_tor_quest_hunt_cultist_village_raided_info" text="{=str_tor_quest_hunt_cultist_village_raided_info}The village is raided, no chance to find any cultists now. Come back when the village is repopulated."/>
+
+	<!--Plagued Village Quest-->
+	<string id="str_tor_quest_plagued_village_title" text="{=str_tor_quest_plagued_village_title}The plague ridden village"/>
+	<string id="str_tor_quest_plagued_village_quest_title" text="{=str_tor_quest_plagued_village_quest_title}The plague ridden village"/>
+	<string id="str_tor_quest_plagued_village_description" text="{=str_tor_quest_plagued_village_description}Travel to target settlement and find the cause of the unnatural epidemic that plagues the village."/>
+	<string id="str_tor_quest_plagued_village_issue_brief" text="{=str_tor_quest_plagued_village_issue_brief}As a matter of fact, I have a lead on potential cultist activity. A village is struck by a terrible, unnatural plague. A grave matter that needs investigating."/>
+	<string id="str_tor_quest_plagued_village_issue_accept_player" text="{=str_tor_quest_plagued_village_issue_accept_player}What needs to be done?"/>
+	<string id="str_tor_quest_plagued_village_issue_explanation" text="{=str_tor_quest_plagued_village_issue_explanation}I need you to travel to {TARGET_SETTLEMENT}. Investigate the situation and find root cause of the plague. On successful completion, the order will pay you {REWARD}{GOLD_ICON}."/>
+	<string id="str_tor_quest_plagued_village_accept_player" text="{=str_tor_quest_plagued_village_accept_player}Consider it done."/>
+	<string id="str_tor_quest_plagued_village_offer_dialog" text="{=str_tor_quest_plagued_village_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"/>
+	<string id="str_tor_quest_plagued_village_started" text="{=str_tor_quest_plagued_village_started}You were tasked to travel to {TARGET_SETTLEMENT} and investigate the epidemic that plagues it."/>
+	<string id="str_tor_quest_plagued_village_log_updated_success" text="{=str_tor_quest_plagued_village_log_updated_success}You were successful in lifting the plague."/>
+	<string id="str_tor_quest_plagued_village_log_updated_fail" text="{=str_tor_quest_plagued_village_log_updated_fail}You abandoned the mission."/>
+	<string id="str_tor_quest_plagued_village_out_of_time_log" text="{=str_tor_quest_plagued_village_out_of_time_log}You failed to complete the investigation in time."/>
+	<string id="str_tor_quest_plagued_village_discuss_dialog" text="{=str_tor_quest_plagued_village_discuss_dialog}It was good doing business with you."/>
+	<string id="str_tor_quest_plagued_village_raided_info" text="{=str_tor_quest_plagued_village_raided_info}The village is raided, no chance to find any cultists now. Come back when the village is repopulated."/>
+
+	<!--Specialize Lore Quest-->
+	<string id="str_tor_quest_specialize_lore_title" text="{=str_tor_quest_specialize_lore_title}Practice Spellcasting"/>
+	<string id="str_tor_specialize_lore_quest_task1" text="{=str_tor_specialize_lore_quest_task1}Use magic 5 times."/>
+	<string id="str_tor_specialize_lore_quest_task1_counter" text="{=str_tor_specialize_lore_quest_task1_counter}Number of casts"/>
+	<string id="str_tor_specialize_lore_quest_task1_finish" text="{=str_tor_specialize_lore_quest_task1_finish}Visit a spell trainer to specialize in a lore."/>
+
+	<!--Character Creation Summaries-->
+	<string id="str_tor_cc_origin_summary" text="{=str_tor_cc_origin_summary}Origin"/>
+	<string id="str_tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth"/>
+	<string id="str_tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession"/>
+
+	<!--Career and Key Bindings-->
+	<string id="str_tor_career_ability_key" text="{=str_tor_career_ability_key}Career Ability"/>
+	<string id="str_tor_career_ability_description" text="{=str_tor_career_ability_description}Starting Career ability, like the mistform for the Vampire Counts, or Knightly strike of the Grailknight"/>
+	<string id="str_tor_quick_cast_key" text="{=str_tor_quick_cast_key}Quick Cast"/>
+	<string id="str_tor_quick_cast_description" text="{=str_tor_quick_cast_description}Cast spells or prayers without needing to switch to spell cast mode. Warning: There is no target indication and the Spells follow predefined casting order. For targeted casting, always use the Spellcaster mode"/>
+	<string id="str_tor_spellcasting_mode_key" text="{=str_tor_spellcasting_mode_key}Quick Cast Selection Menu"/>
+	<string id="str_tor_spellcasting_mode_description" text="{=str_tor_spellcasting_mode_description}1) During battle pressing Q puts you into aiming mode, a reticule will appear and you will be able to target your spells. Aiming mode is accompanied by a visual animation on your character."/>
+
+	<!--Item Traits-->
+	<string id="str_tor_item_trait_default_elemental_damage" text="{=str_tor_item_trait_default_elemental_damage}This item deals elemental damage."/>
+
+	<!--Hunt Perk Animals-->
+	<string id="str_tor_hunt_perk_animal_small" text="{=str_tor_hunt_perk_animal_small}small Animal"/>
+	<string id="str_tor_hunt_perk_animal_medium" text="{=str_tor_hunt_perk_animal_medium}medium Animal"/>
+	<string id="str_tor_hunt_perk_animal_large" text="{=str_tor_hunt_perk_animal_large}large Animal"/>
+
+	<!--Prayer and Spell Book-->
+	<string id="str_tor_prayerbook_devoted_to" text="{=str_tor_prayerbook_devoted_to}Devoted to: "/>
+	<string id="str_tor_prayerbook_prayer_level" text="{=str_tor_prayerbook_prayer_level}Prayer level: "/>
+	<string id="str_tor_spellbook_hero_name" text="{=str_tor_spellbook_hero_name}Hero name: "/>
+	<string id="str_tor_spellbook_casting_level" text="{=str_tor_spellbook_casting_level}Spell casting level: "/>
+	<string id="str_tor_spellbook_known_lores" text="{=str_tor_spellbook_known_lores}Known Magic Schools: "/>
+	<string id="str_tor_spellbook_current_wom" text="{=str_tor_spellbook_current_wom}Current Winds of Magic: "/>
+	<string id="str_tor_spellbook_max_wom" text="{=str_tor_spellbook_max_wom}Maximum Winds of Magic: "/>
+	<string id="str_tor_spellbook_wom_recharge" text="{=str_tor_spellbook_wom_recharge}Winds of Magic recharge rate: "/>
+	<string id="str_tor_spellbook_recharge_rate" text="{=str_tor_spellbook_recharge_rate}{RATE}{ICON}/ hour"/>
 
 </strings>

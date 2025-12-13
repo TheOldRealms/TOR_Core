@@ -42,7 +42,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
-        starter.AddWaitGameMenu("cursedsite_menu_purifying", "{=tor_custom_settlement_cursed_site_purify_progress_str}Performing purification ritual...",
+        starter.AddWaitGameMenu("cursedsite_menu_purifying", "{=str_tor_custom_settlement_cursed_site_purify_progress}Performing purification ritual...",
             delegate (MenuCallbackArgs args)
             {
                 _startWaitTime = CampaignTime.Now;
@@ -52,7 +52,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
             }, null, PurificationConsequence,
             PurifyingTick,
             GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddWaitGameMenu("cursedsite_menu_ghosts", "{=tor_custom_settlement_cursed_site_ghosts_progress_str}Performing binding ritual...",
+        starter.AddWaitGameMenu("cursedsite_menu_ghosts", "{=str_tor_custom_settlement_cursed_site_ghosts_progress}Performing binding ritual...",
             delegate (MenuCallbackArgs args)
             {
                 _startWaitTime = CampaignTime.Now;
@@ -62,7 +62,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
             }, null, GhostConsequence,
             BindingTick,
             GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddWaitGameMenu("cursedsite_menu_empower_minions", "{=tor_custom_settlement_cursed_site_ghosts_progress_str}Empowering your minions...",
+        starter.AddWaitGameMenu("cursedsite_menu_empower_minions", "{=str_tor_custom_settlement_cursed_site_ghosts_progress}Empowering your minions...",
             delegate (MenuCallbackArgs args)
             {
                 _startWaitTime = CampaignTime.Now;
@@ -104,7 +104,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         else
         {
             MBTextManager.SetTextVariable("CURSEDSITE_WARDHOURS", component.WardHours);
-            var wardText = new TextObject("{=tor_custom_settlement_cursed_site_ward_text_str}Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more");
+            var wardText = new TextObject("{=str_tor_custom_settlement_cursed_site_ward}Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more");
             MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", new TextObject(text.ToString() + "{NEWLINE}" + " " + "{NEWLINE}" + wardText));
         }
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
@@ -129,11 +129,11 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
             var godName = GameTexts.FindText("tor_religion_name_of_god", religion.StringId);
             MBTextManager.SetTextVariable("GOD_NAME", godName);
             args.optionLeaveType = GameMenuOption.LeaveType.ShowMercy;
-            MBTextManager.SetTextVariable("PURIFY_TEXT", "{=tor_custom_settlement_cursed_site_purify_text_str}Perform a ritual of warding in the name of {GOD_NAME}.");
+            MBTextManager.SetTextVariable("PURIFY_TEXT", "{=str_tor_custom_settlement_cursed_site_purify_text}Perform a ritual of warding in the name of {GOD_NAME}.");
             if (MobileParty.MainParty.MemberRoster.TotalHealthyCount < 10)
             {
                 args.IsEnabled = false;
-                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_purify_fail_text_str}You need at least 10 healthy party members to perform the ritual.");
+                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_purify_fail}You need at least 10 healthy party members to perform the ritual.");
             }
             return component.IsActive;
         }
@@ -156,7 +156,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         //all vampire types are tagged as necromancers; leaving the condition in for the moment even if the 2nd one is redundant
         if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire()))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_necromancer_text_str}You are not a practitioner of necromancy.");
+            args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_not_necromancer}You are not a practitioner of necromancy.");
             args.IsEnabled = false;
         }
         else
@@ -165,14 +165,14 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
 
             if (freeSlots <= 0)
             {
-                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_enough_free_slots_text_str}You have not enough space in your party.");
+                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_not_enough_free_slots}You have not enough space in your party.");
                 args.IsEnabled = false;
             }
 
             var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTime(Hero.MainHero);
             if (lastGhostRecruitmentTime >= (int)CampaignTime.Now.ToDays)
             {
-                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action once a day.");
+                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_once_a_day}You can only perform this action once a day.");
                 args.IsEnabled = false;
             }
         }
@@ -188,7 +188,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
 
         if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire()))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_not_necromancer_text_str}You are not a practitioner of necromancy.");
+            args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_not_necromancer}You are not a practitioner of necromancy.");
             args.IsEnabled = false;
         }
         else
@@ -353,11 +353,11 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         var component = settlement.SettlementComponent as CursedSiteComponent;
         int duration = TORConstants.DEFAULT_WARDING_DURATION; //TODO modify this based on faith perks/skills?
         MBTextManager.SetTextVariable("PURIFICATION_DURATION", duration);
-        MBTextManager.SetTextVariable("PURIFICATION_RESULT", "{=tor_custom_settlement_cursed_site_purify_success_str}Your party succeeds in placing seals and wards around the area dampening the effects of the curse. You estimate the wards will hold for {PURIFICATION_DURATION} hours.");
+        MBTextManager.SetTextVariable("PURIFICATION_RESULT", "{=str_tor_custom_settlement_cursed_site_purify_success}Your party succeeds in placing seals and wards around the area dampening the effects of the curse. You estimate the wards will hold for {PURIFICATION_DURATION} hours.");
         if (numberOfTroopsFromInteraction > 0)
         {
             MBTextManager.SetTextVariable("PURIFICATION_WOUNDED_RESULT_NUMBER", numberOfTroopsFromInteraction);
-            MBTextManager.SetTextVariable("WOUNDED_RESULT", "{=tor_custom_settlement_cursed_site_purify_wounded_result_str}Staying in the cursed area while performing the ritual has taken a toll on your men. {PURIFICATION_WOUNDED_RESULT_NUMBER} of your party members have become wounded.");
+            MBTextManager.SetTextVariable("WOUNDED_RESULT", "{=str_tor_custom_settlement_cursed_site_purify_wounded_result}Staying in the cursed area while performing the ritual has taken a toll on your men. {PURIFICATION_WOUNDED_RESULT_NUMBER} of your party members have become wounded.");
         }
         Hero.MainHero.AddReligiousInfluence(Hero.MainHero.GetDominantReligion(), TORConstants.DEFAULT_WARDING_DEVOTION_INCREASE);
         Hero.MainHero.AddSkillXp(TORSkills.Faith, 300);
@@ -370,7 +370,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         if (numberOfTroopsFromInteraction > 0)
         {
             MBTextManager.SetTextVariable("GHOST_RESULT_NUMBER", numberOfTroopsFromInteraction);
-            MBTextManager.SetTextVariable("GHOST_RESULT", "{=tor_custom_settlement_cursed_site_ghosts_result_str}You successfully bind {GHOST_RESULT_NUMBER} spirits to your command.");
+            MBTextManager.SetTextVariable("GHOST_RESULT", "{=str_tor_custom_settlement_cursed_site_ghosts_result}You successfully bind {GHOST_RESULT_NUMBER} spirits to your command.");
 
             Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastGhostRecruitmentTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
 
