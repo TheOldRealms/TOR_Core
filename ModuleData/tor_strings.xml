@@ -3906,142 +3906,142 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 
 
 	<!-- Hireling Activities -->
-  <string id="tor_hirelingactivity0.waywatcher" text="{=str_tor_hirelingactivity0_waywatcher}Target practice in solitude" />
-  <string id="tor_hirelingactivity1.waywatcher" text="{=str_tor_hirelingactivity1_waywatcher}Climb trees and scout the area" />
-  <string id="tor_hirelingactivity2.waywatcher" text="{=str_tor_hirelingactivity2_waywatcher}Cover the perimeter and set up traps" />
-  <string id="tor_hirelingactivity3.waywatcher" text="{=str_tor_hirelingactivity3_waywatcher}Advanced sparring sessions" />
-  <string id="tor_hirelingactivity4.waywatcher" text="{=str_tor_hirelingactivity4_waywatcher}Gather medical herbs" />
+  <string id="tor_hirelingactivity0.Waywatcher" text="{=str_tor_hirelingactivity0_Waywatcher}Target practice in solitude" />
+  <string id="tor_hirelingactivity1.Waywatcher" text="{=str_tor_hirelingactivity1_Waywatcher}Climb trees and scout the area" />
+  <string id="tor_hirelingactivity2.Waywatcher" text="{=str_tor_hirelingactivity2_Waywatcher}Cover the perimeter and set up traps" />
+  <string id="tor_hirelingactivity3.Waywatcher" text="{=str_tor_hirelingactivity3_Waywatcher}Advanced sparring sessions" />
+  <string id="tor_hirelingactivity4.Waywatcher" text="{=str_tor_hirelingactivity4_Waywatcher}Gather medical herbs" />
 
 
-  <string id="tor_hirelingactivity0.imperialmagister" text="{=str_tor_hirelingactivity0_imperialmagister}Focus on your studies" />
-  <string id="tor_hirelingactivity1.imperialmagister" text="{=str_tor_hirelingactivity1_imperialmagister}Assist your lord with accounting tasks" />
-  <string id="tor_hirelingactivity2.imperialmagister" text="{=str_tor_hirelingactivity2_imperialmagister}Join the sparring soldiers" />
-  <string id="tor_hirelingactivity3.imperialmagister" text="{=str_tor_hirelingactivity3_imperialmagister}Care for the wounded troops" />
-  <string id="tor_hirelingactivity4.imperialmagister" text="{=str_tor_hirelingactivity4_imperialmagister}Advise the commander" />
+  <string id="tor_hirelingactivity0.ImperialMagister" text="{=str_tor_hirelingactivity0_ImperialMagister}Focus on your studies" />
+  <string id="tor_hirelingactivity1.ImperialMagister" text="{=str_tor_hirelingactivity1_ImperialMagister}Assist your lord with accounting tasks" />
+  <string id="tor_hirelingactivity2.ImperialMagister" text="{=str_tor_hirelingactivity2_ImperialMagister}Join the sparring soldiers" />
+  <string id="tor_hirelingactivity3.ImperialMagister" text="{=str_tor_hirelingactivity3_ImperialMagister}Care for the wounded troops" />
+  <string id="tor_hirelingactivity4.ImperialMagister" text="{=str_tor_hirelingactivity4_ImperialMagister}Advise the commander" />
 
 
-  <string id="tor_hirelingactivity0.grailknight" text="{=str_tor_hirelingactivity0_grailknight}Practice sword-fighting" />
-  <string id="tor_hirelingactivity1.grailknight" text="{=str_tor_hirelingactivity1_grailknight}Socialize with other nobles" />
-  <string id="tor_hirelingactivity2.grailknight" text="{=str_tor_hirelingactivity2_grailknight}Ride ahead of the army" />
-  <string id="tor_hirelingactivity3.grailknight" text="{=str_tor_hirelingactivity3_grailknight}Assist the commander" />
-  <string id="tor_hirelingactivity4.grailknight" text="{=str_tor_hirelingactivity4_grailknight}Pray to the Lady of the Lake" />
+  <string id="tor_hirelingactivity0.GrailKnight" text="{=str_tor_hirelingactivity0_GrailKnight}Practice sword-fighting" />
+  <string id="tor_hirelingactivity1.GrailKnight" text="{=str_tor_hirelingactivity1_GrailKnight}Socialize with other nobles" />
+  <string id="tor_hirelingactivity2.GrailKnight" text="{=str_tor_hirelingactivity2_GrailKnight}Ride ahead of the army" />
+  <string id="tor_hirelingactivity3.GrailKnight" text="{=str_tor_hirelingactivity3_GrailKnight}Assist the commander" />
+  <string id="tor_hirelingactivity4.GrailKnight" text="{=str_tor_hirelingactivity4_GrailKnight}Pray to the Lady of the Lake" />
 
 
-  <string id="tor_hirelingactivity0.graildamsel" text="{=str_tor_hirelingactivity0_graildamsel}Converse with the stabled horses" />
-  <string id="tor_hirelingactivity1.graildamsel" text="{=str_tor_hirelingactivity1_graildamsel}Prepare warding rituals" />
-  <string id="tor_hirelingactivity2.graildamsel" text="{=str_tor_hirelingactivity2_graildamsel}Bless the troops in the name of The Lady" />
-  <string id="tor_hirelingactivity3.graildamsel" text="{=str_tor_hirelingactivity3_graildamsel}Advise the army commander" />
-  <string id="tor_hirelingactivity4.graildamsel" text="{=str_tor_hirelingactivity4_graildamsel}Mediate the quarreling nobles" />
+  <string id="tor_hirelingactivity0.GrailDamsel" text="{=str_tor_hirelingactivity0_GrailDamsel}Converse with the stabled horses" />
+  <string id="tor_hirelingactivity1.GrailDamsel" text="{=str_tor_hirelingactivity1_GrailDamsel}Prepare warding rituals" />
+  <string id="tor_hirelingactivity2.GrailDamsel" text="{=str_tor_hirelingactivity2_GrailDamsel}Bless the troops in the name of The Lady" />
+  <string id="tor_hirelingactivity3.GrailDamsel" text="{=str_tor_hirelingactivity3_GrailDamsel}Advise the army commander" />
+  <string id="tor_hirelingactivity4.GrailDamsel" text="{=str_tor_hirelingactivity4_GrailDamsel}Mediate the quarreling nobles" />
 
 
-  <string id="tor_hirelingactivity0.warriorpriestulric" text="{=str_tor_hirelingactivity0_warriorpriestulric}Scour the wilds" />
-  <string id="tor_hirelingactivity1.warriorpriestulric" text="{=str_tor_hirelingactivity1_warriorpriestulric}Train with a battleaxe" />
-  <string id="tor_hirelingactivity2.warriorpriestulric" text="{=str_tor_hirelingactivity2_warriorpriestulric}Help with firewood" />
-  <string id="tor_hirelingactivity3.warriorpriestulric" text="{=str_tor_hirelingactivity3_warriorpriestulric}Inspire the troops to drive away weakness" />
-  <string id="tor_hirelingactivity4.warriorpriestulric" text="{=str_tor_hirelingactivity4_warriorpriestulric}Preach the teachings of Ulric" />
+  <string id="tor_hirelingactivity0.WarriorPriestUlric" text="{=str_tor_hirelingactivity0_WarriorPriestUlric}Scour the wilds" />
+  <string id="tor_hirelingactivity1.WarriorPriestUlric" text="{=str_tor_hirelingactivity1_WarriorPriestUlric}Train with a battleaxe" />
+  <string id="tor_hirelingactivity2.WarriorPriestUlric" text="{=str_tor_hirelingactivity2_WarriorPriestUlric}Help with firewood" />
+  <string id="tor_hirelingactivity3.WarriorPriestUlric" text="{=str_tor_hirelingactivity3_WarriorPriestUlric}Inspire the troops to drive away weakness" />
+  <string id="tor_hirelingactivity4.WarriorPriestUlric" text="{=str_tor_hirelingactivity4_WarriorPriestUlric}Preach the teachings of Ulric" />
 
 
-  <string id="tor_hirelingactivity0.mercenary" text="{=str_tor_hirelingactivity0_mercenary}Discuss techniques with shock troops" />
-  <string id="tor_hirelingactivity1.mercenary" text="{=str_tor_hirelingactivity1_mercenary}Target practice with archer regiments" />
-  <string id="tor_hirelingactivity2.mercenary" text="{=str_tor_hirelingactivity2_mercenary}Maintain gunpowder weapons " />
-  <string id="tor_hirelingactivity3.mercenary" text="{=str_tor_hirelingactivity3_mercenary}Barter and haggle with the quartermaster" />
-  <string id="tor_hirelingactivity4.mercenary" text="{=str_tor_hirelingactivity4_mercenary}Eavesdrop by the commander's tent" />
+  <string id="tor_hirelingactivity0.Mercenary" text="{=str_tor_hirelingactivity0_Mercenary}Discuss techniques with shock troops" />
+  <string id="tor_hirelingactivity1.Mercenary" text="{=str_tor_hirelingactivity1_Mercenary}Target practice with archer regiments" />
+  <string id="tor_hirelingactivity2.Mercenary" text="{=str_tor_hirelingactivity2_Mercenary}Maintain gunpowder weapons " />
+  <string id="tor_hirelingactivity3.Mercenary" text="{=str_tor_hirelingactivity3_Mercenary}Barter and haggle with the quartermaster" />
+  <string id="tor_hirelingactivity4.Mercenary" text="{=str_tor_hirelingactivity4_Mercenary}Eavesdrop by the commander's tent" />
 
 
-  <string id="tor_hirelingactivity0.blackgrailknight" text="{=str_tor_hirelingactivity0_blackgrailknight}Practice sword-fighting" />
-  <string id="tor_hirelingactivity1.blackgrailknight" text="{=str_tor_hirelingactivity1_blackgrailknight}Spread The Lady's Lie among the nobles" />
-  <string id="tor_hirelingactivity2.blackgrailknight" text="{=str_tor_hirelingactivity2_blackgrailknight}Ride ahead of the army" />
-  <string id="tor_hirelingactivity3.blackgrailknight" text="{=str_tor_hirelingactivity3_blackgrailknight}Saddle up and joust with other nobles" />
-  <string id="tor_hirelingactivity4.blackgrailknight" text="{=str_tor_hirelingactivity4_blackgrailknight}Discipline the peasantry" />
+  <string id="tor_hirelingactivity0.BlackGrailKnight" text="{=str_tor_hirelingactivity0_BlackGrailKnight}Practice sword-fighting" />
+  <string id="tor_hirelingactivity1.BlackGrailKnight" text="{=str_tor_hirelingactivity1_BlackGrailKnight}Spread The Lady's Lie among the nobles" />
+  <string id="tor_hirelingactivity2.BlackGrailKnight" text="{=str_tor_hirelingactivity2_BlackGrailKnight}Ride ahead of the army" />
+  <string id="tor_hirelingactivity3.BlackGrailKnight" text="{=str_tor_hirelingactivity3_BlackGrailKnight}Saddle up and joust with other nobles" />
+  <string id="tor_hirelingactivity4.BlackGrailKnight" text="{=str_tor_hirelingactivity4_BlackGrailKnight}Discipline the peasantry" />
 
 
-  <string id="tor_hirelingactivity0.bloodknight" text="{=str_tor_hirelingactivity0_bloodknight}Train with a sword" />
-  <string id="tor_hirelingactivity1.bloodknight" text="{=str_tor_hirelingactivity1_bloodknight}Train with a great sword" />
-  <string id="tor_hirelingactivity2.bloodknight" text="{=str_tor_hirelingactivity2_bloodknight}Ride in the vanguard" />
-  <string id="tor_hirelingactivity3.bloodknight" text="{=str_tor_hirelingactivity3_bloodknight}Participate in strategy meetings" />
-  <string id="tor_hirelingactivity4.bloodknight" text="{=str_tor_hirelingactivity4_bloodknight}Seperate the weak from the strong" />
+  <string id="tor_hirelingactivity0.BloodKnight" text="{=str_tor_hirelingactivity0_BloodKnight}Train with a sword" />
+  <string id="tor_hirelingactivity1.BloodKnight" text="{=str_tor_hirelingactivity1_BloodKnight}Train with a great sword" />
+  <string id="tor_hirelingactivity2.BloodKnight" text="{=str_tor_hirelingactivity2_BloodKnight}Ride in the vanguard" />
+  <string id="tor_hirelingactivity3.BloodKnight" text="{=str_tor_hirelingactivity3_BloodKnight}Participate in strategy meetings" />
+  <string id="tor_hirelingactivity4.BloodKnight" text="{=str_tor_hirelingactivity4_BloodKnight}Seperate the weak from the strong" />
 
 
-  <string id="tor_hirelingactivity0.minorvampire" text="{=str_tor_hirelingactivity0_minorvampire}Spar with the troops" />
-  <string id="tor_hirelingactivity1.minorvampire" text="{=str_tor_hirelingactivity1_minorvampire}Curry favor with the commander" />
-  <string id="tor_hirelingactivity2.minorvampire" text="{=str_tor_hirelingactivity2_minorvampire}Focus on the vile energies in the area" />
-  <string id="tor_hirelingactivity3.minorvampire" text="{=str_tor_hirelingactivity3_minorvampire}Search for prey to feed on" />
-  <string id="tor_hirelingactivity4.minorvampire" text="{=str_tor_hirelingactivity4_minorvampire}Command the sheep" />
+  <string id="tor_hirelingactivity0.MinorVampire" text="{=str_tor_hirelingactivity0_MinorVampire}Spar with the troops" />
+  <string id="tor_hirelingactivity1.MinorVampire" text="{=str_tor_hirelingactivity1_MinorVampire}Curry favor with the commander" />
+  <string id="tor_hirelingactivity2.MinorVampire" text="{=str_tor_hirelingactivity2_MinorVampire}Focus on the vile energies in the area" />
+  <string id="tor_hirelingactivity3.MinorVampire" text="{=str_tor_hirelingactivity3_MinorVampire}Search for prey to feed on" />
+  <string id="tor_hirelingactivity4.MinorVampire" text="{=str_tor_hirelingactivity4_MinorVampire}Command the sheep" />
 
 
-  <string id="tor_hirelingactivity0.necrarch" text="{=str_tor_hirelingactivity0_necrarch}Hone your Witchsight" />
-  <string id="tor_hirelingactivity1.necrarch" text="{=str_tor_hirelingactivity1_necrarch}Search for prey to feed on" />
-  <string id="tor_hirelingactivity2.necrarch" text="{=str_tor_hirelingactivity2_necrarch}Dissect test subjects" />
-  <string id="tor_hirelingactivity3.necrarch" text="{=str_tor_hirelingactivity3_necrarch}Study arcane blueprints" />
-  <string id="tor_hirelingactivity4.necrarch" text="{=str_tor_hirelingactivity4_necrarch}Issue orders to your servants" />
+  <string id="tor_hirelingactivity0.Necrarch" text="{=str_tor_hirelingactivity0_Necrarch}Hone your Witchsight" />
+  <string id="tor_hirelingactivity1.Necrarch" text="{=str_tor_hirelingactivity1_Necrarch}Search for prey to feed on" />
+  <string id="tor_hirelingactivity2.Necrarch" text="{=str_tor_hirelingactivity2_Necrarch}Dissect test subjects" />
+  <string id="tor_hirelingactivity3.Necrarch" text="{=str_tor_hirelingactivity3_Necrarch}Study arcane blueprints" />
+  <string id="tor_hirelingactivity4.Necrarch" text="{=str_tor_hirelingactivity4_Necrarch}Issue orders to your servants" />
 
 
-  <string id="tor_hirelingactivity0.necromancer" text="{=str_tor_hirelingactivity0_necromancer}Study tomes of knowledge" />
-  <string id="tor_hirelingactivity1.necromancer" text="{=str_tor_hirelingactivity1_necromancer}Raid nearby cemeteries" />
-  <string id="tor_hirelingactivity2.necromancer" text="{=str_tor_hirelingactivity2_necromancer}Experiment on dead bodies" />
-  <string id="tor_hirelingactivity3.necromancer" text="{=str_tor_hirelingactivity3_necromancer}Send your minions ahead of the army" />
-  <string id="tor_hirelingactivity4.necromancer" text="{=str_tor_hirelingactivity4_necromancer}Assist the vampire lieutenants" />
+  <string id="tor_hirelingactivity0.Necromancer" text="{=str_tor_hirelingactivity0_Necromancer}Study tomes of knowledge" />
+  <string id="tor_hirelingactivity1.Necromancer" text="{=str_tor_hirelingactivity1_Necromancer}Raid nearby cemeteries" />
+  <string id="tor_hirelingactivity2.Necromancer" text="{=str_tor_hirelingactivity2_Necromancer}Experiment on dead bodies" />
+  <string id="tor_hirelingactivity3.Necromancer" text="{=str_tor_hirelingactivity3_Necromancer}Send your minions ahead of the army" />
+  <string id="tor_hirelingactivity4.Necromancer" text="{=str_tor_hirelingactivity4_Necromancer}Assist the vampire lieutenants" />
 
 
-  <string id="tor_hirelingactivity0.witchhunter" text="{=str_tor_hirelingactivity0_witchhunter}Great sword sparring" />
-  <string id="tor_hirelingactivity1.witchhunter" text="{=str_tor_hirelingactivity1_witchhunter}Target practice with crossbows" />
-  <string id="tor_hirelingactivity2.witchhunter" text="{=str_tor_hirelingactivity2_witchhunter}Maintain gunpowder weapons" />
-  <string id="tor_hirelingactivity3.witchhunter" text="{=str_tor_hirelingactivity3_witchhunter}Lecture on the dangers of Corruption" />
-  <string id="tor_hirelingactivity4.witchhunter" text="{=str_tor_hirelingactivity4_witchhunter}Practice with a rapier" />
+  <string id="tor_hirelingactivity0.WitchHunter" text="{=str_tor_hirelingactivity0_WitchHunter}Great sword sparring" />
+  <string id="tor_hirelingactivity1.WitchHunter" text="{=str_tor_hirelingactivity1_WitchHunter}Target practice with crossbows" />
+  <string id="tor_hirelingactivity2.WitchHunter" text="{=str_tor_hirelingactivity2_WitchHunter}Maintain gunpowder weapons" />
+  <string id="tor_hirelingactivity3.WitchHunter" text="{=str_tor_hirelingactivity3_WitchHunter}Lecture on the dangers of Corruption" />
+  <string id="tor_hirelingactivity4.WitchHunter" text="{=str_tor_hirelingactivity4_WitchHunter}Practice with a rapier" />
 
 
-  <string id="tor_hirelingactivity0.warriorpriest" text="{=str_tor_hirelingactivity0_warriorpriest}Spar with the troops" />
-  <string id="tor_hirelingactivity1.warriorpriest" text="{=str_tor_hirelingactivity1_warriorpriest}Train with a warhammer" />
-  <string id="tor_hirelingactivity2.warriorpriest" text="{=str_tor_hirelingactivity2_warriorpriest}Help set up tents" />
-  <string id="tor_hirelingactivity3.warriorpriest" text="{=str_tor_hirelingactivity3_warriorpriest}Assist the priestesses of Shallya" />
-  <string id="tor_hirelingactivity4.warriorpriest" text="{=str_tor_hirelingactivity4_warriorpriest}Preach about Sigmar Heldenhammer" />
+  <string id="tor_hirelingactivity0.WarriorPriest" text="{=str_tor_hirelingactivity0_WarriorPriest}Spar with the troops" />
+  <string id="tor_hirelingactivity1.WarriorPriest" text="{=str_tor_hirelingactivity1_WarriorPriest}Train with a warhammer" />
+  <string id="tor_hirelingactivity2.WarriorPriest" text="{=str_tor_hirelingactivity2_WarriorPriest}Help set up tents" />
+  <string id="tor_hirelingactivity3.WarriorPriest" text="{=str_tor_hirelingactivity3_WarriorPriest}Assist the priestesses of Shallya" />
+  <string id="tor_hirelingactivity4.WarriorPriest" text="{=str_tor_hirelingactivity4_WarriorPriest}Preach about Sigmar Heldenhammer" />
 
 
-  <string id="tor_hirelingactivity0.spellsinger" text="{=str_tor_hirelingactivity0_spellsinger}Commune with forest spirits" />
-  <string id="tor_hirelingactivity1.spellsinger" text="{=str_tor_hirelingactivity1_spellsinger}Converse with the stabled horses"/>
-  <string id="tor_hirelingactivity2.spellsinger" text="{=str_tor_hirelingactivity2_spellsinger}Offer a prayer to Isha, the Mother" />
-  <string id="tor_hirelingactivity3.spellsinger" text="{=str_tor_hirelingactivity3_spellsinger}Discuss diplomatic matters with the commander" />
-  <string id="tor_hirelingactivity4.spellsinger" text="{=str_tor_hirelingactivity4_spellsinger}Gather medicinal herbs" />
+  <string id="tor_hirelingactivity0.Spellsinger" text="{=str_tor_hirelingactivity0_Spellsinger}Commune with forest spirits" />
+  <string id="tor_hirelingactivity1.Spellsinger" text="{=str_tor_hirelingactivity1_Spellsinger}Converse with the stabled horses"/>
+  <string id="tor_hirelingactivity2.Spellsinger" text="{=str_tor_hirelingactivity2_Spellsinger}Offer a prayer to Isha, the Mother" />
+  <string id="tor_hirelingactivity3.Spellsinger" text="{=str_tor_hirelingactivity3_Spellsinger}Discuss diplomatic matters with the commander" />
+  <string id="tor_hirelingactivity4.Spellsinger" text="{=str_tor_hirelingactivity4_Spellsinger}Gather medicinal herbs" />
 
 
-  <string id="tor_hirelingactivity0.greylord" text="{=str_tor_hirelingactivity0_greylord}Study manuscripts." />
-  <string id="tor_hirelingactivity1.greylord" text="{=str_tor_hirelingactivity1_greylord}Engage in book keeping tasks" />
-  <string id="tor_hirelingactivity2.greylord" text="{=str_tor_hirelingactivity2_greylord}Hold speeches about the dragons of Caledor" />
-  <string id="tor_hirelingactivity3.greylord" text="{=str_tor_hirelingactivity3_greylord}Maintain Asurian etiquette" />
-  <string id="tor_hirelingactivity4.greylord" text="{=str_tor_hirelingactivity4_greylord}Experiment with alchemistic substances" />
+  <string id="tor_hirelingactivity0.GreyLord" text="{=str_tor_hirelingactivity0_GreyLord}Study manuscripts." />
+  <string id="tor_hirelingactivity1.GreyLord" text="{=str_tor_hirelingactivity1_GreyLord}Engage in book keeping tasks" />
+  <string id="tor_hirelingactivity2.GreyLord" text="{=str_tor_hirelingactivity2_GreyLord}Hold speeches about the dragons of Caledor" />
+  <string id="tor_hirelingactivity3.GreyLord" text="{=str_tor_hirelingactivity3_GreyLord}Maintain Asurian etiquette" />
+  <string id="tor_hirelingactivity4.GreyLord" text="{=str_tor_hirelingactivity4_GreyLord}Experiment with alchemistic substances" />
 
 
-  <string id="tor_hirelingactivity0.knightoldworld" text="{=str_tor_hirelingactivity0_knightoldworld}Sparring practice with a sword" />
-  <string id="tor_hirelingactivity1.knightoldworld" text="{=str_tor_hirelingactivity1_knightoldworld}Sparring practice with a greatsword" />
-  <string id="tor_hirelingactivity2.knightoldworld" text="{=str_tor_hirelingactivity2_knightoldworld}Joust with other cavalrymen" />
-  <string id="tor_hirelingactivity3.knightoldworld" text="{=str_tor_hirelingactivity3_knightoldworld}Tend to your mount" />
-  <string id="tor_hirelingactivity4.knightoldworld" text="{=str_tor_hirelingactivity4_knightoldworld}Give battlefield advice to common troops" />
+  <string id="tor_hirelingactivity0.KnightOldWorld" text="{=str_tor_hirelingactivity0_KnightOldWorld}Sparring practice with a sword" />
+  <string id="tor_hirelingactivity1.KnightOldWorld" text="{=str_tor_hirelingactivity1_KnightOldWorld}Sparring practice with a greatsword" />
+  <string id="tor_hirelingactivity2.KnightOldWorld" text="{=str_tor_hirelingactivity2_KnightOldWorld}Joust with other cavalrymen" />
+  <string id="tor_hirelingactivity3.KnightOldWorld" text="{=str_tor_hirelingactivity3_KnightOldWorld}Tend to your mount" />
+  <string id="tor_hirelingactivity4.KnightOldWorld" text="{=str_tor_hirelingactivity4_KnightOldWorld}Give battlefield advice to common troops" />
 
 
-  <string id="tor_hirelingactivity0.ironbreaker" text="{=str_tor_hirelingactivity0_ironbreaker}Train with an az" />
-  <string id="tor_hirelingactivity1.ironbreaker" text="{=str_tor_hirelingactivity1_ironbreaker}Maintain your armor and weapons" />
-  <string id="tor_hirelingactivity2.ironbreaker" text="{=str_tor_hirelingactivity2_ironbreaker}Scout nearby tunnels" />
-  <string id="tor_hirelingactivity3.ironbreaker" text="{=str_tor_hirelingactivity3_ironbreaker}Arm wrestle with other soldiers" />
-  <string id="tor_hirelingactivity4.ironbreaker" text="{=str_tor_hirelingactivity4_ironbreaker}Help the army engineer with grenades" />
+  <string id="tor_hirelingactivity0.Ironbreaker" text="{=str_tor_hirelingactivity0_Ironbreaker}Train with an az" />
+  <string id="tor_hirelingactivity1.Ironbreaker" text="{=str_tor_hirelingactivity1_Ironbreaker}Maintain your armor and weapons" />
+  <string id="tor_hirelingactivity2.Ironbreaker" text="{=str_tor_hirelingactivity2_Ironbreaker}Scout nearby tunnels" />
+  <string id="tor_hirelingactivity3.Ironbreaker" text="{=str_tor_hirelingactivity3_Ironbreaker}Arm wrestle with other soldiers" />
+  <string id="tor_hirelingactivity4.Ironbreaker" text="{=str_tor_hirelingactivity4_Ironbreaker}Help the army engineer with grenades" />
 
 
-  <string id="tor_hirelingactivity0.slayer" text="{=str_tor_hirelingactivity0_slayer}Train with an az" />
-  <string id="tor_hirelingactivity1.slayer" text="{=str_tor_hirelingactivity1_slayer}Practice with a great az" />
-  <string id="tor_hirelingactivity2.slayer" text="{=str_tor_hirelingactivity2_slayer}Patrol the camp perimeter" />
-  <string id="tor_hirelingactivity3.slayer" text="{=str_tor_hirelingactivity3_slayer}Repeat the words of your Slayer Oath" />
-  <string id="tor_hirelingactivity4.slayer" text="{=str_tor_hirelingactivity4_slayer}Drown your shame in ale" />
+  <string id="tor_hirelingactivity0.Slayer" text="{=str_tor_hirelingactivity0_Slayer}Train with an az" />
+  <string id="tor_hirelingactivity1.Slayer" text="{=str_tor_hirelingactivity1_Slayer}Practice with a great az" />
+  <string id="tor_hirelingactivity2.Slayer" text="{=str_tor_hirelingactivity2_Slayer}Patrol the camp perimeter" />
+  <string id="tor_hirelingactivity3.Slayer" text="{=str_tor_hirelingactivity3_Slayer}Repeat the words of your Slayer Oath" />
+  <string id="tor_hirelingactivity4.Slayer" text="{=str_tor_hirelingactivity4_Slayer}Drown your shame in ale" />
 
-  <string id="tor_hirelingactivity0.orcboss" text="{=str_tor_hirelingactivity0_orcboss}Smash fings wiv a smaller choppa" />
-  <string id="tor_hirelingactivity1.orcboss" text="{=str_tor_hirelingactivity1_orcboss}Smash fings wiv da biggest choppa" />
-  <string id="tor_hirelingactivity2.orcboss" text="{=str_tor_hirelingactivity2_orcboss}Smash fings wiv a long choppa" />
-  <string id="tor_hirelingactivity3.orcboss" text="{=str_tor_hirelingactivity3_orcboss}Yell rude names at da Arrer Boys" />
-  <string id="tor_hirelingactivity4.orcboss" text="{=str_tor_hirelingactivity4_orcboss}Explain Gork an' Mork to sum Trolls" />
+  <string id="tor_hirelingactivity0.OrcBoss" text="{=str_tor_hirelingactivity0_OrcBoss}Smash fings wiv a smaller choppa" />
+  <string id="tor_hirelingactivity1.OrcBoss" text="{=str_tor_hirelingactivity1_OrcBoss}Smash fings wiv da biggest choppa" />
+  <string id="tor_hirelingactivity2.OrcBoss" text="{=str_tor_hirelingactivity2_OrcBoss}Smash fings wiv a long choppa" />
+  <string id="tor_hirelingactivity3.OrcBoss" text="{=str_tor_hirelingactivity3_OrcBoss}Yell rude names at da Arrer Boys" />
+  <string id="tor_hirelingactivity4.OrcBoss" text="{=str_tor_hirelingactivity4_OrcBoss}Explain Gork an' Mork to sum Trolls" />
 
-  <string id="tor_hirelingactivity0.warden" text="{=str_tor_hirelingactivity0_warden}Sparring practice with spears" />
-  <string id="tor_hirelingactivity1.warden" text="{=str_tor_hirelingactivity1_warden}Javelin target practice" />
-  <string id="tor_hirelingactivity2.warden" text="{=str_tor_hirelingactivity2_warden}Bow target practice" />
-  <string id="tor_hirelingactivity3.warden" text="{=str_tor_hirelingactivity3_warden}Scout the perimeter together with your hawk" />
-  <string id="tor_hirelingactivity4.warden" text="{=str_tor_hirelingactivity4_warden}Discuss army movements with other nobles" />
+  <string id="tor_hirelingactivity0.Warden" text="{=str_tor_hirelingactivity0_Warden}Sparring practice with spears" />
+  <string id="tor_hirelingactivity1.Warden" text="{=str_tor_hirelingactivity1_Warden}Javelin target practice" />
+  <string id="tor_hirelingactivity2.Warden" text="{=str_tor_hirelingactivity2_Warden}Bow target practice" />
+  <string id="tor_hirelingactivity3.Warden" text="{=str_tor_hirelingactivity3_Warden}Scout the perimeter together with your hawk" />
+  <string id="tor_hirelingactivity4.Warden" text="{=str_tor_hirelingactivity4_Warden}Discuss army movements with other nobles" />
   
   
   <string id="tor_hireling_wage" text="{=str_tor_hireling_wage}Hireling Wage" />

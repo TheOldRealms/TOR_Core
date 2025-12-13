@@ -406,7 +406,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             var career = Hero.MainHero.GetCareer();
             for (var i = 0; i < 5; i++)
             {
-                if (GameTexts.TryGetText("tor_hirelingactivity" + i, out var text, career.StringId.ToLower()))
+                if (GameTexts.TryGetText("tor_hirelingactivity" + i, out var text, career.StringId))
                 {
                     if (_currentActivityIndex == i)
                     {
