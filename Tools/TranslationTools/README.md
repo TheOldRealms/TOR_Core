@@ -15,6 +15,7 @@ This folder contains tools to help translators manage and update translation fil
 ### Scripts
 - **`merge_translation.bat`** - Double-click to run (easiest!)
 - **`merge_translation.ps1`** - PowerShell script (called by .bat)
+- **`merge_all_translations.ps1`** - Advanced: Merge ALL translation files across all modules
 
 ### Documentation
 - **`QUICKSTART_GUIDE.md`** - Step-by-step instructions
@@ -22,12 +23,70 @@ This folder contains tools to help translators manage and update translation fil
 
 ## What These Tools Do
 
-The translation merge tool:
+### Basic Tool (merge_translation.ps1)
+The basic translation merge tool:
 - ✅ Updates your translation file when the English text changes
 - ✅ Preserves all your existing translations
 - ✅ Adds new entries as "TODO [English text]"
 - ✅ Creates automatic backups
 - ✅ Shows statistics about your translation progress
+
+### Advanced Tool (merge_all_translations.ps1)
+The advanced merge tool processes ALL translation files across ALL modules (TOR_Core, TOR_Armory, TOR_Environment):
+
+**Features:**
+- ✅ Reads language_data.xml to find all translation files
+- ✅ Extracts localization IDs from any XML attribute or element
+- ✅ Handles different XML structures automatically (strings, items, characters, etc.)
+- ✅ Matches existing translations by localization ID
+- ✅ Preserves all existing translations
+- ✅ Creates TODO entries for missing translations
+- ✅ Creates automatic backups before overwriting
+- ✅ Creates proper folder structure
+- ✅ Generates comprehensive statistics
+- ✅ Shows top 10 files needing most translation work
+- ✅ Supports dry-run mode to preview changes
+- ✅ Color-coded progress output
+
+**Usage:**
+```powershell
+# Preview changes (dry run - RECOMMENDED FIRST!)
+.\merge_all_translations.ps1 -LanguageCode SP -DryRun
+
+# Apply changes to all files
+.\merge_all_translations.ps1 -LanguageCode SP
+
+# Examples for other languages
+.\merge_all_translations.ps1 -LanguageCode FR -DryRun
+.\merge_all_translations.ps1 -LanguageCode DE
+```
+
+**What It Does:**
+1. Reads `ModuleData/Languages/[LANG]/language_data.xml` to get list of files
+2. For each file:
+   - Finds English source in correct module (TOR_Core, TOR_Armory, or TOR_Environment)
+   - Scans for all `{=localization_id}English Text` patterns
+   - Loads existing translations if file exists
+   - Matches by localization ID
+   - Preserves existing translations
+   - Marks missing translations as "TODO [English text]"
+   - Creates backup before saving
+3. Shows detailed statistics and files needing most work
+
+**Example Output:**
+```
+Found 39 files to process
+Total entries across all files: 15094
+Preserved translations: 6342
+New entries (marked TODO): 8752
+Overall translation completion: 42.02%
+
+Files Needing Most Translation Work:
+  SP/TOR_Armory/ModuleData/xslt_changes.xml
+    TODO: 1122/1167 (96.14%)
+  SP/TOR_Core/ModuleData/tor_strings.xml
+    TODO: 3162/3327 (95.04%)
+```
 
 ## Language Codes
 
