@@ -33,27 +33,30 @@ namespace TOR_Core.Extensions
         }
 
 
-        public static string GetText(string id, string defaultText)
+        public static string GetText(string id, string defaultText, bool skipValidation = false)
         {
-            var text = GetTextObject(id, defaultText);
+            var text = GetTextObject(id, defaultText, skipValidation);
             return text.Value;
         }
 
-        public static string GetText(string id, string variation, string defaultText)
+        public static string GetText(string id, string variation, string defaultText, bool skipValidation = false)
         {
-            var text = GetTextObject(id, variation, defaultText);
+            var text = GetTextObject(id, variation, defaultText, skipValidation);
             return text.ToString();
         }
 
 
-        public static TextObject GetTextObject(string id, string defaultText)
+        public static TextObject GetTextObject(string id, string defaultText, bool skipValidation = false)
         {
             if (GameTexts.TryGetText(id, out var textObject))
             {
-                var pureText = textObject.GetNativeTextWithoutTag();
-                if (pureText != defaultText)
+                if (!skipValidation)
                 {
-                    TORCommon.Log(string.Format("Code text mismatches TOR XML text for {0}. \n {1},\n{2}", id, pureText, defaultText), LogLevel.Warn);
+                    var pureText = textObject.GetNativeTextWithoutTag();
+                    if (pureText != defaultText)
+                    {
+                        TORCommon.Log(string.Format("Code text mismatches TOR XML text for {0}. \n {1},\n{2}", id, pureText, defaultText), LogLevel.Warn);
+                    }
                 }
 
                 return textObject;
@@ -63,17 +66,21 @@ namespace TOR_Core.Extensions
             return new TextObject(defaultText);
         }
 
-        public static TextObject GetTextObject(string id, string variation, string defaultText)
+        public static TextObject GetTextObject(string id, string variation, string defaultText, bool skipValidation = false)
         {
             if (GameTexts.TryGetText(id, out var textObject, variation))
             {
-                var pureText = textObject.GetNativeTextWithoutTag();
-                if (pureText != defaultText)
+                if (!skipValidation)
                 {
-                    TORCommon.Log(string.Format("Code text mismatches TOR XML text. \n {0},\n{0}", id), LogLevel.Warn);
+                    var pureText = textObject.GetNativeTextWithoutTag();
+                    if (pureText != defaultText)
+                    {
+                        TORCommon.Log(string.Format("Code text mismatches TOR XML text. \n {0},\n{0}", id), LogLevel.Warn);
+                    }
                 }
 
                 return textObject;
+                
             }
 
             TORCommon.Log(string.Format("Couldn't find text with id: {0}.  switch to default", id), LogLevel.Error);

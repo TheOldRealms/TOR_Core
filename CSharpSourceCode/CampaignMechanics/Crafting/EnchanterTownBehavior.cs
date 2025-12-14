@@ -272,30 +272,30 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 }
 
                 campaignGameStarter.AddPlayerLine("enchanter_start_p" + cultures[i], hub, "enchanter_start" + cultures[i],
-                    GameTexts.FindText("tor_enchanter_start_p", cultures[i]).ToString(),
+                    TORTextHelper.GetText("tor_enchanter_start_p", cultures[i], "I wish to learn about enchantment.", true),
                     () => EnchanterCondition(cultures[i]) && cultureCheck(cultures[i]), null, 210);
 
 
                 campaignGameStarter.AddDialogLine("enchanter_start_enchanter" + cultures[i], "enchanter_start" + cultures[i],
-                    "enchanter_hub_intro" + cultures[i], GameTexts.FindText("tor_enchanter_start_enchanter", cultures[i]).ToString(),
+                    "enchanter_hub_intro" + cultures[i], TORTextHelper.GetText("tor_enchanter_start_enchanter", cultures[i], "Welcome, fellow practitioner of the arts.", true),
                     () => enchanterCareer() && cultureCheck(cultures[i]), null, 200);
 
                 campaignGameStarter.AddDialogLine("enchanter_start" + cultures[i], "enchanter_start" + cultures[i],
-                    "enchanter_hub_intro" + cultures[i], GameTexts.FindText("tor_enchanter_dialog_start", cultures[i]).ToString(),
+                    "enchanter_hub_intro" + cultures[i], TORTextHelper.GetText("tor_enchanter_dialog_start", cultures[i], "Greetings, visitor. How may I assist you?", true),
                     () => EnchanterCondition(cultures[i]) && cultureCheck(cultures[i]), null, 200);
             }
             else
             {
                 campaignGameStarter.AddDialogLine("enchanter_start_quit" + cultures[i], "start", "close_window",
-                    GameTexts.FindText("tor_enchanter_dialog_start_quit", cultures[i]).ToString(),
+                    TORTextHelper.GetText("tor_enchanter_dialog_start_quit", cultures[i], "You are not of my culture. Begone.", true),
                     () => EnchanterCondition(cultures[i]) && !cultureCheck(cultures[i]), null, 200);
 
                 campaignGameStarter.AddDialogLine("enchanter_start_2" + cultures[i], "start", "enchanter_hub_intro" + cultures[i],
-                    GameTexts.FindText("tor_enchanter_dialog_start_2", cultures[i]).ToString(),
+                    TORTextHelper.GetText("tor_enchanter_dialog_start_2", cultures[i], "Ah, a fellow practitioner! You are most welcome here.", true),
                     () => EnchanterCondition(cultures[i])  && cultureCheck(cultures[i]) && enchanterCareer(), null, 200);
 
                 campaignGameStarter.AddDialogLine("enchanter_start_1" + cultures[i], "start", "enchanter_hub_intro" + cultures[i],
-                    GameTexts.FindText("tor_enchanter_dialog_start_1", cultures[i]).ToString(),
+                    TORTextHelper.GetText("tor_enchanter_dialog_start_1", cultures[i], "Welcome. You have proven yourself worthy of my attention.", true),
                     () => EnchanterCondition(cultures[i]) && cultureCheck(cultures[i]), null, 200);
             }
 
@@ -317,36 +317,36 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
             //enchantment hub
 
             campaignGameStarter.AddDialogLine("enchanter_hub_intro" + cultures[i], "enchanter_hub_intro" + cultures[i],
-                "enchantment_hub" + cultures[i], GameTexts.FindText("tor_enchanter_hub_intro", cultures[i]).ToString(), null, null, 200);
+                "enchantment_hub" + cultures[i], TORTextHelper.GetText("tor_enchanter_hub_intro", cultures[i], "So, what brings you here?", true), null, null, 200);
 
             campaignGameStarter.AddDialogLine("enchanter_hub_reintro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
-                "enchantment_hub" + cultures[i], GameTexts.FindText("tor_enchanter_hub_reintro", cultures[i]).ToString(), null, null, 200);
+                "enchantment_hub" + cultures[i], TORTextHelper.GetText("tor_enchanter_hub_reintro", cultures[i], "Is there anything else?", true), null, null, 200);
 
 
             campaignGameStarter.AddPlayerLine("enchanter_hub_info_p" + cultures[i], "enchantment_hub" + cultures[i],
-                "enchanter_info_hub_intro" + cultures[i], GameTexts.FindText("tor_enchanter_hub_info_p", cultures[i]).ToString(),
+                "enchanter_info_hub_intro" + cultures[i], TORTextHelper.GetText("tor_enchanter_hub_info_p", cultures[i], "Can you teach me about enchantment?", true),
                 () => !_learnedEnchantment, null, 200);
             campaignGameStarter.AddPlayerLine("enchanter_hub_blueprints_p" + cultures[i], "enchantment_hub" + cultures[i],
-                "enchanter_blueprints" + cultures[i], GameTexts.FindText("tor_enchanter_hub_blueprints_p", cultures[i]).ToString(),
+                "enchanter_blueprints" + cultures[i], TORTextHelper.GetText("tor_enchanter_hub_blueprints_p", cultures[i], "I would like to learn new enchantments.", true),
                 () => _spokeToEnchanter, null, 200);
             campaignGameStarter.AddPlayerLine("enchanter_hub_donate_items_p" + cultures[i], "enchantment_hub" + cultures[i],
-                "enchanter_donate_items_1" + cultures[i], GameTexts.FindText("tor_enchanter_hub_donate_items_p", cultures[i]).ToString(),
+                "enchanter_donate_items_1" + cultures[i], TORTextHelper.GetText("tor_enchanter_hub_donate_items_p", cultures[i], "I have magical items I no longer need.", true),
                 () => _spokeToEnchanter, null, 200);
             campaignGameStarter.AddPlayerLine("enchanter_hub_open_enchanter_p" + cultures[i], "enchantment_hub" + cultures[i],
-                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("tor_enchanter_hub_open_enchanter_p", cultures[i]).ToString(),
+                "enchanter_hub_reintro" + cultures[i], TORTextHelper.GetText("tor_enchanter_hub_open_enchanter_p", cultures[i], "May I use your enchanting facilities?", true),
                 () => _spokeToEnchanter, () => EnchantingScreen.Open(), 200);
 
             campaignGameStarter.AddPlayerLine("enchanter_hub_return_p" + cultures[i], "enchantment_hub" + cultures[i], quittoken,
-                GameTexts.FindText("tor_enchanter_hub_return_p", cultures[i]).ToString(), null, null, 200);
+                TORTextHelper.GetText("tor_enchanter_hub_return_p", cultures[i], "I must go. Farewell.", true), null, null, 200);
 
-            //buy Enchanting Blue prints 
+            //buy Enchanting Blue prints
 
             campaignGameStarter.AddDialogLine("enchanter_blueprints" + cultures[i], "enchanter_blueprints" + cultures[i],
-                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("tor_enchanter_blueprints", cultures[i]).ToString(),
+                "enchanter_hub_reintro" + cultures[i], TORTextHelper.GetText("tor_enchanter_blueprints", cultures[i], "Let me show you what I have available.", true),
                 () => HasAnyViableEnchanterCharacter(cultures[i]), () => OpenEnchantmentShop(template.enchantmentSuffixes, cultures[i]), 200);
 
             campaignGameStarter.AddDialogLine("enchanter_blueprints_decline" + cultures[i], "enchanter_blueprints" + cultures[i],
-                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("tor_enchanter_blueprints_decline", cultures[i]).ToString(), null, null, 200);
+                "enchanter_hub_reintro" + cultures[i], TORTextHelper.GetText("tor_enchanter_blueprints_decline", cultures[i], "I'm afraid you have no one capable of learning these arts.", true), null, null, 200);
 
 
             bool HasAnyViableEnchanterCharacter(string culture)
@@ -367,30 +367,30 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             //donation
             campaignGameStarter.AddDialogLine("enchanter_donate_items_1" + cultures[i], "enchanter_donate_items_1" + cultures[i],
-                "enchanter_gift_items_hub" + cultures[i], GameTexts.FindText("tor_enchanter_donate_items_1", cultures[i]).ToString(),
+                "enchanter_gift_items_hub" + cultures[i], TORTextHelper.GetText("tor_enchanter_donate_items_1", cultures[i], "I am interested in magical items from your travels. What do you have?", true),
                 ConditionForDonation, null, 200);
 
             campaignGameStarter.AddDialogLine("enchanter_donate_items_1_negative" + cultures[i], "enchanter_donate_items_1" + cultures[i],
-                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("tor_enchanter_donate_items_1_negative", cultures[i]).ToString(), null, null,
+                "enchanter_hub_reintro" + cultures[i], TORTextHelper.GetText("tor_enchanter_donate_items_1_negative", cultures[i], "You have nothing of interest to me at this time.", true), null, null,
                 200);
 
             campaignGameStarter.AddPlayerLine("enchanter_donate_items_hub_p" + cultures[i], "enchanter_gift_items_hub" + cultures[i],
-                "enchanter_donate_items_2" + cultures[i], GameTexts.FindText("tor_enchanter_donate_items_hub_p", cultures[i]).ToString(), null,
+                "enchanter_donate_items_2" + cultures[i], TORTextHelper.GetText("tor_enchanter_donate_items_hub_p", cultures[i], "Let me provide you these items…", true), null,
                 () => DonationMode(true), 200);
 
             campaignGameStarter.AddPlayerLine("enchanter_gift_items_hub_return_p" + cultures[i], "enchanter_gift_items_hub" + cultures[i],
-                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("tor_enchanter_gift_items_hub_return_p", cultures[i]).ToString(), null, null,
+                "enchanter_hub_reintro" + cultures[i], TORTextHelper.GetText("tor_enchanter_gift_items_hub_return_p", cultures[i], "I need to think about this.", true), null, null,
                 200);
 
 
             campaignGameStarter.AddDialogLine("enchanter_donate_items_2" + cultures[i], "enchanter_donate_items_2" + cultures[i],
-                "enchanter_hub_reintro" + cultures[i], GameTexts.FindText("tor_enchanter_donate_items_2", cultures[i]).ToString(), null, null, 200);
+                "enchanter_hub_reintro" + cultures[i], TORTextHelper.GetText("tor_enchanter_donate_items_2", cultures[i], "Which items do you wish to donate?", true), null, null, 200);
 
 
             // enchantment info hub
             campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_enchanter_first_visit" + cultures[i],
                 "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
-                GameTexts.FindText("tor_enchanter_info_hub_intro_enchanter_first_visit", cultures[i]).ToString(), fullfillsFreeBeeCondition, () =>
+                TORTextHelper.GetText("tor_enchanter_info_hub_intro_enchanter_first_visit", cultures[i], "Of course! Take this, it will help you get started.", true), fullfillsFreeBeeCondition, () =>
                 {
                     _learnedEnchantment = true;
                     spokeFirstTime();
@@ -400,17 +400,17 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
             campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_first_visit" + cultures[i],
                 "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
-                GameTexts.FindText("tor_enchanter_info_hub_intro_first_visit", cultures[i]).ToString(), () => !_spokeToEnchanter,
+                TORTextHelper.GetText("tor_enchanter_info_hub_intro_first_visit", cultures[i], "Of course! Here, study this manual.", true), () => !_spokeToEnchanter,
                 () => { spokeFirstTime(); }, 200);
 
             campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_visit" + cultures[i],
                 "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
-                GameTexts.FindText("tor_enchanter_info_hub_intro_first_visit", cultures[i]).ToString(), () => !HasManual(),
+                TORTextHelper.GetText("tor_enchanter_info_hub_intro_first_visit", cultures[i], "Of course! Here, study this manual.", true), () => !HasManual(),
                 () => { spokeFirstTime(); }, 200);
 
             campaignGameStarter.AddDialogLine("enchanter_info_hub_intro_read_book" + cultures[i],
                 "enchanter_info_hub_intro" + cultures[i], "enchanter_hub_reintro" + cultures[i],
-                GameTexts.FindText("tor_enchanter_info_hub_intro_read_book", cultures[i]).ToString(), null,
+                TORTextHelper.GetText("tor_enchanter_info_hub_intro_read_book", cultures[i], "Just read the manual I gave you.", true), null,
                 () => { spokeFirstTime(); }, 200);
 
 

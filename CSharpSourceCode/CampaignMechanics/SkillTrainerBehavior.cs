@@ -224,30 +224,30 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             var restrictions = entry.Value.Restrictions;
 
             campaignStarter.AddPlayerLine("tor_teach_skills_dialog_p" + trainerDialogId + skillId, hub, "tor_skill_teacher_train_1" + trainerDialogId + skillId,
-                GameTexts.FindText("tor_teach_skills_dialog_p", trainerDialogId).ToString(), () => TrainerCondition(trainerId, skillId), null, 210);
+                TORTextHelper.GetText("tor_teach_skills_dialog_p", trainerDialogId, "I would like to arrange training for one of my companions.", true), () => TrainerCondition(trainerId, skillId), null, 210);
 
 
             //train companion
             campaignStarter.AddDialogLine("tor_skill_teacher_train_1" + trainerDialogId + skillId, "tor_skill_teacher_train_1" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
-                GameTexts.FindText("tor_skill_teacher_train_1", trainerDialogId).ToString(), null, null, 200);
+                TORTextHelper.GetText("tor_skill_teacher_train_1", trainerDialogId, "Of course. I can train your companions in the necessary skills.", true), null, null, 200);
 
             campaignStarter.AddDialogLine("tor_skill_teacher_train_2" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId,
-                GameTexts.FindText("tor_skill_teacher_train_2", trainerDialogId).ToString(), null, null, 200);
+                TORTextHelper.GetText("tor_skill_teacher_train_2", trainerDialogId, "The training will take some time, but your companion will learn much. What do you wish to do?", true), null, null, 200);
 
             campaignStarter.AddPlayerLine("tor_skill_train_hub_select_companion_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId,
-                GameTexts.FindText("tor_skill_train_hub_select_companion_p", trainerDialogId).ToString(), null, null, 200);
+                TORTextHelper.GetText("tor_skill_train_hub_select_companion_p", trainerDialogId, "I would like to send a companion for training.", true), null, null, 200);
 
 
             campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId,
-                GameTexts.FindText("tor_priest_train_hub_select_companion", trainerDialogId).ToString(), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId), 200);
+                TORTextHelper.GetText("tor_priest_train_hub_select_companion", trainerDialogId, "Very well. Choose which companion you wish to send for training.", true), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId), 200);
 
             campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion_decline" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
-                GameTexts.FindText("tor_skill_train_hub_select_companion_decline", trainerDialogId).ToString(), () => !IsAnyCompanionEligableForTraining(skillId, restrictions), null, 200);
+                TORTextHelper.GetText("tor_skill_train_hub_select_companion_decline", trainerDialogId, "I'm afraid none of your companions are eligible for training at this time.", true), () => !IsAnyCompanionEligableForTraining(skillId, restrictions), null, 200);
 
 
 
             campaignStarter.AddPlayerLine("skilltrain_train_hub_quit_p" + trainerDialogId + skillId, "skilltrainer_train_hub" + trainerDialogId + skillId, reintro_hub,
-                GameTexts.FindText("tor_priest_train_hub_quit_p", trainerDialogId).ToString(), null, null, 200);
+                TORTextHelper.GetText("tor_priest_train_hub_quit_p", trainerDialogId, "That is all for now.", true), null, null, 200);
         }
 
         bool TrainerCondition(string trainerId, string skillId)
@@ -324,9 +324,9 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         _currentSkill = skill;
         GameTexts.SetVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
         GameTexts.SetVariable("CUSTOMRESOURCE", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(true));
-        var title = GameTexts.FindText("str_tor_skill_training_prompt", "title");
+        var title = TORTextHelper.GetTextObject("str_tor_skill_training_prompt", "title", "Companion Training: {SKILL_NAME}", true);
         title.SetTextVariable("SKILL_NAME", skill.Name);
-        var description = GameTexts.FindText("str_tor_skill_training_prompt", "description");
+        var description = TORTextHelper.GetTextObject("str_tor_skill_training_prompt", "description", "Select a companion to train {SKILLNAME} with {INSTRUCTOR_NAME}.", true);
         description.SetTextVariable("INSTRUCTOR_NAME", _currentTrainer.Name);
         description.SetTextVariable("SKILLNAME", skill.Name);
 
@@ -365,7 +365,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             {
                 isEnabled = false;
 
-                var noGoldText = GameTexts.FindText("str_tor_skill_training_hover", "NoGold");
+                var noGoldText = TORTextHelper.GetTextObject("str_tor_skill_training_hover", "NoGold", "Not enough gold.", true);
 
                 reason.Append(noGoldText);
             }
@@ -373,20 +373,20 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < costs.customResourceCost)
             {
                 isEnabled = false;
-                var noCustomResource = GameTexts.FindText("str_tor_skill_training_hover", "NoCustomResource");
+                var noCustomResource = TORTextHelper.GetTextObject("str_tor_skill_training_hover", "NoCustomResource", "Not enough custom resource.", true);
                 reason.Append(noCustomResource);
                 //reason = new TextObject("not enough"+Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(true) +" requires "+costs.customResourceCost);
             }
 
             GameTexts.SetVariable("SKILLTRAINING_REASON", reason.ToString());
-            var costText = GameTexts.FindText("str_tor_skill_training_hover", "Costs");
+            var costText = TORTextHelper.GetTextObject("str_tor_skill_training_hover", "Costs", "Cost: {GOLD_COST} {GOLD_ICON}, {CR_COST} {CUSTOMRESOURCE}", true);
             costText.SetTextVariable("GOLD_COST", costs.goldcost);
             costText.SetTextVariable("CR_COST", costs.customResourceCost);
             GameTexts.SetVariable("SKILL_TRAINING_COSTS", costText.ToString());
 
-            var currentSkillValueText = GameTexts.FindText("str_tor_skill_training_prompt", "skill_value");
+            var currentSkillValueText = TORTextHelper.GetTextObject("str_tor_skill_training_prompt", "skill_value", "Current Skill: {SKILL_VALUE}", true);
             currentSkillValueText.SetTextVariable("SKILL_VALUE", hero.GetSkillValue(skill));
-            var final = GameTexts.FindText("str_tor_skill_training_hover", "Full");
+            var final = TORTextHelper.GetTextObject("str_tor_skill_training_hover", "Full", "{SKILL_TRAINING_COSTS}\n{SKILLTRAINING_REASON}", true);
 
             var heroItem = new InquiryElement(new Tuple<Hero, (int goldCost, int crCost)>(hero, costs), hero.Name.ToString() + "\n" + currentSkillValueText,
                 new CharacterImageIdentifier(CampaignUIHelper.GetCharacterCode(hero.CharacterObject)), isEnabled, final.ToString());
