@@ -3,7 +3,7 @@
 ## For Windows Users (Most Common)
 
 ### Easiest Method: Double-Click the .bat File
-1. Navigate to: `TOR_Core\Tools\TranslationTools\`
+1. Navigate to: `TOR_Core\Tools\TranslationTool\`
 2. Double-click `merge_translation.bat`
 3. Enter your language code (e.g., SP, FR, DE) when prompted
 4. Press Enter and done!
@@ -11,9 +11,9 @@
 ### Alternative: PowerShell Method
 1. Press `Windows Key + R`
 2. Type `powershell` and press Enter
-3. Navigate to the TranslationTools folder:
+3. Navigate to the TranslationTool folder:
    ```powershell
-   cd "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\TOR_Core\Tools\TranslationTools"
+   cd "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\TOR_Core\Tools\TranslationTool"
    ```
 4. Run the script:
 ```powershell
@@ -86,7 +86,7 @@ brew install libxml2
 
 ### Step 2: Navigate and Run
 ```bash
-cd "path/to/Mount & Blade II Bannerlord/Modules/TOR_Core/Tools/TranslationTools"
+cd "path/to/Mount & Blade II Bannerlord/Modules/TOR_Core/Tools/TranslationTool"
 ./merge_translation.sh SP
 ```
 Replace `SP` with your language code.
@@ -188,7 +188,7 @@ Common placeholders:
 ## Troubleshooting
 
 ### Problem: "File not found"
-**Solution:** Make sure you're in the correct directory. Use `cd` to navigate to the TranslationTools folder.
+**Solution:** Make sure you're in the correct directory. Use `cd` to navigate to the TranslationTool folder.
 
 ### Problem: "Cannot load existing translation"
 **Solution:** Your translation file might have XML errors. Restore from backup and try again.

@@ -113,7 +113,7 @@ Common language codes:
 ```
 TOR_Core/
 ├── Tools/
-│   └── TranslationTools/           (You are here)
+│   └── TranslationTool/           (You are here)
 │       ├── merge_translation.bat   ← Double-click this!
 │       ├── merge_translation.ps1
 │       ├── README.md
