@@ -1,13 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SandBox.View.Map;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.ScreenSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.WaaaghMeter;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.UI;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CustomResourceBehavior;
@@ -27,6 +32,23 @@ public class WaaaghBehavior : CampaignBehaviorBase
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
         CampaignEvents.HeroPrisonerTaken.AddNonSerializedListener(this, OnHeroPrisonerTaken);
+        ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
+    }
+
+
+    private void ScreenManager_OnPushScreen(ScreenBase pushedScreen)
+    {
+        if (pushedScreen is not MapScreen mapScreen) return;
+        // Only add WaaaghMeter for Greenskin players
+        if (Hero.MainHero?.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
+
+  
+
+        var mapView = mapScreen.GetMapView<WaaaghMeterMapView>();
+        if (mapView == null)
+        {
+            mapScreen.AddMapView<WaaaghMeterMapView>();
+        }
     }
 
     private void InitialCombatStrengthCalculation(IMission mission)
@@ -252,7 +274,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
             waaaghValue = 0;
         }
 
-        var currentLevel = TeefHelper.GetWaaaghLevelForResource(waaaghValue);
+        var currentLevel = WaaaghHelper.GetWaaaghLevelForResource(waaaghValue);
 
         // Check if dropping from WAAAGH (level 4) to 'Ere We Go! (level 3) - apply steeper punishment
         if (_previousWaaaghLevel == WaaaghLevel.WAAAGH && currentLevel == WaaaghLevel.EreWeGo)
@@ -267,25 +289,25 @@ public class WaaaghBehavior : CampaignBehaviorBase
         _previousWaaaghLevel = currentLevel;
 
         // Remove all Wargh state attributes
-        Hero.MainHero.RemoveAttribute("Wargh1");
-        Hero.MainHero.RemoveAttribute("Wargh2");
-        Hero.MainHero.RemoveAttribute("Wargh3");
-        Hero.MainHero.RemoveAttribute("Wargh4");
+        Hero.MainHero.RemoveAttribute("Waaagh0");
+        Hero.MainHero.RemoveAttribute("Waaagh1");
+        Hero.MainHero.RemoveAttribute("Waaagh2");
+        Hero.MainHero.RemoveAttribute("Waaagh3");
 
         // Add the appropriate attribute for the current state
         switch (currentLevel)
         {
             case WaaaghLevel.InternalFightin:
-                Hero.MainHero.AddAttribute("Wargh1");
+                Hero.MainHero.AddAttribute("Waaagh0");
                 break;
             case WaaaghLevel.PettySquabblin:
-                Hero.MainHero.AddAttribute("Wargh2");
+                Hero.MainHero.AddAttribute("Waaagh1");
                 break;
             case WaaaghLevel.EreWeGo:
-                Hero.MainHero.AddAttribute("Wargh3");
+                Hero.MainHero.AddAttribute("Waaagh2");
                 break;
             case WaaaghLevel.WAAAGH:
-                Hero.MainHero.AddAttribute("Wargh4");
+                Hero.MainHero.AddAttribute("Waaagh3");
                 break;
         }
     }

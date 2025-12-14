@@ -541,6 +541,16 @@ namespace TOR_Core.Models
                 {
                     resistances[(int)DamageType.Physical] += 0.1f;
                 }
+
+                if ((attackMask == AttackTypeMask.Melee && agentParty.HasBlessing("cult_of_gork")))
+                {
+                    damageBonuses[(int)DamageType.Physical] += 0.1f;
+                }
+
+                if (agentParty.HasBlessing("cult_of_mork"))
+                {
+                    damageBonuses[(int)DamageType.Fire] += 0.1f;
+                }
             }
 
             var wieldedItem = agent.WieldedWeapon.Item;

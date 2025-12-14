@@ -36,6 +36,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             _careerButtons.Add(TORCareers.Slayer.StringId, new SlayerCareerButtonBehavior(TORCareers.Slayer));
             _careerButtons.Add(TORCareers.Runelord.StringId, new RunelordCareerButtonBehavior(TORCareers.Runelord));
             _careerButtons.Add(TORCareers.OrcBoss.StringId, new OrcBossCareerButton(TORCareers.OrcBoss));
+            _careerButtons.Add(TORCareers.OrcShaman.StringId, new OrcShamanCareerButton(TORCareers.OrcShaman));
         }
 
         public CareerButtonBehaviorBase GetCareerButton(CareerObject careerObject)

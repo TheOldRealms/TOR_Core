@@ -51,6 +51,7 @@ namespace TOR_Core.CharacterDevelopment
                 new WardenCareerChoices(TORCareers.Warden),
                 new RunelordCareerChoices(TORCareers.Runelord),
                 new OrcBossCareerChoices(TORCareers.OrcBoss),
+                new OrcShamanCareerChoices(TORCareers.OrcShaman),
             ];
 
             //validate if all careers have choices initialized

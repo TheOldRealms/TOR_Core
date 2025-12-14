@@ -2371,8 +2371,8 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Physical"
-                             DamageAmount="200"
-                             Radius="5"
+                             DamageAmount="70"
+                             Radius="4"
                              HasShockWave="true"
                              DoNotAlignParticleEffectPrefabOnImpact="true"
                              TargetType="Enemy"
@@ -3429,5 +3429,102 @@
                              ScriptNameToTrigger="none">
 		<ImbuedStatusEffect>physical_bonus_20</ImbuedStatusEffect>
 	</TriggeredEffectTemplate>
+
+	<!-- Big Waaagh! Magic -->
+	<TriggeredEffectTemplate StringID="call_of_da_green_buff"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="5"
+                             HasShockWave="false"
+                             TargetType="Self"
+                             ImbuedStatusEffectDuration="15"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+		<ImbuedStatusEffect>call_of_da_green_dmg_reduction</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="gaze_uv_mork_hit"
+                             BurstParticleEffectPrefab="gazeofmork_explosion"
+                             SoundEffectId="fireball_explosion"
+                             SoundEffectLength="2.5"
+                             DamageType="Magical"
+                             DamageAmount="60"
+                             Radius="4"
+                             HasShockWave="false"
+                             TargetType="All"
+                             DamageVariance="0.1"
+                             ScriptNameToTrigger="none" />
+
+	<TriggeredEffectTemplate StringID="ard_as_nails_buff"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="10"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             ImbuedStatusEffectDuration="20"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+		<ImbuedStatusEffect>ard_as_nails_res</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="brain_bursta_explosion"
+                             BurstParticleEffectPrefab="psys_fireball_explosion_1"
+                             SoundEffectId="fireball_explosion"
+                             SoundEffectLength="2.5"
+                             DamageType="Magical"
+                             DamageAmount="70"
+                             Radius="6"
+                             HasShockWave="true"
+                             TargetType="All"
+                             DamageVariance="0.2"
+                             ScriptNameToTrigger="none" />
+
+	<TriggeredEffectTemplate StringID="da_hand_uv_gork_teleport"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="8"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             DamageVariance="0"
+                             ScriptNameToTrigger="TOR_Core.AbilitySystem.Scripts.TeleportTriggeredScript" />
+
+	<TriggeredEffectTemplate StringID="ere_we_go_buff"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="15"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             ImbuedStatusEffectDuration="25"
+                             DamageVariance="0.0"
+                             ScriptNameToTrigger="none">
+		<ImbuedStatusEffect>ere_we_go_dmg</ImbuedStatusEffect>
+		<ImbuedStatusEffect>ere_we_go_mvs</ImbuedStatusEffect>
+		<ImbuedStatusEffect>ere_we_go_ats</ImbuedStatusEffect>
+	</TriggeredEffectTemplate>
+
+	<TriggeredEffectTemplate StringID="foot_uv_gork_stomp"
+                             BurstParticleEffectPrefab="waaagh_stomp_explosion"
+                             DoNotAlignParticleEffectPrefabOnImpact="true"
+                             SoundEffectId="fireball_explosion"
+                             SoundEffectLength="2.5"
+                             DamageType="Magical"
+                             DamageAmount="200"
+                             Radius="12"
+                             HasShockWave="true"
+                             TargetType="All"
+                             DamageVariance="0.2"
+                             ScriptNameToTrigger="none" />
 
 </TriggeredEffectTemplates>

@@ -213,6 +213,15 @@ public class ServeAsAHirelingActivities
                     DefaultSkills.Leadership,
                 ]
             },
+            {
+                TORCareers.OrcShaman, [
+                    TORSkills.Spellcraft,
+                    TORSkills.Faith,
+                    DefaultSkills.Medicine,
+                    DefaultSkills.Leadership,
+                    DefaultSkills.Roguery,
+                ]
+            },
 
         };
 

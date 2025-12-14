@@ -340,6 +340,7 @@
     <Compile Include="AbilitySystem\Scripts\AccusationScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArcaneConduit.cs" />
     <Compile Include="AbilitySystem\Scripts\ArmedToDaTeef.cs" />
+    <Compile Include="AbilitySystem\Scripts\CallOfDaGreen.cs" />
     <Compile Include="AbilitySystem\Scripts\ArrowOfKurnousScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ArtilleryPlacementScript.cs" />
     <Compile Include="AbilitySystem\Scripts\AugmentScript.cs" />
@@ -404,6 +405,7 @@
     <Compile Include="BattleMechanics\AI\CastingAI\AgentCastingBehavior\SelectMultiTargetCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentCastingBehavior\SelectSingleTargetCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentCastingBehavior\SummoningCastingBehavior.cs" />
+    <Compile Include="BattleMechanics\AI\CastingAI\AgentCastingBehavior\TacticalTeleportCastingBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentTacticalBehavior\AbstractAgentTacticalBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentTacticalBehavior\AoEAdjacentTacticalBehavior.cs" />
     <Compile Include="BattleMechanics\AI\CastingAI\AgentTacticalBehavior\AoEDirectionalTacticalBehavior.cs" />
@@ -526,13 +528,16 @@
     <Compile Include="CampaignMechanics\CustomResourceBehavior\OathGoldBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResourceBehavior\PrestigeNobleTownBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResourceBehavior\TeefBehavior.cs" />
-    <Compile Include="CampaignMechanics\CustomResourceBehavior\WaaaghBehavior.cs" />
     <Compile Include="CampaignMechanics\CustomResources\ChivalryHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResource.cs" />
     <Compile Include="CampaignMechanics\CustomResources\CustomResourceManager.cs" />
     <Compile Include="CampaignMechanics\CustomResources\FavorHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\ForestHarmonyHelper.cs" />
     <Compile Include="CampaignMechanics\CustomResources\OathGoldHelper.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghBehavior.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghHelper.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterMapView.cs" />
+    <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
@@ -594,6 +599,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\MercenaryCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\NecrarchCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\OrcBossCareerButton.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\OrcShamanCareerButton.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\RunelordCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SlayerCareerButtonBehavior.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\CareerButton\SpecialbuttonHandler.cs" />
@@ -623,6 +629,7 @@
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecrarchCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\NecromancerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\OrcBossCareerChoices.cs" />
+    <Compile Include="CharacterDevelopment\CareerSystem\Choices\OrcShamanCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\RunelordCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\SlayerCareerChoices.cs" />
     <Compile Include="CharacterDevelopment\CareerSystem\Choices\SpellsingerCareerChoices.cs" />
@@ -806,6 +813,8 @@
     <Compile Include="Models\TORVolunteerModel.cs" />
     <Compile Include="Quests\Careers\OrcBossQuest1.cs" />
     <Compile Include="Quests\Careers\OrcBossQuest2.cs" />
+    <Compile Include="Quests\Careers\OrcShamanQuest1.cs" />
+    <Compile Include="Quests\Careers\OrcShamanQuest2.cs" />
     <Compile Include="Quests\Careers\RunelordQuest.cs" />
     <Compile Include="Quests\Careers\RunesmithQuest.cs" />
     <Compile Include="Quests\EngineerQuest.cs" />

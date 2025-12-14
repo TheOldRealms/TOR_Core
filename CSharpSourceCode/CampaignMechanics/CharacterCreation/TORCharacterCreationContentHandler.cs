@@ -264,7 +264,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private void SetMenuLabelTexts()
         {
             TextObject originText;
-            if (GameTexts.TryGetText("str_tor_cc_origin", out var stage1Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            if (GameTexts.TryGetText("tor_cc_origin", out var stage1Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
                 originText = stage1Text;
             }
@@ -275,7 +275,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             MBTextManager.SetTextVariable("TOR_CC_ORIGIN", originText, false);
 
             TextObject growthText;
-            if (GameTexts.TryGetText("str_tor_cc_growth", out var stage2Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            if (GameTexts.TryGetText("tor_cc_growth", out var stage2Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
                 growthText = stage2Text;
             }
@@ -286,7 +286,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             MBTextManager.SetTextVariable("TOR_CC_GROWTH", growthText, false);
 
             TextObject professionText;
-            if (GameTexts.TryGetText("str_tor_cc_profession", out var stage3Text, CharacterObject.PlayerCharacter.Culture.StringId))
+            if (GameTexts.TryGetText("tor_cc_profession", out var stage3Text, CharacterObject.PlayerCharacter.Culture.StringId))
             {
                 professionText = stage3Text;
             }
@@ -760,7 +760,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 case "option_3_we_spellsinger":
                     hero.AddAttribute("SpellCaster");
-                    hero.AddKnownLore("MinorMagic");
                     hero.AddKnownLore("LoreOfLife");
                     hero.AddKnownLore("LoreOfBeasts");
                     hero.AddAbility("SummerHeat");
@@ -774,7 +773,6 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
                 case "option_3_eo_greylord_apprentice":
                     hero.AddAttribute("SpellCaster");
-                    hero.AddKnownLore("HighMagic");
                     hero.AddKnownLore("LoreOfFire");
                     hero.AddAbility("BoltOfAqshy");
                     hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
@@ -853,8 +851,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 case "option_3_gs_path_of_bully":
                 case "option_3_gs_path_of_boar_boys":
                 case "option_3_gs_path_of_savage_boys":
-                case "option_3_gs_path_of_shaman":
                     hero.AddCareer(TORCareers.OrcBoss);
+                    break;
+
+                case "option_3_gs_path_of_shaman":
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddAbility("GazeOfMork");
+                    hero.AddKnownLore("BigWaaagh");
+                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
+                    hero.AddCareer(TORCareers.OrcShaman);
                     break;
 
                 // Empire knight from stage 2 (not stage 3, but included for completeness)
@@ -976,29 +983,33 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1306.128f, 1044.178f), true); // Castle Reiksguard - Reiksguard
                     break;
                 // SPELLCASTER LORE OPTIONS
-                case "lore_fire":
+                case "lore_of_fire":
                     hero.AddKnownLore("LoreOfFire");
+                    hero.AddAbility("CinderBlast");
                     break;
-                case "lore_light":
+                case "lore_of_light":
                     hero.AddKnownLore("LoreOfLight");
+                    hero.AddAbility("ShemsBurningGaze");
                     break;
-                case "lore_metal":
+                case "lore_of_metal":
                     hero.AddKnownLore("LoreOfMetal");
+                    hero.AddAbility("GleamingArrow");
                     break;
-                case "lore_death":
+                case "lore_of_death":
                     hero.AddKnownLore("LoreOfDeath");
+                    hero.AddAbility("AshesAndDust");
                     break;
-                case "lore_shadows":
-                    hero.AddKnownLore("LoreOfShadows");
-                    break;
-                case "lore_beasts":
+                case "lore_of_beasts":
                     hero.AddKnownLore("LoreOfBeasts");
+                    hero.AddAbility("AmberSpear");
                     break;
-                case "lore_heavens":
+                case "lore_of_heavens":
                     hero.AddKnownLore("LoreOfHeavens");
+                    hero.AddAbility("LightningBolt");
                     break;
-                case "lore_life":
+                case "lore_of_life":
                     hero.AddKnownLore("LoreOfLife");
+                    hero.AddAbility("DrainLife");
                     break;
             }
         }

@@ -314,6 +314,7 @@ namespace TOR_Core.AbilitySystem
                     }
                 // Quick cast setup
                 case AbilityEffectType.Augment:
+                case AbilityEffectType.TacticalReposition:
                     frame.origin = Agent.Main.GetWorldPosition().GetGroundVec3MT();
                     break;
                 case AbilityEffectType.ArtilleryPlacement:
@@ -447,6 +448,7 @@ namespace TOR_Core.AbilitySystem
                 case AbilityEffectType.ArtilleryPlacement:
                 case AbilityEffectType.Hex:
                 case AbilityEffectType.Augment:
+                case AbilityEffectType.TacticalReposition:
                 case AbilityEffectType.Heal:
                 case AbilityEffectType.Summoning:
                     {
@@ -509,6 +511,7 @@ namespace TOR_Core.AbilitySystem
                     }
                 case AbilityEffectType.Hex:
                 case AbilityEffectType.Augment:
+                case AbilityEffectType.TacticalReposition:
                 case AbilityEffectType.Heal:
                 case AbilityEffectType.Summoning:
                 case AbilityEffectType.Bombardment:
@@ -593,12 +596,14 @@ namespace TOR_Core.AbilitySystem
                     AddExactBehaviour<HealScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Augment:
+                case AbilityEffectType.TacticalReposition:
                     AddExactBehaviour<AugmentScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Summoning:
                     AddExactBehaviour<SummoningScript>(ref entity, casterAgent);
                     break;
-                case AbilityEffectType.CareerAbilityEffect:
+                case AbilityEffectType.
+                    CareerAbilityEffect:
                     AddExactBehaviour<CareerAbilityScript>(ref entity, casterAgent);
                     break;
                 case AbilityEffectType.Hex:

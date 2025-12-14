@@ -351,8 +351,8 @@ namespace TOR_Core.Utilities
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
 
-            var religionId = arguments[0];
-            var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == religionId);
+            var deityName = arguments[0];
+            var religion = ReligionObject.All.FirstOrDefault(x => x.DeityName.ToString().Equals(deityName, StringComparison.OrdinalIgnoreCase));
             if (religion != null)
             {
                 if (Hero.MainHero.PartyBelongedTo == null) return "not in a party";
@@ -362,7 +362,7 @@ namespace TOR_Core.Utilities
 
                 return string.Format("Player now has the {0}. \n", blessingText);
             }
-            else return "No religion with the given argument found. \n";
+            else return "No religion with the deity name '" + deityName + "' found. \n";
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("add_career", "tor")]

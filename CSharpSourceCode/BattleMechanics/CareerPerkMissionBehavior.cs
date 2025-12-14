@@ -467,10 +467,15 @@ namespace TOR_Core.BattleMechanics
                         Hero.MainHero.AddSkillXp(DefaultSkills.Roguery, 5 * multiplier);
                     }
                 }
-
+                
                 if (affectorAgent.HasAttribute("WindsLink"))
                 {
-                    Hero.MainHero.AddWindsOfMagic(1);
+                    Hero.MainHero.AddWindsOfMagic(0.5f);
+                }
+                
+                if (affectedAgent.HasAttribute("WindsDeathLink"))
+                {
+                    Hero.MainHero.AddWindsOfMagic(-0.25f);
                 }
 
                 if (TORSpellBlowHelper.IsSpellBlow(blow))

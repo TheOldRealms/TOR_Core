@@ -368,7 +368,7 @@ namespace TOR_Core.Models
         {
             var hero = baseCharacter?.HeroObject;
             if (hero == null || !hero.IsSpellCaster()) return 0f;
-            if (baseCharacter.Culture.StringId == TORConstants.Cultures.DAWI) return 0f;
+            if (baseCharacter.Culture.StringId == TORConstants.Cultures.DAWI || baseCharacter.Culture.StringId == TORConstants.Cultures.GREENSKIN) return 0f;
             if (hero.PartyBelongedTo != MobileParty.MainParty) return 2f;//equiv to 267 spellcraft
 
             ExplainedNumber explainedNumber = new(1f, false, null);
@@ -537,6 +537,13 @@ namespace TOR_Core.Models
                     if (careerChoices.Contains("WardenOfArgwylonPassive4") && hero.IsSpellSinger()) //wardens can't be spellsingers so no need to check player
                     {
                         var choice = TORCareerChoices.GetChoice("WardenOfArgwylonPassive4");
+                        explainedNumber.Add(choice.GetPassiveValue());
+                    }
+
+                    // Orc Shaman: +30 WoM for Shaman companion
+                    if (careerChoices.Contains("PowerUvDaWaaaghPassive2") && hero.HasAttribute("ShamanBoss"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("PowerUvDaWaaaghPassive2");
                         explainedNumber.Add(choice.GetPassiveValue());
                     }
                 }

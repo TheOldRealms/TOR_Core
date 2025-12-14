@@ -1,4 +1,5 @@
 using HarmonyLib;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -113,13 +114,36 @@ public static class EnchantmentHelper
         {
 
             var trait = item.GetTraits().FirstOrDefault();
+            if (trait == null)
+            {
+                TORCommon.Log($"Enchantment blueprint {item.StringId} has no traits. Skipping this item.", LogLevel.Error);
+                continue;
+            }
+
+            if (trait.OnInventoryUseScript == null)
+            {
+                TORCommon.Log($"Enchantment blueprint {item.StringId} has no inventory use script. Skipping this item.", LogLevel.Error);
+                continue;
+            }
 
             var arguments = trait.OnInventoryUseScript.InventoryScriptArguments;
+            if (arguments == null || arguments.Count < 3)
+            {
+                var argCount = arguments?.Count ?? 0;
+                TORCommon.Log($"Enchantment blueprint {item.StringId} has insufficient arguments (expected at least 3, got {argCount})", LogLevel.Error);
+                continue;
+            }
 
             var included = false;
+
             var skills = Game.Current.DefaultSkills.GetDefaultSkills();
             skills.AddRange(TORSkills.Instance.GetTorSkills());
             var skill = skills.FirstOrDefault(x => x.StringId == arguments[1]);
+            if (skill == null)
+            {
+                TORCommon.Log($"Failed to load skill '{arguments[1]}' for enchantment blueprint {item.StringId}. Skipping this item.", LogLevel.Error);
+                continue;
+            }
             var skillValue = 0;
             var hintText = new TextObject("{TRAIT_EFFECT}\n\n{REQUIREMENT_TEXT}\n\n{COMPLETE_COST}");
             var restriction = arguments.Count >= 4 ? arguments[3] : null;
