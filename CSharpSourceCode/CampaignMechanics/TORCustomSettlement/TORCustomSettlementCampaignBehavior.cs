@@ -34,7 +34,6 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     [SaveableField(4)] private List<string> _unlockedOakUpgrades = [];
 
     private TORFaithModel _model;
-    private static HashSet<string> _xmlItemIds;
 
     public static MBReadOnlyList<Settlement> AllCustomSettlements { get; private set; } = [];
 
@@ -151,7 +150,6 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 var rewardItems = comp.RewardItemIds
                     .Select(id => MBObjectManager.Instance.GetObject<ItemObject>(id))
                     .Where(i => i != null)
-                    .Where(i => _xmlItemIds.Contains(i.StringId))
                     .Where(i => !artifactIds.Contains(i.StringId))
                     .ToList();
 
@@ -169,29 +167,6 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                         .ToList();
                 }
 
-                var specificItems = comp.RewardItemIds
-                    .Select(id => MBObjectManager.Instance.GetObject<ItemObject>(id))
-                    .Where(i => i != null)
-                    .Where(i => _xmlItemIds.Contains(i.StringId))
-                    .Where(i => i.IsTorItem()) // no vanilla
-                    .Where(i => (i.IsWeapon() || i.IsArmor()))
-                    .Where(i => i.Culture == heroCulture)
-                    .Where(i => !i.IsCraftedByPlayer)
-                    .Where(i => !artifactIds.Contains(i.StringId));
-
-                var cultureItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
-                    .Where(i => _xmlItemIds.Contains(i.StringId))
-                    .Where(i => i.IsTorItem()) // no vanilla
-                    .Where(i => i.Culture == heroCulture && (i.IsWeapon() || i.IsArmor()))
-                    .Where(i => !i.IsCraftedByPlayer)
-                    .Where(i => !artifactIds.Contains(i.StringId));
-
-                var equipmentPool = specificItems
-                    .Concat(cultureItems)
-                    .GroupBy(i => i.StringId)
-                    .Select(g => g.First())
-                    .ToList();
-
                 const int maxEquipmentSlots = 4;
                 var equipmentSlots = maxEquipmentSlots - blueprintRewardItems.Count;
                 if (equipmentSlots < 0)
@@ -199,10 +174,63 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                     equipmentSlots = 0;
                 }
 
-                var equipmentItems = equipmentPool
+                var specificItems = comp.RewardItemIds
+                    .Select(id => MBObjectManager.Instance.GetObject<ItemObject>(id))
+                    .Where(i => i != null)
+                    .Where(i => i.IsWeapon() || i.IsArmor() || i.ItemType == ItemObject.ItemTypeEnum.Shield)
+                    .Where(i => !i.IsCraftedByPlayer)
+                    .Where(i => !artifactIds.Contains(i.StringId))
+                    .ToList();
+
+                var cultureItems = MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+                    .Where(i => i.IsTorItem()) // no vanilla
+                    .Where(i => i.Culture == heroCulture)
+                    .Where(i => (i.IsWeapon() || i.IsArmor() || i.ItemType == ItemObject.ItemTypeEnum.Shield))
+                    .Where(i => !i.IsCraftedByPlayer)
+                    .Where(i => !artifactIds.Contains(i.StringId))
+                    .GroupBy(i => i.StringId)
+                    .Select(g => g.First())
+                    .ToList();
+
+                var highTierCultureItems = cultureItems
+                    .Where(i => i.Tier >= ItemObject.ItemTiers.Tier3)
+                    .ToList();
+
+                var equipmentItems = specificItems
+                    .GroupBy(i => i.StringId)
+                    .Select(g => g.First())
                     .OrderBy(_ => MBRandom.RandomFloat)
                     .Take(equipmentSlots)
                     .ToList();
+
+                if (equipmentItems.Count < equipmentSlots)
+                {
+                    var remainingSlots = equipmentSlots - equipmentItems.Count;
+
+                    var fillerItems = highTierCultureItems
+                        .Where(i => equipmentItems.All(selected => selected.StringId != i.StringId))
+                        .OrderBy(_ => MBRandom.RandomFloat)
+                        .Take(remainingSlots)
+                        .ToList();
+
+                    if (fillerItems.Count < remainingSlots)
+                    {
+                        var remainingAfterHighTier = remainingSlots - fillerItems.Count;
+
+                        var fallbackItems = cultureItems
+                            .Where(i => equipmentItems.All(selected => selected.StringId != i.StringId))
+                            .Where(i => fillerItems.All(selected => selected.StringId != i.StringId))
+                            .OrderBy(_ => MBRandom.RandomFloat)
+                            .Take(remainingAfterHighTier)
+                            .ToList();
+
+                        fillerItems.AddRange(fallbackItems);
+                    }
+
+                    equipmentItems.AddRange(fillerItems);
+
+                }
+
 
                 var items = new List<ItemObject>();
                 items.AddRange(equipmentItems);
@@ -221,15 +249,24 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
                 var model = (TORBattleRewardModel)Campaign.Current.Models.BattleRewardModel;
 
-                var newItems = new List<ItemObject>(items);
+                var unmodifiedItems = new List<ItemObject>(items.Count);
+                var enchantedItems = new List<ItemObject>();
+
                 foreach (var item in items)
                 {
-                    if (!item.IsWeapon() && (!item.IsArmor() || item.HasAnyTrait()))
+                    var canReceiveTraits = item.IsWeapon() || (item.IsArmor() && !item.HasAnyTrait());
+                    if (!canReceiveTraits)
+                    {
+                        unmodifiedItems.Add(item);
                         continue;
+                    }
 
                     var traitCount = MBRandom.RandomInt(0, model.MaximumFindableTraitsOnItems());
                     if (traitCount <= 0)
+                    {
+                        unmodifiedItems.Add(item);
                         continue;
+                    }
 
                     var traits = ItemTrait.All
                         .Where(x => x.ItemTraitStringId.Contains("lesser_loot") && ItemTrait.IsValidFor(x, item.ItemType))
@@ -239,10 +276,12 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                     var name = model.GetNameModifierForTraits(traitCount);
                     var newItem = EnchantmentHelper.CreateEnchantedItem(item, ids, name + " " + item.Name, false);
 
-                    newItems.Add(newItem);
-                    newItems.Remove(item);
+                    enchantedItems.Add(newItem);
                 }
-                items = newItems;
+
+                unmodifiedItems.AddRange(enchantedItems);
+                items = unmodifiedItems;
+
 
                 var ingredientsBehavior = Campaign.Current.GetCampaignBehavior<EnchantmentIngredientLootCampaignBehavior>();
                 if (ingredientsBehavior != null)
@@ -443,10 +482,6 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         }
 
         CollectSettlementData();
-        if (_xmlItemIds == null)
-            _xmlItemIds = MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
-                .Select(i => i.StringId)
-                .ToHashSet();
     }
 
     private void OnSettlementHourlyTick(Settlement settlement)

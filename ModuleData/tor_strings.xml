@@ -2866,4 +2866,6 @@
 	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=tor_spelltrainer_greenskin_player_goodbye_str}I'z outta 'ere." />
 	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'ze dispersin' my smoke." />
 
+	<!--Vanilla perk changes-->
+    <string id="GJRcFc0V" text="{=GJRcFc0V}A variable chance to recover a mount from lost cavalry after battles." />
 </strings>

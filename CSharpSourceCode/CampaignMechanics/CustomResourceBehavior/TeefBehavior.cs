@@ -211,7 +211,7 @@ public class TeefBehavior : CampaignBehaviorBase
                     difference.Add(item);
                 }
 
-                var pileValue = difference.Sum(item => item.EquipmentElement.Item.Value);
+                var pileValue = difference.Sum(item => item.EquipmentElement.ItemValue);
                 var pileCount = pileValue / 1000;
 
 
@@ -323,10 +323,12 @@ public class TeefBehavior : CampaignBehaviorBase
             if (item == null)
                 continue;
 
-            if (item.StringId != null && item.StringId.StartsWith("tor_gs_"))
+            if (item.Culture!= null && item.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
                 continue;
+            }
 
-            var unitValue = Math.Max(0, item.Value);
+            var unitValue = Math.Max(0, element.EquipmentElement.ItemValue);
             totalItemValue += (long)unitValue * element.Amount;
         }
 

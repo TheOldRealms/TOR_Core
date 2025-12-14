@@ -79,6 +79,13 @@ public class WaaaghBehavior : CampaignBehaviorBase
         if (mapEvent == null || !mapEvent.IsPlayerMapEvent) return;
 
         var playerWon = mapEvent.WinningSide == mapEvent.PlayerSide;
+        if (!playerWon)
+        {
+            const int WAAAGH_LOSS_ON_DEFEAT = 200; // Player lost - decrease Waaagh
+            Hero.MainHero.AddCustomResource("Waaagh", -WAAAGH_LOSS_ON_DEFEAT);
+            UpdateWaaaghState();
+            return;
+        }
 
         // Calculate Waaagh gain based on battle difficulty
         var ratio = _initialCombatRatio;
@@ -111,17 +118,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
             scale = 1.0;
         }
 
-        int delta;
-        if (playerWon)
-        {
-            delta = (int)Math.Round(renownDelta * 10.0 * scale, MidpointRounding.AwayFromZero);
-        }
-        else
-        {
-            // Player lost - decrease Waaagh
-            var waaaghLoss = 20; // Base loss for defeat
-            delta = -waaaghLoss;
-        }
+        var delta = (int)Math.Round(renownDelta * 10.0 * scale, MidpointRounding.AwayFromZero);
 
         if (delta != 0)
         {

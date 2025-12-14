@@ -34,6 +34,7 @@ namespace TOR_Core.AbilitySystem
         private bool _shouldWieldWeapon;
         private bool _shouldPlayIdleCastStanceAnim;
         private bool _hasInitializedForMainAgent;
+        private bool _hasAppliedStartingPerkEffects;
         private AbilityModeState _currentState = AbilityModeState.Off;
         private EquipmentIndex _mainHand;
         private EquipmentIndex _offHand;
@@ -85,6 +86,7 @@ namespace TOR_Core.AbilitySystem
         public override void EarlyStart()
         {
             base.EarlyStart();
+            _hasAppliedStartingPerkEffects = false;
             OnInitHideOutBossFight = null;
             _abilityView = Mission.Current.GetMissionBehavior<AbilityHUDMissionView>();
             Game.Current.EventManager.RegisterEvent(new Action<MissionPlayerToggledOrderViewEvent>(OnPlayerToggleOrder));
@@ -107,7 +109,13 @@ namespace TOR_Core.AbilitySystem
                 {
                     _abilityComponent = Agent.Main.GetComponent<AbilityComponent>();
                     SetUpCastStanceParticles();
-                    AddPerkEffectsToStartingWindsOfMagic();
+
+                    if (!_hasAppliedStartingPerkEffects)
+                    {
+                        AddPerkEffectsToStartingWindsOfMagic();
+                        _hasAppliedStartingPerkEffects = true;
+                    }
+
                     _hasInitializedForMainAgent = true;
                 }
             }
@@ -739,9 +747,6 @@ namespace TOR_Core.AbilitySystem
                     continue;
 
                 var hero = element.Character.HeroObject;
-                if (hero == null)
-                    continue;
-
                 var info = hero.GetExtendedInfo();
                 if (info == null)
                     continue;

@@ -22,7 +22,7 @@ namespace TOR_Core.CampaignMechanics.Crafting;
 /// </summary>
 public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 {
-    private Dictionary<TorTradeGoodType, float> _goodAmounts = new()
+    private Dictionary<TorTradeGoodType, float> _goodsFactors= new()
     {
         { TorTradeGoodType.AmberCrystal, 0f },
         { TorTradeGoodType.BlessedWater, 0f },
@@ -61,9 +61,9 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
         if (!mapEvent.HasWinner) return;
         if (mapEvent.PlayerSide != mapEvent.WinningSide) return;
 
-        var ingredientKeys = _goodAmounts.Keys.ToList();
+        var ingredientKeys = _goodsFactors.Keys.ToList();
         foreach (var key in ingredientKeys)
-            _goodAmounts[key] = 0f;
+            _goodsFactors[key] = 0f;
 
         var enemySideEnum = mapEvent.PlayerSide == BattleSideEnum.Attacker
             ? BattleSideEnum.Defender
@@ -81,7 +81,7 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
                 var character = troop.Troop;
                 foreach (var ingredientType in ingredientKeys)
                 {
-                    _goodAmounts[ingredientType] += model.GetIngredientDropFactorForCharacter(character, ingredientType, mapEvent);
+                    _goodsFactors[ingredientType] += model.GetIngredientDropFactorForCharacter(character, ingredientType, mapEvent);
                 }
             }
         }
@@ -92,21 +92,30 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
             out var playerLootShare
         );
 
-        var targetRoster = PlayerEncounter.Current?.RosterToReceiveLootItems ?? PartyBase.MainParty.ItemRoster;
+        var lootRoster = PlayerEncounter.Current?.RosterToReceiveLootItems;
+        var usedLootFallback = lootRoster == null;
+        var targetRoster = lootRoster ?? PartyBase.MainParty.ItemRoster;
+        var anyIngredientAdded = false;
 
         foreach (var ingredientType in ingredientKeys)
         {
-            var factorSum = _goodAmounts[ingredientType];
+            var factorSum = _goodsFactors[ingredientType];
             var amount = model.CalculateResultAmount(factorSum, ingredientType, playerLootShare);
             if (amount <= 0) continue;
 
             var item = TorEnchantingIngredients.GetItemObjectForIngredient(ingredientType);
+            anyIngredientAdded = true;
             targetRoster.Add(new ItemRosterElement(item, amount));
+        }
+        if (usedLootFallback && anyIngredientAdded)
+        {
+            InformationManager.DisplayMessage(new InformationMessage(
+                new TextObject("{=tor_crafting_ingredient_loot_fallback}Looted enchantment ingredients were added directly to your party inventory.").ToString()));
         }
 
         // clear value for next battle
         foreach (var key in ingredientKeys)
-            _goodAmounts[key] = 0f;
+            _goodsFactors[key] = 0f;
     }
 
 
@@ -125,8 +134,8 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 
         foreach (var characterObject in from enemyParties in side.Parties from troop in enemyParties.Troops select troop.Troop)
         {
-            var keys = _goodAmounts.Keys.ToList();
-            foreach (var key in keys) _goodAmounts[key] += model.GetIngredientDropFactorForCharacter(characterObject, key, playerEvent);
+            var keys = _goodsFactors.Keys.ToList();
+            foreach (var key in keys) _goodsFactors[key] += model.GetIngredientDropFactorForCharacter(characterObject, key, playerEvent);
         }
     }
 }
