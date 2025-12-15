@@ -4313,7 +4313,7 @@
         <TriggeredEffect>apply_knightly_charge</TriggeredEffect>
     </AbilityTemplate>
     <AbilityTemplate StringID="GreaterHarbinger"
-                     Name="Greater Harbinger"
+                     Name="{=greater_harbinger_label_str}Greater Harbinger"
                      SpriteName="theharbinger_icon"
                      CoolDown="5"
                      BaseMisCastChance="0.3"
@@ -4344,7 +4344,7 @@
                      MaxDistance="60"
                      TargetCapturingRadius="1"
                      SpellTier="2"
-                     TooltipDescription="Summon a champion on the target location.">
+                     TooltipDescription="{=greater_harbinger_description_str}Summon a champion on the target location.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -4401,7 +4401,7 @@
         <TriggeredEffect>apply_mindcontrol</TriggeredEffect>
     </AbilityTemplate>
     <AbilityTemplate StringID="BlastOfAgony"
-                     Name="Blast of Agony"
+                     Name="{=blast_of_agony_label_str}Blast of Agony"
                      SpriteName="blastofagony_icon"
                      CoolDown="10"
                      WindsOfMagicCost="0"
@@ -4721,7 +4721,7 @@
 	
 	
     <AbilityTemplate StringID="ArrowOfKurnous"
-                     Name="Arrow of Kurnous"
+                     Name="{=arrow_of_kurnous_label_str}Arrow of Kurnous"
                      SpriteName="arrowofkurnous_icon"
                      CoolDown="10"
                      WindsOfMagicCost="0"
@@ -4767,7 +4767,7 @@
                           DisableDistance="2" />
     </AbilityTemplate>
     <AbilityTemplate StringID="WrathOfTheWood"
-                     Name="Wrath of the Wood"
+                     Name="{=wrath_of_the_wood_label_str}Wrath of the Wood"
                      SpriteName="wraith_of_the_forest_icon"
                      CoolDown="40"
                      BaseMisCastChance="0.3"
@@ -4798,7 +4798,7 @@
                      MaxDistance="60"
                      TargetCapturingRadius="1"
                      SpellTier="2"
-                     TooltipDescription="Summon dryads on the target location.">
+                     TooltipDescription="{=wrath_of_the_wood_description_str}Summon dryads on the target location.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
@@ -4811,7 +4811,7 @@
         <TriggeredEffect>summon_dryads</TriggeredEffect>
     </AbilityTemplate>
     <AbilityTemplate StringID="FeyPaths"
-                     Name="Fey Paths"
+                     Name="{=fey_paths_label_str}Fey Paths"
                      SpriteName="feypaths_icon"
                      CoolDown="5"
                      BaseMisCastChance="0.3"
@@ -4842,7 +4842,7 @@
                      MaxDistance="60"
                      TargetCapturingRadius="1"
                      SpellTier="2"
-                     TooltipDescription="The Damsel wanders on the fey paths. Instantly teleports the player to the targeted ground position. Charges with dealt or healed damage by magic.">
+                     TooltipDescription="{=fey_paths_description_str}The Damsel wanders on the fey paths. Instantly teleports the player to the targeted ground position. Charges with dealt or healed damage by magic.">
         <LightColorRGB x="255"
                        y="170"
                        z="0"
