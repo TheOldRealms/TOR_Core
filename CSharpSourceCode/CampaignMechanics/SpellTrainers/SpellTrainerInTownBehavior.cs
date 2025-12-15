@@ -315,8 +315,8 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 }
 
                 var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_magic_lore_prompt_label", "Choose Lore"),
-                    TORTextHelper.GetText("tor_magic_lore_prompt_description", "Choose a lore to specialize in."), list, true, 1, 1, "Confirm",
-                    "Cancel", data =>
+                    TORTextHelper.GetText("tor_magic_lore_prompt_description", "Choose a lore to specialize in."), list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_confirm_text", "Confirm"),
+                    TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), data =>
                     {
                         OnChooseLore(data);
                         Hero.MainHero.AddCultureSpecificCustomResource(-1000);
@@ -350,7 +350,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                     list.Add(new InquiryElement(hero, hero.FirstName.ToString(), null));
                 }
 
-                var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_magic_lore_prompt_choose_companion", "Choose Companion"), TORTextHelper.GetText("tor_magic_lore_prompt_companion_desc", "Which companion should become a Spellcaster?."), list, true, 1, 1, "Confirm", "Cancel", OnChooseCompanion, null);
+                var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_magic_lore_prompt_choose_companion", "Choose Companion"), TORTextHelper.GetText("tor_magic_lore_prompt_companion_desc", "Which companion should become a Spellcaster?."), list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_confirm_text", "Confirm"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), OnChooseCompanion, null);
                 MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
             }
 
@@ -370,7 +370,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                     list.Add(new InquiryElement(item, item.Name, null));
                 }
 
-                var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_magic_lore_prompt_companion_lore", "Choose Lore for your companion"), TORTextHelper.GetText("tor_magic_lore_prompt_description", "Choose a lore to specialize in."), list, true, 1, 1, "Confirm", "Cancel", args => OnChooseCompanionLore(hero, args), OnCancelLore);
+                var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_magic_lore_prompt_companion_lore", "Choose Lore for your companion"), TORTextHelper.GetText("tor_magic_lore_prompt_description", "Choose a lore to specialize in."), list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_confirm_text", "Confirm"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), args => OnChooseCompanionLore(hero, args), OnCancelLore);
                 MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
             }
 
@@ -392,7 +392,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
                     list.Add(new InquiryElement(item, item.Name, null));
                 }
-                var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_magic_lore_prompt_label", "Choose Lore"), TORTextHelper.GetText("tor_magic_lore_prompt_description", "Choose a lore to specialize in."), list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
+                var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_magic_lore_prompt_label", "Choose Lore"), TORTextHelper.GetText("tor_magic_lore_prompt_description", "Choose a lore to specialize in."), list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_confirm_text", "Confirm"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), OnChooseLore, OnCancelLore);
                 MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
             }
         }
@@ -789,7 +789,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
                 list.Add(new InquiryElement(item, item.Name, null));
             }
-            var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_magic_lore_prompt_label", "Choose Lore"), TORTextHelper.GetText("tor_magic_lore_prompt_description", "Choose a lore to specialize in."), list, true, 1, 1, "Confirm", "Cancel", OnChooseLore, OnCancelLore);
+            var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_magic_lore_prompt_label", "Choose Lore"), TORTextHelper.GetText("tor_magic_lore_prompt_description", "Choose a lore to specialize in."), list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_confirm_text", "Confirm"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), OnChooseLore, OnCancelLore);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
 
