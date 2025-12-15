@@ -5,6 +5,10 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using Helpers;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
+using System;
+using System.Reflection;
 
 namespace TOR_Core.HarmonyPatches;
 
@@ -53,4 +57,52 @@ public static class VeterinarianPatch
 
         return NORMAL_MOUNT_RECOVERY_CHANCE;
     }
+
+    [HarmonyPatch]
+    internal static class VeterinarianPerkDescriptionPatch
+    {
+        private const string VETERINARIAN_PERK_ID = "MedicineVeterinarian";
+        private const string SECONDARY_DESCRIPTION_REPLACEMENT =
+            "{=tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles.";
+
+        private static MethodBase TargetMethod()
+        {
+            // PerkObject.Initialize overload that takes the descriptions as strings
+            foreach (var method in typeof(PerkObject).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+            {
+                if (method.Name != nameof(PerkObject.Initialize))
+                {
+                    continue;
+                }
+                var parameters = method.GetParameters();
+                if (parameters.Length < 9)
+                {
+                    continue;
+                }
+
+                var looksLikePerkInitialize =
+                    parameters[0].ParameterType == typeof(string) &&      // name
+                    parameters[1].ParameterType == typeof(SkillObject) && // skill
+                    parameters[4].ParameterType == typeof(string) &&      // primaryDescription
+                    parameters[8].ParameterType == typeof(string);        // secondaryDescription
+
+                if (looksLikePerkInitialize)
+                {
+                    return method;
+                }
+            }
+            throw new MissingMethodException(typeof(PerkObject).FullName, "This shouldn't happen, see looksLikePerkInitialize in VeterinarianPatch.cs");
+        }
+
+        private static void Prefix(PerkObject __instance, ref string secondaryDescription)
+        {
+            if (__instance.StringId != VETERINARIAN_PERK_ID)
+            {
+                return;
+            }
+            secondaryDescription = SECONDARY_DESCRIPTION_REPLACEMENT;
+        }
+    }
 }
+
+

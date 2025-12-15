@@ -110,7 +110,7 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
         if (usedLootFallback && anyIngredientAdded)
         {
             InformationManager.DisplayMessage(new InformationMessage(
-                new TextObject("{=tor_crafting_ingredient_loot_fallback}Looted enchantment ingredients were added directly to your party inventory.").ToString()));
+                new TextObject("{=str_tor_crafting_ingredient_loot_fallback}Looted enchantment ingredients were added directly to your party inventory.").ToString()));
         }
 
         // clear value for next battle

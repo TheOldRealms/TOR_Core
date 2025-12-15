@@ -254,7 +254,12 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
                 foreach (var item in items)
                 {
-                    var canReceiveTraits = item.IsWeapon() || (item.IsArmor() && !item.HasAnyTrait());
+                    var isEquipmentItem =
+                        item.IsWeapon() ||
+                        item.IsArmor() ||
+                        item.ItemType == ItemObject.ItemTypeEnum.Shield;
+
+                    var canReceiveTraits = isEquipmentItem && !item.HasAnyTrait();
                     if (!canReceiveTraits)
                     {
                         unmodifiedItems.Add(item);
