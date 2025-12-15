@@ -4,6 +4,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem.Button;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Careers;
 
@@ -43,17 +44,17 @@ public static class CareerButtonDialogs
 
     private static void MercenaryButtonDialog(CampaignGameStarter starter)
     {
-        starter.AddDialogLine("mercenaryCompanion_bodyguard_start", "start", "mercenaryCompanion_bodyguard_1", new TextObject("Aye what can I do for you?").ToString(), () => buttonDialogCondition() && Hero.MainHero.HasCareer(TORCareers.Mercenary), DeactivateDialog, 200, null);
-        starter.AddPlayerLine("mercenaryCompanion_bodyguard_1", "mercenaryCompanion_bodyguard_1", "mercenaryCompanion_bodyguard_2", new TextObject("Your employment has gone quite well and I want to bring you on as a partner.").ToString(), null, null, 200, null);
-        starter.AddDialogLine("mercenaryCompanion_bodyguard_2", "mercenaryCompanion_bodyguard_2", "mercenaryCompanion_bodyguard_3", new TextObject("As a partner?").ToString(), null, null, 200, null);
-        starter.AddPlayerLine("mercenaryCompanion_bodyguard_3", "mercenaryCompanion_bodyguard_3", "mercenaryCompanion_bodyguard_4", new TextObject("You get part of the share and need to accomplish a few advanced organisational matters. I will however not pay your wage anymore.").ToString(), null, null, 200, null);
-        starter.AddDialogLine("mercenaryCompanion_bodyguard_4", "mercenaryCompanion_bodyguard_4", "mercenaryCompanion_bodyguard_5", "First I want to see some hard coin. I am not playing Babysitter or 'Partner' without seeing some money first. You pay me {MERCCOMPANIONPRICE}{GOLD_ICON}", null, null);
-        starter.AddPlayerLine("mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_paymentSuccess", new TextObject("Of course, consider this a forward on your upcoming shares.").ToString(), MercenaryButtonSucessCondition, null, 200, null);
-        starter.AddPlayerLine("mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_paymentFail", new TextObject("I don’t have that in hand right now.").ToString(), null, null);
-        starter.AddDialogLine("mercenaryCompanion_bodyguard_paymentSuccess", "mercenaryCompanion_bodyguard_paymentSuccess", "mercenaryCompanion_bodyguard_end_success", new TextObject("Thats a good deal, I am looking foward to this partnership.").ToString(), null, MakeMercenaryCompanion);
-        starter.AddDialogLine("mercenaryCompanion_bodyguard_paymentSuccess", "mercenaryCompanion_bodyguard_paymentFail", "mercenaryCompanion_bodyguard_end_fail", new TextObject("Well then I stay with my current wage.").ToString(), null, null);
-        starter.AddPlayerLine("mercenaryCompanion_bodyguard_end_success", "mercenaryCompanion_bodyguard_end_success", "close_window", new TextObject("What a wise decision!").ToString(), null, null);
-        starter.AddPlayerLine("mercenaryCompanion_bodyguard_end_fail", "mercenaryCompanion_bodyguard_end_fail", "close_window", new TextObject("Fine.").ToString(), null, null);
+        starter.AddDialogLine("mercenaryCompanion_bodyguard_start", "start", "mercenaryCompanion_bodyguard_1", TORTextHelper.GetText("tor_mercenary_companion_start_text", "Aye what can I do for you?"), () => buttonDialogCondition() && Hero.MainHero.HasCareer(TORCareers.Mercenary), DeactivateDialog, 200, null);
+        starter.AddPlayerLine("mercenaryCompanion_bodyguard_1", "mercenaryCompanion_bodyguard_1", "mercenaryCompanion_bodyguard_2", TORTextHelper.GetText("tor_mercenary_companion_partner_offer_text", "Your employment has gone quite well and I want to bring you on as a partner."), null, null, 200, null);
+        starter.AddDialogLine("mercenaryCompanion_bodyguard_2", "mercenaryCompanion_bodyguard_2", "mercenaryCompanion_bodyguard_3", TORTextHelper.GetText("tor_mercenary_companion_partner_question_text", "As a partner?"), null, null, 200, null);
+        starter.AddPlayerLine("mercenaryCompanion_bodyguard_3", "mercenaryCompanion_bodyguard_3", "mercenaryCompanion_bodyguard_4", TORTextHelper.GetText("tor_mercenary_companion_partner_terms_text", "You get part of the share and need to accomplish a few advanced organisational matters. I will however not pay your wage anymore."), null, null, 200, null);
+        starter.AddDialogLine("mercenaryCompanion_bodyguard_4", "mercenaryCompanion_bodyguard_4", "mercenaryCompanion_bodyguard_5", TORTextHelper.GetText("tor_mercenary_companion_demand_payment_text", "First I want to see some hard coin. I am not playing Babysitter or 'Partner' without seeing some money first. You pay me {MERCCOMPANIONPRICE}{GOLD_ICON}"), null, null);
+        starter.AddPlayerLine("mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_paymentSuccess", TORTextHelper.GetText("tor_mercenary_companion_accept_payment_text", "Of course, consider this a forward on your upcoming shares."), MercenaryButtonSucessCondition, null, 200, null);
+        starter.AddPlayerLine("mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_5", "mercenaryCompanion_bodyguard_paymentFail", TORTextHelper.GetText("tor_mercenary_companion_no_money_text", "I don't have that in hand right now."), null, null);
+        starter.AddDialogLine("mercenaryCompanion_bodyguard_paymentSuccess", "mercenaryCompanion_bodyguard_paymentSuccess", "mercenaryCompanion_bodyguard_end_success", TORTextHelper.GetText("tor_mercenary_companion_partnership_accepted_text", "Thats a good deal, I am looking foward to this partnership."), null, MakeMercenaryCompanion);
+        starter.AddDialogLine("mercenaryCompanion_bodyguard_paymentSuccess", "mercenaryCompanion_bodyguard_paymentFail", "mercenaryCompanion_bodyguard_end_fail", TORTextHelper.GetText("tor_mercenary_companion_keep_wage_text", "Well then I stay with my current wage."), null, null);
+        starter.AddPlayerLine("mercenaryCompanion_bodyguard_end_success", "mercenaryCompanion_bodyguard_end_success", "close_window", TORTextHelper.GetText("tor_mercenary_companion_wise_decision_text", "What a wise decision!"), null, null);
+        starter.AddPlayerLine("mercenaryCompanion_bodyguard_end_fail", "mercenaryCompanion_bodyguard_end_fail", "close_window", TORTextHelper.GetText("tor_mercenary_companion_fine_text", "Fine."), null, null);
 
 
         bool MercenaryButtonSucessCondition()

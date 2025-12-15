@@ -16,6 +16,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 using TOR_Core.HarmonyPatches;
+using TOR_Core.Utilities;
 using static TaleWorlds.CampaignSystem.Campaign;
 
 namespace TOR_Core.Quests
@@ -148,7 +149,7 @@ namespace TOR_Core.Quests
                 RemoveLog(_task1);
                 _task1 = AddDiscreteLog(
                     new TextObject("{=str_tor_engineer_quest_log1_fail}I failed... I was beaten. I need to return to the Master Engineer with the news."),
-                    new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
+                    TORTextHelper.GetTextObject("tor_engineer_quest_return_task_text", "Return to the Master Engineer in Nuln"), 0, 1);
             }
 
             if (_currentActiveLog == EngineerQuestStates.RogueEngineerhunt)
@@ -156,7 +157,7 @@ namespace TOR_Core.Quests
                 RemoveLog(_task3);
                 _task3 = AddDiscreteLog(
                     new TextObject("{=str_tor_engineer_quest_log3_fail}I failed... I was beaten. I need to return to the Master Engineer with the news."),
-                    new TextObject("Return to the Master Engineer in Nuln"), 0, 1);
+                    TORTextHelper.GetTextObject("tor_engineer_quest_return_task_text", "Return to the Master Engineer in Nuln"), 0, 1);
             }
 
             _failstate = true;

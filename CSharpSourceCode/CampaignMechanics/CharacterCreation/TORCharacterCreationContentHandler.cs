@@ -270,7 +270,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else
             {
-                originText = new TextObject("Choose your family's background...");
+                originText = TORTextHelper.GetTextObject("tor_cc_origin_fallback_text", "Choose your family's background...");
             }
             MBTextManager.SetTextVariable("TOR_CC_ORIGIN", originText, false);
 
@@ -281,7 +281,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else
             {
-                growthText = new TextObject("Teenage years...");
+                growthText = TORTextHelper.GetTextObject("tor_cc_growth_fallback_text", "Teenage years...");
             }
             MBTextManager.SetTextVariable("TOR_CC_GROWTH", growthText, false);
 
@@ -292,7 +292,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else
             {
-                professionText = new TextObject("Your starting profession...");
+                professionText = TORTextHelper.GetTextObject("tor_cc_profession_fallback_text", "Your starting profession...");
             }
             MBTextManager.SetTextVariable("TOR_CC_PROFESSION", professionText, false);
         }
@@ -943,7 +943,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                         hero.AddCareer(TORCareers.MinorVampire);
                         _storedSpawnPosition = new CampaignVec2(new Vec2(1594.974f, 988.7784f), true); // Von Carstein territory
-                        MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                        MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_cc_learned_necromancy_text", "Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                         break;
                     }
                 case "bloodline_blood_dragon":
@@ -961,7 +961,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
                         hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                         _storedSpawnPosition = new CampaignVec2(new Vec2(1565.885f, 1095.13f), true); // Necrarch location
-                        MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                        MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_cc_learned_necromancy_text", "Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                         break;
                     }
                 case "knight_blazing_sun":
