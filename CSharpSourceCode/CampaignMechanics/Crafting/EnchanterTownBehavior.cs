@@ -543,7 +543,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                 }
 
 
-                var inquirydata = new MultiSelectionInquiryData(title.ToString(), text.ToString(), selectableItems, true, 1, 15, "Accept", "Cancel",
+                var inquirydata = new MultiSelectionInquiryData(title.ToString(), text.ToString(), selectableItems, true, 1, 15, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
                     Disenchant, null);
                 MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
 
@@ -599,9 +599,10 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                     if (customResourceExchange)
                     {
                         var resultValue = (int)customResources;
-                        MBInformationManager.AddQuickInformation(
-                            new TextObject("Gained " + resultValue + Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText()),
-                            2000, Hero.MainHero.CharacterObject);
+                        var gainedText = TORTextHelper.GetTextObject("tor_gained_resource_notification_text", "Gained {AMOUNT}{RESOURCE_ICON}");
+                        gainedText.SetTextVariable("AMOUNT", resultValue);
+                        gainedText.SetTextVariable("RESOURCE_ICON", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
+                        MBInformationManager.AddQuickInformation(gainedText, 2000, Hero.MainHero.CharacterObject);
                         Hero.MainHero.AddCultureSpecificCustomResource(resultValue);
 
                         return;
@@ -621,7 +622,9 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
                     }
 
 
-                    MBInformationManager.AddQuickInformation(new TextObject("Gained " + text), 2000, Hero.MainHero.CharacterObject);
+                    var gainedItemsText = TORTextHelper.GetTextObject("tor_gained_items_notification_text", "Gained {ITEMS}");
+                    gainedItemsText.SetTextVariable("ITEMS", text);
+                    MBInformationManager.AddQuickInformation(gainedItemsText, 2000, Hero.MainHero.CharacterObject);
                 }
             }
 

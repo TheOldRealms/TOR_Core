@@ -395,7 +395,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
         }
 
-        var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), elements, true, 1, 1, "Accept", "Cancel",
+        var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), elements, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
             MoveHeroToTrainer, null);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
 
