@@ -14,6 +14,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
@@ -31,26 +32,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public void Initialize(CareerObject ownerCareer, string description, string belongsToGroup, bool isRootNode, ChoiceType type, List<MutationObject> mutations = null, PassiveEffect passiveEffect = null)
         {
-            TextObject text;
-            text = new TextObject(description);
             Passive = passiveEffect;
-            if (GameTexts.TryGetText("tor_careerchoice_description", out var descriptionOverride, StringId))
-            {
-                if (descriptionOverride != null)
-                {
-                    if (!descriptionOverride.Value.Contains(text.Value))
-                    {
-                        TORCommon.Log(String.Format("Career perk text has been modified in externalized strings (tor_strings). this should be adapted in code: \n CODE {0} \n XML {1}",text.Value, descriptionOverride.Value),LogLevel.Warn);
-                    }
-                    
-                    text = new TextObject(descriptionOverride.Value.ToString());
-                }
-
-                if (descriptionOverride == null)
-                {
-                    TORCommon.Log(String.Format("tor_careerchoice_description {0} was not found in externalized strings (tor_strings)",StringId),LogLevel.Warn);
-                }
-            }
+            TextObject text = TORTextHelper.GetTextObject("tor_careerchoice_description", StringId, description);
             if (Passive != null)
             {
                 if (Passive.DamageProportionTuple != null)
