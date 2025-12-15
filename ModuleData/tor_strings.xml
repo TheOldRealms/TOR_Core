@@ -559,10 +559,7 @@
   <string id="tor_enchanter_info_hub_intro_first_visit.mousillon" text= "{=str_tor_enchanter_info_hub_intro_first_visit_mousillon}TODO: MOUSILLON - First visit general"/>
   <string id="tor_enchanter_info_hub_intro_read_book.mousillon" text= "{=str_tor_enchanter_info_hub_intro_read_book_mousillon}TODO: MOUSILLON - Has manual"/>
 
-  <!--========================================-->
   <!-- DWARF CULTURE: Sturgia (Dawi)         -->
-  <!--========================================-->
-  <!-- Dwarfs use rune-based enchantment instead of alchemy -->
 
   <string id="tor_enchanter_start_p.sturgia" text= "{=str_tor_enchanter_start_p_sturgia}I wish to know more about the art of runecraft."/>
   <string id="tor_enchanter_start_enchanter.sturgia" text= "{=str_tor_enchanter_start_enchanter_sturgia}Ah, a fellow Rhunki, you are most welcome in the Grongaz."/>
@@ -588,9 +585,7 @@
   <string id="tor_enchanter_info_hub_intro_first_visit.sturgia" text= "{=str_tor_enchanter_info_hub_intro_first_visit_sturgia}TODO: STURGIA - First visit general"/>
   <string id="tor_enchanter_info_hub_intro_read_book.sturgia" text= "{=str_tor_enchanter_info_hub_intro_read_book_sturgia}TODO: STURGIA - Already has runecraft manual"/>
 
-  <!--========================================-->
   <!-- GREENSKIN CULTURE: Aserai              -->
-  <!--========================================-->
   <!-- Greenskins use shamanic totems and tribal enchantment -->
 
   <string id="tor_enchanter_start_p.aserai" text= "{=str_tor_enchanter_start_p_aserai}Oi, I wants ta know 'bout speshul bits an' choppas."/>
@@ -617,9 +612,7 @@
   <string id="tor_enchanter_info_hub_intro_first_visit.aserai" text= "{=str_tor_enchanter_info_hub_intro_first_visit_aserai}TODO: GREENSKIN - First visit general"/>
   <string id="tor_enchanter_info_hub_intro_read_book.aserai" text= "{=str_tor_enchanter_info_hub_intro_read_book_aserai}TODO: GREENSKIN - Has shaman scroll"/>
 
-  <!--========================================-->
   <!-- ELVEN CULTURES: Asrai (Wood Elves), Eonir (High Elves) -->
-  <!--========================================-->
   <!-- Elves use nature-based/arcane enchantment -->
 
   <!-- ASRAI / WOOD ELVES (battania) - TODO: Complete Spellsinger dialogs following Empire pattern -->
