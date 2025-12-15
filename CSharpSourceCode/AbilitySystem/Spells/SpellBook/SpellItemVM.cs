@@ -37,11 +37,13 @@ namespace TOR_Core.AbilitySystem.SpellBook
             {
                 sugarDaddy.ChangeHeroGold(-_goldCost);
                 Hero.AddAbility(Template.StringID);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned spell: " + Template.Name));
+                var learnedSpellText = TORTextHelper.GetTextObject("tor_learned_spell_text", "Successfully learned spell: {SPELL_NAME}");
+                learnedSpellText.SetTextVariable("SPELL_NAME", Template.Name);
+                MBInformationManager.AddQuickInformation(learnedSpellText);
             }
             else
             {
-                MBInformationManager.AddQuickInformation(new TextObject("Not enough gold"));
+                MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_not_enough_gold_text", "Not enough gold"));
             }
             RefreshValues();
         }

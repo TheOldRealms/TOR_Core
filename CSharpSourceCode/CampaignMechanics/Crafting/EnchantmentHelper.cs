@@ -284,7 +284,9 @@ public static class EnchantmentHelper
         else
         {
             Hero.MainHero.PartyBelongedTo.ItemRoster.Add(new ItemRosterElement(item, 1));   // we dont know, so we just add it to the inventory
-            MBInformationManager.AddQuickInformation(new TextObject(item.Name + " was added to the inventory"), 0);
+            var itemAddedText = TORTextHelper.GetTextObject("tor_item_added_to_inventory_text", "{ITEM_NAME} was added to the inventory");
+            itemAddedText.SetTextVariable("ITEM_NAME", item.Name);
+            MBInformationManager.AddQuickInformation(itemAddedText, 0);
         }
 
         var crCost = skillValue * Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceGeneralizedFactor();

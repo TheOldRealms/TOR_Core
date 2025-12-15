@@ -141,12 +141,12 @@ namespace TOR_Core.AbilitySystem
             }
             if (casterAgent.IsPlayerControlled && !IsRightAngleToCast())
             {
-                failureReason = new TextObject("Can only cast in a frontal cone");
+                failureReason = TORTextHelper.GetTextObject("tor_ability_frontal_cone_only_text", "Can only cast in a frontal cone");
                 return false;
             }
             if (!casterAgent.IsActive() || casterAgent.Health <= 0 || (casterAgent.IsAIControlled && casterAgent.GetMorale() <= 1) || !casterAgent.IsAbilityUser())
             {
-                failureReason = new TextObject("Caster is dead or routed");
+                failureReason = TORTextHelper.GetTextObject("tor_ability_caster_dead_routed_text", "Caster is dead or routed");
                 return false;
             }
             failureReason = null;

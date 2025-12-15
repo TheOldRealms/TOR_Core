@@ -146,7 +146,7 @@ namespace TOR_Core.Utilities
             text += GetText(vm.CharacterMountSlot) + ",";
             text += GetText(vm.CharacterMountArmorSlot);
             Clipboard.SetText(text);
-            InformationManager.DisplayMessage(new InformationMessage("Equipment items copied!", Colors.Green));
+            InformationManager.DisplayMessage(new InformationMessage(TORTextHelper.GetText("tor_equipment_copied_text", "Equipment items copied!"), Colors.Green));
         }
 
         /// <summary>

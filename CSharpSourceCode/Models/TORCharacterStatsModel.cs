@@ -8,6 +8,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.Utilities;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
@@ -35,15 +36,15 @@ namespace TOR_Core.Models
         {
             if (character.IsMinotaur())
             {
-                number.Add(250f, new TextObject("Minotaur bonus"));
+                number.Add(250f, TORTextHelper.GetTextObject("tor_stats_minotaur_bonus_text", "Minotaur bonus"));
             }
             if (character.IsTreeSpirit() && character.Race != FaceGen.GetRaceOrDefault("large_humanoid_monster"))
             {
-                number.Add(100f, new TextObject("Dryad bonus"));
+                number.Add(100f, TORTextHelper.GetTextObject("tor_stats_dryad_bonus_text", "Dryad bonus"));
             }
             if (character.Race == FaceGen.GetRaceOrDefault("large_humanoid_monster"))
             {
-                number.Add(1000f, new TextObject("Large Monster"));
+                number.Add(1000f, TORTextHelper.GetTextObject("tor_stats_large_monster_text", "Large Monster"));
             }
             if (character.IsHero)
             {
@@ -118,23 +119,23 @@ namespace TOR_Core.Models
             {
                 if (info.AcquiredAttributes.Contains("Tier1"))
                 {
-                    number.Add(100, new TextObject("Tier1"));
+                    number.Add(100, TORTextHelper.GetTextObject("tor_stats_tier1_text", "Tier1"));
                 }
                 else if (info.AcquiredAttributes.Contains("Tier2"))
                 {
-                    number.Add(150, new TextObject("Tier2"));
+                    number.Add(150, TORTextHelper.GetTextObject("tor_stats_tier2_text", "Tier2"));
                 }
                 else if (info.AcquiredAttributes.Contains("Tier3"))
                 {
-                    number.Add(200, new TextObject("Tier3"));
+                    number.Add(200, TORTextHelper.GetTextObject("tor_stats_tier3_text", "Tier3"));
                 }
                 else if (info.AcquiredAttributes.Contains("Tier4"))
                 {
-                    number.Add(300, new TextObject("Tier4"));
+                    number.Add(300, TORTextHelper.GetTextObject("tor_stats_tier4_text", "Tier4"));
                 }
                 if (hero.IsVampire() && !hero.IsHumanPlayerCharacter)
                 {
-                    number.Add(100, new TextObject("Vampire body"));
+                    number.Add(100, TORTextHelper.GetTextObject("tor_stats_vampire_body_text", "Vampire body"));
                 }
 
                 if (hero.HasAttribute("Everchosen"))

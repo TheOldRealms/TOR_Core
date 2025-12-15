@@ -162,6 +162,10 @@
   <string id="tor_career_ability_not_usable_mounted" text="{=str_tor_career_ability_not_usable_mounted}Not usable mounted"/>
   <string id="tor_career_ability_not_usable_without_weapon" text="{=str_tor_career_ability_not_usable_without_weapon}Not usable without weapon"/>
   <string id="tor_spell_not_enough_wom" text="{=str_tor_spell_not_enough_wom}Not enough winds of magic"/>
+  <string id="tor_ability_frontal_cone_only_text" text="{=tor_ability_frontal_cone_only_text}Can only cast in a frontal cone"/>
+  <string id="tor_ability_caster_dead_routed_text" text="{=tor_ability_caster_dead_routed_text}Caster is dead or routed"/>
+  <string id="tor_ability_no_target_locked_text" text="{=tor_ability_no_target_locked_text}No target locked"/>
+  <string id="tor_ability_not_player_controlled_text" text="{=tor_ability_not_player_controlled_text}Caster is not player controlled"/>
 
   <!-- Spell/Prayer Stats -->
   <string id="tor_spell_stat_name" text="{=str_tor_spell_stat_name}Spell Name: "/>
@@ -233,6 +237,12 @@
   <string id="tor_quest_fight_cannot_leave" text="{=str_tor_quest_fight_cannot_leave}You may not leave until finishing the quest scenario."/>
   <string id="tor_joust_dismount" text="{=str_tor_joust_dismount}You must dismount to continue with combat on foot."/>
 
+  <!-- Event Notifications -->
+  <string id="tor_chaos_rebellion_text" text="{=tor_chaos_rebellion_text}Chaos corruption reaches a critical level in {SETTLEMENT_NAME} and rebellion breaks out."/>
+
+  <!-- Combat Messages -->
+  <string id="tor_stealth_attack_text" text="{=tor_stealth_attack_text}Stealth Attack!"/>
+
   <!-- Quests - Specialize Lore -->
   <string id="tor_quest_specialize_lore_title" text="{=str_tor_quest_specialize_lore_title}Practice Spellcasting"/>
 
@@ -282,9 +292,41 @@
 	<string id="tor_generic_isRaided" text="{=str_tor_generic_isRaided}{SETTLEMENT} is raided" />
 	<string id="tor_generic_isLooted" text="{=str_tor_generic_isLooted}{SETTLEMENT} is destroyed" />
 	<string id="tor_generic_isCaptured" text="{=str_tor_generic_isCaptured}{SETTLEMENT} is captured" />
-  
-  
-  
+
+  <!-- Generic UI Messages -->
+  <string id="tor_inquiry_ok_text" text="{=tor_inquiry_ok_text}OK"/>
+  <string id="tor_inquiry_cancel_text" text="{=tor_inquiry_cancel_text}Cancel"/>
+  <string id="tor_inquiry_confirm_text" text="{=tor_inquiry_confirm_text}Confirm"/>
+  <string id="tor_inquiry_accept_text" text="{=tor_inquiry_accept_text}Accept"/>
+  <string id="tor_equipment_copied_text" text="{=tor_equipment_copied_text}Equipment items copied!"/>
+  <string id="tor_item_added_to_inventory_text" text="{=tor_item_added_to_inventory_text}{ITEM_NAME} was added to the inventory"/>
+  <string id="tor_not_enough_gold_text" text="{=tor_not_enough_gold_text}Not enough gold"/>
+
+  <!-- Game Mechanics Explanations -->
+
+  <!-- Greenskin Mechanics -->
+  <string id="tor_greenskin_internal_fightin_text" text="{=tor_greenskin_internal_fightin_text}Internal Fightin'"/>
+  <string id="tor_greenskin_petty_squabblin_text" text="{=tor_greenskin_petty_squabblin_text}Petty Squabblin'"/>
+  <string id="tor_greenskin_ere_we_go_text" text="{=tor_greenskin_ere_we_go_text}'Ere We Go!"/>
+  <string id="tor_greenskin_waaagh_text" text="{=tor_greenskin_waaagh_text}WAAAGH!!!!"/>
+  <string id="tor_greenskin_teef_extorsion_text" text="{=tor_greenskin_teef_extorsion_text}Teef Extorsion"/>
+  <string id="tor_greenskin_teef_tribute_text" text="{=tor_greenskin_teef_tribute_text}Teef Tribute"/>
+
+  <!-- Character Stats Bonuses -->
+  <string id="tor_stats_minotaur_bonus_text" text="{=tor_stats_minotaur_bonus_text}Minotaur bonus"/>
+  <string id="tor_stats_dryad_bonus_text" text="{=tor_stats_dryad_bonus_text}Dryad bonus"/>
+  <string id="tor_stats_large_monster_text" text="{=tor_stats_large_monster_text}Large Monster"/>
+  <string id="tor_stats_tier1_text" text="{=tor_stats_tier1_text}Tier1"/>
+  <string id="tor_stats_tier2_text" text="{=tor_stats_tier2_text}Tier2"/>
+  <string id="tor_stats_tier3_text" text="{=tor_stats_tier3_text}Tier3"/>
+  <string id="tor_stats_tier4_text" text="{=tor_stats_tier4_text}Tier4"/>
+  <string id="tor_stats_vampire_body_text" text="{=tor_stats_vampire_body_text}Vampire body"/>
+
+  <!-- Healing & Other Bonuses -->
+  <string id="tor_healing_shallya_seal_text" text="{=tor_healing_shallya_seal_text}Shallya Seal"/>
+  <string id="tor_undead_food_saving_text" text="{=tor_undead_food_saving_text}Saving from undead troops"/>
+
+
   <!-- CC Options -->
   <string id="tor_cc_growth.battania" text= "{=str_tor_cc_growth_battania}You spent most of your life venerating one of the Asrai deities…"/>
   <string id="tor_cc_profession.battania" text= "{=str_tor_cc_profession_battania}Choose your path…"/>
@@ -449,6 +491,16 @@
   <string id="tor_enchantmentshop_restriction.Ranged" text= "{=str_tor_enchantmentshop_restriction_Ranged}Applies to ranged weapons"/>
   <string id="tor_enchantmentshop_restriction.Thrown" text= "{=str_tor_enchantmentshop_restriction_Thrown}Applies to thrown weapons"/>
   <string id="tor_enchantmentshop_restriction.Invalid" text= "{=str_tor_enchantmentshop_restriction_Invalid}"/>
+
+  <!-- Enchanting UI Messages -->
+  <string id="tor_enchanting_title_text" text="{=tor_enchanting_title_text}Enchanting"/>
+  <string id="tor_enchanting_no_blueprints_text" text="{=tor_enchanting_no_blueprints_text}You don't know any enchantment blueprints."/>
+  <string id="tor_enchanting_no_traits_selected_text" text="{=tor_enchanting_no_traits_selected_text}No traits are selected."/>
+  <string id="tor_enchanting_missing_ingredients_text" text="{=tor_enchanting_missing_ingredients_text}Missing ingredients."/>
+  <string id="tor_enchanting_enter_name_text" text="{=tor_enchanting_enter_name_text}Enter name for your enchanted item"/>
+  <string id="tor_enchanting_failed_text" text="{=tor_enchanting_failed_text}Enchanting failed."/>
+  <string id="tor_enchanting_success_text" text="{=tor_enchanting_success_text}Enchanting successful. Item was added to inventory."/>
+  <string id="tor_learned_enchantment_text" text="{=tor_learned_enchantment_text}{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}"/>
 
   <!-- Donation Prompt (Culture-independent) -->
   <string id="tor_enchant_prompt_donate_items.title" text= "{=str_tor_enchant_prompt_donate_items_title}Donate items"/>
@@ -2264,6 +2316,15 @@
   <string id="tor_career_choicegroup_name.EndsJustifiesMeans" text="{=str_tor_career_choicegroup_name_EndsJustifiesMeans}Ends Justifies Means" />
   <string id="tor_career_choicegroup_name.SwiftProcedure" text="{=str_tor_career_choicegroup_name_SwiftProcedure}Swift Procedure" />
   <string id="tor_career_choicegroup_name.GuiltyByAssociation" text="{=str_tor_career_choicegroup_name_GuiltyByAssociation}Guilty by Association" />
+
+  <!-- Career Transformation Notifications -->
+  <string id="tor_became_necrarch_text" text="{=tor_became_necrarch_text}{HERO_NAME} became a Necrarch"/>
+  <string id="tor_became_vampire_text" text="{=tor_became_vampire_text}{HERO_NAME} became a Vampire"/>
+  <string id="tor_became_blood_knight_vampire_text" text="{=tor_became_blood_knight_vampire_text}{HERO_NAME} became a Blood Knight Vampire"/>
+
+  <!-- Career Button Messages -->
+  <string id="tor_grail_knight_promote_companion_text" text="{=tor_grail_knight_promote_companion_text}Promotes your Grail Knight to a companion (Cost 100{RESOURCE_ICON})"/>
+  <string id="tor_learned_spell_text" text="{=tor_learned_spell_text}Successfully learned spell: {SPELL_NAME}"/>
 
   <!-- Necromancer Choice Group Names -->
   <string id="tor_career_choicegroup_name.LiberNecris" text="{=str_tor_career_choicegroup_name_LiberNecris}Liber Necris" />

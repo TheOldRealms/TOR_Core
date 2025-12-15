@@ -348,7 +348,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             Hero.MainHero.AddAttribute("SpellCaster");
 
 
-            MBInformationManager.AddQuickInformation(new TextObject(Hero.MainHero.Name + " became a Necrarch"), 0, CharacterObject.PlayerCharacter);
+            var becameNecrarchText = TORTextHelper.GetTextObject("tor_became_necrarch_text", "{HERO_NAME} became a Necrarch");
+            becameNecrarchText.SetTextVariable("HERO_NAME", Hero.MainHero.Name);
+            MBInformationManager.AddQuickInformation(becameNecrarchText, 0, CharacterObject.PlayerCharacter);
         }
 
 

@@ -161,12 +161,12 @@ namespace TOR_Core.AbilitySystem
             }
             if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked)
             {
-                failureReason = new TextObject("No target locked");
+                failureReason = TORTextHelper.GetTextObject("tor_ability_no_target_locked_text", "No target locked");
                 return false;
             }
             if (!casterAgent.IsPlayerControlled)
             {
-                failureReason = new TextObject("Caster is not player controlled");
+                failureReason = TORTextHelper.GetTextObject("tor_ability_not_player_controlled_text", "Caster is not player controlled");
                 return false;
             }
 

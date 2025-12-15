@@ -192,7 +192,7 @@ namespace TOR_Core.Models
                             }
                         }
 
-                        explainedNumber.Add(bonus, new TextObject("Shallya Seal"));
+                        explainedNumber.Add(bonus, TORTextHelper.GetTextObject("tor_healing_shallya_seal_text", "Shallya Seal"));
                     }
                 }
             }

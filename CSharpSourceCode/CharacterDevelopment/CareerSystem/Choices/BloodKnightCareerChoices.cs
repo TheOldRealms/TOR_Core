@@ -461,7 +461,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             playerHero.RemoveAttribute("SpellCaster");
 
-            MBInformationManager.AddQuickInformation(new TextObject(Hero.MainHero.Name + " became a Blood Knight Vampire"), 0, CharacterObject.PlayerCharacter);
+            var becameBloodKnightText = TORTextHelper.GetTextObject("tor_became_blood_knight_vampire_text", "{HERO_NAME} became a Blood Knight Vampire");
+            becameBloodKnightText.SetTextVariable("HERO_NAME", Hero.MainHero.Name);
+            MBInformationManager.AddQuickInformation(becameBloodKnightText, 0, CharacterObject.PlayerCharacter);
         }
     }
 }

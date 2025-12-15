@@ -327,7 +327,10 @@ namespace TOR_Core.Extensions
                 if (showNotification)
                 {
                     var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == bluePrint);
-                    MBInformationManager.AddQuickInformation(new TextObject(hero.Name + " learned the enchantment" + itemTrait!.ItemTraitName), 0, hero.CharacterObject);
+                    var learnedEnchantmentText = TORTextHelper.GetTextObject("tor_learned_enchantment_text", "{HERO_NAME} learned the enchantment {ENCHANTMENT_NAME}");
+                    learnedEnchantmentText.SetTextVariable("HERO_NAME", hero.Name);
+                    learnedEnchantmentText.SetTextVariable("ENCHANTMENT_NAME", itemTrait!.ItemTraitName);
+                    MBInformationManager.AddQuickInformation(learnedEnchantmentText, 0, hero.CharacterObject);
                 }
             }
         }

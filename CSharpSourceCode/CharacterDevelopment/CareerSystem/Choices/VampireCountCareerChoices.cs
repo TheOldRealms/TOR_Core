@@ -370,7 +370,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             Hero.MainHero.AddAttribute("SpellCaster");
 
 
-            MBInformationManager.AddQuickInformation(new TextObject(Hero.MainHero.Name + " became a Vampire"), 0, CharacterObject.PlayerCharacter);
+            var becameVampireText = TORTextHelper.GetTextObject("tor_became_vampire_text", "{HERO_NAME} became a Vampire");
+            becameVampireText.SetTextVariable("HERO_NAME", Hero.MainHero.Name);
+            MBInformationManager.AddQuickInformation(becameVampireText, 0, CharacterObject.PlayerCharacter);
         }
 
         protected override void UnlockCareerBenefitsTier2()
