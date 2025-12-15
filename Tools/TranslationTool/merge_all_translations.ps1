@@ -154,6 +154,7 @@ $GlobalStats = @{
     DuplicateTags = @()  # Track duplicate localization tag IDs
     AllTagOccurrences = @{}  # Track all occurrences of each tag ID
     Errors = @()  # Track all errors that occur
+    ObsoleteTranslations = @()  # Track translation IDs that no longer exist in English source
 }
 
 # Regular expression to extract localization ID from {=str_tor_xxx} format
@@ -349,6 +350,23 @@ foreach ($languageFile in $LanguageFiles) {
     }
 
     Write-Info "Found $($LocalizationEntries.Count) unique localization IDs in English source"
+
+    # Detect obsolete translations (exist in old file but not in English source)
+    $obsoleteInFile = @()
+    foreach ($oldId in $ExistingTranslations.Keys) {
+        if (-not $LocalizationEntries.ContainsKey($oldId)) {
+            $obsoleteInFile += [PSCustomObject]@{
+                File = $translationOutputPath
+                LocTag = $oldId
+                Translation = $ExistingTranslations[$oldId]
+            }
+        }
+    }
+
+    if ($obsoleteInFile.Count -gt 0) {
+        Write-Warning "Found $($obsoleteInFile.Count) obsolete translation IDs (no longer in English source)"
+        $GlobalStats.ObsoleteTranslations += $obsoleteInFile
+    }
 
     # Extract comments from English source if it's a strings file
     try {
@@ -571,8 +589,17 @@ catch {
     }
 }
 
+# Report obsolete translations
+if ($GlobalStats.ObsoleteTranslations.Count -gt 0) {
+    Write-Host ""
+    Write-Warning "Found $($GlobalStats.ObsoleteTranslations.Count) obsolete translation IDs!"
+    Write-Info "  These IDs exist in your translations but not in the English source"
+    Write-Info "  They have been excluded from the merged output"
+    Write-Info "  (Likely due to: consolidation, renaming, or removed features)"
+}
+
 # Write comprehensive report if there are any issues to report
-if ($GlobalStats.MissingTags.Count -gt 0 -or $GlobalStats.DuplicateTags.Count -gt 0 -or $GlobalStats.Errors.Count -gt 0) {
+if ($GlobalStats.MissingTags.Count -gt 0 -or $GlobalStats.DuplicateTags.Count -gt 0 -or $GlobalStats.Errors.Count -gt 0 -or $GlobalStats.ObsoleteTranslations.Count -gt 0) {
     $reportFileName = "translation_issues_report_$LanguageCode`_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
     $reportFilePath = Join-Path $ScriptDir $reportFileName
 
@@ -593,6 +620,7 @@ if ($GlobalStats.MissingTags.Count -gt 0 -or $GlobalStats.DuplicateTags.Count -g
         $uniqueDups = ($GlobalStats.DuplicateTags | Select-Object -ExpandProperty LocTag -Unique).Count
         $reportContent += "    (Unique duplicate IDs: $uniqueDups)"
     }
+    $reportContent += "  Obsolete translation IDs: $($GlobalStats.ObsoleteTranslations.Count)"
     $reportContent += "  Errors encountered: $($GlobalStats.Errors.Count)"
     $reportContent += ""
 
@@ -738,6 +766,72 @@ if ($GlobalStats.MissingTags.Count -gt 0 -or $GlobalStats.DuplicateTags.Count -g
             }
         }
         $reportContent += ""
+    }
+
+    # SECTION 4: OBSOLETE TRANSLATION IDs (if any)
+    if ($GlobalStats.ObsoleteTranslations.Count -gt 0) {
+        $reportContent += "="*80
+        $reportContent += "SECTION 4: OBSOLETE TRANSLATION IDs"
+        $reportContent += "="*80
+        $reportContent += ""
+        $reportContent += "These translation IDs exist in your translation file but no longer exist"
+        $reportContent += "in the English source. They have been removed from the output."
+        $reportContent += "Common causes:"
+        $reportContent += "  - IDs were renamed/reorganized in the English source"
+        $reportContent += "  - Features were removed from the mod"
+        $reportContent += "  - Duplicate names were consolidated (e.g., vampire_counts now uses empire names)"
+        $reportContent += ""
+        $reportContent += "Total obsolete IDs: $($GlobalStats.ObsoleteTranslations.Count)"
+        $reportContent += ""
+
+        # Group by file
+        $byFile = $GlobalStats.ObsoleteTranslations | Group-Object -Property File
+
+        foreach ($fileGroup in ($byFile | Sort-Object Name)) {
+            $fileName = Split-Path $fileGroup.Name -Leaf
+            $reportContent += "-"*80
+            $reportContent += "$fileName - $($fileGroup.Count) obsolete IDs"
+            $reportContent += "-"*80
+
+            # Show samples (first 50) and patterns
+            $samples = $fileGroup.Group | Select-Object -First 50
+
+            # Try to detect patterns
+            $patterns = @{}
+            foreach ($item in $fileGroup.Group) {
+                if ($item.LocTag -match '^([^_]+_[^_]+)_') {
+                    $pattern = $matches[1]
+                    if (-not $patterns.ContainsKey($pattern)) {
+                        $patterns[$pattern] = 0
+                    }
+                    $patterns[$pattern]++
+                }
+            }
+
+            if ($patterns.Count -gt 0) {
+                $reportContent += ""
+                $reportContent += "Common patterns:"
+                foreach ($pattern in ($patterns.GetEnumerator() | Sort-Object -Property Value -Descending)) {
+                    $reportContent += "  $($pattern.Key)_* : $($pattern.Value) entries"
+                }
+                $reportContent += ""
+            }
+
+            $reportContent += "Sample entries (showing first 50):"
+            foreach ($item in $samples) {
+                $translationPreview = $item.Translation
+                if ($translationPreview.Length -gt 60) {
+                    $translationPreview = $translationPreview.Substring(0, 57) + "..."
+                }
+                $reportContent += "  $($item.LocTag) = `"$translationPreview`""
+            }
+
+            if ($fileGroup.Count -gt 50) {
+                $reportContent += "  ... and $($fileGroup.Count - 50) more"
+            }
+
+            $reportContent += ""
+        }
     }
 
     $reportContent += ""
