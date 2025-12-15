@@ -341,7 +341,7 @@ Logs/
 
 #Bannerlord related
 EmAssetPackages/
-/ModuleData/Languages/SP
+/ModuleData/Languages
 /ModuleData/Languages/FR/fr_functions.xml
 /ModuleData/Languages/FR/language_data.xml
 /ModuleData/Languages/FR/sly_testing_tor_strings.xml
