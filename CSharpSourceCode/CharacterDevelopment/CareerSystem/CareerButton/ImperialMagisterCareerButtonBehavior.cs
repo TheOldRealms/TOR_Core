@@ -19,6 +19,7 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Extensions.UI;
+using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
@@ -130,65 +131,65 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             var list = new List<PowerStone>()
             {
-                new("fire_dmg_10", new TextObject("Lesser Sparkling Fire Ruby"),new TextObject("+15% Fire damage"),
+                new("fire_dmg_10", TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_10_name", "Lesser Sparkling Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_10_desc", "+15% Fire damage"),
                     "powerstone_fire_trait", 15, 10, "LoreOfFire", PowerSize.Lesser),
-                new PowerStone("fire_amp_50", new TextObject("Lesser Nourishing Fire Ruby"), new TextObject("+50% Fire amplification "), "powerstone_fire_amp", 15,
+                new PowerStone("fire_amp_50", TORTextHelper.GetTextObject("tor_powerstone_fire_amp_50_name", "Lesser Nourishing Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_amp_50_desc", "+50% Fire amplification "), "powerstone_fire_amp", 15,
                     10, "LoreOfFire", PowerSize.Lesser),
-                new PowerStone("fire_res_20", new TextObject("Lesser Heating Fire Ruby"), new TextObject("+20% Frost and Fire resistance"),
+                new PowerStone("fire_res_20", TORTextHelper.GetTextObject("tor_powerstone_fire_res_20_name", "Lesser Heating Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_res_20_desc", "+20% Frost and Fire resistance"),
                     "powerstone_fire_res", 15, 10, "LoreOfFire", PowerSize.Lesser),
 
-                new PowerStone("light_res_20", new TextObject("Lesser Protecting Lumen Stone"), new TextObject("+20% physical resistance"),"powerstone_light_res", 15, 10,
+                new PowerStone("light_res_20", TORTextHelper.GetTextObject("tor_powerstone_light_res_20_name", "Lesser Protecting Lumen Stone"), TORTextHelper.GetTextObject("tor_powerstone_light_res_20_desc", "+20% physical resistance"),"powerstone_light_res", 15, 10,
                     "LoreOfLight", PowerSize.Lesser),
-                new PowerStone("light_mov_25", new TextObject("Lesser Timewarp Lumen Stone"), new TextObject("+25% movementSpeed"),"powerstone_light_mov", 15, 10,
+                new PowerStone("light_mov_25", TORTextHelper.GetTextObject("tor_powerstone_light_mov_25_name", "Lesser Timewarp Lumen Stone"), TORTextHelper.GetTextObject("tor_powerstone_light_mov_25_desc", "+25% movementSpeed"),"powerstone_light_mov", 15, 10,
                     "LoreOfLight", PowerSize.Lesser),
-                new PowerStone("light_dmg_15",new TextObject("Lesser Gleaming Lumen Stone"), new TextObject("+15% physical damage amplification"),"powerstone_light_dmg", 15, 10,
+                new PowerStone("light_dmg_15", TORTextHelper.GetTextObject("tor_powerstone_light_dmg_15_name", "Lesser Gleaming Lumen Stone"), TORTextHelper.GetTextObject("tor_powerstone_light_dmg_15_desc", "+15% physical damage amplification"),"powerstone_light_dmg", 15, 10,
                     "LoreOfLight", PowerSize.Lesser),
 
-                new PowerStone("beast_range_res_25", new TextObject("Lesser Obfuscating Ghost Amber"),new TextObject("+25% ranged resistance"), "powerstone_beast_res_range", 15, 10,
+                new PowerStone("beast_range_res_25", TORTextHelper.GetTextObject("tor_powerstone_beast_range_res_25_name", "Lesser Obfuscating Ghost Amber"), TORTextHelper.GetTextObject("tor_powerstone_beast_range_res_25_desc", "+25% ranged resistance"), "powerstone_beast_res_range", 15, 10,
                     "LoreOfBeasts", PowerSize.Lesser),
-                new PowerStone("beast_phys_15", new TextObject("Lesser Protecting Ghost Amber"),new TextObject("+15% physical resistance"), "powerstone_beast_res", 15, 10,
+                new PowerStone("beast_phys_15", TORTextHelper.GetTextObject("tor_powerstone_beast_phys_15_name", "Lesser Protecting Ghost Amber"), TORTextHelper.GetTextObject("tor_powerstone_beast_phys_15_desc", "+15% physical resistance"), "powerstone_beast_res", 15, 10,
                     "LoreOfBeasts", PowerSize.Lesser),
-                new PowerStone("beast_phys_20_ranged", new TextObject("Lesser Seeking Ghost Amber"),new TextObject("Add 20% ranged damage"), "powerstone_beast_dmg_range", 15, 10,
+                new PowerStone("beast_phys_20_ranged", TORTextHelper.GetTextObject("tor_powerstone_beast_phys_20_ranged_name", "Lesser Seeking Ghost Amber"), TORTextHelper.GetTextObject("tor_powerstone_beast_phys_20_ranged_desc", "Add 20% ranged damage"), "powerstone_beast_dmg_range", 15, 10,
                     "LoreOfBeasts", PowerSize.Lesser),
 
-                new PowerStone("life_magical_fire_res_25", new TextObject("Lesser Dampening Vitaellum"),new TextObject("Add 25% magical and fire resistance"),
+                new PowerStone("life_magical_fire_res_25", TORTextHelper.GetTextObject("tor_powerstone_life_magical_fire_res_25_name", "Lesser Dampening Vitaellum"), TORTextHelper.GetTextObject("tor_powerstone_life_magical_fire_res_25_desc", "Add 25% magical and fire resistance"),
                     "powerstone_life_res_mag", 15, 10,
                     "LoreOfLife", PowerSize.Lesser),
-                new PowerStone("life_res_20", new TextObject("Lesser Protecting Vitaellum"), new TextObject("Add 20% physical resistance"),"powerstone_life_res_phys", 15, 10,
+                new PowerStone("life_res_20", TORTextHelper.GetTextObject("tor_powerstone_life_res_20_name", "Lesser Protecting Vitaellum"), TORTextHelper.GetTextObject("tor_powerstone_life_res_20_desc", "Add 20% physical resistance"),"powerstone_life_res_phys", 15, 10,
                     "LoreOfLife", PowerSize.Lesser),
-                new PowerStone("life_res_40_debuff",new TextObject("Lesser Heavy Vitaellum"), new TextObject("Add 35% physical resistance -35% reduced speed"), "powerstone_life_res_debuff", 15, 10,
+                new PowerStone("life_res_40_debuff", TORTextHelper.GetTextObject("tor_powerstone_life_res_40_debuff_name", "Lesser Heavy Vitaellum"), TORTextHelper.GetTextObject("tor_powerstone_life_res_40_debuff_desc", "Add 35% physical resistance -35% reduced speed"), "powerstone_life_res_debuff", 15, 10,
                     "LoreOfLife", PowerSize.Lesser),
 
-                new PowerStone("heavens_dmg_raged_20", new TextObject("Lesser Wind Saphire"),new TextObject("+20% physical ranged damage amplification"), "powerstone_heavens_dmg_range",
+                new PowerStone("heavens_dmg_raged_20", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_raged_20_name", "Lesser Wind Saphire"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_raged_20_desc", "+20% physical ranged damage amplification"), "powerstone_heavens_dmg_range",
                     15, 10, "LoreOfHeavens", PowerSize.Lesser),
-                new PowerStone("heavens_dmg_20", new TextObject("Lesser Conductive Saphire"), new TextObject("+20% lightning melee damage"), "powerstone_heavens_trait",
-                    15, 10, "LoreOfHeavens", PowerSize.Lesser),
-
-                new PowerStone("heavens_res_25", new TextObject("Lesser Dissipation  Saphire"), new TextObject("+25% lightning resistance, + 25% magical resistance"),"powerstone_heavens_res",
+                new PowerStone("heavens_dmg_20", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_20_name", "Lesser Conductive Saphire"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_20_desc", "+20% lightning melee damage"), "powerstone_heavens_trait",
                     15, 10, "LoreOfHeavens", PowerSize.Lesser),
 
-                new PowerStone("metal_dmg_15", new TextObject("Lesser Hardening Goldstone"), new TextObject("+15% physical damage"),"powerstone_metal_dmg1",
+                new PowerStone("heavens_res_25", TORTextHelper.GetTextObject("tor_powerstone_heavens_res_25_name", "Lesser Dissipation  Saphire"), TORTextHelper.GetTextObject("tor_powerstone_heavens_res_25_desc", "+25% lightning resistance, + 25% magical resistance"),"powerstone_heavens_res",
+                    15, 10, "LoreOfHeavens", PowerSize.Lesser),
+
+                new PowerStone("metal_dmg_15", TORTextHelper.GetTextObject("tor_powerstone_metal_dmg_15_name", "Lesser Hardening Goldstone"), TORTextHelper.GetTextObject("tor_powerstone_metal_dmg_15_desc", "+15% physical damage"),"powerstone_metal_dmg1",
                     15,
                     10,
                     "LoreOfMetal", PowerSize.Lesser),
-                new PowerStone("metal_dmg_20", new TextObject("Lesser Sparkling Goldstone"),new TextObject("+20% physical ranged damage"), "powerstone_metal_dmg2",
+                new PowerStone("metal_dmg_20", TORTextHelper.GetTextObject("tor_powerstone_metal_dmg_20_name", "Lesser Sparkling Goldstone"), TORTextHelper.GetTextObject("tor_powerstone_metal_dmg_20_desc", "+20% physical ranged damage"), "powerstone_metal_dmg2",
                     15,
                     10,
                     "LoreOfMetal", PowerSize.Lesser),
-                new PowerStone("metal_res_30_debuff", new TextObject("Lesser Burdening Goldstone"),new TextObject("+30% physical resistance, 35% reduced speed"), "powerstone_metal_res_less",
+                new PowerStone("metal_res_30_debuff", TORTextHelper.GetTextObject("tor_powerstone_metal_res_30_debuff_name", "Lesser Burdening Goldstone"), TORTextHelper.GetTextObject("tor_powerstone_metal_res_30_debuff_desc", "+30% physical resistance, 35% reduced speed"), "powerstone_metal_res_less",
                     15,
                     10,
                     "LoreOfMetal", PowerSize.Lesser),
 
-                new PowerStone("death_dmg_15", new TextObject("Lesser Harming Endstone"), new TextObject("+15% physical damage"),"powerstone_metal_dmg1",
+                new PowerStone("death_dmg_15", TORTextHelper.GetTextObject("tor_powerstone_death_dmg_15_name", "Lesser Harming Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_dmg_15_desc", "+15% physical damage"),"powerstone_metal_dmg1",
                 15,
                 10,
                 "LoreOfDeath", PowerSize.Lesser),
-                new PowerStone("death_res_mag_20", new TextObject("Lesser Encouraging Endstone"),new TextObject("+20% magic damage resistance"), "powerstone_metal_dmg2",
+                new PowerStone("death_res_mag_20", TORTextHelper.GetTextObject("tor_powerstone_death_res_mag_20_name", "Lesser Encouraging Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_res_mag_20_desc", "+20% magic damage resistance"), "powerstone_metal_dmg2",
                     15,
                     10,
                     "LoreOfDeath", PowerSize.Lesser),
-                new PowerStone("death_res_30_debuff", new TextObject("Lesser deadening Endstone"),new TextObject("+25% physical resistance, 20% reduced swing-speed"), "powerstone_metal_res_less",
+                new PowerStone("death_res_30_debuff", TORTextHelper.GetTextObject("tor_powerstone_death_res_30_debuff_name", "Lesser deadening Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_res_30_debuff_desc", "+25% physical resistance, 20% reduced swing-speed"), "powerstone_metal_res_less",
                     15,
                     10,
                     "LoreOfDeath", PowerSize.Lesser)
@@ -201,53 +202,53 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             var list = new List<PowerStone>()
             {
-                new PowerStone("fire_dmg_35", new TextObject("Greater Enlightening Fire Ruby"),new TextObject("+50% Fire amplification, 15% Fire damage+30% "),
+                new PowerStone("fire_dmg_35", TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_35_name", "Greater Enlightening Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_35_desc", "+50% Fire amplification, 15% Fire damage+30% "),
                     "powerstone_fire_trait2",
                     25,
                     20, "LoreOfFire", PowerSize.Greater),
-                new PowerStone("fire_amp_50", new TextObject("Greater Nourishing Fire Ruby"),new TextObject("Fire amplification, +20% speed"), "powerstone_fire_amp_mov", 15,
+                new PowerStone("fire_amp_50", TORTextHelper.GetTextObject("tor_powerstone_fire_amp_50_greater_name", "Greater Nourishing Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_amp_50_greater_desc", "Fire amplification, +20% speed"), "powerstone_fire_amp_mov", 15,
                     20, "LoreOfFire", PowerSize.Greater),
 
                 new PowerStone("light_res_phys_magic_40",
-                    new TextObject("Greater Protecting Lumenstone"),new TextObject("+40% physical, 40% magical resistance"), "powerstone_light_res2",
+                    TORTextHelper.GetTextObject("tor_powerstone_light_res_phys_magic_40_name", "Greater Protecting Lumenstone"), TORTextHelper.GetTextObject("tor_powerstone_light_res_phys_magic_40_desc", "+40% physical, 40% magical resistance"), "powerstone_light_res2",
                     25, 20,
                     "LoreOfLight", PowerSize.Greater),
                 new PowerStone("light_mov_dmg_25",
-                    new TextObject("Greater Timewarp Lumenstone"),new TextObject("Add 25% movement Speed and 25% magical melee damage"), "powerstone_light_trait",
+                    TORTextHelper.GetTextObject("tor_powerstone_light_mov_dmg_25_name", "Greater Timewarp Lumenstone"), TORTextHelper.GetTextObject("tor_powerstone_light_mov_dmg_25_desc", "Add 25% movement Speed and 25% magical melee damage"), "powerstone_light_trait",
                     25, 20,
                     "LoreOfLight", PowerSize.Greater),
 
-                new PowerStone("beast_res_wild",new TextObject("Greater Ghost Amber of the Wild"), new TextObject("Unit is unstopable, will not show any sign of pain"),
+                new PowerStone("beast_res_wild", TORTextHelper.GetTextObject("tor_powerstone_beast_res_wild_name", "Greater Ghost Amber of the Wild"), TORTextHelper.GetTextObject("tor_powerstone_beast_res_wild_desc", "Unit is unstopable, will not show any sign of pain"),
                     "powerstone_beast_wild",
                     25, 20,
                     "LoreOfBeasts", PowerSize.Greater),
-                new PowerStone("beast_res_range_25", new TextObject("Greater Ghost Amber of the Hunter"),new TextObject("+35% ranged resistance,+25% ranged damage"), "powerstone_beast_range_res_hunt",
+                new PowerStone("beast_res_range_25", TORTextHelper.GetTextObject("tor_powerstone_beast_res_range_25_name", "Greater Ghost Amber of the Hunter"), TORTextHelper.GetTextObject("tor_powerstone_beast_res_range_25_desc", "+35% ranged resistance,+25% ranged damage"), "powerstone_beast_range_res_hunt",
                     25, 20,
                     "LoreOfBeasts", PowerSize.Greater),
 
-                new PowerStone("life_thorns", new TextObject("Greater Spiky Vitalleum"),new TextObject("Received damage is reapplied by 25%  as thorne damage"), "powerstone_life_thorns", 25, 20,
+                new PowerStone("life_thorns", TORTextHelper.GetTextObject("tor_powerstone_life_thorns_name", "Greater Spiky Vitalleum"), TORTextHelper.GetTextObject("tor_powerstone_life_thorns_desc", "Received damage is reapplied by 25%  as thorne damage"), "powerstone_life_thorns", 25, 20,
                     "LoreOfLife", PowerSize.Greater),
-                new PowerStone("life_res_ward_35", new TextObject("Greater Protecting Vitalleum"),new TextObject("+35% Wardsave"), "powerstone_life_res_ward", 25,
+                new PowerStone("life_res_ward_35", TORTextHelper.GetTextObject("tor_powerstone_life_res_ward_35_name", "Greater Protecting Vitalleum"), TORTextHelper.GetTextObject("tor_powerstone_life_res_ward_35_desc", "+35% Wardsave"), "powerstone_life_res_ward", 25,
                     20,
                     "LoreOfLife", PowerSize.Greater),
 
-                new PowerStone("heavens_trait2",new TextObject("Greater Amplifying True Sapphires"),
-                    new TextObject("+40% lightning damage"), "powerstone_heavens_trait2", 25, 20,
+                new PowerStone("heavens_trait2", TORTextHelper.GetTextObject("tor_powerstone_heavens_trait2_name", "Greater Amplifying True Sapphires"),
+                    TORTextHelper.GetTextObject("tor_powerstone_heavens_trait2_desc", "+40% lightning damage"), "powerstone_heavens_trait2", 25, 20,
                     "LoreOfHeavens", PowerSize.Greater),
-                new PowerStone("heavens_res_40", new TextObject("Greater True Dissipation Sapphires"),new TextObject("+40% physical, magic & lightning resistance"),
+                new PowerStone("heavens_res_40", TORTextHelper.GetTextObject("tor_powerstone_heavens_res_40_name", "Greater True Dissipation Sapphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_res_40_desc", "+40% physical, magic & lightning resistance"),
                     "powerstone_heavens_res2", 25, 20,
                     "LoreOfHeavens", PowerSize.Greater),
 
-                new PowerStone("metal_dmg_20", new TextObject("Greater Goldstone of Disintegration"),new TextObject("+20% magical damage, 20% fire damage"), "powerstone_metal_trait",
+                new PowerStone("metal_dmg_20", TORTextHelper.GetTextObject("tor_powerstone_metal_dmg_20_greater_name", "Greater Goldstone of Disintegration"), TORTextHelper.GetTextObject("tor_powerstone_metal_dmg_20_greater_desc", "+20% magical damage, 20% fire damage"), "powerstone_metal_trait",
                     20, 4,
                     "LoreOfMetal", PowerSize.Greater),
-                new PowerStone("metal_magic_dmg_20", new TextObject("Greater Goldstone of Sharpening"),new TextObject("+50% Armor penetration"), "powerstone_metal_pen", 20, 4,
+                new PowerStone("metal_magic_dmg_20", TORTextHelper.GetTextObject("tor_powerstone_metal_magic_dmg_20_name", "Greater Goldstone of Sharpening"), TORTextHelper.GetTextObject("tor_powerstone_metal_magic_dmg_20_desc", "+50% Armor penetration"), "powerstone_metal_pen", 20, 4,
                     "LoreOfMetal", PowerSize.Greater),
 
-                new PowerStone("death_trait_undead_bane", new TextObject("Greater Banishing Endstone"),new TextObject("50% more damage against undead and vampires"), "powerstone_death_undead_bane",
+                new PowerStone("death_trait_undead_bane", TORTextHelper.GetTextObject("tor_powerstone_death_trait_undead_bane_name", "Greater Banishing Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_trait_undead_bane_desc", "50% more damage against undead and vampires"), "powerstone_death_undead_bane",
                 20, 4,
                 "LoreOfDeath", PowerSize.Greater),
-                new PowerStone("death_dmg_mag_20", new TextObject("Greater Harming Endstone"),new TextObject("20% extra magical damage"), "powerstone_death_dmg_trait", 20, 4,
+                new PowerStone("death_dmg_mag_20", TORTextHelper.GetTextObject("tor_powerstone_death_dmg_mag_20_name", "Greater Harming Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_dmg_mag_20_desc", "20% extra magical damage"), "powerstone_death_dmg_trait", 20, 4,
                     "LoreOfDeath", PowerSize.Greater),
             };
 
@@ -258,30 +259,30 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             var list = new List<PowerStone>()
             {
-                new PowerStone("fire_amp_150", new TextObject("Mighty Fire Ruby"),new TextObject("+150% Fire amp., 15% Fire dmg."),
+                new PowerStone("fire_amp_150", TORTextHelper.GetTextObject("tor_powerstone_fire_amp_150_name", "Mighty Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_amp_150_desc", "+150% Fire amp., 15% Fire dmg."),
                     "powerstone_fire_amp3", 50,
                     50, "LoreOfFire", PowerSize.Mighty),
 
-                new PowerStone("light_mov_trait", new TextObject("Mighty Lumen Stone"),new TextObject("40% magical dmg., slows enemies on hit"),
+                new PowerStone("light_mov_trait", TORTextHelper.GetTextObject("tor_powerstone_light_mov_trait_name", "Mighty Lumen Stone"), TORTextHelper.GetTextObject("tor_powerstone_light_mov_trait_desc", "40% magical dmg., slows enemies on hit"),
                     "powerstone_light_trait2", 50, 50,
                     "LoreOfLight", PowerSize.Mighty),
 
-                new PowerStone("beast_res_50", new TextObject("Mighty Ghost Amber"),
-                    new TextObject("+50% speed, +50% physical resistance"), "powerstone_beast_range_res2", 50, 50,
+                new PowerStone("beast_res_50", TORTextHelper.GetTextObject("tor_powerstone_beast_res_50_name", "Mighty Ghost Amber"),
+                    TORTextHelper.GetTextObject("tor_powerstone_beast_res_50_desc", "+50% speed, +50% physical resistance"), "powerstone_beast_range_res2", 50, 50,
                     "LoreOfBeasts", PowerSize.Mighty),
 
-                new PowerStone("life_reg",new TextObject("Mighty Vitalleum"), new TextObject("Regenerate 1 HP every second"), "powerstone_life_reg",
+                new PowerStone("life_reg", TORTextHelper.GetTextObject("tor_powerstone_life_reg_name", "Mighty Vitalleum"), TORTextHelper.GetTextObject("tor_powerstone_life_reg_desc", "Regenerate 1 HP every second"), "powerstone_life_reg",
                     50, 50,
                     "LoreOfLife", PowerSize.Mighty),
 
-                new PowerStone("heavens_dmg_elec_frost", new TextObject("Mighty True Saphires"),new TextObject("+20% electric, +20%frost dmg, 20% slowdown"),
+                new PowerStone("heavens_dmg_elec_frost", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_name", "Mighty True Saphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_desc", "+20% electric, +20%frost dmg, 20% slowdown"),
                     "powerstone_heavens_dmg2", 50, 50,
                     "LoreOfHeavens", PowerSize.Mighty),
 
-                new PowerStone("metal_magic_dmg_phys", new TextObject("Mighty Goldstone"),new TextObject("40% Armor penetration, 20% magical, 20% fire"),  "powerstone_metal_trait2", 50, 50,
+                new PowerStone("metal_magic_dmg_phys", TORTextHelper.GetTextObject("tor_powerstone_metal_magic_dmg_phys_name", "Mighty Goldstone"), TORTextHelper.GetTextObject("tor_powerstone_metal_magic_dmg_phys_desc", "40% Armor penetration, 20% magical, 20% fire"),  "powerstone_metal_trait2", 50, 50,
                     "LoreOfMetal", PowerSize.Mighty),
 
-                new PowerStone("death_magic_surv_100", new TextObject("Mighty Endstone"),new TextObject("100% survival Chance for Unit"),  "powerstone_metal_trait2", 50, 50,
+                new PowerStone("death_magic_surv_100", TORTextHelper.GetTextObject("tor_powerstone_death_magic_surv_100_name", "Mighty Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_magic_surv_100_desc", "100% survival Chance for Unit"),  "powerstone_metal_trait2", 50, 50,
                 "LoreOfDeath", PowerSize.Mighty)
             };
 
@@ -372,7 +373,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 var icon = GetStoneIcon(stone.LoreId);
                 var enabled = MaximumWinds > upkeep;
                 var hintText = stone.HintText.ToString();
-                if (!enabled) hintText = "You don't have enough Winds";
+                if (!enabled) hintText = TORTextHelper.GetText("tor_powerstone_not_enough_winds_text", "You don't have enough Winds");
                 var text =
                     $"{{{icon}}}{stone.StoneName}{emptyspace}{price}{{PRESTIGE_ICON}} Reserved Winds: {upkeep}{{WINDS_ICON}}";
 
@@ -388,9 +389,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             var isSearchable = list.Count > 9;
 
-            var inquirydata = new MultiSelectionInquiryData("Choose Power stone",
-                "Empower your troop with a permanent magical effect of a Power stone. The effect will reduce your total amount of Winds while the stone is active.",
-                list, true, 1, 1, "Accept", "Cancel", OnSelectedOption, OnCancel, "", isSearchable);
+            var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_powerstone_choose_title_text", "Choose Power stone"),
+                TORTextHelper.GetText("tor_powerstone_choose_description_text", "Empower your troop with a permanent magical effect of a Power stone. The effect will reduce your total amount of Winds while the stone is active."),
+                list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), OnSelectedOption, OnCancel, "", isSearchable);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
         }
 
@@ -476,7 +477,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (!characterObject.IsHero && characterObject.Level < 16)
             {
-                displayText = new TextObject("troop is not expierenced enough (tier 4 and above)");
+                displayText = TORTextHelper.GetTextObject("tor_powerstone_not_experienced_enough_text", "troop is not expierenced enough (tier 4 and above)");
                 return false;
             }
             var powerstones = AvailablePowerStones;
@@ -489,20 +490,20 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < lowestPrice && powerstone == null)
             {
-                displayText = new TextObject("You do not have enough prestige to create power stones");
+                displayText = TORTextHelper.GetTextObject("tor_powerstone_not_enough_prestige_text", "You do not have enough prestige to create power stones");
                 return false;
             }
 
             if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < lowestPrice && powerstone != null)
             {
-                displayText = new TextObject("Remove Powerstone");
+                displayText = TORTextHelper.GetTextObject("tor_powerstone_remove_text", "Remove Powerstone");
                 return true;
             }
 
             if (powerstone != null)
                 displayText = new TextObject(powerstone.HintText.ToString());
             else
-                displayText = new TextObject("Create Powerstone empowering your troop or character");
+                displayText = TORTextHelper.GetTextObject("tor_powerstone_create_text", "Create Powerstone empowering your troop or character");
 
             return true;
         }

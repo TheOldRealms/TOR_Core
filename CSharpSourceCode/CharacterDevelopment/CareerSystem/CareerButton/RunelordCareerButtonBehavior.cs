@@ -27,24 +27,24 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
 
     private static readonly List<UnitRune> UnitRunes =
     [
-        new("unit_rune_guarding", new TextObject("Rune of Guarding"), new TextObject("15% extra physical resistance."), "unit_rune_guarding",
+        new("unit_rune_guarding", TORTextHelper.GetTextObject("tor_unit_rune_guarding_name", "Rune of Guarding"), TORTextHelper.GetTextObject("tor_unit_rune_guarding_desc", "15% extra physical resistance."), "unit_rune_guarding",
             new List<string> {"dw_rune_stone","dw_rune_protection", "dw_rune_shielding" }, 1),
-        new("unit_rune_sanctuary", new TextObject("Rune of Sanctuary"), new TextObject("30% extra magic resistance."), "unit_rune_sanctuary",
+        new("unit_rune_sanctuary", TORTextHelper.GetTextObject("tor_unit_rune_sanctuary_name", "Rune of Sanctuary"), TORTextHelper.GetTextObject("tor_unit_rune_sanctuary_desc", "30% extra magic resistance."), "unit_rune_sanctuary",
             new List<string> { "dw_rune_vigour","dw_rune_parrying","dw_rune_protection" }, 1),
-        new("unit_rune_battle", new TextObject("Rune of Battle"), new TextObject("30% extra physical damage."), "unit_rune_battle",
+        new("unit_rune_battle", TORTextHelper.GetTextObject("tor_unit_rune_battle_name", "Rune of Battle"), TORTextHelper.GetTextObject("tor_unit_rune_battle_desc", "30% extra physical damage."), "unit_rune_battle",
             new List<string> { "dw_rune_striking","dw_rune_might","dw_rune_fire" }, 1),
-        new("unit_rune_retribution", new TextObject("Rune of Retribution"),
-            new TextObject("25% extra fire resistance, 35% extra fire damage."), "unit_rune_retribution", new List<string> { "dw_rune_spell_eating","dw_rune_preservation","dw_rune_fortitude" }, 2),
-        new("unit_rune_rapid_fire", new TextObject("Rune of Rapid Fire"), new TextObject("60% extra reload speed."), "unit_rune_rapid_fire",
+        new("unit_rune_retribution", TORTextHelper.GetTextObject("tor_unit_rune_retribution_name", "Rune of Retribution"),
+            TORTextHelper.GetTextObject("tor_unit_rune_retribution_desc", "25% extra fire resistance, 35% extra fire damage."), "unit_rune_retribution", new List<string> { "dw_rune_spell_eating","dw_rune_preservation","dw_rune_fortitude" }, 2),
+        new("unit_rune_rapid_fire", TORTextHelper.GetTextObject("tor_unit_rune_rapid_fire_name", "Rune of Rapid Fire"), TORTextHelper.GetTextObject("tor_unit_rune_rapid_fire_desc", "60% extra reload speed."), "unit_rune_rapid_fire",
             new List<string> { "dw_rune_head_wrecking","dw_rune_beastslaying","dw_rune_reloading" }, 2),
-        new("unit_rune_strollaz", new TextObject("Strollaz’ Rune"), new TextObject("35% extra movement speed."), "unit_rune_strollaz",
+        new("unit_rune_strollaz", TORTextHelper.GetTextObject("tor_unit_rune_strollaz_name", "Strollaz' Rune"), TORTextHelper.GetTextObject("tor_unit_rune_strollaz_desc", "35% extra movement speed."), "unit_rune_strollaz",
             new List<string> { "dw_rune_speed","dw_rune_striking","dw_rune_impact" }, 2),
-        new("unit_rune_valaya", new TextObject("Master Rune of Valaya"), new TextObject("30% extra Ward Save."), "unit_rune_valaya",
+        new("unit_rune_valaya", TORTextHelper.GetTextObject("tor_unit_rune_valaya_name", "Master Rune of Valaya"), TORTextHelper.GetTextObject("tor_unit_rune_valaya_desc", "30% extra Ward Save."), "unit_rune_valaya",
             new List<string> { "dw_master_rune_adamant","dw_master_rune_gromril","dw_master_rune_skaldour" }, 3),
-        new("unit_rune_grungni", new TextObject("Master Rune of Grungni"), new TextObject("Reduce incoming ranged damage by 75%."),
+        new("unit_rune_grungni", TORTextHelper.GetTextObject("tor_unit_rune_grungni_name", "Master Rune of Grungni"), TORTextHelper.GetTextObject("tor_unit_rune_grungni_desc", "Reduce incoming ranged damage by 75%."),
             "unit_rune_grungni", new List<string> { "dw_master_rune_steel","dw_master_rune_gromril","dw_master_rune_preservation" }, 3),
-        new("unit_rune_grimnir", new TextObject("Master Rune of Grimnir"),
-            new TextObject("20% extra attack speed, 35% extra physical and fire damage."), "unit_rune_grimnir", new List<string> { "dw_rune_master_swiftness","dw_rune_master_breaking","dw_rune_fury" }, 3)
+        new("unit_rune_grimnir", TORTextHelper.GetTextObject("tor_unit_rune_grimnir_name", "Master Rune of Grimnir"),
+            TORTextHelper.GetTextObject("tor_unit_rune_grimnir_desc", "20% extra attack speed, 35% extra physical and fire damage."), "unit_rune_grimnir", new List<string> { "dw_rune_master_swiftness","dw_rune_master_breaking","dw_rune_fury" }, 3)
     ];
 
 
@@ -86,7 +86,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         var warningText = new TextObject("");
         if (currentRuneId != null)
         {
-            warningText = new TextObject("WARNING : Current {CURRENT_RUNE} will removed without compensation.");
+            warningText = TORTextHelper.GetTextObject("tor_unit_rune_warning_text", "WARNING : Current {CURRENT_RUNE} will removed without compensation.");
         }
 
 
@@ -114,7 +114,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
                     entries.Append(trait.ItemTraitName + "{newline}");
                 }
 
-                hint = new TextObject("You do not know the required runes: " + entries.ToString());
+                hint = TORTextHelper.GetTextObject("tor_unit_rune_unknown_runes_text", "You do not know the required runes: " + entries.ToString());
                 list.Add(new InquiryElement(unitRune, unitRune.RuneName.ToString(), null, false, hint.ToString()));
                 continue;
             }
@@ -127,7 +127,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
                 }
 
                 GameTexts.SetVariable("RUNECRAFT_FAILED_ENTRIES", entries.ToString());
-                hint = new TextObject("You  do not have enough ingredients requires : {RUNECRAFT_FAILED_ENTRIES}");
+                hint = TORTextHelper.GetTextObject("tor_unit_rune_not_enough_ingredients_text", "You  do not have enough ingredients requires : {RUNECRAFT_FAILED_ENTRIES}");
             }
 
             list.Add(new InquiryElement(unitRune, unitRune.RuneName.ToString(), null, hasIngredients, hint.ToString()));
@@ -136,8 +136,8 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         var text = new TextObject("{=unit_rune_text_description_str}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}");
         text.SetTextVariable("RUNE_WARNING_TEXT", warningText);
         var inquirydata = new MultiSelectionInquiryData(title.ToString(),
-            text.ToString(), list, true, 1, 1, "Confirm",
-            "Cancel", SelectedRune, null);
+            text.ToString(), list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_confirm_text", "Confirm"),
+            TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), SelectedRune, null);
 
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
@@ -231,7 +231,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
 
         if (characterObject.IsHero)
         {
-            displayText = new TextObject("Doesnt work for heroes");
+            displayText = TORTextHelper.GetTextObject("tor_unit_rune_not_for_heroes_text", "Doesnt work for heroes");
             return false;
         }
 
@@ -252,7 +252,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
 
         if (!extendedInfo.KnownEnchantmentBlueprints.AnyQ())
         {
-            displayText = new TextObject("Hero doesn't know any Runes yet");
+            displayText = TORTextHelper.GetTextObject("tor_unit_rune_no_runes_known_text", "Hero doesn't know any Runes yet");
             return false;
         }
 
@@ -261,7 +261,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         {
             if (!hasRune)
             {
-                displayText = new TextObject("Only possible inside a dwarf Karak. Visit a Dwarf Karak");
+                displayText = TORTextHelper.GetTextObject("tor_unit_rune_only_in_karak_text", "Only possible inside a dwarf Karak. Visit a Dwarf Karak");
             }
 
             return false;
@@ -271,7 +271,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
 
         if (!hasRune)
         {
-            displayText = new TextObject("add a Rune for Units");
+            displayText = TORTextHelper.GetTextObject("tor_unit_rune_add_rune_text", "add a Rune for Units");
         }
 
         return true;

@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
@@ -44,17 +45,25 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (Hero.MainHero.GetCustomResourceValue("WindsOfMagic") >= Hero.MainHero.GetExtendedInfo().MaxWindsOfMagic)
             {
-                displayText = new TextObject("Your Winds are already full");
+                displayText = TORTextHelper.GetTextObject("tor_necrarch_winds_full_text", "Your Winds are already full");
                 return false;
             }
 
             if (Hero.MainHero.GetCustomResourceValue("DarkEnergy") < _costForClick)
             {
-                displayText = new TextObject("Requires " + _costForClick + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText() + "for exchange");
+                var requiresText = TORTextHelper.GetTextObject("tor_necrarch_requires_text", "Requires {COST}{DARK_ENERGY_ICON}for exchange");
+                requiresText.SetTextVariable("COST", _costForClick);
+                requiresText.SetTextVariable("DARK_ENERGY_ICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+                displayText = requiresText;
                 return false;
             }
 
-            displayText = new TextObject("Exchange " + _costForClick + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText() + " for " + gainForClick + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText());
+            var exchangeText = TORTextHelper.GetTextObject("tor_necrarch_exchange_text", "Exchange {COST}{DARK_ENERGY_ICON} for {GAIN}{WINDS_ICON}");
+            exchangeText.SetTextVariable("COST", _costForClick);
+            exchangeText.SetTextVariable("DARK_ENERGY_ICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+            exchangeText.SetTextVariable("GAIN", gainForClick);
+            exchangeText.SetTextVariable("WINDS_ICON", CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText());
+            displayText = exchangeText;
             return characterObject.HeroObject.PartyBelongedTo == MobileParty.MainParty;
 
         }

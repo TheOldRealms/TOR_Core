@@ -57,7 +57,7 @@ public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(ca
         displayText = new TextObject("");
         if (characterObject.Culture.StringId == TORConstants.Cultures.GREENSKIN)
         {
-            displayText = new TextObject("Extort Teef but damage party morale.");
+            displayText = TORTextHelper.GetTextObject("tor_orc_boss_extort_teef_text", "Extort Teef but damage party morale.");
             return true;
         }
 

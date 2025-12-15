@@ -197,7 +197,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             if (type != null)
                 displayText = new TextObject(type.Description);
             else
-                displayText = new TextObject("select magical arrows for this unit");
+                displayText = TORTextHelper.GetTextObject("tor_waywatcher_select_arrows_text", "select magical arrows for this unit");
         }
 
         return true;
