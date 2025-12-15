@@ -607,6 +607,7 @@ Write-Host ""
 
 # Detect duplicate localization tags
 try {
+    $excludedCultureDuplicates = 0
     $tagKeys = @($GlobalStats.AllTagOccurrences.Keys)
     foreach ($tagId in $tagKeys) {
         $occurrences = @($GlobalStats.AllTagOccurrences[$tagId])
@@ -614,6 +615,21 @@ try {
             # Check if it's a true duplicate (different text) or just multiple uses
             $uniqueTexts = @($occurrences | Select-Object -ExpandProperty Text -Unique)
             $isDifferentText = $uniqueTexts.Count -gt 1
+
+            # Check if all occurrences are from cultures.xml files
+            $allFromCultures = $true
+            foreach ($occ in $occurrences) {
+                if ($occ.File -notmatch 'cultures\.xml$') {
+                    $allFromCultures = $false
+                    break
+                }
+            }
+
+            # Exclude cultures.xml duplicates with same text (normal name sharing)
+            if ($allFromCultures -and -not $isDifferentText) {
+                $excludedCultureDuplicates += $occurrences.Count
+                continue
+            }
 
             foreach ($occurrence in $occurrences) {
                 $GlobalStats.DuplicateTags += [PSCustomObject]@{
@@ -635,6 +651,11 @@ try {
         Write-Warning "Found $($GlobalStats.DuplicateTags.Count) duplicate localization tag usages!"
         $uniqueDuplicateTags = ($GlobalStats.DuplicateTags | Select-Object -ExpandProperty LocTag -Unique).Count
         Write-Info "  Unique duplicate tag IDs: $uniqueDuplicateTags"
+    }
+
+    if ($excludedCultureDuplicates -gt 0) {
+        Write-Host ""
+        Write-Info "Excluded $excludedCultureDuplicates culture name duplicates (normal name sharing across cultures)"
     }
 }
 catch {
@@ -670,7 +691,7 @@ if ($totalCultureIssues -gt 0) {
 
 # Write comprehensive report if there are any issues to report
 if ($GlobalStats.MissingTags.Count -gt 0 -or $GlobalStats.DuplicateTags.Count -gt 0 -or $GlobalStats.Errors.Count -gt 0 -or $GlobalStats.ObsoleteTranslations.Count -gt 0 -or $totalCultureIssues -gt 0) {
-    $reportFileName = "translation_issues_report_$LanguageCode`_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
+    $reportFileName = "translation_issues_report_$LanguageCode.txt"
     $reportFilePath = Join-Path $ScriptDir $reportFileName
 
     Write-Host ""
