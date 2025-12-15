@@ -70,18 +70,18 @@ public class TeefBehavior : CampaignBehaviorBase
 
     private void AddDialogues(CampaignGameStarter starter)
     {
-        starter.AddDialogLine("gw_quartermaster_regular", "start", "gw_quartermaster_hub", "Hey yu. wanna spend for the big boss?", () => IsQuarterMaster() && !PlayerOwnsTown(), null, 200);
-        starter.AddDialogLine("gw_quartermaster_regular_reintro", "gw_quartermaster_regular_reintro", "gw_quartermaster_hub", "Anything else?", null, null, 200);
-        starter.AddPlayerLine("gw_quartermaster_hub_regular_shinies_p", "gw_quartermaster_hub", "gw_quartermaster_regular_reintro", "Shinies", () => Hero.MainHero.Gold >= 5000, () => SpendGold(false));
-        starter.AddPlayerLine("gw_quartermaster_hub_regular_loot_p", "gw_quartermaster_hub", "gw_quartermaster_regular_reintro", "Loot", null, OpenForSpending);
-        starter.AddPlayerLine("gw_quartermaster_hub_regular_leave_p", "gw_quartermaster_hub", "close_window", "Leave", null, null);
+        starter.AddDialogLine("gw_quartermaster_regular", "start", "gw_quartermaster_hub", TORTextHelper.GetText("tor_gs_quartermaster_intro_text", "Hey yu. wanna spend for the big boss?"), () => IsQuarterMaster() && !PlayerOwnsTown(), null, 200);
+        starter.AddDialogLine("gw_quartermaster_regular_reintro", "gw_quartermaster_regular_reintro", "gw_quartermaster_hub", TORTextHelper.GetText("tor_gs_quartermaster_anything_else_text", "Anything else?"), null, null, 200);
+        starter.AddPlayerLine("gw_quartermaster_hub_regular_shinies_p", "gw_quartermaster_hub", "gw_quartermaster_regular_reintro", TORTextHelper.GetText("tor_gs_quartermaster_shinies_option_text", "Shinies"), () => Hero.MainHero.Gold >= 5000, () => SpendGold(false));
+        starter.AddPlayerLine("gw_quartermaster_hub_regular_loot_p", "gw_quartermaster_hub", "gw_quartermaster_regular_reintro", TORTextHelper.GetText("tor_gs_quartermaster_loot_option_text", "Loot"), null, OpenForSpending);
+        starter.AddPlayerLine("gw_quartermaster_hub_regular_leave_p", "gw_quartermaster_hub", "close_window", TORTextHelper.GetText("tor_gs_quartermaster_leave_option_text", "Leave"), null, null);
 
-        starter.AddDialogLine("gw_quartermaster_playertown", "start", "gw_quartermaster_owner_hub", "Hey Big Boss. you wanna pile some loot?", () => IsQuarterMaster() && PlayerOwnsTown(), null, 200);
-        starter.AddDialogLine("gw_quartermaster_playertown_reintro", "gw_quartermaster_playertown_reintro", "gw_quartermaster_owner_hub", "Anything else Big Boss?", null, null, 200);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_shinies_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", "Shinies", () => Hero.MainHero.Gold >= 5000, () => SpendGold(true));
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_teef_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", "Make Teefbags", () => Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 1000, MakeTeefBags);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_loot_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", "Loot", null, OpenForCreatingLootPiles);
-        starter.AddPlayerLine("gw_quartermaster_hub_playertown_leave_p", "gw_quartermaster_owner_hub", "close_window", "Leave", null, null);
+        starter.AddDialogLine("gw_quartermaster_playertown", "start", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_intro_text", "Hey Big Boss. you wanna pile some loot?"), () => IsQuarterMaster() && PlayerOwnsTown(), null, 200);
+        starter.AddDialogLine("gw_quartermaster_playertown_reintro", "gw_quartermaster_playertown_reintro", "gw_quartermaster_owner_hub", TORTextHelper.GetText("tor_gs_quartermaster_owner_anything_else_text", "Anything else Big Boss?"), null, null, 200);
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_shinies_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_shinies_option_text", "Shinies"), () => Hero.MainHero.Gold >= 5000, () => SpendGold(true));
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_teef_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_make_teefbags_option_text", "Make Teefbags"), () => Hero.MainHero.GetCultureSpecificCustomResourceValue() >= 1000, MakeTeefBags);
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_loot_p", "gw_quartermaster_owner_hub", "gw_quartermaster_playertown_reintro", TORTextHelper.GetText("tor_gs_quartermaster_loot_option_text", "Loot"), null, OpenForCreatingLootPiles);
+        starter.AddPlayerLine("gw_quartermaster_hub_playertown_leave_p", "gw_quartermaster_owner_hub", "close_window", TORTextHelper.GetText("tor_gs_quartermaster_leave_option_text", "Leave"), null, null);
 
         bool IsQuarterMaster()
         {
@@ -98,8 +98,8 @@ public class TeefBehavior : CampaignBehaviorBase
 
         void MakeTeefBags()
         {
-            var title = new TextObject("Make Teef bags");
-            var description = new TextObject("Teef are a little 'ard to carry. put them on your pile instead.");
+            var title = TORTextHelper.GetTextObject("tor_gs_make_teefbags_title_text", "Make Teef bags");
+            var description = TORTextHelper.GetTextObject("tor_gs_make_teefbags_description_text", "Teef are a little 'ard to carry. put them on your pile instead.");
 
             var currentTeef = 0;
             var selectableOptions = new List<InquiryElement>();
@@ -112,7 +112,9 @@ public class TeefBehavior : CampaignBehaviorBase
                 var option = new TextObject("{TEEF_VALUE}{TEEF_ICON}");
                 option.SetTextVariable("TEEF_VALUE", value);
 
-                selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "store {TEEF_VALUE} Teef"));
+                var hint = TORTextHelper.GetTextObject("tor_gs_store_teef_hint_text", "Store {TEEF_VALUE} Teef");
+                hint.SetTextVariable("TEEF_VALUE", value);
+                selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
             }
 
             if (currentTeef >= 3000)
@@ -121,7 +123,9 @@ public class TeefBehavior : CampaignBehaviorBase
                 var option = new TextObject("{TEEF_VALUE}{TEEF_ICON}");
                 option.SetTextVariable("TEEF_VALUE", value);
 
-                selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "store {TEEF_VALUE} Teef"));
+                var hint = TORTextHelper.GetTextObject("tor_gs_store_teef_hint_text", "Store {TEEF_VALUE} Teef");
+                hint.SetTextVariable("TEEF_VALUE", value);
+                selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
             }
 
             if (currentTeef >= 5000)
@@ -130,10 +134,12 @@ public class TeefBehavior : CampaignBehaviorBase
                 var option = new TextObject("{TEEF_VALUE}{TEEF_ICON}");
                 option.SetTextVariable("TEEF_VALUE", value);
 
-                selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "store {TEEF_VALUE} Teef"));
+                var hint = TORTextHelper.GetTextObject("tor_gs_store_teef_hint_text", "Store {TEEF_VALUE} Teef");
+                hint.SetTextVariable("TEEF_VALUE", value);
+                selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
             }
 
-            var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, "Accept", "Cancel",
+            var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
                 CreateTeefContainer, null);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
 
@@ -168,7 +174,7 @@ public class TeefBehavior : CampaignBehaviorBase
             }
 
             var emptyRoster = new ItemRoster();
-            InventoryScreenHelper.OpenScreenAsReceiveItems(emptyRoster, new TextObject("Give Items to the Big boss"), () => AfterDonation(currentRosterWithEquipment));
+            InventoryScreenHelper.OpenScreenAsReceiveItems(emptyRoster, TORTextHelper.GetTextObject("tor_gs_give_items_to_boss_text", "Give Items to the Big boss"), () => AfterDonation(currentRosterWithEquipment));
 
             void AfterDonation(ItemRoster beforeTransferRoster)
             {
@@ -228,7 +234,7 @@ public class TeefBehavior : CampaignBehaviorBase
             }
 
             var emptyRoster = new ItemRoster();
-            InventoryScreenHelper.OpenScreenAsReceiveItems(emptyRoster, new TextObject("Create Loot piles for the big pile of loot"), () => CreateLootPiles(currentRosterWithEquipment));
+            InventoryScreenHelper.OpenScreenAsReceiveItems(emptyRoster, TORTextHelper.GetTextObject("tor_gs_create_loot_piles_text", "Create Loot piles for the big pile of loot"), () => CreateLootPiles(currentRosterWithEquipment));
 
 
             void CreateLootPiles(ItemRoster beforeTransferRoster)
@@ -274,9 +280,9 @@ public class TeefBehavior : CampaignBehaviorBase
     {
         var selectableOptions = new List<InquiryElement>();
         var currentGold = Hero.MainHero.Gold;
-        var title = new TextObject("Spend Gold");
+        var title = TORTextHelper.GetTextObject("tor_gs_spend_gold_title_text", "Spend Gold");
 
-        var description = new TextObject("The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?");
+        var description = TORTextHelper.GetTextObject("tor_gs_spend_gold_description_text", "The Big Boss takes your shinies. How much would you like to spend to obtain some Teef?");
 
         if (currentGold < 5000)
         {
@@ -289,7 +295,9 @@ public class TeefBehavior : CampaignBehaviorBase
             value = 5000;
             var option = new TextObject("{GOLD_COST}{GOLD_ICON}");
             option.SetTextVariable("GOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "spend {GOLD_COST} Gold"));
+            var hint = TORTextHelper.GetTextObject("tor_gs_spend_gold_hint_text", "Spend {GOLD_COST} Gold");
+            hint.SetTextVariable("GOLD_COST", value);
+            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
         if (currentGold >= 50000)
@@ -299,7 +307,9 @@ public class TeefBehavior : CampaignBehaviorBase
             option.SetTextVariable("GOLD_COST", value);
 
             GameTexts.SetVariable("GOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "spend {GOLD_COST} Gold"));
+            var hint = TORTextHelper.GetTextObject("tor_gs_spend_gold_hint_text", "Spend {GOLD_COST} Gold");
+            hint.SetTextVariable("GOLD_COST", value);
+            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
         if (currentGold >= 100000)
@@ -310,7 +320,9 @@ public class TeefBehavior : CampaignBehaviorBase
             option.SetTextVariable("OATHGOLD_SYMBOL", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText());
 
             GameTexts.SetVariable("GOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "spend {GOLD_COST} Gold"));
+            var hint = TORTextHelper.GetTextObject("tor_gs_spend_gold_hint_text", "Spend {GOLD_COST} Gold");
+            hint.SetTextVariable("GOLD_COST", value);
+            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
         if (currentGold >= 250000)
@@ -320,12 +332,14 @@ public class TeefBehavior : CampaignBehaviorBase
             option.SetTextVariable("GOLD_COST", value);
 
             GameTexts.SetVariable("GOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "spend {GOLD_COST} Gold"));
+            var hint = TORTextHelper.GetTextObject("tor_gs_spend_gold_hint_text", "Spend {GOLD_COST} Gold");
+            hint.SetTextVariable("GOLD_COST", value);
+            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
         Action<List<InquiryElement>> action = forPiles ? CreateShinyPiles : AddGoldForTeef;
 
-        var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, "Accept", "Cancel",
+        var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
             action, null);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
