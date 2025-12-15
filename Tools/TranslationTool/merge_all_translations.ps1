@@ -155,6 +155,10 @@ $GlobalStats = @{
     AllTagOccurrences = @{}  # Track all occurrences of each tag ID
     Errors = @()  # Track all errors that occur
     ObsoleteTranslations = @()  # Track translation IDs that no longer exist in English source
+    CultureNameIssues = @{
+        InconsistentTags = @()  # Same tag with different names (BAD)
+        DuplicateNames = @()    # Same name with different tags (BAD)
+    }
 }
 
 # Regular expression to extract localization ID from {=str_tor_xxx} format
@@ -366,6 +370,59 @@ foreach ($languageFile in $LanguageFiles) {
     if ($obsoleteInFile.Count -gt 0) {
         Write-Warning "Found $($obsoleteInFile.Count) obsolete translation IDs (no longer in English source)"
         $GlobalStats.ObsoleteTranslations += $obsoleteInFile
+    }
+
+    # Validate culture names if this is a cultures file
+    if ($xmlPath -match 'cultures\.xml$') {
+        Write-Info "Validating culture names..."
+
+        # Group by tag to find inconsistent tags (same tag, different names)
+        $byTag = @{}
+        foreach ($locId in $LocalizationEntries.Keys) {
+            if ($locId -match '_(male|female)(_name)?_\d+$') {
+                $name = $LocalizationEntries[$locId]
+                if (-not $byTag.ContainsKey($locId)) {
+                    $byTag[$locId] = @()
+                }
+                $byTag[$locId] += $name
+            }
+        }
+
+        foreach ($tag in $byTag.Keys) {
+            $names = $byTag[$tag] | Select-Object -Unique
+            if ($names.Count -gt 1) {
+                $GlobalStats.CultureNameIssues.InconsistentTags += [PSCustomObject]@{
+                    Tag = $tag
+                    Names = $names
+                    File = $englishSourcePath
+                }
+                Write-Warning "  Inconsistent tag: {=$tag} has $($names.Count) different names!"
+            }
+        }
+
+        # Group by name to find duplicate names (same name, different tags)
+        $byName = @{}
+        foreach ($locId in $LocalizationEntries.Keys) {
+            if ($locId -match '_(male|female)(_name)?_\d+$') {
+                $name = $LocalizationEntries[$locId]
+                if (-not $byName.ContainsKey($name)) {
+                    $byName[$name] = @()
+                }
+                $byName[$name] += $locId
+            }
+        }
+
+        foreach ($name in $byName.Keys) {
+            $tags = $byName[$name] | Select-Object -Unique
+            if ($tags.Count -gt 1) {
+                $GlobalStats.CultureNameIssues.DuplicateNames += [PSCustomObject]@{
+                    Name = $name
+                    Tags = $tags
+                    File = $englishSourcePath
+                }
+                Write-Warning "  Duplicate name: '$name' has $($tags.Count) different tags!"
+            }
+        }
     }
 
     # Extract comments from English source if it's a strings file
@@ -598,8 +655,21 @@ if ($GlobalStats.ObsoleteTranslations.Count -gt 0) {
     Write-Info "  (Likely due to: consolidation, renaming, or removed features)"
 }
 
+# Report culture name validation issues
+$totalCultureIssues = $GlobalStats.CultureNameIssues.InconsistentTags.Count + $GlobalStats.CultureNameIssues.DuplicateNames.Count
+if ($totalCultureIssues -gt 0) {
+    Write-Host ""
+    Write-Warning "Found $totalCultureIssues culture name validation issues!"
+    if ($GlobalStats.CultureNameIssues.InconsistentTags.Count -gt 0) {
+        Write-Info "  Inconsistent tags (same tag, different names): $($GlobalStats.CultureNameIssues.InconsistentTags.Count)"
+    }
+    if ($GlobalStats.CultureNameIssues.DuplicateNames.Count -gt 0) {
+        Write-Info "  Duplicate names (same name, different tags): $($GlobalStats.CultureNameIssues.DuplicateNames.Count)"
+    }
+}
+
 # Write comprehensive report if there are any issues to report
-if ($GlobalStats.MissingTags.Count -gt 0 -or $GlobalStats.DuplicateTags.Count -gt 0 -or $GlobalStats.Errors.Count -gt 0 -or $GlobalStats.ObsoleteTranslations.Count -gt 0) {
+if ($GlobalStats.MissingTags.Count -gt 0 -or $GlobalStats.DuplicateTags.Count -gt 0 -or $GlobalStats.Errors.Count -gt 0 -or $GlobalStats.ObsoleteTranslations.Count -gt 0 -or $totalCultureIssues -gt 0) {
     $reportFileName = "translation_issues_report_$LanguageCode`_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
     $reportFilePath = Join-Path $ScriptDir $reportFileName
 
@@ -621,6 +691,11 @@ if ($GlobalStats.MissingTags.Count -gt 0 -or $GlobalStats.DuplicateTags.Count -g
         $reportContent += "    (Unique duplicate IDs: $uniqueDups)"
     }
     $reportContent += "  Obsolete translation IDs: $($GlobalStats.ObsoleteTranslations.Count)"
+    $reportContent += "  Culture name issues: $totalCultureIssues"
+    if ($totalCultureIssues -gt 0) {
+        $reportContent += "    - Inconsistent tags: $($GlobalStats.CultureNameIssues.InconsistentTags.Count)"
+        $reportContent += "    - Duplicate names: $($GlobalStats.CultureNameIssues.DuplicateNames.Count)"
+    }
     $reportContent += "  Errors encountered: $($GlobalStats.Errors.Count)"
     $reportContent += ""
 
@@ -831,6 +906,72 @@ if ($GlobalStats.MissingTags.Count -gt 0 -or $GlobalStats.DuplicateTags.Count -g
             }
 
             $reportContent += ""
+        }
+    }
+
+    # SECTION 5: CULTURE NAME VALIDATION ISSUES (if any)
+    if ($totalCultureIssues -gt 0) {
+        $reportContent += "="*80
+        $reportContent += "SECTION 5: CULTURE NAME VALIDATION ISSUES"
+        $reportContent += "="*80
+        $reportContent += ""
+        $reportContent += "Culture names must follow these rules:"
+        $reportContent += "  GOOD: Same tag + Same name (intentional sharing, e.g., empire/vampire_counts)"
+        $reportContent += "  BAD:  Same tag + Different name (data corruption/error)"
+        $reportContent += "  BAD:  Different tag + Same name (should use same tag)"
+        $reportContent += ""
+        $reportContent += "Total issues: $totalCultureIssues"
+        $reportContent += ""
+
+        # Inconsistent tags (same tag, different names) - CRITICAL
+        if ($GlobalStats.CultureNameIssues.InconsistentTags.Count -gt 0) {
+            $reportContent += "-"*80
+            $reportContent += "INCONSISTENT TAGS (Same tag, different names) - CRITICAL"
+            $reportContent += "-"*80
+            $reportContent += ""
+            $reportContent += "Count: $($GlobalStats.CultureNameIssues.InconsistentTags.Count)"
+            $reportContent += ""
+
+            foreach ($issue in $GlobalStats.CultureNameIssues.InconsistentTags) {
+                $fileName = Split-Path $issue.File -Leaf
+                $reportContent += "Tag: {=$($issue.Tag)}"
+                $reportContent += "File: $fileName"
+                $reportContent += "Different names found:"
+                foreach ($name in $issue.Names) {
+                    $reportContent += "  - `"$name`""
+                }
+                $reportContent += ""
+            }
+        }
+
+        # Duplicate names (same name, different tags) - WARNING
+        if ($GlobalStats.CultureNameIssues.DuplicateNames.Count -gt 0) {
+            $reportContent += "-"*80
+            $reportContent += "DUPLICATE NAMES (Same name, different tags) - CONSOLIDATION OPPORTUNITY"
+            $reportContent += "-"*80
+            $reportContent += ""
+            $reportContent += "Count: $($GlobalStats.CultureNameIssues.DuplicateNames.Count)"
+            $reportContent += ""
+            $reportContent += "These names appear with different tags and could be consolidated"
+            $reportContent += "to use a single tag (reducing translation work)."
+            $reportContent += ""
+
+            # Show first 50 to avoid huge reports
+            $samples = $GlobalStats.CultureNameIssues.DuplicateNames | Select-Object -First 50
+
+            foreach ($issue in $samples) {
+                $reportContent += "Name: `"$($issue.Name)`""
+                $reportContent += "Tags:"
+                foreach ($tag in $issue.Tags) {
+                    $reportContent += "  - {=$tag}"
+                }
+                $reportContent += ""
+            }
+
+            if ($GlobalStats.CultureNameIssues.DuplicateNames.Count -gt 50) {
+                $reportContent += "... and $($GlobalStats.CultureNameIssues.DuplicateNames.Count - 50) more"
+                $reportContent += ""
+            }
         }
     }
 
