@@ -906,89 +906,89 @@
   
   
   <!--Rogue Engineer Quest-->
-  <string id="str_quest_tor_engineer.rogueEngineerParty" text= "{=str_quest_tor_engineer_rogueengineerparty}{ROGUE_ENGINEER_NAME}s Part Thieves"/>
-  <string id="str_quest_tor_engineer.rogueEngineerFirstTime" text= "{=str_quest_tor_engineer_rogueengineerfirsttime}You have the look of someone who has never seen a speck of black powder nor grease. Are you in the right place?"/>
-  <string id="str_quest_tor_engineer.cultistDone" text= "{=str_str_quest_tor_engineer_cultistDone} {=str_quest_tor_engineer_cultistdone}Ah, you have returned. What news do you bring?"/>
-  <string id="str_quest_tor_engineer.cultistInProgress" text= "{=str_quest_tor_engineer_cultistinprogress}Come back when you have news."/>
-  <string id="str_quest_tor_engineer.rogueEngineerFound" text= "{=str_quest_tor_engineer_rogueengineerfound}Did you find {ROGUE_ENGINEER_NAME}?"/>
-  <string id="str_quest_tor_engineer.startRogueEngineerHunt" text= "{=str_quest_tor_engineer_startrogueengineerhunt}Have you changed your mind and want to help hunt down {ROGUE_ENGINEER_NAME}?"/>
+  <string id="tor_engineer_quest_rogue_engineer_party" text= "{=str_tor_engineer_quest_rogue_engineer_party}{ROGUE_ENGINEER_NAME}s Part Thieves"/>
+  <string id="tor_engineer_quest_rogue_engineer_first_time" text= "{=str_tor_engineer_quest_rogue_engineer_first_time}You have the look of someone who has never seen a speck of black powder nor grease. Are you in the right place?"/>
+  <string id="tor_engineer_quest_cultist_done" text= "{=str_tor_engineer_quest_cultist_done}Ah, you have returned. What news do you bring?"/>
+  <string id="tor_engineer_quest_cultist_in_progress" text= "{=str_tor_engineer_quest_cultist_in_progress}Come back when you have news."/>
+  <string id="tor_engineer_quest_rogue_engineer_found" text= "{=str_tor_engineer_quest_rogue_engineer_found}Did you find {ROGUE_ENGINEER_NAME}?"/>
+  <string id="tor_engineer_quest_start_rogue_engineer_hunt" text= "{=str_tor_engineer_quest_start_rogue_engineer_hunt}Have you changed your mind and want to help hunt down {ROGUE_ENGINEER_NAME}?"/>
 
-  <string id="str_quest_tor_engineer.hubGreet" text= "{=str_quest_tor_engineer_hubgreet}You again, what do you want?"/>
-  <string id="str_quest_tor_engineer.hubPlayerCannons" text="{=str_str_quest_tor_engineer_hubplayercannons}I would like to buy some equipment."/>
-  <string id="str_quest_tor_engineer.hubPlayerEngineers" text="{=str_str_quest_tor_engineer_hubplayerengineers}I would like to recruit some engineers."/>
-  <string id="str_quest_tor_engineer.hubPlayerCannonsInstruction" text="{=str_str_quest_tor_engineer_hubplayercannonsinstruction}How can I use cannons?"/>
-  <string id="str_quest_tor_engineer.hubPlayerCannonsLimitInstruction" text="{=str_str_quest_tor_engineer_hubplayercannonslimitinstruction}How can I buy more cannons?"/>
-  <string id="str_quest_tor_engineer.hubPlayerLeave" text="{=str_str_quest_tor_engineer_hubplayerleave}Nothing at the moment, I must leave."/>
+  <string id="tor_engineer_quest_hub_greet" text= "{=str_tor_engineer_quest_hub_greet}You again, what do you want?"/>
+  <string id="tor_engineer_quest_hub_player_cannons" text="{=str_tor_engineer_quest_hub_player_cannons}I would like to buy some equipment."/>
+  <string id="tor_engineer_quest_hub_player_engineers" text="{=str_tor_engineer_quest_hub_player_engineers}I would like to recruit some engineers."/>
+  <string id="tor_engineer_quest_hub_player_cannons_instruction" text="{=str_tor_engineer_quest_hub_player_cannons_instruction}How can I use cannons?"/>
+  <string id="tor_engineer_quest_hub_player_cannons_limit_instruction" text="{=str_tor_engineer_quest_hub_player_cannons_limit_instruction}How can I buy more cannons?"/>
+  <string id="tor_engineer_quest_hub_player_leave" text="{=str_tor_engineer_quest_hub_player_leave}Nothing at the moment, I must leave."/>
 
-  <string id="str_quest_tor_engineer.playerReconsider" text= "{=str_quest_tor_engineer_playerreconsider}I have reconsidered your offer, I would like to help."/>
-  <string id="str_quest_tor_engineer.playerGreet0" text= "{=str_quest_tor_engineer_playergreet0}Greetings Master Engineer, I am {PlAYERNAME}. I have come seeking access to the forges of Nuln. Can you help?"/>
-  <string id="str_quest_tor_engineer.playerGreet1" text= "{=str_quest_tor_engineer_playergreet1}I am, I have come seeking access to black powder weapons."/>
+  <string id="tor_engineer_quest_player_reconsider" text= "{=str_tor_engineer_quest_player_reconsider}I have reconsidered your offer, I would like to help."/>
+  <string id="tor_engineer_quest_player_greet_0" text= "{=str_tor_engineer_quest_player_greet_0}Greetings Master Engineer, I am {PlAYERNAME}. I have come seeking access to the forges of Nuln. Can you help?"/>
+  <string id="tor_engineer_quest_player_greet_1" text= "{=str_tor_engineer_quest_player_greet_1}I am, I have come seeking access to black powder weapons."/>
 
-  <string id="str_quest_tor_engineer.engineerSkillCheck" text= "{=str_quest_tor_engineer_engineerskillcheck}Hah! You don’t seem like a person with any knowledge of our crafts. What could you possibly need from us?"/>
-  <string id="str_quest_tor_engineer.engineerSkillCheckFailed" text= "{=str_quest_tor_engineer_engineerskillcheckfailed}I am far too busy for this, leave my sight."/>
-  <string id="str_quest_tor_engineer.engineerSkillCheckPassed" text= "{=str_quest_tor_engineer_engineerskillcheckpassed}These are the mightiest weapons of the Empire. The inventions of our Gunnery School are what held back the tide of darkness time and again. Normally we do not hand out our crafts to any who walks in, you have not earned our trust."/>
+  <string id="tor_engineer_quest_engineer_skill_check" text= "{=str_tor_engineer_quest_engineer_skill_check}Hah! You don't seem like a person with any knowledge of our crafts. What could you possibly need from us?"/>
+  <string id="tor_engineer_quest_engineer_skill_check_failed" text= "{=str_tor_engineer_quest_engineer_skill_check_failed}I am far too busy for this, leave my sight."/>
+  <string id="tor_engineer_quest_engineer_skill_check_passed" text= "{=str_tor_engineer_quest_engineer_skill_check_passed}These are the mightiest weapons of the Empire. The inventions of our Gunnery School are what held back the tide of darkness time and again. Normally we do not hand out our crafts to any who walks in, you have not earned our trust."/>
 
-  <string id="str_quest_tor_engineer.cultistBriefing0" text= "{=str_quest_tor_engineer_cultistbriefing0}We may however be able to come to an agreement, there is an internal matter that needs urgent attention and I am unable to act. If you help us out, as a personal favour, I will see what I can do for you. What say you?"/>
-  <string id="str_quest_tor_engineer.cultistBriefingPlayer" text= "{=str_quest_tor_engineer_cultistbriefingplayer}What would you have me do?"/>
-  <string id="str_quest_tor_engineer.cultistBriefingDecline" text= "{=str_quest_tor_engineer_cultistbriefingdecline}I don't have time for this."/>
-  <string id="str_quest_tor_engineer.cultistBriefing1" text= "{=str_quest_tor_engineer_cultistbriefing1}Usually we don’t resort to outside assistance, but we are shorthanded. We have had some important components stolen from the forges of Nuln, and they must be returned. Immediately. If you can track down these runaways and find these parts then we can talk further."/>
+  <string id="tor_engineer_quest_cultist_briefing_0" text= "{=str_tor_engineer_quest_cultist_briefing_0}We may however be able to come to an agreement, there is an internal matter that needs urgent attention and I am unable to act. If you help us out, as a personal favour, I will see what I can do for you. What say you?"/>
+  <string id="tor_engineer_quest_cultist_briefing_player" text= "{=str_tor_engineer_quest_cultist_briefing_player}What would you have me do?"/>
+  <string id="tor_engineer_quest_cultist_briefing_decline" text= "{=str_tor_engineer_quest_cultist_briefing_decline}I don't have time for this."/>
+  <string id="tor_engineer_quest_cultist_briefing_1" text= "{=str_tor_engineer_quest_cultist_briefing_1}Usually we don't resort to outside assistance, but we are shorthanded. We have had some important components stolen from the forges of Nuln, and they must be returned. Immediately. If you can track down these runaways and find these parts then we can talk further."/>
 
-  <string id="str_quest_tor_engineer.rogueEngineerBriefingPlayerAccept0" text= "{=str_quest_tor_engineer_rogueengineerbriefingplayeraccept0}I can, as long as our bargain remains the same. I will find him for you, and in return, you will allow me access to the forges of Nuln."/>
-  <string id="str_quest_tor_engineer.rogueEngineerBriefingPlayerAccept1" text= "{=str_quest_tor_engineer_rogueengineerbriefingplayeraccept1}If this is the only way you will allow me access to the forges, then so be it. I will bring you his head."/>
-  <string id="str_quest_tor_engineer.rogueEngineerBriefingPlayerDecline0" text= "{=str_quest_tor_engineer_rogueengineerbriefingplayerdecline0}I’m afraid not, I have other tasks to attend to."/>
-  <string id="str_quest_tor_engineer.rogueEngineerBriefingEnd" text= "{=str_quest_tor_engineer_rogueengineerbriefingend}We have an agreement then, I believe I may know his whereabouts. I will mark it on your map for you, may Sigmar guide you stranger."/>
+  <string id="tor_engineer_quest_rogue_engineer_briefing_player_accept_0" text= "{=str_tor_engineer_quest_rogue_engineer_briefing_player_accept_0}I can, as long as our bargain remains the same. I will find him for you, and in return, you will allow me access to the forges of Nuln."/>
+  <string id="tor_engineer_quest_rogue_engineer_briefing_player_accept_1" text= "{=str_tor_engineer_quest_rogue_engineer_briefing_player_accept_1}If this is the only way you will allow me access to the forges, then so be it. I will bring you his head."/>
+  <string id="tor_engineer_quest_rogue_engineer_briefing_player_decline_0" text= "{=str_tor_engineer_quest_rogue_engineer_briefing_player_decline_0}I'm afraid not, I have other tasks to attend to."/>
+  <string id="tor_engineer_quest_rogue_engineer_briefing_end" text= "{=str_tor_engineer_quest_rogue_engineer_briefing_end}We have an agreement then, I believe I may know his whereabouts. I will mark it on your map for you, may Sigmar guide you stranger."/>
 
-  <string id="str_quest_tor_engineer.cultistPlayerAccept0" text= "{=str_quest_tor_engineer_cultistplayeraccept0}I understand, I will return the moment I have news."/>
-  <string id="str_quest_tor_engineer.cultistPlayerAccept1" text= "{=str_quest_tor_engineer_cultistplayeraccept1}That is all it will take? Sounds easy enough."/>
-  <string id="str_quest_tor_engineer.cultistPlayerDecline" text= "{=str_quest_tor_engineer_cultistplayerdecline}I do not have time for this."/>
-  <string id="str_quest_tor_engineer.cultistReactionPositive" text= "{=str_quest_tor_engineer_cultistreactionpositive}Good, I expect positive results and your hasty return."/>
-  <string id="str_quest_tor_engineer.cultistReactionNegative" text= "{=str_quest_tor_engineer_cultistreactionnegative}A shame, think on it and return if you change your mind."/>
+  <string id="tor_engineer_quest_cultist_player_accept_0" text= "{=str_tor_engineer_quest_cultist_player_accept_0}I understand, I will return the moment I have news."/>
+  <string id="tor_engineer_quest_cultist_player_accept_1" text= "{=str_tor_engineer_quest_cultist_player_accept_1}That is all it will take? Sounds easy enough."/>
+  <string id="tor_engineer_quest_cultist_player_decline" text= "{=str_tor_engineer_quest_cultist_player_decline}I do not have time for this."/>
+  <string id="tor_engineer_quest_cultist_reaction_positive" text= "{=str_tor_engineer_quest_cultist_reaction_positive}Good, I expect positive results and your hasty return."/>
+  <string id="tor_engineer_quest_cultist_reaction_negative" text= "{=str_tor_engineer_quest_cultist_reaction_negative}A shame, think on it and return if you change your mind."/>
 
-  <string id="str_quest_tor_engineer.questFail" text= "{=str_quest_tor_engineer_questfail}I am afraid I have failed to bring what you ask."/>
-  <string id="str_quest_tor_engineer.questFailAnswer" text= "{=str_quest_tor_engineer_questfailanswer}Tsk, I expected better. There may still be time, you can still track them if you are swift"/>
-  <string id="str_quest_tor_engineer.questRepeat" text= "{=str_quest_tor_engineer_questrepeat}I won't let you down a second time."/>
-  <string id="str_quest_tor_engineer.questGiveup" text= "{=str_quest_tor_engineer_questgiveup}I don't think I can do it at this time."/>
+  <string id="tor_engineer_quest_quest_fail" text= "{=str_tor_engineer_quest_quest_fail}I am afraid I have failed to bring what you ask."/>
+  <string id="tor_engineer_quest_quest_fail_answer" text= "{=str_tor_engineer_quest_quest_fail_answer}Tsk, I expected better. There may still be time, you can still track them if you are swift"/>
+  <string id="tor_engineer_quest_quest_repeat" text= "{=str_tor_engineer_quest_quest_repeat}I won't let you down a second time."/>
+  <string id="tor_engineer_quest_quest_giveup" text= "{=str_tor_engineer_quest_quest_giveup}I don't think I can do it at this time."/>
 
-  <string id="str_quest_tor_engineer.cultistReturn0" text= "{=str_quest_tor_engineer_cultistreturn0}I have returned but without the stolen components, I am afraid to say they are still missing."/>
-  <string id="str_quest_tor_engineer.cultistReturn1" text= "{=str_quest_tor_engineer_cultistreturn1}I see, this is not what I had hoped for. Were there any further clues, did you interrogate these scoundrels?"/>
-  <string id="str_quest_tor_engineer.cultistReturn2" text= "{=str_quest_tor_engineer_cultistreturn2}One of the bandits did mention a name, {ROGUE_ENGINEER_NAME} I think?"/>
-  <string id="str_quest_tor_engineer.cultistReturn3" text="{=str_str_quest_tor_engineer_cultistreturn3}Blast! I should have known. If you are willing, I would ask for your assistance once more. This matter may be more dire than I originally imagined. {ROGUE_ENGINEER_NAME} is an engineer, a good one at that, but his works always seemed… wrong."/>
-  <string id="str_quest_tor_engineer.rogueEngineerQuestStart" text="{=str_str_quest_tor_engineer_rogueengineerqueststart}If he has stolen these parts, it can only mean some heinous scheme. I must ask that you track him down, and put an end to whatever madness he is trying to concoct. Will you assist us?"/>
+  <string id="tor_engineer_quest_cultist_return_0" text= "{=str_tor_engineer_quest_cultist_return_0}I have returned but without the stolen components, I am afraid to say they are still missing."/>
+  <string id="tor_engineer_quest_cultist_return_1" text= "{=str_tor_engineer_quest_cultist_return_1}I see, this is not what I had hoped for. Were there any further clues, did you interrogate these scoundrels?"/>
+  <string id="tor_engineer_quest_cultist_return_2" text= "{=str_tor_engineer_quest_cultist_return_2}One of the bandits did mention a name, {ROGUE_ENGINEER_NAME} I think?"/>
+  <string id="tor_engineer_quest_cultist_return_3" text="{=str_tor_engineer_quest_cultist_return_3}Blast! I should have known. If you are willing, I would ask for your assistance once more. This matter may be more dire than I originally imagined. {ROGUE_ENGINEER_NAME} is an engineer, a good one at that, but his works always seemed… wrong."/>
+  <string id="tor_engineer_quest_rogue_engineer_quest_start" text="{=str_tor_engineer_quest_rogue_engineer_quest_start}If he has stolen these parts, it can only mean some heinous scheme. I must ask that you track him down, and put an end to whatever madness he is trying to concoct. Will you assist us?"/>
 
-  <string id="str_quest_tor_engineer.cultistInProgressPlayer" text= "{=str_quest_tor_engineer_cultistinprogressplayer}I have yet to track down the runaways."/>
-  <string id="str_quest_tor_engineer.cultistInProgressAnswer" text= "{=str_quest_tor_engineer_cultistinprogressanswer}I see, return to me when you have something useful."/>
+  <string id="tor_engineer_quest_cultist_in_progress_player" text= "{=str_tor_engineer_quest_cultist_in_progress_player}I have yet to track down the runaways."/>
+  <string id="tor_engineer_quest_cultist_in_progress_answer" text= "{=str_tor_engineer_quest_cultist_in_progress_answer}I see, return to me when you have something useful."/>
 
-  <string id="str_quest_tor_engineer.rogueEngineerHandIn" text= "{=str_quest_tor_engineer_rogueengineerhandin}{ROGUE_ENGINEER_NAME} will no longer be a problem and I have retrieved what he stole from you. I’m unsure what he was trying to do with them."/>
-  <string id="str_quest_tor_engineer.rogueEngineerDebrief" text= "{=str_quest_tor_engineer_rogueengineerdebrief}It matters not, it would have been something warped no doubt. I must thank you for your efforts, and your discretion. As agreed upon, you may now access our foundries and place orders as you please."/>
-  <string id="str_quest_tor_engineer.hubEntry" text="{=str_str_quest_tor_engineer_hubentry}Now, what do you need?"/>
+  <string id="tor_engineer_quest_rogue_engineer_hand_in" text= "{=str_tor_engineer_quest_rogue_engineer_hand_in}{ROGUE_ENGINEER_NAME} will no longer be a problem and I have retrieved what he stole from you. I'm unsure what he was trying to do with them."/>
+  <string id="tor_engineer_quest_rogue_engineer_debrief" text= "{=str_tor_engineer_quest_rogue_engineer_debrief}It matters not, it would have been something warped no doubt. I must thank you for your efforts, and your discretion. As agreed upon, you may now access our foundries and place orders as you please."/>
+  <string id="tor_engineer_quest_hub_entry" text="{=str_tor_engineer_quest_hub_entry}Now, what do you need?"/>
 
-  <string id="str_quest_tor_engineer.rogueEngineerInProgressPlayer" text="{=str_str_quest_tor_engineer_rogueengineerinprogressplayer}I have yet to track him down"/>
-  <string id="str_quest_tor_engineer.rogueEngineerInProgressAnswer" text="{=str_str_quest_tor_engineer_rogueengineerinprogressanswer}I see, return to me when you have better news."/>
+  <string id="tor_engineer_quest_rogue_engineer_in_progress_player" text="{=str_tor_engineer_quest_rogue_engineer_in_progress_player}I have yet to track him down"/>
+  <string id="tor_engineer_quest_rogue_engineer_in_progress_answer" text="{=str_tor_engineer_quest_rogue_engineer_in_progress_answer}I see, return to me when you have better news."/>
 
-  <string id="str_quest_tor_engineer.openShop" text="{=str_str_quest_tor_engineer_openshop}Of course, you'll find only the best from the forges of Nuln!"/>
-  <string id="str_quest_tor_engineer.closeShop" text="{=str_str_quest_tor_engineer_closeshop}What else can I do for you?"/>
+  <string id="tor_engineer_quest_open_shop" text="{=str_tor_engineer_quest_open_shop}Of course, you'll find only the best from the forges of Nuln!"/>
+  <string id="tor_engineer_quest_close_shop" text="{=str_tor_engineer_quest_close_shop}What else can I do for you?"/>
 
-  <string id="str_quest_tor_engineer.hireEngineers" text="{=str_str_quest_tor_engineer_hireengineers}A pair of our novice engineers are eagier to join you for the right price ({RECRUITMENT_PRICE})."/>
-  <string id="str_quest_tor_engineer.hireEngineersAccept" text="{=str_str_quest_tor_engineer_hireengineersaccept}Welcome on board."/>
-  <string id="str_quest_tor_engineer.hireEngineersNotEnoughMoney" text="{=str_str_quest_tor_engineer_hireengineersnotenoughmoney}I don't have the funds for them right now."/>
-  <string id="str_quest_tor_engineer.hireEngineersDecline" text="{=str_str_quest_tor_engineer_hireengineersdecline}On a second thought, maybe later."/>
+  <string id="tor_engineer_quest_hire_engineers" text="{=str_tor_engineer_quest_hire_engineers}A pair of our novice engineers are eagier to join you for the right price ({RECRUITMENT_PRICE})."/>
+  <string id="tor_engineer_quest_hire_engineers_accept" text="{=str_tor_engineer_quest_hire_engineers_accept}Welcome on board."/>
+  <string id="tor_engineer_quest_hire_engineers_not_enough_money" text="{=str_tor_engineer_quest_hire_engineers_not_enough_money}I don't have the funds for them right now."/>
+  <string id="tor_engineer_quest_hire_engineers_decline" text="{=str_tor_engineer_quest_hire_engineers_decline}On a second thought, maybe later."/>
 
-  <string id="str_quest_tor_engineer.CannonsLimitInstruction0" text="{=str_str_quest_tor_engineer_cannonslimitinstruction0}To buy cannons you must be an Imperial, that's the law."/>
-  <string id="str_quest_tor_engineer.CannonsLimitInstruction1" text="{=str_str_quest_tor_engineer_cannonslimitinstruction1}The amount of cannons you can field in your army increases every 50 levels in Engineering skill."/>
-  <string id="str_quest_tor_engineer.CannonsLimitInstruction2" text="{=str_str_quest_tor_engineer_cannonslimitinstruction2}If you have met these requirements, simply speak to me and I'll show you what we have."/>
+  <string id="tor_engineer_quest_cannons_limit_instruction_0" text="{=str_tor_engineer_quest_cannons_limit_instruction_0}To buy cannons you must be an Imperial, that's the law."/>
+  <string id="tor_engineer_quest_cannons_limit_instruction_1" text="{=str_tor_engineer_quest_cannons_limit_instruction_1}The amount of cannons you can field in your army increases every 50 levels in Engineering skill."/>
+  <string id="tor_engineer_quest_cannons_limit_instruction_2" text="{=str_tor_engineer_quest_cannons_limit_instruction_2}If you have met these requirements, simply speak to me and I'll show you what we have."/>
 
-  <string id="str_quest_tor_engineer.CannonsUse0" text="{=str_str_quest_tor_engineer_cannonsuse0}Cannons are placed using the spellcasting Mode, but to fire the cannons you will need to hire at least two Cannon Crew"/>
-  <string id="str_quest_tor_engineer.CannonsUse1" text="{=str_str_quest_tor_engineer_cannonsuse1}You will also need to ensure that the cannon is in your party inventory"/>
-  <string id="str_quest_tor_engineer.CannonsUse2" text="{=str_str_quest_tor_engineer_cannonsuse2}Engineers and Cannon Crew can both fire cannons."/>
+  <string id="tor_engineer_quest_cannons_use_0" text="{=str_tor_engineer_quest_cannons_use_0}Cannons are placed using the spellcasting Mode, but to fire the cannons you will need to hire at least two Cannon Crew"/>
+  <string id="tor_engineer_quest_cannons_use_1" text="{=str_tor_engineer_quest_cannons_use_1}You will also need to ensure that the cannon is in your party inventory"/>
+  <string id="tor_engineer_quest_cannons_use_2" text="{=str_tor_engineer_quest_cannons_use_2}Engineers and Cannon Crew can both fire cannons."/>
 
-  <string id="str_quest_tor_engineer.cultistEncounter" text="{=str_str_quest_tor_engineer_cultistencounter}{ROGUE_ENGINEER_NAME} was right, they sent someone after us! Grab your weapons quickly!"/>
-  <string id="str_quest_tor_engineer.cultistEncounterPlayer0" text= "{=str_quest_tor_engineer_cultistencounterplayer0}Woah, hold there, I have merely come for the stolen parts, there is no need for bloodshed. Perhaps an arrangement can be made?"/>
-  <string id="str_quest_tor_engineer.cultistEncounterPlayer1" text="{=str_str_quest_tor_engineer_cultistencounterplayer1}Lay down your weapons and I may spare your lives."/>
-  <string id="str_quest_tor_engineer.cultistEncounterPlayer2" text="{=str_str_quest_tor_engineer_cultistencounterplayer2}Weapons or no, we will slay you all and take back what you stole!"/>
-  <string id="str_quest_tor_engineer.cultistEncounterAnswer" text="{=str_str_quest_tor_engineer_cultistencounteranswer}You will not trick us! They will serve a greater purpose! You will not take them!"/>
+  <string id="tor_engineer_quest_cultist_encounter" text="{=str_tor_engineer_quest_cultist_encounter}{ROGUE_ENGINEER_NAME} was right, they sent someone after us! Grab your weapons quickly!"/>
+  <string id="tor_engineer_quest_cultist_encounter_player_0" text= "{=str_tor_engineer_quest_cultist_encounter_player_0}Woah, hold there, I have merely come for the stolen parts, there is no need for bloodshed. Perhaps an arrangement can be made?"/>
+  <string id="tor_engineer_quest_cultist_encounter_player_1" text="{=str_tor_engineer_quest_cultist_encounter_player_1}Lay down your weapons and I may spare your lives."/>
+  <string id="tor_engineer_quest_cultist_encounter_player_2" text="{=str_tor_engineer_quest_cultist_encounter_player_2}Weapons or no, we will slay you all and take back what you stole!"/>
+  <string id="tor_engineer_quest_cultist_encounter_answer" text="{=str_tor_engineer_quest_cultist_encounter_answer}You will not trick us! They will serve a greater purpose! You will not take them!"/>
 
-  <string id="str_quest_tor_engineer.rogueEngineerEncounter" text="{=str_str_quest_tor_engineer_rogueengineerencounter}So the old fool sent you after us? How did he figure out my plans? It matters not, you will not stand in the way of my creations. You will die here!"/>
-  <string id="str_quest_tor_engineer.rogueEngineerEncounterPlayerAfterBattleAnswer" text="{=str_str_quest_tor_engineer_rogueengineerencounterplayerafterbattleanswer}	Your schemes end here."/>
+  <string id="tor_engineer_quest_rogue_engineer_encounter" text="{=str_tor_engineer_quest_rogue_engineer_encounter}So the old fool sent you after us? How did he figure out my plans? It matters not, you will not stand in the way of my creations. You will die here!"/>
+  <string id="tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer" text="{=str_tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer}	Your schemes end here."/>
 
   <!--culture related-->
 

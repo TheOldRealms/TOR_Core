@@ -15,6 +15,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
+using TOR_Core.Extensions;
 using TOR_Core.HarmonyPatches;
 using TOR_Core.Utilities;
 using static TaleWorlds.CampaignSystem.Campaign;
