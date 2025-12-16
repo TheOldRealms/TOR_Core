@@ -53,7 +53,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddPlayerLine("blackgrail_iamready", "black_grail_request_answer_areyouready", "black_grail_player_prompt", TORTextHelper.GetText("tor_blackgrail_answer_player_ready", "I am ready, mylord."), null, () => DisplayPrompt(TORCareers.BlackGrailKnight, OnBlackGrailReceived));
             starter.AddPlayerLine("blackgrail_iamnotready", "black_grail_request_answer_areyouready", "black_grail_player_notready", TORTextHelper.GetText("tor_blackgrail_answer_player_notready", "On a second thought, I need to think about it."), null, null);
 
-            starter.AddDialogLine("black_grail_player_prompt", "black_grail_player_prompt", "black_grail_player_ready", "...", null, null);
+            starter.AddDialogLine("black_grail_player_prompt", "black_grail_player_prompt", "black_grail_player_ready","...", null, null);
 
             starter.AddPlayerLine("bloodkiss_inqury_declined", "black_grail_player_ready", "black_grail_player_notready", TORTextHelper.GetText("tor_blackgrail_player_decline", "On a second thought, I need to think about it."), () => inquiryDeclined, null);
             starter.AddDialogLine("blackgrail_receive", "black_grail_player_ready", "black_grail_player_playcutscene", TORTextHelper.GetText("tor_blackgrail_receive", "The truth is: The Bretonnes, proud humans follow the whisperings of an Elf. The Lady is nothing more than a Elven Witch, not a goddess or saint. Our whole Kingdom is build upon the Lie of Lady. I will clean you from these lies, drink from this grail, and gain the true powers of Bretonnia!"), () => !inquiryDeclined, null);

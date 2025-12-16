@@ -18,18 +18,18 @@ public static class CareerButtonDialogs
 
     private static void GrailKnightButtonDialog(CampaignGameStarter starter)
     {
-        starter.AddDialogLine("grailKnightCompanionHonoring_start1", "start", "grailKnightCompanionHonoring_vow1", new TextObject("{=str_tor_grail_companion_vow_start}Greetings my lord, how may I be of service? ").ToString(), () => buttonDialogCondition() && Hero.MainHero.HasCareer(TORCareers.GrailKnight), DeactivateDialog, 200, null);
-        starter.AddPlayerLine("grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow2", new TextObject("{=str_tor_grail_companion_vow_1}It has been some time since you have come into my service, you have repeatedly proven to be a most capable and chivalrous Knight.").ToString(), null, null, 200,
+        starter.AddDialogLine("grailKnightCompanionHonoring_start1", "start", "grailKnightCompanionHonoring_vow1", TORTextHelper.GetText("tor_grail_companion_vow_start", "Greetings my lord, how may I be of service? "), () => buttonDialogCondition() && Hero.MainHero.HasCareer(TORCareers.GrailKnight), DeactivateDialog, 200, null);
+        starter.AddPlayerLine("grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow2", TORTextHelper.GetText("tor_grail_companion_vow_1", "It has been some time since you have come into my service, you have repeatedly proven to be a most capable and chivalrous Knight."), null, null, 200,
             null);
 
-        starter.AddDialogLine("grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow3", new TextObject("{=str_tor_grail_companion_vow_2}You honour me with your words my lord, it is my pride and pleasure to serve and fight alongside you.").ToString(), null, null, 200,
+        starter.AddDialogLine("grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow2", "grailKnightCompanionHonoring_vow3", TORTextHelper.GetText("tor_grail_companion_vow_2", "You honour me with your words my lord, it is my pride and pleasure to serve and fight alongside you."), null, null, 200,
             null);
         starter.AddPlayerLine("grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow3", "grailKnightCompanionHonoring_vow4",
-            new TextObject("{=str_tor_grail_companion_vow_3}I wish to bring you into my inner circle, to make you a leader and a trusted companion amongst my men; more than just a Knight in my service. What say you?").ToString(), null, null, 200, null);
-        starter.AddPlayerLine("grailKnightCompanionHonoring_vow3_end", "grailKnightCompanionHonoring_vow3", "close_window", new TextObject("{=str_tor_grail_companion_vow_3}I look forward to our future battles together.").ToString(), null, null, 200, null);
+            TORTextHelper.GetText("tor_grail_companion_vow_3", "I wish to bring you into my inner circle, to make you a leader and a trusted companion amongst my men; more than just a Knight in my service. What say you?"), null, null, 200, null);
+        starter.AddPlayerLine("grailKnightCompanionHonoring_vow3_end", "grailKnightCompanionHonoring_vow3", "close_window", TORTextHelper.GetText("tor_grail_companion_vow_3_end", "I look forward to our future battles together."), null, null, 200, null);
 
-        starter.AddDialogLine("grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow5", new TextObject("{=str_tor_grail_companion_vow_4}It would be my honour and in the name of the Lady I swear this; to serve you until my dying breath.").ToString(), null, MakeGrailKnightCompanion, 200, null);
-        starter.AddDialogLine("grailKnightCompanionHonoring_vow5", "grailKnightCompanionHonoring_vow5", "close_window", new TextObject("{=str_tor_grail_companion_vow_5}I look forward to our future battles together.").ToString(), null, null, 200, null);
+        starter.AddDialogLine("grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow4", "grailKnightCompanionHonoring_vow5", TORTextHelper.GetText("tor_grail_companion_vow_4", "It would be my honour and in the name of the Lady I swear this; to serve you until my dying breath."), null, MakeGrailKnightCompanion, 200, null);
+        starter.AddDialogLine("grailKnightCompanionHonoring_vow5", "grailKnightCompanionHonoring_vow5", "close_window", TORTextHelper.GetText("tor_grail_companion_vow_5", "I look forward to our future battles together."), null, null, 200, null);
 
         void MakeGrailKnightCompanion()
         {

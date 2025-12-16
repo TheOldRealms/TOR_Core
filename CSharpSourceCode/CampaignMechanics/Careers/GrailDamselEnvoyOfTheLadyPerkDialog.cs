@@ -31,26 +31,40 @@ namespace TOR_Core.CampaignMechanics.Careers
                 icon = chivalry.GetCustomResourceIconAsText();
             }
 
-            campaignGameStarter.AddPlayerLine("convincelord0", "lord_talk_speak_diplomacy_2", "convincelord1", $"The Lady demands that you stop slaughtering your fellow Bretonnians! ({CostForPeace}{icon})", () => FullfillsEnvoyOfTheLadyCondition() && CivilWarCondition() && PriceCondition(CostForPeace), null);
+            bool PeaceDialogCondition()
+            {
+                GameTexts.SetVariable("PEACE_COST", CostForPeace);
+                GameTexts.SetVariable("CHIVALRY_ICON", icon);
+                return FullfillsEnvoyOfTheLadyCondition() && CivilWarCondition() && PriceCondition(CostForPeace);
+            }
 
-            campaignGameStarter.AddDialogLine("convincelord1", "convincelord1", "convincelord2", "Mylady, how dare you demand me... oh she does?", null, null, 200, null);
-            campaignGameStarter.AddDialogLine("convincelord2", "convincelord2", "convincelordplayerchoice", "I guess, I can't deny your biding. If the lady demands, I will obey.", null, null, 200, null);
+            bool WarDialogCondition()
+            {
+                GameTexts.SetVariable("WAR_COST", CostForWar);
+                GameTexts.SetVariable("CHIVALRY_ICON", icon);
+                return FullfillsEnvoyOfTheLadyCondition() && foreignForceRulesSettlementinbretonnia() && PriceCondition(CostForWar);
+            }
 
-            campaignGameStarter.AddPlayerLine("convincelordwar0", "lord_talk_speak_diplomacy_2", "convincelordWar1", $"Our fair and noble land has been invaded! The lady demands that you strike her enemies!({CostForWar}{icon})", () => FullfillsEnvoyOfTheLadyCondition() && foreignForceRulesSettlementinbretonnia() && PriceCondition(CostForWar), null, 200, null, null);
-            campaignGameStarter.AddDialogLine("convincelordWar1", "convincelordWar1", "convincelordWar2", "Ah yeah so you know better, which thread bothers us most ?", null, null, 200, null);
-            campaignGameStarter.AddDialogLine("convincelordWar2", "convincelordWar2", "convincelordplayerchoicewar", "I guess, I can't deny you your biding. If the lady demands, I will obey.", null, null, 200, null);
+            campaignGameStarter.AddPlayerLine("convincelord0", "lord_talk_speak_diplomacy_2", "convincelord1", TORTextHelper.GetText("tor_grail_envoy_peace_demand", "The Lady demands that you stop slaughtering your fellow Bretonnians! ({PEACE_COST}{CHIVALRY_ICON})"), PeaceDialogCondition, null);
 
-            campaignGameStarter.AddPlayerLine("convincelordplayerchoice1", "convincelordplayerchoice", "convincelord_end", "Stop war with {FACTION_NAME_1}.", condition_faction_war1, consequence_stop_war_faction1, 200, null, null);
-            campaignGameStarter.AddPlayerLine("convincelordplayerchoice2", "convincelordplayerchoice", "convincelord_end", "Stop war with {FACTION_NAME_2}.", condition_faction_war2, consequence_stop_war_faction2, 200, null, null);
-            campaignGameStarter.AddPlayerLine("convincelordplayerchoice3", "convincelordplayerchoice", "convincelord_end", "Stop war with {FACTION_NAME_3}.", condition_faction_war3, consequence_stop_war_faction3, 200, null, null);
-            campaignGameStarter.AddPlayerLine("convincelordplayerchoice3", "convincelordplayerchoice", "lord_pretalk", "Actually never mind", null, null, 200, null, null);
+            campaignGameStarter.AddDialogLine("convincelord1", "convincelord1", "convincelord2", TORTextHelper.GetText("tor_grail_envoy_demand_response1", "Mylady, how dare you demand me... oh she does?"), null, null, 200, null);
+            campaignGameStarter.AddDialogLine("convincelord2", "convincelord2", "convincelordplayerchoice", TORTextHelper.GetText("tor_grail_envoy_demand_response2", "I guess, I can't deny your biding. If the lady demands, I will obey."), null, null, 200, null);
 
-            campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar1", "convincelordplayerchoicewar", "convincelord_end", "We need to unite against {FACTION_NAME_1}.", condition_enemy1, consequence_declareWar1, 200, null, null);
-            campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar2", "convincelordplayerchoicewar", "convincelord_end", "We need to unite against {FACTION_NAME_2}.", condition_enemy2, consequence_declareWar2, 200, null, null);
-            campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar3", "convincelordplayerchoicewar", "convincelord_end", "We need to unite against {FACTION_NAME_3}.", condition_enemy3, consequence_declareWar3, 200, null, null);
-            campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar3", "convincelordplayerchoicewar", "lord_pretalk", "Actually never mind", null, null, 200, null, null);
+            campaignGameStarter.AddPlayerLine("convincelordwar0", "lord_talk_speak_diplomacy_2", "convincelordWar1", TORTextHelper.GetText("tor_grail_envoy_war_demand", "Our fair and noble land has been invaded! The lady demands that you strike her enemies!({WAR_COST}{CHIVALRY_ICON})"), WarDialogCondition, null, 200, null, null);
+            campaignGameStarter.AddDialogLine("convincelordWar1", "convincelordWar1", "convincelordWar2", TORTextHelper.GetText("tor_grail_envoy_war_response1", "Ah yeah so you know better, which thread bothers us most ?"), null, null, 200, null);
+            campaignGameStarter.AddDialogLine("convincelordWar2", "convincelordWar2", "convincelordplayerchoicewar", TORTextHelper.GetText("tor_grail_envoy_war_response2", "I guess, I can't deny you your biding. If the lady demands, I will obey."), null, null, 200, null);
 
-            campaignGameStarter.AddDialogLine("convincelord_end", "convincelord_end", "lord_pretalk", "As you wish Mylady.", null, null, 200, null);
+            campaignGameStarter.AddPlayerLine("convincelordplayerchoice1", "convincelordplayerchoice", "convincelord_end", TORTextHelper.GetText("tor_grail_envoy_stop_war_faction1", "Stop war with {FACTION_NAME_1}."), condition_faction_war1, consequence_stop_war_faction1, 200, null, null);
+            campaignGameStarter.AddPlayerLine("convincelordplayerchoice2", "convincelordplayerchoice", "convincelord_end", TORTextHelper.GetText("tor_grail_envoy_stop_war_faction2", "Stop war with {FACTION_NAME_2}."), condition_faction_war2, consequence_stop_war_faction2, 200, null, null);
+            campaignGameStarter.AddPlayerLine("convincelordplayerchoice3", "convincelordplayerchoice", "convincelord_end", TORTextHelper.GetText("tor_grail_envoy_stop_war_faction3", "Stop war with {FACTION_NAME_3}."), condition_faction_war3, consequence_stop_war_faction3, 200, null, null);
+            campaignGameStarter.AddPlayerLine("convincelordplayerchoice4", "convincelordplayerchoice", "lord_pretalk", TORTextHelper.GetText("tor_grail_envoy_nevermind", "Actually never mind"), null, null, 200, null, null);
+
+            campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar1", "convincelordplayerchoicewar", "convincelord_end", TORTextHelper.GetText("tor_grail_envoy_unite_against_faction1", "We need to unite against {FACTION_NAME_1}."), condition_enemy1, consequence_declareWar1, 200, null, null);
+            campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar2", "convincelordplayerchoicewar", "convincelord_end", TORTextHelper.GetText("tor_grail_envoy_unite_against_faction2", "We need to unite against {FACTION_NAME_2}."), condition_enemy2, consequence_declareWar2, 200, null, null);
+            campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar3", "convincelordplayerchoicewar", "convincelord_end", TORTextHelper.GetText("tor_grail_envoy_unite_against_faction3", "We need to unite against {FACTION_NAME_3}."), condition_enemy3, consequence_declareWar3, 200, null, null);
+            campaignGameStarter.AddPlayerLine("convincelordplayerchoicewar4", "convincelordplayerchoicewar", "lord_pretalk", TORTextHelper.GetText("tor_grail_envoy_nevermind", "Actually never mind"), null, null, 200, null, null);
+
+            campaignGameStarter.AddDialogLine("convincelord_end", "convincelord_end", "lord_pretalk", TORTextHelper.GetText("tor_grail_envoy_as_you_wish", "As you wish Mylady."), null, null, 200, null);
         }
 
 
