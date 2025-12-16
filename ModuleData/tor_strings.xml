@@ -990,6 +990,63 @@
   <string id="tor_engineer_quest_rogue_engineer_encounter" text="{=str_tor_engineer_quest_rogue_engineer_encounter}So the old fool sent you after us? How did he figure out my plans? It matters not, you will not stand in the way of my creations. You will die here!"/>
   <string id="tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer" text="{=str_tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer}	Your schemes end here."/>
 
+  <!--Custom Encounter Dialogs-->
+  <string id="tor_chaos_greeting" text="{=str_tor_chaos_greeting}You will die drowning in a pool of your own blood!"/>
+  <string id="tor_chaos_wounded_dialog_text" text="{=str_tor_chaos_wounded_dialog_text}I will return!"/>
+  <string id="tor_beastmen_greeting" text="{=str_tor_beastmen_greeting}We will trample your puny body beneath our hooves!"/>
+  <string id="tor_beastmen_wounded_dialog_text" text="{=str_tor_beastmen_wounded_dialog_text}The dark gods have abandoned us!"/>
+  <string id="tor_brokenwheel_greeting" text="{=str_tor_brokenwheel_greeting}You will be bathed in flames of Chaos and you will be happy!"/>
+  <string id="tor_brokenwheel_wounded_dialog_text" text="{=str_tor_brokenwheel_wounded_dialog_text}The schemes of Tzeentch are endless, you have accomplished nothing!"/>
+  <string id="tor_illumination_greeting" text="{=str_tor_illumination_greeting}Come open the third eye, let me show you brother!"/>
+  <string id="tor_illumination_wounded_dialog_text" text="{=str_tor_illumination_wounded_dialog_text}You may have won the battle, but my life has been more successful than yours will ever be!"/>
+  <string id="tor_secondflesh_greeting" text="{=str_tor_secondflesh_greeting}I will spread my pox on your flesh!"/>
+  <string id="tor_secondflesh_wounded_dialog_text" text="{=str_tor_secondflesh_wounded_dialog_text}Today, death. Tomorrow, rebirth. The cycle cannot be stopped!"/>
+  <string id="tor_undead_no_talk_text" text="{=str_tor_undead_no_talk_text}..."/>
+  <string id="tor_druchii_greeting_neutral" text="{=str_tor_druchii_greeting_neutral}What do you want, stranger? Speak quickly before you find yourself chained up in the bowels of my ship."/>
+  <string id="tor_druchii_greeting_war" text="{=str_tor_druchii_greeting_war}It's you... The Masters of Karond Kar will be pleased indeed. Time to embrace your chains, slave!"/>
+  <string id="tor_druchii_die" text="{=str_tor_druchii_die}Our defeat is a mockery to Khaine."/>
+  <string id="tor_druchii_sell_slaves" text="{=str_tor_druchii_sell_slaves}Sell your prisoners as slaves ({RANSOM_AMOUNT}{GOLD_ICON})"/>
+  <string id="tor_no_prisoners_to_sell_tooltip_text" text="{=str_tor_no_prisoners_to_sell_tooltip_text}You have no prisoners to sell."/>
+  <string id="tor_at_war_tooltip_text" text="{=str_tor_at_war_tooltip_text}You are at war with this faction."/>
+
+  <!--Grail Knight Companion Dialog-->
+  <string id="tor_grail_companion_vow_start" text="{=str_tor_grail_companion_vow_start}Greetings my lord, how may I be of service?"/>
+  <string id="tor_grail_companion_vow_1" text="{=str_tor_grail_companion_vow_1}It has been some time since you have come into my service, you have repeatedly proven to be a most capable and chivalrous Knight."/>
+  <string id="tor_grail_companion_vow_2" text="{=str_tor_grail_companion_vow_2}You honour me with your words my lord, it is my pride and pleasure to serve and fight alongside you."/>
+  <string id="tor_grail_companion_vow_3" text="{=str_tor_grail_companion_vow_3}I wish to bring you into my inner circle, to make you a leader and a trusted companion amongst my men; more than just a Knight in my service. What say you?"/>
+  <string id="tor_grail_companion_vow_3_end" text="{=str_tor_grail_companion_vow_3_end}I look forward to our future battles together."/>
+  <string id="tor_grail_companion_vow_4" text="{=str_tor_grail_companion_vow_4}It would be my honour and in the name of the Lady I swear this; to serve you until my dying breath."/>
+  <string id="tor_grail_companion_vow_5" text="{=str_tor_grail_companion_vow_5}I look forward to our future battles together."/>
+
+  <!--Mercenary Companion Dialog-->
+  <string id="tor_mercenary_companion_start_text" text="{=str_tor_mercenary_companion_start_text}Aye what can I do for you?"/>
+  <string id="tor_mercenary_companion_partner_offer_text" text="{=str_tor_mercenary_companion_partner_offer_text}Your employment has gone quite well and I want to bring you on as a partner."/>
+  <string id="tor_mercenary_companion_partner_question_text" text="{=str_tor_mercenary_companion_partner_question_text}As a partner?"/>
+  <string id="tor_mercenary_companion_partner_terms_text" text="{=str_tor_mercenary_companion_partner_terms_text}You get part of the share and need to accomplish a few advanced organisational matters. I will however not pay your wage anymore."/>
+  <string id="tor_mercenary_companion_demand_payment_text" text="{=str_tor_mercenary_companion_demand_payment_text}First I want to see some hard coin. I am not playing Babysitter or 'Partner' without seeing some money first. You pay me {MERCCOMPANIONPRICE}{GOLD_ICON}"/>
+  <string id="tor_mercenary_companion_accept_payment_text" text="{=str_tor_mercenary_companion_accept_payment_text}Of course, consider this a forward on your upcoming shares."/>
+  <string id="tor_mercenary_companion_no_money_text" text="{=str_tor_mercenary_companion_no_money_text}I don't have that in hand right now."/>
+  <string id="tor_mercenary_companion_partnership_accepted_text" text="{=str_tor_mercenary_companion_partnership_accepted_text}Thats a good deal, I am looking foward to this partnership."/>
+  <string id="tor_mercenary_companion_keep_wage_text" text="{=str_tor_mercenary_companion_keep_wage_text}Well then I stay with my current wage."/>
+  <string id="tor_mercenary_companion_wise_decision_text" text="{=str_tor_mercenary_companion_wise_decision_text}What a wise decision!"/>
+  <string id="tor_mercenary_companion_fine_text" text="{=str_tor_mercenary_companion_fine_text}Fine."/>
+
+  <!--Grail Damsel Envoy of the Lady Dialog-->
+  <string id="tor_grail_envoy_peace_demand" text="{=str_tor_grail_envoy_peace_demand}The Lady demands that you stop slaughtering your fellow Bretonnians! ({PEACE_COST}{CHIVALRY_ICON})"/>
+  <string id="tor_grail_envoy_demand_response1" text="{=str_tor_grail_envoy_demand_response1}Mylady, how dare you demand me... oh she does?"/>
+  <string id="tor_grail_envoy_demand_response2" text="{=str_tor_grail_envoy_demand_response2}I guess, I can't deny your biding. If the lady demands, I will obey."/>
+  <string id="tor_grail_envoy_war_demand" text="{=str_tor_grail_envoy_war_demand}Our fair and noble land has been invaded! The lady demands that you strike her enemies!({WAR_COST}{CHIVALRY_ICON})"/>
+  <string id="tor_grail_envoy_war_response1" text="{=str_tor_grail_envoy_war_response1}Ah yeah so you know better, which thread bothers us most ?"/>
+  <string id="tor_grail_envoy_war_response2" text="{=str_tor_grail_envoy_war_response2}I guess, I can't deny you your biding. If the lady demands, I will obey."/>
+  <string id="tor_grail_envoy_stop_war_faction1" text="{=str_tor_grail_envoy_stop_war_faction1}Stop war with {FACTION_NAME_1}."/>
+  <string id="tor_grail_envoy_stop_war_faction2" text="{=str_tor_grail_envoy_stop_war_faction2}Stop war with {FACTION_NAME_2}."/>
+  <string id="tor_grail_envoy_stop_war_faction3" text="{=str_tor_grail_envoy_stop_war_faction3}Stop war with {FACTION_NAME_3}."/>
+  <string id="tor_grail_envoy_nevermind" text="{=str_tor_grail_envoy_nevermind}Actually never mind"/>
+  <string id="tor_grail_envoy_unite_against_faction1" text="{=str_tor_grail_envoy_unite_against_faction1}We need to unite against {FACTION_NAME_1}."/>
+  <string id="tor_grail_envoy_unite_against_faction2" text="{=str_tor_grail_envoy_unite_against_faction2}We need to unite against {FACTION_NAME_2}."/>
+  <string id="tor_grail_envoy_unite_against_faction3" text="{=str_tor_grail_envoy_unite_against_faction3}We need to unite against {FACTION_NAME_3}."/>
+  <string id="tor_grail_envoy_as_you_wish" text="{=str_tor_grail_envoy_as_you_wish}As you wish Mylady."/>
+
   <!--culture related-->
 
   <string id="str_culture_rich_name.khuzait" text="{=str_str_culture_rich_name_khuzait}Vampire Counts" />
