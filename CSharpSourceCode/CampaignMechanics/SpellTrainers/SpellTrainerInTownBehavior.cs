@@ -244,7 +244,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                           .AnyQ(x => x.IsSpellCaster() && x.CharacterObject.IsElf() && x != Hero.MainHero && !(x.HasKnownLore("DarkMagic") || x.HasKnownLore("HighMagic"))) &&
                 Hero.MainHero.HasUnlockedCareerChoiceTier(3), null, 200, null);
 
-            obj.AddPlayerLine("trainer_spellsinger_learnlore", "choices_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learnlore", "Teach me one of Ariels many pathways."), () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition() && SpellsingerAdditonalLoreCondition(), AdditionalLoresPrompt, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_learnlore", "choices_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learnlore", "Teach me one of Ariel's many pathways."), () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition() && SpellsingerAdditonalLoreCondition(), AdditionalLoresPrompt, 200, null);
 
             obj.AddDialogLine("trainer_spellsinger_weaver", "spellweaver_choice_dialog", "spellweaver_choice_player", TORTextHelper.GetText("tor_spelltrainer_spellsinger_weaver_choice", "A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely"), isSpellsingerTrainer, null, 200, null);
             obj.AddPlayerLine("spellweaver_choice_player", "spellweaver_choice_player", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellweaver_choice", "Let me choose."), () => MobileParty.MainParty.HasSpellCasterMember() && spellsingerCondition(), spellweaverPrompt, 200, null);
@@ -259,7 +259,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             obj.AddPlayerLine("trainer_spellsinger_playergoodbye", "choices_spellsinger", "saygoodbye", TORTextHelper.GetText("tor_spelltrainer_spellsinger_player_goodbye", "Ariel with you."), null, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_goodbye", "saygoodbye", "close_window", TORTextHelper.GetText("tor_spelltrainer_spellsinger_goodbye", "May Ariel guide you on all your paths through her garden."), isSpellsingerTrainer, null, 200, null);
-            obj.AddDialogLine("trainer_spellsinger_afterlearnspells", "openbook_spellsinger", "hub_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_close_book", "A new Facette of Ariels infinte knowledge."), null, openbookconsequence, 200, null);
+            obj.AddDialogLine("trainer_spellsinger_afterlearnspells", "openbook_spellsinger", "hub_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_close_book", "A new facet of Ariel's infinite knowledge."), null, openbookconsequence, 200, null);
 
 
             void learnMagicWarden()

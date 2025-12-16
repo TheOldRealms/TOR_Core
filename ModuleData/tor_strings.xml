@@ -971,7 +971,7 @@
   <string id="tor_engineer_quest_hire_engineers" text="{=str_tor_engineer_quest_hire_engineers}A pair of our novice engineers are eagier to join you for the right price ({RECRUITMENT_PRICE})."/>
   <string id="tor_engineer_quest_hire_engineers_accept" text="{=str_tor_engineer_quest_hire_engineers_accept}Welcome on board."/>
   <string id="tor_engineer_quest_hire_engineers_not_enough_money" text="{=str_tor_engineer_quest_hire_engineers_not_enough_money}I don't have the funds for them right now."/>
-  <string id="tor_engineer_quest_hire_engineers_decline" text="{=str_tor_engineer_quest_hire_engineers_decline}On a second thought, maybe later."/>
+  <string id="tor_engineer_quest_hire_engineers_decline" text="{=str_tor_engineer_quest_hire_engineers_decline}On second thought, maybe later."/>
 
   <string id="tor_engineer_quest_cannons_limit_instruction_0" text="{=str_tor_engineer_quest_cannons_limit_instruction_0}To buy cannons you must be an Imperial, that's the law."/>
   <string id="tor_engineer_quest_cannons_limit_instruction_1" text="{=str_tor_engineer_quest_cannons_limit_instruction_1}The amount of cannons you can field in your army increases every 50 levels in Engineering skill."/>
@@ -2307,7 +2307,7 @@
   <string id="tor_career_switch_title.BlackGrailKnight" text="{=str_tor_career_switch_title_BlackGrailKnight}Become a Knight of Mousillon" />
    <string id="tor_career_switch_title.Necrarch" text="{=str_tor_career_switch_title_Necrarch}Become a Necrach" />
 
-  <string id="tor_career_switch_explaination.MinorVampire" text="{=str_tor_career_switch_explaination_MinorVampire}
+  <string id="tor_career_switch_explanation.MinorVampire" text="{=str_tor_career_switch_explanation_MinorVampire}
   Accept and you shall become a Von Carstein Vampire. This decision is permanent and cannot be reversed.{newline}
   {newline}
   By becoming a Vampire, you will be stripped of your original Lore of Magic as well as the Faith skill.{newline}
@@ -2316,7 +2316,7 @@
   The choice can be accessed later, should you decline now.
   " />
 
-  <string id="tor_career_switch_explaination.BloodKnight" text="{=str_tor_career_switch_explaination_BloodKnight}
+  <string id="tor_career_switch_explanation.BloodKnight" text="{=str_tor_career_switch_explanation_BloodKnight}
   Accept and you shall become a Blood Dragon Vampire. This decision is permanent and cannot be reversed.{newline}
   {newline}
   By becoming a Blood Dragon Vampire, you will be completly stripped of your Spellcraft and Faith skills, and will lose access to magic spells.{newline}
@@ -2326,7 +2326,7 @@
   The choice can be accessed later, should you decline now.
   " />
 
-  <string id="tor_career_switch_explaination.BlackGrailKnight" text="{=str_tor_career_switch_explaination_BlackGrailKnight}
+  <string id="tor_career_switch_explanation.BlackGrailKnight" text="{=str_tor_career_switch_explanation_BlackGrailKnight}
   Accept and you shall enter the ranks of Mousillon Knights. This decision is permanent and cannot be reversed.{newline}
   {newline}
   By becoming a Knight of Mousillon, you will be stripped of your Faith skill. {newline}
@@ -2335,7 +2335,7 @@
   " />
 
 
-  <string id="tor_career_switch_explaination.Necrarch" text="{=str_tor_career_switch_explaination_Necrarch}
+  <string id="tor_career_switch_explanation.Necrarch" text="{=str_tor_career_switch_explanation_Necrarch}
   Accept and you shall become a Necrach Vampire. This decision is permanent and cannot be reversed.{newline}
   {newline}
   By becoming a Necrach Vampire, you shall be stripped of Life Magic or Light magic, if you possess it, as well as the Faith skill.{newline}
@@ -4405,7 +4405,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_bloodkiss_request" text="{=str_tor_bloodkiss_request}My lord von Carstein, I wish to shed my mortal shell and serve you eternally."/>
 	<string id="tor_bloodkiss_answer_line2" text="{=str_tor_bloodkiss_answer_line2}Thou hast served me and mine loyally, I shall grant thee the Blood kiss if thou so desireth."/>
 	<string id="tor_bloodkiss_answer_line3" text="{=str_tor_bloodkiss_answer_line3}However, this gift does not come without cost, to be granted the blood kiss thou canst never go back. Art thou sure?"/>
-	<string id="tor_bloodkiss_player_notready" text="{=str_tor_bloodkiss_player_notready}On a second thought, I need to think about it."/>
+	<string id="tor_bloodkiss_player_notready" text="{=str_tor_bloodkiss_player_notready}On second thought, I need to think about it."/>
 	<string id="tor_bloodkiss_player_ready" text="{=str_tor_bloodkiss_player_ready}I am ready my lord."/>
 	<string id="tor_bloodkiss_player_dontbotherme" text="{=str_tor_bloodkiss_player_dontbotherme}Then think about it someplace else, thou disturbeth mine plans. "/>
 	<string id="tor_bloodkiss_receive" text="{=str_tor_bloodkiss_receive}Prepare thine self for thine dark awakening."/>
@@ -4416,7 +4416,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_bloodkiss_blooddragon_answer_line2" text="{=str_tor_bloodkiss_blooddragon_answer_line2}Ah, indeed, a Warrior of incredible prowess stands before me, daring to seek the Blood Kiss from none other than Walach Harkon. While you are besmirched by your mortality, your valor and devotion to the ideals of knighthood are truly commendable, and I find myself intrigued by your unwavering pursuit of perfection."/>
 	<string id="tor_bloodkiss_blooddragon_answer_line3" text="{=str_tor_bloodkiss_blooddragon_answer_line3}To be worthy of the Blood Kiss is no small feat, and yet, I sense in you a rare dedication to the principles that guide the Order of the Blood Dragons. Your thirst for excellence and your unwavering discipline resonate strongly. The vows you have sworn, the code of chivalry you uphold – they mirror the very foundations upon which the Blood Dragons stand."/>
 	<string id="tor_bloodkiss_blooddragon_answer_ready" text="{=str_tor_bloodkiss_blooddragon_answer_ready}Know this, knight, the Blood Kiss is not a gift to be granted lightly. It is an eternal bond, a oath of fealty to kindred and I. All pathetic mortal senses of mercy and weakness will be purged from you (MAGIC ABILITIES WILL BE REMOVED!). Your desires for power and dominance shall be sated forevermore."/>
-	<string id="tor_bloodkiss_blooddragon_player_notready" text="{=str_tor_bloodkiss_blooddragon_player_notready}On a second thought, I need to think about it."/>
+	<string id="tor_bloodkiss_blooddragon_player_notready" text="{=str_tor_bloodkiss_blooddragon_player_notready}On second thought, I need to think about it."/>
 	<string id="tor_bloodkiss_blooddragon_player_ready" text="{=str_tor_bloodkiss_blooddragon_player_ready}I am ready, Grandmaster."/>
 	<string id="tor_bloodkiss_blooddragon_receive" text="{=str_tor_bloodkiss_blooddragon_receive}Embrace the Bloodkiss, become one with the night, and ascend to greatness alongside the Blood Dragons."/>
 	<string id="tor_bloodkiss_blooddragon_player_receive_end" text="{=str_tor_bloodkiss_blooddragon_player_receive_end}Rise, young blood dragon."/>
@@ -4429,7 +4429,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_blackgrail_answer_line1" text="{=str_tor_blackgrail_answer_line1}Not every Bretonne is ready for the truth. Are you willing to cleanse yourself from the Lie that we Bretonnes dogmatically follow?"/>
 	<string id="tor_blackgrail_answer_line2" text="{=str_tor_blackgrail_answer_line2}I can tell you once you take the path I am wandering on, there is no salvation, and before we open the eyes of all Bretonnes, you will be an enemy of the King."/>
 	<string id="tor_blackgrail_answer_ready" text="{=str_tor_blackgrail_answer_ready}So I ask you again, are you really willing to to know the truth about the lady?"/>
-	<string id="tor_blackgrail_answer_player_notready" text="{=str_tor_blackgrail_answer_player_notready}On a second thought, I need to think about it."/>
+	<string id="tor_blackgrail_answer_player_notready" text="{=str_tor_blackgrail_answer_player_notready}On second thought, I need to think about it."/>
 	<string id="tor_blackgrail_answer_player_ready" text="{=str_tor_blackgrail_answer_player_ready}I am ready, mylord."/>
 	<string id="tor_blackgrail_dontbotherme" text="{=str_tor_blackgrail_dontbotherme}Then think about it someplace else. We are done here."/>
 	<string id="tor_blackgrail_receive" text="{=str_tor_blackgrail_receive}The truth is: The Bretonnes, proud humans follow the whisperings of an Elf. The Lady is nothing more than a Elven Witch, not a goddess or saint. Our whole Kingdom is build upon the Lie of Lady. I will clean you from these lies, drink from this grail, and gain the true powers of Bretonnia!"/>
@@ -4472,7 +4472,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<!--Spell Trainer Spellsinger Dialogs-->
 	<string id="tor_spelltrainer_spellsinger_start" text="{=str_tor_spelltrainer_spellsinger_start}I welcome you child of Athel Loren."/>
 	<string id="tor_spelltrainer_spellsinger_open_book" text="{=str_tor_spelltrainer_spellsinger_open_book}I seek further knowledge of Athel Loren's Magic."/>
-	<string id="tor_spelltrainer_spellsinger_close_book" text="{=str_tor_spelltrainer_spellsinger_close_book}A new Facette of Ariels infinte knowledge."/>
+	<string id="tor_spelltrainer_spellsinger_close_book" text="{=str_tor_spelltrainer_spellsinger_close_book}A new facet of Ariel's infinite knowledge."/>
 	<string id="tor_spelltrainer_spellsinger_choices" text="{=str_tor_spelltrainer_spellsinger_choices}Is there more you seek? Speak your desires."/>
 	<string id="tor_spelltrainer_spellsinger_player_goodbye" text="{=str_tor_spelltrainer_spellsinger_player_goodbye}Ariel with you. "/>
 	<string id="tor_spelltrainer_spellsinger_goodbye" text="{=str_tor_spelltrainer_spellsinger_goodbye}May Ariel guide you on all your paths through her garden."/>

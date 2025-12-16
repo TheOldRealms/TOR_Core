@@ -299,10 +299,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         private void DisplayPrompt(Action enlistPlayer)
         {
             var title = GameTexts.FindText("tor_hireling", "prompttitle");
-            var explaination = GameTexts.FindText("tor_hireling", "prompttext");
+            var explanation = GameTexts.FindText("tor_hireling", "prompttext");
             _enlistInquiryDeclined = false;
             var inquiry = new InquiryData(title.ToString(),
-                explaination.ToString(),
+                explanation.ToString(),
                 true,
                 true,
                 TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_decline_text", "Decline"),

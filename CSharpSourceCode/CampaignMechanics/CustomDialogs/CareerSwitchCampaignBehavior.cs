@@ -219,10 +219,10 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         private void DisplayPrompt(CareerObject careerObject, Action switchCareer)
         {
             var title = TORTextHelper.GetText("tor_career_switch_title", careerObject.StringId, "Career Switch: " + careerObject.Name);
-            var explaination = TORTextHelper.GetText("tor_career_switch_explaination", careerObject.StringId, "Are you sure you want to switch to " + careerObject.Name + "? This decision cannot be undone.");
+            var explanation = TORTextHelper.GetText("tor_career_switch_explanation", careerObject.StringId, "Are you sure you want to switch to " + careerObject.Name + "? This decision cannot be undone.");
             inquiryDeclined = false;
             var inquiry = new InquiryData(title,
-                explaination,
+                explanation,
                 true,
                 true,
                 "Accept", "Decline",
