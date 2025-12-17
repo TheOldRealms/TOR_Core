@@ -104,7 +104,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         else
         {
             MBTextManager.SetTextVariable("CURSEDSITE_WARDHOURS", component.WardHours);
-            var wardText = new TextObject("{=str_tor_custom_settlement_cursed_site_ward}Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more");
+            var wardText = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_ward", "Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more");
             MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", new TextObject(text.ToString() + "{NEWLINE}" + " " + "{NEWLINE}" + wardText));
         }
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
@@ -133,7 +133,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
             if (MobileParty.MainParty.MemberRoster.TotalHealthyCount < 10)
             {
                 args.IsEnabled = false;
-                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_purify_fail}You need at least 10 healthy party members to perform the ritual.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_purify_fail", "You need at least 10 healthy party members to perform the ritual.");
             }
             return component.IsActive;
         }
@@ -156,7 +156,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         //all vampire types are tagged as necromancers; leaving the condition in for the moment even if the 2nd one is redundant
         if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire()))
         {
-            args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_not_necromancer}You are not a practitioner of necromancy.");
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_not_necromancer", "You are not a practitioner of necromancy.");
             args.IsEnabled = false;
         }
         else
@@ -165,14 +165,14 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
 
             if (freeSlots <= 0)
             {
-                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_not_enough_free_slots}You do not have enough space in your party.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_not_enough_free_slots", "You do not have enough space in your party.");
                 args.IsEnabled = false;
             }
 
             var lastGhostRecruitmentTime = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().LastGhostRecruitmentTime(Hero.MainHero);
             if (lastGhostRecruitmentTime >= (int)CampaignTime.Now.ToDays)
             {
-                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_once_a_day}You can only perform this action once a day.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action once a day.");
                 args.IsEnabled = false;
             }
         }
@@ -188,7 +188,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
 
         if (!(Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Any(x => x.IsNecromancer()) || Hero.MainHero.IsVampire()))
         {
-            args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_not_necromancer}You are not a practitioner of necromancy.");
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_not_necromancer", "You are not a practitioner of necromancy.");
             args.IsEnabled = false;
         }
         else

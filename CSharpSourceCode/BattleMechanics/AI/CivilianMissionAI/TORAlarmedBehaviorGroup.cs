@@ -149,7 +149,7 @@ namespace TOR_Core.BattleMechanics.AI.CivilianMissionAI
 
         protected override void OnActivate()
         {
-            TextObject textObject = new TextObject("{=!}{p0} {p1} activate alarmed behavior group.", null);
+            TextObject textObject = TORTextHelper.GetTextObject("tor_ai_activate_alarmed", "{p0} {p1} activate alarmed behavior group.");
             textObject.SetTextVariable("p0", OwnerAgent.Name);
             textObject.SetTextVariable("p1", OwnerAgent.Index);
             _isCalmingDown = false;

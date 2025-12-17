@@ -10,6 +10,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
@@ -49,7 +50,7 @@ public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettleme
         MBTextManager.SetTextVariable("BATTLE_OPTION_TEXT", text);
         if (Hero.MainHero.IsWounded)
         {
-            args.Tooltip = new TextObject("{=UL8za0AO}You are wounded.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_wounded", "You are wounded.");
             args.IsEnabled = false;
         }
 

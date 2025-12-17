@@ -63,7 +63,7 @@ namespace TOR_Core.Models
 
                     if (totalAdditionalFood != 0)
                     {
-                        explainedNumber.Add(totalAdditionalFood, new TextObject("{=str_tor_greenskin_appetite}Greenskin appetite"));
+                        explainedNumber.Add(totalAdditionalFood, TORTextHelper.GetTextObject("tor_greenskin_appetite", "Greenskin appetite"));
                     }
                 }
             }

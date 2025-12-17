@@ -347,7 +347,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 list.Add(new InquiryElement(item, item.Name.ToString(), new ItemImageIdentifier(item)));
 
             var inq = new MultiSelectionInquiryData(GameTexts.FindText("tor_empire_prestigeNoble_demigryphInquiryTitle").ToString(), GameTexts.FindText("tor_empire_prestigeNoble_demigryphInquiryDescription").ToString(),
-                list, false, 1, 1, new TextObject("{=5Unqsx3N}Confirm", null).ToString(), null, OnGryphRewardClaimed, null);
+                list, false, 1, 1, TORTextHelper.GetText("tor_confirm", "Confirm"), null, OnGryphRewardClaimed, null);
             MBInformationManager.ShowMultiSelectionInquiry(inq);
         }
 

@@ -1,4 +1,5 @@
 using TaleWorlds.Localization;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.WaaaghMeter;
 
@@ -52,11 +53,11 @@ public static class WaaaghHelper
     {
         return level switch
         {
-            WaaaghLevel.InternalFightin => new TextObject("{=tor_waaagh_level_name_internal_fightin}Internal Fightin'"),
-            WaaaghLevel.PettySquabblin => new TextObject("{=tor_waaagh_level_name_petty_squabblin}Petty Squabblin'"),
-            WaaaghLevel.EreWeGo => new TextObject("{=tor_waaagh_level_name_ere_we_go}'Ere We Go!"),
-            WaaaghLevel.WAAAGH => new TextObject("{=tor_waaagh_level_name_waaagh}WAAAGH!!!!"),
-            _ => new TextObject("{=tor_waaagh_level_name_unknown}Unknown")
+            WaaaghLevel.InternalFightin => TORTextHelper.GetTextObject("tor_waaagh_level_name_internal_fightin", "Internal Fightin'"),
+            WaaaghLevel.PettySquabblin => TORTextHelper.GetTextObject("tor_waaagh_level_name_petty_squabblin", "Petty Squabblin'"),
+            WaaaghLevel.EreWeGo => TORTextHelper.GetTextObject("tor_waaagh_level_name_ere_we_go", "'Ere We Go!"),
+            WaaaghLevel.WAAAGH => TORTextHelper.GetTextObject("tor_waaagh_level_name_waaagh", "WAAAGH!!!!"),
+            _ => TORTextHelper.GetTextObject("tor_waaagh_level_name_unknown", "Unknown")
         };
     }
 
@@ -64,10 +65,10 @@ public static class WaaaghHelper
     {
         return level switch
         {
-            WaaaghLevel.InternalFightin => new TextObject("{=tor_waaagh_level_desc_internal_fightin}Da Boys uv da mob are demoralized. They 'ave no gits to focus on an' resort to fightin' each other."),
-            WaaaghLevel.PettySquabblin => new TextObject("{=tor_waaagh_level_desc_petty_squabblin}Da mob found sum gits to bash but smaller scraps are still occurin' among da tribe. Da Boys will soon start gettin' restless again."),
-            WaaaghLevel.EreWeGo => new TextObject("{=tor_waaagh_level_desc_ere_we_go}Da recent exploits uv your mob 'ave been 'eard in other tribes as well. Greenskins from other tribes start gatherin', an' your Boys are preparin' fer a proppa big scrap."),
-            WaaaghLevel.WAAAGH => new TextObject("{=tor_waaagh_level_desc_waaagh}Now da Boys are proppa eager an' killy! Wez gonna show all dem humies an' stunties an' all da uva gits too! DIS IZ WAAAAGH!!!"),
+            WaaaghLevel.InternalFightin => TORTextHelper.GetTextObject("tor_waaagh_level_desc_internal_fightin", "Da Boys uv da mob are demoralized. They 'ave no gits to focus on an' resort to fightin' each other."),
+            WaaaghLevel.PettySquabblin => TORTextHelper.GetTextObject("tor_waaagh_level_desc_petty_squabblin", "Da mob found sum gits to bash but smaller scraps are still occurin' among da tribe. Da Boys will soon start gettin' restless again."),
+            WaaaghLevel.EreWeGo => TORTextHelper.GetTextObject("tor_waaagh_level_desc_ere_we_go", "Da recent exploits uv your mob 'ave been 'eard in other tribes as well. Greenskins from other tribes start gatherin', an' your Boys are preparin' fer a proppa big scrap."),
+            WaaaghLevel.WAAAGH => TORTextHelper.GetTextObject("tor_waaagh_level_desc_waaagh", "Now da Boys are proppa eager an' killy! Wez gonna show all dem humies an' stunties an' all da uva gits too! DIS IZ WAAAAGH!!!"),
             _ => TextObject.GetEmpty()
         };
     }
@@ -76,17 +77,17 @@ public static class WaaaghHelper
     {
         return level switch
         {
-            WaaaghLevel.InternalFightin => new TextObject("{=tor_waaagh_level_effects_internal_fightin}Morale: -40{NEWLINE}Damage Dealt: -20%{NEWLINE}Food Consumed: -60%"),
-            WaaaghLevel.PettySquabblin => new TextObject("{=tor_waaagh_level_effects_petty_squabblin}Morale: -20{NEWLINE}Damage Dealt: -10%{NEWLINE}Food Consumed: -30%{NEWLINE}Daily Wounded: Smaller chance"),
-            WaaaghLevel.EreWeGo => new TextObject("{=tor_waaagh_level_effects_ere_we_go}Damage Dealt: +10%{NEWLINE}Food Consumed: +25%{NEWLINE}Party Size: +60{NEWLINE}Daily Recruitment: Small chance (T1-3)"),
-            WaaaghLevel.WAAAGH => new TextObject("{=tor_waaagh_level_effects_waaagh}Damage Dealt: +20%{NEWLINE}Food Consumed: +100%{NEWLINE}Party Size: +120{NEWLINE}Daily Recruitment: Big chance (T1-3)"),
+            WaaaghLevel.InternalFightin => TORTextHelper.GetTextObject("tor_waaagh_level_effects_internal_fightin", "Morale: -40{NEWLINE}Damage Dealt: -20%{NEWLINE}Food Consumed: -60%"),
+            WaaaghLevel.PettySquabblin => TORTextHelper.GetTextObject("tor_waaagh_level_effects_petty_squabblin", "Morale: -20{NEWLINE}Damage Dealt: -10%{NEWLINE}Food Consumed: -30%{NEWLINE}Daily Wounded: Smaller chance"),
+            WaaaghLevel.EreWeGo => TORTextHelper.GetTextObject("tor_waaagh_level_effects_ere_we_go", "Damage Dealt: +10%{NEWLINE}Food Consumed: +25%{NEWLINE}Party Size: +60{NEWLINE}Daily Recruitment: Small chance (T1-3)"),
+            WaaaghLevel.WAAAGH => TORTextHelper.GetTextObject("tor_waaagh_level_effects_waaagh", "Damage Dealt: +20%{NEWLINE}Food Consumed: +100%{NEWLINE}Party Size: +120{NEWLINE}Daily Recruitment: Big chance (T1-3)"),
             _ => TextObject.GetEmpty()
         };
     }
 
     public static TextObject GetBarTooltip(float currentValue)
     {
-        var text = new TextObject("{=tor_waaagh_bar_tooltip}Waaagh: {CURRENT} / {MAX}");
+        var text = TORTextHelper.GetTextObject("tor_waaagh_bar_tooltip", "Waaagh: {CURRENT} / {MAX}");
         text.SetTextVariable("CURRENT", (int)currentValue);
         text.SetTextVariable("MAX", (int)MaxWaaagh);
         return text;

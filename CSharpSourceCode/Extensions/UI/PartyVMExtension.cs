@@ -6,6 +6,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -25,7 +26,7 @@ namespace TOR_Core.Extensions.UI
             var partyVm = vm as PartyVM;
             ViewModelInstance = partyVm;
 
-            _hintViewModel = new HintViewModel(new TextObject("{=upkeep}Upkeep"));
+            _hintViewModel = new HintViewModel(TORTextHelper.GetTextObject("tor_upkeep", "Upkeep"));
             _pendingResourceCosts = new MBBindingList<PendingResourceCostVM>();
         }
 

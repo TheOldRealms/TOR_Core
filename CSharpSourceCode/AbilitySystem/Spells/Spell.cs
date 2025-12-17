@@ -1,6 +1,7 @@
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Spells
 {
@@ -18,7 +19,7 @@ namespace TOR_Core.AbilitySystem.Spells
                 var info = hero.GetExtendedInfo();
                 if (info.GetCustomResourceValue("WindsOfMagic") < hero.GetEffectiveWindsCostForSpell(this))
                 {
-                    disabledReason = new TextObject("{=str_tor_spell_not_enough_wom}Not enough winds of magic");
+                    disabledReason = TORTextHelper.GetTextObject("tor_spell_not_enough_wom", "Not enough winds of magic");
                     return true;
                 }
             }

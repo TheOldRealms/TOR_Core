@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.RaiseDead
 {
@@ -22,7 +23,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             {
                 if (_cachedName == null)
                 {
-                    var nightwatch = new TextObject("{=tor_graveyard_nightwatch_name}{SETTLEMENTNAME}'s Nightwatch");
+                    var nightwatch = TORTextHelper.GetTextObject("tor_graveyard_nightwatch_name", "{SETTLEMENTNAME}'s Nightwatch");
                     MBTextManager.SetTextVariable("SETTLEMENT_NAME", HomeSettlement.Name);
                     _cachedName = nightwatch;
                 }
@@ -35,7 +36,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         private GraveyardNightWatchPartyComponent(Settlement settlement)
         {
             Settlement = settlement;
-            _cachedName = new TextObject("{=tor_graveyard_nightwatch_name}{SETTLEMENTNAME}'s Nightwatch");
+            _cachedName = TORTextHelper.GetTextObject("tor_graveyard_nightwatch_name", "{SETTLEMENTNAME}'s Nightwatch");
             MBTextManager.SetTextVariable("SETTLEMENT_NAME", HomeSettlement.Name);
         }
 

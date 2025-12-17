@@ -192,7 +192,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_lordparty_template");
             Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, "{=str_tor_chaos_raiders}Chaos Raiders", template, chaosClan, MBRandom.RandomInt(75, 99));
+            var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), template, chaosClan, MBRandom.RandomInt(75, 99));
             if (find != null)
             {
                 SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
@@ -258,7 +258,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("ungor_party");
             Clan beastmenClan = Clan.FindFirst(x => x.StringId == "beastmen_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject("{=str_tor_beastmen_raiders}Beastmen Raiders").ToString(), template, beastmenClan, MBRandom.RandomInt(75, 99));
+            var raidingParty = RaidingPartyComponent.CreateRaidingParty("beastmen_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_beastmen_raiders", "Beastmen Raiders"), template, beastmenClan, MBRandom.RandomInt(75, 99));
             if (find != null)
             {
                 SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
@@ -320,7 +320,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("druchii_slaver_party");
             Clan clan = Clan.FindFirst(x => x.StringId == "druchii_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var raidingParty = RaidingPartyComponent.CreateRaidingParty("druchii_clan_1_party_" + RaidingPartyCount + 1, Settlement, new TextObject("{=tor_dark_elf_slavers}Druchii Slavers").ToString(), template, clan, MBRandom.RandomInt(75, 99));
+            var raidingParty = RaidingPartyComponent.CreateRaidingParty("druchii_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_dark_elf_slavers", "Druchii Slavers"), template, clan, MBRandom.RandomInt(75, 99));
             if (find != null)
             {
                 SetPartyAiAction.GetActionForRaidingSettlement(raidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);

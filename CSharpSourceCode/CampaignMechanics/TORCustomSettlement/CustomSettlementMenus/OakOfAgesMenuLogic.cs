@@ -672,7 +672,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             if (showAnyway)
             {
                 args.IsEnabled = false;
-                args.Tooltip = new TextObject("{=str_tor_custom_settlement_we_not_enough_harmony}Already unlocked.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_we_already_unlocked", "Already unlocked.");
                 return true;
             }
 
@@ -685,7 +685,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         }
         else
         {
-            args.Tooltip = new TextObject("{=str_tor_custom_settlement_we_not_enough_harmony}Not enough Harmony.");
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_we_not_enough_harmony", "Not enough Harmony.");
             args.IsEnabled = false;
 
             return true;
@@ -707,7 +707,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             return true;
         }
 
-        args.Tooltip = new TextObject("{=str_tor_custom_settlement_we_not_enough_harmony}Not enough Harmony for traveling.");
+        args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_we_not_enough_harmony_travel", "Not enough Harmony for traveling.");
         args.IsEnabled = false;
         return true;
     }

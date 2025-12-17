@@ -11,6 +11,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions
 {
@@ -118,7 +119,7 @@ namespace TOR_Core.Missions
         public override InquiryData OnEndMissionRequest(out bool canLeave)
         {
             canLeave = (Mission.MissionResult != null && Mission.MissionResult.BattleResolved == true && Mission.MissionResult.PlayerVictory) || PlayerCanLeave;
-            if (!canLeave) MBInformationManager.AddQuickInformation(new TextObject("{=str_tor_quest_fight_cannot_leave}You may not leave until finishing the quest scenario."));
+            if (!canLeave) MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_quest_fight_cannot_leave", "You may not leave until finishing the quest scenario."));
             return null;
         }
 

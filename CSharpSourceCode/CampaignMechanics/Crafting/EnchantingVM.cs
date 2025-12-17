@@ -36,7 +36,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         public override void RefreshValues()
         {
-            ScreenTitle = Hero.MainHero?.Culture?.StringId == TORConstants.Cultures.DAWI ? new TextObject("{=tor_runesmithing_title}Runesmithing").ToString() : new TextObject("{=tor_enchanting_title}Enchanting").ToString();
+            ScreenTitle = Hero.MainHero?.Culture?.StringId == TORConstants.Cultures.DAWI ? TORTextHelper.GetText("tor_runesmithing_title", "Runesmithing") : TORTextHelper.GetText("tor_enchanting_title", "Enchanting");
             Items.Clear();
             Traits.Clear();
             SelectedTraits.Clear();

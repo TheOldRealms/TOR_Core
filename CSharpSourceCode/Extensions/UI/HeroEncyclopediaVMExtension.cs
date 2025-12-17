@@ -11,6 +11,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -42,7 +43,7 @@ namespace TOR_Core.Extensions.UI
                 if (_hero != null)
                 {
                     var list = ReligionObject.All;
-                    var religionText = new TextObject("{=str_tor_religion_follower_none}Not a follower of any religion").ToString();
+                    var religionText = TORTextHelper.GetText("tor_religion_follower_none", "Not a follower of any religion");
                     if (_hero.HasAnyReligion())
                     {
                         var devotionLevelText = GameTexts.FindText("tor_religion_devotionlevel", _hero.GetDevotionLevelForReligion(_hero.GetDominantReligion()).ToString());
@@ -53,7 +54,7 @@ namespace TOR_Core.Extensions.UI
                         religionText = GameTexts.FindText("tor_religion_text_frame").ToString();
                     }
 
-                    var label = new TextObject("{=tor_religion_label}Religion") + ": ";
+                    var label = TORTextHelper.GetTextObject("tor_religion_label", "Religion") + ": ";
                     heroVM.Stats.Add(new StringPairItemVM(label, religionText));
                 }
             }

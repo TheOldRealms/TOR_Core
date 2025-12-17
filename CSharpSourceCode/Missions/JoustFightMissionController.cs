@@ -17,6 +17,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions
 {
@@ -70,7 +71,7 @@ namespace TOR_Core.Missions
                     if (_dismountNotificationTimer == null) _dismountNotificationTimer = new BasicMissionTimer();
                     else if (_dismountNotificationTimer.ElapsedTime > 5)
                     {
-                        MBInformationManager.AddQuickInformation(new TextObject("{=str_tor_joust_dismount}You must dismount to continue with combat on foot."));
+                        MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_joust_dismount", "You must dismount to continue with combat on foot."));
                         _dismountNotificationTimer.Reset();
                     }
                 }
@@ -290,25 +291,25 @@ namespace TOR_Core.Missions
         {
             if (!_match.IsPlayerParticipating())
             {
-                MBInformationManager.AddQuickInformation(new TextObject("{=UBd0dEPp}Match is over", null));
+                MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_joust_match_over", "Match is over"));
                 return;
             }
             if (_match.IsPlayerWinner())
             {
                 if (_isLastRound)
                 {
-                    MBInformationManager.AddQuickInformation(new TextObject("{=Jn0k20c3}Round is over, you survived the final round of the tournament.", null));
+                    MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_joust_final_round", "Round is over, you survived the final round of the tournament."));
                     return;
                 }
                 else
                 {
-                    MBInformationManager.AddQuickInformation(new TextObject("{=uytwdSVH}Round is over, you are qualified for the next stage of the tournament.", null));
+                    MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_joust_qualified", "Round is over, you are qualified for the next stage of the tournament."));
                     return;
                 }
             }
             else
             {
-                MBInformationManager.AddQuickInformation(new TextObject("{=lcVauEKV}Round is over, you are disqualified from the tournament.", null));
+                MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_joust_disqualified", "Round is over, you are disqualified from the tournament."));
                 return;
             }
         }

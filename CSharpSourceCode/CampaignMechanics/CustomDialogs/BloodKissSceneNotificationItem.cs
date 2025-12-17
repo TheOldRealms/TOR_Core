@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.SceneInformationPopupTypes;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.CustomDialogs
 {
@@ -16,7 +17,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
         private Kingdom _sylvania;
         public override RelevantContextType RelevantContext => RelevantContextType.Map;
 
-        public override TextObject TitleText => new TextObject("{=str_tor_bloodkiss_player_notification}Player recieves the Blood Kiss.");
+        public override TextObject TitleText => TORTextHelper.GetTextObject("tor_bloodkiss_player_notification", "Player recieves the Blood Kiss.");
 
         public override string SceneID => "scn_cutscene_bloodkiss";
 

@@ -49,15 +49,15 @@ namespace TOR_Core.AbilitySystem.SpellBook
 
             var info = _currentHero.GetExtendedInfo();
             StatItems.Clear();
-            StatItems.Add(new StatItemVM(new TextObject("{=str_tor_spellbook_hero_name}Hero name: ").ToString(), _currentHero.Name.ToString()));
+            StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_spellbook_hero_name", "Hero name: "), _currentHero.Name.ToString()));
             var spellLevelText = GameTexts.FindText("tor_spellcasting_level", info.SpellCastingLevel.ToString());
-            StatItems.Add(new StatItemVM(new TextObject("{=str_tor_spellbook_casting_level}Spell casting level: ").ToString(), spellLevelText.ToString()));
-            StatItems.Add(new StatItemVM(new TextObject("{=str_tor_spellbook_max_wom}Maximum Winds of Magic: ").ToString(), ((int)info.MaxWindsOfMagic).ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
-            StatItems.Add(new StatItemVM(new TextObject("{=str_tor_spellbook_current_wom}Current Winds of Magic: ").ToString(), ((int)info.GetCustomResourceValue("WindsOfMagic")).ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
-            var rechargeRateText = new TextObject("{=str_tor_spellbook_recharge_rate}{RATE}{ICON}/ hour");
+            StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_spellbook_casting_level", "Spell casting level: "), spellLevelText.ToString()));
+            StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_spellbook_max_wom", "Maximum Winds of Magic: "), ((int)info.MaxWindsOfMagic).ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
+            StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_spellbook_current_wom", "Current Winds of Magic: "), ((int)info.GetCustomResourceValue("WindsOfMagic")).ToString() + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
+            var rechargeRateText = TORTextHelper.GetTextObject("tor_spellbook_recharge_rate", "{RATE}{ICON}/ hour");
             rechargeRateText.SetTextVariable("RATE", info.WindsOfMagicRechargeRate.ToString("0.00"));
             rechargeRateText.SetTextVariable("ICON", CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText());
-            StatItems.Add(new StatItemVM(new TextObject("{=str_tor_spellbook_wom_recharge}Winds of Magic recharge rate: ").ToString(), rechargeRateText.ToString()));
+            StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_spellbook_wom_recharge", "Winds of Magic recharge rate: "), rechargeRateText.ToString()));
             string lorestext = "";
             for (int i = 0; i < info.KnownLores.Count; i++)
             {
@@ -69,7 +69,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
                     lorestext += "\n";
                 }
             }
-            StatItems.Add(new StatItemVM(new TextObject("{=str_tor_spellbook_known_lores}Known Magic Schools: ").ToString(), lorestext));
+            StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_spellbook_known_lores", "Known Magic Schools: "), lorestext));
 
             LoreObjects.Clear();
             var lores = LoreObject.GetAll();

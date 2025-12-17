@@ -8,6 +8,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.ArtilleryAI;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -24,19 +25,19 @@ namespace TOR_Core.BattleMechanics.Artillery
 			TextObject textObject;
 			if (usableGameObject.GameEntity.HasTag(this.AmmoPickUpTag))
 			{
-				textObject = new TextObject("{=bNYm3K6b}{KEY} Pick Up", null);
+				textObject = TORTextHelper.GetTextObject("tor_artillery_pick_up", "{KEY} Pick Up");
 			}
 			else if (usableGameObject.GameEntity.HasTag("reload"))
 			{
-				textObject = new TextObject((base.PilotStandingPoint == usableGameObject) ? "{=fEQAPJ2e}{KEY} Use" : "{=Na81xuXn}{KEY} Rearm", null);
+				textObject = TORTextHelper.GetTextObject((base.PilotStandingPoint == usableGameObject) ? "tor_artillery_use" : "tor_artillery_rearm", (base.PilotStandingPoint == usableGameObject) ? "{KEY} Use" : "{KEY} Rearm");
 			}
 			else if (usableGameObject.GameEntity.HasTag("rotate"))
 			{
-				textObject = new TextObject("{=5wx4BF5h}{KEY} Rotate", null);
+				textObject = TORTextHelper.GetTextObject("tor_artillery_rotate", "{KEY} Rotate");
 			}
 			else if (usableGameObject.GameEntity.HasTag("ammoload"))
 			{
-				textObject = new TextObject("{=ibC4xPoo}{KEY} Load Ammo", null);
+				textObject = TORTextHelper.GetTextObject("tor_artillery_load_ammo", "{KEY} Load Ammo");
 			}
 			else
 			{
@@ -618,9 +619,9 @@ namespace TOR_Core.BattleMechanics.Artillery
 		{
 			if (!gameEntity.HasTag(this.AmmoPickUpTag))
 			{
-				return new TextObject("{=4Skg9QhO}Trebuchet", null);
+				return TORTextHelper.GetTextObject("tor_trebuchet", "Trebuchet");
 			}
-			return new TextObject("{=pzfbPbWW}Boulder", null);
+			return TORTextHelper.GetTextObject("tor_boulder", "Boulder");
 		}
 
 

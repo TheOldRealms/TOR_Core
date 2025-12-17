@@ -43,8 +43,8 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
             new List<string> { "dw_master_rune_adamant","dw_master_rune_gromril","dw_master_rune_skaldour" }, 3),
         new("unit_rune_grungni", TORTextHelper.GetTextObject("tor_unit_rune_grungni_name", "Master Rune of Grungni"), TORTextHelper.GetTextObject("tor_unit_rune_grungni_desc", "Reduce incoming ranged damage by 75%."),
             "unit_rune_grungni", new List<string> { "dw_master_rune_steel","dw_master_rune_gromril","dw_master_rune_preservation" }, 3),
-        new("unit_rune_grimnir", new TextObject("Master Rune of Grimnir"),
-            new TextObject("20% extra attack speed, 35% extra physical and fire damage."), "unit_rune_grimnir", new List<string> { "dw_master_rune_swiftness","dw_master_rune_breaking","dw_rune_fury" }, 3)
+        new("unit_rune_grimnir", TORTextHelper.GetTextObject("tor_unit_rune_grimnir_name", "Master Rune of Grimnir"),
+            TORTextHelper.GetTextObject("tor_unit_rune_grimnir_desc", "20% extra attack speed, 35% extra physical and fire damage."), "unit_rune_grimnir", new List<string> { "dw_master_rune_swiftness","dw_master_rune_breaking","dw_rune_fury" }, 3)
     ];
 
 
@@ -132,8 +132,8 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
 
             list.Add(new InquiryElement(unitRune, unitRune.RuneName.ToString(), null, hasIngredients, hint.ToString()));
         }
-        var title = new TextObject("{=unit_rune_title_str}Unit runes");
-        var text = new TextObject("{=unit_rune_text_description_str}Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}");
+        var title = TORTextHelper.GetTextObject("tor_unit_rune_title", "Unit runes");
+        var text = TORTextHelper.GetTextObject("tor_unit_rune_description", "Choose a rune to add to the equipment of your units. {RUNE_WARNING_TEXT}");
         text.SetTextVariable("RUNE_WARNING_TEXT", warningText);
         var inquirydata = new MultiSelectionInquiryData(title.ToString(),
             text.ToString(), list, true, 1, 1, TORTextHelper.GetText("tor_inquiry_confirm_text", "Confirm"),

@@ -38,7 +38,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
 
         private string GetRogueEngineerName()
         {
-            return new TextObject("{=str_tor_rogue_engineer_name}Goswin").ToString();
+            return TORTextHelper.GetText("tor_rogue_engineer_name", "Goswin");
         }
         public override void RegisterEvents()
         {

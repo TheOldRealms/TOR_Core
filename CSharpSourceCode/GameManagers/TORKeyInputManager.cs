@@ -6,6 +6,7 @@ using TaleWorlds.InputSystem;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.ViewModelCollection.GameOptions.GameKeys;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.GameManagers
 {
@@ -33,25 +34,25 @@ namespace TOR_Core.GameManagers
 
             var KeyElementBindings = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_name");
             var spellcastingModeKey = context + "_" + (int)TorKeyMap.QuickCastSelectionMenu;
-            KeyElementBindings.AddVariationWithId(spellcastingModeKey, new TextObject("{=str_tor_spellcasting_mode_key}Quick Cast Selection Menu"), new List<GameTextManager.ChoiceTag>());
+            KeyElementBindings.AddVariationWithId(spellcastingModeKey, TORTextHelper.GetTextObject("tor_spellcasting_mode_key", "Quick Cast Selection Menu"), new List<GameTextManager.ChoiceTag>());
 
             var quickCast = context + "_" + (int)TorKeyMap.QuickCast;
-            KeyElementBindings.AddVariationWithId(quickCast, new TaleWorlds.Localization.TextObject("{=str_tor_quick_cast_key}Quick Cast"), new List<GameTextManager.ChoiceTag>());
+            KeyElementBindings.AddVariationWithId(quickCast, TORTextHelper.GetTextObject("tor_quick_cast_key", "Quick Cast"), new List<GameTextManager.ChoiceTag>());
 
             var specialMove = context + "_" + (int)TorKeyMap.CareerAbilityCast;
-            KeyElementBindings.AddVariationWithId(specialMove, new TaleWorlds.Localization.TextObject("{=str_tor_career_ability_key}Career Ability"), new List<GameTextManager.ChoiceTag>());
+            KeyElementBindings.AddVariationWithId(specialMove, TORTextHelper.GetTextObject("tor_career_ability_key", "Career Ability"), new List<GameTextManager.ChoiceTag>());
 
 
-            var spellCastingModeDescription = new TextObject("{=str_tor_spellcasting_mode_description}1) During battle pressing Q puts you into aiming mode, a reticule will appear and you will be able to target your spells. Aiming mode is accompanied by a visual animation on your character." + "\n" +
-                                                     "2) Using the mouse wheel will switch between your spells (if you have learned multiple)" + "\n" +
-                                                     "3) New UI elements will appear on the bottom left of your screen, with an image representing your selected spell and a cooldown times " + "\n" +
+            var spellCastingModeDescription = TORTextHelper.GetTextObject("tor_spellcasting_mode_description", "1) During battle pressing Q puts you into aiming mode, a reticule will appear and you will be able to target your spells. Aiming mode is accompanied by a visual animation on your character.\n" +
+                                                     "2) Using the mouse wheel will switch between your spells (if you have learned multiple)\n" +
+                                                     "3) New UI elements will appear on the bottom left of your screen, with an image representing your selected spell and a cooldown times \n" +
                                                      "4) Spells are reliant on the user's Winds of Magic (mana), this is fairly self-explanatory. It is regained over time on the campaign map.");
             var KeyDescriptionElement = Module.CurrentModule.GlobalTextManager.GetGameText("str_key_description");
             KeyDescriptionElement.AddVariationWithId(spellcastingModeKey, spellCastingModeDescription, new List<GameTextManager.ChoiceTag>());
-            KeyDescriptionElement.AddVariationWithId(quickCast, new TaleWorlds.Localization.TextObject(
-                "{=str_tor_quick_cast_description}Cast spells or prayers without needing to switch to spell cast mode. Warning: There is no target indication and the Spells follow predefined casting order. For targeted casting, always use the Spellcaster mode"), new List<GameTextManager.ChoiceTag>());
-            KeyDescriptionElement.AddVariationWithId(specialMove, new TaleWorlds.Localization.TextObject(
-                "{=str_tor_career_ability_description}Starting Career ability, like the mistform for the Vampire Counts, or Knightly strike of the Grailknight"), new List<GameTextManager.ChoiceTag>());
+            KeyDescriptionElement.AddVariationWithId(quickCast, TORTextHelper.GetTextObject(
+                "tor_quick_cast_description", "Cast spells or prayers without needing to switch to spell cast mode. Warning: There is no target indication and the Spells follow predefined casting order. For targeted casting, always use the Spellcaster mode"), new List<GameTextManager.ChoiceTag>());
+            KeyDescriptionElement.AddVariationWithId(specialMove, TORTextHelper.GetTextObject(
+                "tor_career_ability_description", "Starting Career ability, like the mistform for the Vampire Counts, or Knightly strike of the Grailknight"), new List<GameTextManager.ChoiceTag>());
         }
     }
 

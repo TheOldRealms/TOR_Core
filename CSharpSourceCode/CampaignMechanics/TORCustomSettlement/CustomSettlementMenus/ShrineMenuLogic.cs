@@ -119,7 +119,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
             {
                 GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_once_a_day}You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                 args.IsEnabled = false;
             }
 
@@ -136,7 +136,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                 if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
                 {
                     GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                    args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_once_a_day}You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                    args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                     args.IsEnabled = false;
                 }
 
@@ -159,7 +159,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             // Greenskins can loot any non-Greenskin shrine
             if (component.Religion.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_greenskin_own}You can't loot your own shrine, ya git!", null);
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_greenskin_own", "You can't loot your own shrine, ya git!");
                 args.IsEnabled = false;
                 return true;
             }
@@ -168,7 +168,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
             {
                 GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_once_a_day}You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                 args.IsEnabled = false;
             }
 
@@ -195,14 +195,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         args.optionLeaveType = GameMenuOption.LeaveType.ShowMercy;
         var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
-        MBTextManager.SetTextVariable("PRAY_TEXT", "{=str_tor_custom_settlement_shrine_pray_text}Pray to receive the blessing of {GOD_NAME}");
+        MBTextManager.SetTextVariable("PRAY_TEXT", TORTextHelper.GetTextObject("tor_custom_settlement_shrine_pray_text", "Pray to receive the blessing of {GOD_NAME}"));
 
         // Vampires, Necromancers, and Black Grail Knights cannot pray
         if (Hero.MainHero.IsVampire() ||
             Hero.MainHero.IsNecromancer() ||
             Hero.MainHero.HasCareer(TORCareers.BlackGrailKnight))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_undead_no_pray}The undead do not commune with the gods.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_undead_no_pray", "The undead do not commune with the gods.");
             args.IsEnabled = false;
             return true;
         }
@@ -210,7 +210,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         // Culture restriction: can only pray at shrines of your own culture
         if (!IsCultureCompatibleWithShrine(Hero.MainHero, component.Religion))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_wrong_culture}This shrine is not meant for your kind.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_wrong_culture", "This shrine is not meant for your kind.");
             args.IsEnabled = false;
             return true;
         }
@@ -220,7 +220,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             var careerGod = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
             var god = ReligionObject.All.FirstOrDefault(x => x.StringId == careerGod);
             MBTextManager.SetTextVariable("CAREERGOD_NAME", god.DeityName);
-            args.Tooltip = new TextObject("{=str_tor_custom_settlement_shrine_blessing_already_active}You devoted your live to {CAREERGOD_NAME}. You can't pray here.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_shrine_blessing_already_active", "You devoted your live to {CAREERGOD_NAME}. You can't pray here.");
             args.IsEnabled = false;
         }
 
@@ -239,7 +239,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             Hero.MainHero.IsNecromancer() ||
             Hero.MainHero.HasCareer(TORCareers.BlackGrailKnight))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_vampire_no_donate}The undead do not make offerings to the gods.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_vampire_no_donate", "The undead do not make offerings to the gods.");
             args.IsEnabled = false;
             return true;
         }
@@ -248,7 +248,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         var playerReligion = Hero.MainHero.GetDominantReligion();
         if (playerReligion != null && playerReligion.Affinity != ReligionAffinity.Order && playerReligion.Affinity != ReligionAffinity.Destruction)
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_no_donate_affinity}You do not honor the gods through offerings.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_no_donate_affinity", "You do not honor the gods through offerings.");
             args.IsEnabled = false;
             return true;
         }
@@ -256,7 +256,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         // Must have compatible culture to donate (uses same logic as praying)
         if (!IsCultureCompatibleWithShrine(Hero.MainHero, component.Religion))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_wrong_culture_donate}You cannot make offerings at a shrine not meant for your kind.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_wrong_culture_donate", "You cannot make offerings at a shrine not meant for your kind.");
             args.IsEnabled = false;
             return true;
         }
@@ -267,14 +267,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             var careerGod = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
             var god = ReligionObject.All.FirstOrDefault(x => x.StringId == careerGod);
             MBTextManager.SetTextVariable("CAREERGOD_NAME", god.DeityName);
-            args.Tooltip = new TextObject("{=str_tor_custom_settlement_shrine_blessing_already_active}You devoted your live to {CAREERGOD_NAME}. You can't donate here.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_shrine_blessing_already_active", "You devoted your live to {CAREERGOD_NAME}. You can't donate here.");
             args.IsEnabled = false;
             return true;
         }
 
         if (!Hero.MainHero.GetPerkValue(TORPerks.Faith.Offering))
         {
-            args.Tooltip = new TextObject("{=str_tor_custom_settlement_donation_perk_info}You need the Offering perk in the Faith skill line to perform this action.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_donation_perk_info", "You need the Offering perk in the Faith skill line to perform this action.");
             args.IsEnabled = false;
         }
 

@@ -52,7 +52,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         private void OnSessionStart(CampaignGameStarter starter)
         {
-            AccessTools.Property(typeof(ItemObject), "Name").SetValue(DefaultItems.IronIngot6, new TextObject("{=ironingot6_name}Gromril{@Plural}loads of gromril{\\@}"));
+            AccessTools.Property(typeof(ItemObject), "Name").SetValue(DefaultItems.IronIngot6, TORTextHelper.GetTextObject("ironingot6_name", "Gromril{@Plural}loads of gromril{\\@}"));
             TorEnchantingIngredients.LoadIngredients();
             AddTownMenu(starter);
         }
@@ -75,7 +75,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 delegate (MenuCallbackArgs args)
                 {
                     args.MenuTitle = TORTextHelper.GetTextObject("tor_artisan_district_title_text", "Artisan District");
-                    var intro = new TextObject("{=tor_settlement_artisan_introduction}You have arrived at {SETTLEMENT_NAME}'s Artisan District. It is a lively place where artisans and craftsmen of varying professions are busy in their workshops.");
+                    var intro = TORTextHelper.GetTextObject("tor_settlement_artisan_introduction", "You have arrived at {SETTLEMENT_NAME}'s Artisan District. It is a lively place where artisans and craftsmen of varying professions are busy in their workshops.");
                     MBTextManager.SetTextVariable("SETTLEMENT_NAME", Settlement.CurrentSettlement.Name);
                     MBTextManager.SetTextVariable("ARTISAN_INTRODUCTION", intro);
                 },

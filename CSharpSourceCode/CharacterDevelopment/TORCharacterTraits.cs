@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment
 {
@@ -44,14 +45,14 @@ namespace TOR_Core.CharacterDevelopment
             _nagashCorrupted = Game.Current.ObjectManager.RegisterPresumedObject(new TraitObject("NagashCorrupted"));
 
 
-            _spellCasterSkills.Initialize(new TextObject("{=str_tor_spellcaster_trait_name}Spellcaster", null), new TextObject("{=str_tor_spellcaster_trait_description}Spellcaster Description", null), true, 0, 10);
-            _shallyaDevoted.Initialize(new TextObject("{=str_tor_shallyadevoted_trait_name}Shallya Devoted", null), new TextObject("{=str_tor_shallyadevoted_trait_description}Devoted priest to Shallya", null), true, 0, 10);
-            _sigmarDevoted.Initialize(new TextObject("{=str_tor_sigmardevoted_trait_name}Sigmar Devoted", null), new TextObject("{=str_tor_sigmardevoted_trait_description}Devoted priest to Sigmar", null), true, 0, 10);
-            _ladyDevoted.Initialize(new TextObject("{=str_tor_ladydevoted_trait_name}Lady Devoted", null), new TextObject("{=str_tor_ladydevoted_trait_description}Devoted priestess to the Lady", null), true, 0, 10);
-            _ulricDevoted.Initialize(new TextObject("{=str_tor_ulricdevoted_trait_name}Ulric Devoted", null), new TextObject("{=str_tor_ulricdevoted_trait_description}Devoted priest to Ulric", null), true, 0, 10);
-            _nagashCorrupted.Initialize(new TextObject("{=str_tor_nagashcorrupted_trait_name}Nagash Corrupted", null), new TextObject("{=str_tor_nagashcorrupted_trait_description}This mind has been corrupted by the curse of nagash", null), true, 0, 10);
+            _spellCasterSkills.Initialize(TORTextHelper.GetTextObject("tor_spellcaster_trait_name", "Spellcaster"), TORTextHelper.GetTextObject("tor_spellcaster_trait_description", "Spellcaster Description"), true, 0, 10);
+            _shallyaDevoted.Initialize(TORTextHelper.GetTextObject("tor_shallyadevoted_trait_name", "Shallya Devoted"), TORTextHelper.GetTextObject("tor_shallyadevoted_trait_description", "Devoted priest to Shallya"), true, 0, 10);
+            _sigmarDevoted.Initialize(TORTextHelper.GetTextObject("tor_sigmardevoted_trait_name", "Sigmar Devoted"), TORTextHelper.GetTextObject("tor_sigmardevoted_trait_description", "Devoted priest to Sigmar"), true, 0, 10);
+            _ladyDevoted.Initialize(TORTextHelper.GetTextObject("tor_ladydevoted_trait_name", "Lady Devoted"), TORTextHelper.GetTextObject("tor_ladydevoted_trait_description", "Devoted priestess to the Lady"), true, 0, 10);
+            _ulricDevoted.Initialize(TORTextHelper.GetTextObject("tor_ulricdevoted_trait_name", "Ulric Devoted"), TORTextHelper.GetTextObject("tor_ulricdevoted_trait_description", "Devoted priest to Ulric"), true, 0, 10);
+            _nagashCorrupted.Initialize(TORTextHelper.GetTextObject("tor_nagashcorrupted_trait_name", "Nagash Corrupted"), TORTextHelper.GetTextObject("tor_nagashcorrupted_trait_description", "This mind has been corrupted by the curse of nagash"), true, 0, 10);
 
-            _gunner.Initialize(new TextObject("{=str_tor_gunner_trait_name}Gunner", null), new TextObject("{=str_tor_gunner_trait_description}Expert of Blackpowder weapons", null), true, 0, 10);
+            _gunner.Initialize(TORTextHelper.GetTextObject("tor_gunner_trait_name", "Gunner"), TORTextHelper.GetTextObject("tor_gunner_trait_description", "Expert of Blackpowder weapons"), true, 0, 10);
         }
 
 

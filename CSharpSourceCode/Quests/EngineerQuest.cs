@@ -66,10 +66,10 @@ namespace TOR_Core.Quests
         {
             //https://www.dotnetperls.com/null-list notes that field lists are automatically null which would be the case for _logs, so initialize it here
             _logs = [];
-            var log0 = new JournalLog(CampaignTime.Now, new TextObject("{=str_tor_engineer_quest_log0}The Master Engineer has tasked me with hunting down thieving runaways, I should find them and bring back what they stole."), new TextObject("{=str_tor_engineer_quest_task0}Track down runaway thieves"), 0, 1, LogType.Discreate);
-            var log1 = new JournalLog(CampaignTime.Now, new TextObject("{=str_tor_engineer_quest_log1}I found the thieves, but they did not have the stolen components. I should return to the Master Engineer with the news."), new TextObject("{=str_tor_engineer_quest_task1}Return to the Master Engineer in Nuln"), 0, 0, LogType.Discreate);
-            var log2 = new JournalLog(CampaignTime.Now, new TextObject("{=str_tor_engineer_quest_log2}It would appear a traitorous Engineer has the stolen parts, the Master Engineer has asked for my help in finding him."), new TextObject("{=str_tor_engineer_quest_task2}Track down Goswin and retrieve the stolen components."), 0, 1, LogType.Discreate);
-            var log3 = new JournalLog(CampaignTime.Now, new TextObject("{=str_tor_engineer_quest_log3}I have slain Goswin and retrieved the stolen components, I should return to the Master Engineer and let him know."), new TextObject("{=str_tor_engineer_quest_task3}Return to the Master Engineer in Nuln"), 0, 1, LogType.Discreate);
+            var log0 = new JournalLog(CampaignTime.Now, TORTextHelper.GetTextObject("tor_engineer_quest_log0", "The Master Engineer has tasked me with hunting down thieving runaways, I should find them and bring back what they stole."), TORTextHelper.GetTextObject("tor_engineer_quest_task0", "Track down runaway thieves"), 0, 1, LogType.Discreate);
+            var log1 = new JournalLog(CampaignTime.Now, TORTextHelper.GetTextObject("tor_engineer_quest_log1", "I found the thieves, but they did not have the stolen components. I should return to the Master Engineer with the news."), TORTextHelper.GetTextObject("tor_engineer_quest_task1", "Return to the Master Engineer in Nuln"), 0, 0, LogType.Discreate);
+            var log2 = new JournalLog(CampaignTime.Now, TORTextHelper.GetTextObject("tor_engineer_quest_log2", "It would appear a traitorous Engineer has the stolen parts, the Master Engineer has asked for my help in finding him."), TORTextHelper.GetTextObject("tor_engineer_quest_task2", "Track down Goswin and retrieve the stolen components."), 0, 1, LogType.Discreate);
+            var log3 = new JournalLog(CampaignTime.Now, TORTextHelper.GetTextObject("tor_engineer_quest_log3", "I have slain Goswin and retrieved the stolen components, I should return to the Master Engineer and let him know."), TORTextHelper.GetTextObject("tor_engineer_quest_task3", "Return to the Master Engineer in Nuln"), 0, 1, LogType.Discreate);
             _logs.Add(log0);
             _logs.Add(log1);
             _logs.Add(log2);
@@ -149,7 +149,7 @@ namespace TOR_Core.Quests
             {
                 RemoveLog(_task1);
                 _task1 = AddDiscreteLog(
-                    new TextObject("{=str_tor_engineer_quest_log1_fail}I failed... I was beaten. I need to return to the Master Engineer with the news."),
+                    TORTextHelper.GetTextObject("tor_engineer_quest_log1_fail", "I failed... I was beaten. I need to return to the Master Engineer with the news."),
                     TORTextHelper.GetTextObject("tor_engineer_quest_return_task_text", "Return to the Master Engineer in Nuln"), 0, 1);
             }
 
@@ -157,7 +157,7 @@ namespace TOR_Core.Quests
             {
                 RemoveLog(_task3);
                 _task3 = AddDiscreteLog(
-                    new TextObject("{=str_tor_engineer_quest_log3_fail}I failed... I was beaten. I need to return to the Master Engineer with the news."),
+                    TORTextHelper.GetTextObject("tor_engineer_quest_log3_fail", "I failed... I was beaten. I need to return to the Master Engineer with the news."),
                     TORTextHelper.GetTextObject("tor_engineer_quest_return_task_text", "Return to the Master Engineer in Nuln"), 0, 1);
             }
 
