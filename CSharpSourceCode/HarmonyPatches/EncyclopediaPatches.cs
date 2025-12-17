@@ -11,6 +11,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Encyclopedia.Pages;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches

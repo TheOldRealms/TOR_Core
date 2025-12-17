@@ -4564,4 +4564,156 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	
 	<!--Vanilla Perk Changes-->
 	<string id="tor_veterinarian_description" text="{=str_tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles." />
-</strings>
+
+
+	<!-- Powerstone Texts - Lesser -->
+	<string id="tor_powerstone_fire_dmg_10_name" text="{=str_tor_powerstone_fire_dmg_10_name}Lesser Sparkling Fire Ruby"/>
+	<string id="tor_powerstone_fire_dmg_10_desc" text="{=str_tor_powerstone_fire_dmg_10_desc}+15% Fire damage"/>
+	<string id="tor_powerstone_fire_amp_50_name" text="{=str_tor_powerstone_fire_amp_50_name}Lesser Nourishing Fire Ruby"/>
+	<string id="tor_powerstone_fire_amp_50_desc" text="{=str_tor_powerstone_fire_amp_50_desc}+50% Fire amplification"/>
+	<string id="tor_powerstone_fire_res_20_name" text="{=str_tor_powerstone_fire_res_20_name}Lesser Heating Fire Ruby"/>
+	<string id="tor_powerstone_fire_res_20_desc" text="{=str_tor_powerstone_fire_res_20_desc}+20% Frost and Fire resistance"/>
+	<string id="tor_powerstone_light_res_20_name" text="{=str_tor_powerstone_light_res_20_name}Lesser Protecting Lumen Stone"/>
+	<string id="tor_powerstone_light_res_20_desc" text="{=str_tor_powerstone_light_res_20_desc}+20% physical resistance"/>
+	<string id="tor_powerstone_light_mov_25_name" text="{=str_tor_powerstone_light_mov_25_name}Lesser Timewarp Lumen Stone"/>
+	<string id="tor_powerstone_light_mov_25_desc" text="{=str_tor_powerstone_light_mov_25_desc}+25% movementSpeed"/>
+	<string id="tor_powerstone_light_dmg_15_name" text="{=str_tor_powerstone_light_dmg_15_name}Lesser Gleaming Lumen Stone"/>
+	<string id="tor_powerstone_light_dmg_15_desc" text="{=str_tor_powerstone_light_dmg_15_desc}+15% physical damage amplification"/>
+	<string id="tor_powerstone_beast_range_res_25_name" text="{=str_tor_powerstone_beast_range_res_25_name}Lesser Obfuscating Ghost Amber"/>
+	<string id="tor_powerstone_beast_range_res_25_desc" text="{=str_tor_powerstone_beast_range_res_25_desc}+25% ranged resistance"/>
+	<string id="tor_powerstone_beast_phys_15_name" text="{=str_tor_powerstone_beast_phys_15_name}Lesser Protecting Ghost Amber"/>
+	<string id="tor_powerstone_beast_phys_15_desc" text="{=str_tor_powerstone_beast_phys_15_desc}+15% physical resistance"/>
+	<string id="tor_powerstone_beast_phys_20_ranged_name" text="{=str_tor_powerstone_beast_phys_20_ranged_name}Lesser Seeking Ghost Amber"/>
+	<string id="tor_powerstone_beast_phys_20_ranged_desc" text="{=str_tor_powerstone_beast_phys_20_ranged_desc}Add 20% ranged damage"/>
+	<string id="tor_powerstone_life_magical_fire_res_25_name" text="{=str_tor_powerstone_life_magical_fire_res_25_name}Lesser Dampening Vitaellum"/>
+	<string id="tor_powerstone_life_magical_fire_res_25_desc" text="{=str_tor_powerstone_life_magical_fire_res_25_desc}Add 25% magical and fire resistance"/>
+	<string id="tor_powerstone_life_res_20_name" text="{=str_tor_powerstone_life_res_20_name}Lesser Protecting Vitaellum"/>
+	<string id="tor_powerstone_life_res_20_desc" text="{=str_tor_powerstone_life_res_20_desc}Add 20% physical resistance"/>
+	<string id="tor_powerstone_life_res_40_debuff_name" text="{=str_tor_powerstone_life_res_40_debuff_name}Lesser Heavy Vitaellum"/>
+	<string id="tor_powerstone_life_res_40_debuff_desc" text="{=str_tor_powerstone_life_res_40_debuff_desc}Add 35% physical resistance -35% reduced speed"/>
+	<string id="tor_powerstone_heavens_dmg_raged_20_name" text="{=str_tor_powerstone_heavens_dmg_raged_20_name}Lesser Wind Saphire"/>
+	<string id="tor_powerstone_heavens_dmg_raged_20_desc" text="{=str_tor_powerstone_heavens_dmg_raged_20_desc}+20% physical ranged damage amplification"/>
+	<string id="tor_powerstone_heavens_dmg_20_name" text="{=str_tor_powerstone_heavens_dmg_20_name}Lesser Conductive Saphire"/>
+	<string id="tor_powerstone_heavens_dmg_20_desc" text="{=str_tor_powerstone_heavens_dmg_20_desc}+20% lightning melee damage"/>
+	<string id="tor_powerstone_heavens_res_25_name" text="{=str_tor_powerstone_heavens_res_25_name}Lesser Dissipation Saphire"/>
+	<string id="tor_powerstone_heavens_res_25_desc" text="{=str_tor_powerstone_heavens_res_25_desc}+25% lightning resistance, +25% magical resistance"/>
+	<string id="tor_powerstone_metal_dmg_15_name" text="{=str_tor_powerstone_metal_dmg_15_name}Lesser Hardening Goldstone"/>
+	<string id="tor_powerstone_metal_dmg_15_desc" text="{=str_tor_powerstone_metal_dmg_15_desc}+15% physical damage"/>
+	<string id="tor_powerstone_metal_dmg_20_name" text="{=str_tor_powerstone_metal_dmg_20_name}Lesser Sparkling Goldstone"/>
+	<string id="tor_powerstone_metal_dmg_20_desc" text="{=str_tor_powerstone_metal_dmg_20_desc}+20% physical ranged damage"/>
+	<string id="tor_powerstone_metal_res_30_debuff_name" text="{=str_tor_powerstone_metal_res_30_debuff_name}Lesser Burdening Goldstone"/>
+	<string id="tor_powerstone_metal_res_30_debuff_desc" text="{=str_tor_powerstone_metal_res_30_debuff_desc}+30% physical resistance, 35% reduced speed"/>
+	<string id="tor_powerstone_death_dmg_15_name" text="{=str_tor_powerstone_death_dmg_15_name}Lesser Harming Endstone"/>
+	<string id="tor_powerstone_death_dmg_15_desc" text="{=str_tor_powerstone_death_dmg_15_desc}+15% physical damage"/>
+	<string id="tor_powerstone_death_res_mag_20_name" text="{=str_tor_powerstone_death_res_mag_20_name}Lesser Encouraging Endstone"/>
+	<string id="tor_powerstone_death_res_mag_20_desc" text="{=str_tor_powerstone_death_res_mag_20_desc}+20% magic damage resistance"/>
+	<string id="tor_powerstone_death_res_30_debuff_name" text="{=str_tor_powerstone_death_res_30_debuff_name}Lesser Deadening Endstone"/>
+	<string id="tor_powerstone_death_res_30_debuff_desc" text="{=str_tor_powerstone_death_res_30_debuff_desc}+25% physical resistance, 20% reduced swing-speed"/>
+
+	<!-- Powerstone Texts - Greater -->
+	<string id="tor_powerstone_fire_dmg_35_name" text="{=str_tor_powerstone_fire_dmg_35_name}Greater Enlightening Fire Ruby"/>
+	<string id="tor_powerstone_fire_dmg_35_desc" text="{=str_tor_powerstone_fire_dmg_35_desc}+50% Fire amplification, 15% Fire damage+30%"/>
+	<string id="tor_powerstone_fire_amp_50_greater_name" text="{=str_tor_powerstone_fire_amp_50_greater_name}Greater Nourishing Fire Ruby"/>
+	<string id="tor_powerstone_fire_amp_50_greater_desc" text="{=str_tor_powerstone_fire_amp_50_greater_desc}Fire amplification, +20% speed"/>
+	<string id="tor_powerstone_light_res_phys_magic_40_name" text="{=str_tor_powerstone_light_res_phys_magic_40_name}Greater Protecting Lumenstone"/>
+	<string id="tor_powerstone_light_res_phys_magic_40_desc" text="{=str_tor_powerstone_light_res_phys_magic_40_desc}+40% physical, 40% magical resistance"/>
+	<string id="tor_powerstone_light_mov_dmg_25_name" text="{=str_tor_powerstone_light_mov_dmg_25_name}Greater Timewarp Lumenstone"/>
+	<string id="tor_powerstone_light_mov_dmg_25_desc" text="{=str_tor_powerstone_light_mov_dmg_25_desc}Add 25% movement Speed and 25% magical melee damage"/>
+	<string id="tor_powerstone_beast_res_wild_name" text="{=str_tor_powerstone_beast_res_wild_name}Greater Ghost Amber of the Wild"/>
+	<string id="tor_powerstone_beast_res_wild_desc" text="{=str_tor_powerstone_beast_res_wild_desc}Unit is unstoppable, will not show any sign of pain"/>
+	<string id="tor_powerstone_beast_res_range_25_name" text="{=str_tor_powerstone_beast_res_range_25_name}Greater Ghost Amber of the Hunter"/>
+	<string id="tor_powerstone_beast_res_range_25_desc" text="{=str_tor_powerstone_beast_res_range_25_desc}+35% ranged resistance, +25% ranged damage"/>
+	<string id="tor_powerstone_life_thorns_name" text="{=str_tor_powerstone_life_thorns_name}Greater Spiky Vitalleum"/>
+	<string id="tor_powerstone_life_thorns_desc" text="{=str_tor_powerstone_life_thorns_desc}Received damage is reapplied by 25% as thorn damage"/>
+	<string id="tor_powerstone_life_res_ward_35_name" text="{=str_tor_powerstone_life_res_ward_35_name}Greater Protecting Vitalleum"/>
+	<string id="tor_powerstone_life_res_ward_35_desc" text="{=str_tor_powerstone_life_res_ward_35_desc}+35% Wardsave"/>
+	<string id="tor_powerstone_heavens_trait2_name" text="{=str_tor_powerstone_heavens_trait2_name}Greater Amplifying True Sapphires"/>
+	<string id="tor_powerstone_heavens_trait2_desc" text="{=str_tor_powerstone_heavens_trait2_desc}+40% lightning damage"/>
+	<string id="tor_powerstone_heavens_res_40_name" text="{=str_tor_powerstone_heavens_res_40_name}Greater True Dissipation Sapphires"/>
+	<string id="tor_powerstone_heavens_res_40_desc" text="{=str_tor_powerstone_heavens_res_40_desc}+40% physical, magic and lightning resistance"/>
+	<string id="tor_powerstone_metal_dmg_20_greater_name" text="{=str_tor_powerstone_metal_dmg_20_greater_name}Greater Goldstone of Disintegration"/>
+	<string id="tor_powerstone_metal_dmg_20_greater_desc" text="{=str_tor_powerstone_metal_dmg_20_greater_desc}+20% magical damage, 20% fire damage"/>
+	<string id="tor_powerstone_metal_magic_dmg_20_name" text="{=str_tor_powerstone_metal_magic_dmg_20_name}Greater Goldstone of Sharpening"/>
+	<string id="tor_powerstone_metal_magic_dmg_20_desc" text="{=str_tor_powerstone_metal_magic_dmg_20_desc}+50% Armor penetration"/>
+	<string id="tor_powerstone_death_trait_undead_bane_name" text="{=str_tor_powerstone_death_trait_undead_bane_name}Greater Banishing Endstone"/>
+	<string id="tor_powerstone_death_trait_undead_bane_desc" text="{=str_tor_powerstone_death_trait_undead_bane_desc}50% more damage against undead and vampires"/>
+	<string id="tor_powerstone_death_dmg_mag_20_name" text="{=str_tor_powerstone_death_dmg_mag_20_name}Greater Harming Endstone"/>
+	<string id="tor_powerstone_death_dmg_mag_20_desc" text="{=str_tor_powerstone_death_dmg_mag_20_desc}20% extra magical damage"/>
+
+	<!-- Powerstone Texts - Mighty -->
+	<string id="tor_powerstone_fire_amp_150_name" text="{=str_tor_powerstone_fire_amp_150_name}Mighty Fire Ruby"/>
+	<string id="tor_powerstone_fire_amp_150_desc" text="{=str_tor_powerstone_fire_amp_150_desc}+150% Fire amp., 15% Fire dmg."/>
+	<string id="tor_powerstone_light_mov_trait_name" text="{=str_tor_powerstone_light_mov_trait_name}Mighty Lumen Stone"/>
+	<string id="tor_powerstone_light_mov_trait_desc" text="{=str_tor_powerstone_light_mov_trait_desc}40% magical dmg., slows enemies on hit"/>
+	<string id="tor_powerstone_beast_res_50_name" text="{=str_tor_powerstone_beast_res_50_name}Mighty Ghost Amber"/>
+	<string id="tor_powerstone_beast_res_50_desc" text="{=str_tor_powerstone_beast_res_50_desc}+50% speed, +50% physical resistance"/>
+	<string id="tor_powerstone_life_reg_name" text="{=str_tor_powerstone_life_reg_name}Mighty Vitalleum"/>
+	<string id="tor_powerstone_life_reg_desc" text="{=str_tor_powerstone_life_reg_desc}Regenerate 1 HP every second"/>
+	<string id="tor_powerstone_heavens_dmg_elec_frost_name" text="{=str_tor_powerstone_heavens_dmg_elec_frost_name}Mighty True Saphires"/>
+	<string id="tor_powerstone_heavens_dmg_elec_frost_desc" text="{=str_tor_powerstone_heavens_dmg_elec_frost_desc}+20% electric, +20% frost dmg, 20% slowdown"/>
+	<string id="tor_powerstone_metal_magic_dmg_phys_name" text="{=str_tor_powerstone_metal_magic_dmg_phys_name}Mighty Goldstone"/>
+	<string id="tor_powerstone_metal_magic_dmg_phys_desc" text="{=str_tor_powerstone_metal_magic_dmg_phys_desc}40% Armor penetration, 20% magical, 20% fire"/>
+	<string id="tor_powerstone_death_magic_surv_100_name" text="{=str_tor_powerstone_death_magic_surv_100_name}Mighty Endstone"/>
+	<string id="tor_powerstone_death_magic_surv_100_desc" text="{=str_tor_powerstone_death_magic_surv_100_desc}100% survival Chance for Unit"/>
+
+	<!-- Unit Rune Texts -->
+	<string id="tor_unit_rune_guarding_name" text="{=str_tor_unit_rune_guarding_name}Rune of Guarding"/>
+	<string id="tor_unit_rune_guarding_desc" text="{=str_tor_unit_rune_guarding_desc}15% extra physical resistance."/>
+	<string id="tor_unit_rune_sanctuary_name" text="{=str_tor_unit_rune_sanctuary_name}Rune of Sanctuary"/>
+	<string id="tor_unit_rune_sanctuary_desc" text="{=str_tor_unit_rune_sanctuary_desc}30% extra magic resistance."/>
+	<string id="tor_unit_rune_battle_name" text="{=str_tor_unit_rune_battle_name}Rune of Battle"/>
+	<string id="tor_unit_rune_battle_desc" text="{=str_tor_unit_rune_battle_desc}30% extra physical damage."/>
+	<string id="tor_unit_rune_retribution_name" text="{=str_tor_unit_rune_retribution_name}Rune of Retribution"/>
+	<string id="tor_unit_rune_retribution_desc" text="{=str_tor_unit_rune_retribution_desc}25% extra fire resistance, 35% extra fire damage."/>
+	<string id="tor_unit_rune_rapid_fire_name" text="{=str_tor_unit_rune_rapid_fire_name}Rune of Rapid Fire"/>
+	<string id="tor_unit_rune_rapid_fire_desc" text="{=str_tor_unit_rune_rapid_fire_desc}60% extra reload speed."/>
+	<string id="tor_unit_rune_strollaz_name" text="{=str_tor_unit_rune_strollaz_name}Strollaz' Rune"/>
+	<string id="tor_unit_rune_strollaz_desc" text="{=str_tor_unit_rune_strollaz_desc}35% extra movement speed."/>
+	<string id="tor_unit_rune_valaya_name" text="{=str_tor_unit_rune_valaya_name}Master Rune of Valaya"/>
+	<string id="tor_unit_rune_valaya_desc" text="{=str_tor_unit_rune_valaya_desc}30% extra Ward Save."/>
+	<string id="tor_unit_rune_grungni_name" text="{=str_tor_unit_rune_grungni_name}Master Rune of Grungni"/>
+	<string id="tor_unit_rune_grungni_desc" text="{=str_tor_unit_rune_grungni_desc}Reduce incoming ranged damage by 75%."/>
+	<string id="tor_unit_rune_grimnir_name" text="{=str_tor_unit_rune_grimnir_name}Master Rune of Grimnir"/>
+	<string id="tor_unit_rune_grimnir_desc" text="{=str_tor_unit_rune_grimnir_desc}20% extra attack speed, 35% extra physical and fire damage."/>
+
+	<!-- Career Choice Texts -->
+	<string id="tor_careerchoice_description" text="{=str_tor_careerchoice_description}Career Choice"/>
+
+	<!-- Attribute Texts -->
+	<string id="tor_attribute_discipline" text="{=str_tor_attribute_discipline}Discipline"/>
+	<string id="tor_attribute_discipline_description" text="{=str_tor_attribute_discipline_description}Discipline represents mental fortitude and self-control."/>
+	<string id="tor_attribute_discipline_abbreviation" text="{=str_tor_attribute_discipline_abbreviation}DIS"/>
+
+	<!-- Encyclopedia Texts -->
+	<string id="tor_encyclopedia_sort_none" text="{=str_tor_encyclopedia_sort_none}None"/>
+	<string id="tor_encyclopedia_filter_characters" text="{=str_tor_encyclopedia_filter_characters}Characters"/>
+	<string id="tor_encyclopedia_filter_kingdoms" text="{=str_tor_encyclopedia_filter_kingdoms}Kingdoms"/>
+	<string id="tor_encyclopedia_filter_clans" text="{=str_tor_encyclopedia_filter_clans}Clans"/>
+	<string id="tor_encyclopedia_filter_parties" text="{=str_tor_encyclopedia_filter_parties}Parties"/>
+	<string id="tor_encyclopedia_filter_armies" text="{=str_tor_encyclopedia_filter_armies}Armies"/>
+	<string id="tor_encyclopedia_filter_troops" text="{=str_tor_encyclopedia_filter_troops}Troops"/>
+	<string id="tor_encyclopedia_filter_items" text="{=str_tor_encyclopedia_filter_items}Items"/>
+	<string id="tor_encyclopedia_filter_old_realms" text="{=str_tor_encyclopedia_filter_old_realms}Old Realms"/>
+	<string id="tor_encyclopedia_filter_campaign_issues" text="{=str_tor_encyclopedia_filter_campaign_issues}Campaign Issues"/>
+	<string id="tor_encyclopedia_filter_types" text="{=str_tor_encyclopedia_filter_types}Types"/>
+
+	<!-- Character Creation Texts -->
+	<string id="tor_cc_origin_fallback_text" text="{=str_tor_cc_origin_fallback_text}Choose your origin"/>
+	<string id="tor_cc_origin_summary" text="{=str_tor_cc_origin_summary}Origin"/>
+	<string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth"/>
+	<string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Choose your growth"/>
+	<string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession"/>
+	<string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Choose your profession"/>
+	<string id="tor_cc_specialization_title_generic" text="{=str_tor_cc_specialization_title_generic}Specialization"/>
+	<string id="tor_cc_specialization_desc_generic" text="{=str_tor_cc_specialization_desc_generic}Choose your specialization"/>
+	<string id="tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore"/>
+	<string id="tor_cc_specialization_desc_lore" text="{=str_tor_cc_specialization_desc_lore}As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn."/>
+	<string id="tor_cc_specialization_title_bloodline" text="{=str_tor_cc_specialization_title_bloodline}Choose Your Bloodline"/>
+	<string id="tor_cc_specialization_desc_bloodline" text="{=str_tor_cc_specialization_desc_bloodline}As a vampire, you must choose your bloodline. This will determine your abilities and strengths."/>
+	<string id="tor_cc_specialization_title_god" text="{=str_tor_cc_specialization_title_god}Choose Your God"/>
+	<string id="tor_cc_specialization_desc_god" text="{=str_tor_cc_specialization_desc_god}As a priest, you must choose which god you serve. This will determine your divine powers."/>
+	<string id="tor_cc_specialization_title_order" text="{=str_tor_cc_specialization_title_order}Choose Your Order"/>
+	<string id="tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses."/>
+
+	<!-- Vampire Bonus -->
+	<string id="tor_vampire_bonus" text="{=str_tor_vampire_bonus}Vampire Bonus"/></strings>

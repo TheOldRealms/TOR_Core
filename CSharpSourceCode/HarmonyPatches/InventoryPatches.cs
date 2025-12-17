@@ -15,6 +15,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 

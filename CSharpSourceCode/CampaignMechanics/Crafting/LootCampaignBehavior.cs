@@ -17,6 +17,7 @@ using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 using TOR_Core.Models;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Crafting;
 /// <summary>
