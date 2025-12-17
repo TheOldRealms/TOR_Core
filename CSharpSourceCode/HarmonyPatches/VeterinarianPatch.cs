@@ -63,7 +63,7 @@ public static class VeterinarianPatch
     {
         private const string VETERINARIAN_PERK_ID = "MedicineVeterinarian";
         private const string SECONDARY_DESCRIPTION_REPLACEMENT =
-            "{=tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles.";
+            "{=str_tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles.";
 
         private static MethodBase TargetMethod()
         {
