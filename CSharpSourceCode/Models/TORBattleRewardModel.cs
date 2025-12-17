@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.MapEvents;
@@ -86,8 +86,8 @@ namespace TOR_Core.Models
 
         public string GetNameModifierForTraits(int traitAmount)
         {
-            var text = GameTexts.FindText("str_tor_magical_items_trait_rarity", traitAmount.ToString());
-            return text.ToString();
+            return TORTextHelper.GetText("tor_magical_items_trait_rarity", traitAmount.ToString(), "Magical");
+            
         }
 
         public int MaximumFindableTraitsOnItems()

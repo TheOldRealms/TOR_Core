@@ -324,9 +324,9 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         _currentSkill = skill;
         GameTexts.SetVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
         GameTexts.SetVariable("CUSTOMRESOURCE", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(true));
-        var title = TORTextHelper.GetTextObject("str_tor_skill_training_prompt", "title", "Companion Training: {SKILL_NAME}", true);
+        var title = TORTextHelper.GetTextObject("tor_skill_training_prompt", "title", "Companion Training: {SKILL_NAME}", true);
         title.SetTextVariable("SKILL_NAME", skill.Name);
-        var description = TORTextHelper.GetTextObject("str_tor_skill_training_prompt", "description", "Select a companion to train {SKILLNAME} with {INSTRUCTOR_NAME}.", true);
+        var description = TORTextHelper.GetTextObject("tor_skill_training_prompt", "description", "Select a companion to train {SKILLNAME} with {INSTRUCTOR_NAME}.", true);
         description.SetTextVariable("INSTRUCTOR_NAME", _currentTrainer.Name);
         description.SetTextVariable("SKILLNAME", skill.Name);
 
@@ -365,7 +365,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             {
                 isEnabled = false;
 
-                var noGoldText = TORTextHelper.GetTextObject("str_tor_skill_training_hover", "NoGold", "Not enough gold.", true);
+                var noGoldText = TORTextHelper.GetTextObject("tor_skill_training_hover", "NoGold", "Not enough gold.", true);
 
                 reason.Append(noGoldText);
             }
@@ -373,20 +373,20 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
             if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < costs.customResourceCost)
             {
                 isEnabled = false;
-                var noCustomResource = TORTextHelper.GetTextObject("str_tor_skill_training_hover", "NoCustomResource", "Not enough custom resource.", true);
+                var noCustomResource = TORTextHelper.GetTextObject("tor_skill_training_hover", "NoCustomResource", "Not enough custom resource.", true);
                 reason.Append(noCustomResource);
                 //reason = new TextObject("not enough"+Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(true) +" requires "+costs.customResourceCost);
             }
 
             GameTexts.SetVariable("SKILLTRAINING_REASON", reason.ToString());
-            var costText = TORTextHelper.GetTextObject("str_tor_skill_training_hover", "Costs", "Cost: {GOLD_COST} {GOLD_ICON}, {CR_COST} {CUSTOMRESOURCE}", true);
+            var costText = TORTextHelper.GetTextObject("tor_skill_training_hover", "Costs", "Cost: {GOLD_COST} {GOLD_ICON}, {CR_COST} {CUSTOMRESOURCE}", true);
             costText.SetTextVariable("GOLD_COST", costs.goldcost);
             costText.SetTextVariable("CR_COST", costs.customResourceCost);
             GameTexts.SetVariable("SKILL_TRAINING_COSTS", costText.ToString());
 
-            var currentSkillValueText = TORTextHelper.GetTextObject("str_tor_skill_training_prompt", "skill_value", "Current Skill: {SKILL_VALUE}", true);
+            var currentSkillValueText = TORTextHelper.GetTextObject("tor_skill_training_prompt", "skill_value", "Current Skill: {SKILL_VALUE}", true);
             currentSkillValueText.SetTextVariable("SKILL_VALUE", hero.GetSkillValue(skill));
-            var final = TORTextHelper.GetTextObject("str_tor_skill_training_hover", "Full", "{SKILL_TRAINING_COSTS}\n{SKILLTRAINING_REASON}", true);
+            var final = TORTextHelper.GetTextObject("tor_skill_training_hover", "Full", "{SKILL_TRAINING_COSTS}\n{SKILLTRAINING_REASON}", true);
 
             var heroItem = new InquiryElement(new Tuple<Hero, (int goldCost, int crCost)>(hero, costs), hero.Name.ToString() + "\n" + currentSkillValueText,
                 new CharacterImageIdentifier(CampaignUIHelper.GetCharacterCode(hero.CharacterObject)), isEnabled, final.ToString());

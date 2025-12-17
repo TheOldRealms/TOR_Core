@@ -78,9 +78,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetArtilleryHintText()
         {
-            string artilleryTitle = TORTextHelper.GetText("str_tor_ui_artillery_title", "Artillery");
-            string artilleryInventory = TORTextHelper.GetText("str_tor_ui_artillery_amount", "Current Artillery Pieces in Inventory:");
-            string artilleryDeployable = TORTextHelper.GetText("str_tor_ui_winds_of_magic_recharge_rate", "Maximum Deployable Artillery Pieces:");
+            string artilleryTitle = TORTextHelper.GetText("tor_ui_artillery_title", "Artillery");
+            string artilleryInventory = TORTextHelper.GetText("tor_ui_artillery_amount", "Current Artillery Pieces in Inventory:");
+            string artilleryDeployable = TORTextHelper.GetText("tor_ui_winds_of_magic_recharge_rate", "Maximum Deployable Artillery Pieces:");
 
             List<TooltipProperty> list =
             [
@@ -93,9 +93,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetWindsHintText()
         {
-            string womTitle = TORTextHelper.GetText("str_tor_ui_winds_of_magic_title", "Winds of Magic");
-            string womMaximum = TORTextHelper.GetText("str_tor_ui_winds_of_magic_maximum", "Maximum:");
-            string womRechargeRate = TORTextHelper.GetText("str_tor_ui_winds_of_magic_recharge_rate", "Recharge Rate:");
+            string womTitle = TORTextHelper.GetText("tor_ui_winds_of_magic_title", "Winds of Magic");
+            string womMaximum = TORTextHelper.GetText("tor_ui_winds_of_magic_maximum", "Maximum:");
+            string womRechargeRate = TORTextHelper.GetText("tor_ui_winds_of_magic_recharge_rate", "Recharge Rate:");
 
             var list = new List<TooltipProperty>
             {
@@ -108,9 +108,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetBlessingHintText()
         {
-            var blessingTitle = TORTextHelper.GetText("str_tor_ui_winds_of_magic_title", "Blessing: ");
-            var durationTitle = TORTextHelper.GetText("str_tor_ui_winds_of_magic_maximum", "Duration:");
-            var effect = TORTextHelper.GetText("str_tor_ui_winds_of_magic_recharge_rate", "Effect:");
+            var blessingTitle = TORTextHelper.GetText("tor_ui_winds_of_magic_title", "Blessing: ");
+            var durationTitle = TORTextHelper.GetText("tor_ui_winds_of_magic_maximum", "Duration:");
+            var effect = TORTextHelper.GetText("tor_ui_winds_of_magic_recharge_rate", "Effect:");
 
             var list = new List<TooltipProperty>();
             if (Hero.MainHero.PartyBelongedTo == null) return list;

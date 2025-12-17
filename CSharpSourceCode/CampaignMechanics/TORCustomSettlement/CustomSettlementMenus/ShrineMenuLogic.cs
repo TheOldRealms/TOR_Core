@@ -119,7 +119,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
             {
                 GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                 args.IsEnabled = false;
             }
 
@@ -136,7 +136,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                 if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
                 {
                     GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                    args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                    args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                     args.IsEnabled = false;
                 }
 
@@ -168,7 +168,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
             {
                 GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                 args.IsEnabled = false;
             }
 
@@ -220,7 +220,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             var careerGod = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
             var god = ReligionObject.All.FirstOrDefault(x => x.StringId == careerGod);
             MBTextManager.SetTextVariable("CAREERGOD_NAME", god.DeityName);
-            args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_shrine_blessing_already_active", "You devoted your live to {CAREERGOD_NAME}. You can't pray here.");
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_blessing_already_active", "You devoted your live to {CAREERGOD_NAME}. You can't pray here.");
             args.IsEnabled = false;
         }
 
@@ -267,14 +267,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             var careerGod = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
             var god = ReligionObject.All.FirstOrDefault(x => x.StringId == careerGod);
             MBTextManager.SetTextVariable("CAREERGOD_NAME", god.DeityName);
-            args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_shrine_blessing_already_active", "You devoted your live to {CAREERGOD_NAME}. You can't donate here.");
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_blessing_already_active", "You devoted your live to {CAREERGOD_NAME}. You can't donate here.");
             args.IsEnabled = false;
             return true;
         }
 
         if (!Hero.MainHero.GetPerkValue(TORPerks.Faith.Offering))
         {
-            args.Tooltip = TORTextHelper.GetTextObject("str_tor_custom_settlement_donation_perk_info", "You need the Offering perk in the Faith skill line to perform this action.");
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_donation_perk_info", "You need the Offering perk in the Faith skill line to perform this action.");
             args.IsEnabled = false;
         }
 

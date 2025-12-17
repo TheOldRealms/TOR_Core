@@ -95,29 +95,29 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         {
 
             string professionId = handler.GetSelectedProfessionId();
-            string title = GameTexts.FindText("str_tor_cc_specialization_title_generic")?.ToString() ?? "Specialization";
-            string description = GameTexts.FindText("str_tor_cc_specialization_desc_generic")?.ToString() ?? "Choose your specialization";
+            string title = TORTextHelper.GetText("tor_cc_specialization_title_generic", "Specialization");
+            string description = TORTextHelper.GetText("tor_cc_specialization_desc_generic", "Choose your specialization");
 
             // Set description based on profession type
             if (IsSpellcaster(professionId))
             {
-                title = GameTexts.FindText("tor_cc_specialization_title_lore")?.ToString() ?? "Choose Your Lore";
-                description = GameTexts.FindText("tor_cc_specialization_desc_lore")?.ToString() ?? "As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn.";
+                title = TORTextHelper.GetText("tor_cc_specialization_title_lore", "Choose Your Lore");
+                description = TORTextHelper.GetText("tor_cc_specialization_desc_lore", "As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn.");
             }
             else if (professionId == "option_3_vc_vampire" || professionId == "option_3_mousillon_vampire")
             {
-                title = GameTexts.FindText("tor_cc_specialization_title_bloodline")?.ToString() ?? "Choose Your Bloodline";
-                description = GameTexts.FindText("tor_cc_specialization_desc_bloodline")?.ToString() ?? "As a vampire, you must choose your bloodline. This will determine your abilities and strengths.";
+                title = TORTextHelper.GetText("tor_cc_specialization_title_bloodline", "Choose Your Bloodline");
+                description = TORTextHelper.GetText("tor_cc_specialization_desc_bloodline", "As a vampire, you must choose your bloodline. This will determine your abilities and strengths.");
             }
             else if (professionId == "option_3_empire_priest_acolyte")
             {
-                title = GameTexts.FindText("tor_cc_specialization_title_god")?.ToString() ?? "Choose Your God";
-                description = GameTexts.FindText("tor_cc_specialization_desc_god")?.ToString() ?? "As a priest, you must choose which god you serve. This will determine your divine powers.";
+                title = TORTextHelper.GetText("tor_cc_specialization_title_god", "Choose Your God");
+                description = TORTextHelper.GetText("tor_cc_specialization_desc_god", "As a priest, you must choose which god you serve. This will determine your divine powers.");
             }
             else if (professionId == "option_3_empire_knight")
             {
-                title = GameTexts.FindText("tor_cc_specialization_title_order")?.ToString() ?? "Choose Your Order";
-                description = GameTexts.FindText("tor_cc_specialization_desc_order")?.ToString() ?? "As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.";
+                title = TORTextHelper.GetText("tor_cc_specialization_title_order", "Choose Your Order");
+                description = TORTextHelper.GetText("tor_cc_specialization_desc_order", "As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses.");
             }
             
             _gauntletLayer = new GauntletLayer("GauntletLayer",1, true);

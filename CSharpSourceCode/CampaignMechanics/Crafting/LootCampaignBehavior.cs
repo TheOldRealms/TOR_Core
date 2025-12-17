@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -197,8 +198,8 @@ public class LootCampaignBehavior : CampaignBehaviorBase
             GameTexts.SetVariable("NAMEMODIFIER", nameModifier);
             GameTexts.SetVariable("NAMEOFITEM", item.Name);
 
-            var name = new TextObject(item.Name + ", " + nameModifier);
-            GameTexts.TryGetText("str_tor_magical_items_trait_nameComposition", out name);
+            var defaultName = item.Name + ", " + nameModifier;
+            var name = TORTextHelper.GetTextObject("tor_magical_items_trait_nameComposition", defaultName);
 
             var magicItem = EnchantmentHelper.CreateEnchantedItem(item, traitList, name.ToString(), false);
 

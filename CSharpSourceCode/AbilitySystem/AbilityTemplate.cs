@@ -143,13 +143,13 @@ namespace TOR_Core.AbilitySystem
             MBBindingList<StatItemVM> list = new MBBindingList<StatItemVM>();
             if (IsSpell)
             {
-                list.Add(new StatItemVM(TORTextHelper.GetText("str_tor_spell_stat_name", "Spell Name: "), new TextObject(Name).ToString()));
-                list.Add(new StatItemVM(TORTextHelper.GetText("str_tor_spell_stat_wom_cost", "Winds of Magic cost: "), hero.GetEffectiveWindsCostForSpell(spellTemplate) + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
+                list.Add(new StatItemVM(TORTextHelper.GetText("tor_spell_stat_name", "Spell Name: "), new TextObject(Name).ToString()));
+                list.Add(new StatItemVM(TORTextHelper.GetText("tor_spell_stat_wom_cost", "Winds of Magic cost: "), hero.GetEffectiveWindsCostForSpell(spellTemplate) + CustomResourceManager.GetResourceObject("WindsOfMagic").GetCustomResourceIconAsText()));
                 var spellTierText = GameTexts.FindText("tor_spellcasting_level", ((SpellCastingLevel)SpellTier).ToString());
-                list.Add(new StatItemVM(TORTextHelper.GetText("str_tor_spell_stat_tier", "Spell Tier: "), spellTierText.ToString()));
+                list.Add(new StatItemVM(TORTextHelper.GetText("tor_spell_stat_tier", "Spell Tier: "), spellTierText.ToString()));
                 var spellTypeText = GameTexts.FindText("tor_ability_effect_type", AbilityEffectType.ToString());
-                list.Add(new StatItemVM(TORTextHelper.GetText("str_tor_spell_stat_type", "Spell Type: "), spellTypeText.ToString()));
-                if (GameTexts.TryGetText("str_tor_cooldown_seconds", out var spellCooldownText))
+                list.Add(new StatItemVM(TORTextHelper.GetText("tor_spell_stat_type", "Spell Type: "), spellTypeText.ToString()));
+                if (GameTexts.TryGetText("tor_cooldown_seconds", out var spellCooldownText))
                 {
                     spellCooldownText.SetTextVariable("COOLDOWN", CoolDown);
                 }
@@ -158,16 +158,16 @@ namespace TOR_Core.AbilitySystem
                     spellCooldownText = new TextObject(CoolDown.ToString() + " seconds");
                 }
 
-                list.Add(new StatItemVM(TORTextHelper.GetText("str_tor_spell_stat_cooldown", "Cooldown: "), spellCooldownText.ToString()));
+                list.Add(new StatItemVM(TORTextHelper.GetText("tor_spell_stat_cooldown", "Cooldown: "), spellCooldownText.ToString()));
             }
             else if (AbilityType == AbilityType.Prayer)
             {
-                list.Add(new StatItemVM(TORTextHelper.GetText("str_tor_prayer_stat_name", "Prayer Name: "), new TextObject(Name).ToString()));
+                list.Add(new StatItemVM(TORTextHelper.GetText("tor_prayer_stat_name", "Prayer Name: "), new TextObject(Name).ToString()));
                 var prayerTierText = GameTexts.FindText("tor_prayer_level", ((PrayerLevel)SpellTier).ToString());
-                list.Add(new StatItemVM(TORTextHelper.GetText("str_tor_prayer_stat_tier", "Prayer Tier: "), prayerTierText.ToString()));
+                list.Add(new StatItemVM(TORTextHelper.GetText("tor_prayer_stat_tier", "Prayer Tier: "), prayerTierText.ToString()));
                 var prayerTypeText = GameTexts.FindText("tor_ability_effect_type", AbilityEffectType.ToString());
-                list.Add(new StatItemVM(TORTextHelper.GetText("str_tor_prayer_stat_type", "Prayer Type: "), prayerTypeText.ToString()));
-                if (GameTexts.TryGetText("str_tor_cooldown_seconds", out var prayerCooldownText))
+                list.Add(new StatItemVM(TORTextHelper.GetText("tor_prayer_stat_type", "Prayer Type: "), prayerTypeText.ToString()));
+                if (GameTexts.TryGetText("tor_cooldown_seconds", out var prayerCooldownText))
                 {
                     prayerCooldownText.SetTextVariable("COOLDOWN", CoolDown);
                 }
@@ -175,7 +175,7 @@ namespace TOR_Core.AbilitySystem
                 {
                     prayerCooldownText = new TextObject(CoolDown.ToString() + " seconds");
                 }
-                list.Add(new StatItemVM(TORTextHelper.GetText("str_tor_prayer_stat_cooldown", "Cooldown: "), prayerCooldownText.ToString()));
+                list.Add(new StatItemVM(TORTextHelper.GetText("tor_prayer_stat_cooldown", "Cooldown: "), prayerCooldownText.ToString()));
             }
             return list;
         }

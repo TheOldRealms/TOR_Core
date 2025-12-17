@@ -367,7 +367,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             null, UnlockRuneLordCareerTier2, 200);
 
         // Chapter 2
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", reintro, GameTexts.FindText("str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", reintro, GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0").ToString(),
             () => !Hero.MainHero.HasAttribute("PlayerRunelord"), () =>
             {
                 var quest = TORQuestHelper.GetCurrentQuest<RunelordQuest>("runelord_quest_2", true, IsRunelordInFront, out var existent);
