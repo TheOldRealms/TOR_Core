@@ -164,11 +164,7 @@ public class TeefBehavior : CampaignBehaviorBase
                 TORTextHelper.GetTextObject("tor_gs_give_items_to_boss_text", "Give Items to the Big boss"),
                 () => OnItemsDiscarded(donatedItems));
         }
-
-
-            var emptyRoster = new ItemRoster();
-            InventoryScreenHelper.OpenScreenAsReceiveItems(emptyRoster, TORTextHelper.GetTextObject("tor_gs_give_items_to_boss_text", "Give Items to the Big boss"), () => AfterDonation(currentRosterWithEquipment));
-
+        
         void OpenForCreatingLootPiles()
         {
             var currentRoster = new ItemRoster(Hero.MainHero.PartyBelongedTo.ItemRoster);
