@@ -116,7 +116,7 @@ namespace TOR_Core.HarmonyPatches
                 __result = ExtendedItemObjectManager.CanCharacterUseItem(itemVM.ItemRosterElement.EquipmentElement.Item, currentCharacter);
                 if (!__result)
                 {
-                    TextObject textObject = new TextObject("{=!}You are not the correct race to equip this item.", null);
+                    TextObject textObject = TORTextHelper.GetTextObject("tor_inventory_race_restriction", "You are not the correct race to equip this item.");
                     MBInformationManager.AddQuickInformation(textObject);
                 }
             }

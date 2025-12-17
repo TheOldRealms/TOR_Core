@@ -169,33 +169,33 @@ namespace TOR_Core.HarmonyPatches
             {
                 if (settlement.OwnerClan == Clan.PlayerClan)
                 {
-                    textObject = new TextObject("{=kXVHwjoV}You have arrived at your fief of {SETTLEMENT_LINK}. {PROSPERITY_INFO} {MORALE_INFO} {ROR_INFO}", null);
+                    textObject = TORTextHelper.GetTextObject("tor_settlement_arrival_town_player", "You have arrived at your fief of {SETTLEMENT_LINK}. {PROSPERITY_INFO} {MORALE_INFO} {ROR_INFO}");
                 }
                 else
                 {
-                    textObject = new TextObject("{=UWzQsHA2}{SETTLEMENT_LINK} is governed by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {PROSPERITY_INFO} {MORALE_INFO} {ROR_INFO}", null);
+                    textObject = TORTextHelper.GetTextObject("tor_settlement_arrival_town_other", "{SETTLEMENT_LINK} is governed by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {PROSPERITY_INFO} {MORALE_INFO} {ROR_INFO}");
                 }
             }
             else if (settlement.IsCastle)
             {
                 if (settlement.OwnerClan == Clan.PlayerClan)
                 {
-                    textObject = new TextObject("{=dA8RGoQ1}You have arrived at {SETTLEMENT_LINK}. {KEEP_INFO} {ROR_INFO}", null);
+                    textObject = TORTextHelper.GetTextObject("tor_settlement_arrival_castle_player", "You have arrived at {SETTLEMENT_LINK}. {KEEP_INFO} {ROR_INFO}");
                 }
                 else
                 {
-                    textObject = new TextObject("{=4pmvrnmN}The castle of {SETTLEMENT_LINK} is owned by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {KEEP_INFO} {ROR_INFO}", null);
+                    textObject = TORTextHelper.GetTextObject("tor_settlement_arrival_castle_other", "The castle of {SETTLEMENT_LINK} is owned by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {KEEP_INFO} {ROR_INFO}");
                 }
             }
             else if (settlement.IsVillage)
             {
                 if (settlement.OwnerClan == Clan.PlayerClan)
                 {
-                    textObject = new TextObject("{=M5iR1e5h}You have arrived at your fief of {SETTLEMENT_LINK}. {PROSPERITY_INFO} {ROR_INFO}", null);
+                    textObject = TORTextHelper.GetTextObject("tor_settlement_arrival_village_player", "You have arrived at your fief of {SETTLEMENT_LINK}. {PROSPERITY_INFO} {ROR_INFO}");
                 }
                 else
                 {
-                    textObject = new TextObject("{=RVDojUOM}The lands around {SETTLEMENT_LINK} are owned mostly by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {PROSPERITY_INFO} {ROR_INFO}", null);
+                    textObject = TORTextHelper.GetTextObject("tor_settlement_arrival_village_other", "The lands around {SETTLEMENT_LINK} are owned mostly by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {PROSPERITY_INFO} {ROR_INFO}");
                 }
             }
             settlement.OwnerClan.Leader.SetPropertiesToTextObject(textObject, "LORD");
@@ -207,7 +207,7 @@ namespace TOR_Core.HarmonyPatches
             if (settlement.OwnerClan.Leader == Hero.MainHero && !Hero.MainHero.MapFaction.IsKingdomFaction)
             {
                 textObject.SetTextVariable("FACTION_TERM", Hero.MainHero.Clan.EncyclopediaLinkWithName);
-                textObject.SetTextVariable("FACTION_OFFICIAL", new TextObject("{=hb30yQPN}leader", null));
+                textObject.SetTextVariable("FACTION_OFFICIAL", TORTextHelper.GetTextObject("tor_faction_leader", "leader"));
             }
             else
             {

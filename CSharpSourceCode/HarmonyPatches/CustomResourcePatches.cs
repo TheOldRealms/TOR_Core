@@ -11,6 +11,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -131,7 +132,7 @@ namespace TOR_Core.HarmonyPatches
         {
             if (areUpgradesDisabled)
             {
-                return new TextObject("{=R4rTlKMU}Troop upgrades are currently disabled.", null).ToString();
+                return TORTextHelper.GetText("tor_upgrades_disabled", "Troop upgrades are currently disabled.");
             }
             string text = null;
             CharacterObject characterObject = character.UpgradeTargets[index];
@@ -140,12 +141,12 @@ namespace TOR_Core.HarmonyPatches
             {
                 int upgradeXpCost = character.GetUpgradeXpCost(PartyBase.MainParty, index);
                 GameTexts.SetVariable("newline", "\n");
-                TextObject textObject = new TextObject("{=f4nc7FfE}Upgrade to {UPGRADE_NAME}", null);
+                TextObject textObject = TORTextHelper.GetTextObject("tor_upgrade_to", "Upgrade to {UPGRADE_NAME}");
                 textObject.SetTextVariable("UPGRADE_NAME", characterObject.Name);
                 text = textObject.ToString();
                 if (troop.Xp < upgradeXpCost)
                 {
-                    TextObject textObject2 = new TextObject("{=Voa0sinH}Required: {NEEDED_EXP_AMOUNT}xp (You have {CURRENT_EXP_AMOUNT})", null);
+                    TextObject textObject2 = TORTextHelper.GetTextObject("tor_required_xp", "Required: {NEEDED_EXP_AMOUNT}xp (You have {CURRENT_EXP_AMOUNT})");
                     textObject2.SetTextVariable("NEEDED_EXP_AMOUNT", upgradeXpCost);
                     textObject2.SetTextVariable("CURRENT_EXP_AMOUNT", troop.Xp);
                     GameTexts.SetVariable("STR1", text);
@@ -154,7 +155,7 @@ namespace TOR_Core.HarmonyPatches
                 }
                 if (characterObject.UpgradeRequiresItemFromCategory != null)
                 {
-                    TextObject textObject3 = new TextObject((numOfItems > 0) ? "{=Raa4j4rF}Required: {UPGRADE_ITEM}" : "{=rThSy9ed}Required: {UPGRADE_ITEM} (You have none)", null);
+                    TextObject textObject3 = (numOfItems > 0) ? TORTextHelper.GetTextObject("tor_required_item", "Required: {UPGRADE_ITEM}") : TORTextHelper.GetTextObject("tor_required_item_none", "Required: {UPGRADE_ITEM} (You have none)");
                     textObject3.SetTextVariable("UPGRADE_ITEM", characterObject.UpgradeRequiresItemFromCategory.GetName().ToString());
                     GameTexts.SetVariable("STR1", text);
                     GameTexts.SetVariable("STR2", textObject3.ToString());
@@ -163,14 +164,14 @@ namespace TOR_Core.HarmonyPatches
                 var resource = characterObject.GetCustomResourceRequiredForUpgrade(true);
                 if (resource != null)
                 {
-                    TextObject resourceText = new TextObject("{=partyscreen_resource_text}Required: {NEEDED_AMOUNT} {RESOURCE_ICON}", null);
+                    TextObject resourceText = TORTextHelper.GetTextObject("partyscreen_resource_text", "Required: {NEEDED_AMOUNT} {RESOURCE_ICON}");
                     resourceText.SetTextVariable("NEEDED_AMOUNT", resource.Item2);
                     resourceText.SetTextVariable("RESOURCE_ICON", resource.Item1.GetCustomResourceIconAsText());
                     GameTexts.SetVariable("STR1", text);
                     GameTexts.SetVariable("STR2", resourceText);
                     text = GameTexts.FindText("str_string_newline_string", null).ToString();
                 }
-                TextObject textObject4 = new TextObject((Hero.MainHero.Gold + partyGoldChangeAmount < upgradeCoinCost) ? "{=63Ic1Ahe}Cost: {UPGRADE_COST} (You don't have)" : "{=McJjNM50}Cost: {UPGRADE_COST}", null);
+                TextObject textObject4 = (Hero.MainHero.Gold + partyGoldChangeAmount < upgradeCoinCost) ? TORTextHelper.GetTextObject("tor_cost_not_enough", "Cost: {UPGRADE_COST} (You don't have)") : TORTextHelper.GetTextObject("tor_cost", "Cost: {UPGRADE_COST}");
                 textObject4.SetTextVariable("UPGRADE_COST", upgradeCoinCost);
                 GameTexts.SetVariable("STR1", textObject4);
                 GameTexts.SetVariable("STR2", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
@@ -181,7 +182,7 @@ namespace TOR_Core.HarmonyPatches
                 if (!hasRequiredPerk)
                 {
                     GameTexts.SetVariable("STR1", text);
-                    TextObject textObject5 = new TextObject("{=68IlDbA2}You need to have {PERK_NAME} perk to upgrade a bandit troop to a normal troop.", null);
+                    TextObject textObject5 = TORTextHelper.GetTextObject("tor_perk_required", "You need to have {PERK_NAME} perk to upgrade a bandit troop to a normal troop.");
                     textObject5.SetTextVariable("PERK_NAME", requiredPerk.Name);
                     GameTexts.SetVariable("STR2", textObject5);
                     text = GameTexts.FindText("str_string_newline_string", null).ToString();
