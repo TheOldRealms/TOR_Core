@@ -255,16 +255,18 @@
   <string id="tor_quest_hunt_cultist_issue_accept_player" text="{=str_tor_quest_hunt_cultist_issue_accept_player}What needs to be done?"/>
   <string id="tor_quest_hunt_cultist_issue_explanation" text="{=str_tor_quest_hunt_cultist_issue_explanation}I need you to travel to {TARGET_SETTLEMENT}. Investigate the local populace and root out any cultists. On successful completion, the order will pay you {REWARD}{GOLD_ICON}."/>
   <string id="tor_quest_hunt_cultist_accept_player" text="{=str_tor_quest_hunt_cultist_accept_player}Consider it done."/>
-  <string id="tor_quest_hunt_cultist_title" text="{=str_tor_quest_hunt_cultist_title}A cultist in our midst"/>
-  <string id="tor_quest_hunt_cultist_description" text="{=str_tor_quest_hunt_cultist_description}Travel to target settlement and root out any cultist who may be hiding there."/>
+  <string id="tor_quest_hunt_cultist_issue_title" text="{=str_tor_quest_hunt_cultist_issue_title}A cultist in our midst"/>
+  <string id="tor_quest_hunt_cultist_description" text="{=str_tor_quest_hunt_cultist_description}Travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there."/>
   <string id="tor_quest_hunt_cultist_quest_title" text="{=str_tor_quest_hunt_cultist_quest_title}A cultist in our midst"/>
   <string id="tor_quest_hunt_cultist_offer_dialog" text="{=str_tor_quest_hunt_cultist_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"/>
   <string id="tor_quest_hunt_cultist_discuss_dialog" text="{=str_tor_quest_hunt_cultist_discuss_dialog}It was good doing business with you."/>
   <string id="tor_quest_hunt_cultist_prepare_to_die" text="{=str_tor_quest_hunt_cultist_prepare_to_die}Prepare to die!"/>
+  <string id="tor_khorne_cultist_mission_dialog" text="{=str_khorne_cultist_mission}This vessel is mine. Don't interfere with my plans!"/>
   <string id="tor_quest_hunt_cultist_out_of_time_log" text="{=str_tor_quest_hunt_cultist_out_of_time_log}You failed to complete the investigation in time. Any potential cultists are surely in the wind now."/>
-  <string id="tor_quest_hunt_cultist_village_raided_info" text="{=str_tor_quest_hunt_cultist_village_raided_info}The village is raided, no chance to find any cultists now. Come back when the village is repopulated."/>
+  <string id="tor_quest_hunt_cultist_village_raided_title" text="{=str_tor_quest_hunt_cultist_village_raided_title}Village Raided"/>
+  <string id="tor_quest_hunt_cultist_village_raided_info" text="{=str_tor_quest_hunt_cultist_village_raided_info}The village has been raided. Any cultists have likely fled or gone into hiding. Return when the village has been repopulated."/>
   <string id="tor_quest_hunt_cultist_log_updated_success" text="{=str_tor_quest_hunt_cultist_log_updated_success}You were successful in uncovering the cultists."/>
-  <string id="tor_quest_hunt_cultist_log_updated_fail" text="{=str_tor_quest_hunt_cultist_log_updated_fail}The cultists escaped."/>
+  <string id="tor_quest_hunt_cultist_log_updated_fail" text="{=str_tor_quest_hunt_cultist_log_updated_fail}The cultists have fled before you could deal with them."/>
   <string id="tor_quest_hunt_cultist_started" text="{=str_tor_quest_hunt_cultist_started}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there."/>
 
   <!-- Quests - Plagued Village -->
