@@ -161,7 +161,7 @@ public class TeefBehavior : CampaignBehaviorBase
 
             InventoryScreenHelper.OpenScreenAsReceiveItems(
                 donatedItems,
-                new TextObject("Give Items to the Big boss"),
+                TORTextHelper.GetTextObject("tor_gs_give_items_to_boss_text", "Give Items to the Big boss"),
                 () => OnItemsDiscarded(donatedItems));
         }
 
