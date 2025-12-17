@@ -53,7 +53,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddPlayerLine("blackgrail_iamready", "black_grail_request_answer_areyouready", "black_grail_player_prompt", TORTextHelper.GetText("tor_blackgrail_answer_player_ready", "I am ready, mylord."), null, () => DisplayPrompt(TORCareers.BlackGrailKnight, OnBlackGrailReceived));
             starter.AddPlayerLine("blackgrail_iamnotready", "black_grail_request_answer_areyouready", "black_grail_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "BlackGrailKnight", "On second thought, I need to think about it.", true), null, null);
 
-            starter.AddDialogLine("black_grail_player_prompt", "black_grail_player_prompt", "black_grail_player_ready","...", null, null);
+            starter.AddDialogLine("black_grail_player_prompt", "black_grail_player_prompt", "black_grail_player_ready", TORTextHelper.GetText("tor_career_switch_ellipsis", "..."), null, null);
 
             starter.AddPlayerLine("bloodkiss_inqury_declined", "black_grail_player_ready", "black_grail_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "BlackGrailKnight", "On second thought, I need to think about it.", true), () => inquiryDeclined, null);
             starter.AddDialogLine("blackgrail_receive", "black_grail_player_ready", "black_grail_player_playcutscene", TORTextHelper.GetText("tor_blackgrail_receive", "The truth is: The Bretonnes, proud humans follow the whisperings of an Elf. The Lady is nothing more than a Elven Witch, not a goddess or saint. Our whole Kingdom is build upon the Lie of Lady. I will clean you from these lies, drink from this grail, and gain the true powers of Bretonnia!"), () => !inquiryDeclined, null);
@@ -93,7 +93,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddPlayerLine("bloodkiss_iamready", "bloodkiss_blooddragon_areyouready", "bloodkiss_blooddragon_player_prompt", TORTextHelper.GetText("tor_bloodkiss_blooddragon_player_ready", "I am ready, Grandmaster."), null, null);
             starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_blooddragon_areyouready", "bloodkiss_blooddragon_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "BloodKnight", "On second thought, I need to think about it.", true), null, null);
 
-            starter.AddDialogLine("bloodkiss_blooddragon_player_prompt", "bloodkiss_blooddragon_player_prompt", "bloodkiss_blooddragon_player_ready", "...", null, () => DisplayPrompt(TORCareers.BloodKnight, OnBloodKissBloodDragonRecieved));
+            starter.AddDialogLine("bloodkiss_blooddragon_player_prompt", "bloodkiss_blooddragon_player_prompt", "bloodkiss_blooddragon_player_ready", TORTextHelper.GetText("tor_career_switch_ellipsis", "..."), null, () => DisplayPrompt(TORCareers.BloodKnight, OnBloodKissBloodDragonRecieved));
 
 
             starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_blooddragon_player_ready", "bloodkiss_blooddragon_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "BloodKnight", "On second thought, I need to think about it.", true), () => inquiryDeclined, null);
@@ -137,7 +137,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddPlayerLine("bloodkiss_iamready", "bloodkiss_areyouready", "bloodkiss_player_prompt", TORTextHelper.GetText("tor_bloodkiss_player_ready", "I am ready my lord."), null, null);
             starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_areyouready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "MinorVampire", "On second thought, I need to think about it.", true), null, null);
 
-            starter.AddDialogLine("bloodkiss_player_prompt", "bloodkiss_player_prompt", "bloodkiss_player_ready", "...", null, () => DisplayPrompt(TORCareers.MinorVampire, OnBloodKissRecieved));
+            starter.AddDialogLine("bloodkiss_player_prompt", "bloodkiss_player_prompt", "bloodkiss_player_ready", TORTextHelper.GetText("tor_career_switch_ellipsis", "..."), null, () => DisplayPrompt(TORCareers.MinorVampire, OnBloodKissRecieved));
 
             starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_player_ready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "MinorVampire", "On second thought, I need to think about it.", true), () => inquiryDeclined, null);
 
@@ -184,7 +184,7 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddPlayerLine("bloodkiss_iamready", "bloodkiss_necrach_areyouready", "bloodkiss_necrach_player_prompt", TORTextHelper.GetText("tor_bloodkiss_player_ready", "I am ready my lord."), null, null);
             starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_necrach_areyouready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "Necrarch", "On second thought, I need to think about it.", true), null, null);
 
-            starter.AddDialogLine("bloodkiss_necrach_player_prompt", "bloodkiss_necrach_player_prompt", "bloodkiss_nechrach_player_ready", "...", null, () => DisplayPrompt(TORCareers.Necrarch, OnNecrachBloodKissRecieved));
+            starter.AddDialogLine("bloodkiss_necrach_player_prompt", "bloodkiss_necrach_player_prompt", "bloodkiss_nechrach_player_ready", TORTextHelper.GetText("tor_career_switch_ellipsis", "..."), null, () => DisplayPrompt(TORCareers.Necrarch, OnNecrachBloodKissRecieved));
 
             starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_player_ready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "Necrarch", "On second thought, I need to think about it.", true), () => inquiryDeclined, null);
 
@@ -225,7 +225,8 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
                 explanation,
                 true,
                 true,
-                "Accept", "Decline",
+                TORTextHelper.GetText("tor_career_switch_accept", "Accept"),
+                TORTextHelper.GetText("tor_career_switch_decline", "Decline"),
                  switchCareer,
                 () => inquiryDeclined = true);
             InformationManager.ShowInquiry(inquiry);
