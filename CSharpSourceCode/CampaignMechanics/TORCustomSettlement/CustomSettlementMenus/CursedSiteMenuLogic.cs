@@ -195,12 +195,12 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         {
             if (!Hero.MainHero.PartyBelongedTo.MemberRoster.ToFlattenedRoster().Any(x => x.Troop.IsUndead()))
             {
-                args.Tooltip = new TextObject("There are no undead in your party.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_no_undead", "There are no undead in your party.");
                 args.IsEnabled = false;
             }
             if (Hero.MainHero.GetCustomResourceValue("DarkEnergy") < _empoweringUndeadCost)
             {
-                args.Tooltip = new TextObject("You do not have enough Dark Energy ({DARKENERGYICON}).");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_not_enough_dark_energy", "You do not have enough Dark Energy ({DARKENERGYICON}).");
                 args.IsEnabled = false;
             }
         }

@@ -380,7 +380,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", TORTextHelper.GetText("tor_hireling_desert_text", "Desert"), args =>
             {
-                var infoText = new TextObject("{=FLT0000045}This will damage your reputation with the {FACTION}. Serve for {MINIMUMSERVEDAYS} days, and speak to your enlisting Lord to avoid consequences");
+                var infoText = TORTextHelper.GetTextObject("tor_hireling_desert_warning", "This will damage your reputation with the {FACTION}. Serve for {MINIMUMSERVEDAYS} days, and speak to your enlisting Lord to avoid consequences.");
                 string factionName = (_hirelingEnlistingLord != null) ? _hirelingEnlistingLord.MapFaction.Name.ToString() : "DATA CORRUPTION ERROR";
                 infoText.SetTextVariable("FACTION", factionName);
                 infoText.SetTextVariable("MINIMUMSERVEDAYS", MinimumServeDays);

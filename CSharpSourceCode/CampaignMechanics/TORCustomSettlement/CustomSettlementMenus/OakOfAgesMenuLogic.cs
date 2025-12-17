@@ -82,8 +82,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             UpgradeId = "WEKithbandSymbol",
             Cost = TreeSymbolUnlockCosts,
             MinimumLevel = 0,
-            UpgradeText = new TextObject("Decipher the Symbol of the Kithband. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Symbol of the Kithband. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            UpgradeText = TORTextHelper.GetTextObject("tor_oak_symbol_kithband_unlock", "Decipher the Symbol of the Kithband. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = TORTextHelper.GetTextObject("tor_oak_symbol_kithband_apply", "Apply the Symbol of the Kithband. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
             ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEKithbandSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
@@ -91,8 +91,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             UpgradeId = "WEWardancerSymbol",
             Cost = TreeSymbolUnlockCosts,
             MinimumLevel = 0,
-            UpgradeText = new TextObject("Decipher the Symbol of the Wardancer. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Symbol of the Wardancer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            UpgradeText = TORTextHelper.GetTextObject("tor_oak_symbol_wardancer_unlock", "Decipher the Symbol of the Wardancer. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = TORTextHelper.GetTextObject("tor_oak_symbol_wardancer_apply", "Apply the Symbol of the Wardancer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
             ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEWardancerSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
@@ -100,8 +100,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             UpgradeId = "WETreekinSymbol",
             Cost = TreeSymbolUnlockCosts,
             MinimumLevel = 0,
-            UpgradeText = new TextObject("Decipher the Symbol of the Treekin. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Symbol of the Treekin. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            UpgradeText = TORTextHelper.GetTextObject("tor_oak_symbol_treekin_unlock", "Decipher the Symbol of the Treekin. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = TORTextHelper.GetTextObject("tor_oak_symbol_treekin_apply", "Apply the Symbol of the Treekin. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
             ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WETreekinSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
@@ -109,8 +109,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             UpgradeId = "WEOrionSymbol",
             Cost = TreeSymbolUnlockCosts,
             MinimumLevel = 15,
-            UpgradeText = new TextObject("Decipher the Symbol of Orion. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Symbol of Orion. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            UpgradeText = TORTextHelper.GetTextObject("tor_oak_symbol_orion_unlock", "Decipher the Symbol of Orion. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = TORTextHelper.GetTextObject("tor_oak_symbol_orion_apply", "Apply the Symbol of Orion. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
             ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEOrionSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
@@ -118,8 +118,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             UpgradeId = "WEArielSymbol",
             Cost = TreeSymbolUnlockCosts,
             MinimumLevel = 15,
-            UpgradeText = new TextObject("Decipher the Symbol of Ariel. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Symbol of Ariel. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            UpgradeText = TORTextHelper.GetTextObject("tor_oak_symbol_ariel_unlock", "Decipher the Symbol of Ariel. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = TORTextHelper.GetTextObject("tor_oak_symbol_ariel_apply", "Apply the Symbol of Ariel. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
             ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEArielSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
@@ -127,8 +127,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             UpgradeId = "WEWandererSymbol",
             Cost = TreeSymbolUnlockCosts,
             MinimumLevel = 15,
-            UpgradeText = new TextObject("Decipher the Symbol of the Wanderer.{TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Symbol of the Wanderer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            UpgradeText = TORTextHelper.GetTextObject("tor_oak_symbol_wanderer_unlock", "Decipher the Symbol of the Wanderer. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = TORTextHelper.GetTextObject("tor_oak_symbol_wanderer_apply", "Apply the Symbol of the Wanderer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
             ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEWandererSymbol").Value+"{UPGRADEFAILEDREASON}")
         },
         new TreeSymbol()
@@ -136,8 +136,8 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             UpgradeId = "WEDurthuSymbol",
             Cost = TreeSymbolUnlockCosts,
             MinimumLevel = 20,
-            UpgradeText = new TextObject("Decipher the Symbol of Durthu.{TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
-            ApplyText = new TextObject("Apply the Symbol of Durthu. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
+            UpgradeText = TORTextHelper.GetTextObject("tor_oak_symbol_durthu_unlock", "Decipher the Symbol of Durthu. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"),
+            ApplyText = TORTextHelper.GetTextObject("tor_oak_symbol_durthu_apply", "Apply the Symbol of Durthu. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"),
             ToolTipText = new TextObject( GameTexts.FindText("tor_treesymbol_description","WEDurthuSymbol").Value+"{UPGRADEFAILEDREASON}")
         }
     ];
@@ -252,7 +252,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             AddTreemen);
 
         starter.AddGameMenuOption("oak_of_ages_tree_spirits_menu", "treeSpirits_C", "Relieve (yourself of) Treespirits", null, (args)
-                => PartyScreenHelper.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), new TextObject("Donated Spirits"),
+                => PartyScreenHelper.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), TORTextHelper.GetTextObject("tor_oak_of_ages_donated_spirits", "Donated Spirits"),
                     500, 0, null, TranferCompleted, IsTransferableTreeSpirit, null),
             false);     //check if left side only contain tree spirits done button condition
 
@@ -310,7 +310,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             args.IsEnabled = mainHero.GetCultureSpecificCustomResourceValue() >= TreemanPrice;
             if (!args.IsEnabled)
             {
-                args.Tooltip = new TextObject("You broke. May not even need this since the cost is written on the menu text.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_oak_of_ages_not_enough_harmony", "You do not have enough Forest Harmony.");
                 return true;
             }
 
@@ -321,7 +321,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
 
             if (amount == 0) //Durthu symbol only increases the cap, it doesn't decrease the minimum spellcraft required
             {
-                args.Tooltip = new TextObject("No sufficiently strong spellsinger present who can convince the spirits to follow you.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_oak_of_ages_no_spellsinger", "No sufficiently strong spellsinger present who can convince the spirits to follow you.");
                 args.IsEnabled = false;
                 return true;
             }
@@ -329,7 +329,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
 
             if (mainHero.PartyBelongedTo.Party.MemberRoster.GetTroopRoster().Where(x => x.Character.StringId.Contains("treeman")).Count() > amount)
             {
-                args.Tooltip = new TextObject("Too many treeman already follow your party");//one day we'll bother with pluralizing this
+                args.Tooltip = TORTextHelper.GetTextObject("tor_oak_of_ages_too_many_treemen", "Too many treemen already follow your party.");
                 args.IsEnabled = false;
             }
             return true;
@@ -445,7 +445,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
             _ => RemoveSymbolConsequence(true));
         starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_chalk", "Magical chalk. {TREESYMBOLFREEUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WESymbolReduceCosts", TreeSymbolUpgradeNoCost,
-                new TextObject("Remove Symbol change costs.{newline}{UPGRADEFAILEDREASON}")),
+                TORTextHelper.GetTextObject("tor_oak_upgrade_remove_symbol_costs", "Remove Symbol change costs.{newline}{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WESymbolReduceCosts", TreeSymbolUpgradeNoCost));
 
         starter.AddGameMenuOption("oak_of_ages_tree_symbols_menu", "treeSymbolMenu_leave", "Leave...", delegate (MenuCallbackArgs args)
@@ -644,18 +644,18 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
 
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_internalizePaths", "Internalize the root pathways. {ROOTTRAVELUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WETravelCostUpgrade", RootTravelCostReductionUpgradeCost,
-                new TextObject("Reduce the travel cost.{newline}{UPGRADEFAILEDREASON}")),
+                TORTextHelper.GetTextObject("tor_oak_upgrade_reduce_travel_cost", "Reduce the travel cost.{newline}{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WETravelCostUpgrade", RootTravelCostReductionUpgradeCost));
 
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_returnPath",
             "Establish pathways back to the Oak of Ages. {ROOTRETURNUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WETravelBackUpgrade", RootTravelBackUpgradeCost,
-                new TextObject("Return to the Oak from the root exit.{UPGRADEFAILEDREASON}")),
+                TORTextHelper.GetTextObject("tor_oak_upgrade_return_to_oak", "Return to the Oak from the root exit.{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WETravelBackUpgrade", RootTravelBackUpgradeCost));
 
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_healingRoot", "Healing Aura of roots. {ROOTHEALUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WETravelHealUpgrade", RootTravelBackUpgradeCost,
-                new TextObject("All troops and heroes are healed upon using the world roots{newline}{UPGRADEFAILEDREASON}")),
+                TORTextHelper.GetTextObject("tor_oak_upgrade_healing_roots", "All troops and heroes are healed upon using the world roots.{newline}{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WETravelHealUpgrade", RootHealUpgradeCost));
 
         starter.AddGameMenuOption("oak_of_ages_roots_menu", "rootMenu_leave", "Leave...", delegate (MenuCallbackArgs args)
@@ -772,7 +772,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         starter.AddGameMenuOption("worldroots_menu", "worldroots_return_paths",
             "Establish pathways back to the Oak of Ages. {ROOTRETURNUPGRADE}{FORESTHARMONY}",
             args => DefaultUnlockOakUpgradeCondition(args, "WETravelBackUpgrade", RootTravelBackUpgradeCost,
-                new TextObject("Return to the Oak from the root exit.{UPGRADEFAILEDREASON}")),
+                TORTextHelper.GetTextObject("tor_oak_upgrade_return_to_oak", "Return to the Oak from the root exit.{UPGRADEFAILEDREASON}")),
             _ => UnlockOakUpgrade("WETravelBackUpgrade", RootTravelBackUpgradeCost));
 
         starter.AddGameMenuOption("worldroots_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
@@ -799,11 +799,17 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < 50)
         {
             args.IsEnabled = false;
-            args.Tooltip = new TextObject("Not enough " + resource.Name + " requires " + cost); //I guess a TO within another one is fine to not call ToString.
+            var notEnoughText = TORTextHelper.GetTextObject("tor_oak_of_ages_not_enough_resource", "Not enough {RESOURCE_NAME}, requires {COST}.");
+            notEnoughText.SetTextVariable("RESOURCE_NAME", resource.Name);
+            notEnoughText.SetTextVariable("COST", cost);
+            args.Tooltip = notEnoughText;
             return true;
         }
 
-        args.Tooltip = new TextObject("Travel to target location (" + cost + " " + resource.GetCustomResourceIconAsText() + ")");
+        var travelText = TORTextHelper.GetTextObject("tor_oak_of_ages_travel_cost", "Travel to target location ({COST} {RESOURCE_ICON}).");
+        travelText.SetTextVariable("COST", cost);
+        travelText.SetTextVariable("RESOURCE_ICON", resource.GetCustomResourceIconAsText());
+        args.Tooltip = travelText;
 
         return true;
     }
@@ -822,7 +828,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
         else
         {
             args.IsEnabled = false;
-            args.Tooltip = new TextObject("You can't travel back without the required enhancements");
+            args.Tooltip = TORTextHelper.GetTextObject("tor_oak_of_ages_cant_travel_back", "You can't travel back without the required enhancements.");
         }
 
         return true;
@@ -871,7 +877,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
                 }
 
                 return DefaultUnlockOakUpgradeCondition(args, upgrade, PartySizeUpgradeCost * (numberOfUpgrades + 1),
-                    new TextObject("Increase party Size by 10%.{newline}{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
+                    TORTextHelper.GetTextObject("tor_oak_upgrade_party_size", "Increase party size by 10%.{newline}{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
             },
             _ => UnlockOakUpgrade(GetCurrentUpgrade("WEPartySizeUpgrade", out var numberOfUpgrades), PartySizeUpgradeCost * (1 + numberOfUpgrades)));
 
@@ -889,7 +895,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
                     GameTexts.SetVariable("HEALTHUPGRADECOST", "");
                 }
                 return DefaultUnlockOakUpgradeCondition(args, upgrade, HealthUpgradeCost * (numberOfUpgrades + 1),
-                    new TextObject("Increase maximum health by 10%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
+                    TORTextHelper.GetTextObject("tor_oak_upgrade_health", "Increase maximum health by 10%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
             },
             _ => UnlockOakUpgrade(GetCurrentUpgrade("WEHealthUpgrade", out var numberOfUpgrades), HealthUpgradeCost * (1 + numberOfUpgrades)));
 
@@ -907,7 +913,7 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
                 }
 
                 return DefaultUnlockOakUpgradeCondition(args, upgrade, GainUpgradeCost * (numberOfUpgrades + 1),
-                    new TextObject("Increase the daily harmony gain from settlements by 20%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
+                    TORTextHelper.GetTextObject("tor_oak_upgrade_harmony_gain", "Increase the daily harmony gain from settlements by 20%.{UPGRADEFAILEDREASON}"), 4 * numberOfUpgrades);
             },
             _ => UnlockOakUpgrade(GetCurrentUpgrade("WEGainUpgrade", out var numberOfUpgrades), GainUpgradeCost * (1 + numberOfUpgrades)));
 

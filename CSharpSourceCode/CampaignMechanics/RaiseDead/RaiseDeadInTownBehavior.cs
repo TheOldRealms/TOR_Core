@@ -88,7 +88,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         private void Initialize(CampaignGameStarter obj)
         {
-            obj.AddGameMenuOption("town", "graveyard", "Go to the graveyard",
+            obj.AddGameMenuOption("town", "graveyard", TORTextHelper.GetText("tor_graveyard_go_to", "Go to the graveyard"),
                  graveyardaccesscondition,
                 delegate (MenuCallbackArgs args)
                 {
@@ -99,7 +99,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             obj.AddGameMenu("graveyard", "{GRAVEYARD_INTRODUCTION}",
                 delegate (MenuCallbackArgs args)
                 {
-                    args.MenuTitle = new TextObject("Graveyard");
+                    args.MenuTitle = TORTextHelper.GetTextObject("tor_graveyard_title", "Graveyard");
                     var intro = new TextObject("{=tor_settlement_graveyard_introduction}You have arrived at {SETTLEMENT_NAME}'s Graveyard. Graves, tombstones and family crypts litter the peaceful hillside.");
                     MBTextManager.SetTextVariable("SETTLEMENT_NAME", Settlement.CurrentSettlement.Name);
                     MBTextManager.SetTextVariable("GRAVEYARD_INTRODUCTION", intro);
@@ -114,7 +114,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 }
                 , false, -1, false);
 
-            obj.AddGameMenuOption("graveyard", "graveyard_leave", "Leave",
+            obj.AddGameMenuOption("graveyard", "graveyard_leave", TORTextHelper.GetText("tor_graveyard_leave", "Leave"),
                 delegate (MenuCallbackArgs args)
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -137,7 +137,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 raisingdeadtick,
                 GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.SettlementWithBoth, 8f, GameMenu.MenuFlags.None, null);
 
-            obj.AddGameMenuOption("raising_dead", "raising_dead_leave", "Leave",
+            obj.AddGameMenuOption("raising_dead", "raising_dead_leave", TORTextHelper.GetText("tor_graveyard_leave", "Leave"),
                 delegate (MenuCallbackArgs args)
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -152,7 +152,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             obj.AddGameMenu("graveyard_interrupt", "{GRAVEYARD_INTERRUPT}",
                 delegate (MenuCallbackArgs args)
                 {
-                    args.MenuTitle = new TextObject("Caught in the act");
+                    args.MenuTitle = TORTextHelper.GetTextObject("tor_graveyard_caught_title", "Caught in the act");
                     var text = new TextObject("{=tor_settlement_graveyard_raise_dead_interrupt}The local nightwatch is onto you. Face the consequences of your vile actions.");
                     MBTextManager.SetTextVariable("GRAVEYARD_INTERRUPT", text);
                     CalculateAndApplyCrimeRatingChange();
@@ -171,7 +171,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 },
                 (MenuCallbackArgs args) => SetupBattle(), false, -1, false);
 
-            obj.AddGameMenuOption("graveyard_interrupt", "interrupt_surrender", "Surrender",
+            obj.AddGameMenuOption("graveyard_interrupt", "interrupt_surrender", TORTextHelper.GetText("tor_graveyard_surrender", "Surrender"),
                 delegate (MenuCallbackArgs args)
                 {
                     args.optionLeaveType = GameMenuOption.LeaveType.LeaveTroopsAndFlee;

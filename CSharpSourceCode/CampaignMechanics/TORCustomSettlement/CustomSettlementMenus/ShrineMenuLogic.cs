@@ -30,15 +30,15 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
     {
         starter.AddGameMenu("shrine_menu", "{LOCATION_DESCRIPTION}", ShrineMenuInit);
         starter.AddGameMenuOption("shrine_menu", "pray", "{PRAY_TEXT}", PrayCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_praying"));
-        starter.AddGameMenuOption("shrine_menu", "defile", "Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this", DefileCondtion, (args) => GameMenu.SwitchToMenu("shrine_menu_defiling"));
-        starter.AddGameMenuOption("shrine_menu", "loot", "Loot the Shrine for resources. Followers of {GOD_NAME} will remember this", LootCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_looting"));
+        starter.AddGameMenuOption("shrine_menu", "defile", TORTextHelper.GetText("tor_shrine_defile_option", "Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this."), DefileCondtion, (args) => GameMenu.SwitchToMenu("shrine_menu_defiling"));
+        starter.AddGameMenuOption("shrine_menu", "loot", TORTextHelper.GetText("tor_shrine_loot_option", "Loot the Shrine for resources. Followers of {GOD_NAME} will remember this."), LootCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_looting"));
         starter.AddGameMenuOption("shrine_menu", "donate", "{=str_tor_custom_settlement_shrine_offering_label}Give items as an offering", DonationCondition, (args) => InventoryScreenHelper.OpenScreenAsInventory());//the xp calculation is performed in ReligionCampaignBehavior.OnItemsDiscarded
         starter.AddGameMenuOption("shrine_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
-        starter.AddWaitGameMenu("shrine_menu_praying", "Praying...", delegate (MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_praying", TORTextHelper.GetText("tor_shrine_praying_progress", "Praying..."), delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             numberOfTroopsFromInteraction = 0;
@@ -46,7 +46,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             args.MenuContext.GameMenu.StartWait();
         }, null, PrayConsequence, PrayingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, TORConstants.SHRINE_PRAYING_DURATION, GameMenu.MenuFlags.None, null);
         starter.AddGameMenu("shrine_menu_pray_result", "{PRAY_RESULT} {NEWLINE} {FOLLOWERS_RESULT}", PrayResultInit);
-        starter.AddGameMenuOption("shrine_menu_pray_result", "return_to_root", "Continue", args =>
+        starter.AddGameMenuOption("shrine_menu_pray_result", "return_to_root", TORTextHelper.GetText("tor_shrine_continue", "Continue"), args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -69,14 +69,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             GameMenu.SwitchToMenu("shrine_menu");
 
         }, true);
-        starter.AddWaitGameMenu("shrine_menu_defiling", "Defiling the shrine...", delegate (MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_defiling", TORTextHelper.GetText("tor_shrine_defiling_progress", "Defiling the shrine..."), delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             PlayerEncounter.Current.IsPlayerWaiting = true;
             args.MenuContext.GameMenu.StartWait();
         }, null, DefileConsequence, DefilingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddGameMenu("shrine_menu_defile_result", "You successfully gathered " + DefilingDarkEnergyPerTick * 4 + " Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime.", null);
-        starter.AddGameMenuOption("shrine_menu_defile_result", "return_to_root", "Continue", args =>
+        starter.AddGameMenu("shrine_menu_defile_result", TORTextHelper.GetText("tor_shrine_defile_result", "You successfully gathered {DEFILE_AMOUNT} Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime."), DefileResultInit);
+        starter.AddGameMenuOption("shrine_menu_defile_result", "return_to_root", TORTextHelper.GetText("tor_shrine_continue", "Continue"), args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -85,14 +85,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             DefileResultConsequence();
             GameMenu.SwitchToMenu("shrine_menu");
         }, true);
-        starter.AddWaitGameMenu("shrine_menu_looting", "Looting the shrine...", delegate (MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_looting", TORTextHelper.GetText("tor_shrine_looting_progress", "Looting the shrine..."), delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             PlayerEncounter.Current.IsPlayerWaiting = true;
             args.MenuContext.GameMenu.StartWait();
         }, null, LootConsequence, LootingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddGameMenu("shrine_menu_loot_result", "{LOOT_RESULT}. Followers of {GOD_NAME} will perceive this as a crime.", null);
-        starter.AddGameMenuOption("shrine_menu_loot_result", "return_to_root", "Continue", args =>
+        starter.AddGameMenu("shrine_menu_loot_result", TORTextHelper.GetText("tor_shrine_loot_result", "{LOOT_RESULT}. Followers of {GOD_NAME} will perceive this as a crime."), null);
+        starter.AddGameMenuOption("shrine_menu_loot_result", "return_to_root", TORTextHelper.GetText("tor_shrine_continue", "Continue"), args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -281,6 +281,15 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         return component.IsActive && component.Religion != null;
     }
 
+    private void DefileResultInit(MenuCallbackArgs args)
+    {
+        var settlement = Settlement.CurrentSettlement;
+        if (settlement.SettlementComponent is not ShrineComponent component) return;
+        var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
+        MBTextManager.SetTextVariable("GOD_NAME", godName);
+        MBTextManager.SetTextVariable("DEFILE_AMOUNT", DefilingDarkEnergyPerTick * 4);
+    }
+
     private void DefileConsequence(MenuCallbackArgs args)
     {
         PlayerEncounter.Current.IsPlayerWaiting = false;
@@ -343,7 +352,11 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                     var totalGold = 400;
                     var totalFood = 40;
                     var totalTeef = 100;
-                    MBTextManager.SetTextVariable("LOOT_RESULT", $"You successfully looted {totalGold} gold, {totalFood} meat, and {totalTeef} Teef");
+                    var lootResultText = TORTextHelper.GetTextObject("tor_shrine_loot_result_detail", "You successfully looted {TOTAL_GOLD} gold, {TOTAL_FOOD} meat, and {TOTAL_TEEF} Teef");
+                    lootResultText.SetTextVariable("TOTAL_GOLD", totalGold);
+                    lootResultText.SetTextVariable("TOTAL_FOOD", totalFood);
+                    lootResultText.SetTextVariable("TOTAL_TEEF", totalTeef);
+                    MBTextManager.SetTextVariable("LOOT_RESULT", lootResultText);
                 }
             }
         }

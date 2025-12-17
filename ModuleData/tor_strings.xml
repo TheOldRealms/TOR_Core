@@ -2314,6 +2314,10 @@
   <string id="tor_career_decline_reconsider.BlackGrailKnight" text="{=str_tor_career_decline_reconsider_BlackGrailKnight}On second thought, I need to think about it." />
   <string id="tor_career_decline_reconsider.Necrarch" text="{=str_tor_career_decline_reconsider_Necrarch}On second thought, I need to think about it." />
 
+  <string id="tor_career_switch_ellipsis" text="{=str_tor_career_switch_ellipsis}..." />
+  <string id="tor_career_switch_accept" text="{=str_tor_career_switch_accept}Accept" />
+  <string id="tor_career_switch_decline" text="{=str_tor_career_switch_decline}Decline" />
+
   <string id="tor_career_switch_explanation.MinorVampire" text="{=str_tor_career_switch_explanation_MinorVampire}
   Accept and you shall become a Von Carstein Vampire. This decision is permanent and cannot be reversed.{newline}
   {newline}
@@ -4388,6 +4392,8 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_custom_settlement_cursed_site_purify_text" text="{=str_tor_custom_settlement_cursed_site_purify_text}Perform a ritual of warding in the name of {GOD_NAME}."/>
 	<string id="tor_custom_settlement_cursed_site_purify_wounded_result" text="{=str_tor_custom_settlement_cursed_site_purify_wounded_result}Staying in the cursed area while performing the ritual has taken a toll on your men. {PURIFICATION_WOUNDED_RESULT_NUMBER} of your party members have become wounded."/>
 	<string id="tor_custom_settlement_cursed_site_ward" text="{=str_tor_custom_settlement_cursed_site_ward}Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more"/>
+	<string id="tor_custom_settlement_cursed_site_no_undead" text="{=str_tor_custom_settlement_cursed_site_no_undead}There are no undead in your party."/>
+	<string id="tor_custom_settlement_cursed_site_not_enough_dark_energy" text="{=str_tor_custom_settlement_cursed_site_not_enough_dark_energy}You do not have enough Dark Energy ({DARKENERGYICON})."/>
 
 	<!--Shrine Menus-->
 	<string id="tor_custom_settlement_donation_perk_info" text="{=str_tor_custom_settlement_donation_perk_info}You need the Offering perk in the Faith skill line to perform this action."/>
@@ -4396,6 +4402,15 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_custom_settlement_shrine_offering_label" text="{=str_tor_custom_settlement_shrine_offering_label}Give items as an offering"/>
 	<string id="tor_custom_settlement_shrine_pray_result" text="{=str_tor_custom_settlement_shrine_pray_result}You received the blessing of {GOD_NAME}."/>
 	<string id="tor_custom_settlement_shrine_pray_text" text="{=str_tor_custom_settlement_shrine_pray_text}Pray to receive the blessing of {GOD_NAME}"/>
+	<string id="tor_shrine_defile_option" text="{=str_tor_shrine_defile_option}Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this."/>
+	<string id="tor_shrine_loot_option" text="{=str_tor_shrine_loot_option}Loot the Shrine for resources. Followers of {GOD_NAME} will remember this."/>
+	<string id="tor_shrine_praying_progress" text="{=str_tor_shrine_praying_progress}Praying..."/>
+	<string id="tor_shrine_continue" text="{=str_tor_shrine_continue}Continue"/>
+	<string id="tor_shrine_defiling_progress" text="{=str_tor_shrine_defiling_progress}Defiling the shrine..."/>
+	<string id="tor_shrine_defile_result" text="{=str_tor_shrine_defile_result}You successfully gathered {DEFILE_AMOUNT} Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime."/>
+	<string id="tor_shrine_looting_progress" text="{=str_tor_shrine_looting_progress}Looting the shrine..."/>
+	<string id="tor_shrine_loot_result" text="{=str_tor_shrine_loot_result}{LOOT_RESULT}. Followers of {GOD_NAME} will perceive this as a crime."/>
+	<string id="tor_shrine_loot_result_detail" text="{=str_tor_shrine_loot_result_detail}You successfully looted {TOTAL_GOLD} gold, {TOTAL_FOOD} meat, and {TOTAL_TEEF} Teef"/>
 
 	<!--Oak of Ages Menus-->
 	<string id="tor_custom_settlement_we_not_enough_harmony" text="{=str_tor_custom_settlement_we_not_enough_harmony}Not enough Harmony."/>
@@ -4499,5 +4514,43 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 
 	<!--Spell Trainer Eonir Dialogs-->
 	<string id="tor_spelltrainer_eonir_open_book" text="{=str_tor_spelltrainer_eonir_open_book}I seek to further my knowledge of the Winds of Magic, can you help me achieve this?"/>
+
+	<!--Oak of Ages Menus-->
+	<string id="tor_oak_of_ages_not_enough_harmony" text="{=str_tor_oak_of_ages_not_enough_harmony}You do not have enough Forest Harmony."/>
+	<string id="tor_oak_of_ages_no_spellsinger" text="{=str_tor_oak_of_ages_no_spellsinger}No sufficiently strong spellsinger present who can convince the spirits to follow you."/>
+	<string id="tor_oak_of_ages_too_many_treemen" text="{=str_tor_oak_of_ages_too_many_treemen}Too many treemen already follow your party."/>
+	<string id="tor_oak_of_ages_not_enough_resource" text="{=str_tor_oak_of_ages_not_enough_resource}Not enough {RESOURCE_NAME}, requires {COST}."/>
+	<string id="tor_oak_of_ages_travel_cost" text="{=str_tor_oak_of_ages_travel_cost}Travel to target location ({COST} {RESOURCE_ICON})."/>
+	<string id="tor_oak_of_ages_cant_travel_back" text="{=str_tor_oak_of_ages_cant_travel_back}You can't travel back without the required enhancements."/>
+	<string id="tor_oak_of_ages_donated_spirits" text="{=str_tor_oak_of_ages_donated_spirits}Donated Spirits"/>
+	<string id="tor_oak_upgrade_remove_symbol_costs" text="{=str_tor_oak_upgrade_remove_symbol_costs}Remove Symbol change costs.{newline}{UPGRADEFAILEDREASON}"/>
+	<string id="tor_oak_upgrade_reduce_travel_cost" text="{=str_tor_oak_upgrade_reduce_travel_cost}Reduce the travel cost.{newline}{UPGRADEFAILEDREASON}"/>
+	<string id="tor_oak_upgrade_return_to_oak" text="{=str_tor_oak_upgrade_return_to_oak}Return to the Oak from the root exit.{UPGRADEFAILEDREASON}"/>
+	<string id="tor_oak_upgrade_healing_roots" text="{=str_tor_oak_upgrade_healing_roots}All troops and heroes are healed upon using the world roots.{newline}{UPGRADEFAILEDREASON}"/>
+	<string id="tor_oak_upgrade_party_size" text="{=str_tor_oak_upgrade_party_size}Increase party size by 10%.{newline}{UPGRADEFAILEDREASON}"/>
+	<string id="tor_oak_upgrade_health" text="{=str_tor_oak_upgrade_health}Increase maximum health by 10%.{UPGRADEFAILEDREASON}"/>
+	<string id="tor_oak_upgrade_harmony_gain" text="{=str_tor_oak_upgrade_harmony_gain}Increase the daily harmony gain from settlements by 20%.{UPGRADEFAILEDREASON}"/>
+	<string id="tor_oak_symbol_kithband_unlock" text="{=str_tor_oak_symbol_kithband_unlock}Decipher the Symbol of the Kithband. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_kithband_apply" text="{=str_tor_oak_symbol_kithband_apply}Apply the Symbol of the Kithband. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_wardancer_unlock" text="{=str_tor_oak_symbol_wardancer_unlock}Decipher the Symbol of the Wardancer. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_wardancer_apply" text="{=str_tor_oak_symbol_wardancer_apply}Apply the Symbol of the Wardancer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_treekin_unlock" text="{=str_tor_oak_symbol_treekin_unlock}Decipher the Symbol of the Treekin. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_treekin_apply" text="{=str_tor_oak_symbol_treekin_apply}Apply the Symbol of the Treekin. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_orion_unlock" text="{=str_tor_oak_symbol_orion_unlock}Decipher the Symbol of Orion. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_orion_apply" text="{=str_tor_oak_symbol_orion_apply}Apply the Symbol of Orion. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_ariel_unlock" text="{=str_tor_oak_symbol_ariel_unlock}Decipher the Symbol of Ariel. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_ariel_apply" text="{=str_tor_oak_symbol_ariel_apply}Apply the Symbol of Ariel. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_wanderer_unlock" text="{=str_tor_oak_symbol_wanderer_unlock}Decipher the Symbol of the Wanderer. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_wanderer_apply" text="{=str_tor_oak_symbol_wanderer_apply}Apply the Symbol of the Wanderer. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_durthu_unlock" text="{=str_tor_oak_symbol_durthu_unlock}Decipher the Symbol of Durthu. {TREESYMBOLUNLOCKCOST}{FORESTHARMONY}"/>
+	<string id="tor_oak_symbol_durthu_apply" text="{=str_tor_oak_symbol_durthu_apply}Apply the Symbol of Durthu. {TREESYMBOLCHANGECOST}{FORESTHARMONY}"/>
+
+	<!--Graveyard Menus-->
+	<string id="tor_graveyard_go_to" text="{=str_tor_graveyard_go_to}Go to the graveyard"/>
+	<string id="tor_graveyard_title" text="{=str_tor_graveyard_title}Graveyard"/>
+	<string id="tor_graveyard_leave" text="{=str_tor_graveyard_leave}Leave"/>
+	<string id="tor_graveyard_caught_title" text="{=str_tor_graveyard_caught_title}Caught in the act"/>
+	<string id="tor_graveyard_surrender" text="{=str_tor_graveyard_surrender}Surrender"/>
+	<string id="tor_hireling_desert_warning" text="{=str_tor_hireling_desert_warning}This will damage your reputation with the {FACTION}. Serve for {MINIMUMSERVEDAYS} days, and speak to your enlisting Lord to avoid consequences."/>
 
 </strings>
