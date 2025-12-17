@@ -4716,4 +4716,198 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_cc_specialization_desc_order" text="{=str_tor_cc_specialization_desc_order}As a knight, you must choose which knightly order you belong to. This will determine your martial traditions and bonuses."/>
 
 	<!-- Vampire Bonus -->
-	<string id="tor_vampire_bonus" text="{=str_tor_vampire_bonus}Vampire Bonus"/></strings>
+
+	<!-- Quartermaster/Shop Texts -->
+	<string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Hey yu. wanna spend for the big boss?"/>
+	<string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Anything else?"/>
+	<string id="tor_gs_quartermaster_shinies_option_text" text="{=str_tor_gs_quartermaster_shinies_option_text}Shinies"/>
+	<string id="tor_gs_quartermaster_loot_option_text" text="{=str_tor_gs_quartermaster_loot_option_text}Loot"/>
+	<string id="tor_gs_quartermaster_leave_option_text" text="{=str_tor_gs_quartermaster_leave_option_text}Leave"/>
+	<string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Hey Big Boss. you wanna pile some loot?"/>
+	<string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Anything else Big Boss?"/>
+	<string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags"/>
+	<string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Sure let me show what I got"/>
+	<string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better weapons master engineer"/>
+	<string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}Thats all"/>
+
+	<!-- Skill Trainer Texts -->
+	<string id="tor_teach_skills_dialog_p" text="{=str_tor_teach_skills_dialog_p}I would like to arrange training for one of my companions."/>
+	<string id="tor_skill_teacher_train_1" text="{=str_tor_skill_teacher_train_1}Of course. I can train your companions in the necessary skills."/>
+	<string id="tor_skill_teacher_train_2" text="{=str_tor_skill_teacher_train_2}The training will take some time, but your companion will learn much. What do you wish to do?"/>
+	<string id="tor_skill_train_hub_select_companion_p" text="{=str_tor_skill_train_hub_select_companion_p}I would like to send a companion for training."/>
+	<string id="tor_priest_train_hub_select_companion" text="{=str_tor_priest_train_hub_select_companion}Select a companion for training."/>
+	<string id="tor_skill_train_hub_select_companion_decline" text="{=str_tor_skill_train_hub_select_companion_decline}I am afraid none of your companions are eligible for training at this time."/>
+	<string id="tor_priest_train_hub_quit_p" text="{=str_tor_priest_train_hub_quit_p}Farewell."/>
+
+	<!-- Priest Dialog Texts -->
+	<string id="tor_priest_start_accept" text="{=str_tor_priest_start_accept}Welcome, faithful one. How may I serve you today?"/>
+	<string id="tor_priest_start_decline" text="{=str_tor_priest_start_decline}I am sorry, but I can only help those who follow our faith."/>
+	<string id="tor_priest_start_decline_hard" text="{=str_tor_priest_start_decline_hard}You dare approach me, servant of darkness? Leave this holy place at once!"/>
+	<string id="tor_priest_hub_intro" text="{=str_tor_priest_hub_intro}The blessings of the gods be upon you. What brings you here?"/>
+	<string id="tor_priest_hub_reintro" text="{=str_tor_priest_hub_reintro}Is there anything else I can help you with?"/>
+	<string id="tor_priest_hub_blessingshop_p" text="{=str_tor_priest_hub_blessingshop_p}I seek to learn about holy blessings."/>
+	<string id="tor_priest_hub_party_blessing_p" text="{=str_tor_priest_hub_party_blessing_p}Would you bless my party?"/>
+	<string id="tor_priest_hub_quit_p" text="{=str_tor_priest_hub_quit_p}Farewell, priest."/>
+	<string id="tor_priest_blessingshop_1" text="{=str_tor_priest_blessingshop_1}Here, take this tome. It contains the knowledge you seek about our sacred blessings."/>
+	<string id="tor_priest_blessing_party_1" text="{=str_tor_priest_blessing_party_1}May the divine light guide your steps. Your party is now blessed."/>
+	<string id="tor_priest_hub_party_blessing_decline" text="{=str_tor_priest_hub_party_blessing_decline}I see your party already carries a blessing. There is nothing more I can do."/>
+	<string id="tor_priest_hub_quit" text="{=str_tor_priest_hub_quit}Go in peace. May the gods watch over you."/>
+
+	<!-- Artisan District Texts -->
+	<string id="tor_artisan_district_menu_option_text" text="{=str_tor_artisan_district_menu_option_text}Go to the artisan district"/>
+	<string id="tor_artisan_weaponsmith_option_text" text="{=str_tor_artisan_weaponsmith_option_text}Visit the weaponsmith"/>
+	<string id="tor_artisan_enchanter_option_text" text="{=str_tor_artisan_enchanter_option_text}Visit the enchanter"/>
+	<string id="tor_artisan_leave_option_text" text="{=str_tor_artisan_leave_option_text}Leave"/>
+
+	<!-- Hireling Texts -->
+	<string id="tor_hireling_quit_service_text" text="{=str_tor_hireling_quit_service_text}I would like to quit my service."/>
+	<string id="tor_hireling_are_you_sure_text" text="{=str_tor_hireling_are_you_sure_text}Are you sure?"/>
+	<string id="tor_hireling_yes_leave_text" text="{=str_tor_hireling_yes_leave_text}Yes i want to leave"/>
+	<string id="tor_hireling_think_about_it_text" text="{=str_tor_hireling_think_about_it_text}I have to think about this."/>
+	<string id="tor_hireling_offer_sword_text" text="{=str_tor_hireling_offer_sword_text}I am hereby offering my sword."/>
+	<string id="tor_hireling_accept_text" text="{=str_tor_hireling_accept_text}I accept my Lord."/>
+	<string id="tor_hireling_ellipsis_text" text="{=str_tor_hireling_ellipsis_text}..."/>
+	<string id="tor_hireling_back_text" text="{=str_tor_hireling_back_text}Back"/>
+	<string id="tor_hireling_enter_settlement_text" text="{=str_tor_hireling_enter_settlement_text}Enter the settlement"/>
+	<string id="tor_hireling_desert_text" text="{=str_tor_hireling_desert_text}Desert"/>
+	<string id="tor_hireling_battle_menu_text" text="{=str_tor_hireling_battle_menu_text}Your Lord engages in a battle."/>
+	<string id="tor_hireling_join_battle_text" text="{=str_tor_hireling_join_battle_text}Join battle"/>
+	<string id="tor_hireling_avoid_combat_text" text="{=str_tor_hireling_avoid_combat_text}Avoid Combat"/>
+	<string id="tor_hireling_flee_text" text="{=str_tor_hireling_flee_text}Flee"/>
+
+	<!-- Blood Kiss Texts -->
+	<string id="tor_bloodkiss_player_receive_end_carstein" text="{=str_tor_bloodkiss_player_receive_end_carstein}Rise, von Carstein scion."/>
+	<string id="tor_bloodkiss_necrach_answer_line2" text="{=str_tor_bloodkiss_necrach_answer_line2}You has served me and mine loyally, as my teacher did with me long ago. I will share the gift of immortality with you"/>
+	<string id="tor_bloodkiss_necrach_answer_line3" text="{=str_tor_bloodkiss_necrach_answer_line3}Are you sure you are ready to leave your entire mortal life behind and enter forever into the lap of eternal night?"/>
+	<string id="tor_bloodkiss_player_receive_end_necrarch" text="{=str_tor_bloodkiss_player_receive_end_necrarch}Behold! The new addition to the brotherhood of the necrarchs."/>
+
+	<!-- Eonir Envoy Texts -->
+	<string id="eonir_envoy_foreign_text" text="{=str_eonir_envoy_foreign_text}You are not part of these people, begone."/>
+	<string id="eonir_envoy_low_renown_text" text="{=str_eonir_envoy_low_renown_text}You do not have the privilege to serve the council. You are of no use. (Low Renown)."/>
+	<string id="eonir_envoy_why_are_you_here_text" text="{=str_eonir_envoy_why_are_you_here_text}Why are you here?"/>
+	<string id="eonir_envoy_close_text" text="{=str_eonir_envoy_close_text}That is all thank you."/>
+	<string id="eonir_envoy_understood_text" text="{=str_eonir_envoy_understood_text}Understood."/>
+	<string id="eonir_envoy_lets_do_this_text" text="{=str_eonir_envoy_lets_do_this_text}Let us do this."/>
+	<string id="eonir_envoy_need_to_think_text" text="{=str_eonir_envoy_need_to_think_text}I need to think about this."/>
+	<string id="eonir_envoy_we_will_see_text" text="{=str_eonir_envoy_we_will_see_text}We will see what we can do."/>
+	<string id="eonir_envoy_will_see_what_can_do_text" text="{=str_eonir_envoy_will_see_what_can_do_text}I will see what I can do."/>
+	<string id="eonir_envoy_anything_else_text" text="{=str_eonir_envoy_anything_else_text}Is there something else I could do for you?"/>
+
+	<!-- Eonir Druchii Envoy Texts -->
+	<string id="eonir_druchii_intro_text" text="{=str_eonir_druchii_intro_text}Greetings. What brings you to speak with me?"/>
+	<string id="eonir_druchii_force_war_ask_text" text="{=str_eonir_druchii_force_war_ask_text}I wish to discuss matters of war."/>
+	<string id="eonir_druchii_prisoners_ask_text" text="{=str_eonir_druchii_prisoners_ask_text}I have prisoners that may interest you."/>
+	<string id="eonir_druchii_slaver_tide_ask_text" text="{=str_eonir_druchii_slaver_tide_ask_text}Tell me about the slaver tide."/>
+	<string id="eonir_druchii_force_war_offer_text" text="{=str_eonir_druchii_force_war_offer_text}War can be arranged, for a price."/>
+	<string id="eonir_druchii_force_war_cooldown_text" text="{=str_eonir_druchii_force_war_cooldown_text}We have recently stirred enough conflict. Wait some time before asking again."/>
+	<string id="eonir_druchii_slaver_tide_offer_text" text="{=str_eonir_druchii_slaver_tide_offer_text}The slaver tide is a dark elf raiding fleet."/>
+	<string id="eonir_druchii_slaver_tide_cooldown_text" text="{=str_eonir_druchii_slaver_tide_cooldown_text}The slaver tide has recently been called. Wait some time."/>
+	<string id="eonir_druchii_slaver_tide_accept_text" text="{=str_eonir_druchii_slaver_tide_accept_text}Call the slaver tide."/>
+	<string id="eonir_druchii_could_see_text" text="{=str_eonir_druchii_could_see_text}I could see what can be done."/>
+	<string id="eonir_druchii_why_here_intro_text" text="{=str_eonir_druchii_why_here_intro_text}I represent the interests of Naggaroth in these lands."/>
+	<string id="eonir_druchii_why_here_displeased_text" text="{=str_eonir_druchii_why_here_displeased_text}You have disappointed me."/>
+	<string id="eonir_druchii_why_here_undecided_text" text="{=str_eonir_druchii_why_here_undecided_text}I am still deciding what to make of you."/>
+	<string id="eonir_druchii_why_here_agreement_text" text="{=str_eonir_druchii_why_here_agreement_text}We have an understanding."/>
+	<string id="eonir_druchii_why_here_explain_text" text="{=str_eonir_druchii_why_here_explain_text}I am here to further Druchii interests."/>
+	<string id="eonir_druchii_why_here_services_text" text="{=str_eonir_druchii_why_here_services_text}I can offer various services for the right price."/>
+	<string id="eonir_druchii_anything_else_text" text="{=str_eonir_druchii_anything_else_text}Is there anything else?"/>
+
+	<!-- Eonir Asur Envoy Texts -->
+	<string id="eonir_asur_intro_text" text="{=str_eonir_asur_intro_text}Greetings, kinsman. How may I assist you?"/>
+	<string id="eonir_asur_money_ask_text" text="{=str_eonir_asur_money_ask_text}I wish to discuss trade matters."/>
+	<string id="eonir_asur_troops_ask_text" text="{=str_eonir_asur_troops_ask_text}I need warriors from Ulthuan."/>
+	<string id="eonir_asur_diplomacy_ask_text" text="{=str_eonir_asur_diplomacy_ask_text}I wish to discuss diplomacy."/>
+	<string id="eonir_asur_money_offer_text" text="{=str_eonir_asur_money_offer_text}Trade can be arranged."/>
+	<string id="eonir_asur_money_cooldown_text" text="{=str_eonir_asur_money_cooldown_text}We have recently conducted trade. Wait some time."/>
+	<string id="eonir_asur_troops_offer_text" text="{=str_eonir_asur_troops_offer_text}Warriors can be sent from Ulthuan."/>
+	<string id="eonir_asur_troops_accept_text" text="{=str_eonir_asur_troops_accept_text}Send the warriors."/>
+	<string id="eonir_asur_diplomacy_offer_text" text="{=str_eonir_asur_diplomacy_offer_text}Diplomatic arrangements can be made."/>
+	<string id="eonir_asur_diplomacy_cooldown_text" text="{=str_eonir_asur_diplomacy_cooldown_text}We have recently made diplomatic arrangements. Wait some time."/>
+	<string id="eonir_asur_diplomacy_accept_text" text="{=str_eonir_asur_diplomacy_accept_text}Make the arrangements."/>
+	<string id="eonir_asur_why_here_intro_text" text="{=str_eonir_asur_why_here_intro_text}I represent the Phoenix King interests in these lands."/>
+	<string id="eonir_asur_why_here_displeased_text" text="{=str_eonir_asur_why_here_displeased_text}You have not impressed me."/>
+	<string id="eonir_asur_why_here_undecided_text" text="{=str_eonir_asur_why_here_undecided_text}I am still evaluating your worth."/>
+	<string id="eonir_asur_why_here_agreement_text" text="{=str_eonir_asur_why_here_agreement_text}We have a good understanding."/>
+	<string id="eonir_asur_why_here_explain_text" text="{=str_eonir_asur_why_here_explain_text}I am here to protect High Elf interests."/>
+	<string id="eonir_asur_why_here_services_text" text="{=str_eonir_asur_why_here_services_text}I can offer various services to those who prove worthy."/>
+
+	<!-- Eonir Empire Envoy Texts -->
+	<string id="eonir_empire_intro_text" text="{=str_eonir_empire_intro_text}Is there some way I can be of assistance?"/>
+	<string id="eonir_empire_prestige_to_favor_ask_text" text="{=str_eonir_empire_prestige_to_favor_ask_text}I bring quality goods to trade and wish to build my reputation amongst the High Council. Are you interested?"/>
+	<string id="eonir_empire_favor_to_prestige_ask_text" text="{=str_eonir_empire_favor_to_prestige_ask_text}I find myself in need of quality goods to trade amongst the nobles of the Empire. Can you supply them?"/>
+	<string id="eonir_empire_peace_ask_text" text="{=str_eonir_empire_peace_ask_text}Our people need to make peace. What does it take to stop the war?"/>
+	<string id="eonir_empire_peace_offer_text" text="{=str_eonir_empire_peace_offer_text}The Empire and the Council should make peace."/>
+	<string id="eonir_empire_peace_cooldown_text" text="{=str_eonir_empire_peace_cooldown_text}My political power is limited. We became too demanding, you should ask another time"/>
+	<string id="eonir_empire_prestige_to_favor_offer_text" text="{=str_eonir_empire_prestige_to_favor_offer_text}Obviously your offering the empire can benefit the Council."/>
+	<string id="eonir_empire_prestige_to_favor_result_text" text="{=str_eonir_empire_prestige_to_favor_result_text}The trade has been completed."/>
+	<string id="eonir_empire_favor_to_prestige_offer_text" text="{=str_eonir_empire_favor_to_prestige_offer_text}I can supply you with quality goods."/>
+	<string id="eonir_empire_glad_to_do_business_text" text="{=str_eonir_empire_glad_to_do_business_text}Glad to do business with you."/>
+	<string id="eonir_empire_why_here_intro_text" text="{=str_eonir_empire_why_here_intro_text}I represent the Empire interests here."/>
+	<string id="eonir_empire_why_here_displeased_text" text="{=str_eonir_empire_why_here_displeased_text}You have not proven useful."/>
+	<string id="eonir_empire_why_here_undecided_text" text="{=str_eonir_empire_why_here_undecided_text}I am still deciding your worth."/>
+	<string id="eonir_empire_why_here_agreement_text" text="{=str_eonir_empire_why_here_agreement_text}We have a productive relationship."/>
+	<string id="eonir_empire_why_here_explain_text" text="{=str_eonir_empire_why_here_explain_text}I facilitate relations between the Empire and the Eonir."/>
+	<string id="eonir_empire_why_here_services_text" text="{=str_eonir_empire_why_here_services_text}I can help with trade and diplomacy."/>
+	<string id="eonir_empire_anything_else_text" text="{=str_eonir_empire_anything_else_text}Is there anything else I can help with?"/>
+
+	<!-- Eonir Spellsinger Envoy Texts -->
+	<string id="eonir_spellsinger_intro_text" text="{=str_eonir_spellsinger_intro_text}The forest told of me your coming, yet not why. What have you come to ask of me?"/>
+	<string id="eonir_spellsinger_world_roots_ask_text" text="{=str_eonir_spellsinger_world_roots_ask_text}I want to travel along the roots of the Asrai, can you be my guide?"/>
+	<string id="eonir_spellsinger_troop_refill_ask_text" text="{=str_eonir_spellsinger_troop_refill_ask_text}We need the Forestborn, are there any who can come to our aid?"/>
+	<string id="tor_spellsinger_envoy_main_hub_spellsinger_magic" text="{=str_tor_spellsinger_envoy_main_hub_spellsinger_magic}I wish to learn magic from you."/>
+	<string id="spellsinger_envoy_main_hub_spellsinger_lores" text="{=str_spellsinger_envoy_main_hub_spellsinger_lores}Teach me about the lores of magic."/>
+	<string id="eonir_spellsinger_world_roots_price_text" text="{=str_eonir_spellsinger_world_roots_price_text}I can, but for a price. Help our people, they need more power and then I will allow you to travel the worldroot."/>
+	<string id="eonir_spellsinger_world_roots_accept_text" text="{=str_eonir_spellsinger_world_roots_accept_text}Of course, I am willing to help. Now as my guide, please tell me how I can travel along these ancient pathways?"/>
+	<string id="eonir_spellsinger_world_roots_explain_text" text="{=str_eonir_spellsinger_world_roots_explain_text}There is an entranceway to the Worldroots here in Laurelorn."/>
+	<string id="eonir_spellsinger_troop_refill_offer_text" text="{=str_eonir_spellsinger_troop_refill_offer_text}There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messages to reach them but it can be done. Is this what you desire?"/>
+	<string id="eonir_spellsinger_troop_refill_cooldown_text" text="{=str_eonir_spellsinger_troop_refill_cooldown_text}We recently called for the forestborn aid. We should wait longer for another call"/>
+	<string id="eonir_spellsinger_troop_refill_accept_text" text="{=str_eonir_spellsinger_troop_refill_accept_text}That would be kind. I am sure we will be able to pay that favor back one day. I will decide in favor of the forestborn"/>
+	<string id="eonir_spellsinger_learn_lore_offer_text" text="{=str_eonir_spellsinger_learn_lore_offer_text}I can teach you, but as much as you are ready to do so, I need your word in the Council."/>
+	<string id="eonir_spellsinger_learn_lore_accept_text" text="{=str_eonir_spellsinger_learn_lore_accept_text}It should not be for your disadvantage"/>
+	<string id="eonir_spellsinger_why_here_intro_text" text="{=str_eonir_spellsinger_why_here_intro_text}I am representing a coven of Spellsingers dedicated to the defense of Laurelorn."/>
+	<string id="eonir_spellsinger_why_here_displeased_text" text="{=str_eonir_spellsinger_why_here_displeased_text}The forest is beset by destructive beasts and men alike, what then, are you protecting?"/>
+	<string id="eonir_spellsinger_why_here_undecided_text" text="{=str_eonir_spellsinger_why_here_undecided_text}What matters can the Council solve for you? What can you give me in turn?"/>
+	<string id="eonir_spellsinger_why_here_agreement_text" text="{=str_eonir_spellsinger_why_here_agreement_text}The Faniour aswell as the Touriour follow the same people. Your matters, are my matters."/>
+	<string id="eonir_spellsinger_why_here_explain_text" text="{=str_eonir_spellsinger_why_here_explain_text}I am not a man of politics. I am here to stand our case."/>
+	<string id="eonir_spellsinger_why_here_services_text" text="{=str_eonir_spellsinger_why_here_services_text}Help us with your political power, and I will try to make it worth."/>
+
+	<!-- Engineer Quest Texts -->
+	<string id="tor_engineer_quest_skill_check" text="{=str_tor_engineer_quest_skill_check}Hah! You do not seem like a person with any knowledge of our crafts. What could you possibly need from us?"/>
+	<string id="tor_engineer_quest_skill_check_failed" text="{=str_tor_engineer_quest_skill_check_failed}I am far too busy for this, leave my sight."/>
+	<string id="tor_engineer_quest_skill_check_passed" text="{=str_tor_engineer_quest_skill_check_passed}Hmm, you seem to know something of engineering. Very well, speak."/>
+	<string id="tor_engineer_quest_fail" text="{=str_tor_engineer_quest_fail}I am afraid I have failed to bring what you ask."/>
+	<string id="tor_engineer_quest_fail_answer" text="{=str_tor_engineer_quest_fail_answer}Tsk, I expected better. There may still be time, you can still track them if you are swift"/>
+	<string id="tor_engineer_quest_repeat" text="{=str_tor_engineer_quest_repeat}I will not let you down a second time."/>
+	<string id="tor_engineer_quest_giveup" text="{=str_tor_engineer_quest_giveup}I do not think I can do it at this time."/>
+	<string id="tor_engineer_hub_upgrade" text="{=str_tor_engineer_hub_upgrade}I wish to upgrade my equipment."/>
+	<string id="tor_engineer_upgrade_explain_1" text="{=str_tor_engineer_upgrade_explain_1}I can upgrade your equipment for the right price."/>
+	<string id="tor_engineer_upgrade_explain_2" text="{=str_tor_engineer_upgrade_explain_2}What would you like to upgrade?"/>
+	<string id="tor_engineer_upgrade_1" text="{=str_tor_engineer_upgrade_1}Upgrade option 1"/>
+	<string id="tor_engineer_upgrade_2" text="{=str_tor_engineer_upgrade_2}Upgrade option 2"/>
+	<string id="tor_engineer_upgrade_3" text="{=str_tor_engineer_upgrade_3}Upgrade option 3"/>
+	<string id="tor_engineer_upgrade_agree" text="{=str_tor_engineer_upgrade_agree}I agree to the terms."/>
+	<string id="tor_engineer_upgrade_decline" text="{=str_tor_engineer_upgrade_decline}I need to think about this."/>
+	<string id="tor_engineer_upgrade_1_response" text="{=str_tor_engineer_upgrade_1_response}Excellent choice."/>
+	<string id="tor_engineer_upgrade_2_response" text="{=str_tor_engineer_upgrade_2_response}A fine selection."/>
+	<string id="tor_engineer_upgrade_3_response" text="{=str_tor_engineer_upgrade_3_response}Very well."/>
+	<string id="tor_engineer_upgrade_decline_response" text="{=str_tor_engineer_upgrade_decline_response}Return when you have made your decision."/>
+
+	<!-- Spelltrainer Texts -->
+	<string id="tor_spelltrainer_spellsinger_reintro" text="{=str_tor_spelltrainer_spellsinger_reintro}Is there more you seek? Speak your desires"/>
+	<string id="tor_spelltrainer_spellsinger_learnlore" text="{=str_tor_spelltrainer_spellsinger_learnlore}Teach me one of Ariel many pathways."/>
+	<string id="tor_spelltrainer_spellsinger_weaver_choice" text="{=str_tor_spelltrainer_spellsinger_weaver_choice}A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely"/>
+	<string id="tor_spelltrainer_spellsinger_companion_choice" text="{=str_tor_spelltrainer_spellsinger_companion_choice}A Highweaver, or Darkweaver... tough choice"/>
+	<string id="tor_spelltrainer_spellsinger_companion_choose" text="{=str_tor_spelltrainer_spellsinger_companion_choose}Let me choose."/>
+	<string id="tor_spelltrainer_vampire_dark_energy_request" text="{=str_tor_spelltrainer_vampire_dark_energy_request}Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold."/>
+	<string id="tor_spelltrainer_vampire_agree_price" text="{=str_tor_spelltrainer_vampire_agree_price}Take my gift. Now give me what I demand!"/>
+	<string id="tor_spelltrainer_vampire_decline_price" text="{=str_tor_spelltrainer_vampire_decline_price}I can not provide you this gift"/>
+	<string id="tor_spelltrainer_vampire_shame" text="{=str_tor_spelltrainer_vampire_shame}A shame. What else can I help you with?"/>
+
+	<!-- Settlement Graveyard Texts -->
+	<string id="tor_settlement_graveyard_raise_dead_action" text="{=str_tor_settlement_graveyard_raise_dead_action}Raise dead from the corpses in the ground (wait 8 hours)."/>
+	<string id="tor_settlement_graveyard_raise_dead_begin_text" text="{=str_tor_settlement_graveyard_raise_dead_begin_text}The common folk graves are ripe for the taking! You spend time to raise corpses from the ground. Morr is going to be furious tonight!"/>
+	<string id="tor_settlement_graveyard_raise_dead_interrupt_action" text="{=str_tor_settlement_graveyard_raise_dead_interrupt_action}Defend yourself"/>
+
+	<!-- Other Missing Texts -->
+	<string id="ironingot6_name" text="{=str_ironingot6_name}Iron Ingot"/>
+</strings>
