@@ -1,4 +1,5 @@
 using TaleWorlds.Localization;
+using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.WaaaghMeter;
