@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using Helpers;
 using System;
 using System.Collections.Generic;
@@ -22,8 +22,8 @@ namespace TOR_Core.CampaignMechanics.CustomResourceBehavior;
 
 public class TeefBehavior : CampaignBehaviorBase
 {
-    private const int ItemExchange = 100; // item of price of X gets X/100 of teef in return
-    private const int GoldExchange = 150;
+    private const int ItemExchange = 400; // item of price of X gets X/400 of teef in return
+    private const int GoldExchange = 100;
     private const string QuartermasterId = "tor_kwartamasta_greenskins_0";
 
     public override void RegisterEvents()
@@ -157,63 +157,17 @@ public class TeefBehavior : CampaignBehaviorBase
 
         void OpenForSpending()
         {
-            var currentRoster = new ItemRoster(Hero.MainHero.PartyBelongedTo.ItemRoster);
-            var currentRosterWithEquipment = new ItemRoster();
-            var equipment = Hero.MainHero.GetHeroEquipment();
+            var donatedItems = new ItemRoster();
 
-            foreach (var item in currentRoster)
-            {
-                if (item.EquipmentElement.Item == null) continue;
-                currentRosterWithEquipment.AddToCounts(item.EquipmentElement.Item, item.Amount);
-            }
+            InventoryScreenHelper.OpenScreenAsReceiveItems(
+                donatedItems,
+                new TextObject("Give Items to the Big boss"),
+                () => OnItemsDiscarded(donatedItems));
+        }
 
-            foreach (var item in equipment)
-            {
-                if (item == null) continue;
-                currentRosterWithEquipment.AddToCounts(item, 1);
-            }
 
             var emptyRoster = new ItemRoster();
             InventoryScreenHelper.OpenScreenAsReceiveItems(emptyRoster, TORTextHelper.GetTextObject("tor_gs_give_items_to_boss_text", "Give Items to the Big boss"), () => AfterDonation(currentRosterWithEquipment));
-
-            void AfterDonation(ItemRoster beforeTransferRoster)
-            {
-                var roster = beforeTransferRoster;
-                var currentRoster = new ItemRoster();
-
-                foreach (var item in Hero.MainHero.PartyBelongedTo.ItemRoster)
-                {
-                    currentRoster.Add(item);
-                }
-
-                var equipment = Hero.MainHero.GetHeroEquipment();
-
-                foreach (var item in equipment)
-                {
-                    if (item == null) continue;
-                    currentRoster.AddToCounts(item, 1);
-                }
-
-                var difference = new ItemRoster();
-                foreach (var item in roster)
-                {
-                    if (currentRoster.FindIndexOfElement(item.EquipmentElement) != -1)
-                    {
-                        continue;
-                    }
-                    difference.Add(item);
-                }
-
-                var rawTeefValue = difference.Sum(item => item.EquipmentElement.Item.Value);
-
-                var teef = rawTeefValue / ItemExchange;
-                if (teef > 0)
-                {
-                    Hero.MainHero.AddCultureSpecificCustomResource(teef);
-                    TORCampaignEvents.Instance.OnTeefTransferred(Hero.MainHero, rawTeefValue);
-                }
-            }
-        }
 
         void OpenForCreatingLootPiles()
         {
@@ -265,7 +219,7 @@ public class TeefBehavior : CampaignBehaviorBase
                     difference.Add(item);
                 }
 
-                var pileValue = difference.Sum(item => item.EquipmentElement.Item.Value);
+                var pileValue = difference.Sum(item => item.EquipmentElement.ItemValue);
                 var pileCount = pileValue / 1000;
 
 
@@ -374,6 +328,34 @@ public class TeefBehavior : CampaignBehaviorBase
         Hero.MainHero.AddCultureSpecificCustomResource(teefValue);
         Hero.MainHero.Gold -= gold;
     }
+
+    private void OnItemsDiscarded(ItemRoster itemRoster)
+    {
+        long totalItemValue = 0;
+
+        foreach (var element in itemRoster)
+        {
+            var item = element.EquipmentElement.Item;
+            if (item == null)
+                continue;
+
+            if (item.Culture!= null && item.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                continue;
+            }
+
+            var unitValue = Math.Max(0, element.EquipmentElement.ItemValue);
+            totalItemValue += (long)unitValue * element.Amount;
+        }
+
+        var teef = (int)(totalItemValue / ItemExchange);
+        if (teef <= 0)
+            return;
+
+        Hero.MainHero.AddCultureSpecificCustomResource(teef);
+        TORCampaignEvents.Instance.OnTeefTransferred(Hero.MainHero, (int)totalItemValue);
+    }
+
 
     public override void SyncData(IDataStore dataStore)
     {

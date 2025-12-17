@@ -26,21 +26,23 @@ namespace TOR_Core.Models
     {
         public override float GetSurvivalChance(PartyBase party, CharacterObject character, DamageTypes damageType, bool canDamageKillEvenIfBlunt, PartyBase enemyParty = null)
         {
-            if (character.HasAttribute("Survivor"))
+            if (character.IsHero || character.HasAttribute("Survivor"))
             {
-                return 1;
+                return 1f;
             }
 
-            var result = base.GetSurvivalChance(party, character, damageType, canDamageKillEvenIfBlunt, enemyParty);
+            var survivalChance = CalculateRegularSurvivalChance_TweakedVanilla(party,character,damageType,canDamageKillEvenIfBlunt, enemyParty);
 
-            if (result < 0.5f && party != null && party.LeaderHero != null && party.LeaderHero.GetPerkValue(TORPerks.Faith.Revival)) result = TORPerks.Faith.Revival.PrimaryBonus; //Sly : perk description does not match functionality
+
+            if (party?.LeaderHero != null && party.LeaderHero.GetPerkValue(TORPerks.Faith.Revival))
+            {
+                var secondChance = TORPerks.Faith.Revival.PrimaryBonus;
+                survivalChance = survivalChance + (1f - survivalChance) * secondChance; // chance to survive if would have died
+            }
 
             if (!character.IsUndead())
-                return result;
-            //undead "survival chance"
-            if (character.IsHero)
             {
-                return result;
+                return survivalChance;
             }
             if (character.Tier < 4)
             {
@@ -54,25 +56,80 @@ namespace TOR_Core.Models
                 {
                     var choice = TORCareerChoices.GetChoice("MasterOfDeadPassive4");
                     if (choice != null)
-                        return result + choice.GetPassiveValue();
+                        return survivalChance + choice.GetPassiveValue();
                 }
                 if (choices.Contains("CodexMortificaPassive4"))
                 {
                     var choice = TORCareerChoices.GetChoice("CodexMortificaPassive4");
                     if (choice != null)
-                        return result + choice.GetPassiveValue();
+                        return survivalChance + choice.GetPassiveValue();
                 }
 
                 if (choices.Contains("WellspringOfDharPassive2"))
                 {
                     var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive2");
                     if (choice != null)
-                        return result + choice.GetPassiveValue();
+                        return survivalChance + choice.GetPassiveValue();
                 }
             }
-
-
             return 0;
+        }
+        //from vanilla
+        private const float SURVIVAL_CHANCE_PER_CHARACTER_LEVEL = 0.01f; // 1/3 vanilla
+        private const float SURGEON_SURVIVAL_BONUS_MULTIPLIER = 0.5f; // 1/2 vanilla
+
+        private static float CalculateRegularSurvivalChance_TweakedVanilla(
+            PartyBase party,
+            CharacterObject character,
+            DamageTypes damageType,
+            bool canDamageKillEvenIfBlunt,
+            PartyBase enemyParty)
+        {
+            if (damageType == DamageTypes.Blunt && !canDamageKillEvenIfBlunt)
+            {
+                return 1f;
+            }
+
+            var mobileParty = party?.MobileParty;
+            if (mobileParty == null)
+            {
+                return 0f;
+            }
+
+            var survivalChanceDenominator = new ExplainedNumber(1f);
+
+            AddScaledSurgeonSurvivalBonus(mobileParty, ref survivalChanceDenominator);
+
+            if (enemyParty?.MobileParty != null &&
+                enemyParty.MobileParty.HasPerk(DefaultPerks.Medicine.DoctorsOath))
+            {
+                AddScaledSurgeonSurvivalBonus(enemyParty.MobileParty, ref survivalChanceDenominator);
+                SkillLevelingManager.OnSurgeryApplied(enemyParty.MobileParty, surgerySuccess: false, character.Tier);
+            }
+
+            survivalChanceDenominator.Add(character.Level * SURVIVAL_CHANCE_PER_CHARACTER_LEVEL);
+
+            if (party.MapEvent != null && character.Tier < 3)
+            {
+                PerkHelper.AddPerkBonusForParty(
+                    DefaultPerks.Medicine.PhysicianOfPeople,
+                    mobileParty,
+                    isPrimaryBonus: false,
+                    ref survivalChanceDenominator,
+                    mobileParty.IsCurrentlyAtSea);
+            }
+
+            var deathChance = 1f / survivalChanceDenominator.ResultNumber;
+            return 1f - MBMath.ClampFloat(deathChance, 0f, 1f);
+        }
+
+
+        private static void AddScaledSurgeonSurvivalBonus(MobileParty mobileParty, ref ExplainedNumber survivalChanceDenominator)
+        {
+            var surgeonSurvivalBonus = new ExplainedNumber(0f);
+            SkillHelper.AddSkillBonusForParty(DefaultSkillEffects.SurgeonSurvivalBonus, mobileParty, ref surgeonSurvivalBonus);
+
+            survivalChanceDenominator.Add(surgeonSurvivalBonus.ResultNumber * SURGEON_SURVIVAL_BONUS_MULTIPLIER);
         }
 
         public override ExplainedNumber GetDailyHealingForRegulars(PartyBase party, bool isPrisoners, bool includeDescriptions = false)
@@ -82,23 +139,24 @@ namespace TOR_Core.Models
                 return base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
             }
 
-            if (party.MobileParty.IsAffectedByCurse() && party.MobileParty.CurrentSettlement == null && party.MobileParty.BesiegedSettlement == null)
+            var mobileParty = party.MobileParty;
+
+            if (mobileParty.IsAffectedByCurse() && mobileParty.CurrentSettlement == null && mobileParty.BesiegedSettlement == null)
             {
                 return new ExplainedNumber(0, true, GameTexts.FindText("tor_customSettlement_generic_inCursedRegion"));
             }
 
             var result = base.GetDailyHealingForRegulars(party, isPrisoners, includeDescriptions);
 
+            if (mobileParty != MobileParty.MainParty)
+                return result;
 
-            if (party.MobileParty != MobileParty.MainParty) return result;
-
-
-            if (party.MobileParty.HasBlessing("cult_of_sigmar"))
+            if (mobileParty.HasBlessing("cult_of_sigmar"))
             {
                 result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_sigmar"));
             }
 
-            AddCareerPassivesForTroopRegeneration(party.MobileParty, ref result);
+            AddCareerPassivesForTroopRegeneration(mobileParty, ref result);
 
             if (Hero.MainHero.HasAttribute("WEWardancerSymbol"))
             {
@@ -108,6 +166,7 @@ namespace TOR_Core.Models
             return result;
         }
 
+
         public override ExplainedNumber GetDailyHealingHpForHeroes(PartyBase party, bool isPrisoners, bool includeDescriptions = false)
         {
             if (party?.MobileParty == null || !party.MobileParty.IsLordParty)
@@ -115,12 +174,10 @@ namespace TOR_Core.Models
                 return base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
             }
 
-
             if (party.MobileParty.IsAffectedByCurse())
             {
                 return new ExplainedNumber(0, true, GameTexts.FindText("tor_customSettlement_generic_inCursedRegion"));
             }
-
 
             var result = base.GetDailyHealingHpForHeroes(party, isPrisoners, includeDescriptions);
 
@@ -129,10 +186,11 @@ namespace TOR_Core.Models
                 result.AddFactor(0.2f);
             }
 
-            if (!party.MobileParty.IsMainParty) return result;
+            if (!party.MobileParty.IsMainParty)
+                return result;
 
-
-            if (party.MobileParty.HasBlessing("cult_of_shallya")) result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_shallya"));
+            if (party.MobileParty.HasBlessing("cult_of_shallya"))
+                result.AddFactor(0.2f, GameTexts.FindText("tor_religion_blessing_name", "cult_of_shallya"));
 
             AddCareerPassivesForHeroRegeneration(party.MobileParty, ref result);
 
@@ -162,6 +220,7 @@ namespace TOR_Core.Models
 
             return result;
         }
+
 
         private void AddCareerPassivesForTroopRegeneration(MobileParty party, ref ExplainedNumber explainedNumber)
         {

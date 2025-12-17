@@ -293,11 +293,17 @@ public class DuelBehavior : CampaignBehaviorBase
             SetDuelDefeatText, GameMenu.MenuOverlayType.None);
         //"army encounter" is the menu we look for, if the player is in a town its "town" in castle "castle"
         campaignGameStarter.AddGameMenuOption("duel_defeat", "duel_accept_defeat",
-            TORTextHelper.GetText("tor_duel_accept_defeat", "Accept your defeat"),
-            args => MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty()), args =>
-            {
-                _currentDefeatAction?.Invoke();
-            }, true, -1, false, null);
+       GameTexts.FindText("tor_duel_accept_defeat").ToString(),
+       args => MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty()), args =>
+       {
+           _currentDefeatAction?.Invoke();
+           _currentDefeatAction = null;
+
+           if (PlayerEncounter.Current != null)
+               PlayerEncounter.Finish();
+           GameMenu.ExitToLast();
+       }, true, -1, false, null);
+
 
         // Victory menu
         campaignGameStarter.AddGameMenu("duel_victory", "{DUEL_VICTORY_TEXT}",
@@ -387,7 +393,6 @@ public class DuelBehavior : CampaignBehaviorBase
         }
         else
         {
-            _currentDefeatAction?.Invoke();
             GameMenu.SwitchToMenu("duel_defeat");
         }
 

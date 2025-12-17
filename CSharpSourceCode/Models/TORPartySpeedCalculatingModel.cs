@@ -67,7 +67,7 @@ namespace TOR_Core.Models
                             SelectMany(equipment => equipment.SelectQ(item => item.GetTraits()).
                                 SelectMany(traits => traits.WhereQ(trait => trait != null && trait.StatsTuple?.StatType == ItemTraitStatType.PartySpeed))))
             {
-                result.AddFactor(trait.StatsTuple.Value, GameTexts.FindText("tor_generic_enchantedEquipment"));
+                result.AddFactor(trait.StatsTuple.Value / 100f, GameTexts.FindText("tor_generic_enchantedEquipment"));
             }
 
             if (leaderHero.HasCareer(TORCareers.KnightOldWorld))

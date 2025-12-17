@@ -75,12 +75,12 @@ INCLUDE include.ink
         
             *[Bury the hanging bodies (Mercy+)]
                 You cut down the bodies and lay them to rest. #STR_Bury
-                ~ AddTraitInfluence("Mercy", 20)
+                ~ AddTraitInfluence("Mercy", 80)
                 ->Grave
         
             *[Loot the hanging bodies (Mercy-)]
                 You cut down the bodies and loot the corpses, taking the tattered rags they were executed in. #STR_Loot
-                ~ AddTraitInfluence("Mercy", -20)
+                ~ AddTraitInfluence("Mercy", -80)
                 ~ GiveItem("wrapped_headcloth",3)
                 ~ GiveItem("ragged_robes",3)
                 ~ GiveItem("leather_shoes",3)
@@ -88,7 +88,7 @@ INCLUDE include.ink
             
         //Raise the hanging bodies as skeletons
             *{PartyCanRaiseDead}[Raise the hanging bodies as skeletons (Mercy--) {print_party_skill_chance("Spellcraft", RaiseDeadDifficulty)}]
-                ~ AddTraitInfluence("Mercy", -50)
+                ~ AddTraitInfluence("Mercy", -200)
                 {perform_party_skill_check("Spellcraft", RaiseDeadDifficulty):
                     -true:
                         ~ ChangePartyTroopCount("tor_vc_skeleton",3)
@@ -112,27 +112,27 @@ INCLUDE include.ink
             
         *[Offer a prayer (Mercy+)]
             You say a prayer for the departed hoping they can find peace. #STR_Prayer
-            ~ AddTraitInfluence("Mercy", 20)
+            ~ AddTraitInfluence("Mercy", 80)
             ->Leave
 
 
         *[Take the sword (1 tier 3 sword, Mercy-)]
             You take the sword into your hands. #STR_TakeSword
-            ~ AddTraitInfluence("Mercy", -20)
+            ~ AddTraitInfluence("Mercy", -80)
             ~ HaveSword = true
             ~ TookSword = true
             ->choice2
             
         *[Dig up the grave (Mercy-)]
             You dig up the grave to find a warrior buried in some armour. You can see some of the armour is damaged, most likely from the "traitors". #STR_Dig
-            ~ AddTraitInfluence("Mercy", -20)
+            ~ AddTraitInfluence("Mercy", -80)
             ~ DugUpGrave = true
             ->choice2
         
         *{DugUpGrave == true}[Loot the buried body (2 pieces of tier 3 armour, Mercy-)]
             You strip the body of all the armour that is still intact. #STR_DigLoot
             ~LootedBody = true
-            ~AddTraitInfluence("Mercy", -20)
+            ~AddTraitInfluence("Mercy", -80)
             
                 //Loot Rolls
                     {RANDOM(0,1):
@@ -151,7 +151,7 @@ INCLUDE include.ink
             ->choice2
             
         *{DugUpGrave && PartyCanRaiseDead && not LootedBody}[Resurrect the buried body as a wight (+1 Crypt Guard, Mercy--) {print_party_skill_chance("Spellcraft", RaiseDeadDifficulty)}]
-            ~AddTraitInfluence("Mercy", -50)
+            ~AddTraitInfluence("Mercy", -200)
                 
                 //Raise Dead
                     {perform_party_skill_check("Spellcraft", RaiseDeadDifficulty):

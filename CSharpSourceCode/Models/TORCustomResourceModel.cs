@@ -26,7 +26,7 @@ public class TORCustomResourceModel : GameModel
 {
     //Sly : screen refresh recalculates the values for the UI elements on each tick so any common text is probably worth storing rather than fetching constantly
     private static TextObject ENCHANTEDEQUIPMENTTEXT = GameTexts.FindText("tor_generic_enchantedEquipment");
-    private static TextObject UPKEEPTEXT = GameTexts.FindText("tor_generic_enchantedEquipment");
+    private static TextObject UPKEEPTEXT = GameTexts.FindText("tor_generic_upkeep");
 
 
     public ExplainedNumber GetCultureSpecificCustomResourceChange(Hero hero, string resourceid)

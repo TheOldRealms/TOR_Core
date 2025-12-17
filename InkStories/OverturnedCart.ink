@@ -172,26 +172,26 @@ INCLUDE include.ink
         
             *{not HasAsked}[Help him (Mercy++)]
                 You decide to help him. #STR_HelpNoReward1
-                ~ AddTraitInfluence("Mercy", 40)
+                ~ AddTraitInfluence("Mercy", 160)
                 ->AfterLift
                 
             *{HasAsked}[Help him (+Relations with {Notable}, Mercy+)]
                 You decide to help him. #STR_HelpRelation1
-                ~ AddTraitInfluence("Mercy", 20)
+                ~ AddTraitInfluence("Mercy", 80)
                 ~ NotableChange = true
                 ->AfterLift
         
             *{HasAsked}[Extort him for a reward (Mercy-)]
                 You tell the {Profession} that he shouldn't be so modest. He is clearly a man of some means and can easily spare {RewardText} as compensation for the assistance. #STR_HelpExtort1
                 The man, believing he has no other option, agrees. #STR_HelpExtort2
-                ~ AddTraitInfluence("Mercy", -20)
+                ~ AddTraitInfluence("Mercy", -80)
                 ~ HasExtorted = true
                 ->AfterLift
             
             *{HasAsked && HorsesAround}[Demand one of the horses (Mercy-)]
                 You say that since he is clearly incapable of controlling two horses and therefore should be fine giving you one as payment. #STR_HelpExtortHorse1
                 The man, seeing as he has no other option, agrees. #STR_HelpExtortHorse2
-                ~ AddTraitInfluence("Mercy", -20)
+                ~ AddTraitInfluence("Mercy", -80)
                 ~ HasExtorted = true
                 ~ SetTextVariable("HasExtorted1",HasExtorted)
                 ~ SetTextVariable("HasExtorted2",HasExtorted)
@@ -200,7 +200,7 @@ INCLUDE include.ink
             *{HorsesAround}[Take the horses and leave (Mercy--)]
                 You decide that rather than help the man you would rather go and tame the two horses, as they are clearly wild horses, who in no way have had any previous owner this is perfectly legal. #STR_HelpTakeHorse1
                 After you have gotten a handle on the horses and are heading off, you can hear the cries of the trapped man begging you to come back and help, fade into the distance. #STR_HelpTakeHorse1
-                ~ AddTraitInfluence("Mercy", -40)
+                ~ AddTraitInfluence("Mercy", -160)
                 ~ GiveItem("old_horse",2)
                 ->END
                 
@@ -296,7 +296,7 @@ INCLUDE include.ink
         What will your party do next? #STR_RewardDead1 
             *[Bury the man (Mercy+)]
                 You decide to bury the man, hoping that he can find peace. #STR_RewardDeadBury 
-                {AddTraitInfluence("Mercy", 40)}
+                {AddTraitInfluence("Mercy", 160)}
                 ->DeadReward
             *[Loot the cart {HorsesAround: and take the horses} ({RewardText}{HorsesAround:, +2 tier 0 horses})]
                 Now that the man has passed he obviously will not need the supplies anymore. #STR_RewardDeadLoot 

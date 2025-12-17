@@ -4553,4 +4553,15 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_graveyard_surrender" text="{=str_tor_graveyard_surrender}Surrender"/>
 	<string id="tor_hireling_desert_warning" text="{=str_tor_hireling_desert_warning}This will damage your reputation with the {FACTION}. Serve for {MINIMUMSERVEDAYS} days, and speak to your enlisting Lord to avoid consequences."/>
 
+	<!--Greenskin Spell Trainer Dialogs-->
+	<string id="tor_spelltrainer_greenskin_start_str" text="{=tor_spelltrainer_greenskin_start_str}You come to look into da fire?" />
+	<string id="tor_spelltrainer_greenskin_hub_str" text="{=tor_spelltrainer_greenskin_hub_str}Wot you want, git?" />
+	<string id="tor_spelltrainer_greenskin_open_book_str" text="{=tor_spelltrainer_greenskin_open_book_str}I'z here fer sum ju-ju spooks." />
+	<string id="tor_spelltrainer_greenskin_close_book_str" text="{=tor_spelltrainer_greenskin_close_book_str}Eat dis shroom an' dance wiv me." />
+	<string id="tor_spelltrainer_greenskin_enchantments_str" text="{=tor_spelltrainer_greenskin_enchantments_str}I wanna learn how ta make some proppa gear wif da runes." />
+	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=tor_spelltrainer_greenskin_player_goodbye_str}I'z outta 'ere." />
+	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'ze dispersin' my smoke." />
+	
+	<!--Vanilla Perk Changes-->
+	<string id="tor_veterinarian_description" text="{=str_tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles." />
 </strings>

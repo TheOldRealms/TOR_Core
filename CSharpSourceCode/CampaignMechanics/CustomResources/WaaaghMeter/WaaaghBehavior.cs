@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using SandBox.View.Map;
@@ -20,6 +21,7 @@ public class WaaaghBehavior : CampaignBehaviorBase
 {
     private const float DailyWaaaghDecay = 5f; // Daily passive Waaagh decrease
     private const float MaxWaaagh = 1000f; // Maximum Waaagh value
+    private float _renownBefore;
     private float _initialCombatRatio;
     private WaaaghLevel _previousWaaaghLevel = WaaaghLevel.InternalFightin;
     private List<CharacterObject> _troops;
@@ -29,8 +31,10 @@ public class WaaaghBehavior : CampaignBehaviorBase
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
+        CampaignEvents.HeroPrisonerTaken.AddNonSerializedListener(this, OnHeroPrisonerTaken);
         ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
     }
+
 
     private void ScreenManager_OnPushScreen(ScreenBase pushedScreen)
     {
@@ -49,6 +53,8 @@ public class WaaaghBehavior : CampaignBehaviorBase
 
     private void InitialCombatStrengthCalculation(IMission mission)
     {
+        _renownBefore = Clan.PlayerClan?.Renown ?? 0f;
+
         if (Campaign.Current != null)
         {
             _initialCombatRatio = 0;
@@ -70,39 +76,53 @@ public class WaaaghBehavior : CampaignBehaviorBase
     {
         // Only apply to Greenskin players
         if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN) return;
-
-        if (!mapEvent.IsPlayerMapEvent) return;
+        if (mapEvent == null || !mapEvent.IsPlayerMapEvent) return;
 
         var playerWon = mapEvent.WinningSide == mapEvent.PlayerSide;
-
-        if (playerWon)
+        if (!playerWon)
         {
-            // Calculate Waaagh gain based on battle difficulty
-            mapEvent.GetBattleRewards(MobileParty.MainParty.Party, out var renownChange, out _, out _, out _, out _);
+            const int WAAAGH_LOSS_ON_DEFEAT = 200; // Player lost - decrease Waaagh
+            Hero.MainHero.AddCustomResource("Waaagh", -WAAAGH_LOSS_ON_DEFEAT);
+            UpdateWaaaghState();
+            return;
+        }
 
-            var waaaghGain = renownChange * 10;
+        // Calculate Waaagh gain based on battle difficulty
+        var ratio = _initialCombatRatio;
+        if (ratio <= 0f)
+        {
+            mapEvent.GetStrengthsRelativeToParty(mapEvent.PlayerSide,
+                out var playerStrength, out var enemyStrength);
+            if (enemyStrength > 0f) ratio = playerStrength / enemyStrength;
+        }
 
-            // Scale based on battle difficulty (small battles give less)
-            if (_initialCombatRatio > 2f) // Easy battle (player much stronger)
-            {
-                waaaghGain *= 0.2f; // Only 20% Waaagh gain
-            }
-            else if (_initialCombatRatio > 1.5f)
-            {
-                waaaghGain *= 0.5f; // 50% Waaagh gain
-            }
-            else if (_initialCombatRatio < 0.8f) // Hard battle (player weaker)
-            {
-                waaaghGain *= 2f; // Double Waaagh gain
-            }
+        var renownAfter = Clan.PlayerClan?.Renown ?? 0f;
+        var renownDelta = Math.Max(0.0, renownAfter - _renownBefore);
 
-            Hero.MainHero.AddCustomResource("Waaagh", (int)waaaghGain);
+        // Scale based on battle difficulty (small battles give less)
+        double scale;
+        if (ratio > 2.0f) // Easy battle (player much stronger)
+        {
+            scale = 0.20; // Only 20% Waaagh gain
+        }
+        else if (ratio > 1.5f)
+        {
+            scale = 0.50; // 50% Waaagh gain
+        }
+        else if (ratio < 0.8f) // Hard battle (player weaker)
+        {
+            scale = 2.00; // Double Waaagh gain
         }
         else
         {
-            // Player lost - decrease Waaagh
-            var waaaghLoss = 20; // Base loss for defeat
-            Hero.MainHero.AddCustomResource("Waaagh", -waaaghLoss);
+            scale = 1.0;
+        }
+
+        var delta = (int)Math.Round(renownDelta * 10.0 * scale, MidpointRounding.AwayFromZero);
+
+        if (delta != 0)
+        {
+            Hero.MainHero.AddCustomResource("Waaagh", delta);
         }
 
         UpdateWaaaghState();
@@ -202,13 +222,33 @@ public class WaaaghBehavior : CampaignBehaviorBase
 
         if (_troops.Count == 0) return;
 
-        // Pick random troop type
+        var party = Hero.MainHero.PartyBelongedTo;
+        if (party == null) return;
+
+        var sizeLimit = Campaign.Current.Models.PartySizeLimitModel
+            .GetPartyMemberSizeLimit(party.Party, false)
+            .ResultNumber;
+
+        var currentSize = party.MemberRoster.TotalManCount;
+
+        var freeSlots = (int)sizeLimit - currentSize;
+        if (freeSlots <= 0)
+        {
+            // exceed size -> skip
+            return;
+        }
+
+        // pick random troop type
         var randomTroop = _troops.GetRandomElement();
 
-        // Recruit 1-3 troops
+        // 1 - 3 troops
         int troopCount = MBRandom.RandomInt(1, 4);
+        troopCount = Math.Min(troopCount, freeSlots);
 
-        Hero.MainHero.PartyBelongedTo.MemberRoster.AddToCounts(randomTroop, troopCount);
+        if (troopCount <= 0)
+            return;
+
+        party.MemberRoster.AddToCounts(randomTroop, troopCount);
     }
 
     private void UpdateWaaaghState()
@@ -267,6 +307,23 @@ public class WaaaghBehavior : CampaignBehaviorBase
                 Hero.MainHero.AddAttribute("Waaagh3");
                 break;
         }
+    }
+    private void OnHeroPrisonerTaken(PartyBase capturer, Hero prisoner)
+    {
+        if (prisoner != Hero.MainHero)
+            return;
+
+        if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN)
+            return;
+
+        var currentWaaagh = Hero.MainHero.GetCustomResourceValue("Waaagh");
+        if (currentWaaagh <= 0f)
+        {
+            UpdateWaaaghState();
+            return;
+        }
+        Hero.MainHero.AddCustomResource("Waaagh", -(int)currentWaaagh);
+        UpdateWaaaghState();
     }
 
     public override void SyncData(IDataStore dataStore)

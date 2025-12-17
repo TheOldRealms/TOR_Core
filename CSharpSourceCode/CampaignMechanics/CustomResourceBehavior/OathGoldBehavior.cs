@@ -46,6 +46,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
     private const int SteelGain = 10;
     private const int FineSteelGain = 50;
     private const int GromrilGain = 150;
+    private const int WheatToOathGoldGain = 2;
     private Dictionary<string, int> _guildValues;
     private double _lastTimeVistedTown;
     private int _expeditionMaximum;
@@ -1018,9 +1019,9 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var gainedOathGold = 0;
             foreach (var element in leftmemberroster.GetTroopRoster())
             {
-                gainedOathGold += 10;
-                gainedOathGold += element.Character.Tier;
+                gainedOathGold += (10 + element.Character.Tier) * element.Number;
             }
+
 
             Hero.MainHero.AddCultureSpecificCustomResource(gainedOathGold);
         }
@@ -1086,26 +1087,40 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
                 var itemTitle = GameTexts.FindText("tor_dw_brewers_deliverWheat_item_title", "wheat");
                 var hint = GameTexts.FindText("tor_dw_brewers_deliverWheat_item_hint", "wheat");
+
                 if (item == DefaultItems.Grain && element.Amount >= 30)
                 {
+                    const int wheatAmount = 30;
+                    var gainedOathGold = wheatAmount / WheatToOathGoldGain;
 
-                    hint.SetTextVariable("WHEAT_COUNT", 30);
-                    hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", SteelGain);
-                    selectable.Add(new InquiryElement(30.ToString(), itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
+                    hint.SetTextVariable("WHEAT_COUNT", wheatAmount);
+                    hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
+
+                    selectable.Add(new InquiryElement(wheatAmount.ToString(), itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
                     continue;
                 }
+
                 if (item == DefaultItems.Grain && element.Amount >= 50)
                 {
-                    hint.SetTextVariable("WHEAT_COUNT", 50);
-                    hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", SteelGain);
-                    selectable.Add(new InquiryElement(50.ToString(), itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
+                    const int wheatAmount = 50;
+                    var gainedOathGold = wheatAmount / WheatToOathGoldGain;
+
+                    hint.SetTextVariable("WHEAT_COUNT", wheatAmount);
+                    hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
+
+                    selectable.Add(new InquiryElement(wheatAmount.ToString(), itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
                     continue;
                 }
+
                 if (item == DefaultItems.Grain && element.Amount >= 100)
                 {
-                    hint.SetTextVariable("WHEAT_COUNT", 100);
-                    hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", SteelGain);
-                    selectable.Add(new InquiryElement(100.ToString(), itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
+                    const int wheatAmount = 100;
+                    var gainedOathGold = wheatAmount / WheatToOathGoldGain;
+
+                    hint.SetTextVariable("WHEAT_COUNT", wheatAmount);
+                    hint.SetTextVariable("OATH_GOLD_GAIN_WHEAT", gainedOathGold);
+
+                    selectable.Add(new InquiryElement(wheatAmount.ToString(), itemTitle.ToString(), new ItemImageIdentifier(item), true, hint.ToString()));
                 }
             }
             var title = GameTexts.FindText("tor_dw_brewers_deliverWheat_prompt_title");
@@ -1123,7 +1138,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
                 Hero.MainHero.PartyBelongedTo.ItemRoster.AddToCounts(grain, -amout);
 
 
-                Hero.MainHero.AddCultureSpecificCustomResource(amout / 2);
+                Hero.MainHero.AddCultureSpecificCustomResource(amout / WheatToOathGoldGain);
             }
 
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
