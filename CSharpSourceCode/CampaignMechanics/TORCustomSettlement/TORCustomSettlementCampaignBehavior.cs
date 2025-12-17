@@ -315,13 +315,13 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                 }
 
                 var inq = new MultiSelectionInquiryData(
-                    "Victory!",
-                    new TextObject("{=tor_custom_settlement_chaos_portal_victory_str}You are Victorious! Claim your reward! Select one!").ToString(),
+                    TORTextHelper.GetText("tor_custom_settlement_chaos_portal_victory_title", "Victory!"),
+                    TORTextHelper.GetText("tor_custom_settlement_chaos_portal_victory_str", "You are Victorious! Claim your reward! Select one!"),
                     list,
                     false,
                     1,
                     1,
-                    "OK",
+                    TORTextHelper.GetText("tor_inquiry_ok_text", "OK"),
                     null,
                     OnRewardClaimed,
                     null);
@@ -330,7 +330,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             }
             else
             {
-                var inq = new InquiryData("Defeated!", new TextObject("{=str_tor_custom_settlement_chaos_portal_lose}The enemy proved more than a match for you. Better luck next time!").ToString(), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null);
+                var inq = new InquiryData(TORTextHelper.GetText("tor_custom_settlement_chaos_portal_defeat_title", "Defeated!"), TORTextHelper.GetText("str_tor_custom_settlement_chaos_portal_lose", "The enemy proved more than a match for you. Better luck next time!"), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null);
                 InformationManager.ShowInquiry(inq);
             }
         }

@@ -224,10 +224,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 GameTexts.SetVariable("HIRELING_DESERT_TEXT", "");
             }
 
-            var titleText = new TextObject("{=FLT0000044}Abandon Party");
-            var text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party? {HIRELING_DESERT_TEXT}");
-            var affirmativeText = new TextObject("{=FLT0000047}Yes");
-            var negativeText = new TextObject("{=FLT0000048}No");
+            var titleText = TORTextHelper.GetTextObject("tor_hireling_abandon_party_title", "Abandon Party");
+            var text = TORTextHelper.GetTextObject("tor_hireling_abandon_party_text", "Are you sure you want to abandon the party? {HIRELING_DESERT_TEXT}");
+            var affirmativeText = TORTextHelper.GetTextObject("tor_hireling_yes_text", "Yes");
+            var negativeText = TORTextHelper.GetTextObject("tor_hireling_no_text", "No");
             InformationManager.ShowInquiry(new InquiryData(titleText.ToString(), text.ToString(), true, true, affirmativeText.ToString(), negativeText.ToString(), delegate ()
             {
                 if (desertion)
