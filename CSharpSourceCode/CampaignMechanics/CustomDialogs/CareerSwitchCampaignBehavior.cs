@@ -51,11 +51,11 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddDialogLine("black_grail_request_answer3", "black_grail_request_answer_line3", "black_grail_request_answer_areyouready", TORTextHelper.GetText("tor_blackgrail_answer_ready", "So I ask you again, are you really willing to to know the truth about the lady?"), null, null);
 
             starter.AddPlayerLine("blackgrail_iamready", "black_grail_request_answer_areyouready", "black_grail_player_prompt", TORTextHelper.GetText("tor_blackgrail_answer_player_ready", "I am ready, mylord."), null, () => DisplayPrompt(TORCareers.BlackGrailKnight, OnBlackGrailReceived));
-            starter.AddPlayerLine("blackgrail_iamnotready", "black_grail_request_answer_areyouready", "black_grail_player_notready", TORTextHelper.GetText("tor_blackgrail_answer_player_notready", "On a second thought, I need to think about it."), null, null);
+            starter.AddPlayerLine("blackgrail_iamnotready", "black_grail_request_answer_areyouready", "black_grail_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "BlackGrailKnight", "On second thought, I need to think about it.", true), null, null);
 
             starter.AddDialogLine("black_grail_player_prompt", "black_grail_player_prompt", "black_grail_player_ready","...", null, null);
 
-            starter.AddPlayerLine("bloodkiss_inqury_declined", "black_grail_player_ready", "black_grail_player_notready", TORTextHelper.GetText("tor_blackgrail_player_decline", "On a second thought, I need to think about it."), () => inquiryDeclined, null);
+            starter.AddPlayerLine("bloodkiss_inqury_declined", "black_grail_player_ready", "black_grail_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "BlackGrailKnight", "On second thought, I need to think about it.", true), () => inquiryDeclined, null);
             starter.AddDialogLine("blackgrail_receive", "black_grail_player_ready", "black_grail_player_playcutscene", TORTextHelper.GetText("tor_blackgrail_receive", "The truth is: The Bretonnes, proud humans follow the whisperings of an Elf. The Lady is nothing more than a Elven Witch, not a goddess or saint. Our whole Kingdom is build upon the Lie of Lady. I will clean you from these lies, drink from this grail, and gain the true powers of Bretonnia!"), () => !inquiryDeclined, null);
             starter.AddDialogLine("bloodkiss_cutscene", "black_grail_player_playcutscene", "close_window", TORTextHelper.GetText("tor_blackgrail_receive_end", "Rise my young Knight. Let us clean this world from this non sense."), null, null);
 
@@ -91,12 +91,12 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddDialogLine("bloodkiss_request_answer3", "bloodkiss_blooddragon_answer_line3", "bloodkiss_blooddragon_areyouready", TORTextHelper.GetText("tor_bloodkiss_blooddragon_answer_ready", "Know this, knight, the Blood Kiss is not a gift to be granted lightly. It is an eternal bond, a oath of fealty to kindred and I. All pathetic mortal senses of mercy and weakness will be purged from you (MAGIC ABILITIES WILL BE REMOVED!). Your desires for power and dominance shall be sated forevermore."), null, null);
 
             starter.AddPlayerLine("bloodkiss_iamready", "bloodkiss_blooddragon_areyouready", "bloodkiss_blooddragon_player_prompt", TORTextHelper.GetText("tor_bloodkiss_blooddragon_player_ready", "I am ready, Grandmaster."), null, null);
-            starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_blooddragon_areyouready", "bloodkiss_blooddragon_player_notready", TORTextHelper.GetText("tor_bloodkiss_blooddragon_player_notready", "On a second thought, I need to think about it."), null, null);
+            starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_blooddragon_areyouready", "bloodkiss_blooddragon_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "BloodKnight", "On second thought, I need to think about it.", true), null, null);
 
             starter.AddDialogLine("bloodkiss_blooddragon_player_prompt", "bloodkiss_blooddragon_player_prompt", "bloodkiss_blooddragon_player_ready", "...", null, () => DisplayPrompt(TORCareers.BloodKnight, OnBloodKissBloodDragonRecieved));
 
 
-            starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_blooddragon_player_ready", "bloodkiss_blooddragon_player_notready", TORTextHelper.GetText("tor_bloodkiss_blooddragon_player_decline", "On a second thought, I need to think about it."), () => inquiryDeclined, null);
+            starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_blooddragon_player_ready", "bloodkiss_blooddragon_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "BloodKnight", "On second thought, I need to think about it.", true), () => inquiryDeclined, null);
 
             starter.AddDialogLine("bloodkiss_recieve", "bloodkiss_blooddragon_player_ready", "bloodkiss_blooddragon_playcutscene", TORTextHelper.GetText("tor_bloodkiss_blooddragon_receive", "Embrace the Bloodkiss, become one with the night, and ascend to greatness alongside the Blood Dragons."), () => !inquiryDeclined, null);
             starter.AddDialogLine("bloodkiss_cutscene", "bloodkiss_blooddragon_playcutscene", "close_window", TORTextHelper.GetText("tor_bloodkiss_blooddragon_player_receive_end", "Rise, young blood dragon."), null, null);
@@ -135,11 +135,11 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddDialogLine("bloodkiss_request_answer", "bloodkiss_root", "bloodkiss_answer_line2", TORTextHelper.GetText("tor_bloodkiss_answer_line2", "Thou hast served me and mine loyally, I shall grant thee the Blood kiss if thou so desireth."), null, null);
             starter.AddDialogLine("bloodkiss_request_answer2", "bloodkiss_answer_line2", "bloodkiss_areyouready", TORTextHelper.GetText("tor_bloodkiss_answer_line3", "However, this gift does not come without cost, to be granted the blood kiss thou canst never go back. Art thou sure?"), null, null);
             starter.AddPlayerLine("bloodkiss_iamready", "bloodkiss_areyouready", "bloodkiss_player_prompt", TORTextHelper.GetText("tor_bloodkiss_player_ready", "I am ready my lord."), null, null);
-            starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_areyouready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_bloodkiss_player_notready", "On a second thought, I need to think about it."), null, null);
+            starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_areyouready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "MinorVampire", "On second thought, I need to think about it.", true), null, null);
 
             starter.AddDialogLine("bloodkiss_player_prompt", "bloodkiss_player_prompt", "bloodkiss_player_ready", "...", null, () => DisplayPrompt(TORCareers.MinorVampire, OnBloodKissRecieved));
 
-            starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_player_ready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_bloodkiss_player_decline", "On a second thought, I need to think about it."), () => inquiryDeclined, null);
+            starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_player_ready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "MinorVampire", "On second thought, I need to think about it.", true), () => inquiryDeclined, null);
 
             starter.AddDialogLine("bloodkiss_recieve", "bloodkiss_player_ready", "bloodkiss_playcutscene", TORTextHelper.GetText("tor_bloodkiss_receive", "Prepare thine self for thine dark awakening."), () => !inquiryDeclined, null);
             starter.AddDialogLine("bloodkiss_cutscene", "bloodkiss_playcutscene", "close_window", TORTextHelper.GetText("tor_bloodkiss_player_receive_end_carstein", "Rise, von Carstein scion."), null, null);
@@ -182,11 +182,11 @@ namespace TOR_Core.CampaignMechanics.CustomDialogs
             starter.AddDialogLine("bloodkiss_request_answer", "bloodkiss_necrach_root", "bloodkiss_necrach_answer_line2", TORTextHelper.GetText("tor_bloodkiss_necrach_answer_line2", "You has served me and mine loyally, as my teacher did with me long ago. I will share the gift of immortality with you"), null, null);
             starter.AddDialogLine("bloodkiss_request_answer2", "bloodkiss_necrach_answer_line2", "bloodkiss_necrach_areyouready", TORTextHelper.GetText("tor_bloodkiss_necrach_answer_line3", "Are you sure you are ready to leave your entire mortal life behind and enter forever into the lap of eternal night?"), null, null);
             starter.AddPlayerLine("bloodkiss_iamready", "bloodkiss_necrach_areyouready", "bloodkiss_necrach_player_prompt", TORTextHelper.GetText("tor_bloodkiss_player_ready", "I am ready my lord."), null, null);
-            starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_necrach_areyouready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_bloodkiss_player_notready", "On a second thought, I need to think about it."), null, null);
+            starter.AddPlayerLine("bloodkiss_iamnotready", "bloodkiss_necrach_areyouready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "Necrarch", "On second thought, I need to think about it.", true), null, null);
 
             starter.AddDialogLine("bloodkiss_necrach_player_prompt", "bloodkiss_necrach_player_prompt", "bloodkiss_nechrach_player_ready", "...", null, () => DisplayPrompt(TORCareers.Necrarch, OnNecrachBloodKissRecieved));
 
-            starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_player_ready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_bloodkiss_player_decline", "On a second thought, I need to think about it."), () => inquiryDeclined, null);
+            starter.AddPlayerLine("bloodkiss_inqury_declined2", "bloodkiss_player_ready", "bloodkiss_player_notready", TORTextHelper.GetText("tor_career_decline_reconsider", "Necrarch", "On second thought, I need to think about it.", true), () => inquiryDeclined, null);
 
             starter.AddDialogLine("bloodkiss_recieve", "bloodkiss_nechrach_player_ready", "bloodkiss_playcutscene", TORTextHelper.GetText("tor_bloodkiss_receive", "Prepare thine self for thine dark awakening."), () => !inquiryDeclined, null);
             starter.AddDialogLine("bloodkiss_cutscene", "bloodkiss_playcutscene", "close_window", TORTextHelper.GetText("tor_bloodkiss_player_receive_end_necrarch", "Behold! The new addition to the brotherhood of the necrarchs."), null, null);

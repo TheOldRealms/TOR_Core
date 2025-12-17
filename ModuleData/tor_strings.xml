@@ -2307,6 +2307,11 @@
   <string id="tor_career_switch_title.BlackGrailKnight" text="{=str_tor_career_switch_title_BlackGrailKnight}Become a Knight of Mousillon" />
    <string id="tor_career_switch_title.Necrarch" text="{=str_tor_career_switch_title_Necrarch}Become a Necrach" />
 
+  <string id="tor_career_decline_reconsider.MinorVampire" text="{=str_tor_career_decline_reconsider_MinorVampire}On second thought, I need to think about it." />
+  <string id="tor_career_decline_reconsider.BloodKnight" text="{=str_tor_career_decline_reconsider_BloodKnight}On second thought, I need to think about it." />
+  <string id="tor_career_decline_reconsider.BlackGrailKnight" text="{=str_tor_career_decline_reconsider_BlackGrailKnight}On second thought, I need to think about it." />
+  <string id="tor_career_decline_reconsider.Necrarch" text="{=str_tor_career_decline_reconsider_Necrarch}On second thought, I need to think about it." />
+
   <string id="tor_career_switch_explanation.MinorVampire" text="{=str_tor_career_switch_explanation_MinorVampire}
   Accept and you shall become a Von Carstein Vampire. This decision is permanent and cannot be reversed.{newline}
   {newline}
@@ -4359,8 +4364,6 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_engineer_quest_task1" text="{=str_tor_engineer_quest_task1}Return to the Master Engineer in Nuln"/>
 	<string id="tor_engineer_quest_task2" text="{=str_tor_engineer_quest_task2}Track down Goswin and retrieve the stolen components."/>
 	<string id="tor_engineer_quest_task3" text="{=str_tor_engineer_quest_task3}Return to the Master Engineer in Nuln"/>
-	<string id="tor_quest_engineer_skip" text="{=str_tor_quest_engineer_skip}You have no idea what you are interfering with..."/>
-	<string id="tor_quest_engineer_cultists_skip" text="{=str_tor_quest_engineer_cultists_skip}Your victory here is meaningless...you will never find what we took..."/>
 	<string id="tor_rogue_engineer_name" text="{=str_tor_rogue_engineer_name}Goswin"/>
 
 	<!--Mercenary Career Button-->
@@ -4405,7 +4408,6 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_bloodkiss_request" text="{=str_tor_bloodkiss_request}My lord von Carstein, I wish to shed my mortal shell and serve you eternally."/>
 	<string id="tor_bloodkiss_answer_line2" text="{=str_tor_bloodkiss_answer_line2}Thou hast served me and mine loyally, I shall grant thee the Blood kiss if thou so desireth."/>
 	<string id="tor_bloodkiss_answer_line3" text="{=str_tor_bloodkiss_answer_line3}However, this gift does not come without cost, to be granted the blood kiss thou canst never go back. Art thou sure?"/>
-	<string id="tor_bloodkiss_player_notready" text="{=str_tor_bloodkiss_player_notready}On second thought, I need to think about it."/>
 	<string id="tor_bloodkiss_player_ready" text="{=str_tor_bloodkiss_player_ready}I am ready my lord."/>
 	<string id="tor_bloodkiss_player_dontbotherme" text="{=str_tor_bloodkiss_player_dontbotherme}Then think about it someplace else, thou disturbeth mine plans. "/>
 	<string id="tor_bloodkiss_receive" text="{=str_tor_bloodkiss_receive}Prepare thine self for thine dark awakening."/>
@@ -4416,7 +4418,6 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_bloodkiss_blooddragon_answer_line2" text="{=str_tor_bloodkiss_blooddragon_answer_line2}Ah, indeed, a Warrior of incredible prowess stands before me, daring to seek the Blood Kiss from none other than Walach Harkon. While you are besmirched by your mortality, your valor and devotion to the ideals of knighthood are truly commendable, and I find myself intrigued by your unwavering pursuit of perfection."/>
 	<string id="tor_bloodkiss_blooddragon_answer_line3" text="{=str_tor_bloodkiss_blooddragon_answer_line3}To be worthy of the Blood Kiss is no small feat, and yet, I sense in you a rare dedication to the principles that guide the Order of the Blood Dragons. Your thirst for excellence and your unwavering discipline resonate strongly. The vows you have sworn, the code of chivalry you uphold – they mirror the very foundations upon which the Blood Dragons stand."/>
 	<string id="tor_bloodkiss_blooddragon_answer_ready" text="{=str_tor_bloodkiss_blooddragon_answer_ready}Know this, knight, the Blood Kiss is not a gift to be granted lightly. It is an eternal bond, a oath of fealty to kindred and I. All pathetic mortal senses of mercy and weakness will be purged from you (MAGIC ABILITIES WILL BE REMOVED!). Your desires for power and dominance shall be sated forevermore."/>
-	<string id="tor_bloodkiss_blooddragon_player_notready" text="{=str_tor_bloodkiss_blooddragon_player_notready}On second thought, I need to think about it."/>
 	<string id="tor_bloodkiss_blooddragon_player_ready" text="{=str_tor_bloodkiss_blooddragon_player_ready}I am ready, Grandmaster."/>
 	<string id="tor_bloodkiss_blooddragon_receive" text="{=str_tor_bloodkiss_blooddragon_receive}Embrace the Bloodkiss, become one with the night, and ascend to greatness alongside the Blood Dragons."/>
 	<string id="tor_bloodkiss_blooddragon_player_receive_end" text="{=str_tor_bloodkiss_blooddragon_player_receive_end}Rise, young blood dragon."/>
@@ -4429,7 +4430,6 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_blackgrail_answer_line1" text="{=str_tor_blackgrail_answer_line1}Not every Bretonne is ready for the truth. Are you willing to cleanse yourself from the Lie that we Bretonnes dogmatically follow?"/>
 	<string id="tor_blackgrail_answer_line2" text="{=str_tor_blackgrail_answer_line2}I can tell you once you take the path I am wandering on, there is no salvation, and before we open the eyes of all Bretonnes, you will be an enemy of the King."/>
 	<string id="tor_blackgrail_answer_ready" text="{=str_tor_blackgrail_answer_ready}So I ask you again, are you really willing to to know the truth about the lady?"/>
-	<string id="tor_blackgrail_answer_player_notready" text="{=str_tor_blackgrail_answer_player_notready}On second thought, I need to think about it."/>
 	<string id="tor_blackgrail_answer_player_ready" text="{=str_tor_blackgrail_answer_player_ready}I am ready, mylord."/>
 	<string id="tor_blackgrail_dontbotherme" text="{=str_tor_blackgrail_dontbotherme}Then think about it someplace else. We are done here."/>
 	<string id="tor_blackgrail_receive" text="{=str_tor_blackgrail_receive}The truth is: The Bretonnes, proud humans follow the whisperings of an Elf. The Lady is nothing more than a Elven Witch, not a goddess or saint. Our whole Kingdom is build upon the Lie of Lady. I will clean you from these lies, drink from this grail, and gain the true powers of Bretonnia!"/>
@@ -4496,81 +4496,5 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 
 	<!--Spell Trainer Eonir Dialogs-->
 	<string id="tor_spelltrainer_eonir_open_book" text="{=str_tor_spelltrainer_eonir_open_book}I seek to further my knowledge of the Winds of Magic, can you help me achieve this?"/>
-
-	<!--Magic Lore Prompt-->
-	<string id="tor_magic_lore_prompt_label" text="{=str_tor_magic_lore_prompt_label}Choose Lore"/>
-	<string id="tor_magic_lore_prompt_description" text="{=str_tor_magic_lore_prompt_description}Choose a lore to specialize in."/>
-	<string id="tor_magic_lore_prompt_notification" text="{=str_tor_magic_lore_prompt_notification}Successfully learned lore: "/>
-
-	<!--Hunt Cultist Quest-->
-	<string id="tor_quest_hunt_cultist_title" text="{=str_tor_quest_hunt_cultist_title}A cultist in our midst"/>
-	<string id="tor_quest_hunt_cultist_quest_title" text="{=str_tor_quest_hunt_cultist_quest_title}A cultist in our midst"/>
-	<string id="tor_quest_hunt_cultist_description" text="{=str_tor_quest_hunt_cultist_description}Travel to target settlement and root out any cultist who may be hiding there."/>
-	<string id="tor_quest_hunt_cultist_issue_brief" text="{=str_tor_quest_hunt_cultist_issue_brief}As a matter of fact, I have a lead on a potential cultist. A grave accusation that needs investigating."/>
-	<string id="tor_quest_hunt_cultist_issue_accept_player" text="{=str_tor_quest_hunt_cultist_issue_accept_player}What needs to be done?"/>
-	<string id="tor_quest_hunt_cultist_issue_explanation" text="{=str_tor_quest_hunt_cultist_issue_explanation}I need you to travel to {TARGET_SETTLEMENT}. Investigate the local populace and root out any cultists. On successful completion, the order will pay you {REWARD}{GOLD_ICON}."/>
-	<string id="tor_quest_hunt_cultist_accept_player" text="{=str_tor_quest_hunt_cultist_accept_player}Consider it done."/>
-	<string id="tor_quest_hunt_cultist_offer_dialog" text="{=str_tor_quest_hunt_cultist_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"/>
-	<string id="tor_quest_hunt_cultist_started" text="{=str_tor_quest_hunt_cultist_started}You were tasked to travel to {TARGET_SETTLEMENT} and root out any cultist who may be hiding there."/>
-	<string id="tor_quest_hunt_cultist_log_updated_success" text="{=str_tor_quest_hunt_cultist_log_updated_success}You were successful in uncovering the cultists."/>
-	<string id="tor_quest_hunt_cultist_log_updated_fail" text="{=str_tor_quest_hunt_cultist_log_updated_fail}The cultists escaped."/>
-	<string id="tor_quest_hunt_cultist_out_of_time_log" text="{=str_tor_quest_hunt_cultist_out_of_time_log}You failed to complete the investigation in time. Any potential cultists are surely in the wind now."/>
-	<string id="tor_quest_hunt_cultist_discuss_dialog" text="{=str_tor_quest_hunt_cultist_discuss_dialog}It was good doing business with you."/>
-	<string id="tor_quest_hunt_cultist_prepare_to_die" text="{=str_tor_quest_hunt_cultist_prepare_to_die}Prepare to die!"/>
-	<string id="tor_quest_hunt_cultist_village_raided_info" text="{=str_tor_quest_hunt_cultist_village_raided_info}The village is raided, no chance to find any cultists now. Come back when the village is repopulated."/>
-
-	<!--Plagued Village Quest-->
-	<string id="tor_quest_plagued_village_title" text="{=str_tor_quest_plagued_village_title}The plague ridden village"/>
-	<string id="tor_quest_plagued_village_quest_title" text="{=str_tor_quest_plagued_village_quest_title}The plague ridden village"/>
-	<string id="tor_quest_plagued_village_description" text="{=str_tor_quest_plagued_village_description}Travel to target settlement and find the cause of the unnatural epidemic that plagues the village."/>
-	<string id="tor_quest_plagued_village_issue_brief" text="{=str_tor_quest_plagued_village_issue_brief}As a matter of fact, I have a lead on potential cultist activity. A village is struck by a terrible, unnatural plague. A grave matter that needs investigating."/>
-	<string id="tor_quest_plagued_village_issue_accept_player" text="{=str_tor_quest_plagued_village_issue_accept_player}What needs to be done?"/>
-	<string id="tor_quest_plagued_village_issue_explanation" text="{=str_tor_quest_plagued_village_issue_explanation}I need you to travel to {TARGET_SETTLEMENT}. Investigate the situation and find root cause of the plague. On successful completion, the order will pay you {REWARD}{GOLD_ICON}."/>
-	<string id="tor_quest_plagued_village_accept_player" text="{=str_tor_quest_plagued_village_accept_player}Consider it done."/>
-	<string id="tor_quest_plagued_village_offer_dialog" text="{=str_tor_quest_plagued_village_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"/>
-	<string id="tor_quest_plagued_village_started" text="{=str_tor_quest_plagued_village_started}You were tasked to travel to {TARGET_SETTLEMENT} and investigate the epidemic that plagues it."/>
-	<string id="tor_quest_plagued_village_log_updated_success" text="{=str_tor_quest_plagued_village_log_updated_success}You were successful in lifting the plague."/>
-	<string id="tor_quest_plagued_village_log_updated_fail" text="{=str_tor_quest_plagued_village_log_updated_fail}You abandoned the mission."/>
-	<string id="tor_quest_plagued_village_out_of_time_log" text="{=str_tor_quest_plagued_village_out_of_time_log}You failed to complete the investigation in time."/>
-	<string id="tor_quest_plagued_village_discuss_dialog" text="{=str_tor_quest_plagued_village_discuss_dialog}It was good doing business with you."/>
-	<string id="tor_quest_plagued_village_raided_info" text="{=str_tor_quest_plagued_village_raided_info}The village is raided, no chance to find any cultists now. Come back when the village is repopulated."/>
-
-	<!--Specialize Lore Quest-->
-	<string id="tor_quest_specialize_lore_title" text="{=str_tor_quest_specialize_lore_title}Practice Spellcasting"/>
-	<string id="tor_specialize_lore_quest_task1" text="{=str_tor_specialize_lore_quest_task1}Use magic 5 times."/>
-	<string id="tor_specialize_lore_quest_task1_counter" text="{=str_tor_specialize_lore_quest_task1_counter}Number of casts"/>
-	<string id="tor_specialize_lore_quest_task1_finish" text="{=str_tor_specialize_lore_quest_task1_finish}Visit a spell trainer to specialize in a lore."/>
-
-	<!--Character Creation Summaries-->
-	<string id="tor_cc_origin_summary" text="{=str_tor_cc_origin_summary}Origin"/>
-	<string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth"/>
-	<string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession"/>
-
-	<!--Career and Key Bindings-->
-	<string id="tor_career_ability_key" text="{=str_tor_career_ability_key}Career Ability"/>
-	<string id="tor_career_ability_description" text="{=str_tor_career_ability_description}Starting Career ability, like the mistform for the Vampire Counts, or Knightly strike of the Grailknight"/>
-	<string id="tor_quick_cast_key" text="{=str_tor_quick_cast_key}Quick Cast"/>
-	<string id="tor_quick_cast_description" text="{=str_tor_quick_cast_description}Cast spells or prayers without needing to switch to spell cast mode. Warning: There is no target indication and the Spells follow predefined casting order. For targeted casting, always use the Spellcaster mode"/>
-	<string id="tor_spellcasting_mode_key" text="{=str_tor_spellcasting_mode_key}Quick Cast Selection Menu"/>
-	<string id="tor_spellcasting_mode_description" text="{=str_tor_spellcasting_mode_description}1) During battle pressing Q puts you into aiming mode, a reticule will appear and you will be able to target your spells. Aiming mode is accompanied by a visual animation on your character."/>
-
-	<!--Item Traits-->
-	<string id="tor_item_trait_default_elemental_damage" text="{=str_tor_item_trait_default_elemental_damage}This item deals elemental damage."/>
-
-	<!--Hunt Perk Animals-->
-	<string id="tor_hunt_perk_animal_small" text="{=str_tor_hunt_perk_animal_small}small Animal"/>
-	<string id="tor_hunt_perk_animal_medium" text="{=str_tor_hunt_perk_animal_medium}medium Animal"/>
-	<string id="tor_hunt_perk_animal_large" text="{=str_tor_hunt_perk_animal_large}large Animal"/>
-
-	<!--Prayer and Spell Book-->
-	<string id="tor_prayerbook_devoted_to" text="{=str_tor_prayerbook_devoted_to}Devoted to: "/>
-	<string id="tor_prayerbook_prayer_level" text="{=str_tor_prayerbook_prayer_level}Prayer level: "/>
-	<string id="tor_spellbook_hero_name" text="{=str_tor_spellbook_hero_name}Hero name: "/>
-	<string id="tor_spellbook_casting_level" text="{=str_tor_spellbook_casting_level}Spell casting level: "/>
-	<string id="tor_spellbook_known_lores" text="{=str_tor_spellbook_known_lores}Known Magic Schools: "/>
-	<string id="tor_spellbook_current_wom" text="{=str_tor_spellbook_current_wom}Current Winds of Magic: "/>
-	<string id="tor_spellbook_max_wom" text="{=str_tor_spellbook_max_wom}Maximum Winds of Magic: "/>
-	<string id="tor_spellbook_wom_recharge" text="{=str_tor_spellbook_wom_recharge}Winds of Magic recharge rate: "/>
-	<string id="tor_spellbook_recharge_rate" text="{=str_tor_spellbook_recharge_rate}{RATE}{ICON}/ hour"/>
 
 </strings>

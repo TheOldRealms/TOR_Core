@@ -174,12 +174,12 @@ namespace TOR_Core.Quests
             //Current.ConversationManager.EndConversation();
             Current.ConversationManager.ClearCurrentOptions();
             Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "close_window",
-                new TextObject("{=str_tor_quest_engineer_cultists_skip}Your victory here is meaningless...you will never find what we took..."),
+                TORTextHelper.GetTextObject("tor_quest_engineer_cultists_skip", "Your victory here is meaningless...you will never find what we took..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInCultisthunt, RemoveSkip, 0, 1,
                 200, null);
 
             Current.ConversationManager.AddDialogLineMultiAgent("start", "start", "rogueengineer_playerafterbattle",
-                new TextObject("{=str_tor_quest_engineer_skip}You have no idea what you are interfering with..."),
+                TORTextHelper.GetTextObject("tor_quest_engineer_skip", "You have no idea what you are interfering with..."),
                 () => _skipImprisonment && _currentActiveLog == EngineerQuestStates.HandInRogueEngineerHunt, RemoveSkip,
                 0, 1, 200, null);
 

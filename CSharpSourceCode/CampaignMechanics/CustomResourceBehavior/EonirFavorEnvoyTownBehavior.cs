@@ -124,7 +124,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_magic", "spellsinger_envoy_main_hub", "back_to_main_hub_spellsinger",  TORTextHelper.GetText("tor_spellsinger_envoy_main_hub_spellsinger_magic","I seek to further my knowledge of the Winds of Magic, can you help me achieve this?"), () => MobileParty.MainParty.HasSpellCasterMember() && Hero.MainHero.Culture.StringId == TORConstants.Cultures.EONIR && IsSpellsingerEnvoy(), openbookconsequence, 200, null);
 
-        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_lores", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_lores", TORTextHelper.GetText("spellsinger_envoy_main_hub_spellsinger_lores","I think i am ready to learn a new facet of the winds of magic."), () => IsSpellsingerEnvoy() && GreylordIsNotAllowedToLearnMoreLores(), null, 200, null);
+        campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_spellsinger_lores", "spellsinger_envoy_main_hub", "spellsinger_envoy_spellsinger_lores", TORTextHelper.GetText("spellsinger_envoy_main_hub_spellsinger_lores","I think i am ready to learn a new facet of the winds of magic."), () => IsSpellsingerEnvoy() && CanGreylordLearnMoreLores(), null, 200, null);
 
 
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_main_hub_whyareyouhere", "spellsinger_envoy_main_hub", "spellsinger_envoy_whyareyouhere",
@@ -170,14 +170,14 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores", "spellsinger_envoy_spellsinger_lores_choice",
             TORTextHelper.GetText("eonir_spellsinger_learn_lore_offer_text", "I can teach you, but as much as you are ready to do so, I need your word in the Council (500{EONIR_FAVOR})?"), () => IsSpellsingerEnvoy(), null, 200);
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_1", "spellsinger_envoy_spellsinger_lores_choice", "spellsinger_envoy_spellsinger_lores_result",
-            TORTextHelper.GetText("eonir_spellsinger_learn_lore_accept_text", "It shouldn't be for your disadvantage"), () => IsSpellsingerEnvoy() && 500 <= Hero.MainHero.GetCultureSpecificCustomResourceValue() && GreylordIsNotAllowedToLearnMoreLores(), LearnNewLoresPrompt, 200);
+            TORTextHelper.GetText("eonir_spellsinger_learn_lore_accept_text", "It shouldn't be for your disadvantage"), () => IsSpellsingerEnvoy() && 500 <= Hero.MainHero.GetCultureSpecificCustomResourceValue() && CanGreylordLearnMoreLores(), LearnNewLoresPrompt, 200);
         campaignGameStarter.AddPlayerLine("spellsinger_envoy_spellsinger_lores_choice_2", "spellsinger_envoy_spellsinger_lores_choice", "back_to_main_hub_spellsinger",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsSpellsingerEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("spellsinger_envoy_spellsinger_lores_result", "spellsinger_envoy_spellsinger_lores_result", "back_to_main_hub_spellsinger",
             TORTextHelper.GetText("eonir_envoy_will_see_what_can_do_text", "I will see what I can do."), () => IsSpellsingerEnvoy(), null, 200);
 
-        bool GreylordIsNotAllowedToLearnMoreLores()
+        bool CanGreylordLearnMoreLores()
         {
             if (!Hero.MainHero.HasCareer(TORCareers.GreyLord))
             {

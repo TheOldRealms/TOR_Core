@@ -161,7 +161,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
             obj.AddDialogLine("tor_engineer_quest_hire_engineers", "recruitengineer", "recruitmentoptions", TORTextHelper.GetText("tor_engineer_quest_hire_engineers", "A pair of our novice engineers are eagier to join you for the right price ({RECRUITMENT_PRICE})."), UpdateRecruitmentPrices, null, 200);
             obj.AddPlayerLine("tor_engineer_quest_hire_engineers_accept", "recruitmentoptions", "opengunshopandclosedialog", TORTextHelper.GetText("tor_engineer_quest_hire_engineers_accept", "Welcome on board."), () => playerhasenoughmoney(), cannoncrewrecruitmentconsequence, 200);
             obj.AddPlayerLine("tor_engineer_quest_hire_engineers_not_enough_money", "recruitmentoptions", "opengunshopandclosedialog", TORTextHelper.GetText("tor_engineer_quest_hire_engineers_not_enough_money", "I don't have the funds for them right now."), () => !playerhasenoughmoney(), null, 200);
-            obj.AddPlayerLine("tor_engineer_quest_hire_engineers_decline", "recruitmentoptions", "opengunshopandclosedialog", TORTextHelper.GetText("tor_engineer_quest_hire_engineers_decline", "On a second thought, maybe later."), null, null, 200);
+            obj.AddPlayerLine("tor_engineer_quest_hire_engineers_decline", "recruitmentoptions", "opengunshopandclosedialog", TORTextHelper.GetText("tor_engineer_quest_hire_engineers_decline", "On second thought, maybe later."), null, null, 200);
 
             UpgradeGunShopDialog(obj);
 

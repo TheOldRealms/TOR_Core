@@ -80,7 +80,7 @@ namespace TOR_Core.AbilitySystem
 
         public virtual bool IsDisabled(Agent casterAgent, out TextObject disabledReason)
         {
-            disabledReason = new TextObject("{=str_tor_ability_enabled}Enabled");
+            disabledReason = TORTextHelper.GetTextObject("tor_ability_enabled", "Enabled");
             if (casterAgent == null) return false;
 
             if (casterAgent.GetHero()?.Culture.StringId == TORConstants.Cultures.DAWI && this.Template.BelongsToLoreID == "RuneMagic")
@@ -88,31 +88,31 @@ namespace TOR_Core.AbilitySystem
                 if (!casterAgent.HasPartyAnvilOfDoom()) //The check could be maybe expensive. We should maybe reiterate after all components are set
                                                         //Sly : attribute on player/runesmith hero that is added or removed when items are discarded/sold/acquired/etc? Rechecking the party's inventory for every attempt to use rune magic be problematic because player's have a tendancy to : 1) hoard items, and 2) play pokemon with caster companions.
                 {
-                    disabledReason = new TextObject("{=str_tor_ability_missing_anvil}Missing Anvil of Doom");
+                    disabledReason = TORTextHelper.GetTextObject("tor_ability_missing_anvil", "Missing Anvil of Doom");
                     return true;
                 }
             }
 
             if (IsOnCooldown())
             {
-                disabledReason = new TextObject("{=str_tor_ability_on_cooldown}On cooldown");
+                disabledReason = TORTextHelper.GetTextObject("tor_ability_on_cooldown", "On cooldown");
                 return true;
             }
             if (_isLocked)
             {
-                disabledReason = new TextObject("{=str_tor_ability_mission_over}Mission is over");
+                disabledReason = TORTextHelper.GetTextObject("tor_ability_mission_over", "Mission is over");
                 return true;
             }
             if (IsCasting)
             {
-                disabledReason = new TextObject("{=str_tor_ability_casting}Casting");
+                disabledReason = TORTextHelper.GetTextObject("tor_ability_casting", "Casting");
                 return true;
             }
             if (casterAgent.IsMainAgent && casterAgent.GetHero().HasAnyCareer())
             {
                 if (casterAgent.GetCareerAbility().RequiresDisabledCrosshairDuringAbility && casterAgent.GetCareerAbility().IsActive)
                 {
-                    disabledReason = new TextObject("{=str_tor_ability_in_mistform}In Mistform");
+                    disabledReason = TORTextHelper.GetTextObject("tor_ability_in_mistform", "In Mistform");
                     return true;
                 }
             }
