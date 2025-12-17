@@ -36,7 +36,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
         starter.AddGameMenu("cursedsite_menu", "{LOCATION_DESCRIPTION}", CursedSiteMenuInit);
         starter.AddGameMenuOption("cursedsite_menu", "purify", "{PURIFY_TEXT}", PurifyCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_purifying"));
         starter.AddGameMenuOption("cursedsite_menu", "ghosts", "{tor_custom_settlement_menu_cursed_site_ghost_str}Tap into the congealed essence of Dark Magic and bind some wraiths to your will.", GhostsCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_ghosts"));
-        starter.AddGameMenuOption("cursedsite_menu", "ghosts", "{tor_custom_settlement_menu_cursed_site_ghost_str}Empower your undead minions using Dark Energy (100{DARKENERGYICON}) .", EmpoweringUndeadCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_empower_minions"));
+        starter.AddGameMenuOption("cursedsite_menu", "ghosts", "{tor_custom_settlement_menu_cursed_site_ghost_str}Empower your undead minions using Dark Energy (100{DARKENERGYICON}).", EmpoweringUndeadCondition, (MenuCallbackArgs args) => GameMenu.SwitchToMenu("cursedsite_menu_empower_minions"));
         starter.AddGameMenuOption("cursedsite_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
@@ -165,7 +165,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
 
             if (freeSlots <= 0)
             {
-                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_not_enough_free_slots}You have not enough space in your party.");
+                args.Tooltip = new TextObject("{=str_tor_custom_settlement_cursed_site_not_enough_free_slots}You do not have enough space in your party.");
                 args.IsEnabled = false;
             }
 
@@ -200,7 +200,7 @@ public class CursedSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettlemen
             }
             if (Hero.MainHero.GetCustomResourceValue("DarkEnergy") < _empoweringUndeadCost)
             {
-                args.Tooltip = new TextObject("You have not enough Dark Energy({DARKENERGYICON}).");
+                args.Tooltip = new TextObject("You do not have enough Dark Energy ({DARKENERGYICON}).");
                 args.IsEnabled = false;
             }
         }

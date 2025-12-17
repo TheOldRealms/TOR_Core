@@ -41,6 +41,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         private Dictionary<string, string> _settlementToTrainerMap = new Dictionary<string, string>();
 
         private readonly float _testSuccessChance = 1f;
+        private const int DarkEnergyLoreCost = 2000;
 
         public override void RegisterEvents()
         {
@@ -220,7 +221,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
             obj.AddDialogLine("trainer_spellsinger_start", "start", "choices_spellsinger",TORTextHelper.GetText("tor_spelltrainer_spellsinger_start","I welcome you child of Athel Loren"), isSpellsingerTrainer, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_start", "hub_spellsinger", "choices_spellsinger", TORTextHelper.GetText("tor_spelltrainer_spellsinger_reintro","Is there more you seek? Speak your desires"), isSpellsingerTrainer, null, 200, null);
 
-            obj.AddPlayerLine("trainer_spellsinger_learnmagic", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer", TORTextHelper.GetText("tor_spelltrainer_spellsinger_start","Greetings wise Spellsinger. I am seeking the capabilities of performing magic."), () => Hero.MainHero.HasCareer(TORCareers.Warden) && !Hero.MainHero.IsSpellCaster(), null, 200, null);
+            obj.AddPlayerLine("trainer_spellsinger_learnmagic", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learnmagic","Greetings wise Spellsinger. I am seeking the capabilities of performing magic."), () => Hero.MainHero.HasCareer(TORCareers.Warden) && !Hero.MainHero.IsSpellCaster(), null, 200, null);
             obj.AddPlayerLine("trainer_spellsinger_learnmagic_second_lore", "choices_spellsinger", "trainer_spellsinger_learnmagic_answer_secondlore", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learn_magic_warden_second_lore", "I want to enhance my magic capabilities."), () => Hero.MainHero.HasCareer(TORCareers.Warden) &&
                 Hero.MainHero.HasUnlockedCareerChoiceTier(3) && Hero.MainHero.GetSkillValue(TORSkills.Spellcraft) > 200, null, 200, null);
             obj.AddDialogLine("trainer_spellsinger_learnmagic_answer_secondlore", "trainer_spellsinger_learnmagic_answer_secondlore", "trainer_spellsinger_learnmagic_secondlore__answer_player", TORTextHelper.GetText("tor_spelltrainer_spellsinger_learn_magic_warden_second_lore_answer", "You truely choose the path of Ariel. But the forest demand another tribute. Pay it and I will teach you more"), isSpellsingerTrainer, null, 200, null);
@@ -477,9 +478,9 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             obj.AddDialogLine("trainer_vampire_learn_magic2", "specializelore_question", "accept_dark_energy_price",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_dark_energy_request", "Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold, " +
-                "I need you to pay with the essence of Life. Then my masters can give you access... (1500{DARKENERGYICON})"), null, null, 200, null);
+                "I need you to pay with the essence of Life. Then my masters can give you access... ({DARK_ENERGY_COST}{DARKENERGYICON})"), SetDarkEnergyCostVariable,null, 200, null);
             obj.AddPlayerLine("agree_dark_energy_price", "accept_dark_energy_price", "specializelore",
-                TORTextHelper.GetText("tor_spelltrainer_vampire_agree_price", "Take my gift. Now give me what I demand! (Pay 2000{DARKENERGYICON})"), HasEnoughDarkEnergy, chooseloreconsequence, 200, null);
+                TORTextHelper.GetText("tor_spelltrainer_vampire_agree_price", "Take my gift. Now give me what I demand! (Pay {DARK_ENERGY_COST}{DARKENERGYICON})"), HasEnoughDarkEnergy, chooseloreconsequence, 200, null);
             obj.AddPlayerLine("decline_dark_energy_price", "accept_dark_energy_price", "trainer_vampire_learn_magic3",
                 TORTextHelper.GetText("tor_spelltrainer_vampire_decline_price", "I can't provide you this gift"), null, null, 200);
 
@@ -495,9 +496,15 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
 
 
+        private bool SetDarkEnergyCostVariable()
+        {
+            MBTextManager.SetTextVariable("DARK_ENERGY_COST", DarkEnergyLoreCost);
+            return true;
+        }
+
         private bool HasEnoughDarkEnergy()
         {
-            return Hero.MainHero.GetCustomResourceValue("DarkEnergy") >= 1500;
+            return Hero.MainHero.GetCustomResourceValue("DarkEnergy") >= DarkEnergyLoreCost;
         }
 
         private bool VampireCasterReachedNewRankCondition()
@@ -807,7 +814,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
                 if (Hero.MainHero.IsVampire())
                 {
-                    Hero.MainHero.AddCustomResource("DarkEnergy", -2000);
+                    Hero.MainHero.AddCustomResource("DarkEnergy", -DarkEnergyLoreCost);
                 }
             }
             InformationManager.HideInquiry();
