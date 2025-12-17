@@ -42,7 +42,7 @@ namespace TOR_Core.Items
 
             var t = new ScriptUseData()
             {
-                heroId = party.StringId,
+                heroId = party.LeaderHero.StringId,
                 timeLastUsed = CampaignTime.Now,
                 itemId = item.StringId,
                 usages = 1

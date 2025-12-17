@@ -2865,5 +2865,7 @@
 	<string id="tor_spelltrainer_greenskin_enchantments_str" text="{=tor_spelltrainer_greenskin_enchantments_str}I wanna learn how ta make some proppa gear wif da runes." />
 	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=tor_spelltrainer_greenskin_player_goodbye_str}I'z outta 'ere." />
 	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'ze dispersin' my smoke." />
-
+	
+	<!--Vanilla Perk Changes-->
+	<string id="tor_veterinarian_description" text="{=str_tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles." />
 </strings>

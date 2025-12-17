@@ -44,7 +44,7 @@ public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBeh
         new("unit_rune_grungni", new TextObject("Master Rune of Grungni"), new TextObject("Reduce incoming ranged damage by 75%."),
             "unit_rune_grungni", new List<string> { "dw_master_rune_steel","dw_master_rune_gromril","dw_master_rune_preservation" }, 3),
         new("unit_rune_grimnir", new TextObject("Master Rune of Grimnir"),
-            new TextObject("20% extra attack speed, 35% extra physical and fire damage."), "unit_rune_grimnir", new List<string> { "dw_rune_master_swiftness","dw_rune_master_breaking","dw_rune_fury" }, 3)
+            new TextObject("20% extra attack speed, 35% extra physical and fire damage."), "unit_rune_grimnir", new List<string> { "dw_master_rune_swiftness","dw_master_rune_breaking","dw_rune_fury" }, 3)
     ];
 
 
