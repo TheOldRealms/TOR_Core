@@ -3225,6 +3225,12 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_weapon_sword_001">
+    <ItemTraits />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_thsword_greatsword_001">
     <ItemTraits />
     <DamageProportions>
@@ -3718,8 +3724,8 @@
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_ghal_maraz">
     <ItemTraits />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.70" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.30" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.30" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.70" />
     </DamageProportions>
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_empire_weapon_mace_holy_hammer">
