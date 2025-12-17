@@ -703,6 +703,7 @@
     <Compile Include="HarmonyPatches\FactionBannerPatches.cs" />
     <Compile Include="HarmonyPatches\GameKeyOptionsCategoryPatch.cs" />
     <Compile Include="HarmonyPatches\GameTextPatches.cs" />
+    <Compile Include="HarmonyPatches\InventoryResetPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
