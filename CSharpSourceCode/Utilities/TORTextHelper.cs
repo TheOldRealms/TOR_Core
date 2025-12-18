@@ -62,7 +62,7 @@ namespace TOR_Core.Extensions
                 return textObject;
             }
 
-            TORCommon.Log(string.Format("Couldn't find text with id: {0}.  switch to default", id), LogLevel.Error);
+            TORCommon.Log(string.Format("Couldn't find text with id: {0}.  switch to default: {1}", id, defaultText), LogLevel.Error);
             return new TextObject(defaultText);
         }
 
@@ -83,7 +83,7 @@ namespace TOR_Core.Extensions
                 
             }
 
-            TORCommon.Log(string.Format("Couldn't find text with id: {0}.  switch to default", id), LogLevel.Error);
+            TORCommon.Log(string.Format("Couldn't find text with id: {0} {1}.  switch to default", id, variation), LogLevel.Error);
             return new TextObject(defaultText);
         }
     }
