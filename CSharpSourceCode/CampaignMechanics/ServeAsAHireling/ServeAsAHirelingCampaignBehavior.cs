@@ -264,9 +264,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_explain", TORTextHelper.GetText("tor_hireling_offer_sword_text", "I am hereby offering my sword."), () => SanityCheck() && !IsEnlisted() && ServeAsAHirelingHelpers.HirelingServiceConditions(), null);
             campaignGameStarter.AddDialogLine("payedsword_explain", "payedsword_explain", "hireling_decide_player", explainText.Value, null, null, 200);
             campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "hireling_prompt", TORTextHelper.GetText("tor_hireling_accept_text", "I accept my Lord."), ServeAsAHirelingHelpers.HirelingServiceConditions, () => DisplayPrompt(EnlistPlayer));
-            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "lord_pretalk", TORTextHelper.GetText("tor_hireling_think_about_it_text", "I need to think about this"), null, null);
+            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "lord_pretalk", TORTextHelper.GetText("tor_hireling_think_about_it_text", "I have to think about this."), null, null);
             campaignGameStarter.AddDialogLine("hireling_prompt", "hireling_prompt", "hireling_decision", TORTextHelper.GetText("tor_hireling_ellipsis_text", "..."), null, null);
-            campaignGameStarter.AddPlayerLine("hireling_decision", "hireling_decision", "lord_pretalk", TORTextHelper.GetText("tor_hireling_think_about_it_text", "I need to think about this"), () => _enlistInquiryDeclined, null);
+            campaignGameStarter.AddPlayerLine("hireling_decision", "hireling_decision", "lord_pretalk", TORTextHelper.GetText("tor_hireling_think_about_it_text", "I have to think about this."), () => _enlistInquiryDeclined, null);
             campaignGameStarter.AddDialogLine("hireling_decision", "hireling_decision", "end", positiveDecisionText.Value, null, null);
         }
 

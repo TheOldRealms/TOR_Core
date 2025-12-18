@@ -4495,7 +4495,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_agree" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_agree}Yes I am."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_decline" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_decline}I have to think about this."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_second_lore" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore} I want to enhance my magic capabilities."/>
-	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_second_lore_answer" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore_answer}You truely choose the path of ariel. But the forest demand another tribute. Pay it and I will teach you more"/>
+	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_second_lore_answer" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore_answer}You truely choose the path of Ariel. But the forest demand another tribute. Pay it and I will teach you more"/>
 	<string id="tor_spelltrainer_spellweaver" text="{=str_tor_spelltrainer_spellweaver}I want to become a spellweaver."/>
 	<string id="tor_spelltrainer_spellweaver_choice" text="{=str_tor_spelltrainer_spellweaver_choice}Let me choose."/>
 	<string id="tor_spelltrainer_spellweaver_companion" text="{=str_tor_spelltrainer_spellweaver_companion}My companion is ready to become a spellweaver."/>
@@ -4694,7 +4694,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_encyclopedia_filter_types" text="{=str_tor_encyclopedia_filter_types}Types"/>
 
 	<!-- Character Creation Texts -->
-	<string id="tor_cc_origin_fallback_text" text="{=str_tor_cc_origin_fallback_text}Choose your origin"/>
+	<string id="tor_cc_origin_fallback_text" text="{=str_tor_cc_origin_fallback_text}Choose your family's background..."/>
 	<string id="tor_cc_origin_summary" text="{=str_tor_cc_origin_summary}Origin"/>
 	<string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth"/>
 	<string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Choose your growth"/>
@@ -4877,13 +4877,13 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_engineer_quest_repeat" text="{=str_tor_engineer_quest_repeat}I will not let you down a second time."/>
 	<string id="tor_engineer_quest_giveup" text="{=str_tor_engineer_quest_giveup}I do not think I can do it at this time."/>
 	<string id="tor_engineer_hub_upgrade" text="{=str_tor_engineer_hub_upgrade}I wish to upgrade my equipment."/>
-	<string id="tor_engineer_upgrade_explain_1" text="{=str_tor_engineer_upgrade_explain_1}I can upgrade your equipment for the right price."/>
-	<string id="tor_engineer_upgrade_explain_2" text="{=str_tor_engineer_upgrade_explain_2}What would you like to upgrade?"/>
-	<string id="tor_engineer_upgrade_1" text="{=str_tor_engineer_upgrade_1}Upgrade option 1"/>
-	<string id="tor_engineer_upgrade_2" text="{=str_tor_engineer_upgrade_2}Upgrade option 2"/>
-	<string id="tor_engineer_upgrade_3" text="{=str_tor_engineer_upgrade_3}Upgrade option 3"/>
-	<string id="tor_engineer_upgrade_agree" text="{=str_tor_engineer_upgrade_agree}I agree to the terms."/>
-	<string id="tor_engineer_upgrade_decline" text="{=str_tor_engineer_upgrade_decline}I need to think about this."/>
+	<string id="tor_engineer_upgrade_explain_1" text="{=str_tor_engineer_upgrade_explain_1}Not only did Goswin steal valuable parts, but also blueprints. Some of our finest creations were lost in his rampage."/>
+	<string id="tor_engineer_upgrade_explain_2" text="{=str_tor_engineer_upgrade_explain_2}There are copies of the plans, and those parts can be re-created from engineer schools throughout the empire. But for this I have neither the authority, nor the contacts to get them quickly."/>
+	<string id="tor_engineer_upgrade_1" text="{=str_tor_engineer_upgrade_1}For 500{PRESTIGE_ICON} I can finally stock up our buckshot supplies and continue creating blunderbusses and replenish our hochland long rifle stocks."/>
+	<string id="tor_engineer_upgrade_2" text="{=str_tor_engineer_upgrade_2}For another 500{PRESTIGE_ICON} I can buy parts from which I can create more advanced pistols and rifles. Meinkhopt would be proud of me."/>
+	<string id="tor_engineer_upgrade_3" text="{=str_tor_engineer_upgrade_3}For a final 500{PRESTIGE_ICON} I can finally stock up our gunpowder laboratory, which gives me the opportunity to procure grenades and cannons."/>
+	<string id="tor_engineer_upgrade_agree" text="{=str_tor_engineer_upgrade_agree}I hope it is worth it. I will support you on this (Spend 500{PRESTIGE_ICON})"/>
+	<string id="tor_engineer_upgrade_decline" text="{=str_tor_engineer_upgrade_decline}I can't afford such a venture."/>
 	<string id="tor_engineer_upgrade_1_response" text="{=str_tor_engineer_upgrade_1_response}Excellent choice."/>
 	<string id="tor_engineer_upgrade_2_response" text="{=str_tor_engineer_upgrade_2_response}A fine selection."/>
 	<string id="tor_engineer_upgrade_3_response" text="{=str_tor_engineer_upgrade_3_response}Very well."/>
@@ -4891,18 +4891,18 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 
 	<!-- Spelltrainer Texts -->
 	<string id="tor_spelltrainer_spellsinger_reintro" text="{=str_tor_spelltrainer_spellsinger_reintro}Is there more you seek? Speak your desires"/>
-	<string id="tor_spelltrainer_spellsinger_learnlore" text="{=str_tor_spelltrainer_spellsinger_learnlore}Teach me one of Ariel many pathways."/>
+	<string id="tor_spelltrainer_spellsinger_learnlore" text="{=str_tor_spelltrainer_spellsinger_learnlore}Teach me one of Ariel's many pathways."/>
 	<string id="tor_spelltrainer_spellsinger_weaver_choice" text="{=str_tor_spelltrainer_spellsinger_weaver_choice}A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely"/>
 	<string id="tor_spelltrainer_spellsinger_companion_choice" text="{=str_tor_spelltrainer_spellsinger_companion_choice}A Highweaver, or Darkweaver... tough choice"/>
 	<string id="tor_spelltrainer_spellsinger_companion_choose" text="{=str_tor_spelltrainer_spellsinger_companion_choose}Let me choose."/>
-	<string id="tor_spelltrainer_vampire_dark_energy_request" text="{=str_tor_spelltrainer_vampire_dark_energy_request}Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold."/>
-	<string id="tor_spelltrainer_vampire_agree_price" text="{=str_tor_spelltrainer_vampire_agree_price}Take my gift. Now give me what I demand!"/>
-	<string id="tor_spelltrainer_vampire_decline_price" text="{=str_tor_spelltrainer_vampire_decline_price}I can not provide you this gift"/>
+	<string id="tor_spelltrainer_vampire_dark_energy_request" text="{=str_tor_spelltrainer_vampire_dark_energy_request}Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold, I need you to pay with the essence of Life. Then my masters can give you access... ({DARK_ENERGY_COST}{DARKENERGYICON})"/>
+	<string id="tor_spelltrainer_vampire_agree_price" text="{=str_tor_spelltrainer_vampire_agree_price}Take my gift. Now give me what I demand! (Pay {DARK_ENERGY_COST}{DARKENERGYICON})"/>
+	<string id="tor_spelltrainer_vampire_decline_price" text="{=str_tor_spelltrainer_vampire_decline_price}I can't provide you this gift"/>
 	<string id="tor_spelltrainer_vampire_shame" text="{=str_tor_spelltrainer_vampire_shame}A shame. What else can I help you with?"/>
 
 	<!-- Settlement Graveyard Texts -->
 	<string id="tor_settlement_graveyard_raise_dead_action" text="{=str_tor_settlement_graveyard_raise_dead_action}Raise dead from the corpses in the ground (wait 8 hours)."/>
-	<string id="tor_settlement_graveyard_raise_dead_begin_text" text="{=str_tor_settlement_graveyard_raise_dead_begin_text}The common folk graves are ripe for the taking! You spend time to raise corpses from the ground. Morr is going to be furious tonight!"/>
+	<string id="tor_settlement_graveyard_raise_dead_begin_text" text="{=str_tor_settlement_graveyard_raise_dead_begin_text}The common folk's graves are ripe for the taking! You spend time to raise corpses from the ground. Morr is going to be furious tonight!"/>
 	<string id="tor_settlement_graveyard_raise_dead_interrupt_action" text="{=str_tor_settlement_graveyard_raise_dead_interrupt_action}Defend yourself"/>
 
 	<!-- Other Missing Texts -->

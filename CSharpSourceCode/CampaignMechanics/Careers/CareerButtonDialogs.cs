@@ -18,7 +18,7 @@ public static class CareerButtonDialogs
 
     private static void GrailKnightButtonDialog(CampaignGameStarter starter)
     {
-        starter.AddDialogLine("grailKnightCompanionHonoring_start1", "start", "grailKnightCompanionHonoring_vow1", TORTextHelper.GetText("tor_grail_companion_vow_start", "Greetings my lord, how may I be of service? "), () => buttonDialogCondition() && Hero.MainHero.HasCareer(TORCareers.GrailKnight), DeactivateDialog, 200, null);
+        starter.AddDialogLine("grailKnightCompanionHonoring_start1", "start", "grailKnightCompanionHonoring_vow1", TORTextHelper.GetText("tor_grail_companion_vow_start", "Greetings my lord, how may I be of service?"), () => buttonDialogCondition() && Hero.MainHero.HasCareer(TORCareers.GrailKnight), DeactivateDialog, 200, null);
         starter.AddPlayerLine("grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow1", "grailKnightCompanionHonoring_vow2", TORTextHelper.GetText("tor_grail_companion_vow_1", "It has been some time since you have come into my service, you have repeatedly proven to be a most capable and chivalrous Knight."), null, null, 200,
             null);
 

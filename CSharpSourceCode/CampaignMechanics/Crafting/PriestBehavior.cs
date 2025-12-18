@@ -170,14 +170,14 @@ public class PriestBehavior : CampaignBehaviorBase
 
 
             campaignStarter.AddDialogLine("priest_start_accept" + cult, "start", "priest_hub_intro" + cult,
-                TORTextHelper.GetText("tor_priest_start_accept", cult, "Welcome, faithful one. How may I serve you today?"), () => PriestCondition(cult) && PlayerMeetsRequirements(cult), null, 200);
+                TORTextHelper.GetText("tor_priest_start_accept", cult, "Welcome, faithful one. How may I serve you today?", skipValidation: true), () => PriestCondition(cult) && PlayerMeetsRequirements(cult), null, 200);
 
             campaignStarter.AddDialogLine("priest_start_decline" + cult, "start", "close_window" + cult,
-                TORTextHelper.GetText("tor_priest_start_decline", cult, "I am sorry, but I can only help those who follow our faith."),
+                TORTextHelper.GetText("tor_priest_start_decline", cult, "I am sorry, but I can only help those who follow our faith.", skipValidation: true),
                 () => PriestCondition(cult) && !PlayerMeetsRequirements(cult) && !IsEnemyOfCult(cult), null, 200);
 
             campaignStarter.AddDialogLine("priest_start_decline_hard" + cult, "start", "close_window",
-                TORTextHelper.GetText("tor_priest_start_decline_hard", cult, "You dare approach me, servant of darkness? Leave this holy place at once!"),
+                TORTextHelper.GetText("tor_priest_start_decline_hard", cult, "You dare approach me, servant of darkness? Leave this holy place at once!", skipValidation: true),
                 () => PriestCondition(cult) && !PlayerMeetsRequirements(cult) && IsEnemyOfCult(cult), null, 200);
 
 
@@ -233,39 +233,39 @@ public class PriestBehavior : CampaignBehaviorBase
             }
 
             campaignStarter.AddDialogLine("priest_hub_intro" + cult, "priest_hub_intro" + cult, "priest_hub" + cult,
-                TORTextHelper.GetText("tor_priest_hub_intro", cult, "The blessings of the gods be upon you. What brings you here?"), null, null, 200);
+                TORTextHelper.GetText("tor_priest_hub_intro", cult, "The blessings of the gods be upon you. What brings you here?", skipValidation: true), null, null, 200);
 
             campaignStarter.AddDialogLine("priest_hub_reintro" + cult, "priest_hub_reintro" + cult, "priest_hub" + cult,
-                TORTextHelper.GetText("tor_priest_hub_reintro", cult, "Is there anything else I can help you with?"), null, null, 200);
+                TORTextHelper.GetText("tor_priest_hub_reintro", cult, "Is there anything else I can help you with?", skipValidation: true), null, null, 200);
 
 
             campaignStarter.AddPlayerLine("priest_hub_blessingshop_p" + cult, "priest_hub" + cult, "priest_blessingshop_1" + cult,
-                TORTextHelper.GetText("tor_priest_hub_blessingshop_p", cult, "I seek to learn about holy blessings."), null, null, 200);
+                TORTextHelper.GetText("tor_priest_hub_blessingshop_p", cult, "I seek to learn about holy blessings.", skipValidation: true), null, null, 200);
 
             campaignStarter.AddPlayerLine("priest_hub_party_blessing_p" + cult, "priest_hub" + cult, "priest_blessing_party_1" + cult,
-                TORTextHelper.GetText("tor_priest_hub_party_blessing_p", cult, "Would you bless my party?"), null, null, 200);
+                TORTextHelper.GetText("tor_priest_hub_party_blessing_p", cult, "Would you bless my party?", skipValidation: true), null, null, 200);
 
             campaignStarter.AddPlayerLine("priest_hub_quit_p" + cult, "priest_hub" + cult, "close_window",
-                TORTextHelper.GetText("tor_priest_hub_quit_p", cult, "Farewell, priest."), null, null, 200);
+                TORTextHelper.GetText("tor_priest_hub_quit_p", cult, "Farewell, priest.", skipValidation: true), null, null, 200);
 
 
             //blessing shop
 
             campaignStarter.AddDialogLine("priest_blessingshop_first" + cult, "priest_blessingshop_1" + cult, "priest_hub_reintro" + cult,
-                TORTextHelper.GetText("tor_priest_blessingshop_1", cult, "Here, take this tome. It contains the knowledge you seek about our sacred blessings."), () => !LearnedBlessings(), teachAboutBlessings, 200);
+                TORTextHelper.GetText("tor_priest_blessingshop_1", cult, "Here, take this tome. It contains the knowledge you seek about our sacred blessings.", skipValidation: true), () => !LearnedBlessings(), teachAboutBlessings, 200);
 
             campaignStarter.AddDialogLine("priest_blessingshop_1" + cult, "priest_blessingshop_1" + cult, "priest_hub_reintro" + cult,
-                TORTextHelper.GetText("tor_priest_blessingshop_1", cult, "Here, take this tome. It contains the knowledge you seek about our sacred blessings."), LearnedBlessings, () => OpenBlessingRecipesShop(template.enchantmentSuffix), 200);
+                TORTextHelper.GetText("tor_priest_blessingshop_1", cult, "Here, take this tome. It contains the knowledge you seek about our sacred blessings.", skipValidation: true), LearnedBlessings, () => OpenBlessingRecipesShop(template.enchantmentSuffix), 200);
 
             //receive party blessing
 
             campaignStarter.AddDialogLine("priest_blessing_party_1" + cult, "priest_blessing_party_1" + cult, "priest_hub_reintro" + cult,
-                TORTextHelper.GetText("tor_priest_blessing_party_1", cult, "May the divine light guide your steps. Your party is now blessed."), () => !Hero.MainHero.PartyBelongedTo.HasAnyActiveBlessing(),
+                TORTextHelper.GetText("tor_priest_blessing_party_1", cult, "May the divine light guide your steps. Your party is now blessed.", skipValidation: true), () => !Hero.MainHero.PartyBelongedTo.HasAnyActiveBlessing(),
                 () => BlessParty(cult), 200);
 
 
             campaignStarter.AddDialogLine("priest_hub_party_blessing_decline" + cult, "priest_blessing_party_1" + cult, "priest_hub_reintro" + cult,
-                TORTextHelper.GetText("tor_priest_hub_party_blessing_decline", cult, "I see your party already carries a blessing. There is nothing more I can do."), null, null, 200);
+                TORTextHelper.GetText("tor_priest_hub_party_blessing_decline", cult, "I see your party already carries a blessing. There is nothing more I can do.", skipValidation: true), null, null, 200);
 
 
             bool LearnedBlessings()
@@ -298,7 +298,7 @@ public class PriestBehavior : CampaignBehaviorBase
 
             //quit
             campaignStarter.AddDialogLine("priest_hub_quit" + cult, "priest_hub_quit", "close_window",
-                TORTextHelper.GetText("tor_priest_hub_quit", cult, "Go in peace. May the gods watch over you."), () => PriestCondition(cult) && PlayerMeetsRequirements(cult), null, 200);
+                TORTextHelper.GetText("tor_priest_hub_quit", cult, "Go in peace. May the gods watch over you.", skipValidation: true), () => PriestCondition(cult) && PlayerMeetsRequirements(cult), null, 200);
         }
     }
 
