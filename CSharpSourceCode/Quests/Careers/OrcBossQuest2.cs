@@ -85,65 +85,65 @@ namespace TOR_Core.Quests.Careers
 
             // Create journal logs for each task
             _taskOneHandedSkill = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_onehanded}Reach {REQUIRED} levels in One-Handed skill")
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_log_onehanded", "Reach {REQUIRED} levels in One-Handed skill")
                     .SetTextVariable("REQUIRED", RequiredWeaponSkillLevels),
-                new TextObject("{=tor_orc_boss_quest2_task_onehanded}One-Handed Skill"),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_task_onehanded", "One-Handed Skill"),
                 _currentOneHandedSkillLevel,
                 RequiredWeaponSkillLevels);
 
             _taskTwoHandedSkill = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_twohanded}Reach {REQUIRED} levels in Two-Handed skill")
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_log_twohanded", "Reach {REQUIRED} levels in Two-Handed skill")
                     .SetTextVariable("REQUIRED", RequiredWeaponSkillLevels),
-                new TextObject("{=tor_orc_boss_quest2_task_twohanded}Two-Handed Skill"),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_task_twohanded", "Two-Handed Skill"),
                 _currentTwoHandedSkillLevel,
                 RequiredWeaponSkillLevels);
 
             _taskPolearmSkill = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_polearm}Reach {REQUIRED} levels in Polearm skill")
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_log_polearm", "Reach {REQUIRED} levels in Polearm skill")
                     .SetTextVariable("REQUIRED", RequiredWeaponSkillLevels),
-                new TextObject("{=tor_orc_boss_quest2_task_polearm}Polearm Skill"),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_task_polearm", "Polearm Skill"),
                 _currentPolearmSkillLevel,
                 RequiredWeaponSkillLevels);
 
             _taskBattlesWon = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_battles}Win {REQUIRED} battles")
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_log_battles", "Win {REQUIRED} battles")
                     .SetTextVariable("REQUIRED", RequiredBattlesWon),
-                new TextObject("{=tor_orc_boss_quest2_task_battles}Battles Won"),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_task_battles", "Battles Won"),
                 _currentBattlesWon,
                 RequiredBattlesWon);
 
             _taskArenaFights = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_arena}Win {REQUIRED} arena fights")
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_log_arena", "Win {REQUIRED} arena fights")
                     .SetTextVariable("REQUIRED", RequiredArenaFights),
-                new TextObject("{=tor_orc_boss_quest2_task_arena}Arena Fights"),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_task_arena", "Arena Fights"),
                 _currentArenaFights,
                 RequiredArenaFights);
 
             _taskBrawlsWon = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_brawls}Win {REQUIRED} brawls")
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_log_brawls", "Win {REQUIRED} brawls")
                     .SetTextVariable("REQUIRED", RequiredBrawlsWon),
-                new TextObject("{=tor_orc_boss_quest2_task_brawls}Brawls Won"),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_task_brawls", "Brawls Won"),
                 _currentBrawlsWon,
                 RequiredBrawlsWon);
 
             _taskCitiesCaptured = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_cities}Capture {REQUIRED} cities or castles")
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_log_cities", "Capture {REQUIRED} cities or castles")
                     .SetTextVariable("REQUIRED", RequiredCitiesCaptured),
-                new TextObject("{=tor_orc_boss_quest2_task_cities}Cities Captured"),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_task_cities", "Cities Captured"),
                 _currentCitiesCaptured,
                 RequiredCitiesCaptured);
 
             _taskLordDuels = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_duels}Beat {REQUIRED} Lords in duels")
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_log_duels", "Beat {REQUIRED} Lords in duels")
                     .SetTextVariable("REQUIRED", RequiredLordDuels),
-                new TextObject("{=tor_orc_boss_quest2_task_duels}Lord Duels Won"),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_task_duels", "Lord Duels Won"),
                 _currentLordDuels,
                 RequiredLordDuels);
 
             _taskTeefTransferred = AddDiscreteLog(
-                new TextObject("{=tor_orc_boss_quest2_log_teef}Transfer {REQUIRED} worth of loot to teef")
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_log_teef", "Transfer {REQUIRED} worth of loot to teef")
                     .SetTextVariable("REQUIRED", RequiredTeefTransferred),
-                new TextObject("{=tor_orc_boss_quest2_task_teef}Teef Transferred"),
+                TORTextHelper.GetTextObject("tor_orc_boss_quest2_task_teef", "Teef Transferred"),
                 _currentTeefTransferred,
                 RequiredTeefTransferred);
         }
@@ -292,7 +292,7 @@ namespace TOR_Core.Quests.Careers
             }
         }
 
-        public override TextObject Title => new TextObject("{=tor_orc_boss_quest2_title}Da Path of Da Big Boss");
+        public override TextObject Title => TORTextHelper.GetTextObject("tor_orc_boss_quest2_title", "Da Path of Da Big Boss");
 
         public override bool IsRemainingTimeHidden => true;
 

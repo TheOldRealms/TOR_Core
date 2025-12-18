@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem
 {
@@ -25,7 +28,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
         public void Initialize(string name, CareerObject ownerCareer, int tier, ConditionDelegate conditionDelegate, UnlockDelegate unlockDelegate = null)
         {
-            base.Initialize(new TextObject(name), new TextObject("Choice group for " + name));
+            var nameText = TORTextHelper.GetTextObject("tor_career_choicegroup_name",StringId, name);
+            
+            base.Initialize(nameText, new TextObject("Choice group for " + name));
             OwnerCareer = ownerCareer;
             Tier = tier;
             _conditionDelegate = conditionDelegate;

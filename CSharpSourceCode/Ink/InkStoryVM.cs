@@ -7,6 +7,8 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Ink
 {
@@ -57,12 +59,12 @@ namespace TOR_Core.Ink
             _choices.Clear();
             if (_story.IsOver())
             {
-                _choices.Add(new InkStoryChoiceVM(-1, new TextObject("{=inky_end_str}End").ToString(), OnChoiceSelected));
+                _choices.Add(new InkStoryChoiceVM(-1, TORTextHelper.GetText("tor_ink_end", "End"), OnChoiceSelected));
             }
             else if (!_story.HasChoices())
             {
 
-                _choices.Add(new InkStoryChoiceVM(0, new TextObject("{=inky_continue_str}Continue").ToString(), OnChoiceSelected));
+                _choices.Add(new InkStoryChoiceVM(0, TORTextHelper.GetText("tor_ink_continue", "Continue"), OnChoiceSelected));
             }
             else
             {

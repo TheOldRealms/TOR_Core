@@ -55,47 +55,47 @@ namespace TOR_Core.CampaignMechanics.Menagery
             void AddPrestigeNobleDialogLines(CampaignGameStarter cgs)
             {
                 //not empire culture
-                cgs.AddDialogLine("noble_foreign", "start", "close_window", GameTexts.FindText("tor_empire_prestigeNoble_wrongCulture").ToString(),
+                cgs.AddDialogLine("noble_foreign", "start", "close_window", TORTextHelper.GetText("tor_empire_prestigeNoble_wrongCulture", "You do not serve the Empire, stranger, begone. This implies the player's faction despite the conditional checking culture - will need clarification."),
                     () => EmpirePrestigeNobleStartCondition() && !IsEmpireCulture(), null, 200);
                 // not clan level 2+
-                cgs.AddDialogLine("noble_missRank", "start", "close_window", GameTexts.FindText("tor_empire_prestigeNoble_lowClanLevel").ToString(),
+                cgs.AddDialogLine("noble_missRank", "start", "close_window", TORTextHelper.GetText("tor_empire_prestigeNoble_lowClanLevel", "I do not do business with nobodies, stranger, and I do not know you. Now begone. (Low Renown)."),
                     () => EmpirePrestigeNobleStartCondition() && !ClanLevel2(), null, 200);
 
                 //never met player
-                cgs.AddDialogLine("noble_introduction_1", "start", "noble_introduction_2", GameTexts.FindText("tor_empire_prestigeNoble_nobleIntroduction1").SetTextVariable("SHORTTITLE", GameTexts.FindText("tor_empire_prestigeNoble_shorttitle")).SetTextVariable("FIRSTNAME", GameTexts.FindText("tor_empire_prestigeNoble_firstname")).SetTextVariable("LASTNAME", GameTexts.FindText("tor_empire_prestigeNoble_lastname")).SetTextVariable("TITLE", GameTexts.FindText("tor_empire_prestigeNoble_title")).ToString(),
+                cgs.AddDialogLine("noble_introduction_1", "start", "noble_introduction_2", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_nobleIntroduction1", "It is a pleasure to make your acquaintance, I am {SHORTTITLE}{FIRSTNAME} {LASTNAME}{TITLE}. You have been making quite a name for yourself it would seem, many amongst the Imperial courts know of your exploits.").SetTextVariable("SHORTTITLE", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_shorttitle", "Esteemed")).SetTextVariable("FIRSTNAME", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_firstname", "Berthold")).SetTextVariable("LASTNAME", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_lastname", "Wendehals")).SetTextVariable("TITLE", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_title", " of Altdorf Nobles")).ToString(),
                     () => !_knowsPlayer && EmpirePrestigeNobleStartCondition(), null, 200);
                 cgs.AddDialogLine("noble_introduction_2", "noble_introduction_2",
-                    "noble_introduction_3", GameTexts.FindText("tor_empire_prestigeNoble_nobleIntroduction2").ToString(),
+                    "noble_introduction_3", TORTextHelper.GetText("tor_empire_prestigeNoble_nobleIntroduction2", "I make it my business to know important, and useful, people. Connections are my trade you see, I do believe a relationship between us could prove to be very lucrative."),
                     () => !_knowsPlayer, null, 200);
                 cgs.AddDialogLine("noble_introduction_3", "noble_introduction_3",
-                    "prestige_noble_main_hub", GameTexts.FindText("tor_empire_prestigeNoble_nobleIntroduction3").ToString(),
+                    "prestige_noble_main_hub", TORTextHelper.GetText("tor_empire_prestigeNoble_nobleIntroduction3", "I can help you further your power and influence within the courts of the Empire and all I ask in return is that you return the favour when needed."),
                     () => !_knowsPlayer, () => _knowsPlayer = true, 200);
 
                 //knows player, hub start
-                cgs.AddDialogLine("noble_hub_intro", "start", "prestige_noble_main_hub", GameTexts.FindText("tor_empire_prestigeNoble_hubIntro").ToString(),
+                cgs.AddDialogLine("noble_hub_intro", "start", "prestige_noble_main_hub", TORTextHelper.GetText("tor_empire_prestigeNoble_hubIntro", "There are a number of projects that could be of interest to you. What should we consider?"),
                     () => EmpirePrestigeNobleStartCondition() && _knowsPlayer, null, 200);
 
                 //return here when completing a branch
-                cgs.AddDialogLine("noble_hub_intro_repeat", "noble_hub_intro_repeat", "prestige_noble_main_hub", GameTexts.FindText("tor_empire_prestigeNoble_hubIntroRepeat").ToString(),
+                cgs.AddDialogLine("noble_hub_intro_repeat", "noble_hub_intro_repeat", "prestige_noble_main_hub", TORTextHelper.GetText("tor_empire_prestigeNoble_hubIntroRepeat", "Is there something else what I can do for you?"),
                     () => EmpirePrestigeNobleStartCondition() && _knowsPlayer, null, 200);
 
-                cgs.AddPlayerLine("prestige_items", "prestige_noble_main_hub", "noble_prestige_items_intro", GameTexts.FindText("tor_empire_prestigeNoble_itemsAsk_p").ToString(),
+                cgs.AddPlayerLine("prestige_items", "prestige_noble_main_hub", "noble_prestige_items_intro", TORTextHelper.GetText("tor_empire_prestigeNoble_itemsAsk_p", "Are there any items of interest you might have for me?"),
                     null, null, 200);
 
                 InitPrestigeItemDialog();
 
                 cgs.AddPlayerLine("infrastructure_projects", "prestige_noble_main_hub",
-                    "noble_prestige_infrastructure_hub", GameTexts.FindText("tor_empire_prestigeNoble_buildingAsk_p").ToString(),
+                    "noble_prestige_infrastructure_hub", TORTextHelper.GetText("tor_empire_prestigeNoble_buildingAsk_p", "I would like to invest in infrastructure, what are my options?"),
                     null, null, 200);
 
                 InitInfrastructureProjectsDialog();
 
-                cgs.AddPlayerLine("influence_projects_ask", "prestige_noble_main_hub", "noble_prestige_political_power_hub", GameTexts.FindText("tor_empire_prestigeNoble_influenceAsk_p").ToString(),
+                cgs.AddPlayerLine("influence_projects_ask", "prestige_noble_main_hub", "noble_prestige_political_power_hub", TORTextHelper.GetText("tor_empire_prestigeNoble_influenceAsk_p", "I have an interest in the many organisations of the Empire, are there any who I could aid?"),
                     null, null, 200);
 
                 InitPoliticalPowerProjects();
 
-                cgs.AddPlayerLine("noble_hub_exit", "prestige_noble_main_hub", "close_window", GameTexts.FindText("tor_empire_prestigeNoble_exitConvo_p").ToString(),
+                cgs.AddPlayerLine("noble_hub_exit", "prestige_noble_main_hub", "close_window", TORTextHelper.GetText("tor_empire_prestigeNoble_exitConvo_p", "Thanks, I will come back to you."),
                     null, null, 200);
 
                 //prestige items : eg. demigrpyh
@@ -103,15 +103,15 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 void InitPrestigeItemDialog()
                 {
                     cgs.AddDialogLine("noble_prestige_items_intro", "noble_prestige_items_intro",
-                        "noble_prestige_item_hub", GameTexts.FindText("tor_empire_prestigeNoble_itemsIntro").ToString(),
+                        "noble_prestige_item_hub", TORTextHelper.GetText("tor_empire_prestigeNoble_itemsIntro", "Hmm.. currently there is only one thing I have on hand, but it is very unique. A beast from the Imperial Menagerie, should you be interested? - If he only has one thing on hand, why are you prompted to select among demigryphs?"),
                         null, null, 200);
 
                     cgs.AddPlayerLine("noble_prestige_item_selection_mount", "noble_prestige_item_hub",
-                        "noble_prestige_item_explain_mount", GameTexts.FindText("tor_empire_prestigeNoble_mountInquiry_p").ToString(),
+                        "noble_prestige_item_explain_mount", TORTextHelper.GetText("tor_empire_prestigeNoble_mountInquiry_p", "What sort of beast?"),
                         null, null, 200);
 
                     cgs.AddPlayerLine("prestige_item_noble_hub_selection_back", "noble_prestige_item_hub",
-                        "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_noInterestItems_p").ToString(),
+                        "noble_hub_intro_repeat", TORTextHelper.GetText("tor_empire_prestigeNoble_noInterestItems_p", "Maybe something different.(back)"),
                         null, null, 200);
 
                     InitSelectionMount();
@@ -121,15 +121,15 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     {
                         cgs.AddDialogLine("noble_prestige_item_explain_mount",
                             "noble_prestige_item_explain_mount",
-                            "noble_prestige_item_choice", GameTexts.FindText("tor_empire_prestigeNoble_demigryphExplain").ToString(),
+                            "noble_prestige_item_choice", TORTextHelper.GetText("tor_empire_prestigeNoble_demigryphExplain", "Due to some rather unfortunate circumstances, we have a monstrous steed without a rider. A Demigryph, to be precise. While the rider will be missed, the keeper of the Imperial Menagerie doesn't know what to do with it. Luckily, I have contacts within the Order of the fallen Knight and they may be willing to entrust the mount to you… ({DEMIGRYPH_COST}{PRESTIGE_ICON})"),
                             null, null, 200);
 
                         cgs.AddPlayerLine("noble_prestige_item_choice_agree", "noble_prestige_item_choice",
-                            "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_demigryphBuy_p").ToString(),
+                            "noble_hub_intro_repeat", TORTextHelper.GetText("tor_empire_prestigeNoble_demigryphBuy_p", "Price is no issue, such a mighty steed would be worth it. ({DEMIGRYPH_COST}{PRESTIGE_ICON})"),
                             HasEnoughPrestigeForMount, SelectDemiGryphen, 200);
 
                         cgs.AddPlayerLine("noble_prestige_item_choice_decline", "noble_prestige_item_choice",
-                            "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_demigryphRefuse_p").ToString(), null, null, 200);
+                            "noble_hub_intro_repeat", TORTextHelper.GetText("tor_empire_prestigeNoble_demigryphRefuse_p", "Not at this time, perhaps later."), null, null, 200);
                     }
 
                     bool HasEnoughPrestigeForMount()
@@ -144,20 +144,12 @@ namespace TOR_Core.CampaignMechanics.Menagery
                 {
                     cgs.AddDialogLine("noble_prestige_infrastructure_hub",
                         "noble_prestige_infrastructure_hub",
-                        "noble_prestige_infrastructure_hub_selection", GameTexts.FindText("tor_empire_prestigeNoble_buildingProjectHub").ToString(),
+                        "noble_prestige_infrastructure_hub_selection", TORTextHelper.GetText("tor_empire_prestigeNoble_buildingProjectHub", "An interesting choice, there are a number of projects slated for the future… but with the right amount of coin I can ensure you are known as the magnimonous benefactor behind their expedited construction."),
                         null, null, 200);
 
                     var buildingPrestigeSelection = "noble_prestige_building_selection_";
                     var buildingPrestigeExplain = "noble_prestige_building_explain_";
 
-                    var buildingsTexts = new[]
-                    {
-                        "[Dedicate a statue to Sigmar Heldenhammer]",
-                        "[Help fund the construction of a Temple of Shallya]",
-                        "[Construct a new dry dock]",
-                        "[Imperial Training Grounds]",
-                        "[Renovate the Heldenhammer]"
-                    };
 
                     var buildingCosts = new[]
                     {
@@ -168,43 +160,35 @@ namespace TOR_Core.CampaignMechanics.Menagery
                         500000
                     };
 
-                    var buildingExplainTexts = new[]
-                    {
-                        $"The Cult of Sigmar within Altdorf has ambitions to build a rather sizeable statue of our most glorious Sigmar, upon a hill with a prestigous view of his beloved Empire. They are lacking in some funding to ensure it's timely completion, I can ensure your name is written upon such a wondrous memorial for a measly cost. ({buildingCosts[0]} {{GOLD_ICON}})",
-                        $"There are many who suffer across the Empire and Shallya's priestesses are needed more than ever, however funding a Temple to the Lady in White is no small endeavour. You can be sure that, for a little coin, your name will be praised for generations for aiding in such a selfless act.({buildingCosts[1]} {{GOLD_ICON}})",
-                        $"The threat we face from Norsca is ever present, the Elector Count of Nordland has called for the construction of a new dry dock to empower the Imperial Navy. It has already been funded by the local lords...however for a little extra I can ensure you are known as the prime contributor. ({buildingCosts[2]} {{GOLD_ICON}})",
-                        $"The forests and the hills of the Empire need constant patrols to ensure the safety of it's citizens, one of the local garrisons is in dire need of training equipment and you have an opportunity to provide it for them. ({buildingCosts[3]} {{GOLD_ICON}})",
-                        $"It takes a lot of coin to keep the mighty Heldenhammer afloat, the Grand Theogonist and the Cult of Sigmar will look very favourably upon any who donate to ensure it is battle ready at all times. ({buildingCosts[4]} {{GOLD_ICON}})"
-                    };
 
                     for (var i = 0; i < buildingCosts.Length; i++)
                     {
                         var index = i; //using i will cause index out of bounds exceptions during gameplay because the Line conditionals aren't evaluated until the line is about to be displayed at which point i = buildingCosts.Length
                         cgs.AddPlayerLine(buildingPrestigeSelection + index,
                             "noble_prestige_infrastructure_hub_selection",
-                            buildingPrestigeExplain + index, GameTexts.FindText("tor_empire_prestigeNoble_buildingOption" + index).ToString(),
+                            buildingPrestigeExplain + index, TORTextHelper.GetText("tor_empire_prestigeNoble_buildingOption", index.ToString(), "Building Option", skipValidation: true),
                             () => !_constructedBuildings.Any(x => x.Contains("building" + index)), null, 200);
 
                         cgs.AddDialogLine(buildingPrestigeExplain + index, buildingPrestigeExplain + index,
                             $"buildingPrestigeSelection{index}_choice",
-                             GameTexts.FindText("tor_empire_prestigeNoble_buildingExplain" + index).SetTextVariable("BUILDING_COST", buildingCosts[index]).ToString(),
+                             TORTextHelper.GetTextObject("tor_empire_prestigeNoble_buildingExplain", index.ToString(), "Building Explanation", skipValidation: true).SetTextVariable("BUILDING_COST", buildingCosts[index]).ToString(),
                             null, null, 200);
 
                         cgs.AddPlayerLine($"noble_prestige_item_selection_building_{index}_agree",
                             $"buildingPrestigeSelection{index}_choice",
-                            "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_buildingPay_p").SetTextVariable("BUILDING_COST", buildingCosts[index]).ToString(),
+                            "noble_hub_intro_repeat", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_buildingPay_p", "That sounds good, I will send you the funding. ({BUILDING_COST} {GOLD_ICON}) This can be reformated to seem less awkward with restating the cost - the player should see the npc's previous description on the left with this confirmation option on the right.").SetTextVariable("BUILDING_COST", buildingCosts[index]).ToString(),
                             () => HasEnoughGold(buildingCosts[index]),
                             () => StartTransaction(buildingCosts[index], index), 200);
 
                         cgs.AddPlayerLine($"noble_prestige_item_selection_building_{index}_decline",
                             $"buildingPrestigeSelection{index}_choice",
-                            "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_buildingRefuse_p").ToString(),
+                            "noble_hub_intro_repeat", TORTextHelper.GetText("tor_empire_prestigeNoble_buildingRefuse_p", "Not at this time, perhaps later."),
                             null, null, 200);
                     }
 
                     cgs.AddPlayerLine("noble_prestige_infrastructure_hub_back",
                         "noble_prestige_infrastructure_hub_selection",
-                        "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_noInterestBuildings_p").ToString(),
+                        "noble_hub_intro_repeat", TORTextHelper.GetText("tor_empire_prestigeNoble_noInterestBuildings_p", "Maybe something different.(back)"),
                         null, null, 200);
 
                     bool HasEnoughGold(int price)
@@ -229,13 +213,6 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                     var politicalPowerProjects = 4;
 
-                    var politicalPowerProjectTexts = new[]
-                    {
-                        "[Find support for a diplomatic mission to Ulthuan to establish a new trade route.]",
-                        "[Support the Traders Guild envoy on a mission to establish gunpowder trade with Cathay]",
-                        "[Support the Engineers Guild technological innovation.]",
-                        "[Help fund a Huntsmen Expedition to Lustria]"
-                    };
 
                     var costs = new[]
                     {
@@ -245,17 +222,10 @@ namespace TOR_Core.CampaignMechanics.Menagery
                         400
                     };
 
-                    var explainPowerProjectTexts = new[]
-                    {
-                        $"A diplomatic mission is set to leave for Ulthuan, but they fear they are lacking in gifts elegent enough to appease the knife ears...elves. Perhaps you could help them? ({costs[0]} {{INFLUENCE_ICON}})",
-                        $"It is with faith, steel and gunpowder that we protect the Empire and we need a lot of gunpowder. Cathay also also makes use of black powder and in a hope to bring our two peoples closer, the Trade Guild has sent an envoy to establish trade ties. Some Elector Counts are not convinced yet. ({costs[1]} {{INFLUENCE_ICON)}})",
-                        $"The wonders of the Engineers Guild are many but they are equally as costly to invent, test and so forth. Funding their experimental endeavours would earn you an ample amount of public opinion. ({costs[2]} {{INFLUENCE_ICON}})",
-                        $"Beasts are myriad within the jungles of Lustria, the Huntsmen are set to go on a hunt soon but could use help acquiring provisions for such an arduous journey. ({costs[3]} {{INFLUENCE_ICON}})"
-                    };
 
                     cgs.AddDialogLine("noble_prestige_political_power_hub",
                         "noble_prestige_political_power_hub",
-                        "noble_prestige_political_power_hub_selection", GameTexts.FindText("tor_empire_prestigeNoble_influenceProjectHub").ToString(),
+                        "noble_prestige_political_power_hub_selection", TORTextHelper.GetText("tor_empire_prestigeNoble_influenceProjectHub", "Many parties and organisations throught the empire need your support. Are you willing to provide them the power they need? - power is awkward here, the player is providing political support. They are swaying attention towards the various possibilities so that additional resources are diverted to them - power isn't an object to give."),
                         null, null, 200);
 
                     for (var i = 0; i < politicalPowerProjects; i++)
@@ -263,16 +233,16 @@ namespace TOR_Core.CampaignMechanics.Menagery
                         var index = i;
                         cgs.AddPlayerLine(politicalPowerSelection + index,
                             "noble_prestige_political_power_hub_selection",
-                            politicalPowerExplain + index, GameTexts.FindText("tor_empire_prestigeNoble_influenceOption" + index).ToString(),
+                            politicalPowerExplain + index, TORTextHelper.GetText("tor_empire_prestigeNoble_influenceOption", index.ToString(), "Influence Option", skipValidation: true),
                             () => !_politicalPowerProjects.Any(x => x.Contains("powerProject" + index)), null, 200);
 
                         cgs.AddDialogLine(politicalPowerExplain + index, politicalPowerExplain + index,
-                            $"powerSelection{index}_choice", GameTexts.FindText("tor_empire_prestigeNoble_influenceExplain" + index).SetTextVariable("INFLUENCE_COST", costs[index]).ToString(),
+                            $"powerSelection{index}_choice", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_influenceExplain", index.ToString(), "Influence Explanation", skipValidation: true).SetTextVariable("INFLUENCE_COST", costs[index]).ToString(),
                             null, null, 200);
 
                         cgs.AddPlayerLine($"powerSelection_choice{index}_agree",
                             $"powerSelection{index}_choice",
-                            "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_influencePay_p").SetTextVariable("INFLUENCE_COST", costs[index]).ToString(),
+                            "noble_hub_intro_repeat", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_influencePay_p", "This sounds good, I will support this. ({INFLUENCE_COST} {INFLUENCE_ICON})").SetTextVariable("INFLUENCE_COST", costs[index]).ToString(),
                             () => HasEnoughInfluence(costs[index]),
                             () =>
                             {
@@ -282,12 +252,12 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                         cgs.AddPlayerLine($"powerSelection_choice{index}_decline",
                             $"powerSelection{index}_choice",
-                            "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_influenceRefuse_p").ToString(),
+                            "noble_hub_intro_repeat", TORTextHelper.GetText("tor_empire_prestigeNoble_influenceRefuse_p", "Not at this time, perhaps later."),
                             null, null, 200);
                     }
 
                     cgs.AddPlayerLine(politicalPowerSelection + 4, "noble_prestige_political_power_hub_selection",
-                        "noble_prestige_political_power_hub", GameTexts.FindText("tor_empire_prestigeNoble_influenceOptionRepeatable").ToString(),
+                        "noble_prestige_political_power_hub", TORTextHelper.GetText("tor_empire_prestigeNoble_influenceOptionRepeatable", "[Enlarge your Influence throughout the Empire (Repeatable)]"),
                         () => HasEnoughInfluence(RepeatableInfluenceCosts), () => ExchangeInfluenceForPrestige(RepeatableInfluenceCosts, RepeatablePrestigeGain),
                         200);
 
@@ -304,7 +274,7 @@ namespace TOR_Core.CampaignMechanics.Menagery
 
                     cgs.AddPlayerLine("noble_prestige_politicalpower_hub_back",
                         "noble_prestige_political_power_hub_selection",
-                        "noble_hub_intro_repeat", GameTexts.FindText("tor_empire_prestigeNoble_noInterestInfluence_p").ToString(),
+                        "noble_hub_intro_repeat", TORTextHelper.GetText("tor_empire_prestigeNoble_noInterestInfluence_p", "Maybe something different.(back)"),
                         null, null, 200);
                 }
 
@@ -346,8 +316,8 @@ namespace TOR_Core.CampaignMechanics.Menagery
             foreach (var item in demigryphens)
                 list.Add(new InquiryElement(item, item.Name.ToString(), new ItemImageIdentifier(item)));
 
-            var inq = new MultiSelectionInquiryData(GameTexts.FindText("tor_empire_prestigeNoble_demigryphInquiryTitle").ToString(), GameTexts.FindText("tor_empire_prestigeNoble_demigryphInquiryDescription").ToString(),
-                list, false, 1, 1, new TextObject("{=5Unqsx3N}Confirm", null).ToString(), null, OnGryphRewardClaimed, null);
+            var inq = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_empire_prestigeNoble_demigryphInquiryTitle", "Choose your demigryph!"), TORTextHelper.GetText("tor_empire_prestigeNoble_demigryphInquiryDescription", "Choose one of the available demigryphens."),
+                list, false, 1, 1, TORTextHelper.GetText("tor_confirm", "Confirm"), null, OnGryphRewardClaimed, null);
             MBInformationManager.ShowMultiSelectionInquiry(inq);
         }
 
@@ -379,10 +349,10 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     _empireNoble = HeroCreator.CreateSpecialHero(template, _altdorf, null, null, 50);
                     _empireNoble.SupporterOf = _altdorf.OwnerClan;
                     var name = _empireNoble.Template.Name;
-                    name.SetTextVariable("SHORTTITLE", GameTexts.FindText("tor_empire_prestigeNoble_shorttitle"));
-                    name.SetTextVariable("FIRSTNAME", GameTexts.FindText("tor_empire_prestigeNoble_firstname"));
-                    name.SetTextVariable("LASTNAME", GameTexts.FindText("tor_empire_prestigeNoble_lastname"));
-                    name.SetTextVariable("TITLE", GameTexts.FindText("tor_empire_prestigeNoble_title"));
+                    name.SetTextVariable("SHORTTITLE", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_shorttitle", "Esteemed"));
+                    name.SetTextVariable("FIRSTNAME", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_firstname", "Berthold"));
+                    name.SetTextVariable("LASTNAME", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_lastname", "Wendehals"));
+                    name.SetTextVariable("TITLE", TORTextHelper.GetTextObject("tor_empire_prestigeNoble_title", " of Altdorf Nobles"));
                     _empireNoble.SetName(_empireNoble.Template.Name, _empireNoble.Template.Name);
                     _empireNoble.CharacterObject.HiddenInEncyclopedia = true;
                     HeroHelper.SpawnHeroForTheFirstTime(_empireNoble, _altdorf);

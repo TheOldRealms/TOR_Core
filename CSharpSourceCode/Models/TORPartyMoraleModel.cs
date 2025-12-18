@@ -74,11 +74,11 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasAttribute("Wargh1"))
                 {
-                    result.Add(-40f, new TextObject("Internal Fightin'"));
+                    result.Add(-40f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_text", "Internal Fightin'"));
                 }
                 else if (Hero.MainHero.HasAttribute("Wargh2"))
                 {
-                    result.Add(-20f, new TextObject("Petty Squabblin'"));
+                    result.Add(-20f, TORTextHelper.GetTextObject("tor_greenskin_petty_squabblin_text", "Petty Squabblin'"));
                 }
                 // Waaagh3 and Waaagh4 (Wargh3/Wargh4) have no morale changes
 
@@ -108,7 +108,7 @@ namespace TOR_Core.Models
 
                         if (totalExtorsionMalus > 0)
                         {
-                            result.Add(-totalExtorsionMalus, new TextObject("Teef Extorsion"));
+                            result.Add(-totalExtorsionMalus, TORTextHelper.GetTextObject("tor_greenskin_teef_extorsion_text", "Teef Extorsion"));
                         }
                     }
                 }

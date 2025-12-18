@@ -79,24 +79,24 @@ public abstract class GreenskinCareerButton(CareerObject career) : CareerButtonB
 
         if (!isPrisoner)
         {
-            displayText = new TextObject("Not a prisoner");
+            displayText = TORTextHelper.GetTextObject("tor_greenskin_not_a_prisoner_text", "Not a prisoner");
             return false;
         }
 
         if (!IsEdibleCharacter(characterObject))
         {
-            displayText = new TextObject("This can't  be chopped");
+            displayText = TORTextHelper.GetTextObject("tor_greenskin_cant_chop_text", "This can't  be chopped");
             return false;
         }
 
         var prisonerCount = Hero.MainHero.PartyBelongedTo.PrisonRoster.GetElementNumber(characterObject);
         if (prisonerCount <= 0)
         {
-            displayText = new TextObject("No prisoners of this type");
+            displayText = TORTextHelper.GetTextObject("tor_greenskin_no_prisoners_text", "No prisoners of this type");
             return false;
         }
 
-        displayText = new TextObject("Chop");
+        displayText = TORTextHelper.GetTextObject("tor_greenskin_chop_text", "Chop");
         return true;
     }
 

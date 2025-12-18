@@ -106,7 +106,7 @@ namespace TOR_Core.CharacterDevelopment
         //Warrior Priest of Ulric
         private CareerChoiceGroupObject _crusherOfTheWeak;
         private CareerChoiceGroupObject _wildPack;
-        private CareerChoiceGroupObject _teachingsOfTheWinterfather;
+        private CareerChoiceGroupObject _teachingsOfTheWinterFather;
         private CareerChoiceGroupObject _frostsBite;
         private CareerChoiceGroupObject _runesOfTheWhiteWolf;
         private CareerChoiceGroupObject _furyOfWar;
@@ -322,7 +322,7 @@ namespace TOR_Core.CharacterDevelopment
             //WarriorPriest of Ulric
             _crusherOfTheWeak = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_crusherOfTheWeak).UnderscoreFirstCharToUpper()));
             _wildPack = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wildPack).UnderscoreFirstCharToUpper()));
-            _teachingsOfTheWinterfather = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_teachingsOfTheWinterfather).UnderscoreFirstCharToUpper()));
+            _teachingsOfTheWinterFather = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_teachingsOfTheWinterFather).UnderscoreFirstCharToUpper()));
             _frostsBite = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_frostsBite).UnderscoreFirstCharToUpper()));
             _runesOfTheWhiteWolf = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_runesOfTheWhiteWolf).UnderscoreFirstCharToUpper()));
             _furyOfWar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_furyOfWar).UnderscoreFirstCharToUpper()));
@@ -435,115 +435,115 @@ namespace TOR_Core.CharacterDevelopment
         private void InitializeAll()
         {
             //Warrior Priest of Sigmar
-            _bookOfSigmar.Initialize("{=book_of_sigmar_choice_group_str}Book of Sigmar", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
+            _bookOfSigmar.Initialize("Book of Sigmar", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _sigmarProclaimer.Initialize("{=sigmar_proclaimer_choice_group_str}Sigmar's Proclaimer", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
+            _sigmarProclaimer.Initialize("Sigmar's Proclaimer", TORCareers.WarriorPriest, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _relentlessFanatic.Initialize("{=relentless_fanatic_choice_group_str}Relentless Fanatic", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
+            _relentlessFanatic.Initialize("Relentless Fanatic", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _protectorOfTheWeak.Initialize("{=protector_of_the_weak_choice_group_str}Protector of the Weak", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
+            _protectorOfTheWeak.Initialize("Protector of the Weak", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _holyPurge.Initialize("{=holy_purge_choice_group_str}Holy Purge", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
+            _holyPurge.Initialize("Holy Purge", TORCareers.WarriorPriest, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _archLector.Initialize("{=arch_lector_choice_group_str}Arch Lector", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
+            _archLector.Initialize("Arch Lector", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _twinTailedComet.Initialize("{=arch_lector_choice_group_str}Twin Tailed Comet", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
+            _twinTailedComet.Initialize("Twin Tailed Comet", TORCareers.WarriorPriest, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
 
             //Witch Hunter
-            _toolsOfJudgement.Initialize("{=tools_of_judgement_choice_group_str}Tools of Judgement", TORCareers.WitchHunter, 1, (Hero hero, out string text) =>
+            _toolsOfJudgement.Initialize("Tools of Judgement", TORCareers.WitchHunter, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _huntTheWicked.Initialize("{=hunt_the_wicked_choice_group_str}Hunt the Wicked", TORCareers.WitchHunter, 1, (Hero hero, out string text) =>
+            _huntTheWicked.Initialize("Hunt the Wicked", TORCareers.WitchHunter, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _silverHammer.Initialize("{=silver_hammer_choice_group_str}The Silver Hammer", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
+            _silverHammer.Initialize("The Silver Hammer", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _noRestAgainstEvil.Initialize("{=no_rest_against_evil_choice_group_str}No Rest Against Evil", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
+            _noRestAgainstEvil.Initialize("No Rest Against Evil", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _endsJustifiesMeans.Initialize("{=ends_justifies_means_choice_group_str}Ends Justifies Means", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
+            _endsJustifiesMeans.Initialize("Ends Justifies Means", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _swiftProcedure.Initialize("{=swift_procedure_choice_group_str}Swift Procedure", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
+            _swiftProcedure.Initialize("Swift Procedure", TORCareers.WitchHunter, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _guiltyByAssociation.Initialize("{=guilty_by_association_choice_group_str}Guilty by Association", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
+            _guiltyByAssociation.Initialize("Guilty by Association", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
 
             //Necromancer
-            _liberNecris.Initialize("{=liber_necris_choice_group_str}Liber Necris", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            _liberNecris.Initialize("Liber Necris", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _deArcanisKadon.Initialize("{=de_arcanis_kadon_choice_group_str}De Arcanis Kadon", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            _deArcanisKadon.Initialize("De Arcanis Kadon", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _codexMortifica.Initialize("{=codex_mortifica_choice_group_str}Codex Mortifica", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
+            _codexMortifica.Initialize("Codex Mortifica", TORCareers.Necromancer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _liberMortis.Initialize("{=liber_mortis_choice_group_str}Liber Mortis", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            _liberMortis.Initialize("Liber Mortis", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _bookOfWsoran.Initialize("{=book_of_wsoran_choice_group_str}Book of W'soran", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            _bookOfWsoran.Initialize("Book of W'soran", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _grimoireNecris.Initialize("{=grimoire_necris_choice_group_str}Grimore Necris", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
+            _grimoireNecris.Initialize("Grimore Necris", TORCareers.Necromancer, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _booksOfNagash.Initialize("{=book_of_nagash_choice_group_str}Books of Nagash", TORCareers.Necromancer, 3, (Hero hero, out string text) =>
+            _booksOfNagash.Initialize("Books of Nagash", TORCareers.Necromancer, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -552,17 +552,17 @@ namespace TOR_Core.CharacterDevelopment
 
             //Vampire Count
 
-            _newBlood.Initialize("{=new_blood_choice_group_str}New Blood", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
+            _newBlood.Initialize("New Blood", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _feral.Initialize("{=new_blood_choice_group_str}The Feral", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
+            _feral.Initialize("The Feral", TORCareers.MinorVampire, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _arkayne.Initialize("{=arkayne_choice_group_str}The Arkayne", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
+            _arkayne.Initialize("The Arkayne", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
@@ -571,22 +571,22 @@ namespace TOR_Core.CharacterDevelopment
                 unlockText = "Unlocks Dark Magic";
                 return hero.Clan.Tier >= 2;
             });
-            _courtley.Initialize("{=courtley_choice_group_str}The Courtley", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
+            _courtley.Initialize("The Courtley", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _lordly.Initialize("{=lordly_choice_group_str}The Lordly", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
+            _lordly.Initialize("The Lordly", TORCareers.MinorVampire, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _martialle.Initialize("{=martialle_choice_group_str}The Martialle", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
+            _martialle.Initialize("The Martialle", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _masterOfDead.Initialize("{=master_of_dead_choice_group_str}Master of the Dead", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
+            _masterOfDead.Initialize("Master of the Dead", TORCareers.MinorVampire, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -594,38 +594,38 @@ namespace TOR_Core.CharacterDevelopment
 
             //Blood Knight
 
-            _peerlessWarrior.Initialize("{=peerless_warrior_choice_group_str}Peerless Warrior", TORCareers.BloodKnight, 1, (Hero hero, out string text) =>
+            _peerlessWarrior.Initialize("Peerless Warrior", TORCareers.BloodKnight, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _nightRider.Initialize("{=night_rider_choice_group_str}Night Rider", TORCareers.BloodKnight, 1, (Hero hero, out string text) =>
+            _nightRider.Initialize("Night Rider", TORCareers.BloodKnight, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _bladeMaster.Initialize("{=blade_master_choice_group_str}Blade Master", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
+            _bladeMaster.Initialize("Blade Master", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _doomRider.Initialize("{=doom_rider_choice_group_str}Doom Rider", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
+            _doomRider.Initialize("Doom Rider", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _controlledHunger.Initialize("{=controlled_hunger_choice_group_str}Controlled Hunger", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
+            _controlledHunger.Initialize("Controlled Hunger", TORCareers.BloodKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _avatarOfDeath.Initialize("{=avatar_of_death_choice_group_str}Avatar of Death", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
+            _avatarOfDeath.Initialize("Avatar of Death", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _dreadKnight.Initialize("{=dread_knight_choice_group_str}Dread Knight", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
+            _dreadKnight.Initialize("Dread Knight", TORCareers.BloodKnight, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -633,37 +633,37 @@ namespace TOR_Core.CharacterDevelopment
 
             //Mercenary
 
-            _survivalist.Initialize("{=survivalist_choice_group_str}The Survivalist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
+            _survivalist.Initialize("The Survivalist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _duelist.Initialize("{=duelist_choice_group_str}The Duelist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
+            _duelist.Initialize("The Duelist", TORCareers.Mercenary, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _headhunter.Initialize("{=headhunter_choice_group_str}The Headhunter", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
+            _headhunter.Initialize("The Headhunter", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _veteran.Initialize("{=veteran_choice_group_str}The Knightly", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
+            _veteran.Initialize("The Knightly", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _paymaster.Initialize("{=paymaster_choice_group_str}The Paymaster", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
+            _paymaster.Initialize("The Paymaster", TORCareers.Mercenary, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _mercenaryLord.Initialize("{=mercenary_lord_choice_group_str}The Mercenary Lord", TORCareers.Mercenary, 3, (Hero hero, out string text) =>
+            _mercenaryLord.Initialize("The Mercenary Lord", TORCareers.Mercenary, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _commander.Initialize("{=commander_choice_group_str}The Commander", TORCareers.Mercenary, 3, (Hero hero, out string text) =>
+            _commander.Initialize("The Commander", TORCareers.Mercenary, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -671,37 +671,37 @@ namespace TOR_Core.CharacterDevelopment
 
             //Grail Knight
 
-            _errantryWar.Initialize("{=errantry_war_choice_group_str}Errantry War", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
+            _errantryWar.Initialize("Errantry War", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _enhancedHorseCombat.Initialize("{=enhanced_horse_combat_choice_group_str}Enhanced Horse Combat", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
+            _enhancedHorseCombat.Initialize("Enhanced Horse Combat", TORCareers.GrailKnight, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _questingVow.Initialize("{=questing_vow_choice_group_str}Questing Vow", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
+            _questingVow.Initialize("Questing Vow", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _monsterSlayer.Initialize("{=monster_slayer_choice_group_str}Monster Slayer", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
+            _monsterSlayer.Initialize("Monster Slayer", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _masterHorseman.Initialize("{=master_horseman_choice_group_str}Master Horseman", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
+            _masterHorseman.Initialize("Master Horseman", TORCareers.GrailKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _grailVow.Initialize("{=grail_vow_choice_group_str}Grail Vow", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
+            _grailVow.Initialize("Grail Vow", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _holyCrusader.Initialize("{=holy_crusader_choice_group_str}Holy Crusader", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
+            _holyCrusader.Initialize("Holy Crusader", TORCareers.GrailKnight, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -709,39 +709,39 @@ namespace TOR_Core.CharacterDevelopment
 
             //Black Grail Knight
 
-            _curseOfMousillon.Initialize("{=curse_of_mousillon_group_str}Curse of Mousillon", TORCareers.BlackGrailKnight, 1, (Hero hero, out string text) =>
+            _curseOfMousillon.Initialize("Curse of Mousillon", TORCareers.BlackGrailKnight, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _swampRider.Initialize("{=swamp_rider_choice_group_str}Swamp Rider", TORCareers.BlackGrailKnight, 1, (Hero hero, out string text) =>
+            _swampRider.Initialize("Swamp Rider", TORCareers.BlackGrailKnight, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _unbreakableArmy.Initialize("{uunbreakable_army_choice_group_str}Unbreakable Army", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
+            _unbreakableArmy.Initialize("Unbreakable Army", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _scourgeOfBretonnia.Initialize("{=scourge_of_Mousillon_choice_group_str}Scourge of Bretonnia", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
+            _scourgeOfBretonnia.Initialize("Scourge of Bretonnia", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _robberKnight.Initialize("{=robber_baron_choice_group_str}Robber Knight", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
+            _robberKnight.Initialize("Robber Knight", TORCareers.BlackGrailKnight, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _lieOfLady.Initialize("{=lie_of_lady_choice_group_str}The Lady’s Lie", TORCareers.BlackGrailKnight, 3, (Hero hero, out string text) =>
+            _lieOfLady.Initialize("The Lady's Lie", TORCareers.BlackGrailKnight, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _blackGrailVow.Initialize("{=_black_grail_vow_choice_group_str}The Vow of the Black Grail", TORCareers.BlackGrailKnight, 3, (Hero hero, out string text) =>
+            _blackGrailVow.Initialize("The Vow of the Black Grail", TORCareers.BlackGrailKnight, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -749,29 +749,29 @@ namespace TOR_Core.CharacterDevelopment
 
             //Grail Damsel
 
-            _inspirationOfTheLady.Initialize("{=inspiration_of_the_lady_choice_group_str}Inspiration of the Lady", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
+            _inspirationOfTheLady.Initialize("Inspiration of the Lady", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _talesOfGiles.Initialize("{=tales_of_giles_choice_group_str}Tales of Gilles", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
+            _talesOfGiles.Initialize("Tales of Gilles", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _feyEnchantment.Initialize("{=fey_enchantment_choice_group_str}Fey Enchantment", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
+            _feyEnchantment.Initialize("Fey Enchantment", TORCareers.GrailDamsel, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _vividVisions.Initialize("{=vivid_visions_choice_group_str}Vivid Visions", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
+            _vividVisions.Initialize("Vivid Visions", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _justCause.Initialize("{=just_cause_choice_group_str}A Just Cause", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
+            _justCause.Initialize("A Just Cause", TORCareers.GrailDamsel, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
@@ -781,7 +781,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 2;
             });
 
-            _secretsOfTheGrail.Initialize("{=secrets_of_the_grail_choice_group_str}Secrets of the Grail", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
+            _secretsOfTheGrail.Initialize("Secrets of the Grail", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -791,7 +791,7 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 4;
             });
 
-            _envoyOfTheLady.Initialize("{=envoy_of_the_lady_choice_group_str}Envoy of the Lady", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
+            _envoyOfTheLady.Initialize("Envoy of the Lady", TORCareers.GrailDamsel, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -799,37 +799,37 @@ namespace TOR_Core.CharacterDevelopment
 
             //Necrarch
 
-            _discipleOfAccursed.Initialize("{=disciple_of_the_accursed_choice_group_str}Disciple of the Accursed", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
+            _discipleOfAccursed.Initialize("Disciple of the Accursed", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _witchSight.Initialize("{=witch_sight_choice_group_str}Witch Sight", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
+            _witchSight.Initialize("Witch Sight", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _darkVision.Initialize("{=dark_vision_choice_group_str}Dark Visions", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
+            _darkVision.Initialize("Dark Visions", TORCareers.Necrarch, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _unhallowedSoul.Initialize("{=unhallowed_soul_choice_group_str}Unhallowed Soul", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
+            _unhallowedSoul.Initialize("Unhallowed Soul", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _hungerForKnowledge.Initialize("{=hunger_for_knowledge_choice_group_str}Hunger for Knowledge", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
+            _hungerForKnowledge.Initialize("Hunger for Knowledge", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _wellspringOfDhar.Initialize("{=wellspring_of_dhar_choice_group_str}Wellspring of Dhar", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
+            _wellspringOfDhar.Initialize("Wellspring of Dhar", TORCareers.Necrarch, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _everlingsSecret.Initialize("{=everlings_secret_choice_group_str}The Everlings Secret", TORCareers.Necrarch, 3, (Hero hero, out string text) =>
+            _everlingsSecret.Initialize("The Everlings Secret", TORCareers.Necrarch, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -837,54 +837,54 @@ namespace TOR_Core.CharacterDevelopment
 
             //Warrior priest of Ulric
 
-            _crusherOfTheWeak.Initialize("{=crusher_of_the_weak_choice_group_str}Crusher of the Weak", TORCareers.WarriorPriestUlric, 1, (Hero hero, out string text) =>
+            _crusherOfTheWeak.Initialize("Crusher of the Weak", TORCareers.WarriorPriestUlric, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _wildPack.Initialize("{=wild_pack_choice_group_str}Wild Pack", TORCareers.WarriorPriestUlric, 1, (Hero hero, out string text) =>
+            _wildPack.Initialize("Wild Pack", TORCareers.WarriorPriestUlric, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _teachingsOfTheWinterfather.Initialize("{=teachings_of_the_winterfather_group_str}Teachings of the Winterfather", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
+            _teachingsOfTheWinterFather.Initialize("Teachings of the Winterfather", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _frostsBite.Initialize("{=frosts_bite_choice_group_str}Frost’s Bite", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
+            _frostsBite.Initialize("Frost's Bite", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _runesOfTheWhiteWolf.Initialize("{=runes_of_the_white_wolf_choice_group_str}Runes of the White Wolf", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
+            _runesOfTheWhiteWolf.Initialize("Runes of the White Wolf", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _furyOfWar.Initialize("{=fury_of_war_choice_group_str}Fury of War", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
+            _furyOfWar.Initialize("Fury of War", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _flameOfUlric.Initialize("{=flame_of_ulric_choice_group_str}Flame of Ulric", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
+            _flameOfUlric.Initialize("Flame of Ulric", TORCareers.WarriorPriestUlric, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
 
             //Imperial College Magister
-            _studyAndPractise.Initialize("{=study_and_practise_choice_group_str}Study and Practise", TORCareers.ImperialMagister, 1, (Hero hero, out string text) =>
+            _studyAndPractise.Initialize("Study and Practise", TORCareers.ImperialMagister, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _teclisTeachings.Initialize("{=teclis__teachings_choice_group_str}Teclis' Teachings", TORCareers.ImperialMagister, 1, (Hero hero, out string text) =>
+            _teclisTeachings.Initialize("Teclis' Teachings", TORCareers.ImperialMagister, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _imperialEnchantment.Initialize("{=imperial_enchantment_choice_group_str}Imperial Enchantment", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
+            _imperialEnchantment.Initialize("Imperial Enchantment", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
@@ -893,18 +893,18 @@ namespace TOR_Core.CharacterDevelopment
                 unlockText = "Unlocks Greater Powerstones";
                 return hero.Clan.Tier >= 2;
             });
-            _collegeOrders.Initialize("{=college_orders_choice_group_str}College Orders", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
+            _collegeOrders.Initialize("College Orders", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _magicCombatTraining.Initialize("{=magic_combat_training_choice_group_str}Magic Combat Training", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
+            _magicCombatTraining.Initialize("Magic Combat Training", TORCareers.ImperialMagister, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _ancientScrolls.Initialize("{=ancient_scrolls_choice_group_str}Ancient Scrolls", TORCareers.ImperialMagister, 3, (Hero hero, out string text) =>
+            _ancientScrolls.Initialize("Ancient Scrolls", TORCareers.ImperialMagister, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -913,7 +913,7 @@ namespace TOR_Core.CharacterDevelopment
                 unlockText = "Unlocks Mighty Powerstones";
                 return hero.Clan.Tier >= 2;
             });
-            _arcaneKnowledge.Initialize("{=arcane_knowledge_choice_group_str}Arcane Knowledge", TORCareers.ImperialMagister, 3, (Hero hero, out string text) =>
+            _arcaneKnowledge.Initialize("Arcane Knowledge", TORCareers.ImperialMagister, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -921,17 +921,17 @@ namespace TOR_Core.CharacterDevelopment
 
 
             //Waywatcher
-            _protectorOfTheWoods.Initialize("{=protector_of_the_woods_choice_group_str}Protector of the Woods", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
+            _protectorOfTheWoods.Initialize("Protector of the Woods", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _pathfinder.Initialize("{=pathfinder_choice_group_str}Pathfinder", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
+            _pathfinder.Initialize("Pathfinder", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _forestStalker.Initialize("{=forest_stalker_choice_group_str}Forest Stalker", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
+            _forestStalker.Initialize("Forest Stalker", TORCareers.Waywatcher, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
@@ -940,7 +940,7 @@ namespace TOR_Core.CharacterDevelopment
                 unlockText = "Swiftshiver shards upgrade for troops";
                 return true;
             });
-            _hailOfArrows.Initialize("{=hail_of_arrows_choice_group_str}Hail of Arrows", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
+            _hailOfArrows.Initialize("Hail of Arrows", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
@@ -950,18 +950,18 @@ namespace TOR_Core.CharacterDevelopment
                 return hero.Clan.Tier >= 2;
             });
 
-            _hawkeyed.Initialize("{=hawkeyed_choice_group_str}Hawkeyed", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
+            _hawkeyed.Initialize("Hawkeyed", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _starfireEssence.Initialize("{=starfire_essence_choice_group_str}Starfire Essence", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
+            _starfireEssence.Initialize("Starfire Essence", TORCareers.Waywatcher, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _eyeOfTheHunter.Initialize("{=eye_of_the_hunter_choice_group_str}Eye of the Hunter", TORCareers.Waywatcher, 3, (Hero hero, out string text) =>
+            _eyeOfTheHunter.Initialize("Eye of the Hunter", TORCareers.Waywatcher, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -973,157 +973,157 @@ namespace TOR_Core.CharacterDevelopment
 
 
             //Spellsinger
-            _pathShaping.Initialize("{=path_shaping_choice_group_str}Path Shaping", TORCareers.Spellsinger, 1, (Hero hero, out string text) =>
+            _pathShaping.Initialize("Path Shaping", TORCareers.Spellsinger, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _treeSinging.Initialize("{=tree_singing_choice_group_str}Tree singing", TORCareers.Spellsinger, 1, (Hero hero, out string text) =>
+            _treeSinging.Initialize("Tree singing", TORCareers.Spellsinger, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _vitalSurge.Initialize("{=vital_surge_choice_group_str}Vital Surge", TORCareers.Spellsinger, 1, (Hero hero, out string text) =>
+            _vitalSurge.Initialize("Vital Surge", TORCareers.Spellsinger, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _heartOfTheTree.Initialize("{=heart_of_the_tree_choice_group_str}Heart of the Tree", TORCareers.Spellsinger, 2, (Hero hero, out string text) =>
+            _heartOfTheTree.Initialize("Heart of the Tree", TORCareers.Spellsinger, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _arielsBlessing.Initialize("{=ariel_s_blessing_choice_group_str}Ariel's Blessing", TORCareers.Spellsinger, 2, (Hero hero, out string text) =>
+            _arielsBlessing.Initialize("Ariel's Blessing", TORCareers.Spellsinger, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _magicOfAthelLoren.Initialize("{=fey_magic_choice_group_str}Fey Magic", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
+            _magicOfAthelLoren.Initialize("Fey Magic", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
 
-            _furyOfTheForest.Initialize("{=fury_of_the_forest_choice_group_str}Fury of the Forest", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
+            _furyOfTheForest.Initialize("Fury of the Forest", TORCareers.Spellsinger, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
 
-            //Grey lord 
-            _caelithsWisdom.Initialize("{=caelith_s_wisdom_choice_group_str}Caelith's Wisdom", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            //Grey lord
+            _caelithsWisdom.Initialize("Caelith's Wisdom", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _soulBinding.Initialize("{=soul_binding_choice_group_str}Soul Binding", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            _soulBinding.Initialize("Soul Binding", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _legendsOfMalok.Initialize("{=legends_of_malok_choice_group_str}Legends of Malok", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
+            _legendsOfMalok.Initialize("Legends of Malok", TORCareers.GreyLord, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _unrestrictedMagic.Initialize("{=unrestricted_magic_choice_group_str}Unrestricted Magic", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            _unrestrictedMagic.Initialize("Unrestricted Magic", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _forbiddenScrollsOfSaphery.Initialize("{=forbidden_scrolls_of_saphery_choice_group_str}Forbidden Scrolls of Saphery", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            _forbiddenScrollsOfSaphery.Initialize("Forbidden Scrolls of Saphery", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _byAllMeans.Initialize("{=by_all_means_choice_group_str}By All Means", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
+            _byAllMeans.Initialize("By All Means", TORCareers.GreyLord, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _secretOfFellfang.Initialize("{=secret_of_the_fellfang_choice_group_str}Secret of the Fellfang", TORCareers.GreyLord, 3, (Hero hero, out string text) =>
+            _secretOfFellfang.Initialize("Secret of the Fellfang", TORCareers.GreyLord, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
 
             //Knight of the Old World
-            _secularOrders.Initialize("{=secular_orders_choice_group_str}Secular Orders", TORCareers.KnightOldWorld, 1, (Hero hero, out string text) =>
+            _secularOrders.Initialize("Secular Orders", TORCareers.KnightOldWorld, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _pathOfConquest.Initialize("{=path_of_conquest_choice_group_str}Path of Conquest", TORCareers.KnightOldWorld, 1, (Hero hero, out string text) =>
+            _pathOfConquest.Initialize("Path of Conquest", TORCareers.KnightOldWorld, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _squires.Initialize("{=squires_choice_group_str}Squires", TORCareers.KnightOldWorld, 1, (Hero hero, out string text) =>
+            _squires.Initialize("Squires", TORCareers.KnightOldWorld, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _templarOrders.Initialize("{=templar_orders_choice_group_str}Templar Orders", TORCareers.KnightOldWorld, 2, (Hero hero, out string text) =>
+            _templarOrders.Initialize("Templar Orders", TORCareers.KnightOldWorld, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _pathOfVigilance.Initialize("{=path_of_vigilance_choice_group_str}Path of Vigilance", TORCareers.KnightOldWorld, 2, (Hero hero, out string text) =>
+            _pathOfVigilance.Initialize("Path of Vigilance", TORCareers.KnightOldWorld, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _wrathAgainstChaos.Initialize("{=wrath_against_chaos_choice_group_str}Wrath against Chaos", TORCareers.KnightOldWorld, 2, (Hero hero, out string text) =>
+            _wrathAgainstChaos.Initialize("Wrath against Chaos", TORCareers.KnightOldWorld, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _pathOfGlory.Initialize("{=path_of_glory_choice_group_str}Path of Glory", TORCareers.KnightOldWorld, 3, (Hero hero, out string text) =>
+            _pathOfGlory.Initialize("Path of Glory", TORCareers.KnightOldWorld, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
 
             //Ironbreaker
-            _nestCleansing.Initialize("{=nest_cleansing_choice_group_str}Nest Cleansing", TORCareers.Ironbreaker, 1, (Hero hero, out string text) =>
+            _nestCleansing.Initialize("Nest Cleansing", TORCareers.Ironbreaker, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _tunnelWatch.Initialize("{=tunnel_watch_choice_group_str}Tunnel Watch", TORCareers.Ironbreaker, 1, (Hero hero, out string text) =>
+            _tunnelWatch.Initialize("Tunnel Watch", TORCareers.Ironbreaker, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _ironPrice.Initialize("{=iron_price_choice_group_str}Iron Price", TORCareers.Ironbreaker, 2, (Hero hero, out string text) =>
+            _ironPrice.Initialize("Iron Price", TORCareers.Ironbreaker, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.Clan.Tier >= 2;
             });
-            _shieldWall.Initialize("{=shield_wall_choice_group_str}Shield Wall", TORCareers.Ironbreaker, 2, (Hero hero, out string text) =>
+            _shieldWall.Initialize("Shield Wall", TORCareers.Ironbreaker, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _ironDrakes.Initialize("{=iron_drakes_choice_group_str}Iron Drakes", TORCareers.Ironbreaker, 2, (Hero hero, out string text) =>
+            _ironDrakes.Initialize("Iron Drakes", TORCareers.Ironbreaker, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _gromrilArmor.Initialize("{=gromril_armor_choice_group_str}Gromril Armor", TORCareers.Ironbreaker, 3, (Hero hero, out string text) =>
+            _gromrilArmor.Initialize("Gromril Armor", TORCareers.Ironbreaker, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _runeWeapons.Initialize("{=rune_weapons_choice_group_str}Rune Weapons", TORCareers.Ironbreaker, 3, (Hero hero, out string text) =>
+            _runeWeapons.Initialize("Rune Weapons", TORCareers.Ironbreaker, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -1131,37 +1131,37 @@ namespace TOR_Core.CharacterDevelopment
 
             //Slayer
 
-            _axeOfGrimnir.Initialize("{=axe_of_grimnir_choice_group_str}Axe of Grimnir", TORCareers.Slayer, 1, (Hero hero, out string text) =>
+            _axeOfGrimnir.Initialize("Axe of Grimnir", TORCareers.Slayer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _shameOfTheAncestors.Initialize("{=shame_of_the_ancestors_choice_group_str}Shame of the Ancestors", TORCareers.Slayer, 1, (Hero hero, out string text) =>
+            _shameOfTheAncestors.Initialize("Shame of the Ancestors", TORCareers.Slayer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _deadlyDetermination.Initialize("{=deadly_determination_choice_group_str}Deadly Determination", TORCareers.Slayer, 1, (Hero hero, out string text) =>
+            _deadlyDetermination.Initialize("Deadly Determination", TORCareers.Slayer, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _urkSlayer.Initialize("{=urk_slayer_choice_group_str}Urk Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
+            _urkSlayer.Initialize("Urk Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _giantSlayer.Initialize("{=giant_slayer_choice_group_str}Giant Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
+            _giantSlayer.Initialize("Giant Slayer", TORCareers.Slayer, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _baneOfChaos.Initialize("{=bane_of_chaos_choice_group_str}Bane of Chaos", TORCareers.Slayer, 2, (Hero hero, out string text) =>
+            _baneOfChaos.Initialize("Bane of Chaos", TORCareers.Slayer, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _lastJourney.Initialize("{=last_journey_choice_group_str}The Last Journey", TORCareers.Slayer, 3, (Hero hero, out string text) =>
+            _lastJourney.Initialize("The Last Journey", TORCareers.Slayer, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
@@ -1170,44 +1170,44 @@ namespace TOR_Core.CharacterDevelopment
 
             //warden of Athel Loren
 
-            _wardenOfCavaroc.Initialize("{=warden_of_cavaroc_choice_group_str}Warden of Cavaroc", TORCareers.Warden, 1, (Hero hero, out string text) =>
+            _wardenOfCavaroc.Initialize("Warden of Cavaroc", TORCareers.Warden, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _wardenOfCythral.Initialize("{=warden_of_cythral_choice_group_str}Warden of  Cythral and Anmyr", TORCareers.Warden, 1, (Hero hero, out string text) =>
+            _wardenOfCythral.Initialize("Warden of Cythral and Anmyr", TORCareers.Warden, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _wardenOfWydrioth.Initialize("{=warden_of_wydrioth_choice_group_str}Warden of Wydrioth", TORCareers.Warden, 1, (Hero hero, out string text) =>
+            _wardenOfWydrioth.Initialize("Warden of Wydrioth", TORCareers.Warden, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
-            _wardenOfAtylwyth.Initialize("{=warden_of_atylwyth_choice_group_str}Warden of Atylwyth", TORCareers.Warden, 2, (Hero hero, out string text) =>
+            _wardenOfAtylwyth.Initialize("Warden of Atylwyth", TORCareers.Warden, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _wardenOfTorgovann.Initialize("{=warden_of_torgovann_choice_group_str}Warden of Torgovann", TORCareers.Warden, 2, (Hero hero, out string text) =>
+            _wardenOfTorgovann.Initialize("Warden of Torgovann", TORCareers.Warden, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
 
-            _wardenOfTalsyn.Initialize("{=warden_of_talsyn_choice_group_str}Warden of Talsyn", TORCareers.Warden, 3, (Hero hero, out string text) =>
+            _wardenOfTalsyn.Initialize("Warden of Talsyn", TORCareers.Warden, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
-            _wardenOfArgwylon.Initialize("{=warden_of_argwylon_choice_group_str}Warden of Argwylon", TORCareers.Warden, 3, (Hero hero, out string text) =>
+            _wardenOfArgwylon.Initialize("Warden of Argwylon", TORCareers.Warden, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;
             });
 
-            _forgefireBurning.Initialize("{=forge_fire_burning_choice_group_str}Forgefire Burning", TORCareers.Runelord, 1, (Hero hero, out string text) =>
+            _forgefireBurning.Initialize("Forgefire Burning", TORCareers.Runelord, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
@@ -1216,13 +1216,13 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Unlocks Runecraft for Equipment";
                 return true;
             });
-            _teachingsOfThungni.Initialize("{=teachings_of_thungni_choice_group_str}Teachings of Thungni", TORCareers.Runelord, 2, (Hero hero, out string text) =>
+            _teachingsOfThungni.Initialize("Teachings of Thungni", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
                 var hasUnlocked = hero.HasAttribute("PlayerRunesmith");
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = "\n " + GameTexts.FindText("careerunlock_condition_1", "Runelord").ToString();
+                    text = "\n " + GameTexts.FindText("tor_careerunlock_condition_1", "Runelord").ToString();
                 }
 
                 return hasUnlocked;
@@ -1231,34 +1231,34 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _chiselAndHammer.Initialize("{=chisel_and_hammer_choice_group_str}Chisel and Hammer", TORCareers.Runelord, 2, (Hero hero, out string text) =>
+            _chiselAndHammer.Initialize("Chisel and Hammer", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerRunesmith");
             });
-            _forHearthAndHome.Initialize("{=for_hearth_and_home_choice_group_str}For Hearth and Home", TORCareers.Runelord, 2, (Hero hero, out string text) =>
+            _forHearthAndHome.Initialize("For Hearth and Home", TORCareers.Runelord, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerRunesmith");
             });
-            _stoneAndSteel.Initialize("{=stone_and_steel_choice_group_str}Stone and Steel", TORCareers.Runelord, 3, (Hero hero, out string text) =>
+            _stoneAndSteel.Initialize("Stone and Steel", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
             });
 
-            _legacyOfGrungni.Initialize("{=legacy_of_grugni_choice_group_str}Legacy of Grungni", TORCareers.Runelord, 3, (Hero hero, out string text) =>
+            _legacyOfGrungni.Initialize("Legacy of Grungni", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
                 var hasUnlocked = hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = GameTexts.FindText("careerunlock_condition_2", "Runelord").ToString();
+                    text = GameTexts.FindText("tor_careerunlock_condition_2", "Runelord").ToString();
                 }
 
                 return hasUnlocked;
             });
-            _anvilOfDoom.Initialize("{=_anvil_of_doom_choice_group_str}Anvil of Doom", TORCareers.Runelord, 3, (Hero hero, out string text) =>
+            _anvilOfDoom.Initialize("Anvil of Doom", TORCareers.Runelord, 3, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerRunesmith") && hero.HasAttribute("PlayerRunelord");
@@ -1266,106 +1266,106 @@ namespace TOR_Core.CharacterDevelopment
 
 
 
-            _tufferDanNails.Initialize("{=tuffer_dan_nails_choice_group_str}Tuffer Dan Nails", TORCareers.OrcBoss, 1, (Hero hero, out string text) =>
+            _tufferDanNails.Initialize("Tuffer Dan Nails", TORCareers.OrcBoss, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _youAnWotArmour.Initialize("{=you_an_wot_armour_choice_group_str}You an' Wot Armour?", TORCareers.OrcBoss, 1, (Hero hero, out string text) =>
+            _youAnWotArmour.Initialize("You an' Wot Armour?", TORCareers.OrcBoss, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _goodwivBlockas.Initialize("{=goodwiv_blockas_choice_group_str}Good wiv Blockas", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
+            _goodwivBlockas.Initialize("Good wiv Blockas", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
                 var hasUnlocked = hero.HasAttribute("PlayerOrcBoss");
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = "\n " + GameTexts.FindText("careerunlock_condition_1", "OrcBoss").ToString();
+                    text = "\n " + GameTexts.FindText("tor_careerunlock_condition_1", "OrcBoss").ToString();
                 }
                 return hasUnlocked;
             });
 
-            _meanestanDaBaddest.Initialize("{=meanestan_da_baddest_choice_group_str}Meanest an’ da Baddest", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
+            _meanestanDaBaddest.Initialize("Meanest an' da Baddest", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerOrcBoss");
             });
 
-            _getToDaChoppas.Initialize("{=get_to_da_choppas_choice_group_str}Get To Da Choppas", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
+            _getToDaChoppas.Initialize("Get To Da Choppas", TORCareers.OrcBoss, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerOrcBoss");
             });
 
-            _leafNuffinBehin.Initialize("{=leaf_nuffin_behin_choice_group_str}Leave nuffin’ behind", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
+            _leafNuffinBehin.Initialize("Leave nuffin' behind", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
             {
                 var hasUnlocked = hero.HasAttribute("PlayerOrcBoss") && hero.HasAttribute("PlayerOrcBigBoss");
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = GameTexts.FindText("careerunlock_condition_2", "OrcBoss").ToString();
+                    text = GameTexts.FindText("tor_careerunlock_condition_2", "OrcBoss").ToString();
                 }
                 return hasUnlocked;
             });
 
-            _bestofDaBest.Initialize("{=bestof_da_best_choice_group_str}Best of da Best!", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
+            _bestofDaBest.Initialize("Best of da Best!", TORCareers.OrcBoss, 3, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerOrcBoss") && hero.HasAttribute("PlayerOrcBigBoss");
             });
 
             // Orc Shaman
-            _bonesAnFirepitz.Initialize("{=bones_an_firepitz_choice_group_str}Bones an' Firepitz", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
+            _bonesAnFirepitz.Initialize("Bones an' Firepitz", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _visionsUvDaOrcayne.Initialize("{=visions_uv_da_orcayne_choice_group_str}Visions uv da Orc-ayne", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
+            _visionsUvDaOrcayne.Initialize("Visions uv da Orc-ayne", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _giftzFromDaGreatGreen.Initialize("{=giftz_from_da_great_green_choice_group_str}Giftz from Da Great Green", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
+            _giftzFromDaGreatGreen.Initialize("Giftz from Da Great Green", TORCareers.OrcShaman, 1, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return true;
             });
 
-            _brutalCunnin.Initialize("{=brutal_cunnin_choice_group_str}Brutal Cunnin'", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
+            _brutalCunnin.Initialize("Brutal Cunnin'", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
             {
                 var hasUnlocked = hero.HasAttribute("PlayerOrcShaman");
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = "\n " + GameTexts.FindText("careerunlock_condition_1", "OrcShaman").ToString();
+                    text = "\n " + GameTexts.FindText("tor_careerunlock_condition_1", "OrcShaman").ToString();
                 }
                 return hasUnlocked;
             });
 
-            _cunninBrutality.Initialize("{=cunnin_brutality_choice_group_str}Cunnin' Brutality", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
+            _cunninBrutality.Initialize("Cunnin' Brutality", TORCareers.OrcShaman, 2, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerOrcShaman");
             });
 
-            _gorkAnMorkAreWatchin.Initialize("{=gork_an_mork_are_watchin_choice_group_str}Gork an' Mork are watchin'", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
+            _gorkAnMorkAreWatchin.Initialize("Gork an' Mork are watchin'", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
             {
                 var hasUnlocked = hero.HasAttribute("PlayerOrcShaman") && hero.HasAttribute("PlayerOrcFavouredUvDaGodz");
                 text = "";
                 if (!hasUnlocked)
                 {
-                    text = GameTexts.FindText("careerunlock_condition_2", "OrcShaman").ToString();
+                    text = GameTexts.FindText("tor_careerunlock_condition_2", "OrcShaman").ToString();
                 }
                 return hasUnlocked;
             });
 
-            _powerUvDaWaaagh.Initialize("{=power_uv_da_waaagh_choice_group_str}Power uv da Waaagh!", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
+            _powerUvDaWaaagh.Initialize("Power uv da Waaagh!", TORCareers.OrcShaman, 3, (Hero hero, out string text) =>
             {
                 text = string.Empty;
                 return hero.HasAttribute("PlayerOrcShaman") && hero.HasAttribute("PlayerOrcFavouredUvDaGodz");

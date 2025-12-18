@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
@@ -83,7 +84,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
             var icon = Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText();
-            displayText = new TextObject($"Promotes your Grail Knight to a companion (Cost 100{icon})");
+            var promotionText = TORTextHelper.GetTextObject("tor_grail_knight_promote_companion_text", "Promotes your Grail Knight to a companion (Cost 100{RESOURCE_ICON})");
+            promotionText.SetTextVariable("RESOURCE_ICON", icon);
+            displayText = promotionText;
             return true;
         }
     }

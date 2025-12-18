@@ -11,6 +11,7 @@ using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
 {
@@ -77,9 +78,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetArtilleryHintText()
         {
-            string artilleryTitle = new TextObject("{=tor_ui_artillery_title_str}Artillery").ToString();
-            string artilleryInventory = new TextObject("{=tor_ui_artillery_amount_str}Current Artillery Pieces in Inventory:").ToString();
-            string artilleryDeployable = new TextObject("{=tor_ui_winds_of_magic_recharge_rate_str}Maximum Deployable Artillery Pieces:").ToString();
+            string artilleryTitle = TORTextHelper.GetText("tor_ui_artillery_title", "Artillery");
+            string artilleryInventory = TORTextHelper.GetText("tor_ui_artillery_amount", "Current Artillery Pieces in Inventory:");
+            string artilleryDeployable = TORTextHelper.GetText("tor_ui_artillery_max_deployable", "Maximum Deployable Artillery Pieces:");
 
             List<TooltipProperty> list =
             [
@@ -92,9 +93,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetWindsHintText()
         {
-            string womTitle = new TextObject("{=tor_ui_winds_of_magic_title_str}Winds of Magic").ToString();
-            string womMaximum = new TextObject("{=tor_ui_winds_of_magic_maximum_str}Maximum:").ToString();
-            string womRechargeRate = new TextObject("{=tor_ui_winds_of_magic_recharge_rate_str}Recharge Rate:").ToString();
+            string womTitle = TORTextHelper.GetText("tor_ui_winds_of_magic_title", "Winds of Magic");
+            string womMaximum = TORTextHelper.GetText("tor_ui_winds_of_magic_maximum", "Maximum:");
+            string womRechargeRate = TORTextHelper.GetText("tor_ui_winds_of_magic_recharge_rate", "Recharge Rate:");
 
             var list = new List<TooltipProperty>
             {
@@ -107,9 +108,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetBlessingHintText()
         {
-            var blessingTitle = new TextObject("{=tor_ui_winds_of_magic_title_str}Blessing: ").ToString();
-            var durationTitle = new TextObject("{=tor_ui_winds_of_magic_maximum_str}Duration:").ToString();
-            var effect = new TextObject("{=tor_ui_winds_of_magic_recharge_rate_str}Effect:").ToString();
+            var blessingTitle = TORTextHelper.GetText("tor_ui_blessing_title", "Blessing: ");
+            var durationTitle = TORTextHelper.GetText("tor_ui_blessing_duration", "Duration:");
+            var effect = TORTextHelper.GetText("tor_ui_blessing_effect", "Effect:");
 
             var list = new List<TooltipProperty>();
             if (Hero.MainHero.PartyBelongedTo == null) return list;

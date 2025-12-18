@@ -30,15 +30,15 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
     {
         starter.AddGameMenu("shrine_menu", "{LOCATION_DESCRIPTION}", ShrineMenuInit);
         starter.AddGameMenuOption("shrine_menu", "pray", "{PRAY_TEXT}", PrayCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_praying"));
-        starter.AddGameMenuOption("shrine_menu", "defile", "Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this", DefileCondtion, (args) => GameMenu.SwitchToMenu("shrine_menu_defiling"));
-        starter.AddGameMenuOption("shrine_menu", "loot", "Loot the Shrine for resources. Followers of {GOD_NAME} will remember this", LootCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_looting"));
-        starter.AddGameMenuOption("shrine_menu", "donate", "{=tor_custom_settlement_shrine_offering_label_str}Give items as an offering", DonationCondition, (args) => InventoryScreenHelper.OpenScreenAsInventory());//the xp calculation is performed in ReligionCampaignBehavior.OnItemsDiscarded
-        starter.AddGameMenuOption("shrine_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("shrine_menu", "defile", TORTextHelper.GetText("tor_shrine_defile_option", "Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this."), DefileCondtion, (args) => GameMenu.SwitchToMenu("shrine_menu_defiling"));
+        starter.AddGameMenuOption("shrine_menu", "loot", TORTextHelper.GetText("tor_shrine_loot_option", "Loot the Shrine for resources. Followers of {GOD_NAME} will remember this."), LootCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_looting"));
+        starter.AddGameMenuOption("shrine_menu", "donate", TORTextHelper.GetText("tor_custom_settlement_shrine_offering_label", "Give items as an offering"), DonationCondition, (args) => InventoryScreenHelper.OpenScreenAsInventory());//the xp calculation is performed in ReligionCampaignBehavior.OnItemsDiscarded
+        starter.AddGameMenuOption("shrine_menu", "leave", TORTextHelper.GetText("tor_custom_settlement_menu_leave", "Leave..."), delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
         }, (MenuCallbackArgs args) => PlayerEncounter.Finish(true), true);
-        starter.AddWaitGameMenu("shrine_menu_praying", "Praying...", delegate (MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_praying", TORTextHelper.GetText("tor_shrine_praying_progress", "Praying..."), delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             numberOfTroopsFromInteraction = 0;
@@ -46,7 +46,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             args.MenuContext.GameMenu.StartWait();
         }, null, PrayConsequence, PrayingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, TORConstants.SHRINE_PRAYING_DURATION, GameMenu.MenuFlags.None, null);
         starter.AddGameMenu("shrine_menu_pray_result", "{PRAY_RESULT} {NEWLINE} {FOLLOWERS_RESULT}", PrayResultInit);
-        starter.AddGameMenuOption("shrine_menu_pray_result", "return_to_root", "Continue", args =>
+        starter.AddGameMenuOption("shrine_menu_pray_result", "return_to_root", TORTextHelper.GetText("tor_shrine_continue", "Continue"), args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -69,14 +69,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             GameMenu.SwitchToMenu("shrine_menu");
 
         }, true);
-        starter.AddWaitGameMenu("shrine_menu_defiling", "Defiling the shrine...", delegate (MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_defiling", TORTextHelper.GetText("tor_shrine_defiling_progress", "Defiling the shrine..."), delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             PlayerEncounter.Current.IsPlayerWaiting = true;
             args.MenuContext.GameMenu.StartWait();
         }, null, DefileConsequence, DefilingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddGameMenu("shrine_menu_defile_result", "You successfully gathered " + DefilingDarkEnergyPerTick * 4 + " Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime.", null);
-        starter.AddGameMenuOption("shrine_menu_defile_result", "return_to_root", "Continue", args =>
+        starter.AddGameMenu("shrine_menu_defile_result", TORTextHelper.GetText("tor_shrine_defile_result", "You successfully gathered {DEFILE_AMOUNT} Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime."), DefileResultInit);
+        starter.AddGameMenuOption("shrine_menu_defile_result", "return_to_root", TORTextHelper.GetText("tor_shrine_continue", "Continue"), args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -85,14 +85,14 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             DefileResultConsequence();
             GameMenu.SwitchToMenu("shrine_menu");
         }, true);
-        starter.AddWaitGameMenu("shrine_menu_looting", "Looting the shrine...", delegate (MenuCallbackArgs args)
+        starter.AddWaitGameMenu("shrine_menu_looting", TORTextHelper.GetText("tor_shrine_looting_progress", "Looting the shrine..."), delegate (MenuCallbackArgs args)
         {
             _startWaitTime = CampaignTime.Now;
             PlayerEncounter.Current.IsPlayerWaiting = true;
             args.MenuContext.GameMenu.StartWait();
         }, null, LootConsequence, LootingTick, GameMenu.MenuAndOptionType.WaitMenuShowProgressAndHoursOption, GameMenu.MenuOverlayType.None, 4f, GameMenu.MenuFlags.None, null);
-        starter.AddGameMenu("shrine_menu_loot_result", "{LOOT_RESULT}. Followers of {GOD_NAME} will perceive this as a crime.", null);
-        starter.AddGameMenuOption("shrine_menu_loot_result", "return_to_root", "Continue", args =>
+        starter.AddGameMenu("shrine_menu_loot_result", TORTextHelper.GetText("tor_shrine_loot_result", "{LOOT_RESULT}. Followers of {GOD_NAME} will perceive this as a crime."), null);
+        starter.AddGameMenuOption("shrine_menu_loot_result", "return_to_root", TORTextHelper.GetText("tor_shrine_continue", "Continue"), args =>
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Continue;
             return true;
@@ -119,7 +119,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
             {
                 GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                 args.IsEnabled = false;
             }
 
@@ -136,7 +136,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                 if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
                 {
                     GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                    args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                    args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                     args.IsEnabled = false;
                 }
 
@@ -159,7 +159,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             // Greenskins can loot any non-Greenskin shrine
             if (component.Religion.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_greenskin_own}You can't loot your own shrine, ya git!", null);
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_greenskin_own", "You can't loot your own shrine, ya git!");
                 args.IsEnabled = false;
                 return true;
             }
@@ -168,7 +168,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             if (lastDefileTime >= (int)CampaignTime.Now.ToDays - DefillingCooldownInDays)
             {
                 GameTexts.SetVariable("DEFILE_COOLDOWN_DAYS", DefillingCooldownInDays.ToString());
-                args.Tooltip = new TextObject("{=tor_custom_settlement_cursed_site_once_a_day_text_str}You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
+                args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_cursed_site_once_a_day", "You can only perform this action every {DEFILE_COOLDOWN_DAYS} days.");
                 args.IsEnabled = false;
             }
 
@@ -182,7 +182,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
     {
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return;
-        var text = component.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
+        var text = component.IsActive ? TORTextHelper.GetTextObject("tor_customsettlement_intro", settlement.StringId, "A shrine.", skipValidation: true) : TORTextHelper.GetTextObject("tor_customsettlement_disabled", settlement.StringId, "This shrine is currently inactive.", skipValidation: true);
         if (component.Religion != null) MBTextManager.SetTextVariable("RELIGION_LINK", component.Religion.EncyclopediaLinkWithName);
         MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
@@ -193,16 +193,16 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return false;
         args.optionLeaveType = GameMenuOption.LeaveType.ShowMercy;
-        var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
+        var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
-        MBTextManager.SetTextVariable("PRAY_TEXT", "{=tor_custom_settlement_shrine_pray_text_str}Pray to receive the blessing of {GOD_NAME}");
+        MBTextManager.SetTextVariable("PRAY_TEXT", TORTextHelper.GetTextObject("tor_custom_settlement_shrine_pray_text", "Pray to receive the blessing of {GOD_NAME}"));
 
         // Vampires, Necromancers, and Black Grail Knights cannot pray
         if (Hero.MainHero.IsVampire() ||
             Hero.MainHero.IsNecromancer() ||
             Hero.MainHero.HasCareer(TORCareers.BlackGrailKnight))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_undead_no_pray}The undead do not commune with the gods.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_undead_no_pray", "The undead do not commune with the gods.");
             args.IsEnabled = false;
             return true;
         }
@@ -210,7 +210,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         // Culture restriction: can only pray at shrines of your own culture
         if (!IsCultureCompatibleWithShrine(Hero.MainHero, component.Religion))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_wrong_culture}This shrine is not meant for your kind.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_wrong_culture", "This shrine is not meant for your kind.");
             args.IsEnabled = false;
             return true;
         }
@@ -220,7 +220,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             var careerGod = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
             var god = ReligionObject.All.FirstOrDefault(x => x.StringId == careerGod);
             MBTextManager.SetTextVariable("CAREERGOD_NAME", god.DeityName);
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_blessing_already_active_str}You devoted your live to {CAREERGOD_NAME}. You can't pray here.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_blessing_already_active", "You devoted your live to {CAREERGOD_NAME}. You can't pray here.");
             args.IsEnabled = false;
         }
 
@@ -239,7 +239,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             Hero.MainHero.IsNecromancer() ||
             Hero.MainHero.HasCareer(TORCareers.BlackGrailKnight))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_vampire_no_donate}The undead do not make offerings to the gods.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_vampire_no_donate", "The undead do not make offerings to the gods.");
             args.IsEnabled = false;
             return true;
         }
@@ -248,7 +248,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         var playerReligion = Hero.MainHero.GetDominantReligion();
         if (playerReligion != null && playerReligion.Affinity != ReligionAffinity.Order && playerReligion.Affinity != ReligionAffinity.Destruction)
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_no_donate_affinity}You do not honor the gods through offerings.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_no_donate_affinity", "You do not honor the gods through offerings.");
             args.IsEnabled = false;
             return true;
         }
@@ -256,7 +256,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         // Must have compatible culture to donate (uses same logic as praying)
         if (!IsCultureCompatibleWithShrine(Hero.MainHero, component.Religion))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_wrong_culture_donate}You cannot make offerings at a shrine not meant for your kind.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_wrong_culture_donate", "You cannot make offerings at a shrine not meant for your kind.");
             args.IsEnabled = false;
             return true;
         }
@@ -267,18 +267,27 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             var careerGod = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
             var god = ReligionObject.All.FirstOrDefault(x => x.StringId == careerGod);
             MBTextManager.SetTextVariable("CAREERGOD_NAME", god.DeityName);
-            args.Tooltip = new TextObject("{=tor_custom_settlement_shrine_blessing_already_active_str}You devoted your live to {CAREERGOD_NAME}. You can't donate here.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_blessing_already_active", "You devoted your live to {CAREERGOD_NAME}. You can't donate here.");
             args.IsEnabled = false;
             return true;
         }
 
         if (!Hero.MainHero.GetPerkValue(TORPerks.Faith.Offering))
         {
-            args.Tooltip = new TextObject("{=tor_custom_settlement_donation_perk_info_str}You need the Offering perk in the Faith skill line to perform this action.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_donation_perk_info", "You need the Offering perk in the Faith skill line to perform this action.");
             args.IsEnabled = false;
         }
 
         return component.IsActive && component.Religion != null;
+    }
+
+    private void DefileResultInit(MenuCallbackArgs args)
+    {
+        var settlement = Settlement.CurrentSettlement;
+        if (settlement.SettlementComponent is not ShrineComponent component) return;
+        var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
+        MBTextManager.SetTextVariable("GOD_NAME", godName);
+        MBTextManager.SetTextVariable("DEFILE_AMOUNT", DefilingDarkEnergyPerTick * 4);
     }
 
     private void DefileConsequence(MenuCallbackArgs args)
@@ -297,7 +306,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return;
-        var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
+        var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
 
         // Fire shrine looted event
@@ -343,7 +352,11 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                     var totalGold = 400;
                     var totalFood = 40;
                     var totalTeef = 100;
-                    MBTextManager.SetTextVariable("LOOT_RESULT", $"You successfully looted {totalGold} gold, {totalFood} meat, and {totalTeef} Teef");
+                    var lootResultText = TORTextHelper.GetTextObject("tor_shrine_loot_result_detail", "You successfully looted {TOTAL_GOLD} gold, {TOTAL_FOOD} meat, and {TOTAL_TEEF} Teef");
+                    lootResultText.SetTextVariable("TOTAL_GOLD", totalGold);
+                    lootResultText.SetTextVariable("TOTAL_FOOD", totalFood);
+                    lootResultText.SetTextVariable("TOTAL_TEEF", totalTeef);
+                    MBTextManager.SetTextVariable("LOOT_RESULT", lootResultText);
                 }
             }
         }
@@ -552,15 +565,15 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
     {
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as ShrineComponent;
-        var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
+        var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
-        MBTextManager.SetTextVariable("PRAY_RESULT", "{=tor_custom_settlement_shrine_pray_result_text_str}You received the blessing of {GOD_NAME}.");
+        MBTextManager.SetTextVariable("PRAY_RESULT", TORTextHelper.GetTextObject("tor_custom_settlement_shrine_pray_result", "You received the blessing of {GOD_NAME}."));
         if (numberOfTroopsFromInteraction > 0)
         {
             var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
             MBTextManager.SetTextVariable("FOLLOWER_RESULT_NUMBER", numberOfTroopsFromInteraction.ToString());
             MBTextManager.SetTextVariable("FOLLOWER_RESULT_TROOP", troop.EncyclopediaLinkWithName);
-            MBTextManager.SetTextVariable("FOLLOWERS_RESULT", "{=tor_custom_settlement_shrine_follower_result_str}Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party.");
+            MBTextManager.SetTextVariable("FOLLOWERS_RESULT", TORTextHelper.GetTextObject("tor_custom_settlement_shrine_follower_result", "Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party."));
             numberOfTroopsFromInteraction = 0;
         }
     }

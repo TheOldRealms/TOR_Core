@@ -114,18 +114,18 @@ namespace TOR_Core.AbilitySystem
         {
             if (!IsCharged)
             {
-                disabledReason = new TextObject("{=tor_career_ability_disable_reason_not_charged}Ability not charged");
+                disabledReason = TORTextHelper.GetTextObject("tor_career_ability_not_charged", "Ability not charged");
                 return true;
             }
             if (casterAgent.HasMount && IsNotUsableMounted(Template.StringID))
             {
-                disabledReason = new TextObject("{=tor_career_ability_disable_reason_not_usable_with_mount}Not usable mounted");
+                disabledReason = TORTextHelper.GetTextObject("tor_career_ability_not_usable_mounted", "Not usable mounted");
                 return true;
             }
 
             if (casterAgent.WieldedWeapon.IsEmpty && IsNotUsableWithoutWeapon(Template.StringID))
             {
-                disabledReason = new TextObject("{=tor_career_ability_disable_reason_not_usable_without_weapon}Not usable without weapon");
+                disabledReason = TORTextHelper.GetTextObject("tor_career_ability_not_usable_without_weapon", "Not usable without weapon");
                 return true;
             }
 
@@ -161,12 +161,12 @@ namespace TOR_Core.AbilitySystem
             }
             if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked)
             {
-                failureReason = new TextObject("No target locked");
+                failureReason = TORTextHelper.GetTextObject("tor_ability_no_target_locked_text", "No target locked");
                 return false;
             }
             if (!casterAgent.IsPlayerControlled)
             {
-                failureReason = new TextObject("Caster is not player controlled");
+                failureReason = TORTextHelper.GetTextObject("tor_ability_not_player_controlled_text", "Caster is not player controlled");
                 return false;
             }
 

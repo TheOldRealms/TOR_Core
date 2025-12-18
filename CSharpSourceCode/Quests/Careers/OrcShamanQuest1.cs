@@ -56,8 +56,8 @@ namespace TOR_Core.Quests.Careers
         {
             // Start with only the shrine prayer task visible
             _taskPrayAtShrine = AddDiscreteLog(
-                new TextObject("{=tor_orc_shaman_quest1_log_pray}Pray at a Shrine of Gork or Mork"),
-                new TextObject("{=tor_orc_shaman_quest1_task_pray}Shrine Prayer"),
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_log_pray", "Pray at a Shrine of Gork or Mork"),
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_task_pray", "Shrine Prayer"),
                 0,
                 1);
 
@@ -76,37 +76,37 @@ namespace TOR_Core.Quests.Careers
 
             // Now add all the main quest tasks
             _taskSpellcraft = AddDiscreteLog(
-                new TextObject("{=tor_orc_shaman_quest1_log_spellcraft}Reach {REQUIRED} levels in Spellcraft skill")
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_log_spellcraft", "Reach {REQUIRED} levels in Spellcraft skill")
                     .SetTextVariable("REQUIRED", RequiredSpellcraftSkillLevels),
-                new TextObject("{=tor_orc_shaman_quest1_task_spellcraft}Spellcraft Skill"),
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_task_spellcraft", "Spellcraft Skill"),
                 _currentSpellcraftLevel,
                 RequiredSpellcraftSkillLevels);
 
             _taskFaith = AddDiscreteLog(
-                new TextObject("{=tor_orc_shaman_quest1_log_faith}Reach {REQUIRED} levels in Faith skill")
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_log_faith", "Reach {REQUIRED} levels in Faith skill")
                     .SetTextVariable("REQUIRED", RequiredFaithSkillLevels),
-                new TextObject("{=tor_orc_shaman_quest1_task_faith}Faith Skill"),
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_task_faith", "Faith Skill"),
                 _currentFaithLevel,
                 RequiredFaithSkillLevels);
 
             _taskEnchantsLearned = AddDiscreteLog(
-                new TextObject("{=tor_orc_shaman_quest1_log_enchants}Learn {REQUIRED} Orc enchantments")
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_log_enchants", "Learn {REQUIRED} Orc enchantments")
                     .SetTextVariable("REQUIRED", RequiredEnchantsLearned),
-                new TextObject("{=tor_orc_shaman_quest1_task_enchants}Enchantments Learned"),
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_task_enchants", "Enchantments Learned"),
                 _currentEnchantsLearned,
                 RequiredEnchantsLearned);
 
             _taskTeefTransferred = AddDiscreteLog(
-                new TextObject("{=tor_orc_shaman_quest1_log_teef}Transfer {REQUIRED} worth of loot to teef")
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_log_teef", "Transfer {REQUIRED} worth of loot to teef")
                     .SetTextVariable("REQUIRED", RequiredTeefTransferred),
-                new TextObject("{=tor_orc_shaman_quest1_task_teef}Teef Transferred"),
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_task_teef", "Teef Transferred"),
                 _currentTeefTransferred,
                 RequiredTeefTransferred);
 
             _taskShrinesLooted = AddDiscreteLog(
-                new TextObject("{=tor_orc_shaman_quest1_log_shrines}Loot {REQUIRED} shrines")
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_log_shrines", "Loot {REQUIRED} shrines")
                     .SetTextVariable("REQUIRED", RequiredShrinesLooted),
-                new TextObject("{=tor_orc_shaman_quest1_task_shrines}Shrines Looted"),
+                TORTextHelper.GetTextObject("tor_orc_shaman_quest1_task_shrines", "Shrines Looted"),
                 _currentShrinesLooted,
                 RequiredShrinesLooted);
         }
@@ -243,7 +243,7 @@ namespace TOR_Core.Quests.Careers
             }
         }
 
-        public override TextObject Title => new TextObject("{=tor_orc_shaman_quest1_title}Favoured uv Da Godz");
+        public override TextObject Title => TORTextHelper.GetTextObject("tor_orc_shaman_quest1_title", "Favoured uv Da Godz");
 
         public override bool IsRemainingTimeHidden => true;
 

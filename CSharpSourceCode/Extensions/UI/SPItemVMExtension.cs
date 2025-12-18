@@ -10,6 +10,7 @@ using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.Items.InventoryUseScripts;
+using TOR_Core.Utilities;
 using static Helpers.InventoryScreenHelper;
 
 namespace TOR_Core.Extensions.UI
@@ -22,7 +23,7 @@ namespace TOR_Core.Extensions.UI
 
         public SPItemVMExtension(ViewModel vm) : base(vm)
         {
-            _useHint = new HintViewModel(new TextObject("{=tor_item_hint_read_scroll_str}Use Item"));
+            _useHint = new HintViewModel(TORTextHelper.GetTextObject("tor_item_hint_use", "Use Item"));
         }
 
         public override void RefreshValues()

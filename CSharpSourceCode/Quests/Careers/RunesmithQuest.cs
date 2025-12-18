@@ -40,8 +40,8 @@ public class RunesmithQuest : QuestBase
             _currentContracts = dwarfBehavior.CraftingOrdersCompleted;
         }
 
-        _task1 = AddDiscreteLog(new TextObject("{=tor_runesmith_quest_log_contracts}Finish {REQUIRED} Smithing contracts.").SetTextVariable("REQUIRED", 15), new TextObject("{=tor_runesmith_quest_task_contracts}Contracts"), _currentContracts, 15);
-        _task2 = AddDiscreteLog(new TextObject("{=tor_runesmith_quest_log_runes}Learn {REQUIRED} runes.").SetTextVariable("REQUIRED", 7), new TextObject("{=tor_runesmith_quest_task_runes}Runes"), currentKnownRunes, 7);
+        _task1 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_contracts", "Finish {REQUIRED} Smithing contracts.").SetTextVariable("REQUIRED", 15), TORTextHelper.GetTextObject("tor_runesmith_quest_task_contracts", "Contracts"), _currentContracts, 15);
+        _task2 = AddDiscreteLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_runes", "Learn {REQUIRED} runes.").SetTextVariable("REQUIRED", 7), TORTextHelper.GetTextObject("tor_runesmith_quest_task_runes", "Runes"), currentKnownRunes, 7);
 
     }
 
@@ -67,7 +67,7 @@ public class RunesmithQuest : QuestBase
     {
         if (AreAllTasksFinished())
         {
-            AddLog(new TextObject("{=tor_runesmith_quest_log_complete}Talk to the rune smith"));
+            AddLog(TORTextHelper.GetTextObject("tor_runesmith_quest_log_complete", "Talk to the rune smith"));
 
         }
     }
@@ -101,7 +101,7 @@ public class RunesmithQuest : QuestBase
     {
     }
 
-    public override TextObject Title => new TextObject("{=tor_runesmith_quest_title}Runesmith Quest");
+    public override TextObject Title => TORTextHelper.GetTextObject("tor_runesmith_quest_title", "Runesmith Quest");
 
     public override bool IsRemainingTimeHidden => true;
 

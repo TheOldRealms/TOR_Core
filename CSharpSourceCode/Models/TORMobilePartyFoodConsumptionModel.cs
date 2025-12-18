@@ -29,7 +29,7 @@ namespace TOR_Core.Models
                 var ratio = (double)noneatingMemberCount / totalMembers;
                 float saving = (float)-(ratio * explainedNumber.ResultNumber);
 
-                explainedNumber.Add(saving, new TextObject("Saving from undead troops"));
+                explainedNumber.Add(saving, TORTextHelper.GetTextObject("tor_undead_food_saving_text", "Saving from undead troops"));
             }
 
             if (party != MobileParty.MainParty) return explainedNumber;
@@ -63,7 +63,7 @@ namespace TOR_Core.Models
 
                     if (totalAdditionalFood != 0)
                     {
-                        explainedNumber.Add(totalAdditionalFood, new TextObject("{=str_tor_greenskin_appetite}Greenskin appetite"));
+                        explainedNumber.Add(totalAdditionalFood, TORTextHelper.GetTextObject("tor_greenskin_appetite", "Greenskin appetite"));
                     }
                 }
             }
@@ -74,19 +74,19 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasAttribute("Wargh1"))
                 {
-                    explainedNumber.AddFactor(-0.6f, new TextObject("Internal Fightin'"));
+                    explainedNumber.AddFactor(-0.6f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_text", "Internal Fightin'"));
                 }
                 else if (Hero.MainHero.HasAttribute("Wargh2"))
                 {
-                    explainedNumber.AddFactor(-0.3f, new TextObject("Petty Squabblin'"));
+                    explainedNumber.AddFactor(-0.3f, TORTextHelper.GetTextObject("tor_greenskin_petty_squabblin_text", "Petty Squabblin'"));
                 }
                 else if (Hero.MainHero.HasAttribute("Wargh3"))
                 {
-                    explainedNumber.AddFactor(0.25f, new TextObject("'Ere We Go!"));
+                    explainedNumber.AddFactor(0.25f, TORTextHelper.GetTextObject("tor_greenskin_ere_we_go_text", "'Ere We Go!"));
                 }
                 else if (Hero.MainHero.HasAttribute("Wargh4"))
                 {
-                    explainedNumber.AddFactor(1.0f, new TextObject("WAAAGH!!!!"));
+                    explainedNumber.AddFactor(1.0f, TORTextHelper.GetTextObject("tor_greenskin_waaagh_text", "WAAAGH!!!!"));
                 }
             }
 

@@ -8,6 +8,8 @@ using TaleWorlds.Engine;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.Objects.Usables;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -15,12 +17,12 @@ namespace TOR_Core.BattleMechanics.Artillery
     {
         public override TextObject GetActionTextForStandingPoint(UsableMissionObject usableGameObject)
         {
-            return new TextObject("{=!}Cannonball Pile");
+            return TORTextHelper.GetTextObject("tor_cannonball_pile", "Cannonball Pile");
         }
 
         public override TextObject GetDescriptionText(WeakGameEntity weakGameEntity)
         {
-            return new TextObject("{=!}Cannonball Pile");
+            return TORTextHelper.GetTextObject("tor_cannonball_pile", "Cannonball Pile");
         }
     }
 }

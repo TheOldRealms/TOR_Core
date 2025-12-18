@@ -55,12 +55,12 @@ public class DuelBehavior : CampaignBehaviorBase
         defeatAction = HandleGreenskinDefeat;
         // Greenskin challenge dialog
         campaignGameStarter.AddPlayerLine("tor_greenskin_duel_challenge", "lord_talk_speak_diplomacy_2", "tor_greenskin_duel_response",
-            GameTexts.FindText("tor_greenskin_duel_challenge").ToString(),
+            TORTextHelper.GetText("tor_greenskin_duel_challenge", "OI! Let's see who's da biggest an' strongest! WAAAGH!"),
             CanOfferGreenskinDuel, null, 100);
 
         // Target accepts Greenskin challenge
         campaignGameStarter.AddDialogLine("tor_greenskin_duel_accept", "tor_greenskin_duel_response", "close_window",
-            GameTexts.FindText("tor_greenskin_duel_accept").ToString(),
+            TORTextHelper.GetText("tor_greenskin_duel_accept", "WAAAGH! You're on! Let's scrap!"),
             WillAcceptGreenskinDuel, () => StartGreenskinDuel(), 100);
 
         // Target declines due to recent duel (cooldown)
@@ -68,14 +68,14 @@ public class DuelBehavior : CampaignBehaviorBase
             "{DUEL_DECLINE_TEXT}",
             () =>
             {
-                var text = GameTexts.FindText("tor_greenskin_duel_decline_cooldown");
+                var text = TORTextHelper.GetTextObject("tor_greenskin_duel_decline_cooldown", "Oi! We already had a good scrap recently! Give it {COOLDOWN_DAYS} more days before we krump again, ya git!");
                 MBTextManager.SetTextVariable("DUEL_DECLINE_TEXT", text);
                 return IsOnDuelCooldown();
             }, null, 100);
 
         // Target declines Greenskin challenge (other reasons)
         campaignGameStarter.AddDialogLine("tor_greenskin_duel_decline", "tor_greenskin_duel_response", "lord_talk_speak_diplomacy_2",
-            GameTexts.FindText("tor_greenskin_duel_decline").ToString(),
+            TORTextHelper.GetText("tor_greenskin_duel_decline", "Gah! I ain't got time for dis..."),
             () => !WillAcceptGreenskinDuel() && !IsOnDuelCooldown(), null, 100);
 
 
@@ -146,7 +146,7 @@ public class DuelBehavior : CampaignBehaviorBase
             var enemyTroops = _currentDuelTarget.PartyBelongedTo?.MemberRoster;
 
             // Set text to indicate some troops want to join
-            GameTexts.SetVariable("TROOP_GAIN_DUEL", GameTexts.FindText("tor_duel_troops_want_to_join").ToString());
+            GameTexts.SetVariable("TROOP_GAIN_DUEL", TORTextHelper.GetText("tor_duel_troops_want_to_join", "Some of da boyz want to join ya warband!"));
 
             Hero.MainHero.AddCultureSpecificCustomResource(teefGain);
             GameTexts.SetVariable("TEEF_GAIN_DUEL", teefGain);
@@ -177,7 +177,7 @@ public class DuelBehavior : CampaignBehaviorBase
 
                 _currentTroopRoster = filteredRoster.CloneRosterData();
             }
-            PartyScreenHelper.OpenScreenAsReceiveTroops(filteredRoster, GameTexts.FindText("tor_duel_troop_selection_title"),
+            PartyScreenHelper.OpenScreenAsReceiveTroops(filteredRoster, TORTextHelper.GetTextObject("tor_duel_troop_selection_title", "Da boys want to join"),
                 (party, roster, prisonRoster, ownerParty, memberRoster, rightPrisonRoster, cancel) =>
             {
                 //troops taken need to be removed from the original party.
@@ -280,7 +280,7 @@ public class DuelBehavior : CampaignBehaviorBase
 
         // Start the actual duel button
         campaignGameStarter.AddGameMenuOption("duel_preparation", "duel_start_combat",
-            GameTexts.FindText("tor_duel_start_combat").ToString(),
+            TORTextHelper.GetText("tor_duel_start_combat", "Begin the duel!"),
             args => MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty()), args =>
             {
                 ExecuteDuel();
@@ -310,7 +310,7 @@ public class DuelBehavior : CampaignBehaviorBase
             SetDuelVictoryText, GameMenu.MenuOverlayType.None);
 
         campaignGameStarter.AddGameMenuOption("duel_victory", "duel_accept_victory",
-            GameTexts.FindText("tor_duel_accept_victory").ToString(),
+            TORTextHelper.GetText("tor_duel_accept_victory", "Claim your victory!"),
             args => MenuHelper.SetOptionProperties(args, true, false, TextObject.GetEmpty()), args =>
             {
                 _currentVictoryAction?.Invoke();
@@ -319,10 +319,10 @@ public class DuelBehavior : CampaignBehaviorBase
 
     private void SetDuelPreparationText(MenuCallbackArgs args)
     {
-        var duelTextDescription = GameTexts.FindText("tor_duel_prep");
+        var duelTextDescription = TORTextHelper.GetTextObject("tor_duel_prep", "Prepare for combat!");
         if (_textOverride != null)
         {
-            duelTextDescription = GameTexts.FindText("tor_duel_prep", _textOverride);
+            duelTextDescription = TORTextHelper.GetTextObject("tor_duel_prep", _textOverride, "WAAAGH! Time to show {DUEL_TARGET_NAME} who's da biggest! Get ready for a proper scrap!");
         }
         duelTextDescription.SetTextVariable("DUEL_TARGET_NAME", _currentDuelTarget.Name);
         MBTextManager.SetTextVariable("DUEL_PREPARATION_TEXT", duelTextDescription);
@@ -330,10 +330,10 @@ public class DuelBehavior : CampaignBehaviorBase
 
     private void SetDuelDefeatText(MenuCallbackArgs args)
     {
-        var defeatTextDescription = GameTexts.FindText("tor_duel_defeat");
+        var defeatTextDescription = TORTextHelper.GetTextObject("tor_duel_defeat", "You have been defeated by {DUEL_TARGET_NAME}.");
         if (_textOverride != null)
         {
-            defeatTextDescription = GameTexts.FindText("tor_duel_defeat", _textOverride);
+            defeatTextDescription = TORTextHelper.GetTextObject("tor_duel_defeat", _textOverride, "Ya got krumped! You lost {TEEF_LOSS_DUEL}{TEEF_ICON} teef and lost the following troops: {TROOP_LOSS_DUEL}");
         }
         defeatTextDescription.SetTextVariable("DUEL_TARGET_NAME", _currentDuelTarget == null ? _currentDuelTarget.Name.ToString() : "Unkown");
         MBTextManager.SetTextVariable("DUEL_DEFEAT_TEXT", defeatTextDescription);
@@ -341,10 +341,10 @@ public class DuelBehavior : CampaignBehaviorBase
 
     private void SetDuelVictoryText(MenuCallbackArgs args)
     {
-        var victoryTextDescription = GameTexts.FindText("tor_duel_victory");
+        var victoryTextDescription = TORTextHelper.GetTextObject("tor_duel_victory", "You won the battle!");
         if (_textOverride != null)
         {
-            victoryTextDescription = GameTexts.FindText("tor_duel_victory", _textOverride);
+            victoryTextDescription = TORTextHelper.GetTextObject("tor_duel_victory", _textOverride, "Yu clearly are da biggest boss. You gained {TEEF_GAIN_DUEL}{TEEF_ICON} teef. {TROOP_GAIN_DUEL}");
         }
 
         victoryTextDescription.SetTextVariable("DUEL_TARGET_NAME", _currentDuelTarget == null ? _currentDuelTarget.Name.ToString() : "Unkown");

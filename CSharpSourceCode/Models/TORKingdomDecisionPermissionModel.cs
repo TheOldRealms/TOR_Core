@@ -40,7 +40,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         {
             if ((bool)(kingdom1?.Leader?.GetDominantReligion()?.HostileReligions?.Contains(kingdom2?.Leader?.GetDominantReligion())))
             {
-                reason = new TextObject("{=TOR_Alliance_Religion_Conflict}The dominant religions of the two kingdoms are hostile towards each other.");
+                reason = TORTextHelper.GetTextObject("TOR_Alliance_Religion_Conflict", "The dominant religions of the two kingdoms are hostile towards each other.");
                 return false;
             }
             else

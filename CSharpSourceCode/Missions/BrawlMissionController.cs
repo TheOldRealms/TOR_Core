@@ -63,7 +63,7 @@ public class BrawlMissionController : MissionLogic, IMissionAgentSpawnLogic
     public override InquiryData OnEndMissionRequest(out bool canLeave)
     {
         canLeave = Mission.MissionResult is { BattleResolved: true, PlayerVictory: true } || PlayerCanLeave;
-        if (!canLeave) MBInformationManager.AddQuickInformation(new TextObject("{=tor_quest_fight_hint_not_leaving_str}You may not leave until finishing the brawl."));
+        if (!canLeave) MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_brawl_cannot_leave", "You may not leave until finishing the brawl."));
         else
         {
             Mission.Current.EndMission();

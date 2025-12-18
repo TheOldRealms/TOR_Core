@@ -11,6 +11,8 @@ using TOR_Core.GameManagers;
 
 namespace TOR_Core.HarmonyPatches
 {
+    // Note: We cannot use TORTextHelper here because the GameTextManager is not yet instantiated
+    // at the point when this code runs. We must use hardcoded localization strings instead.
     [HarmonyPatch]
     public class MainMenuOptionsPatches
     {
@@ -20,8 +22,8 @@ namespace TOR_Core.HarmonyPatches
         {
             List<InitialStateOption> newlist = new List<InitialStateOption>();
             newlist = __result.Where(x => x.Id != "StoryModeNewGame" && x.Id != "SandBoxNewGame").ToList();
-            var torOption = new InitialStateOption("TORNewgame", new TextObject("{=tor_menu_enter_game_label_str}Enter the Old World"), 3, OnCLick, IsDisabledAndReason);
-            var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=tor_menu_shader_cache_label_str}Build Shader Cache"), 4, OnForceClick, IsDisabledAndReason); 
+            var torOption = new InitialStateOption("TORNewgame", new TextObject("{=str_tor_menu_enter_game}Enter the Old World"), 3, OnCLick, IsDisabledAndReason);
+            var torOption2 = new InitialStateOption("TORForceLoad", new TextObject("{=str_tor_menu_shader_cache}Build Shader Cache"), 4, OnForceClick, IsDisabledAndReason);
             newlist.Add(torOption);
             newlist.Add(torOption2);
             newlist.Sort((x, y) => x.OrderIndex.CompareTo(y.OrderIndex));
@@ -35,7 +37,7 @@ namespace TOR_Core.HarmonyPatches
 
         private static void DisplayWindow()
         {
-            var text = new TextObject("{=tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.\n" + 
+            var text = new TextObject("{=tor_menu_shader_cache_popup_message}This will load a scene with all the unique troops and NPCs present in our mod. The purpose of this is to compile the local shader cache on your PC.\n" +
                        "When you see the deployment phase, the process is complete!\n \n" +
                        "THIS WILL TAKE A LONG TIME!!!\n" +
                        "Our users report anything between 20 and 70 minutes.\n \n" +
@@ -73,7 +75,7 @@ namespace TOR_Core.HarmonyPatches
 
         private static (bool, TextObject) IsDisabledAndReason()
         {
-            TextObject coreContentDisabledReason = new TextObject("{=V8BXjyYq}Disabled during installation.", null);
+            TextObject coreContentDisabledReason = new TextObject("{=tor_disabled_during_installation}Disabled during installation.");
             return new ValueTuple<bool, TextObject>(Module.CurrentModule.IsOnlyCoreContentEnabled, coreContentDisabledReason);
         }
     }

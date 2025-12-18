@@ -77,15 +77,15 @@ namespace TOR_Core.Quests
 
             protected override int RewardGold => 2500;
 
-            public override TextObject IssueBriefByIssueGiver => new TextObject("{=tor_quest_plagued_village_issue_brief_str}As a matter of fact, I have a lead on potential cultist activity. A village is struck by a terrible, unnatural plague. A grave matter that needs investigating.");
+            public override TextObject IssueBriefByIssueGiver => TORTextHelper.GetTextObject("tor_quest_plagued_village_issue_brief", "As a matter of fact, I have a lead on potential cultist activity. A village is struck by a terrible, unnatural plague. A grave matter that needs investigating.");
 
-            public override TextObject IssueAcceptByPlayer => new TextObject("{=tor_quest_plagued_village_issue_accept_player_str}What needs to be done?");
+            public override TextObject IssueAcceptByPlayer => TORTextHelper.GetTextObject("tor_quest_plagued_village_issue_accept_player", "What needs to be done?");
 
             public override TextObject IssueQuestSolutionExplanationByIssueGiver
             {
                 get
                 {
-                    TextObject textObject = new TextObject("{=tor_quest_plagued_village_issue_explanation_str}I need you to travel to {TARGET_SETTLEMENT}. Investigate the situation and find root cause of the plague. On successful completion, the order will pay you {REWARD}{GOLD_ICON}.", null);
+                    TextObject textObject = TORTextHelper.GetTextObject("tor_quest_plagued_village_issue_explanation", "I need you to travel to {TARGET_SETTLEMENT}. Investigate the situation and find root cause of the plague. On successful completion, the order will pay you {REWARD}{GOLD_ICON}.");
                     textObject.SetTextVariable("TARGET_SETTLEMENT", _targetSettlement.EncyclopediaLinkWithName);
                     textObject.SetTextVariable("REWARD", RewardGold);
                     textObject.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
@@ -93,19 +93,19 @@ namespace TOR_Core.Quests
                 }
             }
 
-            public override TextObject IssueQuestSolutionAcceptByPlayer => new TextObject("{=tor_quest_plagued_village_accept_player_str}Consider it done.");
+            public override TextObject IssueQuestSolutionAcceptByPlayer => TORTextHelper.GetTextObject("tor_quest_plagued_village_accept_player", "Consider it done.");
 
             public override bool IsThereAlternativeSolution => false;
 
             public override bool IsThereLordSolution => false;
 
-            public override TextObject Title => new TextObject("{=tor_quest_plagued_village_title_str}The plague ridden village");
+            public override TextObject Title => TORTextHelper.GetTextObject("tor_quest_plagued_village_title", "The plague ridden village");
 
             public override TextObject Description
             {
                 get
                 {
-                    TextObject textObject = new TextObject("{=tor_quest_plagued_village_description_str}Travel to target settlement and find the cause of the unnatural epidemic that plagues the village.", null);
+                    TextObject textObject = TORTextHelper.GetTextObject("tor_quest_plagued_village_description", "Travel to target settlement and find the cause of the unnatural epidemic that plagues the village.");
                     textObject.SetTextVariable("TARGET_SETTLEMENT", _targetSettlement.EncyclopediaLinkWithName);
                     return textObject;
                 }
@@ -172,7 +172,7 @@ namespace TOR_Core.Quests
                 InitializeQuestOnCreation();
             }
 
-            public override TextObject Title => new TextObject("{=tor_quest_hunt_cultist_title_str}The plague ridden village");
+            public override TextObject Title => TORTextHelper.GetTextObject("tor_quest_plagued_village_quest_title", "The plague ridden village");
 
             public override bool IsRemainingTimeHidden => false;
 
@@ -186,8 +186,8 @@ namespace TOR_Core.Quests
 
             protected override void SetDialogs()
             {
-                OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start", 100).NpcLine(new TextObject("{=tor_quest_plagued_village_offer_dialog_str}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).Consequence(OnQuestAccepted).CloseDialog();
-                DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss", 100).NpcLine(new TextObject("{=tor_quest_plagued_village_discuss_dialog_str}It was good doing business with you.", null), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).CloseDialog();
+                OfferDialogFlow = DialogFlow.CreateDialogFlow("issue_classic_quest_start", 100).NpcLine(TORTextHelper.GetTextObject("tor_quest_plagued_village_offer_dialog", "Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).Consequence(OnQuestAccepted).CloseDialog();
+                DiscussDialogFlow = DialogFlow.CreateDialogFlow("quest_discuss", 100).NpcLine(TORTextHelper.GetTextObject("tor_quest_plagued_village_discuss_dialog", "It was good doing business with you."), null, null).Condition(() => Hero.OneToOneConversationHero == QuestGiver).CloseDialog();
                 Campaign.Current.ConversationManager.AddDialogFlow(DialogFlow.CreateDialogFlow("start", 199).NpcLine("{=nurgle_cultist_start}Wait, wait, wait... There is no need for violence!").Condition(() => Mission.Current != null && Mission.Current.SceneName == "TOR_nurgle_lair_001")
                     .NpcLine("{=nurgle_cultist_continue}Papa Nurgle takes care of his own... his Gift is yours if you accept it. (+20 maximum hit points permanently)")
                     .BeginPlayerOptions()
@@ -200,7 +200,7 @@ namespace TOR_Core.Quests
 
             protected override void OnTimedOut()
             {
-                AddLog(new TextObject("{=tor_quest_hunt_cultist_out_of_time_log_str}You failed to complete the investigation in time."));
+                AddLog(TORTextHelper.GetTextObject("tor_quest_plagued_village_out_of_time_log", "You failed to complete the investigation in time."));
             }
 
             protected override void RegisterEvents()
@@ -270,7 +270,7 @@ namespace TOR_Core.Quests
                 {
                     if (settlement.IsUnderRaid || settlement.IsRaided)
                     {
-                        InquiryData data = new InquiryData("Village Raided", "{=tor_quest_plague_village_raided_info_str}The village is raided, no chance to find any cultists now. Come back when the village is repopulated.", true, false, "OK", null, () => InformationManager.HideInquiry(), null);
+                        InquiryData data = new InquiryData("Village Raided", "{=str_tor_quest_plagued_village_raided_info}The village is raided, no chance to find any cultists now. Come back when the village is repopulated.", true, false, "OK", null, () => InformationManager.HideInquiry(), null);
                         InformationManager.ShowInquiry(data);
                     }
                     else InkStoryManager.OpenStory("NurgleCultists", AfterStory);
@@ -283,10 +283,10 @@ namespace TOR_Core.Quests
                 bool.TryParse(story.GetVariable("DealtWithCultists"), out _dealtWithCultists);
                 if (_dealtWithCultists)
                 {
-                    AddLog(new TextObject("{=tor_quest_plague_village_log_updated_success_str}You were successful in lifting the plague."));
+                    AddLog(TORTextHelper.GetTextObject("tor_quest_plagued_village_log_updated_success", "You were successful in lifting the plague."));
                     CompleteQuestWithSuccess();
                 }
-                else CompleteQuestWithFail(new TextObject("{=tor_quest_plague_village_log_updated_fail_str}You abandoned the mission."));
+                else CompleteQuestWithFail(TORTextHelper.GetTextObject("tor_quest_plagued_village_log_updated_fail", "You abandoned the mission."));
             }
 
             private void OnQuestAccepted()
@@ -296,7 +296,7 @@ namespace TOR_Core.Quests
 
                 TrackTarget();
 
-                var acceptLog = new TextObject("{=tor_quest_plague_village_started_str}You were tasked to travel to {TARGET_SETTLEMENT} and investigate the epidemic that plagues it.");
+                var acceptLog = TORTextHelper.GetTextObject("tor_quest_plagued_village_started", "You were tasked to travel to {TARGET_SETTLEMENT} and investigate the epidemic that plagues it.");
                 acceptLog.SetTextVariable("TARGET_SETTLEMENT", _settlement.EncyclopediaLinkWithName);
                 AddLog(acceptLog);
             }

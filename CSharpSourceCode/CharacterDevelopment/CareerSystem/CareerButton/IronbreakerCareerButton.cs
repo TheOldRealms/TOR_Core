@@ -80,7 +80,7 @@ public class IronbreakerCareerButtonBehavior(CareerObject careerObject) : Career
 
         if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < pending + ExchangeCost)
         {
-            displayText = new TextObject("Not enough resources");
+            displayText = TORTextHelper.GetTextObject("tor_ironbreaker_not_enough_resources_text", "Not enough resources");
             return false;
         }
 
@@ -93,7 +93,7 @@ public class IronbreakerCareerButtonBehavior(CareerObject careerObject) : Career
 
         if (characterObject.Level < 16)
         {
-            displayText = new TextObject(" not high enough level");
+            displayText = TORTextHelper.GetTextObject("tor_ironbreaker_level_too_low_text", " not high enough level");
             return false;
         }
 

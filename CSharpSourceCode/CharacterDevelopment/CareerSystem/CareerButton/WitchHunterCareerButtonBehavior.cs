@@ -76,10 +76,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (index == -1) return false;
 
-            displayText = new TextObject("Upgrades troop to a Witch Hunter Retinue");
+            displayText = TORTextHelper.GetTextObject("tor_witch_hunter_upgrade_retinue_text", "Upgrades troop to a Witch Hunter Retinue");
             if (characterObject.IsEliteTroop())
             {
-                displayText = new TextObject("Knights Cant be upgraded to Retinues");
+                displayText = TORTextHelper.GetTextObject("tor_witch_hunter_no_knights_text", "Knights Cant be upgraded to Retinues");
                 return false;
             }
 
@@ -87,13 +87,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var woundedTroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
             if (healthyTroops - woundedTroops < 0)
             {
-                displayText = new TextObject("Not enough healthy troops available");
+                displayText = TORTextHelper.GetTextObject("tor_witch_hunter_not_enough_troops_text", "Not enough healthy troops available");
                 return false;
             }
 
             if (characterObject.Culture.StringId == TORConstants.Cultures.BRETONNIA || characterObject.Race != 0)
             {
-                displayText = new TextObject("Needs to be part of the empire or southern realms");
+                displayText = TORTextHelper.GetTextObject("tor_witch_hunter_culture_requirement_text", "Needs to be part of the empire or southern realms");
                 return false;
             }
 
@@ -101,9 +101,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var pendingResources = CustomResourceManager.GetPendingResources();
             if (!pendingResources.IsEmpty() && pendingResources[Hero.MainHero.GetCultureSpecificCustomResource()] + ExchangeCost > Hero.MainHero.GetCultureSpecificCustomResourceValue())
             {
-                //Sly : dark energy icon instead of prestige? Shows prestige in-game, so I'm unsure in what context this would show in to check.
-                //Would this line be localizable or it needs to have a {variable} that's set? Can't even find it to check.
-                displayText = new TextObject("Requires atleast " + ExchangeCost + " " + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+                var requiresText = TORTextHelper.GetTextObject("tor_witch_hunter_requires_text", "Requires atleast {EXCHANGE_COST} {DARK_ENERGY_ICON}");
+                requiresText.SetTextVariable("EXCHANGE_COST", ExchangeCost);
+                requiresText.SetTextVariable("DARK_ENERGY_ICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+                displayText = requiresText;
                 return false;
             }
 

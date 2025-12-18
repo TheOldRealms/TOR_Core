@@ -204,10 +204,10 @@ namespace TOR_Core.Models
                     {
                         case ForestHarmonyLevel.Harmony: break;
                         case ForestHarmonyLevel.Unbound:
-                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffUnBound, new TextObject(ForestHarmonyLevel.Unbound.ToString()));
+                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffUnBound, GameTexts.FindText("tor_forest_harmony_level", ForestHarmonyLevel.Unbound.ToString()));
                             break;
                         case ForestHarmonyLevel.Bound:
-                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffBound, new TextObject(ForestHarmonyLevel.Bound.ToString()));
+                            result.AddFactor(ForestHarmonyHelper.HealthRegDebuffBound, GameTexts.FindText("tor_forest_harmony_level", ForestHarmonyLevel.Bound.ToString()));
                             break;
                     }
                 }
@@ -251,7 +251,7 @@ namespace TOR_Core.Models
                             }
                         }
 
-                        explainedNumber.Add(bonus, new TextObject("Shallya Seal"));
+                        explainedNumber.Add(bonus, TORTextHelper.GetTextObject("tor_healing_shallya_seal_text", "Shallya Seal"));
                     }
                 }
             }

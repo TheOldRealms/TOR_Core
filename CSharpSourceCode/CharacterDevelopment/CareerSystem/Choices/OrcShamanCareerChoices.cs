@@ -139,7 +139,7 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializeKeyStones()
     {
-        _shamanRoot.Initialize(CareerID, "{=shaman_root_str}Shaman Root", null, true,
+        _shamanRoot.Initialize(CareerID, "Da Shaman opens 'iz mind to Da Great Green, channelin' da power of Gork an' Mork for 15 seconds. While focused, movin' an' fightin' iz 'arder, but every Greenskin nearby dealin' damage feeds da Shaman wiv Winds of Magic. Be warned - if da boyz start dyin' instead of killin', da connection backfires an' drains yer power!", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>());
 
         // Bones an' Firepitz Keystone: Ability is charged at battle start
@@ -194,81 +194,81 @@ public class OrcShamanCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializePassives()
     {
         // Bones an' Firepitz Passives
-        _bonesAnFirepitzPassive1.Initialize(CareerID, "{=bones_an_firepitz_passive1_str}10% extra melee damage.", "BonesAnFirepitz", false, ChoiceType.Passive, null,
+        _bonesAnFirepitzPassive1.Initialize(CareerID, "10% extra melee damage.", "BonesAnFirepitz", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-        _bonesAnFirepitzPassive2.Initialize(CareerID, "{=bones_an_firepitz_passive2_str}+10 Maximum Winds of Magic.", "BonesAnFirepitz", false, ChoiceType.Passive, null,
+        _bonesAnFirepitzPassive2.Initialize(CareerID, "+10 Maximum Winds of Magic.", "BonesAnFirepitz", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-        _bonesAnFirepitzPassive3.Initialize(CareerID, "{=bones_an_firepitz_passive3_str}Extra enchantment ingredients when looting.", "BonesAnFirepitz", false, ChoiceType.Passive, null,
+        _bonesAnFirepitzPassive3.Initialize(CareerID, "Extra enchantment ingredients when looting.", "BonesAnFirepitz", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
-        _bonesAnFirepitzPassive4.Initialize(CareerID, "{=bones_an_firepitz_passive4_str}Looting shrines grants Spellcraft experience.", "BonesAnFirepitz", false, ChoiceType.Passive, null,
+        _bonesAnFirepitzPassive4.Initialize(CareerID, "Looting shrines grants Spellcraft experience.", "BonesAnFirepitz", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, true)); // CUSTOM - needs implementation
 
         // Visions uv da Orc-ayne Passives
-        _visionsUvDaOrcaynePassive1.Initialize(CareerID, "{=visions_uv_da_orcayne_passive1_str}35% increased spotting range.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
+        _visionsUvDaOrcaynePassive1.Initialize(CareerID, "35% increased spotting range.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(35, PassiveEffectType.PartySpottingRange, true));
-        _visionsUvDaOrcaynePassive2.Initialize(CareerID, "{=visions_uv_da_orcayne_passive2_str}10% extra spell damage if armor weight under 15kg.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
+        _visionsUvDaOrcaynePassive2.Initialize(CareerID, "10% extra spell damage if armor weight under 15kg.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Spell && IsWearingLightArmor(attacker)));
-        _visionsUvDaOrcaynePassive3.Initialize(CareerID, "{=visions_uv_da_orcayne_passive3_str}Shrine defilement provides more meat and shinies.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
+        _visionsUvDaOrcaynePassive3.Initialize(CareerID, "Shrine defilement provides more meat and shinies.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special, true)); // CUSTOM - needs implementation
-        _visionsUvDaOrcaynePassive4.Initialize(CareerID, "{=visions_uv_da_orcayne_passive4_str}10% extra damage when wielding a staff.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
+        _visionsUvDaOrcaynePassive4.Initialize(CareerID, "10% extra damage when wielding a staff.", "VisionsUvDaOrcayne", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Melee && !attacker.WieldedWeapon.IsEmpty && attacker.WieldedWeapon.Item.IsMagicalStaff()));
 
         // Giftz from Da Great Green Passives
-        _giftzFromDaGreatGreenPassive1.Initialize(CareerID, "{=giftz_from_da_great_green_passive1_str}Looting shrines grants Faith experience.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
+        _giftzFromDaGreatGreenPassive1.Initialize(CareerID, "Looting shrines grants Faith experience.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.Special, true)); // CUSTOM - needs implementation
-        _giftzFromDaGreatGreenPassive2.Initialize(CareerID, "{=giftz_from_da_great_green_passive2_str}10% extra spell damage.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
+        _giftzFromDaGreatGreenPassive2.Initialize(CareerID, "10% extra spell damage.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
-        _giftzFromDaGreatGreenPassive3.Initialize(CareerID, "{=giftz_from_da_great_green_passive3_str}+50 Health.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
+        _giftzFromDaGreatGreenPassive3.Initialize(CareerID, "+50 Health.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
-        _giftzFromDaGreatGreenPassive4.Initialize(CareerID, "{=giftz_from_da_great_green_passive4_str}5% physical resistance.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
+        _giftzFromDaGreatGreenPassive4.Initialize(CareerID, "5% physical resistance.", "GiftzFromDaGreatGreen", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee | AttackTypeMask.Ranged));
 
         // Brutal Cunnin' Passives
-        _brutalCunninPassive1.Initialize(CareerID, "{=brutal_cunnin_passive1_str}+60 party size.", "BrutalCunnin", false, ChoiceType.Passive, null,
+        _brutalCunninPassive1.Initialize(CareerID, "+60 party size.", "BrutalCunnin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(60, PassiveEffectType.PartySize));
-        _brutalCunninPassive2.Initialize(CareerID, "{=brutal_cunnin_passive2_str}+50 Health.", "BrutalCunnin", false, ChoiceType.Passive, null,
+        _brutalCunninPassive2.Initialize(CareerID, "+50 Health.", "BrutalCunnin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Health));
-        _brutalCunninPassive3.Initialize(CareerID, "{=brutal_cunnin_passive3_str}10% extra physical damage with axes.", "BrutalCunnin", false, ChoiceType.Passive, null,
+        _brutalCunninPassive3.Initialize(CareerID, "10% extra physical damage with axes.", "BrutalCunnin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Melee && !attacker.WieldedWeapon.IsEmpty &&
                 (attacker.WieldedWeapon.CurrentUsageItem.WeaponClass == WeaponClass.OneHandedAxe || attacker.WieldedWeapon.CurrentUsageItem.WeaponClass == WeaponClass.TwoHandedAxe)));
-        _brutalCunninPassive4.Initialize(CareerID, "{=brutal_cunnin_passive4_str}Hits below 25 damage no longer stagger.", "BrutalCunnin", false, ChoiceType.Passive, null,
+        _brutalCunninPassive4.Initialize(CareerID, "Hits below 25 damage no longer stagger.", "BrutalCunnin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.ShruggedOff));
 
         // Cunnin' Brutality Passives
-        _cunninBrutalityPassive1.Initialize(CareerID, "{=cunnin_brutality_passive1_str}10% extra spell damage if armor weight under 15kg.", "CunninBrutality", false, ChoiceType.Passive, null,
+        _cunninBrutalityPassive1.Initialize(CareerID, "10% extra spell damage if armor weight under 15kg.", "CunninBrutality", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell, (attacker, victim, mask) =>
                 attacker.IsMainAgent && mask == AttackTypeMask.Spell && IsWearingLightArmor(attacker)));
-        _cunninBrutalityPassive2.Initialize(CareerID, "{=cunnin_brutality_passive2_str}+10 Winds of Magic.", "CunninBrutality", false, ChoiceType.Passive, null,
+        _cunninBrutalityPassive2.Initialize(CareerID, "+10 Winds of Magic.", "CunninBrutality", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-        _cunninBrutalityPassive3.Initialize(CareerID, "{=cunnin_brutality_passive3_str}10% Wardsave.", "CunninBrutality", false, ChoiceType.Passive, null,
+        _cunninBrutalityPassive3.Initialize(CareerID, "10% Wardsave.", "CunninBrutality", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All));
-        _cunninBrutalityPassive4.Initialize(CareerID, "{=cunnin_brutality_passive4_str}20% Armor penetration.", "CunninBrutality", false, ChoiceType.Passive, null,
+        _cunninBrutalityPassive4.Initialize(CareerID, "20% Armor penetration.", "CunninBrutality", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
 
         // Gork an' Mork are watchin' Passives
-        _gorkAnMorkAreWatchinPassive1.Initialize(CareerID, "{=gork_an_mork_are_watchin_passive1_str}15% spell damage resistance when wearing under 15kg.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
+        _gorkAnMorkAreWatchinPassive1.Initialize(CareerID, "15% spell damage resistance when wearing under 15kg.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell, (attacker, victim, mask) =>
                 victim.IsMainAgent && IsWearingLightArmor(victim)));
-        _gorkAnMorkAreWatchinPassive2.Initialize(CareerID, "{=gork_an_mork_are_watchin_passive2_str}+10 Winds of Magic.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
+        _gorkAnMorkAreWatchinPassive2.Initialize(CareerID, "+10 Winds of Magic.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
-        _gorkAnMorkAreWatchinPassive3.Initialize(CareerID, "{=gork_an_mork_are_watchin_passive3_str}10% Wardsave for Greenskins.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
+        _gorkAnMorkAreWatchinPassive3.Initialize(CareerID, "10% Wardsave for Greenskins.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, (attacker, victim, mask) =>
                 victim.BelongsToMainParty() && !victim.IsHero && (victim.Character as CharacterObject).IsOrc()));
-        _gorkAnMorkAreWatchinPassive4.Initialize(CareerID, "{=gork_an_mork_are_watchin_passive4_str}+70 HP for Shaman Boss companion.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
+        _gorkAnMorkAreWatchinPassive4.Initialize(CareerID, "+70 HP for Shaman Boss companion.", "GorkAnMorkAreWatchin", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(70, PassiveEffectType.Special, true)); // CUSTOM - companion-specific buff
 
         // Power uv da Waaagh! Passives
-        _powerUvDaWaaaghPassive1.Initialize(CareerID, "{=power_uv_da_waaagh_passive1_str}10% extra spell damage.", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
+        _powerUvDaWaaaghPassive1.Initialize(CareerID, "10% extra spell damage.", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
-        _powerUvDaWaaaghPassive2.Initialize(CareerID, "{=power_uv_da_waaagh_passive2_str}+30 Winds of Magic for Shaman companion.", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
+        _powerUvDaWaaaghPassive2.Initialize(CareerID, "+30 Winds of Magic for Shaman companion.", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special, true)); // CUSTOM - companion-specific buff
-        _powerUvDaWaaaghPassive3.Initialize(CareerID, "{=power_uv_da_waaagh_passive3_str}10% extra wardsave when wearing under 15kg.", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
+        _powerUvDaWaaaghPassive3.Initialize(CareerID, "10% extra wardsave when wearing under 15kg.", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All, (attacker, victim, mask) =>
                 victim.IsMainAgent && IsWearingLightArmor(victim)));
-        _powerUvDaWaaaghPassive4.Initialize(CareerID, "{=power_uv_da_waaagh_passive4_str}+60 party size.", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
+        _powerUvDaWaaaghPassive4.Initialize(CareerID, "+60 party size.", "PowerUvDaWaaagh", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(60, PassiveEffectType.PartySize));
     }
 }

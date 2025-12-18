@@ -169,7 +169,7 @@ namespace TOR_Core.Extensions
             {
                 if (abilitycomponent.CurrentAbility != null) return abilitycomponent.CurrentAbility.TryCast(agent, out failureReason);
             }
-            failureReason = new TextObject("{=tor_cast_fail_comp_null}Abilitycomponent is null!");
+            failureReason = TORTextHelper.GetTextObject("tor_cast_fail_comp_null", "Abilitycomponent is null!");
             return false;
         }
 

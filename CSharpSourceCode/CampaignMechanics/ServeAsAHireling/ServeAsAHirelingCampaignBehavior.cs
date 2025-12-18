@@ -216,7 +216,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             if (desertion)
             {
-                var damage = new TextObject("This will harm your relations with the entire faction.");
+                var damage = TORTextHelper.GetTextObject("tor_hireling_desert_warning_text", "This will harm your relations with the entire faction.");
                 GameTexts.SetVariable("HIRELING_DESERT_TEXT", damage);
             }
             else
@@ -224,10 +224,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 GameTexts.SetVariable("HIRELING_DESERT_TEXT", "");
             }
 
-            var titleText = new TextObject("{=FLT0000044}Abandon Party");
-            var text = new TextObject("{=FLT0000046}Are you sure you want to abandon the party? {HIRELING_DESERT_TEXT}");
-            var affirmativeText = new TextObject("{=FLT0000047}Yes");
-            var negativeText = new TextObject("{=FLT0000048}No");
+            var titleText = TORTextHelper.GetTextObject("tor_hireling_abandon_party_title", "Abandon Party");
+            var text = TORTextHelper.GetTextObject("tor_hireling_abandon_party_text", "Are you sure you want to abandon the party? {HIRELING_DESERT_TEXT}");
+            var affirmativeText = TORTextHelper.GetTextObject("tor_hireling_yes_text", "Yes");
+            var negativeText = TORTextHelper.GetTextObject("tor_hireling_no_text", "No");
             InformationManager.ShowInquiry(new InquiryData(titleText.ToString(), text.ToString(), true, true, affirmativeText.ToString(), negativeText.ToString(), delegate ()
             {
                 if (desertion)
@@ -255,18 +255,18 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             var explainText = new TextObject("{HIRELING_EXPLAIN_TEXT}");
             var positiveDecisionText = new TextObject("{HIRELING_DECISION_TEXT}");
 
-            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_quit_sure", "I would like to quit my service.", QuitCondition, null);
-            campaignGameStarter.AddDialogLine("payedsword_quit_sure", "payedsword_quit_sure", "payedsword_quit_choice", "Are you sure?", null, null);
-            campaignGameStarter.AddPlayerLine("payedsword_quit_choice", "payedsword_quit_choice", "payedsword_quit", "Yes i want to leave", null, null); //are these localized?
-            campaignGameStarter.AddPlayerLine("payedsword_quit_choice", "payedsword_quit_choice", "lord_pretalk", "I have to think about this.", null, null);
+            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_quit_sure", TORTextHelper.GetText("tor_hireling_quit_service_text", "I would like to quit my service."), QuitCondition, null);
+            campaignGameStarter.AddDialogLine("payedsword_quit_sure", "payedsword_quit_sure", "payedsword_quit_choice", TORTextHelper.GetText("tor_hireling_are_you_sure_text", "Are you sure?"), null, null);
+            campaignGameStarter.AddPlayerLine("payedsword_quit_choice", "payedsword_quit_choice", "payedsword_quit", TORTextHelper.GetText("tor_hireling_yes_leave_text", "Yes i want to leave"), null, null);
+            campaignGameStarter.AddPlayerLine("payedsword_quit_choice", "payedsword_quit_choice", "lord_pretalk", TORTextHelper.GetText("tor_hireling_think_about_it_text", "I have to think about this."), null, null);
             campaignGameStarter.AddDialogLine("payedsword_quit", "payedsword_quit", "end", quitText.Value, null, LeaveLordPartyAction);
 
-            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_explain", "I am hereby offering my sword.", () => SanityCheck() && !IsEnlisted() && ServeAsAHirelingHelpers.HirelingServiceConditions(), null);
+            campaignGameStarter.AddPlayerLine("convincelord", "lord_talk_speak_diplomacy_2", "payedsword_explain", TORTextHelper.GetText("tor_hireling_offer_sword_text", "I am hereby offering my sword."), () => SanityCheck() && !IsEnlisted() && ServeAsAHirelingHelpers.HirelingServiceConditions(), null);
             campaignGameStarter.AddDialogLine("payedsword_explain", "payedsword_explain", "hireling_decide_player", explainText.Value, null, null, 200);
-            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "hireling_prompt", "I accept my Lord.", ServeAsAHirelingHelpers.HirelingServiceConditions, () => DisplayPrompt(EnlistPlayer));
-            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "lord_pretalk", "I need to think about this", null, null);
-            campaignGameStarter.AddDialogLine("hireling_prompt", "hireling_prompt", "hireling_decision", "...", null, null);
-            campaignGameStarter.AddPlayerLine("hireling_decision", "hireling_decision", "lord_pretalk", "I need to think about this", () => _enlistInquiryDeclined, null);
+            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "hireling_prompt", TORTextHelper.GetText("tor_hireling_accept_text", "I accept my Lord."), ServeAsAHirelingHelpers.HirelingServiceConditions, () => DisplayPrompt(EnlistPlayer));
+            campaignGameStarter.AddPlayerLine("hireling_decide_player", "hireling_decide_player", "lord_pretalk", TORTextHelper.GetText("tor_hireling_think_about_it_text", "I have to think about this."), null, null);
+            campaignGameStarter.AddDialogLine("hireling_prompt", "hireling_prompt", "hireling_decision", TORTextHelper.GetText("tor_hireling_ellipsis_text", "..."), null, null);
+            campaignGameStarter.AddPlayerLine("hireling_decision", "hireling_decision", "lord_pretalk", TORTextHelper.GetText("tor_hireling_think_about_it_text", "I have to think about this."), () => _enlistInquiryDeclined, null);
             campaignGameStarter.AddDialogLine("hireling_decision", "hireling_decision", "end", positiveDecisionText.Value, null, null);
         }
 
@@ -282,13 +282,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (Campaign.Current.ConversationManager.OneToOneConversationHero != _hirelingEnlistingLord)
                 return false;
             var culture = Campaign.Current.ConversationManager.OneToOneConversationCharacter.Culture.StringId;
-            if (GameTexts.TryGetText("HirelingLordQuit", out var text, culture))
+            if (GameTexts.TryGetText("tor_hirelinglordquit", out var text, culture))
             {
                 GameTexts.SetVariable("HIRELING_QUIT_TEXT", text.Value);
             }
             else
             {
-                if (GameTexts.TryGetText("HirelingLordQuit", out var defaultText))
+                if (GameTexts.TryGetText("tor_hirelinglordquit", out var defaultText))
                 {
                     GameTexts.SetVariable("HIRELING_QUIT_TEXT", defaultText.Value);
                 }
@@ -298,14 +298,14 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void DisplayPrompt(Action enlistPlayer)
         {
-            var title = GameTexts.FindText("Hireling", "PromptTitle");
-            var explaination = GameTexts.FindText("Hireling", "PromptText");
+            var title = GameTexts.FindText("tor_hireling", "prompttitle");
+            var explanation = GameTexts.FindText("tor_hireling", "prompttext");
             _enlistInquiryDeclined = false;
             var inquiry = new InquiryData(title.ToString(),
-                explaination.ToString(),
+                explanation.ToString(),
                 true,
                 true,
-                "Accept", "Decline",
+                TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_decline_text", "Decline"),
                 enlistPlayer,
                 () => _enlistInquiryDeclined = true);
             InformationManager.ShowInquiry(inquiry);
@@ -315,7 +315,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             var infotext = new TextObject("{ENLISTING_TEXT}");
 
-            campaignGameStarter.AddGameMenuOption("town", "town_back_to_hireling", "Back", args =>
+            campaignGameStarter.AddGameMenuOption("town", "town_back_to_hireling", TORTextHelper.GetText("tor_hireling_back_text", "Back"), args =>
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Leave;
                 return IsEnlisted();
@@ -324,7 +324,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             campaignGameStarter.AddWaitGameMenu("hireling_menu", infotext.Value, party_wait_talk_to_other_members_on_init, wait_on_condition,
                 null, wait_on_tick, GameMenu.MenuAndOptionType.WaitMenuHideProgressAndHoursOption);
 
-            var textObjectHirelingEnterSettlement = new TextObject("Enter the settlement");
+            var textObjectHirelingEnterSettlement = TORTextHelper.GetTextObject("tor_hireling_enter_settlement_text", "Enter the settlement");
             campaignGameStarter.AddGameMenuOption("hireling_menu", "enter_town", textObjectHirelingEnterSettlement.ToString(), args =>
             {
                 if (!IsEnlisted())
@@ -349,11 +349,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             var text = new TextObject("{PAUSE_ONOFF_TEXT}");
             campaignGameStarter.AddGameMenuOption("hireling_menu", "pause_time_option", text.Value, null, PauseModeToggle);
-            var pauseText = GameTexts.FindText("Hireling", "PauseTime");
+            var pauseText = GameTexts.FindText("tor_hireling", "pausetime");
             pauseText.SetTextVariable("PAUSE_ONOFF", "off");
             GameTexts.SetVariable("PAUSE_ONOFF_TEXT", pauseText);
 
-            var lordTalkText = GameTexts.FindText("Hireling", "TalkToLord");
+            var lordTalkText = GameTexts.FindText("tor_hireling", "talktolord");
             campaignGameStarter.AddGameMenuOption("hireling_menu", "activity0_option", lordTalkText.Value, null, args => StartDialog());
 
             campaignGameStarter.AddGameMenuOption("hireling_menu", "empty", "", args =>
@@ -378,9 +378,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 args.IsEnabled = false; return true;
             }, null);
 
-            campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", "Desert", args =>
+            campaignGameStarter.AddGameMenuOption("hireling_menu", "party_wait_leave", TORTextHelper.GetText("tor_hireling_desert_text", "Desert"), args =>
             {
-                var infoText = new TextObject("{=FLT0000045}This will damage your reputation with the {FACTION}. Serve for {MINIMUMSERVEDAYS} days, and speak to your enlisting Lord to avoid consequences");
+                var infoText = TORTextHelper.GetTextObject("tor_hireling_desert_warning", "This will damage your reputation with the {FACTION}. Serve for {MINIMUMSERVEDAYS} days, and speak to your enlisting Lord to avoid consequences.");
                 string factionName = (_hirelingEnlistingLord != null) ? _hirelingEnlistingLord.MapFaction.Name.ToString() : "DATA CORRUPTION ERROR";
                 infoText.SetTextVariable("FACTION", factionName);
                 infoText.SetTextVariable("MINIMUMSERVEDAYS", MinimumServeDays);
@@ -406,7 +406,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             var career = Hero.MainHero.GetCareer();
             for (var i = 0; i < 5; i++)
             {
-                if (GameTexts.TryGetText("HirelingActivity" + i, out var text, career.StringId))
+                if (GameTexts.TryGetText("tor_hirelingactivity" + i, out var text, career.StringId))
                 {
                     if (_currentActivityIndex == i)
                     {
@@ -458,10 +458,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void SetupBattleMenu(CampaignGameStarter campaignGameStarter)
         {
-            TextObject hirelingBattleTextMenu = new("Your Lord engages in a battle.");
+            TextObject hirelingBattleTextMenu = TORTextHelper.GetTextObject("tor_hireling_battle_menu_text", "Your Lord engages in a battle.");
             campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, party_wait_talk_to_other_members_on_init, GameMenu.MenuOverlayType.Encounter);
 
-            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_join_battle", "Join battle",
+            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_join_battle", TORTextHelper.GetText("tor_hireling_join_battle_text", "Join battle"),
                 hireling_battle_menu_join_battle_on_condition,
                 delegate
                 {
@@ -511,7 +511,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 }
                 , false, 4);
 
-            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_avoid_combat", "Avoid Combat",
+            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_avoid_combat", TORTextHelper.GetText("tor_hireling_avoid_combat_text", "Avoid Combat"),
                hireling_battle_menu_avoid_combat_on_condition,
                delegate (MenuCallbackArgs args)
                {
@@ -521,7 +521,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                }
                , false, 4);
 
-            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_flee", "Flee",
+            campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_flee", TORTextHelper.GetText("tor_hireling_flee_text", "Flee"),
                hireling_battle_menu_desert_on_condition,
                delegate
                {
@@ -534,13 +534,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             _pauseModeToggle = !_pauseModeToggle;
 
-            var onOffText = "Off";
+            var onOffText = TORTextHelper.GetText("tor_toggle_off_text", "Off");
             if (_pauseModeToggle)
             {
-                onOffText = "On";
+                onOffText = TORTextHelper.GetText("tor_toggle_on_text", "On");
             }
 
-            TextObject text2 = GameTexts.FindText("Hireling", "PauseTime");
+            TextObject text2 = GameTexts.FindText("tor_hireling", "pausetime");
             text2.SetTextVariable("PAUSE_ONOFF", onOffText);
 
             GameTexts.SetVariable("PAUSE_ONOFF_TEXT", text2);
@@ -630,7 +630,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             {
                 if (args.MenuContext?.GameMenu == null) return;
                 TextObject text1 = args.MenuContext.GameMenu.GetText();
-                TextObject text2 = GameTexts.FindText("Hireling", "MainText");
+                TextObject text2 = GameTexts.FindText("tor_hireling", "maintext");
                 text2.SetTextVariable("ENLISTING_LORD", _hirelingEnlistingLord.Name);
 
                 var days = $"{_durationInDays:0.0}";
@@ -641,7 +641,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 if (_hirelingEnlistingLord.PartyBelongedTo.Army != null)
                 {
                     armyInfo += "{newLine}";
-                    armyInfo += $"is Part of {_hirelingEnlistingLord.PartyBelongedTo.Army.Name}";
+                    var armyPartText = TORTextHelper.GetTextObject("tor_hireling_is_part_of_army_text", "is Part of {ARMY_NAME}");
+                    armyPartText.SetTextVariable("ARMY_NAME", _hirelingEnlistingLord.PartyBelongedTo.Army.Name);
+                    armyInfo += armyPartText.ToString();
                 }
                 text2.SetTextVariable("ENLISTING_ARMY", armyInfo);
 

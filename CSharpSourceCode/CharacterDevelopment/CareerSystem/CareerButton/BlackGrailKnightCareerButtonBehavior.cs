@@ -82,7 +82,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 var woundedPrisoners = Hero.MainHero.PartyBelongedTo.PrisonRoster.GetElementWoundedNumber(index);
                 if (healthyPrisoners - woundedPrisoners < 0)
                 {
-                    displayText = new TextObject("Not enough healthy prisoners available");
+                    displayText = TORTextHelper.GetTextObject("tor_black_grail_not_enough_prisoners_text", "Not enough healthy prisoners available");
                     return false;
                 }
             }
@@ -92,7 +92,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 var woundedtroops = Hero.MainHero.PartyBelongedTo.MemberRoster.GetElementWoundedNumber(index);
                 if (healthytroops - woundedtroops < 0)
                 {
-                    displayText = new TextObject("Not enough healthy troops available");
+                    displayText = TORTextHelper.GetTextObject("tor_black_grail_not_enough_troops_text", "Not enough healthy troops available");
                     return false;
                 }
             }
@@ -100,7 +100,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             var pendingResources = CustomResourceManager.GetPendingResources();
             if (!pendingResources.IsEmpty() && pendingResources[Hero.MainHero.GetCultureSpecificCustomResource()] + ExchangeCost > Hero.MainHero.GetCultureSpecificCustomResourceValue())
             {
-                displayText = new TextObject("Requires atleast " + ExchangeCost + " " + CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+                var requiresText = TORTextHelper.GetTextObject("tor_black_grail_requires_text", "Requires atleast {EXCHANGE_COST} {DARK_ENERGY_ICON}");
+                requiresText.SetTextVariable("EXCHANGE_COST", ExchangeCost);
+                requiresText.SetTextVariable("DARK_ENERGY_ICON", CustomResourceManager.GetResourceObject("DarkEnergy").GetCustomResourceIconAsText());
+                displayText = requiresText;
                 return false;
             }
 
@@ -108,7 +111,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             if (characterObject.StringId == "tor_br_grail_knight")
             {
-                displayText = new TextObject("Grail knights can't be convinced");
+                displayText = TORTextHelper.GetTextObject("tor_black_grail_no_grail_knights_text", "Grail knights can't be convinced");
                 return false;
             }
 

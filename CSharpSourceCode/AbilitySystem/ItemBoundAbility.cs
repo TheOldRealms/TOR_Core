@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem
 {
@@ -24,12 +25,12 @@ namespace TOR_Core.AbilitySystem
         {
             if (_chargeNum <= 0)
             {
-                disabledReason = new TextObject("{=!}No more artillery pieces in inventory");
+                disabledReason = TORTextHelper.GetTextObject("tor_no_artillery_inventory", "No more artillery pieces in inventory");
                 return true;
             }
             if (Mission.Current.GetArtillerySlotsLeftForTeam(casterAgent.Team) <= 0)
             {
-                disabledReason = new TextObject("{=!}Party cannot field more artillery pieces");
+                disabledReason = TORTextHelper.GetTextObject("tor_no_artillery_slots", "Party cannot field more artillery pieces");
                 return true;
             }
             return base.IsDisabled(casterAgent, out disabledReason);

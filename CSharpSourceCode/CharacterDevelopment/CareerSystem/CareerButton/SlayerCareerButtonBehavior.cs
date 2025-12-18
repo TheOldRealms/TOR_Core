@@ -75,7 +75,7 @@ public class SlayerCareerButtonBehavior(CareerObject career) : CareerButtonBehav
         {
             if (characterObject.Tier < 6)
             {
-                displayText = new TextObject("Tier too low. Unit can't be ashamed");
+                displayText = TORTextHelper.GetTextObject("tor_slayer_tier_too_low_text", "Tier too low. Unit can't be ashamed");
                 return false;
             }
         }
@@ -83,7 +83,7 @@ public class SlayerCareerButtonBehavior(CareerObject career) : CareerButtonBehav
         {
             if (characterObject.Tier < 4)
             {
-                displayText = new TextObject("Tier too low. Unit can't be ashamed");
+                displayText = TORTextHelper.GetTextObject("tor_slayer_tier_too_low_text", "Tier too low. Unit can't be ashamed");
                 return false;
             }
         }

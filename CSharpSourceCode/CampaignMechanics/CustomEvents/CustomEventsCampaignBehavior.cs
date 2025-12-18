@@ -41,7 +41,9 @@ namespace TOR_Core.CampaignMechanics.CustomEvents
             {
                 Campaign.Current.TimeControlMode = CampaignTimeControlMode.Stop;
             }
-            MBInformationManager.AddQuickInformation(new TextObject($"Chaos corruption reaches a critical level in {e.Settlement.Name.ToString()} and rebellion breaks out."));
+            var chaosRebellionText = TORTextHelper.GetTextObject("tor_chaos_rebellion_text", "Chaos corruption reaches a critical level in {SETTLEMENT_NAME} and rebellion breaks out.");
+            chaosRebellionText.SetTextVariable("SETTLEMENT_NAME", e.Settlement.Name);
+            MBInformationManager.AddQuickInformation(chaosRebellionText);
         }
 
         private void WeeklyTick()

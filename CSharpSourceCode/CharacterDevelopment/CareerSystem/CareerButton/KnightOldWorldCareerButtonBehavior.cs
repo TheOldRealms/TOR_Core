@@ -80,8 +80,8 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             count = 2;
         }
 
-        var inquirydata = new MultiSelectionInquiryData("Choose purity Seal.", "Empower your Knight units with new powerful seals", inquiryElements,
-            true, 1, count, "Accept", "Cancel", OnSelectedOption, OnCancel);
+        var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_purity_seal_choose_title_text", "Choose purity Seal."), TORTextHelper.GetText("tor_purity_seal_choose_description_text", "Empower your Knight units with new powerful seals"), inquiryElements,
+            true, 1, count, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), OnSelectedOption, OnCancel);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
     }
 
@@ -209,7 +209,7 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
 
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
     {
-        displayText = new TextObject("Add a purity Seal to the Knight");
+        displayText = TORTextHelper.GetTextObject("tor_purity_seal_add_text", "Add a purity Seal to the Knight");
 
         var currentSeals = GetCurrentActiveSeals(characterObject);
 
@@ -233,7 +233,7 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
 
             if (religionObject != Hero.MainHero.GetDominantReligion() || Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
             {
-                displayText = new TextObject("Your religion does not match the troop's Religion");
+                displayText = TORTextHelper.GetTextObject("tor_purity_seal_religion_mismatch_text", "Your religion does not match the troop's Religion");
                 return false;
             }
 
@@ -246,13 +246,13 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             if (characterObject.Tier < MINIMUMLEVELFORSEAL)
             {
                 GameTexts.SetVariable("MINIMUMSEALLEVEL", MINIMUMLEVELFORSEAL);
-                displayText = new TextObject("Unit tier is not high enough. Minimum tier is {MINIMUMSEALLEVEL}.");
+                displayText = TORTextHelper.GetTextObject("tor_purity_seal_tier_too_low_text", "Unit tier is not high enough. Minimum tier is {MINIMUMSEALLEVEL}.");
                 return false;
             }
             return true;
         }
 
-        displayText = new TextObject("You are not religous enough to provide a seal.");
+        displayText = TORTextHelper.GetTextObject("tor_purity_seal_not_religious_enough_text", "You are not religous enough to provide a seal.");
         return false;
     }
 }
@@ -262,7 +262,7 @@ public class KnightPuritySeal()
     public KnightPuritySeal(string sealId, string triggeredEffectIdId, string deityCultId, int price, string sealIcon) : this()
     {
         Name = GameTexts.TryGetText("TORKnightPuritySealName", out var nameText, sealId) ? nameText : new TextObject(sealId);
-        Description = GameTexts.TryGetText("TORKnightPuritySealDescription", out var descriptionText, sealId) ? descriptionText : new TextObject("No description found");
+        Description = GameTexts.TryGetText("TORKnightPuritySealDescription", out var descriptionText, sealId) ? descriptionText : TORTextHelper.GetTextObject("tor_purity_seal_no_description_text", "No description found");
         triggeredEffectId = triggeredEffectIdId;
         Price = price;
         DeityCultId = deityCultId;

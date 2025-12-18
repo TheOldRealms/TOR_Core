@@ -9,6 +9,8 @@ using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TaleWorlds.Localization;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Spells.Prayers
 {
@@ -32,10 +34,11 @@ namespace TOR_Core.AbilitySystem.Spells.Prayers
             StatItems.Clear();
             var religionID = CareerHelper.GetGodCareerIsDevotedTo(Hero.MainHero.GetCareer());
             var religion = ReligionObject.All.Where(x => x.StringId == religionID).FirstOrDefault();
-            StatItems.Add(new StatItemVM("Devoted to : ", religion.DeityName.ToString()));
+            StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_prayerbook_devoted_to", "Devoted to: "), religion.DeityName.ToString()));
             var battlePrayers = CareerHelper.GetPriestPrayerList(Hero.MainHero);
             var highest = battlePrayers.Max(x => x.Rank);
-            StatItems.Add(new StatItemVM("Prayer level: ", ((PrayerLevel)highest).ToString()));
+            var prayerLevelText = GameTexts.FindText("tor_prayer_level", ((PrayerLevel)highest).ToString());
+            StatItems.Add(new StatItemVM(TORTextHelper.GetText("tor_prayerbook_prayer_level", "Prayer level: "), prayerLevelText.ToString()));
             var prayers = battlePrayers.ConvertAll(input => input.PrayerID);
             _loreObjectVm = new PrayerLoreObjectVM(this, prayers, Hero.MainHero);
 

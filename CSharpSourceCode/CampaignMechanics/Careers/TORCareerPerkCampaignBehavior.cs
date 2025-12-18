@@ -400,13 +400,13 @@ namespace TOR_Core.CampaignMechanics
             switch (PreySize)
             {
                 case 1:
-                    preySizeAnimalText = new TextObject("{=tor_hunt_perk_animal_large_str}large Animal").ToString();
+                    preySizeAnimalText = TORTextHelper.GetText("tor_hunt_perk_animal_large", "large Animal");
                     break;
                 case 2:
-                    preySizeAnimalText = new TextObject("{=tor_hunt_perk_animal_medium_str}medium Animal").ToString();
+                    preySizeAnimalText = TORTextHelper.GetText("tor_hunt_perk_animal_medium", "medium Animal");
                     break;
                 case 3:
-                    preySizeAnimalText = new TextObject("{=tor_hunt_perk_animal_small_str}small Animal").ToString();
+                    preySizeAnimalText = TORTextHelper.GetText("tor_hunt_perk_animal_small", "small Animal");
                     break;
             }
 

@@ -9,6 +9,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.ArtilleryAI;
 using TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Artillery
 {
@@ -345,15 +346,15 @@ namespace TOR_Core.BattleMechanics.Artillery
             TextObject textObject;
             if (usableGameObject.GameEntity.HasTag(AmmoLoadTag))
             {
-                textObject = new TextObject("{=Na81xuXn}{KEY} Reload");
+                textObject = TORTextHelper.GetTextObject("tor_artillery_reload", "{KEY} Reload");
             }
             else if (usableGameObject.GameEntity.HasTag(AmmoPickUpTag))
             {
-                textObject = new TextObject("{=bNYm3K6b}{KEY} Pick Up");
+                textObject = TORTextHelper.GetTextObject("tor_artillery_pick_up", "{KEY} Pick Up");
             }
             else
             {
-                textObject = new TextObject("{=fEQAPJ2e}{KEY} Use");
+                textObject = TORTextHelper.GetTextObject("tor_artillery_use", "{KEY} Use");
             }
             textObject.SetTextVariable("KEY", HyperlinkTexts.GetKeyHyperlinkText(HotKeyManager.GetHotKeyId("CombatHotKeyCategory", 13)));
             return textObject;
@@ -361,7 +362,7 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         public override TextObject GetDescriptionText(WeakGameEntity gameEntity)
         {
-            return new TextObject(DisplayName, null);
+            return new TextObject(DisplayName);
         }
 
         public override SiegeEngineType GetSiegeEngineType() => Side != BattleSideEnum.Attacker ? DefaultSiegeEngineTypes.Catapult : DefaultSiegeEngineTypes.Onager;

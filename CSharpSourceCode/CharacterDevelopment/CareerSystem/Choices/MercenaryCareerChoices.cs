@@ -117,7 +117,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _mercenaryRootNode.Initialize(CareerID, "{=mercenary_root_str}The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills", null, true,
+            _mercenaryRootNode.Initialize(CareerID, "The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new()
@@ -130,7 +130,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
 
-            _survivalistKeystone.Initialize(CareerID, "{=survivalist_keystone_str}Adds 15% Melee and Ranged Resistance during the career ability.", "Survivalist", false,
+            _survivalistKeystone.Initialize(CareerID, "Adds 15% Melee and Ranged Resistance during the career ability.", "Survivalist", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -143,7 +143,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _duelistKeystone.Initialize(CareerID, "{=duelist_keystone_str}Increases melee attack speed during career ability by 15%.", "Duelist", false,
+            _duelistKeystone.Initialize(CareerID, "Increases melee attack speed during career ability by 15%.", "Duelist", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -156,7 +156,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
 
-            _headhunterKeystone.Initialize(CareerID, "{=headhunter_keystone_str}Increases range damage during the career ability by 15%.", "Headhunter", false,
+            _headhunterKeystone.Initialize(CareerID, "Increases range damage during the career ability by 15%.", "Headhunter", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -169,7 +169,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _veteranKeystone.Initialize(CareerID, "{=veteran_keystone_str}Increases melee damage during the career ability by 15%.", "Veteran", false,
+            _veteranKeystone.Initialize(CareerID, "Increases melee damage during the career ability by 15%.", "Veteran", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -182,7 +182,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _paymasterKeystone.Initialize(CareerID, "{=paymaster_keystone_str}Values for career ability effects are doubled.", "Paymaster", false,
+            _paymasterKeystone.Initialize(CareerID, "Values for career ability effects are doubled.", "Paymaster", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -235,7 +235,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _mercenaryLordKeystone.Initialize(CareerID, "{=mercenary_lord_keystone_str}The Career ability reduces reload time by 15%.", "MercenaryLord", false,
+            _mercenaryLordKeystone.Initialize(CareerID, "The Career ability reduces reload time by 15%.", "MercenaryLord", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -248,7 +248,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _commanderKeystone.Initialize(CareerID, "{=commander_keystone_str}Radius of ability is doubled.", "Commander", false,
+            _commanderKeystone.Initialize(CareerID, "Radius of ability is doubled.", "Commander", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -264,9 +264,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _survivalistPassive1.Initialize(CareerID, "{=survivalist_passive1_str}5 extra ammo", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
-            _survivalistPassive2.Initialize(CareerID, "{=survivalist_passive2_str}Increases ranged damage by 10%.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
-            _survivalistPassive3.Initialize(CareerID, "{=survivalist_passive3_str}Party movement speed is increased by 20% in forest, mountain and swamp terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartyMovementSpeed, true,
+            _survivalistPassive1.Initialize(CareerID, "5 extra ammo", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
+            _survivalistPassive2.Initialize(CareerID, "Increases ranged damage by 10%.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
+            _survivalistPassive3.Initialize(CareerID, "Party movement speed is increased by 20% in forest, mountain and swamp terrain.", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.PartyMovementSpeed, true,
             (characterObject) =>
             {
                 if (characterObject.HeroObject != Hero.MainHero) return false;
@@ -274,42 +274,42 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                 TerrainType faceTerrainType = Campaign.Current.MapSceneWrapper.GetFaceTerrainType(party.CurrentNavigationFace);
                 return faceTerrainType == TerrainType.Forest || faceTerrainType == TerrainType.Mountain || faceTerrainType == TerrainType.Swamp;
             }, true));
-            _survivalistPassive4.Initialize(CareerID, "{=survivalist_passive4_str}Go for a hunt once a day (success chance based on Scouting, Polearm and ranged skills).", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0));
+            _survivalistPassive4.Initialize(CareerID, "Go for a hunt once a day (success chance based on Scouting, Polearm and ranged skills).", "Survivalist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0));
 
-            _duelistPassive1.Initialize(CareerID, "{=duelist_passive1_str}Increases Hitpoints by 20.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
-            _duelistPassive2.Initialize(CareerID, "{=duelist_passive2_str}Increases melee damage resistance of melee troops by 10%.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
+            _duelistPassive1.Initialize(CareerID, "Increases Hitpoints by 20.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
+            _duelistPassive2.Initialize(CareerID, "Increases melee damage resistance of melee troops by 10%.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
                 (attacker, victim, mask) => !victim.BelongsToMainParty() && !(victim.IsMainAgent || victim.IsHero) && mask == AttackTypeMask.Melee));
-            _duelistPassive3.Initialize(CareerID, "{=duelist_passive3_str}Increases melee damage by 10%.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-            _duelistPassive4.Initialize(CareerID, "{=duelist_passive4_str}Player healing rate increased by 3", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));
+            _duelistPassive3.Initialize(CareerID, "Increases melee damage by 10%.", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+            _duelistPassive4.Initialize(CareerID, "Player healing rate increased by 3", "Duelist", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.HealthRegeneration));
 
-            _headhunterPassive1.Initialize(CareerID, "{=headhunter_passive1_str}10 extra ammo.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo));
-            _headhunterPassive2.Initialize(CareerID, "{=headhunter_passive2_str}Increases ranged damage by 10%.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
-            _headhunterPassive3.Initialize(CareerID, "{=headhunter_passive3_str}Companion limit of party is increased by 5.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
-            _headhunterPassive4.Initialize(CareerID, "{=headhunter_passive4_str}Increases ranged damage resistance by 15%.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged));
+            _headhunterPassive1.Initialize(CareerID, "10 extra ammo.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Ammo));
+            _headhunterPassive2.Initialize(CareerID, "Increases ranged damage by 10%.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
+            _headhunterPassive3.Initialize(CareerID, "Companion limit of party is increased by 5.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
+            _headhunterPassive4.Initialize(CareerID, "Increases ranged damage resistance by 15%.", "Headhunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged));
 
-            _veteranPassive1.Initialize(CareerID, "{=veteran_passive1_str}Increases melee damage by 15%.", "Veteran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee));
-            _veteranPassive2.Initialize(CareerID, "{=veteran_passive2_str}Increases melee resistance by 15%.", "Veteran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee));
-            _veteranPassive3.Initialize(CareerID, "{=veteran_passive3_str}Increases Hitpoints by 40.", "Veteran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
-            _veteranPassive4.Initialize(CareerID, "{=veteran_passive4_str}Increases armor penetration of melee attacks by 15%.", "Veteran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+            _veteranPassive1.Initialize(CareerID, "Increases melee damage by 15%.", "Veteran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee));
+            _veteranPassive2.Initialize(CareerID, "Increases melee resistance by 15%.", "Veteran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee));
+            _veteranPassive3.Initialize(CareerID, "Increases Hitpoints by 40.", "Veteran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Health));
+            _veteranPassive4.Initialize(CareerID, "Increases armor penetration of melee attacks by 15%.", "Veteran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
 
-            _paymasterPassive1.Initialize(CareerID, "{=paymaster_passive1_str}Wounded troops in your party heal faster.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //can be more precise
-            _paymasterPassive2.Initialize(CareerID, "{=paymaster_passive2_str}40% chance to recruit an extra unit of the same type free of charge.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true)); //TORCareerPerkCampaignBehavior 29
-            _paymasterPassive3.Initialize(CareerID, "{=paymaster_passive3_str}Wages of Tier 4 troops and above are reduced by 20%.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true,
+            _paymasterPassive1.Initialize(CareerID, "Wounded troops in your party heal faster.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //can be more precise
+            _paymasterPassive2.Initialize(CareerID, "40% chance to recruit an extra unit of the same type free of charge.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true)); //TORCareerPerkCampaignBehavior 29
+            _paymasterPassive3.Initialize(CareerID, "Wages of Tier 4 troops and above are reduced by 20%.", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true,
                  characterObject => !characterObject.IsHero && characterObject.Tier > 4));
-            _paymasterPassive4.Initialize(CareerID, "{=paymaster_passive4_str}Hire your culture's basic troops as companions", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //TORPartyWageModel 84
+            _paymasterPassive4.Initialize(CareerID, "Hire your culture's basic troops as companions", "Paymaster", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true)); //TORPartyWageModel 84
 
-            _mercenaryLordPassive1.Initialize(CareerID, "{=mercenary_lord_passive1_str}4 extra special ammo like grenades or buckshot.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.Special, false)); //TORAgentStatCalculateModel 97
-            _mercenaryLordPassive2.Initialize(CareerID, "{=mercenary_lord_passive2_str}Increases the damage of all ranged troops by 15%.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged,
+            _mercenaryLordPassive1.Initialize(CareerID, "4 extra special ammo like grenades or buckshot.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.Special, false)); //TORAgentStatCalculateModel 97
+            _mercenaryLordPassive2.Initialize(CareerID, "Increases the damage of all ranged troops by 15%.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged,
                 (attacker, victim, mask) => attacker.BelongsToMainParty() && !(attacker.IsMainAgent || attacker.IsHero) && mask == AttackTypeMask.Ranged));
-            _mercenaryLordPassive3.Initialize(CareerID, "{=mercenary_lord_passive3_str}Higher mercenary contract payment, lower Influence loss. Scales with the Trade skill.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true)); // TOR_Core.Models.TORClanFinanceModel. 53
-            _mercenaryLordPassive4.Initialize(CareerID, "{=mercenary_lord_passive4_str}Ranged shots can penetrate multiple targets.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //TORAgentApplyDamage 29
+            _mercenaryLordPassive3.Initialize(CareerID, "Higher mercenary contract payment, lower Influence loss. Scales with the Trade skill.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true)); // TOR_Core.Models.TORClanFinanceModel. 53
+            _mercenaryLordPassive4.Initialize(CareerID, "Ranged shots can penetrate multiple targets.", "MercenaryLord", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special)); //TORAgentApplyDamage 29
 
-            _commanderPassive1.Initialize(CareerID, "{=commander_lord_passive1_str}Companion limit of party is increased by 5.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
-            _commanderPassive2.Initialize(CareerID, "{=commander_lord_passive2_str}Increases the damage of all melee troops by 15%.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee,
+            _commanderPassive1.Initialize(CareerID, "Companion limit of party is increased by 5.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
+            _commanderPassive2.Initialize(CareerID, "Increases the damage of all melee troops by 15%.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee,
                 (attacker, victim, mask) => attacker.BelongsToMainParty() && !(attacker.IsMainAgent || attacker.IsHero) && mask == AttackTypeMask.Melee));
 
-            _commanderPassive3.Initialize(CareerID, "{=commander_lord_passive3_str}Hits below 15 damage do not stagger the player.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
-            _commanderPassive4.Initialize(CareerID, "{=commander_lord_passive4_str}Companion health increases by 25.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
+            _commanderPassive3.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
+            _commanderPassive4.Initialize(CareerID, "Companion health increases by 25.", "Commander", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
         }
 
     }

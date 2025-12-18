@@ -40,10 +40,10 @@ namespace TOR_Core.Models
             {
                 if (leaderHero.IsVampire())
                 {
-                    result.AddFactor(0.1f, new TextObject("Vampire bonus")); //Sly : looks relatively close to other cultures with vampires having a slight edge during the day, and a larger bonus at night
+                    result.AddFactor(0.1f, TORTextHelper.GetTextObject("tor_vampire_bonus", "Vampire bonus")); //Sly : looks relatively close to other cultures with vampires having a slight edge during the day, and a larger bonus at night
                     if (Campaign.Current.IsNight)
                     {
-                        result.Add(0.25f, new TextObject("Vampire nighttime bonus"));
+                        result.Add(0.25f, TORTextHelper.GetTextObject("tor_vampire_nighttime_bonus", "Vampire nighttime bonus"));
                     }
                 }
             }
@@ -92,7 +92,7 @@ namespace TOR_Core.Models
                             }
                         }
 
-                        result.Add(bonus, new TextObject("Taal Seal"));
+                        result.Add(bonus, TORTextHelper.GetTextObject("tor_taal_seal", "Taal Seal"));
                     }
                 }
             }
@@ -100,18 +100,18 @@ namespace TOR_Core.Models
 
             if (leaderHero.GetCustomResourceValue("DarkEnergy") == 0 && leaderHero.GetCalculatedCustomResourceUpkeep("DarkEnergy") <= -100)
             {
-                result.AddFactor(-0.9f, new TextObject("Burden of Dark Energy Costs is too high!"));
+                result.AddFactor(-0.9f, TORTextHelper.GetTextObject("tor_dark_energy_burden", "Burden of Dark Energy Costs is too high!"));
             }
 
             if (leaderHero.IsVampire())//player vamp
             {
                 if (Campaign.Current.IsNight || faceTerrainType == TerrainType.Forest || leaderHero.HasCareerChoice("NewBloodPassive4") || leaderHero.HasCareerChoice("ControlledHungerPassive1"))
                 {
-                    result.AddFactor(0.50f, new TextObject("Vampire Nighttime bonus"));
+                    result.AddFactor(0.50f, TORTextHelper.GetTextObject("tor_vampire_nighttime_bonus", "Vampire Nighttime bonus"));
                 }
                 else
                 {
-                    result.AddFactor(-0.25f, new TextObject("Suffering from sun light"));
+                    result.AddFactor(-0.25f, TORTextHelper.GetTextObject("tor_suffering_sunlight", "Suffering from sun light"));
                 }
             }
             /*This requires editing the base speed calculation because it implements nighttime hours which are very restrictive and causes a mismatch between our night bonus and their night penalty. Not worth pursuing atm until more willing to understand and modify the speed calculation in more detail.
@@ -146,7 +146,7 @@ namespace TOR_Core.Models
                 }
 
                 if (choice == null) return result;
-                var snowText = new TextObject("{=vLjgcdgB}Snow");
+                var snowText = TORTextHelper.GetTextObject("tor_snow", "Snow");
 
                 var snowEffect = result.GetLines().FirstOrDefaultQ(item => snowText.Value.Contains(item.name));
                 if (snowEffect.name != null)

@@ -106,7 +106,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializeKeyStones()
     {
-        _slayerRoot.Initialize(CareerID, "{=slayer_root_str}For a limited time, the Slayer has a increased speed bonus and weapon speed bonus. The kills gained  during the ability, add a doom seeker stack which  permanently increasing the damage of the player. For every Keystone, the damage dealt bonus is increased by 0.05% \n \n The ability requires 500 damage to be charged. Every kill adds 100 additional charge. For every keystone(5th perk) you require 10% more damage. ", null, true,
+        _slayerRoot.Initialize(CareerID, "For a limited time, the Slayer has a increased speed bonus and weapon speed bonus. The kills gained  during the ability, add a doom seeker stack which  permanently increasing the damage of the player. For every Keystone, the damage dealt bonus is increased by 0.05% \\n \\n The ability requires 500 damage to be charged. Every kill adds 100 additional charge. For every keystone(5th perk) you require 10% more damage.", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -119,7 +119,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 }
             });
 
-        _axeOfGrimnirKeystone.Initialize(CareerID, "{=axe_of_grimnir_keystone_str}Faith increases duration.", "AxeOfGrimnir", false,
+        _axeOfGrimnirKeystone.Initialize(CareerID, "Faith increases duration.", "AxeOfGrimnir", false,
         ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
             new CareerChoiceObject.MutationObject()
@@ -132,12 +132,12 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             },
         });
 
-        _shameOfTheAncestorsKeystone.Initialize(CareerID, "{=shame_of_the_ancestors_keystone_str}Losing a slayer units adds a Doom Seeker stack", "ShameOfTheAncestors", false,
+        _shameOfTheAncestorsKeystone.Initialize(CareerID, "Losing a slayer units adds a Doom Seeker stack", "ShameOfTheAncestors", false,
         ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
         {
         });
 
-        _deadlyDeterminationKeystone.Initialize(CareerID, "{=deadly_determination_keystone_str}One handed scales ability.", "DeadlyDetermination", false,
+        _deadlyDeterminationKeystone.Initialize(CareerID, "One handed scales ability.", "DeadlyDetermination", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -150,7 +150,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 }
             });
 
-        _urkSlayerKeystone.Initialize(CareerID, "{=urk_slayer_keystone_str}You deal 50% extra damage during ability", "UrkSlayer", false,
+        _urkSlayerKeystone.Initialize(CareerID, "You deal 50% extra damage during ability", "UrkSlayer", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -163,7 +163,7 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 }
             });
 
-        _giantSlayerKeystone.Initialize(CareerID, "{=giant_slayer_keystone_str}Ability starts charged. Scales with Two handed weapons", "GiantSlayer", false,
+        _giantSlayerKeystone.Initialize(CareerID, "Ability starts charged. Scales with Two handed weapons", "GiantSlayer", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -176,12 +176,12 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
                 }
             }); //special
 
-        _baneOfChaosKeystone.Initialize(CareerID, "{=bane_of_chaos_keystone_str}You gain 0.1% physical resistance for every kill during ability.", "BaneOfChaos", false,
+        _baneOfChaosKeystone.Initialize(CareerID, "You gain 0.1% physical resistance for every kill during ability.", "BaneOfChaos", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             });
 
-        _theLastJourneyKeystone.Initialize(CareerID, "{=rune_weapons_keystone_str}For every taken hit during  your ability, physical damage is increased by 0.5% for the next 5 seconds", "LastJourney", false,
+        _theLastJourneyKeystone.Initialize(CareerID, "For every taken hit during  your ability, physical damage is increased by 0.5% for the next 5 seconds", "LastJourney", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             });
@@ -190,47 +190,47 @@ public class SlayerCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
 
     protected override void InitializePassives()
     {
-        _axeOfGrimnirPassive1.Initialize(CareerID, "{=axe_of_grimnir_passive1_str}Increases Hitpoints by 25.", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-        _axeOfGrimnirPassive2.Initialize(CareerID, "{=axe_of_grimnir_passive2_str}10% extra melee damage.", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
-        _axeOfGrimnirPassive3.Initialize(CareerID, "{=axe_of_grimnir_passive3_str}Every melee kill adds faith", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-        _axeOfGrimnirPassive4.Initialize(CareerID, "{=axe_of_grimnir_passive4_str}CUSTOM", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _axeOfGrimnirPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _axeOfGrimnirPassive2.Initialize(CareerID, "10% extra melee damage.", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
+        _axeOfGrimnirPassive3.Initialize(CareerID, "Every melee kill adds faith", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _axeOfGrimnirPassive4.Initialize(CareerID, "CUSTOM", "AxeOfGrimnir", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
 
-        _shameOfTheAncestorsPassive1.Initialize(CareerID, "{=shame_of_the_ancestors_passive1_str}Increases Hitpoints by 25.", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-        _shameOfTheAncestorsPassive2.Initialize(CareerID, "{=shame_of_the_ancestors_passive2_str}Party movement speed is increased by 1.", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
-        _shameOfTheAncestorsPassive3.Initialize(CareerID, "{=shame_of_the_ancestors_passive3_str}Player healing rate increased by 2", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
-        _shameOfTheAncestorsPassive4.Initialize(CareerID, "{=shame_of_the_ancestors_passive4_str}CUSTOM : All non slayer units can be converted to slayers providing extra oath gold.", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
+        _shameOfTheAncestorsPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _shameOfTheAncestorsPassive2.Initialize(CareerID, "Party movement speed is increased by 1.", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
+        _shameOfTheAncestorsPassive3.Initialize(CareerID, "Player healing rate increased by 2", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
+        _shameOfTheAncestorsPassive4.Initialize(CareerID, "CUSTOM : All non slayer units can be converted to slayers providing extra oath gold.", "ShameOfTheAncestors", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
             (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim.Character.Culture.StringId == "aserai"));
 
-        _deadlyDeterminationPassive1.Initialize(CareerID, "{=deadly_determination_passive1_str}Increases Hitpoints by 25.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-        _deadlyDeterminationPassive2.Initialize(CareerID, "{=deadly_determination_passive2_str}Slayer units gain 50 extra one handed-melee skill.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, new List<string>() { nameof(DefaultSkills.OneHanded) }, characterObject => !characterObject.IsHero && characterObject.StringId.Contains("slayer")));
-        _deadlyDeterminationPassive3.Initialize(CareerID, "{=deadly_determination_passive3_str}Weapon swing speed increased by 15%.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SwingSpeed, true));
-        _deadlyDeterminationPassive4.Initialize(CareerID, "{=deadly_determination_passive4_str}Adds 10% extra base damage after losing 50 healthpoints and armor weight below 9.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Knightly")));
+        _deadlyDeterminationPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _deadlyDeterminationPassive2.Initialize(CareerID, "Slayer units gain 50 extra one handed-melee skill.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, new List<string>() { nameof(DefaultSkills.OneHanded) }, characterObject => !characterObject.IsHero && characterObject.StringId.Contains("slayer")));
+        _deadlyDeterminationPassive3.Initialize(CareerID, "Weapon swing speed increased by 15%.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15f, PassiveEffectType.SwingSpeed, true));
+        _deadlyDeterminationPassive4.Initialize(CareerID, "Adds 10% extra base damage after losing 50 healthpoints and armor weight below 9.", "DeadlyDetermination", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true, characterObject => characterObject.HasAttribute("Knightly")));
 
-        _urkSlayerPassive1.Initialize(CareerID, "{=urk_slayer_passive1_str}15% movement speed", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.MovementSpeed, true));
-        _urkSlayerPassive2.Initialize(CareerID, "{=urk_slayer_passive2_str}10% extra melee damage while on horseback.", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee,
+        _urkSlayerPassive1.Initialize(CareerID, "15% movement speed", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.MovementSpeed, true));
+        _urkSlayerPassive2.Initialize(CareerID, "10% extra melee damage while on horseback.", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee,
             (attacker, victim, mask) => mask == AttackTypeMask.Melee && attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(attacker, 9f) && victim.Character.Culture.StringId == "aserai"));
-        _urkSlayerPassive3.Initialize(CareerID, "{=urk_slayer_passive3_str}Increases Range resistance by 40%.", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 40), AttackTypeMask.Ranged));
-        _urkSlayerPassive4.Initialize(CareerID, "{=urk_slayer_passive4_str}Any Attack adds bonus against shields", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
+        _urkSlayerPassive3.Initialize(CareerID, "Increases Range resistance by 40%.", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 40), AttackTypeMask.Ranged));
+        _urkSlayerPassive4.Initialize(CareerID, "Any Attack adds bonus against shields", "UrkSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
 
-        _giantSlayerPassive1.Initialize(CareerID, "{=giant_slayer_passive1_str}Increases Hitpoints by 25.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-        _giantSlayerPassive2.Initialize(CareerID, "{=giant_slayer_passive2_str}25% Bonus damage against mounts if weight undershoots 9", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-        _giantSlayerPassive3.Initialize(CareerID, "{=giant_slayer_passive3_str}Slayer units gain 50 extra two-handed  skill.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, new List<string>() { nameof(DefaultSkills.TwoHanded) }, characterObject => !characterObject.IsHero && characterObject.StringId.Contains("slayer")));
-        _giantSlayerPassive4.Initialize(CareerID, "{=giant_slayer_passive4_str}Unable to be staggered by any damage.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.ShruggedOff));
+        _giantSlayerPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _giantSlayerPassive2.Initialize(CareerID, "25% Bonus damage against mounts if weight undershoots 9", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+        _giantSlayerPassive3.Initialize(CareerID, "Slayer units gain 50 extra two-handed  skill.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, new List<string>() { nameof(DefaultSkills.TwoHanded) }, characterObject => !characterObject.IsHero && characterObject.StringId.Contains("slayer")));
+        _giantSlayerPassive4.Initialize(CareerID, "Unable to be staggered by any damage.", "GiantSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.ShruggedOff));
 
-        _baneOfChaosPassive1.Initialize(CareerID, "{=bane_of_chaos_passive1_str}15% spell damage resistance if weight undershoots 9", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Melee,
+        _baneOfChaosPassive1.Initialize(CareerID, "15% spell damage resistance if weight undershoots 9", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 20), AttackTypeMask.Melee,
             (attacker, victim, mask) => mask == AttackTypeMask.Spell && victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim, 9)));
 
-        _baneOfChaosPassive2.Initialize(CareerID, "{=bane_of_chaos_passive2_str}Player healing rate increased by 4", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.HealthRegeneration));
-        _baneOfChaosPassive3.Initialize(CareerID, "{=bane_of_chaos_passive3_str}Extra 25% armor penetration of melee attacks.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-        _baneOfChaosPassive4.Initialize(CareerID, "{=bane_of_chaos_passive4_str}20% bonus damage against chaos and beastmen.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
+        _baneOfChaosPassive2.Initialize(CareerID, "Player healing rate increased by 4", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(4, PassiveEffectType.HealthRegeneration));
+        _baneOfChaosPassive3.Initialize(CareerID, "Extra 25% armor penetration of melee attacks.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+        _baneOfChaosPassive4.Initialize(CareerID, "20% bonus damage against chaos and beastmen.", "BaneOfChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
             (attacker, victim, mask) => mask == AttackTypeMask.Melee && attacker.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(attacker, 9f)));
 
-        _theLastJourneyPassive1.Initialize(CareerID, "{=the_last_journey_passive1_str}Increases Hitpoints by 25.", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
-        _theLastJourneyPassive2.Initialize(CareerID, "{=the_last_journey_passive2_str}25% physical melee damage resistance if weight undershoots 9 stones", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Melee,
+        _theLastJourneyPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+        _theLastJourneyPassive2.Initialize(CareerID, "25% physical melee damage resistance if weight undershoots 9 stones", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 25), AttackTypeMask.Melee,
             (attacker, victim, mask) => mask == AttackTypeMask.Melee && victim.IsMainAgent && CareerChoicesHelper.ArmorWeightCheck(victim, 9)));
-        _theLastJourneyPassive3.Initialize(CareerID, "{=the_last_journey_passive3_str}15% physical melee damage resistance for slayers", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee,
+        _theLastJourneyPassive3.Initialize(CareerID, "15% physical melee damage resistance for slayers", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee,
             (attacker, victim, mask) => mask == AttackTypeMask.Melee && !victim.IsHero && victim.Character.StringId.Contains("slayer")));
-        _theLastJourneyPassive4.Initialize(CareerID, "{=the_last_journey_passive4_str}40% Range resistance for slayer units and heroes.", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 40), AttackTypeMask.Ranged,
+        _theLastJourneyPassive4.Initialize(CareerID, "40% Range resistance for slayer units and heroes.", "LastJourney", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 40), AttackTypeMask.Ranged,
             (attacker, victim, mask) => mask == AttackTypeMask.Ranged && !victim.IsHero && victim.Character.StringId.Contains("slayer")));
 
     }

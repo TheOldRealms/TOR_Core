@@ -9,6 +9,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 using static Helpers.PartyScreenHelper;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
@@ -84,10 +85,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
 
         public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
         {
-            displayText = new TextObject("{=tor_career_button_mercenary_allowDefault_str}Makes the selected troop a companion.");
+            displayText = TORTextHelper.GetTextObject("tor_career_button_mercenary_default", "Makes the selected troop a companion.");
             if (Campaign.Current.Models.ClanTierModel.GetCompanionLimit(Hero.MainHero.Clan) <= Clan.PlayerClan.Companions.Count())
             {
-                displayText = new TextObject("{=tor_career_button_mercenary_companionLimit_str}Clan companion limit has been reached.");
+                displayText = TORTextHelper.GetTextObject("tor_career_button_mercenary_companion_limit", "Clan companion limit has been reached.");
                 return false;
             }
 
@@ -95,25 +96,25 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
             //As a player can only accumulate conformity on prisoners of their culture, having T5+ troops of a different culture requires the player to enter a town of that culture and directly recruit the troop from a notable. Disabled to deal naively with that case.
             if (Hero.MainHero.Culture != characterObject.Culture)
             {
-                displayText = new TextObject("{=tor_career_button_mercenary_wrongCulture_str}Troop must be of your culture.");
+                displayText = TORTextHelper.GetTextObject("tor_career_button_mercenary_wrong_culture", "Troop must be of your culture.");
                 return false;
             }
 
             if (characterObject.IsKnightUnit() && !characterObject.IsRanged)
             {
-                displayText = new TextObject("{=tor_career_button_mercenary_noKnightly_str}Only works for non-knightly units.");
+                displayText = TORTextHelper.GetTextObject("tor_career_button_mercenary_no_knightly", "Only works for non-knightly units.");
                 return false;
             }
 
             if (characterObject.IsTreeSpirit() || characterObject.IsUndead())
             {
-                displayText = new TextObject("{=tor_career_button_mercenary_noTreeUndead_str}Only works for humans or elves");
+                displayText = TORTextHelper.GetTextObject("tor_career_button_mercenary_no_tree_undead", "Only works for humans or elves");
                 return false;
             }
 
             if (characterObject.Level < 26)
             {
-                displayText = new TextObject("{=tor_career_button_mercenary_notTier5_str}Troop needs to reach tier 5 or higher.");
+                displayText = TORTextHelper.GetTextObject("tor_career_button_mercenary_not_tier5", "Troop needs to reach tier 5 or higher.");
                 return false;
             }
 

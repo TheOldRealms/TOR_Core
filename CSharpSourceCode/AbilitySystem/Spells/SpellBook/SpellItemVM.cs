@@ -10,6 +10,7 @@ using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.SpellBook
 {
@@ -37,11 +38,13 @@ namespace TOR_Core.AbilitySystem.SpellBook
             {
                 sugarDaddy.ChangeHeroGold(-_goldCost);
                 Hero.AddAbility(Template.StringID);
-                MBInformationManager.AddQuickInformation(new TextObject("Successfully learned spell: " + Template.Name));
+                var learnedSpellText = TORTextHelper.GetTextObject("tor_learned_spell_text", "Successfully learned spell: {SPELL_NAME}");
+                learnedSpellText.SetTextVariable("SPELL_NAME", Template.Name);
+                MBInformationManager.AddQuickInformation(learnedSpellText);
             }
             else
             {
-                MBInformationManager.AddQuickInformation(new TextObject("Not enough gold"));
+                MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_not_enough_gold_text", "Not enough gold"));
             }
             RefreshValues();
         }
@@ -65,7 +68,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
             {
                 _goldCost = model.GetSpellGoldCostForHero(Hero, Template);
             }
-            var learnTextObject = new TextObject("{=tor_learnSpell}Learn {GOLDCOST} {COINIMAGE}");
+            var learnTextObject = TORTextHelper.GetTextObject("tor_learnSpell", "Learn {GOLDCOST} {COINIMAGE}");
             MBTextManager.SetTextVariable("COINIMAGE", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"4\">", false);
             MBTextManager.SetTextVariable("GOLDCOST", _goldCost);
             LearnText = learnTextObject.ToString(); //this does result in a localized string in the UI - to be determined if this is actually how we want to localize that UI
@@ -76,18 +79,15 @@ namespace TOR_Core.AbilitySystem.SpellBook
                 CanLearn = _isTrainerMode && Template.SpellTier <= (int)info.SpellCastingLevel && Hero.HasKnownLore(Template.BelongsToLoreID);
                 if (!info.KnownLores.Any(x => x.ID == Template.BelongsToLoreID))
                 {
-                    var disabledReasonTextObject = new TextObject("{=tor_learnSpellDisabled_lore}Unfamiliar lore");
-                    DisabledReason = disabledReasonTextObject.ToString();
+                    DisabledReason = TORTextHelper.GetText("tor_learnSpellDisabled_lore", "Unfamiliar lore");
                 }
                 else if (Template.SpellTier > (int)info.SpellCastingLevel)
                 {
-                    var disabledReasonTextObject = new TextObject("{=tor_learnSpellDisabled_spellTier}Insufficient caster level");
-                    DisabledReason = disabledReasonTextObject.ToString();
+                    DisabledReason = TORTextHelper.GetText("tor_learnSpellDisabled_spellTier", "Insufficient caster level");
                 }
                 else
                 {
-                    var disabledReasonTextObject = new TextObject("{=tor_learnSpellDisabled_canLearn}Can learn");
-                    DisabledReason = disabledReasonTextObject.ToString();
+                    DisabledReason = TORTextHelper.GetText("tor_learnSpellDisabled_canLearn", "Can learn");
                 }
             }
         }

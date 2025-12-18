@@ -36,7 +36,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
         public override void RefreshValues()
         {
-            ScreenTitle = Hero.MainHero?.Culture?.StringId == TORConstants.Cultures.DAWI ? new TextObject("{=tor_runesmithing_title}Runesmithing").ToString() : new TextObject("{=tor_enchanting_title}Enchanting").ToString();
+            ScreenTitle = Hero.MainHero?.Culture?.StringId == TORConstants.Cultures.DAWI ? TORTextHelper.GetText("tor_runesmithing_title", "Runesmithing") : TORTextHelper.GetText("tor_enchanting_title", "Enchanting");
             Items.Clear();
             Traits.Clear();
             SelectedTraits.Clear();
@@ -66,7 +66,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
                 {
                     var selectHint = GameTexts.FindText("tor_enchant_hint_max_traits_selectable");
                     selectHint.SetTextVariable("MAX_TRAITS", maxTraits);
-                    InformationManager.ShowInquiry(new InquiryData("Enchanting", selectHint.ToString(), true, false, "OK", null, null, null), true);
+                    InformationManager.ShowInquiry(new InquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), selectHint.ToString(), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null), true);
                     itemTrait.DeselectTrait();
                     return;
                 }
@@ -162,24 +162,24 @@ namespace TOR_Core.CampaignMechanics.Crafting
         {
             if (Traits.Count <= 0)
             {
-                InformationManager.ShowInquiry(new InquiryData("Enchanting", "You don't know any enchantment blueprints.", true, false, "OK", null, null, null), true);
+                InformationManager.ShowInquiry(new InquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), TORTextHelper.GetText("tor_enchanting_no_blueprints_text", "You don't know any enchantment blueprints."), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null), true);
                 return;
             }
             else if (SelectedTraits.Count == 0)
             {
-                InformationManager.ShowInquiry(new InquiryData("Enchanting", "No traits are selected.", true, false, "OK", null, null, null), true);
+                InformationManager.ShowInquiry(new InquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), TORTextHelper.GetText("tor_enchanting_no_traits_selected_text", "No traits are selected."), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null), true);
                 return;
             }
             else if (Ingredients.Any(x => Math.Abs(x.PendingAmount) > x.CurrentAmount))
             {
-                InformationManager.ShowInquiry(new InquiryData("Enchanting", "Missing ingredients.", true, false, "OK", null, null, null), true);
+                InformationManager.ShowInquiry(new InquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), TORTextHelper.GetText("tor_enchanting_missing_ingredients_text", "Missing ingredients."), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null), true);
                 return;
             }
             else
             {
                 var item = _selectedItem.Item.Item;
                 var modifier = _selectedItem.Item.ItemModifier;
-                InformationManager.ShowTextInquiry(new TextInquiryData("Enchanting", "Enter name for your enchanted item", true, true, "OK", "Cancel", (name) => CreateNewItem(name, item, modifier), () => InformationManager.HideInquiry()));
+                InformationManager.ShowTextInquiry(new TextInquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), TORTextHelper.GetText("tor_enchanting_enter_name_text", "Enter name for your enchanted item"), true, true, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), (name) => CreateNewItem(name, item, modifier), () => InformationManager.HideInquiry()));
             }
         }
 
@@ -190,14 +190,14 @@ namespace TOR_Core.CampaignMechanics.Crafting
 
             if (newItem == null)
             {
-                InformationManager.ShowInquiry(new InquiryData("Enchanting", "Enchanting failed.", true, false, "OK", null, null, null), true);
+                InformationManager.ShowInquiry(new InquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), TORTextHelper.GetText("tor_enchanting_failed_text", "Enchanting failed."), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null), true);
                 return;
             }
             var oldItem = new EquipmentElement(item, modifier);
             var equipmentItem = new EquipmentElement(newItem, modifier);
             MobileParty.MainParty.ItemRoster.AddToCounts(equipmentItem, 1);
 
-            InformationManager.ShowInquiry(new InquiryData("Enchanting", "Enchanting successful. Item was added to inventory.", true, false, "OK", null, null, null), true);
+            InformationManager.ShowInquiry(new InquiryData(TORTextHelper.GetText("tor_enchanting_title_text", "Enchanting"), TORTextHelper.GetText("tor_enchanting_success_text", "Enchanting successful. Item was added to inventory."), true, false, TORTextHelper.GetText("tor_inquiry_ok_text", "OK"), null, null, null), true);
             MobileParty.MainParty.ItemRoster.AddToCounts(oldItem, -1);
 
             foreach (var ingredient in Ingredients.Where(x => x.PendingAmount != 0))

@@ -164,7 +164,7 @@ public class TORCustomResourceModel : GameModel
                     tribute = element.Amount / 10;
                 }
 
-                number.Add(tribute, new TextObject("Teef Tribute"));
+                number.Add(tribute, TORTextHelper.GetTextObject("tor_greenskin_teef_tribute_text", "Teef Tribute"));
 
                 if (hero.HasCareer(TORCareers.OrcBoss))
                 {
@@ -195,7 +195,7 @@ public class TORCustomResourceModel : GameModel
                             var element = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster().First(x => x.Character == troop);
                             if (element.Character != null)
                             {
-                                number.Add(troop.Tier * factor * element.Number, new TextObject("Teef Extorsion"));
+                                number.Add(troop.Tier * factor * element.Number, TORTextHelper.GetTextObject("tor_greenskin_teef_extorsion_text", "Teef Extorsion"));
                             }
 
                         }

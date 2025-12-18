@@ -9,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -86,8 +87,8 @@ namespace TOR_Core.Models
 
         public string GetNameModifierForTraits(int traitAmount)
         {
-            var text = GameTexts.FindText("str_tor_magical_items_trait_rarity", traitAmount.ToString());
-            return text.ToString();
+            return TORTextHelper.GetText("tor_magical_items_trait_rarity", traitAmount.ToString(), "Magical");
+            
         }
 
         public int MaximumFindableTraitsOnItems()

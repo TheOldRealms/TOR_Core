@@ -121,7 +121,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             NarrativeMenu stage1Menu = new NarrativeMenu("tor_origin_menu", // stringId
                 "start", // inputMenuId (from culture selection)
                 "tor_growth_menu", // outputMenuId (to stage 2)
-                new TextObject("{=tor_cc_origin_summary_str}Origin"), // title
+                TORTextHelper.GetTextObject("tor_cc_origin_summary", "Origin"), // title
                 new TextObject("{TOR_CC_ORIGIN}"), // description
                 playerCharacterList, // characters to display
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
@@ -129,14 +129,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
 
             // Stage 2: Growth Menu
             NarrativeMenu stage2Menu = new NarrativeMenu("tor_growth_menu", "tor_origin_menu", "tor_profession_menu",
-                new TextObject("{=tor_cc_growth_summary_str}Growth"), new TextObject("{TOR_CC_GROWTH}"), playerCharacterList,
+                TORTextHelper.GetTextObject("tor_cc_growth_summary", "Growth"), new TextObject("{TOR_CC_GROWTH}"), playerCharacterList,
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
                     GetPlayerMenuCharacterArgs("player_character", manager)));
 
             // Stage 3: Profession Menu
             NarrativeMenu stage3Menu = new NarrativeMenu("tor_profession_menu", "tor_growth_menu",
                 "narrative_face_generator_menu", // Exit narrative stage ? TORSpecializationStage handles stage 4
-                new TextObject("{=tor_cc_profession_summary_str}Profession"), new TextObject("{TOR_CC_PROFESSION}"), playerCharacterList,
+                TORTextHelper.GetTextObject("tor_cc_profession_summary", "Profession"), new TextObject("{TOR_CC_PROFESSION}"), playerCharacterList,
                 new NarrativeMenu.GetNarrativeMenuCharacterArgsDelegate((culture, occupationType, manager) =>
                     GetPlayerMenuCharacterArgs("player_character", manager)));
             
@@ -270,7 +270,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else
             {
-                originText = new TextObject("Choose your family's background...");
+                originText = TORTextHelper.GetTextObject("tor_cc_origin_fallback_text", "Choose your family's background...");
             }
             MBTextManager.SetTextVariable("TOR_CC_ORIGIN", originText, false);
 
@@ -281,7 +281,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else
             {
-                growthText = new TextObject("Teenage years...");
+                growthText = TORTextHelper.GetTextObject("tor_cc_growth_fallback_text", "Teenage years...");
             }
             MBTextManager.SetTextVariable("TOR_CC_GROWTH", growthText, false);
 
@@ -292,7 +292,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else
             {
-                professionText = new TextObject("Your starting profession...");
+                professionText = TORTextHelper.GetTextObject("tor_cc_profession_fallback_text", "Your starting profession...");
             }
             MBTextManager.SetTextVariable("TOR_CC_PROFESSION", professionText, false);
         }
@@ -943,7 +943,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                         hero.AddCareer(TORCareers.MinorVampire);
                         _storedSpawnPosition = new CampaignVec2(new Vec2(1594.974f, 988.7784f), true); // Von Carstein territory
-                        MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                        MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_cc_learned_necromancy_text", "Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                         break;
                     }
                 case "bloodline_blood_dragon":
@@ -961,7 +961,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
                         hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                         _storedSpawnPosition = new CampaignVec2(new Vec2(1565.885f, 1095.13f), true); // Necrarch location
-                        MBInformationManager.AddQuickInformation(new TextObject("Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                        MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_cc_learned_necromancy_text", "Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                         break;
                     }
                 case "knight_blazing_sun":

@@ -10,6 +10,8 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.RaidingParties;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
 
@@ -35,7 +37,7 @@ public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettleme
     {
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as TORBaseSettlementComponent;
-        var text = component.IsActive ? GameTexts.FindText("customsettlement_intro", settlement.StringId) : GameTexts.FindText("customsettlement_disabled", settlement.StringId);
+        var text = component.IsActive ? GameTexts.FindText("tor_customsettlement_intro", settlement.StringId) : GameTexts.FindText("tor_customsettlement_disabled", settlement.StringId);
         MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
     }
@@ -45,11 +47,11 @@ public class RaidingSiteMenuLogic(CampaignGameStarter starter) : TORBaseSettleme
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as TORBaseSettlementComponent;
         args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
-        var text = GameTexts.FindText("customsettlement_battle", settlement.StringId);
+        var text = GameTexts.FindText("tor_customsettlement_battle", settlement.StringId);
         MBTextManager.SetTextVariable("BATTLE_OPTION_TEXT", text);
         if (Hero.MainHero.IsWounded)
         {
-            args.Tooltip = new TextObject("{=UL8za0AO}You are wounded.", null);
+            args.Tooltip = TORTextHelper.GetTextObject("tor_wounded", "You are wounded.");
             args.IsEnabled = false;
         }
 

@@ -367,7 +367,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             null, UnlockRuneLordCareerTier2, 200);
 
         // Chapter 2
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", reintro, GameTexts.FindText("str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0").ToString(),
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord", reintro, GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0").ToString(),
             () => !Hero.MainHero.HasAttribute("PlayerRunelord"), () =>
             {
                 var quest = TORQuestHelper.GetCurrentQuest<RunelordQuest>("runelord_quest_2", true, IsRunelordInFront, out var existent);
@@ -386,7 +386,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", "tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2", reintro, GameTexts.FindText("tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord2").ToString(), null, null);
 
         //buy equipment
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_buy_equipment", "tor_dw_guildmaster_rune_smith_buy_equipment", reintro, "Sure let me show what I got",
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_rune_smith_buy_equipment", "tor_dw_guildmaster_rune_smith_buy_equipment", reintro, TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Sure let me show what I got"),
             null, OpenRuneLordShop, 200);
 
         // Deliver Steel
@@ -498,7 +498,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var title = GameTexts.FindText("tor_dw_rune_smith_deliverSteel_prompt_title");
             var description = GameTexts.FindText("tor_dw_rune_smith_deliverSteel_prompt_description");
 
-            var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectable, true, 1, 3, "Accept", "Cancel",
+            var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectable, true, 1, 3, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
                 AddOathGoldForSteel, null);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
@@ -551,12 +551,12 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         if (!GameTexts.TryGetText("oath_gold_spending_title", out var title, guildmaster))
         {
-            title = new TextObject("Spend Oath Gold");
+            title = TORTextHelper.GetTextObject("tor_dw_oath_gold_spending_title_text", "Spend Oath Gold");
         }
 
         if (!GameTexts.TryGetText("oath_gold_spending_description", out var description, guildmaster))
         {
-            description = new TextObject("help me i am kidnapped");
+            description = TORTextHelper.GetTextObject("tor_dw_oath_gold_spending_description_text", "Select how much Oath Gold you want to spend");
         }
 
         if (currentOathGold < 20)
@@ -571,7 +571,9 @@ public class OathGoldBehavior : CampaignBehaviorBase
             value = 20;
             var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
             option.SetTextVariable("OATHGOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "spend {OATHGOLD_COST} Oath Gold"));
+            var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
+            hint.SetTextVariable("OATHGOLD_COST", value);
+            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
         if (currentOathGold >= 50)
@@ -580,7 +582,9 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
             option.SetTextVariable("OATHGOLD_COST", value);
             GameTexts.SetVariable("OATHGOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "spend {OATHGOLD_COST} Oath Gold"));
+            var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
+            hint.SetTextVariable("OATHGOLD_COST", value);
+            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
         if (currentOathGold >= 100)
@@ -589,7 +593,9 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
             option.SetTextVariable("OATHGOLD_COST", value);
             GameTexts.SetVariable("OATHGOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "spend {OATHGOLD_COST} Oath Gold"));
+            var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
+            hint.SetTextVariable("OATHGOLD_COST", value);
+            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
         if (currentOathGold >= 250)
@@ -598,14 +604,16 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var option = new TextObject("{OATHGOLD_COST}{OATHGOLD_SYMBOL}");
             option.SetTextVariable("OATHGOLD_COST", value);
             GameTexts.SetVariable("OATHGOLD_COST", value);
-            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, "spend {OATHGOLD_COST} Oath Gold"));
+            var hint = TORTextHelper.GetTextObject("tor_dw_spend_oath_gold_hint_text", "Spend {OATHGOLD_COST} Oath Gold on this guild");
+            hint.SetTextVariable("OATHGOLD_COST", value);
+            selectableOptions.Add(new InquiryElement(value, option.ToString(), null, true, hint.ToString()));
         }
 
         _currentGuild = guildmaster;
 
 
 
-        var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, "Accept", "Cancel",
+        var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectableOptions, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
             AddResourcesToGuild, null);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
     }
@@ -695,14 +703,14 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         AddOathGoldDialog(campaignGameStarter, _templateEngineer.guild, reintro);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p", hub, "tor_dw_guildmaster_engineer_buy_weapons_shop", "I need better weapons master engineer",
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p", hub, "tor_dw_guildmaster_engineer_buy_weapons_shop", TORTextHelper.GetText("tor_dw_engineer_buy_weapons_text", "I need better weapons master engineer"),
             null, null, 200);
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", "Thats all",
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "Thats all"),
             null, null, 200);
 
         //buy equipment
-        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_start_reintro", "Sure let me show what I got",
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_start_reintro", TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Sure let me show what I got"),
             null, OpenEngineerShop, 200);
 
 
@@ -867,18 +875,18 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
                 if (item.rewardItem != null)
                 {
-                    var description = new TextObject("description");
-                    _currentItems.Add(new InquiryElement(item, item.rewardItem.ToString(), new ItemImageIdentifier(item.rewardItem), true, "description"));
+                    var description = TORTextHelper.GetTextObject("tor_dw_expedition_reward_item_description_text", "Expedition reward item");
+                    _currentItems.Add(new InquiryElement(item, item.rewardItem.ToString(), new ItemImageIdentifier(item.rewardItem), true, TORTextHelper.GetText("tor_dw_expedition_reward_item_hint_text", "Expedition reward item")));
                 }
                 else
                 {
-                    var description = new TextObject(item.GoldAmount + "{GOLD_ICON");
+                    var description = new TextObject(item.GoldAmount + "{GOLD_ICON}");
                     _currentItems.Add(new InquiryElement(item, new TextObject(item.GoldAmount + "{GOLD_ICON}").ToString(), null, true, description.ToString()));
                 }
             }
 
 
-            var inquirydata = new MultiSelectionInquiryData("Item Rewards", "Description", _currentItems, false, 0, 0, "Accept", "Cancel",
+            var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_dw_expedition_rewards_title_text", "Expedition Rewards"), TORTextHelper.GetText("tor_dw_expedition_rewards_description_text", "Your expeditions have returned with rewards"), _currentItems, false, 0, 0, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
                 affirmed => AddRewardsToInventory(), null);
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
         }
@@ -1000,7 +1008,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         void ProvideTroops()
         {
-            PartyScreenHelper.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), new TextObject("Donate Miners to the Miners guild"), 500, 0, null,
+            PartyScreenHelper.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), TORTextHelper.GetTextObject("tor_dw_donate_miners_to_guild_text", "Donate Miners to the Miners guild"), 500, 0, null,
                 TranferCompleted, IsTransferableMinerUnit);
         }
 
@@ -1118,7 +1126,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var title = GameTexts.FindText("tor_dw_brewers_deliverWheat_prompt_title");
             var description = GameTexts.FindText("tor_dw_brewers_deliverWheat_prompt_description");
 
-            var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectable, true, 1, 1, "Accept", "Cancel",
+            var inquirydata = new MultiSelectionInquiryData(title.ToString(), description.ToString(), selectable, true, 1, 1, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"),
                 AddOathGoldForGrain, null);
 
             void AddOathGoldForGrain(List<InquiryElement> inquiryElements)
@@ -1154,7 +1162,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             GameTexts.FindText("tor_dw_guildmaster_warrior_influence_for_oath_p").ToString(), null, null, 200);
 
 
-        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_quit_p", hub, "close_window", "Thats all",
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_warrior_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "Thats all"),
             null, null, 200);
 
 
@@ -1197,7 +1205,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
 
         void ProvideTroops()
         {
-            PartyScreenHelper.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), new TextObject("Donate Miners to the Warriors guild"), 500, 0, null,
+            PartyScreenHelper.OpenScreenAsQuest(TroopRoster.CreateDummyTroopRoster(), TORTextHelper.GetTextObject("tor_dw_donate_warriors_to_guild_text", "Donate Warriors to the Warriors guild"), 500, 0, null,
                 TranferCompleted, IsTransferableVeteranUnit);
         }
 

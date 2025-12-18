@@ -222,7 +222,7 @@ public static class EnchantmentHelper
 
             if (underlyingTrait != null)
             {
-                string typeRestriction = GameTexts.FindText("enchantmentshop_restriction", underlyingTrait.ValidItemType.ToString()).ToString();
+                string typeRestriction = GameTexts.FindText("tor_enchantmentshop_restriction", underlyingTrait.ValidItemType.ToString()).ToString();
                 GameTexts.SetVariable("VALIDTYPE_RESTRICTION", typeRestriction);
             }
 
@@ -253,8 +253,8 @@ public static class EnchantmentHelper
             shopvariation = culture;
         }
 
-        var title = GameTexts.FindText("enchantmentshop_title", shopvariation).ToString();
-        var description = GameTexts.FindText("enchantmentshop_description", shopvariation).ToString();
+        var title = GameTexts.FindText("tor_enchantmentshop_title", shopvariation).ToString();
+        var description = GameTexts.FindText("tor_enchantmentshop_description", shopvariation).ToString();
 
         var inquirydata = new MultiSelectionInquiryData(title, description, selectableItems, true, 1, 1, "Accept", "Cancel",
             AddEnchantment, null, "", true);
@@ -284,7 +284,9 @@ public static class EnchantmentHelper
         else
         {
             Hero.MainHero.PartyBelongedTo.ItemRoster.Add(new ItemRosterElement(item, 1));   // we dont know, so we just add it to the inventory
-            MBInformationManager.AddQuickInformation(new TextObject(item.Name + " was added to the inventory"), 0);
+            var itemAddedText = TORTextHelper.GetTextObject("tor_item_added_to_inventory_text", "{ITEM_NAME} was added to the inventory");
+            itemAddedText.SetTextVariable("ITEM_NAME", item.Name);
+            MBInformationManager.AddQuickInformation(itemAddedText, 0);
         }
 
         var crCost = skillValue * Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceGeneralizedFactor();

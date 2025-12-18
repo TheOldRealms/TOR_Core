@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment
 {
@@ -20,7 +22,7 @@ namespace TOR_Core.CharacterDevelopment
         {
             Instance = this;
             _discipline = Game.Current.ObjectManager.RegisterPresumedObject(new CharacterAttribute("discipline"));
-            _discipline.Initialize(new TextObject("{=tor_attribute_discipline_str}Discipline", null), new TextObject("{=tor_attribute_discipline_description_str}Discipline is the ability to refine your skill in certain skills which require practice or focus.", null), new TextObject("{=tor_attribute_discipline_abbreviation_str}DIS", null));
+            _discipline.Initialize(TORTextHelper.GetTextObject("tor_attribute_discipline", "Discipline"), TORTextHelper.GetTextObject("tor_attribute_discipline_description", "Discipline represents mental fortitude and self-control."), TORTextHelper.GetTextObject("tor_attribute_discipline_abbreviation", "DIS"));
         }
     }
 }
