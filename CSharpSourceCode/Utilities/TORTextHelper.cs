@@ -55,14 +55,14 @@ namespace TOR_Core.Extensions
                     var pureText = textObject.GetNativeTextWithoutTag();
                     if (pureText != defaultText)
                     {
-                        TORCommon.Log(string.Format("Code text mismatches TOR XML text for {0}. \n {1},\n{2}", id, pureText, defaultText), LogLevel.Warn);
+                        TORCommon.Log(string.Format("Code text mismatches TOR XML text for {0}. \n XML : {1}\n CODE: /{2}", id, pureText, defaultText), LogLevel.Warn);
                     }
                 }
 
                 return textObject;
             }
 
-            TORCommon.Log(string.Format("Couldn't find text with id: {0}.  switch to default: {1}", id, defaultText), LogLevel.Error);
+            TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0}.  switch to default: {1}", id, defaultText), LogLevel.Error);
             return new TextObject(defaultText);
         }
 
@@ -75,7 +75,7 @@ namespace TOR_Core.Extensions
                     var pureText = textObject.GetNativeTextWithoutTag();
                     if (pureText != defaultText)
                     {
-                        TORCommon.Log(string.Format("Code text mismatches TOR XML text. \n {0},\n{0}", id), LogLevel.Warn);
+                        TORCommon.Log(string.Format("[TEXT]Code text mismatches TOR XML text.{0}, \n XML : {1} \n CODE: {2}", id,pureText,defaultText), LogLevel.Warn);
                     }
                 }
 
@@ -83,7 +83,7 @@ namespace TOR_Core.Extensions
                 
             }
 
-            TORCommon.Log(string.Format("Couldn't find text with id: {0} {1}.  switch to default", id, variation), LogLevel.Error);
+            TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0} {1}.  switch to default.", id, variation), LogLevel.Error);
             return new TextObject(defaultText);
         }
     }

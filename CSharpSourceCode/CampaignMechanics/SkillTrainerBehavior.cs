@@ -239,7 +239,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
 
 
             campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId,
-                TORTextHelper.GetText("tor_priest_train_hub_select_companion", trainerDialogId, "Very well. Choose which companion you wish to send for training.", true), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId), 200);
+                TORTextHelper.GetText("tor_skill_train_hub_select_companion", trainerDialogId, "Very well. Choose which companion you wish to send for training.", true), () => IsAnyCompanionEligableForTraining(skillId, restrictions), () => SelectCompanionForTraining(skillId), 200);
 
             campaignStarter.AddDialogLine("tor_skill_train_hub_select_companion_decline" + trainerDialogId + skillId, "priest_train_hub_select_companion" + trainerDialogId + skillId, "tor_skill_teacher_train_2" + trainerDialogId + skillId,
                 TORTextHelper.GetText("tor_skill_train_hub_select_companion_decline", trainerDialogId, "I'm afraid none of your companions are eligible for training at this time.", true), () => !IsAnyCompanionEligableForTraining(skillId, restrictions), null, 200);

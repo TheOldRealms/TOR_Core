@@ -115,15 +115,15 @@ namespace TOR_Core.HarmonyPatches
         {
             var result = new EncyclopediaFilterGroup(new List<EncyclopediaFilterItem>()
             {
-                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_characters", " Characters"), (Predicate<object>)(c => Concept.IsGroupMember("Characters", (Concept)c))),
-                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_kingdoms", " Kingdoms"), (Predicate<object>)(c => Concept.IsGroupMember("Kingdoms", (Concept)c))),
-                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_clans", " Clans"), (Predicate<object>)(c => Concept.IsGroupMember("Clans", (Concept)c))),
-                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_parties", " Parties"), (Predicate<object>)(c => Concept.IsGroupMember("Parties", (Concept)c))),
-                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_armies", " Armies"), (Predicate<object>)(c => Concept.IsGroupMember("Armies", (Concept)c))),
-                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_troops", " Troops"), (Predicate<object>)(c => Concept.IsGroupMember("Troops", (Concept)c))),
-                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_items", " Items"), (Predicate<object>)(c => Concept.IsGroupMember("Items", (Concept)c))),
-                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_old_realms", " The Old Realms"), (Predicate<object>)(c => Concept.IsGroupMember("The Old Realms", (Concept)c))),
-                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_campaign_issues", " Campaign Issues"), (Predicate<object>)(c => Concept.IsGroupMember("CampaignIssues", (Concept)c)))
+                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_characters", "Characters"), (Predicate<object>)(c => Concept.IsGroupMember("Characters", (Concept)c))),
+                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_kingdoms", "Kingdoms"), (Predicate<object>)(c => Concept.IsGroupMember("Kingdoms", (Concept)c))),
+                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_clans", "Clans"), (Predicate<object>)(c => Concept.IsGroupMember("Clans", (Concept)c))),
+                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_parties", "Parties"), (Predicate<object>)(c => Concept.IsGroupMember("Parties", (Concept)c))),
+                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_armies", "Armies"), (Predicate<object>)(c => Concept.IsGroupMember("Armies", (Concept)c))),
+                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_troops", "Troops"), (Predicate<object>)(c => Concept.IsGroupMember("Troops", (Concept)c))),
+                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_items", "Items"), (Predicate<object>)(c => Concept.IsGroupMember("Items", (Concept)c))),
+                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_old_realms", "The Old Realms"), (Predicate<object>)(c => Concept.IsGroupMember("The Old Realms", (Concept)c))),
+                new EncyclopediaFilterItem(TORTextHelper.GetTextObject("tor_encyclopedia_filter_campaign_issues", "Campaign Issues"), (Predicate<object>)(c => Concept.IsGroupMember("CampaignIssues", (Concept)c)))
 
             }, TORTextHelper.GetTextObject("tor_encyclopedia_filter_types", "Types"));
 

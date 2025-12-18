@@ -133,7 +133,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             {
                 new("fire_dmg_10", TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_10_name", "Lesser Sparkling Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_10_desc", "+15% Fire damage"),
                     "powerstone_fire_trait", 15, 10, "LoreOfFire", PowerSize.Lesser),
-                new PowerStone("fire_amp_50", TORTextHelper.GetTextObject("tor_powerstone_fire_amp_50_name", "Lesser Nourishing Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_amp_50_desc", "+50% Fire amplification "), "powerstone_fire_amp", 15,
+                new PowerStone("fire_amp_50", TORTextHelper.GetTextObject("tor_powerstone_fire_amp_50_name", "Lesser Nourishing Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_amp_50_desc", "+50% Fire amplification"), "powerstone_fire_amp", 15,
                     10, "LoreOfFire", PowerSize.Lesser),
                 new PowerStone("fire_res_20", TORTextHelper.GetTextObject("tor_powerstone_fire_res_20_name", "Lesser Heating Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_res_20_desc", "+20% Frost and Fire resistance"),
                     "powerstone_fire_res", 15, 10, "LoreOfFire", PowerSize.Lesser),
@@ -165,7 +165,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 new PowerStone("heavens_dmg_20", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_20_name", "Lesser Conductive Saphire"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_20_desc", "+20% lightning melee damage"), "powerstone_heavens_trait",
                     15, 10, "LoreOfHeavens", PowerSize.Lesser),
 
-                new PowerStone("heavens_res_25", TORTextHelper.GetTextObject("tor_powerstone_heavens_res_25_name", "Lesser Dissipation  Saphire"), TORTextHelper.GetTextObject("tor_powerstone_heavens_res_25_desc", "+25% lightning resistance, + 25% magical resistance"),"powerstone_heavens_res",
+                new PowerStone("heavens_res_25", TORTextHelper.GetTextObject("tor_powerstone_heavens_res_25_name", "Lesser Dissipation Saphire"), TORTextHelper.GetTextObject("tor_powerstone_heavens_res_25_desc", "+25% lightning resistance, +25% magical resistance"),"powerstone_heavens_res",
                     15, 10, "LoreOfHeavens", PowerSize.Lesser),
 
                 new PowerStone("metal_dmg_15", TORTextHelper.GetTextObject("tor_powerstone_metal_dmg_15_name", "Lesser Hardening Goldstone"), TORTextHelper.GetTextObject("tor_powerstone_metal_dmg_15_desc", "+15% physical damage"),"powerstone_metal_dmg1",
@@ -189,7 +189,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     15,
                     10,
                     "LoreOfDeath", PowerSize.Lesser),
-                new PowerStone("death_res_30_debuff", TORTextHelper.GetTextObject("tor_powerstone_death_res_30_debuff_name", "Lesser deadening Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_res_30_debuff_desc", "+25% physical resistance, 20% reduced swing-speed"), "powerstone_metal_res_less",
+                new PowerStone("death_res_30_debuff", TORTextHelper.GetTextObject("tor_powerstone_death_res_30_debuff_name", "Lesser Deadening Endstone"), TORTextHelper.GetTextObject("tor_powerstone_death_res_30_debuff_desc", "+25% physical resistance, 20% reduced swing-speed"), "powerstone_metal_res_less",
                     15,
                     10,
                     "LoreOfDeath", PowerSize.Lesser)
@@ -202,7 +202,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
             var list = new List<PowerStone>()
             {
-                new PowerStone("fire_dmg_35", TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_35_name", "Greater Enlightening Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_35_desc", "+50% Fire amplification, 15% Fire damage+30% "),
+                new PowerStone("fire_dmg_35", TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_35_name", "Greater Enlightening Fire Ruby"), TORTextHelper.GetTextObject("tor_powerstone_fire_dmg_35_desc", "+50% Fire amplification, 15% Fire damage+30%"),
                     "powerstone_fire_trait2",
                     25,
                     20, "LoreOfFire", PowerSize.Greater),
@@ -218,15 +218,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     25, 20,
                     "LoreOfLight", PowerSize.Greater),
 
-                new PowerStone("beast_res_wild", TORTextHelper.GetTextObject("tor_powerstone_beast_res_wild_name", "Greater Ghost Amber of the Wild"), TORTextHelper.GetTextObject("tor_powerstone_beast_res_wild_desc", "Unit is unstopable, will not show any sign of pain"),
+                new PowerStone("beast_res_wild", TORTextHelper.GetTextObject("tor_powerstone_beast_res_wild_name", "Greater Ghost Amber of the Wild"), TORTextHelper.GetTextObject("tor_powerstone_beast_res_wild_desc", "Unit is unstoppable, will not show any sign of pain"),
                     "powerstone_beast_wild",
                     25, 20,
                     "LoreOfBeasts", PowerSize.Greater),
-                new PowerStone("beast_res_range_25", TORTextHelper.GetTextObject("tor_powerstone_beast_res_range_25_name", "Greater Ghost Amber of the Hunter"), TORTextHelper.GetTextObject("tor_powerstone_beast_res_range_25_desc", "+35% ranged resistance,+25% ranged damage"), "powerstone_beast_range_res_hunt",
+                new PowerStone("beast_res_range_25", TORTextHelper.GetTextObject("tor_powerstone_beast_res_range_25_name", "Greater Ghost Amber of the Hunter"), TORTextHelper.GetTextObject("tor_powerstone_beast_res_range_25_desc", "+35% ranged resistance, +25% ranged damage"), "powerstone_beast_range_res_hunt",
                     25, 20,
                     "LoreOfBeasts", PowerSize.Greater),
 
-                new PowerStone("life_thorns", TORTextHelper.GetTextObject("tor_powerstone_life_thorns_name", "Greater Spiky Vitalleum"), TORTextHelper.GetTextObject("tor_powerstone_life_thorns_desc", "Received damage is reapplied by 25%  as thorne damage"), "powerstone_life_thorns", 25, 20,
+                new PowerStone("life_thorns", TORTextHelper.GetTextObject("tor_powerstone_life_thorns_name", "Greater Spiky Vitalleum"), TORTextHelper.GetTextObject("tor_powerstone_life_thorns_desc", "Received damage is reapplied by 25% as thorn damage"), "powerstone_life_thorns", 25, 20,
                     "LoreOfLife", PowerSize.Greater),
                 new PowerStone("life_res_ward_35", TORTextHelper.GetTextObject("tor_powerstone_life_res_ward_35_name", "Greater Protecting Vitalleum"), TORTextHelper.GetTextObject("tor_powerstone_life_res_ward_35_desc", "+35% Wardsave"), "powerstone_life_res_ward", 25,
                     20,
@@ -235,7 +235,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                 new PowerStone("heavens_trait2", TORTextHelper.GetTextObject("tor_powerstone_heavens_trait2_name", "Greater Amplifying True Sapphires"),
                     TORTextHelper.GetTextObject("tor_powerstone_heavens_trait2_desc", "+40% lightning damage"), "powerstone_heavens_trait2", 25, 20,
                     "LoreOfHeavens", PowerSize.Greater),
-                new PowerStone("heavens_res_40", TORTextHelper.GetTextObject("tor_powerstone_heavens_res_40_name", "Greater True Dissipation Sapphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_res_40_desc", "+40% physical, magic & lightning resistance"),
+                new PowerStone("heavens_res_40", TORTextHelper.GetTextObject("tor_powerstone_heavens_res_40_name", "Greater True Dissipation Sapphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_res_40_desc", "+40% physical, magic and lightning resistance"),
                     "powerstone_heavens_res2", 25, 20,
                     "LoreOfHeavens", PowerSize.Greater),
 
@@ -275,7 +275,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
                     50, 50,
                     "LoreOfLife", PowerSize.Mighty),
 
-                new PowerStone("heavens_dmg_elec_frost", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_name", "Mighty True Saphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_desc", "+20% electric, +20%frost dmg, 20% slowdown"),
+                new PowerStone("heavens_dmg_elec_frost", TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_name", "Mighty True Saphires"), TORTextHelper.GetTextObject("tor_powerstone_heavens_dmg_elec_frost_desc", "+20% electric, +20% frost dmg, 20% slowdown"),
                     "powerstone_heavens_dmg2", 50, 50,
                     "LoreOfHeavens", PowerSize.Mighty),
 
