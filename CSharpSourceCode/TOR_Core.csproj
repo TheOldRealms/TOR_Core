@@ -355,6 +355,7 @@
     <Compile Include="AbilitySystem\Scripts\HexScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ImpenetrableScript.cs" />
     <Compile Include="AbilitySystem\Scripts\KnightlyChargeScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\KnightlyStrikeScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MindControlScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ProjectileScript.cs" />
