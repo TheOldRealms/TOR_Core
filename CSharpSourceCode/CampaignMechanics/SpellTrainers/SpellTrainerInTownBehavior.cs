@@ -473,7 +473,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
                 null);
 
             obj.AddPlayerLine("trainer_vampire_learn_magic", "choices", "specializelore_question",
-                TORTextHelper.GetText("tor_spelltrainer_magictest_vc_vampire_player_specialize_lore", "I can feel my dark power continuing to grow. Provide me access to more forbidden magic, mortal"),
+                TORTextHelper.GetText("tor_spelltrainer_magictest_vc_vampire_player_specialize_lore", "I can feel my dark power continuing to grow, teach me more lest I find myself a new 'tutor'. Hurry on to find your Grimoire, lest I grow thirsty in your absence..."),
                 VampireCasterReachedNewRankCondition, null, 200, null);
 
             obj.AddDialogLine("trainer_vampire_learn_magic2", "specializelore_question", "accept_dark_energy_price",

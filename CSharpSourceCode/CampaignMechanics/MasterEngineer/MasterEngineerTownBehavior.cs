@@ -237,7 +237,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         {
             obj.AddDialogLine("tor_engineer_quest_rogue_engineer_encounter", "start", "rogueengineer_answerplayer", TORTextHelper.GetText("tor_engineer_quest_rogue_engineer_encounter", "So the old fool sent you after us? How did he figure out my plans? It matters not, you will not stand in the way of my creations. You will die here!"), rogueengineerdialogstartcondition, null, 200);
             //requires dying dialog of the engineer, here is a player response
-            obj.AddPlayerLine("tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer", "rogueengineer_playerafterbattle", "close_window", TORTextHelper.GetText("tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer", "\tYour schemes end here."), null, null, 200);
+            obj.AddPlayerLine("tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer", "rogueengineer_playerafterbattle", "close_window", TORTextHelper.GetText("tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer", "Your schemes end here."), null, null, 200);
         }
 
         private void OnSessionLaunched(CampaignGameStarter obj)

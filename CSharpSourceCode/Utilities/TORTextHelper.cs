@@ -36,7 +36,7 @@ namespace TOR_Core.Extensions
         public static string GetText(string id, string defaultText, bool skipValidation = false)
         {
             var text = GetTextObject(id, defaultText, skipValidation);
-            return text.Value;
+            return text.ToString();
         }
 
         public static string GetText(string id, string variation, string defaultText, bool skipValidation = false)
@@ -55,7 +55,7 @@ namespace TOR_Core.Extensions
                     var pureText = textObject.GetNativeTextWithoutTag();
                     if (pureText != defaultText)
                     {
-                        TORCommon.Log(string.Format("Code text mismatches TOR XML text for {0}. \n XML : {1}\n CODE: /{2}", id, pureText, defaultText), LogLevel.Warn);
+                        TORCommon.Log(string.Format("Code text mismatches TOR XML text for {0}. \n XML : {1}\n CODE: {2}", id, pureText, defaultText), LogLevel.Warn);
                     }
                 }
 

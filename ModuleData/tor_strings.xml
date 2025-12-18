@@ -317,6 +317,7 @@
   <string id="tor_stats_minotaur_bonus_text" text="{=tor_stats_minotaur_bonus_text}Minotaur bonus"/>
   <string id="tor_stats_dryad_bonus_text" text="{=tor_stats_dryad_bonus_text}Dryad bonus"/>
   <string id="tor_vampire_bonus" text="{=str_tor_vampire_bonus}Vampire bonus"/>
+  <string id="tor_vampire_nighttime_bonus" text="{=str_tor_vampire_nighttime_bonus}Vampire nighttime bonus"/>
   <string id="tor_stats_large_monster_text" text="{=tor_stats_large_monster_text}Large Monster"/>
   <string id="tor_stats_tier1_text" text="{=tor_stats_tier1_text}Tier1"/>
   <string id="tor_stats_tier2_text" text="{=tor_stats_tier2_text}Tier2"/>
@@ -971,7 +972,7 @@
 
   <string id="tor_engineer_quest_hire_engineers" text="{=str_tor_engineer_quest_hire_engineers}A pair of our novice engineers are eagier to join you for the right price ({RECRUITMENT_PRICE})."/>
   <string id="tor_engineer_quest_hire_engineers_accept" text="{=str_tor_engineer_quest_hire_engineers_accept}Welcome on board."/>
-  <string id="tor_engineer_quest_hire_engineers_not_enough_money" text="{=str_tor_engineer_quest_hire_engineers_not_enough_money}I don't have the funds for them right now."/>
+  <string id="tor_engineer_quest_hire_engineers_not_enough_money" text="{=str_tor_engineer_quest_hire_engineers_not_enough_money}I do not have the funds for them right now."/>
   <string id="tor_engineer_quest_hire_engineers_decline" text="{=str_tor_engineer_quest_hire_engineers_decline}On second thought, maybe later."/>
 
   <string id="tor_engineer_quest_cannons_limit_instruction_0" text="{=str_tor_engineer_quest_cannons_limit_instruction_0}To buy cannons you must be an Imperial, that's the law."/>
@@ -989,7 +990,7 @@
   <string id="tor_engineer_quest_cultist_encounter_answer" text="{=str_tor_engineer_quest_cultist_encounter_answer}You will not trick us! They will serve a greater purpose! You will not take them!"/>
 
   <string id="tor_engineer_quest_rogue_engineer_encounter" text="{=str_tor_engineer_quest_rogue_engineer_encounter}So the old fool sent you after us? How did he figure out my plans? It matters not, you will not stand in the way of my creations. You will die here!"/>
-  <string id="tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer" text="{=str_tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer}	Your schemes end here."/>
+  <string id="tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer" text="{=str_tor_engineer_quest_rogue_engineer_encounter_player_after_battle_answer}Your schemes end here."/>
 
   <!--Custom Encounter Dialogs-->
   <string id="tor_chaos_greeting" text="{=str_tor_chaos_greeting}You will die drowning in a pool of your own blood!"/>
@@ -1007,6 +1008,7 @@
   <string id="tor_druchii_greeting_war" text="{=str_tor_druchii_greeting_war}It's you... The Masters of Karond Kar will be pleased indeed. Time to embrace your chains, slave!"/>
   <string id="tor_druchii_die" text="{=str_tor_druchii_die}Our defeat is a mockery to Khaine."/>
   <string id="tor_druchii_sell_slaves" text="{=str_tor_druchii_sell_slaves}Sell your prisoners as slaves ({RANSOM_AMOUNT}{GOLD_ICON})"/>
+  <string id="tor_dark_elf_slavers" text="{=str_tor_dark_elf_slavers}Druchii Slavers"/>
   <string id="tor_no_prisoners_to_sell_tooltip_text" text="{=str_tor_no_prisoners_to_sell_tooltip_text}You have no prisoners to sell."/>
   <string id="tor_at_war_tooltip_text" text="{=str_tor_at_war_tooltip_text}You are at war with this faction."/>
 
@@ -1727,6 +1729,7 @@
   <string id="tor_customsettlement_intro.chaos_portal_01" text="{=str_tor_customsettlement_intro_chaos_portal_01}You arrive at an active chaos portal. The vile thing pulses with arcane magic, chaos forces are invading in minor numbers from their realm." />
   <string id="tor_customsettlement_disabled.chaos_portal_01" text="{=str_tor_customsettlement_disabled_chaos_portal_01}The portal lies dormant. Come back at a later time." />
   <string id="tor_customsettlement_battle.chaos_portal_01" text="{=str_tor_customsettlement_battle_chaos_portal_01}Attempt to defeat the chaos forces present and close the portal." />
+  <string id="tor_settlement_arrival_town_other" text="{=str_tor_settlement_arrival_town_other}{SETTLEMENT_LINK} is governed by {LORD.LINK}, {FACTION_OFFICIAL} of the {FACTION_TERM}. {PROSPERITY_INFO} {MORALE_INFO} {ROR_INFO}"/>
 
   <string id="tor_customsettlement_intro.herdstone_01" text="{=str_tor_customsettlement_intro_herdstone_01}You arrive at a beastmen herdstone. A raging signal fire is lit to gather warbands to the warherd gathering here." />
   <string id="tor_customsettlement_disabled.herdstone_01" text="{=str_tor_customsettlement_disabled_herdstone_01}The herdstone camp is empty, come back at a later time." />
@@ -3220,7 +3223,7 @@
   <string id="tor_careerchoice_description.RuneWeaponsPassive4" text="{=str_tor_careerchoice_description_RuneWeaponsPassive4}Weapon swing speed increased by 15%." />
 
   <!-- Slayer Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.SlayerRoot" text="{=str_tor_careerchoice_description_SlayerRoot}For a limited time, the Slayer has a increased speed bonus and weapon speed bonus. The kills gained  during the ability, add a doom seeker stack which  permanently increasing the damage of the player. For every Keystone, the damage dealt bonus is increased by 0.05% \n \n The ability requires 500 damage to be charged. Every kill adds 100 additional charge. For every keystone(5th perk) you require 10% more damage. " />
+  <string id="tor_careerchoice_description.SlayerRoot" text="{=str_tor_careerchoice_description_SlayerRoot}For a limited time, the Slayer has a increased speed bonus and weapon speed bonus. The kills gained  during the ability, add a doom seeker stack which  permanently increasing the damage of the player. For every Keystone, the damage dealt bonus is increased by 0.05% \n \n The ability requires 500 damage to be charged. Every kill adds 100 additional charge. For every keystone(5th perk) you require 10% more damage." />
   <string id="tor_careerchoice_description.AxeOfGrimnirKeystone" text="{=str_tor_careerchoice_description_AxeOfGrimnirKeystone}Faith increases duration." />
   <string id="tor_careerchoice_description.AxeOfGrimnirPassive1" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive1}Increases Hitpoints by 25." />
   <string id="tor_careerchoice_description.AxeOfGrimnirPassive2" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive2}10% extra melee damage." />
@@ -4182,7 +4185,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_empire_prestigeNoble_influenceExplain.0" text="{=str_tor_empire_prestigenoble_influenceexplain_0}A diplomatic mission is set to leave for Ulthuan, but they fear they are lacking in gifts elegent enough to appease the knife ears... elves. Perhaps you could help them? ({INFLUENCE_COST} {INFLUENCE_ICON})" />
 	<string id="tor_empire_prestigeNoble_influenceExplain.1" text="{=str_tor_empire_prestigenoble_influenceexplain_1}It is with faith, steel and gunpowder that we protect the Empire and we need a lot of gunpowder. Cathay also also makes use of black powder and in a hope to bring our two peoples closer, the Trade Guild has sent an envoy to establish trade ties. Some Elector Counts are not convinced yet. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
 	<string id="tor_empire_prestigeNoble_influenceExplain.2" text="{=str_tor_empire_prestigenoble_influenceexplain_2}The wonders of the Engineers Guild are many but they are equally as costly to invent, test and so forth. Funding their experimental endeavours would earn you an ample amount of public opinion. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
-	<string id="tor_empire_prestigeNoble_influenceExplain.3" text="{=str_tor_empire_prestigenoble_influenceexplain_3}Beasts are myriad within the jungles of Lustria, the Huntsmen are set to go on a hunt soon but could use help acquiring provisions for such an arduous journey. ({INFLUENCE_COST} {INFLUENCE_ICON})" />	<string id="tor_empire_prestigeNoble_influenceOptionRepeatable" text="{=str_tor_empire_prestigenoble_influenceoptionrepeatable}[Enlarge your Influence throughout the Empire (Repeatable)] - this option disappears from the list if the player has under 25 influence" />
+	<string id="tor_empire_prestigeNoble_influenceExplain.3" text="{=str_tor_empire_prestigenoble_influenceexplain_3}Beasts are myriad within the jungles of Lustria, the Huntsmen are set to go on a hunt soon but could use help acquiring provisions for such an arduous journey. ({INFLUENCE_COST} {INFLUENCE_ICON})" />	<string id="tor_empire_prestigeNoble_influenceOptionRepeatable" text="{=str_tor_empire_prestigenoble_influenceoptionrepeatable}[Enlarge your Influence throughout the Empire (Repeatable)]" />
 	<string id="tor_empire_prestigeNoble_influencePay_p" text="{=str_tor_empire_prestigenoble_influencepay_p}This sounds good, I will support this. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
 	<string id="tor_empire_prestigeNoble_influenceRefuse_p" text="{=str_tor_empire_prestigenoble_influencerefuse_p}Not at this time, perhaps later." />
 	<string id="tor_empire_prestigeNoble_noInterestInfluence_p" text="{=str_tor_empire_prestigenoble_nointerestinfluence_p}Maybe something different.(back)" />
@@ -4336,6 +4339,10 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<!--UI Strings-->
 	<string id="tor_ui_artillery_title" text="{=str_tor_ui_artillery_title}Artillery"/>
 	<string id="tor_ui_artillery_amount" text="{=str_tor_ui_artillery_amount}Current Artillery Pieces in Inventory:"/>
+	<string id="tor_ui_artillery_max_deployable" text="{=str_tor_ui_artillery_max_deployable}Maximum Deployable Artillery Pieces:"/>
+	<string id="tor_ui_blessing_title" text="{=str_tor_ui_blessing_title}Blessing: "/>
+	<string id="tor_ui_blessing_duration" text="{=str_tor_ui_blessing_duration}Duration:"/>
+	<string id="tor_ui_blessing_effect" text="{=str_tor_ui_blessing_effect}Effect:"/>
 	<string id="tor_ui_winds_of_magic_title" text="{=str_tor_ui_winds_of_magic_title}Winds of Magic"/>
 	<string id="tor_ui_winds_of_magic_maximum" text="{=str_tor_ui_winds_of_magic_maximum}Maximum:"/>
 	<string id="tor_ui_winds_of_magic_recharge_rate" text="{=str_tor_ui_winds_of_magic_recharge_rate}Recharge Rate:"/>
@@ -4487,14 +4494,14 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_spellsinger_open_book" text="{=str_tor_spelltrainer_spellsinger_open_book}I seek further knowledge of Athel Loren's Magic."/>
 	<string id="tor_spelltrainer_spellsinger_close_book" text="{=str_tor_spelltrainer_spellsinger_close_book}A new facet of Ariel's infinite knowledge."/>
 	<string id="tor_spelltrainer_spellsinger_choices" text="{=str_tor_spelltrainer_spellsinger_choices}Is there more you seek? Speak your desires."/>
-	<string id="tor_spelltrainer_spellsinger_player_goodbye" text="{=str_tor_spelltrainer_spellsinger_player_goodbye}Ariel with you. "/>
+	<string id="tor_spelltrainer_spellsinger_player_goodbye" text="{=str_tor_spelltrainer_spellsinger_player_goodbye}Ariel with you."/>
 	<string id="tor_spelltrainer_spellsinger_goodbye" text="{=str_tor_spelltrainer_spellsinger_goodbye}May Ariel guide you on all your paths through her garden."/>
 	<string id="tor_spelltrainer_spellsinger_learnmagic" text="{=str_tor_spelltrainer_spellsinger_learnmagic}Greetings wise Spellsinger. I am seeking the capabilities of performing magic."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden}Greetings wise Spellsinger. I am seeking the capabilities of performing magic."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_answer" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_answer}Hm. You are not a spellsinger, yet I see your potential. If you are willing to show me how much you are bound to the forest. I am willing to teach you the first steps of the path of Ariel"/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_agree" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_agree}Yes I am."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_decline" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_decline}I have to think about this."/>
-	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_second_lore" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore} I want to enhance my magic capabilities."/>
+	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_second_lore" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore}I want to enhance my magic capabilities."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_second_lore_answer" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_second_lore_answer}You truely choose the path of Ariel. But the forest demand another tribute. Pay it and I will teach you more"/>
 	<string id="tor_spelltrainer_spellweaver" text="{=str_tor_spelltrainer_spellweaver}I want to become a spellweaver."/>
 	<string id="tor_spelltrainer_spellweaver_choice" text="{=str_tor_spelltrainer_spellweaver_choice}Let me choose."/>
@@ -4697,9 +4704,9 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_cc_origin_fallback_text" text="{=str_tor_cc_origin_fallback_text}Choose your family's background..."/>
 	<string id="tor_cc_origin_summary" text="{=str_tor_cc_origin_summary}Origin"/>
 	<string id="tor_cc_growth_summary" text="{=str_tor_cc_growth_summary}Growth"/>
-	<string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Choose your growth"/>
+	<string id="tor_cc_growth_fallback_text" text="{=str_tor_cc_growth_fallback_text}Teenage years..."/>
 	<string id="tor_cc_profession_summary" text="{=str_tor_cc_profession_summary}Profession"/>
-	<string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Choose your profession"/>
+	<string id="tor_cc_profession_fallback_text" text="{=str_tor_cc_profession_fallback_text}Your starting profession..."/>
 	<string id="tor_cc_specialization_title_generic" text="{=str_tor_cc_specialization_title_generic}Specialization"/>
 	<string id="tor_cc_specialization_desc_generic" text="{=str_tor_cc_specialization_desc_generic}Choose your specialization"/>
 	<string id="tor_cc_specialization_title_lore" text="{=str_tor_cc_specialization_title_lore}Choose Your Lore"/>
@@ -4833,7 +4840,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="eonir_empire_prestige_to_favor_ask_text" text="{=str_eonir_empire_prestige_to_favor_ask_text}I bring quality goods to trade and wish to build my reputation amongst the High Council. Are you interested?"/>
 	<string id="eonir_empire_favor_to_prestige_ask_text" text="{=str_eonir_empire_favor_to_prestige_ask_text}I find myself in need of quality goods to trade amongst the nobles of the Empire. Can you supply them?"/>
 	<string id="eonir_empire_peace_ask_text" text="{=str_eonir_empire_peace_ask_text}Our people need to make peace. What does it take to stop the war?"/>
-	<string id="eonir_empire_peace_offer_text" text="{=str_eonir_empire_peace_offer_text}The Empire and the Council should make peace."/>
+	<string id="eonir_empire_peace_offer_text" text="{=str_eonir_empire_peace_offer_text}The Empire and the Council should make peace. Your people, neither ours will do this without hesitantion ({PEACE_COSTS}{EONIR_FAVOR})"/>
 	<string id="eonir_empire_peace_cooldown_text" text="{=str_eonir_empire_peace_cooldown_text}My political power is limited. We became too demanding, you should ask another time"/>
 	<string id="eonir_empire_prestige_to_favor_offer_text" text="{=str_eonir_empire_prestige_to_favor_offer_text}Obviously your offering the empire can benefit the Council."/>
 	<string id="eonir_empire_prestige_to_favor_result_text" text="{=str_eonir_empire_prestige_to_favor_result_text}The trade has been completed."/>
@@ -4884,10 +4891,10 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_engineer_upgrade_3" text="{=str_tor_engineer_upgrade_3}For a final 500{PRESTIGE_ICON} I can finally stock up our gunpowder laboratory, which gives me the opportunity to procure grenades and cannons."/>
 	<string id="tor_engineer_upgrade_agree" text="{=str_tor_engineer_upgrade_agree}I hope it is worth it. I will support you on this (Spend 500{PRESTIGE_ICON})"/>
 	<string id="tor_engineer_upgrade_decline" text="{=str_tor_engineer_upgrade_decline}I can't afford such a venture."/>
-	<string id="tor_engineer_upgrade_1_response" text="{=str_tor_engineer_upgrade_1_response}Excellent choice."/>
-	<string id="tor_engineer_upgrade_2_response" text="{=str_tor_engineer_upgrade_2_response}A fine selection."/>
-	<string id="tor_engineer_upgrade_3_response" text="{=str_tor_engineer_upgrade_3_response}Very well."/>
-	<string id="tor_engineer_upgrade_decline_response" text="{=str_tor_engineer_upgrade_decline_response}Return when you have made your decision."/>
+	<string id="tor_engineer_upgrade_1_response" text="{=str_tor_engineer_upgrade_1_response}May these guns help you succeed in combat. Just do not shoot yourself in the foot with them."/>
+	<string id="tor_engineer_upgrade_2_response" text="{=str_tor_engineer_upgrade_2_response}It is said Meinkhopt checked the clicking sound of every repeater gun he made."/>
+	<string id="tor_engineer_upgrade_3_response" text="{=str_tor_engineer_upgrade_3_response}I love the smell of burning black powder in the morning."/>
+	<string id="tor_engineer_upgrade_decline_response" text="{=str_tor_engineer_upgrade_decline_response}What a shame. Is there anything else I can do?"/>
 
 	<!-- Spelltrainer Texts -->
 	<string id="tor_spelltrainer_spellsinger_reintro" text="{=str_tor_spelltrainer_spellsinger_reintro}Is there more you seek? Speak your desires"/>
@@ -4904,7 +4911,8 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_settlement_graveyard_raise_dead_action" text="{=str_tor_settlement_graveyard_raise_dead_action}Raise dead from the corpses in the ground (wait 8 hours)."/>
 	<string id="tor_settlement_graveyard_raise_dead_begin_text" text="{=str_tor_settlement_graveyard_raise_dead_begin_text}The common folk's graves are ripe for the taking! You spend time to raise corpses from the ground. Morr is going to be furious tonight!"/>
 	<string id="tor_settlement_graveyard_raise_dead_interrupt_action" text="{=str_tor_settlement_graveyard_raise_dead_interrupt_action}Defend yourself"/>
+	<string id="tor_settlement_graveyard_closed" text="{=str_tor_settlement_graveyard_closed}The Graveyard's massive iron gates are closed shut."/>
 
 	<!-- Other Missing Texts -->
-	<string id="ironingot6_name" text="{=str_ironingot6_name}Iron Ingot"/>
+	<string id="ironingot6_name" text="{=str_ironingot6_name}Gromril{@Plural}loads of gromril{\@}"/>
 </strings>

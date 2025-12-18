@@ -106,7 +106,7 @@ namespace TOR_Core.CharacterDevelopment
         //Warrior Priest of Ulric
         private CareerChoiceGroupObject _crusherOfTheWeak;
         private CareerChoiceGroupObject _wildPack;
-        private CareerChoiceGroupObject _teachingsOfTheWinterfather;
+        private CareerChoiceGroupObject _teachingsOfTheWinterFather;
         private CareerChoiceGroupObject _frostsBite;
         private CareerChoiceGroupObject _runesOfTheWhiteWolf;
         private CareerChoiceGroupObject _furyOfWar;
@@ -322,7 +322,7 @@ namespace TOR_Core.CharacterDevelopment
             //WarriorPriest of Ulric
             _crusherOfTheWeak = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_crusherOfTheWeak).UnderscoreFirstCharToUpper()));
             _wildPack = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_wildPack).UnderscoreFirstCharToUpper()));
-            _teachingsOfTheWinterfather = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_teachingsOfTheWinterfather).UnderscoreFirstCharToUpper()));
+            _teachingsOfTheWinterFather = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_teachingsOfTheWinterFather).UnderscoreFirstCharToUpper()));
             _frostsBite = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_frostsBite).UnderscoreFirstCharToUpper()));
             _runesOfTheWhiteWolf = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_runesOfTheWhiteWolf).UnderscoreFirstCharToUpper()));
             _furyOfWar = Game.Current.ObjectManager.RegisterPresumedObject(new CareerChoiceGroupObject(nameof(_furyOfWar).UnderscoreFirstCharToUpper()));
@@ -847,7 +847,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = string.Empty;
                 return true;
             });
-            _teachingsOfTheWinterfather.Initialize("Teachings of the Winterfather", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
+            _teachingsOfTheWinterFather.Initialize("Teachings of the Winterfather", TORCareers.WarriorPriestUlric, 2, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;

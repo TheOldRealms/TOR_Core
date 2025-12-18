@@ -102,8 +102,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             // Set description based on profession type
             if (IsSpellcaster(professionId))
             {
-                title = TORTextHelper.GetText("tor_cc_specialization_title_lore", "Choose Your Lore");
-                description = TORTextHelper.GetText("tor_cc_specialization_desc_lore", "As a spellcaster, you must choose a lore of magic to specialize in. This will determine which spells you can learn.");
+                title = TORTextHelper.GetText("tor_cc_specialization_title_lore", "Choose Your Lore of Magic…");
+                description = TORTextHelper.GetText("tor_cc_specialization_desc_lore", "The gift of Witchsight allows you to channel one of the eight Winds of Magic:");
             }
             else if (professionId == "option_3_vc_vampire" || professionId == "option_3_mousillon_vampire")
             {
@@ -112,8 +112,8 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
             }
             else if (professionId == "option_3_empire_priest_acolyte")
             {
-                title = TORTextHelper.GetText("tor_cc_specialization_title_god", "Choose Your God");
-                description = TORTextHelper.GetText("tor_cc_specialization_desc_god", "As a priest, you must choose which god you serve. This will determine your divine powers.");
+                title = TORTextHelper.GetText("tor_cc_specialization_title_god", "Choose Your Deity…");
+                description = TORTextHelper.GetText("tor_cc_specialization_desc_god", "All Warrior Priests serve one particular god:");
             }
             else if (professionId == "option_3_empire_knight")
             {

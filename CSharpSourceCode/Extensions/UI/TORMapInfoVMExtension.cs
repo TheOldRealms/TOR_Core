@@ -80,7 +80,7 @@ namespace TOR_Core.Extensions.UI
         {
             string artilleryTitle = TORTextHelper.GetText("tor_ui_artillery_title", "Artillery");
             string artilleryInventory = TORTextHelper.GetText("tor_ui_artillery_amount", "Current Artillery Pieces in Inventory:");
-            string artilleryDeployable = TORTextHelper.GetText("tor_ui_winds_of_magic_recharge_rate", "Maximum Deployable Artillery Pieces:");
+            string artilleryDeployable = TORTextHelper.GetText("tor_ui_artillery_max_deployable", "Maximum Deployable Artillery Pieces:");
 
             List<TooltipProperty> list =
             [
@@ -108,9 +108,9 @@ namespace TOR_Core.Extensions.UI
 
         private List<TooltipProperty> GetBlessingHintText()
         {
-            var blessingTitle = TORTextHelper.GetText("tor_ui_winds_of_magic_title", "Blessing: ");
-            var durationTitle = TORTextHelper.GetText("tor_ui_winds_of_magic_maximum", "Duration:");
-            var effect = TORTextHelper.GetText("tor_ui_winds_of_magic_recharge_rate", "Effect:");
+            var blessingTitle = TORTextHelper.GetText("tor_ui_blessing_title", "Blessing: ");
+            var durationTitle = TORTextHelper.GetText("tor_ui_blessing_duration", "Duration:");
+            var effect = TORTextHelper.GetText("tor_ui_blessing_effect", "Effect:");
 
             var list = new List<TooltipProperty>();
             if (Hero.MainHero.PartyBelongedTo == null) return list;

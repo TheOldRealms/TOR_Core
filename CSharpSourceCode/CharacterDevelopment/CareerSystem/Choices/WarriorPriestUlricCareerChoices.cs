@@ -146,7 +146,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationType = OperationType.Add
                     },
                 });
-            _teachingsOfTheWinterFatherKeystone.Initialize(CareerID, "The radius of the attack is increased by 1 meters. Faith counts towards ability", "TeachingsOfTheWinterfather", false,
+            _teachingsOfTheWinterFatherKeystone.Initialize(CareerID, "The radius of the attack is increased by 1 meters. Faith counts towards ability", "TeachingsOfTheWinterFather", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -223,10 +223,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _wildPackPassive3.Initialize(CareerID, "Player healing rate increased by 2", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.HealthRegeneration));
             _wildPackPassive4.Initialize(CareerID, "Party movement speed is increased by 1.", "WildPack", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
 
-            _teachingsOfTheWinterFatherPassive1.Initialize(CareerID, "Wounded troops in your party heal faster.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //more precise
-            _teachingsOfTheWinterFatherPassive2.Initialize(CareerID, "Praying at a shrine of ulric refills player health completely", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
-            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "Attacks deal bonus damage against shields.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null);
-            _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "TeachingsOfTheWinterfather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged,
+            _teachingsOfTheWinterFatherPassive1.Initialize(CareerID, "Wounded troops in your party heal faster.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //more precise
+            _teachingsOfTheWinterFatherPassive2.Initialize(CareerID, "Praying at a shrine of ulric refills player health completely", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
+            _teachingsOfTheWinterFatherPassive3.Initialize(CareerID, "Attacks deal bonus damage against shields.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null);
+            _teachingsOfTheWinterFatherPassive4.Initialize(CareerID, "Increases range damage resistance of melee troops by 20%.", "TeachingsOfTheWinterFather", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Ranged,
                 (attacker, victim, mask) => victim.BelongsToMainParty() && !(victim.IsMainAgent || victim.IsHero) && mask == AttackTypeMask.Melee));
 
             _frostsBitePassive1.Initialize(CareerID, "Extra frost damage (10%).", "FrostsBite", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Frost, 10), AttackTypeMask.Melee));
