@@ -300,7 +300,6 @@
   <string id="tor_inquiry_cancel_text" text="{=tor_inquiry_cancel_text}Cancel"/>
   <string id="tor_inquiry_confirm_text" text="{=tor_inquiry_confirm_text}Confirm"/>
   <string id="tor_inquiry_accept_text" text="{=tor_inquiry_accept_text}Accept"/>
-  <string id="tor_equipment_copied_text" text="{=tor_equipment_copied_text}Equipment items copied!"/>
   <string id="tor_item_added_to_inventory_text" text="{=tor_item_added_to_inventory_text}{ITEM_NAME} was added to the inventory"/>
   <string id="tor_not_enough_gold_text" text="{=tor_not_enough_gold_text}Not enough gold"/>
 
@@ -908,7 +907,6 @@
   
   
   <!--Rogue Engineer Quest-->
-  <string id="tor_engineer_quest_rogue_engineer_party" text= "{=str_tor_engineer_quest_rogue_engineer_party}{ROGUE_ENGINEER_NAME}s Part Thieves"/>
   <string id="tor_engineer_quest_rogue_engineer_first_time" text= "{=str_tor_engineer_quest_rogue_engineer_first_time}You have the look of someone who has never seen a speck of black powder nor grease. Are you in the right place?"/>
   <string id="tor_engineer_quest_cultist_done" text= "{=str_tor_engineer_quest_cultist_done}Ah, you have returned. What news do you bring?"/>
   <string id="tor_engineer_quest_cultist_in_progress" text= "{=str_tor_engineer_quest_cultist_in_progress}Come back when you have news."/>
@@ -926,9 +924,6 @@
   <string id="tor_engineer_quest_player_greet_0" text= "{=str_tor_engineer_quest_player_greet_0}Greetings Master Engineer, I am {PlAYERNAME}. I have come seeking access to the forges of Nuln. Can you help?"/>
   <string id="tor_engineer_quest_player_greet_1" text= "{=str_tor_engineer_quest_player_greet_1}I am, I have come seeking access to black powder weapons."/>
 
-  <string id="tor_engineer_quest_engineer_skill_check" text= "{=str_tor_engineer_quest_engineer_skill_check}Hah! You don't seem like a person with any knowledge of our crafts. What could you possibly need from us?"/>
-  <string id="tor_engineer_quest_engineer_skill_check_failed" text= "{=str_tor_engineer_quest_engineer_skill_check_failed}I am far too busy for this, leave my sight."/>
-  <string id="tor_engineer_quest_engineer_skill_check_passed" text= "{=str_tor_engineer_quest_engineer_skill_check_passed}These are the mightiest weapons of the Empire. The inventions of our Gunnery School are what held back the tide of darkness time and again. Normally we do not hand out our crafts to any who walks in, you have not earned our trust."/>
 
   <string id="tor_engineer_quest_cultist_briefing_0" text= "{=str_tor_engineer_quest_cultist_briefing_0}We may however be able to come to an agreement, there is an internal matter that needs urgent attention and I am unable to act. If you help us out, as a personal favour, I will see what I can do for you. What say you?"/>
   <string id="tor_engineer_quest_cultist_briefing_player" text= "{=str_tor_engineer_quest_cultist_briefing_player}What would you have me do?"/>
@@ -946,10 +941,6 @@
   <string id="tor_engineer_quest_cultist_reaction_positive" text= "{=str_tor_engineer_quest_cultist_reaction_positive}Good, I expect positive results and your hasty return."/>
   <string id="tor_engineer_quest_cultist_reaction_negative" text= "{=str_tor_engineer_quest_cultist_reaction_negative}A shame, think on it and return if you change your mind."/>
 
-  <string id="tor_engineer_quest_quest_fail" text= "{=str_tor_engineer_quest_quest_fail}I am afraid I have failed to bring what you ask."/>
-  <string id="tor_engineer_quest_quest_fail_answer" text= "{=str_tor_engineer_quest_quest_fail_answer}Tsk, I expected better. There may still be time, you can still track them if you are swift"/>
-  <string id="tor_engineer_quest_quest_repeat" text= "{=str_tor_engineer_quest_quest_repeat}I won't let you down a second time."/>
-  <string id="tor_engineer_quest_quest_giveup" text= "{=str_tor_engineer_quest_quest_giveup}I don't think I can do it at this time."/>
 
   <string id="tor_engineer_quest_cultist_return_0" text= "{=str_tor_engineer_quest_cultist_return_0}I have returned but without the stolen components, I am afraid to say they are still missing."/>
   <string id="tor_engineer_quest_cultist_return_1" text= "{=str_tor_engineer_quest_cultist_return_1}I see, this is not what I had hoped for. Were there any further clues, did you interrogate these scoundrels?"/>
@@ -4160,32 +4151,30 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<!-- Construction projects paid for with gold that are 1 time only -->
 	<string id="tor_empire_prestigeNoble_buildingAsk_p" text="{=str_tor_empire_prestigenoble_buildingask_p}I would like to invest in infrastructure, what are my options?" />
 	<string id="tor_empire_prestigeNoble_buildingProjectHub" text="{=str_tor_empire_prestigenoble_buildingprojecthub}An interesting choice, there are a number of projects slated for the future… but with the right amount of coin I can ensure you are known as the magnimonous benefactor behind their expedited construction." />
-	<string id="tor_empire_prestigeNoble_buildingOption0" text="{=str_tor_empire_prestigenoble_buildingoption0}[Dedicate a statue to Sigmar Heldenhammer]" />
-	<string id="tor_empire_prestigeNoble_buildingOption1" text="{=str_tor_empire_prestigenoble_buildingoption1}[Help fund the construction of a Temple of Shallya]" />
-	<string id="tor_empire_prestigeNoble_buildingOption2" text="{=str_tor_empire_prestigenoble_buildingoption2}[Construct a new dry dock]" />
-	<string id="tor_empire_prestigeNoble_buildingOption3" text="{=str_tor_empire_prestigenoble_buildingoption3}[Imperial Training Grounds]" />
-	<string id="tor_empire_prestigeNoble_buildingOption4" text="{=str_tor_empire_prestigenoble_buildingoption4}[Renovate the Heldenhammer]" />
-	<string id="tor_empire_prestigeNoble_buildingExplain0" text="{=str_tor_empire_prestigenoble_buildingexplain0}The Cult of Sigmar within Altdorf has ambitions to build a rather sizeable statue of our most glorious Sigmar upon a hill with a prestigous view of his beloved Empire. They are lacking in some funding to ensure it's timely completion, I can ensure your name is written upon such a wondrous memorial for a measly cost. ({BUILDING_COST} {GOLD_ICON}) - this can be formatted differently to read as something like 400K (gold icon) rather than 400000 (icon)" />
-	<string id="tor_empire_prestigeNoble_buildingExplain1" text="{=str_tor_empire_prestigenoble_buildingexplain1}There are many who suffer across the Empire and Shallya's priestesses are needed more than ever, however funding a Temple to the Lady in White is no small endeavour. You can be sure that, for a little coin, your name will be praised for generations for aiding in such a selfless act. ({BUILDING_COST} {GOLD_ICON})" />
-	<string id="tor_empire_prestigeNoble_buildingExplain2" text="{=str_tor_empire_prestigenoble_buildingexplain2}The threat we face from Norsca is ever present, the Elector Count of Nordland has called for the construction of a new dry dock to empower the Imperial Navy. It has already been funded by the local lords… however for a little extra I can ensure you are known as the prime contributor. ({BUILDING_COST} {GOLD_ICON})" />
-	<string id="tor_empire_prestigeNoble_buildingExplain3" text="{=str_tor_empire_prestigenoble_buildingexplain3}The forests and the hills of the Empire need constant patrols to ensure the safety of it's citizens, one of the local garrisons is in dire need of training equipment and you have an opportunity to provide it for them. ({BUILDING_COST} {GOLD_ICON})" />
-	<string id="tor_empire_prestigeNoble_buildingExplain4" text="{=str_tor_empire_prestigenoble_buildingexplain4}It takes a lot of coin to keep the mighty Heldenhammer afloat, the Grand Theogonist and the Cult of Sigmar will look very favourably upon any who donate to ensure it is battle ready at all times. ({BUILDING_COST} {GOLD_ICON})" />
-	<string id="tor_empire_prestigeNoble_buildingPay_p" text="{=str_tor_empire_prestigenoble_buildingpay_p}That sounds good, I will send you the funding. ({BUILDING_COST} {GOLD_ICON}) This can be reformated to seem less awkward with restating the cost - the player should see the npc's previous description on the left with this confirmation option on the right." />
+	<string id="tor_empire_prestigeNoble_buildingOption.0" text="{=str_tor_empire_prestigenoble_buildingoption_0}[Dedicate a statue to Sigmar Heldenhammer]" />
+	<string id="tor_empire_prestigeNoble_buildingOption.1" text="{=str_tor_empire_prestigenoble_buildingoption_1}[Help fund the construction of a Temple of Shallya]" />
+	<string id="tor_empire_prestigeNoble_buildingOption.2" text="{=str_tor_empire_prestigenoble_buildingoption_2}[Construct a new dry dock]" />
+	<string id="tor_empire_prestigeNoble_buildingOption.3" text="{=str_tor_empire_prestigenoble_buildingoption_3}[Imperial Training Grounds]" />
+	<string id="tor_empire_prestigeNoble_buildingOption.4" text="{=str_tor_empire_prestigenoble_buildingoption_4}[Renovate the Heldenhammer]" />
+	<string id="tor_empire_prestigeNoble_buildingExplain.0" text="{=str_tor_empire_prestigenoble_buildingexplain_0}The Cult of Sigmar within Altdorf has ambitions to build a rather sizeable statue of our most glorious Sigmar upon a hill with a prestigous view of his beloved Empire. They are lacking in some funding to ensure it's timely completion, I can ensure your name is written upon such a wondrous memorial for a measly cost. ({BUILDING_COST} {GOLD_ICON})" />
+	<string id="tor_empire_prestigeNoble_buildingExplain.1" text="{=str_tor_empire_prestigenoble_buildingexplain_1}There are many who suffer across the Empire and Shallya's priestesses are needed more than ever, however funding a Temple to the Lady in White is no small endeavour. You can be sure that, for a little coin, your name will be praised for generations for aiding in such a selfless act. ({BUILDING_COST} {GOLD_ICON})" />
+	<string id="tor_empire_prestigeNoble_buildingExplain.2" text="{=str_tor_empire_prestigenoble_buildingexplain_2}The threat we face from Norsca is ever present, the Elector Count of Nordland has called for the construction of a new dry dock to empower the Imperial Navy. It has already been funded by the local lords... however for a little extra I can ensure you are known as the prime contributor. ({BUILDING_COST} {GOLD_ICON})" />
+	<string id="tor_empire_prestigeNoble_buildingExplain.3" text="{=str_tor_empire_prestigenoble_buildingexplain_3}The forests and the hills of the Empire need constant patrols to ensure the safety of it's citizens, one of the local garrisons is in dire need of training equipment and you have an opportunity to provide it for them. ({BUILDING_COST} {GOLD_ICON})" />
+	<string id="tor_empire_prestigeNoble_buildingExplain.4" text="{=str_tor_empire_prestigenoble_buildingexplain_4}It takes a lot of coin to keep the mighty Heldenhammer afloat, the Grand Theogonist and the Cult of Sigmar will look very favourably upon any who donate to ensure it is battle ready at all times. ({BUILDING_COST} {GOLD_ICON})" />	<string id="tor_empire_prestigeNoble_buildingPay_p" text="{=str_tor_empire_prestigenoble_buildingpay_p}That sounds good, I will send you the funding. ({BUILDING_COST} {GOLD_ICON}) This can be reformated to seem less awkward with restating the cost - the player should see the npc's previous description on the left with this confirmation option on the right." />
 	<string id="tor_empire_prestigeNoble_buildingRefuse_p" text="{=str_tor_empire_prestigenoble_buildingrefuse_p}Not at this time, perhaps later." />
 	<string id="tor_empire_prestigeNoble_noInterestBuildings_p" text="{=str_tor_empire_prestigenoble_nointerestbuildings_p}Maybe something different.(back)" />
 	
 	<!-- Political projects that cost influence and are 1 time only except for last -->
 	<string id="tor_empire_prestigeNoble_influenceAsk_p" text="{=str_tor_empire_prestigenoble_influenceask_p}I have an interest in the many organisations of the Empire, are there any who I could aid?" />
 	<string id="tor_empire_prestigeNoble_influenceProjectHub" text="{=str_tor_empire_prestigenoble_influenceprojecthub}Many parties and organisations throught the empire need your support. Are you willing to provide them the power they need? - power is awkward here, the player is providing political support. They are swaying attention towards the various possibilities so that additional resources are diverted to them - power isn't an object to give." />
-	<string id="tor_empire_prestigeNoble_influenceOption0" text="{=str_tor_empire_prestigenoble_influenceoption0}[Find support for a diplomatic mission to Ulthuan to establish a new trade route.]" />
-	<string id="tor_empire_prestigeNoble_influenceOption1" text="{=str_tor_empire_prestigenoble_influenceoption1}[Support the Traders Guild envoy on a mission to establish gunpowder trade with Cathay]" />
-	<string id="tor_empire_prestigeNoble_influenceOption2" text="{=str_tor_empire_prestigenoble_influenceoption2}[[Support the Engineers Guild technological innovation.]" />
-	<string id="tor_empire_prestigeNoble_influenceOption3" text="{=str_tor_empire_prestigenoble_influenceoption3}[Help fund a Huntsmen Expedition to Lustria]" />
-	<string id="tor_empire_prestigeNoble_influenceOptionRepeatable" text="{=str_tor_empire_prestigenoble_influenceoptionrepeatable}[Enlarge your Influence throughout the Empire (Repeatable)] - this option disappears from the list if the player has under 25 influence" />
-	<string id="tor_empire_prestigeNoble_influenceExplain0" text="{=str_tor_empire_prestigenoble_influenceexplain0}A diplomatic mission is set to leave for Ulthuan, but they fear they are lacking in gifts elegent enough to appease the knife ears… elves. Perhaps you could help them? ({INFLUENCE_COST} {INFLUENCE_ICON})" />
-	<string id="tor_empire_prestigeNoble_influenceExplain1" text="{=str_tor_empire_prestigenoble_influenceexplain1}It is with faith, steel and gunpowder that we protect the Empire and we need a lot of gunpowder. Cathay also also makes use of black powder and in a hope to bring our two peoples closer, the Trade Guild has sent an envoy to establish trade ties. Some Elector Counts are not convinced yet. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
-	<string id="tor_empire_prestigeNoble_influenceExplain2" text="{=str_tor_empire_prestigenoble_influenceexplain2}The wonders of the Engineers Guild are many but they are equally as costly to invent, test and so forth. Funding their experimental endeavours would earn you an ample amount of public opinion. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
-	<string id="tor_empire_prestigeNoble_influenceExplain3" text="{=str_tor_empire_prestigenoble_influenceexplain3}Beasts are myriad within the jungles of Lustria, the Huntsmen are set to go on a hunt soon but could use help acquiring provisions for such an arduous journey. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
+	<string id="tor_empire_prestigeNoble_influenceOption.0" text="{=str_tor_empire_prestigenoble_influenceoption_0}[Find support for a diplomatic mission to Ulthuan to establish a new trade route.]" />
+	<string id="tor_empire_prestigeNoble_influenceOption.1" text="{=str_tor_empire_prestigenoble_influenceoption_1}[Support the Traders Guild envoy on a mission to establish gunpowder trade with Cathay]" />
+	<string id="tor_empire_prestigeNoble_influenceOption.2" text="{=str_tor_empire_prestigenoble_influenceoption_2}[Support the Engineers Guild technological innovation.]" />
+	<string id="tor_empire_prestigeNoble_influenceOption.3" text="{=str_tor_empire_prestigenoble_influenceoption_3}[Help fund a Huntsmen Expedition to Lustria]" />
+	<string id="tor_empire_prestigeNoble_influenceExplain.0" text="{=str_tor_empire_prestigenoble_influenceexplain_0}A diplomatic mission is set to leave for Ulthuan, but they fear they are lacking in gifts elegent enough to appease the knife ears... elves. Perhaps you could help them? ({INFLUENCE_COST} {INFLUENCE_ICON})" />
+	<string id="tor_empire_prestigeNoble_influenceExplain.1" text="{=str_tor_empire_prestigenoble_influenceexplain_1}It is with faith, steel and gunpowder that we protect the Empire and we need a lot of gunpowder. Cathay also also makes use of black powder and in a hope to bring our two peoples closer, the Trade Guild has sent an envoy to establish trade ties. Some Elector Counts are not convinced yet. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
+	<string id="tor_empire_prestigeNoble_influenceExplain.2" text="{=str_tor_empire_prestigenoble_influenceexplain_2}The wonders of the Engineers Guild are many but they are equally as costly to invent, test and so forth. Funding their experimental endeavours would earn you an ample amount of public opinion. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
+	<string id="tor_empire_prestigeNoble_influenceExplain.3" text="{=str_tor_empire_prestigenoble_influenceexplain_3}Beasts are myriad within the jungles of Lustria, the Huntsmen are set to go on a hunt soon but could use help acquiring provisions for such an arduous journey. ({INFLUENCE_COST} {INFLUENCE_ICON})" />	<string id="tor_empire_prestigeNoble_influenceOptionRepeatable" text="{=str_tor_empire_prestigenoble_influenceoptionrepeatable}[Enlarge your Influence throughout the Empire (Repeatable)] - this option disappears from the list if the player has under 25 influence" />
 	<string id="tor_empire_prestigeNoble_influencePay_p" text="{=str_tor_empire_prestigenoble_influencepay_p}This sounds good, I will support this. ({INFLUENCE_COST} {INFLUENCE_ICON})" />
 	<string id="tor_empire_prestigeNoble_influenceRefuse_p" text="{=str_tor_empire_prestigenoble_influencerefuse_p}Not at this time, perhaps later." />
 	<string id="tor_empire_prestigeNoble_noInterestInfluence_p" text="{=str_tor_empire_prestigenoble_nointerestinfluence_p}Maybe something different.(back)" />
@@ -4194,19 +4183,15 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<!-- Greenskin Brawl Mechanic -->
 	<string id="tor_greenskin_brawl_start" text="{=str_tor_greenskin_brawl_start}Start a brawl" />
 	<string id="tor_greenskin_brawl_intro" text="{=str_tor_greenskin_brawl_intro}Time to prove who's da biggest an' strongest! You ready for a proper scrap?" />
-	<string id="tor_greenskin_brawl_victory_title" text="{=str_tor_greenskin_brawl_victory_title}Brawl Victory!" />
 	<string id="tor_greenskin_brawl_victory_desc" text="{=str_tor_greenskin_brawl_victory_desc}You have won the brawl! The crowd cheers your victory. {newline} {BRAWL_RESULT}" />
 	<string id="tor_greenskin_brawl_victory_reward" text="{=str_tor_greenskin_brawl_victory_reward}You earned {GOLD_REWARD} shinies, {RENOWN_REWARD} renown, and {TEEF_REWARD}{CR_ICON} from your brawl!{TROOP_REWARD}" />
 	<string id="tor_greenskin_brawl_victory_troops" text="{=str_tor_greenskin_brawl_victory_troops}Some of the Greenskins were quite impressed. They join you.{POUCHED_TROOPS}" />
 	<string id="tor_greenskin_brawl_victory_accept" text="{=str_tor_greenskin_brawl_victory_accept}Claim your prize" />
-	<string id="tor_greenskin_brawl_defeat_title" text="{=str_tor_greenskin_brawl_defeat_title}Brawl Defeat" />
 	<string id="tor_greenskin_brawl_defeat_desc" text="{=str_tor_greenskin_brawl_defeat_desc}You lost {GOLD_LOSS} shinies and {TEEF_LOSS}{CR_ICON} due to your defeat." />
 	<string id="tor_greenskin_brawl_defeat_accept" text="{=str_tor_greenskin_brawl_defeat_accept}Accept your defeat" />
-	<string id="tor_greenskin_brawl_cooldown" text="{=str_tor_greenskin_brawl_cooldown}You can start another brawl in {COOLDOWN_DAYS} days" />
 	<string id="tor_greenskin_brawl_disabled" text="{=str_tor_greenskin_brawl_disabled}You need to wait at least {COOLDOWN_DAYS} days" />
 	<!-- Goblin Recruitment Mechanic -->
 	<string id="tor_goblin_recruitment_start" text="{=str_tor_goblin_recruitment_start}Look for goblins" />
-	<string id="tor_goblin_recruitment_waiting" text="{=str_tor_goblin_recruitment_waiting}You start looking around for goblins to recruit…" />
 	<string id="tor_goblin_recruitment_no_goblins" text="{=str_tor_goblin_recruitment_no_goblins}No goblins found after searching…" />
 	<string id="tor_goblin_encounter_desc" text="{=str_tor_goblin_encounter_desc}You found a group of goblins! They notice your presence and are deciding whether to submit or fight…" />
 	<string id="tor_goblin_encounter_continue" text="{=str_tor_goblin_encounter_continue}Continue" />
@@ -4235,13 +4220,6 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_greenskin_duel_decline_cooldown" text="{=str_tor_greenskin_duel_decline_cooldown}Oi! We already had a good scrap recently! Give it {COOLDOWN_DAYS} more days before we krump again, ya git!" />
 
 	<!-- Duel System - Blood Knight -->
-	<string id="tor_bloodknight_duel_challenge" text="{=str_tor_bloodknight_duel_challenge}I challenge you to a duel of honor." />
-	<string id="tor_bloodknight_duel_accept" text="{=str_tor_bloodknight_duel_accept}I accept your challenge. What manner of combat do you propose?" />
-	<string id="tor_bloodknight_duel_decline" text="{=str_tor_bloodknight_duel_decline}I have no interest in crossing blades with you." />
-	<string id="tor_bloodknight_duel_decline_cooldown" text="{=str_tor_bloodknight_duel_decline_cooldown}Our recent combat is still fresh in my memory. Honor demands we wait {COOLDOWN_DAYS} more days before we test our blades again." />	
- <string id="tor_bloodknight_duel_type_honor" text="{=str_tor_bloodknight_duel_type_honor}A duel of honor - just you and me." />
-	<string id="tor_bloodknight_duel_type_troop" text="{=str_tor_bloodknight_duel_type_troop}I wish to test myself against your finest warriors." />
-	<string id="tor_bloodknight_duel_start" text="{=str_tor_bloodknight_duel_start}Then let us begin this dance of death." />
 
 	<!-- Duel Menu -->
 	<string id="tor_duel_start_combat" text="{=str_tor_duel_start_combat}Begin the duel!" />
@@ -4381,26 +4359,36 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_career_button_mercenary_wrong_culture" text="{=str_tor_career_button_mercenary_wrong_culture}Troop must be of your culture."/>
 
 	<!--Cursed Site Menus-->
-	<string id="tor_custom_settlement_cursed_site_ghosts_progress" text="{=str_tor_custom_settlement_cursed_site_ghosts_progress}Performing binding ritual..."/>
-	<string id="tor_custom_settlement_cursed_site_ghosts_result" text="{=str_tor_custom_settlement_cursed_site_ghosts_result}You successfully bind {GHOST_RESULT_NUMBER} spirits to your command."/>
 	<string id="tor_custom_settlement_cursed_site_not_enough_free_slots" text="{=str_tor_custom_settlement_cursed_site_not_enough_free_slots}You have not enough space in your party."/>
 	<string id="tor_custom_settlement_cursed_site_not_necromancer" text="{=str_tor_custom_settlement_cursed_site_not_necromancer}You are not a practitioner of necromancy."/>
 	<string id="tor_custom_settlement_cursed_site_once_a_day" text="{=str_tor_custom_settlement_cursed_site_once_a_day}You can only perform this action once a day."/>
 	<string id="tor_custom_settlement_cursed_site_purify_fail" text="{=str_tor_custom_settlement_cursed_site_purify_fail}You need at least 10 healthy party members to perform the ritual."/>
-	<string id="tor_custom_settlement_cursed_site_purify_progress" text="{=str_tor_custom_settlement_cursed_site_purify_progress}Performing purification ritual..."/>
-	<string id="tor_custom_settlement_cursed_site_purify_success" text="{=str_tor_custom_settlement_cursed_site_purify_success}Your party succeeds in placing seals and wards around the area dampening the effects of the curse. You estimate the wards will hold for {PURIFICATION_DURATION} hours."/>
-	<string id="tor_custom_settlement_cursed_site_purify_text" text="{=str_tor_custom_settlement_cursed_site_purify_text}Perform a ritual of warding in the name of {GOD_NAME}."/>
-	<string id="tor_custom_settlement_cursed_site_purify_wounded_result" text="{=str_tor_custom_settlement_cursed_site_purify_wounded_result}Staying in the cursed area while performing the ritual has taken a toll on your men. {PURIFICATION_WOUNDED_RESULT_NUMBER} of your party members have become wounded."/>
 	<string id="tor_custom_settlement_cursed_site_ward" text="{=str_tor_custom_settlement_cursed_site_ward}Currently there are wards in place holding back the malevolent energies of the curse. The wards will hold for {CURSEDSITE_WARDHOURS} hours more"/>
 	<string id="tor_custom_settlement_cursed_site_no_undead" text="{=str_tor_custom_settlement_cursed_site_no_undead}There are no undead in your party."/>
 	<string id="tor_custom_settlement_cursed_site_not_enough_dark_energy" text="{=str_tor_custom_settlement_cursed_site_not_enough_dark_energy}You do not have enough Dark Energy ({DARKENERGYICON})."/>
-
+	<string id="tor_custom_settlement_menu_cursed_site_ghost" text="{=str_tor_custom_settlement_menu_cursed_site_ghost}Tap into the congealed essence of Dark Magic and bind some wraiths to your will." />
+	<string id="tor_custom_settlement_menu_cursed_site_empower" text="{=str_tor_custom_settlement_menu_cursed_site_empower}Empower your undead minions using Dark Energy (100{DARKENERGYICON})." />
+	<string id="tor_custom_settlement_menu_leave" text="{=str_tor_custom_settlement_menu_leave}Leave..." />
+	<string id="tor_custom_settlement_menu_continue" text="{=str_tor_custom_settlement_menu_continue}Continue" />
+	<string id="tor_custom_settlement_cursed_site_purify_progress" text="{=str_tor_custom_settlement_cursed_site_purify_progress}Performing purification ritual..." />
+	<string id="tor_custom_settlement_cursed_site_ghosts_progress" text="{=str_tor_custom_settlement_cursed_site_ghosts_progress}Performing binding ritual..." />
+	<string id="tor_custom_settlement_cursed_site_empower_progress" text="{=str_tor_custom_settlement_cursed_site_empower_progress}Empowering your minions..." />
+	<string id="tor_custom_settlement_cursed_site_purify_text" text="{=str_tor_custom_settlement_cursed_site_purify_text}Perform a ritual of warding in the name of {GOD_NAME}." />
+	<string id="tor_custom_settlement_cursed_site_purify_success" text="{=str_tor_custom_settlement_cursed_site_purify_success}Your party succeeds in placing seals and wards around the area dampening the effects of the curse. You estimate the wards will hold for {PURIFICATION_DURATION} hours." />
+	<string id="tor_custom_settlement_cursed_site_purify_wounded_result" text="{=str_tor_custom_settlement_cursed_site_purify_wounded_result}Staying in the cursed area while performing the ritual has taken a toll on your men. {PURIFICATION_WOUNDED_RESULT_NUMBER} of your party members have become wounded." />
+	<string id="tor_custom_settlement_cursed_site_ghosts_result" text="{=str_tor_custom_settlement_cursed_site_ghosts_result}You successfully bind {GHOST_RESULT_NUMBER} spirits to your command." />
+	<string id="tor_custom_settlement_shrine_offering_label" text="{=str_tor_custom_settlement_shrine_offering_label}Give items as an offering" />
+	<string id="tor_custom_settlement_shrine_greenskin_own" text="{=str_tor_custom_settlement_shrine_greenskin_own}You can't loot your own shrine, ya git!" />
+	<string id="tor_custom_settlement_shrine_undead_no_pray" text="{=str_tor_custom_settlement_shrine_undead_no_pray}The undead do not commune with the gods." />
+	<string id="tor_custom_settlement_shrine_wrong_culture" text="{=str_tor_custom_settlement_shrine_wrong_culture}This shrine is not meant for your kind." />
+	<string id="tor_custom_settlement_shrine_vampire_no_donate" text="{=str_tor_custom_settlement_shrine_vampire_no_donate}The undead do not make offerings to the gods." />
+	<string id="tor_custom_settlement_shrine_no_donate_affinity" text="{=str_tor_custom_settlement_shrine_no_donate_affinity}You do not honor the gods through offerings." />
+	<string id="tor_custom_settlement_shrine_wrong_culture_donate" text="{=str_tor_custom_settlement_shrine_wrong_culture_donate}You cannot make offerings at a shrine not meant for your kind." />
+	<string id="tor_custom_settlement_shrine_pray_result" text="{=str_tor_custom_settlement_shrine_pray_result}You received the blessing of {GOD_NAME}." />
+	<string id="tor_custom_settlement_shrine_follower_result" text="{=str_tor_custom_settlement_shrine_follower_result}Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party." />
 	<!--Shrine Menus-->
 	<string id="tor_custom_settlement_donation_perk_info" text="{=str_tor_custom_settlement_donation_perk_info}You need the Offering perk in the Faith skill line to perform this action."/>
 	<string id="tor_custom_settlement_shrine_blessing_already_active" text="{=str_tor_custom_settlement_shrine_blessing_already_active}You devoted your live to {CAREERGOD_NAME}. You can't pray here."/>
-	<string id="tor_custom_settlement_shrine_follower_result" text="{=str_tor_custom_settlement_shrine_follower_result}Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party."/>
-	<string id="tor_custom_settlement_shrine_offering_label" text="{=str_tor_custom_settlement_shrine_offering_label}Give items as an offering"/>
-	<string id="tor_custom_settlement_shrine_pray_result" text="{=str_tor_custom_settlement_shrine_pray_result}You received the blessing of {GOD_NAME}."/>
 	<string id="tor_custom_settlement_shrine_pray_text" text="{=str_tor_custom_settlement_shrine_pray_text}Pray to receive the blessing of {GOD_NAME}"/>
 	<string id="tor_shrine_defile_option" text="{=str_tor_shrine_defile_option}Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this."/>
 	<string id="tor_shrine_loot_option" text="{=str_tor_shrine_loot_option}Loot the Shrine for resources. Followers of {GOD_NAME} will remember this."/>

@@ -32,8 +32,8 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         starter.AddGameMenuOption("shrine_menu", "pray", "{PRAY_TEXT}", PrayCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_praying"));
         starter.AddGameMenuOption("shrine_menu", "defile", TORTextHelper.GetText("tor_shrine_defile_option", "Defile the Shrine for Dark Energy. Followers of {GOD_NAME} will remember this."), DefileCondtion, (args) => GameMenu.SwitchToMenu("shrine_menu_defiling"));
         starter.AddGameMenuOption("shrine_menu", "loot", TORTextHelper.GetText("tor_shrine_loot_option", "Loot the Shrine for resources. Followers of {GOD_NAME} will remember this."), LootCondition, (args) => GameMenu.SwitchToMenu("shrine_menu_looting"));
-        starter.AddGameMenuOption("shrine_menu", "donate", "{=str_tor_custom_settlement_shrine_offering_label}Give items as an offering", DonationCondition, (args) => InventoryScreenHelper.OpenScreenAsInventory());//the xp calculation is performed in ReligionCampaignBehavior.OnItemsDiscarded
-        starter.AddGameMenuOption("shrine_menu", "leave", "{tor_custom_settlement_menu_leave_str}Leave...", delegate (MenuCallbackArgs args)
+        starter.AddGameMenuOption("shrine_menu", "donate", TORTextHelper.GetText("tor_custom_settlement_shrine_offering_label", "Give items as an offering"), DonationCondition, (args) => InventoryScreenHelper.OpenScreenAsInventory());//the xp calculation is performed in ReligionCampaignBehavior.OnItemsDiscarded
+        starter.AddGameMenuOption("shrine_menu", "leave", TORTextHelper.GetText("tor_custom_settlement_menu_leave", "Leave..."), delegate (MenuCallbackArgs args)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Leave;
             return true;
@@ -182,7 +182,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
     {
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return;
-        var text = component.IsActive ? GameTexts.FindText("tor_customsettlement_intro", settlement.StringId) : GameTexts.FindText("tor_customsettlement_disabled", settlement.StringId);
+        var text = component.IsActive ? TORTextHelper.GetTextObject("tor_customsettlement_intro", settlement.StringId, "A shrine.", skipValidation: true) : TORTextHelper.GetTextObject("tor_customsettlement_disabled", settlement.StringId, "This shrine is currently inactive.", skipValidation: true);
         if (component.Religion != null) MBTextManager.SetTextVariable("RELIGION_LINK", component.Religion.EncyclopediaLinkWithName);
         MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
@@ -193,7 +193,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return false;
         args.optionLeaveType = GameMenuOption.LeaveType.ShowMercy;
-        var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
+        var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
         MBTextManager.SetTextVariable("PRAY_TEXT", TORTextHelper.GetTextObject("tor_custom_settlement_shrine_pray_text", "Pray to receive the blessing of {GOD_NAME}"));
 
@@ -285,7 +285,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
     {
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return;
-        var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
+        var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
         MBTextManager.SetTextVariable("DEFILE_AMOUNT", DefilingDarkEnergyPerTick * 4);
     }
@@ -306,7 +306,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return;
-        var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
+        var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
 
         // Fire shrine looted event
@@ -565,15 +565,15 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
     {
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as ShrineComponent;
-        var godName = GameTexts.FindText("tor_religion_name_of_god", component.Religion.StringId);
+        var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
-        MBTextManager.SetTextVariable("PRAY_RESULT", "{=str_tor_custom_settlement_shrine_pray_result}You received the blessing of {GOD_NAME}.");
+        MBTextManager.SetTextVariable("PRAY_RESULT", TORTextHelper.GetTextObject("tor_custom_settlement_shrine_pray_result", "You received the blessing of {GOD_NAME}."));
         if (numberOfTroopsFromInteraction > 0)
         {
             var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
             MBTextManager.SetTextVariable("FOLLOWER_RESULT_NUMBER", numberOfTroopsFromInteraction.ToString());
             MBTextManager.SetTextVariable("FOLLOWER_RESULT_TROOP", troop.EncyclopediaLinkWithName);
-            MBTextManager.SetTextVariable("FOLLOWERS_RESULT", "{=str_tor_custom_settlement_shrine_follower_result}Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party.");
+            MBTextManager.SetTextVariable("FOLLOWERS_RESULT", TORTextHelper.GetTextObject("tor_custom_settlement_shrine_follower_result", "Witnessing your prayers have inspired {FOLLOWER_RESULT_NUMBER} {FOLLOWER_RESULT_TROOP} to join your party."));
             numberOfTroopsFromInteraction = 0;
         }
     }
