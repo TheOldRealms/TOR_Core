@@ -126,7 +126,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "KnightlyStrike",
                     PropertyName = "ScaleVariable1",
-                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0034f),
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.OneHanded, DefaultSkills.TwoHanded, DefaultSkills.Polearm }, 0.0034f),
                     MutationType = OperationType.Add
                 }
             }, new CareerChoiceObject.PassiveEffect());
@@ -144,7 +144,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                     MutationTargetType = typeof(AbilityTemplate),
                     MutationTargetOriginalId = "KnightlyStrike",
                     PropertyName = "Duration",
-                    PropertyValue = (choice, originalValue, agent) => 0.2f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Riding }, 0.02f),
+                    PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Riding }, 0.02f),
                     MutationType = OperationType.Add
                 }
             });
