@@ -38,7 +38,17 @@ public class KnightlyStrikeHitScript : BaseWeaponHitScript
 
         if (weaponComponent != null)
         {
-            weaponComponent.RemoveTraitFromWieldedWeapon("KnightlyStrike");
+            //remove all trait ids that could be added
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knightlystrike");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knightlystrike_cleave");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knightlystrike_extra_damage");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knightlystrike_extra_armorpen");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knight_religion_default");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knight_religion_sigmar");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knight_religion_ulric");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knight_religion_taal");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knight_religion_manaan");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_knight_religion_shallya");
         }
     }
 }

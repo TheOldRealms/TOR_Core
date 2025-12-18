@@ -62,7 +62,7 @@ namespace TOR_Core.AbilitySystem
                     || Hero.MainHero.HasCareerChoice("WellspringOfDharKeystone")
                     || Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone")
                     || Hero.MainHero.HasCareerChoice("ArielsBlessingKeystone")
-                    || Hero.MainHero.HasCareerChoice("SecularOrdersKeystone")
+                    || Hero.MainHero.HasCareerChoice("PathOfConquestKeystone")
                     || Hero.MainHero.HasCareerChoice("TunnelWatchKeystone")
                     || Hero.MainHero.HasCareerChoice("GiantSlayerKeystone")
                     || Hero.MainHero.HasCareerChoice("WardenOfCythralKeystone")

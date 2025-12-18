@@ -12,11 +12,9 @@ namespace TOR_Core.AbilitySystem.Scripts
 {
     public class KnightlyStrike : CareerAbilityScript
     {
-        protected override void OnAfterTick(float dt)
+        protected override void OnInit()
         {
-            base.OnAfterTick(dt);
-            
-            var duration = this.Ability.Template.Duration; // is this the modified Duration?
+             var duration = this.Ability.Template.Duration; // is this the modified Duration?
 
             float additionalLoads = Hero.MainHero.GetAllCareerChoices().WhereQ(x => x.Contains("Keystone")).Count();
 
@@ -27,7 +25,29 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             var traitList = new List<ItemTrait>();
             
+            if (Hero.MainHero.HasCareerChoice("PathOfGloryKeystone"))
+            {
+                var cleaveTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_cleave");
+                if (cleaveTrait != null && cleaveTrait != ItemTrait.Invalid) traitList.Add(cleaveTrait);
+            }
             
+            if (Hero.MainHero.HasCareerChoice("SquiresKeystone"))
+            {
+                var damagetrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_extra_damage");
+                if (damagetrait != null && damagetrait != ItemTrait.Invalid) traitList.Add(damagetrait);
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("WrathAgainstChaosKeystone"))
+            {
+                var armorPenTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_extra_armorpen");
+                if (armorPenTrait != null && armorPenTrait != ItemTrait.Invalid) traitList.Add(armorPenTrait);
+            }
+            
+            if (Hero.MainHero.HasCareerChoice("PathOfVigilanceKeystone"))
+            {
+                var armorPenTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_extra_armorpen");
+                if (armorPenTrait != null && armorPenTrait != ItemTrait.Invalid) traitList.Add(armorPenTrait);
+            }
 
             if (Hero.MainHero.HasCareerChoice("PathOfGloryKeystone"))
             {
@@ -37,9 +57,6 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             var knightlytrait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_knightlystrike");
             
-            
-            
-            
             if (knightlytrait != null) traitList.Add(knightlytrait);
 
             CasterAgent.ApplyStatusEffect("knightly_strike", CasterAgent, duration, false, false, true);
@@ -48,7 +65,16 @@ namespace TOR_Core.AbilitySystem.Scripts
                 CasterAgent.ApplyStatusEffect("knightly_strike", CasterAgent, duration, false, false, true);
             }
             
-            
+            var comp = CasterAgent.GetComponent<ItemTraitAgentComponent>();
+            if (comp != null)
+            {
+                foreach (var trait in traitList)
+                {
+                    comp.AddTraitToWieldedWeapon(trait, duration);
+                }
+            }
         }
+        
+
     }
 }

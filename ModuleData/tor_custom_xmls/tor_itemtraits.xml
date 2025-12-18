@@ -4541,12 +4541,21 @@
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.KnightlyStrikeHitScript" />
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_knightlystrike_cleave" ItemTraitName="Knightly Strike Cleave" IsCraftable="" IconName="">
+  <ItemTrait ItemTraitStringId="ca_knightlystrike_cleave" ItemTraitName="Knightly Strike Cleave" IsCraftable="false" IconName="">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
   </ItemTrait>
-  <ItemTrait ItemTraitStringId="ca_knightlystrike_extra_damage" ItemTraitName="Knightly Strike Extra" IsCraftable="false" IconName="winds_icon_45">
+  <ItemTrait ItemTraitStringId="ca_knightlystrike_swing_speed" ItemTraitName="Knightly Strike Swingspeed" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Charge your weapon with knightly power</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Physical" Percent="0.10" />
+    <StatsTuple StatType="SwingSpeed" Value="20" />
+    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_knightlystrike_extra_damage" ItemTraitName="Knightly Strike Extradamage" IsCraftable="false" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
