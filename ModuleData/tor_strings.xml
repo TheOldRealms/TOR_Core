@@ -3157,34 +3157,34 @@
   <string id="tor_careerchoice_description.SecularOrdersPassive3" text="{=str_tor_careerchoice_description_SecularOrdersPassive3}All Knight troops wages are reduced by 25%." />
   <string id="tor_careerchoice_description.SecularOrdersPassive4" text="{=str_tor_careerchoice_description_SecularOrdersPassive4}Secular Seals can be applied on any Knight unit" />
   <string id="tor_careerchoice_description.PathOfConquestKeystone" text="{=str_tor_careerchoice_description_PathOfConquestKeystone}Adds cleaving attacks for ability. Ability scales with Two handed weapon skill" />
-  <string id="tor_careerchoice_description.PathOfConquestPassive1" text="{=str_tor_careerchoice_description_PathOfConquestPassive1}Extra melee damage (10%)." />
-  <string id="tor_careerchoice_description.PathOfConquestPassive2" text="{=str_tor_careerchoice_description_PathOfConquestPassive2}Party movement speed is increased by 2." />
+  <string id="tor_careerchoice_description.PathOfConquestPassive1" text="{=str_tor_careerchoice_description_PathOfConquestPassive1}Extra melee damage (5%)." />
+  <string id="tor_careerchoice_description.PathOfConquestPassive2" text="{=str_tor_careerchoice_description_PathOfConquestPassive2}Party movement speed is increased by 1." />
   <string id="tor_careerchoice_description.PathOfConquestPassive3" text="{=str_tor_careerchoice_description_PathOfConquestPassive3}Horse charge damage is increased by 40%." />
   <string id="tor_careerchoice_description.PathOfConquestPassive4" text="{=str_tor_careerchoice_description_PathOfConquestPassive4}All Knight troops receive 30 bonus points in their Polearm skill." />
   <string id="tor_careerchoice_description.SquiresKeystone" text="{=str_tor_careerchoice_description_SquiresKeystone}Ability scales with riding. Companions charge ability." />
-  <string id="tor_careerchoice_description.SquiresPassive1" text="{=str_tor_careerchoice_description_SquiresPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.SquiresPassive1" text="{=str_tor_careerchoice_description_SquiresPassive1}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.SquiresPassive2" text="{=str_tor_careerchoice_description_SquiresPassive2}All Knight troops wages are reduced by 25%." />
   <string id="tor_careerchoice_description.SquiresPassive3" text="{=str_tor_careerchoice_description_SquiresPassive3}Wounded troops in your party heal faster." />
   <string id="tor_careerchoice_description.SquiresPassive4" text="{=str_tor_careerchoice_description_SquiresPassive4}Battles against non-humans provide 100% prestige gain." />
   <string id="tor_careerchoice_description.TemplarOrdersKeystone" text="{=str_tor_careerchoice_description_TemplarOrdersKeystone}2 additional charges. Ability scales with Faith. Reduce base cooldown by 15 seconds" />
-  <string id="tor_careerchoice_description.TemplarOrdersPassive1" text="{=str_tor_careerchoice_description_TemplarOrdersPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive1" text="{=str_tor_careerchoice_description_TemplarOrdersPassive1}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.TemplarOrdersPassive2" text="{=str_tor_careerchoice_description_TemplarOrdersPassive2}kills add faith skill." />
-  <string id="tor_careerchoice_description.TemplarOrdersPassive3" text="{=str_tor_careerchoice_description_TemplarOrdersPassive3}Having matching knights of deity increase their damage by 20%" />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive3" text="{=str_tor_careerchoice_description_TemplarOrdersPassive3}Having matching knights of deity increase their damage by 15%" />
   <string id="tor_careerchoice_description.TemplarOrdersPassive4" text="{=str_tor_careerchoice_description_TemplarOrdersPassive4}Bonus damage against undead" />
   <string id="tor_careerchoice_description.PathOfVigilanceKeystone" text="{=str_tor_careerchoice_description_PathOfVigilanceKeystone}Couched Lance attacks are not removing loads. Ability scales with polearm" />
   <string id="tor_careerchoice_description.PathOfVigilancePassive1" text="{=str_tor_careerchoice_description_PathOfVigilancePassive1}50% additional Hitpoints for the player's mount." />
-  <string id="tor_careerchoice_description.PathOfVigilancePassive2" text="{=str_tor_careerchoice_description_PathOfVigilancePassive2}Gain 15% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.PathOfVigilancePassive2" text="{=str_tor_careerchoice_description_PathOfVigilancePassive2}Gain 6% physical resistance to melee and ranged attacks." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive3" text="{=str_tor_careerchoice_description_PathOfVigilancePassive3}Hits below 15 damage do not stagger the player." />
-  <string id="tor_careerchoice_description.PathOfVigilancePassive4" text="{=str_tor_careerchoice_description_PathOfVigilancePassive4}Wielding a shield increases wardsave." />
+  <string id="tor_careerchoice_description.PathOfVigilancePassive4" text="{=str_tor_careerchoice_description_PathOfVigilancePassive4}Wielding a shield increases wardsave by 15%." />
   <string id="tor_careerchoice_description.WrathAgainstChaosKeystone" text="{=str_tor_careerchoice_description_WrathAgainstChaosKeystone}Every discharge hit adds a 25% Wardsave for 5 seconds. Ability charging is 20% more efficient" />
   <string id="tor_careerchoice_description.WrathAgainstChaosPassive1" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive1}All units deal more damage against chaos." />
-  <string id="tor_careerchoice_description.WrathAgainstChaosPassive2" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive2}Gain 35% Magic Resistance." />
-  <string id="tor_careerchoice_description.WrathAgainstChaosPassive3" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive3}Weapon swing speed increased by 15%." />
-  <string id="tor_careerchoice_description.WrathAgainstChaosPassive4" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive4}Extra 25% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive2" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive2}Gain 15% Magic Resistance." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive3" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive3}Weapon swing speed increased by 10%." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive4" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive4}Extra 10% armor penetration of melee attacks." />
   <string id="tor_careerchoice_description.PathOfGloryKeystone" text="{=str_tor_careerchoice_description_PathOfGloryKeystone}Adds a Deity based weapon effect or 20% extra physical damage." />
-  <string id="tor_careerchoice_description.PathOfGloryPassive1" text="{=str_tor_careerchoice_description_PathOfGloryPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.PathOfGloryPassive1" text="{=str_tor_careerchoice_description_PathOfGloryPassive1}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.PathOfGloryPassive2" text="{=str_tor_careerchoice_description_PathOfGloryPassive2}10% Ward save for all knight units." />
-  <string id="tor_careerchoice_description.PathOfGloryPassive3" text="{=str_tor_careerchoice_description_PathOfGloryPassive3}Gain 15% Ward save." />
+  <string id="tor_careerchoice_description.PathOfGloryPassive3" text="{=str_tor_careerchoice_description_PathOfGloryPassive3}Gain 6% Ward save." />
   <string id="tor_careerchoice_description.PathOfGloryPassive4" text="{=str_tor_careerchoice_description_PathOfGloryPassive4}Gain the option to add an additional seal on a troop." />
 
   <!-- Ironbreaker Career Choice Descriptions -->
