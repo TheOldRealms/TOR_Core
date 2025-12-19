@@ -49,6 +49,12 @@ namespace TOR_Core.Models
             if (party == PartyBase.MainParty)
             {
                 CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref result, PassiveEffectType.BattleRenownGain, true);
+
+                // Myrmidia blessing - bonus renown from battles
+                if (MobileParty.MainParty.HasBlessing("cult_of_myrmidia"))
+                {
+                    result.AddFactor(0.10f);
+                }
             }
 
             return result;

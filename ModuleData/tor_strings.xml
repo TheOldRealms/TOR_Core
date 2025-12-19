@@ -2259,6 +2259,7 @@
   <string id="tor_religion_blessing_effect_description.cult_of_kurnous" text="{=str_tor_religion_blessing_effect_description_cult_of_kurnous}All ranged troops in your party deal an extra 10% physical damage." />
   <string id="tor_religion_blessing_effect_description.cult_of_gork" text="{=str_tor_religion_blessing_effect_description_cult_of_gork}All melee troops in your party deal an extra 10% physical damage." />
   <string id="tor_religion_blessing_effect_description.cult_of_mork" text="{=str_tor_religion_blessing_effect_description_cult_of_mork}All troops in your party deal an extra 10% damage as fire damage." />
+  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=str_tor_religion_blessing_effect_description_cult_of_myrmidia}All heroes in your party earn 10% more xp and your clan earns 10% more renown from battles." />
 
   <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=str_tor_religion_blessing_name_cult_of_sigmar}Blessing of Sigmar" />
   <string id="tor_religion_blessing_name.cult_of_shallya" text="{=str_tor_religion_blessing_name_cult_of_shallya}Blessing of Shallya" />
@@ -2274,6 +2275,7 @@
   <string id="tor_religion_blessing_name.cult_of_kurnous" text="{=str_tor_religion_blessing_name_cult_of_kurnous}Blessing of Kurnous" />
   <string id="tor_religion_blessing_name.cult_of_gork" text="{=str_tor_religion_blessing_name_cult_of_gork}Blessing of Gork" />
   <string id="tor_religion_blessing_name.cult_of_mork" text="{=str_tor_religion_blessing_name_cult_of_mork}Blessing of Mork" />
+  <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=str_tor_religion_blessing_name_cult_of_myrmidia}Blessing of Myrmidia" />
 
 
 

@@ -52,6 +52,12 @@ namespace TOR_Core.Models
                 xpAmount.AddFactor(0.2f);
             }
 
+            // Myrmidia blessing - XP bonus for player only
+            if ( attackedTroop.IsHero && party.MobileParty == MobileParty.MainParty && MobileParty.MainParty.HasBlessing("cult_of_myrmidia"))
+            {
+                xpAmount.AddFactor(0.10f);
+            }
+
             // Myrmidia Seal 2 - XP bonus for sealed unit
             if (party?.MobileParty != null && attackerTroop != null)
             {
