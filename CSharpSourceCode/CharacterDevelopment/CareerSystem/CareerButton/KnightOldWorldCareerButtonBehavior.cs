@@ -14,17 +14,29 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
-public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerButtonBehaviorBase(career)
+public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 {
     private const int MINIMUMLEVELFORSEAL = 5;
 
-    private readonly string _secularSealIcon = "CareerSystem\\aqshy";
-    private readonly string _sigmarSealIcon = "CareerSystem\\aqshy";
-    private readonly string _taalSealIcon = "CareerSystem\\ghyran";
-    private readonly string _ulricSealIcon = "CareerSystem\\azyr";
-    private readonly string _shallyaSealIcon = "CareerSystem\\ghyran";
-    private readonly string _manaanSealIcon = "CareerSystem\\manaan";
+    private readonly string _secularSealIcon = "reiksguard_icon";
+    private readonly string _sigmarSealIcon = "sigmar_comet_icon";
+    private readonly string _taalSealIcon = "ghur";
+    private readonly string _ulricSealIcon = "whitewolf_icon";
+    private readonly string _shallyaSealIcon = "shallya_dove_icon";
+    private readonly string _manaanSealIcon = "azyr";
+    private readonly string _myrmidiaSealIcon = "blazingsun_icon";
     private CharacterObject _setCharacter;
+
+    public KnightOldWorldCareerButtonBehavior(CareerObject career) : base(career)
+    {
+        MBTextManager.SetTextVariable("SECULAR_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _secularSealIcon));
+        MBTextManager.SetTextVariable("SIGMAR_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _sigmarSealIcon));
+        MBTextManager.SetTextVariable("TAAL_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _taalSealIcon));
+        MBTextManager.SetTextVariable("ULRIC_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _ulricSealIcon));
+        MBTextManager.SetTextVariable("SHALLYA_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _shallyaSealIcon));
+        MBTextManager.SetTextVariable("MANAAN_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _manaanSealIcon));
+        MBTextManager.SetTextVariable("MYRMIDIA_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _myrmidiaSealIcon));
+    }
 
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClick = false)
     {
@@ -49,7 +61,7 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
         for (var i = 0; i < seals.Count; i++)
         {
             var seal = seals[i];
-            var icon = seal.SealIcon;
+            var icon = GetSealIcon(seal.DeityCultId);
 
             var price = seal.Price;
 
@@ -68,7 +80,9 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
                     continue;
                 }
             }
-            var inquiryElement = new InquiryElement(seal, displayName.ToString(), null, true, displayDescription.ToString());
+
+            var text = $"{{{icon}}} {displayName}";
+            var inquiryElement = new InquiryElement(seal, new TextObject(text).ToString(), null, true, displayDescription.ToString());
 
             inquiryElements.Add(inquiryElement);
         }
@@ -80,7 +94,7 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             count = 2;
         }
 
-        var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_purity_seal_choose_title_text", "Choose purity Seal."), TORTextHelper.GetText("tor_purity_seal_choose_description_text", "Empower your Knight units with new powerful seals"), inquiryElements,
+        var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_purity_seal_choose_title_text", "Choose Purity Seal"), TORTextHelper.GetText("tor_purity_seal_choose_description_text", "Empower your knight units with powerful seals."), inquiryElements,
             true, 1, count, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), OnSelectedOption, OnCancel);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
     }
@@ -167,6 +181,20 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             new("SecularSeal3", "apply_secular_seal_trait2", null, 10, _secularSealIcon),
         };
     }
+    private string GetSealIcon(string cultId)
+    {
+        return cultId switch
+        {
+            "cult_of_sigmar" => "SIGMAR_SEAL_ICON",
+            "cult_of_ulric" => "ULRIC_SEAL_ICON",
+            "cult_of_taal" => "TAAL_SEAL_ICON",
+            "cult_of_manaan" => "MANAAN_SEAL_ICON",
+            "cult_of_shallya" => "SHALLYA_SEAL_ICON",
+            "cult_of_myrmidia" => "MYRMIDIA_SEAL_ICON",
+            _ => "SECULAR_SEAL_ICON"
+        };
+    }
+
     private List<KnightPuritySeal> GetTemplarPuritySeals()
     {
         return new List<KnightPuritySeal>
@@ -190,6 +218,10 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             new("ShallyaSeal1",null,"cult_of_shallya",10, _shallyaSealIcon),
             new("ShallyaSeal2","apply_shallya_seal_trait1","cult_of_shallya",10, _shallyaSealIcon),
             new("ShallyaSeal3","apply_shallya_seal_trait2","cult_of_shallya",10,_shallyaSealIcon),
+
+            new("MyrmidiaSeal1","apply_myrmidia_seal_trait1","cult_of_myrmidia",10, _myrmidiaSealIcon),
+            new("MyrmidiaSeal2","apply_myrmidia_seal_trait2","cult_of_myrmidia",10, _myrmidiaSealIcon),
+            new("MyrmidiaSeal3","apply_myrmidia_seal_trait3","cult_of_myrmidia",10, _myrmidiaSealIcon),
         };
     }
 
@@ -209,7 +241,7 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
 
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
     {
-        displayText = TORTextHelper.GetTextObject("tor_purity_seal_add_text", "Add a purity Seal to the Knight");
+        displayText = TORTextHelper.GetTextObject("tor_purity_seal_add_text", "Add a Purity Seal to this knight.");
 
         var currentSeals = GetCurrentActiveSeals(characterObject);
 
@@ -227,16 +259,30 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             return true;
         }
 
-        if (characterObject.IsReligiousUnit())
+        if (characterObject.IsReligiousEliteUnit())
         {
-            var religionObject = ReligionObject.All.FirstOrDefaultQ(x => x.ReligiousTroops.Contains(characterObject));
+            var troopReligion = characterObject.GetReligionForReligiousEliteUnit();
+            var playerReligion = Hero.MainHero.GetDominantReligion();
+            var isDevout = playerReligion != null && Hero.MainHero.GetDevotionLevelForReligion(playerReligion) >= DevotionLevel.Fanatic;
 
-            if (religionObject != Hero.MainHero.GetDominantReligion() || Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
+            if (isDevout)
             {
-                displayText = TORTextHelper.GetTextObject("tor_purity_seal_religion_mismatch_text", "Your religion does not match the troop's Religion");
-                return false;
+                // Player is religious enough for templar seals - must match troop's religion
+                if (troopReligion != playerReligion)
+                {
+                    displayText = TORTextHelper.GetTextObject("tor_purity_seal_religion_mismatch_text", "Your religion does not match this unit's religion.");
+                    return false;
+                }
             }
-
+            else
+            {
+                // Player is not devout enough - can only apply secular seals to templar knights with perk
+                if (!Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
+                {
+                    displayText = TORTextHelper.GetTextObject("tor_purity_seal_secular_on_religious_text", "You need the Secular Orders perk to apply seals to templar knights");
+                    return false;
+                }
+            }
         }
 
         var devotion = Hero.MainHero.GetDominantReligion();
@@ -252,7 +298,7 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             return true;
         }
 
-        displayText = TORTextHelper.GetTextObject("tor_purity_seal_not_religious_enough_text", "You are not religous enough to provide a seal.");
+        displayText = TORTextHelper.GetTextObject("tor_purity_seal_not_religious_enough_text", "You are not religious enough to provide a seal.");
         return false;
     }
 }

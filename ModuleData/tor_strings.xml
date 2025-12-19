@@ -3547,7 +3547,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="TORKnightPuritySealName.TaalSeal3" text="{=str_torknightpuritysealname_taalseal3}Greater Taal Seal" />
  
   <string id="TORKnightPuritySealName.UlricSeal1" text="{=str_torknightpuritysealname_ulricseal1}Lesser Ulric Seal" />
-  <string id="TORKnightPuritySealName.Ulriceal2" text="{=str_torknightpuritysealname_ulriceal2}Ulric Seal" />
+  <string id="TORKnightPuritySealName.UlricSeal2" text="{=str_torknightpuritysealname_ulricseal2}Ulric Seal" />
   <string id="TORKnightPuritySealName.UlricSeal3" text="{=str_torknightpuritysealname_ulricseal3}Greater Ulric Seal" />
 
   <string id="TORKnightPuritySealName.ManaanSeal1" text="{=str_torknightpuritysealname_manaanseal1}Lesser Manaan Seal" />
@@ -3557,20 +3557,24 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="TORKnightPuritySealName.ShallyaSeal1" text="{=str_torknightpuritysealname_shallyaseal1}Lesser Shallya Seal" />
   <string id="TORKnightPuritySealName.ShallyaSeal2" text="{=str_torknightpuritysealname_shallyaseal2}Shallya Seal" />
   <string id="TORKnightPuritySealName.ShallyaSeal3" text="{=str_torknightpuritysealname_shallyaseal3}Greater Shallya Seal" />
-  
-  
+
+  <string id="TORKnightPuritySealName.MyrmidiaSeal1" text="{=str_torknightpuritysealname_myrmidiaseal1}Lesser Myrmidia Seal" />
+  <string id="TORKnightPuritySealName.MyrmidiaSeal2" text="{=str_torknightpuritysealname_myrmidiaseal2}Myrmidia Seal" />
+  <string id="TORKnightPuritySealName.MyrmidiaSeal3" text="{=str_torknightpuritysealname_myrmidiaseal3}Greater Myrmidia Seal" />
+
+
   
     <string id="TORKnightPuritySealDescription.SecularSeal1" text="{=str_torknightpuritysealdescription_secularseal1}10% Physical Damage" />
   <string id="TORKnightPuritySealDescription.SecularSeal2" text="{=str_torknightpuritysealdescription_secularseal2}25% Wage reduction" />
-  <string id="TORKnightPuritySealDescription.SecularSeal3" text="{=str_torknightpuritysealdescription_secularseal3}25% Charge bonus" />
+  <string id="TORKnightPuritySealDescription.SecularSeal3" text="{=str_torknightpuritysealdescription_secularseal3}25% Charge Bonus" />
 
   <string id="TORKnightPuritySealDescription.SigmarSeal1" text="{=str_torknightpuritysealdescription_sigmarseal1}20% Physical Damage" />
   <string id="TORKnightPuritySealDescription.SigmarSeal2" text="{=str_torknightpuritysealdescription_sigmarseal2}15% Wardsave" />
-  <string id="TORKnightPuritySealDescription.SigmarSeal3" text="{=str_torknightpuritysealdescription_sigmarseal3}2% more Prestige per unit (stacking)" />
+  <string id="TORKnightPuritySealDescription.SigmarSeal3" text="{=str_torknightpuritysealdescription_sigmarseal3}+2% Prestige per sealed unit (stacking)" />
 
   <string id="TORKnightPuritySealDescription.TaalSeal1" text="{=str_torknightpuritysealdescription_taalseal1}25% Ranged Protection" />
   <string id="TORKnightPuritySealDescription.TaalSeal2" text="{=str_torknightpuritysealdescription_taalseal2}15% Wardsave" />
-  <string id="TORKnightPuritySealDescription.TaalSeal3" text="{=str_torknightpuritysealdescription_taalseal3}0.01 More movement speed on the campaign map per unit (stacking)" />
+  <string id="TORKnightPuritySealDescription.TaalSeal3" text="{=str_torknightpuritysealdescription_taalseal3}+0.01 movement speed on the campaign map per sealed unit (stacking)" />
  
   <string id="TORKnightPuritySealDescription.UlricSeal1" text="{=str_torknightpuritysealdescription_ulricseal1}5% Wardsave" />
   <string id="TORKnightPuritySealDescription.UlricSeal2" text="{=str_torknightpuritysealdescription_ulricseal2}Unstoppable" />
@@ -3580,9 +3584,23 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="TORKnightPuritySealDescription.ManaanSeal2" text="{=str_torknightpuritysealdescription_manaanseal2}20% Lightning Damage" />
   <string id="TORKnightPuritySealDescription.ManaanSeal3" text="{=str_torknightpuritysealdescription_manaanseal3}50% Magical Resistance" />
   
-  <string id="TORKnightPuritySealDescription.ShallyaSeal1" text="{=str_torknightpuritysealdescription_shallyaseal1}Troops healing  increased by 5% per sealed troop." />
+  <string id="TORKnightPuritySealDescription.ShallyaSeal1" text="{=str_torknightpuritysealdescription_shallyaseal1}Party healing increased by 5% per sealed unit." />
   <string id="TORKnightPuritySealDescription.ShallyaSeal2" text="{=str_torknightpuritysealdescription_shallyaseal2}Unstoppable for Unit" />
   <string id="TORKnightPuritySealDescription.ShallyaSeal3" text="{=str_torknightpuritysealdescription_shallyaseal3}25% Wardsave" />
+
+  <string id="TORKnightPuritySealDescription.MyrmidiaSeal1" text="{=str_torknightpuritysealdescription_myrmidiaseal1}Strategic Advantage" />
+  <string id="TORKnightPuritySealDescription.MyrmidiaSeal2" text="{=str_torknightpuritysealdescription_myrmidiaseal2}Bonus XP" />
+  <string id="TORKnightPuritySealDescription.MyrmidiaSeal3" text="{=str_torknightpuritysealdescription_myrmidiaseal3}10% Holy Damage" />
+
+  <!-- Purity Seal UI -->
+  <string id="tor_purity_seal_choose_title_text" text="{=tor_purity_seal_choose_title_text}Choose Purity Seal" />
+  <string id="tor_purity_seal_choose_description_text" text="{=tor_purity_seal_choose_description_text}Empower your knight units with powerful seals." />
+  <string id="tor_purity_seal_add_text" text="{=tor_purity_seal_add_text}Add a Purity Seal to this knight." />
+  <string id="tor_purity_seal_religion_mismatch_text" text="{=tor_purity_seal_religion_mismatch_text}Your religion does not match this unit's religion." />
+  <string id="tor_purity_seal_secular_on_religious_text" text="{=tor_purity_seal_secular_on_religious_text}You need the Secular Orders perk to apply seals to templar knights." />
+  <string id="tor_purity_seal_tier_too_low_text" text="{=tor_purity_seal_tier_too_low_text}Unit tier is not high enough. Minimum tier is {MINIMUMSEALLEVEL}." />
+  <string id="tor_purity_seal_not_religious_enough_text" text="{=tor_purity_seal_not_religious_enough_text}You are not religious enough to provide a seal." />
+  <string id="tor_purity_seal_no_description_text" text="{=tor_purity_seal_no_description_text}No description found." />
 
   <!--TOR Information and data !-->
 

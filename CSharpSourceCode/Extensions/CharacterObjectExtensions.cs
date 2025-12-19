@@ -331,6 +331,26 @@ namespace TOR_Core.Extensions
             return cult != null && cult.ReligiousTroops.Contains(characterObject);
         }
 
+        public static bool IsReligiousEliteUnit(this CharacterObject characterObject)
+        {
+            return ReligionObject.All.Any(x => x.EliteUnits.Contains(characterObject));
+        }
+
+        public static bool IsReligiousEliteUnit(this BasicCharacterObject characterObject)
+        {
+            return ReligionObject.All.Any(x => x.EliteUnits.Contains(characterObject));
+        }
+
+        public static ReligionObject GetReligionForReligiousEliteUnit(this CharacterObject characterObject)
+        {
+            return ReligionObject.All.FirstOrDefault(x => x.EliteUnits.Contains(characterObject));
+        }
+
+        public static ReligionObject GetReligionForReligiousEliteUnit(this BasicCharacterObject characterObject)
+        {
+            return ReligionObject.All.FirstOrDefault(x => x.EliteUnits.Contains(characterObject));
+        }
+
         public static bool HasCustomResourceUpgradeRequirement(this CharacterObject character)
         {
             var info = ExtendedInfoManager.GetCharacterInfoFor(character.StringId);

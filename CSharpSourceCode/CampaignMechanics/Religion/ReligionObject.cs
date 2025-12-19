@@ -26,6 +26,7 @@ namespace TOR_Core.CampaignMechanics.Religion
         public CultureObject Culture { get; private set; }
         public List<ReligionObject> HostileReligions { get; private set; } = [];
         public List<CharacterObject> ReligiousTroops { get; private set; } = [];
+        public List<CharacterObject> EliteUnits { get; private set; } = [];
         public List<ItemObject> ReligiousArtifacts { get; private set; } = [];
         public List<string> InitialClans { get; private set; } = [];
         public ReligionAffinity Affinity { get; private set; }
@@ -101,6 +102,17 @@ namespace TOR_Core.CampaignMechanics.Religion
                             {
                                 CharacterObject troop = MBObjectManager.Instance.ReadObjectReferenceFromXml<CharacterObject>("id", troopNode);
                                 if (troop != null) ReligiousTroops.Add(troop);
+                            }
+                        }
+                    }
+                    if (child.Name == "EliteUnits")
+                    {
+                        foreach (XmlNode unitNode in child.ChildNodes)
+                        {
+                            if (unitNode.Name == "EliteUnit")
+                            {
+                                CharacterObject unit = MBObjectManager.Instance.ReadObjectReferenceFromXml<CharacterObject>("id", unitNode);
+                                if (unit != null) EliteUnits.Add(unit);
                             }
                         }
                     }
