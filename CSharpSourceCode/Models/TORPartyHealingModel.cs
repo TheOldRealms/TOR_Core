@@ -40,6 +40,19 @@ namespace TOR_Core.Models
                 survivalChance = survivalChance + (1f - survivalChance) * secondChance; // chance to survive if would have died
             }
 
+            // Shallya Seal 3 - survival chance bonus for sealed unit
+            if (party?.MobileParty != null)
+            {
+                var info = ExtendedInfoManager.Instance.GetPartyInfoFor(party.MobileParty.StringId);
+                if (info?.TroopAttributes.TryGetValue(character.StringId, out var attrs) == true)
+                {
+                    if (attrs.Contains("ShallyaSeal3"))
+                    {
+                        survivalChance = MathF.Min(1f, survivalChance + 0.2f);
+                    }
+                }
+            }
+
             if (!character.IsUndead())
             {
                 return survivalChance;

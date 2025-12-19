@@ -1244,7 +1244,7 @@
                              ImbuedStatusEffectDuration="45"
                              DamageVariance="0"
 							 ScriptNameToTrigger="none" >
-							 <ImbuedStatusEffect>kow_ulric_res_ward</ImbuedStatusEffect>
+							 <ImbuedStatusEffect>kow_ulric_ats</ImbuedStatusEffect>
 	 </TriggeredEffectTemplate>
 	 
 	 <TriggeredEffectTemplate StringID="apply_ulric_seal_trait2"
@@ -1382,9 +1382,24 @@
                              DamageVariance="0"
 							 ScriptNameToTrigger="none" >
 							 <ImbuedStatusEffect>kow_manaan_res_magic</ImbuedStatusEffect>
-	 </TriggeredEffectTemplate>	 
-							 
-	 
+	 </TriggeredEffectTemplate>
+
+	 <TriggeredEffectTemplate StringID="apply_myrmidia_seal_trait3"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="25"
+                             HasShockWave="false"
+                             TargetType="Friendly"
+                             ImbuedStatusEffectDuration="45"
+                             DamageVariance="0"
+							 ScriptNameToTrigger="none" >
+							 <ImbuedStatusEffect>kow_myrmidia_holy</ImbuedStatusEffect>
+	 </TriggeredEffectTemplate>
+
+
     <TriggeredEffectTemplate StringID="apply_flaming_sword_trait"
                              BurstParticleEffectPrefab="none"
                              SoundEffectId="none"

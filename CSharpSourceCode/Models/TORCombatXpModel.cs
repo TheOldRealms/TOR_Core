@@ -8,6 +8,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
@@ -49,6 +50,19 @@ namespace TOR_Core.Models
             if (isFatal && party.MobileParty == MobileParty.MainParty && MobileParty.MainParty.HasBlessing("cult_of_ulric"))
             {
                 xpAmount.AddFactor(0.2f);
+            }
+
+            // Myrmidia Seal 2 - XP bonus for sealed unit
+            if (party?.MobileParty != null && attackerTroop != null)
+            {
+                var info = ExtendedInfoManager.Instance.GetPartyInfoFor(party.MobileParty.StringId);
+                if (info?.TroopAttributes.TryGetValue(attackerTroop.StringId, out var attrs) == true)
+                {
+                    if (attrs.Contains("MyrmidiaSeal2"))
+                    {
+                        xpAmount.AddFactor(0.10f);
+                    }
+                }
             }
 
             return xpAmount;

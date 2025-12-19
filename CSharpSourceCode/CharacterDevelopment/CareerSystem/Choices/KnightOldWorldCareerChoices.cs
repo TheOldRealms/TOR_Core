@@ -189,7 +189,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
 
         _secularOrdersPassive3.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true,
             characterObject => characterObject.HasAttribute("Knightly")));
-        _secularOrdersPassive4.Initialize(CareerID, "Secular Seals can be applied on any Knight unit", "SecularOrders", false, ChoiceType.Passive);
+        _secularOrdersPassive4.Initialize(CareerID, "Secular seals work on templar knights; your templar seals work on secular knights.", "SecularOrders", false, ChoiceType.Passive);
 
         _pathOfConquestPassive1.Initialize(CareerID, "Extra melee damage (10%).", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee));
         _pathOfConquestPassive2.Initialize(CareerID, "Party movement speed is increased by 2.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.PartyMovementSpeed));
