@@ -29,11 +29,11 @@ namespace TOR_Core.CampaignMechanics.BountyMaster
 
         private void OnNewGameCreated(CampaignGameStarter obj)
         {
-            foreach (var settlement in Settlement.All)
+            foreach (var town in Town.AllTowns)
             {
-                if (settlement.IsTown)
+                if (town.Settlement.IsTown)
                 {
-                    CreateBountyMaster(settlement);
+                    CreateBountyMaster(town.Settlement);
                 }
             }
         }
@@ -48,6 +48,7 @@ namespace TOR_Core.CampaignMechanics.BountyMaster
             {
                 var hero = HeroCreator.CreateSpecialHero(template, settlement, null, null, 40);
                 hero.SupporterOf = settlement.OwnerClan;
+                hero.CharacterObject.HiddenInEncyclopedia = true;
                 var nameObject = template.GetName();
                 nameObject.SetTextVariable("FIRSTNAME", hero.FirstName);
                 hero.SetName(nameObject, hero.FirstName);

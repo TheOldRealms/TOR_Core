@@ -195,7 +195,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                 }
             });
 
-        _pathOfVigilanceKeystone.Initialize(CareerID, "Couched Lance attacks are not removing loads. Ability scales with polearm", "PathOfVigilance", false,
+        _pathOfVigilanceKeystone.Initialize(CareerID, "Couched Lance attacks do not cost charges. Ability scales with polearm", "PathOfVigilance", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()

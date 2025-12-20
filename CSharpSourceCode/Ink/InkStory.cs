@@ -460,7 +460,7 @@ namespace TOR_Core.Ink
 
         private void ResetRaiderSites()
         {
-            foreach (var site in Settlement.All.Where(x => x.SettlementComponent is BaseRaiderSpawnerComponent))
+            foreach (var site in TORCustomSettlementCampaignBehavior.AllCustomSettlements.Where(x => x.SettlementComponent is BaseRaiderSpawnerComponent))
             {
                 var component = site.SettlementComponent as BaseRaiderSpawnerComponent;
                 component.IsActive = true;
@@ -538,7 +538,20 @@ namespace TOR_Core.Ink
             {
                 roster.Add(new ItemRosterElement(food, MBRandom.RandomInt(1, 10)));
             }
-            logic.Initialize(roster, PartyBase.MainParty.ItemRoster, PartyBase.MainParty.MemberRoster, true, true, CharacterObject.PlayerCharacter, InventoryCategoryType.All, new InkFakeMarketData(), true, inventoryState.InventoryMode);
+
+            IMarketData marketData = null;
+            if (Campaign.Current.GameMode == CampaignGameMode.Campaign)
+            {
+                var settlement = SettlementHelper.FindNearestTownToMobileParty(MobileParty.MainParty, MobileParty.NavigationType.All)?.Settlement;
+
+                if (settlement != null)
+                {
+                    marketData = settlement.Town.MarketData;
+                }
+            }
+            marketData ??= new InkFakeMarketData();
+
+            logic.Initialize(roster, PartyBase.MainParty.ItemRoster, PartyBase.MainParty.MemberRoster, true, true, CharacterObject.PlayerCharacter, InventoryCategoryType.All, marketData, true, inventoryState.InventoryMode);
 
             inventoryState.InventoryLogic = logic;
             Game.Current.GameStateManager.PushState(inventoryState, 0);

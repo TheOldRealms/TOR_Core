@@ -56,6 +56,8 @@ namespace TOR_Core.BattleMechanics.Firearms
                 if (firingData.RemainingTime <= 0.5f)
                 {
                     if (firingData.IsParticleEnabled) firingData.IsParticleEnabled = false; //Sly : there's a bug with flame particles that persist in the battle, seemingly unattached to a source. I wonder if these are the locations where an agent died and the particles persist.
+                    //OnAgentShootMissile is responsible for removing the previous projectile, but if the agent has died and become null, they will never fire another missile and so their previous one will keep persisting at its final location until we remove it (which isn't done atm), or the game despawns it (which i'm unsure if it's doing because i've seen the flame puff effect persist for multiple minutes).
+                    //this does make sense because the RemainingTime is only decreased if the agent is not null and still active and therefore the time is static and will persist until mission end
                     continue;
                 }
                 var agent = Mission.FindAgentWithIndex(index);

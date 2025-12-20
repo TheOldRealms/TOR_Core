@@ -125,7 +125,7 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
     public class ChaosPortalComponent : BaseRaiderSpawnerComponent
     {
         public override int BattlePartySize => 550;
-        public override string BattleSceneName => "TOR_chaos_portal_001_forceatmo";
+        public override string BattleSceneName => "TOR_chaos_portal_001_atmo_w_night";
 
         public override List<string> RewardItemIds =>
         [

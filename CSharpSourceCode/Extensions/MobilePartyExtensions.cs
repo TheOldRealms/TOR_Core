@@ -203,19 +203,11 @@ namespace TOR_Core.Extensions
         /// Checks if a party's distance to arbitrary locations in elven forests is sufficiently close to consider the party "inside" the forest.
         /// </summary>
         /// <remarks>
-        /// Uses 2 locations to cover Athel Lorn and 1 location for Laurelorn. Originally intended for dryad binding by spellsingers.
-        /// 
-        /// These points could be chosen more precisely if I bothered to find the code on the modding discord by the person who found a way to draw various circles around the player party with chosen distances.
+        /// Uses 2 circles to cover Athel Lorn and 1 circle for Laurelorn. Originally intended for dryad binding by spellsingers and enchanting ingredients.
         /// </remarks>
         public static bool InElfForest(this MobileParty party)
         {
-            var position = party.Position; //what's the point of GetPosition2D?
-
-            //Point and radius squared defining approximate boundary for Laurelorn forest
-
-            var LLAll = new Vec2(1259.60f, 1317.35f); //Laurelorn : midpoint (1259.60, 1317.35); r^2 = 672.65
-
-            if (party.InAthelLoren() || position.DistanceSquared(LLAll) < 672.65)
+            if (party.InAthelLoren() || party.InLaurelorn())
             {
                 return true;
             }
@@ -223,7 +215,7 @@ namespace TOR_Core.Extensions
         }
 
         /// <summary>
-        /// Determines if a party is inside the Athel Lorn forests
+        /// Determines if a party is inside the Athel Lorn forests (asrai territory).
         /// </summary>
         /// <remarks>
         /// Uses 2 locations to approximate the boundaries via radii.
@@ -235,8 +227,26 @@ namespace TOR_Core.Extensions
             //Points and radii squared defining approximate boundary for Athel Loren
             var ALNorthHalf = new Vec2(1209.99f, 916.42f); //Athel Lorn north half : midpoint (1209.99, 916.42); r^2 = 1255.75
             var ALSouthHalf = new Vec2(1207.75f, 796.74f); //Athel Lorn south half : midpoint (1207.75, 796.74); r^2 = 1419.44
-
+            //Sly : parth of southern athel loren is missed by the 2nd circle which needs to be enlarged/shifted
             if (position.DistanceSquared(ALNorthHalf) < 1255.75 || position.DistanceSquared(ALSouthHalf) < 1419.445)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Determines if a party is inside the Laurelorn forest (eonir territory).
+        /// </summary>
+        public static bool InLaurelorn(this MobileParty party)
+        {
+            var position = party.Position;
+
+            //Point and radius squared defining approximate boundary for Laurelorn forest
+            //Sly : this needs to be updated to include the peninsula to the NW of Tor Lithanel as it's needed to grant enchanting materials for fights near the forest.
+            var LLAll = new Vec2(1259.60f, 1317.35f); //Laurelorn : midpoint (1259.60, 1317.35); r^2 = 672.65
+
+            if (position.DistanceSquared(LLAll) < 672.65)
             {
                 return true;
             }

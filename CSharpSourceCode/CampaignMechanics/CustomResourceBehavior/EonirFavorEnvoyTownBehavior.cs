@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
@@ -36,16 +37,16 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
     private const string _spellsingerEnvoyId = "tor_eonir_spellsinger_envoy_0";
 
 
-    private int asur_favor_price1 = 100;
-    private int asur_favor_price2 = 500;
-    private int asur_favor_price3 = 1000;
+    private int _asurFavorPrice1 = 100;
+    private int _asurFavorPrice2 = 500;
+    private int _asurFavorPrice3 = 1000;
+
     private bool _isDruchiiEnvoyTrade;
+    private int _druchiiForceWarPriceBase = 750;
+    private int _druchiiSlaverTidePriceBase = 1000;
 
-    private int druchii_force_war_price_base = 750;
-    private int druchii_slaver_tide_price_base = 1000;
-
-    private int empireCalculatedExchangeBack;
-    private int peaceCost = 750;
+    private int _empireFavorConvertedFromPrestige = 0;
+    private int _peaceCost = 750;
 
     private Hero _druchiiEnvoy;
     private Hero _asurEnvoy;
@@ -58,29 +59,33 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
     public override void RegisterEvents()
     {
-
         CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameStarted);
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         CampaignEvents.GameMenuOpened.AddNonSerializedListener(this, OnGameMenuOpened);
-
         CampaignEvents.OnPrisonerDonatedToSettlementEvent.AddNonSerializedListener(this, OnPrisonersSold);
     }
 
-    private void OnPrisonersSold(MobileParty arg1, FlattenedTroopRoster arg2, Settlement arg3)
+    private void OnPrisonersSold(MobileParty sellingParty, FlattenedTroopRoster flatRosterSold, Settlement receivingSettlement)
     {
         if (_isDruchiiEnvoyTrade)
         {
-            foreach (var element in arg2)
+            foreach (var element in flatRosterSold)
             {
                 if (!element.Troop.IsHero)
                 {
                     Hero.MainHero.AddCultureSpecificCustomResource(element.Troop.Tier);
-                    arg3.Party.PrisonRoster.RemoveTroop(element.Troop);
+                    receivingSettlement.Party.PrisonRoster.RemoveTroop(element.Troop);
+                }
+                if (element.Troop.IsHero)//trade heroes for council favour, but in turn they are immediately "released" by the envoy and will cycle back into the war - goal is that anything ransomed to the envoy is worthwhile and the player doesn't need to micro the action to avoid direct "losses"
+                {
+                    Hero.MainHero.AddCultureSpecificCustomResource((int)(element.Troop.HeroObject.Level/5 - 1));
+                    EndCaptivityAction.ApplyByRansom(element.Troop.HeroObject, null);
                 }
             }
         }
 
     }
+
     private void OnGameMenuOpened(MenuCallbackArgs obj)
     {
         EnforceEnvoyLocation();
@@ -88,23 +93,20 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
     private void OnSessionLaunched(CampaignGameStarter obj)
     {
+        SetTextVariables();
         AddDruchiiEnvoyDialogLines(obj);
         AddAsurEnvoyDialogLines(obj);
         AddEmpireEnvoyDialogLines(obj);
         AddSpellsingerEnvoyDialogLines(obj);
-        SetTextVariables();
     }
 
     private void SetTextVariables()
     {
-        GameTexts.SetVariable("EONIR_FAVOR", CustomResourceManager.GetResourceObject("CouncilFavor").GetCustomResourceIconAsText(false));
-    }
+        GameTexts.SetVariable("FAVOR_ICON", CustomResourceManager.GetResourceObject("CouncilFavor").GetCustomResourceIconAsText(false));
+        //PRESTIGE_ICON is already set in PrestigeNobleTownBehavior - at a later point these should probably be regrouped into a single location for defining the global variables. It's also set in MasterEngineer behavior as well iirc - possibly elsewhere I haven't seen.
 
-    public bool isSpellsingerEnvoy(Hero hero)
-    {
-        return hero == _spellsingerEnvoy;
+        GameTexts.SetVariable("PEACE_COST", _peaceCost);
     }
-
 
     private void AddSpellsingerEnvoyDialogLines(CampaignGameStarter campaignGameStarter)
     {
@@ -316,7 +318,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => EonirEnvoyDialogCondition() && Hero.MainHero.Culture.StringId != TORConstants.Cultures.EONIR, null, 200);
 
         campaignGameStarter.AddDialogLine("envoy_missRank", "start", "close_window",
-            TORTextHelper.GetText("eonir_envoy_low_renown_text", "You do not have the privilege to serve the council. You are of no use. (Low Renown)."), () => EonirEnvoyDialogCondition() && IsEmpireEnvoy() && !HasRenown2(),
+            TORTextHelper.GetText("eonir_envoy_low_clan_tier_text", "You do not have the privilege to serve the council. You are of no use. (Low Clan Tier)."), () => EonirEnvoyDialogCondition() && IsEmpireEnvoy() && !HasClanTier2(),
             null, 200);
 
 
@@ -343,7 +345,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //force peace
 
         campaignGameStarter.AddDialogLine("empire_envoy_force_peace", "empire_envoy_force_peace", "empire_envoy_force_peace_choice",
-            TORTextHelper.GetText("eonir_empire_peace_offer_text", "The Empire and the Council should make peace. Your people, neither ours will do this without hesitantion ({PEACE_COSTS}{EONIR_FAVOR})"), () => IsEmpireEnvoy() && EnoughTimePassedSinceLastEvent("force_peace", 10), null, 200);
+            TORTextHelper.GetText("eonir_empire_peace_offer_text", "The Empire and the Council should make peace. Your people, nor ours, will do this without hesitation. Let us remove that barrier. ({PEACE_COST}{FAVOR_ICON})"), () => IsEmpireEnvoy() && EnoughTimePassedSinceLastEvent("force_peace", 10), null, 200);
 
         campaignGameStarter.AddDialogLine("empire_envoy_force_peace_failed", "empire_envoy_force_peace", "empire_envoy_force_peace_failed_choice",
             TORTextHelper.GetText("eonir_empire_peace_cooldown_text", "My political power is limited. We became too demanding, you should ask another time"), () => IsEmpireEnvoy(), null, 200);
@@ -352,13 +354,13 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             TORTextHelper.GetText("eonir_envoy_understood_text", "Understood."), () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_1", "empire_envoy_force_peace_choice", "empire_envoy_force_peace_choice_result",
-            TORTextHelper.GetText("eonir_envoy_lets_do_this_text", "Let us do this."), () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count > 0 && peaceCost <= Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
+            TORTextHelper.GetText("eonir_envoy_lets_do_this_text", "Let us do this."), () => IsEmpireEnvoy() && AllEmpireFactionsAtWar().Count > 0 && _peaceCost <= Hero.MainHero.GetCultureSpecificCustomResourceValue(), null, 200);
         campaignGameStarter.AddPlayerLine("empire_envoy_force_peace_choice_2", "empire_envoy_force_peace_choice", "back_to_main_hub_empire",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("empire_envoy_force_peace_choice_result", "empire_envoy_force_peace_choice_result", "back_to_main_hub_empire",
             TORTextHelper.GetText("eonir_envoy_we_will_see_text", "We will see what we can do."), () => IsEmpireEnvoy(), ForcePeacePrompt, 200);
-
+        
 
         List<Kingdom> AllEmpireFactionsAtWar()
         {
@@ -399,8 +401,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                     MakePeaceAction.Apply(kingdom, laurelorn);
                 }
 
-                Hero.MainHero.AddCultureSpecificCustomResource(-peaceCost);
-                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, peaceCost);
+                Hero.MainHero.AddCultureSpecificCustomResource(-_peaceCost);
+                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, _peaceCost);
                 _latestEnvoyActionsPerformed.AddOrReplace("force_peace", CampaignTime.Now.ToDays);
             }
         }
@@ -409,22 +411,32 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //Exchange all Prestige to Council Favor
 
         campaignGameStarter.AddDialogLine("empire_envoy_prestige_to_favour", "empire_envoy_prestige_to_favour", "empire_envoy_prestige_to_favour_choice",
-            TORTextHelper.GetText("eonir_empire_prestige_to_favor_offer_text", "Obviously your offering the empire can benefit the Council."), () => IsEmpireEnvoy(), null, 200);
+            TORTextHelper.GetText("eonir_empire_prestige_to_favor_offer_text", "Obviously your offering to the empire can benefit the Council. (Exchange all Prestige for Council Favor"), () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("Prestige") > 0, null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_prestige_to_favour_choice_1", "empire_envoy_prestige_to_favour_choice", "empire_envoy_prestige_to_favour_result",
-            TORTextHelper.GetText("eonir_envoy_lets_do_this_text", "Let us do this."), () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("Prestige") > 3, null, 200);
+            TORTextHelper.GetText("eonir_empire_exchange_prestige_to_favor", "Let us do this. (Receive {CONVERTED_FAVOR} {FAVOR_ICON})"), () => IsEmpireEnvoy() && CalculateFavorConversion(Hero.MainHero.GetCustomResourceValue("Prestige")), null, 200);
         campaignGameStarter.AddPlayerLine("empire_envoy_prestige_to_favour_choice_2", "empire_envoy_prestige_to_favour_choice", "back_to_main_hub_empire",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("empire_envoy_prestige_to_favour_result", "empire_envoy_prestige_to_favour_result", "back_to_main_hub_empire",
             TORTextHelper.GetText("eonir_empire_prestige_to_favor_result_text", "The trade has been completed."), () => IsEmpireEnvoy(), ExchangePrestigeToFavor, 200);
+        
+        bool CalculateFavorConversion(float prestige)
+        {
+            _empireFavorConvertedFromPrestige = (int)(prestige * (1f / 2) + prestige * (1f / 3 * (Hero.MainHero.GetSkillValue(DefaultSkills.Charm) / 300f)));
+            GameTexts.SetVariable("CONVERTED_FAVOR", _empireFavorConvertedFromPrestige);
+
+            if (_empireFavorConvertedFromPrestige > 0) return true;
+
+            return false;
+        }
 
         void ExchangePrestigeToFavor()
         {
             var prestige = Hero.MainHero.GetCustomResourceValue("Prestige");
-            Hero.MainHero.AddCultureSpecificCustomResource(empireCalculatedExchangeBack);
+            Hero.MainHero.AddCultureSpecificCustomResource(_empireFavorConvertedFromPrestige);
 
-            Hero.MainHero.AddSkillXp(DefaultSkills.Charm, empireCalculatedExchangeBack);
+            Hero.MainHero.AddSkillXp(DefaultSkills.Charm, _empireFavorConvertedFromPrestige);
 
             Hero.MainHero.AddCustomResource("Prestige", -prestige);
         }
@@ -435,13 +447,18 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             TORTextHelper.GetText("eonir_empire_favor_to_prestige_offer_text", "I can supply you with quality goods."), () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_favour_to_prestige_choice_1", "empire_envoy_favour_to_prestige_choice", "empire_envoy_favour_to_prestige_result",
-            TORTextHelper.GetText("eonir_envoy_lets_do_this_text", "Let us do this."), () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("CouncilFavor") > 50, null, 200);
+            TORTextHelper.GetText("eonir_empire_exchange_favor_to_prestige", "Let us do this. (Exchange 50 {FAVOR_ICON} for 30 {PRESTIGE_ICON})"), () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("CouncilFavor") >= 50, null, 200);
         campaignGameStarter.AddPlayerLine("empire_envoy_favour_to_prestige_choice_2", "empire_envoy_favour_to_prestige_choice", "back_to_main_hub_empire",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsEmpireEnvoy(), null, 200);
 
         campaignGameStarter.AddDialogLine("empire_envoy_favour_to_prestige_result", "empire_envoy_favour_to_prestige_result", "back_to_main_hub_empire",
             TORTextHelper.GetText("eonir_empire_glad_to_do_business_text", "Glad to do business with you."), () => IsEmpireEnvoy(), ExchangeFavorToPrestige, 200);
-
+        
+        void ExchangeFavorToPrestige()
+        {
+            Hero.MainHero.AddCustomResource("CouncilFavor", -50);//this doesn't make use of a text variable and so the text is sensitive to this value changing
+            Hero.MainHero.AddCustomResource("Prestige", 30);
+        }
 
 
         // why are you here?
@@ -462,23 +479,10 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         campaignGameStarter.AddDialogLine("empire_envoy_whyareyouhere_3", "empire_envoy_whyareyouhere_3", "back_to_main_hub_empire",
             TORTextHelper.GetText("eonir_empire_why_here_services_text", "I can help with trade and diplomacy."), () => IsEmpireEnvoy(), null, 200);
 
-        void ExchangeFavorToPrestige()
-        {
-            Hero.MainHero.AddCustomResource("CouncilFavor", -50);
-            Hero.MainHero.AddCustomResource("Prestige", 30);
-        }
 
-        void calculateCost(float prestige)
-        {
-            empireCalculatedExchangeBack = (int)(prestige * (1f / 2) + prestige * (1f / 3 * (Hero.MainHero.GetSkillValue(DefaultSkills.Charm) / 300f)));
-            GameTexts.SetVariable("ORIGINAL_PRESTIGE", prestige);
-            GameTexts.SetVariable("RETURN_FAVOR", empireCalculatedExchangeBack);
-            GameTexts.SetVariable("PEACE_COSTS", peaceCost);
-        }
 
         bool IsEmpireEnvoy()
         {
-            calculateCost(Hero.MainHero.GetCustomResourceValue("Prestige"));
             var partner = CharacterObject.OneToOneConversationCharacter;
             if (partner != null && partner.IsHero) return partner.HeroObject.HasAttribute("EmpireEnvoy");
 
@@ -500,7 +504,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => EonirEnvoyDialogCondition() && Hero.MainHero.Culture.StringId != TORConstants.Cultures.EONIR, null, 200);
 
         campaignGameStarter.AddDialogLine("envoy_missRank", "start", "close_window",
-            TORTextHelper.GetText("eonir_envoy_low_renown_text", "You do not have the privilege to serve the council. You are of no use. (Low Renown)."), () => EonirEnvoyDialogCondition() && IsDruchiiEnvoy() && !HasRenown2(),
+            TORTextHelper.GetText("eonir_envoy_low_clan_tier_text", "You do not have the privilege to serve the council. You are of no use. (Low Clan Tier)."), () => EonirEnvoyDialogCondition() && IsDruchiiEnvoy() && !HasClanTier2(),
             null, 200);
 
 
@@ -536,7 +540,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             TORTextHelper.GetText("eonir_envoy_understood_text", "Understood."), () => IsDruchiiEnvoy(), null, 200);
 
         campaignGameStarter.AddPlayerLine("druchii_envoy_force_war_choice_1", "druchii_envoy_force_war_choice", "druchii_envoy_force_war_choice_result",
-            TORTextHelper.GetText("eonir_envoy_lets_do_this_text", "Let us do this."), () => IsDruchiiEnvoy() && (druchii_force_war_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm) <= Hero.MainHero.GetCultureSpecificCustomResourceValue()), null, 200);
+            TORTextHelper.GetText("eonir_envoy_lets_do_this_text", "Let us do this."), () => IsDruchiiEnvoy() && (_druchiiForceWarPriceBase - Hero.MainHero.GetSkillValue(DefaultSkills.Charm) <= Hero.MainHero.GetCultureSpecificCustomResourceValue()), null, 200);
         campaignGameStarter.AddPlayerLine("druchii_envoy_force_war_choice_2", "druchii_envoy_force_war_choice", "back_to_main_hub_druchii",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsDruchiiEnvoy(), null, 200);
 
@@ -586,8 +590,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
                     DeclareWarAction.ApplyByDefault(kingdom2, kingdom1);
                 }
 
-                Hero.MainHero.AddCultureSpecificCustomResource(-(druchii_force_war_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
-                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, druchii_force_war_price_base);
+                Hero.MainHero.AddCultureSpecificCustomResource(-(_druchiiForceWarPriceBase - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
+                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, _druchiiForceWarPriceBase);
                 _latestEnvoyActionsPerformed.AddOrReplace("force_war", CampaignTime.Now.ToDays);
 
             }
@@ -607,7 +611,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
 
         campaignGameStarter.AddPlayerLine("druchii_envoy_choice_1", "druchii_envoy_slaver_tide_choice", "druchii_envoy_slaver_tide_choice_result",
-            TORTextHelper.GetText("eonir_druchii_slaver_tide_accept_text", "Call the slaver tide."), () => IsDruchiiEnvoy() && (druchii_slaver_tide_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)) <= Hero.MainHero.GetCultureSpecificCustomResourceValue(), SlaverTidePrompt, 200);
+            TORTextHelper.GetText("eonir_druchii_slaver_tide_accept_text", "Call the slaver tide."), () => IsDruchiiEnvoy() && (_druchiiSlaverTidePriceBase - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)) <= Hero.MainHero.GetCultureSpecificCustomResourceValue(), SlaverTidePrompt, 200);
 
         campaignGameStarter.AddPlayerLine("druchii_envoy_choice_2", "druchii_envoy_slaver_tide_choice", "back_to_main_hub_druchii",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsDruchiiEnvoy(), null, 200);
@@ -672,8 +676,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
                 DeclareWarAction.ApplyByDefault(slaverBay.OwnerClan, kingdom);
 
-                Hero.MainHero.AddCultureSpecificCustomResource(-(druchii_slaver_tide_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
-                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, druchii_slaver_tide_price_base);
+                Hero.MainHero.AddCultureSpecificCustomResource(-(_druchiiSlaverTidePriceBase - Hero.MainHero.GetSkillValue(DefaultSkills.Charm)));
+                Hero.MainHero.AddSkillXp(DefaultSkills.Charm, _druchiiSlaverTidePriceBase);
                 _latestEnvoyActionsPerformed.AddOrReplace("slaver_tide", CampaignTime.Now.ToDays);
             }
         }
@@ -700,8 +704,8 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
         void setDruchiiPrices()
         {
-            GameTexts.SetVariable("FORCEWAR_PRICE", druchii_force_war_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm));
-            GameTexts.SetVariable("SLAVERTIDE_PRICE", druchii_slaver_tide_price_base - Hero.MainHero.GetSkillValue(DefaultSkills.Charm));
+            GameTexts.SetVariable("FORCEWAR_PRICE", _druchiiForceWarPriceBase - Hero.MainHero.GetSkillValue(DefaultSkills.Charm));
+            GameTexts.SetVariable("SLAVERTIDE_PRICE", _druchiiSlaverTidePriceBase - Hero.MainHero.GetSkillValue(DefaultSkills.Charm));
         }
 
         bool IsDruchiiEnvoy()
@@ -728,7 +732,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             () => EonirEnvoyDialogCondition() && Hero.MainHero.Culture.StringId != TORConstants.Cultures.EONIR, null, 200);
 
         starter.AddDialogLine("envoy_missRank", "start", "close_window",
-            TORTextHelper.GetText("eonir_envoy_low_renown_text", "You do not have the privilege to serve the council. You are of no use. (Low Renown)."), () => EonirEnvoyDialogCondition() && IsAsurianEnvoy() && !HasRenown2(),
+            TORTextHelper.GetText("eonir_envoy_low_clan_tier_text", "You do not have the privilege to serve the council. You are of no use. (Low Clan Tier)."), () => EonirEnvoyDialogCondition() && IsAsurianEnvoy() && !HasClanTier2(),
             null, 200);
 
 
@@ -764,11 +768,11 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
 
 
         starter.AddPlayerLine("asur_envoy_money_choice_1", "asur_envoy_money_choice", "back_to_main_hub_asur",
-            "{ASUR_MONEYRETURN1}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY1}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue() >= asur_favor_price1, () => TransferMoney(1, asur_favor_price1), 200);
+            "{ASUR_MONEYRETURN1}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY1}{FAVOR_ICON}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue() >= _asurFavorPrice1, () => TransferMoney(1, _asurFavorPrice1), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_2", "asur_envoy_money_choice", "back_to_main_hub_asur",
-            "{ASUR_MONEYRETURN2}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY2}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue() >= asur_favor_price2, () => TransferMoney(10, asur_favor_price2), 200);
+            "{ASUR_MONEYRETURN2}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY2}{FAVOR_ICON}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue() >= _asurFavorPrice2, () => TransferMoney(10, _asurFavorPrice2), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_3", "asur_envoy_money_choice", "back_to_main_hub_asur",
-            "{ASUR_MONEYRETURN3}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY3}{EONIR_FAVOR}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue() >= asur_favor_price3, () => TransferMoney(30, asur_favor_price3), 200);
+            "{ASUR_MONEYRETURN3}{GOLD_ICON} for {ASUR_FAVORCOST_MONEY3}{FAVOR_ICON}", () => IsAsurianEnvoy() && Hero.MainHero.GetCultureSpecificCustomResourceValue() >= _asurFavorPrice3, () => TransferMoney(30, _asurFavorPrice3), 200);
         starter.AddPlayerLine("asur_envoy_money_choice_quit", "asur_envoy_money_choice", "back_to_main_hub_asur",
             TORTextHelper.GetText("eonir_envoy_need_to_think_text", "I need to think about this."), () => IsAsurianEnvoy(), null, 200);
 
@@ -826,9 +830,9 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
             GameTexts.SetVariable("ASUR_MONEYRETURN1", CalculateBasePrice());
             GameTexts.SetVariable("ASUR_MONEYRETURN2", CalculateBasePrice() * 10);
             GameTexts.SetVariable("ASUR_MONEYRETURN3", CalculateBasePrice() * 30);
-            GameTexts.SetVariable("ASUR_FAVORCOST_MONEY1", asur_favor_price1);
-            GameTexts.SetVariable("ASUR_FAVORCOST_MONEY2", asur_favor_price2);
-            GameTexts.SetVariable("ASUR_FAVORCOST_MONEY3", asur_favor_price3);
+            GameTexts.SetVariable("ASUR_FAVORCOST_MONEY1", _asurFavorPrice1);
+            GameTexts.SetVariable("ASUR_FAVORCOST_MONEY2", _asurFavorPrice2);
+            GameTexts.SetVariable("ASUR_FAVORCOST_MONEY3", _asurFavorPrice3);
         }
 
         int CalculateBasePrice()
@@ -971,7 +975,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         }
     }
 
-    private bool HasRenown2()
+    private bool HasClanTier2()
     {
         return Clan.PlayerClan.Tier >= 2;
     }

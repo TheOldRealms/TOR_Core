@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.LinQuick;
 using TaleWorlds.SaveSystem;
 using TOR_Core.Utilities;
 using static Ink.Parsed.FlowBase;
@@ -78,7 +79,11 @@ namespace TOR_Core.Items.InventoryUseScripts
 
         public override void OnUse(MobileParty userParty, ItemObject item)
         {
-            if (InventoryUseScriptsCampaignBehavior.Instance.TryAddScriptToParty(userParty, this))
+            if (InventoryUseScriptsCampaignBehavior.Instance._usages.WhereQ(x => x.heroId == userParty.LeaderHero.StringId && x.itemId == item.StringId && x.usages > 0).AnyQ())
+            {
+                TORCommon.Say(item.Name + " has already been used by " + userParty.LeaderHero.Name + ".");
+            }
+            else if (InventoryUseScriptsCampaignBehavior.Instance.TryAddScriptToParty(userParty, this))
             {
                 TORCommon.Say($"Started reading skill book for {_skillId}.");
             }

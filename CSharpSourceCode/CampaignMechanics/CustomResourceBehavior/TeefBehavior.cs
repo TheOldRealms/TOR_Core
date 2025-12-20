@@ -61,8 +61,10 @@ public class TeefBehavior : CampaignBehaviorBase
             {
                 var quarterMaster = HeroCreator.CreateSpecialHero(template, settlement, null, null, 50);
                 quarterMaster.SupporterOf = settlement.OwnerClan;
-
-                quarterMaster.SetName(template.Name, quarterMaster.Name);
+                quarterMaster.CharacterObject.HiddenInEncyclopedia = true;
+                var nameObject = template.GetName();
+                nameObject.SetTextVariable("FIRSTNAME", quarterMaster.FirstName);
+                quarterMaster.SetName(nameObject, quarterMaster.Name);
                 HeroHelper.SpawnHeroForTheFirstTime(quarterMaster, settlement);
             }
         }

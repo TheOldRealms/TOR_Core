@@ -15,7 +15,7 @@ namespace TOR_Core.Items
     {
         private Dictionary<string, List<BaseInventoryUseScript>> _activeScripts = [];
         private Dictionary<string, List<BaseInventoryUseScript>> _scriptsToRemove = [];
-        private List<ScriptUseData> _usages = new List<ScriptUseData>();
+        internal List<ScriptUseData> _usages = new List<ScriptUseData>();
 
 
         public static InventoryUseScriptsCampaignBehavior Instance => Campaign.Current.GetCampaignBehavior<InventoryUseScriptsCampaignBehavior>();

@@ -7009,13 +7009,13 @@
 			<name name="{=dwarf_male_name_164}Gror" />
 		</male_names>
 		<female_names>
-			<name name="{=chaos_female_name_1}Eris" />
-			<name name="{=chaos_female_name_2}Bellona" />
-			<name name="{=chaos_female_name_3}Hela" />
-			<name name="{=chaos_female_name_4}Vlitreska" />
-			<name name="{=chaos_female_name_4}Kaeria" />
-			<name name="{=chaos_female_name_4}Melaena " />
-			<name name="{=chaos_female_name_4}Atarine  " />
+			<name name="{=str_tor_chaos_female_name_1}Eris" />
+			<name name="{=str_tor_chaos_female_name_2}Bellona" />
+			<name name="{=str_tor_chaos_female_name_3}Hela" />
+			<name name="{=str_tor_chaos_female_name_4}Vlitreska" />
+			<name name="{=str_tor_chaos_female_name_4}Kaeria" />
+			<name name="{=str_tor_chaos_female_name_4}Melaena " />
+			<name name="{=str_tor_chaos_female_name_4}Atarine  " />
 		</female_names>
 		<clan_names>
 			<name name="{=!}Gunnarsson" />
@@ -7097,10 +7097,10 @@
 		</basic_mercenary_troops>
 	</Culture>
 	<Culture id="chaos_culture"
-		name="{=str_chaos_culture}Chaos"
+		name="{=str_tor_chaos_culture}Chaos"
 		color="0xFF612121"
 		color2="0xFFededed"
-		is_main_culture="false"
+		is_main_culture="true"
 		elite_basic_troop="NPCCharacter.tor_chaos_aspiring_warrior"
 		basic_troop="NPCCharacter.tor_chaos_norscan_tribesman"
 		melee_militia_troop="NPCCharacter.tor_chaos_cultist_of_chaos"
@@ -7191,55 +7191,55 @@
 			<policy id="policy_castle_charters" />
 		</default_policies>
 		<male_names>
-			<name name="{=chaos_male_name_1}Abrax" />
-			<name name="{=chaos_male_name_2}Aekold" />
-			<name name="{=chaos_male_name_3}Akkorak" />
-			<name name="{=chaos_male_name_4}Arek" />
-			<name name="{=chaos_male_name_5}Baudros" />
-			<name name="{=chaos_male_name_6}Cormac" />
-			<name name="{=chaos_male_name_7}Dravik" />
-			<name name="{=chaos_male_name_8}Drenok" />
-			<name name="{=chaos_male_name_9}Egil" />
-			<name name="{=chaos_male_name_10}Elgrom" />
-			<name name="{=chaos_male_name_11}Ferik" />
-			<name name="{=chaos_male_name_12}Garm" />
-			<name name="{=chaos_male_name_13}Harald" />
-			<name name="{=chaos_male_name_14}Hildr" />
-			<name name="{=chaos_male_name_15}Jharkill" />
-			<name name="{=chaos_male_name_16}Kastragar" />
-			<name name="{=chaos_male_name_17}Khagul" />
-			<name name="{=chaos_male_name_18}Khorak" />
-			<name name="{=chaos_male_name_19}Merroc" />
-			<name name="{=chaos_male_name_20}Morkar" />
-			<name name="{=chaos_male_name_21}Ograx" />
-			<name name="{=chaos_male_name_22}Radek" />
-			<name name="{=chaos_male_name_23}Ragnar" />
-			<name name="{=chaos_male_name_24}Rolf" />
-			<name name="{=chaos_male_name_25}Valmir" />
-			<name name="{=chaos_male_name_26}Strykssen" />
-			<name name="{=chaos_male_name_27}Sven" />
-			<name name="{=chaos_male_name_28}Vallac" />
-			<name name="{=chaos_male_name_29}Vardek" />
-			<name name="{=chaos_male_name_30}Soren" />
-			<name name="{=chaos_male_name_31}Skollden" />
+			<name name="{=str_tor_chaos_male_name_1}Abrax" />
+			<name name="{=str_tor_chaos_male_name_2}Aekold" />
+			<name name="{=str_tor_chaos_male_name_3}Akkorak" />
+			<name name="{=str_tor_chaos_male_name_4}Arek" />
+			<name name="{=str_tor_chaos_male_name_5}Baudros" />
+			<name name="{=str_tor_chaos_male_name_6}Cormac" />
+			<name name="{=str_tor_chaos_male_name_7}Dravik" />
+			<name name="{=str_tor_chaos_male_name_8}Drenok" />
+			<name name="{=str_tor_chaos_male_name_9}Egil" />
+			<name name="{=str_tor_chaos_male_name_10}Elgrom" />
+			<name name="{=str_tor_chaos_male_name_11}Ferik" />
+			<name name="{=str_tor_chaos_male_name_12}Garm" />
+			<name name="{=str_tor_chaos_male_name_13}Harald" />
+			<name name="{=str_tor_chaos_male_name_14}Hildr" />
+			<name name="{=str_tor_chaos_male_name_15}Jharkill" />
+			<name name="{=str_tor_chaos_male_name_16}Kastragar" />
+			<name name="{=str_tor_chaos_male_name_17}Khagul" />
+			<name name="{=str_tor_chaos_male_name_18}Khorak" />
+			<name name="{=str_tor_chaos_male_name_19}Merroc" />
+			<name name="{=str_tor_chaos_male_name_20}Morkar" />
+			<name name="{=str_tor_chaos_male_name_21}Ograx" />
+			<name name="{=str_tor_chaos_male_name_22}Radek" />
+			<name name="{=str_tor_chaos_male_name_23}Ragnar" />
+			<name name="{=str_tor_chaos_male_name_24}Rolf" />
+			<name name="{=str_tor_chaos_male_name_25}Valmir" />
+			<name name="{=str_tor_chaos_male_name_26}Strykssen" />
+			<name name="{=str_tor_chaos_male_name_27}Sven" />
+			<name name="{=str_tor_chaos_male_name_28}Vallac" />
+			<name name="{=str_tor_chaos_male_name_29}Vardek" />
+			<name name="{=str_tor_chaos_male_name_30}Soren" />
+			<name name="{=str_tor_chaos_male_name_31}Skollden" />
 		</male_names>
 		<female_names>
-			<name name="{=chaos_female_name_1}Eris" />
-			<name name="{=chaos_female_name_2}Bellona" />
-			<name name="{=chaos_female_name_3}Hela" />
-			<name name="{=chaos_female_name_4}Vlitreska" />
-			<name name="{=chaos_female_name_4}Kaeria" />
-			<name name="{=chaos_female_name_4}Melaena " />
-			<name name="{=chaos_female_name_4}Atarine  " />
+			<name name="{=str_tor_chaos_female_name_1}Eris" />
+			<name name="{=str_tor_chaos_female_name_2}Bellona" />
+			<name name="{=str_tor_chaos_female_name_3}Hela" />
+			<name name="{=str_tor_chaos_female_name_4}Vlitreska" />
+			<name name="{=str_tor_chaos_female_name_5}Kaeria" />
+			<name name="{=str_tor_chaos_female_name_6}Melaena " />
+			<name name="{=str_tor_chaos_female_name_7}Atarine  " />
 		</female_names>
 		<clan_names>
-			<name name="{=!}Doomborn" />
-			<name name="{=!}Bloodreapers" />
-			<name name="{=!}Gorefesters" />
-			<name name="{=!}Horstmann" />
-			<name name="{=!}Painbringers" />
-			<name name="{=!}Belaxus" />
-			<name name="{=!}Bubonicus" />
+			<name name="{=str_tor_chaos_clan_name_1}Doomborn" />
+			<name name="{=str_tor_chaos_clan_name_2}Bloodreapers" />
+			<name name="{=str_tor_chaos_clan_name_3}Gorefesters" />
+			<name name="{=str_tor_chaos_clan_name_4}Horstmann" />
+			<name name="{=str_tor_chaos_clan_name_5}Painbringers" />
+			<name name="{=str_tor_chaos_clan_name_6}Belaxus" />
+			<name name="{=str_tor_chaos_clan_name_7}Bubonicus" />
 		</clan_names>
 		<cultural_feats>
 			<feat id="vlandian_renown_mercenary_income" />

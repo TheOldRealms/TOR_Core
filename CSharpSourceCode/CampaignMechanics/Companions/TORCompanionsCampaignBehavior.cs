@@ -30,9 +30,8 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         public override void RegisterEvents()
         {
-            //cache wanderer templates, can this be done on the CampaignInitialization event so that it precedes NewGameCreated and can be more generic?
-            CampaignEvents.OnGameLoadFinishedEvent.AddNonSerializedListener(this, OnGameLoadFinished);
-			CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
+            //cache wanderer templates, and cache existing wanderers or spawn a first wave depending on CampaignGameLoadingType
+			CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
 
             //replenish/refresh wanderers on the weekly tick; handle deletion of outdated character objects (be aware of how you need to detect dead wanderers)
 			CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, WeeklyTick);
@@ -49,32 +48,36 @@ namespace TOR_Core.CampaignMechanics.Companions
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, AddDailySkillXpToCompanions); //checking all parties via the daily party event includes caravans, patrols, bandits, etc... which are a waste; because heroes must be part of clans (generally, and particularly in this case which ignores things like temporary heroes created for the engineer quest), and we patch clans to spawn as many parties as possible, we can interate through the clan members and check for their party to restrict the amount checked
         }
 
-        //Sly : tempted to put this into OnGameInitializationFinished in SubModule as it is called for both campaign creation and load, but nyeh, possibility of confusion
-        private void OnGameLoadFinished()
+        private void OnSessionLaunched(CampaignGameStarter starter)
         {
             CacheCompanionTemplates();
-			foreach (Hero hero in Hero.AllAliveHeroes)
-			{
-				if (hero.IsWanderer)
-				{
-					AddToSpawnedCompanions(hero);
-				}
-			}
-			foreach (Hero hero2 in Hero.DeadOrDisabledHeroes)
-			{
-				if (hero2.IsWanderer)
-				{
-					AddToSpawnedCompanions(hero2);//add disabled wanderers so they get unregistered on the next weekly tick
-				}
-			}
-        }
 
-        private void OnNewGameCreated(CampaignGameStarter starter)
-        {
-            CacheCompanionTemplates();
-			foreach (var town in Town.AllTowns)
+            //fill cache when wanderers will already exist
+            if (Campaign.Current.CampaignGameLoadingType == Campaign.GameLoadingType.SavedCampaign)
             {
-                SpawnWanderer(town.Settlement);
+                foreach (Hero hero in Hero.AllAliveHeroes)
+                {
+                    if (hero.IsWanderer)
+                    {
+                        AddToSpawnedCompanions(hero);
+                    }
+                }
+                foreach (Hero hero2 in Hero.DeadOrDisabledHeroes)
+                {
+                    if (hero2.IsWanderer)
+                    {
+                        AddToSpawnedCompanions(hero2);//add disabled wanderers so they get unregistered on the next weekly tick
+                    }
+                }
+            }
+
+            //spawn a first wave upon campaign creation
+            if (Campaign.Current.CampaignGameLoadingType == Campaign.GameLoadingType.NewCampaign)
+            {
+                foreach (var town in Town.AllTowns)
+                {
+                    SpawnWanderer(town.Settlement);
+                }
             }
         }
 

@@ -131,28 +131,27 @@ public class TOREnchantmentIngredientsModel : GameModel
                 if (character.IsHero && character.IsVampire() && !character.IsBloodDragon())
                     result += 5;
 
-                if (character.IsVampire() && character.HasAttribute("Necrach"))
+                if (character.IsVampire() && character.HasAttribute("Necrarch"))
                 {
                     result += 10;
                 }
                 break;
             case TorTradeGoodType.BlessedWater:
                 var inLaurelorn = false;
-                if (mapEvent != null)
+                if (mapEvent?.GetLeaderParty(BattleSideEnum.Defender)?.MobileParty?.InLaurelorn() == true)
                 {
-                    inLaurelorn = TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 50f,
-                        x => x.StringId.Contains("LL")).Count > 0;
+                    inLaurelorn = true;
                 }
-                if (character.IsReligiousUnit() && character.Culture.StringId == TORConstants.Cultures.BRETONNIA || character.Culture.StringId == TORConstants.Cultures.EMPIRE)
+                if (character.IsReligiousUnit() && (character.Culture.StringId == TORConstants.Cultures.BRETONNIA || character.Culture.StringId == TORConstants.Cultures.EMPIRE))
                 {
                     result++;
                 }
 
                 if (character.StringId == "tor_br_quest_knight")
                 {
-                    result += 2.5f;
+                    result += 7.5f;
                 }
-                if (character.StringId == "tor_br_quest_knight" || (character.IsHero && character.HeroObject.IsPriest()))
+                if (character.IsHero && character.HeroObject.IsPriest())
                 {
                     result += 5;
                 }
@@ -172,8 +171,6 @@ public class TOREnchantmentIngredientsModel : GameModel
 
                 if (mapEvent != null)
                 {
-
-
                     inSylvania = TORCommon.FindSettlementsAroundPosition(mapEvent.Position.ToVec2(), 150f,
                         x => x.StringId.Contains("SY")).Count > 0;
                 }
@@ -213,14 +210,15 @@ public class TOREnchantmentIngredientsModel : GameModel
                 if (character.Culture.StringId == TORConstants.Cultures.DAWI || character.Culture.StringId == TORConstants.Cultures.GREENSKIN)
                 {
                     result += 1;
+
+                    if (character.Tier > 4)
+                    {
+                        result++;
+                    }
                 }
                 if (character.StringId.Contains("iron") && character.Culture.StringId == TORConstants.Cultures.DAWI)
                 {
                     result += 2;  //Ironbreaker bonus
-                }
-                if (character.Tier > 4 && character.Culture.StringId == TORConstants.Cultures.DAWI || character.Culture.StringId == TORConstants.Cultures.GREENSKIN)
-                {
-                    result++;
                 }
 
                 break;

@@ -124,6 +124,11 @@ namespace TOR_Core
             LogManager.Configuration = config;
         }
 
+        /// <remarks>
+        /// Sly : Game.Initialize -> GameType.OnInitialize -> Campaign.OnInitialize override and InitializeGameStarter is within that last one.
+        /// Game.Initialize is when the game text manager is initialized, so any harmony patches that cause issues with static strings being initialized too soon needs to be at this point or later - this is the earliest override that occurs post text manager initialization.
+        /// Consequently, anything we have that makes use of GameText.FindText should be initialized inside of or after this so that all our strings in tor_strings.xml are available.
+        /// </remarks>
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
         {
             CustomResourceManager.Initialize();

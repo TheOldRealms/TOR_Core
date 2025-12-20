@@ -372,6 +372,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     private void OnNewGameStart(CampaignGameStarter starter)
     {
         var customSettlements = Settlement.FindAll(x => x.SettlementComponent is TORBaseSettlementComponent);
+        AllCustomSettlements = new MBReadOnlyList<Settlement>(customSettlements);
         foreach (var settlement in customSettlements)
         {
             var comp = settlement.SettlementComponent as TORBaseSettlementComponent;
@@ -379,7 +380,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         }
     }
 
-    //Sly : this should be transfered over into the relevant settlement component's OnPartyEntered override method; we can perform this without needing to evaluate every party entering every settlement. See hideouts in native for an example.
+    //Sly : this should be transfered over into the relevant settlement component's OnPartyEntered override method; we can perform this without needing to evaluate every party entering unrelated settlement types. See hideouts in native for an example.
     private void OnSettlementEntered(MobileParty party, Settlement settlement, Hero leaderHero)
     {
         var settleComp = settlement.SettlementComponent;

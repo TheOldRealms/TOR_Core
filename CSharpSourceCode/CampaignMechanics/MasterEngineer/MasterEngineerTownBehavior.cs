@@ -67,6 +67,7 @@ namespace TOR_Core.CampaignSupport.TownBehaviours
         }
 
         private void OnGameMenuOpened(MenuCallbackArgs obj) => EnforceEngineerLocation();
+
         private void OnBeforeMissionStart() => EnforceEngineerLocation();
 
         private void EnforceEngineerLocation()

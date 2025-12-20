@@ -188,16 +188,10 @@ public class TORCustomResourceModel : GameModel
                         if (!attributes.Contains("Extorsion"))
                             continue;
 
-                        var troopId = attributePair.Key;
-                        var troop = MBObjectManager.Instance.GetObject<CharacterObject>(troopId);
-                        if (troop != null)
+                        var element = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster().FirstOrDefault(x => x.Character.StringId == attributePair.Key);
+                        if (element.Character != null)
                         {
-                            var element = Hero.MainHero.PartyBelongedTo.MemberRoster.GetTroopRoster().First(x => x.Character == troop);
-                            if (element.Character != null)
-                            {
-                                number.Add(troop.Tier * factor * element.Number, TORTextHelper.GetTextObject("tor_greenskin_teef_extorsion_text", "Teef Extorsion"));
-                            }
-
+                            number.Add(element.Character.Tier * factor * element.Number, TORTextHelper.GetTextObject("tor_greenskin_teef_extorsion_text", "Teef Extorsion"));
                         }
                     }
                 }

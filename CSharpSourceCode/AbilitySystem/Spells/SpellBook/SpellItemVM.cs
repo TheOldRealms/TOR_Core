@@ -70,7 +70,7 @@ namespace TOR_Core.AbilitySystem.SpellBook
             }
             var learnTextObject = TORTextHelper.GetTextObject("tor_learnSpell", "Learn {GOLDCOST} {COINIMAGE}");
             MBTextManager.SetTextVariable("COINIMAGE", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"4\">", false);
-            MBTextManager.SetTextVariable("GOLDCOST", _goldCost);
+            learnTextObject.SetTextVariable("GOLDCOST", _goldCost);
             LearnText = learnTextObject.ToString(); //this does result in a localized string in the UI - to be determined if this is actually how we want to localize that UI
 
             IsSelected = !_isTrainerMode && info.IsAbilitySelected(Template.StringID);

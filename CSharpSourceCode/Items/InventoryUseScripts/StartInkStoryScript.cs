@@ -19,7 +19,8 @@ public class StartInkStoryScript : BaseInventoryUseScript
 
         var campaignBehavior = Campaign.Current.GetCampaignBehavior<InkStoryCampaignBehavior>();
 
-        InventoryScreenHelper.CloseScreen(true);
+        InventoryScreenHelper.CloseScreen(true);//Sly : resets hero's equipment due to a bug in the native logic that sets the "prior equipment" to the basic char object's sets when inventory is opened despite equipment for heroes stored on the HeroObject....
+        //passing true causes the inventory to be reset which makes use of the "prior equipment" because it cancels all transactions and resets to the previous equipment
 
         campaignBehavior.OpenStory(story);
     }

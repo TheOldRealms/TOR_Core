@@ -1,8 +1,14 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using System.Linq;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -92,7 +98,46 @@ namespace TOR_Core.Models
             return num;
         }
 
+        public override TroopRoster FindAppropriateInitialRosterForMobileParty(MobileParty party, PartyTemplateObject partyTemplate)
+        {
+            if (party?.PartyComponent is not RaidingPartyComponent) return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
 
+            //scales up the party size to the approximately approriate amount based on the field that stores the intended amount during component initialization
+            var raidingComponent = party.PartyComponent as RaidingPartyComponent;
+            var targetPartySize = raidingComponent._partySize;
+
+
+            //copied from native with adjustments to fit usage
+            TroopRoster troopRoster = TroopRoster.CreateDummyTroopRoster();
+            float templateMaxCount = partyTemplate.Stacks.Sum((PartyTemplateStack s) => s.MaxValue);
+            float initialPartySizeRatio = targetPartySize / templateMaxCount;
+            for (int i = 0; i < partyTemplate.Stacks.Count; i++)
+            {
+                int minValue = partyTemplate.Stacks[i].MinValue;
+                int maxValue = partyTemplate.Stacks[i].MaxValue;
+                int num = minValue;
+                if (initialPartySizeRatio <= 0f)
+                {
+                    num = minValue;
+                }
+                else if (initialPartySizeRatio <= 1f)
+                {
+                    num = MBRandom.RoundRandomized((float)minValue + (float)(maxValue - minValue) * initialPartySizeRatio);
+                }
+                else
+                {
+                    num = (int)(maxValue * initialPartySizeRatio);
+                }
+
+                if (num > 0)
+                {
+                    CharacterObject character = partyTemplate.Stacks[i].Character;
+                    troopRoster.AddToCounts(character, num);
+                }
+            }
+
+            return troopRoster;
+        }
 
         private void AddCareerPassivesForPartySize(Hero playerHero, ref ExplainedNumber number)
         {

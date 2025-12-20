@@ -12,8 +12,6 @@ namespace TOR_Core.BattleMechanics.Artillery
     {
         public bool PreferHighAngle = false;
         public abstract float ProjectileVelocity { get; }
-        //protected List<StandingPoint> AmmoPickUpStandingPoints => base.AmmoPickUpPoints;
-        //base.StandingPoints.OfType<StandingPointWithWeaponRequirement>().ToList(); //Sly : alternatively, use base.AmmoPickUpPoints to have the untyped list of the ammo points
         private BattleSideEnum _side;
         public override BattleSideEnum Side => _side;
         public void SetSide(BattleSideEnum side) => _side = side;
@@ -100,24 +98,22 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         protected void ForceAmmoPointUsage()
         {
-            //var standingPointWithWeaponRequirement = base.StandingPoints.OfType<StandingPointWithWeaponRequirement>().ToList();
-            //var ammoPickUpPoints = base.AmmoPickUpPoints; //Sly : for my curiosity about the different standing point types and their relevance to ammo pickup
+            //AmmoPickUpPoints are a type of StandingPoint - they are not a StandingPointWithWeaponRequirement; the former can be accessed directly from UseableMachine
 
             if (State == WeaponState.LoadingAmmo && !LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.HasAIMovingTo)
-                if (State == WeaponState.LoadingAmmo && !LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.HasAIMovingTo)
+            {
+                foreach (var sp in AmmoPickUpPoints)
                 {
-                    foreach (var sp in AmmoPickUpPoints)
-                    {
-                        if (sp.IsDeactivated) sp.SetIsDeactivatedSynched(false);
-                    }
+                    if (sp.IsDeactivated) sp.SetIsDeactivatedSynched(false);
                 }
-                else
+            }
+            else
+            {
+                foreach (var sp in AmmoPickUpPoints)
                 {
-                    foreach (var sp in AmmoPickUpPoints)
-                    {
-                        if (!sp.IsDeactivated) sp.SetIsDeactivatedSynched(true);
-                    }
+                    if (!sp.IsDeactivated) sp.SetIsDeactivatedSynched(true);
                 }
+            }
         }
     }
 }

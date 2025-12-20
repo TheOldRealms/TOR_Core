@@ -23,7 +23,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
 
         [SaveableField(4)] private string _name;
         [SaveableField(5)] private PartyTemplateObject _template;
-        [SaveableField(6)] private int _partySize;
+        [SaveableField(6)] public int _partySize; //accessible to TORPartySizeModel which needs it to scale the troop counts up because native now only supports ratios up to 1.0 compared to the party template used
 
         private RaidingPartyComponent(Settlement home, string name, Clan ownerClan, PartyTemplateObject template, int partySize)
         {
@@ -43,7 +43,7 @@ namespace TOR_Core.CampaignMechanics.RaidingParties
         {
             if (_owner.Clan != null && _template != null)
             {
-                //Setting partylimit/size is no longer done here, should be from PartyLimitModel
+                //party size adjustment handled in TORPartySizeModel.FindAppropriateInitialRosterForMobileParty
                 MobileParty.InitializeMobilePartyAroundPosition(_template, HomeSettlement.Position, 20);
                 MobileParty.ActualClan = _owner.Clan;
                 MobileParty.Aggressiveness = 2.0f;
