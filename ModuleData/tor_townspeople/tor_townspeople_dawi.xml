@@ -58,7 +58,7 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="townsman_dawi" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.sturgia" race ="dwarf" name="{=str_townsman_dawi}Toriour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+  <NPCCharacter id="townsman_dawi" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.sturgia" race ="dwarf" name="{=str_townsman_dawi}Dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>
@@ -72,7 +72,7 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="townswoman_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Townsfolk" culture="Culture.sturgia" race ="dwarf" name="{=str_townswoman_dawi}Toriour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+  <NPCCharacter id="townswoman_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Townsfolk" culture="Culture.sturgia" race ="dwarf" name="{=str_townswoman_dawi}Dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>
@@ -87,7 +87,7 @@
   </NPCCharacter>
 
 
-  <NPCCharacter id="villager_dawi" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.sturgia" race ="dwarf" name="{=str_villager_dawi}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+  <NPCCharacter id="villager_dawi" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.sturgia" race ="dwarf" name="{=str_villager_dawi}Dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>
@@ -101,7 +101,7 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="village_woman_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Villager" culture="Culture.sturgia" race ="dwarf" name="{=str_village_woman_dawi}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+  <NPCCharacter id="village_woman_dawi" default_group="Infantry" is_hero="false" is_female="false" occupation="Villager" culture="Culture.sturgia" race ="dwarf" name="{=str_village_woman_dawi}Dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>
@@ -504,7 +504,7 @@
       <EquipmentSet id="tor_dw_dwarf_warrior_template" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_notable_dawi_artisan_1" name="{=str_tor_notable_dawi_artisan_1}Dawin artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="Artisan">
+  <NPCCharacter id="tor_notable_dawi_artisan_1" name="{=str_tor_notable_dawi_artisan_1}Dawi artisan 1" voice="earnest" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="Artisan">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>
@@ -516,7 +516,7 @@
       <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_notable_dawi_artisan_2" name="{=str_tor_notable_dawi_artisan_2}Dawin artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="Artisan">
+  <NPCCharacter id="tor_notable_dawi_artisan_2" name="{=str_tor_notable_dawi_artisan_2}Dawi artisan 2" voice="curt" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="Artisan">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>
@@ -528,7 +528,7 @@
       <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_notable_dawi_rural_1" name="{=str_tor_notable_dawi_rural_1}Dawin yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="RuralNotable">
+  <NPCCharacter id="tor_notable_dawi_rural_1" name="{=str_tor_notable_dawi_rural_1}Dawi yeoman" voice="curt" is_template="true" default_group="Infantry" culture="Culture.sturgia" race ="dwarf" occupation="RuralNotable">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>
@@ -553,7 +553,7 @@
       <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_dawi_headman_1" name="{=str_dawi_headman_1}Dawin rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia" race ="dwarf" occupation="Headman">
+  <NPCCharacter id="tor_dawi_headman_1" name="{=str_dawi_headman_1}Dawi rebellious headman" voice="earnest" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia" race ="dwarf" occupation="Headman">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>
@@ -566,7 +566,7 @@
       <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_dawi_headman_2" name="{=str_dawi_headman_2}Dawin conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia"  race ="dwarf" occupation="Headman">
+  <NPCCharacter id="tor_dawi_headman_2" name="{=str_dawi_headman_2}Dawi conservative headman" voice="curt" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia"  race ="dwarf" occupation="Headman">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>
@@ -579,7 +579,7 @@
       <EquipmentSet id="tor_dw_dwarf_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_dawi_headman_3" name="{=str_dawi_headman_3}Dawin devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia" race ="dwarf" occupation="Headman">
+  <NPCCharacter id="tor_dawi_headman_3" name="{=str_dawi_headman_3}Dawi devious headman" voice="softspoken" is_template="true" default_group="Infantry" is_hero="false" culture="Culture.sturgia" race ="dwarf" occupation="Headman">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier" />
     </face>

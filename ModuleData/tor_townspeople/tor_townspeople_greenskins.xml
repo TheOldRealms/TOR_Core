@@ -44,7 +44,7 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="townsman_greenskins" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.aserai" race ="orc" name="{=str_townsman_greenskins}Toriour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+  <NPCCharacter id="townsman_greenskins" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.aserai" race ="orc" name="{=str_townsman_greenskins}Orc" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -58,7 +58,7 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="townswoman_greenskins" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.aserai" race ="orc" name="{=str_townswoman_greenskins}Toriour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+  <NPCCharacter id="townswoman_greenskins" default_group="Infantry" is_hero="false" occupation="Townsfolk" culture="Culture.aserai" race ="orc" name="{=str_townswoman_greenskins}Orc" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -73,7 +73,7 @@
   </NPCCharacter>
 
 
-  <NPCCharacter id="villager_greenskins" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.aserai" race ="orc" name="{=str_villager_greenskins}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+  <NPCCharacter id="villager_greenskins" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.aserai" race ="orc" name="{=str_villager_greenskins}Orc" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -87,7 +87,7 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="village_woman_greenskins" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.aserai" race ="orc" name="{=str_village_woman_greenskins}Faniour" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+  <NPCCharacter id="village_woman_greenskins" default_group="Infantry" is_hero="false" occupation="Villager" culture="Culture.aserai" race ="orc" name="{=str_village_woman_greenskins}Orc" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
