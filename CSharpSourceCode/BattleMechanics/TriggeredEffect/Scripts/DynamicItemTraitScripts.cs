@@ -99,66 +99,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
         }
     }
 
-    public class ApplyKnightlyStrikeTraitScript : ITriggeredScript
-    {
-        public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)
-        {
-            var additionalDamage = new DamageProportionTuple();
-            additionalDamage.DamageType = DamageType.Physical;
-            additionalDamage.Percent = 0.2f;
-
-            var ca = triggeredByAgent?.GetComponent<AbilityComponent>().CareerAbility;
-
-            var bonusdamage = 0f;
-            if (ca != null)
-            {
-                bonusdamage = ca.Template.ScaleVariable1;
-            }
-            additionalDamage.Percent += bonusdamage;
-
-            var additionalLoads = Hero.MainHero.GetAllCareerChoices().WhereQ(x => x.Contains("Keystone")).Count();
-
-            if (Hero.MainHero.HasCareerChoice("SecularOrdersKeystone"))
-            {
-                additionalLoads += 2;
-            }
-
-            if (Hero.MainHero.HasCareerChoice("TemplarOrdersKeystone"))
-            {
-                additionalLoads += 2;
-            }
-
-            var traitList = new List<ItemTrait>();
-
-            if (Hero.MainHero.HasCareerChoice("PathOfGloryKeystone"))
-            {
-                var holyTrait = CareerHelper.GetTraitForReligion(Hero.MainHero, Hero.MainHero.GetDominantReligion());
-                if (holyTrait != null && holyTrait != ItemTrait.Invalid) traitList.Add(holyTrait);
-            }
-
-            var knightlytrait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_knightlystrike");
-            if (knightlytrait != null) traitList.Add(knightlytrait);
-
-            triggeredByAgent.ApplyStatusEffect("knightly_strike", triggeredByAgent, 30, false, false, true);
-            for (int i = 0; i < additionalLoads; i++)
-            {
-                triggeredByAgent.ApplyStatusEffect("knightly_strike", triggeredByAgent, 30, false, false, true);
-            }
-
-            foreach (Agent agent in triggeredAgents)
-            {
-                var comp = agent.GetComponent<ItemTraitAgentComponent>();
-                if (comp != null)
-                {
-                    foreach (var trait in traitList)
-                    {
-                        comp.AddTraitToWieldedWeapon(trait, duration);
-                    }
-                }
-            }
-        }
-    }
-
     public class ApplyLesserFlamingItemTraitScript : ITriggeredScript
     {
         public void OnTrigger(Vec3 position, Agent triggeredByAgent, IEnumerable<Agent> triggeredAgents, float duration)

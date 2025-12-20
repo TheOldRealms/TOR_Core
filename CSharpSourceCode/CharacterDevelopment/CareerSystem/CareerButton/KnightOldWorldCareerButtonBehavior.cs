@@ -14,17 +14,29 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
-public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerButtonBehaviorBase(career)
+public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 {
     private const int MINIMUMLEVELFORSEAL = 5;
 
-    private readonly string _secularSealIcon = "CareerSystem\\aqshy";
-    private readonly string _sigmarSealIcon = "CareerSystem\\aqshy";
-    private readonly string _taalSealIcon = "CareerSystem\\ghyran";
-    private readonly string _ulricSealIcon = "CareerSystem\\azyr";
-    private readonly string _shallyaSealIcon = "CareerSystem\\ghyran";
-    private readonly string _manaanSealIcon = "CareerSystem\\manaan";
+    private readonly string _secularSealIcon = "reiksguard_icon";
+    private readonly string _sigmarSealIcon = "sigmar_comet_icon";
+    private readonly string _taalSealIcon = "ghur";
+    private readonly string _ulricSealIcon = "whitewolf_icon";
+    private readonly string _shallyaSealIcon = "shallya_dove_icon";
+    private readonly string _manaanSealIcon = "azyr";
+    private readonly string _myrmidiaSealIcon = "blazingsun_icon";
     private CharacterObject _setCharacter;
+
+    public KnightOldWorldCareerButtonBehavior(CareerObject career) : base(career)
+    {
+        MBTextManager.SetTextVariable("SECULAR_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _secularSealIcon));
+        MBTextManager.SetTextVariable("SIGMAR_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _sigmarSealIcon));
+        MBTextManager.SetTextVariable("TAAL_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _taalSealIcon));
+        MBTextManager.SetTextVariable("ULRIC_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _ulricSealIcon));
+        MBTextManager.SetTextVariable("SHALLYA_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _shallyaSealIcon));
+        MBTextManager.SetTextVariable("MANAAN_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _manaanSealIcon));
+        MBTextManager.SetTextVariable("MYRMIDIA_SEAL_ICON", string.Format("<img src=\"{0}\"/>", _myrmidiaSealIcon));
+    }
 
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClick = false)
     {
@@ -49,7 +61,7 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
         for (var i = 0; i < seals.Count; i++)
         {
             var seal = seals[i];
-            var icon = seal.SealIcon;
+            var icon = GetSealIcon(seal.DeityCultId);
 
             var price = seal.Price;
 
@@ -68,7 +80,15 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
                     continue;
                 }
             }
-            var inquiryElement = new InquiryElement(seal, displayName.ToString(), null, true, displayDescription.ToString());
+
+            // Check career tier requirement
+            if (!Hero.MainHero.HasUnlockedCareerChoiceTier(seal.Tier))
+            {
+                continue;
+            }
+
+            var text = $"{{{icon}}} {displayName}";
+            var inquiryElement = new InquiryElement(seal, new TextObject(text).ToString(), null, true, displayDescription.ToString());
 
             inquiryElements.Add(inquiryElement);
         }
@@ -80,7 +100,7 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             count = 2;
         }
 
-        var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_purity_seal_choose_title_text", "Choose purity Seal."), TORTextHelper.GetText("tor_purity_seal_choose_description_text", "Empower your Knight units with new powerful seals"), inquiryElements,
+        var inquirydata = new MultiSelectionInquiryData(TORTextHelper.GetText("tor_purity_seal_choose_title_text", "Choose Purity Seal"), TORTextHelper.GetText("tor_purity_seal_choose_description_text", "Empower your knight units with powerful seals."), inquiryElements,
             true, 1, count, TORTextHelper.GetText("tor_inquiry_accept_text", "Accept"), TORTextHelper.GetText("tor_inquiry_cancel_text", "Cancel"), OnSelectedOption, OnCancel);
         MBInformationManager.ShowMultiSelectionInquiry(inquirydata);
     }
@@ -162,34 +182,52 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
     {
         return new List<KnightPuritySeal>
         {
-            new("SecularSeal1",  "apply_secular_seal_trait1", null, 10, _secularSealIcon),
-            new("SecularSeal2" ,null, null, 10, _secularSealIcon),
-            new("SecularSeal3", "apply_secular_seal_trait2", null, 10, _secularSealIcon),
+            new("SecularSeal1", "apply_secular_seal_trait1", null, 10, _secularSealIcon, 1),
+            new("SecularSeal2", null, null, 10, _secularSealIcon, 2),
+            new("SecularSeal3", "apply_secular_seal_trait2", null, 10, _secularSealIcon, 3),
         };
     }
+    private string GetSealIcon(string cultId)
+    {
+        return cultId switch
+        {
+            "cult_of_sigmar" => "SIGMAR_SEAL_ICON",
+            "cult_of_ulric" => "ULRIC_SEAL_ICON",
+            "cult_of_taal" => "TAAL_SEAL_ICON",
+            "cult_of_manaan" => "MANAAN_SEAL_ICON",
+            "cult_of_shallya" => "SHALLYA_SEAL_ICON",
+            "cult_of_myrmidia" => "MYRMIDIA_SEAL_ICON",
+            _ => "SECULAR_SEAL_ICON"
+        };
+    }
+
     private List<KnightPuritySeal> GetTemplarPuritySeals()
     {
         return new List<KnightPuritySeal>
         {
-            new("SigmarSeal1","apply_sigmar_seal_trait1","cult_of_sigmar",10, _sigmarSealIcon),
-            new("SigmarSeal2",null,"cult_of_sigmar",10,_sigmarSealIcon),
-            new("SigmarSeal3","apply_sigmar_seal_trait2","cult_of_sigmar",10,_sigmarSealIcon),
+            new("SigmarSeal1", "apply_sigmar_seal_trait1", "cult_of_sigmar", 10, _sigmarSealIcon, 1),
+            new("SigmarSeal2", "apply_sigmar_seal_trait2", "cult_of_sigmar", 10, _sigmarSealIcon, 2),
+            new("SigmarSeal3", null, "cult_of_sigmar", 10, _sigmarSealIcon, 3),
 
-            new("UlricSeal1","apply_ulric_seal_trait1","cult_of_ulric",10, _ulricSealIcon),
-            new("UlricSeal2","apply_ulric_seal_trait2","cult_of_ulric",10, _ulricSealIcon),
-            new("UlricSeal3","apply_ulric_seal_trait3","cult_of_ulric",10, _ulricSealIcon),
+            new("UlricSeal1", "apply_ulric_seal_trait1", "cult_of_ulric", 10, _ulricSealIcon, 1),
+            new("UlricSeal2", "apply_ulric_seal_trait2", "cult_of_ulric", 10, _ulricSealIcon, 2),
+            new("UlricSeal3", "apply_ulric_seal_trait3", "cult_of_ulric", 10, _ulricSealIcon, 3),
 
-            new("TaalSeal1","apply_taal_seal_trait1","cult_of_taal",10, _taalSealIcon),
-            new("TaalSeal2",null,"cult_of_taal",10, _taalSealIcon),
-            new("TaalSeal3","apply_taal_seal_trait2","cult_of_taal",10,_taalSealIcon),
+            new("TaalSeal1", "apply_taal_seal_trait1", "cult_of_taal", 10, _taalSealIcon, 1),
+            new("TaalSeal2", "apply_taal_seal_trait2", "cult_of_taal", 10, _taalSealIcon, 2),
+            new("TaalSeal3", null, "cult_of_taal", 10, _taalSealIcon, 3),
 
-            new("ManaanSeal1","apply_manaan_seal_trait1","cult_of_manaan",10, _manaanSealIcon),
-            new("ManaanSeal2","apply_manaan_seal_trait2","cult_of_manaan",10, _manaanSealIcon),
-            new("ManaanSeal3","apply_manaan_seal_trait3","cult_of_manaan",10, _manaanSealIcon),
+            new("ManaanSeal1", "apply_manaan_seal_trait1", "cult_of_manaan", 10, _manaanSealIcon, 1),
+            new("ManaanSeal2", "apply_manaan_seal_trait2", "cult_of_manaan", 10, _manaanSealIcon, 2),
+            new("ManaanSeal3", "apply_manaan_seal_trait3", "cult_of_manaan", 10, _manaanSealIcon, 3),
 
-            new("ShallyaSeal1",null,"cult_of_shallya",10, _shallyaSealIcon),
-            new("ShallyaSeal2","apply_shallya_seal_trait1","cult_of_shallya",10, _shallyaSealIcon),
-            new("ShallyaSeal3","apply_shallya_seal_trait2","cult_of_shallya",10,_shallyaSealIcon),
+            new("ShallyaSeal1", null, "cult_of_shallya", 10, _shallyaSealIcon, 1),
+            new("ShallyaSeal2", "apply_shallya_seal_trait1", "cult_of_shallya", 10, _shallyaSealIcon, 2),
+            new("ShallyaSeal3", null, "cult_of_shallya", 10, _shallyaSealIcon, 3),
+
+            new("MyrmidiaSeal1", null, "cult_of_myrmidia", 10, _myrmidiaSealIcon, 1),
+            new("MyrmidiaSeal2", null, "cult_of_myrmidia", 10, _myrmidiaSealIcon, 2),
+            new("MyrmidiaSeal3", "apply_myrmidia_seal_trait3", "cult_of_myrmidia", 10, _myrmidiaSealIcon, 3),
         };
     }
 
@@ -209,7 +247,7 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
 
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
     {
-        displayText = TORTextHelper.GetTextObject("tor_purity_seal_add_text", "Add a purity Seal to the Knight");
+        displayText = TORTextHelper.GetTextObject("tor_purity_seal_add_text", "Add a Purity Seal to this knight.");
 
         var currentSeals = GetCurrentActiveSeals(characterObject);
 
@@ -227,16 +265,40 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             return true;
         }
 
-        if (characterObject.IsReligiousUnit())
-        {
-            var religionObject = ReligionObject.All.FirstOrDefaultQ(x => x.ReligiousTroops.Contains(characterObject));
+        var playerReligion = Hero.MainHero.GetDominantReligion();
+        var isDevout = playerReligion != null && Hero.MainHero.GetDevotionLevelForReligion(playerReligion) >= DevotionLevel.Fanatic;
 
-            if (religionObject != Hero.MainHero.GetDominantReligion() || Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
+        if (characterObject.IsReligiousEliteUnit())
+        {
+            var troopReligion = characterObject.GetReligionForReligiousEliteUnit();
+
+            if (isDevout)
             {
-                displayText = TORTextHelper.GetTextObject("tor_purity_seal_religion_mismatch_text", "Your religion does not match the troop's Religion");
+                // Player is religious enough for templar seals - must match troop's religion
+                if (troopReligion != playerReligion)
+                {
+                    displayText = TORTextHelper.GetTextObject("tor_purity_seal_religion_mismatch_text", "Your religion does not match this unit's religion.");
+                    return false;
+                }
+            }
+            else
+            {
+                // Player is not devout enough - can only apply secular seals to templar knights with perk
+                if (!Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
+                {
+                    displayText = TORTextHelper.GetTextObject("tor_purity_seal_secular_on_religious_text", "You need the Secular Orders perk to apply seals to templar knights.");
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            // Unit is a secular knight - devout players need perk to apply templar seals
+            if (isDevout && !Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
+            {
+                displayText = TORTextHelper.GetTextObject("tor_purity_seal_templar_on_secular_text", "You need the Secular Orders perk to apply templar seals to secular knights.");
                 return false;
             }
-
         }
 
         var devotion = Hero.MainHero.GetDominantReligion();
@@ -252,14 +314,14 @@ public class KnightOldWorldCareerButtonBehavior(CareerObject career) : CareerBut
             return true;
         }
 
-        displayText = TORTextHelper.GetTextObject("tor_purity_seal_not_religious_enough_text", "You are not religous enough to provide a seal.");
+        displayText = TORTextHelper.GetTextObject("tor_purity_seal_not_religious_enough_text", "You are not religious enough to provide a seal.");
         return false;
     }
 }
 
 public class KnightPuritySeal()
 {
-    public KnightPuritySeal(string sealId, string triggeredEffectIdId, string deityCultId, int price, string sealIcon) : this()
+    public KnightPuritySeal(string sealId, string triggeredEffectIdId, string deityCultId, int price, string sealIcon, int tier) : this()
     {
         Name = GameTexts.TryGetText("TORKnightPuritySealName", out var nameText, sealId) ? nameText : new TextObject(sealId);
         Description = GameTexts.TryGetText("TORKnightPuritySealDescription", out var descriptionText, sealId) ? descriptionText : TORTextHelper.GetTextObject("tor_purity_seal_no_description_text", "No description found");
@@ -268,6 +330,7 @@ public class KnightPuritySeal()
         DeityCultId = deityCultId;
         SealId = sealId;
         SealIcon = sealIcon;
+        Tier = tier;
     }
 
     public TextObject Name = TextObject.GetEmpty();
@@ -277,4 +340,5 @@ public class KnightPuritySeal()
     public int Price;
     public string DeityCultId;
     public string SealIcon;
+    public int Tier;
 }

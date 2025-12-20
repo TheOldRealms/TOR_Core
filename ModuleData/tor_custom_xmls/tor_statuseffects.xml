@@ -2492,6 +2492,16 @@
 		type="Resistance"
 		damage_type="All">
 	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
+		id="kow_ulric_ats"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.10"
+		applies_for_attack_type="All"
+		type="AttackSpeedManipulation"
+		damage_type="Physical">
+	</StatusEffectTemplate>
 	
 	<StatusEffectTemplate
 		id="kow_ulric_unstop"
@@ -2572,8 +2582,18 @@
 		type="Resistance"
 		damage_type="Magical">
 	</StatusEffectTemplate>
-	
-	
+
+	<StatusEffectTemplate
+		id="kow_myrmidia_holy"
+		particle_id=""
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.10"
+		applies_for_attack_type="All"
+		type="DamageAmplification"
+		damage_type="Holy">
+	</StatusEffectTemplate>
+
+
 	<StatusEffectTemplate
 		id="impenetrable_invincible"
 		particle_id="black_knightly_charge_res"

@@ -108,10 +108,6 @@ public class WrathOfTheWoodScript : CareerAbilityScript
             }
         }
 
-
-
-
-
         spawned = true;
     }
 

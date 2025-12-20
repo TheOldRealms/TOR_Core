@@ -17,6 +17,13 @@
         <ReligiousTroops>
             <ReligiousTroop id="NPCCharacter.tor_empire_flagellant" />
         </ReligiousTroops>
+        <EliteUnits>
+            <EliteUnit id="NPCCharacter.tor_ror_griffon_knight" />
+            <EliteUnit id="NPCCharacter.tor_ror_griffon_preceptor_knight" />
+            <EliteUnit id="NPCCharacter.tor_ror_griffon_innercircle_knight" />
+            <EliteUnit id="NPCCharacter.tor_ror_griffon_demi_knight" />
+            <EliteUnit id="NPCCharacter.tor_ror_griffon_demi_preceptor_knight" />
+        </EliteUnits>
         <ReligiousArtifacts>
             <ArtifactItem id="Item.tor_empire_weapon_mace_comet_flail" />
             <ArtifactItem id="Item.tor_empire_weapon_mace_holy_hammer" />
@@ -44,6 +51,11 @@
         <ReligiousTroops>
             <ReligiousTroop id="NPCCharacter.tor_ror_ward_of_taal" />
         </ReligiousTroops>
+        <EliteUnits>
+            <EliteUnit id="NPCCharacter.tor_ror_maisontaal_cultist" />
+            <EliteUnit id="NPCCharacter.tor_ror_maisontaal_acetic" />
+            <EliteUnit id="NPCCharacter.tor_ror_maisontaal_warden" />
+        </EliteUnits>
         <ReligiousArtifacts>
             <ArtifactItem id="Item.tor_empire_weapon_thaxe_taal" />
         </ReligiousArtifacts>
@@ -69,6 +81,10 @@
         <ReligiousTroops>
 		<ReligiousTroop id="NPCCharacter.tor_empire_wolfkin" />
         </ReligiousTroops>
+        <EliteUnits>
+            <EliteUnit id="NPCCharacter.tor_empire_whitewolf_knight" />
+            <EliteUnit id="NPCCharacter.tor_empire_teutogen_guard" />
+        </EliteUnits>
         <ReligiousArtifacts>
         </ReligiousArtifacts>
     </Religion>
@@ -137,6 +153,13 @@
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
+        <EliteUnits>
+            <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_knight" />
+            <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_preceptor" />
+            <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_demigryph_knight" />
+            <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_innercircle" />
+            <EliteUnit id="NPCCharacter.tor_ror_blazing_sun_demigryph_innercircle" />
+        </EliteUnits>
         <ReligiousArtifacts>
         </ReligiousArtifacts>
     </Religion>
@@ -157,6 +180,10 @@
         <ReligiousTroops>
             <ReligiousTroop id="NPCCharacter.tor_br_battle_pilgrim" />
         </ReligiousTroops>
+        <EliteUnits>
+            <EliteUnit id="NPCCharacter.tor_br_quest_knight" />
+            <EliteUnit id="NPCCharacter.tor_br_grail_knight" />
+        </EliteUnits>
         <ReligiousArtifacts>
             <ArtifactItem id="Item.tor_bretonnia_weapon_thsword_de_lyonesse" />
         </ReligiousArtifacts>

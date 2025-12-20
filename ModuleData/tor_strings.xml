@@ -2295,6 +2295,7 @@
   <string id="tor_religion_blessing_effect_description.cult_of_kurnous" text="{=str_tor_religion_blessing_effect_description_cult_of_kurnous}All ranged troops in your party deal an extra 10% physical damage." />
   <string id="tor_religion_blessing_effect_description.cult_of_gork" text="{=str_tor_religion_blessing_effect_description_cult_of_gork}All melee troops in your party deal an extra 10% physical damage." />
   <string id="tor_religion_blessing_effect_description.cult_of_mork" text="{=str_tor_religion_blessing_effect_description_cult_of_mork}All troops in your party deal an extra 10% damage as fire damage." />
+  <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=str_tor_religion_blessing_effect_description_cult_of_myrmidia}All heroes in your party earn 10% more xp and your clan earns 10% more renown from battles." />
 
   <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=str_tor_religion_blessing_name_cult_of_sigmar}Blessing of Sigmar" />
   <string id="tor_religion_blessing_name.cult_of_shallya" text="{=str_tor_religion_blessing_name_cult_of_shallya}Blessing of Shallya" />
@@ -2310,6 +2311,7 @@
   <string id="tor_religion_blessing_name.cult_of_kurnous" text="{=str_tor_religion_blessing_name_cult_of_kurnous}Blessing of Kurnous" />
   <string id="tor_religion_blessing_name.cult_of_gork" text="{=str_tor_religion_blessing_name_cult_of_gork}Blessing of Gork" />
   <string id="tor_religion_blessing_name.cult_of_mork" text="{=str_tor_religion_blessing_name_cult_of_mork}Blessing of Mork" />
+  <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=str_tor_religion_blessing_name_cult_of_myrmidia}Blessing of Myrmidia" />
 
 
 
@@ -3193,34 +3195,34 @@
   <string id="tor_careerchoice_description.SecularOrdersPassive3" text="{=str_tor_careerchoice_description_SecularOrdersPassive3}All Knight troops wages are reduced by 25%." />
   <string id="tor_careerchoice_description.SecularOrdersPassive4" text="{=str_tor_careerchoice_description_SecularOrdersPassive4}Secular Seals can be applied on any Knight unit" />
   <string id="tor_careerchoice_description.PathOfConquestKeystone" text="{=str_tor_careerchoice_description_PathOfConquestKeystone}Adds cleaving attacks for ability. Ability scales with Two handed weapon skill" />
-  <string id="tor_careerchoice_description.PathOfConquestPassive1" text="{=str_tor_careerchoice_description_PathOfConquestPassive1}Extra melee damage (10%)." />
-  <string id="tor_careerchoice_description.PathOfConquestPassive2" text="{=str_tor_careerchoice_description_PathOfConquestPassive2}Party movement speed is increased by 2." />
+  <string id="tor_careerchoice_description.PathOfConquestPassive1" text="{=str_tor_careerchoice_description_PathOfConquestPassive1}Extra melee damage (5%)." />
+  <string id="tor_careerchoice_description.PathOfConquestPassive2" text="{=str_tor_careerchoice_description_PathOfConquestPassive2}Party movement speed is increased by 1." />
   <string id="tor_careerchoice_description.PathOfConquestPassive3" text="{=str_tor_careerchoice_description_PathOfConquestPassive3}Horse charge damage is increased by 40%." />
   <string id="tor_careerchoice_description.PathOfConquestPassive4" text="{=str_tor_careerchoice_description_PathOfConquestPassive4}All Knight troops receive 30 bonus points in their Polearm skill." />
   <string id="tor_careerchoice_description.SquiresKeystone" text="{=str_tor_careerchoice_description_SquiresKeystone}Ability scales with riding. Companions charge ability." />
-  <string id="tor_careerchoice_description.SquiresPassive1" text="{=str_tor_careerchoice_description_SquiresPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.SquiresPassive1" text="{=str_tor_careerchoice_description_SquiresPassive1}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.SquiresPassive2" text="{=str_tor_careerchoice_description_SquiresPassive2}All Knight troops wages are reduced by 25%." />
   <string id="tor_careerchoice_description.SquiresPassive3" text="{=str_tor_careerchoice_description_SquiresPassive3}Wounded troops in your party heal faster." />
   <string id="tor_careerchoice_description.SquiresPassive4" text="{=str_tor_careerchoice_description_SquiresPassive4}Battles against non-humans provide 100% prestige gain." />
   <string id="tor_careerchoice_description.TemplarOrdersKeystone" text="{=str_tor_careerchoice_description_TemplarOrdersKeystone}2 additional charges. Ability scales with Faith. Reduce base cooldown by 15 seconds" />
-  <string id="tor_careerchoice_description.TemplarOrdersPassive1" text="{=str_tor_careerchoice_description_TemplarOrdersPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive1" text="{=str_tor_careerchoice_description_TemplarOrdersPassive1}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.TemplarOrdersPassive2" text="{=str_tor_careerchoice_description_TemplarOrdersPassive2}kills add faith skill." />
-  <string id="tor_careerchoice_description.TemplarOrdersPassive3" text="{=str_tor_careerchoice_description_TemplarOrdersPassive3}Having matching knights of deity increase their damage by 20%" />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive3" text="{=str_tor_careerchoice_description_TemplarOrdersPassive3}Having matching knights of deity increase their damage by 15%" />
   <string id="tor_careerchoice_description.TemplarOrdersPassive4" text="{=str_tor_careerchoice_description_TemplarOrdersPassive4}Bonus damage against undead" />
   <string id="tor_careerchoice_description.PathOfVigilanceKeystone" text="{=str_tor_careerchoice_description_PathOfVigilanceKeystone}Couched Lance attacks do not cost charges. Ability scales with polearm" />
   <string id="tor_careerchoice_description.PathOfVigilancePassive1" text="{=str_tor_careerchoice_description_PathOfVigilancePassive1}50% additional Hitpoints for the player's mount." />
-  <string id="tor_careerchoice_description.PathOfVigilancePassive2" text="{=str_tor_careerchoice_description_PathOfVigilancePassive2}Gain 15% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.PathOfVigilancePassive2" text="{=str_tor_careerchoice_description_PathOfVigilancePassive2}Gain 6% physical resistance to melee and ranged attacks." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive3" text="{=str_tor_careerchoice_description_PathOfVigilancePassive3}Hits below 15 damage do not stagger the player." />
-  <string id="tor_careerchoice_description.PathOfVigilancePassive4" text="{=str_tor_careerchoice_description_PathOfVigilancePassive4}Wielding a shield increases wardsave." />
+  <string id="tor_careerchoice_description.PathOfVigilancePassive4" text="{=str_tor_careerchoice_description_PathOfVigilancePassive4}Wielding a shield increases wardsave by 15%." />
   <string id="tor_careerchoice_description.WrathAgainstChaosKeystone" text="{=str_tor_careerchoice_description_WrathAgainstChaosKeystone}Every discharge hit adds a 25% Wardsave for 5 seconds. Ability charging is 20% more efficient" />
   <string id="tor_careerchoice_description.WrathAgainstChaosPassive1" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive1}All units deal more damage against chaos." />
-  <string id="tor_careerchoice_description.WrathAgainstChaosPassive2" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive2}Gain 35% Magic Resistance." />
-  <string id="tor_careerchoice_description.WrathAgainstChaosPassive3" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive3}Weapon swing speed increased by 15%." />
-  <string id="tor_careerchoice_description.WrathAgainstChaosPassive4" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive4}Extra 25% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive2" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive2}Gain 15% Magic Resistance." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive3" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive3}Weapon swing speed increased by 10%." />
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive4" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive4}Extra 10% armor penetration of melee attacks." />
   <string id="tor_careerchoice_description.PathOfGloryKeystone" text="{=str_tor_careerchoice_description_PathOfGloryKeystone}Adds a Deity based weapon effect or 20% extra physical damage." />
-  <string id="tor_careerchoice_description.PathOfGloryPassive1" text="{=str_tor_careerchoice_description_PathOfGloryPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.PathOfGloryPassive1" text="{=str_tor_careerchoice_description_PathOfGloryPassive1}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.PathOfGloryPassive2" text="{=str_tor_careerchoice_description_PathOfGloryPassive2}10% Ward save for all knight units." />
-  <string id="tor_careerchoice_description.PathOfGloryPassive3" text="{=str_tor_careerchoice_description_PathOfGloryPassive3}Gain 15% Ward save." />
+  <string id="tor_careerchoice_description.PathOfGloryPassive3" text="{=str_tor_careerchoice_description_PathOfGloryPassive3}Gain 6% Ward save." />
   <string id="tor_careerchoice_description.PathOfGloryPassive4" text="{=str_tor_careerchoice_description_PathOfGloryPassive4}Gain the option to add an additional seal on a troop." />
 
   <!-- Ironbreaker Career Choice Descriptions -->
@@ -3583,7 +3585,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="TORKnightPuritySealName.TaalSeal3" text="{=str_torknightpuritysealname_taalseal3}Greater Taal Seal" />
  
   <string id="TORKnightPuritySealName.UlricSeal1" text="{=str_torknightpuritysealname_ulricseal1}Lesser Ulric Seal" />
-  <string id="TORKnightPuritySealName.Ulriceal2" text="{=str_torknightpuritysealname_ulriceal2}Ulric Seal" />
+  <string id="TORKnightPuritySealName.UlricSeal2" text="{=str_torknightpuritysealname_ulricseal2}Ulric Seal" />
   <string id="TORKnightPuritySealName.UlricSeal3" text="{=str_torknightpuritysealname_ulricseal3}Greater Ulric Seal" />
 
   <string id="TORKnightPuritySealName.ManaanSeal1" text="{=str_torknightpuritysealname_manaanseal1}Lesser Manaan Seal" />
@@ -3593,32 +3595,52 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="TORKnightPuritySealName.ShallyaSeal1" text="{=str_torknightpuritysealname_shallyaseal1}Lesser Shallya Seal" />
   <string id="TORKnightPuritySealName.ShallyaSeal2" text="{=str_torknightpuritysealname_shallyaseal2}Shallya Seal" />
   <string id="TORKnightPuritySealName.ShallyaSeal3" text="{=str_torknightpuritysealname_shallyaseal3}Greater Shallya Seal" />
-  
-  
+
+  <string id="TORKnightPuritySealName.MyrmidiaSeal1" text="{=str_torknightpuritysealname_myrmidiaseal1}Lesser Myrmidia Seal" />
+  <string id="TORKnightPuritySealName.MyrmidiaSeal2" text="{=str_torknightpuritysealname_myrmidiaseal2}Myrmidia Seal" />
+  <string id="TORKnightPuritySealName.MyrmidiaSeal3" text="{=str_torknightpuritysealname_myrmidiaseal3}Greater Myrmidia Seal" />
+
+
   
     <string id="TORKnightPuritySealDescription.SecularSeal1" text="{=str_torknightpuritysealdescription_secularseal1}10% Physical Damage" />
   <string id="TORKnightPuritySealDescription.SecularSeal2" text="{=str_torknightpuritysealdescription_secularseal2}25% Wage reduction" />
-  <string id="TORKnightPuritySealDescription.SecularSeal3" text="{=str_torknightpuritysealdescription_secularseal3}25% Charge bonus" />
+  <string id="TORKnightPuritySealDescription.SecularSeal3" text="{=str_torknightpuritysealdescription_secularseal3}25% Charge Bonus" />
 
   <string id="TORKnightPuritySealDescription.SigmarSeal1" text="{=str_torknightpuritysealdescription_sigmarseal1}20% Physical Damage" />
   <string id="TORKnightPuritySealDescription.SigmarSeal2" text="{=str_torknightpuritysealdescription_sigmarseal2}15% Wardsave" />
-  <string id="TORKnightPuritySealDescription.SigmarSeal3" text="{=str_torknightpuritysealdescription_sigmarseal3}2% more Prestige per unit (stacking)" />
+  <string id="TORKnightPuritySealDescription.SigmarSeal3" text="{=str_torknightpuritysealdescription_sigmarseal3}+2% Prestige per sealed unit (stacking)" />
 
-  <string id="TORKnightPuritySealDescription.TaalSeal1" text="{=str_torknightpuritysealdescription_taalseal1}25% Ranged Protection" />
+  <string id="TORKnightPuritySealDescription.TaalSeal1" text="{=str_torknightpuritysealdescription_taalseal1}30% Ranged Protection" />
   <string id="TORKnightPuritySealDescription.TaalSeal2" text="{=str_torknightpuritysealdescription_taalseal2}15% Wardsave" />
-  <string id="TORKnightPuritySealDescription.TaalSeal3" text="{=str_torknightpuritysealdescription_taalseal3}0.01 More movement speed on the campaign map per unit (stacking)" />
+  <string id="TORKnightPuritySealDescription.TaalSeal3" text="{=str_torknightpuritysealdescription_taalseal3}+0.01 movement speed on the campaign map per sealed unit (stacking)" />
  
-  <string id="TORKnightPuritySealDescription.UlricSeal1" text="{=str_torknightpuritysealdescription_ulricseal1}5% Wardsave" />
+  <string id="TORKnightPuritySealDescription.UlricSeal1" text="{=str_torknightpuritysealdescription_ulricseal1}10% Swing Speed" />
   <string id="TORKnightPuritySealDescription.UlricSeal2" text="{=str_torknightpuritysealdescription_ulricseal2}Unstoppable" />
   <string id="TORKnightPuritySealDescription.UlricSeal3" text="{=str_torknightpuritysealdescription_ulricseal3}20% Armor Penetration" />
 
   <string id="TORKnightPuritySealDescription.ManaanSeal1" text="{=str_torknightpuritysealdescription_manaanseal1}25% Charge Bonus" />
   <string id="TORKnightPuritySealDescription.ManaanSeal2" text="{=str_torknightpuritysealdescription_manaanseal2}20% Lightning Damage" />
-  <string id="TORKnightPuritySealDescription.ManaanSeal3" text="{=str_torknightpuritysealdescription_manaanseal3}50% Magical Resistance" />
+  <string id="TORKnightPuritySealDescription.ManaanSeal3" text="{=str_torknightpuritysealdescription_manaanseal3}45% Magical Resistance" />
   
-  <string id="TORKnightPuritySealDescription.ShallyaSeal1" text="{=str_torknightpuritysealdescription_shallyaseal1}Troops healing  increased by 5% per sealed troop." />
+  <string id="TORKnightPuritySealDescription.ShallyaSeal1" text="{=str_torknightpuritysealdescription_shallyaseal1}Party healing increased by 5% per sealed unit." />
   <string id="TORKnightPuritySealDescription.ShallyaSeal2" text="{=str_torknightpuritysealdescription_shallyaseal2}Unstoppable for Unit" />
-  <string id="TORKnightPuritySealDescription.ShallyaSeal3" text="{=str_torknightpuritysealdescription_shallyaseal3}25% Wardsave" />
+  <string id="TORKnightPuritySealDescription.ShallyaSeal3" text="{=str_torknightpuritysealdescription_shallyaseal3}+20% Survival Chance" />
+
+  <string id="TORKnightPuritySealDescription.MyrmidiaSeal1" text="{=str_torknightpuritysealdescription_myrmidiaseal1}Strategic Advantage" />
+  <string id="TORKnightPuritySealDescription.MyrmidiaSeal2" text="{=str_torknightpuritysealdescription_myrmidiaseal2}+10% XP" />
+  <string id="TORKnightPuritySealDescription.MyrmidiaSeal3" text="{=str_torknightpuritysealdescription_myrmidiaseal3}10% Holy Damage" />
+
+  <!-- Purity Seal UI -->
+  <string id="tor_purity_seal_choose_title_text" text="{=tor_purity_seal_choose_title_text}Choose Purity Seal" />
+  <string id="tor_purity_seal_choose_description_text" text="{=tor_purity_seal_choose_description_text}Empower your knight units with powerful seals." />
+  <string id="tor_purity_seal_add_text" text="{=tor_purity_seal_add_text}Add a Purity Seal to this knight." />
+  <string id="tor_purity_seal_religion_mismatch_text" text="{=tor_purity_seal_religion_mismatch_text}Your religion does not match this unit's religion." />
+  <string id="tor_purity_seal_secular_on_religious_text" text="{=tor_purity_seal_secular_on_religious_text}You need the Secular Orders perk to apply seals to templar knights." />
+  <string id="tor_purity_seal_templar_on_secular_text" text="{=tor_purity_seal_templar_on_secular_text}You need the Secular Orders perk to apply templar seals to secular knights." />
+  <string id="tor_purity_seal_tier_too_low_text" text="{=tor_purity_seal_tier_too_low_text}Unit tier is not high enough. Minimum tier is {MINIMUMSEALLEVEL}." />
+  <string id="tor_purity_seal_not_religious_enough_text" text="{=tor_purity_seal_not_religious_enough_text}You are not religious enough to provide a seal." />
+  <string id="tor_purity_seal_no_description_text" text="{=tor_purity_seal_no_description_text}No description found." />
+  <string id="tor_myrmidia_seal" text="{=tor_myrmidia_seal}Myrmidia Seal" />
 
   <!--TOR Information and data !-->
 
@@ -4388,6 +4410,10 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_ui_blessing_title" text="{=str_tor_ui_blessing_title}Blessing: "/>
 	<string id="tor_ui_blessing_duration" text="{=str_tor_ui_blessing_duration}Duration:"/>
 	<string id="tor_ui_blessing_effect" text="{=str_tor_ui_blessing_effect}Effect:"/>
+	<string id="tor_ui_devotion" text="{=str_tor_ui_devotion}Devotion"/>
+	<string id="tor_ui_no_devotion" text="{=str_tor_ui_no_devotion}No devotion"/>
+	<string id="tor_ui_active_blessing" text="{=str_tor_ui_active_blessing}Active Blessing"/>
+	<string id="tor_ui_no_blessing" text="{=str_tor_ui_no_blessing}No active blessing"/>
 	<string id="tor_ui_winds_of_magic_title" text="{=str_tor_ui_winds_of_magic_title}Winds of Magic"/>
 	<string id="tor_ui_winds_of_magic_maximum" text="{=str_tor_ui_winds_of_magic_maximum}Maximum:"/>
 	<string id="tor_ui_winds_of_magic_recharge_rate" text="{=str_tor_ui_winds_of_magic_recharge_rate}Recharge Rate:"/>

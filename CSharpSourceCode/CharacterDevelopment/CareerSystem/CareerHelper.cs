@@ -548,26 +548,26 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
 
             if (religion == null || Hero.MainHero.GetDevotionLevelForReligion(religion) < DevotionLevel.Fanatic)
             {
-                result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_default");
+                result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knight_religion_default");
                 return result ?? ItemTrait.Invalid;
             }
 
             switch (religion.StringId)
             {
                 case "cult_of_sigmar":
-                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_sigmar");
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knight_religion_sigmar");
                     break;
                 case "cult_of_ulric":
-                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_ulric");
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knight_religion_ulric");
                     break;
                 case "cult_of_taal":
-                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_taal");
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knight_religion_taal");
                     break;
                 case "cult_of_manaan":
-                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_manaan");
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knight_religion_manaan");
                     break;
                 case "cult_of_shallya":
-                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "religion_shallya");
+                    result = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knight_religion_shallya");
                     break;
                 default:
                     break;

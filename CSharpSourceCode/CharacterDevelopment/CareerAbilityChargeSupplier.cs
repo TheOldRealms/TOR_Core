@@ -459,11 +459,10 @@ namespace TOR_Core.CharacterDevelopment
             if (!affectingAgent.IsHero) return 0;
 
             if (mask == AttackTypeMask.Spell) return 0;
-
-            if (!affectingAgent.IsMainAgent && (!affectingAgent.BelongsToMainParty() || !Hero.MainHero.HasCareerChoice("SquiresKeystone"))) return 0;
-            if (Hero.MainHero.HasCareerChoice("WrathAgainstChaosKeystone"))
+            
+            if (Hero.MainHero.HasCareerChoice("PathOfVigilanceKeystone"))
             {
-                chargeValue = (int)(chargeValue * 0.2f);
+                chargeValue = (int)(chargeValue * 2f);
             }
 
             return chargeValue;

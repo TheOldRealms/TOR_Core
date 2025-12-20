@@ -11,6 +11,7 @@ using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.Religion;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.Extensions.UI
@@ -114,11 +115,53 @@ namespace TOR_Core.Extensions.UI
 
             var list = new List<TooltipProperty>();
             if (Hero.MainHero.PartyBelongedTo == null) return list;
-            var info = Hero.MainHero.PartyBelongedTo.GetPartyInfo();
-            var blessing = info.CurrentBlessingStringId;
+
+            // Add Devotion section
+            var heroInfo = Hero.MainHero.GetExtendedInfo();
+            if (heroInfo != null)
+            {
+                list.Add(new TooltipProperty(TORTextHelper.GetText("tor_ui_devotion", "Devotion"), "", 0, false,
+                    TooltipProperty.TooltipPropertyFlags.Title));
+
+                if (heroInfo.ReligionDevotionLevels.Count > 0)
+                {
+                    foreach (var entry in heroInfo.ReligionDevotionLevels.Where(x => x.Value > 0).OrderByDescending(x => x.Value))
+                    {
+                        var religion = ReligionObject.All.FirstOrDefault(x => x.StringId == entry.Key);
+                        if (religion == null) continue;
+
+                        var godName = GameTexts.TryGetText("tor_religion_name_of_god", out var nameText, religion.StringId)
+                            ? nameText.ToString()
+                            : religion.DeityName.ToString();
+
+                        var devotionLevel = Hero.MainHero.GetDevotionLevelForReligion(religion);
+                        var devotionText = GameTexts.TryGetText("tor_religion_devotionlevel", out var levelText, devotionLevel.ToString())
+                            ? levelText.ToString()
+                            : devotionLevel.ToString();
+
+                        var displayText = Game.Current.CheatMode ? $"{devotionText} ({entry.Value})" : devotionText;
+                        list.Add(new TooltipProperty(godName, displayText, 0, false,
+                            TooltipProperty.TooltipPropertyFlags.None));
+                    }
+                }
+                else
+                {
+                    list.Add(new TooltipProperty(TORTextHelper.GetText("tor_ui_no_devotion", "No devotion"), "", 0, false,
+                        TooltipProperty.TooltipPropertyFlags.None));
+                }
+
+                list.Add(new TooltipProperty("", "", 0, false, TooltipProperty.TooltipPropertyFlags.None)); // Spacer
+            }
+
+            // Add Active Blessing section
+            var partyInfo = Hero.MainHero.PartyBelongedTo.GetPartyInfo();
+            var blessing = partyInfo.CurrentBlessingStringId;
+
             if (blessing == null)
             {
-                list.Add(new TooltipProperty("currently no active blessing", "", 0, false,
+                list.Add(new TooltipProperty(TORTextHelper.GetText("tor_ui_active_blessing", "Active Blessing"), "", 0, false,
+                    TooltipProperty.TooltipPropertyFlags.Title));
+                list.Add(new TooltipProperty(TORTextHelper.GetText("tor_ui_no_blessing", "No active blessing"), "", 0, false,
                     TooltipProperty.TooltipPropertyFlags.None));
                 if (Hero.MainHero.IsVampire())
                     list.Add(new TooltipProperty("You are a vampire, you are your own god", "", 0, false,
@@ -130,7 +173,7 @@ namespace TOR_Core.Extensions.UI
             if (religionObject == null) return list;
             var effectText = GameTexts.FindText("tor_religion_blessing_effect_description", religionObject.StringId);
 
-            var duration = info.CurrentBlessingRemainingDuration;
+            var duration = partyInfo.CurrentBlessingRemainingDuration;
 
             var blessingText = GameTexts.FindText("tor_religion_blessing_name", religionObject.StringId);
 

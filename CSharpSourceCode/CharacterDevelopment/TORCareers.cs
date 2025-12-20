@@ -165,7 +165,7 @@ namespace TOR_Core.CharacterDevelopment
             _waywatcher.Initialize("Waywatcher", null, "ArrowOfKurnous", CareerAbilityChargeSupplier.WaywatcherCareerCharge, 1200, typeof(ArrowOfKurnousScript));
             _spellsinger.Initialize("Spellsinger", null, "WrathOfTheWood", CareerAbilityChargeSupplier.SpellsingerCareerCharge, 1000, typeof(WrathOfTheWoodScript));
             _greyLord.Initialize("Grey Lord Wizard", null, "MindControl", CareerAbilityChargeSupplier.GreyLordCareerCharge, 1000, typeof(MindControlScript));
-            _knightOldWorld.Initialize("Knight of the Old World", null, "KnightlyStrike", CareerAbilityChargeSupplier.KnightOldWorldChargeSupplier, 500);
+            _knightOldWorld.Initialize("Knight of the Old World", null, "KnightlyStrike", CareerAbilityChargeSupplier.KnightOldWorldChargeSupplier, 1200, typeof(KnightlyStrike));
             _ironbreaker.Initialize("Ironbreaker", null, "Impenetrable", CareerAbilityChargeSupplier.IronbreakerChargeSupplier, 50, typeof(ImpenetrableScript));
             _slayer.Initialize("Slayer", null, "DoomSeeking", CareerAbilityChargeSupplier.SlayerChargeSupplier, 500, typeof(ImpenetrableScript));
             _warden.Initialize("Warden", null, "HawkEye", null, 100, typeof(HawkEyeScript));

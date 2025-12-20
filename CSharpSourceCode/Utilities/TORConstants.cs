@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace TOR_Core.Utilities
 {
     public static class TORConstants
     {
         public const int TotalNumberOfUniqueLoadingScreenImages = 12;
-        public const int MIRACLE_CHANCE = 5;//Sly : probably going to be removed as reaching 300 faith, then having to pray a bunch of times before finally getting a weapon is a whole lot of dedication and tedium
-        public const int MAXIMUM_DEVOTION_LEVEL = 99;
+        public const int MIRACLE_CHANCE = 5;
+        public const int MAXIMUM_DEVOTION_LEVEL = 100;
         public const int DEVOTED_TRESHOLD = 50;
         public const int FANATIC_TRESHOLD = 75;
         public const int DEFAULT_BLESSING_DURATION = 72;
