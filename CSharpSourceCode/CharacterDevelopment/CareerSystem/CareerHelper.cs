@@ -203,6 +203,34 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
+        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, Agent attacker, Agent victim, bool asFactor = true)
+        {
+            var choices = hero.GetAllCareerChoices();
+            foreach (var choiceID in choices)
+            {
+                var choice = TORCareerChoices.GetChoice(choiceID);
+
+                if (choice?.Passive == null || choice.Passive.PassiveEffectType != passiveEffectType) continue;
+
+                var passive = choice.Passive;
+
+                if (!passive.IsValidCombatInteraction(attacker, victim, AttackTypeMask.All)) continue;
+
+                var value = passive.DamageProportionTuple != null
+                    ? passive.DamageProportionTuple.Percent / 100f
+                    : (passive.InterpretAsPercentage ? passive.EffectMagnitude / 100f : passive.EffectMagnitude);
+
+                var text = choice.BelongsToGroup?.Name ?? new TextObject(choice.StringId);
+
+                if (asFactor)
+                {
+                    number.AddFactor(value, text);
+                    continue;
+                }
+                number.Add(value, text);
+            }
+        }
+
         public static void ApplySkillBonusForTroops(ref ExplainedNumber resultNumber, SkillObject skillObject, BasicCharacterObject troopCharacterObject)
         {
             var choices = Hero.MainHero.GetAllCareerChoices();

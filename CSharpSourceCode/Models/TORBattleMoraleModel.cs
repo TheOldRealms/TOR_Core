@@ -9,6 +9,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.Models
@@ -47,6 +48,15 @@ namespace TOR_Core.Models
                 PerkHelper.AddPerkBonusForParty(TORPerks.GunPowder.SteelTerror, affectorParty, true, ref num);
                 result.affectedSideMaxMoraleLoss = num.ResultNumber;
             }
+
+            // Apply career passive morale damage bonuses (e.g., Ulrican kills causing extra morale damage)
+            if (Hero.MainHero?.HasAnyCareer() == true)
+            {
+                var moraleDamageBonus = new ExplainedNumber(result.affectedSideMaxMoraleLoss);
+                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref moraleDamageBonus, PassiveEffectType.MoraleDamageToEnemyOnKill, affectorAgent, affectedAgent);
+                result.affectedSideMaxMoraleLoss = moraleDamageBonus.ResultNumber;
+            }
+
             return result;
         }
     }
