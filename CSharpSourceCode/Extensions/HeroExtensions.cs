@@ -725,6 +725,7 @@ namespace TOR_Core.Extensions
                 int sumTotalDevotion = info.ReligionDevotionLevels.Sum(x => x.Value);
                 if (sumTotalDevotion + amount <= TORConstants.MAXIMUM_DEVOTION_LEVEL)
                 {
+                    // Under cap: simply add the amount
                     if (info.ReligionDevotionLevels.ContainsKey(religion.StringId))
                     {
                         info.ReligionDevotionLevels[religion.StringId] += amount;
@@ -736,27 +737,50 @@ namespace TOR_Core.Extensions
                 }
                 else
                 {
-                    var newAmount = TORConstants.MAXIMUM_DEVOTION_LEVEL - sumTotalDevotion;
-                    if (info.ReligionDevotionLevels.ContainsKey(religion.StringId))
+                    // At/over cap: transfer devotion from other religions
+                    // Calculate how much we need to take from others
+                    var spaceNeeded = amount - (TORConstants.MAXIMUM_DEVOTION_LEVEL - sumTotalDevotion);
+
+                    // Get total devotion in OTHER religions (excluding target)
+                    var otherReligionsDevotion = info.ReligionDevotionLevels
+                        .Where(x => x.Key != religion.StringId)
+                        .Sum(x => x.Value);
+
+                    // Cap the transfer to what's available from others
+                    var transferAmount = Math.Min(spaceNeeded, otherReligionsDevotion);
+
+                    // Subtract proportionally from other religions
+                    if (transferAmount > 0 && otherReligionsDevotion > 0)
                     {
                         foreach (var entry in info.ReligionDevotionLevels.ToDictionary(x => x.Key, x => x.Value))
                         {
-                            if (entry.Key == religion.StringId)
+                            if (entry.Key != religion.StringId)
                             {
-                                info.ReligionDevotionLevels[entry.Key] += newAmount;
+                                // Calculate proportional reduction
+                                var proportion = (float)entry.Value / otherReligionsDevotion;
+                                var reduction = (int)Math.Ceiling(transferAmount * proportion);
+                                info.ReligionDevotionLevels[entry.Key] = Math.Max(0, entry.Value - reduction);
                             }
-                            else info.ReligionDevotionLevels[entry.Key] -= newAmount;
-                            info.ReligionDevotionLevels[entry.Key] = Math.Min(TORConstants.MAXIMUM_DEVOTION_LEVEL, info.ReligionDevotionLevels[entry.Key]);
                         }
+                    }
+
+                    // Add to target religion (capped at max)
+                    if (info.ReligionDevotionLevels.ContainsKey(religion.StringId))
+                    {
+                        info.ReligionDevotionLevels[religion.StringId] = Math.Min(
+                            TORConstants.MAXIMUM_DEVOTION_LEVEL,
+                            info.ReligionDevotionLevels[religion.StringId] + amount);
                     }
                     else
                     {
-                        foreach (var entry in info.ReligionDevotionLevels.ToDictionary(x => x.Key, x => x.Value))
-                        {
-                            info.ReligionDevotionLevels[entry.Key] -= newAmount;
+                        info.ReligionDevotionLevels.Add(religion.StringId, Math.Min(amount, TORConstants.MAXIMUM_DEVOTION_LEVEL));
+                    }
 
-                        }
-                        info.ReligionDevotionLevels.Add(religion.StringId, newAmount);
+                    // Clean up any religions that dropped to 0
+                    var toRemove = info.ReligionDevotionLevels.Where(x => x.Value <= 0).Select(x => x.Key).ToList();
+                    foreach (var key in toRemove)
+                    {
+                        info.ReligionDevotionLevels.Remove(key);
                     }
                 }
 

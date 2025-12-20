@@ -140,8 +140,18 @@ namespace TOR_Core.Models
             }
 
             //because ai parties entering shrines will automatically gain a blessing if possible, a player can run an army through a shrine like a religious car wash
-            leaderHero.AddReligiousInfluence(religion, duration);
-            leaderHero.AddSkillXp(TORSkills.Faith, CalculateSkillXpForPraying(leaderHero, duration));
+            //scale devotion and xp gain based on how much "new" blessing duration you're getting (anti-spam)
+            var partyInfo = party.GetPartyInfo();
+            var currentRemaining = partyInfo?.CurrentBlessingRemainingDuration ?? 0;
+            var additionalDuration = Math.Max(0, duration - currentRemaining);
+            var durationRatio = duration > 0 ? (float)additionalDuration / duration : 1f;
+
+            var devotionGain = (int)Math.Ceiling(TORConstants.DEFAULT_PRAYING_DEVOTION_INCREASE * durationRatio);
+            if (devotionGain > 0)
+            {
+                leaderHero.AddReligiousInfluence(religion, devotionGain);
+            }
+            leaderHero.AddSkillXp(TORSkills.Faith, CalculateSkillXpForPraying(leaderHero, additionalDuration));
 
             ExtendedInfoManager.Instance.AddBlessingToParty(party, cultID, duration);
         }

@@ -6,7 +6,7 @@ namespace TOR_Core.Utilities
     {
         public const int TotalNumberOfUniqueLoadingScreenImages = 12;
         public const int MIRACLE_CHANCE = 5;
-        public const int MAXIMUM_DEVOTION_LEVEL = 99;
+        public const int MAXIMUM_DEVOTION_LEVEL = 100;
         public const int DEVOTED_TRESHOLD = 50;
         public const int FANATIC_TRESHOLD = 75;
         public const int DEFAULT_BLESSING_DURATION = 72;

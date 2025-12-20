@@ -4368,6 +4368,10 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_ui_blessing_title" text="{=str_tor_ui_blessing_title}Blessing: "/>
 	<string id="tor_ui_blessing_duration" text="{=str_tor_ui_blessing_duration}Duration:"/>
 	<string id="tor_ui_blessing_effect" text="{=str_tor_ui_blessing_effect}Effect:"/>
+	<string id="tor_ui_devotion" text="{=str_tor_ui_devotion}Devotion"/>
+	<string id="tor_ui_no_devotion" text="{=str_tor_ui_no_devotion}No devotion"/>
+	<string id="tor_ui_active_blessing" text="{=str_tor_ui_active_blessing}Active Blessing"/>
+	<string id="tor_ui_no_blessing" text="{=str_tor_ui_no_blessing}No active blessing"/>
 	<string id="tor_ui_winds_of_magic_title" text="{=str_tor_ui_winds_of_magic_title}Winds of Magic"/>
 	<string id="tor_ui_winds_of_magic_maximum" text="{=str_tor_ui_winds_of_magic_maximum}Maximum:"/>
 	<string id="tor_ui_winds_of_magic_recharge_rate" text="{=str_tor_ui_winds_of_magic_recharge_rate}Recharge Rate:"/>
