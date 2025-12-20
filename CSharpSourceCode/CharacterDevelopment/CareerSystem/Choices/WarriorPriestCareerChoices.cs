@@ -305,7 +305,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     characterObject => !characterObject.IsHero && IsSigmariteTroop(characterObject)));
             _sigmarsProclaimerPassive3.Initialize(CareerID, "Sigmarite troops get 25% resistance to physical ranged attacks.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Ranged,
                 (attacker, victim, mask) => mask == AttackTypeMask.Ranged && victim.BelongsToMainParty() && IsSigmariteTroop(victim.Character as CharacterObject)));
-            _sigmarsProclaimerPassive4.Initialize(CareerID, "When praying at a shrine of Sigmar, all characters restore 50 Hitpoints.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));//TORCustomSettlementCampaignBehavior 429
+            _sigmarsProclaimerPassive4.Initialize(CareerID, "When praying at a shrine of Sigmar, all characters restore 50 Hitpoints (5 day cooldown).", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));
 
             _relentlessFanaticPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
             _relentlessFanaticPassive2.Initialize(CareerID, "10% extra holy melee damage.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee));
