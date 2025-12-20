@@ -1710,6 +1710,7 @@
   <string id="str_crafting_template.tor_axe_template" text="{=str_tor_crafting_template_TORAxes}TOR-Axes" />
   <string id="str_crafting_template.tor_twohandedaxe" text="{=str_tor_crafting_template_TORGreataxes}TOR-Greataxes" />
   <string id="str_crafting_template.tor_mace_template" text="{=str_tor_crafting_template_TORMaces}TOR-Maces" />
+  <string id="str_crafting_template.tor_orc_mace_template" text="{=str_tor_crafting_template_TOROrcMaces}TOR-Orc Maces" />
   <string id="str_crafting_template.tor_troll_mace_template" text="{=str_tor_crafting_template_TORTrollMaces}TOR-Troll Maces" />
   <string id="str_crafting_template.tor_twohandedmace" text="{=str_tor_crafting_template_TORTwoHandedMaces}TOR-Two-Handed Maces" />
   <string id="str_crafting_template.tor_trolltwohandedmace" text="{=str_tor_crafting_template_TORTrollTwoHandedMaces}TOR-Troll Two-Handed Maces" />
