@@ -3625,7 +3625,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="TORKnightPuritySealDescription.ManaanSeal3" text="{=str_torknightpuritysealdescription_manaanseal3}45% Magical Resistance" />
   
   <string id="TORKnightPuritySealDescription.ShallyaSeal1" text="{=str_torknightpuritysealdescription_shallyaseal1}Party healing increased by 5% per sealed unit." />
-  <string id="TORKnightPuritySealDescription.ShallyaSeal2" text="{=str_torknightpuritysealdescription_shallyaseal2}Unstoppable for Unit" />
+  <string id="TORKnightPuritySealDescription.ShallyaSeal2" text="{=str_torknightpuritysealdescription_shallyaseal2}15% Wardsave" />
   <string id="TORKnightPuritySealDescription.ShallyaSeal3" text="{=str_torknightpuritysealdescription_shallyaseal3}+20% Survival Chance" />
 
   <string id="TORKnightPuritySealDescription.MyrmidiaSeal1" text="{=str_torknightpuritysealdescription_myrmidiaseal1}Strategic Advantage" />
