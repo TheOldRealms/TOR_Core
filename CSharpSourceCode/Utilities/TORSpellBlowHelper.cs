@@ -14,6 +14,12 @@ namespace TOR_Core.Utilities
         public const int SpellBlowSentinel = -999;
 
         /// <summary>
+        /// Flag set during OnScoreHit processing for spell hits.
+        /// Used by TORCombatXpModel to skip weapon skill XP while still allowing kill tracking.
+        /// </summary>
+        public static bool IsProcessingSpellHit;
+
+        /// <summary>
         /// Detects if the current attack is a spell based on the sentinel value.
         /// Use this in damage model methods where Blow is not yet available.
         /// </summary>

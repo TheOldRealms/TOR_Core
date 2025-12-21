@@ -44,6 +44,33 @@ namespace TOR_Core.Utilities
             InformationManager.DisplayMessage(new InformationMessage(resultDamage + " cast damage consisting of  " + " (" + displayDamageType + ") was applied " + "which was modified by " + (1 + damageAmplifier).ToString("##%", CultureInfo.InvariantCulture), displayColor));
         }
 
+        /// <summary>
+        /// Displays aggregate spell damage for all targets hit by a single spell cast.
+        /// </summary>
+        public static void DisplayAggregateSpellDamage(DamageType damageType, int totalDamage, int agentsAffected)
+        {
+            var displayColor = GetDamageTypeColor(damageType);
+            string damageTypeName = damageType.ToString();
+
+            string targetText = agentsAffected == 1 ? "target" : "targets";
+            var resultText = $"{totalDamage} {damageTypeName} damage dealt to {agentsAffected} {targetText}";
+
+            InformationManager.DisplayMessage(new InformationMessage(resultText, displayColor));
+        }
+
+        private static Color GetDamageTypeColor(DamageType damageType)
+        {
+            return damageType switch
+            {
+                DamageType.Fire => Colors.Red,
+                DamageType.Holy => Colors.Yellow,
+                DamageType.Lightning => Color.FromUint(5745663),
+                DamageType.Magical => Colors.Cyan,
+                DamageType.Frost => Color.FromUint(8909823),
+                _ => Color.White
+            };
+        }
+
         public static void DisplayDamageResult(int resultDamage, float[] categories, float[] percentages, float wardsaveFactor, bool isVictim)
         {
             var displaycolor = Color.White;

@@ -1,10 +1,12 @@
 using Helpers;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -14,6 +16,7 @@ using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -662,30 +665,11 @@ namespace TOR_Core.Models
             float resultDamage = baseDamage;
 
             // Apply career passives for damage values
+            TORDamageHelper.ApplyCareerPassives(attacker, victim, AttackTypeMask.Spell, additionalDamagePercentages, resistancePercentages);
+
+            // Apply perk and skill effects on ability damage
             if (Game.Current.GameType is Campaign)
             {
-                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim))
-                {
-                    if (attacker.BelongsToMainParty())
-                    {
-                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attacker, victim, AttackTypeMask.Spell, PropertyMask.Attack);
-                        for (var index = 0; index < careerBonuses.Length; index++)
-                        {
-                            additionalDamagePercentages[index] += careerBonuses[index];
-                        }
-                    }
-
-                    if (victim.BelongsToMainParty())
-                    {
-                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attacker, victim, AttackTypeMask.Spell, PropertyMask.Defense);
-                        for (var index = 0; index < careerBonuses.Length; index++)
-                        {
-                            resistancePercentages[index] += careerBonuses[index];
-                        }
-                    }
-                }
-
-                // Apply perk and skill effects on ability damage
                 if (abilityTemplate != null && attacker.IsHero)
                 {
                     var hero = attacker.GetHero();
@@ -744,17 +728,76 @@ namespace TOR_Core.Models
                 if (victim.Team != attacker.Team && resultDamage < 0)
                     resultDamage = 0;
 
-                // Display damage result
-                if (displayDamage && (attacker == Agent.Main || victim == Agent.Main) && resultDamage > 0)
-                {
-                    TORDamageDisplay.DisplaySpellDamageResult(damageType, (int)resultDamage, damageAmplifications[damageTypeIndex], wardSaveFactor);
-                }
-
                 return (int)resultDamage;
             }
 
             // Non-campaign mode - just return base damage
             return baseDamage;
+        }
+
+        /// <summary>
+        /// Applies spell damage to a group of agents with aggregate tracking.
+        /// Handles damage calculation, application, XP granting, and displays ONE aggregate message.
+        /// </summary>
+        public void ApplySpellDamageToAgents(
+            IEnumerable<Agent> agents,
+            int minDamage,
+            int maxDamage,
+            Agent caster,
+            DamageType damageType,
+            AbilityTemplate abilityTemplate,
+            TriggeredEffectTemplate triggeredEffectTemplate,
+            bool hasShockWave,
+            Vec3 impactPosition)
+        {
+            if (agents == null || caster == null) return;
+
+            int totalDamageDealt = 0;
+            int agentsAffected = 0;
+            float totalAmplification = 0;
+            float totalWardSave = 0;
+
+            foreach (var agent in agents)
+            {
+                if (agent == null) continue;
+
+                // Calculate base damage with variance
+                var baseDamage = maxDamage < minDamage ? minDamage : MBRandom.RandomInt(minDamage, maxDamage);
+                if (baseDamage <= 0) continue;
+
+                // Apply radius falloff for shockwave effects
+                if (impactPosition != default && hasShockWave && triggeredEffectTemplate != null)
+                {
+                    var distance = agent.Position.Distance(impactPosition);
+                    baseDamage = (int)((triggeredEffectTemplate.Radius - distance) / triggeredEffectTemplate.Radius * baseDamage);
+                }
+
+                if (baseDamage <= 0) continue;
+
+                // Calculate final damage with all modifiers
+                int finalDamage = CalculateFinalSpellDamage(caster, agent, baseDamage, damageType, abilityTemplate, displayDamage: false);
+
+                if (finalDamage > 0)
+                {
+                    // Apply the damage
+                    agent.ApplyDamage(finalDamage, impactPosition, caster, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: abilityTemplate != null);
+
+                    totalDamageDealt += finalDamage;
+                    agentsAffected++;
+                }
+            }
+
+            // Grant XP once with total damage
+            if (abilityTemplate != null && totalDamageDealt > 0)
+            {
+                ApplyAbilityDamageXp(caster, abilityTemplate, totalDamageDealt);
+            }
+
+            // Display aggregate result once
+            if (totalDamageDealt > 0 && caster == Agent.Main)
+            {
+                TORDamageDisplay.DisplayAggregateSpellDamage(damageType, totalDamageDealt, agentsAffected);
+            }
         }
     }
 }

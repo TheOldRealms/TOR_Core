@@ -314,75 +314,41 @@ namespace TOR_Core.Models
             bool friendlyFire = attackerAgent.Team == victimAgent.Team;
 
             // Apply career passives for damage values
-            if (Game.Current.GameType is Campaign)
+            TORDamageHelper.ApplyCareerPassives(attackerAgent, victimAgent, attackTypeMask, additionalDamagePercentages, resistancePercentages);
+
+            // Career-specific bonuses for melee/ranged
+            if (Game.Current.GameType is Campaign && attackerAgent.IsMainAgent)
             {
-                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attackerAgent, victimAgent))
+                if (attackTypeMask == AttackTypeMask.Ranged && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
                 {
-                    if (attackerAgent.BelongsToMainParty())
-                    {
-                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attackerAgent, victimAgent, attackTypeMask, PropertyMask.Attack);
-                        for (var index = 0; index < careerBonuses.Length; index++)
-                        {
-                            additionalDamagePercentages[index] += careerBonuses[index];
-                        }
-                    }
-
-                    if (victimAgent.BelongsToMainParty())
-                    {
-                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attackerAgent, victimAgent, attackTypeMask, PropertyMask.Defense);
-                        for (var index = 0; index < careerBonuses.Length; index++)
-                        {
-                            resistancePercentages[index] += careerBonuses[index];
-                        }
-                    }
-                }
-
-                // Career-specific bonuses
-                if (attackerAgent.IsMainAgent)
-                {
-                    if (attackTypeMask == AttackTypeMask.Ranged && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
-                    {
-                        if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
-                        {
-                            CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
-                            if (careerPerkBehavior != null)
-                            {
-                                damageProportions[(int)DamageType.Magical] += 0.01f * careerPerkBehavior.CareerMissionVariables[0];
-                            }
-                        }
-                    }
-
-                    if (attackTypeMask == AttackTypeMask.Melee && Hero.MainHero.HasCareer(TORCareers.Slayer))
+                    if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
                     {
                         CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
                         if (careerPerkBehavior != null)
                         {
-                            damageProportions[(int)DamageType.Physical] += 0.01f * careerPerkBehavior.CareerMissionVariables[0];
-                            if (Hero.MainHero.HasCareerChoice("BaneOfChaosKeystone"))
-                            {
-                                resistancePercentages[(int)DamageType.Physical] += 0.001f * careerPerkBehavior.CareerMissionVariables[0];
-                            }
+                            damageProportions[(int)DamageType.Magical] += 0.01f * careerPerkBehavior.CareerMissionVariables[0];
+                        }
+                    }
+                }
+
+                if (attackTypeMask == AttackTypeMask.Melee && Hero.MainHero.HasCareer(TORCareers.Slayer))
+                {
+                    CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                    if (careerPerkBehavior != null)
+                    {
+                        damageProportions[(int)DamageType.Physical] += 0.01f * careerPerkBehavior.CareerMissionVariables[0];
+                        if (Hero.MainHero.HasCareerChoice("BaneOfChaosKeystone"))
+                        {
+                            resistancePercentages[(int)DamageType.Physical] += 0.001f * careerPerkBehavior.CareerMissionVariables[0];
                         }
                     }
                 }
             }
 
             // Calculate damage with TOR's damage type system
-            float[] damageCategories = new float[(int)DamageType.All + 1];
-            float resultDamage = 0;
-
-            for (int i = 0; i < damageCategories.Length - 1; i++)
-            {
-                damageProportions[i] += additionalDamagePercentages[i];
-                damageCategories[i] = vanillaDamage * damageProportions[i];
-                damageCategories[i] += damageCategories[(int)DamageType.All] / (int)DamageType.All;
-                if (damageCategories[i] > 0)
-                {
-                    damageAmplifications[i] -= resistancePercentages[i];
-                    damageCategories[i] *= 1 + damageAmplifications[i];
-                    resultDamage += damageCategories[i];
-                }
-            }
+            float resultDamage = TORDamageHelper.CalculateDamageWithProportions(
+                vanillaDamage, damageProportions, damageAmplifications,
+                additionalDamagePercentages, resistancePercentages, out float[] damageCategories);
 
             // Apply ward save
             float wardSaveFactor = CalculateWardSaveFactor(victimAgent, resistancePercentages, friendlyFire);

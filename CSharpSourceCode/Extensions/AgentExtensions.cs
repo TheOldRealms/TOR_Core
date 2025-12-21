@@ -391,7 +391,7 @@ namespace TOR_Core.Extensions
                     direction.Normalize();
                     blow.Direction = direction;
                     blow.SwingDirection = direction;
-                    blow.DamageCalculated = false;  // Let the model calculate final damage
+                    blow.DamageCalculated = true;  // Damage already calculated in TORAbilityModel.CalculateFinalSpellDamage()
                     blow.AttackType = AgentAttackType.Kick;
                     blow.BlowFlag = BlowFlags.NoSound;
                     blow.VictimBodyPart = BoneBodyPartType.Chest;
