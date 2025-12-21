@@ -13,6 +13,7 @@ using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.CampaignMechanics.SpellTrainers;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions.ExtendedInfoSystem;
@@ -811,6 +812,12 @@ namespace TOR_Core.Extensions
         public static string GetInfoKey(this Hero hero)
         {
             return hero.StringId;
+        }
+
+        public static int GetLastPrayerTime(this Hero hero)
+        {
+            var behavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+            return behavior?.LastPrayerTime(hero) ?? 0;
         }
     }
 }

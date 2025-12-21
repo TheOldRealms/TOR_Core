@@ -32,6 +32,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     [SaveableField(2)] private Dictionary<string, int> _lastGhostRecruitmentTime = [];
     [SaveableField(3)] private Dictionary<string, int> _lastDefileTime = [];
     [SaveableField(4)] private List<string> _unlockedOakUpgrades = [];
+    [SaveableField(5)] private Dictionary<string, int> _lastPrayerTime = [];
 
     private TORFaithModel _model;
 
@@ -79,6 +80,22 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     public void SetLastGhostRecruitmentTime(Hero hero, int value)
     {
         _lastGhostRecruitmentTime.AddOrReplace(hero.StringId, value);
+    }
+
+    public int LastPrayerTime(Hero hero)
+    {
+        if (_lastPrayerTime.TryGetValue(hero.StringId, out int value))
+        {
+            return value;
+        }
+
+        _lastPrayerTime.Add(hero.StringId, 0);
+        return _lastPrayerTime[hero.StringId];
+    }
+
+    public void SetLastPrayerTime(Hero hero, int value)
+    {
+        _lastPrayerTime.AddOrReplace(hero.StringId, value);
     }
 
     public override void RegisterEvents()
@@ -535,6 +552,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
         dataStore.SyncData("_cursedSiteWardDurationLeft", ref _cursedSiteWardDurationLeft);
         dataStore.SyncData("_lastGhostRecruitmentTime", ref _lastGhostRecruitmentTime);
         dataStore.SyncData("_unlockedOakUpgrades", ref _unlockedOakUpgrades);
+        dataStore.SyncData("_lastPrayerTime", ref _lastPrayerTime);
     }
 
 

@@ -2628,34 +2628,34 @@
   <string id="tor_careerchoice_description.HolyPurgeKeyStone" text="{=str_tor_careerchoice_description_HolyPurgeKeyStone}All units affected by Righteous Fury receive a burning weapon buff." />
   <string id="tor_careerchoice_description.ArchLectorKeyStone" text="{=str_tor_careerchoice_description_ArchLectorKeyStone}Adds a healing buff to Righteous Fury that restores 3 Hitpoints per second." />
   <string id="tor_careerchoice_description.TwinTailedCometKeystone" text="{=str_tor_careerchoice_description_TwinTailedCometKeystone}Righteous Fury adds a damaging aura. Its radius increases slightly when raising relevant skills." />
-  <string id="tor_careerchoice_description.BookOfSigmarPassive1" text="{=str_tor_careerchoice_description_BookOfSigmarPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.BookOfSigmarPassive1" text="{=str_tor_careerchoice_description_BookOfSigmarPassive1}Increases Hitpoints by 10." />
   <string id="tor_careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_careerchoice_description_BookOfSigmarPassive2}Increases morale for all troops by 10." />
   <string id="tor_careerchoice_description.BookOfSigmarPassive3" text="{=str_tor_careerchoice_description_BookOfSigmarPassive3}After battle, all wounded companions are healed for 20 Hitpoints." />
   <string id="tor_careerchoice_description.BookOfSigmarPassive4" text="{=str_tor_careerchoice_description_BookOfSigmarPassive4}Wounded troops in your party heal faster." />
-  <string id="tor_careerchoice_description.SigmarsProclaimerPassive1" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive1}10% extra holy melee damage." />
+  <string id="tor_careerchoice_description.SigmarsProclaimerPassive1" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive1}5% extra holy melee damage." />
   <string id="tor_careerchoice_description.SigmarsProclaimerPassive2" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive2}All Sigmarite troops wages are reduced by 20%" />
   <string id="tor_careerchoice_description.SigmarsProclaimerPassive3" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive3}Sigmarite troops get 25% resistance to physical ranged attacks." />
-  <string id="tor_careerchoice_description.SigmarsProclaimerPassive4" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive4}When praying at a shrine of Sigmar, all characters restore 50 Hitpoints." />
-  <string id="tor_careerchoice_description.RelentlessFanaticPassive1" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.RelentlessFanaticPassive2" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive2}10% extra holy melee damage." />
+  <string id="tor_careerchoice_description.SigmarsProclaimerPassive4" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive4}When praying at a shrine of Sigmar, all characters restore 50 Hitpoints (5 day cooldown)." />
+  <string id="tor_careerchoice_description.RelentlessFanaticPassive1" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive1}Increases Hitpoints by 15." />
+  <string id="tor_careerchoice_description.RelentlessFanaticPassive2" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive2}5% extra holy melee damage." />
   <string id="tor_careerchoice_description.RelentlessFanaticPassive3" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive3}Party movement speed is increased by 1." />
   <string id="tor_careerchoice_description.RelentlessFanaticPassive4" text="{=str_tor_careerchoice_description_RelentlessFanaticPassive4}Prayers aren't affected by global cooldowns." />
-  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive2" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive2}Increases melee physical resistance by 15%." />
-  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive3" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive3}Increases Magic resistance against spells by 25%." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive1}Increases Hitpoints by 15." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive2" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive2}Increases melee physical resistance by 5%." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive3" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive3}Increases Magic resistance against spells by 10%." />
   <string id="tor_careerchoice_description.ProtectorOfTheWeakPassive4" text="{=str_tor_careerchoice_description_ProtectorOfTheWeakPassive4}Hits below 15 damage do not stagger the player." />
-  <string id="tor_careerchoice_description.HolyPurgePassive1" text="{=str_tor_careerchoice_description_HolyPurgePassive1}10% extra holy melee damage." />
+  <string id="tor_careerchoice_description.HolyPurgePassive1" text="{=str_tor_careerchoice_description_HolyPurgePassive1}5% extra holy melee damage." />
   <string id="tor_careerchoice_description.HolyPurgePassive2" text="{=str_tor_careerchoice_description_HolyPurgePassive2}All battles against forces of Chaos and undead earn 20% more prestige." />
   <string id="tor_careerchoice_description.HolyPurgePassive3" text="{=str_tor_careerchoice_description_HolyPurgePassive3}All troops deal 10% more melee damage to non-human enemies." />
   <string id="tor_careerchoice_description.HolyPurgePassive4" text="{=str_tor_careerchoice_description_HolyPurgePassive4}All Sigmarite troops gain 10% extra Holy damage." />
   <string id="tor_careerchoice_description.ArchLectorPassive1" text="{=str_tor_careerchoice_description_ArchLectorPassive1}Prayers are recharged on battle start." />
   <string id="tor_careerchoice_description.ArchLectorPassive2" text="{=str_tor_careerchoice_description_ArchLectorPassive2}All neutral Empire troops now count as Sigmarite troops." />
-  <string id="tor_careerchoice_description.ArchLectorPassive3" text="{=str_tor_careerchoice_description_ArchLectorPassive3}Gain 15% Ward save." />
-  <string id="tor_careerchoice_description.ArchLectorPassive4" text="{=str_tor_careerchoice_description_ArchLectorPassive4}All Sigmarite troops gain 20% Ward save." />
-  <string id="tor_careerchoice_description.TwinTailedCometPassive1" text="{=str_tor_careerchoice_description_TwinTailedCometPassive1}10% extra holy melee damage." />
+  <string id="tor_careerchoice_description.ArchLectorPassive3" text="{=str_tor_careerchoice_description_ArchLectorPassive3}Gain 5% Ward save." />
+  <string id="tor_careerchoice_description.ArchLectorPassive4" text="{=str_tor_careerchoice_description_ArchLectorPassive4}All Sigmarite troops gain 10% Ward save." />
+  <string id="tor_careerchoice_description.TwinTailedCometPassive1" text="{=str_tor_careerchoice_description_TwinTailedCometPassive1}5% extra holy melee damage." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive2" text="{=str_tor_careerchoice_description_TwinTailedCometPassive2}Increases Companion Limit by 5." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_careerchoice_description_TwinTailedCometPassive3}Extra 20% armor penetration of melee attacks." />
-  <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}Increases Hitpoints by 20." />
 
   <!-- WitchHunter Career Choice Descriptions -->
   <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}A single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 20%. After every hit there is a 50% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by 0.1% additional targets are marked." />
