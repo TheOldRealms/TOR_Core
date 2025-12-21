@@ -697,7 +697,6 @@
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
     <Compile Include="HarmonyPatches\CustomResourcePatches.cs" />
     <Compile Include="HarmonyPatches\CustomWorldMapPatch.cs" />
-    <Compile Include="HarmonyPatches\DamagePatch.cs" />
     <Compile Include="HarmonyPatches\EncounterPatches.cs" />
     <Compile Include="HarmonyPatches\EncyclopediaPatches.cs" />
     <Compile Include="HarmonyPatches\FaceGenPatches.cs" />

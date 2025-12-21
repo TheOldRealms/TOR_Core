@@ -12,12 +12,15 @@ using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.BattleMechanics;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 
@@ -67,6 +70,36 @@ namespace TOR_Core.Models
         public int GetSkillXpForAbilityDamage(AbilityTemplate ability, int damageAmount)
         {
             return damageAmount / 5;
+        }
+
+        /// <summary>
+        /// Grants skill XP for dealing ability damage. Call this after damage is applied.
+        /// </summary>
+        public void ApplyAbilityDamageXp(Agent attacker, AbilityTemplate abilityTemplate, int damageDealt)
+        {
+            if (attacker == null || abilityTemplate == null || damageDealt <= 0)
+                return;
+
+            if (!attacker.IsHero)
+                return;
+
+            var hero = attacker.GetHero();
+            if (hero == null)
+                return;
+
+            var skill = GetRelevantSkillForAbility(abilityTemplate);
+            var xpAmount = GetSkillXpForAbilityDamage(abilityTemplate, damageDealt);
+
+            if (xpAmount > 0)
+            {
+                hero.AddSkillXp(skill, xpAmount);
+
+                // DarkVisionPassive3 - also grants Roguery XP
+                if (hero.HasAnyCareer() && hero.HasCareerChoice("DarkVisionPassive3"))
+                {
+                    hero.AddSkillXp(DefaultSkills.Roguery, xpAmount);
+                }
+            }
         }
 
         public float GetSkillEffectivenessForAbilityDamage(CharacterObject character, AbilityTemplate ability)
@@ -594,6 +627,134 @@ namespace TOR_Core.Models
                 return true;
             }
             return !loreObject.DisabledForCultures.Contains(hero.Culture.StringId);
+        }
+
+        /// <summary>
+        /// Calculates the final spell damage with all modifiers applied.
+        /// This consolidates logic previously in DamagePatch.
+        /// </summary>
+        /// <param name="attacker">The agent casting the spell</param>
+        /// <param name="victim">The agent receiving the damage</param>
+        /// <param name="baseDamage">The base damage before modifiers</param>
+        /// <param name="damageType">The type of damage being dealt</param>
+        /// <param name="abilityTemplate">The ability template (can be null)</param>
+        /// <param name="displayDamage">Whether to display damage UI</param>
+        /// <returns>The final damage after all modifiers</returns>
+        public int CalculateFinalSpellDamage(Agent attacker, Agent victim, int baseDamage, DamageType damageType, AbilityTemplate abilityTemplate, bool displayDamage = true)
+        {
+            if (attacker == null || victim == null || baseDamage <= 0)
+                return baseDamage;
+
+            var damageModel = MissionGameModels.Current?.AgentApplyDamageModel as TORAgentApplyDamageModel;
+            if (damageModel == null)
+                return baseDamage;
+
+            // Get property containers
+            var attackerPropertyContainer = damageModel.CreateAgentPropertyContainer(attacker, PropertyMask.Attack, AttackTypeMask.Spell);
+            var victimPropertyContainer = damageModel.CreateAgentPropertyContainer(victim, PropertyMask.Defense, AttackTypeMask.Spell);
+
+            var damageAmplifications = attackerPropertyContainer.DamagePercentages;
+            var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
+            var resistancePercentages = victimPropertyContainer.ResistancePercentages;
+
+            var friendlyFire = attacker.Team == victim.Team;
+            int damageTypeIndex = (int)damageType;
+            float resultDamage = baseDamage;
+
+            // Apply career passives for damage values
+            if (Game.Current.GameType is Campaign)
+            {
+                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attacker, victim))
+                {
+                    if (attacker.BelongsToMainParty())
+                    {
+                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attacker, victim, AttackTypeMask.Spell, PropertyMask.Attack);
+                        for (var index = 0; index < careerBonuses.Length; index++)
+                        {
+                            additionalDamagePercentages[index] += careerBonuses[index];
+                        }
+                    }
+
+                    if (victim.BelongsToMainParty())
+                    {
+                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attacker, victim, AttackTypeMask.Spell, PropertyMask.Defense);
+                        for (var index = 0; index < careerBonuses.Length; index++)
+                        {
+                            resistancePercentages[index] += careerBonuses[index];
+                        }
+                    }
+                }
+
+                // Apply perk and skill effects on ability damage
+                if (abilityTemplate != null && attacker.IsHero)
+                {
+                    var hero = attacker.GetHero();
+                    if (hero != null)
+                    {
+                        // Perk effects multiplier
+                        resultDamage *= GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate);
+
+                        // Skill effectiveness multiplier
+                        resultDamage *= GetSkillEffectivenessForAbilityDamage(hero.CharacterObject, abilityTemplate);
+
+                        // Career-specific bonuses
+                        if (hero.HasAnyCareer())
+                        {
+                            if (hero.HasCareerChoice("EverlingsSecretPassive4"))
+                            {
+                                for (int i = (int)DamageType.Magical; i < (int)DamageType.All; i++)
+                                {
+                                    if (i == damageTypeIndex) continue;
+                                    damageAmplifications[damageTypeIndex] += additionalDamagePercentages[i];
+                                    damageAmplifications[damageTypeIndex] += damageAmplifications[i];
+                                }
+                            }
+                        }
+
+                        if (hero.PartyBelongedTo == MobileParty.MainParty)
+                        {
+                            if (MobileParty.MainParty.LeaderHero.HasAnyCareer())
+                            {
+                                if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
+                                {
+                                    damageAmplifications[damageTypeIndex] += 0.2f;
+                                }
+                            }
+                        }
+
+                        if (attacker.HasAttribute("Arcane_Dmg"))
+                        {
+                            damageAmplifications[damageTypeIndex] += 0.3f;
+                        }
+                    }
+                }
+
+                // Calculate ward save factor
+                var wardSaveFactor = damageModel.CalculateWardSaveFactor(victim, resistancePercentages, friendlyFire);
+
+                // Apply amplifications and resistances
+                damageAmplifications[damageTypeIndex] += additionalDamagePercentages[damageTypeIndex];
+                damageAmplifications[damageTypeIndex] -= resistancePercentages[damageTypeIndex];
+                resultDamage *= (1 + damageAmplifications[damageTypeIndex]);
+
+                // Apply ward save
+                resultDamage *= wardSaveFactor;
+
+                // Clamp to prevent negative damage on enemies
+                if (victim.Team != attacker.Team && resultDamage < 0)
+                    resultDamage = 0;
+
+                // Display damage result
+                if (displayDamage && (attacker == Agent.Main || victim == Agent.Main) && resultDamage > 0)
+                {
+                    TORDamageDisplay.DisplaySpellDamageResult(damageType, (int)resultDamage, damageAmplifications[damageTypeIndex], wardSaveFactor);
+                }
+
+                return (int)resultDamage;
+            }
+
+            // Non-campaign mode - just return base damage
+            return baseDamage;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using TaleWorlds.MountAndBlade;
-using TOR_Core.Utilities;
+using TaleWorlds.MountAndBlade;
 
 namespace TOR_Core.Extensions.ExtendedInfoSystem
 {
@@ -8,7 +7,7 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         public override void OnMissionStateDeactivated()
         {
             base.OnMissionStateDeactivated();
-            TORSpellBlowHelper.Clear();
+            // Queue cleanup removed - spell damage is now calculated upfront
         }
     }
 }

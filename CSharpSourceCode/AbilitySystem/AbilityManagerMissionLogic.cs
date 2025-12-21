@@ -21,7 +21,6 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
-using TOR_Core.HarmonyPatches;
 using TOR_Core.Items;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
@@ -586,7 +585,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
-                var attackMask = DamagePatch.DetermineMask(blow);
+                var attackMask = TORSpellBlowHelper.DetermineMask(blow);
                 CareerHelper.ApplyCareerAbilityCharge(1, ChargeType.NumberOfKills, attackMask, affectorAgent, affectedAgent);
             }
         }
@@ -595,7 +594,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
-                var attackMask = DamagePatch.DetermineMask(blow);
+                var attackMask = TORSpellBlowHelper.DetermineMask(blow);
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageDone, attackMask, affectorAgent, affectedAgent, attackCollisionData);
 
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageTaken, attackMask, affectorAgent, affectedAgent, attackCollisionData);

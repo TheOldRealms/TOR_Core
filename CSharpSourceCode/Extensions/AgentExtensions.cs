@@ -391,7 +391,7 @@ namespace TOR_Core.Extensions
                     direction.Normalize();
                     blow.Direction = direction;
                     blow.SwingDirection = direction;
-                    blow.DamageCalculated = true;
+                    blow.DamageCalculated = false;  // Let the model calculate final damage
                     blow.AttackType = AgentAttackType.Kick;
                     blow.BlowFlag = BlowFlags.NoSound;
                     blow.VictimBodyPart = BoneBodyPartType.Chest;
@@ -415,6 +415,8 @@ namespace TOR_Core.Extensions
                         return;
                     }
                     sbyte mainHandItemBoneIndex = damagerAgent.Monster.MainHandItemBoneIndex;
+                    // Use spell sentinel value to identify this as a spell blow in damage model methods
+                    int weaponSlotOrMissileIndex = originatesFromAbility ? TORSpellBlowHelper.SpellBlowSentinel : -1;
                     AttackCollisionData attackCollisionData = AttackCollisionData.GetAttackCollisionDataForDebugPurpose(
                         false,
                         false,
@@ -429,7 +431,7 @@ namespace TOR_Core.Extensions
                         false,
                         false,
                         CombatCollisionResult.StrikeAgent,
-                        -1,
+                        weaponSlotOrMissileIndex,
                         1,
                         2,
                         blow.BoneIndex,

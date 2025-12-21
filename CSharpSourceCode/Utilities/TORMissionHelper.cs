@@ -18,22 +18,44 @@ namespace TOR_Core.Utilities
     {
         public static void DamageAgents(IEnumerable<Agent> agents, int minDamage, int maxDamage = -1, Agent damager = null, TargetType targetType = TargetType.All, TriggeredEffectTemplate triggeredeffectTemplate = null, DamageType damageType = DamageType.Physical, bool hasShockWave = false, Vec3 impactPosition = default, AbilityTemplate originSpellTemplate = null)
         {
-            if (agents != null)
-            {
-                foreach (var agent in agents)
-                {
-                    if (agent == null) continue;
-                    if (triggeredeffectTemplate != null && damager != null)
-                        TORSpellBlowHelper.EnqueueSpellBlowInfo(agent.Index, damager.Index, triggeredeffectTemplate.StringID, damageType, originSpellTemplate == null ? string.Empty : originSpellTemplate.StringID);
+            if (agents == null) return;
 
-                    var damage = maxDamage < minDamage ? minDamage : MBRandom.RandomInt(minDamage, maxDamage);
-                    if (damage < 0) continue;
-                    if (impactPosition != default && hasShockWave && triggeredeffectTemplate != null)
-                    {
-                        var distance = agent.Position.Distance(impactPosition);
-                        damage = (int)((triggeredeffectTemplate.Radius - distance) / triggeredeffectTemplate.Radius * damage);
-                    }
-                    agent.ApplyDamage(damage, impactPosition, damager, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: originSpellTemplate != null);
+            // Get the ability model for damage calculation
+            TORAbilityModel abilityModel = null;
+            if (Game.Current.GameType is Campaign)
+            {
+                abilityModel = Campaign.Current.Models.GetAbilityModel();
+            }
+
+            foreach (var agent in agents)
+            {
+                if (agent == null) continue;
+
+                // Calculate base damage with variance
+                var baseDamage = maxDamage < minDamage ? minDamage : MBRandom.RandomInt(minDamage, maxDamage);
+                if (baseDamage < 0) continue;
+
+                // Apply radius falloff for shockwave effects
+                if (impactPosition != default && hasShockWave && triggeredeffectTemplate != null)
+                {
+                    var distance = agent.Position.Distance(impactPosition);
+                    baseDamage = (int)((triggeredeffectTemplate.Radius - distance) / triggeredeffectTemplate.Radius * baseDamage);
+                }
+
+                // Calculate final damage with all modifiers (career passives, resistances, ward save, etc.)
+                int finalDamage = baseDamage;
+                if (abilityModel != null && damager != null)
+                {
+                    finalDamage = abilityModel.CalculateFinalSpellDamage(damager, agent, baseDamage, damageType, originSpellTemplate);
+                }
+
+                // Apply the final damage
+                agent.ApplyDamage(finalDamage, impactPosition, damager, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: originSpellTemplate != null);
+
+                // Grant skill XP for ability damage (separate from damage calculation)
+                if (abilityModel != null && originSpellTemplate != null)
+                {
+                    abilityModel.ApplyAbilityDamageXp(damager, originSpellTemplate, finalDamage);
                 }
             }
         }

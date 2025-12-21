@@ -270,6 +270,174 @@ namespace TOR_Core.Models
             return value;
         }
 
+        /// <summary>
+        /// Applies TOR's damage type system (proportions, amplifications, resistances, ward save).
+        /// Called last in the CalculateDamage chain, after all vanilla modifiers.
+        /// </summary>
+        public override float ApplyGeneralDamageModifiers(
+            in AttackInformation attackInformation,
+            in AttackCollisionData collisionData,
+            float baseDamage)
+        {
+            // First apply vanilla general modifiers
+            float vanillaDamage = base.ApplyGeneralDamageModifiers(attackInformation, collisionData, baseDamage);
+
+            // Get agents
+            var attackerAgent = attackInformation.IsAttackerAgentMount ? attackInformation.AttackerAgent?.RiderAgent : attackInformation.AttackerAgent;
+            var victimAgent = attackInformation.IsVictimAgentMount ? attackInformation.VictimAgent?.RiderAgent : attackInformation.VictimAgent;
+
+            if (attackerAgent == null || victimAgent == null)
+                return vanillaDamage;
+
+            if (!attackerAgent.IsHuman || !victimAgent.IsHuman)
+                return vanillaDamage;
+
+            if (attackerAgent == victimAgent)
+                return vanillaDamage;
+
+            // Skip arena missions
+            if (Mission.Current.IsArenaMission())
+                return vanillaDamage;
+
+            // Determine attack type mask
+            AttackTypeMask attackTypeMask = collisionData.IsMissile ? AttackTypeMask.Ranged : AttackTypeMask.Melee;
+
+            // Get property containers
+            var attackerPropertyContainer = CreateAgentPropertyContainer(attackerAgent, PropertyMask.Attack, attackTypeMask);
+            var victimPropertyContainer = CreateAgentPropertyContainer(victimAgent, PropertyMask.Defense, attackTypeMask);
+
+            var damageProportions = attackerPropertyContainer.DamageProportions;
+            var damageAmplifications = attackerPropertyContainer.DamagePercentages;
+            var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
+            var resistancePercentages = victimPropertyContainer.ResistancePercentages;
+
+            bool friendlyFire = attackerAgent.Team == victimAgent.Team;
+
+            // Apply career passives for damage values
+            if (Game.Current.GameType is Campaign)
+            {
+                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(attackerAgent, victimAgent))
+                {
+                    if (attackerAgent.BelongsToMainParty())
+                    {
+                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attackerAgent, victimAgent, attackTypeMask, PropertyMask.Attack);
+                        for (var index = 0; index < careerBonuses.Length; index++)
+                        {
+                            additionalDamagePercentages[index] += careerBonuses[index];
+                        }
+                    }
+
+                    if (victimAgent.BelongsToMainParty())
+                    {
+                        var careerBonuses = CareerHelper.AddCareerPassivesForDamageValues(attackerAgent, victimAgent, attackTypeMask, PropertyMask.Defense);
+                        for (var index = 0; index < careerBonuses.Length; index++)
+                        {
+                            resistancePercentages[index] += careerBonuses[index];
+                        }
+                    }
+                }
+
+                // Career-specific bonuses
+                if (attackerAgent.IsMainAgent)
+                {
+                    if (attackTypeMask == AttackTypeMask.Ranged && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+                    {
+                        if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
+                        {
+                            CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                            if (careerPerkBehavior != null)
+                            {
+                                damageProportions[(int)DamageType.Magical] += 0.01f * careerPerkBehavior.CareerMissionVariables[0];
+                            }
+                        }
+                    }
+
+                    if (attackTypeMask == AttackTypeMask.Melee && Hero.MainHero.HasCareer(TORCareers.Slayer))
+                    {
+                        CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                        if (careerPerkBehavior != null)
+                        {
+                            damageProportions[(int)DamageType.Physical] += 0.01f * careerPerkBehavior.CareerMissionVariables[0];
+                            if (Hero.MainHero.HasCareerChoice("BaneOfChaosKeystone"))
+                            {
+                                resistancePercentages[(int)DamageType.Physical] += 0.001f * careerPerkBehavior.CareerMissionVariables[0];
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Calculate damage with TOR's damage type system
+            float[] damageCategories = new float[(int)DamageType.All + 1];
+            float resultDamage = 0;
+
+            for (int i = 0; i < damageCategories.Length - 1; i++)
+            {
+                damageProportions[i] += additionalDamagePercentages[i];
+                damageCategories[i] = vanillaDamage * damageProportions[i];
+                damageCategories[i] += damageCategories[(int)DamageType.All] / (int)DamageType.All;
+                if (damageCategories[i] > 0)
+                {
+                    damageAmplifications[i] -= resistancePercentages[i];
+                    damageCategories[i] *= 1 + damageAmplifications[i];
+                    resultDamage += damageCategories[i];
+                }
+            }
+
+            // Apply ward save
+            float wardSaveFactor = CalculateWardSaveFactor(victimAgent, resistancePercentages, friendlyFire);
+            resultDamage *= wardSaveFactor;
+
+            // Display damage result
+            if (resultDamage > 0 && (attackerAgent == Agent.Main || victimAgent == Agent.Main))
+            {
+                var isVictim = victimAgent == Agent.Main;
+                var resultBonus = damageAmplifications;
+
+                for (int i = 0; i < resultBonus.Length; i++)
+                {
+                    resultBonus[i] += additionalDamagePercentages[i];
+                }
+
+                TORDamageDisplay.DisplayDamageResult((int)resultDamage, damageCategories, resultBonus, wardSaveFactor, isVictim);
+            }
+
+            return resultDamage;
+        }
+
+        /// <summary>
+        /// Determines if the victim should shrug off the blow (no stagger/reaction).
+        /// Moved from DamagePatch to use the proper model override.
+        /// </summary>
+        public override bool DecideAgentShrugOffBlow(Agent victimAgent, in AttackCollisionData collisionData, in Blow blow)
+        {
+            // First check base game logic
+            var baseShrugOff = base.DecideAgentShrugOffBlow(victimAgent, collisionData, blow);
+            if (baseShrugOff)
+                return true;
+
+            // TOR-specific shrug off logic
+
+            // Unstoppable attribute (e.g., large monsters, bosses)
+            if (victimAgent.HasAttribute("Unstoppable"))
+                return true;
+
+            // Agent's own damage threshold check
+            if (victimAgent.IsDamageShruggedOff(blow.InflictedDamage))
+                return true;
+
+            // Waywatcher PathfinderPassive4 - player shrugs off ranged attacks
+            if (collisionData.IsMissile && victimAgent.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                if (Hero.MainHero.HasCareerChoice("PathfinderPassive4"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public AgentPropertyContainer CreateAgentPropertyContainer(Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
         {
             if (agent.IsMount)
