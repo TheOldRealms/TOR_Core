@@ -2667,32 +2667,32 @@
   <string id="tor_careerchoice_description.GuiltyByAssociationKeystone" text="{=str_tor_careerchoice_description_GuiltyByAssociationKeystone}Companions and Retinues can trigger mark effects. Companions can charge ability" />
   <string id="tor_careerchoice_description.EndsJustifiesMeansKeystone" text="{=str_tor_careerchoice_description_EndsJustifiesMeansKeystone}Marked enemies suffering from overkill damage propagate mark. Scales with Rougery" />
   <string id="tor_careerchoice_description.ToolsOfJudgementPassive1" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.ToolsOfJudgementPassive2" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive2}5 extra ammo" />
-  <string id="tor_careerchoice_description.ToolsOfJudgementPassive3" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive3}Extra melee damage (10%)." />
+  <string id="tor_careerchoice_description.ToolsOfJudgementPassive2" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive2}3 extra ammo" />
+  <string id="tor_careerchoice_description.ToolsOfJudgementPassive3" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive3}Extra melee damage (5%)." />
   <string id="tor_careerchoice_description.ToolsOfJudgementPassive4" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive4}Every headshot kill gains you roguery, count twice for marked targets." />
-  <string id="tor_careerchoice_description.HuntTheWickedPassive1" text="{=str_tor_careerchoice_description_HuntTheWickedPassive1}Player healing rate increased by 3" />
+  <string id="tor_careerchoice_description.HuntTheWickedPassive1" text="{=str_tor_careerchoice_description_HuntTheWickedPassive1}Player healing rate increased by 1" />
   <string id="tor_careerchoice_description.HuntTheWickedPassive2" text="{=str_tor_careerchoice_description_HuntTheWickedPassive2}Ranged Infantry wages are 15% reduced." />
-  <string id="tor_careerchoice_description.HuntTheWickedPassive3" text="{=str_tor_careerchoice_description_HuntTheWickedPassive3}Every equipped ranged weapon increases melee damage by 10%." />
+  <string id="tor_careerchoice_description.HuntTheWickedPassive3" text="{=str_tor_careerchoice_description_HuntTheWickedPassive3}Every equipped ranged weapon increases melee damage by 5%." />
   <string id="tor_careerchoice_description.HuntTheWickedPassive4" text="{=str_tor_careerchoice_description_HuntTheWickedPassive4}Increases the damage of all ranged troops by 10%." />
   <string id="tor_careerchoice_description.SilverHammerPassive1" text="{=str_tor_careerchoice_description_SilverHammerPassive1}Exterminated Undead and Ruinous powers increase faith per fallen Unit." />
-  <string id="tor_careerchoice_description.SilverHammerPassive2" text="{=str_tor_careerchoice_description_SilverHammerPassive2}All units deal more damage against undead and chaos." />
-  <string id="tor_careerchoice_description.SilverHammerPassive3" text="{=str_tor_careerchoice_description_SilverHammerPassive3}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.SilverHammerPassive2" text="{=str_tor_careerchoice_description_SilverHammerPassive2}All units deal 10% more holy damage against undead and chaos." />
+  <string id="tor_careerchoice_description.SilverHammerPassive3" text="{=str_tor_careerchoice_description_SilverHammerPassive3}Sneak attacks deal additional damage scaling with Faith (0.5% per point)." />
   <string id="tor_careerchoice_description.SilverHammerPassive4" text="{=str_tor_careerchoice_description_SilverHammerPassive4}Troops can be upgraded to Witch Hunter Retinues." />
-  <string id="tor_careerchoice_description.NoRestAgainstEvilPassive1" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive1}Extra holy melee damage (20%)." />
+  <string id="tor_careerchoice_description.NoRestAgainstEvilPassive1" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive1}Extra holy melee damage (10%)." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive2" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive2}All ranged troops have a 20 points higher ranged skill." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive3" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive3}Increases accuracy by 15%." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive4" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive4}Increases Companion Limit by 5." />
-  <string id="tor_careerchoice_description.SwiftProcedurePassive1" text="{=str_tor_careerchoice_description_SwiftProcedurePassive1}10 extra ammo" />
-  <string id="tor_careerchoice_description.SwitftProcedurePassive2" text="{=str_tor_careerchoice_description_SwitftProcedurePassive2}Reduce range Accuracy movement penalty by 15%." />
-  <string id="tor_careerchoice_description.SwitftProcedurePassive3" text="{=str_tor_careerchoice_description_SwitftProcedurePassive3}Party movement speed is increased by 1.5" />
-  <string id="tor_careerchoice_description.SwitftProcedurePassive4" text="{=str_tor_careerchoice_description_SwitftProcedurePassive4}Weapon swing speed increased by 15%." />
-  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive1" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive1}Extra ranged damage (10%)." />
+  <string id="tor_careerchoice_description.SwiftProcedurePassive1" text="{=str_tor_careerchoice_description_SwiftProcedurePassive1}8 extra ammo" />
+  <string id="tor_careerchoice_description.SwitftProcedurePassive2" text="{=str_tor_careerchoice_description_SwitftProcedurePassive2}Reduce range Accuracy movement penalty by 10%." />
+  <string id="tor_careerchoice_description.SwitftProcedurePassive3" text="{=str_tor_careerchoice_description_SwitftProcedurePassive3}Party movement speed is increased by 1" />
+  <string id="tor_careerchoice_description.SwitftProcedurePassive4" text="{=str_tor_careerchoice_description_SwitftProcedurePassive4}Weapon swing speed increased by 10%." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive1" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive1}Extra ranged damage (5%)." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive2" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive2}Increases range resistance by 15%." />
-  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive3" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive3}Extra 25% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive3" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive3}Extra 15% armor penetration of melee attacks." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive4" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive4}Ranged shots can penetrate multiple targets." />
-  <string id="tor_careerchoice_description.GuiltyByAssociationPassive1" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive1}Increases troop regeneration by 2." />
-  <string id="tor_careerchoice_description.GuiltyByAssociationPassive2" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive2}Every ranged troop deals 15% extra holy damage." />
-  <string id="tor_careerchoice_description.GuiltyByAssociationPassive3" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive3}Companion health increases by 50." />
+  <string id="tor_careerchoice_description.GuiltyByAssociationPassive1" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive1}Increases troop regeneration by 1." />
+  <string id="tor_careerchoice_description.GuiltyByAssociationPassive2" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive2}Every ranged troop deals 5% extra holy damage." />
+  <string id="tor_careerchoice_description.GuiltyByAssociationPassive3" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive3}Companion health increases by 25." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive4" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive4}Killing blows in the head increase temporary reload and swing speed" />
 
   <!-- Necromancer Career Choice Descriptions -->

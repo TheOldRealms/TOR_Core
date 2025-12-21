@@ -603,6 +603,26 @@ namespace TOR_Core.Models
 
             return base.GetMaxCameraZoom(agent);
         }
+        
+        public override float GetSneakAttackMultiplier(Agent agent, WeaponComponentData weapon)
+        {
+            var number = base.GetSneakAttackMultiplier(agent, weapon);
+
+            // Witch Hunter Silver Hammer perk: adds Faith skill to sneak attack multiplier
+            // TODO: Ideally this should only apply against Undead/Chaos, but GetSneakAttackMultiplier
+            // doesn't receive victim info - would be updated if this is the case. for example against chaos and undead TWTODO
+            if (agent == Agent.Main && Hero.MainHero.HasCareerChoice("SilverHammerPassive3"))
+            {
+                var choice = TORCareerChoices.GetChoice("SilverHammerPassive3");
+                if (choice != null)
+                {
+                    var faithSkill = Hero.MainHero.GetSkillValue(TORSkills.Faith);
+                    number += faithSkill * choice.GetPassiveValue();
+                }
+            }
+
+            return number;
+        }
 
         //The moment you realize they forget to add an override statement. if they do it needs to be moved on the EffectiveArmorEncumbrance
         public float GetTOREffectiveEquipmentEncumbrance(Agent agent, float value)
