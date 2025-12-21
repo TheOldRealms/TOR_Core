@@ -365,6 +365,40 @@ namespace TOR_Core.Utilities
             else return "No religion with the deity name '" + deityName + "' found. \n";
         }
 
+        [CommandLineFunctionality.CommandLineArgumentFunction("add_devotion", "tor")]
+        public static string AddDevotionToPlayer(List<string> arguments)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            if (CampaignCheats.CheckHelp(arguments))
+                return "Usage: tor.add_devotion [DeityName] [Amount]\nAdds the specified amount of devotion to the player for the given religion.\n";
+
+            if (arguments == null || arguments.Count < 2)
+                return "Incorrect arguments. Usage: tor.add_devotion [DeityName] [Amount]\n";
+
+            var deityName = arguments[0];
+            if (!int.TryParse(arguments[1], out int amount))
+                return "Amount must be a valid integer.\n";
+
+            var religion = ReligionObject.All.FirstOrDefault(x => x.DeityName.ToString().Equals(deityName, StringComparison.OrdinalIgnoreCase));
+            if (religion == null)
+            {
+                religion = ReligionObject.All.FirstOrDefault(x => x.StringId.Equals(deityName, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (religion != null)
+            {
+                Hero.MainHero.AddReligiousInfluence(religion, amount);
+                var currentLevel = Hero.MainHero.GetDevotionLevelForReligion(religion);
+                return string.Format("Added {0} devotion to {1}. Current devotion level: {2}.\n", amount, religion.DeityName, currentLevel);
+            }
+            else
+            {
+                return "No religion with the deity name or id '" + deityName + "' found.\n";
+            }
+        }
+
         [CommandLineFunctionality.CommandLineArgumentFunction("add_career", "tor")]
         public static string AddCareerToPlayer(List<string> arguments)
         {
