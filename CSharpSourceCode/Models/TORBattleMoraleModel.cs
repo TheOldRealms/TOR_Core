@@ -53,7 +53,7 @@ namespace TOR_Core.Models
             if (Hero.MainHero?.HasAnyCareer() == true)
             {
                 var moraleDamageBonus = new ExplainedNumber(result.affectedSideMaxMoraleLoss);
-                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref moraleDamageBonus, PassiveEffectType.MoraleDamageToEnemyOnKill, affectorAgent, affectedAgent);
+                CareerHelper.ApplyCombatCareerPassives(Hero.MainHero, ref moraleDamageBonus, PassiveEffectType.MoraleDamageToEnemyOnKill, affectorAgent, affectedAgent);
                 result.affectedSideMaxMoraleLoss = moraleDamageBonus.ResultNumber;
             }
 

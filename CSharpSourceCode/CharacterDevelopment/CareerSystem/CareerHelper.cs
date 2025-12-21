@@ -203,7 +203,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
             }
         }
 
-        public static void ApplyBasicCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, Agent attacker, Agent victim, bool asFactor = true)
+        public static void ApplyCombatCareerPassives(Hero hero, ref ExplainedNumber number, PassiveEffectType passiveEffectType, Agent attacker, Agent victim, bool asFactor = true)
         {
             var choices = hero.GetAllCareerChoices();
             foreach (var choiceID in choices)

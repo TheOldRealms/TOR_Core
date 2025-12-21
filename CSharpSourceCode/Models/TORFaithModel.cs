@@ -123,9 +123,15 @@ namespace TOR_Core.Models
 
                 if (cultID == "cult_of_ulric" && leaderHero.HasCareerChoice("TeachingsOfTheWinterFatherPassive2"))
                 {
-                    var choice = TORCareerChoices.GetChoice("TeachingsOfTheWinterFatherPassive2");
-                    if (choice == null || choice.Passive == null) return;
-                    Hero.MainHero.Heal(Hero.MainHero.MaxHitPoints, false);
+                    const int prayerHealingCooldownDays = 5;
+                    var currentDay = (int)CampaignTime.Now.ToDays;
+
+                    if (leaderHero.GetLastPrayerTime() <= currentDay - prayerHealingCooldownDays)
+                    {
+                        var choice = TORCareerChoices.GetChoice("TeachingsOfTheWinterFatherPassive2");
+                        if (choice == null || choice.Passive == null) return;
+                        Hero.MainHero.Heal(Hero.MainHero.MaxHitPoints, false);
+                    }
                 }
 
                 if (cultID == "cult_of_lady" && leaderHero.HasCareerChoice("TalesOfGilesPassive3"))
