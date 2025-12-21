@@ -16,7 +16,7 @@ namespace TOR_Core.Utilities
 {
     public static class TORMissionHelper
     {
-        public static void DamageAgents(IEnumerable<Agent> agents, int minDamage, int maxDamage = -1, Agent damager = null, TargetType targetType = TargetType.All, TriggeredEffectTemplate triggeredeffectTemplate = null, DamageType damageType = DamageType.Physical, bool hasShockWave = false, Vec3 impactPosition = default, AbilityTemplate originSpellTemplate = null)
+        public static void DamageAgents(IEnumerable<Agent> agents, int minDamage, int maxDamage = -1, Agent damager = null, TargetType targetType = TargetType.All, TriggeredEffectTemplate triggeredeffectTemplate = null, DamageType damageType = DamageType.Physical, bool hasShockWave = false, Vec3 impactPosition = default, AbilityTemplate originSpellTemplate = null, int castId = -1)
         {
             if (agents == null || damager == null) return;
 
@@ -35,7 +35,8 @@ namespace TOR_Core.Utilities
                         originSpellTemplate,
                         triggeredeffectTemplate,
                         hasShockWave,
-                        impactPosition);
+                        impactPosition,
+                        castId);
                     return;
                 }
             }
@@ -58,41 +59,65 @@ namespace TOR_Core.Utilities
             }
         }
 
-        public static void HealAgents(IEnumerable<Agent> agents, int minHeal, int maxHeal = -1, Agent healer = null, TargetType targetType = TargetType.Friendly, AbilityTemplate originSpellTemplate = null)
+        public static void HealAgents(IEnumerable<Agent> agents, int minHeal, int maxHeal = -1, Agent healer = null, TargetType targetType = TargetType.Friendly, AbilityTemplate originSpellTemplate = null, int castId = -1)
         {
-            //ideal place to add also perk effects of skills and careers ?
-            if (agents != null)
-            {
-                foreach (var agent in agents)
-                {
-                    if (agent == null) continue;
-                    var amount = minHeal;
-                    if (maxHeal < minHeal)
-                    {
-                        agent.Heal(minHeal);
-                    }
-                    else
-                    {
-                        amount = MBRandom.RandomInt(minHeal, maxHeal);
-                        agent.Heal(amount);
-                    }
+            if (agents == null) return;
 
-                    if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(healer, agent))
-                    {
-                        CareerHelper.ApplyCareerAbilityCharge(amount, ChargeType.Healed, AttackTypeMask.Spell, healer, agent);
-                    }
+            // Delegate to TORAbilityModel for aggregate healing handling
+            if (Game.Current.GameType is Campaign)
+            {
+                var abilityModel = Campaign.Current.Models.GetAbilityModel();
+                if (abilityModel != null)
+                {
+                    abilityModel.ApplySpellHealingToAgents(
+                        agents,
+                        minHeal,
+                        maxHeal,
+                        healer,
+                        originSpellTemplate,
+                        castId);
+                    return;
+                }
+            }
+
+            // Fallback for non-campaign mode
+            var logic = Mission.Current?.GetMissionBehavior<AbilitySystem.AbilityManagerMissionLogic>();
+
+            foreach (var agent in agents)
+            {
+                if (agent == null) continue;
+                var amount = minHeal;
+                if (maxHeal < minHeal)
+                {
+                    agent.Heal(minHeal);
+                }
+                else
+                {
+                    amount = MBRandom.RandomInt(minHeal, maxHeal);
+                    agent.Heal(amount);
+                }
+
+                // Book healing to session if we have a valid castId
+                if (castId >= 0 && logic != null)
+                {
+                    logic.BookSpellHealing(castId, agent, amount);
+                }
+
+                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(healer, agent))
+                {
+                    CareerHelper.ApplyCareerAbilityCharge(amount, ChargeType.Healed, AttackTypeMask.Spell, healer, agent);
                 }
             }
         }
 
-        public static void ApplyStatusEffectToAgents(IEnumerable<Agent> agents, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false)
+        public static void ApplyStatusEffectToAgents(IEnumerable<Agent> agents, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false, int castId = -1)
         {
             if (agents != null)
             {
                 foreach (var agent in agents)
                 {
                     if (agent == null) continue;
-                    agent.ApplyStatusEffect(effectId, applierAgent, duration, append, isMutated);
+                    agent.ApplyStatusEffect(effectId, applierAgent, duration, append, isMutated, false, castId);
                 }
             }
         }

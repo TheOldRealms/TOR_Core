@@ -474,10 +474,10 @@ namespace TOR_Core.Extensions
             agent.Health = Math.Min(agent.Health + healingAmount, agent.HealthLimit);
         }
 
-        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false, bool stack = false)
+        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false, bool stack = false, int castId = -1)
         {
             var comp = agent?.GetComponent<StatusEffectComponent>();
-            if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated, stack);
+            if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated, stack, castId);
         }
 
         public static void RemoveStatusEffect(this Agent agent, string effectId)

@@ -737,7 +737,7 @@ namespace TOR_Core.Models
 
         /// <summary>
         /// Applies spell damage to a group of agents with aggregate tracking.
-        /// Handles damage calculation, application, XP granting, and displays ONE aggregate message.
+        /// Handles damage calculation and application. XP and display are handled when session is collected.
         /// </summary>
         public void ApplySpellDamageToAgents(
             IEnumerable<Agent> agents,
@@ -748,14 +748,12 @@ namespace TOR_Core.Models
             AbilityTemplate abilityTemplate,
             TriggeredEffectTemplate triggeredEffectTemplate,
             bool hasShockWave,
-            Vec3 impactPosition)
+            Vec3 impactPosition,
+            int castId = -1)
         {
             if (agents == null || caster == null) return;
 
-            int totalDamageDealt = 0;
-            int agentsAffected = 0;
-            float totalAmplification = 0;
-            float totalWardSave = 0;
+            var logic = Mission.Current?.GetMissionBehavior<AbilitySystem.AbilityManagerMissionLogic>();
 
             foreach (var agent in agents)
             {
@@ -782,21 +780,54 @@ namespace TOR_Core.Models
                     // Apply the damage
                     agent.ApplyDamage(finalDamage, impactPosition, caster, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: abilityTemplate != null);
 
-                    totalDamageDealt += finalDamage;
-                    agentsAffected++;
+                    // Book damage to session if we have a valid castId
+                    if (castId >= 0 && logic != null)
+                    {
+                        logic.BookSpellDamage(castId, agent, finalDamage, 0, damageType);
+                    }
                 }
             }
+        }
 
-            // Grant XP once with total damage
-            if (abilityTemplate != null && totalDamageDealt > 0)
-            {
-                ApplyAbilityDamageXp(caster, abilityTemplate, totalDamageDealt);
-            }
+        /// <summary>
+        /// Applies spell healing to a group of agents with aggregate tracking.
+        /// Handles healing application. XP and display are handled when session is collected.
+        /// </summary>
+        public void ApplySpellHealingToAgents(
+            IEnumerable<Agent> agents,
+            int minHeal,
+            int maxHeal,
+            Agent healer,
+            AbilityTemplate abilityTemplate,
+            int castId = -1)
+        {
+            if (agents == null) return;
 
-            // Display aggregate result once
-            if (totalDamageDealt > 0 && caster == Agent.Main)
+            var logic = Mission.Current?.GetMissionBehavior<AbilitySystem.AbilityManagerMissionLogic>();
+
+            foreach (var agent in agents)
             {
-                TORDamageDisplay.DisplayAggregateSpellDamage(damageType, totalDamageDealt, agentsAffected);
+                if (agent == null) continue;
+
+                var amount = minHeal;
+                if (maxHeal >= minHeal)
+                {
+                    amount = MBRandom.RandomInt(minHeal, maxHeal);
+                }
+
+                agent.Heal(amount);
+
+                // Book healing to session if we have a valid castId
+                if (castId >= 0 && logic != null)
+                {
+                    logic.BookSpellHealing(castId, agent, amount);
+                }
+
+                // Apply career ability charge
+                if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(healer, agent))
+                {
+                    CareerHelper.ApplyCareerAbilityCharge(amount, ChargeType.Healed, AttackTypeMask.Spell, healer, agent);
+                }
             }
         }
     }

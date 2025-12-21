@@ -28,7 +28,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         public string SummonedTroopId => _template.TroopIdToSummon;
         public float ImbuedStatusEffectDuration => _template.ImbuedStatusEffectDuration;
         public List<string> StatusEffects => _template.ImbuedStatusEffects;
-        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null)
+        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null, int castId = -1)
         {
             if (_template == null || !triggererAgent.IsActive()) return;
             _timer = new Timer(2000)
@@ -86,11 +86,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             //Cause Damage
             if (_template.DamageAmount > 0)
             {
-                TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate);
+                TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate, castId);
             }
             else if (_template.DamageAmount < 0)
             {
-                TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate);
+                TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate, castId);
             }
             //Apply status effects
             if (_template.AssociatedStatusEffects != null && _template.AssociatedStatusEffects.Count > 0)
@@ -101,7 +101,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     {
                         if (!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
                     }
-                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
+                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated, castId);
                 }
             }
             if (_template.DoNotAlignParticleEffectPrefabOnImpact)

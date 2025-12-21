@@ -387,6 +387,7 @@
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\StatItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellCastingLevel.cs" />
+    <Compile Include="AbilitySystem\SpellCasting\SpellCastSession.cs" />
     <Compile Include="AbilitySystem\SummonedAgentOrigin.cs" />
     <Compile Include="Audio\CachedSound.cs" />
     <Compile Include="Audio\CachedSoundInstance.cs" />

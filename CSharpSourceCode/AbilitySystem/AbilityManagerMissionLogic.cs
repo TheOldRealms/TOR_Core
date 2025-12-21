@@ -21,6 +21,8 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
+using TOR_Core.AbilitySystem.SpellCasting;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Items;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
@@ -56,6 +58,11 @@ namespace TOR_Core.AbilitySystem
         private bool _disableCombatActionsAfterCast;
         private float _elapsedTimeSinceLastActivation;
         private bool _wieldOffHandStaff;
+
+        // Spell cast session tracking
+        private readonly Dictionary<int, SpellCastSession> _activeSpellSessions = new();
+        private int _nextCastId = 1;
+
         public delegate void OnHideOutBossFightInit();
         public event OnHideOutBossFightInit OnInitHideOutBossFight;
         private static ActionIndexCache IdleAnimation
@@ -803,6 +810,155 @@ namespace TOR_Core.AbilitySystem
         {
             if (affectedAgent == Agent.Main) SlowDownTime(false);
         }
+
+        #region Spell Cast Session Management
+
+        /// <summary>
+        /// Creates a new spell cast session and returns its CastID.
+        /// Called when an ability starts (in AbilityScript.Initialize).
+        /// </summary>
+        public int CreateSpellSession(Agent caster, AbilityTemplate abilityTemplate)
+        {
+            var castId = _nextCastId++;
+            var session = new SpellCastSession(castId, caster, abilityTemplate);
+            _activeSpellSessions[castId] = session;
+            return castId;
+        }
+
+        /// <summary>
+        /// Books damage to an active spell session.
+        /// </summary>
+        public void BookSpellDamage(int castId, Agent victim, int damageDealt, int damageAbsorbed, DamageType damageType)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.BookDamage(victim, damageDealt, damageAbsorbed, damageType);
+            }
+        }
+
+        /// <summary>
+        /// Books healing to an active spell session.
+        /// </summary>
+        public void BookSpellHealing(int castId, Agent target, int healingDone)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.BookHealing(target, healingDone);
+            }
+        }
+
+        /// <summary>
+        /// Records a tick for lasting effects.
+        /// </summary>
+        public void RecordSpellTick(int castId)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.RecordTick();
+            }
+        }
+
+        /// <summary>
+        /// Called when an ability ends (in AbilityScript.OnRemoved or Stop).
+        /// Marks the session as ability-ended and collects if no pending status effects.
+        /// </summary>
+        public void CollectSpellSession(int castId)
+        {
+            if (!_activeSpellSessions.TryGetValue(castId, out var session))
+                return;
+
+            session.AbilityEnded = true;
+
+            // Only finalize if no pending status effects
+            if (session.IsReadyToCollect)
+            {
+                FinalizeSession(castId);
+            }
+        }
+
+        /// <summary>
+        /// Called when a status effect with a castId is added to an agent.
+        /// </summary>
+        public void OnStatusEffectAdded(int castId)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.AddPendingStatusEffect();
+            }
+        }
+
+        /// <summary>
+        /// Called when a status effect with a castId expires on an agent.
+        /// </summary>
+        public void OnStatusEffectExpired(int castId)
+        {
+            if (!_activeSpellSessions.TryGetValue(castId, out var session))
+                return;
+
+            session.RemovePendingStatusEffect();
+
+            // If ability has ended and no more pending status effects, finalize
+            if (session.IsReadyToCollect)
+            {
+                FinalizeSession(castId);
+            }
+        }
+
+        /// <summary>
+        /// Finalizes a spell session - displays results and grants XP.
+        /// </summary>
+        private void FinalizeSession(int castId)
+        {
+            if (!_activeSpellSessions.TryGetValue(castId, out var session))
+                return;
+
+            _activeSpellSessions.Remove(castId);
+
+            if (!session.HasData)
+                return;
+
+            // Display results only for player or controlled agent
+            bool shouldDisplay = session.Caster == Agent.Main ||
+                                 (session.Caster != null && session.Caster.IsPlayerControlled);
+
+            if (shouldDisplay)
+            {
+                string spellName = session.AbilityTemplate?.Name?.ToString();
+
+                if (session.TotalDamageDealt > 0)
+                {
+                    TORDamageDisplay.DisplayAggregateSpellDamage(
+                        session.PrimaryDamageType,
+                        session.TotalDamageDealt,
+                        session.AgentsDamagedCount,
+                        spellName);
+                }
+
+                if (session.TotalHealingDone > 0)
+                {
+                    TORDamageDisplay.DisplayAggregateSpellHealing(
+                        session.TotalHealingDone,
+                        session.AgentsHealedCount,
+                        spellName);
+                }
+            }
+
+            // Grant XP for all hero casters (player and companions)
+            if (Game.Current.GameType is Campaign && session.Caster?.IsHero == true)
+            {
+                var model = Campaign.Current.Models.GetAbilityModel();
+                if (model != null)
+                {
+                    var totalEffect = session.TotalDamageDealt + session.TotalHealingDone;
+                    if (totalEffect > 0)
+                    {
+                        model.ApplyAbilityDamageXp(session.Caster, session.AbilityTemplate, totalEffect);
+                    }
+                }
+            }
+        }
+
+        #endregion
     }
 
     public enum AbilityModeState
