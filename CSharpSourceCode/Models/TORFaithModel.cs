@@ -106,12 +106,18 @@ namespace TOR_Core.Models
 
                 if (cultID == "cult_of_sigmar" && leaderHero.HasCareerChoice("SigmarsProclaimerPassive4"))
                 {
-                    var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive4");
-                    if (choice?.Passive == null) return;
-                    foreach (var hero in party.GetMemberHeroes())
+                    const int prayerHealingCooldownDays = 5;
+                    var currentDay = (int)CampaignTime.Now.ToDays;
+
+                    if (leaderHero.GetLastPrayerTime() <= currentDay - prayerHealingCooldownDays)
                     {
-                        var value = (int)choice.Passive.EffectMagnitude;
-                        hero.Heal(value, false);
+                        var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive4");
+                        if (choice?.Passive == null) return;
+                        foreach (var hero in party.GetMemberHeroes())
+                        {
+                            var value = (int)choice.Passive.EffectMagnitude;
+                            hero.Heal(value, false);
+                        }
                     }
                 }
 

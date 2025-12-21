@@ -295,42 +295,42 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializePassives()
         {
-            _bookOfSigmarPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _bookOfSigmarPassive1.Initialize(CareerID, "Increases Hitpoints by 10.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
             _bookOfSigmarPassive2.Initialize(CareerID, "Increases morale for all troops by 10.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale, true));
             _bookOfSigmarPassive3.Initialize(CareerID, "After battle, all wounded companions are healed for 20 Hitpoints.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special)); // PostBattleCampaignBehavior 30
             _bookOfSigmarPassive4.Initialize(CareerID, "Wounded troops in your party heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //more precise
 
-            _sigmarsProclaimerPassive1.Initialize(CareerID, "10% extra holy melee damage.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee));
+            _sigmarsProclaimerPassive1.Initialize(CareerID, "5% extra holy melee damage.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 5), AttackTypeMask.Melee));
             _sigmarsProclaimerPassive2.Initialize(CareerID, "All Sigmarite troops wages are reduced by 20%", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.TroopWages, true,
                     characterObject => !characterObject.IsHero && IsSigmariteTroop(characterObject)));
             _sigmarsProclaimerPassive3.Initialize(CareerID, "Sigmarite troops get 25% resistance to physical ranged attacks.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Ranged,
                 (attacker, victim, mask) => mask == AttackTypeMask.Ranged && victim.BelongsToMainParty() && IsSigmariteTroop(victim.Character as CharacterObject)));
-            _sigmarsProclaimerPassive4.Initialize(CareerID, "When praying at a shrine of Sigmar, all characters restore 50 Hitpoints.", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));//TORCustomSettlementCampaignBehavior 429
+            _sigmarsProclaimerPassive4.Initialize(CareerID, "When praying at a shrine of Sigmar, all characters restore 50 Hitpoints (5 day cooldown).", "SigmarsProclaimer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.Special));
 
-            _relentlessFanaticPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
-            _relentlessFanaticPassive2.Initialize(CareerID, "10% extra holy melee damage.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee));
+            _relentlessFanaticPassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _relentlessFanaticPassive2.Initialize(CareerID, "5% extra holy melee damage.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 5), AttackTypeMask.Melee));
             _relentlessFanaticPassive3.Initialize(CareerID, "Party movement speed is increased by 1.", "RelentlessFanatic", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
             _relentlessFanaticPassive4.Initialize(CareerID, "Prayers aren't affected by global cooldowns.", "RelentlessFanatic", false, ChoiceType.Passive, null);
 
-            _protectorOfTheWeakPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
-            _protectorOfTheWeakPassive2.Initialize(CareerID, "Increases melee physical resistance by 15%.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee));
-            _protectorOfTheWeakPassive3.Initialize(CareerID, "Increases Magic resistance against spells by 25%.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 25), AttackTypeMask.Spell));
+            _protectorOfTheWeakPassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+            _protectorOfTheWeakPassive2.Initialize(CareerID, "Increases melee physical resistance by 5%.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
+            _protectorOfTheWeakPassive3.Initialize(CareerID, "Increases Magic resistance against spells by 10%.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
             _protectorOfTheWeakPassive4.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "ProtectorOfTheWeak", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
 
-            _holyPurgePassive1.Initialize(CareerID, "10% extra holy melee damage.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee));
+            _holyPurgePassive1.Initialize(CareerID, "5% extra holy melee damage.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 5), AttackTypeMask.Melee));
             _holyPurgePassive2.Initialize(CareerID, "All battles against forces of Chaos and undead earn 20% more prestige.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special));
             _holyPurgePassive3.Initialize(CareerID, "All troops deal 10% more melee damage to non-human enemies.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, HolyPurgePassive3));
             _holyPurgePassive4.Initialize(CareerID, "All Sigmarite troops gain 10% extra Holy damage.", "HolyPurge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee, HolyPurgePassive4));
 
             _archLectorPassive1.Initialize(CareerID, "Prayers are recharged on battle start.", "ArchLector", false, ChoiceType.Passive, null); // AbilityMissionLogic 534
             _archLectorPassive2.Initialize(CareerID, "All neutral Empire troops now count as Sigmarite troops.", "ArchLector", false, ChoiceType.Passive, null);
-            _archLectorPassive3.Initialize(CareerID, "Gain 15% Ward save.", "ArchLector", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All));
-            _archLectorPassive4.Initialize(CareerID, "All Sigmarite troops gain 20% Ward save.", "ArchLector", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 20), AttackTypeMask.Melee, HolyPurgePassive2));
+            _archLectorPassive3.Initialize(CareerID, "Gain 5% Ward save.", "ArchLector", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 5), AttackTypeMask.All));
+            _archLectorPassive4.Initialize(CareerID, "All Sigmarite troops gain 10% Ward save.", "ArchLector", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Melee, HolyPurgePassive2));
 
-            _twinTailedCometPassive1.Initialize(CareerID, "10% extra holy melee damage.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee));
+            _twinTailedCometPassive1.Initialize(CareerID, "5% extra holy melee damage.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 5), AttackTypeMask.Melee));
             _twinTailedCometPassive2.Initialize(CareerID, "Increases Companion Limit by 5.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
-            _twinTailedCometPassive3.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-            _twinTailedCometPassive4.Initialize(CareerID, "Increases Hitpoints by 30.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Health));
+            _twinTailedCometPassive3.Initialize(CareerID, "Extra 20% armor penetration of melee attacks.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+            _twinTailedCometPassive4.Initialize(CareerID, "Increases Hitpoints by 20.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
         }
 
         private static bool IsSigmariteTroop(CharacterObject troop)

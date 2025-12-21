@@ -2652,7 +2652,7 @@
                              SoundEffectId="none"
                              SoundEffectLength="1.98"
                              DamageType="Holy"
-                             DamageAmount="7"
+                             DamageAmount="2"
                              Radius="3"
                              HasShockWave="false"
                              TargetType="Enemy"
