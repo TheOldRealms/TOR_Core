@@ -299,6 +299,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         ShruggedOff,
         InventoryCapacity,
         BonusDamageShield,
-        BattleRenownGain    //applied as a factor
+        BattleRenownGain,    //applied as a factor
+        MoraleDamageToEnemyOnKill  // Extra enemy morale loss when filtered unit kills, percentage based
     }
 }

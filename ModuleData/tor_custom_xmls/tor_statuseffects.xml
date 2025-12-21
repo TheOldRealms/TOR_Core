@@ -2547,7 +2547,7 @@
 		id="kow_shallya_res_ward"
 		particle_id=""
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="0.25"
+		base_effect_value="0.15"
 		applies_for_attack_type="All"
 		type="Resistance"
 		damage_type="All">

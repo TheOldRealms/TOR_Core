@@ -76,16 +76,27 @@ namespace TOR_Core.Models
             }
         }
 
-        /*
-        public override float CalculateDamage(in AttackInformation attackInformation, in AttackCollisionData collisionData, in MissionWeapon weapon, float baseDamage)
+        
+        public override float ApplyDamageAmplifications(in AttackInformation attackInformation, in AttackCollisionData collisionData, float baseDamage)
         {
             var attackerAgent = attackInformation.AttackerAgent;
-            var result = base.CalculateDamage(attackInformation, collisionData, weapon, baseDamage);
+            var result = base.CalculateDamage(in attackInformation,in collisionData, baseDamage);
+            
             var attacker = (attackInformation.IsAttackerAgentMount ? attackInformation.AttackerRiderAgentCharacter : attackInformation.AttackerAgentCharacter) as CharacterObject;
             //attackInformation.XXXCaptainCharacter is null if character == captain
             var attackerCaptain = attackInformation.AttackerCaptainCharacter as CharacterObject;
             var defender = (attackInformation.IsVictimAgentMount ? attackInformation.VictimRiderAgentCharacter : attackInformation.VictimAgentCharacter) as CharacterObject;
             var defenderCaptain = attackInformation.VictimCaptainCharacter as CharacterObject;
+            
+            
+
+            collisionData.StrikeType;
+            collisionData
+
+            Blow b = new Blow(attacker);
+            return b.StrikeType == StrikeType.Thrust && b.AttackType == AgentAttackType.Kick && b.DamageCalculated && b.BlowFlag.HasFlag(BlowFlags.NoSound) && b.VictimBodyPart == BoneBodyPartType.Chest;
+
+            var blow
 
             var resultDamage = new ExplainedNumber(result);
 
@@ -93,6 +104,11 @@ namespace TOR_Core.Models
             {
                 return resultDamage.ResultNumber;
             }
+
+            var weapon = attackInformation.AttackerWeapon;
+            
+            
+            attackInformation.
 
             
             if (defender != null && !weapon.IsEmpty)
@@ -191,7 +207,6 @@ namespace TOR_Core.Models
              
             return resultDamage.ResultNumber;
         }
-        */
 
         public override MeleeCollisionReaction DecidePassiveAttackCollisionReaction(
             Agent attacker,
