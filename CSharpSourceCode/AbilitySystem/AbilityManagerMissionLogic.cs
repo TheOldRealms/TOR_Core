@@ -859,55 +859,11 @@ namespace TOR_Core.AbilitySystem
         }
 
         /// <summary>
+        /// Collects and finalizes a spell session - displays results and grants XP.
         /// Called when an ability ends (in AbilityScript.OnRemoved or Stop).
-        /// Marks the session as ability-ended and collects if no pending status effects.
+        /// Expected DOT/HOT values are pre-calculated when triggered effects are applied.
         /// </summary>
         public void CollectSpellSession(int castId)
-        {
-            if (!_activeSpellSessions.TryGetValue(castId, out var session))
-                return;
-
-            session.AbilityEnded = true;
-
-            // Only finalize if no pending status effects
-            if (session.IsReadyToCollect)
-            {
-                FinalizeSession(castId);
-            }
-        }
-
-        /// <summary>
-        /// Called when a status effect with a castId is added to an agent.
-        /// </summary>
-        public void OnStatusEffectAdded(int castId)
-        {
-            if (_activeSpellSessions.TryGetValue(castId, out var session))
-            {
-                session.AddPendingStatusEffect();
-            }
-        }
-
-        /// <summary>
-        /// Called when a status effect with a castId expires on an agent.
-        /// </summary>
-        public void OnStatusEffectExpired(int castId)
-        {
-            if (!_activeSpellSessions.TryGetValue(castId, out var session))
-                return;
-
-            session.RemovePendingStatusEffect();
-
-            // If ability has ended and no more pending status effects, finalize
-            if (session.IsReadyToCollect)
-            {
-                FinalizeSession(castId);
-            }
-        }
-
-        /// <summary>
-        /// Finalizes a spell session - displays results and grants XP.
-        /// </summary>
-        private void FinalizeSession(int castId)
         {
             if (!_activeSpellSessions.TryGetValue(castId, out var session))
                 return;

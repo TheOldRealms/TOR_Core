@@ -6,7 +6,8 @@ namespace TOR_Core.AbilitySystem.SpellCasting
 {
     /// <summary>
     /// Tracks all damage and effects from a single spell cast.
-    /// Created when ability starts, collected when ability ends or when all status effects expire.
+    /// Created when ability starts, collected when ability ends.
+    /// Expected DOT/HOT values are pre-calculated when triggered effects are applied.
     /// </summary>
     public class SpellCastSession
     {
@@ -25,17 +26,6 @@ namespace TOR_Core.AbilitySystem.SpellCasting
 
         public int AgentsDamagedCount => _agentsDamaged.Count;
         public int AgentsHealedCount => _agentsHealed.Count;
-
-        /// <summary>
-        /// Number of active status effects associated with this session.
-        /// Session cannot be collected until this is 0 and ability has ended.
-        /// </summary>
-        public int PendingStatusEffects { get; private set; }
-
-        /// <summary>
-        /// Whether the ability entity has ended (OnRemoved was called).
-        /// </summary>
-        public bool AbilityEnded { get; set; }
 
         public SpellCastSession(int castId, Agent caster, AbilityTemplate abilityTemplate)
         {
@@ -80,28 +70,6 @@ namespace TOR_Core.AbilitySystem.SpellCasting
         {
             TickCount++;
         }
-
-        /// <summary>
-        /// Increments the pending status effects counter.
-        /// </summary>
-        public void AddPendingStatusEffect()
-        {
-            PendingStatusEffects++;
-        }
-
-        /// <summary>
-        /// Decrements the pending status effects counter.
-        /// </summary>
-        public void RemovePendingStatusEffect()
-        {
-            if (PendingStatusEffects > 0)
-                PendingStatusEffects--;
-        }
-
-        /// <summary>
-        /// Returns true if this session is ready to be collected.
-        /// </summary>
-        public bool IsReadyToCollect => AbilityEnded && PendingStatusEffects == 0;
 
         /// <summary>
         /// Returns true if this session has any meaningful data to display.

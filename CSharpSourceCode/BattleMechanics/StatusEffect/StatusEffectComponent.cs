@@ -152,13 +152,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                         CareerHelper.ApplyCareerAbilityCharge(damageValue, ChargeType.Healed, AttackTypeMask.Spell, applier);
                     }
 
-                    // Book DOT damage to spell session if we have a castId
-                    if (effect != null && effect.CastId >= 0)
-                    {
-                        var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
-                        logic?.BookSpellDamage(effect.CastId, Agent, damageValue, 0, effect.Template.DamageType);
-                    }
-
                     Agent.ApplyDamage(damageValue, Agent.Position, applier, false, false);
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
@@ -180,13 +173,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     if (Campaign.Current != null && applier != null && (applier.IsMainAgent || applier.BelongsToMainParty()))
                     {
                         CareerHelper.ApplyCareerAbilityCharge(healingValue, ChargeType.Healed, AttackTypeMask.Spell, applier);
-                    }
-
-                    // Book HOT healing to spell session if we have a castId
-                    if (effect != null && effect.CastId >= 0)
-                    {
-                        var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
-                        logic?.BookSpellHealing(effect.CastId, Agent, healingValue);
                     }
 
                 }
@@ -272,13 +258,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     this.Agent.UpdateAgentProperties();
                 }
-            }
-
-            // Notify session system when status effect with castId expires
-            if (effect.CastId >= 0)
-            {
-                var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
-                logic?.OnStatusEffectExpired(effect.CastId);
             }
 
             _currentEffects.Remove(effect);
@@ -393,13 +372,6 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
 
             _currentEffects.Add(effect, data);
-
-            // Notify session system when status effect with castId is added
-            if (effect.CastId >= 0)
-            {
-                var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
-                logic?.OnStatusEffectAdded(effect.CastId);
-            }
         }
 
         private void CleanUp()

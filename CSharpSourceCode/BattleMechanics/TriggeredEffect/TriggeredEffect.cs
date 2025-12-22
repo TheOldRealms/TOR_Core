@@ -7,6 +7,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -95,13 +96,36 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             //Apply status effects
             if (_template.AssociatedStatusEffects != null && _template.AssociatedStatusEffects.Count > 0)
             {
+                var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+
                 foreach (var effect in _template.AssociatedStatusEffects)
                 {
                     if (triggererAgent.Character is CharacterObject triggererCharacter && triggererCharacter.GetPerkValue(TORPerks.Spellcraft.ArcaneLink) && effect.IsBuffEffect)
                     {
                         if (!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
                     }
-                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated, castId);
+                    TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
+
+                    // Book expected DOT/HOT immediately based on duration × value per tick
+                    if (castId >= 0 && logic != null)
+                    {
+                        int expectedTicks = (int)statusEffectDuration;
+                        int expectedValuePerTarget = (int)(expectedTicks * effect.BaseEffectValue);
+
+                        foreach (var target in targets)
+                        {
+                            if (target == null) continue;
+
+                            if (effect.Type == StatusEffectTemplate.EffectType.DamageOverTime)
+                            {
+                                logic.BookSpellDamage(castId, target, expectedValuePerTarget, 0, effect.DamageType);
+                            }
+                            else if (effect.Type == StatusEffectTemplate.EffectType.HealthOverTime)
+                            {
+                                logic.BookSpellHealing(castId, target, expectedValuePerTarget);
+                            }
+                        }
+                    }
                 }
             }
             if (_template.DoNotAlignParticleEffectPrefabOnImpact)
