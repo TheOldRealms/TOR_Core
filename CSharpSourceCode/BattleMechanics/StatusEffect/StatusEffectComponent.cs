@@ -149,7 +149,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                     if (Campaign.Current != null && applier != null && (applier.IsMainAgent || applier.BelongsToMainParty()))
                     {
-                        CareerHelper.ApplyCareerAbilityCharge(damageValue, ChargeType.Healed, AttackTypeMask.Spell, applier);
+                        CareerHelper.ApplyCareerAbilityCharge(damageValue, ChargeType.DamageDone, AttackTypeMask.Spell, applier);
                     }
 
                     Agent.ApplyDamage(damageValue, Agent.Position, applier, false, false);
