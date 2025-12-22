@@ -11210,8 +11210,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -11260,8 +11260,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -11386,8 +11386,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -11436,8 +11436,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -11536,8 +11536,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -11586,8 +11586,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -11686,8 +11686,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -11723,8 +11723,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -11836,8 +11836,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -11999,8 +11999,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -12036,8 +12036,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -12136,8 +12136,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -12173,8 +12173,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -12286,8 +12286,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -12399,8 +12399,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -12449,8 +12449,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -12611,8 +12611,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -12648,8 +12648,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
@@ -12685,8 +12685,8 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.castle_complex">
-      <Location id="center" scene_name="empire_castle_c" scene_name_1="empire_castle_c" scene_name_2="empire_castle_c" scene_name_3="empire_castle_c" />
-      <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
+      <Location id="center" scene_name="TOR_dwarf_castle_001" scene_name_1="TOR_dwarf_castle_001" scene_name_2="TOR_dwarf_castle_001" scene_name_3="TOR_dwarf_castle_001" />
+      <Location id="lordshall" scene_name_1="TOR_dwarf_keep_001" scene_name_2="TOR_dwarf_keep_001" scene_name_3="TOR_dwarf_keep_001" />
       <Location id="prison" scene_name="empire_dungeon_a" />
     </Locations>
   </Settlement>
