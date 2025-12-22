@@ -354,20 +354,6 @@ namespace TOR_Core.Models
             float wardSaveFactor = CalculateWardSaveFactor(victimAgent, resistancePercentages, friendlyFire);
             resultDamage *= wardSaveFactor;
 
-            // Display damage result
-            if (resultDamage > 0 && (attackerAgent == Agent.Main || victimAgent == Agent.Main))
-            {
-                var isVictim = victimAgent == Agent.Main;
-                var resultBonus = damageAmplifications;
-
-                for (int i = 0; i < resultBonus.Length; i++)
-                {
-                    resultBonus[i] += additionalDamagePercentages[i];
-                }
-
-                TORDamageDisplay.DisplayDamageResult((int)resultDamage, damageCategories, resultBonus, wardSaveFactor, isVictim);
-            }
-
             return resultDamage;
         }
 
