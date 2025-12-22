@@ -3659,6 +3659,25 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_damagetype.Frost" text="{=str_tor_damagetype_frost}Frost"/>
   <string id="tor_damagetype.Lightning" text="{=str_tor_damagetype_lightning}Lightning"/>
 
+  <!-- Spell Damage/Healing Display System -->
+  <!-- Message Templates -->
+  <string id="tor_damage_display_spell_damage" text="{=str_tor_damage_display_spell_damage}{ICON} {SPELL_NAME} dealt {DAMAGE} {DAMAGE_TYPE} damage to {COUNT} {TARGET_TEXT}"/>
+  <string id="tor_damage_display_spell_damage_with_kills" text="{=str_tor_damage_display_spell_damage_with_kills}{ICON} {SPELL_NAME} dealt {DAMAGE} {DAMAGE_TYPE} damage to {COUNT} {TARGET_TEXT}, {KILL_COUNT} eliminated"/>
+  <string id="tor_damage_display_spell_healing" text="{=str_tor_damage_display_spell_healing}{ICON} {SPELL_NAME} healed {HEALING} health to {COUNT} {TARGET_TEXT}"/>
+
+  <!-- Shared Text -->
+  <string id="tor_damage_display_spell" text="{=str_tor_damage_display_spell}Spell"/>
+  <string id="tor_damage_display_target_singular" text="{=str_tor_damage_display_target_singular}target"/>
+  <string id="tor_damage_display_target_plural" text="{=str_tor_damage_display_target_plural}targets"/>
+
+  <!-- Damage Types -->
+  <string id="tor_damage_type_fire" text="{=str_tor_damage_type_fire}Fire"/>
+  <string id="tor_damage_type_holy" text="{=str_tor_damage_type_holy}Holy"/>
+  <string id="tor_damage_type_lightning" text="{=str_tor_damage_type_lightning}Lightning"/>
+  <string id="tor_damage_type_magical" text="{=str_tor_damage_type_magical}Magical"/>
+  <string id="tor_damage_type_frost" text="{=str_tor_damage_type_frost}Frost"/>
+  <string id="tor_damage_type_physical" text="{=str_tor_damage_type_physical}Physical"/>
+
   <string id="tor_attacktype.Melee" text="{=str_tor_attacktype_melee}Melee"/>
   <string id="tor_attacktype.Ranged" text="{=str_tor_attacktype_ranged}Ranged"/>
   <string id="tor_attacktype.Spell" text="{=str_tor_attacktype_spell}Spell"/>

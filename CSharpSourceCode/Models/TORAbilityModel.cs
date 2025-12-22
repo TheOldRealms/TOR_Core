@@ -13,6 +13,7 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.SpellCasting;
 using TOR_Core.AbilitySystem.Spells;
 using TOR_Core.BattleMechanics;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -73,6 +74,37 @@ namespace TOR_Core.Models
         public int GetSkillXpForAbilityDamage(AbilityTemplate ability, int damageAmount)
         {
             return damageAmount / 5;
+        }
+
+        /// <summary>
+        /// Calculates total XP for a completed spell session based on damage, healing, and status effects.
+        /// </summary>
+        public int CalculateSpellSessionXp(SpellCastSession session)
+        {
+            if (session == null)
+                return 0;
+
+            int xp = 0;
+
+            // XP for damage dealt (damage / 5)
+            if (session.TotalDamageDealt > 0)
+            {
+                xp += session.TotalDamageDealt / 5;
+            }
+
+            // XP for healing done (healing / 5)
+            if (session.TotalHealingDone > 0)
+            {
+                xp += session.TotalHealingDone / 5;
+            }
+
+            // XP for status effects applied (10 XP per unique agent affected)
+            if (session.AgentsAffectedByStatusEffectsCount > 0)
+            {
+                xp += session.AgentsAffectedByStatusEffectsCount * 10;
+            }
+
+            return xp;
         }
 
         /// <summary>
@@ -784,6 +816,12 @@ namespace TOR_Core.Models
                     if (castId >= 0 && logic != null)
                     {
                         logic.BookSpellDamage(castId, agent, finalDamage, 0, damageType);
+
+                        // Track kill if the agent died from this damage
+                        if (agent.Health <= 0 || agent.State == AgentState.Killed || agent.State == AgentState.Unconscious)
+                        {
+                            logic.BookSpellKill(castId, agent);
+                        }
                     }
                 }
             }

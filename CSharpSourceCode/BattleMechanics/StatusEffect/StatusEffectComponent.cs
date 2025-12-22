@@ -153,6 +153,13 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     }
 
                     Agent.ApplyDamage(damageValue, Agent.Position, applier, false, false);
+
+                    // Track DOT kill if the agent died
+                    if (effect != null && effect.CastId >= 0 && (Agent.Health <= 0 || Agent.State == AgentState.Killed || Agent.State == AgentState.Unconscious))
+                    {
+                        var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+                        logic?.BookSpellKill(effect.CastId, Agent);
+                    }
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
                 {

@@ -106,7 +106,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                     }
                     TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
 
-                    // Book expected DOT/HOT immediately based on duration × value per tick
+                    // Book status effects and expected DOT/HOT immediately
                     if (castId >= 0 && logic != null)
                     {
                         int expectedTicks = (int)statusEffectDuration;
@@ -116,6 +116,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                         {
                             if (target == null) continue;
 
+                            // Book status effect application for XP
+                            logic.BookSpellStatusEffect(castId, target);
+
+                            // Book expected DOT/HOT values based on duration × value per tick
                             if (effect.Type == StatusEffectTemplate.EffectType.DamageOverTime)
                             {
                                 logic.BookSpellDamage(castId, target, expectedValuePerTarget, 0, effect.DamageType);
@@ -125,6 +129,9 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                                 logic.BookSpellHealing(castId, target, expectedValuePerTarget);
                             }
                         }
+
+                        // Extend session collect time to wait for status effects to expire (for kill tracking)
+                        logic.ExtendSessionCollectTime(castId, statusEffectDuration);
                     }
                 }
             }
