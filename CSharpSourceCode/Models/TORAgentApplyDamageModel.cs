@@ -37,9 +37,7 @@ namespace TOR_Core.Models
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if (choices.Contains("MercenaryLordPassive4") ||
-                        choices.Contains("EndsJustifiesMeansPassive4") ||
-                        choices.Contains("EyeOfTheHunterPassive2"))
+                    if (choices.Contains("EyeOfTheHunterPassive2"))
                     {
                         missileWeaponFlags |= WeaponFlags.MultiplePenetration;
                     }

@@ -442,6 +442,13 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     }
                 }
 
+                if (playerHero.HasCareerChoice("MercenaryLordPassive4"))
+                {
+                    var leadershipSkill = playerHero.GetSkillValue(DefaultSkills.Leadership);
+                    var leadershipFactor = 1f + (leadershipSkill / 300f);
+                    renownChange *= leadershipFactor;
+                }
+
                 playerHero.AddCultureSpecificCustomResource((int)(1 + renownChange));
             }
         }
