@@ -818,8 +818,6 @@ namespace TOR_Core.AbilitySystem
             if (affectedAgent == Agent.Main) SlowDownTime(false);
         }
 
-        #region Spell Cast Session Management
-
         /// <summary>
         /// Creates a new spell cast session and returns its CastID.
         /// Called when an ability starts (in AbilityScript.Initialize).
@@ -1020,8 +1018,6 @@ namespace TOR_Core.AbilitySystem
                 }
             }
         }
-
-        #endregion
     }
 
     public enum AbilityModeState

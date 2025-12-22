@@ -661,7 +661,6 @@
     <Compile Include="Extensions\DebugMethods.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\CharacterExtendedInfo.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoManager.cs" />
-    <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoMissionLogic.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\HeroExtendedInfo.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\MobilePartyExtendedInfo.cs" />
     <Compile Include="Extensions\FormationExtensions.cs" />
