@@ -58,6 +58,10 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             var component = settlement.SettlementComponent as ShrineComponent;
             model.AddBlessingToParty(MobileParty.MainParty, component.Religion.StringId);
 
+            // Track the last time the player prayed at a shrine
+            var behavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+            behavior.SetLastPrayerTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
+
             // Fire shrine prayer event for any systems that need to track it
             TORCampaignEvents.Instance.OnShrinePrayer(Hero.MainHero, component.Religion, settlement);
 

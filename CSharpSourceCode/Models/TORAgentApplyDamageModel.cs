@@ -37,9 +37,7 @@ namespace TOR_Core.Models
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if (choices.Contains("MercenaryLordPassive4") ||
-                        choices.Contains("EndsJustifiesMeansPassive4") ||
-                        choices.Contains("EyeOfTheHunterPassive2"))
+                    if (choices.Contains("EyeOfTheHunterPassive2"))
                     {
                         missileWeaponFlags |= WeaponFlags.MultiplePenetration;
                     }
@@ -77,10 +75,11 @@ namespace TOR_Core.Models
         }
 
         /*
-        public override float CalculateDamage(in AttackInformation attackInformation, in AttackCollisionData collisionData, in MissionWeapon weapon, float baseDamage)
+        public override float ApplyDamageAmplifications(in AttackInformation attackInformation, in AttackCollisionData collisionData, float baseDamage)
         {
             var attackerAgent = attackInformation.AttackerAgent;
-            var result = base.CalculateDamage(attackInformation, collisionData, weapon, baseDamage);
+            var result = base.CalculateDamage(in attackInformation,in collisionData, baseDamage);
+            
             var attacker = (attackInformation.IsAttackerAgentMount ? attackInformation.AttackerRiderAgentCharacter : attackInformation.AttackerAgentCharacter) as CharacterObject;
             //attackInformation.XXXCaptainCharacter is null if character == captain
             var attackerCaptain = attackInformation.AttackerCaptainCharacter as CharacterObject;
@@ -93,6 +92,8 @@ namespace TOR_Core.Models
             {
                 return resultDamage.ResultNumber;
             }
+
+            var weapon = attackInformation.AttackerWeapon;
 
             
             if (defender != null && !weapon.IsEmpty)

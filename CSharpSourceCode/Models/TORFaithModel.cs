@@ -106,20 +106,32 @@ namespace TOR_Core.Models
 
                 if (cultID == "cult_of_sigmar" && leaderHero.HasCareerChoice("SigmarsProclaimerPassive4"))
                 {
-                    var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive4");
-                    if (choice?.Passive == null) return;
-                    foreach (var hero in party.GetMemberHeroes())
+                    const int prayerHealingCooldownDays = 5;
+                    var currentDay = (int)CampaignTime.Now.ToDays;
+
+                    if (leaderHero.GetLastPrayerTime() <= currentDay - prayerHealingCooldownDays)
                     {
-                        var value = (int)choice.Passive.EffectMagnitude;
-                        hero.Heal(value, false);
+                        var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive4");
+                        if (choice?.Passive == null) return;
+                        foreach (var hero in party.GetMemberHeroes())
+                        {
+                            var value = (int)choice.Passive.EffectMagnitude;
+                            hero.Heal(value, false);
+                        }
                     }
                 }
 
                 if (cultID == "cult_of_ulric" && leaderHero.HasCareerChoice("TeachingsOfTheWinterFatherPassive2"))
                 {
-                    var choice = TORCareerChoices.GetChoice("TeachingsOfTheWinterFatherPassive2");
-                    if (choice == null || choice.Passive == null) return;
-                    Hero.MainHero.Heal(Hero.MainHero.MaxHitPoints, false);
+                    const int prayerHealingCooldownDays = 5;
+                    var currentDay = (int)CampaignTime.Now.ToDays;
+
+                    if (leaderHero.GetLastPrayerTime() <= currentDay - prayerHealingCooldownDays)
+                    {
+                        var choice = TORCareerChoices.GetChoice("TeachingsOfTheWinterFatherPassive2");
+                        if (choice == null || choice.Passive == null) return;
+                        Hero.MainHero.Heal(Hero.MainHero.MaxHitPoints, false);
+                    }
                 }
 
                 if (cultID == "cult_of_lady" && leaderHero.HasCareerChoice("TalesOfGilesPassive3"))
