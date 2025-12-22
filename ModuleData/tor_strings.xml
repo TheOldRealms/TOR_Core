@@ -2689,7 +2689,7 @@
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive1" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive1}Extra ranged damage (5%)." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive2" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive2}Increases range resistance by 15%." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive3" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive3}Extra 15% armor penetration of melee attacks." />
-  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive4" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive4}Ranged shots can penetrate multiple targets." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive4" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive4}Extra 20% armor penetration of ranged attacks." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive1" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive1}Increases troop regeneration by 1." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive2" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive2}Every ranged troop deals 5% extra holy damage." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive3" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive3}Companion health increases by 25." />
@@ -2812,40 +2812,40 @@
   <!-- Mercenary Career Choice Descriptions -->
   <string id="tor_careerchoice_description.MercenaryRoot" text="{=str_tor_careerchoice_description_MercenaryRoot}The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills" />
   <string id="tor_careerchoice_description.SurvivalistKeystone" text="{=str_tor_careerchoice_description_SurvivalistKeystone}Adds 15% Melee and Ranged Resistance during the career ability." />
-  <string id="tor_careerchoice_description.SurvivalistPassive1" text="{=str_tor_careerchoice_description_SurvivalistPassive1}5 extra ammo" />
-  <string id="tor_careerchoice_description.SurvivalistPassive2" text="{=str_tor_careerchoice_description_SurvivalistPassive2}Increases ranged damage by 10%." />
+  <string id="tor_careerchoice_description.SurvivalistPassive1" text="{=str_tor_careerchoice_description_SurvivalistPassive1}3 extra ammo." />
+  <string id="tor_careerchoice_description.SurvivalistPassive2" text="{=str_tor_careerchoice_description_SurvivalistPassive2}Increases ranged damage by 5%." />
   <string id="tor_careerchoice_description.SurvivalistPassive3" text="{=str_tor_careerchoice_description_SurvivalistPassive3}Party movement speed is increased by 20% in forest, mountain and swamp terrain." />
   <string id="tor_careerchoice_description.SurvivalistPassive4" text="{=str_tor_careerchoice_description_SurvivalistPassive4}Go for a hunt once a day (success chance based on Scouting, Polearm and ranged skills)." />
   <string id="tor_careerchoice_description.DuelistKeystone" text="{=str_tor_careerchoice_description_DuelistKeystone}Increases melee attack speed during career ability by 15%." />
-  <string id="tor_careerchoice_description.DuelistPassive1" text="{=str_tor_careerchoice_description_DuelistPassive1}Increases Hitpoints by 20." />
-  <string id="tor_careerchoice_description.DuelistPassive2" text="{=str_tor_careerchoice_description_DuelistPassive2}Increases melee damage resistance of melee troops by 10%." />
-  <string id="tor_careerchoice_description.DuelistPassive3" text="{=str_tor_careerchoice_description_DuelistPassive3}Increases melee damage by 10%." />
-  <string id="tor_careerchoice_description.DuelistPassive4" text="{=str_tor_careerchoice_description_DuelistPassive4}Player healing rate increased by 3" />
+  <string id="tor_careerchoice_description.DuelistPassive1" text="{=str_tor_careerchoice_description_DuelistPassive1}Increases Hitpoints by 10." />
+  <string id="tor_careerchoice_description.DuelistPassive2" text="{=str_tor_careerchoice_description_DuelistPassive2}Increases melee damage resistance of melee troops by 5%." />
+  <string id="tor_careerchoice_description.DuelistPassive3" text="{=str_tor_careerchoice_description_DuelistPassive3}Increases melee damage by 5%." />
+  <string id="tor_careerchoice_description.DuelistPassive4" text="{=str_tor_careerchoice_description_DuelistPassive4}Player healing rate increased by 1" />
   <string id="tor_careerchoice_description.HeadhunterKeystone" text="{=str_tor_careerchoice_description_HeadhunterKeystone}Increases range damage during the career ability by 15%." />
-  <string id="tor_careerchoice_description.HeadhunterPassive1" text="{=str_tor_careerchoice_description_HeadhunterPassive1}10 extra ammo." />
-  <string id="tor_careerchoice_description.HeadhunterPassive2" text="{=str_tor_careerchoice_description_HeadhunterPassive2}Increases ranged damage by 10%." />
+  <string id="tor_careerchoice_description.HeadhunterPassive1" text="{=str_tor_careerchoice_description_HeadhunterPassive1}5 extra ammo." />
+  <string id="tor_careerchoice_description.HeadhunterPassive2" text="{=str_tor_careerchoice_description_HeadhunterPassive2}Increases ranged damage by 5%." />
   <string id="tor_careerchoice_description.HeadhunterPassive3" text="{=str_tor_careerchoice_description_HeadhunterPassive3}Companion limit of party is increased by 5." />
-  <string id="tor_careerchoice_description.HeadhunterPassive4" text="{=str_tor_careerchoice_description_HeadhunterPassive4}Increases ranged damage resistance by 15%." />
+  <string id="tor_careerchoice_description.HeadhunterPassive4" text="{=str_tor_careerchoice_description_HeadhunterPassive4}Increases ranged damage resistance by 10%." />
   <string id="tor_careerchoice_description.VeteranKeystone" text="{=str_tor_careerchoice_description_VeteranKeystone}Increases melee damage during the career ability by 15%." />
-  <string id="tor_careerchoice_description.VeteranPassive1" text="{=str_tor_careerchoice_description_VeteranPassive1}Increases melee damage by 15%." />
-  <string id="tor_careerchoice_description.VeteranPassive2" text="{=str_tor_careerchoice_description_VeteranPassive2}Increases melee resistance by 15%." />
-  <string id="tor_careerchoice_description.VeteranPassive3" text="{=str_tor_careerchoice_description_VeteranPassive3}Increases Hitpoints by 40." />
-  <string id="tor_careerchoice_description.VeteranPassive4" text="{=str_tor_careerchoice_description_VeteranPassive4}Increases armor penetration of melee attacks by 15%." />
+  <string id="tor_careerchoice_description.VeteranPassive1" text="{=str_tor_careerchoice_description_VeteranPassive1}Increases melee damage by 10%." />
+  <string id="tor_careerchoice_description.VeteranPassive2" text="{=str_tor_careerchoice_description_VeteranPassive2}Increases melee resistance by 10%." />
+  <string id="tor_careerchoice_description.VeteranPassive3" text="{=str_tor_careerchoice_description_VeteranPassive3}Increases Hitpoints by 20." />
+  <string id="tor_careerchoice_description.VeteranPassive4" text="{=str_tor_careerchoice_description_VeteranPassive4}Increases armor penetration of melee attacks by 8%." />
   <string id="tor_careerchoice_description.PaymasterKeystone" text="{=str_tor_careerchoice_description_PaymasterKeystone}Values for career ability effects are doubled." />
   <string id="tor_careerchoice_description.PaymasterPassive1" text="{=str_tor_careerchoice_description_PaymasterPassive1}Wounded troops in your party heal faster." />
   <string id="tor_careerchoice_description.PaymasterPassive2" text="{=str_tor_careerchoice_description_PaymasterPassive2}40% chance to recruit an extra unit of the same type free of charge." />
-  <string id="tor_careerchoice_description.PaymasterPassive3" text="{=str_tor_careerchoice_description_PaymasterPassive3}Wages of Tier 4 troops and above are reduced by 20%." />
+  <string id="tor_careerchoice_description.PaymasterPassive3" text="{=str_tor_careerchoice_description_PaymasterPassive3}Wages of Tier 4 troops and above are reduced by 10%." />
   <string id="tor_careerchoice_description.PaymasterPassive4" text="{=str_tor_careerchoice_description_PaymasterPassive4}Hire your culture's basic troops as companions" />
   <string id="tor_careerchoice_description.MercenaryLordKeystone" text="{=str_tor_careerchoice_description_MercenaryLordKeystone}The Career ability reduces reload time by 15%." />
-  <string id="tor_careerchoice_description.MercenaryLordPassive1" text="{=str_tor_careerchoice_description_MercenaryLordPassive1}4 extra special ammo like grenades or buckshot." />
-  <string id="tor_careerchoice_description.MercenaryLordPassive2" text="{=str_tor_careerchoice_description_MercenaryLordPassive2}Increases the damage of all ranged troops by 15%." />
+  <string id="tor_careerchoice_description.MercenaryLordPassive1" text="{=str_tor_careerchoice_description_MercenaryLordPassive1}3 extra special ammo like grenades or buckshot." />
+  <string id="tor_careerchoice_description.MercenaryLordPassive2" text="{=str_tor_careerchoice_description_MercenaryLordPassive2}Increases the damage of all ranged troops by 10%." />
   <string id="tor_careerchoice_description.MercenaryLordPassive3" text="{=str_tor_careerchoice_description_MercenaryLordPassive3}Higher mercenary contract payment, lower Influence loss. Scales with the Trade skill." />
-  <string id="tor_careerchoice_description.MercenaryLordPassive4" text="{=str_tor_careerchoice_description_MercenaryLordPassive4}Ranged shots can penetrate multiple targets." />
+  <string id="tor_careerchoice_description.MercenaryLordPassive4" text="{=str_tor_careerchoice_description_MercenaryLordPassive4}Double custom resource gain from battles. Scales with Leadership skill (100% bonus at 300 Leadership)." />
   <string id="tor_careerchoice_description.CommanderKeystone" text="{=str_tor_careerchoice_description_CommanderKeystone}Radius of ability is doubled." />
   <string id="tor_careerchoice_description.CommanderPassive1" text="{=str_tor_careerchoice_description_CommanderPassive1}Companion limit of party is increased by 5." />
-  <string id="tor_careerchoice_description.CommanderPassive2" text="{=str_tor_careerchoice_description_CommanderPassive2}Increases the damage of all melee troops by 15%." />
+  <string id="tor_careerchoice_description.CommanderPassive2" text="{=str_tor_careerchoice_description_CommanderPassive2}Increases the damage of all melee troops by 10%." />
   <string id="tor_careerchoice_description.CommanderPassive3" text="{=str_tor_careerchoice_description_CommanderPassive3}Hits below 15 damage do not stagger the player." />
-  <string id="tor_careerchoice_description.CommanderPassive4" text="{=str_tor_careerchoice_description_CommanderPassive4}Companion health increases by 25." />
+  <string id="tor_careerchoice_description.CommanderPassive4" text="{=str_tor_careerchoice_description_CommanderPassive4}Companion health increases by 15." />
 
   <!-- GrailKnight Career Choice Descriptions -->
   <string id="tor_careerchoice_description.GrailKnightRoot" text="{=str_tor_careerchoice_description_GrailKnightRoot}The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds, increasing the speed by 20%. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs." />
