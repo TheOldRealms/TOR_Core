@@ -3002,18 +3002,18 @@
   <!-- WarriorPriestUlric Career Choice Descriptions -->
   <string id="tor_careerchoice_description.WarriorPriestUlricRoot" text="{=str_tor_careerchoice_description_WarriorPriestUlricRoot}The Wolf Priest unleashes a mighty blow in the name of his feral god, bringing the full might of his weapon crashing to the ground as if he were wielding Blitzbeil itself. This attack cannot be parried and affects targets in a 2-meter radius. For every point of the players highest weapon skill, damage is increased by 0.1%." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakKeystone" text="{=str_tor_careerchoice_description_CrusherOfTheWeakKeystone}Enemies are knocked down from the blow of the ability." />
-  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive1" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive2" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive2}Extra melee damage (10%)." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive1" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive1}Increases Hitpoints by 10." />
+  <string id="tor_careerchoice_description.CrusherOfTheWeakPassive2" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive2}Extra melee damage (5%)." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive3" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive3}Extra melee damage if the target is below tier 4 (10%)." />
   <string id="tor_careerchoice_description.CrusherOfTheWeakPassive4" text="{=str_tor_careerchoice_description_CrusherOfTheWeakPassive4}Prayers are recharged on battle start." />
   <string id="tor_careerchoice_description.WildPackKeystone" text="{=str_tor_careerchoice_description_WildPackKeystone}Leadership counts towards career ability" />
   <string id="tor_careerchoice_description.WildPackPassive1" text="{=str_tor_careerchoice_description_WildPackPassive1}Increases melee physical resistance by 10%." />
   <string id="tor_careerchoice_description.WildPackPassive2" text="{=str_tor_careerchoice_description_WildPackPassive2}Increases Party size by 10." />
-  <string id="tor_careerchoice_description.WildPackPassive3" text="{=str_tor_careerchoice_description_WildPackPassive3}Player healing rate increased by 2" />
+  <string id="tor_careerchoice_description.WildPackPassive3" text="{=str_tor_careerchoice_description_WildPackPassive3}Player healing rate increased by 1" />
   <string id="tor_careerchoice_description.WildPackPassive4" text="{=str_tor_careerchoice_description_WildPackPassive4}Party movement speed is increased by 1." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherKeystone" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherKeystone}The radius of the attack is increased by 1 meters. Faith counts towards ability" />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive1" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive1}Wounded troops in your party heal faster." />
-  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive2" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive2}Praying at a shrine of ulric refills player health completely" />
+  <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive2" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive2}Praying at a shrine of Ulric refills player health completely (5 day cooldown)." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive3" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive3}Attacks deal bonus damage against shields." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive4" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive4}Increases range damage resistance of melee troops by 20%." />
   <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Enemies affected by the attack are slowed down for 6 seconds. Damage of the attack is now Frost damage." />
@@ -3022,8 +3022,8 @@
   <string id="tor_careerchoice_description.FrostsBitePassive3" text="{=str_tor_careerchoice_description_FrostsBitePassive3}Party is not slowed by snow." />
   <string id="tor_careerchoice_description.FrostsBitePassive4" text="{=str_tor_careerchoice_description_FrostsBitePassive4}Increase hex durations by 20%." />
   <string id="tor_careerchoice_description.RunesOfTheWhiteWolfKeystone" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfKeystone}All Enemies hit by the Axe of Ulric suffer from a damage over time effect" />
-  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive1" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive1}Wearing wolf heads or pelts increases wardsave by 10%" />
-  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive2" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive2}Increases Hitpoints by 50." />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive1" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive1}Wearing wolf heads or pelts increases wardsave by 5%" />
+  <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive2" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive2}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive3" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive3}Increase prayer durations by 20%." />
   <string id="tor_careerchoice_description.RunesOfTheWhiteWolfPassive4" text="{=str_tor_careerchoice_description_RunesOfTheWhiteWolfPassive4}Ulrican troops gain 20% Ward save." />
   <string id="tor_careerchoice_description.FuryOfWarKeystone" text="{=str_tor_careerchoice_description_FuryOfWarKeystone}Required charge for ability is halved." />
@@ -3032,10 +3032,10 @@
   <string id="tor_careerchoice_description.FuryOfWarPassive3" text="{=str_tor_careerchoice_description_FuryOfWarPassive3}Battles with even or unfavorable odds refresh your Ulric blessing." />
   <string id="tor_careerchoice_description.FuryOfWarPassive4" text="{=str_tor_careerchoice_description_FuryOfWarPassive4}Hits below 25 damage do not stagger the player." />
   <string id="tor_careerchoice_description.FlameOfUlricKeystone" text="{=str_tor_careerchoice_description_FlameOfUlricKeystone}For every executed Axe of Ulric one of your prayer cooldowns gets randomly reset." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive1" text="{=str_tor_careerchoice_description_FlameOfUlricPassive1}Increases range of prayers by 50%." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive2" text="{=str_tor_careerchoice_description_FlameOfUlricPassive2}Extra 20% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive1" text="{=str_tor_careerchoice_description_FlameOfUlricPassive1}Increases range of prayers by 25%." />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive2" text="{=str_tor_careerchoice_description_FlameOfUlricPassive2}Extra 15% armor penetration of melee attacks." />
   <string id="tor_careerchoice_description.FlameOfUlricPassive3" text="{=str_tor_careerchoice_description_FlameOfUlricPassive3}Battles with even or unfavorable odds provide double Prestige." />
-  <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}or every kill through abilities gain 0.25 health points" />
+  <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills by Ulrican troops and the player cause 25% extra morale damage to the enemy." />
 
   <!-- ImperialMagister Career Choice Descriptions -->
   <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}For 10 seconds, the wizard charges his own magical reserves by channeling Winds of Magic swirling in the air. While charging, the wizard is vulnerable to damage and moves at a greatly reduced pace. Every second, 3% of the total Winds of Magic reserve is regained. For every 50 points in Spellcraft, the duration is extended by 1 second, and every key stone picked grants an additional use of Arcane Conduit." />
