@@ -155,7 +155,8 @@ namespace TOR_Core.AbilitySystem
             {
                 if (usageCounter >= Template.ScaleVariable1)
                 {
-                    failureReason = new TextObject($"Not enough Usages (maximum {Template.ScaleVariable1})");
+                    failureReason = TORTextHelper.GetTextObject("tor_ability_not_enough_usages_text", "Not enough Usages (maximum {MAXIMUM})");
+                    failureReason.SetTextVariable("MAXIMUM", (int)Template.ScaleVariable1);
                     return false;
                 }
             }
