@@ -134,12 +134,12 @@
 		<temporary_attribute>HorseLink</temporary_attribute>
 	</StatusEffectTemplate> 
 	
-	<StatusEffectTemplate 
-		id="knightly_charge_healing" 
+	<StatusEffectTemplate
+		id="knightly_charge_healing"
 		particle_id=""
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="5"
+		base_effect_value="2"
 		type="HealthOverTime"/>
 		
 	<StatusEffectTemplate 
