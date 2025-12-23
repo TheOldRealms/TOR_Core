@@ -2856,34 +2856,34 @@
   <string id="tor_careerchoice_description.MasterHorsemanKeystone" text="{=str_tor_careerchoice_description_MasterHorsemanKeystone}Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse." />
   <string id="tor_careerchoice_description.GrailVowKeystone" text="{=str_tor_careerchoice_description_GrailVowKeystone}Ability scales with Faith. When active, get +20% holy damage and regen." />
   <string id="tor_careerchoice_description.HolyCrusaderKeystone" text="{=str_tor_careerchoice_description_HolyCrusaderKeystone}Ability scales with Leadership and propagates from all Companions to units in a 5m radius " />
-  <string id="tor_careerchoice_description.ErrantryWarPassive1" text="{=str_tor_careerchoice_description_ErrantryWarPassive1}10% extra melee damage." />
-  <string id="tor_careerchoice_description.ErrantryWarPassive2" text="{=str_tor_careerchoice_description_ErrantryWarPassive2}Increases Hitpoints by 40." />
+  <string id="tor_careerchoice_description.ErrantryWarPassive1" text="{=str_tor_careerchoice_description_ErrantryWarPassive1}5% extra melee damage." />
+  <string id="tor_careerchoice_description.ErrantryWarPassive2" text="{=str_tor_careerchoice_description_ErrantryWarPassive2}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.ErrantryWarPassive3" text="{=str_tor_careerchoice_description_ErrantryWarPassive3}All Knight troops receive 20 bonus points in One and Two Handed skills." />
-  <string id="tor_careerchoice_description.ErrantryWarPassive4" text="{=str_tor_careerchoice_description_ErrantryWarPassive4}All melee troops in the party gain 25 exp per day." />
+  <string id="tor_careerchoice_description.ErrantryWarPassive4" text="{=str_tor_careerchoice_description_ErrantryWarPassive4}All melee troops in the party gain 12 exp per day." />
   <string id="tor_careerchoice_description.EnhancedHorseCombatPassive1" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive1}50% additional Hitpoints for the player's mount." />
-  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive2" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive2}10% extra melee damage while on horseback." />
-  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive3" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive3}Upgrade costs are reduced by 25%." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive2" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive2}5% extra melee damage while on horseback." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive3" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive3}Upgrade costs are reduced by 12%." />
   <string id="tor_careerchoice_description.EnhancedHorseCombatPassive4" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive4}All Knight troops receive 30 bonus points in their Polearm skill." />
-  <string id="tor_careerchoice_description.QuestingVowPassive1" text="{=str_tor_careerchoice_description_QuestingVowPassive1}Increases Hitpoints by 40." />
-  <string id="tor_careerchoice_description.QuestingVowPassive2" text="{=str_tor_careerchoice_description_QuestingVowPassive2}Kills gain Faith." />
-  <string id="tor_careerchoice_description.QuestingVowPassive3" text="{=str_tor_careerchoice_description_QuestingVowPassive3}All Knight troops gain 10% physical resistance." />
-  <string id="tor_careerchoice_description.QuestingVowPassive4" text="{=str_tor_careerchoice_description_QuestingVowPassive4}For every Knight Companion you gain 3 Chivalry per Day." />
-  <string id="tor_careerchoice_description.MonsterSlayerPassive1" text="{=str_tor_careerchoice_description_MonsterSlayerPassive1}10% extra melee fire damage." />
+  <string id="tor_careerchoice_description.QuestingVowPassive1" text="{=str_tor_careerchoice_description_QuestingVowPassive1}Increases Hitpoints by 35." />
+  <string id="tor_careerchoice_description.QuestingVowPassive2" text="{=str_tor_careerchoice_description_QuestingVowPassive2}Weapon swing speed increased by 12%." />
+  <string id="tor_careerchoice_description.QuestingVowPassive3" text="{=str_tor_careerchoice_description_QuestingVowPassive3}All Knight troops gain 8% physical resistance." />
+  <string id="tor_careerchoice_description.QuestingVowPassive4" text="{=str_tor_careerchoice_description_QuestingVowPassive4}For every Knight Companion you gain 2 Chivalry per Day." />
+  <string id="tor_careerchoice_description.MonsterSlayerPassive1" text="{=str_tor_careerchoice_description_MonsterSlayerPassive1}5% extra melee fire damage." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive2" text="{=str_tor_careerchoice_description_MonsterSlayerPassive2}20% extra armor penetration of melee attacks." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive3" text="{=str_tor_careerchoice_description_MonsterSlayerPassive3}40% chance to recruit an extra unit of the same type free of charge." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive4" text="{=str_tor_careerchoice_description_MonsterSlayerPassive4}Hits below 15 damage do not stagger the player." />
   <string id="tor_careerchoice_description.MasterHorsemanPassive1" text="{=str_tor_careerchoice_description_MasterHorsemanPassive1}Horse charge damage is increased by 40%." />
-  <string id="tor_careerchoice_description.MasterHorsemanPassive2" text="{=str_tor_careerchoice_description_MasterHorsemanPassive2}Party movement speed is increased by 2." />
-  <string id="tor_careerchoice_description.MasterHorsemanPassive3" text="{=str_tor_careerchoice_description_MasterHorsemanPassive3}Gain 15% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.MasterHorsemanPassive2" text="{=str_tor_careerchoice_description_MasterHorsemanPassive2}Party movement speed is increased by 1." />
+  <string id="tor_careerchoice_description.MasterHorsemanPassive3" text="{=str_tor_careerchoice_description_MasterHorsemanPassive3}Gain 8% physical resistance to melee and ranged attacks." />
   <string id="tor_careerchoice_description.MasterHorsemanPassive4" text="{=str_tor_careerchoice_description_MasterHorsemanPassive4}All Knight troops wages are reduced by 25%." />
-  <string id="tor_careerchoice_description.GrailVowPassive1" text="{=str_tor_careerchoice_description_GrailVowPassive1}Increases Hitpoints by 40." />
-  <string id="tor_careerchoice_description.GrailVowPassive2" text="{=str_tor_careerchoice_description_GrailVowPassive2}20% extra holy damage for Battle pilgrim troops." />
-  <string id="tor_careerchoice_description.GrailVowPassive3" text="{=str_tor_careerchoice_description_GrailVowPassive3}20% extra melee holy damage." />
+  <string id="tor_careerchoice_description.GrailVowPassive1" text="{=str_tor_careerchoice_description_GrailVowPassive1}Chivalry upgrade costs for Grail Knights are reduced by 30%." />
+  <string id="tor_careerchoice_description.GrailVowPassive2" text="{=str_tor_careerchoice_description_GrailVowPassive2}15% extra holy damage for Battle pilgrim troops." />
+  <string id="tor_careerchoice_description.GrailVowPassive3" text="{=str_tor_careerchoice_description_GrailVowPassive3}10% extra melee holy damage." />
   <string id="tor_careerchoice_description.GrailVowPassive4" text="{=str_tor_careerchoice_description_GrailVowPassive4}Gain 15% Ward save." />
   <string id="tor_careerchoice_description.HolyCrusaderPassive1" text="{=str_tor_careerchoice_description_HolyCrusaderPassive1}Increases Hitpoints by 40." />
-  <string id="tor_careerchoice_description.HolyCrusaderPassive2" text="{=str_tor_careerchoice_description_HolyCrusaderPassive2}Knight Companion health increases by 15 for each one in your party." />
+  <string id="tor_careerchoice_description.HolyCrusaderPassive2" text="{=str_tor_careerchoice_description_HolyCrusaderPassive2}Knight Companion health increases by 5 for each one in your party." />
   <string id="tor_careerchoice_description.HolyCrusaderPassive3" text="{=str_tor_careerchoice_description_HolyCrusaderPassive3}Grail Knights can be upgraded to Companions." />
-  <string id="tor_careerchoice_description.HolyCrusaderPassive4" text="{=str_tor_careerchoice_description_HolyCrusaderPassive4}Companion limit of party is increased by 10." />
+  <string id="tor_careerchoice_description.HolyCrusaderPassive4" text="{=str_tor_careerchoice_description_HolyCrusaderPassive4}Companion limit of party is increased by 7." />
 
   <!-- GrailDamsel Career Choice Descriptions -->
   <string id="tor_careerchoice_description.GrailDamselRoot" text="{=str_tor_careerchoice_description_GrailDamselRoot}The Damsel wanders on the fey paths. Instantly teleports the player to the targeted ground position. Charges with dealt or healed damage by magic" />
