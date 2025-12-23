@@ -193,7 +193,7 @@ public class RunelordCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _forgefireBurningPassive3.Initialize(CareerID, "Stamina reduction 40% for smithing. Regenerate stamina while traveling", "ForgefireBurning", false, ChoiceType.Passive, null, null);
         _forgefireBurningPassive4.Initialize(CareerID, "smithing and smelting also increases faith for the smelter", "ForgefireBurning", false, ChoiceType.Passive, null, null);
 
-        _teachingsOfThungniPassive1.Initialize(CareerID, "Reduce costs for enchantments by 25%", "TeachingsOfThungni", false, ChoiceType.Passive, null, null);
+        _teachingsOfThungniPassive1.Initialize(CareerID, "Reduce costs for enchantments by 25%", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.25f, PassiveEffectType.Special));
         _teachingsOfThungniPassive2.Initialize(CareerID, "Crafting Equipment runes also adds smithing and spellcraft skill.", "TeachingsOfThungni", false, ChoiceType.Passive, null, null);
         _teachingsOfThungniPassive3.Initialize(CareerID, "10% Wardsave for Unit wearing runes.", "TeachingsOfThungni", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
             (attacker, victim, mask) => victim.BelongsToMainParty() && !victim.IsHero && victim.Character.HasUnitRune()));

@@ -33,6 +33,7 @@ namespace TOR_Core.CampaignMechanics
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, DailyCareerTickEvents);
+            CampaignEvents.WeeklyTickEvent.AddNonSerializedListener(this, WeeklyCareerTickEvents);
             CampaignEvents.ItemsLooted.AddNonSerializedListener(this, RaidingPartyEvent);
             CampaignEvents.OnUnitRecruitedEvent.AddNonSerializedListener(this, PlayerRecruitmentEvent);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvents);
@@ -357,6 +358,44 @@ namespace TOR_Core.CampaignMechanics
 
                         mainParty.AddElementToMemberRoster(mousillonEquivalent, 1);
                         mainParty.AddElementToMemberRoster(member.Character, -1);
+                    }
+                }
+            }
+        }
+
+        private void WeeklyCareerTickEvents()
+        {
+            var mainParty = MobileParty.MainParty;
+            if (mainParty == null || !mainParty.LeaderHero.HasAnyCareer()) return;
+            var choices = mainParty.LeaderHero.GetAllCareerChoices();
+
+            if (choices.Contains("ImperialEnchantmentPassive1"))
+            {
+                var choice = TORCareerChoices.GetChoice("ImperialEnchantmentPassive1");
+                if (choice != null)
+                {
+                    var heroes = mainParty.GetMemberHeroes();
+                    var imperialWizards = heroes.Where(h => h.IsImperialMagister()).ToList();
+                    if (imperialWizards.Count > 0)
+                    {
+                        var maxScrollsPerWizard = (int)choice.GetPassiveValue();
+                        var scrollsToAdd = 0;
+                        foreach (var wizard in imperialWizards)
+                        {
+                            scrollsToAdd += MBRandom.RandomInt(0, maxScrollsPerWizard + 1);
+                        }
+
+                        if (scrollsToAdd > 0)
+                        {
+                            var arcaneScroll = TorEnchantingIngredients.ArcaneScroll;
+                            if (arcaneScroll != null)
+                            {
+                                mainParty.ItemRoster.Add(new ItemRosterElement(arcaneScroll, scrollsToAdd));
+                                var message = TORTextHelper.GetTextObject("tor_magister_scrolls_scribed", "Your Imperial Magisters have scribed {AMOUNT} Arcane Scrolls.");
+                                message.SetTextVariable("AMOUNT", scrollsToAdd);
+                                InformationManager.DisplayMessage(new InformationMessage(message.ToString(), Colors.Cyan));
+                            }
+                        }
                     }
                 }
             }
