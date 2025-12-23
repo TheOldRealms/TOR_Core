@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
@@ -112,7 +113,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _imperialMagisterRoot.Initialize(CareerID, "For 10 seconds, the wizard charges his own magical reserves by channeling Winds of Magic swirling in the air. While charging, the wizard is vulnerable to damage and moves at a greatly reduced pace. Every second, 3% of the total Winds of Magic reserve is regained. For every 50 points in Spellcraft, the duration is extended by 1 second. Every 2 keystones grants an additional use (max 5).", null, true,
+            _imperialMagisterRoot.Initialize(CareerID, "For 10 seconds, the wizard charges his own magical reserves by channeling Winds of Magic swirling in the air. While charging, the wizard is vulnerable to damage and moves at a greatly reduced pace. Every second, 2% of the total Winds of Magic reserve is regained (minimum 1). Every 2 keystones grants an additional use.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new()
@@ -125,15 +126,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                     new()
                     {
-                        MutationTargetType = typeof(TriggeredEffectTemplate),
-                        MutationTargetOriginalId = "apply_arcaneconduit",
-                        PropertyName = "ImbuedStatusEffectDuration",
-                        PropertyValue = (choice, originalValue, agent) => (float) originalValue *  CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft}, 0.0025f),
-                        MutationType = OperationType.Add
+                        MutationTargetType = typeof(StatusEffectTemplate),
+                        MutationTargetOriginalId = "arcane_conduit_winds_reg",
+                        PropertyName = "BaseEffectValue",
+                        PropertyValue = (choice, originalValue, agent) =>
+                        {
+                            var hero = agent?.GetHero();
+                            if (hero != null)
+                            {
+                                var maxWinds = hero.GetExtendedInfo()?.MaxWindsOfMagic ?? 50f;
+                                return Math.Max(1f, maxWinds * 0.02f);
+                            }
+                            return 1f;
+                        },
+                        MutationType = OperationType.Replace
                     }
                 });
 
-            _studyAndPractiseKeystone.Initialize(CareerID, "Ability scaling adds 0.25% physical resistance per point.", "StudyAndPractise", false,
+            _studyAndPractiseKeystone.Initialize(CareerID, "Adds 50% physical resistance. Additional usage.", "StudyAndPractise", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -141,7 +151,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "ArcaneConduit",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => 0.5f,
+                        PropertyValue = (choice, originalValue, agent) => 1.5f,
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -157,12 +167,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "arcane_conduit_res_buff",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.Spellcraft}, 0.0025f),
+                        PropertyValue = (choice, originalValue, agent) => 0.5f,
                         MutationType = OperationType.Add
                     },
                 });
 
-            _teclisTeachingsKeystone.Initialize(CareerID, "You charge 25% longer. Ability scales with Steward.", "TeclisTeachings", false,
+            _teclisTeachingsKeystone.Initialize(CareerID, "You charge 25% longer. Additional usage.", "TeclisTeachings", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -170,7 +180,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "ArcaneConduit",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => 0.5f,
+                        PropertyValue = (choice, originalValue, agent) => 1.5f,
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
@@ -180,26 +190,10 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         PropertyName = "ImbuedStatusEffectDuration",
                         PropertyValue = (choice, originalValue, agent) => (float) originalValue * 0.25f ,
                         MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "arcane_conduit_res_buff",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Steward}, 0.0025f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "ArcaneConduit",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Steward}, 0.0025f),
-                        MutationType = OperationType.Add
                     }
                 });
 
-            _imperialEnchantmentKeystone.Initialize(CareerID, "You are less slowed down using Arcane Conduit. Scales with leadership", "ImperialEnchantment", false,
+            _imperialEnchantmentKeystone.Initialize(CareerID, "You are less slowed down using Arcane Conduit.", "ImperialEnchantment", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -223,22 +217,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         }
                         ,
                         MutationType = OperationType.Replace
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "arcane_conduit_res_buff",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership}, 0.0025f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(AbilityTemplate),
-                        MutationTargetOriginalId = "ArcaneConduit",
-                        PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ DefaultSkills.Leadership}, 0.0025f),
-                        MutationType = OperationType.Add
                     }
                 });
             _collegeOrdersKeystone.Initialize(CareerID, "Arcane Conduit also refreshes Winds of Companions.", "CollegeOrders", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
@@ -320,7 +298,16 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(StatusEffectTemplate),
                         MutationTargetOriginalId = "arcane_conduit_winds_reg",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => (float)originalValue*2 ,
+                        PropertyValue = (choice, originalValue, agent) =>
+                        {
+                            var hero = agent?.GetHero();
+                            if (hero != null)
+                            {
+                                var maxWinds = hero.GetExtendedInfo()?.MaxWindsOfMagic ?? 50f;
+                                return Math.Max(2f, maxWinds * 0.04f); // 4% (doubled from 2%), minimum 2
+                            }
+                            return 2f;
+                        },
                         MutationType = OperationType.Replace
                     },
                 });//special
