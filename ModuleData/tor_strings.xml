@@ -2916,7 +2916,7 @@
   <string id="tor_careerchoice_description.JustCausePassive4" text="{=str_tor_careerchoice_description_JustCausePassive4}Increases positive Relation gains by 20%." />
   <string id="tor_careerchoice_description.SecretsOfTheGrailPassive1" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive1}Increases lightning spell damage by 15%." />
   <string id="tor_careerchoice_description.SecretsOfTheGrailPassive2" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive2}20% cost reduction for spells." />
-  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive3" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive3}Casting prayers has a 30% chance to restore 5 Winds of Magic." />
+  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive3" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive3}Casting prayers has a 30% chance to restore 10 Winds of Magic." />
   <string id="tor_careerchoice_description.SecretsOfTheGrailPassive4" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive4}30% prayer cooldown reduction." />
   <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive1" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive1}Increases Magic damage by 15%." />
   <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive2" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive2}Knight Companion health increases by 50." />
