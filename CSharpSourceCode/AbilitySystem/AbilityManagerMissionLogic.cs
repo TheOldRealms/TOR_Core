@@ -243,11 +243,11 @@ namespace TOR_Core.AbilitySystem
                 var playerHero = agent.GetHero();
                 var choices = playerHero.GetAllCareerChoices();
 
-                if (choices.Contains("SecretsOFTheGrailPassive3"))
+                if (choices.Contains("SecretsOfTheGrailPassive3"))
                 {
                     if (ability.Template.AbilityType == AbilityType.Prayer)
                     {
-                        var choice = TORCareerChoices.GetChoice("SecretsOFTheGrailPassive3");
+                        var choice = TORCareerChoices.GetChoice("SecretsOfTheGrailPassive3");
                         if (choice != null)
                         {
                             float random = MBRandom.RandomFloatRanged(0, 1);

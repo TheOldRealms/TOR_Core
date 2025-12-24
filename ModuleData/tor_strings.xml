@@ -2896,33 +2896,33 @@
   <string id="tor_careerchoice_description.VividVisionsKeystone" text="{=str_tor_careerchoice_description_VividVisionsKeystone}Fey path charges 30% faster" />
   <string id="tor_careerchoice_description.SecretsOfTheGrailKeystone" text="{=str_tor_careerchoice_description_SecretsOfTheGrailKeystone}After using Fey Paths, a second jump is available shortly after the first one." />
   <string id="tor_careerchoice_description.EnvoyOfTheLadyKeystone" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyKeystone}When you teleport, you take all units in your closest surroundings(5m radius) with you." />
-  <string id="tor_careerchoice_description.FeyEnchantmentPassive1" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive1}Increases magic spell damage by 15%." />
-  <string id="tor_careerchoice_description.FeyEnchantmentPassive2" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive2}Increases max Winds of Magic by 10." />
-  <string id="tor_careerchoice_description.FeyEnchantmentPassive3" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive3}All troops gain 15% extra magic damage." />
-  <string id="tor_careerchoice_description.FeyEnchantmentPassive4" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive4}All Knight troops gain 15% Ward save." />
+  <string id="tor_careerchoice_description.FeyEnchantmentPassive1" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive1}Increases magic spell damage by 5%." />
+  <string id="tor_careerchoice_description.FeyEnchantmentPassive2" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive2}Increases max Winds of Magic by 5." />
+  <string id="tor_careerchoice_description.FeyEnchantmentPassive3" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive3}All troops gain 10% extra magic damage." />
+  <string id="tor_careerchoice_description.FeyEnchantmentPassive4" text="{=str_tor_careerchoice_description_FeyEnchantmentPassive4}Reduce costs for enchantments by 25%." />
   <string id="tor_careerchoice_description.InspirationOfTheLadyPassive1" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive1}25% chance to recruit an extra unit free of charge." />
-  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive2" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive2}Wounded troops in your party heal faster." />
-  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive3" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive3}All Knight troops wages are reduced by 25%." />
-  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive4" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive4}10% Ward save if your armor weight does not exceed 11 weight." />
-  <string id="tor_careerchoice_description.TalesOfGilesPassive1" text="{=str_tor_careerchoice_description_TalesOfGilesPassive1}Increases max Winds of Magic by 10." />
+  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive2" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive2}All Knight troops gain 10% Ward save." />
+  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive3" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive3}All Knight troops wages are reduced by 20%." />
+  <string id="tor_careerchoice_description.InspirationOfTheLadyPassive4" text="{=str_tor_careerchoice_description_InspirationOfTheLadyPassive4}5% Ward save if your armor weight does not exceed 11 weight." />
+  <string id="tor_careerchoice_description.TalesOfGilesPassive1" text="{=str_tor_careerchoice_description_TalesOfGilesPassive1}Increases max Winds of Magic by 5." />
   <string id="tor_careerchoice_description.TalesOfGilesPassive2" text="{=str_tor_careerchoice_description_TalesOfGilesPassive2}Bretonnian units receive 10% Ward save." />
-  <string id="tor_careerchoice_description.TalesOfGilesPassive3" text="{=str_tor_careerchoice_description_TalesOfGilesPassive3}When praying at a shrine of the Lady, all wounded troops get healed." />
+  <string id="tor_careerchoice_description.TalesOfGilesPassive3" text="{=str_tor_careerchoice_description_TalesOfGilesPassive3}When praying at a shrine of the Lady, all wounded troops get healed (5 day cooldown)." />
   <string id="tor_careerchoice_description.TalesOfGilesPassive4" text="{=str_tor_careerchoice_description_TalesOfGilesPassive4}20% spell cooldown reduction." />
-  <string id="tor_careerchoice_description.VividVisionsPassive1" text="{=str_tor_careerchoice_description_VividVisionsPassive1}Increases max Winds of Magic by 10." />
+  <string id="tor_careerchoice_description.VividVisionsPassive1" text="{=str_tor_careerchoice_description_VividVisionsPassive1}Increases max Winds of Magic by 5." />
   <string id="tor_careerchoice_description.VividVisionsPassive2" text="{=str_tor_careerchoice_description_VividVisionsPassive2}Party movement speed is increased by 1." />
-  <string id="tor_careerchoice_description.VividVisionsPassive3" text="{=str_tor_careerchoice_description_VividVisionsPassive3}Increases Magic resistance against spells by 25%." />
+  <string id="tor_careerchoice_description.VividVisionsPassive3" text="{=str_tor_careerchoice_description_VividVisionsPassive3}Increases Magic resistance against spells by 20%." />
   <string id="tor_careerchoice_description.VividVisionsPassive4" text="{=str_tor_careerchoice_description_VividVisionsPassive4}The Spotting range of the party is increased by 20%." />
-  <string id="tor_careerchoice_description.JustCausePassive1" text="{=str_tor_careerchoice_description_JustCausePassive1}Upgrade costs are halved." />
+  <string id="tor_careerchoice_description.JustCausePassive1" text="{=str_tor_careerchoice_description_JustCausePassive1}Upgrade costs are reduced by 30%." />
   <string id="tor_careerchoice_description.JustCausePassive2" text="{=str_tor_careerchoice_description_JustCausePassive2}Non-knight units in the party gain 100 XP every day." />
-  <string id="tor_careerchoice_description.JustCausePassive3" text="{=str_tor_careerchoice_description_JustCausePassive3}Extra 15% Wardsave if your armor weight does not exceed 11 weight." />
+  <string id="tor_careerchoice_description.JustCausePassive3" text="{=str_tor_careerchoice_description_JustCausePassive3}Extra 12% Wardsave if your armor weight does not exceed 11 weight." />
   <string id="tor_careerchoice_description.JustCausePassive4" text="{=str_tor_careerchoice_description_JustCausePassive4}Increases positive Relation gains by 20%." />
-  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive1" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive1}Increases lightning spell damage by 30%." />
+  <string id="tor_careerchoice_description.SecretsOfTheGrailPassive1" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive1}Increases lightning spell damage by 15%." />
   <string id="tor_careerchoice_description.SecretsOfTheGrailPassive2" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive2}20% cost reduction for spells." />
   <string id="tor_careerchoice_description.SecretsOfTheGrailPassive3" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive3}Casting prayers has a 30% chance to restore 10 Winds of Magic." />
   <string id="tor_careerchoice_description.SecretsOfTheGrailPassive4" text="{=str_tor_careerchoice_description_SecretsOfTheGrailPassive4}30% prayer cooldown reduction." />
-  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive1" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive1}Increases Magic damage by 20%." />
-  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive2" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive2}Knight Companion health increases by 100." />
-  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive3" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive3}Damsel Companion have 25 more Winds of Magic." />
+  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive1" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive1}Increases Magic damage by 15%." />
+  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive2" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive2}Knight Companion health increases by 50." />
+  <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive3" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive3}Damsel Companion have 10 more Winds of Magic." />
   <string id="tor_careerchoice_description.EnvoyOfTheLadyPassive4" text="{=str_tor_careerchoice_description_EnvoyOfTheLadyPassive4}Diplomatic force options for all Brettonnian Leaders." />
 
   <!-- BlackGrailKnight Career Choice Descriptions -->
