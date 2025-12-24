@@ -3,6 +3,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
 
@@ -38,7 +39,7 @@ public class TOREnchantmentCraftingModel : GameModel
         {
             if (hero.HasKnownEnchantmentBlueprint(itemTrait.ItemTraitStringId))
             {
-                CharacterDevelopment.CareerSystem.CareerHelper.ApplyBasicCareerPassives(hero, ref explainedNumber, CharacterDevelopment.PassiveEffectType.EnchantmentCostReduction, true);
+                CharacterDevelopment.CareerSystem.CareerHelper.ApplyBasicCareerPassives(hero, ref explainedNumber, PassiveEffectType.EnchantmentCostReduction, true);
             }
         }
 
