@@ -331,7 +331,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _imperialEnchantmentPassive1.Initialize(CareerID, "Gain up to 2 Arcane Scrolls per Imperial Magister in your party every week.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.Special));
             _imperialEnchantmentPassive2.Initialize(CareerID, "Friendly fire damage is reduced by 30%", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-30, PassiveEffectType.Special, true));
-            _imperialEnchantmentPassive3.Initialize(CareerID, "Reduce costs for enchantments by 25%.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-0.25f, PassiveEffectType.Special));
+            _imperialEnchantmentPassive3.Initialize(CareerID, "Reduce costs for enchantments by 25%.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.EnchantmentCostReduction, true));
             _imperialEnchantmentPassive4.Initialize(CareerID, "Power stones reserve 25% less Winds.", "ImperialEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
 
             _collegeOrdersPassive1.Initialize(CareerID, "Companion limit of party is increased by 5.", "CollegeOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));

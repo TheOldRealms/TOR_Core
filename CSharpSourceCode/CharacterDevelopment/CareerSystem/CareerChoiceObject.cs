@@ -300,6 +300,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         InventoryCapacity,
         BonusDamageShield,
         BattleRenownGain,    //applied as a factor
-        MoraleDamageToEnemyOnKill  // Extra enemy morale loss when filtered unit kills, percentage based
+        MoraleDamageToEnemyOnKill,  // Extra enemy morale loss when filtered unit kills, percentage based
+        EnchantmentCostReduction    //Enchantment ingredient cost reduction as Percentage
     }
 }

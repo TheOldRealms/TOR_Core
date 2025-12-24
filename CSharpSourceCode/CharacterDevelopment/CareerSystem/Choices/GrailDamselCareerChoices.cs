@@ -176,7 +176,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _feyEnchantmentPassive2.Initialize(CareerID, "Increases max Winds of Magic by 5.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
             _feyEnchantmentPassive3.Initialize(CareerID, "All troops gain 10% extra magic damage.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.All,
                 ((attacker, victim, mask) => IsBretonnianUnit(attacker))));
-            _feyEnchantmentPassive4.Initialize(CareerID, "Reduce costs for enchantments by 25%.", "FeyEnchantment", false, ChoiceType.Passive, null, null);
+            _feyEnchantmentPassive4.Initialize(CareerID, "Reduce costs for enchantments by 25%.", "FeyEnchantment", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.EnchantmentCostReduction, true));
 
             _inspirationOfTheLadyPassive1.Initialize(CareerID, "25% chance to recruit an extra unit free of charge.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special, true));
             _inspirationOfTheLadyPassive2.Initialize(CareerID, "All Knight troops gain 10% Ward save.", "InspirationOfTheLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All,

@@ -38,29 +38,9 @@ public class TOREnchantmentCraftingModel : GameModel
         {
             if (hero.HasKnownEnchantmentBlueprint(itemTrait.ItemTraitStringId))
             {
-                if (hero.HasCareer(TORCareers.Runelord))
-                {
-                    if (Hero.MainHero.HasCareerChoice("TeachingsOfThungniPassive1"))
-                    {
-                        var choice = TORCareerChoices.GetChoice("TeachingsOfThungniPassive1");
-
-                        explainedNumber.AddFactor(choice.GetPassiveValue());
-                    }
-                }
-
-                if (hero.HasCareer(TORCareers.ImperialMagister))
-                {
-                    if (Hero.MainHero.HasCareerChoice("ImperialEnchantmentPassive3"))
-                    {
-                        var choice = TORCareerChoices.GetChoice("ImperialEnchantmentPassive3");
-
-                        explainedNumber.AddFactor(choice.GetPassiveValue());
-                    }
-                }
+                CharacterDevelopment.CareerSystem.CareerHelper.ApplyBasicCareerPassives(hero, ref explainedNumber, CharacterDevelopment.PassiveEffectType.EnchantmentCostReduction, true);
             }
         }
-
-
 
         return (int)explainedNumber.ResultNumber;
     }
