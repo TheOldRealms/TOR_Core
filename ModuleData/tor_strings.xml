@@ -172,6 +172,8 @@
   <string id="tor_ability_caster_dead_routed_text" text="{=str_tor_ability_caster_dead_routed_text}Caster is dead or routed"/>
   <string id="tor_ability_no_target_locked_text" text="{=str_tor_ability_no_target_locked_text}No target locked"/>
   <string id="tor_ability_not_player_controlled_text" text="{=str_tor_ability_not_player_controlled_text}Caster is not player controlled"/>
+  <string id="tor_ability_not_enough_usages_text" text="{=str_tor_ability_not_enough_usages_text}Not enough Usages (maximum {MAXIMUM})"/>
+  <string id="tor_magister_scrolls_scribed" text="{=str_tor_magister_scrolls_scribed}Your Imperial Magisters have scribed {AMOUNT} Arcane Scrolls."/>
 
   <!-- Spell/Prayer Stats -->
   <string id="tor_spell_stat_name" text="{=str_tor_spell_stat_name}Spell Name: "/>
@@ -2856,34 +2858,34 @@
   <string id="tor_careerchoice_description.MasterHorsemanKeystone" text="{=str_tor_careerchoice_description_MasterHorsemanKeystone}Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse." />
   <string id="tor_careerchoice_description.GrailVowKeystone" text="{=str_tor_careerchoice_description_GrailVowKeystone}Ability scales with Faith. When active, get +20% holy damage and regen." />
   <string id="tor_careerchoice_description.HolyCrusaderKeystone" text="{=str_tor_careerchoice_description_HolyCrusaderKeystone}Ability scales with Leadership and propagates from all Companions to units in a 5m radius " />
-  <string id="tor_careerchoice_description.ErrantryWarPassive1" text="{=str_tor_careerchoice_description_ErrantryWarPassive1}10% extra melee damage." />
-  <string id="tor_careerchoice_description.ErrantryWarPassive2" text="{=str_tor_careerchoice_description_ErrantryWarPassive2}Increases Hitpoints by 40." />
+  <string id="tor_careerchoice_description.ErrantryWarPassive1" text="{=str_tor_careerchoice_description_ErrantryWarPassive1}5% extra melee damage." />
+  <string id="tor_careerchoice_description.ErrantryWarPassive2" text="{=str_tor_careerchoice_description_ErrantryWarPassive2}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.ErrantryWarPassive3" text="{=str_tor_careerchoice_description_ErrantryWarPassive3}All Knight troops receive 20 bonus points in One and Two Handed skills." />
-  <string id="tor_careerchoice_description.ErrantryWarPassive4" text="{=str_tor_careerchoice_description_ErrantryWarPassive4}All melee troops in the party gain 25 exp per day." />
+  <string id="tor_careerchoice_description.ErrantryWarPassive4" text="{=str_tor_careerchoice_description_ErrantryWarPassive4}All melee troops in the party gain 12 exp per day." />
   <string id="tor_careerchoice_description.EnhancedHorseCombatPassive1" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive1}50% additional Hitpoints for the player's mount." />
-  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive2" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive2}10% extra melee damage while on horseback." />
-  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive3" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive3}Upgrade costs are reduced by 25%." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive2" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive2}5% extra melee damage while on horseback." />
+  <string id="tor_careerchoice_description.EnhancedHorseCombatPassive3" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive3}Upgrade costs are reduced by 12%." />
   <string id="tor_careerchoice_description.EnhancedHorseCombatPassive4" text="{=str_tor_careerchoice_description_EnhancedHorseCombatPassive4}All Knight troops receive 30 bonus points in their Polearm skill." />
-  <string id="tor_careerchoice_description.QuestingVowPassive1" text="{=str_tor_careerchoice_description_QuestingVowPassive1}Increases Hitpoints by 40." />
-  <string id="tor_careerchoice_description.QuestingVowPassive2" text="{=str_tor_careerchoice_description_QuestingVowPassive2}Kills gain Faith." />
-  <string id="tor_careerchoice_description.QuestingVowPassive3" text="{=str_tor_careerchoice_description_QuestingVowPassive3}All Knight troops gain 10% physical resistance." />
-  <string id="tor_careerchoice_description.QuestingVowPassive4" text="{=str_tor_careerchoice_description_QuestingVowPassive4}For every Knight Companion you gain 3 Chivalry per Day." />
-  <string id="tor_careerchoice_description.MonsterSlayerPassive1" text="{=str_tor_careerchoice_description_MonsterSlayerPassive1}10% extra melee fire damage." />
+  <string id="tor_careerchoice_description.QuestingVowPassive1" text="{=str_tor_careerchoice_description_QuestingVowPassive1}Increases Hitpoints by 35." />
+  <string id="tor_careerchoice_description.QuestingVowPassive2" text="{=str_tor_careerchoice_description_QuestingVowPassive2}Weapon swing speed increased by 12%." />
+  <string id="tor_careerchoice_description.QuestingVowPassive3" text="{=str_tor_careerchoice_description_QuestingVowPassive3}All Knight troops gain 8% physical resistance." />
+  <string id="tor_careerchoice_description.QuestingVowPassive4" text="{=str_tor_careerchoice_description_QuestingVowPassive4}For every Knight Companion you gain 2 Chivalry per Day." />
+  <string id="tor_careerchoice_description.MonsterSlayerPassive1" text="{=str_tor_careerchoice_description_MonsterSlayerPassive1}5% extra melee fire damage." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive2" text="{=str_tor_careerchoice_description_MonsterSlayerPassive2}20% extra armor penetration of melee attacks." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive3" text="{=str_tor_careerchoice_description_MonsterSlayerPassive3}40% chance to recruit an extra unit of the same type free of charge." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive4" text="{=str_tor_careerchoice_description_MonsterSlayerPassive4}Hits below 15 damage do not stagger the player." />
   <string id="tor_careerchoice_description.MasterHorsemanPassive1" text="{=str_tor_careerchoice_description_MasterHorsemanPassive1}Horse charge damage is increased by 40%." />
-  <string id="tor_careerchoice_description.MasterHorsemanPassive2" text="{=str_tor_careerchoice_description_MasterHorsemanPassive2}Party movement speed is increased by 2." />
-  <string id="tor_careerchoice_description.MasterHorsemanPassive3" text="{=str_tor_careerchoice_description_MasterHorsemanPassive3}Gain 15% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.MasterHorsemanPassive2" text="{=str_tor_careerchoice_description_MasterHorsemanPassive2}Party movement speed is increased by 1." />
+  <string id="tor_careerchoice_description.MasterHorsemanPassive3" text="{=str_tor_careerchoice_description_MasterHorsemanPassive3}Gain 8% physical resistance to melee and ranged attacks." />
   <string id="tor_careerchoice_description.MasterHorsemanPassive4" text="{=str_tor_careerchoice_description_MasterHorsemanPassive4}All Knight troops wages are reduced by 25%." />
-  <string id="tor_careerchoice_description.GrailVowPassive1" text="{=str_tor_careerchoice_description_GrailVowPassive1}Increases Hitpoints by 40." />
-  <string id="tor_careerchoice_description.GrailVowPassive2" text="{=str_tor_careerchoice_description_GrailVowPassive2}20% extra holy damage for Battle pilgrim troops." />
-  <string id="tor_careerchoice_description.GrailVowPassive3" text="{=str_tor_careerchoice_description_GrailVowPassive3}20% extra melee holy damage." />
+  <string id="tor_careerchoice_description.GrailVowPassive1" text="{=str_tor_careerchoice_description_GrailVowPassive1}Chivalry upgrade costs for Grail Knights are reduced by 30%." />
+  <string id="tor_careerchoice_description.GrailVowPassive2" text="{=str_tor_careerchoice_description_GrailVowPassive2}15% extra holy damage for Battle pilgrim troops." />
+  <string id="tor_careerchoice_description.GrailVowPassive3" text="{=str_tor_careerchoice_description_GrailVowPassive3}10% extra melee holy damage." />
   <string id="tor_careerchoice_description.GrailVowPassive4" text="{=str_tor_careerchoice_description_GrailVowPassive4}Gain 15% Ward save." />
   <string id="tor_careerchoice_description.HolyCrusaderPassive1" text="{=str_tor_careerchoice_description_HolyCrusaderPassive1}Increases Hitpoints by 40." />
-  <string id="tor_careerchoice_description.HolyCrusaderPassive2" text="{=str_tor_careerchoice_description_HolyCrusaderPassive2}Knight Companion health increases by 15 for each one in your party." />
+  <string id="tor_careerchoice_description.HolyCrusaderPassive2" text="{=str_tor_careerchoice_description_HolyCrusaderPassive2}Knight Companion health increases by 5 for each one in your party." />
   <string id="tor_careerchoice_description.HolyCrusaderPassive3" text="{=str_tor_careerchoice_description_HolyCrusaderPassive3}Grail Knights can be upgraded to Companions." />
-  <string id="tor_careerchoice_description.HolyCrusaderPassive4" text="{=str_tor_careerchoice_description_HolyCrusaderPassive4}Companion limit of party is increased by 10." />
+  <string id="tor_careerchoice_description.HolyCrusaderPassive4" text="{=str_tor_careerchoice_description_HolyCrusaderPassive4}Companion limit of party is increased by 7." />
 
   <!-- GrailDamsel Career Choice Descriptions -->
   <string id="tor_careerchoice_description.GrailDamselRoot" text="{=str_tor_careerchoice_description_GrailDamselRoot}The Damsel wanders on the fey paths. Instantly teleports the player to the targeted ground position. Charges with dealt or healed damage by magic" />
@@ -3038,25 +3040,25 @@
   <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills by Ulrican troops and the player cause 25% extra morale damage to the enemy." />
 
   <!-- ImperialMagister Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}For 10 seconds, the wizard charges his own magical reserves by channeling Winds of Magic swirling in the air. While charging, the wizard is vulnerable to damage and moves at a greatly reduced pace. Every second, 3% of the total Winds of Magic reserve is regained. For every 50 points in Spellcraft, the duration is extended by 1 second, and every key stone picked grants an additional use of Arcane Conduit." />
-  <string id="tor_careerchoice_description.StudyAndPractiseKeystone" text="{=str_tor_careerchoice_description_StudyAndPractiseKeystone}Ability scaling adds 0.25% physical resistance per point." />
-  <string id="tor_careerchoice_description.StudyAndPractisePassive1" text="{=str_tor_careerchoice_description_StudyAndPractisePassive1}Increases max Winds of Magic by 5." />
+  <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}For 10 seconds, the wizard charges his own magical reserves by channeling Winds of Magic swirling in the air. While charging, the wizard is vulnerable to damage and moves at a greatly reduced pace. Every second, 2% of the total Winds of Magic reserve is regained (minimum 1). Every 2 keystones grants an additional use." />
+  <string id="tor_careerchoice_description.StudyAndPractiseKeystone" text="{=str_tor_careerchoice_description_StudyAndPractiseKeystone}Adds 50% physical resistance during Career ability. Additional charge." />
+  <string id="tor_careerchoice_description.StudyAndPractisePassive1" text="{=str_tor_careerchoice_description_StudyAndPractisePassive1}Increases max Winds of Magic by 3." />
   <string id="tor_careerchoice_description.StudyAndPractisePassive2" text="{=str_tor_careerchoice_description_StudyAndPractisePassive2}10% Ward save if your armor weight does not exceed 11 weight." />
-  <string id="tor_careerchoice_description.StudyAndPractisePassive3" text="{=str_tor_careerchoice_description_StudyAndPractisePassive3}Increases magic spell damage by 10%." />
-  <string id="tor_careerchoice_description.StudyAndPractisePassive4" text="{=str_tor_careerchoice_description_StudyAndPractisePassive4}Increases Magic resistance against spells by 25%." />
-  <string id="tor_careerchoice_description.TeclisTeachingsKeystone" text="{=str_tor_careerchoice_description_TeclisTeachingsKeystone}You charge 25% longer. Ability scales with Steward." />
-  <string id="tor_careerchoice_description.TeclisTeachingsPassive1" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive1}Increases fire spell damage by 10%." />
-  <string id="tor_careerchoice_description.TeclisTeachingsPassive2" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive2}Increases electric spell damage by 10%." />
-  <string id="tor_careerchoice_description.TeclisTeachingsPassive3" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive3}Increases max Winds of Magic by 5." />
+  <string id="tor_careerchoice_description.StudyAndPractisePassive3" text="{=str_tor_careerchoice_description_StudyAndPractisePassive3}Increases magic spell damage by 5%." />
+  <string id="tor_careerchoice_description.StudyAndPractisePassive4" text="{=str_tor_careerchoice_description_StudyAndPractisePassive4}Increases Magic resistance against spells by 10%." />
+  <string id="tor_careerchoice_description.TeclisTeachingsKeystone" text="{=str_tor_careerchoice_description_TeclisTeachingsKeystone}You charge 25% longer. Additional charge." />
+  <string id="tor_careerchoice_description.TeclisTeachingsPassive1" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive1}Increases fire spell damage by 5%." />
+  <string id="tor_careerchoice_description.TeclisTeachingsPassive2" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive2}Increases electric spell damage by 5%." />
+  <string id="tor_careerchoice_description.TeclisTeachingsPassive3" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive3}Increases max Winds of Magic by 3." />
   <string id="tor_careerchoice_description.TeclisTeachingsPassive4" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive4}Powerstones cost 35% less Prestige" />
-  <string id="tor_careerchoice_description.ImperialEnchantmentKeystone" text="{=str_tor_careerchoice_description_ImperialEnchantmentKeystone}You are less slowed down using Arcane Conduit. Scales with leadership" />
-  <string id="tor_careerchoice_description.ImperialEnchantmentPassive1" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive1}Increases max Winds of Magic by 5." />
+  <string id="tor_careerchoice_description.ImperialEnchantmentKeystone" text="{=str_tor_careerchoice_description_ImperialEnchantmentKeystone}You are less slowed down using Arcane Conduit." />
+  <string id="tor_careerchoice_description.ImperialEnchantmentPassive1" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive1}Gain up to 2 Arcane Scrolls per Imperial Magister in your party every week." />
   <string id="tor_careerchoice_description.ImperialEnchantmentPassive2" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive2}Friendly fire damage is reduced by 30%" />
-  <string id="tor_careerchoice_description.ImperialEnchantmentPassive3" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive3}Buffs and healing duration is increased by 50%." />
+  <string id="tor_careerchoice_description.ImperialEnchantmentPassive3" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive3}Reduce costs for enchantments by 25%." />
   <string id="tor_careerchoice_description.ImperialEnchantmentPassive4" text="{=str_tor_careerchoice_description_ImperialEnchantmentPassive4}Power stones reserve 25% less Winds." />
   <string id="tor_careerchoice_description.CollegeOrdersKeystone" text="{=str_tor_careerchoice_description_CollegeOrdersKeystone}Arcane Conduit also refreshes Winds of Companions." />
   <string id="tor_careerchoice_description.CollegeOrdersPassive1" text="{=str_tor_careerchoice_description_CollegeOrdersPassive1}Companion limit of party is increased by 5." />
-  <string id="tor_careerchoice_description.CollegeOrdersPassive2" text="{=str_tor_careerchoice_description_CollegeOrdersPassive2}Magister Companions have 25 more Winds of Magic." />
+  <string id="tor_careerchoice_description.CollegeOrdersPassive2" text="{=str_tor_careerchoice_description_CollegeOrdersPassive2}Magister Companions have 10 more Winds of Magic." />
   <string id="tor_careerchoice_description.CollegeOrdersPassive3" text="{=str_tor_careerchoice_description_CollegeOrdersPassive3}For every type of  College Wizard gain 10% more Prestige from combat" />
   <string id="tor_careerchoice_description.CollegeOrdersPassive4" text="{=str_tor_careerchoice_description_CollegeOrdersPassive4}Gain access to Power stones of other College Orders" />
   <string id="tor_careerchoice_description.MagicCombatTrainingKeystone" text="{=str_tor_careerchoice_description_MagicCombatTrainingKeystone}Your spell damage is increased for 30% during Arcane Conduit." />
@@ -3065,15 +3067,15 @@
   <string id="tor_careerchoice_description.MagicCombatTrainingPassive3" text="{=str_tor_careerchoice_description_MagicCombatTrainingPassive3}Increases Spell effectiveness by 15% if you wield an offhand staff." />
   <string id="tor_careerchoice_description.MagicCombatTrainingPassive4" text="{=str_tor_careerchoice_description_MagicCombatTrainingPassive4}Extra 20% Wardsave if your armor weight does not exceed 11 weight." />
   <string id="tor_careerchoice_description.AncientScrollsKeystone" text="{=str_tor_careerchoice_description_AncientScrollsKeystone}Cooldown reduction by 50%. Additional Usage" />
-  <string id="tor_careerchoice_description.AncientScrollsPassive1" text="{=str_tor_careerchoice_description_AncientScrollsPassive1}Increase hex durations by 50%." />
+  <string id="tor_careerchoice_description.AncientScrollsPassive1" text="{=str_tor_careerchoice_description_AncientScrollsPassive1}Increase hex durations by 25%." />
   <string id="tor_careerchoice_description.AncientScrollsPassive2" text="{=str_tor_careerchoice_description_AncientScrollsPassive2}Increases Windsregeneration by 1." />
   <string id="tor_careerchoice_description.AncientScrollsPassive3" text="{=str_tor_careerchoice_description_AncientScrollsPassive3}Recover 80% used Prestige from used Powerstones" />
   <string id="tor_careerchoice_description.AncientScrollsPassive4" text="{=str_tor_careerchoice_description_AncientScrollsPassive4}For every varying imperial wizard, reduce the powerstone winds upkeep by 5%." />
   <string id="tor_careerchoice_description.ArcaneKnowledgeKeystone" text="{=str_tor_careerchoice_description_ArcaneKnowledgeKeystone}Arcane Conduit resets cooldowns of spells. Halves duration and doubles gain. Additional usage" />
-  <string id="tor_careerchoice_description.ArcaneKnowledgePassive1" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive1}Spelldamage of companions is increased by 20%" />
-  <string id="tor_careerchoice_description.ArcaneKnowledgePassive2" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive2}Spell effect radius is increased by 20%." />
-  <string id="tor_careerchoice_description.ArcaneKnowledgePassive3" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive3}Increases Spell effectiveness by 20% if your armor weight undershoots 11 stones." />
-  <string id="tor_careerchoice_description.ArcaneKnowledgePassive4" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive4}For every imperial Magister in your party, your maximum winds increases by 4" />
+  <string id="tor_careerchoice_description.ArcaneKnowledgePassive1" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive1}Spelldamage of companions is increased by 10%" />
+  <string id="tor_careerchoice_description.ArcaneKnowledgePassive2" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive2}Spell effect radius is increased by 10%." />
+  <string id="tor_careerchoice_description.ArcaneKnowledgePassive3" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive3}Increases Spell effectiveness by 10% if your armor weight undershoots 11 stones." />
+  <string id="tor_careerchoice_description.ArcaneKnowledgePassive4" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive4}For every imperial Magister in your party, your maximum winds increases by 2" />
 
   <!-- Waywatcher Career Choice Descriptions -->
   <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Kurnous, Lord of the Hunt, blesses this fatal shot to travel straight through the heart of the enemy. This missile attack will seek out its target and trigger an explosion upon impact. With every skill point in Archery, the radius increases. For charging ability deal 1200 damage points with bows. Each Arrow charges a maximum of 150 points" />

@@ -47,6 +47,16 @@ public class TOREnchantmentCraftingModel : GameModel
                         explainedNumber.AddFactor(choice.GetPassiveValue());
                     }
                 }
+
+                if (hero.HasCareer(TORCareers.ImperialMagister))
+                {
+                    if (Hero.MainHero.HasCareerChoice("ImperialEnchantmentPassive3"))
+                    {
+                        var choice = TORCareerChoices.GetChoice("ImperialEnchantmentPassive3");
+
+                        explainedNumber.AddFactor(choice.GetPassiveValue());
+                    }
+                }
             }
         }
 
