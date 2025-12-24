@@ -143,7 +143,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _studyAndPractiseKeystone.Initialize(CareerID, "Adds 50% physical resistance. Additional usage.", "StudyAndPractise", false,
+            _studyAndPractiseKeystone.Initialize(CareerID, "Adds 50% physical resistance during Career ability. Additional charge.", "StudyAndPractise", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -172,7 +172,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     },
                 });
 
-            _teclisTeachingsKeystone.Initialize(CareerID, "You charge 25% longer. Additional usage.", "TeclisTeachings", false,
+            _teclisTeachingsKeystone.Initialize(CareerID, "You charge 25% longer. Additional charge.", "TeclisTeachings", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
