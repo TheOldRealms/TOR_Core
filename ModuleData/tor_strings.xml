@@ -2934,34 +2934,34 @@
   <string id="tor_careerchoice_description.RobberKnightKeystone" text="{=str_tor_careerchoice_description_RobberKnightKeystone}Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse." />
   <string id="tor_careerchoice_description.LieOfLadyKeystone" text="{=str_tor_careerchoice_description_LieOfLadyKeystone}Ability scales with Roguery. When active, get +20% magic damage and health regen." />
   <string id="tor_careerchoice_description.BlackGrailVowKeystone" text="{=str_tor_careerchoice_description_BlackGrailVowKeystone}Ability scales with Leadership and propagates from all heroes to units in a 5m radius." />
-  <string id="tor_careerchoice_description.CurseOfMousillonPassive1" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive1}Increases Hitpoints by 40." />
-  <string id="tor_careerchoice_description.CurseOfMousillonPassive2" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive2}All Knight troops receive 30 bonus points in their Polearm skill." />
+  <string id="tor_careerchoice_description.CurseOfMousillonPassive1" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.CurseOfMousillonPassive2" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive2}All Knight troops receive 20 bonus points in their Polearm skill." />
   <string id="tor_careerchoice_description.CurseOfMousillonPassive3" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive3}Mousillon ranged troops gain 15% extra ranged damage." />
   <string id="tor_careerchoice_description.CurseOfMousillonPassive4" text="{=str_tor_careerchoice_description_CurseOfMousillonPassive4}Ill fated Knight Companions occasionally train Bretonnian Peasants to Mousillon Peasants." />
   <string id="tor_careerchoice_description.SwampRiderPassive1" text="{=str_tor_careerchoice_description_SwampRiderPassive1}50% additional Hitpoints for the player's mount." />
   <string id="tor_careerchoice_description.SwampRiderPassive2" text="{=str_tor_careerchoice_description_SwampRiderPassive2}10% extra melee damage while on horseback." />
   <string id="tor_careerchoice_description.SwampRiderPassive3" text="{=str_tor_careerchoice_description_SwampRiderPassive3}Every melee kill gives roguery XP." />
   <string id="tor_careerchoice_description.SwampRiderPassive4" text="{=str_tor_careerchoice_description_SwampRiderPassive4}All Knight troops receive 20 bonus points in their One and Two-handed skill." />
-  <string id="tor_careerchoice_description.UnbreakableArmyPassive1" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive1}All mousillon peasant troops wages are reduced by 75%." />
-  <string id="tor_careerchoice_description.UnbreakableArmyPassive2" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive2}40% chance to recruit an extra unit of the same type free of charge." />
-  <string id="tor_careerchoice_description.UnbreakableArmyPassive3" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive3}Gain 15% physical resistance to melee and ranged attacks." />
-  <string id="tor_careerchoice_description.UnbreakableArmyPassive4" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive4}Increases Party size by 50." />
-  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive1" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive1}Increases Hitpoints by 40." />
-  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive2" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive2}Gain 25 Dark Energy daily." />
-  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive3" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive3}Mousillon Knight damage against infantry  is increased by 15%." />
+  <string id="tor_careerchoice_description.UnbreakableArmyPassive1" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive1}All mousillon peasant troops wages are reduced by 40%." />
+  <string id="tor_careerchoice_description.UnbreakableArmyPassive2" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive2}Every 3 non-knight Mousillon troops gain 1 additional party slot." />
+  <string id="tor_careerchoice_description.UnbreakableArmyPassive3" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive3}Gain 10% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.UnbreakableArmyPassive4" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive4}Every 2 undead troops gain 1 additional party slot." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive1" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive1}Increases Hitpoints by 30." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive2" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive2}Gain 15 Dark Energy daily." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive3" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive3}Mousillon Knight damage against infantry  is increased by 8%." />
   <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive4" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive4}Any Bret. Knight units can be transformed to ill-fated mousillon units." />
   <string id="tor_careerchoice_description.RobberKnightPassive1" text="{=str_tor_careerchoice_description_RobberKnightPassive1}Horse charge damage is increased by 50%." />
-  <string id="tor_careerchoice_description.RobberKnightPassive2" text="{=str_tor_careerchoice_description_RobberKnightPassive2}Party movement speed is increased by 2." />
+  <string id="tor_careerchoice_description.RobberKnightPassive2" text="{=str_tor_careerchoice_description_RobberKnightPassive2}Party movement speed is increased by 1." />
   <string id="tor_careerchoice_description.RobberKnightPassive3" text="{=str_tor_careerchoice_description_RobberKnightPassive3}All mousillon Knight units gain 10% Physical resistance." />
   <string id="tor_careerchoice_description.RobberKnightPassive4" text="{=str_tor_careerchoice_description_RobberKnightPassive4}Pillaging is 50% faster  and gains dark energy." />
-  <string id="tor_careerchoice_description.LieOfLadyPassive1" text="{=str_tor_careerchoice_description_LieOfLadyPassive1}15% extra melee magic damage." />
-  <string id="tor_careerchoice_description.LieOfLadyPassive2" text="{=str_tor_careerchoice_description_LieOfLadyPassive2}Necromancer companions gain 25 Winds of magic." />
-  <string id="tor_careerchoice_description.LieOfLadyPassive3" text="{=str_tor_careerchoice_description_LieOfLadyPassive3}Dark Energy upkeep for Knights of the black grail is reduced by 25%." />
-  <string id="tor_careerchoice_description.LieOfLadyPassive4" text="{=str_tor_careerchoice_description_LieOfLadyPassive4}Knights of the black grail deal 15% magical damage." />
-  <string id="tor_careerchoice_description.BlackGrailVowPassive1" text="{=str_tor_careerchoice_description_BlackGrailVowPassive1}Companion limit of party is increased by 10." />
+  <string id="tor_careerchoice_description.LieOfLadyPassive1" text="{=str_tor_careerchoice_description_LieOfLadyPassive1}10% extra melee magic damage." />
+  <string id="tor_careerchoice_description.LieOfLadyPassive2" text="{=str_tor_careerchoice_description_LieOfLadyPassive2}Necromancer companions gain 10 Winds of magic." />
+  <string id="tor_careerchoice_description.LieOfLadyPassive3" text="{=str_tor_careerchoice_description_LieOfLadyPassive3}Dark Energy upkeep for Knights of the black grail is reduced by 12%." />
+  <string id="tor_careerchoice_description.LieOfLadyPassive4" text="{=str_tor_careerchoice_description_LieOfLadyPassive4}Knights of the black grail deal 8% magical damage." />
+  <string id="tor_careerchoice_description.BlackGrailVowPassive1" text="{=str_tor_careerchoice_description_BlackGrailVowPassive1}Companion limit of party is increased by 7." />
   <string id="tor_careerchoice_description.BlackGrailVowPassive2" text="{=str_tor_careerchoice_description_BlackGrailVowPassive2}Hits below 15 damage do not stagger the player." />
-  <string id="tor_careerchoice_description.BlackGrailVowPassive3" text="{=str_tor_careerchoice_description_BlackGrailVowPassive3}Mousillon Knights gain 15% Wardsave." />
-  <string id="tor_careerchoice_description.BlackGrailVowPassive4" text="{=str_tor_careerchoice_description_BlackGrailVowPassive4}Every necromancer and Vampire companion gains 10 dark energy per day." />
+  <string id="tor_careerchoice_description.BlackGrailVowPassive3" text="{=str_tor_careerchoice_description_BlackGrailVowPassive3}Mousillon Knights gain 8% Wardsave." />
+  <string id="tor_careerchoice_description.BlackGrailVowPassive4" text="{=str_tor_careerchoice_description_BlackGrailVowPassive4}Every necromancer and Vampire companion gains 5 dark energy per day." />
 
   <!-- Necrarch Career Choice Descriptions -->
   <string id="tor_careerchoice_description.NecrarchRoot" text="{=str_tor_careerchoice_description_NecrarchRoot}Summoned directly from the realm of the dead and cast by the Necrarch, this projectile spell deals 80 damage. The Blast of Agony grows in size for every point put into the Spellcraft skill, it can also be modified with several upgrades from the Career tree. It is free of any winds of magic cost to cast." />
