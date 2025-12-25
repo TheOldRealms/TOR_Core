@@ -68,7 +68,7 @@ namespace TOR_Core.BattleMechanics.CustomArenaModes
             }
             if (_target != null)
             {
-                Owner.SetScriptedTargetEntityAndPosition(_target.GameEntity, Owner.GetWorldPosition(), Agent.AISpecialCombatModeFlags.IgnoreAmmoLimitForRangeCalculation, false);
+                Owner.SetScriptedTargetEntity(_target.GameEntity,  Agent.AISpecialCombatModeFlags.IgnoreAmmoLimitForRangeCalculation, false); //Not sure if this causes issues here? Position doesnt seem to be too important
             }
         }
 
