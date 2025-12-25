@@ -54,7 +54,7 @@ namespace TOR_Core.Models
 
             if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
             {
-                AddCareerPassivesForPartySize(Hero.MainHero, ref num);
+                AddCareerPassivesForPartySize(Hero.MainHero, party, ref num);
             }
 
             if (party.LeaderHero?.Culture?.StringId == TORConstants.Cultures.ASRAI)
@@ -139,12 +139,13 @@ namespace TOR_Core.Models
             return troopRoster;
         }
 
-        private void AddCareerPassivesForPartySize(Hero playerHero, ref ExplainedNumber number)
+        private void AddCareerPassivesForPartySize(Hero playerHero, PartyBase party, ref ExplainedNumber number)
         {
             if (playerHero == null) return;
             if (playerHero.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize, false);
+                AddUnitPartyWeightBonus(playerHero, party, ref number);
             }
 
 
@@ -183,6 +184,40 @@ namespace TOR_Core.Models
                             number.Add(choice.Passive.EffectMagnitude, choice.Description);
                         }
                     }
+                }
+            }
+        }
+
+        private void AddUnitPartyWeightBonus(Hero playerHero, PartyBase party, ref ExplainedNumber number)
+        {
+            if (party?.MemberRoster == null) return;
+
+            var choices = playerHero.GetAllCareerChoices();
+            foreach (var choiceId in choices)
+            {
+                var choice = TORCareerChoices.GetChoice(choiceId);
+                if (choice?.Passive == null) continue;
+                if (choice.Passive.PassiveEffectType != PassiveEffectType.UnitPartyWeight) continue;
+
+                float weight = choice.Passive.EffectMagnitude;
+                if (weight <= 0f || weight > 0.95f) continue; // Invalid weight values, max 0.95
+
+                int matchingUnitCount = 0;
+                foreach (var element in party.MemberRoster.GetTroopRoster())
+                {
+                    if (element.Character != null && choice.Passive.IsValidCharacterObject(element.Character))
+                    {
+                        matchingUnitCount += element.Number;
+                    }
+                }
+
+                if (matchingUnitCount > 0)
+                {
+                    // Weight 0.75 means each unit counts as 75% towards limit, saving 0.25 slots per unit
+                    // So every 4 matching units = 1 extra party slot (4 * 0.25 = 1)
+                    // Formula: bonusSlots = matchingCount * (1 - weight)
+                    float bonusSlots = matchingUnitCount * (1f - weight);
+                    number.Add(bonusSlots, new TextObject(choice.BelongsToGroup.Name.ToString()));
                 }
             }
         }
