@@ -2738,38 +2738,38 @@
   <!-- VampireCount Career Choice Descriptions -->
   <string id="tor_careerchoice_description.VampireCountRoot" text="{=str_tor_careerchoice_description_VampireCountRoot}The player transforms into fog, which is impossible to catch and can fly in every direction. The ability lasts 5 seconds and the duration increases by 0.03 seconds for each point in Athletics. Mist Form can be deactivated at will by pressing attack." />
   <string id="tor_careerchoice_description.NewBloodKeystone" text="{=str_tor_careerchoice_description_NewBloodKeystone}Ability needs 20% less damage to get charged." />
-  <string id="tor_careerchoice_description.NewBloodPassive1" text="{=str_tor_careerchoice_description_NewBloodPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.NewBloodPassive2" text="{=str_tor_careerchoice_description_NewBloodPassive2}Increases Party size by 25." />
-  <string id="tor_careerchoice_description.NewBloodPassive3" text="{=str_tor_careerchoice_description_NewBloodPassive3}Increases max Winds of Magic by 15." />
+  <string id="tor_careerchoice_description.NewBloodPassive1" text="{=str_tor_careerchoice_description_NewBloodPassive1}Increases Hitpoints by 15." />
+  <string id="tor_careerchoice_description.NewBloodPassive2" text="{=str_tor_careerchoice_description_NewBloodPassive2}Increases Party size by 15." />
+  <string id="tor_careerchoice_description.NewBloodPassive3" text="{=str_tor_careerchoice_description_NewBloodPassive3}Increases max Winds of Magic by 10." />
   <string id="tor_careerchoice_description.NewBloodPassive4" text="{=str_tor_careerchoice_description_NewBloodPassive4}Immune to sunlight speed malus." />
   <string id="tor_careerchoice_description.FeralKeystone" text="{=str_tor_careerchoice_description_FeralKeystone}Mistform speed is increased by 20%." />
   <string id="tor_careerchoice_description.FeralPassive1" text="{=str_tor_careerchoice_description_FeralPassive1}10% extra melee damage." />
-  <string id="tor_careerchoice_description.FeralPassive2" text="{=str_tor_careerchoice_description_FeralPassive2}Player healing rate increased by 3" />
-  <string id="tor_careerchoice_description.FeralPassive3" text="{=str_tor_careerchoice_description_FeralPassive3}Party movement speed is increased by 1.5." />
-  <string id="tor_careerchoice_description.FeralPassive4" text="{=str_tor_careerchoice_description_FeralPassive4}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.FeralPassive2" text="{=str_tor_careerchoice_description_FeralPassive2}Player healing rate increased by 2" />
+  <string id="tor_careerchoice_description.FeralPassive3" text="{=str_tor_careerchoice_description_FeralPassive3}Party movement speed is increased by 1." />
+  <string id="tor_careerchoice_description.FeralPassive4" text="{=str_tor_careerchoice_description_FeralPassive4}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.ArkayneKeystone" text="{=str_tor_careerchoice_description_ArkayneKeystone}Mistform scales with Spellcraft. Spell damage can charge ability with 90% reduced power." />
   <string id="tor_careerchoice_description.ArkaynePassive1" text="{=str_tor_careerchoice_description_ArkaynePassive1}Armor weight doesn't affect winds recharge rate" />
-  <string id="tor_careerchoice_description.ArkaynePassive2" text="{=str_tor_careerchoice_description_ArkaynePassive2}Increases Magical spell damage by 10%." />
-  <string id="tor_careerchoice_description.ArkaynePassive3" text="{=str_tor_careerchoice_description_ArkaynePassive3}10% extra Magical melee damage." />
+  <string id="tor_careerchoice_description.ArkaynePassive2" text="{=str_tor_careerchoice_description_ArkaynePassive2}Increases Magical spell damage by 5%." />
+  <string id="tor_careerchoice_description.ArkaynePassive3" text="{=str_tor_careerchoice_description_ArkaynePassive3}5% extra Magical melee damage." />
   <string id="tor_careerchoice_description.ArkaynePassive4" text="{=str_tor_careerchoice_description_ArkaynePassive4}10% cost reduction for spells." />
   <string id="tor_careerchoice_description.CourtleyKeystone" text="{=str_tor_careerchoice_description_CourtleyKeystone}Mist Form is recharged on battle start and now also scales with Roguery." />
   <string id="tor_careerchoice_description.CourtleyPassive1" text="{=str_tor_careerchoice_description_CourtleyPassive1}Increases positive Relation gains by 20%." />
-  <string id="tor_careerchoice_description.CourtleyPassive2" text="{=str_tor_careerchoice_description_CourtleyPassive2}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.CourtleyPassive3" text="{=str_tor_careerchoice_description_CourtleyPassive3}10% extra Magical spell and ranged damage." />
-  <string id="tor_careerchoice_description.CourtleyPassive4" text="{=str_tor_careerchoice_description_CourtleyPassive4}Killing blows in the head replenish 3 Winds of Magic." />
+  <string id="tor_careerchoice_description.CourtleyPassive2" text="{=str_tor_careerchoice_description_CourtleyPassive2}Increases Hitpoints by 15." />
+  <string id="tor_careerchoice_description.CourtleyPassive3" text="{=str_tor_careerchoice_description_CourtleyPassive3}5% extra Magical spell and ranged damage." />
+  <string id="tor_careerchoice_description.CourtleyPassive4" text="{=str_tor_careerchoice_description_CourtleyPassive4}Killing blows in the head replenish 2 Winds of Magic." />
   <string id="tor_careerchoice_description.LordlyKeystone" text="{=str_tor_careerchoice_description_LordlyKeystone}Mist Form heals 3 HP per second. The ability duration scales with the wielded weapon skill." />
   <string id="tor_careerchoice_description.LordlyPassive1" text="{=str_tor_careerchoice_description_LordlyPassive1}Increases Companion Limit by 5." />
   <string id="tor_careerchoice_description.LordlyPassive2" text="{=str_tor_careerchoice_description_LordlyPassive2}Party size is increased by 75." />
   <string id="tor_careerchoice_description.LordlyPassive3" text="{=str_tor_careerchoice_description_LordlyPassive3}All Vampire troops wages are reduced by 15%." />
-  <string id="tor_careerchoice_description.LordlyPassive4" text="{=str_tor_careerchoice_description_LordlyPassive4}Upgrade costs are halved." />
+  <string id="tor_careerchoice_description.LordlyPassive4" text="{=str_tor_careerchoice_description_LordlyPassive4}Every 2 Undead troops gain 1 additional party slot." />
   <string id="tor_careerchoice_description.MartialleKeystone" text="{=str_tor_careerchoice_description_MartialleKeystone}+20% swing speed. Buffs are active after Mist Form (requires extra 30% damage dealt)." />
-  <string id="tor_careerchoice_description.MartiallePassive1" text="{=str_tor_careerchoice_description_MartiallePassive1}10% extra melee damage." />
-  <string id="tor_careerchoice_description.MartiallePassive2" text="{=str_tor_careerchoice_description_MartiallePassive2}Increases Hitpoints by 50." />
+  <string id="tor_careerchoice_description.MartiallePassive1" text="{=str_tor_careerchoice_description_MartiallePassive1}5% extra melee damage." />
+  <string id="tor_careerchoice_description.MartiallePassive2" text="{=str_tor_careerchoice_description_MartiallePassive2}Increases Hitpoints by 35." />
   <string id="tor_careerchoice_description.MartiallePassive3" text="{=str_tor_careerchoice_description_MartiallePassive3}All troops gain 10% extra damage against human enemies." />
   <string id="tor_careerchoice_description.MartiallePassive4" text="{=str_tor_careerchoice_description_MartiallePassive4}All attacks deal bonus damage against shields." />
   <string id="tor_careerchoice_description.MasterOfDeadKeystone" text="{=str_tor_careerchoice_description_MasterOfDeadKeystone}All buffs are propagated while remaining in Mist Form (requires extra 30% damage dealt)." />
-  <string id="tor_careerchoice_description.MasterOfDeadPassive1" text="{=str_tor_careerchoice_description_MasterOfDeadPassive1}Increases Party size by 100." />
-  <string id="tor_careerchoice_description.MasterOfDeadPassive2" text="{=str_tor_careerchoice_description_MasterOfDeadPassive2}Undead troops gain 25% Ward save." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive1" text="{=str_tor_careerchoice_description_MasterOfDeadPassive1}Gain 5 Dark Energy per day." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive2" text="{=str_tor_careerchoice_description_MasterOfDeadPassive2}Undead troops gain 15% Ward save." />
   <string id="tor_careerchoice_description.MasterOfDeadPassive3" text="{=str_tor_careerchoice_description_MasterOfDeadPassive3}20% higher chance for raised dead after battle." />
   <string id="tor_careerchoice_description.MasterOfDeadPassive4" text="{=str_tor_careerchoice_description_MasterOfDeadPassive4}Tier 4 Undead troops can get wounded with a 20% lower chance." />
 
