@@ -142,12 +142,12 @@
 		base_effect_value="2"
 		type="HealthOverTime"/>
 		
-	<StatusEffectTemplate 
-		id="knightly_charge_healing_dark" 
+	<StatusEffectTemplate
+		id="knightly_charge_healing_dark"
 		particle_id="breath_of_darkness"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="5"
+		base_effect_value="2"
 		type="HealthOverTime"/>
 		
 	<StatusEffectTemplate 
