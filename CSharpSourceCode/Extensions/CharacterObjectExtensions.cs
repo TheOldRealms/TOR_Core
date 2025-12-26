@@ -108,6 +108,11 @@ namespace TOR_Core.Extensions
             return characterObject.GetAttributes().Contains("Undead");
         }
 
+        public static bool IsGhost(this CharacterObject characterObject)
+        {
+            return characterObject.StringId.Contains("spirit_host") || characterObject.StringId.Contains("wraith");
+        }
+
         public static bool IsVampire(this CharacterObject characterObject)
         {
             if (characterObject.IsHero)
@@ -283,6 +288,11 @@ namespace TOR_Core.Extensions
         public static bool IsUndead(this BasicCharacterObject characterObject)
         {
             return characterObject.GetAttributes().Contains("Undead");
+        }
+
+        public static bool IsGhost(this BasicCharacterObject characterObject)
+        {
+            return characterObject.StringId.Contains("spirit_host") || characterObject.StringId.Contains("wraith");
         }
 
         public static bool IsIronbreakerUnit(this BasicCharacterObject characterObject)

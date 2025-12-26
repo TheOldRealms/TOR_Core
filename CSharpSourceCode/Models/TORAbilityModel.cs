@@ -383,6 +383,28 @@ namespace TOR_Core.Models
             if (hero == Hero.MainHero)
             {
                 CareerHelper.ApplyBasicCareerPassives(hero, ref explainedNumber, PassiveEffectType.WindsRegeneration, false);
+
+                // WellspringOfDharPassive4: +0.1 Winds regen per spellcasting companion
+                if (Hero.MainHero.HasCareerChoice("WellspringOfDharPassive4"))
+                {
+                    var companions = Hero.MainHero.PartyBelongedTo?.GetMemberHeroes();
+                    if (companions != null)
+                    {
+                        int spellcasterCount = 0;
+                        foreach (var companion in companions)
+                        {
+                            if (companion != Hero.MainHero && companion.IsSpellCaster())
+                            {
+                                spellcasterCount++;
+                            }
+                        }
+                        if (spellcasterCount > 0)
+                        {
+                            var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive4");
+                            explainedNumber.Add(choice.GetPassiveValue() * spellcasterCount);
+                        }
+                    }
+                }
             }
 
 
@@ -484,12 +506,14 @@ namespace TOR_Core.Models
                     {
                         var characterEquipment = baseCharacter.GetCharacterEquipment();
                         var choice = TORCareerChoices.GetChoice("DiscipleOfAccursedPassive4");
+                        var traitCount = 0;
                         foreach (var item in characterEquipment)
                         {
-                            if (item.IsMagicalItem())
-                            {
-                                explainedNumber.Add(choice.GetPassiveValue());
-                            }
+                            traitCount += item.GetTraits().Count;
+                        }
+                        if (traitCount > 0)
+                        {
+                            explainedNumber.Add(choice.GetPassiveValue() * traitCount);
                         }
                     }
 

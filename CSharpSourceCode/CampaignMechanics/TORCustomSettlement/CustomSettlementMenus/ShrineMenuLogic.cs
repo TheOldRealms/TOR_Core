@@ -334,7 +334,18 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         if (diff > 0)
         {
             args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
-            if (args.MenuContext.GameMenu.Progress != progress) Hero.MainHero.AddCustomResource("DarkEnergy", DefilingDarkEnergyPerTick);
+            if (args.MenuContext.GameMenu.Progress != progress)
+            {
+                var darkEnergyGain = DefilingDarkEnergyPerTick;
+
+                // UnhallowedSoulPassive2: More Dark Energy from defiling shrines
+                if (Hero.MainHero.HasCareerChoice("UnhallowedSoulPassive2"))
+                {
+                    darkEnergyGain = (int)(darkEnergyGain * 1.5f); // 50% more Dark Energy
+                }
+
+                Hero.MainHero.AddCustomResource("DarkEnergy", darkEnergyGain);
+            }
         }
     }
 
@@ -415,6 +426,28 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         var settlement = Settlement.CurrentSettlement;
         if (settlement.SettlementComponent is not ShrineComponent component) return;
         var shrineReligion = component.Religion;
+
+        // Necrarch career perk for shrine defiling
+        bool hasUnhallowedSoul = Hero.MainHero.HasCareerChoice("UnhallowedSoulPassive2");
+
+        // UnhallowedSoulPassive2: Wraith summoning chance
+        if (hasUnhallowedSoul)
+        {
+            int wraithChance = 15; // 15% chance
+
+            if (MBRandom.RandomInt(0, 100) < wraithChance)
+            {
+                var wraith = MBObjectManager.Instance.GetObject<CharacterObject>("tor_vc_cairn_wraith");
+                if (wraith != null)
+                {
+                    int wraithCount = MBRandom.RandomInt(1, 3);
+                    MobileParty.MainParty.MemberRoster.AddToCounts(wraith, wraithCount);
+                    var text = TORTextHelper.GetTextObject("tor_shrine_defile_wraith_summon", "The dark energies have drawn {WRAITH_COUNT} wraith(s) to your service.");
+                    text.SetTextVariable("WRAITH_COUNT", wraithCount);
+                    MBInformationManager.AddQuickInformation(text);
+                }
+            }
+        }
 
         foreach (var hero in Campaign.Current.AliveHeroes)
         {

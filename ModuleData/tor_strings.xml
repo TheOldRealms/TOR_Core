@@ -2966,35 +2966,35 @@
   <!-- Necrarch Career Choice Descriptions -->
   <string id="tor_careerchoice_description.NecrarchRoot" text="{=str_tor_careerchoice_description_NecrarchRoot}Summoned directly from the realm of the dead and cast by the Necrarch, this projectile spell deals 80 damage. The Blast of Agony grows in size for every point put into the Spellcraft skill, it can also be modified with several upgrades from the Career tree. It is free of any winds of magic cost to cast." />
   <string id="tor_careerchoice_description.DiscipleOfAccursedKeystone" text="{=str_tor_careerchoice_description_DiscipleOfAccursedKeystone}Undead troops can charge career ability. Ability scales with Roguery" />
-  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive1" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive1}Increases Party size by 35." />
+  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive1" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive1}Every 2 undead troops (excluding ghosts) gain 1 additional party slot." />
   <string id="tor_careerchoice_description.DiscipleOfAccursedPassive2" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive2}10% cost reduction for spells." />
-  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive3" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive3}Reduce the Dark Energy upkeep for wraith troops by 25%." />
-  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive4" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive4}For every magical item in your battle equipment you increase your maximum winds by 2." />
-  <string id="tor_careerchoice_description.WitchSightKeystone" text="{=str_tor_careerchoice_description_WitchSightKeystone}For every hit enemy gain 0.25% of your maximum Winds of magic" />
+  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive3" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive3}Gain 7 Dark Energy daily." />
+  <string id="tor_careerchoice_description.DiscipleOfAccursedPassive4" text="{=str_tor_careerchoice_description_DiscipleOfAccursedPassive4}For every magic trait on your battle equipment you increase your maximum winds by 2." />
+  <string id="tor_careerchoice_description.WitchSightKeystone" text="{=str_tor_careerchoice_description_WitchSightKeystone}For every hit enemy gain 0.15% of your maximum Winds of magic" />
   <string id="tor_careerchoice_description.WitchSightPassive1" text="{=str_tor_careerchoice_description_WitchSightPassive1}The Spotting range of the party is increased by 20%." />
-  <string id="tor_careerchoice_description.WitchSightPassive2" text="{=str_tor_careerchoice_description_WitchSightPassive2}Increases max Winds of Magic by 10." />
+  <string id="tor_careerchoice_description.WitchSightPassive2" text="{=str_tor_careerchoice_description_WitchSightPassive2}Increases Magic spell damage by 5%." />
   <string id="tor_careerchoice_description.WitchSightPassive3" text="{=str_tor_careerchoice_description_WitchSightPassive3}Increases Magic resistance against spells by 25%." />
   <string id="tor_careerchoice_description.WitchSightPassive4" text="{=str_tor_careerchoice_description_WitchSightPassive4}Increases max Winds of Magic by 20 if your armor weight undershoots 11 stones." />
   <string id="tor_careerchoice_description.DarkVisionKeystone" text="{=str_tor_careerchoice_description_DarkVisionKeystone}Summons a Wraith on impact. Spell damage charge is increased by 25%" />
   <string id="tor_careerchoice_description.DarkVisionPassive1" text="{=str_tor_careerchoice_description_DarkVisionPassive1}Increases max Winds of Magic by 10." />
-  <string id="tor_careerchoice_description.DarkVisionPassive2" text="{=str_tor_careerchoice_description_DarkVisionPassive2}Gain 15 Dark Energy daily." />
+  <string id="tor_careerchoice_description.DarkVisionPassive2" text="{=str_tor_careerchoice_description_DarkVisionPassive2}Reduce the Dark Energy upkeep for ghost troops by 35%." />
   <string id="tor_careerchoice_description.DarkVisionPassive3" text="{=str_tor_careerchoice_description_DarkVisionPassive3}Spell damage increase roguery." />
   <string id="tor_careerchoice_description.DarkVisionPassive4" text="{=str_tor_careerchoice_description_DarkVisionPassive4}For every known spell your winds capacity rises by 1." />
   <string id="tor_careerchoice_description.UnhallowedSoulKeystone" text="{=str_tor_careerchoice_description_UnhallowedSoulKeystone}Increase impact damage of netherball by 25%. The Projectile is now target seeking" />
-  <string id="tor_careerchoice_description.UnhallowedSoulPassive1" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive1}Increase buff durations by 25%." />
-  <string id="tor_careerchoice_description.UnhallowedSoulPassive2" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive2}Gain 30 Dark Energy daily." />
-  <string id="tor_careerchoice_description.UnhallowedSoulPassive3" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive3}Increases Spell effectiveness by 30% if your armor weight undershoots 11 stones." />
-  <string id="tor_careerchoice_description.UnhallowedSoulPassive4" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive4}Increases lightning spell damage by 10%." />
+  <string id="tor_careerchoice_description.UnhallowedSoulPassive1" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive1}Increase buff durations by 20%." />
+  <string id="tor_careerchoice_description.UnhallowedSoulPassive2" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive2}Defiling shrines yields more Dark Energy and has a chance to summon wraiths." />
+  <string id="tor_careerchoice_description.UnhallowedSoulPassive3" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive3}Increases Spell effectiveness by 15% if your armor weight undershoots 11 stones." />
+  <string id="tor_careerchoice_description.UnhallowedSoulPassive4" text="{=str_tor_careerchoice_description_UnhallowedSoulPassive4}Increases lightning spell damage by 5%." />
   <string id="tor_careerchoice_description.HungerForKnowledgeKeystone" text="{=str_tor_careerchoice_description_HungerForKnowledgeKeystone}The Career ability is constantly slowly charged." />
-  <string id="tor_careerchoice_description.HungerForKnowledgePassive1" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive1}Increase hex durations by 25%." />
+  <string id="tor_careerchoice_description.HungerForKnowledgePassive1" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive1}Increase hex durations by 20%." />
   <string id="tor_careerchoice_description.HungerForKnowledgePassive2" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive2}Wraiths are immune to friendly fire spell damage." />
-  <string id="tor_careerchoice_description.HungerForKnowledgePassive3" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive3}Perform with your companion a dark ritual gaining 50 Winds each for 100 Dark Energy" />
-  <string id="tor_careerchoice_description.HungerForKnowledgePassive4" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive4}Increases Magic melee and spell damage by 10%." />
+  <string id="tor_careerchoice_description.HungerForKnowledgePassive3" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive3}Reduce costs for enchantments by 20%." />
+  <string id="tor_careerchoice_description.HungerForKnowledgePassive4" text="{=str_tor_careerchoice_description_HungerForKnowledgePassive4}Increases Magic melee and spell damage by 5%." />
   <string id="tor_careerchoice_description.WellspringOfDharKeystone" text="{=str_tor_careerchoice_description_WellspringOfDharKeystone}Ability scales with Medicine. Ability starts charged. Companions can charge ability." />
-  <string id="tor_careerchoice_description.WellspringOfDharPassive1" text="{=str_tor_careerchoice_description_WellspringOfDharPassive1}Increase buff durations by 25%." />
+  <string id="tor_careerchoice_description.WellspringOfDharPassive1" text="{=str_tor_careerchoice_description_WellspringOfDharPassive1}Increases fire spell damage by 5%." />
   <string id="tor_careerchoice_description.WellspringOfDharPassive2" text="{=str_tor_careerchoice_description_WellspringOfDharPassive2}Tier 4 Undead troops can get wounded with a 20% lower chance." />
   <string id="tor_careerchoice_description.WellspringOfDharPassive3" text="{=str_tor_careerchoice_description_WellspringOfDharPassive3}Necromancy companions gain 15 more Winds of Magic." />
-  <string id="tor_careerchoice_description.WellspringOfDharPassive4" text="{=str_tor_careerchoice_description_WellspringOfDharPassive4}Increases fire spell damage by 10%." />
+  <string id="tor_careerchoice_description.WellspringOfDharPassive4" text="{=str_tor_careerchoice_description_WellspringOfDharPassive4}Gain 0.1 Winds regeneration for every spellcasting companion." />
   <string id="tor_careerchoice_description.EverlingsSecretKeystone" text="{=str_tor_careerchoice_description_EverlingsSecretKeystone}After using nether ball, a second use is available shortly after the first one." />
   <string id="tor_careerchoice_description.EverlingsSecretPassive1" text="{=str_tor_careerchoice_description_EverlingsSecretPassive1}Increases Windsregeneration by 1." />
   <string id="tor_careerchoice_description.EverlingsSecretPassive2" text="{=str_tor_careerchoice_description_EverlingsSecretPassive2}35% spell cooldown reduction." />
@@ -4486,6 +4486,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_shrine_continue" text="{=str_tor_shrine_continue}Continue"/>
 	<string id="tor_shrine_defiling_progress" text="{=str_tor_shrine_defiling_progress}Defiling the shrine..."/>
 	<string id="tor_shrine_defile_result" text="{=str_tor_shrine_defile_result}You successfully gathered {DEFILE_AMOUNT} Dark Energy {DARKENERGYICON}. Followers of {GOD_NAME} will perceive this as a crime."/>
+	<string id="tor_shrine_defile_wraith_summon" text="{=str_tor_shrine_defile_wraith_summon}The dark energies have drawn {WRAITH_COUNT} wraith(s) to your service."/>
 	<string id="tor_shrine_looting_progress" text="{=str_tor_shrine_looting_progress}Looting the shrine..."/>
 	<string id="tor_shrine_loot_result" text="{=str_tor_shrine_loot_result}{LOOT_RESULT}. Followers of {GOD_NAME} will perceive this as a crime."/>
 	<string id="tor_shrine_loot_result_detail" text="{=str_tor_shrine_loot_result_detail}You successfully looted {TOTAL_GOLD} gold, {TOTAL_FOOD} meat, and {TOTAL_TEEF} Teef"/>
