@@ -2786,30 +2786,30 @@
   <string id="tor_careerchoice_description.NightRiderPassive3" text="{=str_tor_careerchoice_description_NightRiderPassive3}Raiding is at Night 50% faster." />
   <string id="tor_careerchoice_description.NightRiderPassive4" text="{=str_tor_careerchoice_description_NightRiderPassive4}Attacks deal bonus damage against shields." />
   <string id="tor_careerchoice_description.BladeMasterKeystone" text="{=str_tor_careerchoice_description_BladeMasterKeystone}All melee weapon skills, wielded or not, count towards the career ability effects." />
-  <string id="tor_careerchoice_description.BladeMasterPassive1" text="{=str_tor_careerchoice_description_BladeMasterPassive1}20% extra melee damage." />
-  <string id="tor_careerchoice_description.BladeMasterPassive2" text="{=str_tor_careerchoice_description_BladeMasterPassive2}Player healing rate increased by 5" />
+  <string id="tor_careerchoice_description.BladeMasterPassive1" text="{=str_tor_careerchoice_description_BladeMasterPassive1}5% extra melee damage." />
+  <string id="tor_careerchoice_description.BladeMasterPassive2" text="{=str_tor_careerchoice_description_BladeMasterPassive2}Player healing rate increased by 3" />
   <string id="tor_careerchoice_description.BladeMasterPassive3" text="{=str_tor_careerchoice_description_BladeMasterPassive3}Hits below 15 damage do not stagger the player." />
   <string id="tor_careerchoice_description.BladeMasterPassive4" text="{=str_tor_careerchoice_description_BladeMasterPassive4}All troops, the player included, gain exp when raiding villages." />
   <string id="tor_careerchoice_description.DoomRiderKeystone" text="{=str_tor_careerchoice_description_DoomRiderKeystone}The Career Ability scales with Tactics. Nearby troops receive the Red Fury buff." />
-  <string id="tor_careerchoice_description.DoomRiderPassive1" text="{=str_tor_careerchoice_description_DoomRiderPassive1}20% extra melee damage." />
+  <string id="tor_careerchoice_description.DoomRiderPassive1" text="{=str_tor_careerchoice_description_DoomRiderPassive1}15% extra melee damage." />
   <string id="tor_careerchoice_description.DoomRiderPassive2" text="{=str_tor_careerchoice_description_DoomRiderPassive2}Reduce the Dark Energy upkeep for vampire troops by 10%." />
   <string id="tor_careerchoice_description.DoomRiderPassive3" text="{=str_tor_careerchoice_description_DoomRiderPassive3}Party speed increases by 2." />
   <string id="tor_careerchoice_description.DoomRiderPassive4" text="{=str_tor_careerchoice_description_DoomRiderPassive4}Recruit defeated units as Blood Knights with a chance of 5% (10% for Tier >4)." />
   <string id="tor_careerchoice_description.ControlledHungerKeystone" text="{=str_tor_careerchoice_description_ControlledHungerKeystone}The duration of Red Fury is doubled." />
   <string id="tor_careerchoice_description.ControlledHungerPassive1" text="{=str_tor_careerchoice_description_ControlledHungerPassive1}Immune to sunlight malus." />
-  <string id="tor_careerchoice_description.ControlledHungerPassive2" text="{=str_tor_careerchoice_description_ControlledHungerPassive2}Increases Hitpoints by 50." />
+  <string id="tor_careerchoice_description.ControlledHungerPassive2" text="{=str_tor_careerchoice_description_ControlledHungerPassive2}Increases Hitpoints by 25." />
   <string id="tor_careerchoice_description.ControlledHungerPassive3" text="{=str_tor_careerchoice_description_ControlledHungerPassive3}Mount health is increased by 35%." />
   <string id="tor_careerchoice_description.ControlledHungerPassive4" text="{=str_tor_careerchoice_description_ControlledHungerPassive4}For every 200 damage hit the player gets healed by 1 Hit point(Maximum 5)." />
   <string id="tor_careerchoice_description.AvatarOfDeathKeystone" text="{=str_tor_careerchoice_description_AvatarOfDeathKeystone}Red Fury's resistance is now Ward save. The ability grants a scaling attack speed boost." />
-  <string id="tor_careerchoice_description.AvatarOfDeathPassive1" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive1}Gain 25% physical resistance to melee and ranged attacks." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive1" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive1}Gain 15% physical resistance to melee and ranged attacks." />
   <string id="tor_careerchoice_description.AvatarOfDeathPassive2" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive2}Reduce the Dark Energy upkeep for vampire troops by 20%." />
-  <string id="tor_careerchoice_description.AvatarOfDeathPassive3" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive3}The player gains 35% Magic resistance against spells." />
-  <string id="tor_careerchoice_description.AvatarOfDeathPassive4" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive4}25% Ward save for all vampire units." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive3" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive3}The player gains 20% Magic resistance against spells." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive4" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive4}15% Ward save for all vampire units." />
   <string id="tor_careerchoice_description.DreadKnightKeystone" text="{=str_tor_careerchoice_description_DreadKnightKeystone}Red Fury scales with Riding and consecutive kills during ability increase duration by 2 sec each." />
-  <string id="tor_careerchoice_description.DreadKnightPassive1" text="{=str_tor_careerchoice_description_DreadKnightPassive1}Increases Hitpoints by 75." />
+  <string id="tor_careerchoice_description.DreadKnightPassive1" text="{=str_tor_careerchoice_description_DreadKnightPassive1}Increases Hitpoints by 35." />
   <string id="tor_careerchoice_description.DreadKnightPassive2" text="{=str_tor_careerchoice_description_DreadKnightPassive2}Horse charge damage is increased by 50%." />
   <string id="tor_careerchoice_description.DreadKnightPassive3" text="{=str_tor_careerchoice_description_DreadKnightPassive3}Cavalry units get a 20% damage increase in damage." />
-  <string id="tor_careerchoice_description.DreadKnightPassive4" text="{=str_tor_careerchoice_description_DreadKnightPassive4}Extra 25% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.DreadKnightPassive4" text="{=str_tor_careerchoice_description_DreadKnightPassive4}Extra 20% armor penetration of melee attacks." />
 
   <!-- Mercenary Career Choice Descriptions -->
   <string id="tor_careerchoice_description.MercenaryRoot" text="{=str_tor_careerchoice_description_MercenaryRoot}The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills" />
