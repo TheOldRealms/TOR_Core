@@ -301,20 +301,7 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
             }
         }
 
-        var devotion = Hero.MainHero.GetDominantReligion();
-
-        if (devotion != null || Hero.MainHero.HasCareerChoice("SecularOrdersPassive3"))
-        {
-            if (characterObject.Tier < MINIMUMLEVELFORSEAL)
-            {
-                GameTexts.SetVariable("MINIMUMSEALLEVEL", MINIMUMLEVELFORSEAL);
-                displayText = TORTextHelper.GetTextObject("tor_purity_seal_tier_too_low_text", "Unit tier is not high enough. Minimum tier is {MINIMUMSEALLEVEL}.");
-                return false;
-            }
-            return true;
-        }
-
-        displayText = TORTextHelper.GetTextObject("tor_purity_seal_not_religious_enough_text", "You are not religious enough to provide a seal.");
+        displayText = TORTextHelper.GetTextObject("tor_purity_seal_not_religious_enough_text", "You are not religious enough to provide a seal or do not possess the Secular Order perk.");
         return false;
     }
 }
