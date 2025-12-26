@@ -2706,33 +2706,33 @@
   <string id="tor_careerchoice_description.BookofWsoranKeystone" text="{=str_tor_careerchoice_description_BookofWsoranKeystone}Your Champion gains 25% Wardsave and can't be staggered." />
   <string id="tor_careerchoice_description.GrimoireNecrisKeystone" text="{=str_tor_careerchoice_description_GrimoireNecrisKeystone}Harbinger kills gain 2HP for caster and the Champion. Harbinger gains a plate armor" />
   <string id="tor_careerchoice_description.BooksOfNagashKeystone" text="{=str_tor_careerchoice_description_BooksOfNagashKeystone}Regenerate per kill of your champion 1 winds of magic. Adds 20% magical damage to champion" />
-  <string id="tor_careerchoice_description.LiberNecrisPassive1" text="{=str_tor_careerchoice_description_LiberNecrisPassive1}Increases Party size by 10." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive1" text="{=str_tor_careerchoice_description_LiberNecrisPassive1}Undead troops party weight is reduced by 20%." />
   <string id="tor_careerchoice_description.LiberNecrisPassive2" text="{=str_tor_careerchoice_description_LiberNecrisPassive2}Harbinger kills increase rougery" />
-  <string id="tor_careerchoice_description.LiberNecrisPassive3" text="{=str_tor_careerchoice_description_LiberNecrisPassive3}Increases your health by 25." />
-  <string id="tor_careerchoice_description.LiberNecrisPassive4" text="{=str_tor_careerchoice_description_LiberNecrisPassive4}Increases magic spell damage by 10%." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive3" text="{=str_tor_careerchoice_description_LiberNecrisPassive3}Increases your health by 10." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive4" text="{=str_tor_careerchoice_description_LiberNecrisPassive4}Increases magic spell damage by 5%." />
   <string id="tor_careerchoice_description.DeArcanisKadonPassive1" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive1}10% extra melee damage for undead troops." />
-  <string id="tor_careerchoice_description.DeArcanisKadonPassive2" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive2}Increases Party size by 10." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive2" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive2}Undead troops party weight is reduced by 20%." />
   <string id="tor_careerchoice_description.DeArcanisKadonPassive3" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive3}15% cost reduction for spells." />
-  <string id="tor_careerchoice_description.DeArcanisKadonPassive4" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive4}Increases maximum winds of magic capacities by 15." />
-  <string id="tor_careerchoice_description.CodexMortificaPassive1" text="{=str_tor_careerchoice_description_CodexMortificaPassive1}Increases Party size by 10." />
-  <string id="tor_careerchoice_description.CodexMortificaPassive2" text="{=str_tor_careerchoice_description_CodexMortificaPassive2}Increases maximum winds of magic capacities by 10." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive4" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive4}Increases maximum winds of magic capacities by 5." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive1" text="{=str_tor_careerchoice_description_CodexMortificaPassive1}Undead troops party weight is reduced by 20%." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive2" text="{=str_tor_careerchoice_description_CodexMortificaPassive2}Increases maximum winds of magic capacities by 5." />
   <string id="tor_careerchoice_description.CodexMortificaPassive3" text="{=str_tor_careerchoice_description_CodexMortificaPassive3}Wounded troops in your party heal faster." />
   <string id="tor_careerchoice_description.CodexMortificaPassive4" text="{=str_tor_careerchoice_description_CodexMortificaPassive4}Tier 4 Undead troops can get wounded with a 20% lower chance." />
-  <string id="tor_careerchoice_description.LiberMortisPassive1" text="{=str_tor_careerchoice_description_LiberMortisPassive1}Increases Party size by 25." />
+  <string id="tor_careerchoice_description.LiberMortisPassive1" text="{=str_tor_careerchoice_description_LiberMortisPassive1}Increases maximum winds of magic capacities by 5." />
   <string id="tor_careerchoice_description.LiberMortisPassive2" text="{=str_tor_careerchoice_description_LiberMortisPassive2}Attacks of undead troops can penetrate 15% armor." />
   <string id="tor_careerchoice_description.LiberMortisPassive3" text="{=str_tor_careerchoice_description_LiberMortisPassive3}Undead troops gain 10% extra physical melee damage." />
   <string id="tor_careerchoice_description.LiberMortisPassive4" text="{=str_tor_careerchoice_description_LiberMortisPassive4}20% Spell cooldown reduction." />
-  <string id="tor_careerchoice_description.BookofWsoranPassive1" text="{=str_tor_careerchoice_description_BookofWsoranPassive1}Increases Party size by 50." />
-  <string id="tor_careerchoice_description.BookofWsoranPassive2" text="{=str_tor_careerchoice_description_BookofWsoranPassive2}Increase hex durations by 50%." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive1" text="{=str_tor_careerchoice_description_BookofWsoranPassive1}Increases Party size by 25." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive2" text="{=str_tor_careerchoice_description_BookofWsoranPassive2}Increase hex durations by 25%." />
   <string id="tor_careerchoice_description.BookofWsoranPassive3" text="{=str_tor_careerchoice_description_BookofWsoranPassive3}Undead troops gain 25% Ward save." />
   <string id="tor_careerchoice_description.BookofWsoranPassive4" text="{=str_tor_careerchoice_description_BookofWsoranPassive4}Gain 0.5 Dark Energy for every Grave guard troop." />
   <string id="tor_careerchoice_description.GrimoireNecrisPassive1" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive1}Undead troops gain 10% extra magical melee damage." />
   <string id="tor_careerchoice_description.GrimoireNecrisPassive2" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive2}Dark Energy Upkeep costs are reduced by 25%" />
-  <string id="tor_careerchoice_description.GrimoireNecrisPassive3" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive3}Buffs and healing duration is increased by 50%." />
-  <string id="tor_careerchoice_description.GrimoireNecrisPassive4" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive4}For every magical item equipped you summon 1 unit more." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive3" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive3}Buffs and healing duration is increased by 35%." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive4" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive4}For every enchantment on equipment you summon 1 unit more." />
   <string id="tor_careerchoice_description.BooksOfNagashPassive1" text="{=str_tor_careerchoice_description_BooksOfNagashPassive1}Gain 15 Dark Energy daily." />
-  <string id="tor_careerchoice_description.BooksOfNagashPassive2" text="{=str_tor_careerchoice_description_BooksOfNagashPassive2}Increases Party size by 100." />
-  <string id="tor_careerchoice_description.BooksOfNagashPassive3" text="{=str_tor_careerchoice_description_BooksOfNagashPassive3}Increases maximum winds of magic capacities by 25." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive2" text="{=str_tor_careerchoice_description_BooksOfNagashPassive2}Increases Party size by 50." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive3" text="{=str_tor_careerchoice_description_BooksOfNagashPassive3}Increases maximum winds of magic capacities by 15." />
   <string id="tor_careerchoice_description.BooksOfNagashPassive4" text="{=str_tor_careerchoice_description_BooksOfNagashPassive4}Dark Energy cost for undead troop upgrades is reduced by 50%." />
 
   <!-- VampireCount Career Choice Descriptions -->

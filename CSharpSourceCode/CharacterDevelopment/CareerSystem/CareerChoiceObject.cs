@@ -302,6 +302,6 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         BattleRenownGain,    //applied as a factor
         MoraleDamageToEnemyOnKill,  // Extra enemy morale loss when filtered unit kills, percentage based
         EnchantmentCostReduction,   //Enchantment ingredient cost reduction as Percentage
-        UnitPartyWeight             //Reduces how much matching units count towards party limit (0.5 = counts half)
+        UnitPartyWeight             //Reduces party weight of matching units (0.2 = 20% reduction). Stacks additively with other perks.
     }
 }

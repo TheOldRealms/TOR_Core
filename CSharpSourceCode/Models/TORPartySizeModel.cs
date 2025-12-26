@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.RaidingParties;
@@ -199,8 +200,8 @@ namespace TOR_Core.Models
                 if (choice?.Passive == null) continue;
                 if (choice.Passive.PassiveEffectType != PassiveEffectType.UnitPartyWeight) continue;
 
-                float weight = choice.Passive.EffectMagnitude;
-                if (weight <= 0f || weight > 0.95f) continue; // Invalid weight values, max 0.95
+                float reduction = MathF.Clamp(choice.Passive.EffectMagnitude, 0f, 0.9f);
+                if (reduction <= 0f) continue;
 
                 int matchingUnitCount = 0;
                 foreach (var element in party.MemberRoster.GetTroopRoster())
@@ -213,10 +214,9 @@ namespace TOR_Core.Models
 
                 if (matchingUnitCount > 0)
                 {
-                    // Weight 0.75 means each unit counts as 75% towards limit, saving 0.25 slots per unit
-                    // So every 4 matching units = 1 extra party slot (4 * 0.25 = 1)
-                    // Formula: bonusSlots = matchingCount * (1 - weight)
-                    float bonusSlots = matchingUnitCount * (1f - weight);
+                    // Reduction 0.2 means 20% weight reduction, freeing 0.2 slots per matching unit
+                    // Multiple perks stack additively: 0.2 + 0.2 = 0.4 (40% total reduction)
+                    float bonusSlots = matchingUnitCount * reduction;
                     number.Add(bonusSlots, new TextObject(choice.BelongsToGroup.Name.ToString()));
                 }
             }

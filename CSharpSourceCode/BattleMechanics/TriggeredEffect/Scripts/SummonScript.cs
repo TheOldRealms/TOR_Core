@@ -35,10 +35,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
 
                         foreach (var item in equipmentItems)
                         {
-                            if (item.IsMagicalItem())
-                            {
-                                bonus++;
-                            }
+                            bonus += item.GetTraits().Count;
                         }
                     }
                 }
