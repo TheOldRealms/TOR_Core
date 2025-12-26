@@ -3119,39 +3119,39 @@
   <string id="tor_careerchoice_description.SpellSingerRoot" text="{=str_tor_careerchoice_description_SpellSingerRoot}Calls treespirits of the surouding forests. Every point in Spellcraft increases the chance by 0.05% additional treespirits join the combat." />
   <string id="tor_careerchoice_description.PathShapingKeystone" text="{=str_tor_careerchoice_description_PathShapingKeystone}Upon casting, all forest spirits are moving faster for 10 seconds. Ability scales with Scouting" />
   <string id="tor_careerchoice_description.PathShapingPassive1" text="{=str_tor_careerchoice_description_PathShapingPassive1}Party movement speed is increased by 1." />
-  <string id="tor_careerchoice_description.PathShapingPassive2" text="{=str_tor_careerchoice_description_PathShapingPassive2}Upkeep for elven units is reduced by 15%." />
+  <string id="tor_careerchoice_description.PathShapingPassive2" text="{=str_tor_careerchoice_description_PathShapingPassive2}Upkeep for elven units is reduced by 10%." />
   <string id="tor_careerchoice_description.PathShapingPassive3" text="{=str_tor_careerchoice_description_PathShapingPassive3}The Spotting range of the party is increased by 20%." />
-  <string id="tor_careerchoice_description.PathShapingPassive4" text="{=str_tor_careerchoice_description_PathShapingPassive4}Gain 15% Ward save." />
-  <string id="tor_careerchoice_description.TreeSingingKeystone" text="{=str_tor_careerchoice_description_TreeSingingKeystone}Charge is increased by 50%. +5 base troops for summoning." />
-  <string id="tor_careerchoice_description.TreeSingingPassive1" text="{=str_tor_careerchoice_description_TreeSingingPassive1}Increases maximum winds of magic capacities by 10." />
-  <string id="tor_careerchoice_description.TreeSingingPassive2" text="{=str_tor_careerchoice_description_TreeSingingPassive2}Gain 20 Harmony daily." />
+  <string id="tor_careerchoice_description.PathShapingPassive4" text="{=str_tor_careerchoice_description_PathShapingPassive4}Gain 15% Ward save if wearing less than 15 stones of armor." />
+  <string id="tor_careerchoice_description.TreeSingingKeystone" text="{=str_tor_careerchoice_description_TreeSingingKeystone}Charge is increased by 50%. +2 base troops for summoning." />
+  <string id="tor_careerchoice_description.TreeSingingPassive1" text="{=str_tor_careerchoice_description_TreeSingingPassive1}Increases maximum winds of magic capacities by 5." />
+  <string id="tor_careerchoice_description.TreeSingingPassive2" text="{=str_tor_careerchoice_description_TreeSingingPassive2}Gain 15 Harmony daily." />
   <string id="tor_careerchoice_description.TreeSingingPassive3" text="{=str_tor_careerchoice_description_TreeSingingPassive3}Upkeep for dryads units is reduced by 10%." />
-  <string id="tor_careerchoice_description.TreeSingingPassive4" text="{=str_tor_careerchoice_description_TreeSingingPassive4}For every known spell increase party size by 3" />
+  <string id="tor_careerchoice_description.TreeSingingPassive4" text="{=str_tor_careerchoice_description_TreeSingingPassive4}For every known spell increase party size by 3." />
   <string id="tor_careerchoice_description.VitalSurgeKeystone" text="{=str_tor_careerchoice_description_VitalSurgeKeystone}Every spawned unit heals 1 HP for all heroes. Ability scales with Medicine" />
-  <string id="tor_careerchoice_description.VitalSurgePassive1" text="{=str_tor_careerchoice_description_VitalSurgePassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.VitalSurgePassive2" text="{=str_tor_careerchoice_description_VitalSurgePassive2}Increases troop regeneration by 2." />
-  <string id="tor_careerchoice_description.VitalSurgePassive3" text="{=str_tor_careerchoice_description_VitalSurgePassive3}Buffs and healing duration is increased by 25%." />
-  <string id="tor_careerchoice_description.VitalSurgePassive4" text="{=str_tor_careerchoice_description_VitalSurgePassive4}Player healing rate increased by 4" />
+  <string id="tor_careerchoice_description.VitalSurgePassive1" text="{=str_tor_careerchoice_description_VitalSurgePassive1}Increases Hitpoints by 15." />
+  <string id="tor_careerchoice_description.VitalSurgePassive2" text="{=str_tor_careerchoice_description_VitalSurgePassive2}Increases troop regeneration by 1." />
+  <string id="tor_careerchoice_description.VitalSurgePassive3" text="{=str_tor_careerchoice_description_VitalSurgePassive3}Buffs and healing duration is increased by 20%." />
+  <string id="tor_careerchoice_description.VitalSurgePassive4" text="{=str_tor_careerchoice_description_VitalSurgePassive4}Player healing rate increased by 2." />
   <string id="tor_careerchoice_description.HeartOfTheTreeKeystone" text="{=str_tor_careerchoice_description_HeartOfTheTreeKeystone}Treespirit attacks charge Career Ability. Ability scales with Leadership" />
   <string id="tor_careerchoice_description.HeartOfTheTreePassive1" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive1}tree spirits deal 15% extra damage." />
-  <string id="tor_careerchoice_description.HeartOfTheTreePassive2" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive2}dryads gain 25% Wardsave." />
+  <string id="tor_careerchoice_description.HeartOfTheTreePassive2" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive2}Dryads gain 15% Wardsave." />
   <string id="tor_careerchoice_description.HeartOfTheTreePassive3" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive3}Upkeep for tree spirit units is reduced by 15%." />
-  <string id="tor_careerchoice_description.HeartOfTheTreePassive4" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive4}Every joining friendly tree spirit unit has a 25% chance to provide 1 wind." />
+  <string id="tor_careerchoice_description.HeartOfTheTreePassive4" text="{=str_tor_careerchoice_description_HeartOfTheTreePassive4}For every tree spirit unit in the party, gain 0.5 maximum winds." />
   <string id="tor_careerchoice_description.ArielsBlessingKeystone" text="{=str_tor_careerchoice_description_ArielsBlessingKeystone}Ability starts charged. Ability scales with Faith" />
-  <string id="tor_careerchoice_description.ArielsBlessingPassive1" text="{=str_tor_careerchoice_description_ArielsBlessingPassive1}20% extra magical melee damage." />
-  <string id="tor_careerchoice_description.ArielsBlessingPassive2" text="{=str_tor_careerchoice_description_ArielsBlessingPassive2}Increases maximum winds of magic capacities by 15." />
-  <string id="tor_careerchoice_description.ArielsBlessingPassive3" text="{=str_tor_careerchoice_description_ArielsBlessingPassive3}Isha's blessing also provides 20 Forest harmony daily" />
-  <string id="tor_careerchoice_description.ArielsBlessingPassive4" text="{=str_tor_careerchoice_description_ArielsBlessingPassive4}Spell effect radius is increased by 20%." />
+  <string id="tor_careerchoice_description.ArielsBlessingPassive1" text="{=str_tor_careerchoice_description_ArielsBlessingPassive1}10% extra magical melee damage." />
+  <string id="tor_careerchoice_description.ArielsBlessingPassive2" text="{=str_tor_careerchoice_description_ArielsBlessingPassive2}Increases maximum winds of magic capacities by 5." />
+  <string id="tor_careerchoice_description.ArielsBlessingPassive3" text="{=str_tor_careerchoice_description_ArielsBlessingPassive3}Isha's blessing also provides 15 Forest harmony daily." />
+  <string id="tor_careerchoice_description.ArielsBlessingPassive4" text="{=str_tor_careerchoice_description_ArielsBlessingPassive4}Spell effect radius is increased by 15%." />
   <string id="tor_careerchoice_description.MagicOfAthelLorenKeystone" text="{=str_tor_careerchoice_description_MagicOfAthelLorenKeystone}for 10 seconds after casting, dryad kills gain 0.5 Wind." />
-  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive1" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive1}15% extra magical spell damage." />
-  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive2" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive2}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive1" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive1}5% extra magical spell damage." />
+  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive2" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive2}Increases maximum winds of magic capacities by 5." />
   <string id="tor_careerchoice_description.MagicOfAthelLorenPassive3" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive3}tree spirits are not affected by friendly fire." />
-  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive4" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive4}Increase hex durations by 35%." />
+  <string id="tor_careerchoice_description.MagicOfAthelLorenPassive4" text="{=str_tor_careerchoice_description_MagicOfAthelLorenPassive4}Increase hex durations by 20%." />
   <string id="tor_careerchoice_description.FuryOfTheForestKeystone" text="{=str_tor_careerchoice_description_FuryOfTheForestKeystone}Call 1 Treeman with ability (or 10 dryads in close quarter Missions)" />
-  <string id="tor_careerchoice_description.FuryOfTheForestPassive1" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive1}A Dark weaver provides 15% extra Maigcal damage to all heroes." />
-  <string id="tor_careerchoice_description.FuryOfTheForestPassive2" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive2}A High weaver provides 25% extra wardsave to all heroes." />
-  <string id="tor_careerchoice_description.FuryOfTheForestPassive3" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive3}Treeman Upkeep is reduced by 25%" />
-  <string id="tor_careerchoice_description.FuryOfTheForestPassive4" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive4}35% Spell cooldown reduction." />
+  <string id="tor_careerchoice_description.FuryOfTheForestPassive1" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive1}A Dark weaver provides 10% extra magical damage to all heroes." />
+  <string id="tor_careerchoice_description.FuryOfTheForestPassive2" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive2}A High weaver provides 15% extra wardsave to all heroes." />
+  <string id="tor_careerchoice_description.FuryOfTheForestPassive3" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive3}Treeman Upkeep is reduced by 20%." />
+  <string id="tor_careerchoice_description.FuryOfTheForestPassive4" text="{=str_tor_careerchoice_description_FuryOfTheForestPassive4}20% Spell cooldown reduction." />
 
   <!-- GreyLord Career Choice Descriptions -->
   <string id="tor_careerchoice_description.GreyLordRoot" text="{=str_tor_careerchoice_description_GreyLordRoot}As a master of Winds of Magic and forbidden arts, the Grey Lord conjures subtle whispers inside the enemy's mind and convinces the foes in the area to turn on their allies. After all, a true Grey Lord knows better than to cloud his judgment with trifling matters of morality. {newline} The chance to turn enemies rises with Spellcraft skills, the health and the level of targets as well as each keystone perk selected" />

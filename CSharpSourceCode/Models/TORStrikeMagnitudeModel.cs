@@ -91,16 +91,10 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (attackerCaptain.IsPlayerCharacter && Hero.MainHero.HasCareer(TORCareers.Spellsinger))
+                    // Tree spirits always ignore 80% of enemy armor
+                    if (attacker.IsTreeSpirit())
                     {
-                        if (Hero.MainHero.HasCareerChoice("HeartOfTheTreePassive4"))
-                        {
-                            if (attacker.IsTreeSpirit())
-                            {
-                                resultArmor.AddFactor(-0.8f);
-                            }
-                        }
-
+                        resultArmor.AddFactor(-0.8f);
                     }
 
                 }
