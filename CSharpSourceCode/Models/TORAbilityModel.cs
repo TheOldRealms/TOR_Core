@@ -612,7 +612,14 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasAttribute("WEArielSymbol"))
                 {
-                    explainedNumber.Add(10, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                    if (hero.PartyBelongedTo.InAthelLoren())
+                    {
+                        explainedNumber.Add(15, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                    }
+                    else
+                    {
+                        explainedNumber.Add(5, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                    }
                 }
             }
 
