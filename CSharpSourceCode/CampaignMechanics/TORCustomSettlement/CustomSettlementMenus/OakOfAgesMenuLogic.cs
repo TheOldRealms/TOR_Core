@@ -314,24 +314,15 @@ public class OakOfAgesMenuLogic(CampaignGameStarter campaignGameStarter) : TORBa
                 return true;
             }
 
-            var amount = 0;
-
             var capableSpellsinger = MobileParty.MainParty.GetMemberHeroes().Where(x => x.IsSpellSinger()).MaxBy(x => x.GetSkillValue(TORSkills.Spellcraft));
-            amount += capableSpellsinger.GetSkillValue(TORSkills.Spellcraft) / 100;
-
-            if (amount == 0) //Durthu symbol only increases the cap, it doesn't decrease the minimum spellcraft required
+            if (capableSpellsinger == null || capableSpellsinger.GetSkillValue(TORSkills.Spellcraft) < 100)
             {
                 args.Tooltip = TORTextHelper.GetTextObject("tor_oak_of_ages_no_spellsinger", "No sufficiently strong spellsinger present who can convince the spirits to follow you.");
                 args.IsEnabled = false;
                 return true;
             }
-            if (mainHero.HasAttribute("WEDurthuSymbol")) amount += 1;
 
-            if (mainHero.PartyBelongedTo.Party.MemberRoster.GetTroopRoster().Where(x => x.Character.StringId.Contains("treeman")).Count() > amount)
-            {
-                args.Tooltip = TORTextHelper.GetTextObject("tor_oak_of_ages_too_many_treemen", "Too many treemen already follow your party.");
-                args.IsEnabled = false;
-            }
+            // Party weight system now limits treemen count naturally (25 slots each)
             return true;
         }
 

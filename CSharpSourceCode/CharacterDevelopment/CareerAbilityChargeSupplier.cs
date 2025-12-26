@@ -372,6 +372,16 @@ namespace TOR_Core.CharacterDevelopment
                 {
                     return 0;
                 }
+
+                // Tree spirit melee attacks contribute 10% of damage (minimum 1)
+                float charge = chargeValue * 0.1f;
+
+                if (Hero.MainHero.HasCareerChoice("TreeSingingKeystone"))
+                {
+                    charge *= 1.5f;
+                }
+
+                return Mathf.Max(charge, 1);
             }
 
             var explainedNumber = new ExplainedNumber(chargeValue);

@@ -585,6 +585,12 @@ namespace TOR_Core.Models
                 CareerHelper.ApplyBasicCareerPassives(agent.GetHero(), ref movementSpeed, PassiveEffectType.MovementSpeed);
             }
 
+            // WEWardancerSymbol: +10% swing speed
+            if (agent.IsMainAgent && Hero.MainHero.HasAttribute("WEWardancerSymbol"))
+            {
+                swingSpeed.AddFactor(0.10f);
+            }
+
             agentDrivenProperties.WeaponMaxMovementAccuracyPenalty = movementAccuracyPenalty.ResultNumber;
             agentDrivenProperties.WeaponInaccuracy = accuracyPenalty.ResultNumber;
             agentDrivenProperties.SwingSpeedMultiplier = swingSpeed.ResultNumber;

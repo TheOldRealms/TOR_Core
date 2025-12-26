@@ -531,6 +531,28 @@ namespace TOR_Core.Models
                             }
                         }
                     }
+
+                    // HeartOfTheTreePassive4: +0.5 max Winds per tree spirit unit in party
+                    if (careerChoices.Contains("HeartOfTheTreePassive4"))
+                    {
+                        var party = hero.PartyBelongedTo;
+                        if (party?.MemberRoster != null)
+                        {
+                            int treeSpiritCount = 0;
+                            foreach (var element in party.MemberRoster.GetTroopRoster())
+                            {
+                                if (element.Character != null && element.Character.IsTreeSpirit())
+                                {
+                                    treeSpiritCount += element.Number;
+                                }
+                            }
+                            if (treeSpiritCount > 0)
+                            {
+                                var choice = TORCareerChoices.GetChoice("HeartOfTheTreePassive4");
+                                explainedNumber.Add(choice.GetPassiveValue() * treeSpiritCount);
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -592,11 +614,11 @@ namespace TOR_Core.Models
                 {
                     if (hero.PartyBelongedTo.InAthelLoren())
                     {
-                        explainedNumber.Add(20, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                        explainedNumber.Add(15, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                     }
                     else
                     {
-                        explainedNumber.Add(10, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                        explainedNumber.Add(5, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                     }
                 }
             }
