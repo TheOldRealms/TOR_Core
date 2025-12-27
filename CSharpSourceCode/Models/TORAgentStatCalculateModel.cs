@@ -632,15 +632,14 @@ namespace TOR_Core.Models
 
         public override float GetEquipmentStealthBonus(Agent agent)
         {
-            var bonus = base.GetEquipmentStealthBonus(agent);
+            var bonus = new ExplainedNumber(base.GetEquipmentStealthBonus(agent));
 
-            // Forest Stalker passive: +20% equipment stealth bonus
-            if (agent == Agent.Main && Hero.MainHero.HasCareerChoice("ForestStalkerPassive4"))
+            if (agent == Agent.Main && Hero.MainHero.HasAnyCareer())
             {
-                bonus += 20f;
+                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref bonus, PassiveEffectType.StealthBonus);
             }
 
-            return bonus;
+            return bonus.ResultNumber;
         }
 
         //The moment you realize they forget to add an override statement. if they do it needs to be moved on the EffectiveArmorEncumbrance
