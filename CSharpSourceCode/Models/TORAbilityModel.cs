@@ -86,14 +86,15 @@ namespace TOR_Core.Models
 
                 if (playerHero.HasCareer(TORCareers.GreyLord))
                 {
-                    if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicPassive4"))
+                    var choice = TORCareerChoices.GetChoice("UnrestrictedMagicPassive4");
+                    if (choice != null && Hero.MainHero.HasCareerChoice("UnrestrictedMagicPassive4"))
                     {
                         if (Agent.Main != null)
                         {
                             var comp = Agent.Main.GetComponent<AbilityComponent>();
                             if (!CareerChoicesHelper.ContainsSpellType(comp, [AbilityTargetType.AlliesInAOE, AbilityTargetType.EnemiesInAOE, AbilityTargetType.GroundAtPosition]))
                             {
-                                explainedNumber.AddFactor(2);
+                                explainedNumber.AddFactor(choice.GetPassiveValue());
                             }
                         }
 
@@ -156,12 +157,13 @@ namespace TOR_Core.Models
                 {
                     if (playerHero.HasCareer(TORCareers.GreyLord))
                     {
-                        if (playerHero.HasCareerChoice("LegendsOfMalokPassive4")) //this can go into BasicCareerPassives if the perk was set up differently
+                        var choice = TORCareerChoices.GetChoice("LegendsOfMalokPassive4");
+                        if (choice != null && playerHero.HasCareerChoice("LegendsOfMalokPassive4"))
                         {
-                            var count = Agent.Main.GetAbilities().Count; //Sly : this is wrong - description states equipped spells, not known ones
+                            var count = Agent.Main.GetAbilities().Count;
                             if (!CareerChoicesHelper.ContainsSpellType(Agent.Main.GetComponent<AbilityComponent>(), count, AbilityEffectType.Hex))
                             {
-                                explainedNumber.AddFactor(0.25f); //value is wrong, PassiveEffect should be corrected, then access it's value here
+                                explainedNumber.AddFactor(choice.GetPassiveValue());
                             }
                         }
                     }
@@ -225,41 +227,53 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
                 {
-                    if (template.AbilityEffectType == AbilityEffectType.Heal && Hero.MainHero.HasCareerChoice("SoulBindingPassive4"))
+                    if (template.AbilityEffectType == AbilityEffectType.Heal)
                     {
-                        var comp = Agent.Main.GetComponent<AbilityComponent>();
-                        if (comp != null)
+                        var choice = TORCareerChoices.GetChoice("SoulBindingPassive4");
+                        if (choice != null && Hero.MainHero.HasCareerChoice("SoulBindingPassive4"))
                         {
-                            var count = Agent.Main.GetAbilities().Count;
-                            if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Projectile))
+                            var comp = Agent.Main.GetComponent<AbilityComponent>();
+                            if (comp != null)
                             {
-                                explainedNumber.AddFactor(0.5f);
+                                var count = Agent.Main.GetAbilities().Count;
+                                if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Projectile))
+                                {
+                                    explainedNumber.AddFactor(choice.GetPassiveValue());
+                                }
                             }
                         }
                     }
 
-                    if (template.AbilityEffectType == AbilityEffectType.Hex && Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryPassive4"))
+                    if (template.AbilityEffectType == AbilityEffectType.Hex)
                     {
-                        var comp = Agent.Main.GetComponent<AbilityComponent>();
-                        if (comp != null)
+                        var choice = TORCareerChoices.GetChoice("ForbiddenScrollsOfSapheryPassive4");
+                        if (choice != null && Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryPassive4"))
                         {
-                            var count = Agent.Main.GetAbilities().Count;
-                            if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Heal))
+                            var comp = Agent.Main.GetComponent<AbilityComponent>();
+                            if (comp != null)
                             {
-                                explainedNumber.AddFactor(0.5f);
+                                var count = Agent.Main.GetAbilities().Count;
+                                if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Heal))
+                                {
+                                    explainedNumber.AddFactor(choice.GetPassiveValue());
+                                }
                             }
                         }
                     }
 
-                    if (template.AbilityEffectType == AbilityEffectType.Vortex || template.AbilityEffectType == AbilityEffectType.Bombardment && Hero.MainHero.HasCareerChoice("ByAllMeansPassive4"))
+                    if (template.AbilityEffectType == AbilityEffectType.Vortex || template.AbilityEffectType == AbilityEffectType.Bombardment)
                     {
-                        var comp = Agent.Main.GetComponent<AbilityComponent>();
-                        if (comp != null)
+                        var choice = TORCareerChoices.GetChoice("ByAllMeansPassive4");
+                        if (choice != null && Hero.MainHero.HasCareerChoice("ByAllMeansPassive4"))
                         {
-                            var count = Agent.Main.GetAbilities().Count;
-                            if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Augment))
+                            var comp = Agent.Main.GetComponent<AbilityComponent>();
+                            if (comp != null)
                             {
-                                explainedNumber.AddFactor(0.5f);
+                                var count = Agent.Main.GetAbilities().Count;
+                                if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Augment))
+                                {
+                                    explainedNumber.AddFactor(choice.GetPassiveValue());
+                                }
                             }
                         }
                     }

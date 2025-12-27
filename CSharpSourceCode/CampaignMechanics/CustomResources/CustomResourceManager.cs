@@ -311,7 +311,13 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
                 if (playerHero.HasCareerChoice("UnrestrictedMagicPassive3"))
                 {
-                    renownChange *= 1.2f;
+                    var choice = TORCareerChoices.GetChoice("UnrestrictedMagicPassive3");
+                    if (choice != null)
+                    {
+                        var bonus = choice.GetPassiveValue();
+                        if (choice.Passive.InterpretAsPercentage) bonus /= 100;
+                        renownChange *= (1 + bonus);
+                    }
                 }
 
                 if (playerHero.HasCareerChoice("CollegeOrdersPassive3"))

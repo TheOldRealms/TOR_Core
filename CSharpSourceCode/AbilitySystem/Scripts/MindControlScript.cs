@@ -142,7 +142,7 @@ public class MindControlScript : CareerAbilityScript
 
         if (Hero.MainHero.HasCareerChoice("SecretOfFellfangKeystone"))
         {
-            Hero.MainHero.AddWindsOfMagic(3);
+            Hero.MainHero.AddWindsOfMagic(1);
         }
     }
 

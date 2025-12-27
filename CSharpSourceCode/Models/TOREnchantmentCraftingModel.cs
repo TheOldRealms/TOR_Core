@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TOR_Core.AbilitySystem;
 using TOR_Core.CampaignMechanics.Crafting;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
@@ -40,6 +42,20 @@ public class TOREnchantmentCraftingModel : GameModel
             if (hero.HasKnownEnchantmentBlueprint(itemTrait.ItemTraitStringId))
             {
                 CharacterDevelopment.CareerSystem.CareerHelper.ApplyBasicCareerPassives(hero, ref explainedNumber, PassiveEffectType.EnchantmentCostReduction, true);
+
+                // Greylord: For every known spell, reduce enchantment cost by 1%
+                if (hero.HasCareerChoice("ForbiddenScrollsOfSapheryPassive3"))
+                {
+                    var choice = TORCareerChoices.GetChoice("ForbiddenScrollsOfSapheryPassive3");
+                    if (choice != null)
+                    {
+                        var spellCount = hero.GetExtendedInfo().AllAbilities
+                            .Select(AbilityFactory.GetTemplate)
+                            .Count(ability => ability != null && ability.IsSpell);
+                        var reductionPercent = spellCount * choice.GetPassiveValue();
+                        explainedNumber.AddFactor(reductionPercent / 100f);
+                    }
+                }
             }
         }
 

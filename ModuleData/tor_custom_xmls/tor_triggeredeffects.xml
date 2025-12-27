@@ -2780,7 +2780,7 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Fire"
-                             DamageAmount="40"
+                             DamageAmount="20"
                              Radius="0"
                              HasShockWave="false"
                              TargetType="Enemy"
