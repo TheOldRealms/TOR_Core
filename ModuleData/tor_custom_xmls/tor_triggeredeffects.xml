@@ -3542,4 +3542,17 @@
                              DamageVariance="0.2"
                              ScriptNameToTrigger="none" />
 
+	<!-- Lethal Shot - Moonfire Explosion (Waywatcher) -->
+	<TriggeredEffectTemplate StringID="moonfire_explosion"
+                             BurstParticleEffectPrefab="fire_particle_explosion"
+                             SoundEffectId="dart_explosion"
+                             SoundEffectLength="1.5"
+                             DamageType="Magical"
+                             DamageAmount="25"
+                             Radius="2"
+                             HasShockWave="false"
+                             TargetType="Enemy"
+                             DamageVariance="0.1"
+                             ScriptNameToTrigger="none" />
+
 </TriggeredEffectTemplates>
