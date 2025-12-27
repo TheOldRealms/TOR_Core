@@ -3156,40 +3156,40 @@
   <!-- GreyLord Career Choice Descriptions -->
   <string id="tor_careerchoice_description.GreyLordRoot" text="{=str_tor_careerchoice_description_GreyLordRoot}As a master of Winds of Magic and forbidden arts, the Grey Lord conjures subtle whispers inside the enemy's mind and convinces the foes in the area to turn on their allies. After all, a true Grey Lord knows better than to cloud his judgment with trifling matters of morality. {newline} The chance to turn enemies rises with Spellcraft skills, the health and the level of targets as well as each keystone perk selected" />
   <string id="tor_careerchoice_description.CaelithsWisdomKeystone" text="{=str_tor_careerchoice_description_CaelithsWisdomKeystone}2 additional overtakes. Ability scales with Leadership. Melee damage can charge ability." />
-  <string id="tor_careerchoice_description.CaelithsWisdomPassive1" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.CaelithsWisdomPassive2" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive2}Gain 25% fire resistance." />
+  <string id="tor_careerchoice_description.CaelithsWisdomPassive1" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive1}Increases Hitpoints by 10." />
+  <string id="tor_careerchoice_description.CaelithsWisdomPassive2" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive2}Gain 10% fire resistance." />
   <string id="tor_careerchoice_description.CaelithsWisdomPassive3" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive3}Cityborn upkeep is reduced by 25%." />
-  <string id="tor_careerchoice_description.CaelithsWisdomPassive4" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive4}Cityborn troops gain 50% fire resistance." />
+  <string id="tor_careerchoice_description.CaelithsWisdomPassive4" text="{=str_tor_careerchoice_description_CaelithsWisdomPassive4}Cityborn troops gain 25% fire resistance." />
   <string id="tor_careerchoice_description.SoulBindingKeystone" text="{=str_tor_careerchoice_description_SoulBindingKeystone}Controlled unit gets healed completely. Ability scales with medicine." />
-  <string id="tor_careerchoice_description.SoulBindingPassive1" text="{=str_tor_careerchoice_description_SoulBindingPassive1}Increases maximum winds of magic capacities by 10." />
-  <string id="tor_careerchoice_description.SoulBindingPassive2" text="{=str_tor_careerchoice_description_SoulBindingPassive2}Increases Magic resistance against spells by 25%." />
+  <string id="tor_careerchoice_description.SoulBindingPassive1" text="{=str_tor_careerchoice_description_SoulBindingPassive1}Increases maximum winds of magic capacities by 5." />
+  <string id="tor_careerchoice_description.SoulBindingPassive2" text="{=str_tor_careerchoice_description_SoulBindingPassive2}Increases Magic resistance against spells by 15%." />
   <string id="tor_careerchoice_description.SoulBindingPassive3" text="{=str_tor_careerchoice_description_SoulBindingPassive3}Wounded troops in your party heal faster." />
-  <string id="tor_careerchoice_description.SoulBindingPassive4" text="{=str_tor_careerchoice_description_SoulBindingPassive4}Not wielding projectile spells increase spell duration for healing spells by 50%" />
+  <string id="tor_careerchoice_description.SoulBindingPassive4" text="{=str_tor_careerchoice_description_SoulBindingPassive4}Not wielding projectile spells increase spell duration for healing spells by 35%" />
   <string id="tor_careerchoice_description.LegendsOfMalokKeystone" text="{=str_tor_careerchoice_description_LegendsOfMalokKeystone}control chance is 15% higher. Ability starts charged. " />
-  <string id="tor_careerchoice_description.LegendsOfMalokPassive1" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive1}Increases maximum winds of magic capacities by 10." />
+  <string id="tor_careerchoice_description.LegendsOfMalokPassive1" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive1}Increases maximum winds of magic capacities by 5." />
   <string id="tor_careerchoice_description.LegendsOfMalokPassive2" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive2}Favor costs for cityborn  troop upgrades is reduced by 20%." />
-  <string id="tor_careerchoice_description.LegendsOfMalokPassive3" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive3}Adds 25% fire damage to all troops." />
+  <string id="tor_careerchoice_description.LegendsOfMalokPassive3" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive3}Adds 15% fire damage to all troops." />
   <string id="tor_careerchoice_description.LegendsOfMalokPassive4" text="{=str_tor_careerchoice_description_LegendsOfMalokPassive4}If no hex spells are equipped you gain 50% spell radius." />
-  <string id="tor_careerchoice_description.UnrestrictedMagicKeystone" text="{=str_tor_careerchoice_description_UnrestrictedMagicKeystone}When the controlled dies he explodes. Unsucessful control hurt the enemy by 40 HP." />
-  <string id="tor_careerchoice_description.UnrestrictedMagicPassive1" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive1}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.UnrestrictedMagicKeystone" text="{=str_tor_careerchoice_description_UnrestrictedMagicKeystone}When the controlled dies he explodes. Unsucessful control hurt the enemy by 20 HP." />
+  <string id="tor_careerchoice_description.UnrestrictedMagicPassive1" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive1}Increases maximum winds of magic capacities by 10." />
   <string id="tor_careerchoice_description.UnrestrictedMagicPassive2" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive2}Spell effect radius is increased by 20%." />
   <string id="tor_careerchoice_description.UnrestrictedMagicPassive3" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive3}Favor gain from battles is increased by 20%" />
-  <string id="tor_careerchoice_description.UnrestrictedMagicPassive4" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive4}If no AOE effect is equipped, your projectile spells deal 200% extra damage." />
+  <string id="tor_careerchoice_description.UnrestrictedMagicPassive4" text="{=str_tor_careerchoice_description_UnrestrictedMagicPassive4}If no AOE effect is equipped, your projectile spells deal 150% extra damage." />
   <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryKeystone" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryKeystone}Companion damage can charge ability. Range is doubled. Scale with Charm" />
   <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryPassive1" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryPassive1}Increases Windsregeneration by 0.5." />
   <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryPassive2" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryPassive2}Increase hex durations by 20%." />
-  <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryPassive3" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryPassive3}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryPassive3" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryPassive3}For every known spell the cost for enchantments is reduced by 1%." />
   <string id="tor_careerchoice_description.ForbiddenScrollsOfSapheryPassive4" text="{=str_tor_careerchoice_description_ForbiddenScrollsOfSapheryPassive4}Not wielding any healing spells increase hex duration by 50%" />
   <string id="tor_careerchoice_description.ByAllMeansKeystone" text="{=str_tor_careerchoice_description_ByAllMeansKeystone}Ability scales with roguery. Units are easier to overtake" />
-  <string id="tor_careerchoice_description.ByAllMeansPassive1" text="{=str_tor_careerchoice_description_ByAllMeansPassive1}Extra 25% Wardsave if your armor weight does not exceed 11 weight." />
-  <string id="tor_careerchoice_description.ByAllMeansPassive2" text="{=str_tor_careerchoice_description_ByAllMeansPassive2}Increases Lightning spell damage by 10%." />
-  <string id="tor_careerchoice_description.ByAllMeansPassive3" text="{=str_tor_careerchoice_description_ByAllMeansPassive3}Increases magic spell damage by 10%." />
+  <string id="tor_careerchoice_description.ByAllMeansPassive1" text="{=str_tor_careerchoice_description_ByAllMeansPassive1}Extra 20% Wardsave if your armor weight does not exceed 11 weight." />
+  <string id="tor_careerchoice_description.ByAllMeansPassive2" text="{=str_tor_careerchoice_description_ByAllMeansPassive2}Increases Lightning spell damage by 5%." />
+  <string id="tor_careerchoice_description.ByAllMeansPassive3" text="{=str_tor_careerchoice_description_ByAllMeansPassive3}Increases magic spell damage by 5%." />
   <string id="tor_careerchoice_description.ByAllMeansPassive4" text="{=str_tor_careerchoice_description_ByAllMeansPassive4}If no buff spells are equipped, duration of vortex and area effects are doubled." />
-  <string id="tor_careerchoice_description.SecretOfFellfangKeystone" text="{=str_tor_careerchoice_description_SecretOfFellfangKeystone}Successful overtake grants 3 winds of magic." />
+  <string id="tor_careerchoice_description.SecretOfFellfangKeystone" text="{=str_tor_careerchoice_description_SecretOfFellfangKeystone}Successful overtake grants 1 wind of magic." />
   <string id="tor_careerchoice_description.SecretOfFellfangPassive1" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive1}50% cooldown reduction if you wield less than 11 spells" />
-  <string id="tor_careerchoice_description.SecretOfFellfangPassive2" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive2}Increases maximum winds of magic capacities by 25." />
+  <string id="tor_careerchoice_description.SecretOfFellfangPassive2" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive2}Increases maximum winds of magic capacities by 10." />
   <string id="tor_careerchoice_description.SecretOfFellfangPassive3" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive3}After battle, 30% of your winds are regenerated." />
-  <string id="tor_careerchoice_description.SecretOfFellfangPassive4" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive4}Increases fire spell damage by 15%." />
+  <string id="tor_careerchoice_description.SecretOfFellfangPassive4" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive4}Increases fire spell damage by 10%." />
 
   <!-- KnightOldWorld Career Choice Descriptions -->
   <string id="tor_careerchoice_description.KnightOldWorldRoot" text="{=str_tor_careerchoice_description_KnightOldWorldRoot}The Knight focuses on his grand mission, which results in a 20% boost to damage for the next melee hit. For every point in the One Handed skill, your damage increases by 1% during the effect. The boost lasts for a maximum of 15 seconds. For every Keystone enabled, you acquire another use, enhancing your strikes. Deal melee damage to recharge your ability." />
