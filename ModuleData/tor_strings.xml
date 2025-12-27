@@ -3088,32 +3088,32 @@
   <string id="tor_careerchoice_description.PathfinderPassive1" text="{=str_tor_careerchoice_description_PathfinderPassive1}The Spotting range of the party is increased by 20%." />
   <string id="tor_careerchoice_description.PathfinderPassive2" text="{=str_tor_careerchoice_description_PathfinderPassive2}Party movement speed is increased by 1" />
   <string id="tor_careerchoice_description.PathfinderPassive3" text="{=str_tor_careerchoice_description_PathfinderPassive3}Party travels unhindered through snow" />
-  <string id="tor_careerchoice_description.PathfinderPassive4" text="{=str_tor_careerchoice_description_PathfinderPassive4}Ranged damage is shrugged off" />
+  <string id="tor_careerchoice_description.PathfinderPassive4" text="{=str_tor_careerchoice_description_PathfinderPassive4}Once per day, go for a hunt." />
   <string id="tor_careerchoice_description.ForestStalkerKeystone" text="{=str_tor_careerchoice_description_ForestStalkerKeystone}All enemies suffer 50% more magical damage for 10 seconds. Allied troops charge ability." />
-  <string id="tor_careerchoice_description.ForestStalkerPassive1" text="{=str_tor_careerchoice_description_ForestStalkerPassive1}Once per day, go for a hunt." />
+  <string id="tor_careerchoice_description.ForestStalkerPassive1" text="{=str_tor_careerchoice_description_ForestStalkerPassive1}30% extra damage for stealth attacks with bows and throwing weapons." />
   <string id="tor_careerchoice_description.ForestStalkerPassive2" text="{=str_tor_careerchoice_description_ForestStalkerPassive2}Gain 20% range resistance." />
-  <string id="tor_careerchoice_description.ForestStalkerPassive3" text="{=str_tor_careerchoice_description_ForestStalkerPassive3}Increases range damage resistance of melee troops by 20%." />
+  <string id="tor_careerchoice_description.ForestStalkerPassive3" text="{=str_tor_careerchoice_description_ForestStalkerPassive3}{EFFECT_VALUE}% increased Stealth Bonus" />
   <string id="tor_careerchoice_description.ForestStalkerPassive4" text="{=str_tor_careerchoice_description_ForestStalkerPassive4}20% Equipment weight Reduction" />
   <string id="tor_careerchoice_description.HailOfArrowsKeystone" text="{=str_tor_careerchoice_description_HailOfArrowsKeystone}Every affected enemy increases reload speed for 4 sec. The damage increased by 50%" />
   <string id="tor_careerchoice_description.HailOfArrowsPassive1" text="{=str_tor_careerchoice_description_HailOfArrowsPassive1}6 extra Arrows per equipped Quiver" />
   <string id="tor_careerchoice_description.HailOfArrowsPassive2" text="{=str_tor_careerchoice_description_HailOfArrowsPassive2}Ranged troops gain 25XP daily " />
-  <string id="tor_careerchoice_description.HailOfArrowsPassive3" text="{=str_tor_careerchoice_description_HailOfArrowsPassive3}Attacking unaware enemies adds 50% extra damage" />
-  <string id="tor_careerchoice_description.HailOfArrowsPassive4" text="{=str_tor_careerchoice_description_HailOfArrowsPassive4}Special shot: For every hit arrow, your magic damage increase. Bonus slowly decrease." />
+  <string id="tor_careerchoice_description.HailOfArrowsPassive3" text="{=str_tor_careerchoice_description_HailOfArrowsPassive3}Ranged damage is shrugged off" />
+  <string id="tor_careerchoice_description.HailOfArrowsPassive4" text="{=str_tor_careerchoice_description_HailOfArrowsPassive4}Troops with Swiftshiver Shards gain 25% reload speed bonus." />
   <string id="tor_careerchoice_description.HawkeyedKeystone" text="{=str_tor_careerchoice_description_HawkeyedKeystone}All Enemies in the area are slowed on impact. The damage increased by 50%" />
   <string id="tor_careerchoice_description.HawkeyedPassive1" text="{=str_tor_careerchoice_description_HawkeyedPassive1}20% Equipment weight Reduction" />
   <string id="tor_careerchoice_description.HawkeyedPassive2" text="{=str_tor_careerchoice_description_HawkeyedPassive2}Headshots double the fill" />
-  <string id="tor_careerchoice_description.HawkeyedPassive3" text="{=str_tor_careerchoice_description_HawkeyedPassive3}Special shot: Every sixth arrow, applies a slow down effect on impact." />
-  <string id="tor_careerchoice_description.HawkeyedPassive4" text="{=str_tor_careerchoice_description_HawkeyedPassive4}While Zoomed in, the time is slowed down. Every second you lose 100 Career Charge." />
+  <string id="tor_careerchoice_description.HawkeyedPassive3" text="{=str_tor_careerchoice_description_HawkeyedPassive3}Increased ranged accuracy by 20%" />
+  <string id="tor_careerchoice_description.HawkeyedPassive4" text="{=str_tor_careerchoice_description_HawkeyedPassive4}20% extra ranged damage against mounted enemies and monsters" />
   <string id="tor_careerchoice_description.StarfireEssenceKeystone" text="{=str_tor_careerchoice_description_StarfireEssenceKeystone}Enemies suffer from a damage over time effect on impact." />
-  <string id="tor_careerchoice_description.StarfireEssencePassive1" text="{=str_tor_careerchoice_description_StarfireEssencePassive1}6 extra Arrows per equipped Quiver" />
+  <string id="tor_careerchoice_description.StarfireEssencePassive1" text="{=str_tor_careerchoice_description_StarfireEssencePassive1}10% extra fire damage" />
   <string id="tor_careerchoice_description.StarfireEssencePassive2" text="{=str_tor_careerchoice_description_StarfireEssencePassive2}15% swing speed" />
-  <string id="tor_careerchoice_description.StarfireEssencePassive3" text="{=str_tor_careerchoice_description_StarfireEssencePassive3}Your arrows can penetrate shields" />
-  <string id="tor_careerchoice_description.StarfireEssencePassive4" text="{=str_tor_careerchoice_description_StarfireEssencePassive4}Special shot: Not shooting an arrows increase the chance your next arrow explode on impact." />
+  <string id="tor_careerchoice_description.StarfireEssencePassive3" text="{=str_tor_careerchoice_description_StarfireEssencePassive3}Troops with Starfire Shafts also apply fire vulnerability to enemies." />
+  <string id="tor_careerchoice_description.StarfireEssencePassive4" text="{=str_tor_careerchoice_description_StarfireEssencePassive4}Your arrows can penetrate shields" />
   <string id="tor_careerchoice_description.EyeOfTheHunterKeystone" text="{=str_tor_careerchoice_description_EyeOfTheHunterKeystone}Arrow of Kurnous loses it's seeking ability. The damage is doubled." />
-  <string id="tor_careerchoice_description.EyeOfTheHunterPassive1" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive1}20% Equipment weight Reduction" />
-  <string id="tor_careerchoice_description.EyeOfTheHunterPassive2" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive2}Arrows can pierce multiple targets" />
-  <string id="tor_careerchoice_description.EyeOfTheHunterPassive3" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive3}All archer troops gain 50 to their bow skill." />
-  <string id="tor_careerchoice_description.EyeOfTheHunterPassive4" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive4}Special shot efficiency is doubled" />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive1" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive1}6 extra Arrows per equipped Quiver" />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive2" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive2}20% Equipment weight Reduction" />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive3" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive3}All elf archer troops gain 50 to their bow skill." />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive4" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive4}Roguery skill reduces target armor by up to 60%" />
 
   <!-- Spellsinger Career Choice Descriptions -->
   <string id="tor_careerchoice_description.SpellSingerRoot" text="{=str_tor_careerchoice_description_SpellSingerRoot}Calls treespirits of the surouding forests. Every point in Spellcraft increases the chance by 0.05% additional treespirits join the combat." />
