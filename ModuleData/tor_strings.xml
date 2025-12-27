@@ -3196,7 +3196,7 @@
   <string id="tor_careerchoice_description.SecularOrdersKeystone" text="{=str_tor_careerchoice_description_SecularOrdersKeystone}Knightly strike has 2 additional loads. starts charged" />
   <string id="tor_careerchoice_description.SecularOrdersPassive1" text="{=str_tor_careerchoice_description_SecularOrdersPassive1}custom resource upgrade costs for knights are reduced by 25%." />
   <string id="tor_careerchoice_description.SecularOrdersPassive2" text="{=str_tor_careerchoice_description_SecularOrdersPassive2}All Knight troops receive 20 bonus points in their One and Two-handed skill." />
-  <string id="tor_careerchoice_description.SecularOrdersPassive3" text="{=str_tor_careerchoice_description_SecularOrdersPassive3}All Knight troops wages are reduced by 25%." />
+  <string id="tor_careerchoice_description.SecularOrdersPassive3" text="{=str_tor_careerchoice_description_SecularOrdersPassive3}All Knight troops upgrade costs are reduced by 25%." />
   <string id="tor_careerchoice_description.SecularOrdersPassive4" text="{=str_tor_careerchoice_description_SecularOrdersPassive4}Secular Seals can be applied on any Knight unit" />
   <string id="tor_careerchoice_description.PathOfConquestKeystone" text="{=str_tor_careerchoice_description_PathOfConquestKeystone}Adds cleaving attacks for ability. Ability scales with Two handed weapon skill" />
   <string id="tor_careerchoice_description.PathOfConquestPassive1" text="{=str_tor_careerchoice_description_PathOfConquestPassive1}Extra melee damage (5%)." />
