@@ -1286,6 +1286,15 @@
 		damage_type="Physical"/>
 
 	<StatusEffectTemplate
+		id="starfire_fire_vulnerability"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.25"
+		type="Resistance"
+		damage_type="Fire"/>
+
+	<StatusEffectTemplate
 		id="arrow_of_kurnous_debuff_res"
 		particle_id="curse_of_years"
 		particle_intensity="Low"

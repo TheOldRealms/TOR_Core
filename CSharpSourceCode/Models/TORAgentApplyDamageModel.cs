@@ -37,12 +37,8 @@ namespace TOR_Core.Models
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if (choices.Contains("EyeOfTheHunterPassive2"))
-                    {
-                        missileWeaponFlags |= WeaponFlags.MultiplePenetration;
-                    }
-
-                    if (choices.Contains("StarfireEssencePassive3"))
+                    // StarfireEssencePassive4: Arrows can penetrate shields
+                    if (choices.Contains("StarfireEssencePassive4"))
                     {
                         missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                     }
@@ -50,20 +46,6 @@ namespace TOR_Core.Models
                     if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Javelin && choices.Contains("WardenOfTalsynPassive4"))
                     {
                         missileWeaponFlags |= WeaponFlags.MultiplePenetration;
-                    }
-
-
-                    if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && choices.Contains("StarfireEssencePassive4"))
-                    {
-                        CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
-                        if (careerPerkBehavior != null)
-                        {
-                            var value = careerPerkBehavior.CareerMissionVariables[2] *= 0.05f;
-                            if (MBRandom.RandomFloat < value)
-                            {
-                                missileWeaponFlags |= WeaponFlags.AffectsAreaBig;
-                            }
-                        }
                     }
                 }
 
