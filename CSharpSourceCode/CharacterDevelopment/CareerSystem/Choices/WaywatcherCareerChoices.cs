@@ -1,15 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using TaleWorlds.Core;
-using TOR_Core.AbilitySystem;
-using TOR_Core.AbilitySystem.Crosshairs;
+﻿using TaleWorlds.Core;
 using TOR_Core.BattleMechanics.DamageSystem;
-using TOR_Core.BattleMechanics.StatusEffect;
-using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.Choices;
 using TOR_Core.Extensions;
-using TOR_Core.Extensions.ExtendedInfoSystem;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 
@@ -149,160 +141,36 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializeKeyStones()
     {
         _wayWatcherRoot.Initialize(CareerID,
-            "Kurnous, Lord of the Hunt, blesses this fatal shot to travel straight through the heart of the enemy. This missile attack will seek out its target and trigger an explosion upon impact. With every skill point in Archery, the radius increases. For charging ability deal 1200 damage points with bows. Each Arrow charges a maximum of 150 points",
-            null, true, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-            {
-                new()
-                {
-                    MutationTargetType = typeof(AbilityTemplate),
-                    MutationTargetOriginalId = "ArrowOfKurnous",
-                    PropertyName = "SeekerParameters",
-                    PropertyValue = (choice, originalValue, agent) =>
-                    {
-                        var seeker = new SeekerParameters();
-                        seeker.Derivative = 0;
-                        seeker.Proportional = 0.5f;
-                        seeker.DisableDistance = 2f;
-                        return seeker;
-                    },
-                    MutationType = OperationType.Replace
-                },
-                new()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_arrow_of_kurnous",
-                    PropertyName = "Radius",
-                    PropertyValue =
-                        (choice, originalValue, agent) =>
-                            CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Bow }, 0.01f, true),
-                    MutationType = OperationType.Add
-                }
-            });
+            "Lethal Shot empowers your bow with deadly precision. Activating adds +50% physical damage to your arrows for a limited number of shots. Each keystone adds +1 arrow to the ability. For charging ability deal 1200 damage points with bows. Each arrow charges a maximum of 150 points.",
+            null, true, ChoiceType.Keystone, []);
 
-        _protectorOfTheWoodsKeystone.Initialize(CareerID, "Reduces the amount of ranged damage to unlock ability. Ability starts charged.",
-            "ProtectorOfTheWoods", false, ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>() { }); //special
+        _protectorOfTheWoodsKeystone.Initialize(CareerID,
+            "Lethal Shot gains +2 bonus arrows. Reduces the amount of ranged damage needed to unlock ability. Ability starts charged.",
+            "ProtectorOfTheWoods", false, ChoiceType.Keystone, []);
 
-        _pathfinderKeystone.Initialize(CareerID, "The range of Arrow of Kournous is doubled. Ability scales with Scouting", "Pathfinder", false,
-            ChoiceType.Keystone,
-            new List<CareerChoiceObject.MutationObject>()
-            {
-                new()
-                {
-                    MutationTargetType = typeof(AbilityTemplate),
-                    MutationTargetOriginalId = "ArrowOfKurnous",
-                    PropertyName = "MaxDistance",
-                    PropertyValue = (choice, originalValue, agent) => 2,
-                    MutationType = OperationType.Multiply
-                },
-                new()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_arrow_of_kurnous",
-                    PropertyName = "Radius",
-                    PropertyValue =
-                        (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent,
-                            new List<SkillObject>() { DefaultSkills.Scouting }, 0.01f, true),
-                    MutationType = OperationType.Add
-                }
-            });
-        _forestStalkerKeystone.Initialize(CareerID, "All enemies suffer 50% more magical damage for 10 seconds. Allied troops charge ability.", "ForestStalker",
-            false, ChoiceType.Keystone,
-            new List<CareerChoiceObject.MutationObject>()
-            {
-                new()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_arrow_of_kurnous",
-                    PropertyName = "ImbuedStatusEffects",
-                    PropertyValue =
-                        (choice, originalValue, agent) =>
-                            ((List<string>)originalValue).Concat(new[] { "arrow_of_kurnous_debuff_res" }).ToList(),
-                    MutationType = OperationType.Replace
-                }
-            });
-        _hailOfArrowsKeystone.Initialize(CareerID, "Every affected enemy increases reload speed for 4 sec. The damage increased by 50%", "HailOfArrows", false,
-            ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
-            {
-                new()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_arrow_of_kurnous",
-                    PropertyName = "DamageAmount",
-                    PropertyValue = (choice, originalValue, agent) => (int) originalValue*0.5f,
-                    MutationType = OperationType.Add
-                }
-            });
-        _hawkeyedKeystone.Initialize(CareerID, "All Enemies in the area are slowed on impact. The damage increased by 50%", "Hawkeyed", false,
-            ChoiceType.Keystone,
-            new List<CareerChoiceObject.MutationObject>()
-            {
-                new()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_arrow_of_kurnous",
-                    PropertyName = "ImbuedStatusEffects",
-                    PropertyValue =
-                        (choice, originalValue, agent) =>
-                            ((List<string>)originalValue).Concat(new[] { "arrow_of_kurnous_debuff_mov" }).ToList(),
-                    MutationType = OperationType.Replace
-                },
-                new()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_arrow_of_kurnous",
-                    PropertyName = "DamageAmount",
-                    PropertyValue = (choice, originalValue, agent) => (int) originalValue*0.5f,
-                    MutationType = OperationType.Add
-                }
-            });
-        _starfireEssenceKeystone.Initialize(CareerID, "Enemies suffer from a damage over time effect on impact.", "StarfireEssence", false, ChoiceType.Keystone,
-            new List<CareerChoiceObject.MutationObject>()
-            {
-                new()
-                {
-                    MutationTargetType = typeof(TriggeredEffectTemplate),
-                    MutationTargetOriginalId = "apply_arrow_of_kurnous",
-                    PropertyName = "ImbuedStatusEffects",
-                    PropertyValue =
-                        (choice, originalValue, agent) =>
-                            ((List<string>)originalValue).Concat(new[] { "arrow_of_kurnous_debuff_dot" }).ToList(),
-                    MutationType = OperationType.Replace
-                }
-            });
+        _pathfinderKeystone.Initialize(CareerID,
+            "Lethal Shot arrows apply Hagbane poison, slowing enemies on hit. Ability charge scales with Scouting skill.",
+            "Pathfinder", false, ChoiceType.Keystone, []);
 
-        _eyeOfTheHunterKeystone.Initialize(CareerID, "Arrow of Kurnous loses it's seeking ability. The damage is doubled.", "EyeOfTheHunter", false, ChoiceType.Keystone,
-            new List<CareerChoiceObject.MutationObject>() {new()
-            {
-                MutationTargetType = typeof(AbilityTemplate),
-                MutationTargetOriginalId = "ArrowOfKurnous",
-                PropertyName = "CrosshairType",
-                PropertyValue = (choice, originalValue, agent) => CrosshairType.Missile,
-                MutationType = OperationType.Replace
-            },
-            new CareerChoiceObject.MutationObject()
-            {
-                MutationTargetType = typeof(TriggeredEffectTemplate),
-                MutationTargetOriginalId = "apply_arrow_of_kurnous",
-                PropertyName = "DamageAmount",
-                PropertyValue = (choice, originalValue, agent) => 1,
-                MutationType = OperationType.Multiply
-            },
-            new()
-            {
-                MutationTargetType = typeof(AbilityTemplate),
-                MutationTargetOriginalId = "ArrowOfKurnous",
-                PropertyName = "SeekerParameters",
-                PropertyValue = (choice, originalValue, agent) =>
-                {
-                    var seeker = new SeekerParameters();
-                    seeker.Derivative = 0;
-                    seeker.Proportional = 0.5f;
-                    seeker.DisableDistance = 1000f;
-                    return seeker;
-                },
-                MutationType = OperationType.Replace
-            },
-            }); //special
+        _forestStalkerKeystone.Initialize(CareerID,
+            "Lethal Shot arrows deal +50% bonus damage to unaware enemies (Loec's Blessing). Allied troops charge ability.",
+            "ForestStalker", false, ChoiceType.Keystone, []);
+
+        _hailOfArrowsKeystone.Initialize(CareerID,
+            "Lethal Shot arrows split into 5 projectiles on release. Also grants +25% reload speed during the effect.",
+            "HailOfArrows", false, ChoiceType.Keystone, []);
+
+        _hawkeyedKeystone.Initialize(CareerID,
+            "Lethal Shot arrows can pierce through multiple enemies.",
+            "Hawkeyed", false, ChoiceType.Keystone, []);
+
+        _starfireEssenceKeystone.Initialize(CareerID,
+            "Lethal Shot arrows gain +25 armor penetration and +20% missile speed.",
+            "StarfireEssence", false, ChoiceType.Keystone, []);
+
+        _eyeOfTheHunterKeystone.Initialize(CareerID,
+            "Lethal Shot gains +2 bonus arrows. Arrows are imbued with Moonfire: +30% magic damage and explode on impact, applying magic vulnerability to nearby enemies.",
+            "EyeOfTheHunter", false, ChoiceType.Keystone, []);
     }
 
     protected override void InitializePassives()

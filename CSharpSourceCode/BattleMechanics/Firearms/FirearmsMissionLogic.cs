@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Items;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Firearms
@@ -103,6 +104,20 @@ namespace TOR_Core.BattleMechanics.Firearms
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody, int forcedMissileIndex)
         {
             var weaponData = shooterAgent.WieldedWeapon.CurrentUsageItem;
+
+            // Check for any weapon with scatter trait
+            var traits = shooterAgent.WieldedWeapon.Item?.GetTraits(shooterAgent);
+            var scatterTrait = traits?.FirstOrDefaultQ(t => t.StatsTuple?.StatType == ItemTraitStatType.ScatterShot);
+            if (scatterTrait != null)
+            {
+                RemoveLastProjectile(shooterAgent);
+                float accuracy = 0.03f;
+                short amount = (short)scatterTrait.StatsTuple.Value;
+                ScatterShot(shooterAgent, accuracy, shooterAgent.WieldedWeapon.AmmoWeapon, position, orientation,
+                    weaponData.MissileSpeed, amount);
+                return;
+            }
+
             if (weaponData.WeaponClass != WeaponClass.Musket && weaponData.WeaponClass != WeaponClass.Pistol) return;
 
             var frame = new MatrixFrame(orientation, position);

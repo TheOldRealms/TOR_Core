@@ -376,7 +376,8 @@ namespace TOR_Core.Items
         SwingSpeed,
         ReloadSpeed,        // percentage based
         ShieldDamage,       // percentage based adds shield damage as factor
-        Cleave,              // allows to cleave through enemies. No values considered. 
-        MultiPenetration,         //Only ranged weapons. No values considered
+        Cleave,              // allows to cleave through enemies. No values considered.
+        MultiPenetration,    // Only ranged weapons. No values considered.
+        ScatterShot,         // Number of projectiles for scatter shot.
     }
 }

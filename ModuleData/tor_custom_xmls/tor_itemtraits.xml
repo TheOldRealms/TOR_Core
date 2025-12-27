@@ -4647,6 +4647,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Arrows split into multiple projectiles</ItemTraitDescription>
+    <StatsTuple StatType="ScatterShot" Value="5" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_lethal_shot_reload" ItemTraitName="Swift Nocking" IsCraftable="false" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>

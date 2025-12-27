@@ -630,6 +630,19 @@ namespace TOR_Core.Models
             return number;
         }
 
+        public override float GetEquipmentStealthBonus(Agent agent)
+        {
+            var bonus = base.GetEquipmentStealthBonus(agent);
+
+            // Forest Stalker passive: +20% equipment stealth bonus
+            if (agent == Agent.Main && Hero.MainHero.HasCareerChoice("ForestStalkerPassive4"))
+            {
+                bonus += 20f;
+            }
+
+            return bonus;
+        }
+
         //The moment you realize they forget to add an override statement. if they do it needs to be moved on the EffectiveArmorEncumbrance
         public float GetTOREffectiveEquipmentEncumbrance(Agent agent, float value)
         {
