@@ -282,6 +282,13 @@
     <ItemTraitDescription>This item provides its wearer +30 effective gunpowder skill in battle</ItemTraitDescription>
     <StatsTuple StatType="Skill" SkillId="Gunpowder" Value="30" />
   </ItemTrait>
+  <ItemTrait ItemTraitStringId="savage_orc_ward_save" ItemTraitName="Warpaint" IsCraftable="false" IconName="mork_icon">
+    <ValidItemType>Armor</ValidItemType>
+    <IngredientItem>BlessedWater</IngredientItem>
+    <IngredientAmount>1</IngredientAmount>
+    <ItemTraitDescription>6% Ward Save</ItemTraitDescription>
+    <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.06" />
+  </ItemTrait>
   <ItemTrait ItemTraitStringId="lesser_loot_weapon_fire_dmg" ItemTraitName="Aspect of Fire" IsCraftable="false" IconName="traits_fire_icon">
     <ValidItemType>Weapon</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
