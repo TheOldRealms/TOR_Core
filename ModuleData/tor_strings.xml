@@ -777,10 +777,10 @@
   
   <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0}Such respect is not easily given, prove yourself under Grungni's stern gaze and we'll see if you are worthy."/>
   
-  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0}By Grungni's beard! It has been a long time indeed since I have seen someone with such potential."/>
+  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career}By Grungni's beard! It has been a long time indeed since I have seen someone with such potential."/>
   <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2}In the name of the Burudin, I hereby declare you part of the Rhunki. Take pride in your achievements, lad. Although I fear the celebrations will need to be postponed as desperate times call for desperate measures. And dark clouds are hanging above the Karaz Ankor."/>
-  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2}I am bound to the Grongaz, but you can travel and battle as you please. You have proven yourself worthy, and that is why I share with you my Anvil of Doom. But know this, there are binding oaths of secrecy cast upon it; one cannot simply abandon the Anvil. Protect it with your life."/>
-  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2}You may use it in battle as you see fit and unleash the ancient runes inscribed upon its surface, but be wary, its runes are powerful, and only the most skilled Rhunki can ever hope to awaken them. The most straightforward combination is the Rune of Hearth and Home. Never forget where you belong and where you came from."/>
+  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3}I am bound to the Grongaz, but you can travel and battle as you please. You have proven yourself worthy, and that is why I share with you my Anvil of Doom. But know this, there are binding oaths of secrecy cast upon it; one cannot simply abandon the Anvil. Protect it with your life."/>
+  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4}You may use it in battle as you see fit and unleash the ancient runes inscribed upon its surface, but be wary, its runes are powerful, and only the most skilled Rhunki can ever hope to awaken them. The most straightforward combination is the Rune of Hearth and Home. Never forget where you belong and where you came from."/>
 
   
   <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0}You get ahead of yourself, Rhunki. Not a long time ago we were still discussing the fundamentals, and now you think you derserve the title of a Runelord? Travel the Karaz Ankor, help our kin in need. Prove yourself worthy of this great honour."/>
@@ -826,29 +826,29 @@
   
   <!--Guild info-->
   <string id="tor_dw_guildmaster_info_p.runesmith" text="{=str_tor_dw_guildmaster_info_p_rune_smith}What do the Rhunki provide?"/>
-  <string id="tor_dw_guildmaster_unlock_info.runesmith" text="{=str_tor_dw_guildmaster_info_p_rune_smith}Ours is the oldest, wealthiest, and most powerful of the guilds. Founded in the time when the Ancenstor Gods still walked among us. We supply worthy Dawi with armour that could turn the blows of giants and weapons that could slay dragons in a single strike."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.runesmith" text="{=str_tor_dw_guildmaster_info_p_rune_smith}In times of war, and only when the need arises, do we field the Anvils of Doom, capable of laying waste to entire armies. With our connections we can also reduce the costs of troops suited in Gromril gear, like Ironbreakers or Hammerers."/>  
+  <string id="tor_dw_guildmaster_unlock_info.runesmith" text="{=str_tor_dw_guildmaster_unlock_info_runesmith}Ours is the oldest, wealthiest, and most powerful of the guilds. Founded in the time when the Ancenstor Gods still walked among us. We supply worthy Dawi with armour that could turn the blows of giants and weapons that could slay dragons in a single strike."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.runesmith" text="{=str_tor_dw_guildmaster_unlock_info_2_runesmith}In times of war, and only when the need arises, do we field the Anvils of Doom, capable of laying waste to entire armies. With our connections we can also reduce the costs of troops suited in Gromril gear, like Ironbreakers or Hammerers."/>  
 
   
   
   <string id="tor_dw_guildmaster_info_p.miner" text="{=str_tor_dw_guildmaster_info_p_miner}Can you explain the duties of the Miners Guild?"/>
-  <string id="tor_dw_guildmaster_unlock_info.miner" text="{=str_tor_dw_guildmaster_info_p_miner}Ours is one of the greatest and most venerated of all the Guilds. Founded by Grungni himself, the Miners Guild ensures that wherever there is a vein of gold or iron, there are Dawi to mine it."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.miner" text="{=str_tor_dw_guildmaster_info_p_miner}Apart from that, we can boost the processing of ores and metals of your Grung, as well as deliver coal, gems, and iron every two weeks or so. Our more trusted members can also fund underground expeditions. Who can tell what long-lost treasures lie hidden in the depths…"/>  
+  <string id="tor_dw_guildmaster_unlock_info.miner" text="{=str_tor_dw_guildmaster_unlock_info_miner}Ours is one of the greatest and most venerated of all the Guilds. Founded by Grungni himself, the Miners Guild ensures that wherever there is a vein of gold or iron, there are Dawi to mine it."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.miner" text="{=str_tor_dw_guildmaster_unlock_info_2_miner}Apart from that, we can boost the processing of ores and metals of your Grung, as well as deliver coal, gems, and iron every two weeks or so. Our more trusted members can also fund underground expeditions. Who can tell what long-lost treasures lie hidden in the depths…"/>  
 
   
   <string id="tor_dw_guildmaster_info_p.brewer" text="{=str_tor_dw_guildmaster_info_p_brewer}What are the duties of the Brewers Guild?"/>
-  <string id="tor_dw_guildmaster_unlock_info.brewer" text="{=str_tor_dw_guildmaster_info_p_brewer}What do ye think we do? We knit clothes an' pick pretty flowers. We make soddin' Gorog! We are the most important Guild of all the Guilds, there is nae Rhunrik or Endrinkuli or even a bleedin' Gov what ain't got alcohol in their body that ain't brewed by our Dawi."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.brewer" text="{=str_tor_dw_guildmaster_info_p_brewer}We can also help with army supplies. An' our ties with the Rangers allow certain armies to employ better scouts. Though our specialty lies in boosting the economy of Dawi Holds and ensuring all remain loyal and never grumble due to the lack of ale."/>  
+  <string id="tor_dw_guildmaster_unlock_info.brewer" text="{=str_tor_dw_guildmaster_unlock_info_brewer}What do ye think we do? We knit clothes an' pick pretty flowers. We make soddin' Gorog! We are the most important Guild of all the Guilds, there is nae Rhunrik or Endrinkuli or even a bleedin' Gov what ain't got alcohol in their body that ain't brewed by our Dawi."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.brewer" text="{=str_tor_dw_guildmaster_unlock_info_2_brewer}We can also help with army supplies. An' our ties with the Rangers allow certain armies to employ better scouts. Though our specialty lies in boosting the economy of Dawi Holds and ensuring all remain loyal and never grumble due to the lack of ale."/>  
 
   
   <string id="tor_dw_guildmaster_info_p.engineer" text="{=str_tor_dw_guildmaster_info_p_engineer}What are the duties of your engineers?"/>
-  <string id="tor_dw_guildmaster_unlock_info.engineer" text="{=str_tor_dw_guildmaster_info_p_engineer}We are one of the most important and powerful Guilds out there. Our engineers construct and maintain not only our grand Holds but also the various war machines of the Karaz Ankor."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.engineer" text="{=str_tor_dw_guildmaster_info_p_engineer}Apart from that, we help reduce maintenance costs of black powder units. The Guild also provides access to tried and tested prototype weaponry and artillery to various Dawi clans, but note we require you to first prove yourself."/>  
+  <string id="tor_dw_guildmaster_unlock_info.engineer" text="{=str_tor_dw_guildmaster_unlock_info_engineer}We are one of the most important and powerful Guilds out there. Our engineers construct and maintain not only our grand Holds but also the various war machines of the Karaz Ankor."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.engineer" text="{=str_tor_dw_guildmaster_unlock_info_2_engineer}Apart from that, we help reduce maintenance costs of black powder units. The Guild also provides access to tried and tested prototype weaponry and artillery to various Dawi clans, but note we require you to first prove yourself."/>  
 
   
   <string id="tor_dw_guildmaster_info_p.warrior" text="{=str_tor_dw_guildmaster_info_p_warrior}What are the duties of warriors within your Guild?"/>
-  <string id="tor_dw_guildmaster_unlock_info.warrior" text="{=str_tor_dw_guildmaster_info_p_warrior}We are the largest of the guilds; any Dawi worth their weight in gold, be they miner or scout, underwent warrior training of some kind. If a warrior does exceptionally well, they might rise to become an Angthragor or even a Hammerer."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.warrior" text="{=str_tor_dw_guildmaster_info_p_warrior}Apart from that, we can help reduce upgrade costs of Warriors, Longbeards, and Slayers. Our connections also help you gain more Oathgold from battles and tournaments. Lastly, we are in charge of providing extra Dawi to help patrol the Karaz Ankor."/>  
+  <string id="tor_dw_guildmaster_unlock_info.warrior" text="{=str_tor_dw_guildmaster_unlock_info_warrior}We are the largest of the guilds; any Dawi worth their weight in gold, be they miner or scout, underwent warrior training of some kind. If a warrior does exceptionally well, they might rise to become an Angthragor or even a Hammerer."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.warrior" text="{=str_tor_dw_guildmaster_unlock_info_2_warrior}Apart from that, we can help reduce upgrade costs of Warriors, Longbeards, and Slayers. Our connections also help you gain more Oathgold from battles and tournaments. Lastly, we are in charge of providing extra Dawi to help patrol the Karaz Ankor."/>  
 
   
   <!--Oathgold-->
@@ -859,11 +859,11 @@
   <string id="tor_dw_guildmaster_oath_gold_decline_p.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_runesmith}Forgive me, I changed my mind."/>
   <string id="tor_dw_guildmaster_oath_gold_end.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_end_runesmith}Thank you for your contribution."/>
   
-  <string id="tor_dw_guildmaster_hub_oath_gold.engineer" text="{=str_tor_dw_guildmaster_hub_oath_gold_runesmith}Can I support the Engineers Guild in some way?"/>
-  <string id="tor_dw_guildmaster_oath_gold.engineer" text="{=str_tor_dw_guildmaster_oath_gold_runesmith}Donations to the Guild are always welcome."/>
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_runesmith}I wish to donate Oathgold."/>
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_runesmith}I changed my mind, Master Engineer."/>
-  <string id="tor_dw_guildmaster_oath_gold_end.engineer" text="{=str_tor_dw_guildmaster_oath_gold_end_runesmith}Thank you for your contribution."/>
+  <string id="tor_dw_guildmaster_hub_oath_gold.engineer" text="{=str_tor_dw_guildmaster_hub_oath_gold_engineer}Can I support the Engineers Guild in some way?"/>
+  <string id="tor_dw_guildmaster_oath_gold.engineer" text="{=str_tor_dw_guildmaster_oath_gold_engineer}Donations to the Guild are always welcome."/>
+  <string id="tor_dw_guildmaster_oath_gold_accept_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_engineer}I wish to donate Oathgold."/>
+  <string id="tor_dw_guildmaster_oath_gold_decline_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_engineer}I changed my mind, Master Engineer."/>
+  <string id="tor_dw_guildmaster_oath_gold_end.engineer" text="{=str_tor_dw_guildmaster_oath_gold_end_engineer}Thank you for your contribution."/>
   
   <string id="tor_dw_guildmaster_hub_oath_gold.miner" text="{=str_tor_dw_guildmaster_hub_oath_gold_miner}Can I support the Miners Guild in some way?"/>
   <string id="tor_dw_guildmaster_oath_gold.miner" text="{=str_tor_dw_guildmaster_oath_gold_miner}Donations to the Guild are always welcome."/>
@@ -933,7 +933,7 @@
   <string id="tor_dw_guildmaster_warrior_spend_troops" text="{=str_tor_dw_guildmaster_warrior_spend_troops}Honoured warriors of sure grip and stern eye are always welcome."/>
   <string id="tor_dw_guildmaster_warrior_spend_troops_accept_p" text="{=str_tor_dw_guildmaster_warrior_spend_troops_accept_p}In that case I will leave these Dawi with you."/>
   <string id="tor_dw_guildmaster_warrior_spend_troops_decline_p" text="{=str_tor_dw_guildmaster_warrior_spend_troops_decline_p}Forgive me, I changed my mind."/>
-  <string id="tor_dw_guildmaster_warrior_spend_troops_end" text="{=str_tor_dw_guildmaster_warrior_spend_troops_decline_p}We appreciate any warrior you can spare."/>
+  <string id="tor_dw_guildmaster_warrior_spend_troops_end" text="{=str_tor_dw_guildmaster_warrior_spend_troops_end}We appreciate any warrior you can spare."/>
   
   <string id="tor_dw_guildmaster_warrior_influence_for_oath" text="{=str_tor_dw_guildmaster_warrior_influence_for_oath}With a donation of Oathgold our warriors will spread the Influence of your Clan across the Karaz Ankor."/>
   <string id="tor_dw_guildmaster_warrior_influence_for_oath_decline_p" text="{=str_tor_dw_guildmaster_warrior_influence_for_oath_decline_p}Actually I changed my mind."/>
