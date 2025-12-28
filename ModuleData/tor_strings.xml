@@ -2660,7 +2660,7 @@
   <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}Increases Hitpoints by 20." />
 
   <!-- WitchHunter Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}A single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 20%. After every hit there is a 50% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by 0.1% additional targets are marked." />
+  <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}A single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 20% (Piero 40%). After every hit there is a 50% (Piero 60%) chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by 0.1% (Piero 0.3%)additional targets are marked." />
   <string id="tor_careerchoice_description.ToolsOfJudgementKeystone" text="{=str_tor_careerchoice_description_ToolsOfJudgementKeystone}The Marker stays 6 seconds longer on the target. Ability scales with the higehest One- or Two-Handed-skill." />
   <string id="tor_careerchoice_description.HuntTheWickedKeystone" text="{=str_tor_careerchoice_description_HuntTheWickedKeystone}20% additional physical damage for marked enemies. Melee damage can charge ability" />
   <string id="tor_careerchoice_description.SilverHammerKeystone" text="{=str_tor_careerchoice_description_SilverHammerKeystone}Increases holy damage by 20% to the marked target. Ability scales with Faith." />
@@ -2669,11 +2669,11 @@
   <string id="tor_careerchoice_description.GuiltyByAssociationKeystone" text="{=str_tor_careerchoice_description_GuiltyByAssociationKeystone}Companions and Retinues can trigger mark effects. Companions can charge ability" />
   <string id="tor_careerchoice_description.EndsJustifiesMeansKeystone" text="{=str_tor_careerchoice_description_EndsJustifiesMeansKeystone}Marked enemies suffering from overkill damage propagate mark. Scales with Rougery" />
   <string id="tor_careerchoice_description.ToolsOfJudgementPassive1" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.ToolsOfJudgementPassive2" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive2}3 extra ammo" />
+  <string id="tor_careerchoice_description.ToolsOfJudgementPassive2" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive2}3 extra ammo (Piero 5 extra ammo)" />
   <string id="tor_careerchoice_description.ToolsOfJudgementPassive3" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive3}Extra melee damage (5%)." />
   <string id="tor_careerchoice_description.ToolsOfJudgementPassive4" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive4}Every headshot kill gains you roguery, count twice for marked targets." />
   <string id="tor_careerchoice_description.HuntTheWickedPassive1" text="{=str_tor_careerchoice_description_HuntTheWickedPassive1}Player healing rate increased by 1" />
-  <string id="tor_careerchoice_description.HuntTheWickedPassive2" text="{=str_tor_careerchoice_description_HuntTheWickedPassive2}Ranged Infantry wages are 15% reduced." />
+  <string id="tor_careerchoice_description.HuntTheWickedPassive2" text="{=str_tor_careerchoice_description_HuntTheWickedPassive2}Ranged Infantry wages are 15% reduced. (Piero can we replace with: Defeated parties of Chaos+Beastmen and Undead grant 400% more Prestige?)" />
   <string id="tor_careerchoice_description.HuntTheWickedPassive3" text="{=str_tor_careerchoice_description_HuntTheWickedPassive3}Every equipped ranged weapon increases melee damage by 5%." />
   <string id="tor_careerchoice_description.HuntTheWickedPassive4" text="{=str_tor_careerchoice_description_HuntTheWickedPassive4}Increases the damage of all ranged troops by 10%." />
   <string id="tor_careerchoice_description.SilverHammerPassive1" text="{=str_tor_careerchoice_description_SilverHammerPassive1}Exterminated Undead and Ruinous powers increase faith per fallen Unit." />
@@ -2681,19 +2681,19 @@
   <string id="tor_careerchoice_description.SilverHammerPassive3" text="{=str_tor_careerchoice_description_SilverHammerPassive3}Sneak attacks deal additional damage scaling with Faith (0.5% per point)." />
   <string id="tor_careerchoice_description.SilverHammerPassive4" text="{=str_tor_careerchoice_description_SilverHammerPassive4}Troops can be upgraded to Witch Hunter Retinues." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive1" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive1}Extra holy melee damage (10%)." />
-  <string id="tor_careerchoice_description.NoRestAgainstEvilPassive2" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive2}All ranged troops have a 20 points higher ranged skill." />
+  <string id="tor_careerchoice_description.NoRestAgainstEvilPassive2" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive2}All ranged troops have a 20 points higher ranged skill. (Piero 50 points higher)" />
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive3" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive3}Increases accuracy by 15%." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive4" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive4}Increases Companion Limit by 5." />
   <string id="tor_careerchoice_description.SwiftProcedurePassive1" text="{=str_tor_careerchoice_description_SwiftProcedurePassive1}8 extra ammo" />
   <string id="tor_careerchoice_description.SwitftProcedurePassive2" text="{=str_tor_careerchoice_description_SwitftProcedurePassive2}Reduce range Accuracy movement penalty by 10%." />
   <string id="tor_careerchoice_description.SwitftProcedurePassive3" text="{=str_tor_careerchoice_description_SwitftProcedurePassive3}Party movement speed is increased by 1" />
   <string id="tor_careerchoice_description.SwitftProcedurePassive4" text="{=str_tor_careerchoice_description_SwitftProcedurePassive4}Weapon swing speed increased by 10%." />
-  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive1" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive1}Extra ranged damage (5%)." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive1" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive1}Extra ranged damage (5%) (Piero 10%)." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive2" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive2}Increases range resistance by 15%." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive3" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive3}Extra 15% armor penetration of melee attacks." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive4" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive4}Extra 20% armor penetration of ranged attacks." />
-  <string id="tor_careerchoice_description.GuiltyByAssociationPassive1" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive1}Increases troop regeneration by 1." />
-  <string id="tor_careerchoice_description.GuiltyByAssociationPassive2" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive2}Every ranged troop deals 5% extra holy damage." />
+  <string id="tor_careerchoice_description.GuiltyByAssociationPassive1" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive1}Increases troop regeneration by 1 (Piero can we replace this with +25hp?)." />
+  <string id="tor_careerchoice_description.GuiltyByAssociationPassive2" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive2}Every ranged troop deals 5% extra holy damage (Piero 15%)." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive3" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive3}Companion health increases by 25." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive4" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive4}Killing blows in the head increase temporary reload and swing speed" />
 
@@ -2709,7 +2709,7 @@
   <string id="tor_careerchoice_description.LiberNecrisPassive1" text="{=str_tor_careerchoice_description_LiberNecrisPassive1}Undead troops party weight is reduced by 20%." />
   <string id="tor_careerchoice_description.LiberNecrisPassive2" text="{=str_tor_careerchoice_description_LiberNecrisPassive2}Harbinger kills increase rougery" />
   <string id="tor_careerchoice_description.LiberNecrisPassive3" text="{=str_tor_careerchoice_description_LiberNecrisPassive3}Increases your health by 10." />
-  <string id="tor_careerchoice_description.LiberNecrisPassive4" text="{=str_tor_careerchoice_description_LiberNecrisPassive4}Increases magic spell damage by 5%." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive4" text="{=str_tor_careerchoice_description_LiberNecrisPassive4}Increases magic spell damage by 5%. (Piero 10%, from what I see its his only magic buff)" />
   <string id="tor_careerchoice_description.DeArcanisKadonPassive1" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive1}10% extra melee damage for undead troops." />
   <string id="tor_careerchoice_description.DeArcanisKadonPassive2" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive2}Undead troops party weight is reduced by 20%." />
   <string id="tor_careerchoice_description.DeArcanisKadonPassive3" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive3}15% cost reduction for spells." />
@@ -2718,21 +2718,21 @@
   <string id="tor_careerchoice_description.CodexMortificaPassive2" text="{=str_tor_careerchoice_description_CodexMortificaPassive2}Increases maximum winds of magic capacities by 5." />
   <string id="tor_careerchoice_description.CodexMortificaPassive3" text="{=str_tor_careerchoice_description_CodexMortificaPassive3}Wounded troops in your party heal faster." />
   <string id="tor_careerchoice_description.CodexMortificaPassive4" text="{=str_tor_careerchoice_description_CodexMortificaPassive4}Tier 4 Undead troops can get wounded with a 20% lower chance." />
-  <string id="tor_careerchoice_description.LiberMortisPassive1" text="{=str_tor_careerchoice_description_LiberMortisPassive1}Increases maximum winds of magic capacities by 5." />
+  <string id="tor_careerchoice_description.LiberMortisPassive1" text="{=str_tor_careerchoice_description_LiberMortisPassive1}Increases maximum winds of magic capacities by 5. (Piero 10 Winds)" />
   <string id="tor_careerchoice_description.LiberMortisPassive2" text="{=str_tor_careerchoice_description_LiberMortisPassive2}Attacks of undead troops can penetrate 15% armor." />
   <string id="tor_careerchoice_description.LiberMortisPassive3" text="{=str_tor_careerchoice_description_LiberMortisPassive3}Undead troops gain 10% extra physical melee damage." />
   <string id="tor_careerchoice_description.LiberMortisPassive4" text="{=str_tor_careerchoice_description_LiberMortisPassive4}20% Spell cooldown reduction." />
-  <string id="tor_careerchoice_description.BookofWsoranPassive1" text="{=str_tor_careerchoice_description_BookofWsoranPassive1}Increases Party size by 25." />
-  <string id="tor_careerchoice_description.BookofWsoranPassive2" text="{=str_tor_careerchoice_description_BookofWsoranPassive2}Increase hex durations by 25%." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive1" text="{=str_tor_careerchoice_description_BookofWsoranPassive1}Increases Party size by 25. (Piero 50 party size)" />
+  <string id="tor_careerchoice_description.BookofWsoranPassive2" text="{=str_tor_careerchoice_description_BookofWsoranPassive2}Increase hex durations by 25%. (Piero 50%)" />
   <string id="tor_careerchoice_description.BookofWsoranPassive3" text="{=str_tor_careerchoice_description_BookofWsoranPassive3}Undead troops gain 25% Ward save." />
   <string id="tor_careerchoice_description.BookofWsoranPassive4" text="{=str_tor_careerchoice_description_BookofWsoranPassive4}Gain 0.5 Dark Energy for every Grave guard troop." />
   <string id="tor_careerchoice_description.GrimoireNecrisPassive1" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive1}Undead troops gain 10% extra magical melee damage." />
   <string id="tor_careerchoice_description.GrimoireNecrisPassive2" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive2}Dark Energy Upkeep costs are reduced by 25%" />
-  <string id="tor_careerchoice_description.GrimoireNecrisPassive3" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive3}Buffs and healing duration is increased by 35%." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive3" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive3}Buffs and healing duration is increased by 35%. (Piero 50%)" />
   <string id="tor_careerchoice_description.GrimoireNecrisPassive4" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive4}For every enchantment on equipment you summon 1 unit more." />
   <string id="tor_careerchoice_description.BooksOfNagashPassive1" text="{=str_tor_careerchoice_description_BooksOfNagashPassive1}Gain 15 Dark Energy daily." />
   <string id="tor_careerchoice_description.BooksOfNagashPassive2" text="{=str_tor_careerchoice_description_BooksOfNagashPassive2}Increases Party size by 50." />
-  <string id="tor_careerchoice_description.BooksOfNagashPassive3" text="{=str_tor_careerchoice_description_BooksOfNagashPassive3}Increases maximum winds of magic capacities by 15." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive3" text="{=str_tor_careerchoice_description_BooksOfNagashPassive3}Increases maximum winds of magic capacities by 15. (Piero 25 Winds)" />
   <string id="tor_careerchoice_description.BooksOfNagashPassive4" text="{=str_tor_careerchoice_description_BooksOfNagashPassive4}Dark Energy cost for undead troop upgrades is reduced by 50%." />
 
   <!-- VampireCount Career Choice Descriptions -->
@@ -2749,17 +2749,17 @@
   <string id="tor_careerchoice_description.FeralPassive4" text="{=str_tor_careerchoice_description_FeralPassive4}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.ArkayneKeystone" text="{=str_tor_careerchoice_description_ArkayneKeystone}Mistform scales with Spellcraft. Spell damage can charge ability with 90% reduced power." />
   <string id="tor_careerchoice_description.ArkaynePassive1" text="{=str_tor_careerchoice_description_ArkaynePassive1}Armor weight doesn't affect winds recharge rate" />
-  <string id="tor_careerchoice_description.ArkaynePassive2" text="{=str_tor_careerchoice_description_ArkaynePassive2}Increases Magical spell damage by 5%." />
+  <string id="tor_careerchoice_description.ArkaynePassive2" text="{=str_tor_careerchoice_description_ArkaynePassive2}Increases Magical spell damage by 5%. (Piero 3%)" />
   <string id="tor_careerchoice_description.ArkaynePassive3" text="{=str_tor_careerchoice_description_ArkaynePassive3}5% extra Magical melee damage." />
-  <string id="tor_careerchoice_description.ArkaynePassive4" text="{=str_tor_careerchoice_description_ArkaynePassive4}10% cost reduction for spells." />
+  <string id="tor_careerchoice_description.ArkaynePassive4" text="{=str_tor_careerchoice_description_ArkaynePassive4}10% cost reduction for spells (Piero 5% cost reduction)." />
   <string id="tor_careerchoice_description.CourtleyKeystone" text="{=str_tor_careerchoice_description_CourtleyKeystone}Mist Form is recharged on battle start and now also scales with Roguery." />
   <string id="tor_careerchoice_description.CourtleyPassive1" text="{=str_tor_careerchoice_description_CourtleyPassive1}Increases positive Relation gains by 20%." />
   <string id="tor_careerchoice_description.CourtleyPassive2" text="{=str_tor_careerchoice_description_CourtleyPassive2}Increases Hitpoints by 15." />
-  <string id="tor_careerchoice_description.CourtleyPassive3" text="{=str_tor_careerchoice_description_CourtleyPassive3}5% extra Magical spell and ranged damage." />
+  <string id="tor_careerchoice_description.CourtleyPassive3" text="{=str_tor_careerchoice_description_CourtleyPassive3}5% extra Magical spell and ranged damage. (Piero 3%)" />
   <string id="tor_careerchoice_description.CourtleyPassive4" text="{=str_tor_careerchoice_description_CourtleyPassive4}Killing blows in the head replenish 2 Winds of Magic." />
-  <string id="tor_careerchoice_description.LordlyKeystone" text="{=str_tor_careerchoice_description_LordlyKeystone}Mist Form heals 3 HP per second. The ability duration scales with the wielded weapon skill." />
+  <string id="tor_careerchoice_description.LordlyKeystone" text="{=str_tor_careerchoice_description_LordlyKeystone}Mist Form heals 3 HP per second (Piero 1 HP per second). The ability duration scales with the wielded weapon skill." />
   <string id="tor_careerchoice_description.LordlyPassive1" text="{=str_tor_careerchoice_description_LordlyPassive1}Increases Companion Limit by 5." />
-  <string id="tor_careerchoice_description.LordlyPassive2" text="{=str_tor_careerchoice_description_LordlyPassive2}Party size is increased by 75." />
+  <string id="tor_careerchoice_description.LordlyPassive2" text="{=str_tor_careerchoice_description_LordlyPassive2}Party size is increased by 75. (Piero 20 party size)" />
   <string id="tor_careerchoice_description.LordlyPassive3" text="{=str_tor_careerchoice_description_LordlyPassive3}All Vampire troops wages are reduced by 15%." />
   <string id="tor_careerchoice_description.LordlyPassive4" text="{=str_tor_careerchoice_description_LordlyPassive4}Every 2 Undead troops gain 1 additional party slot." />
   <string id="tor_careerchoice_description.MartialleKeystone" text="{=str_tor_careerchoice_description_MartialleKeystone}+20% swing speed. Buffs are active after Mist Form (requires extra 30% damage dealt)." />
@@ -2769,7 +2769,7 @@
   <string id="tor_careerchoice_description.MartiallePassive4" text="{=str_tor_careerchoice_description_MartiallePassive4}All attacks deal bonus damage against shields." />
   <string id="tor_careerchoice_description.MasterOfDeadKeystone" text="{=str_tor_careerchoice_description_MasterOfDeadKeystone}All buffs are propagated while remaining in Mist Form (requires extra 30% damage dealt)." />
   <string id="tor_careerchoice_description.MasterOfDeadPassive1" text="{=str_tor_careerchoice_description_MasterOfDeadPassive1}Gain 5 Dark Energy per day." />
-  <string id="tor_careerchoice_description.MasterOfDeadPassive2" text="{=str_tor_careerchoice_description_MasterOfDeadPassive2}Undead troops gain 15% Ward save." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive2" text="{=str_tor_careerchoice_description_MasterOfDeadPassive2}Undead troops gain 15% Ward save. (Piero 10% Ward Save)" />
   <string id="tor_careerchoice_description.MasterOfDeadPassive3" text="{=str_tor_careerchoice_description_MasterOfDeadPassive3}20% higher chance for raised dead after battle." />
   <string id="tor_careerchoice_description.MasterOfDeadPassive4" text="{=str_tor_careerchoice_description_MasterOfDeadPassive4}Tier 4 Undead troops can get wounded with a 20% lower chance." />
 
