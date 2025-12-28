@@ -200,7 +200,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _liberNecrisPassive1.Initialize(CareerID, "Undead troops party weight is reduced by 20%.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.2f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsUndead()));
             _liberNecrisPassive2.Initialize(CareerID, "Harbinger kills increase rougery", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _liberNecrisPassive3.Initialize(CareerID, "Increases your health by 10.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
-            _liberNecrisPassive4.Initialize(CareerID, "Increases magic spell damage by 5%.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell));
+            _liberNecrisPassive4.Initialize(CareerID, "Increases magic spell damage by 10%.", "LiberNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
 
             _deArcanisKadonPassive1.Initialize(CareerID, "10% extra melee damage for undead troops.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee, DeArcanisKadonPassive1));
             _deArcanisKadonPassive2.Initialize(CareerID, "Undead troops party weight is reduced by 20%.", "DeArcanisKadon", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.2f, PassiveEffectType.UnitPartyWeight, false, characterObject => characterObject.IsUndead()));
@@ -212,24 +212,24 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _codexMortificaPassive3.Initialize(CareerID, "Wounded troops in your party heal faster.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //can be more precise
             _codexMortificaPassive4.Initialize(CareerID, "Tier 4 Undead troops can get wounded with a 20% lower chance.", "CodexMortifica", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.Special, true));
 
-            _liberMortisPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 5.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.WindsOfMagic));
+            _liberMortisPassive1.Initialize(CareerID, "Increases maximum winds of magic capacities by 10.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.WindsOfMagic));
             _liberMortisPassive2.Initialize(CareerID, "Attacks of undead troops can penetrate 15% armor.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special));
             _liberMortisPassive3.Initialize(CareerID, "Undead troops gain 10% extra physical melee damage.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee, LiberMortisPassive3));
             _liberMortisPassive4.Initialize(CareerID, "20% Spell cooldown reduction.", "LiberMortis", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.WindsCooldownReduction, true));
 
-            _bookofWsoranPassive1.Initialize(CareerID, "Increases Party size by 25.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.PartySize));
-            _bookofWsoranPassive2.Initialize(CareerID, "Increase hex durations by 25%.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25f, PassiveEffectType.DebuffDuration, true));
+            _bookofWsoranPassive1.Initialize(CareerID, "Increases Party size by 50.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
+            _bookofWsoranPassive2.Initialize(CareerID, "Increase hex durations by 50%.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50f, PassiveEffectType.DebuffDuration, true));
             _bookofWsoranPassive3.Initialize(CareerID, "Undead troops gain 25% Ward save.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 25), AttackTypeMask.All, BookofWsoranPassive3));
             _bookofWsoranPassive4.Initialize(CareerID, "Gain 0.5 Dark Energy for every Grave guard troop.", "BookOfWsoran", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.5f, PassiveEffectType.Special, false));
 
             _grimoireNecrisPassive1.Initialize(CareerID, "Undead troops gain 10% extra magical melee damage.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee, LiberMortisPassive3));
             _grimoireNecrisPassive2.Initialize(CareerID, "Dark Energy Upkeep costs are reduced by 25%", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpkeepModifier, true));
-            _grimoireNecrisPassive3.Initialize(CareerID, "Buffs and healing duration is increased by 35%.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(35, PassiveEffectType.BuffDuration, true));
+            _grimoireNecrisPassive3.Initialize(CareerID, "Buffs and healing duration is increased by 50%.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.BuffDuration, true));
             _grimoireNecrisPassive4.Initialize(CareerID, "For every enchantment on equipment you summon 1 unit more.", "GrimoireNecris", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
 
             _booksOfNagashPassive1.Initialize(CareerID, "Gain 15 Dark Energy daily.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
             _booksOfNagashPassive2.Initialize(CareerID, "Increases Party size by 50.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.PartySize));
-            _booksOfNagashPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 15.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.WindsOfMagic));
+            _booksOfNagashPassive3.Initialize(CareerID, "Increases maximum winds of magic capacities by 25.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.WindsOfMagic));
             _booksOfNagashPassive4.Initialize(CareerID, "Dark Energy cost for undead troop upgrades is reduced by 50%.", "BooksOfNagash", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-50, PassiveEffectType.CustomResourceUpgradeCostModifier, true));
         }
 
