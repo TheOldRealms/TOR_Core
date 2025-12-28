@@ -142,17 +142,22 @@
             padding: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             max-height: 700px;
-            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .settlement-list h3 {
             margin-bottom: 15px;
             color: #555;
-            position: sticky;
-            top: 0;
-            background: white;
             padding-bottom: 10px;
             border-bottom: 2px solid #e9ecef;
+            flex-shrink: 0;
+        }
+
+        #settlementListItems {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 0;
         }
 
         .settlement-item {
@@ -651,6 +656,111 @@
             text-align: center;
             padding: 20px;
         }
+
+        /* Spawn Point Marker Styles */
+        .spawn-point-controls {
+            margin-top: 15px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-radius: 8px;
+            border: 2px solid #ff9800;
+        }
+
+        .spawn-point-controls h4 {
+            margin: 0 0 10px 0;
+            color: #e65100;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spawn-point-inputs {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .spawn-point-inputs .coord-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .spawn-point-inputs label {
+            font-weight: 600;
+            color: #e65100;
+            font-size: 0.9em;
+        }
+
+        .spawn-point-inputs input[type="number"] {
+            width: 100px;
+            padding: 6px 10px;
+            border: 2px solid #ff9800;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .spawn-point-inputs input[type="number"]:focus {
+            outline: none;
+            border-color: #e65100;
+            box-shadow: 0 0 5px rgba(255, 152, 0, 0.3);
+        }
+
+        .spawn-point-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-spawn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-spawn-place {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-spawn-place:hover {
+            background: #f57c00;
+        }
+
+        .btn-spawn-place.active {
+            background: #e65100;
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+        }
+
+        .btn-spawn-copy {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-spawn-copy:hover {
+            background: #388e3c;
+        }
+
+        .btn-spawn-clear {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-spawn-clear:hover {
+            background: #d32f2f;
+        }
+
+        .spawn-point-info {
+            margin-top: 8px;
+            font-size: 0.8em;
+            color: #795548;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -784,6 +894,9 @@
             <div class="settlement-list">
                 <h3>Filtered Settlements (<span id="listCount">0</span>)</h3>
                 <div id="settlementListItems"></div>
+                <button onclick="deselectAllSettlements()" style="margin-top: 10px; width: 100%; padding: 8px; background: #95a5a6; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; font-weight: 600; flex-shrink: 0;">
+                    Deselect All
+                </button>
             </div>
 
             <div class="map-container">
@@ -804,6 +917,40 @@
                 <p style="margin-top: 5px; color: #666; font-size: 0.85em; font-style: italic;">
                     Scroll to zoom | Shift+Drag to pan | Hover for details
                 </p>
+
+                <!-- Point Marker Controls -->
+                <div class="spawn-point-controls">
+                    <h4>
+                        <span style="color: #ff9800; font-size: 1.2em;">⊕</span>
+                        Point Marker
+                    </h4>
+                    <div class="spawn-point-inputs">
+                        <div class="coord-group">
+                            <label for="spawnPointX">X:</label>
+                            <input type="number" id="spawnPointX" step="0.001" placeholder="e.g. 1218.711"
+                                   onchange="updateSpawnPointFromInput()">
+                        </div>
+                        <div class="coord-group">
+                            <label for="spawnPointY">Y:</label>
+                            <input type="number" id="spawnPointY" step="0.001" placeholder="e.g. 798.5"
+                                   onchange="updateSpawnPointFromInput()">
+                        </div>
+                        <div class="spawn-point-buttons">
+                            <button id="btnPlaceSpawn" class="btn-spawn btn-spawn-place" onclick="togglePlaceSpawnMode()">
+                                Click to Place
+                            </button>
+                            <button class="btn-spawn btn-spawn-copy" onclick="copySpawnPointCoords()">
+                                Copy Coords
+                            </button>
+                            <button class="btn-spawn btn-spawn-clear" onclick="clearSpawnPoint()">
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                    <p class="spawn-point-info">
+                        Click "Click to Place" then click on the map to set a spawn point. You can also drag the marker to reposition it.
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -908,6 +1055,12 @@
         let clanNames = new Map(); // Map of clan ID to display name
         let colorByFaction = false;
         let colorByVillageType = false;
+
+        // Spawn point marker state
+        let spawnPoint = null; // { x: worldX, y: worldY }
+        let isPlacingSpawnPoint = false; // Mode for clicking to place spawn point
+        let isDraggingSpawnPoint = false; // Dragging the spawn point marker
+        let spawnPointHovered = false; // Is mouse hovering over spawn point
 
         // File input handler
         document.getElementById('xmlFiles').addEventListener('change', function(e) {
@@ -1388,6 +1541,11 @@
             canvas.addEventListener('mouseup', handleMapMouseUp);
             canvas.addEventListener('mousemove', handleMapPan);
 
+            // Spawn point dragging
+            canvas.addEventListener('mousedown', handleSpawnPointMouseDown);
+            canvas.addEventListener('mouseup', handleSpawnPointMouseUp);
+            document.addEventListener('mouseup', handleSpawnPointMouseUp); // Also listen on document for drags outside canvas
+
             populateCultureDropdown();
             applyFilters();
             updateStats();
@@ -1661,6 +1819,15 @@
                     selectedItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             }
+        }
+
+        // Deselect all settlements
+        function deselectAllSettlements() {
+            selectedSettlements.clear();
+            lastSelectedId = null;
+            renderSettlementList();
+            renderMap();
+            renderTable();
         }
 
         // Sort table
@@ -2030,15 +2197,31 @@
 
             const scaleX = canvasWidth / worldWidth;
             const scaleY = canvasHeight / worldHeight;
-            const scale = Math.min(scaleX, scaleY);
+            const baseScale = Math.min(scaleX, scaleY);
+            const scale = baseScale * zoomLevel;
 
-            const scaledWidth = worldWidth * scale;
-            const scaledHeight = worldHeight * scale;
-            const offsetX = (canvasWidth - scaledWidth) / 2 + padding;
-            const offsetY = (canvasHeight - scaledHeight) / 2 + padding;
+            const scaledWidth = worldWidth * baseScale;
+            const scaledHeight = worldHeight * baseScale;
+            const centerOffsetX = (canvasWidth - scaledWidth) / 2 + padding;
+            const centerOffsetY = (canvasHeight - scaledHeight) / 2 + padding;
 
-            const worldX = ((canvasX - offsetX) / scale) + mapBounds.minX;
-            const worldY = ((canvas.height - canvasY - offsetY) / scale) + mapBounds.minY;
+            const canvasCenterX = canvas.width / 2;
+            const canvasCenterY = canvas.height / 2;
+
+            // Reverse the pan offset first
+            let x = canvasX - panOffsetX;
+            let y = canvasY - panOffsetY;
+
+            // Reverse the zoom around center (x and y are already relative to canvas)
+            // In worldToCanvas: x = (x - canvasCenterX) + canvasCenterX + panOffsetX
+            // So after removing pan: x = (originalX - canvasCenterX) + canvasCenterX = originalX
+            // The zoom offset formula simplifies, so we just need to reverse the scale
+
+            // Reverse: x = ((worldX - mapBounds.minX) * scale) + centerOffsetX
+            const worldX = ((x - centerOffsetX) / scale) + mapBounds.minX;
+
+            // Reverse: y = canvas.height - (((worldY - mapBounds.minY) * scale) + centerOffsetY)
+            const worldY = ((canvas.height - y - centerOffsetY) / scale) + mapBounds.minY;
 
             return { x: worldX, y: worldY };
         }
@@ -2306,6 +2489,51 @@
                     ctx.fillText(line, tooltipX + padding, tooltipY - tooltipHeight + padding + (i + 1) * lineHeight - 4);
                 });
             }
+
+            // Draw spawn point marker
+            if (spawnPoint) {
+                const spawnPos = worldToCanvas(spawnPoint.x, spawnPoint.y);
+                const size = spawnPointHovered || isDraggingSpawnPoint ? 14 : 10;
+
+                // Draw outer glow
+                ctx.beginPath();
+                ctx.arc(spawnPos.x, spawnPos.y, size + 4, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 152, 0, 0.3)';
+                ctx.fill();
+
+                // Draw crosshair circle
+                ctx.beginPath();
+                ctx.arc(spawnPos.x, spawnPos.y, size, 0, Math.PI * 2);
+                ctx.fillStyle = '#ff9800';
+                ctx.fill();
+                ctx.strokeStyle = '#e65100';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw crosshair lines
+                ctx.beginPath();
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                // Horizontal line
+                ctx.moveTo(spawnPos.x - size + 3, spawnPos.y);
+                ctx.lineTo(spawnPos.x + size - 3, spawnPos.y);
+                // Vertical line
+                ctx.moveTo(spawnPos.x, spawnPos.y - size + 3);
+                ctx.lineTo(spawnPos.x, spawnPos.y + size - 3);
+                ctx.stroke();
+
+                // Draw inner dot
+                ctx.beginPath();
+                ctx.arc(spawnPos.x, spawnPos.y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+
+                // Draw coordinates label
+                ctx.font = 'bold 11px Arial';
+                ctx.fillStyle = '#e65100';
+                ctx.textAlign = 'center';
+                ctx.fillText(`(${spawnPoint.x.toFixed(3)}, ${spawnPoint.y.toFixed(3)})`, spawnPos.x, spawnPos.y + size + 16);
+            }
         }
 
         function handleMapHover(event) {
@@ -2319,6 +2547,26 @@
             // Get mouse position relative to canvas and scale it to internal canvas coordinates
             const canvasX = (event.clientX - rect.left) * scaleX;
             const canvasY = (event.clientY - rect.top) * scaleY;
+
+            // Check if hovering over spawn point marker
+            const wasSpawnPointHovered = spawnPointHovered;
+            spawnPointHovered = isPointNearSpawnPoint(canvasX, canvasY);
+
+            // Handle spawn point dragging
+            if (isDraggingSpawnPoint) {
+                const worldPos = canvasToWorld(canvasX, canvasY);
+                setSpawnPoint(worldPos.x, worldPos.y);
+                return;
+            }
+
+            // Update cursor for spawn point hover
+            if (spawnPointHovered && !isPlacingSpawnPoint) {
+                canvas.style.cursor = 'move';
+            } else if (isPlacingSpawnPoint) {
+                canvas.style.cursor = 'crosshair';
+            } else {
+                canvas.style.cursor = 'default';
+            }
 
             // Find closest settlement within threshold
             let closestSettlement = null;
@@ -2336,16 +2584,53 @@
                 }
             });
 
-            if (closestSettlement !== hoveredSettlement) {
+            if (closestSettlement !== hoveredSettlement || wasSpawnPointHovered !== spawnPointHovered) {
                 hoveredSettlement = closestSettlement;
                 renderMap();
             }
         }
 
         function handleMapClick(event) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const canvasX = (event.clientX - rect.left) * scaleX;
+            const canvasY = (event.clientY - rect.top) * scaleY;
+
+            // Handle spawn point placement mode
+            if (isPlacingSpawnPoint) {
+                const worldPos = canvasToWorld(canvasX, canvasY);
+                setSpawnPoint(worldPos.x, worldPos.y);
+                // Exit placement mode after placing
+                togglePlaceSpawnMode();
+                return;
+            }
+
+            // Normal settlement selection
             if (!isPanning && hoveredSettlement) {
                 // Toggle selection of the clicked settlement
                 toggleSettlementSelection(hoveredSettlement.id);
+            }
+        }
+
+        function handleSpawnPointMouseDown(event) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const canvasX = (event.clientX - rect.left) * scaleX;
+            const canvasY = (event.clientY - rect.top) * scaleY;
+
+            if (isPointNearSpawnPoint(canvasX, canvasY) && !isPlacingSpawnPoint) {
+                isDraggingSpawnPoint = true;
+                canvas.style.cursor = 'grabbing';
+                event.preventDefault();
+            }
+        }
+
+        function handleSpawnPointMouseUp(event) {
+            if (isDraggingSpawnPoint) {
+                isDraggingSpawnPoint = false;
+                canvas.style.cursor = spawnPointHovered ? 'move' : 'default';
             }
         }
 
@@ -2414,6 +2699,80 @@
             panOffsetX = 0;
             panOffsetY = 0;
             renderMap();
+        }
+
+        // ========================================
+        // Spawn Point Marker Functions
+        // ========================================
+
+        function togglePlaceSpawnMode() {
+            isPlacingSpawnPoint = !isPlacingSpawnPoint;
+            const btn = document.getElementById('btnPlaceSpawn');
+            if (isPlacingSpawnPoint) {
+                btn.classList.add('active');
+                btn.textContent = 'Click on Map...';
+                canvas.style.cursor = 'crosshair';
+            } else {
+                btn.classList.remove('active');
+                btn.textContent = 'Click to Place';
+                canvas.style.cursor = 'default';
+            }
+        }
+
+        function setSpawnPoint(worldX, worldY) {
+            spawnPoint = { x: worldX, y: worldY };
+            document.getElementById('spawnPointX').value = worldX.toFixed(3);
+            document.getElementById('spawnPointY').value = worldY.toFixed(3);
+            renderMap();
+        }
+
+        function updateSpawnPointFromInput() {
+            const x = parseFloat(document.getElementById('spawnPointX').value);
+            const y = parseFloat(document.getElementById('spawnPointY').value);
+            if (!isNaN(x) && !isNaN(y)) {
+                spawnPoint = { x: x, y: y };
+                renderMap();
+            }
+        }
+
+        function clearSpawnPoint() {
+            spawnPoint = null;
+            document.getElementById('spawnPointX').value = '';
+            document.getElementById('spawnPointY').value = '';
+            isPlacingSpawnPoint = false;
+            const btn = document.getElementById('btnPlaceSpawn');
+            btn.classList.remove('active');
+            btn.textContent = 'Click to Place';
+            renderMap();
+        }
+
+        function copySpawnPointCoords() {
+            if (!spawnPoint) {
+                alert('No spawn point set. Please place a spawn point first.');
+                return;
+            }
+            const coordsText = `posX="${spawnPoint.x.toFixed(3)}" posY="${spawnPoint.y.toFixed(3)}"`;
+            navigator.clipboard.writeText(coordsText).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.background = '#2e7d32';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 1500);
+            }).catch(() => {
+                alert(`Spawn Point Coordinates:\n${coordsText}`);
+            });
+        }
+
+        function isPointNearSpawnPoint(canvasX, canvasY) {
+            if (!spawnPoint) return false;
+            const spawnPos = worldToCanvas(spawnPoint.x, spawnPoint.y);
+            const distance = Math.sqrt(
+                Math.pow(canvasX - spawnPos.x, 2) + Math.pow(canvasY - spawnPos.y, 2)
+            );
+            return distance < 20;
         }
 
         // Scene Modal functionality
