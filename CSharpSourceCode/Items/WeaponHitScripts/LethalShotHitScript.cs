@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.Extensions;
@@ -9,11 +10,26 @@ namespace TOR_Core.Items.WeaponHitScripts;
 
 public class LethalShotHitScript : BaseWeaponHitScript
 {
+    public static int id;
     public override void OnHit(Agent attackingAgent, Agent attackedAgent, Blow blow, MissionWeapon missionWeapon, AttackCollisionData collisionData)
     {
-        // Only consume charge on ranged hits
-        if (blow.AttackType != AgentAttackType.Missile)
+        // Only consume charge on ranged hits#
+        
+        if (! blow.IsMissile)
             return;
+
+        if (id == -1)
+        {
+            id = blow.WeaponRecord.AffectorWeaponSlotOrMissileIndex;
+        }
+        else
+        {
+            if (id == blow.WeaponRecord.AffectorWeaponSlotOrMissileIndex)
+            {
+                return;
+            }
+        }
+
 
         // Minimum damage threshold to consume a charge
         if (blow.InflictedDamage <= 5)
@@ -38,6 +54,7 @@ public class LethalShotHitScript : BaseWeaponHitScript
         {
             return;
         }
+        id = -1;
 
         // No stacks left - remove all Lethal Shot traits
         var weaponComponent = attackingAgent.GetComponent<ItemTraitAgentComponent>();

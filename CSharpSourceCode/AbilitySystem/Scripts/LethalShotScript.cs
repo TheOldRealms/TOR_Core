@@ -6,6 +6,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
+using TOR_Core.Items.WeaponHitScripts;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
@@ -151,6 +152,15 @@ namespace TOR_Core.AbilitySystem.Scripts
                     comp.AddTraitToWieldedWeapon(trait, duration);
                 }
             }
+
+            LethalShotHitScript.id = -1;
+        }
+
+
+        protected override void OnBeforeRemoved(int removeReason)
+        {
+            base.OnBeforeRemoved(removeReason);
+            LethalShotHitScript.id = -1;
         }
     }
 }

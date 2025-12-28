@@ -269,7 +269,7 @@
   <string id="tor_quest_hunt_cultist_offer_dialog" text="{=str_tor_quest_hunt_cultist_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"/>
   <string id="tor_quest_hunt_cultist_discuss_dialog" text="{=str_tor_quest_hunt_cultist_discuss_dialog}It was good doing business with you."/>
   <string id="tor_quest_hunt_cultist_prepare_to_die" text="{=str_tor_quest_hunt_cultist_prepare_to_die}Prepare to die!"/>
-  <string id="tor_khorne_cultist_mission_dialog" text="{=str_khorne_cultist_mission}This vessel is mine. Don't interfere with my plans!"/>
+  <string id="tor_khorne_cultist_mission_dialog" text="{=str_tor_khorne_cultist_mission_dialog}This vessel is mine. Don't interfere with my plans!"/>
   <string id="tor_quest_hunt_cultist_out_of_time_log" text="{=str_tor_quest_hunt_cultist_out_of_time_log}You failed to complete the investigation in time. Any potential cultists are surely in the wind now."/>
   <string id="tor_quest_hunt_cultist_village_raided_title" text="{=str_tor_quest_hunt_cultist_village_raided_title}Village Raided"/>
   <string id="tor_quest_hunt_cultist_village_raided_info" text="{=str_tor_quest_hunt_cultist_village_raided_info}The village has been raided. Any cultists have likely fled or gone into hiding. Return when the village has been repopulated."/>
@@ -502,11 +502,11 @@
   <!--findable magical items-->
   
     <!--rarity by trait amount-->
-	<string id="tor_magical_items_trait_nameComposition" text="{=str_tor_magical_items_trait_rarity}{NAMEMODIFIER} {NAMEOFITEM}"/>
-	<string id="tor_magical_items_trait_rarity.1" text="{=str_tor_magical_items_trait_rarity}Uncommmon"/>
-	<string id="tor_magical_items_trait_rarity.2" text="{=str_tor_magical_items_trait_rarity_1}Rare"/>
-	<string id="tor_magical_items_trait_rarity.3" text="{=str_tor_magical_items_trait_rarity_2}Epic"/>
-	<string id="tor_magical_items_trait_rarity.4" text="{=str_tor_magical_items_trait_rarity_3}Legendary"/>
+	<string id="tor_magical_items_trait_nameComposition" text="{=str_tor_magical_items_trait_nameComposition}{NAMEMODIFIER} {NAMEOFITEM}"/>
+	<string id="tor_magical_items_trait_rarity.1" text="{=str_tor_magical_items_trait_rarity_1}Uncommon"/>
+	<string id="tor_magical_items_trait_rarity.2" text="{=str_tor_magical_items_trait_rarity_2}Rare"/>
+	<string id="tor_magical_items_trait_rarity.3" text="{=str_tor_magical_items_trait_rarity_3}Epic"/>
+	<string id="tor_magical_items_trait_rarity.4" text="{=str_tor_magical_items_trait_rarity_4}Legendary"/>
   
   <!--========================================-->
   <!-- ENCHANTMENT SYSTEM DIALOGS             -->
@@ -825,7 +825,7 @@
   <string id="tor_dw_guildmaster_reintro.warrior" text="{=str_tor_dw_guildmaster_reintro_warrior}Well, anything else?"/>
   
   <!--Guild info-->
-  <string id="tor_dw_guildmaster_info_p.runesmith" text="{=str_tor_dw_guildmaster_info_p_rune_smith}What do the Rhunki provide?"/>
+  <string id="tor_dw_guildmaster_info_p.runesmith" text="{=str_tor_dw_guildmaster_info_p_runesmith}What do the Rhunki provide?"/>
   <string id="tor_dw_guildmaster_unlock_info.runesmith" text="{=str_tor_dw_guildmaster_unlock_info_runesmith}Ours is the oldest, wealthiest, and most powerful of the guilds. Founded in the time when the Ancenstor Gods still walked among us. We supply worthy Dawi with armour that could turn the blows of giants and weapons that could slay dragons in a single strike."/>  
   <string id="tor_dw_guildmaster_unlock_info_2.runesmith" text="{=str_tor_dw_guildmaster_unlock_info_2_runesmith}In times of war, and only when the need arises, do we field the Anvils of Doom, capable of laying waste to entire armies. With our connections we can also reduce the costs of troops suited in Gromril gear, like Ironbreakers or Hammerers."/>  
 
@@ -892,11 +892,11 @@
     <!--Expeditions-->
 	
   <string id="tor_dw_guildmaster_expedition_found_artefacts" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you."/>
-  <string id="tor_dw_guildmaster_expedition_found_artefacts_no_expeditions" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}The expeditions have not returned yet."/>
+  <string id="tor_dw_guildmaster_expedition_found_artefacts_no_expeditions" text="{=str_tor_dw_guildmaster_expedition_found_artefacts_no_expeditions}The expeditions have not returned yet."/>
 
   <string id="tor_dw_guildmaster_expedition_launch_expedition_decline" text="{=str_tor_dw_guildmaster_expedition_launch_expedition_decline}We are spread too thin; all we can do is wait for our explorers to return."/>
 
-  <string id="tor_dw_guildmaster_expedition_launch_expedition" text="{=str_tor_dw_guildmaster_expedition_launch_expedition_decline}Aye, with sufficient funding we can send teams to reclaim treasures from the deepest tunnels of the Underway."/>
+  <string id="tor_dw_guildmaster_expedition_launch_expedition" text="{=str_tor_dw_guildmaster_expedition_launch_expedition}Aye, with sufficient funding we can send teams to reclaim treasures from the deepest tunnels of the Underway."/>
   
   <string id="tor_dw_guildmaster_gemcutter_launch_expedition_accept_p" text="{=str_tor_dw_guildmaster_gemcutter_launch_expedition_accept_p}Let me fund an expeditions."/>
 
