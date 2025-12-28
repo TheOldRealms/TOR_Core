@@ -238,7 +238,7 @@ namespace TOR_Core.BattleMechanics
 
             CareerAbility ability = Agent.Main.GetComponent<AbilityComponent>().CareerAbility;
 
-            var reapplyChance = 0.5f;
+            var reapplyChance = 0.6f;
 
             reapplyChance = Mathf.Clamp(reapplyChance, 0.1f, 1);
 

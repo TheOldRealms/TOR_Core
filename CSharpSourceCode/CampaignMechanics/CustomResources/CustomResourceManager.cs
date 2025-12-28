@@ -309,6 +309,21 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         }
                 }
 
+                if (playerHero.HasCareerChoice("HuntTheWickedPassive2"))
+                {
+                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON };
+                    foreach (var party in defeatedSide.Parties)
+                    {
+                        if (evilCultures.Contains(party.Party.Culture.StringId))
+                        {
+                            var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive2");
+                            var value = choice.GetPassiveValue() / 100f;
+                            renownChange *= (1 + value);
+                            break;
+                        }
+                    }
+                }
+
                 if (playerHero.HasCareerChoice("UnrestrictedMagicPassive3"))
                 {
                     var choice = TORCareerChoices.GetChoice("UnrestrictedMagicPassive3");
