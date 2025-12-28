@@ -655,7 +655,9 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_mask_savage_001" RaceLock="orc">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait>savage_orc_ward_save</ItemTrait>
+    </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_he_head_helm_phoenix_001" RaceLock="human">
@@ -1917,7 +1919,9 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_body_armour_savage_001" RaceLock="orc">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait>savage_orc_ward_save</ItemTrait>
+    </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_body_armour_goblin_001" RaceLock="goblin">
@@ -2317,7 +2321,9 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_bracers_savage_001" RaceLock="orc">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait>savage_orc_ward_save</ItemTrait>
+    </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_bracers_goblin_001" RaceLock="goblin">
@@ -2881,7 +2887,9 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_boots_savage_001" RaceLock="orc">
-    <ItemTraits />
+    <ItemTraits>
+      <ItemTrait>savage_orc_ward_save</ItemTrait>
+    </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_greenskin_leg_boots_goblin_001" RaceLock="goblin">

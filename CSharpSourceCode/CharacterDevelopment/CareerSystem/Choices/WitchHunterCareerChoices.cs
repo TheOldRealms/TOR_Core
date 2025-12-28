@@ -109,7 +109,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _witchHunterRoot.Initialize(CareerID, "A single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 20%. After every hit there is a 50% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by 0.1% additional targets are marked.", null, true,
+            _witchHunterRoot.Initialize(CareerID, "A single enemy is marked for 8 seconds and the first hit inflicted against the target increases the physical damage by 40%. After every hit there is a 60% chance the marker stays on the target. For every point in Gunpowder or crossbow, the chances increases by 0.3% additional targets are marked.", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -117,7 +117,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "Accusation",
                         PropertyName = "ScaleVariable1",
-                        PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder, DefaultSkills.Crossbow }, 0.001f,false,true),
+                        PropertyValue = (choice, originalValue, agent) => 0.1f+ CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>(){ TORSkills.GunPowder, DefaultSkills.Crossbow }, 0.003f,false,true),
                         MutationType = OperationType.Add
                     }
                 });
@@ -143,7 +143,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _huntTheWickedKeystone.Initialize(CareerID, "20% additional physical damage for marked enemies. Melee damage can charge ability", "HuntTheWicked", false,
+            _huntTheWickedKeystone.Initialize(CareerID, "40% additional physical damage for marked enemies. Melee damage can charge ability", "HuntTheWicked", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -156,7 +156,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _silverHammerKeystone.Initialize(CareerID, "Increases holy damage by 20% to the marked target. Ability scales with Faith.", "SilverHammer", false,
+            _silverHammerKeystone.Initialize(CareerID, "Increases holy damage by 40% to the marked target. Ability scales with Faith.", "SilverHammer", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -235,13 +235,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void InitializePassives()
         {
             _toolsOfJudgementPassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
-            _toolsOfJudgementPassive2.Initialize(CareerID, "3 extra ammo", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Ammo));
+            _toolsOfJudgementPassive2.Initialize(CareerID, "5 extra ammo", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Ammo));
             _toolsOfJudgementPassive3.Initialize(CareerID, "Extra melee damage (5%).", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
             _toolsOfJudgementPassive4.Initialize(CareerID, "Every headshot kill gains you roguery, count twice for marked targets.", "ToolsOfJudgement", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));
 
             _huntTheWickedPassive1.Initialize(CareerID, "Player healing rate increased by 1", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.HealthRegeneration));
-            _huntTheWickedPassive2.Initialize(CareerID, "Ranged Infantry wages are 15% reduced.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.TroopWages, true,
-                characterObject => !characterObject.IsHero && !characterObject.IsMounted && characterObject.IsRanged));
+            _huntTheWickedPassive2.Initialize(CareerID, "Defeated parties of Chaos, Beastmen and Undead grant 300% more Prestige.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(300, PassiveEffectType.Special));
             _huntTheWickedPassive3.Initialize(CareerID, "Every equipped ranged weapon increases melee damage by 5%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
             _huntTheWickedPassive4.Initialize(CareerID, "Increases the damage of all ranged troops by 10%.", "HuntTheWicked", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
                 (attacker, victim, mask) => !attacker.BelongsToMainParty() && !(attacker.IsMainAgent || attacker.IsHero) && mask == AttackTypeMask.Ranged));
@@ -253,7 +252,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _silverHammerPassive4.Initialize(CareerID, "Troops can be upgraded to Witch Hunter Retinues.", "SilverHammer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Special, true));          //TORAgentStatCalculateModel 458
 
             _noRestAgainstEvilPassive1.Initialize(CareerID, "Extra holy melee damage (10%).", "NoRestAgainstEvil", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 10), AttackTypeMask.Melee));
-            _noRestAgainstEvilPassive2.Initialize(CareerID, "All ranged troops have a 20 points higher ranged skill.", "NoRestAgainstEvil", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.Bow), nameof(DefaultSkills.Crossbow), nameof(DefaultSkills.Throwing), nameof(TORSkills.GunPowder) },
+            _noRestAgainstEvilPassive2.Initialize(CareerID, "All ranged troops have a 50 points higher ranged skill.", "NoRestAgainstEvil", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, new List<string>() { nameof(DefaultSkills.Bow), nameof(DefaultSkills.Crossbow), nameof(DefaultSkills.Throwing), nameof(TORSkills.GunPowder) },
                 characterObject => !characterObject.IsHero && characterObject.IsRanged));
             _noRestAgainstEvilPassive3.Initialize(CareerID, "Increases accuracy by 15%.", "NoRestAgainstEvil", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.AccuracyPenalty, true));
             _noRestAgainstEvilPassive4.Initialize(CareerID, "Increases Companion Limit by 5.", "NoRestAgainstEvil", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
@@ -263,13 +262,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _swiftProcedurePassive3.Initialize(CareerID, "Party movement speed is increased by 1", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1f, PassiveEffectType.PartyMovementSpeed));
             _swiftProcedurePassive4.Initialize(CareerID, "Weapon swing speed increased by 10%.", "SwiftProcedure", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
 
-            _endsJustifiesMeansPassive1.Initialize(CareerID, "Extra ranged damage (5%).", "EndsJustifiesMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Ranged));
+            _endsJustifiesMeansPassive1.Initialize(CareerID, "Extra ranged damage (10%).", "EndsJustifiesMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Ranged));
             _endsJustifiesMeansPassive2.Initialize(CareerID, "Increases range resistance by 15%.", "EndsJustifiesMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Ranged));
             _endsJustifiesMeansPassive3.Initialize(CareerID, "Extra 15% armor penetration of melee attacks.", "EndsJustifiesMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-15, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
             _endsJustifiesMeansPassive4.Initialize(CareerID, "Extra 20% armor penetration of ranged attacks.", "EndsJustifiesMeans", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Ranged));
 
-            _guiltyByAssociationPassive1.Initialize(CareerID, "Increases troop regeneration by 1.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.TroopRegeneration)); //same formulation as other careers?
-            _guiltyByAssociationPassive2.Initialize(CareerID, "Every ranged troop deals 5% extra holy damage.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 5), AttackTypeMask.Ranged,
+            _guiltyByAssociationPassive1.Initialize(CareerID, "Increases Hitpoints by 25.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Health));
+            _guiltyByAssociationPassive2.Initialize(CareerID, "Every ranged troop deals 15% extra holy damage.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.Ranged,
                 (attacker, victim, mask) => attacker.BelongsToMainParty() && !attacker.IsMainAgent && mask == AttackTypeMask.Ranged));
             _guiltyByAssociationPassive3.Initialize(CareerID, "Companion health increases by 25.", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25, PassiveEffectType.Special));
             _guiltyByAssociationPassive4.Initialize(CareerID, "Killing blows in the head increase temporary reload and swing speed", "GuiltyByAssociation", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special));
