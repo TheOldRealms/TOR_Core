@@ -40,12 +40,12 @@
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="1"
 		type="TemporaryAttributeOnly"/>
-	<StatusEffectTemplate 
-		id="mistwalk_healing" 
+	<StatusEffectTemplate
+		id="mistwalk_healing"
 		particle_id="mistform_heal"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="3"
+		base_effect_value="1"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
 		id="mistwalk_wom" 
