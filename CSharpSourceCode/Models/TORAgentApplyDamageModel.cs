@@ -176,6 +176,46 @@ namespace TOR_Core.Models
         }
         */
 
+
+        public override bool CanWeaponDealSneakAttack(in AttackInformation attackInformation, WeaponComponentData weapon)
+        {
+            var value = base.CanWeaponDealSneakAttack(in attackInformation, weapon);
+
+            // ForestStalkerPassive1: Bows and throwing weapons can perform stealth attacks
+            var attacker = attackInformation.AttackerAgent;
+
+            // Check vanilla sneak attack conditions (excluding weapon type check)
+            // Victim must be human, not the player, and either:
+            // 1. Not alarmed and can get alarmed, OR
+            // 2. Not fully alarmed and attacker is behind them
+            if (!attackInformation.IsVictimAgentHuman || attackInformation.IsVictimPlayer)
+                return value;
+
+            bool isVictimUnaware =
+                ((attackInformation.VictimAgentAIStateFlags & Agent.AIStateFlag.Alarmed) == Agent.AIStateFlag.None
+                 && attackInformation.VictimAgentFlags.HasAnyFlag(AgentFlag.CanGetAlarmed))
+                ||
+                (!attackInformation.VictimAgentAIStateFlags.HasAllFlags(Agent.AIStateFlag.Alarmed)
+                 && !attackInformation.IsAttackerAgentNull
+                 && Vec2.DotProduct((attackInformation.AttackerAgentPosition - attackInformation.VictimAgentPosition).AsVec2.Normalized(),
+                                    attackInformation.VictimAgentMovementDirection) < 0.174f);
+
+            if (!isVictimUnaware)
+                return value;
+
+            if (attacker == Agent.Main && Hero.MainHero.HasCareerChoice("ForestStalkerPassive1") && weapon != null)
+            {
+                if (weapon.WeaponClass == WeaponClass.Arrow ||
+                    weapon.WeaponClass == WeaponClass.Javelin || weapon.WeaponClass == WeaponClass.ThrowingAxe ||
+                    weapon.WeaponClass == WeaponClass.ThrowingKnife)
+                {
+                    value = true;
+                }
+            }
+
+            return value;
+        }
+
         public override MeleeCollisionReaction DecidePassiveAttackCollisionReaction(
             Agent attacker,
             Agent defender,
@@ -340,7 +380,8 @@ namespace TOR_Core.Models
 
                         if (ammoItem != null)
                             rangeItemTraits.AddRange(ammoItem.GetTraits());
-                        rangeItemTraits.AddRange(weapon.GetTraits());
+                        rangeItemTraits.AddRange(weapon.GetTraits(agent));
+
                         foreach (var itemTrait in rangeItemTraits)
                         {
                             var property = itemTrait.AmplifierTuple;

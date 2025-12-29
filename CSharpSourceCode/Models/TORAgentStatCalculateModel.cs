@@ -626,20 +626,10 @@ namespace TOR_Core.Models
                     number += faithSkill * choice.GetPassiveValue();
                 }
             }
-
-            // ForestStalkerPassive1: 30% extra damage for stealth attacks with bows and throwing weapons
-            if (agent == Agent.Main && Hero.MainHero.HasCareerChoice("ForestStalkerPassive1") && weapon != null)
-            {
-                if (weapon.WeaponClass == WeaponClass.Bow || weapon.WeaponClass == WeaponClass.Crossbow ||
-                    weapon.WeaponClass == WeaponClass.Javelin || weapon.WeaponClass == WeaponClass.ThrowingAxe ||
-                    weapon.WeaponClass == WeaponClass.ThrowingKnife)
-                {
-                    number += 0.30f;
-                }
-            }
-
+            
             return number;
         }
+
 
         public override float GetEquipmentStealthBonus(Agent agent)
         {

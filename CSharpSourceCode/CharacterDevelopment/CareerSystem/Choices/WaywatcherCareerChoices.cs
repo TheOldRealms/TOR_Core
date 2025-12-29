@@ -196,7 +196,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _pathfinderPassive3.Initialize(CareerID, "Party travels unhindered through snow", "Pathfinder", false, ChoiceType.Passive);
         _pathfinderPassive4.Initialize(CareerID, "Once per day, go for a hunt.", "Pathfinder", false, ChoiceType.Passive);
 
-        _forestStalkerPassive1.Initialize(CareerID, "30% extra damage for stealth attacks with bows and throwing weapons.", "ForestStalker", false, ChoiceType.Passive);
+        _forestStalkerPassive1.Initialize(CareerID, "Bows and throwing weapons can perform stealth attacks.", "ForestStalker", false, ChoiceType.Passive);
         _forestStalkerPassive2.Initialize(CareerID, "Gain 20% range resistance.", "ForestStalker", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 20),
                 AttackTypeMask.Ranged));

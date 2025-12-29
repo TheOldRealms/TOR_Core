@@ -3090,7 +3090,7 @@
   <string id="tor_careerchoice_description.PathfinderPassive3" text="{=str_tor_careerchoice_description_PathfinderPassive3}Party travels unhindered through snow" />
   <string id="tor_careerchoice_description.PathfinderPassive4" text="{=str_tor_careerchoice_description_PathfinderPassive4}Once per day, go for a hunt." />
   <string id="tor_careerchoice_description.ForestStalkerKeystone" text="{=str_tor_careerchoice_description_ForestStalkerKeystone}All enemies suffer 50% more magical damage for 10 seconds. Allied troops charge ability." />
-  <string id="tor_careerchoice_description.ForestStalkerPassive1" text="{=str_tor_careerchoice_description_ForestStalkerPassive1}30% extra damage for stealth attacks with bows and throwing weapons." />
+  <string id="tor_careerchoice_description.ForestStalkerPassive1" text="{=str_tor_careerchoice_description_ForestStalkerPassive1}Bows and throwing weapons can perform stealth attacks." />
   <string id="tor_careerchoice_description.ForestStalkerPassive2" text="{=str_tor_careerchoice_description_ForestStalkerPassive2}Gain 20% range resistance." />
   <string id="tor_careerchoice_description.ForestStalkerPassive3" text="{=str_tor_careerchoice_description_ForestStalkerPassive3}{EFFECT_VALUE}% increased Stealth Bonus" />
   <string id="tor_careerchoice_description.ForestStalkerPassive4" text="{=str_tor_careerchoice_description_ForestStalkerPassive4}20% Equipment weight Reduction" />
