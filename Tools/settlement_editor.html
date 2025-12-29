@@ -612,6 +612,95 @@
             background: #8e44ad;
         }
 
+        .btn-view-scenes {
+            padding: 4px 8px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: background 0.3s;
+            margin-left: 4px;
+        }
+
+        .btn-view-scenes:hover {
+            background: #2980b9;
+        }
+
+        .scene-view-popup {
+            position: fixed;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            padding: 15px;
+            z-index: 2000;
+            max-width: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .scene-view-popup h3 {
+            margin: 0 0 10px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            font-size: 1em;
+            color: #2c3e50;
+        }
+
+        .scene-view-popup .close-btn {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .scene-view-popup .close-btn:hover {
+            color: #333;
+        }
+
+        .scene-view-item {
+            margin-bottom: 8px;
+            padding: 6px 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+        }
+
+        .scene-view-item .label {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.85em;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .scene-view-item .value {
+            color: #2c3e50;
+            font-family: monospace;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+
+        .scene-view-item .value.empty {
+            color: #999;
+            font-style: italic;
+        }
+
+        .scene-view-levels {
+            margin-left: 10px;
+            font-size: 0.9em;
+        }
+
+        .scene-view-levels .level {
+            margin: 2px 0;
+        }
+
         .modal-footer {
             padding: 15px 25px;
             border-top: 1px solid #e9ecef;
@@ -1023,7 +1112,8 @@
             lordshall: new Set(),
             prison: new Set(),
             house: new Set(),
-            village_center: new Set()
+            village_center: new Set(),
+            hideout: new Set()
         };
 
         // Culture display name mappings - will be populated from XML
@@ -1406,6 +1496,7 @@
                     const hideout = components.querySelector('Hideout');
                     if (hideout) {
                         settlement.componentType = 'Hideout';
+                        // Hideout scene will be extracted from locations.hideout_center after Locations are parsed
                     }
 
                     // Check for TOR-specific components
@@ -1470,6 +1561,8 @@
                                     allScenes.prison.add(locationData.scene_name);
                                 } else if (locId.startsWith('house_')) {
                                     allScenes.house.add(locationData.scene_name);
+                                } else if (locId === 'hideout_center') {
+                                    allScenes.hideout.add(locationData.scene_name);
                                 }
                             }
                             // Collect lordshall scenes from scene_name_1/2/3
@@ -1480,6 +1573,11 @@
                             }
                         }
                     });
+                }
+
+                // For hideouts, extract the scene from hideout_center location
+                if (settlement.componentType === 'Hideout' && settlement.locations.hideout_center) {
+                    settlement.hideoutScene = settlement.locations.hideout_center.scene_name || '';
                 }
 
                 settlements.push(settlement);
@@ -1721,7 +1819,7 @@
                     <td style="font-size: 0.9em; color: #666;">${boundDisplay}</td>
                     <td contenteditable="true" onblur="updateProsperity('${s.id}', this.textContent)"
                         style="cursor: text; background: #fffacd;">${s.prosperity || '-'}</td>
-                    <td><button class="btn-scenes" onclick="openSceneModal('${s.id}')">Edit Scenes</button></td>
+                    <td><button class="btn-view-scenes" onclick="viewScenes(event, '${s.id}')">View</button><button class="btn-scenes" onclick="openSceneModal('${s.id}')">Edit</button></td>
                     <td class="tech-col position-display">${s.posX.toFixed(3)}</td>
                     <td class="tech-col position-display">${s.posY.toFixed(3)}</td>
                 </tr>
@@ -2050,6 +2148,9 @@
                                 }
                             }
                         }
+
+                        // Note: Hideout scenes are stored in Locations/Location[@id='hideout_center'],
+                        // not on the Hideout component, so they're handled by the Locations update below
                     }
 
                     // Update Locations (scenes)
@@ -2795,8 +2896,10 @@
                 html = generateCastleSceneEditor(settlement);
             } else if (settlement.componentType === 'Village') {
                 html = generateVillageSceneEditor(settlement);
+            } else if (settlement.componentType === 'Hideout') {
+                html = generateHideoutSceneEditor(settlement);
             } else {
-                // For special settlements (Shrine, Hideout, etc.) - show basic info
+                // For special settlements (Shrine, etc.) - show basic info
                 html = `<p class="no-scenes-msg">This settlement type (${settlement.componentType}) uses predefined scenes that cannot be edited here.</p>`;
             }
 
@@ -2807,6 +2910,153 @@
         function closeSceneModal() {
             document.getElementById('sceneModal').classList.remove('active');
             currentSceneSettlementId = null;
+        }
+
+        // View Scenes popup - displays applied scenes without editing
+        let activeScenePopup = null;
+
+        function viewScenes(event, settlementId) {
+            event.stopPropagation();
+
+            // Close any existing popup
+            closeScenePopup();
+
+            const settlement = settlements.find(s => s.id === settlementId);
+            if (!settlement) return;
+
+            const locs = settlement.locations || {};
+            let html = '';
+
+            // Generate scene display based on settlement type
+            if (settlement.componentType === 'Town') {
+                html = generateTownSceneView(locs);
+            } else if (settlement.componentType === 'Castle') {
+                html = generateCastleSceneView(locs);
+            } else if (settlement.componentType === 'Village') {
+                html = generateVillageSceneView(locs);
+            } else if (settlement.componentType === 'Hideout') {
+                html = generateHideoutSceneView(settlement);
+            } else {
+                html = '<div class="scene-view-item"><span class="value empty">No editable scenes for this settlement type</span></div>';
+            }
+
+            // Create popup element
+            const popup = document.createElement('div');
+            popup.className = 'scene-view-popup';
+            popup.innerHTML = `
+                <button class="close-btn" onclick="closeScenePopup()">&times;</button>
+                <h3>${settlement.name} - Scenes</h3>
+                ${html}
+            `;
+
+            // Position popup near the button
+            const rect = event.target.getBoundingClientRect();
+            popup.style.left = Math.min(rect.left, window.innerWidth - 420) + 'px';
+            popup.style.top = (rect.bottom + 5) + 'px';
+
+            // Ensure popup doesn't go off screen
+            document.body.appendChild(popup);
+
+            const popupRect = popup.getBoundingClientRect();
+            if (popupRect.bottom > window.innerHeight) {
+                popup.style.top = (rect.top - popupRect.height - 5) + 'px';
+            }
+            if (popupRect.right > window.innerWidth) {
+                popup.style.left = (window.innerWidth - popupRect.width - 10) + 'px';
+            }
+
+            activeScenePopup = popup;
+
+            // Close popup when clicking outside
+            setTimeout(() => {
+                document.addEventListener('click', handleScenePopupClickOutside);
+            }, 0);
+        }
+
+        function closeScenePopup() {
+            if (activeScenePopup) {
+                activeScenePopup.remove();
+                activeScenePopup = null;
+                document.removeEventListener('click', handleScenePopupClickOutside);
+            }
+        }
+
+        function handleScenePopupClickOutside(event) {
+            if (activeScenePopup && !activeScenePopup.contains(event.target)) {
+                closeScenePopup();
+            }
+        }
+
+        function formatSceneValue(value) {
+            if (!value) return '<span class="value empty">(not set)</span>';
+            return `<span class="value">${value}</span>`;
+        }
+
+        function generateTownSceneView(locs) {
+            return `
+                <div class="scene-view-item">
+                    <span class="label">Town Center</span>
+                    ${formatSceneValue(locs.center?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Arena</span>
+                    ${formatSceneValue(locs.arena?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Tavern</span>
+                    ${formatSceneValue(locs.tavern?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Lord's Hall / Keep</span>
+                    <div class="scene-view-levels">
+                        <div class="level">L1: ${locs.lordshall?.scene_name_1 || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">L2: ${locs.lordshall?.scene_name_2 || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">L3: ${locs.lordshall?.scene_name_3 || '<span class="value empty">(not set)</span>'}</div>
+                    </div>
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Prison / Dungeon</span>
+                    ${formatSceneValue(locs.prison?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Houses</span>
+                    <div class="scene-view-levels">
+                        <div class="level">1: ${locs.house_1?.scene_name || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">2: ${locs.house_2?.scene_name || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">3: ${locs.house_3?.scene_name || '<span class="value empty">(not set)</span>'}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateCastleSceneView(locs) {
+            return `
+                <div class="scene-view-item">
+                    <span class="label">Castle Center</span>
+                    ${formatSceneValue(locs.center?.scene_name)}
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Lord's Hall / Keep</span>
+                    <div class="scene-view-levels">
+                        <div class="level">L1: ${locs.lordshall?.scene_name_1 || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">L2: ${locs.lordshall?.scene_name_2 || '<span class="value empty">(not set)</span>'}</div>
+                        <div class="level">L3: ${locs.lordshall?.scene_name_3 || '<span class="value empty">(not set)</span>'}</div>
+                    </div>
+                </div>
+                <div class="scene-view-item">
+                    <span class="label">Prison / Dungeon</span>
+                    ${formatSceneValue(locs.prison?.scene_name)}
+                </div>
+            `;
+        }
+
+        function generateVillageSceneView(locs) {
+            return `
+                <div class="scene-view-item">
+                    <span class="label">Village Center</span>
+                    ${formatSceneValue(locs.village_center?.scene_name)}
+                </div>
+            `;
         }
 
         function generateSceneDropdown(id, currentValue, sceneSet, allowCustom = true) {
@@ -3001,6 +3251,30 @@
             `;
         }
 
+        function generateHideoutSceneEditor(settlement) {
+            return `
+                <div class="scene-group">
+                    <h4>Hideout Scene</h4>
+                    <div class="scene-row">
+                        <label>Scene:</label>
+                        ${generateSceneDropdown('scene_hideout', settlement.hideoutScene || '', allScenes.hideout)}
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.85em; color: #666; font-style: italic;">
+                        Note: Hideout scenes are stored in the hideout_center Location.
+                    </p>
+                </div>
+            `;
+        }
+
+        function generateHideoutSceneView(settlement) {
+            return `
+                <div class="scene-view-item">
+                    <span class="label">Hideout Scene</span>
+                    ${formatSceneValue(settlement.hideoutScene)}
+                </div>
+            `;
+        }
+
         function getSceneValue(id) {
             const select = document.getElementById(id);
             const customInput = document.getElementById(id + '_custom');
@@ -3060,10 +3334,15 @@
             } else if (settlement.componentType === 'Village') {
                 // Save village scenes
                 settlement.locations.village_center = { scene_name: getSceneValue('scene_village_center') };
+            } else if (settlement.componentType === 'Hideout') {
+                // Save hideout scene (stored in locations.hideout_center)
+                const hideoutScene = getSceneValue('scene_hideout');
+                settlement.hideoutScene = hideoutScene;
+                settlement.locations.hideout_center = { scene_name: hideoutScene };
             }
 
             modifiedSettlements.add(currentSceneSettlementId);
-            console.log(`Updated scenes for ${settlement.name}:`, settlement.locations);
+            console.log(`Updated scenes for ${settlement.name}:`, settlement.componentType === 'Hideout' ? settlement.hideoutScene : settlement.locations);
 
             closeSceneModal();
 
