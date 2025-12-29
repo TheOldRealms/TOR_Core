@@ -3544,7 +3544,7 @@
 
 	<!-- Lethal Shot - Moonfire Explosion (Waywatcher) -->
 	<TriggeredEffectTemplate StringID="moonfire_explosion"
-                             BurstParticleEffectPrefab="fire_particle_explosion"
+                             BurstParticleEffectPrefab="blue_particle_explosion"
                              SoundEffectId="dart_explosion"
                              SoundEffectLength="1.5"
                              DamageType="Magical"
@@ -3552,7 +3552,10 @@
                              Radius="2"
                              HasShockWave="false"
                              TargetType="Enemy"
+                             ImbuedStatusEffectDuration="10"
                              DamageVariance="0.1"
-                             ScriptNameToTrigger="none" />
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>arrow_of_kurnous_debuff_res</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
 
 </TriggeredEffectTemplates>

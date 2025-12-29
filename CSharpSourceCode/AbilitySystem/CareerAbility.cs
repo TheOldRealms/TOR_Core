@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;

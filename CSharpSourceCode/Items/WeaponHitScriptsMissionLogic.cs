@@ -249,12 +249,23 @@ namespace TOR_Core.Items
                         }
                     }
 
+                    // Trigger OnWeaponHitScripts for missiles (same pattern as OnAgentHit)
+                    var onHitTraits = traits.WhereQ(x => x.OnWeaponHitScript != null &&
+                        !string.IsNullOrWhiteSpace(x.OnWeaponHitScript.WeaponScriptName) &&
+                        x.OnWeaponHitScript.WeaponScriptName != "invalid");
+
+                    if (onHitTraits != null && onHitTraits.Any())
+                    {
+                        foreach (var trait in onHitTraits)
+                        {
+                            ApplySpecialTrait(trait, attacker, victim, false, default, attacker.WieldedWeapon, collisionData);
+                        }
+                    }
+
                     var missileIndex = collisionData.AffectorWeaponSlotOrMissileIndex;
                     var targetMissile = Mission.Current.MissilesList.FirstOrDefault(x => x.Index == missileIndex);
-                    targetMissile.Entity.RemoveAllParticleSystems();
+                    targetMissile?.Entity.RemoveAllParticleSystems();
                 }
-
-                //TODO check if scripts are applied anyway for onHit scripts
             }
         }
 
