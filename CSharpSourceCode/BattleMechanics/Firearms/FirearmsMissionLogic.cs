@@ -214,7 +214,7 @@ namespace TOR_Core.BattleMechanics.Firearms
             for (int i = 0; i < scatterShotAmount; i++)
             {
                 var deviation = TORCommon.GetRandomOrientation(shotOrientation, accuracy);
-                Mission.AddCustomMissile(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
+                Mission.AddCustomMissileWithWeaponDamage(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
                     missileSpeed, missileSpeed, false, null);
             }
         }

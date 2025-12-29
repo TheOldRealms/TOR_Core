@@ -15536,7 +15536,7 @@
       <Hideout id="hideout_beastmen_3" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_4" name="{=Settlements.Settlement.name.hideout_beastmen_4}Ungor Camp" type="Hideout" posX="1572.584" posY="1135.73" culture="Culture.steppe_bandits">
@@ -15544,7 +15544,7 @@
       <Hideout id="hideout_beastmen_4" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_5" name="{=Settlements.Settlement.name.hideout_beastmen_5}Ungor Camp" type="Hideout" posX="1404.953" posY="928.665" culture="Culture.steppe_bandits">
@@ -15568,7 +15568,7 @@
       <Hideout id="hideout_beastmen_7" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_8" name="{=Settlements.Settlement.name.hideout_beastmen_8}Ungor Camp" type="Hideout" posX="1492.239" posY="924.513" culture="Culture.steppe_bandits">
@@ -15576,7 +15576,7 @@
       <Hideout id="hideout_beastmen_8" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_9" name="{=Settlements.Settlement.name.hideout_beastmen_9}Ungor Camp" type="Hideout" posX="1311.591" posY="1295.135" culture="Culture.steppe_bandits">
@@ -15600,7 +15600,7 @@
       <Hideout id="hideout_beastmen_11" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_12" name="{=Settlements.Settlement.name.hideout_beastmen_12}Ungor Camp" type="Hideout" posX="1481.352" posY="1012.779" culture="Culture.steppe_bandits">
@@ -15608,7 +15608,7 @@
       <Hideout id="hideout_beastmen_12" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_13" name="{=Settlements.Settlement.name.hideout_beastmen_13}Ungor Camp" type="Hideout" posX="1344.117" posY="975.056" culture="Culture.steppe_bandits">
@@ -15632,7 +15632,7 @@
       <Hideout id="hideout_beastmen_15" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_16" name="{=Settlements.Settlement.name.hideout_beastmen_16}Ungor Camp" type="Hideout" posX="1591.283" posY="948.639" culture="Culture.steppe_bandits">
@@ -15640,7 +15640,7 @@
       <Hideout id="hideout_beastmen_16" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_17" name="{=Settlements.Settlement.name.hideout_beastmen_17}Ungor Camp" type="Hideout" posX="1668.354" posY="1134.098" culture="Culture.steppe_bandits">
@@ -15664,7 +15664,7 @@
       <Hideout id="hideout_beastmen_19" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_20" name="{=Settlements.Settlement.name.hideout_beastmen_20}Ungor Camp" type="Hideout" posX="1484.662" posY="1054.845" culture="Culture.steppe_bandits">
@@ -15672,7 +15672,7 @@
       <Hideout id="hideout_beastmen_20" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_21" name="{=Settlements.Settlement.name.hideout_beastmen_21}Ungor Camp" type="Hideout" posX="1672.363" posY="1101.335" culture="Culture.steppe_bandits">
@@ -15696,7 +15696,7 @@
       <Hideout id="hideout_beastmen_23" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_24" name="{=Settlements.Settlement.name.hideout_beastmen_24}Ungor Camp" type="Hideout" posX="1395.304" posY="1318.105" culture="Culture.steppe_bandits">
@@ -15704,7 +15704,7 @@
       <Hideout id="hideout_beastmen_24" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_25" name="{=Settlements.Settlement.name.hideout_beastmen_25}Ungor Camp" type="Hideout" posX="1202.973" posY="1175.684" culture="Culture.steppe_bandits">
@@ -15717,10 +15717,10 @@
   </Settlement>
   <Settlement id="hideout_beastmen_26" name="{=Settlements.Settlement.name.hideout_beastmen_26}Ungor Camp" type="Hideout" posX="1267.741" posY="1106.401" culture="Culture.steppe_bandits">
     <Components>
-      <Hideout id="hideout_beastmen_26" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+      <Hideout id="hideout_beastmen_26" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="hideout_steppe_002_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_003" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_27" name="{=Settlements.Settlement.name.hideout_beastmen_27}Ungor Camp" type="Hideout" posX="1195.736" posY="1102.843" culture="Culture.steppe_bandits">
@@ -15728,7 +15728,7 @@
       <Hideout id="hideout_beastmen_27" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_28" name="{=Settlements.Settlement.name.hideout_beastmen_28}Ungor Camp" type="Hideout" posX="1323.236" posY="997.387" culture="Culture.steppe_bandits">
@@ -15736,7 +15736,7 @@
       <Hideout id="hideout_beastmen_28" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_29" name="{=Settlements.Settlement.name.hideout_beastmen_29}Ungor Camp" type="Hideout" posX="1258.646" posY="1085.532" culture="Culture.steppe_bandits">
@@ -15749,10 +15749,10 @@
   </Settlement>
   <Settlement id="hideout_beastmen_30" name="{=Settlements.Settlement.name.hideout_beastmen_30}Ungor Camp" type="Hideout" posX="1208.176" posY="1071.267" culture="Culture.steppe_bandits">
     <Components>
-      <Hideout id="hideout_beastmen_30" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+      <Hideout id="hideout_beastmen_30" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="hideout_steppe_002_sv" />
+<Location id="hideout_center" scene_name="bandit_forest_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_31" name="{=Settlements.Settlement.name.hideout_beastmen_31}Ungor Camp" type="Hideout" posX="1261.313" posY="916.997" culture="Culture.steppe_bandits">
@@ -15760,7 +15760,7 @@
       <Hideout id="hideout_beastmen_31" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_32" name="{=Settlements.Settlement.name.hideout_beastmen_32}Ungor Camp" type="Hideout" posX="1263.355" posY="821.321" culture="Culture.steppe_bandits">
@@ -15768,7 +15768,7 @@
       <Hideout id="hideout_beastmen_32" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_33" name="{=Settlements.Settlement.name.hideout_beastmen_33}Ungor Camp" type="Hideout" posX="1217.538" posY="903.205" culture="Culture.steppe_bandits">
@@ -15781,10 +15781,10 @@
   </Settlement>
   <Settlement id="hideout_beastmen_34" name="{=Settlements.Settlement.name.hideout_beastmen_34}Ungor Camp" type="Hideout" posX="1255.018" posY="878.94" culture="Culture.steppe_bandits">
     <Components>
-      <Hideout id="hideout_beastmen_34" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+      <Hideout id="hideout_beastmen_34" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="hideout_steppe_002_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_35" name="{=Settlements.Settlement.name.hideout_beastmen_35}Ungor Camp" type="Hideout" posX="1175.027" posY="797.66" culture="Culture.steppe_bandits">
@@ -15792,7 +15792,7 @@
       <Hideout id="hideout_beastmen_35" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_36" name="{=Settlements.Settlement.name.hideout_beastmen_36}Ungor Camp" type="Hideout" posX="1351.759" posY="771.987" culture="Culture.steppe_bandits">
@@ -15800,7 +15800,7 @@
       <Hideout id="hideout_beastmen_36" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_37" name="{=Settlements.Settlement.name.hideout_beastmen_37}Ungor Camp" type="Hideout" posX="1235.054" posY="860.788" culture="Culture.steppe_bandits">
@@ -15813,10 +15813,10 @@
   </Settlement>
   <Settlement id="hideout_beastmen_38" name="{=Settlements.Settlement.name.hideout_beastmen_38}Ungor Camp" type="Hideout" posX="1110.054" posY="786.105" culture="Culture.steppe_bandits">
     <Components>
-      <Hideout id="hideout_beastmen_38" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+      <Hideout id="hideout_beastmen_38" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="hideout_steppe_002_sv" />
+<Location id="hideout_center" scene_name="bandit_forest_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_39" name="{=Settlements.Settlement.name.hideout_beastmen_39}Ungor Camp" type="Hideout" posX="1206.638" posY="747.974" culture="Culture.steppe_bandits">
@@ -15824,7 +15824,7 @@
       <Hideout id="hideout_beastmen_39" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_40" name="{=Settlements.Settlement.name.hideout_beastmen_40}Ungor Camp" type="Hideout" posX="1272.507" posY="775.659" culture="Culture.steppe_bandits">
@@ -15832,7 +15832,7 @@
       <Hideout id="hideout_beastmen_40" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_41" name="{=Settlements.Settlement.name.hideout_beastmen_40}Ungor Camp" type="Hideout" posX="1188.279" posY="888.854" culture="Culture.steppe_bandits">
@@ -15845,10 +15845,10 @@
   </Settlement>
   <Settlement id="hideout_beastmen_42" name="{=Settlements.Settlement.name.hideout_beastmen_42}Ungor Camp" type="Hideout" posX="1161.546" posY="862.998" culture="Culture.steppe_bandits">
     <Components>
-      <Hideout id="hideout_beastmen_42" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+      <Hideout id="hideout_beastmen_42" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="hideout_steppe_002_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_003" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_43" name="{=Settlements.Settlement.name.hideout_beastmen_43}Ungor Camp" type="Hideout" posX="988.522" posY="1080.694" culture="Culture.steppe_bandits">
@@ -15856,7 +15856,7 @@
       <Hideout id="hideout_beastmen_43" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_44" name="{=Settlements.Settlement.name.hideout_beastmen_44}Ungor Camp" type="Hideout" posX="945.379" posY="1155.46" culture="Culture.steppe_bandits">
@@ -15864,7 +15864,7 @@
       <Hideout id="hideout_beastmen_44" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_45" name="{=Settlements.Settlement.name.hideout_beastmen_45}Ungor Camp" type="Hideout" posX="926.055" posY="1091.347" culture="Culture.steppe_bandits">
@@ -15877,10 +15877,10 @@
   </Settlement>
   <Settlement id="hideout_beastmen_46" name="{=Settlements.Settlement.name.hideout_beastmen_46}Ungor Camp" type="Hideout" posX="788.094" posY="1158.102" culture="Culture.steppe_bandits">
     <Components>
-      <Hideout id="hideout_beastmen_46" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
+      <Hideout id="hideout_beastmen_46" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="hideout_steppe_002_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_47" name="{=Settlements.Settlement.name.hideout_beastmen_47}Ungor Camp" type="Hideout" posX="863.002" posY="1214.247" culture="Culture.steppe_bandits">
@@ -15888,7 +15888,7 @@
       <Hideout id="hideout_beastmen_47" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_48" name="{=Settlements.Settlement.name.hideout_beastmen_48}Ungor Camp" type="Hideout" posX="935.671" posY="1181.272" culture="Culture.steppe_bandits">
@@ -15896,7 +15896,7 @@
       <Hideout id="hideout_beastmen_48" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_004_sv" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_51" name="{=Settlements.Settlement.name.hideout_beastmen_51}Ungor Camp" type="Hideout" posX="1250.412" posY="1345.053" culture="Culture.steppe_bandits">
@@ -15920,7 +15920,7 @@
       <Hideout id="hideout_beastmen_53" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="desert_hideout_002_sv" />
+<Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
   <!-- Greenskin Bandit Hideouts -->

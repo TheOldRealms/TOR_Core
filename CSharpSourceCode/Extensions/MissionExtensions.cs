@@ -2,8 +2,12 @@
 using SandBox.Missions.MissionLogics.Arena;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.HarmonyPatches;
+using TOR_Core.Items;
 
 namespace TOR_Core.Extensions
 {
@@ -57,6 +61,48 @@ namespace TOR_Core.Extensions
         public static List<Team> GetAllyTeamsOf(this Mission mission, Team team)
         {
             return mission.Teams.Where(x => x.IsFriendOf(team)).ToList();
+        }
+
+        /// <summary>
+        /// Adds a custom missile with the shooter's weapon damage bonus and trait particle effects applied.
+        /// This wraps AddCustomMissile and ensures:
+        /// - The bow/weapon damage is included in the missile damage calculation
+        /// - Weapon trait particle effects are added to the missile (e.g., fire, hagbane effects)
+        /// </summary>
+        public static Mission.Missile AddCustomMissileWithWeaponDamage(this Mission mission, Agent shooterAgent,
+            MissionWeapon missileWeapon, Vec3 position, Vec3 direction, Mat3 orientation,
+            float baseSpeed, float speed, bool addRigidBody, MissionObject missionObjectToIgnore = null,
+            int forcedMissileIndex = -1)
+        {
+            MissionPatches.UseWeaponDamageForCustomMissile = true;
+            try
+            {
+                var missile = mission.AddCustomMissile(shooterAgent, missileWeapon, position, direction, orientation,
+                    baseSpeed, speed, addRigidBody, missionObjectToIgnore, forcedMissileIndex);
+
+                // Apply weapon trait particle effects to the missile
+                if (missile != null && shooterAgent != null && !shooterAgent.WieldedWeapon.IsEmpty)
+                {
+                    var weapon = shooterAgent.WieldedWeapon;
+                    if (weapon.Item != null && weapon.Item.HasAnyTrait(shooterAgent))
+                    {
+                        var traits = weapon.Item.GetTraits(shooterAgent);
+                        foreach (var trait in traits)
+                        {
+                            if (trait.WeaponParticlePreset != null)
+                            {
+                                missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);
+                            }
+                        }
+                    }
+                }
+
+                return missile;
+            }
+            finally
+            {
+                MissionPatches.UseWeaponDamageForCustomMissile = false;
+            }
         }
     }
 }

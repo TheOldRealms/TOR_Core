@@ -4628,7 +4628,7 @@
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Your arrows are imbued with deadly precision</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Physical" Percent="0.50" />
-    <WeaponParticlePreset ParticlePrefab="psys_game_burning_agent" IsUniqueSingleCopy="false" />
+    <WeaponParticlePreset ParticlePrefab="hagbane_trait" IsUniqueSingleCopy="false" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.LethalShotHitScript" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_lethal_shot_hagbane" ItemTraitName="Hagbane Tips" IsCraftable="false" ImbuedStatusEffectId="arrow_of_kurnous_debuff_mov" ImbuedEffectChance="1.00" IconName="winds_icon_45">

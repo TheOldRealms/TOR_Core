@@ -2,8 +2,11 @@
 using SandBox;
 using SandBox.Missions.MissionLogics;
 using SandBox.Missions.MissionLogics.Hideout;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Siege;
@@ -172,6 +175,59 @@ namespace TOR_Core.HarmonyPatches
                 sceneID = sceneList[0].SceneID;
             }
             return sceneID;
+        }
+
+        // Flag to enable weapon damage bonus for AddCustomMissile
+        // Set this to true before calling AddCustomMissile to include bow damage, then reset to false
+        public static bool UseWeaponDamageForCustomMissile;
+
+        // Transpiler to fix AddCustomMissile damage - replaces hardcoded 0.0f with actual bow damage
+        // Only applies when UseWeaponDamageForCustomMissile is true
+        [HarmonyPatch(typeof(Mission), nameof(Mission.AddCustomMissile))]
+        [HarmonyTranspiler]
+        public static IEnumerable<CodeInstruction> AddCustomMissile_DamageFix(IEnumerable<CodeInstruction> instructions)
+        {
+            var codes = new List<CodeInstruction>(instructions);
+            var getWeaponDamageMethod = AccessTools.Method(typeof(MissionPatches), nameof(GetShooterWeaponDamageIfEnabled));
+
+            // Find AddMissileSingleUsageAux and AddMissileAux calls and patch the damageBonus parameter
+            // The 0.0f is loaded right before ldarga (ref position) in the call sequence
+            int replacements = 0;
+            for (int i = 0; i < codes.Count - 2; i++)
+            {
+                // Look for: ldc.r4 0.0 followed by ldarga (loading ref position)
+                if (codes[i].opcode == OpCodes.Ldc_R4 &&
+                    codes[i].operand is float f && f == 0.0f &&
+                    codes[i + 1].opcode == OpCodes.Ldarga_S)
+                {
+                    // Replace 0.0f with call to GetShooterWeaponDamageIfEnabled(shooterAgent)
+                    codes[i] = new CodeInstruction(OpCodes.Ldarg_1); // Load shooterAgent (arg 1)
+                    codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, getWeaponDamageMethod));
+                    replacements++;
+                    i++; // Skip the inserted instruction
+
+                    if (replacements >= 2) break; // Only two places need patching
+                }
+            }
+
+            return codes;
+        }
+
+        public static float GetShooterWeaponDamageIfEnabled(Agent shooterAgent)
+        {
+            // Only apply damage bonus if explicitly requested
+            if (!UseWeaponDamageForCustomMissile)
+                return 0f;
+
+            if (shooterAgent == null || shooterAgent.WieldedWeapon.IsEmpty)
+                return 0f;
+
+            var weapon = shooterAgent.WieldedWeapon;
+            if (weapon.CurrentUsageItem == null)
+                return 0f;
+
+            // Return the bow's thrust damage (this is what vanilla uses for ranged weapons)
+            return weapon.GetModifiedThrustDamageForCurrentUsage();
         }
     }
 }
