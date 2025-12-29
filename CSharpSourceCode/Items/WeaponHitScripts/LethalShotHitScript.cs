@@ -68,7 +68,10 @@ public class LethalShotHitScript : BaseWeaponHitScript
             weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_scatter");
             weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_reload");
             weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_pierce");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_swiftshiver");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_speed");
             weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_starfire");
+            weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_starfire_shield");
             weaponComponent.RemoveTraitFromWieldedWeapon("ca_lethal_shot_moonfire");
         }
     }

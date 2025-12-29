@@ -379,5 +379,6 @@ namespace TOR_Core.Items
         Cleave,              // allows to cleave through enemies. No values considered.
         MultiPenetration,    // Only ranged weapons. No values considered.
         ScatterShot,         // Number of projectiles for scatter shot.
+        ShieldPenetration,   // Arrows can penetrate shields. No values considered.
     }
 }

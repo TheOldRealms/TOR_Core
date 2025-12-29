@@ -115,6 +115,7 @@ namespace TOR_Core.Items
                     break;
                 case ItemTraitStatType.MissileSpeed:
                 case ItemTraitStatType.MultiPenetration:
+                case ItemTraitStatType.ShieldPenetration:
                     if (itemTrait.ValidItemType != ItemTraitItemType.Ranged && itemTrait.ValidItemType != ItemTraitItemType.Thrown && itemTrait.ValidItemType != ItemTraitItemType.Ammo)
                     {
                         isValid = false;

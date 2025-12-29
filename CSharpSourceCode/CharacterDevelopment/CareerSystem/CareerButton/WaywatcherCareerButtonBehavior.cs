@@ -61,7 +61,7 @@ public class WaywatcherCareerButtonBehavior : CareerButtonBehaviorBase
             {
                 Id = "starfire",
                 Name = "Starfire Shafts",
-                Description = "Adds 25% armor penetration",
+                Description = "Adds 25% armor penetration and pierces shields",
                 Effect = "apply_starfire_trait",
                 Price = 50,
                 Symbol = _starfireShaftsIcon

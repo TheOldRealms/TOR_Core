@@ -282,7 +282,7 @@
   </Settlement>
   <Settlement id="isha_shrine_01" name="{=str_tor_settlements_shrine_isha1}Shrine of Isha" owner="Faction.athel_loren_clan_2" posX="1236.481" posY="782.302" culture="Culture.battania" text="{=!}Shrine of Isha" gate_posX="1236.481" gate_posY="782.302">
     <Components>
-      <Shrine id="isha_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="oak_of_ages" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+      <Shrine id="isha_shrine_01" religion="cult_of_isha" background_crop_position="0.0" background_mesh="shrine_of_isha" wait_mesh="shrine_of_isha" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="gork_shrine_01" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.massif_choppas_clan_1" posX="1056.317" posY="954.124" culture="Culture.aserai" text="{=!}Gork is da best of da best will always be and is just super cool">

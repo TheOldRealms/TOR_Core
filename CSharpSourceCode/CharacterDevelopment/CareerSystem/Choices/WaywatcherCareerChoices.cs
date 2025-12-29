@@ -164,11 +164,11 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             "HailOfArrows", false, ChoiceType.Keystone, []);
 
         _hawkeyedKeystone.Initialize(CareerID,
-            "Lethal Shot arrows can pierce through multiple enemies.",
+            "Lethal Shot arrows pierce through multiple enemies, gain +20% missile speed and +15% magic damage.",
             "Hawkeyed", false, ChoiceType.Keystone, []);
 
         _starfireEssenceKeystone.Initialize(CareerID,
-            "Lethal Shot arrows gain +25 armor penetration and +20% missile speed.",
+            "Lethal Shot arrows gain +25 armor penetration and pierce shields.",
             "StarfireEssence", false, ChoiceType.Keystone, []);
 
         _eyeOfTheHunterKeystone.Initialize(CareerID,
@@ -196,7 +196,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _pathfinderPassive3.Initialize(CareerID, "Party travels unhindered through snow", "Pathfinder", false, ChoiceType.Passive);
         _pathfinderPassive4.Initialize(CareerID, "Once per day, go for a hunt.", "Pathfinder", false, ChoiceType.Passive);
 
-        _forestStalkerPassive1.Initialize(CareerID, "Bows and throwing weapons can perform stealth attacks.", "ForestStalker", false, ChoiceType.Passive);
+        _forestStalkerPassive1.Initialize(CareerID, "Bows can perform stealth attacks.", "ForestStalker", false, ChoiceType.Passive);
         _forestStalkerPassive2.Initialize(CareerID, "Gain 20% range resistance.", "ForestStalker", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 20),
                 AttackTypeMask.Ranged));

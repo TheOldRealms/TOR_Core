@@ -53,6 +53,16 @@ namespace TOR_Core.Models
                 {
                     missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                 }
+
+                // Check for ShieldPenetration trait on wielded weapon
+                if (!attackerAgent.WieldedWeapon.IsEmpty && attackerAgent.WieldedWeapon.Item != null)
+                {
+                    var traits = attackerAgent.WieldedWeapon.Item.GetTraits(attackerAgent);
+                    if (traits.Any(t => t.StatsTuple?.StatType == ItemTraitStatType.ShieldPenetration))
+                    {
+                        missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                    }
+                }
             }
         }
 

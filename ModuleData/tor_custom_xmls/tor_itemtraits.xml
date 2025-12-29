@@ -4520,8 +4520,9 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>The damage is increased by 15% extra magical damage.</ItemTraitDescription>
+    <ItemTraitDescription>15% extra magical damage and +20% missile speed</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
+    <StatsTuple StatType="MissileSpeed" Value="20" />
     <WeaponParticlePreset ParticlePrefab="magic_trait" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_hagbane" ItemTraitName="Hagbane Tips" IsCraftable="false" ImbuedStatusEffectId="hagbane_debuff" ImbuedEffectChance="0.25" IconName="winds_icon_45">
@@ -4535,8 +4536,10 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>"Adds Armor penetration effect, fire damage and dot"</ItemTraitDescription>
+    <ItemTraitDescription>Adds armor penetration, fire damage, and pierces shields</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
+    <StatsTuple StatType="ArmorPenetration" Value="25" />
+    <StatsTuple StatType="ShieldPenetration" Value="1" />
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_knightlystrike" ItemTraitName="Knightly Strike" IsCraftable="false" IconName="winds_icon_45">
@@ -4668,15 +4671,37 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Arrows pierce through targets</ItemTraitDescription>
+    <StatsTuple StatType="MultiPenetration" Value="1" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_swiftshiver" ItemTraitName="Swiftshiver Shards" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Adds 15% magical damage</ItemTraitDescription>
+    <AdditionalDamageTuple DamageType="Magical" Percent="0.15" />
+    <WeaponParticlePreset ParticlePrefab="magic_trait" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_speed" ItemTraitName="Swift Arrows" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Increased missile speed</ItemTraitDescription>
+    <StatsTuple StatType="MissileSpeed" Value="20" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_lethal_shot_starfire" ItemTraitName="Starfire Shafts" IsCraftable="false" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Armor penetrating arrows with increased speed that pierce shields</ItemTraitDescription>
+    <ItemTraitDescription>Armor penetrating arrows</ItemTraitDescription>
     <StatsTuple StatType="ArmorPenetration" Value="25" />
-    <StatsTuple StatType="MissileSpeed" Value="20" />
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+  </ItemTrait>
+  <ItemTrait ItemTraitStringId="ca_lethal_shot_starfire_shield" ItemTraitName="Starfire Shield Pierce" IsCraftable="false" IconName="winds_icon_45">
+    <ValidItemType>Invalid</ValidItemType>
+    <IngredientItem>Invalid</IngredientItem>
+    <IngredientAmount>-1</IngredientAmount>
+    <ItemTraitDescription>Arrows pierce shields</ItemTraitDescription>
+    <StatsTuple StatType="ShieldPenetration" Value="1" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_lethal_shot_moonfire" ItemTraitName="Moonfire Arrows" IsCraftable="false" ImbuedStatusEffectId="arrow_of_kurnous_debuff_res" ImbuedEffectChance="1.00" IconName="winds_icon_45">
     <ValidItemType>Invalid</ValidItemType>

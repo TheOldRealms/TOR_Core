@@ -114,15 +114,36 @@ namespace TOR_Core.AbilitySystem.Scripts
                 {
                     traitList.Add(pierceTrait);
                 }
+
+                // Swiftshiver effect (magic damage + particle)
+                var swiftshiverTrait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_lethal_shot_swiftshiver");
+                if (swiftshiverTrait != null && swiftshiverTrait != ItemTrait.Invalid)
+                {
+                    traitList.Add(swiftshiverTrait);
+                }
+
+                // Missile speed
+                var speedTrait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_lethal_shot_speed");
+                if (speedTrait != null && speedTrait != ItemTrait.Invalid)
+                {
+                    traitList.Add(speedTrait);
+                }
             }
 
             if (Hero.MainHero.HasCareerChoice("StarfireEssenceKeystone"))
             {
-                // Armor pen + missile speed + shield pen
+                // Armor penetration
                 var starfireTrait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_lethal_shot_starfire");
                 if (starfireTrait != null && starfireTrait != ItemTrait.Invalid)
                 {
                     traitList.Add(starfireTrait);
+                }
+
+                // Shield penetration
+                var shieldPenTrait = ItemTrait.All.FirstOrDefaultQ(x => x.ItemTraitStringId == "ca_lethal_shot_starfire_shield");
+                if (shieldPenTrait != null && shieldPenTrait != ItemTrait.Invalid)
+                {
+                    traitList.Add(shieldPenTrait);
                 }
             }
 

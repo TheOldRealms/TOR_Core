@@ -160,6 +160,18 @@ namespace TOR_Core.AbilitySystem
                     return false;
                 }
             }
+
+            // Waywatcher requires a bow to be wielded
+            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                var weapon = casterAgent.WieldedWeapon;
+                if (weapon.IsEmpty || weapon.CurrentUsageItem == null || !weapon.CurrentUsageItem.IsRangedWeapon || weapon.CurrentUsageItem.WeaponClass == WeaponClass.Crossbow)
+                {
+                    failureReason = new TextObject("{=tor_ability_requires_bow}You must wield a bow to use this ability");
+                    return false;
+                }
+            }
+
             if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked)
             {
                 failureReason = TORTextHelper.GetTextObject("tor_ability_no_target_locked_text", "No target locked");
