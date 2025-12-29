@@ -20,10 +20,9 @@ namespace TOR_Core.AbilitySystem.Scripts
             // Base: 3 arrows
             // +1 per keystone selected
             // +2 bonus for Protector of the Woods
-            // +2 bonus for Eye of the Hunter (on top of +1)
             int arrowCount = 3;
 
-            // Count keystones and add +1 per keystone
+            // Count keystones and add +1 per keystone (all independently counted)
             var allChoices = Hero.MainHero.GetAllCareerChoices();
 
             if (allChoices.Any(x => x.Contains("ProtectorOfTheWoodsKeystone")))
@@ -31,32 +30,29 @@ namespace TOR_Core.AbilitySystem.Scripts
                 arrowCount += 1; // base keystone bonus
                 arrowCount += 2; // Protector bonus
             }
-            else if (allChoices.Any(x => x.Contains("PathfinderKeystone")))
+            if (allChoices.Any(x => x.Contains("PathfinderKeystone")))
             {
                 arrowCount += 1;
             }
-            else if (allChoices.Any(x => x.Contains("ForestStalkerKeystone")))
+            if (allChoices.Any(x => x.Contains("ForestStalkerKeystone")))
             {
                 arrowCount += 1;
             }
-
             if (allChoices.Any(x => x.Contains("HailOfArrowsKeystone")))
             {
                 arrowCount += 1;
             }
-            else if (allChoices.Any(x => x.Contains("HawkeyedKeystone")))
+            if (allChoices.Any(x => x.Contains("HawkeyedKeystone")))
             {
                 arrowCount += 1;
             }
-            else if (allChoices.Any(x => x.Contains("StarfireEssenceKeystone")))
+            if (allChoices.Any(x => x.Contains("StarfireEssenceKeystone")))
             {
                 arrowCount += 1;
             }
-
             if (allChoices.Any(x => x.Contains("EyeOfTheHunterKeystone")))
             {
-                arrowCount += 1; // base keystone bonus
-                arrowCount += 2; // Eye of the Hunter bonus
+                arrowCount -= 2; // Moonfire power comes at the cost of arrows
             }
 
             // Build trait list based on selected keystones

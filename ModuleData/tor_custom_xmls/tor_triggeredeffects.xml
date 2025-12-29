@@ -3548,7 +3548,7 @@
                              SoundEffectId="dart_explosion"
                              SoundEffectLength="1.5"
                              DamageType="Magical"
-                             DamageAmount="25"
+                             DamageAmount="15"
                              Radius="2"
                              HasShockWave="false"
                              TargetType="Enemy"

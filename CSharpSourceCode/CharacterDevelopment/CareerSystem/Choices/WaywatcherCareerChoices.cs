@@ -144,7 +144,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
     protected override void InitializeKeyStones()
     {
         _wayWatcherRoot.Initialize(CareerID,
-            "Lethal Shot empowers your bow with deadly precision. Activating adds +50% physical damage to your arrows for a limited number of shots. Each keystone adds +1 arrow to the ability. For charging ability deal 1200 damage points with bows. Each arrow charges a maximum of 150 points.",
+            "Lethal Shot empowers your bow with deadly precision. Activating adds +50% physical damage to your arrows for a limited number of shots. Each keystone adds +1 arrow but reduces charge rate by 10%. For charging ability deal 1200 damage points with bows. Each arrow charges a maximum of 150 points.",
             null, true, ChoiceType.Keystone, []);
 
         _protectorOfTheWoodsKeystone.Initialize(CareerID,
@@ -172,7 +172,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             "StarfireEssence", false, ChoiceType.Keystone, []);
 
         _eyeOfTheHunterKeystone.Initialize(CareerID,
-            "Lethal Shot gains +2 bonus arrows. Arrows are imbued with Moonfire: +30% magic damage and explode on impact, applying magic vulnerability to nearby enemies.",
+            "Lethal Shot loses 2 arrows but remaining arrows are imbued with Moonfire: +30% magic damage and explode on impact, applying magic vulnerability to nearby enemies.",
             "EyeOfTheHunter", false, ChoiceType.Keystone, []);
     }
 
@@ -229,8 +229,8 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
         _starfireEssencePassive3.Initialize(CareerID, "Troops with Starfire Shafts also apply fire vulnerability to enemies.", "StarfireEssence", false, ChoiceType.Passive);
         _starfireEssencePassive4.Initialize(CareerID, "Your arrows can penetrate shields", "StarfireEssence", false, ChoiceType.Passive);
 
-        _eyeOfTheHunterPassive1.Initialize(CareerID, "6 extra Arrows per equipped Quiver", "EyeOfTheHunter", false, ChoiceType.Passive, null,
-            new CareerChoiceObject.PassiveEffect(6, PassiveEffectType.Ammo));
+        _eyeOfTheHunterPassive1.Initialize(CareerID, "3 extra Arrows per equipped Quiver", "EyeOfTheHunter", false, ChoiceType.Passive, null,
+            new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.Ammo));
         _eyeOfTheHunterPassive2.Initialize(CareerID, "20% Equipment weight Reduction", "EyeOfTheHunter", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EquipmentWeightReduction, true));
         _eyeOfTheHunterPassive3.Initialize(CareerID, "All elf archer troops gain 50 to their bow skill.", "EyeOfTheHunter", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, nameof(DefaultSkills.Bow),

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.MountAndBlade;
@@ -341,6 +342,12 @@ namespace TOR_Core.CharacterDevelopment
                 explainedNumber.AddFactor(-0.95f);
             }
 
+            // Reduce charge by 10% for each keystone selected (excluding root)
+            var keystoneCount = Hero.MainHero.GetAllCareerChoices().Count(x => x.Contains("Keystone") && !x.Contains("Root"));
+            if (keystoneCount > 0)
+            {
+                explainedNumber.AddFactor(-0.10f * keystoneCount);
+            }
 
             if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot && Hero.MainHero.HasCareerChoice("HawkeyedPassive2"))
             {

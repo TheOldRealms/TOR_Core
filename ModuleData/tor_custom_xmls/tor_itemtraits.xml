@@ -4709,7 +4709,7 @@
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Magical arrows that explode on impact and reduce enemy magic resistance</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Magical" Percent="0.30" />
-    <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
+    <WeaponParticlePreset ParticlePrefab="psys_magic_weapon" IsUniqueSingleCopy="false" />
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.WeaponTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>moonfire_explosion</WeaponScriptArgument>
