@@ -152,7 +152,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             "ProtectorOfTheWoods", false, ChoiceType.Keystone, []);
 
         _pathfinderKeystone.Initialize(CareerID,
-            "Lethal Shot arrows apply Hagbane poison, slowing enemies on hit. Ability charge scales with Scouting skill.",
+            "Lethal Shot arrows apply Hagbane poison, slowing enemies on hit. Melee attacks can charge ability.",
             "Pathfinder", false, ChoiceType.Keystone, []);
 
         _forestStalkerKeystone.Initialize(CareerID,

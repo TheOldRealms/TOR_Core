@@ -315,7 +315,11 @@ namespace TOR_Core.CharacterDevelopment
 
         public static float WaywatcherCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            if (mask != AttackTypeMask.Ranged) return 0;
+            if (mask != AttackTypeMask.Ranged)
+            {
+                if(mask == AttackTypeMask.Melee && ! Hero.MainHero.HasCareerChoice("PathfinderKeystone"))
+                return 0;
+            }
             if (chargeType == ChargeType.NumberOfKills) return 0;
             if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield) return 0;
             if (affectingAgent.Team == affectedAgent.Team) return 0;
@@ -335,11 +339,6 @@ namespace TOR_Core.CharacterDevelopment
             if (affectingAgent != Agent.Main)
             {
                 explainedNumber.AddFactor(-0.95f);
-            }
-
-            if (Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone"))
-            {
-                explainedNumber.AddFactor(0.25f);
             }
 
 
