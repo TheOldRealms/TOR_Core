@@ -42,11 +42,6 @@ namespace TOR_Core.Models
                     {
                         missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                     }
-
-                    if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Javelin && choices.Contains("WardenOfTalsynPassive4"))
-                    {
-                        missileWeaponFlags |= WeaponFlags.MultiplePenetration;
-                    }
                 }
 
                 if (attackerAgent.HasAttribute("ShieldPenetration"))

@@ -148,7 +148,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             null, true, ChoiceType.Keystone, []);
 
         _protectorOfTheWoodsKeystone.Initialize(CareerID,
-            "Lethal Shot gains +2 bonus arrows. Reduces the amount of ranged damage needed to unlock ability. Ability starts charged.",
+            "Lethal Shot gains +1 bonus arrow. Reduces the amount of ranged damage needed to unlock ability. Ability starts charged.",
             "ProtectorOfTheWoods", false, ChoiceType.Keystone, []);
 
         _pathfinderKeystone.Initialize(CareerID,
@@ -172,7 +172,7 @@ public class WaywatcherCareerChoices(CareerObject id) : TORCareerChoicesBase(id)
             "StarfireEssence", false, ChoiceType.Keystone, []);
 
         _eyeOfTheHunterKeystone.Initialize(CareerID,
-            "Lethal Shot loses 2 arrows but remaining arrows are imbued with Moonfire: +30% magic damage and explode on impact, applying magic vulnerability to nearby enemies.",
+            "Lethal Shot loses 2 arrows but remaining arrows are imbued with Moonfire explosion.",
             "EyeOfTheHunter", false, ChoiceType.Keystone, []);
     }
 

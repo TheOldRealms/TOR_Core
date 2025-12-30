@@ -28,7 +28,7 @@ namespace TOR_Core.AbilitySystem.Scripts
             if (allChoices.Any(x => x.Contains("ProtectorOfTheWoodsKeystone")))
             {
                 arrowCount += 1; // base keystone bonus
-                arrowCount += 2; // Protector bonus
+                arrowCount += 1; // Protector bonus
             }
             if (allChoices.Any(x => x.Contains("PathfinderKeystone")))
             {

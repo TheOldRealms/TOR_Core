@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using SandBox;
 using SandBox.Missions.MissionLogics;
 using SandBox.Missions.MissionLogics.Hideout;
@@ -181,6 +181,10 @@ namespace TOR_Core.HarmonyPatches
         // Set this to true before calling AddCustomMissile to include bow damage, then reset to false
         public static bool UseWeaponDamageForCustomMissile;
 
+        // Damage multiplier for scatter shot projectiles (0.0-1.0, default 1.0 = full damage)
+        // Set this before spawning scatter projectiles to reduce individual projectile damage
+        public static float ScatterShotDamageMultiplier = 1.0f;
+
         // Transpiler to fix AddCustomMissile damage - replaces hardcoded 0.0f with actual bow damage
         // Only applies when UseWeaponDamageForCustomMissile is true
         [HarmonyPatch(typeof(Mission), nameof(Mission.AddCustomMissile))]
@@ -227,7 +231,9 @@ namespace TOR_Core.HarmonyPatches
                 return 0f;
 
             // Return the bow's thrust damage (this is what vanilla uses for ranged weapons)
-            return weapon.GetModifiedThrustDamageForCurrentUsage();
+            // Apply scatter shot damage multiplier if set
+            var baseDamage = weapon.GetModifiedThrustDamageForCurrentUsage();
+            return baseDamage * ScatterShotDamageMultiplier;
         }
     }
 }

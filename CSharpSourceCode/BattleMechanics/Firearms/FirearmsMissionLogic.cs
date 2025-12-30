@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.HarmonyPatches;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 
@@ -111,10 +112,11 @@ namespace TOR_Core.BattleMechanics.Firearms
             if (scatterTrait != null)
             {
                 RemoveLastProjectile(shooterAgent);
-                float accuracy = 0.03f;
+                float accuracy = 0.05f; // Higher value = more spread for shotgun-style shots
                 short amount = (short)scatterTrait.StatsTuple.Value;
+                float damageMultiplier = 0.4f; // Each projectile deals 40% damage
                 ScatterShot(shooterAgent, accuracy, shooterAgent.WieldedWeapon.AmmoWeapon, position, orientation,
-                    weaponData.MissileSpeed, amount);
+                    weaponData.MissileSpeed, amount, damageMultiplier);
                 return;
             }
 
@@ -209,13 +211,23 @@ namespace TOR_Core.BattleMechanics.Firearms
         }
 
         public void ScatterShot(Agent shooterAgent, float accuracy, MissionWeapon projectileType, Vec3 shotPosition,
-            Mat3 shotOrientation, float missileSpeed, short scatterShotAmount)
+            Mat3 shotOrientation, float missileSpeed, short scatterShotAmount, float damageMultiplier = 1.0f)
         {
-            for (int i = 0; i < scatterShotAmount; i++)
+            // Set the damage multiplier for scatter shot projectiles
+            MissionPatches.ScatterShotDamageMultiplier = damageMultiplier;
+            try
             {
-                var deviation = TORCommon.GetRandomOrientation(shotOrientation, accuracy);
-                Mission.AddCustomMissileWithWeaponDamage(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
-                    missileSpeed, missileSpeed, false, null);
+                for (int i = 0; i < scatterShotAmount; i++)
+                {
+                    var deviation = TORCommon.GetRandomOrientation(shotOrientation, accuracy);
+                    Mission.AddCustomMissileWithWeaponDamage(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
+                        missileSpeed, missileSpeed, false, null);
+                }
+            }
+            finally
+            {
+                // Reset to default (full damage)
+                MissionPatches.ScatterShotDamageMultiplier = 1.0f;
             }
         }
 

@@ -3544,11 +3544,11 @@
 
 	<!-- Lethal Shot - Moonfire Explosion (Waywatcher) -->
 	<TriggeredEffectTemplate StringID="moonfire_explosion"
-                             BurstParticleEffectPrefab="blue_particle_explosion"
-                             SoundEffectId="dart_explosion"
-                             SoundEffectLength="1.5"
+                             BurstParticleEffectPrefab="blast_of_agony_explosion"
+                             SoundEffectId="fireball_explosion"
+                             SoundEffectLength="2.5"
                              DamageType="Magical"
-                             DamageAmount="15"
+                             DamageAmount="10"
                              Radius="2"
                              HasShockWave="false"
                              TargetType="Enemy"
