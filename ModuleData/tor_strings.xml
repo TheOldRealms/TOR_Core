@@ -1702,6 +1702,7 @@
 
   <!--crafting-->
   <string id="str_crafting_template.tor_twohandedswords_template" text="{=str_tor_crafting_template_TORGreatswords}TOR-Greatswords" />
+  <string id="str_crafting_template.tor_orc_twohandedsword_template" text="{=str_tor_crafting_template_TOROrc Greatswords}TOR-Orc Greatswords" />
   <string id="str_crafting_template.tor_sword_template" text="{=str_tor_crafting_template_TORSwords}TOR-Swords" />
   <string id="str_crafting_template.tor_rapier_template" text="{=str_tor_crafting_template_TORRapiers}TOR-Rapiers" />
   <string id="str_crafting_template.tor_scythe_template" text="{=str_tor_crafting_template_TORScythes}TOR-Scythes" />
