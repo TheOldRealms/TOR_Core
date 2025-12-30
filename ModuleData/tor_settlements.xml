@@ -15006,7 +15006,7 @@
       <Hideout id="hideout_forest_2" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="6.283" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_3" name="{=Settlements.Settlement.name.hideout_forest_3}Cultist Hideout" type="Hideout" posX="1499.603" posY="863.915" culture="Culture.forest_bandits">
@@ -15030,7 +15030,7 @@
       <Hideout id="hideout_forest_5" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_6" name="{=Settlements.Settlement.name.hideout_forest_6}Cultist Hideout" type="Hideout" posX="1340.368" posY="796.424" culture="Culture.forest_bandits">
@@ -15054,7 +15054,7 @@
       <Hideout id="hideout_forest_8" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_9" name="{=Settlements.Settlement.name.hideout_forest_9}Cultist Hideout" type="Hideout" posX="1540.504" posY="1308.723" culture="Culture.forest_bandits">
@@ -15078,7 +15078,7 @@
       <Hideout id="hideout_forest_11" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_12" name="{=Settlements.Settlement.name.hideout_forest_12}Cultist Hideout" type="Hideout" posX="1028.587" posY="1109.244" culture="Culture.forest_bandits">
@@ -15102,7 +15102,7 @@
       <Hideout id="hideout_forest_14" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_15" name="{=Settlements.Settlement.name.hideout_forest_15}Cultist Hideout" type="Hideout" posX="1488.492" posY="943.031" culture="Culture.forest_bandits">
@@ -15126,7 +15126,7 @@
       <Hideout id="hideout_forest_17" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_18" name="{=Settlements.Settlement.name.hideout_forest_18}Cultist Hideout" type="Hideout" posX="1459.726" posY="1056.078" culture="Culture.forest_bandits">
@@ -15150,7 +15150,7 @@
       <Hideout id="hideout_forest_20" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_21" name="{=Settlements.Settlement.name.hideout_forest_21}Cultist Hideout" type="Hideout" posX="1660.603" posY="1050.345" culture="Culture.forest_bandits">
@@ -15174,7 +15174,7 @@
       <Hideout id="hideout_forest_23" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_24" name="{=Settlements.Settlement.name.hideout_forest_24}Cultist Hideout" type="Hideout" posX="1491.846" posY="1094.962" culture="Culture.forest_bandits">
@@ -15198,7 +15198,7 @@
       <Hideout id="hideout_forest_26" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_27" name="{=Settlements.Settlement.name.hideout_forest_27}Cultist Hideout" type="Hideout" posX="1399.556" posY="1102.258" culture="Culture.forest_bandits">
@@ -15222,7 +15222,7 @@
       <Hideout id="hideout_forest_29" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_31" name="{=Settlements.Settlement.name.hideout_forest_28}Cultist Hideout" type="Hideout" posX="929.863" posY="1116.804" culture="Culture.forest_bandits">
@@ -15246,7 +15246,7 @@
       <Hideout id="hideout_forest_33" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_forest_34" name="{=Settlements.Settlement.name.hideout_forest_31}Cultist Hideout" type="Hideout" posX="822.01" posY="1081.717" culture="Culture.forest_bandits">
@@ -15270,7 +15270,7 @@
       <Hideout id="hideout_forest_36" map_icon="bandit_hideout_b" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <!-- Deserterts Hideouts -->
@@ -15720,7 +15720,7 @@
       <Hideout id="hideout_beastmen_26" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_27" name="{=Settlements.Settlement.name.hideout_beastmen_27}Ungor Camp" type="Hideout" posX="1195.736" posY="1102.843" culture="Culture.steppe_bandits">
@@ -15848,7 +15848,7 @@
       <Hideout id="hideout_beastmen_42" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_forest" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_beastmen_43" name="{=Settlements.Settlement.name.hideout_beastmen_43}Ungor Camp" type="Hideout" posX="988.522" posY="1080.694" culture="Culture.steppe_bandits">
@@ -16586,7 +16586,7 @@
       <Hideout id="hideout_bretonnia_2" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_bretonnia_3" name="{=Settlements.Settlement.name.hideout_mountain_3}Herrimault Hideout" type="Hideout" posX="984.894" posY="871.678" culture="Culture.desert_bandits">
@@ -16610,7 +16610,7 @@
       <Hideout id="hideout_bretonnia_5" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_bretonnia_6" name="{=Settlements.Settlement.name.hideout_mountain_6}Herrimault Hideout" type="Hideout" posX="898.845" posY="986.324" culture="Culture.desert_bandits">
@@ -16634,7 +16634,7 @@
       <Hideout id="hideout_bretonnia_8" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_bretonnia_9" name="{=Settlements.Settlement.name.hideout_mountain_9}Herrimault Hideout" type="Hideout" posX="975.371" posY="793.942" culture="Culture.desert_bandits">
@@ -16658,7 +16658,7 @@
       <Hideout id="hideout_bretonnia_12" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_bretonnia_13" name="{=Settlements.Settlement.name.hideout_mountain_13}Herrimault Hideout" type="Hideout" posX="834.469" posY="1186.498" culture="Culture.desert_bandits">
@@ -16682,7 +16682,7 @@
       <Hideout id="hideout_bretonnia_15" map_icon="bandit_hideout_d" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
     <Locations complex_template="LocationComplexTemplate.hideout_complex">
-<Location id="hideout_center" scene_name="forest_hideout_003" />
+<Location id="hideout_center" scene_name="forest_hideout_004_sv" />
     </Locations>
   </Settlement>
   <Settlement id="hideout_bretonnia_16" name="{=Settlements.Settlement.name.hideout_mountain_16}Herrimault Hideout" type="Hideout" posX="1072.141" posY="1251.821" culture="Culture.desert_bandits">
