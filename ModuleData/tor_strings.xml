@@ -3323,7 +3323,7 @@ This ability refreshes automatically and gains additional effects with more Care
   <string id="tor_careerchoice_description.WardenOfWydriothPassive1" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive1}3 extra Arrows per equipped Quiver" />
   <string id="tor_careerchoice_description.WardenOfWydriothPassive2" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive2}10% extra range damage." />
   <string id="tor_careerchoice_description.WardenOfWydriothPassive3" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive3}All Elves receive 20 bonus points in their  bow skill." />
-  <string id="tor_careerchoice_description.WardenOfWydriothPassive4" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive4}All troops gain 10% extra damage with bows." />
+  <string id="tor_careerchoice_description.WardenOfWydriothPassive4" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive4}All elf troops gain 10% extra damage with bows." />
   <string id="tor_careerchoice_description.WardenOfWydriothKeystone" text="{=str_tor_careerchoice_description_WardenOfWydriothKeystone}Archery skill counts towards ability. Enemies in the zone suffer 25% more ranged damage" />
   <string id="tor_careerchoice_description.WardenOfTorgovannPassive1" text="{=str_tor_careerchoice_description_WardenOfTorgovannPassive1}Wielding a shield increases wardsave by 10%." />
   <string id="tor_careerchoice_description.WardenOfTorgovannPassive2" text="{=str_tor_careerchoice_description_WardenOfTorgovannPassive2}All Elves receive 20 bonus points in their  One-handed skill." />
