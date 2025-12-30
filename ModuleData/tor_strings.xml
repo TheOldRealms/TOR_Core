@@ -2949,12 +2949,12 @@
   <string id="tor_careerchoice_description.UnbreakableArmyPassive4" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive4}Every 2 undead troops gain 1 additional party slot." />
   <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive1" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive1}Increases Hitpoints by 30." />
   <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive2" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive2}Gain 15 Dark Energy daily." />
-  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive3" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive3}Mousillon Knight damage against infantry  is increased by 8%." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive3" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive3}Mousillon Knight damage against infantry is increased by 8%." />
   <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive4" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive4}Any Bret. Knight units can be transformed to ill-fated mousillon units." />
   <string id="tor_careerchoice_description.RobberKnightPassive1" text="{=str_tor_careerchoice_description_RobberKnightPassive1}Horse charge damage is increased by 50%." />
   <string id="tor_careerchoice_description.RobberKnightPassive2" text="{=str_tor_careerchoice_description_RobberKnightPassive2}Party movement speed is increased by 1." />
   <string id="tor_careerchoice_description.RobberKnightPassive3" text="{=str_tor_careerchoice_description_RobberKnightPassive3}All mousillon Knight units gain 10% Physical resistance." />
-  <string id="tor_careerchoice_description.RobberKnightPassive4" text="{=str_tor_careerchoice_description_RobberKnightPassive4}Pillaging is 50% faster  and gains dark energy." />
+  <string id="tor_careerchoice_description.RobberKnightPassive4" text="{=str_tor_careerchoice_description_RobberKnightPassive4}Pillaging is 50% faster and gains dark energy." />
   <string id="tor_careerchoice_description.LieOfLadyPassive1" text="{=str_tor_careerchoice_description_LieOfLadyPassive1}10% extra melee magic damage." />
   <string id="tor_careerchoice_description.LieOfLadyPassive2" text="{=str_tor_careerchoice_description_LieOfLadyPassive2}Necromancer companions gain 10 Winds of magic." />
   <string id="tor_careerchoice_description.LieOfLadyPassive3" text="{=str_tor_careerchoice_description_LieOfLadyPassive3}Dark Energy upkeep for Knights of the black grail is reduced by 12%." />
