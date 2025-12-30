@@ -320,6 +320,8 @@
   <string id="tor_greenskin_waaagh_text" text="{=str_tor_greenskin_waaagh_text}WAAAGH!!!!"/>
   <string id="tor_greenskin_teef_extorsion_text" text="{=str_tor_greenskin_teef_extorsion_text}Teef Extorsion"/>
   <string id="tor_greenskin_teef_tribute_text" text="{=str_tor_greenskin_teef_tribute_text}Teef Tribute"/>
+  <string id="tor_hideout_greenskin_no_sneak" text="{=str_tor_hideout_greenskin_no_sneak}You are too clumsy to sneak in undetected."/>
+  <string id="tor_hideout_greenskin_no_wait" text="{=str_tor_hideout_greenskin_no_wait}You are too clumsy to sneak in undetected. Why even wait?"/>
 
   <!-- Character Stats Bonuses -->
   <string id="tor_stats_minotaur_bonus_text" text="{=str_tor_stats_minotaur_bonus_text}Minotaur bonus"/>
