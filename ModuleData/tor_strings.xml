@@ -3318,7 +3318,7 @@ This ability refreshes automatically and gains additional effects with more Care
   <string id="tor_careerchoice_description.WardenOfCythralPassive1" text="{=str_tor_careerchoice_description_WardenOfCythralPassive1}All Elves receive 20 bonus points in their Two-handed skill." />
   <string id="tor_careerchoice_description.WardenOfCythralPassive2" text="{=str_tor_careerchoice_description_WardenOfCythralPassive2}Weapon swing speed increased by 10%." />
   <string id="tor_careerchoice_description.WardenOfCythralPassive3" text="{=str_tor_careerchoice_description_WardenOfCythralPassive3}Increases Hitpoints by 15." />
-  <string id="tor_careerchoice_description.WardenOfCythralPassive4" text="{=str_tor_careerchoice_description_WardenOfCythralPassive4}10% extra melee damage against chaos and beastmen." />
+  <string id="tor_careerchoice_description.WardenOfCythralPassive4" text="{=str_tor_careerchoice_description_WardenOfCythralPassive4}10% extra melee and ranged damage against chaos and beastmen." />
   <string id="tor_careerchoice_description.WardenOfCythralKeystone" text="{=str_tor_careerchoice_description_WardenOfCythralKeystone}Ability scales with two handed weapon skill. ability starts charged" />
   <string id="tor_careerchoice_description.WardenOfWydriothPassive1" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive1}3 extra Arrows per equipped Quiver" />
   <string id="tor_careerchoice_description.WardenOfWydriothPassive2" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive2}10% extra range damage." />
@@ -3336,7 +3336,7 @@ This ability refreshes automatically and gains additional effects with more Care
   <string id="tor_careerchoice_description.WardenOfAtylwythPassive4" text="{=str_tor_careerchoice_description_WardenOfAtylwythPassive4}All Elves receive 20 bonus points in their polearm skill." />
   <string id="tor_careerchoice_description.WardenOfAtylwythKeystone" text="{=str_tor_careerchoice_description_WardenOfAtylwythKeystone} Swing and movement speed increase for all friendly units in the zone." />
   <string id="tor_careerchoice_description.WardenOfTalsynPassive1" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive1}Armor weight doesn't affect winds regeneration." />
-  <string id="tor_careerchoice_description.WardenOfTalsynPassive2" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive2}All troops gain 10% extra damage." />
+  <string id="tor_careerchoice_description.WardenOfTalsynPassive2" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive2}All elf troops gain 10% extra damage." />
   <string id="tor_careerchoice_description.WardenOfTalsynPassive3" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive3}Companion limit of party is increased by 5." />
   <string id="tor_careerchoice_description.WardenOfTalsynPassive4" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive4}Thrown spears can penetrate through multiple enemies." />
   <string id="tor_careerchoice_description.WardenOfTalsynKeystone" text="{=str_tor_careerchoice_description_WardenOfTalsynKeystone} Leadership and Throwing counts towards ability. Cooldown reduction by 50%." />
