@@ -28,6 +28,10 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.Components
 
         public override void OnTick(float dt)
         {
+            if (Agent.IsPaused)
+            {
+                return;
+            }
             _dtSinceLastOccasional += dt;
             if (_dtSinceLastOccasional >= EvalInterval)
             {

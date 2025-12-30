@@ -184,8 +184,11 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                         .ToList();
                 }
 
-                const int maxEquipmentSlots = 4;
-                var equipmentSlots = maxEquipmentSlots - blueprintRewardItems.Count;
+                const int totalRewardSlots = 4;
+                const int cultureRewardSlots = 1;
+                const int poolSlots = totalRewardSlots - cultureRewardSlots; // 3
+
+                var equipmentSlots = poolSlots - blueprintRewardItems.Count;
                 if (equipmentSlots < 0)
                 {
                     equipmentSlots = 0;
@@ -211,6 +214,10 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
                 var highTierCultureItems = cultureItems
                     .Where(i => i.Tier >= ItemObject.ItemTiers.Tier3)
+                    .ToList();
+
+                var cultureWeaponOrArmorItems = cultureItems
+                    .Where(i => i.IsWeapon() || i.IsArmor())
                     .ToList();
 
                 var equipmentItems = specificItems
@@ -248,9 +255,73 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
 
                 }
 
+                ItemObject cultureRewardItem = null;
+
+                {
+                    var excludedItemIds = new HashSet<string>(StringComparer.Ordinal);
+
+                    foreach (var equipmentItem in equipmentItems)
+                    {
+                        excludedItemIds.Add(equipmentItem.StringId);
+                    }
+
+                    foreach (var blueprint in blueprintRewardItems)
+                    {
+                        excludedItemIds.Add(blueprint.StringId);
+                    }
+
+                    var cultureCandidates = cultureWeaponOrArmorItems
+                        .Where(i => !excludedItemIds.Contains(i.StringId))
+                        .ToList();
+
+                    if (cultureCandidates.Count > 0)
+                    {
+                        var tier3 = cultureCandidates.Where(i => i.Tier == ItemObject.ItemTiers.Tier3).ToList();
+                        var tier4 = cultureCandidates.Where(i => i.Tier == ItemObject.ItemTiers.Tier4).ToList();
+                        var tier5 = cultureCandidates.Where(i => i.Tier == ItemObject.ItemTiers.Tier5).ToList();
+                        var tier6 = cultureCandidates.Where(i => i.Tier == ItemObject.ItemTiers.Tier6).ToList();
+
+                        var weightedTiers = new List<(float Weight, List<ItemObject> Items)>{(40f, tier3),(30f, tier4),(20f, tier5),(10f, tier6),}
+                        .Where(t => t.Items.Count > 0)
+                        .ToList();
+
+                        if (weightedTiers.Count > 0)
+                        {
+                            var totalWeight = weightedTiers.Sum(t => t.Weight);
+                            var roll = MBRandom.RandomFloat * totalWeight;
+
+                            foreach (var entry in weightedTiers)
+                            {
+                                roll -= entry.Weight;
+                                if (roll <= 0f)
+                                {
+                                    cultureRewardItem = entry.Items
+                                        .OrderBy(_ => MBRandom.RandomFloat)
+                                        .First();
+                                    break;
+                                }
+                            }
+
+                            cultureRewardItem ??= weightedTiers.Last().Items
+                                .OrderBy(_ => MBRandom.RandomFloat)
+                                .First();
+                        }
+                        else
+                        {
+                            cultureRewardItem = cultureCandidates
+                                .OrderBy(_ => MBRandom.RandomFloat)
+                                .First();
+                        }
+                    }
+                }
+
 
                 var items = new List<ItemObject>();
                 items.AddRange(equipmentItems);
+                if (cultureRewardItem != null)
+                {
+                    items.Add(cultureRewardItem);
+                }
 
                 foreach (var blueprint in blueprintRewardItems)
                 {
@@ -283,19 +354,60 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                         continue;
                     }
 
-                    var traitCount = MBRandom.RandomInt(0, model.MaximumFindableTraitsOnItems());
-                    if (traitCount <= 0)
+                    var possibleTraits = ItemTrait.All
+                        .Where(x => x.ItemTraitStringId.Contains("lesser_loot"))
+                        .ToList();
+
+                    if (item.IsArmor())
+                    {
+                        possibleTraits = possibleTraits
+                            .Where(x => x.ValidItemType == ItemTraitItemType.Armor)
+                            .ToList();
+                    }
+                    else
+                    {
+                        var validTypes = new HashSet<ItemTraitItemType>();
+
+                        if (item.ItemType == ItemObject.ItemTypeEnum.Shield)
+                        {
+                            validTypes.Add(ItemTraitItemType.Shield);
+                        }
+                        else
+                        {
+                            validTypes.Add(ItemTraitItemType.Weapon);
+
+                            if (item.HasWeaponComponent && item.PrimaryWeapon != null)
+                            {
+                                var primaryWeapon = item.PrimaryWeapon;
+
+                                if (primaryWeapon.IsMeleeWeapon)
+                                    validTypes.Add(ItemTraitItemType.Melee);
+
+                                if (primaryWeapon.IsRangedWeapon)
+                                    validTypes.Add(ItemTraitItemType.Ranged);
+
+                                if (primaryWeapon.IsRangedWeapon && primaryWeapon.IsConsumable) // throwables
+                                    validTypes.Add(ItemTraitItemType.Thrown);
+
+                                if (primaryWeapon.IsAmmo)
+                                    validTypes.Add(ItemTraitItemType.Ammo);
+                            }
+                        }
+
+                        possibleTraits = possibleTraits
+                            .Where(x => validTypes.Contains(x.ValidItemType))
+                            .ToList();
+                    }
+
+                    var chosenTrait = possibleTraits.TakeRandom(1).FirstOrDefault();
+                    if (chosenTrait == null)
                     {
                         unmodifiedItems.Add(item);
                         continue;
                     }
 
-                    var traits = ItemTrait.All
-                        .Where(x => x.ItemTraitStringId.Contains("lesser_loot") && ItemTrait.IsValidFor(x, item.ItemType))
-                        .TakeRandom(traitCount);
-
-                    var ids = traits.Select(x => x.ItemTraitStringId).ToList();
-                    var name = model.GetNameModifierForTraits(traitCount);
+                    var ids = new List<string> { chosenTrait.ItemTraitStringId };
+                    var name = model.GetNameModifierForTraits(1);
                     var newItem = EnchantmentHelper.CreateEnchantedItem(item, ids, name + " " + item.Name, false);
 
                     enchantedItems.Add(newItem);
