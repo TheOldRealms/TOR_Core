@@ -342,7 +342,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _swampRiderPassive1.Initialize(CareerID, "50% additional Hitpoints for the player's mount.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true)); //
             _swampRiderPassive2.Initialize(CareerID, "10% extra melee damage while on horseback.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.Melee,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && attacker.HasMount));
-            _swampRiderPassive3.Initialize(CareerID, "Every melee kill gives roguery XP.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true)); //
+            _swampRiderPassive3.Initialize(CareerID, "Every melee kill gives roguery XP.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect());
             _swampRiderPassive4.Initialize(CareerID, "All Knight troops receive 20 bonus points in their One and Two-handed skill.", "SwampRider", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.OneHanded), nameof(DefaultSkills.TwoHanded) }, characterObject => characterObject.IsKnightUnit()));
 
             _unbreakableArmyPassive1.Initialize(CareerID, "All mousillon peasant troops wages are reduced by 40%.", "UnbreakableArmy", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-40, PassiveEffectType.TroopWages, true,
@@ -353,15 +353,15 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _scourgeOfBretonniaPassive1.Initialize(CareerID, "Increases Hitpoints by 30.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Health));
             _scourgeOfBretonniaPassive2.Initialize(CareerID, "Gain 15 Dark Energy daily.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.CustomResourceGain));
-            _scourgeOfBretonniaPassive3.Initialize(CareerID, "Mousillon Knight damage against infantry is increased by 8%.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 8), AttackTypeMask.Spell,
+            _scourgeOfBretonniaPassive3.Initialize(CareerID, "Mousillon Knight damage against infantry is increased by 8%.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Physical, 8), AttackTypeMask.Melee,
                 (attacker, victim, mask) => attacker.BelongsToMainParty() && isMousillonKnight(attacker.Character as CharacterObject) && victim.Character.IsInfantry));
             _scourgeOfBretonniaPassive4.Initialize(CareerID, "Any Bret. Knight units can be transformed to ill-fated mousillon units.", "ScourgeOfBretonnia", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special, true));
 
             _robberKnightPassive1.Initialize(CareerID, "Horse charge damage is increased by 50%.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseChargeDamage, true));
             _robberKnightPassive2.Initialize(CareerID, "Party movement speed is increased by 1.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
-            _robberKnightPassive3.Initialize(CareerID, "All mousillon Knight units gain 10% Physical resistance.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
-                    (attacker, victim, mask) => victim.BelongsToMainParty() && isMousillonKnight(attacker.Character as CharacterObject)));
-            _robberKnightPassive4.Initialize(CareerID, "Pillaging is 50% faster  and gains dark energy.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-50, PassiveEffectType.Special, true,
+            _robberKnightPassive3.Initialize(CareerID, "All mousillon Knight units gain 10% Physical resistance.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.Physical, 10), AttackTypeMask.All,
+                    (attacker, victim, mask) => victim.BelongsToMainParty() && isMousillonKnight(victim.Character as CharacterObject)));
+            _robberKnightPassive4.Initialize(CareerID, "Pillaging is 50% faster and gains dark energy.", "RobberKnight", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-50, PassiveEffectType.Special, true,
                 characterObject => isMousillonKnight(characterObject)));
 
             _lieOfLadyPassive1.Initialize(CareerID, "10% extra melee magic damage.", "LieOfLady", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Melee));
@@ -375,7 +375,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _blackGrailVowPassive2.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
             _blackGrailVowPassive3.Initialize(CareerID, "Mousillon Knights gain 8% Wardsave.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 8), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.BelongsToMainParty() && isMousillonKnight(victim.Character as CharacterObject)));
-            _blackGrailVowPassive4.Initialize(CareerID, "Every necromancer and Vampire companion gains 5 dark energy per day.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit)); //why is this typed as companion limit? it's implemented manually so it doesn't matter, but odd.
+            _blackGrailVowPassive4.Initialize(CareerID, "Every necromancer and Vampire companion gains 5 dark energy per day.", "BlackGrailVow", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special));
         }
 
         public override void InitialCareerSetup()

@@ -1702,6 +1702,7 @@
 
   <!--crafting-->
   <string id="str_crafting_template.tor_twohandedswords_template" text="{=str_tor_crafting_template_TORGreatswords}TOR-Greatswords" />
+  <string id="str_crafting_template.tor_orc_twohandedsword_template" text="{=str_tor_crafting_template_TOROrc Greatswords}TOR-Orc Greatswords" />
   <string id="str_crafting_template.tor_sword_template" text="{=str_tor_crafting_template_TORSwords}TOR-Swords" />
   <string id="str_crafting_template.tor_rapier_template" text="{=str_tor_crafting_template_TORRapiers}TOR-Rapiers" />
   <string id="str_crafting_template.tor_scythe_template" text="{=str_tor_crafting_template_TORScythes}TOR-Scythes" />
@@ -2948,12 +2949,12 @@
   <string id="tor_careerchoice_description.UnbreakableArmyPassive4" text="{=str_tor_careerchoice_description_UnbreakableArmyPassive4}Every 2 undead troops gain 1 additional party slot." />
   <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive1" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive1}Increases Hitpoints by 30." />
   <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive2" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive2}Gain 15 Dark Energy daily." />
-  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive3" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive3}Mousillon Knight damage against infantry  is increased by 8%." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive3" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive3}Mousillon Knight damage against infantry is increased by 8%." />
   <string id="tor_careerchoice_description.ScourgeOfBretonniaPassive4" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaPassive4}Any Bret. Knight units can be transformed to ill-fated mousillon units." />
   <string id="tor_careerchoice_description.RobberKnightPassive1" text="{=str_tor_careerchoice_description_RobberKnightPassive1}Horse charge damage is increased by 50%." />
   <string id="tor_careerchoice_description.RobberKnightPassive2" text="{=str_tor_careerchoice_description_RobberKnightPassive2}Party movement speed is increased by 1." />
   <string id="tor_careerchoice_description.RobberKnightPassive3" text="{=str_tor_careerchoice_description_RobberKnightPassive3}All mousillon Knight units gain 10% Physical resistance." />
-  <string id="tor_careerchoice_description.RobberKnightPassive4" text="{=str_tor_careerchoice_description_RobberKnightPassive4}Pillaging is 50% faster  and gains dark energy." />
+  <string id="tor_careerchoice_description.RobberKnightPassive4" text="{=str_tor_careerchoice_description_RobberKnightPassive4}Pillaging is 50% faster and gains dark energy." />
   <string id="tor_careerchoice_description.LieOfLadyPassive1" text="{=str_tor_careerchoice_description_LieOfLadyPassive1}10% extra melee magic damage." />
   <string id="tor_careerchoice_description.LieOfLadyPassive2" text="{=str_tor_careerchoice_description_LieOfLadyPassive2}Necromancer companions gain 10 Winds of magic." />
   <string id="tor_careerchoice_description.LieOfLadyPassive3" text="{=str_tor_careerchoice_description_LieOfLadyPassive3}Dark Energy upkeep for Knights of the black grail is reduced by 12%." />
@@ -3317,12 +3318,12 @@ This ability refreshes automatically and gains additional effects with more Care
   <string id="tor_careerchoice_description.WardenOfCythralPassive1" text="{=str_tor_careerchoice_description_WardenOfCythralPassive1}All Elves receive 20 bonus points in their Two-handed skill." />
   <string id="tor_careerchoice_description.WardenOfCythralPassive2" text="{=str_tor_careerchoice_description_WardenOfCythralPassive2}Weapon swing speed increased by 10%." />
   <string id="tor_careerchoice_description.WardenOfCythralPassive3" text="{=str_tor_careerchoice_description_WardenOfCythralPassive3}Increases Hitpoints by 15." />
-  <string id="tor_careerchoice_description.WardenOfCythralPassive4" text="{=str_tor_careerchoice_description_WardenOfCythralPassive4}10% extra melee damage against chaos and beastmen." />
+  <string id="tor_careerchoice_description.WardenOfCythralPassive4" text="{=str_tor_careerchoice_description_WardenOfCythralPassive4}10% extra melee and ranged damage against chaos and beastmen." />
   <string id="tor_careerchoice_description.WardenOfCythralKeystone" text="{=str_tor_careerchoice_description_WardenOfCythralKeystone}Ability scales with two handed weapon skill. ability starts charged" />
   <string id="tor_careerchoice_description.WardenOfWydriothPassive1" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive1}3 extra Arrows per equipped Quiver" />
   <string id="tor_careerchoice_description.WardenOfWydriothPassive2" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive2}10% extra range damage." />
   <string id="tor_careerchoice_description.WardenOfWydriothPassive3" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive3}All Elves receive 20 bonus points in their  bow skill." />
-  <string id="tor_careerchoice_description.WardenOfWydriothPassive4" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive4}All troops gain 10% extra damage with bows." />
+  <string id="tor_careerchoice_description.WardenOfWydriothPassive4" text="{=str_tor_careerchoice_description_WardenOfWydriothPassive4}All elf troops gain 10% extra damage with bows." />
   <string id="tor_careerchoice_description.WardenOfWydriothKeystone" text="{=str_tor_careerchoice_description_WardenOfWydriothKeystone}Archery skill counts towards ability. Enemies in the zone suffer 25% more ranged damage" />
   <string id="tor_careerchoice_description.WardenOfTorgovannPassive1" text="{=str_tor_careerchoice_description_WardenOfTorgovannPassive1}Wielding a shield increases wardsave by 10%." />
   <string id="tor_careerchoice_description.WardenOfTorgovannPassive2" text="{=str_tor_careerchoice_description_WardenOfTorgovannPassive2}All Elves receive 20 bonus points in their  One-handed skill." />
@@ -3335,7 +3336,7 @@ This ability refreshes automatically and gains additional effects with more Care
   <string id="tor_careerchoice_description.WardenOfAtylwythPassive4" text="{=str_tor_careerchoice_description_WardenOfAtylwythPassive4}All Elves receive 20 bonus points in their polearm skill." />
   <string id="tor_careerchoice_description.WardenOfAtylwythKeystone" text="{=str_tor_careerchoice_description_WardenOfAtylwythKeystone} Swing and movement speed increase for all friendly units in the zone." />
   <string id="tor_careerchoice_description.WardenOfTalsynPassive1" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive1}Armor weight doesn't affect winds regeneration." />
-  <string id="tor_careerchoice_description.WardenOfTalsynPassive2" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive2}All troops gain 10% extra damage." />
+  <string id="tor_careerchoice_description.WardenOfTalsynPassive2" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive2}All elf troops gain 10% extra damage." />
   <string id="tor_careerchoice_description.WardenOfTalsynPassive3" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive3}Companion limit of party is increased by 5." />
   <string id="tor_careerchoice_description.WardenOfTalsynPassive4" text="{=str_tor_careerchoice_description_WardenOfTalsynPassive4}Thrown spears can penetrate through multiple enemies." />
   <string id="tor_careerchoice_description.WardenOfTalsynKeystone" text="{=str_tor_careerchoice_description_WardenOfTalsynKeystone} Leadership and Throwing counts towards ability. Cooldown reduction by 50%." />
