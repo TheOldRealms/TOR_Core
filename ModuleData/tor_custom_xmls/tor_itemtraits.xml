@@ -4536,10 +4536,9 @@
     <ValidItemType>Invalid</ValidItemType>
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
-    <ItemTraitDescription>Adds armor penetration, fire damage, and pierces shields</ItemTraitDescription>
+    <ItemTraitDescription>Adds armor penetration</ItemTraitDescription>
     <AdditionalDamageTuple DamageType="Fire" Percent="0.20" />
     <StatsTuple StatType="ArmorPenetration" Value="25" />
-    <StatsTuple StatType="ShieldPenetration" Value="1" />
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_knightlystrike" ItemTraitName="Knightly Strike" IsCraftable="false" IconName="winds_icon_45">
