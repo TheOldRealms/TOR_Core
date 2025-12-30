@@ -3235,39 +3235,39 @@
   <!-- Ironbreaker Career Choice Descriptions -->
   <string id="tor_careerchoice_description.IronbreakerRoot" text="{=str_tor_careerchoice_description_IronbreakerRoot}The Character will not receive any damage for a short amount of time and will shrug any damage off. The movement speed is reduced by 25% though. The duration expands with growing athletics skill." />
   <string id="tor_careerchoice_description.NestCleansingKeystone" text="{=str_tor_careerchoice_description_NestCleansingKeystone}Immune to fire damage, explosives and knockback resistance during ability" />
-  <string id="tor_careerchoice_description.NestCleansingPassive1" text="{=str_tor_careerchoice_description_NestCleansingPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.NestCleansingPassive2" text="{=str_tor_careerchoice_description_NestCleansingPassive2}Increases Fire resistance by 25%." />
+  <string id="tor_careerchoice_description.NestCleansingPassive1" text="{=str_tor_careerchoice_description_NestCleansingPassive1}Increases Hitpoints by 10." />
+  <string id="tor_careerchoice_description.NestCleansingPassive2" text="{=str_tor_careerchoice_description_NestCleansingPassive2}Increases Fire resistance by 20%." />
   <string id="tor_careerchoice_description.NestCleansingPassive3" text="{=str_tor_careerchoice_description_NestCleansingPassive3}Get 2 additional charges for explosive charges" />
-  <string id="tor_careerchoice_description.NestCleansingPassive4" text="{=str_tor_careerchoice_description_NestCleansingPassive4}Iron breaker troops gain 1 explosive charge" />
+  <string id="tor_careerchoice_description.NestCleansingPassive4" text="{=str_tor_careerchoice_description_NestCleansingPassive4}Ironbreaker troops have a 50% chance to gain 1 explosive charge." />
   <string id="tor_careerchoice_description.TunnelWatchKeystone" text="{=str_tor_careerchoice_description_TunnelWatchKeystone}Scouting counts towards ability. Ability starts charged" />
-  <string id="tor_careerchoice_description.TunnelWatchPassive1" text="{=str_tor_careerchoice_description_TunnelWatchPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.TunnelWatchPassive1" text="{=str_tor_careerchoice_description_TunnelWatchPassive1}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.TunnelWatchPassive2" text="{=str_tor_careerchoice_description_TunnelWatchPassive2}Party movement speed is increased by 1." />
-  <string id="tor_careerchoice_description.TunnelWatchPassive3" text="{=str_tor_careerchoice_description_TunnelWatchPassive3}15% extra melee damage against greenskins" />
-  <string id="tor_careerchoice_description.TunnelWatchPassive4" text="{=str_tor_careerchoice_description_TunnelWatchPassive4}10% extra melee damage." />
+  <string id="tor_careerchoice_description.TunnelWatchPassive3" text="{=str_tor_careerchoice_description_TunnelWatchPassive3}15% extra melee damage against greenskins." />
+  <string id="tor_careerchoice_description.TunnelWatchPassive4" text="{=str_tor_careerchoice_description_TunnelWatchPassive4}5% extra melee damage." />
   <string id="tor_careerchoice_description.IronPriceKeystone" text="{=str_tor_careerchoice_description_IronPriceKeystone}Leadership counts towards Careerability. Charge ability by dealing damage" />
   <string id="tor_careerchoice_description.IronPricePassive1" text="{=str_tor_careerchoice_description_IronPricePassive1}Hits below 15 damage do not stagger the player." />
   <string id="tor_careerchoice_description.IronPricePassive2" text="{=str_tor_careerchoice_description_IronPricePassive2}Attacks deal bonus damage against shields." />
-  <string id="tor_careerchoice_description.IronPricePassive3" text="{=str_tor_careerchoice_description_IronPricePassive3}custom resource upgrade costs for Ironbreaker units are reduced by 25%." />
-  <string id="tor_careerchoice_description.IronPricePassive4" text="{=str_tor_careerchoice_description_IronPricePassive4}Custom." />
+  <string id="tor_careerchoice_description.IronPricePassive3" text="{=str_tor_careerchoice_description_IronPricePassive3}All Ironbreaker recruitment and upgrade costs are reduced by 25%." />
+  <string id="tor_careerchoice_description.IronPricePassive4" text="{=str_tor_careerchoice_description_IronPricePassive4}Increases Hitpoints by 10." />
   <string id="tor_careerchoice_description.ShieldwallKeystone" text="{=str_tor_careerchoice_description_ShieldwallKeystone}Dwarfs in the immediate surrounding also benefit from effect. Scales with onehanded" />
-  <string id="tor_careerchoice_description.ShieldwallPassive1" text="{=str_tor_careerchoice_description_ShieldwallPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.ShieldwallPassive1" text="{=str_tor_careerchoice_description_ShieldwallPassive1}Increases Hitpoints by 10." />
   <string id="tor_careerchoice_description.ShieldwallPassive2" text="{=str_tor_careerchoice_description_ShieldwallPassive2}Onehanded combat skill for dwarf units is increased by 20" />
-  <string id="tor_careerchoice_description.ShieldwallPassive3" text="{=str_tor_careerchoice_description_ShieldwallPassive3}20% physical resistance while wearing a shield." />
+  <string id="tor_careerchoice_description.ShieldwallPassive3" text="{=str_tor_careerchoice_description_ShieldwallPassive3}10% physical resistance while wearing a shield." />
   <string id="tor_careerchoice_description.ShieldwallPassive4" text="{=str_tor_careerchoice_description_ShieldwallPassive4}For every point in smithing gain 0.5% shield hitpoints." />
   <string id="tor_careerchoice_description.IronDrakesKeystone" text="{=str_tor_careerchoice_description_IronDrakesKeystone}During ability your reload speed is increased. ability scales with gunpowder skill " />
   <string id="tor_careerchoice_description.IronDrakesPassive1" text="{=str_tor_careerchoice_description_IronDrakesPassive1}Increases the fire damage of iron drakes by 20%." />
   <string id="tor_careerchoice_description.IronDrakesPassive2" text="{=str_tor_careerchoice_description_IronDrakesPassive2}Iron drakes custom resource cost is reduced." />
-  <string id="tor_careerchoice_description.IronDrakesPassive3" text="{=str_tor_careerchoice_description_IronDrakesPassive3}custom resource upgrade costs for knights are reduced by 25%." />
-  <string id="tor_careerchoice_description.IronDrakesPassive4" text="{=str_tor_careerchoice_description_IronDrakesPassive4}12 Extra ammo for drakfire gun" />
+  <string id="tor_careerchoice_description.IronDrakesPassive3" text="{=str_tor_careerchoice_description_IronDrakesPassive3}12 Extra ammo for drakfire gun." />
+  <string id="tor_careerchoice_description.IronDrakesPassive4" text="{=str_tor_careerchoice_description_IronDrakesPassive4}Each Ironbeard in your party increases ammo for Ironbreaker units by 10%." />
   <string id="tor_careerchoice_description.GromrilArmorKeystone" text="{=str_tor_careerchoice_description_GromrilArmorKeystone}Receiving damage during ability will stack upon, and add for each taken hit 0.5% physical resistance post ability." />
   <string id="tor_careerchoice_description.GromrilArmorPassive1" text="{=str_tor_careerchoice_description_GromrilArmorPassive1}20% extra phyiscal resistance for ironbreaker troops." />
-  <string id="tor_careerchoice_description.GromrilArmorPassive2" text="{=str_tor_careerchoice_description_GromrilArmorPassive2}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.GromrilArmorPassive3" text="{=str_tor_careerchoice_description_GromrilArmorPassive3}Extra 15% Wardsave if your armor weight exceed 25 weight." />
+  <string id="tor_careerchoice_description.GromrilArmorPassive2" text="{=str_tor_careerchoice_description_GromrilArmorPassive2}Increases Hitpoints by 15." />
+  <string id="tor_careerchoice_description.GromrilArmorPassive3" text="{=str_tor_careerchoice_description_GromrilArmorPassive3}Extra 5% Wardsave if your armor weight exceeds 25." />
   <string id="tor_careerchoice_description.GromrilArmorPassive4" text="{=str_tor_careerchoice_description_GromrilArmorPassive4}Iron breaker have 50% damage resistance against friendly fire." />
-  <string id="tor_careerchoice_description.RuneWeaponsKeystone" text="{=str_tor_careerchoice_description_RuneWeaponsKeystone}For every taken hit during  your ability, physical damage is increased by 0.5% for the next 5 seconds" />
+  <string id="tor_careerchoice_description.RuneWeaponsKeystone" text="{=str_tor_careerchoice_description_RuneWeaponsKeystone}For every taken hit during your ability, physical damage is increased by 0.5% for the next 10 seconds." />
   <string id="tor_careerchoice_description.RuneWeaponsPassive1" text="{=str_tor_careerchoice_description_RuneWeaponsPassive1}Ironbreakers gain 10% extra damage" />
-  <string id="tor_careerchoice_description.RuneWeaponsPassive2" text="{=str_tor_careerchoice_description_RuneWeaponsPassive2}Increases Magic damage by 15%." />
-  <string id="tor_careerchoice_description.RuneWeaponsPassive3" text="{=str_tor_careerchoice_description_RuneWeaponsPassive3}Extra 25% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.RuneWeaponsPassive2" text="{=str_tor_careerchoice_description_RuneWeaponsPassive2}Increases Magic damage by 5%." />
+  <string id="tor_careerchoice_description.RuneWeaponsPassive3" text="{=str_tor_careerchoice_description_RuneWeaponsPassive3}Extra 20% armor penetration of melee attacks." />
   <string id="tor_careerchoice_description.RuneWeaponsPassive4" text="{=str_tor_careerchoice_description_RuneWeaponsPassive4}Weapon swing speed increased by 15%." />
 
   <!-- Slayer Career Choice Descriptions -->
