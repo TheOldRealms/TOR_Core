@@ -64,10 +64,9 @@ namespace TOR_Core.Extensions
         }
 
         /// <summary>
-        /// Adds a custom missile with the shooter's weapon damage bonus and trait particle effects applied.
-        /// This wraps AddCustomMissile and ensures:
-        /// - The bow/weapon damage is included in the missile damage calculation
-        /// - Weapon trait particle effects are added to the missile (e.g., fire, hagbane effects)
+        /// Adds a custom missile with the shooter's weapon damage bonus applied.
+        /// This wraps AddCustomMissile and ensures the bow/weapon damage is included in the missile damage calculation.
+        /// Note: Call FirearmsMissionLogic.ApplyWeaponTraitParticles() after this if particle effects are needed.
         /// </summary>
         public static Mission.Missile AddCustomMissileWithWeaponDamage(this Mission mission, Agent shooterAgent,
             MissionWeapon missileWeapon, Vec3 position, Vec3 direction, Mat3 orientation,
@@ -77,27 +76,8 @@ namespace TOR_Core.Extensions
             MissionPatches.UseWeaponDamageForCustomMissile = true;
             try
             {
-                var missile = mission.AddCustomMissile(shooterAgent, missileWeapon, position, direction, orientation,
+                return mission.AddCustomMissile(shooterAgent, missileWeapon, position, direction, orientation,
                     baseSpeed, speed, addRigidBody, missionObjectToIgnore, forcedMissileIndex);
-
-                // Apply weapon trait particle effects to the missile
-                if (missile != null && shooterAgent != null && !shooterAgent.WieldedWeapon.IsEmpty)
-                {
-                    var weapon = shooterAgent.WieldedWeapon;
-                    if (weapon.Item != null && weapon.Item.HasAnyTrait(shooterAgent))
-                    {
-                        var traits = weapon.Item.GetTraits(shooterAgent);
-                        foreach (var trait in traits)
-                        {
-                            if (trait.WeaponParticlePreset != null)
-                            {
-                                missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);
-                            }
-                        }
-                    }
-                }
-
-                return missile;
             }
             finally
             {

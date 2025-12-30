@@ -286,6 +286,35 @@ namespace TOR_Core.Models
             return result.ResultNumber;
         }
 
+        /// <summary>
+        /// Calculates damage for custom missiles (e.g., scatter shot, career ability projectiles).
+        /// Called from Harmony prefix patches on AddMissileAux/AddMissileSingleUsageAux.
+        /// </summary>
+        public static float CalculateCustomMissileDamage(Agent shooterAgent)
+        {
+            if (shooterAgent == null || shooterAgent.WieldedWeapon.IsEmpty)
+                return 0f;
+
+            var weapon = shooterAgent.WieldedWeapon;
+            if (weapon.CurrentUsageItem == null || weapon.Item == null)
+                return 0f;
+
+            // Get base weapon damage
+            float baseDamage = weapon.GetModifiedThrustDamageForCurrentUsage();
+
+            // Check for damage modifiers from traits
+            var traits = weapon.Item.GetTraits(shooterAgent);
+
+            // Scatter shot: reduce damage per projectile
+            var scatterTrait = traits.FirstOrDefault(t => t.StatsTuple?.StatType == ItemTraitStatType.ScatterShot);
+            if (scatterTrait != null)
+            {
+                baseDamage *= 0.4f; // Each scatter projectile deals 40% damage
+            }
+
+            return baseDamage;
+        }
+
         public override bool DecideMountRearedByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
         {
             var value = base.DecideMountRearedByBlow(attackerAgent, victimAgent, collisionData, attackerWeapon, blow);

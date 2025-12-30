@@ -12,7 +12,6 @@ using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
-using TOR_Core.HarmonyPatches;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 
@@ -114,9 +113,8 @@ namespace TOR_Core.BattleMechanics.Firearms
                 RemoveLastProjectile(shooterAgent);
                 float accuracy = 0.05f; // Higher value = more spread for shotgun-style shots
                 short amount = (short)scatterTrait.StatsTuple.Value;
-                float damageMultiplier = 0.4f; // Each projectile deals 40% damage
                 ScatterShot(shooterAgent, accuracy, shooterAgent.WieldedWeapon.AmmoWeapon, position, orientation,
-                    weaponData.MissileSpeed, amount, damageMultiplier);
+                    weaponData.MissileSpeed, amount);
                 return;
             }
 
@@ -211,23 +209,36 @@ namespace TOR_Core.BattleMechanics.Firearms
         }
 
         public void ScatterShot(Agent shooterAgent, float accuracy, MissionWeapon projectileType, Vec3 shotPosition,
-            Mat3 shotOrientation, float missileSpeed, short scatterShotAmount, float damageMultiplier = 1.0f)
+            Mat3 shotOrientation, float missileSpeed, short scatterShotAmount)
         {
-            // Set the damage multiplier for scatter shot projectiles
-            MissionPatches.ScatterShotDamageMultiplier = damageMultiplier;
-            try
+            for (int i = 0; i < scatterShotAmount; i++)
             {
-                for (int i = 0; i < scatterShotAmount; i++)
-                {
-                    var deviation = TORCommon.GetRandomOrientation(shotOrientation, accuracy);
-                    Mission.AddCustomMissileWithWeaponDamage(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
-                        missileSpeed, missileSpeed, false, null);
-                }
+                var deviation = TORCommon.GetRandomOrientation(shotOrientation, accuracy);
+                var missile = Mission.AddCustomMissileWithWeaponDamage(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
+                    missileSpeed, missileSpeed, false, null);
+                ApplyWeaponTraitParticles(missile, shooterAgent);
             }
-            finally
+        }
+
+        /// <summary>
+        /// Applies weapon trait particle effects to a missile.
+        /// </summary>
+        public static void ApplyWeaponTraitParticles(Mission.Missile missile, Agent shooterAgent)
+        {
+            if (missile == null || shooterAgent == null || shooterAgent.WieldedWeapon.IsEmpty)
+                return;
+
+            var weapon = shooterAgent.WieldedWeapon;
+            if (weapon.Item == null || !weapon.Item.HasAnyTrait(shooterAgent))
+                return;
+
+            var traits = weapon.Item.GetTraits(shooterAgent);
+            foreach (var trait in traits)
             {
-                // Reset to default (full damage)
-                MissionPatches.ScatterShotDamageMultiplier = 1.0f;
+                if (trait.WeaponParticlePreset != null)
+                {
+                    missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);
+                }
             }
         }
 

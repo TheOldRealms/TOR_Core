@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Siege;
@@ -181,59 +180,26 @@ namespace TOR_Core.HarmonyPatches
         // Set this to true before calling AddCustomMissile to include bow damage, then reset to false
         public static bool UseWeaponDamageForCustomMissile;
 
-        // Damage multiplier for scatter shot projectiles (0.0-1.0, default 1.0 = full damage)
-        // Set this before spawning scatter projectiles to reduce individual projectile damage
-        public static float ScatterShotDamageMultiplier = 1.0f;
-
-        // Transpiler to fix AddCustomMissile damage - replaces hardcoded 0.0f with actual bow damage
-        // Only applies when UseWeaponDamageForCustomMissile is true
-        [HarmonyPatch(typeof(Mission), nameof(Mission.AddCustomMissile))]
-        [HarmonyTranspiler]
-        public static IEnumerable<CodeInstruction> AddCustomMissile_DamageFix(IEnumerable<CodeInstruction> instructions)
+        // Prefix patch for AddMissileSingleUsageAux - modifies damageBonus when our flag is set
+        [HarmonyPatch(typeof(Mission), "AddMissileSingleUsageAux")]
+        [HarmonyPrefix]
+        public static void AddMissileSingleUsageAux_Prefix(Agent shooterAgent, ref float damageBonus)
         {
-            var codes = new List<CodeInstruction>(instructions);
-            var getWeaponDamageMethod = AccessTools.Method(typeof(MissionPatches), nameof(GetShooterWeaponDamageIfEnabled));
-
-            // Find AddMissileSingleUsageAux and AddMissileAux calls and patch the damageBonus parameter
-            // The 0.0f is loaded right before ldarga (ref position) in the call sequence
-            int replacements = 0;
-            for (int i = 0; i < codes.Count - 2; i++)
+            if (UseWeaponDamageForCustomMissile && damageBonus == 0.0f)
             {
-                // Look for: ldc.r4 0.0 followed by ldarga (loading ref position)
-                if (codes[i].opcode == OpCodes.Ldc_R4 &&
-                    codes[i].operand is float f && f == 0.0f &&
-                    codes[i + 1].opcode == OpCodes.Ldarga_S)
-                {
-                    // Replace 0.0f with call to GetShooterWeaponDamageIfEnabled(shooterAgent)
-                    codes[i] = new CodeInstruction(OpCodes.Ldarg_1); // Load shooterAgent (arg 1)
-                    codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, getWeaponDamageMethod));
-                    replacements++;
-                    i++; // Skip the inserted instruction
-
-                    if (replacements >= 2) break; // Only two places need patching
-                }
+                damageBonus = TORAgentApplyDamageModel.CalculateCustomMissileDamage(shooterAgent);
             }
-
-            return codes;
         }
 
-        public static float GetShooterWeaponDamageIfEnabled(Agent shooterAgent)
+        // Prefix patch for AddMissileAux - modifies damageBonus when our flag is set
+        [HarmonyPatch(typeof(Mission), "AddMissileAux")]
+        [HarmonyPrefix]
+        public static void AddMissileAux_Prefix(Agent shooterAgent, ref float damageBonus)
         {
-            // Only apply damage bonus if explicitly requested
-            if (!UseWeaponDamageForCustomMissile)
-                return 0f;
-
-            if (shooterAgent == null || shooterAgent.WieldedWeapon.IsEmpty)
-                return 0f;
-
-            var weapon = shooterAgent.WieldedWeapon;
-            if (weapon.CurrentUsageItem == null)
-                return 0f;
-
-            // Return the bow's thrust damage (this is what vanilla uses for ranged weapons)
-            // Apply scatter shot damage multiplier if set
-            var baseDamage = weapon.GetModifiedThrustDamageForCurrentUsage();
-            return baseDamage * ScatterShotDamageMultiplier;
+            if (UseWeaponDamageForCustomMissile && damageBonus == 0.0f)
+            {
+                damageBonus = TORAgentApplyDamageModel.CalculateCustomMissileDamage(shooterAgent);
+            }
         }
     }
 }
