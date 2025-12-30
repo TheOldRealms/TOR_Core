@@ -1,9 +1,11 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using SandBox;
 using SandBox.Missions.MissionLogics;
 using SandBox.Missions.MissionLogics.Hideout;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Siege;
@@ -172,6 +174,32 @@ namespace TOR_Core.HarmonyPatches
                 sceneID = sceneList[0].SceneID;
             }
             return sceneID;
+        }
+
+        // Flag to enable weapon damage bonus for AddCustomMissile
+        // Set this to true before calling AddCustomMissile to include bow damage, then reset to false
+        public static bool UseWeaponDamageForCustomMissile;
+
+        // Prefix patch for AddMissileSingleUsageAux - modifies damageBonus when our flag is set
+        [HarmonyPatch(typeof(Mission), "AddMissileSingleUsageAux")]
+        [HarmonyPrefix]
+        public static void AddMissileSingleUsageAux_Prefix(Agent shooterAgent, ref float damageBonus)
+        {
+            if (UseWeaponDamageForCustomMissile && damageBonus == 0.0f)
+            {
+                damageBonus = TORAgentApplyDamageModel.CalculateCustomMissileDamage(shooterAgent);
+            }
+        }
+
+        // Prefix patch for AddMissileAux - modifies damageBonus when our flag is set
+        [HarmonyPatch(typeof(Mission), "AddMissileAux")]
+        [HarmonyPrefix]
+        public static void AddMissileAux_Prefix(Agent shooterAgent, ref float damageBonus)
+        {
+            if (UseWeaponDamageForCustomMissile && damageBonus == 0.0f)
+            {
+                damageBonus = TORAgentApplyDamageModel.CalculateCustomMissileDamage(shooterAgent);
+            }
         }
     }
 }

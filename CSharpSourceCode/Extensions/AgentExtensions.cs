@@ -479,7 +479,7 @@ namespace TOR_Core.Extensions
             if (comp != null)
             {
                 comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated, stack);
-                TORCommon.Say("ApplyStatusEffect: " + effectId);
+                //TORCommon.Say("ApplyStatusEffect: " + effectId);
             }
         }
 

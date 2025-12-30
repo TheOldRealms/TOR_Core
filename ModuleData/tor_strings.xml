@@ -269,7 +269,7 @@
   <string id="tor_quest_hunt_cultist_offer_dialog" text="{=str_tor_quest_hunt_cultist_offer_dialog}Excellent. Do not underestimate the ruinous powers, unwavering vigilance is required on your quest!"/>
   <string id="tor_quest_hunt_cultist_discuss_dialog" text="{=str_tor_quest_hunt_cultist_discuss_dialog}It was good doing business with you."/>
   <string id="tor_quest_hunt_cultist_prepare_to_die" text="{=str_tor_quest_hunt_cultist_prepare_to_die}Prepare to die!"/>
-  <string id="tor_khorne_cultist_mission_dialog" text="{=str_khorne_cultist_mission}This vessel is mine. Don't interfere with my plans!"/>
+  <string id="tor_khorne_cultist_mission_dialog" text="{=str_tor_khorne_cultist_mission_dialog}This vessel is mine. Don't interfere with my plans!"/>
   <string id="tor_quest_hunt_cultist_out_of_time_log" text="{=str_tor_quest_hunt_cultist_out_of_time_log}You failed to complete the investigation in time. Any potential cultists are surely in the wind now."/>
   <string id="tor_quest_hunt_cultist_village_raided_title" text="{=str_tor_quest_hunt_cultist_village_raided_title}Village Raided"/>
   <string id="tor_quest_hunt_cultist_village_raided_info" text="{=str_tor_quest_hunt_cultist_village_raided_info}The village has been raided. Any cultists have likely fled or gone into hiding. Return when the village has been repopulated."/>
@@ -320,6 +320,8 @@
   <string id="tor_greenskin_waaagh_text" text="{=str_tor_greenskin_waaagh_text}WAAAGH!!!!"/>
   <string id="tor_greenskin_teef_extorsion_text" text="{=str_tor_greenskin_teef_extorsion_text}Teef Extorsion"/>
   <string id="tor_greenskin_teef_tribute_text" text="{=str_tor_greenskin_teef_tribute_text}Teef Tribute"/>
+  <string id="tor_hideout_greenskin_no_sneak" text="{=str_tor_hideout_greenskin_no_sneak}You are too clumsy to sneak in undetected."/>
+  <string id="tor_hideout_greenskin_no_wait" text="{=str_tor_hideout_greenskin_no_wait}You are too clumsy to sneak in undetected. Why even wait?"/>
 
   <!-- Character Stats Bonuses -->
   <string id="tor_stats_minotaur_bonus_text" text="{=str_tor_stats_minotaur_bonus_text}Minotaur bonus"/>
@@ -502,11 +504,11 @@
   <!--findable magical items-->
   
     <!--rarity by trait amount-->
-	<string id="tor_magical_items_trait_nameComposition" text="{=str_tor_magical_items_trait_rarity}{NAMEMODIFIER} {NAMEOFITEM}"/>
-	<string id="tor_magical_items_trait_rarity.1" text="{=str_tor_magical_items_trait_rarity}Uncommmon"/>
-	<string id="tor_magical_items_trait_rarity.2" text="{=str_tor_magical_items_trait_rarity_1}Rare"/>
-	<string id="tor_magical_items_trait_rarity.3" text="{=str_tor_magical_items_trait_rarity_2}Epic"/>
-	<string id="tor_magical_items_trait_rarity.4" text="{=str_tor_magical_items_trait_rarity_3}Legendary"/>
+	<string id="tor_magical_items_trait_nameComposition" text="{=str_tor_magical_items_trait_nameComposition}{NAMEMODIFIER} {NAMEOFITEM}"/>
+	<string id="tor_magical_items_trait_rarity.1" text="{=str_tor_magical_items_trait_rarity_1}Uncommon"/>
+	<string id="tor_magical_items_trait_rarity.2" text="{=str_tor_magical_items_trait_rarity_2}Rare"/>
+	<string id="tor_magical_items_trait_rarity.3" text="{=str_tor_magical_items_trait_rarity_3}Epic"/>
+	<string id="tor_magical_items_trait_rarity.4" text="{=str_tor_magical_items_trait_rarity_4}Legendary"/>
   
   <!--========================================-->
   <!-- ENCHANTMENT SYSTEM DIALOGS             -->
@@ -777,10 +779,10 @@
   
   <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0}Such respect is not easily given, prove yourself under Grungni's stern gaze and we'll see if you are worthy."/>
   
-  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_0}By Grungni's beard! It has been a long time indeed since I have seen someone with such potential."/>
+  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career}By Grungni's beard! It has been a long time indeed since I have seen someone with such potential."/>
   <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2}In the name of the Burudin, I hereby declare you part of the Rhunki. Take pride in your achievements, lad. Although I fear the celebrations will need to be postponed as desperate times call for desperate measures. And dark clouds are hanging above the Karaz Ankor."/>
-  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2}I am bound to the Grongaz, but you can travel and battle as you please. You have proven yourself worthy, and that is why I share with you my Anvil of Doom. But know this, there are binding oaths of secrecy cast upon it; one cannot simply abandon the Anvil. Protect it with your life."/>
-  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_2}You may use it in battle as you see fit and unleash the ancient runes inscribed upon its surface, but be wary, its runes are powerful, and only the most skilled Rhunki can ever hope to awaken them. The most straightforward combination is the Rune of Hearth and Home. Never forget where you belong and where you came from."/>
+  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_3}I am bound to the Grongaz, but you can travel and battle as you please. You have proven yourself worthy, and that is why I share with you my Anvil of Doom. But know this, there are binding oaths of secrecy cast upon it; one cannot simply abandon the Anvil. Protect it with your life."/>
+  <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_4}You may use it in battle as you see fit and unleash the ancient runes inscribed upon its surface, but be wary, its runes are powerful, and only the most skilled Rhunki can ever hope to awaken them. The most straightforward combination is the Rune of Hearth and Home. Never forget where you belong and where you came from."/>
 
   
   <string id="tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0" text="{=str_tor_dw_guildmaster_rune_smith_hub_rune_lord_career_runelord_0}You get ahead of yourself, Rhunki. Not a long time ago we were still discussing the fundamentals, and now you think you derserve the title of a Runelord? Travel the Karaz Ankor, help our kin in need. Prove yourself worthy of this great honour."/>
@@ -825,30 +827,30 @@
   <string id="tor_dw_guildmaster_reintro.warrior" text="{=str_tor_dw_guildmaster_reintro_warrior}Well, anything else?"/>
   
   <!--Guild info-->
-  <string id="tor_dw_guildmaster_info_p.runesmith" text="{=str_tor_dw_guildmaster_info_p_rune_smith}What do the Rhunki provide?"/>
-  <string id="tor_dw_guildmaster_unlock_info.runesmith" text="{=str_tor_dw_guildmaster_info_p_rune_smith}Ours is the oldest, wealthiest, and most powerful of the guilds. Founded in the time when the Ancenstor Gods still walked among us. We supply worthy Dawi with armour that could turn the blows of giants and weapons that could slay dragons in a single strike."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.runesmith" text="{=str_tor_dw_guildmaster_info_p_rune_smith}In times of war, and only when the need arises, do we field the Anvils of Doom, capable of laying waste to entire armies. With our connections we can also reduce the costs of troops suited in Gromril gear, like Ironbreakers or Hammerers."/>  
+  <string id="tor_dw_guildmaster_info_p.runesmith" text="{=str_tor_dw_guildmaster_info_p_runesmith}What do the Rhunki provide?"/>
+  <string id="tor_dw_guildmaster_unlock_info.runesmith" text="{=str_tor_dw_guildmaster_unlock_info_runesmith}Ours is the oldest, wealthiest, and most powerful of the guilds. Founded in the time when the Ancenstor Gods still walked among us. We supply worthy Dawi with armour that could turn the blows of giants and weapons that could slay dragons in a single strike."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.runesmith" text="{=str_tor_dw_guildmaster_unlock_info_2_runesmith}In times of war, and only when the need arises, do we field the Anvils of Doom, capable of laying waste to entire armies. With our connections we can also reduce the costs of troops suited in Gromril gear, like Ironbreakers or Hammerers."/>  
 
   
   
   <string id="tor_dw_guildmaster_info_p.miner" text="{=str_tor_dw_guildmaster_info_p_miner}Can you explain the duties of the Miners Guild?"/>
-  <string id="tor_dw_guildmaster_unlock_info.miner" text="{=str_tor_dw_guildmaster_info_p_miner}Ours is one of the greatest and most venerated of all the Guilds. Founded by Grungni himself, the Miners Guild ensures that wherever there is a vein of gold or iron, there are Dawi to mine it."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.miner" text="{=str_tor_dw_guildmaster_info_p_miner}Apart from that, we can boost the processing of ores and metals of your Grung, as well as deliver coal, gems, and iron every two weeks or so. Our more trusted members can also fund underground expeditions. Who can tell what long-lost treasures lie hidden in the depths…"/>  
+  <string id="tor_dw_guildmaster_unlock_info.miner" text="{=str_tor_dw_guildmaster_unlock_info_miner}Ours is one of the greatest and most venerated of all the Guilds. Founded by Grungni himself, the Miners Guild ensures that wherever there is a vein of gold or iron, there are Dawi to mine it."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.miner" text="{=str_tor_dw_guildmaster_unlock_info_2_miner}Apart from that, we can boost the processing of ores and metals of your Grung, as well as deliver coal, gems, and iron every two weeks or so. Our more trusted members can also fund underground expeditions. Who can tell what long-lost treasures lie hidden in the depths…"/>  
 
   
   <string id="tor_dw_guildmaster_info_p.brewer" text="{=str_tor_dw_guildmaster_info_p_brewer}What are the duties of the Brewers Guild?"/>
-  <string id="tor_dw_guildmaster_unlock_info.brewer" text="{=str_tor_dw_guildmaster_info_p_brewer}What do ye think we do? We knit clothes an' pick pretty flowers. We make soddin' Gorog! We are the most important Guild of all the Guilds, there is nae Rhunrik or Endrinkuli or even a bleedin' Gov what ain't got alcohol in their body that ain't brewed by our Dawi."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.brewer" text="{=str_tor_dw_guildmaster_info_p_brewer}We can also help with army supplies. An' our ties with the Rangers allow certain armies to employ better scouts. Though our specialty lies in boosting the economy of Dawi Holds and ensuring all remain loyal and never grumble due to the lack of ale."/>  
+  <string id="tor_dw_guildmaster_unlock_info.brewer" text="{=str_tor_dw_guildmaster_unlock_info_brewer}What do ye think we do? We knit clothes an' pick pretty flowers. We make soddin' Gorog! We are the most important Guild of all the Guilds, there is nae Rhunrik or Endrinkuli or even a bleedin' Gov what ain't got alcohol in their body that ain't brewed by our Dawi."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.brewer" text="{=str_tor_dw_guildmaster_unlock_info_2_brewer}We can also help with army supplies. An' our ties with the Rangers allow certain armies to employ better scouts. Though our specialty lies in boosting the economy of Dawi Holds and ensuring all remain loyal and never grumble due to the lack of ale."/>  
 
   
   <string id="tor_dw_guildmaster_info_p.engineer" text="{=str_tor_dw_guildmaster_info_p_engineer}What are the duties of your engineers?"/>
-  <string id="tor_dw_guildmaster_unlock_info.engineer" text="{=str_tor_dw_guildmaster_info_p_engineer}We are one of the most important and powerful Guilds out there. Our engineers construct and maintain not only our grand Holds but also the various war machines of the Karaz Ankor."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.engineer" text="{=str_tor_dw_guildmaster_info_p_engineer}Apart from that, we help reduce maintenance costs of black powder units. The Guild also provides access to tried and tested prototype weaponry and artillery to various Dawi clans, but note we require you to first prove yourself."/>  
+  <string id="tor_dw_guildmaster_unlock_info.engineer" text="{=str_tor_dw_guildmaster_unlock_info_engineer}We are one of the most important and powerful Guilds out there. Our engineers construct and maintain not only our grand Holds but also the various war machines of the Karaz Ankor."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.engineer" text="{=str_tor_dw_guildmaster_unlock_info_2_engineer}Apart from that, we help reduce maintenance costs of black powder units. The Guild also provides access to tried and tested prototype weaponry and artillery to various Dawi clans, but note we require you to first prove yourself."/>  
 
   
   <string id="tor_dw_guildmaster_info_p.warrior" text="{=str_tor_dw_guildmaster_info_p_warrior}What are the duties of warriors within your Guild?"/>
-  <string id="tor_dw_guildmaster_unlock_info.warrior" text="{=str_tor_dw_guildmaster_info_p_warrior}We are the largest of the guilds; any Dawi worth their weight in gold, be they miner or scout, underwent warrior training of some kind. If a warrior does exceptionally well, they might rise to become an Angthragor or even a Hammerer."/>  
-  <string id="tor_dw_guildmaster_unlock_info_2.warrior" text="{=str_tor_dw_guildmaster_info_p_warrior}Apart from that, we can help reduce upgrade costs of Warriors, Longbeards, and Slayers. Our connections also help you gain more Oathgold from battles and tournaments. Lastly, we are in charge of providing extra Dawi to help patrol the Karaz Ankor."/>  
+  <string id="tor_dw_guildmaster_unlock_info.warrior" text="{=str_tor_dw_guildmaster_unlock_info_warrior}We are the largest of the guilds; any Dawi worth their weight in gold, be they miner or scout, underwent warrior training of some kind. If a warrior does exceptionally well, they might rise to become an Angthragor or even a Hammerer."/>  
+  <string id="tor_dw_guildmaster_unlock_info_2.warrior" text="{=str_tor_dw_guildmaster_unlock_info_2_warrior}Apart from that, we can help reduce upgrade costs of Warriors, Longbeards, and Slayers. Our connections also help you gain more Oathgold from battles and tournaments. Lastly, we are in charge of providing extra Dawi to help patrol the Karaz Ankor."/>  
 
   
   <!--Oathgold-->
@@ -859,11 +861,11 @@
   <string id="tor_dw_guildmaster_oath_gold_decline_p.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_runesmith}Forgive me, I changed my mind."/>
   <string id="tor_dw_guildmaster_oath_gold_end.runesmith" text="{=str_tor_dw_guildmaster_oath_gold_end_runesmith}Thank you for your contribution."/>
   
-  <string id="tor_dw_guildmaster_hub_oath_gold.engineer" text="{=str_tor_dw_guildmaster_hub_oath_gold_runesmith}Can I support the Engineers Guild in some way?"/>
-  <string id="tor_dw_guildmaster_oath_gold.engineer" text="{=str_tor_dw_guildmaster_oath_gold_runesmith}Donations to the Guild are always welcome."/>
-  <string id="tor_dw_guildmaster_oath_gold_accept_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_runesmith}I wish to donate Oathgold."/>
-  <string id="tor_dw_guildmaster_oath_gold_decline_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_runesmith}I changed my mind, Master Engineer."/>
-  <string id="tor_dw_guildmaster_oath_gold_end.engineer" text="{=str_tor_dw_guildmaster_oath_gold_end_runesmith}Thank you for your contribution."/>
+  <string id="tor_dw_guildmaster_hub_oath_gold.engineer" text="{=str_tor_dw_guildmaster_hub_oath_gold_engineer}Can I support the Engineers Guild in some way?"/>
+  <string id="tor_dw_guildmaster_oath_gold.engineer" text="{=str_tor_dw_guildmaster_oath_gold_engineer}Donations to the Guild are always welcome."/>
+  <string id="tor_dw_guildmaster_oath_gold_accept_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_accept_p_engineer}I wish to donate Oathgold."/>
+  <string id="tor_dw_guildmaster_oath_gold_decline_p.engineer" text="{=str_tor_dw_guildmaster_oath_gold_decline_p_engineer}I changed my mind, Master Engineer."/>
+  <string id="tor_dw_guildmaster_oath_gold_end.engineer" text="{=str_tor_dw_guildmaster_oath_gold_end_engineer}Thank you for your contribution."/>
   
   <string id="tor_dw_guildmaster_hub_oath_gold.miner" text="{=str_tor_dw_guildmaster_hub_oath_gold_miner}Can I support the Miners Guild in some way?"/>
   <string id="tor_dw_guildmaster_oath_gold.miner" text="{=str_tor_dw_guildmaster_oath_gold_miner}Donations to the Guild are always welcome."/>
@@ -892,11 +894,11 @@
     <!--Expeditions-->
 	
   <string id="tor_dw_guildmaster_expedition_found_artefacts" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}Some of the explorer teams return with treasuers or artifacts. Naturally, a portion would be shared with you."/>
-  <string id="tor_dw_guildmaster_expedition_found_artefacts_no_expeditions" text="{=str_tor_dw_guildmaster_expedition_found_artefacts}The expeditions have not returned yet."/>
+  <string id="tor_dw_guildmaster_expedition_found_artefacts_no_expeditions" text="{=str_tor_dw_guildmaster_expedition_found_artefacts_no_expeditions}The expeditions have not returned yet."/>
 
   <string id="tor_dw_guildmaster_expedition_launch_expedition_decline" text="{=str_tor_dw_guildmaster_expedition_launch_expedition_decline}We are spread too thin; all we can do is wait for our explorers to return."/>
 
-  <string id="tor_dw_guildmaster_expedition_launch_expedition" text="{=str_tor_dw_guildmaster_expedition_launch_expedition_decline}Aye, with sufficient funding we can send teams to reclaim treasures from the deepest tunnels of the Underway."/>
+  <string id="tor_dw_guildmaster_expedition_launch_expedition" text="{=str_tor_dw_guildmaster_expedition_launch_expedition}Aye, with sufficient funding we can send teams to reclaim treasures from the deepest tunnels of the Underway."/>
   
   <string id="tor_dw_guildmaster_gemcutter_launch_expedition_accept_p" text="{=str_tor_dw_guildmaster_gemcutter_launch_expedition_accept_p}Let me fund an expeditions."/>
 
@@ -933,7 +935,7 @@
   <string id="tor_dw_guildmaster_warrior_spend_troops" text="{=str_tor_dw_guildmaster_warrior_spend_troops}Honoured warriors of sure grip and stern eye are always welcome."/>
   <string id="tor_dw_guildmaster_warrior_spend_troops_accept_p" text="{=str_tor_dw_guildmaster_warrior_spend_troops_accept_p}In that case I will leave these Dawi with you."/>
   <string id="tor_dw_guildmaster_warrior_spend_troops_decline_p" text="{=str_tor_dw_guildmaster_warrior_spend_troops_decline_p}Forgive me, I changed my mind."/>
-  <string id="tor_dw_guildmaster_warrior_spend_troops_end" text="{=str_tor_dw_guildmaster_warrior_spend_troops_decline_p}We appreciate any warrior you can spare."/>
+  <string id="tor_dw_guildmaster_warrior_spend_troops_end" text="{=str_tor_dw_guildmaster_warrior_spend_troops_end}We appreciate any warrior you can spare."/>
   
   <string id="tor_dw_guildmaster_warrior_influence_for_oath" text="{=str_tor_dw_guildmaster_warrior_influence_for_oath}With a donation of Oathgold our warriors will spread the Influence of your Clan across the Karaz Ankor."/>
   <string id="tor_dw_guildmaster_warrior_influence_for_oath_decline_p" text="{=str_tor_dw_guildmaster_warrior_influence_for_oath_decline_p}Actually I changed my mind."/>
@@ -3079,42 +3081,42 @@
   <string id="tor_careerchoice_description.ArcaneKnowledgePassive4" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive4}For every imperial Magister in your party, your maximum winds increases by 2" />
 
   <!-- Waywatcher Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Kurnous, Lord of the Hunt, blesses this fatal shot to travel straight through the heart of the enemy. This missile attack will seek out its target and trigger an explosion upon impact. With every skill point in Archery, the radius increases. For charging ability deal 1200 damage points with bows. Each Arrow charges a maximum of 150 points" />
-  <string id="tor_careerchoice_description.ProtectorOfTheWoodsKeystone" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsKeystone}Reduces the amount of ranged damage to unlock ability. Ability starts charged." />
+  <string id="tor_careerchoice_description.WayWatcherRoot" text="{=str_tor_careerchoice_description_WayWatcherRoot}Lethal Shot empowers your bow with deadly precision. Activating adds +50% physical damage to your arrows for a limited number of shots. Each keystone adds +1 arrow but reduces charge rate by 10%. For charging ability deal 1200 damage points with bows. Each arrow charges a maximum of 150 points." />
+  <string id="tor_careerchoice_description.ProtectorOfTheWoodsKeystone" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsKeystone}Lethal Shot gains +1 bonus arrow. Reduces the amount of ranged damage needed to unlock ability. Ability starts charged." />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive1" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive1}Extra ranged damage (10%)." />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive2" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive2}3 extra Arrows per equipped Quiver" />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive3" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive3}All ranged troops wages are reduced by 20%" />
   <string id="tor_careerchoice_description.ProtectorOfTheWoodsPassive4" text="{=str_tor_careerchoice_description_ProtectorOfTheWoodsPassive4}Reduce range Accuracy movement penalty by 15%." />
-  <string id="tor_careerchoice_description.PathfinderKeystone" text="{=str_tor_careerchoice_description_PathfinderKeystone}The range of Arrow of Kournous is doubled. Ability scales with Scouting" />
+  <string id="tor_careerchoice_description.PathfinderKeystone" text="{=str_tor_careerchoice_description_PathfinderKeystone}Lethal Shot arrows apply Hagbane poison, slowing enemies on hit. Melee attacks can charge ability." />
   <string id="tor_careerchoice_description.PathfinderPassive1" text="{=str_tor_careerchoice_description_PathfinderPassive1}The Spotting range of the party is increased by 20%." />
   <string id="tor_careerchoice_description.PathfinderPassive2" text="{=str_tor_careerchoice_description_PathfinderPassive2}Party movement speed is increased by 1" />
   <string id="tor_careerchoice_description.PathfinderPassive3" text="{=str_tor_careerchoice_description_PathfinderPassive3}Party travels unhindered through snow" />
-  <string id="tor_careerchoice_description.PathfinderPassive4" text="{=str_tor_careerchoice_description_PathfinderPassive4}Ranged damage is shrugged off" />
-  <string id="tor_careerchoice_description.ForestStalkerKeystone" text="{=str_tor_careerchoice_description_ForestStalkerKeystone}All enemies suffer 50% more magical damage for 10 seconds. Allied troops charge ability." />
-  <string id="tor_careerchoice_description.ForestStalkerPassive1" text="{=str_tor_careerchoice_description_ForestStalkerPassive1}Once per day, go for a hunt." />
+  <string id="tor_careerchoice_description.PathfinderPassive4" text="{=str_tor_careerchoice_description_PathfinderPassive4}Once per day, go for a hunt." />
+  <string id="tor_careerchoice_description.ForestStalkerKeystone" text="{=str_tor_careerchoice_description_ForestStalkerKeystone}Lethal Shot arrows deal +50% bonus damage to unaware enemies (Loec's Blessing). Allied troops charge ability." />
+  <string id="tor_careerchoice_description.ForestStalkerPassive1" text="{=str_tor_careerchoice_description_ForestStalkerPassive1}Bows can perform stealth attacks." />
   <string id="tor_careerchoice_description.ForestStalkerPassive2" text="{=str_tor_careerchoice_description_ForestStalkerPassive2}Gain 20% range resistance." />
-  <string id="tor_careerchoice_description.ForestStalkerPassive3" text="{=str_tor_careerchoice_description_ForestStalkerPassive3}Increases range damage resistance of melee troops by 20%." />
+  <string id="tor_careerchoice_description.ForestStalkerPassive3" text="{=str_tor_careerchoice_description_ForestStalkerPassive3}{EFFECT_VALUE}% increased Stealth Bonus" />
   <string id="tor_careerchoice_description.ForestStalkerPassive4" text="{=str_tor_careerchoice_description_ForestStalkerPassive4}20% Equipment weight Reduction" />
-  <string id="tor_careerchoice_description.HailOfArrowsKeystone" text="{=str_tor_careerchoice_description_HailOfArrowsKeystone}Every affected enemy increases reload speed for 4 sec. The damage increased by 50%" />
+  <string id="tor_careerchoice_description.HailOfArrowsKeystone" text="{=str_tor_careerchoice_description_HailOfArrowsKeystone}Lethal Shot arrows split into 5 projectiles on release. Also grants +25% reload speed during the effect." />
   <string id="tor_careerchoice_description.HailOfArrowsPassive1" text="{=str_tor_careerchoice_description_HailOfArrowsPassive1}6 extra Arrows per equipped Quiver" />
   <string id="tor_careerchoice_description.HailOfArrowsPassive2" text="{=str_tor_careerchoice_description_HailOfArrowsPassive2}Ranged troops gain 25XP daily " />
-  <string id="tor_careerchoice_description.HailOfArrowsPassive3" text="{=str_tor_careerchoice_description_HailOfArrowsPassive3}Attacking unaware enemies adds 50% extra damage" />
-  <string id="tor_careerchoice_description.HailOfArrowsPassive4" text="{=str_tor_careerchoice_description_HailOfArrowsPassive4}Special shot: For every hit arrow, your magic damage increase. Bonus slowly decrease." />
-  <string id="tor_careerchoice_description.HawkeyedKeystone" text="{=str_tor_careerchoice_description_HawkeyedKeystone}All Enemies in the area are slowed on impact. The damage increased by 50%" />
+  <string id="tor_careerchoice_description.HailOfArrowsPassive3" text="{=str_tor_careerchoice_description_HailOfArrowsPassive3}Ranged damage is shrugged off" />
+  <string id="tor_careerchoice_description.HailOfArrowsPassive4" text="{=str_tor_careerchoice_description_HailOfArrowsPassive4}Troops with Swiftshiver Shards gain 25% reload speed bonus." />
+  <string id="tor_careerchoice_description.HawkeyedKeystone" text="{=str_tor_careerchoice_description_HawkeyedKeystone}Lethal Shot arrows pierce through multiple enemies, gain +20% missile speed and +15% magic damage." />
   <string id="tor_careerchoice_description.HawkeyedPassive1" text="{=str_tor_careerchoice_description_HawkeyedPassive1}20% Equipment weight Reduction" />
   <string id="tor_careerchoice_description.HawkeyedPassive2" text="{=str_tor_careerchoice_description_HawkeyedPassive2}Headshots double the fill" />
-  <string id="tor_careerchoice_description.HawkeyedPassive3" text="{=str_tor_careerchoice_description_HawkeyedPassive3}Special shot: Every sixth arrow, applies a slow down effect on impact." />
-  <string id="tor_careerchoice_description.HawkeyedPassive4" text="{=str_tor_careerchoice_description_HawkeyedPassive4}While Zoomed in, the time is slowed down. Every second you lose 100 Career Charge." />
-  <string id="tor_careerchoice_description.StarfireEssenceKeystone" text="{=str_tor_careerchoice_description_StarfireEssenceKeystone}Enemies suffer from a damage over time effect on impact." />
-  <string id="tor_careerchoice_description.StarfireEssencePassive1" text="{=str_tor_careerchoice_description_StarfireEssencePassive1}6 extra Arrows per equipped Quiver" />
+  <string id="tor_careerchoice_description.HawkeyedPassive3" text="{=str_tor_careerchoice_description_HawkeyedPassive3}Increased ranged accuracy by 20%" />
+  <string id="tor_careerchoice_description.HawkeyedPassive4" text="{=str_tor_careerchoice_description_HawkeyedPassive4}20% extra ranged damage against mounted enemies and monsters" />
+  <string id="tor_careerchoice_description.StarfireEssenceKeystone" text="{=str_tor_careerchoice_description_StarfireEssenceKeystone}Lethal Shot arrows gain +25 armor penetration and pierce shields." />
+  <string id="tor_careerchoice_description.StarfireEssencePassive1" text="{=str_tor_careerchoice_description_StarfireEssencePassive1}10% extra fire damage" />
   <string id="tor_careerchoice_description.StarfireEssencePassive2" text="{=str_tor_careerchoice_description_StarfireEssencePassive2}15% swing speed" />
-  <string id="tor_careerchoice_description.StarfireEssencePassive3" text="{=str_tor_careerchoice_description_StarfireEssencePassive3}Your arrows can penetrate shields" />
-  <string id="tor_careerchoice_description.StarfireEssencePassive4" text="{=str_tor_careerchoice_description_StarfireEssencePassive4}Special shot: Not shooting an arrows increase the chance your next arrow explode on impact." />
-  <string id="tor_careerchoice_description.EyeOfTheHunterKeystone" text="{=str_tor_careerchoice_description_EyeOfTheHunterKeystone}Arrow of Kurnous loses it's seeking ability. The damage is doubled." />
-  <string id="tor_careerchoice_description.EyeOfTheHunterPassive1" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive1}20% Equipment weight Reduction" />
-  <string id="tor_careerchoice_description.EyeOfTheHunterPassive2" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive2}Arrows can pierce multiple targets" />
-  <string id="tor_careerchoice_description.EyeOfTheHunterPassive3" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive3}All archer troops gain 50 to their bow skill." />
-  <string id="tor_careerchoice_description.EyeOfTheHunterPassive4" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive4}Special shot efficiency is doubled" />
+  <string id="tor_careerchoice_description.StarfireEssencePassive3" text="{=str_tor_careerchoice_description_StarfireEssencePassive3}Troops with Starfire Shafts also apply fire vulnerability to enemies." />
+  <string id="tor_careerchoice_description.StarfireEssencePassive4" text="{=str_tor_careerchoice_description_StarfireEssencePassive4}Your arrows can penetrate shields" />
+  <string id="tor_careerchoice_description.EyeOfTheHunterKeystone" text="{=str_tor_careerchoice_description_EyeOfTheHunterKeystone}Lethal Shot loses 2 arrows but remaining arrows are imbued with Moonfire explosion." />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive1" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive1}3 extra Arrows per equipped Quiver" />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive2" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive2}20% Equipment weight Reduction" />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive3" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive3}All elf archer troops gain 50 to their bow skill." />
+  <string id="tor_careerchoice_description.EyeOfTheHunterPassive4" text="{=str_tor_careerchoice_description_EyeOfTheHunterPassive4}Roguery skill reduces target armor by up to 60%" />
 
   <!-- Spellsinger Career Choice Descriptions -->
   <string id="tor_careerchoice_description.SpellSingerRoot" text="{=str_tor_careerchoice_description_SpellSingerRoot}Calls treespirits of the surouding forests. Every point in Spellcraft increases the chance by 0.05% additional treespirits join the combat." />

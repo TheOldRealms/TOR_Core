@@ -118,6 +118,12 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                     {
                         CareerHelper.AddDefaultPermanentMissionEffect(agent, id);
                     }
+
+                    // HailOfArrowsPassive4: Troops with Swiftshiver Shards also get reload speed bonus
+                    if (mainHero.HasCareerChoice("HailOfArrowsPassive4") && infos.Value.Contains("apply_swift_shiver_trait"))
+                    {
+                        CareerHelper.AddDefaultPermanentMissionEffect(agent, "swiftshiver_reload_bonus");
+                    }
                 }
                 return;
             }

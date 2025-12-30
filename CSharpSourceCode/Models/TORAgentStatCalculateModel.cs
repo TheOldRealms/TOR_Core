@@ -626,8 +626,21 @@ namespace TOR_Core.Models
                     number += faithSkill * choice.GetPassiveValue();
                 }
             }
-
+            
             return number;
+        }
+
+
+        public override float GetEquipmentStealthBonus(Agent agent)
+        {
+            var bonus = new ExplainedNumber(base.GetEquipmentStealthBonus(agent));
+
+            if (agent == Agent.Main && Hero.MainHero.HasAnyCareer())
+            {
+                CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref bonus, PassiveEffectType.StealthBonus);
+            }
+
+            return bonus.ResultNumber;
         }
 
         //The moment you realize they forget to add an override statement. if they do it needs to be moved on the EffectiveArmorEncumbrance

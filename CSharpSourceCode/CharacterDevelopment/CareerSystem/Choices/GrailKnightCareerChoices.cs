@@ -358,7 +358,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _monsterSlayerPassive1.Initialize(CareerID, "5% extra melee fire damage.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 5), AttackTypeMask.Melee));
             _monsterSlayerPassive2.Initialize(CareerID, "20% extra armor penetration of melee attacks.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
-            _monsterSlayerPassive3.Initialize(CareerID, "40% chance to recruit an extra unit of the same type free of charge.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.Special, true));
+            _monsterSlayerPassive3.Initialize(CareerID, "20% extra melee damage against mounted enemies and monsters.", "MonsterSlayer", false, ChoiceType.Passive, null,
+                new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.Melee,
+                    (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && (victim.Character as CharacterObject).IsLargeTarget()));
             _monsterSlayerPassive4.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "MonsterSlayer", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
 
             _masterHorsemanPassive1.Initialize(CareerID, "Horse charge damage is increased by 40%.", "MasterHorseman", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
@@ -379,6 +381,5 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _holyCrusaderPassive3.Initialize(CareerID, "Grail Knights can be upgraded to Companions.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
             _holyCrusaderPassive4.Initialize(CareerID, "Companion limit of party is increased by 7.", "HolyCrusader", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(7, PassiveEffectType.CompanionLimit));
         }
-
     }
 }

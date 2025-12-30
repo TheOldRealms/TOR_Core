@@ -356,6 +356,7 @@
     <Compile Include="AbilitySystem\Scripts\ImpenetrableScript.cs" />
     <Compile Include="AbilitySystem\Scripts\KnightlyChargeScript.cs" />
     <Compile Include="AbilitySystem\Scripts\KnightlyStrikeScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\LethalShotScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MindControlScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ProjectileScript.cs" />
@@ -699,6 +700,7 @@
     <Compile Include="HarmonyPatches\CustomWorldMapPatch.cs" />
     <Compile Include="HarmonyPatches\DamagePatch.cs" />
     <Compile Include="HarmonyPatches\EncounterPatches.cs" />
+    <Compile Include="HarmonyPatches\HideoutPatches.cs" />
     <Compile Include="HarmonyPatches\EncyclopediaPatches.cs" />
     <Compile Include="HarmonyPatches\FaceGenPatches.cs" />
     <Compile Include="HarmonyPatches\FactionBannerPatches.cs" />
@@ -749,6 +751,7 @@
     <Compile Include="Items\WeaponHitScripts\DefenseScripts.cs" />
     <Compile Include="Items\WeaponHitScripts\IWeaponHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\KnightlyStrikeHitScript.cs" />
+    <Compile Include="Items\WeaponHitScripts\LethalShotHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\WeaponScripts.cs" />
     <Compile Include="Missions\ArcheryContestMissionController.cs" />
     <Compile Include="Missions\BrawlMissionController.cs" />

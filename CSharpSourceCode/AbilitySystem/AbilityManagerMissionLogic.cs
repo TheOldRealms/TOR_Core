@@ -784,7 +784,7 @@ namespace TOR_Core.AbilitySystem
             if (mainHero != null && mainHero.HasAnyCareer())
             {
                 Agent.Main
-                    .GetComponent<AbilityComponent>()
+                    .GetComponent<AbilityComponent>()?
                     .SetIntialPrayerCoolDown();
             }
         }

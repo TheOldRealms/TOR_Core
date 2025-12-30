@@ -262,7 +262,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             var playerHero = Hero.MainHero;
             var playerParty = MobileParty.MainParty;
             var playerCulture = playerHero.Culture;
-            var defeatedSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
+            var defeatedSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide); //crash when defeated in hideout battle
             mapEvent.GetBattleRewards(playerParty.Party, out var renownChange, out _, out _, out _, out _);
 
 
