@@ -294,6 +294,7 @@ namespace TOR_Core.Models
         {
             if (shooterAgent == null || shooterAgent.WieldedWeapon.IsEmpty)
                 return 0f;
+            
 
             var weapon = shooterAgent.WieldedWeapon;
             if (weapon.CurrentUsageItem == null || weapon.Item == null)
@@ -302,6 +303,12 @@ namespace TOR_Core.Models
             // Get base weapon damage
             float baseDamage = weapon.GetModifiedThrustDamageForCurrentUsage();
 
+            if (weapon.Item.StringId.Contains("drake"))
+            {
+                baseDamage *= 0.1f;
+                return baseDamage;
+            }
+            
             // Check for damage modifiers from traits
             var traits = weapon.Item.GetTraits(shooterAgent);
 
