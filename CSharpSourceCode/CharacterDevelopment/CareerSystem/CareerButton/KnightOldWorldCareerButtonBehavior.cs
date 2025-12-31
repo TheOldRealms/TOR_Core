@@ -280,48 +280,43 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
                 if (isDevout)
                 {
                     // Player is religious enough for templar seals - must match troop's religion
-                    if (troopReligion != playerReligion)
+                    if (troopReligion.StringId != playerReligion.StringId)
                     {
                         displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "templar_religion_no_match", "Your religion does not match this unit's religion.");
                         return false;
                     }
-                }
-                else
-                {
-                    // Player is not devout enough - can only apply secular seals to templar knights with perk
-                    if (!Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
-                    {
-                        displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "secular_no_perk_for_templar", "You need the Secular Orders perk to apply seals to templar knights.");
-                        return false;
-                    }
-                    displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "secular_on_templar_with_perk", "Apply Templar Seal.");
+                    displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "templar_seal", "Apply Templar Seal.");
                     return true;
+
                 }
-            }
-            else    //secular knight case
-            {
-                if (isDevout)                 // Unit is a secular knight - devout players need perk to apply templar seals
+
+                // Player is not devout enough - can  apply secular seals to templar knights with perk
+                if (!Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
                 {
-                    if (Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
-                    {
-                        displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "devout_on_secular_with_perk", "Apply a templar seal of your devotion.");
-                        return true;
-                    }
-                    displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "devout_no_perk_for_secular", "You need the Secular Orders perk to apply Templar seals to secular knights.");
+                    displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "secular_no_perk_for_templar", "You need the Secular Orders perk to apply seals to templar knights.");
                     return false;
                 }
-
-                displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "secular_on_secular", "Apply your secular seal.");
+                displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "secular_seal", "Apply Secular Seal.");
                 return true;
             }
-        }
-        else
-        {
-            displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "not_eligible", "Not eligible for seal.");
-            return false;
+
+            //secular knight case
+            if (isDevout)                 // Unit is a secular knight - devout players need perk to apply templar seals
+            {
+                if (Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
+                {
+                    displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "templar_seal", "Apply Templar Seal.");
+                    return true;
+                }
+                displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "devout_no_perk_for_secular", "You need the Secular Orders perk to apply Templar seals to secular knights.");
+                return false;
+            }
+
+            displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "secular_seal", "Apply Secular Seal.");
+            return true;
         }
 
-        displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "fallback", "You should not see this.");
+        displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "not_eligible", "Not eligible for seal.");
         return false;
     }
 }
