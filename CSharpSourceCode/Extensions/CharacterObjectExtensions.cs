@@ -207,7 +207,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsKnightUnit(this CharacterObject characterObject)
         {
-            return !characterObject.IsHero && characterObject.IsMounted && IsEliteTroop(characterObject);
+            return !characterObject.IsHero && characterObject.IsMounted && (IsEliteTroop(characterObject) || characterObject.HasAttribute("Knightly"));
         }
 
         public static bool IsRunesmith(this CharacterObject characterObject)

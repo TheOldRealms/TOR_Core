@@ -3640,14 +3640,21 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <!-- Purity Seal UI -->
   <string id="tor_purity_seal_choose_title_text" text="{=tor_purity_seal_choose_title_text}Choose Purity Seal" />
   <string id="tor_purity_seal_choose_description_text" text="{=tor_purity_seal_choose_description_text}Empower your knight units with powerful seals." />
-  <string id="tor_purity_seal_add_text" text="{=tor_purity_seal_add_text}Add a Purity Seal to this knight." />
-  <string id="tor_purity_seal_religion_mismatch_text" text="{=tor_purity_seal_religion_mismatch_text}Your religion does not match this unit's religion." />
-  <string id="tor_purity_seal_secular_on_religious_text" text="{=tor_purity_seal_secular_on_religious_text}You need the Secular Orders perk to apply seals to templar knights." />
-  <string id="tor_purity_seal_templar_on_secular_text" text="{=tor_purity_seal_templar_on_secular_text}You need the Secular Orders perk to apply templar seals to secular knights." />
-  <string id="tor_purity_seal_tier_too_low_text" text="{=tor_purity_seal_tier_too_low_text}Unit tier is not high enough. Minimum tier is {MINIMUMSEALLEVEL}." />
-  <string id="tor_purity_seal_not_religious_enough_text" text="{=tor_purity_seal_not_religious_enough_text}You are not religious enough to provide a seal." />
   <string id="tor_purity_seal_no_description_text" text="{=tor_purity_seal_no_description_text}No description found." />
   <string id="tor_myrmidia_seal" text="{=tor_myrmidia_seal}Myrmidia Seal" />
+
+  <!-- Knight Old World Seal Accept Texts -->
+  <string id="tor_career_button_knightoldworld_seal_accept.default" text="{=tor_career_button_knightoldworld_seal_accept.default}Add a Purity Seal to this knight." />
+  <string id="tor_career_button_knightoldworld_seal_accept.secular_on_templar_with_perk" text="{=tor_career_button_knightoldworld_seal_accept.secular_on_templar_with_perk}Apply Templar Seal." />
+  <string id="tor_career_button_knightoldworld_seal_accept.devout_on_secular_with_perk" text="{=tor_career_button_knightoldworld_seal_accept.devout_on_secular_with_perk}Apply a templar seal of your devotion." />
+  <string id="tor_career_button_knightoldworld_seal_accept.secular_on_secular" text="{=tor_career_button_knightoldworld_seal_accept.secular_on_secular}Apply your secular seal." />
+
+  <!-- Knight Old World Seal Decline Texts -->
+  <string id="tor_career_button_knightoldworld_seal_decline.templar_religion_no_match" text="{=tor_career_button_knightoldworld_seal_decline.templar_religion_no_match}Your religion does not match this unit's religion." />
+  <string id="tor_career_button_knightoldworld_seal_decline.secular_no_perk_for_templar" text="{=tor_career_button_knightoldworld_seal_decline.secular_no_perk_for_templar}You need the Secular Orders perk to apply seals to templar knights." />
+  <string id="tor_career_button_knightoldworld_seal_decline.devout_no_perk_for_secular" text="{=tor_career_button_knightoldworld_seal_decline.devout_no_perk_for_secular}You need the Secular Orders perk to apply Templar seals to secular knights." />
+  <string id="tor_career_button_knightoldworld_seal_decline.not_eligible" text="{=tor_career_button_knightoldworld_seal_decline.not_eligible}Not eligible for seal." />
+  <string id="tor_career_button_knightoldworld_seal_decline.fallback" text="{=tor_career_button_knightoldworld_seal_decline.fallback}You should not see this." />
 
   <!--TOR Information and data !-->
 
