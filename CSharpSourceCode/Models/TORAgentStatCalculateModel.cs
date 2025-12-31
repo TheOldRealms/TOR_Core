@@ -147,7 +147,7 @@ namespace TOR_Core.Models
                                         {
                                             ammoCount.Add(2);
                                         }
-                                        if (agent.Character.IsIronbreakerUnit() && !agent.Character.IsHero && Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
+                                        if (agent.Character.IsIronbreakerUnit() && !agent.Character.IsHero && Hero.MainHero.HasCareerChoice("NestCleansingPassive4") && MBRandom.RandomFloat < 0.5f)
                                         {
                                             ammoCount.Add(1);
                                         }
@@ -218,18 +218,7 @@ namespace TOR_Core.Models
                     {
                         if (!Hero.MainHero.HasCareer(TORCareers.Ironbreaker)) return;
 
-                        if (Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
-                        {
-                            MissionEquipment troopEquipment = agent.Equipment;
-                            for (int i = 0; i < 5; i++)
-                            {
-                                EquipmentIndex equipmentIndex = (EquipmentIndex)i;
-                                MissionWeapon missionWeapon = equipment[equipmentIndex];
-
-                            }
-                        }
-
-                        if (Hero.MainHero.HasCareerChoice("NestCleansingPassive4"))
+                        if (Hero.MainHero.HasCareerChoice("NestCleansingPassive4") && MBRandom.RandomFloat < 0.5f)
                         {
                             MissionEquipment troopEquipment = agent.Equipment;
                             for (int i = 0; i < 5; i++)

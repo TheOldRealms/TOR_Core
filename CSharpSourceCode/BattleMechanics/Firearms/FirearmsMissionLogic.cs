@@ -260,8 +260,12 @@ namespace TOR_Core.BattleMechanics.Firearms
             var baseSpeed = 15;
             var bonusSpeed = 18;
 
-            Mission.AddCustomMissile(shooterAgent, ammo, frame.origin, frame.rotation.f, frame.rotation,
+            var missile = Mission.AddCustomMissileWithWeaponDamage(shooterAgent, ammo, frame.origin, frame.rotation.f, frame.rotation,
                 baseSpeed, bonusSpeed, true, null);
+            
+            missile.Entity.RemoveAllParticleSystems();
+            
+            
         }
 
         public override void OnMissileCollisionReaction(Mission.MissileCollisionReaction collisionReaction,
