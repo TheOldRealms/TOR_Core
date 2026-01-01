@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TOR_Core.AbilitySystem;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -301,7 +302,7 @@ public class IronbreakerCareerChoices(CareerObject id) : TORCareerChoicesBase(id
         _tunnelWatchPassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
         _tunnelWatchPassive2.Initialize(CareerID, "Party movement speed is increased by 1.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
         _tunnelWatchPassive3.Initialize(CareerID, "15% extra melee damage against greenskins.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.Melee,
-            (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && victim.Character.Culture.StringId == TORConstants.Cultures.GREENSKIN));
+            (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee && (victim.Character as CharacterObject).IsGreenskin()));
         _tunnelWatchPassive4.Initialize(CareerID, "5% extra melee damage.", "TunnelWatch", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
 
         _ironPricePassive1.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "IronPrice", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));

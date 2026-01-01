@@ -148,6 +148,11 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("goblin");
         }
 
+        public static bool IsGreenskin(this CharacterObject characterObject)
+        {
+            return characterObject.IsOrc() || characterObject.IsGoblin();
+        }
+
         public static bool IsTroll(this CharacterObject characterObject)
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("troll");

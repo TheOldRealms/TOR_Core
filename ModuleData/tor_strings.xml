@@ -3273,37 +3273,37 @@
   <!-- Slayer Career Choice Descriptions -->
   <string id="tor_careerchoice_description.SlayerRoot" text="{=str_tor_careerchoice_description_SlayerRoot}For a limited time, the Slayer has a increased speed bonus and weapon speed bonus. The kills gained  during the ability, add a doom seeker stack which  permanently increasing the damage of the player. For every Keystone, the damage dealt bonus is increased by 0.05% \n \n The ability requires 500 damage to be charged. Every kill adds 100 additional charge. For every keystone(5th perk) you require 10% more damage." />
   <string id="tor_careerchoice_description.AxeOfGrimnirKeystone" text="{=str_tor_careerchoice_description_AxeOfGrimnirKeystone}Faith increases duration." />
-  <string id="tor_careerchoice_description.AxeOfGrimnirPassive1" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.AxeOfGrimnirPassive1" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive1}Increases Hitpoints by 10." />
   <string id="tor_careerchoice_description.AxeOfGrimnirPassive2" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive2}10% extra melee damage." />
   <string id="tor_careerchoice_description.AxeOfGrimnirPassive3" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive3}Every melee kill adds faith" />
-  <string id="tor_careerchoice_description.AxeOfGrimnirPassive4" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive4}CUSTOM" />
+  <string id="tor_careerchoice_description.AxeOfGrimnirPassive4" text="{=str_tor_careerchoice_description_AxeOfGrimnirPassive4}Praying at shrines grants double the amount of religious troops." />
   <string id="tor_careerchoice_description.ShameOfTheAncestorsKeystone" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsKeystone}Losing a slayer units adds a Doom Seeker stack" />
-  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive1" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive1" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive1}Increases Hitpoints by 10." />
   <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive2" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive2}Party movement speed is increased by 1." />
-  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive3" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive3}Player healing rate increased by 2" />
-  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive4" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive4}CUSTOM : All non slayer units can be converted to slayers providing extra oath gold." />
+  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive3" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive3}Player healing rate increased by 1.5." />
+  <string id="tor_careerchoice_description.ShameOfTheAncestorsPassive4" text="{=str_tor_careerchoice_description_ShameOfTheAncestorsPassive4}All non slayer units can be converted to slayers providing extra oath gold." />
   <string id="tor_careerchoice_description.DeadlyDeterminationKeystone" text="{=str_tor_careerchoice_description_DeadlyDeterminationKeystone}One handed scales ability." />
-  <string id="tor_careerchoice_description.DeadlyDeterminationPassive1" text="{=str_tor_careerchoice_description_DeadlyDeterminationPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.DeadlyDeterminationPassive1" text="{=str_tor_careerchoice_description_DeadlyDeterminationPassive1}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.DeadlyDeterminationPassive2" text="{=str_tor_careerchoice_description_DeadlyDeterminationPassive2}Slayer units gain 50 extra one handed-melee skill." />
   <string id="tor_careerchoice_description.DeadlyDeterminationPassive3" text="{=str_tor_careerchoice_description_DeadlyDeterminationPassive3}Weapon swing speed increased by 15%." />
   <string id="tor_careerchoice_description.DeadlyDeterminationPassive4" text="{=str_tor_careerchoice_description_DeadlyDeterminationPassive4}Adds 10% extra base damage after losing 50 healthpoints and armor weight below 9." />
   <string id="tor_careerchoice_description.UrkSlayerKeystone" text="{=str_tor_careerchoice_description_UrkSlayerKeystone}You deal 50% extra damage during ability" />
   <string id="tor_careerchoice_description.UrkSlayerPassive1" text="{=str_tor_careerchoice_description_UrkSlayerPassive1}15% movement speed" />
-  <string id="tor_careerchoice_description.UrkSlayerPassive2" text="{=str_tor_careerchoice_description_UrkSlayerPassive2}10% extra melee damage while on horseback." />
+  <string id="tor_careerchoice_description.UrkSlayerPassive2" text="{=str_tor_careerchoice_description_UrkSlayerPassive2}15% extra melee damage against greenskins if armor weight below 9." />
   <string id="tor_careerchoice_description.UrkSlayerPassive3" text="{=str_tor_careerchoice_description_UrkSlayerPassive3}Increases Range resistance by 40%." />
   <string id="tor_careerchoice_description.UrkSlayerPassive4" text="{=str_tor_careerchoice_description_UrkSlayerPassive4}Any Attack adds bonus against shields" />
   <string id="tor_careerchoice_description.GiantSlayerKeystone" text="{=str_tor_careerchoice_description_GiantSlayerKeystone}Ability starts charged. Scales with Two handed weapons" />
-  <string id="tor_careerchoice_description.GiantSlayerPassive1" text="{=str_tor_careerchoice_description_GiantSlayerPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.GiantSlayerPassive2" text="{=str_tor_careerchoice_description_GiantSlayerPassive2}25% Bonus damage against mounts if weight undershoots 9" />
+  <string id="tor_careerchoice_description.GiantSlayerPassive1" text="{=str_tor_careerchoice_description_GiantSlayerPassive1}Increases Hitpoints by 15." />
+  <string id="tor_careerchoice_description.GiantSlayerPassive2" text="{=str_tor_careerchoice_description_GiantSlayerPassive2}25% extra melee damage against mounted enemies and monsters if armor weight below 9." />
   <string id="tor_careerchoice_description.GiantSlayerPassive3" text="{=str_tor_careerchoice_description_GiantSlayerPassive3}Slayer units gain 50 extra two-handed  skill." />
   <string id="tor_careerchoice_description.GiantSlayerPassive4" text="{=str_tor_careerchoice_description_GiantSlayerPassive4}Unable to be staggered by any damage." />
   <string id="tor_careerchoice_description.BaneOfChaosKeystone" text="{=str_tor_careerchoice_description_BaneOfChaosKeystone}You gain 0.1% physical resistance for every kill during ability." />
-  <string id="tor_careerchoice_description.BaneOfChaosPassive1" text="{=str_tor_careerchoice_description_BaneOfChaosPassive1}15% spell damage resistance if weight undershoots 9" />
-  <string id="tor_careerchoice_description.BaneOfChaosPassive2" text="{=str_tor_careerchoice_description_BaneOfChaosPassive2}Player healing rate increased by 4" />
+  <string id="tor_careerchoice_description.BaneOfChaosPassive1" text="{=str_tor_careerchoice_description_BaneOfChaosPassive1}20% spell damage resistance if armor weight below 9." />
+  <string id="tor_careerchoice_description.BaneOfChaosPassive2" text="{=str_tor_careerchoice_description_BaneOfChaosPassive2}Player healing rate increased by 2." />
   <string id="tor_careerchoice_description.BaneOfChaosPassive3" text="{=str_tor_careerchoice_description_BaneOfChaosPassive3}Extra 25% armor penetration of melee attacks." />
-  <string id="tor_careerchoice_description.BaneOfChaosPassive4" text="{=str_tor_careerchoice_description_BaneOfChaosPassive4}20% bonus damage against chaos and beastmen." />
+  <string id="tor_careerchoice_description.BaneOfChaosPassive4" text="{=str_tor_careerchoice_description_BaneOfChaosPassive4}20% bonus damage against chaos and beastmen if armor weight below 9." />
   <string id="tor_careerchoice_description.TheLastJourneyKeystone" text="{=str_tor_careerchoice_description_TheLastJourneyKeystone}For every taken hit during  your ability, physical damage is increased by 0.5% for the next 5 seconds" />
-  <string id="tor_careerchoice_description.TheLastJourneyPassive1" text="{=str_tor_careerchoice_description_TheLastJourneyPassive1}Increases Hitpoints by 25." />
+  <string id="tor_careerchoice_description.TheLastJourneyPassive1" text="{=str_tor_careerchoice_description_TheLastJourneyPassive1}Increases Hitpoints by 15." />
   <string id="tor_careerchoice_description.TheLastJourneyPassive2" text="{=str_tor_careerchoice_description_TheLastJourneyPassive2}25% physical melee damage resistance if weight undershoots 9 stones" />
   <string id="tor_careerchoice_description.TheLastJourneyPassive3" text="{=str_tor_careerchoice_description_TheLastJourneyPassive3}15% physical melee damage resistance for slayers" />
   <string id="tor_careerchoice_description.TheLastJourneyPassive4" text="{=str_tor_careerchoice_description_TheLastJourneyPassive4}40% Range resistance for slayer units and heroes." />
