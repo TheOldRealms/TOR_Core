@@ -83,12 +83,28 @@ namespace TOR_Core.AbilitySystem
             disabledReason = TORTextHelper.GetTextObject("tor_ability_enabled", "Enabled");
             if (casterAgent == null) return false;
 
-            if (casterAgent.GetHero()?.Culture.StringId == TORConstants.Cultures.DAWI && this.Template.BelongsToLoreID == "RuneMagic")
+            // Rune magic requires Anvil of Doom for player, AI is exempt
+            if (this.Template.BelongsToLoreID == "RuneMagic" && casterAgent.IsMainAgent)
             {
-                if (!casterAgent.HasPartyAnvilOfDoom()) //The check could be maybe expensive. We should maybe reiterate after all components are set
-                                                        //Sly : attribute on player/runesmith hero that is added or removed when items are discarded/sold/acquired/etc? Rechecking the party's inventory for every attempt to use rune magic be problematic because player's have a tendancy to : 1) hoard items, and 2) play pokemon with caster companions.
+                var abilityComp = casterAgent.GetComponent<AbilityComponent>();
+                bool hasAnvilAbility = abilityComp?.KnownAbilitySystem.Any(a => a.Template.StringID == "AnvilOfDoomSpawner") ?? false;
+
+                if (!hasAnvilAbility)
                 {
-                    disabledReason = TORTextHelper.GetTextObject("tor_ability_missing_anvil", "Missing Anvil of Doom");
+                    disabledReason = TORTextHelper.GetTextObject("tor_ability_requires_anvil", "Requires Anvil of Doom");
+                    return true;
+                }
+
+                if (!abilityComp.IsAnvilPlaced)
+                {
+                    disabledReason = TORTextHelper.GetTextObject("tor_ability_anvil_not_placed", "Place Anvil of Doom first");
+                    return true;
+                }
+
+                float distanceToAnvil = casterAgent.Position.Distance(abilityComp.AnvilOfDoomPosition);
+                if (distanceToAnvil > AbilityComponent.AnvilProximityRadius)
+                {
+                    disabledReason = TORTextHelper.GetTextObject("tor_ability_too_far_from_anvil", "Too far from Anvil of Doom");
                     return true;
                 }
             }

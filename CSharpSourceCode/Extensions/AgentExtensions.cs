@@ -151,7 +151,7 @@ namespace TOR_Core.Extensions
         }
         public static bool HasPartyAnvilOfDoom(this Agent agent)
         {
-            var party = agent.GetOriginMobileParty();
+            var party = agent.GetHero()?.PartyBelongedTo;
             if (party == null) return false;
 
             return party.HasAnvilOfDoom();

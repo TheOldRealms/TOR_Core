@@ -471,6 +471,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\AnimationTrigger.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\AnimationTriggerManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\AnimationTriggerMissionLogic.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\AnvilOfDoomSpawnerScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\DynamicItemTraitScripts.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\ITriggeredScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
