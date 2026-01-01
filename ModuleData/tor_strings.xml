@@ -3370,7 +3370,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_careerchoice_description.ForHearthAndHomePassive1" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive1}10% Wardsave for Unit wearing runes." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive2" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive2}For every magic rune equipped your and companion rune HP increased by 3." />
   <string id="tor_careerchoice_description.ForHearthAndHomePassive3" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive3}Units with runes heal 50% faster after battles." />
-  <string id="tor_careerchoice_description.ForHearthAndHomePassive4" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive4}Rune magic lasts 10% longer + 0.01% for every point in faith" />
+  <string id="tor_careerchoice_description.ForHearthAndHomePassive4" text="{=str_tor_careerchoice_description_ForHearthAndHomePassive4}Rune magic lasts 10% longer + 0.1% for every point in faith" />
   <string id="tor_careerchoice_description.ForHearthAndHomeKeystone" text="{=str_tor_careerchoice_description_ForHearthAndHomeKeystone}Heart and Home also adds now 25% extra ranged damage" />
   <string id="tor_careerchoice_description.StoneAndSteelPassive1" text="{=str_tor_careerchoice_description_StoneAndSteelPassive1}Gain 10% magic resistance to spells." />
   <string id="tor_careerchoice_description.StoneAndSteelPassive2" text="{=str_tor_careerchoice_description_StoneAndSteelPassive2}10% magic resistance for troops" />
