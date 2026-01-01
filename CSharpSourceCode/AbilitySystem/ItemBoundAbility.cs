@@ -28,7 +28,8 @@ namespace TOR_Core.AbilitySystem
                 disabledReason = TORTextHelper.GetTextObject("tor_no_artillery_inventory", "No more artillery pieces in inventory");
                 return true;
             }
-            if (Mission.Current.GetArtillerySlotsLeftForTeam(casterAgent.Team) <= 0)
+            // Anvil of Doom doesn't use artillery slots
+            if (Template.StringID != "AnvilOfDoomSpawner" && Mission.Current.GetArtillerySlotsLeftForTeam(casterAgent.Team) <= 0)
             {
                 disabledReason = TORTextHelper.GetTextObject("tor_no_artillery_slots", "Party cannot field more artillery pieces");
                 return true;

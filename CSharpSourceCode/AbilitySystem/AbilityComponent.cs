@@ -5,10 +5,12 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.CustomBattle;
 using TOR_Core.AbilitySystem.Crosshairs;
 using TOR_Core.AbilitySystem.Scripts;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -24,6 +26,11 @@ namespace TOR_Core.AbilitySystem
         public event CurrentAbilityChangedHandler CurrentAbilityChanged;
         public CareerAbility CareerAbility { get; private set; }
         public List<Ability> KnownAbilitySystem { get => _knownAbilitySystem; }
+
+        // Anvil of Doom position for Runelord proximity check
+        public  Vec3 AnvilOfDoomPosition { get; set; } = Vec3.Invalid;
+        public bool IsAnvilPlaced => this.AnvilOfDoomPosition != Vec3.Invalid;
+        public const float AnvilProximityRadius = 15f;
 
 
         public AbilityComponent(Agent agent) : base(agent)
@@ -163,6 +170,29 @@ namespace TOR_Core.AbilitySystem
                     }
                 }
             }
+
+            // Add Anvil of Doom spawner for Runelords
+            if (agent.HasPartyAnvilOfDoom())
+            {
+                var hero = agent.GetHero();
+                if (hero != null)
+                {
+                    if ( hero.HasCareer(TORCareers.Runelord))
+                    {
+                        var anvilAbility = (ItemBoundAbility)AbilityFactory.CreateNew("AnvilOfDoomSpawner", agent);
+                        if (anvilAbility != null)
+                        {
+                            anvilAbility.OnCastStart += OnCastStart;
+                            anvilAbility.OnCastComplete += OnCastComplete;
+                            anvilAbility.SetChargeNum(1);
+                            _knownAbilitySystem.Add(anvilAbility);
+                        }
+                    }
+                }
+            }
+
+
+
             if (_knownAbilitySystem.Count > 0)
             {
                 SelectAbility(0);

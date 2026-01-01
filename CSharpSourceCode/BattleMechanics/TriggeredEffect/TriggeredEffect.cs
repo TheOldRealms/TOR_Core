@@ -160,6 +160,11 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                         var script = obj as PrefabSpawnerScript;
                         script.OnInit(_template.SpawnPrefabName);
                     }
+                    else if (obj is AnvilOfDoomSpawnerScript)
+                    {
+                        var script = obj as AnvilOfDoomSpawnerScript;
+                        script.OnInit(_template.SpawnPrefabName);
+                    }
                     else if (obj is SummonScript && _template.TroopIdToSummon != "none")
                     {
                         var script = obj as SummonScript;
