@@ -115,6 +115,10 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
             GameTexts.FindText("tor_goblin_recruitment_start").ToString(),
             args =>
             {
+                // Hide entirely for non-greenskin players
+                if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN)
+                    return false;
+
                 args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
                 bool canRecruit = CanStartGoblinRecruitment();
                 bool shouldBeDisabled = ShouldBeDisabled(canRecruit, out TextObject disableReason);
