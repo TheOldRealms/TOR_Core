@@ -595,7 +595,7 @@
     </CommonAreas>
   </Settlement>
   <!--Stirland 4 towns 23 villages 5 castles-->
-  <Settlement id="town_ST1" name="{=Settlements.Settlement.name.town_ST1}Wurtbad" owner="Faction.stirland_clan_1" posX="1441.044" posY="1016.251" culture="Culture.empire" gate_posX="1441.68" gate_posY="1015.527" text="{=Settlements.Settlement.name.town_ST1}Wurtbad rests on the banks of the river Stir and it´s the capital of the province. By far the most densely populated town in Stirland, it is also home to the crumbling Temple of Myrmida. The nobility and people of Wurtbad are famous for its suspiciousness and sombreness, as the lost province of Sylvania is too close for comfort. It is one of the few places where goods can be carried over the river, making it an excellent strategic checkpoint for anyone wishing to push onwards into the land.">
+  <Settlement id="town_ST1" name="{=Settlements.Settlement.name.town_ST1}Wurtbad" owner="Faction.stirland_clan_1" posX="1441.044" posY="1016.251" culture="Culture.empire" gate_posX="1441.68" gate_posY="1015.527" text="{=Settlements.Settlement.text.town_ST1}Wurtbad rests on the banks of the river Stir and it´s the capital of the province. By far the most densely populated town in Stirland, it is also home to the crumbling Temple of Myrmida. The nobility and people of Wurtbad are famous for its suspiciousness and sombreness, as the lost province of Sylvania is too close for comfort. It is one of the few places where goods can be carried over the river, making it an excellent strategic checkpoint for anyone wishing to push onwards into the land.">
     <Components>
       <Town id="town_comp_ST1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2300">
         <Buildings>
@@ -6742,7 +6742,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_CO1" name="{=Settlements.Settlement.name.castle_CO1}Castle Brilloinne" owner="Faction.couronne_clan_1" posX="947.422" posY="1308.276" culture="Culture.vlandia" gate_posX="948.5649" gate_posY="1307.799" text="{=Settlements.Settlement.name.castle_CO1}The castle of Brillionne was founded by Baron Lucus of Brilloinne. He was a sacred Grail Knight of Bretonnia. Lucus earned great renown as a pious Questing Knight. Travelling across the length and breadth of the Old World, he recovered many cursed items, trinkets and dark artefacts of sorcerous power. Lucus secured these unholy weapons within a sacred Grail Chapel near the shores of Couronne, about which he built a great Castle. For preventing the evil-hearted from wielding these powerful relics, Lucus was found worthy to sup from the Grail, joining the ranks of the Grail Knights and becoming a living saint. Meanwhile, his deeds as a mighty warrior had become legendary as far away as the Empire. Even after the Baron's death, an entire army of Battle Pilgrims attended his chapel night and day.">
+  <Settlement id="castle_CO1" name="{=Settlements.Settlement.name.castle_CO1}Castle Brilloinne" owner="Faction.couronne_clan_1" posX="947.422" posY="1308.276" culture="Culture.vlandia" gate_posX="948.5649" gate_posY="1307.799" text="{=Settlements.Settlement.text.castle_CO1}The castle of Brillionne was founded by Baron Lucus of Brilloinne. He was a sacred Grail Knight of Bretonnia. Lucus earned great renown as a pious Questing Knight. Travelling across the length and breadth of the Old World, he recovered many cursed items, trinkets and dark artefacts of sorcerous power. Lucus secured these unholy weapons within a sacred Grail Chapel near the shores of Couronne, about which he built a great Castle. For preventing the evil-hearted from wielding these powerful relics, Lucus was found worthy to sup from the Grail, joining the ranks of the Grail Knights and becoming a living saint. Meanwhile, his deeds as a mighty warrior had become legendary as far away as the Empire. Even after the Baron's death, an entire army of Battle Pilgrims attended his chapel night and day.">
     <Components>
       <Town id="castle_comp_CO1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="850">
         <Buildings>
@@ -7041,7 +7041,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Lyonesse -->
-  <Settlement id="town_LY1" name="{=Settlements.Settlement.name.town_LY1}Castle Lyonesse" owner="Faction.lyonesse_clan_1" posX="713.57" posY="1187.337" culture="Culture.vlandia" gate_posX="725.338" gate_posY="1192.518" text="{=Settlements.Settlement.name.town_LY1}The ducal seat of Lyonesse is situated on an island off the northwest coast. The castle's ancient walls, bathed by the sea at high tide, allow small boats to sail right into the outer courtyard. The inner courtyard, elevated and perpetually dry, leads to the Great Keep perched at the island's peak, offering a commanding view of the bay. Duke Adalhard’s grand feasts can be heard across the island, adding to the castle's lively atmosphere. As the tide recedes, the island's silhouette resembles a motte. A causeway from the main gate vanishes into the sea, embodying the legend that Lyonesse was once the heart of a grand city sunk by Manann's wrath, sparing only the virtuous Duke's citadel. Ruins are said to lie beneath the waves, guarded by strange creatures. The castle's formidable walls have withstood assaults from the undead of cursed Mousillon and the Dark Elves, resisting catapults, battering rams, and even the Empire navy's cannons.">
+  <Settlement id="town_LY1" name="{=Settlements.Settlement.name.town_LY1}Castle Lyonesse" owner="Faction.lyonesse_clan_1" posX="713.57" posY="1187.337" culture="Culture.vlandia" gate_posX="725.338" gate_posY="1192.518" text="{=Settlements.Settlement.text.town_LY1}The ducal seat of Lyonesse is situated on an island off the northwest coast. The castle's ancient walls, bathed by the sea at high tide, allow small boats to sail right into the outer courtyard. The inner courtyard, elevated and perpetually dry, leads to the Great Keep perched at the island's peak, offering a commanding view of the bay. Duke Adalhard’s grand feasts can be heard across the island, adding to the castle's lively atmosphere. As the tide recedes, the island's silhouette resembles a motte. A causeway from the main gate vanishes into the sea, embodying the legend that Lyonesse was once the heart of a grand city sunk by Manann's wrath, sparing only the virtuous Duke's citadel. Ruins are said to lie beneath the waves, guarded by strange creatures. The castle's formidable walls have withstood assaults from the undead of cursed Mousillon and the Dark Elves, resisting catapults, battering rams, and even the Empire navy's cannons.">
     <Components>
       <Town id="town_comp_LY1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="3700">
         <Buildings>
@@ -7165,7 +7165,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_LY3" name="{=Settlements.Settlement.name.town_LY3}Soreil" owner="Faction.lyonesse_clan_1" posX="782.595" posY="1263.055" culture="Culture.vlandia" gate_posX="783.9396" gate_posY="1260.813" text="{=Settlements.Settlement.name.town_LY3}Soreil is a bustling city in Lyonesse's far northwest, known for its grand architecture and defensive position. Despite suffering from constant pirates, Soreil is a hub for both artisans and Lyonen marines, with a lively central square that hosts markets, festivals, and performances throughout the year.">
+  <Settlement id="town_LY3" name="{=Settlements.Settlement.name.town_LY3}Soreil" owner="Faction.lyonesse_clan_1" posX="782.595" posY="1263.055" culture="Culture.vlandia" gate_posX="783.9396" gate_posY="1260.813" text="{=Settlements.Settlement.text.town_LY3}Soreil is a bustling city in Lyonesse's far northwest, known for its grand architecture and defensive position. Despite suffering from constant pirates, Soreil is a hub for both artisans and Lyonen marines, with a lively central square that hosts markets, festivals, and performances throughout the year.">
     <Components>
       <Town id="town_comp_LY3" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="3100">
         <Buildings>
@@ -8617,7 +8617,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BA3" name="{=Settlements.Settlement.name.castle_BA3}Castle Riom" owner="Faction.bastonne_clan_1" posX="943.572" posY="1027.487" culture="Culture.vlandia" gate_posX="945.3618" gate_posY="1026.322" text="{=Settlements.Settlement.name.castle_BA3}On the Grismerie river, right across from the cursed city of Mousillon, Castle Riom stand firm directly in sight of the undead that many dread to plague Bretonnia. Many of the militia stationed in Castle Riom have heard dreadful noises coming from just across the river.">
+  <Settlement id="castle_BA3" name="{=Settlements.Settlement.name.castle_BA3}Castle Riom" owner="Faction.bastonne_clan_1" posX="943.572" posY="1027.487" culture="Culture.vlandia" gate_posX="945.3618" gate_posY="1026.322" text="{=Settlements.Settlement.text.castle_BA3}On the Grismerie river, right across from the cursed city of Mousillon, Castle Riom stand firm directly in sight of the undead that many dread to plague Bretonnia. Many of the militia stationed in Castle Riom have heard dreadful noises coming from just across the river.">
     <Components>
       <Town id="castle_comp_BA3" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="650">
         <Buildings>
@@ -8818,7 +8818,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="936.436" posY="998.89" culture="Culture.vlandia" gate_posX="937.3413" gate_posY="999.7513" text="{=Settlements.Settlement.name.castle_BL1}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
+  <Settlement id="castle_BL1" name="{=Settlements.Settlement.name.castle_BL1}Turris Vigilans" owner="Faction.bordeleaux_clan_1" posX="936.436" posY="998.89" culture="Culture.vlandia" gate_posX="937.3413" gate_posY="999.7513" text="{=Settlements.Settlement.text.castle_BL1}De Turris Vigilans, the vigilant tower, is a centre of Verenan worship in Bretonnia. In addition to a large temple, the cult maintains a great lighthouse which is widely considered to be the most reliable in the world. The Priests of Verena here will often offer advice to those that seek their counsel, and are reputable for its benefits. The Cult and the Dukedom of Bordeleaux have the shared interest in watching the cursed land to their north, as a result; the Duke has established a garrison here and the fortifications are always maintained.">
     <Components>
       <Town id="castle_comp_BL1" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="700">
         <Buildings>
@@ -9912,7 +9912,7 @@
     </CommonAreas>
   </Settlement>
   <!-- Quenelles -->
-  <Settlement id="town_QU1" name="{=Settlements.Settlement.name.town_QU1}Castle Quenelles" owner="Faction.quenelles_clan_1" posX="1160.415" posY="806.628" culture="Culture.vlandia" gate_posX="1157.651" gate_posY="805.8109" text="{=Settlements.Settlement.name.town_QU1}Right on the border between the Land of Chivalry and the Forest of Athel Loren, is Ducal Capital and Fortress-City of Quenelles. The city is so close to the Forest in fact, that the fey have demanded of the Quenellians to tear down the wall on the eastern side. Where the wall ends is met with a broad road and then immediately the fringes of the fey forest.">
+  <Settlement id="town_QU1" name="{=Settlements.Settlement.name.town_QU1}Castle Quenelles" owner="Faction.quenelles_clan_1" posX="1160.415" posY="806.628" culture="Culture.vlandia" gate_posX="1157.651" gate_posY="805.8109" text="{=Settlements.Settlement.text.town_QU1}Right on the border between the Land of Chivalry and the Forest of Athel Loren, is Ducal Capital and Fortress-City of Quenelles. The city is so close to the Forest in fact, that the fey have demanded of the Quenellians to tear down the wall on the eastern side. Where the wall ends is met with a broad road and then immediately the fringes of the fey forest.">
     <Components>
       <Town id="town_comp_QU1" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="3300">
         <Buildings>
@@ -9987,7 +9987,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_QU2" name="{=Settlements.Settlement.name.town_QU2}Viefin" owner="Faction.quenelles_clan_1" posX="1070.803" posY="891.58" culture="Culture.vlandia" gate_posX="1075.102" gate_posY="889.7614" text="{=Settlements.Settlement.name.town_QU2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
+  <Settlement id="town_QU2" name="{=Settlements.Settlement.name.town_QU2}Viefin" owner="Faction.quenelles_clan_1" posX="1070.803" posY="891.58" culture="Culture.vlandia" gate_posX="1075.102" gate_posY="889.7614" text="{=Settlements.Settlement.text.town_QU2}Nestled in the hills bordering Massif Orcal, sits the fortress town of Viefin. Viefin was established originally as a garrison to protect Quenelles from Greenskins that come down out of the mountains, as well as a position to launch attempts at founding new villages in the region.">
     <Components>
       <Town id="town_comp_QU2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="2600">
         <Buildings>
@@ -10364,7 +10364,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_MS2" name="{=Settlements.Settlement.name.castle_MS2}Castle Hane" owner="Faction.mousillon_clan_2" posX="963.22" posY="1060.316" culture="Culture.mousillon" gate_posX="961.515" gate_posY="1059.451" text="{=Settlements.Settlement.name.castle_MS2}Castle Hane is a tall hexagonal tower that stands near the Grismerie river, on a small island in the swamps. Lorded over by Aucassin, a long reigning noble of bretonnia, the surrounding villages are surprisingly livable by Mousillon standards. Surrounding the tower are many stables for Aucassin’s Vampiric Knights, and any who would visit the tower.">
+  <Settlement id="castle_MS2" name="{=Settlements.Settlement.name.castle_MS2}Castle Hane" owner="Faction.mousillon_clan_2" posX="963.22" posY="1060.316" culture="Culture.mousillon" gate_posX="961.515" gate_posY="1059.451" text="{=Settlements.Settlement.text.castle_MS2}Castle Hane is a tall hexagonal tower that stands near the Grismerie river, on a small island in the swamps. Lorded over by Aucassin, a long reigning noble of bretonnia, the surrounding villages are surprisingly livable by Mousillon standards. Surrounding the tower are many stables for Aucassin’s Vampiric Knights, and any who would visit the tower.">
     <Components>
       <Town id="castle_comp_MS2" is_castle="true" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="bretonnia_city_background" gate_rotation="0.908" prosperity="800">
         <Buildings>
@@ -13692,7 +13692,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_DG2" name="{=Settlements.Settlement.name.town_DG2}Iron Tower" owner="Faction.deff_grindaz_clan_1" posX="1310.974" posY="891.026" culture="Culture.aserai" gate_posX="1312.688" gate_posY="892.5488" text="{=Settlements.Settlement.text.town_DG2}Like an ant colony Gitgirt is covered in small holes in the mountain side giving way to the hundreds of goblins residing in the mountains to attack from all sides. This enormous stronghold is tried to be taken out by the dwarves numerous times but by sieging the hold creating more holes in the process.">
+  <Settlement id="town_DG2" name="{=Settlements.Settlement.name.town_DG2}Iron Tower" owner="Faction.deff_grindaz_clan_1" posX="1310.974" posY="891.026" culture="Culture.aserai" gate_posX="1312.688" gate_posY="892.5488" text="{=Settlements.Settlement.text.town_DG2}North west of Gitgirt stands the old watch of Iron Tower. Today it serves as a totem to Mork boosting the morale of the greenskins.">
     <Components>
       <Town id="town_comp_DG2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1830">
         <Buildings>
@@ -13741,7 +13741,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_DG2_2" name="{=Settlements.Settlement.name.village_DG2_2}Gitgirt" posX="1322.306" posY="888.2841" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_DG2_2}North west of Gitgirt stands the old watch of Iron Tower. Today it serves as a totem to Mork boosting the morale of the greenskins.">
+  <Settlement id="village_DG2_2" name="{=Settlements.Settlement.name.village_DG2_2}Gitgirt" posX="1322.306" posY="888.2841" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_DG2_2}Like an ant colony Gitgirt is covered in small holes in the mountain side giving way to the hundreds of goblins residing in the mountains to attack from all sides. This enormous stronghold is tried to be taken out by the dwarves numerous times but by sieging the hold creating more holes in the process.">
     <Components>
       <Village id="village_comp_DG2_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
