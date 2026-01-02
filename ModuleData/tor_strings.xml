@@ -3392,7 +3392,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when yoos in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
   <string id="tor_careerchoice_description.TufferDanNailsPassive1" text="{=str_tor_careerchoice_description_TufferDanNailsPassive1}10% resistance." />
   <string id="tor_careerchoice_description.TufferDanNailsPassive2" text="{=str_tor_careerchoice_description_TufferDanNailsPassive2}Tripples health regeneration when traveling" />
-  <string id="tor_careerchoice_description.TufferDanNailsPassive3" text="{=str_tor_careerchoice_description_TufferDanNailsPassive3}75 Health" />
+  <string id="tor_careerchoice_description.TufferDanNailsPassive3" text="{=str_tor_careerchoice_description_TufferDanNailsPassive3}50 Health" />
   <string id="tor_careerchoice_description.TufferDanNailsPassive4" text="{=str_tor_careerchoice_description_TufferDanNailsPassive4}Double Renown Gain from battles" />
   <string id="tor_careerchoice_description.TufferDanNailsKeystone" text="{=str_tor_careerchoice_description_TufferDanNailsKeystone}Armed to da Teef now applies bleeding." />
   <string id="tor_careerchoice_description.YouAnWotArmourPassive1" text="{=str_tor_careerchoice_description_YouAnWotArmourPassive1}Orc melee and cavalry deal 10% extra damage." />
@@ -3402,7 +3402,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_careerchoice_description.YouAnWotArmourKeystone" text="{=str_tor_careerchoice_description_YouAnWotArmourKeystone}Armed to da Teef damage scales with Two Handed skill." />
   <string id="tor_careerchoice_description.GoodwivBlockasPassive1" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive1}Hits below 30 will not stagger." />
   <string id="tor_careerchoice_description.GoodwivBlockasPassive2" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive2}Using shields grants 10% extra physical resistance." />
-  <string id="tor_careerchoice_description.GoodwivBlockasPassive3" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive3}Party size increase by 50" />
+  <string id="tor_careerchoice_description.GoodwivBlockasPassive3" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive3}Party size increase by 25" />
   <string id="tor_careerchoice_description.GoodwivBlockasPassive4" text="{=str_tor_careerchoice_description_GoodwivBlockasPassive4}Melee Orc Infantry gains 10% physical damage" />
   <string id="tor_careerchoice_description.GoodwivBlockasKeystone" text="{=str_tor_careerchoice_description_GoodwivBlockasKeystone}Armed to da Teef damage scales with One Handed skill." />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive1" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive1}10% extra Melee damage." />
@@ -3410,19 +3410,19 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive3" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive3}Gain double the Teef when exchanging gold" />
   <string id="tor_careerchoice_description.MeanestanDaBaddestPassive4" text="{=str_tor_careerchoice_description_MeanestanDaBaddestPassive4}Big Boss Companions adds daily 5 teef." />
   <string id="tor_careerchoice_description.MeanestanDaBaddestKeystone" text="{=str_tor_careerchoice_description_MeanestanDaBaddestKeystone}Armed to da Teef damage scales with Polearm skill." />
-  <string id="tor_careerchoice_description.GetToDaChoppasPassive1" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive1}Da Boss hits harder wiv choppas. 15% extra damage with axes." />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive1" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive1}Da Boss hits harder wiv choppas. 10% extra damage with axes." />
   <string id="tor_careerchoice_description.GetToDaChoppasPassive2" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive2}5 Extra Companion slots" />
-  <string id="tor_careerchoice_description.GetToDaChoppasPassive3" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive3}Extra 15% melee damage if 1h, 2h, and Polearm weapons are equipped" />
+  <string id="tor_careerchoice_description.GetToDaChoppasPassive3" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive3}Extra 10% melee damage if 1h, 2h, and Polearm weapons are equipped" />
   <string id="tor_careerchoice_description.GetToDaChoppasPassive4" text="{=str_tor_careerchoice_description_GetToDaChoppasPassive4}50% extra Teef after dueling Warbosses." />
   <string id="tor_careerchoice_description.GetToDaChoppasKeystone" text="{=str_tor_careerchoice_description_GetToDaChoppasKeystone}Armed to da Teef grants nearby allies a 20% damage buff." />
   <string id="tor_careerchoice_description.LeafNuffinBehinPassive1" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive1}Reduce the custom upgrade resource cost for any troop by 25%." />
   <string id="tor_careerchoice_description.LeafNuffinBehinPassive2" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive2}20% melee armour penetration" />
-  <string id="tor_careerchoice_description.LeafNuffinBehinPassive3" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive3}Party size increase by 75" />
+  <string id="tor_careerchoice_description.LeafNuffinBehinPassive3" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive3}Party size increase by 50" />
   <string id="tor_careerchoice_description.LeafNuffinBehinPassive4" text="{=str_tor_careerchoice_description_LeafNuffinBehinPassive4}less Teef morale penalty from extort teef" />
   <string id="tor_careerchoice_description.LeafNuffinBehinKeystone" text="{=str_tor_careerchoice_description_LeafNuffinBehinKeystone}Armed to da Teef applies additional movement slow to enemies." />
   <string id="tor_careerchoice_description.BestofDaBestPassive1" text="{=str_tor_careerchoice_description_BestofDaBestPassive1}10% Extra Physical damage." />
   <string id="tor_careerchoice_description.BestofDaBestPassive2" text="{=str_tor_careerchoice_description_BestofDaBestPassive2}10% extra swing speed" />
-  <string id="tor_careerchoice_description.BestofDaBestPassive3" text="{=str_tor_careerchoice_description_BestofDaBestPassive3}75 more Health" />
+  <string id="tor_careerchoice_description.BestofDaBestPassive3" text="{=str_tor_careerchoice_description_BestofDaBestPassive3}50 more Health" />
   <string id="tor_careerchoice_description.BestofDaBestPassive4" text="{=str_tor_careerchoice_description_BestofDaBestPassive4}Orc Big Bosses gain 100 health." />
   <string id="tor_careerchoice_description.BestofDaBestKeystone" text="{=str_tor_careerchoice_description_BestofDaBestKeystone}Armed to da Teef slams enemies to the ground." />
 

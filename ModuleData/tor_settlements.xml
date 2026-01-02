@@ -302,12 +302,12 @@
   </Settlement>
   <Settlement id="mork_shrine_01" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.red_eye_clan_1" posX="1778.073" posY="1119.793" culture="Culture.aserai" text="{=!}Mork is da bestest">
     <Components>
-      <Shrine id="gork_shrine_01" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="mork_shrine_01" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="mork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1620.704" posY="863.309" culture="Culture.aserai" text="{=!}Shrine of Kurnous">
+  <Settlement id="mork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1620.704" posY="863.309" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
-      <Shrine id="gork_shrine_02" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+      <Shrine id="mork_shrine_02" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="haunted_site_01" name="{=str_tor_settlements_haunted_site1}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1582.078" posY="1016.387" culture="Culture.khuzait" text="{=!}Called Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs." gate_posX="1582.078" gate_posY="1016.387">
@@ -13692,7 +13692,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_DG2" name="{=Settlements.Settlement.name.town_DG2}Gitgirt" owner="Faction.deff_grindaz_clan_1" posX="1310.974" posY="891.026" culture="Culture.aserai" gate_posX="1312.688" gate_posY="892.5488" text="{=Settlements.Settlement.text.town_DG2}Like an ant colony Gitgirt is covered in small holes in the mountain side giving way to the hundreds of goblins residing in the mountains to attack from all sides. This enormous stronghold is tried to be taken out by the dwarves numerous times but by sieging the hold creating more holes in the process.">
+  <Settlement id="town_DG2" name="{=Settlements.Settlement.name.town_DG2}Iron Tower" owner="Faction.deff_grindaz_clan_1" posX="1310.974" posY="891.026" culture="Culture.aserai" gate_posX="1312.688" gate_posY="892.5488" text="{=Settlements.Settlement.text.town_DG2}Like an ant colony Gitgirt is covered in small holes in the mountain side giving way to the hundreds of goblins residing in the mountains to attack from all sides. This enormous stronghold is tried to be taken out by the dwarves numerous times but by sieging the hold creating more holes in the process.">
     <Components>
       <Town id="town_comp_DG2" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="1830">
         <Buildings>
@@ -13741,7 +13741,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_DG2_2" name="{=Settlements.Settlement.name.village_DG2_2}Iron Tower" posX="1322.306" posY="888.2841" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_DG2_2}North west of Gitgirt stands the old watch of Iron Tower. Today it serves as a totem to Mork boosting the morale of the greenskins.">
+  <Settlement id="village_DG2_2" name="{=Settlements.Settlement.name.village_DG2_2}Gitgirt" posX="1322.306" posY="888.2841" culture="Culture.aserai" text="{=Settlements.Settlement.text.village_DG2_2}North west of Gitgirt stands the old watch of Iron Tower. Today it serves as a totem to Mork boosting the morale of the greenskins.">
     <Components>
       <Village id="village_comp_DG2_2" village_type="VillageType.swine_farm" hearth="250" bound="Settlement.town_DG2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -14179,7 +14179,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_CE2_2" name="{=Settlements.Settlement.name.castle_village_CE2_2}Idol of Gork" posX="1576.903" posY="856.329" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_CE2_2}An orcish camp set up to hunt surrounding animals for their hide and to ambush caravans.">
+  <Settlement id="castle_village_CE2_2" name="{=Settlements.Settlement.name.castle_village_CE2_2}Idols of da Godz" posX="1576.903" posY="856.329" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_CE2_2}An orcish camp set up to hunt surrounding animals for their hide and to ambush caravans.">
     <Components>
       <Village id="castle_village_comp_CE2_2" village_type="VillageType.trapper" hearth="200" bound="Settlement.castle_CE2" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
