@@ -11,7 +11,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.RaiseDead;
+using TOR_Core.CampaignMechanics.PostBattleLoot;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
@@ -59,61 +59,22 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
-        // Cached MethodInfo for internal methods (using AccessTools)
-        private static System.Reflection.MethodInfo _getMemberRosterMethod;
-        private static System.Reflection.MethodInfo _getPrisonerRosterMethod;
 
-        /// <summary>
-        /// Prefix patch for PlayerEncounter.DoLootParty
-        /// Applies pending loot modifications (greenskin recruitment) before the loot screen is shown.
-        /// At this point, the prisoner roster is populated and can be modified.
-        /// </summary>
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(PlayerEncounter), "DoLootParty")]
-        public static void DoLootPartyPrefix(PlayerEncounter __instance)
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MapEvent), "GetMemberRosterReceivingLootShare")]
+        public static void GetMemberRosterPostfix(TroopRoster __result)
         {
-            // Only apply if there are pending modifications
-            if (!PostBattleCampaignBehavior.HasPendingModifications)
-                return;
-
-            // Get the MapEvent from PlayerEncounter
-            MapEvent mapEvent = MapEvent.PlayerMapEvent;
-            if (mapEvent == null)
-                return;
-
-            // Get the actual rosters using AccessTools (methods are internal)
-            TroopRoster memberRoster = GetMemberRosterReceivingLootShare(mapEvent, PartyBase.MainParty);
-            TroopRoster prisonerRoster = GetPrisonerRosterReceivingLootShare(mapEvent, PartyBase.MainParty);
-
-            if (memberRoster == null || prisonerRoster == null)
-                return;
-
-            // Apply pending modifications (add recruited troops, remove from prisoners)
-            PostBattleCampaignBehavior.ApplyPendingLootModifications(memberRoster, prisonerRoster);
+            if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+                PendingLootedTroopManager.ApplyMemberModifications(__result);
         }
 
-        /// <summary>
-        /// Access internal MapEvent.GetMemberRosterReceivingLootShare via reflection
-        /// </summary>
-        private static TroopRoster GetMemberRosterReceivingLootShare(MapEvent mapEvent, PartyBase party)
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MapEvent), "GetPrisonerRosterReceivingLootShare")]
+        public static void GetPrisonerRosterPostfix(TroopRoster __result)
         {
-            if (_getMemberRosterMethod == null)
-            {
-                _getMemberRosterMethod = AccessTools.Method(typeof(MapEvent), "GetMemberRosterReceivingLootShare", new[] { typeof(PartyBase) });
-            }
-            return _getMemberRosterMethod?.Invoke(mapEvent, new object[] { party }) as TroopRoster;
-        }
-
-        /// <summary>
-        /// Access internal MapEvent.GetPrisonerRosterReceivingLootShare via reflection
-        /// </summary>
-        private static TroopRoster GetPrisonerRosterReceivingLootShare(MapEvent mapEvent, PartyBase party)
-        {
-            if (_getPrisonerRosterMethod == null)
-            {
-                _getPrisonerRosterMethod = AccessTools.Method(typeof(MapEvent), "GetPrisonerRosterReceivingLootShare", new[] { typeof(PartyBase) });
-            }
-            return _getPrisonerRosterMethod?.Invoke(mapEvent, new object[] { party }) as TroopRoster;
+            if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+                PendingLootedTroopManager.ApplyPrisonerModifications(__result);
         }
     }
 }

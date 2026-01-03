@@ -12,6 +12,7 @@ using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
+using TOR_Core.CampaignMechanics.PostBattleLoot;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
@@ -24,85 +25,6 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
         private List<CharacterObject> _raiseableCharacters = new List<CharacterObject>();
         private List<CharacterObject> _treeSpiritUnits = new();
-
-        // Static storage for pending loot modifications (accessible by Harmony patch)
-        private static TroopRoster _pendingMemberAdditions;
-        private static TroopRoster _pendingPrisonerRemovals;
-
-        /// <summary>
-        /// Check if there are pending modifications to apply
-        /// </summary>
-        public static bool HasPendingModifications =>
-            (_pendingMemberAdditions?.TotalManCount ?? 0) > 0 ||
-            (_pendingPrisonerRemovals?.TotalManCount ?? 0) > 0;
-
-        /// <summary>
-        /// Called by Harmony Prefix on PlayerEncounter.DoLootParty to apply pending modifications
-        /// </summary>
-        public static void ApplyPendingLootModifications(TroopRoster memberRoster, TroopRoster prisonerRoster)
-        {
-            // Add pending members (greenskin recruits, etc.)
-            if (_pendingMemberAdditions != null && _pendingMemberAdditions.TotalManCount > 0)
-            {
-                foreach (var element in _pendingMemberAdditions.GetTroopRoster())
-                {
-                    if (element.Number > 0)
-                    {
-                        memberRoster.AddToCounts(element.Character, element.Number);
-                    }
-                }
-            }
-
-            // Remove from prisoner roster (the original troops that were converted)
-            if (_pendingPrisonerRemovals != null && _pendingPrisonerRemovals.TotalManCount > 0)
-            {
-                foreach (var element in _pendingPrisonerRemovals.GetTroopRoster())
-                {
-                    if (element.Number > 0)
-                    {
-                        int currentCount = prisonerRoster.GetTroopCount(element.Character);
-                        int toRemove = Math.Min(currentCount, element.Number);
-                        if (toRemove > 0)
-                        {
-                            prisonerRoster.AddToCounts(element.Character, -toRemove);
-                        }
-                    }
-                }
-            }
-
-            ClearPendingModifications();
-        }
-
-        /// <summary>
-        /// Clear all pending modifications
-        /// </summary>
-        public static void ClearPendingModifications()
-        {
-            _pendingMemberAdditions?.Clear();
-            _pendingPrisonerRemovals?.Clear();
-        }
-
-        /// <summary>
-        /// Store troops to be added as party members during loot phase
-        /// </summary>
-        private static void AddPendingMember(CharacterObject character, int count)
-        {
-            if (_pendingMemberAdditions == null)
-                _pendingMemberAdditions = TroopRoster.CreateDummyTroopRoster();
-
-            _pendingMemberAdditions.AddToCounts(character, count);
-        }
-
-        /// <summary>
-        /// Store troops to be removed from prisoner roster during loot phase
-        /// </summary>
-        private static void AddPendingPrisonerRemoval(CharacterObject character, int count)
-        {
-            if (_pendingPrisonerRemovals == null)
-                _pendingPrisonerRemovals = TroopRoster.CreateDummyTroopRoster();
-
-            _pendingPrisonerRemovals.AddToCounts(character, count);
-        }
 
         public override void RegisterEvents()
         {
@@ -162,11 +84,9 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
             // Greenskin recruitment - store for later application in DoLootParty
             // We can't modify prisoner roster here because prisoners don't exist yet
+            // PendingLootManager automatically clears old modifications when a new battle starts
             if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                // Clear any previous pending operations
-                ClearPendingModifications();
-
                 var entries = CalculateGreenskinRecruitment(mapEvent);
 
                 // Store troops to add as party members
@@ -174,7 +94,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 {
                     if (troop.Number > 0)
                     {
-                        AddPendingMember(troop.Character, troop.Number);
+                        PendingLootedTroopManager.AddPendingMember(troop.Character, troop.Number);
                     }
                 }
 
@@ -183,7 +103,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 {
                     if (removal.Number > 0)
                     {
-                        AddPendingPrisonerRemoval(removal.Character, removal.Number);
+                        PendingLootedTroopManager.RemovePendingPrisoner(removal.Character, removal.Number);
                     }
                 }
             }
