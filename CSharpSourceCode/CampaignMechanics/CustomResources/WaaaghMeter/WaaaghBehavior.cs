@@ -31,7 +31,6 @@ public class WaaaghBehavior : CampaignBehaviorBase
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
-        CampaignEvents.HeroPrisonerTaken.AddNonSerializedListener(this, OnHeroPrisonerTaken);
         ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
     }
 
@@ -147,19 +146,19 @@ public class WaaaghBehavior : CampaignBehaviorBase
     {
         if (Hero.MainHero.PartyBelongedTo == null) return;
 
-        // Wargh1: Internal fighting causes wounded troops
-        if (Hero.MainHero.HasAttribute("Wargh1"))
+        // Waaagh0: Internal fighting causes wounded troops
+        if (Hero.MainHero.HasAttribute("Waaagh0"))
         {
             WoundTroopsFromInfighting(0.05f); // 5% chance per troop
         }
-        // Wargh2: Smaller chance of troops getting wounded from squabbling
-        else if (Hero.MainHero.HasAttribute("Wargh2"))
+        // Waaagh1: Smaller chance of troops getting wounded from squabbling
+        else if (Hero.MainHero.HasAttribute("Waaagh1"))
         {
-            WoundTroopsFromInfighting(0.02f); // 2% chance per troop (smaller than Wargh1)
+            WoundTroopsFromInfighting(0.02f); // 2% chance per troop (smaller than Waaagh0)
         }
 
-        // Wargh3: Small chance of recruiting tier 1-3 Greenskin troops
-        if (Hero.MainHero.HasAttribute("Wargh3"))
+        // Waaagh2: Small chance of recruiting tier 1-3 Greenskin troops
+        if (Hero.MainHero.HasAttribute("Waaagh2"))
         {
             float recruitChance = 0.3f; // 30% chance
             if (MBRandom.RandomFloat < recruitChance)
@@ -167,8 +166,8 @@ public class WaaaghBehavior : CampaignBehaviorBase
                 RecruitRandomGreenskinTroop();
             }
         }
-        // Wargh4: Big chance of recruiting tier 1-3 Greenskin troops
-        else if (Hero.MainHero.HasAttribute("Wargh4"))
+        // Waaagh3: Big chance of recruiting tier 1-3 Greenskin troops
+        else if (Hero.MainHero.HasAttribute("Waaagh3"))
         {
             float recruitChance = 0.6f; // 60% chance
             if (MBRandom.RandomFloat < recruitChance)
@@ -307,23 +306,6 @@ public class WaaaghBehavior : CampaignBehaviorBase
                 Hero.MainHero.AddAttribute("Waaagh3");
                 break;
         }
-    }
-    private void OnHeroPrisonerTaken(PartyBase capturer, Hero prisoner)
-    {
-        if (prisoner != Hero.MainHero)
-            return;
-
-        if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN)
-            return;
-
-        var currentWaaagh = Hero.MainHero.GetCustomResourceValue("Waaagh");
-        if (currentWaaagh <= 0f)
-        {
-            UpdateWaaaghState();
-            return;
-        }
-        Hero.MainHero.AddCustomResource("Waaagh", -(int)currentWaaagh);
-        UpdateWaaaghState();
     }
 
     public override void SyncData(IDataStore dataStore)

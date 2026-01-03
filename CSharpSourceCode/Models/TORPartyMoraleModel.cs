@@ -72,15 +72,15 @@ namespace TOR_Core.Models
 
             if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Wargh1"))
+                if (Hero.MainHero.HasAttribute("Waaagh0"))
                 {
                     result.Add(-40f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_text", "Internal Fightin'"));
                 }
-                else if (Hero.MainHero.HasAttribute("Wargh2"))
+                else if (Hero.MainHero.HasAttribute("Waaagh1"))
                 {
                     result.Add(-20f, TORTextHelper.GetTextObject("tor_greenskin_petty_squabblin_text", "Petty Squabblin'"));
                 }
-                // Waaagh3 and Waaagh4 (Wargh3/Wargh4) have no morale changes
+                // Waaagh2 and Waaagh3 ('Ere We Go / WAAAGH) have no morale changes
 
                 if (Hero.MainHero.HasCareer(TORCareers.OrcBoss))
                 {

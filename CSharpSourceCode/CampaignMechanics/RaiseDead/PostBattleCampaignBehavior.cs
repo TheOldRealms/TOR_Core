@@ -82,7 +82,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 }
             }
 
-            // Greenskin recruitment - store for later application in DoLootParty
+            // Greenskin recruitment and Teef rewards - store for later application in DoLootParty
             // We can't modify prisoner roster here because prisoners don't exist yet
             // PendingLootManager automatically clears old modifications when a new battle starts
             if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
@@ -107,6 +107,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                     }
                 }
             }
+
         }
 
         private void InitializeRaiseableCharacters(CampaignGameStarter starter)
@@ -280,8 +281,10 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             }
 
             return (recruits, newRemoved);
-            
+
         }
+
+
 
         public override void SyncData(IDataStore dataStore)
         {
