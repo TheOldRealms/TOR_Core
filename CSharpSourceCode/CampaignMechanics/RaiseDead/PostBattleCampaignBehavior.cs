@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
+using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.CharacterDevelopment;
@@ -24,16 +25,89 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         private List<CharacterObject> _raiseableCharacters = new List<CharacterObject>();
         private List<CharacterObject> _treeSpiritUnits = new();
 
+        // Static storage for pending loot modifications (accessible by Harmony patch)
+        private static TroopRoster _pendingMemberAdditions;
+        private static TroopRoster _pendingPrisonerRemovals;
+
+        /// <summary>
+        /// Check if there are pending modifications to apply
+        /// </summary>
+        public static bool HasPendingModifications =>
+            (_pendingMemberAdditions?.TotalManCount ?? 0) > 0 ||
+            (_pendingPrisonerRemovals?.TotalManCount ?? 0) > 0;
+
+        /// <summary>
+        /// Called by Harmony Prefix on PlayerEncounter.DoLootParty to apply pending modifications
+        /// </summary>
+        public static void ApplyPendingLootModifications(TroopRoster memberRoster, TroopRoster prisonerRoster)
+        {
+            // Add pending members (greenskin recruits, etc.)
+            if (_pendingMemberAdditions != null && _pendingMemberAdditions.TotalManCount > 0)
+            {
+                foreach (var element in _pendingMemberAdditions.GetTroopRoster())
+                {
+                    if (element.Number > 0)
+                    {
+                        memberRoster.AddToCounts(element.Character, element.Number);
+                    }
+                }
+            }
+
+            // Remove from prisoner roster (the original troops that were converted)
+            if (_pendingPrisonerRemovals != null && _pendingPrisonerRemovals.TotalManCount > 0)
+            {
+                foreach (var element in _pendingPrisonerRemovals.GetTroopRoster())
+                {
+                    if (element.Number > 0)
+                    {
+                        int currentCount = prisonerRoster.GetTroopCount(element.Character);
+                        int toRemove = Math.Min(currentCount, element.Number);
+                        if (toRemove > 0)
+                        {
+                            prisonerRoster.AddToCounts(element.Character, -toRemove);
+                        }
+                    }
+                }
+            }
+
+            ClearPendingModifications();
+        }
+
+        /// <summary>
+        /// Clear all pending modifications
+        /// </summary>
+        public static void ClearPendingModifications()
+        {
+            _pendingMemberAdditions?.Clear();
+            _pendingPrisonerRemovals?.Clear();
+        }
+
+        /// <summary>
+        /// Store troops to be added as party members during loot phase
+        /// </summary>
+        private static void AddPendingMember(CharacterObject character, int count)
+        {
+            if (_pendingMemberAdditions == null)
+                _pendingMemberAdditions = TroopRoster.CreateDummyTroopRoster();
+
+            _pendingMemberAdditions.AddToCounts(character, count);
+        }
+
+        /// <summary>
+        /// Store troops to be removed from prisoner roster during loot phase
+        /// </summary>
+        private static void AddPendingPrisonerRemoval(CharacterObject character, int count)
+        {
+            if (_pendingPrisonerRemovals == null)
+                _pendingPrisonerRemovals = TroopRoster.CreateDummyTroopRoster();
+
+            _pendingPrisonerRemovals.AddToCounts(character, count);
+        }
+
         public override void RegisterEvents()
         {
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
-            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvent);                //Those events are never executed when the player lose a battle!
-            CampaignEvents.OnMissionEndedEvent.AddNonSerializedListener(this, MissionEndedEvent);
-        }
-
-        private void MissionEndedEvent(IMission obj)
-        {
-            throw new NotImplementedException();
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvent);
         }
 
         private void PostBattleEvent(MapEvent mapEvent)
@@ -86,24 +160,32 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
                 }
             }
 
-            // Greenskin recruitment
+            // Greenskin recruitment - store for later application in DoLootParty
+            // We can't modify prisoner roster here because prisoners don't exist yet
             if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
+                // Clear any previous pending operations
+                ClearPendingModifications();
+
                 var entries = CalculateGreenskinRecruitment(mapEvent);
-                
+
+                // Store troops to add as party members
                 foreach (var troop in entries.received.GetTroopRoster())
                 {
-                    PlayerEncounter.Current.RosterToReceiveLootMembers.AddToCounts(troop.Character, troop.Number);
+                    if (troop.Number > 0)
+                    {
+                        AddPendingMember(troop.Character, troop.Number);
+                    }
                 }
 
-                foreach (var rosterElement in entries.removed)
+                // Store troops to remove from prisoner roster
+                foreach (var removal in entries.removed)
                 {
-                    var playerPartsy = mapEvent.PartiesOnSide(mapEvent.WinningSide).FirstOrDefault(x => x.Party == PartyBase.MainParty);
-                    
-                    playerPartsy.RosterToReceiveLootPrisoners.AddToCounts(rosterElement.Character, rosterElement.Number,false,rosterElement.WoundedNumber);
+                    if (removal.Number > 0)
+                    {
+                        AddPendingPrisonerRemoval(removal.Character, removal.Number);
+                    }
                 }
-                
-
             }
         }
 
@@ -195,7 +277,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             return spiritsBound;
         }
 
-        private new (TroopRoster received,List<TroopRosterElement> removed) CalculateGreenskinRecruitment(MapEvent mapEvent)
+        private (TroopRoster received, List<TroopRosterElement> removed) CalculateGreenskinRecruitment(MapEvent mapEvent)
         {
             TroopRoster recruits = TroopRoster.CreateDummyTroopRoster();
             List<TroopRosterElement> removed = [];
@@ -212,7 +294,7 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
                 // Get wounded troops from mapEvent (wounded troops become prisoners)
                 var defeatedGreenskins = party.Troops
-                    .Where(x => x.IsWounded  || x.IsRouted && (x.Troop.IsGoblin() || x.Troop.IsOrc()))
+                    .Where(x => (x.IsWounded  || x.IsRouted) && (x.Troop.IsGoblin() || x.Troop.IsOrc()))
                     .ToList();
                 
 
@@ -261,23 +343,23 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 
             }
 
+            // Consolidate removed list - count total troops per character type
             var newRemoved = new List<TroopRosterElement>();
             foreach (var element in removed)
             {
-                if(newRemoved.Any(x=> x.Character == element.Character))
+                if (newRemoved.Any(x => x.Character == element.Character))
                     continue;
 
-                var count = removed.WhereQ(x=> x.Character == element.Character).Count(x => x.Number >0);
-                var woundedCount = removed.WhereQ(x=> x.Character == element.Character).Count(x => x.WoundedNumber>0);
+                // Count total troops to remove (each element in 'removed' represents 1 troop)
+                var totalCount = removed.WhereQ(x => x.Character == element.Character).Count();
 
                 var newElement = new TroopRosterElement(element.Character);
-                newElement.Number = count;
-                newElement.WoundedNumber = woundedCount;
-                
+                newElement.Number = totalCount;  // Store total count in Number for removal
+
                 newRemoved.Add(newElement);
             }
-            
-            return  (recruits, newRemoved);
+
+            return (recruits, newRemoved);
             
         }
 
