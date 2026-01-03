@@ -1704,12 +1704,13 @@
 
   <!--crafting-->
   <string id="str_crafting_template.tor_twohandedswords_template" text="{=str_tor_crafting_template_TORGreatswords}TOR-Greatswords" />
-  <string id="str_crafting_template.tor_orc_twohandedsword_template" text="{=str_tor_crafting_template_TOROrc Greatswords}TOR-Orc Greatswords" />
+  <string id="str_crafting_template.tor_orc_twohandedsword_template" text="{=str_tor_crafting_template_TOROrcGreatswords}TOR-Orc Greatswords" />
   <string id="str_crafting_template.tor_sword_template" text="{=str_tor_crafting_template_TORSwords}TOR-Swords" />
   <string id="str_crafting_template.tor_rapier_template" text="{=str_tor_crafting_template_TORRapiers}TOR-Rapiers" />
   <string id="str_crafting_template.tor_scythe_template" text="{=str_tor_crafting_template_TORScythes}TOR-Scythes" />
   <string id="str_crafting_template.tor_staff_template" text="{=str_tor_crafting_template_TORStaffs}TOR-Staffs" />
   <string id="str_crafting_template.tor_polearm_template" text="{=str_tor_crafting_template_TORPolearms}TOR-Polearms" />
+  <string id="str_crafting_template.tor_orc_polearm_template" text="{=str_tor_crafting_template_TOROrcPolearms}TOR-OrcPolearms" />
   <string id="str_crafting_template.tor_large_monster_weapon_template" text="{=str_tor_crafting_template_TORLargeMonsterWeapon}TOR-Large Monster Weapon (Hidden)" />
   <string id="str_crafting_template.tor_dual_wield_mainhand" text="{=str_tor_crafting_template_TORDualWieldMainhand}TOR-Dual-Wield Mainhand (Hidden)" />
   <string id="str_crafting_template.tor_axe_template" text="{=str_tor_crafting_template_TORAxes}TOR-Axes" />
