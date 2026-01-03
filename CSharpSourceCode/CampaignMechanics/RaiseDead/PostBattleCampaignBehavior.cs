@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -18,6 +19,8 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
 {
     public class PostBattleCampaignBehavior : CampaignBehaviorBase
     {
+        private const float GreenskinRecruitChance = 0.25f;
+
         private List<CharacterObject> _raiseableCharacters = new List<CharacterObject>();
         private List<CharacterObject> _treeSpiritUnits = new();
 
@@ -25,6 +28,12 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
         {
             CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, InitializeRaiseableCharacters);
             CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, PostBattleEvent);                //Those events are never executed when the player lose a battle!
+            CampaignEvents.OnMissionEndedEvent.AddNonSerializedListener(this, MissionEndedEvent);
+        }
+
+        private void MissionEndedEvent(IMission obj)
+        {
+            throw new NotImplementedException();
         }
 
         private void PostBattleEvent(MapEvent mapEvent)
@@ -80,12 +89,20 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             // Greenskin recruitment
             if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                var greenskinTroops = CalculateGreenskinRecruitment(mapEvent);
-                foreach (var troop in greenskinTroops)
+                var entries = CalculateGreenskinRecruitment(mapEvent);
+                
+                foreach (var troop in entries.received.GetTroopRoster())
                 {
                     PlayerEncounter.Current.RosterToReceiveLootMembers.AddToCounts(troop.Character, troop.Number);
-
                 }
+
+                foreach (var rosterElement in entries.removed)
+                {
+                    var playerPartsy = mapEvent.PartiesOnSide(mapEvent.WinningSide).FirstOrDefault(x => x.Party == PartyBase.MainParty);
+                    
+                    playerPartsy.RosterToReceiveLootPrisoners.AddToCounts(rosterElement.Character, rosterElement.Number,false,rosterElement.WoundedNumber);
+                }
+                
 
             }
         }
@@ -178,85 +195,90 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             return spiritsBound;
         }
 
-        private List<TroopRosterElement> CalculateGreenskinRecruitment(MapEvent mapEvent)
+        private new (TroopRoster received,List<TroopRosterElement> removed) CalculateGreenskinRecruitment(MapEvent mapEvent)
         {
-            List<TroopRosterElement> recruits = new List<TroopRosterElement>();
+            TroopRoster recruits = TroopRoster.CreateDummyTroopRoster();
+            List<TroopRosterElement> removed = [];
 
             var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
 
             foreach (var party in partiesOnSide)
             {
-
                 bool isGreenskinParty = party.Party?.Culture?.StringId == TORConstants.Cultures.GREENSKIN;
-                bool isBanditParty = party.Party?.MobileParty?.IsBandit ?? false; //village defense parties don't have a MobileParty
+                bool isBanditParty = party.Party?.MobileParty?.IsBandit ?? false;
 
                 if (!isGreenskinParty && !isBanditParty)
                     continue;
 
-                var survivors = PlayerEncounter.Current.RosterToReceiveLootPrisoners.GetTroopRoster().Where(x => x.Character.IsGoblin() || x.Character.IsOrc()).ToMBList();
+                // Get wounded troops from mapEvent (wounded troops become prisoners)
+                var defeatedGreenskins = party.Troops
+                    .Where(x => x.IsWounded  || x.IsRouted && (x.Troop.IsGoblin() || x.Troop.IsOrc()))
+                    .ToList();
+                
 
-                // For bandits, spawn basic orc/goblin troops
-                if (isBanditParty)
+                foreach (var wounded in defeatedGreenskins)
                 {
-                    var totalManCount = PlayerEncounter.Current.RosterToReceiveLootPrisoners.TotalManCount;
-
-                    var troopRoster = party.Troops.ToList();
-                    var count = 0;
-                    foreach (var element in survivors)
+                    // For bandits, spawn basic orc/goblin troops
+                    if (isBanditParty)
                     {
-
-                        var troopId = "";
-                        if (element.Character.IsOrc())
-                        {
-                            troopId = "tor_gs_orc_boy";
-                        }
-
-                        if (element.Character.IsGoblin())
-                        {
-                            troopId = "tor_gs_goblin";
-                        }
-
+                        var troopId = wounded.Troop.IsOrc() ? "tor_gs_orc_boy" : "tor_gs_goblin";
                         var troop = MBObjectManager.Instance.GetObject<CharacterObject>(troopId);
 
                         if (troop == null)
                             continue;
 
                         var newElement = new TroopRosterElement(troop);
-                        newElement.Number = element.Number;
+                        newElement.Number = 1;
                         recruits.Add(newElement);
-                        PlayerEncounter.Current.RosterToReceiveLootPrisoners.AddToCounts(element.Character, -element.Number);
+                        
+                        var removedElement = new TroopRosterElement(wounded.Troop);
+                   
+
+                        if (wounded.IsWounded)
+                        {
+                            removedElement.WoundedNumber = 1;
+                        }
+                        else
+                        {
+                            removedElement.Number = 1;
+                        }
+                        removed.Add(removedElement);
+
                     }
-                }
-                else
-                {
-                    foreach (var rosterMember in survivors)
+                    else
                     {
-                        float recruitChance = 0.25f; // 25% base chance of regular greenskin troops
-                        int recruited = 0;
-
-                        for (int i = 0; i < rosterMember.Number; i++)
+                        if (MBRandom.RandomFloat <= GreenskinRecruitChance)
                         {
-                            if (MBRandom.RandomFloat <= recruitChance)
-                            {
-                                recruited++;
-                            }
-
-                        }
-
-                        // Remove recruited prisoners from the prisoner roster
-                        if (recruited > 0)
-                        {
-                            var troop = new TroopRosterElement(rosterMember.Character);
-                            troop.Number = recruited;
+                            var troop = new TroopRosterElement(wounded.Troop);
+                            troop.Number = 1;
                             recruits.Add(troop);
-                            PlayerEncounter.Current.RosterToReceiveLootPrisoners.AddToCounts(rosterMember.Character, -recruited);
+                            removed.Add(troop);
                         }
                     }
-
                 }
+                
+                
+
             }
 
-            return recruits;
+            var newRemoved = new List<TroopRosterElement>();
+            foreach (var element in removed)
+            {
+                if(newRemoved.Any(x=> x.Character == element.Character))
+                    continue;
+
+                var count = removed.WhereQ(x=> x.Character == element.Character).Count(x => x.Number >0);
+                var woundedCount = removed.WhereQ(x=> x.Character == element.Character).Count(x => x.WoundedNumber>0);
+
+                var newElement = new TroopRosterElement(element.Character);
+                newElement.Number = count;
+                newElement.WoundedNumber = woundedCount;
+                
+                newRemoved.Add(newElement);
+            }
+            
+            return  (recruits, newRemoved);
+            
         }
 
         public override void SyncData(IDataStore dataStore)
