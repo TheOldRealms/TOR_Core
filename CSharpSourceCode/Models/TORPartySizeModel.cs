@@ -88,11 +88,11 @@ namespace TOR_Core.Models
             if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero &&
                 Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Wargh3"))
+                if (Hero.MainHero.HasAttribute("Waaagh2"))
                 {
                     num.Add(60, new TextObject("'Ere We Go!"));
                 }
-                else if (Hero.MainHero.HasAttribute("Wargh4"))
+                else if (Hero.MainHero.HasAttribute("Waaagh3"))
                 {
                     num.Add(120, new TextObject("WAAAGH!!!!"));
                 }

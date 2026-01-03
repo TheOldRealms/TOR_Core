@@ -7,9 +7,11 @@ using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.PostBattleLoot;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
@@ -55,6 +57,24 @@ namespace TOR_Core.HarmonyPatches
             }
 
             return true;
+        }
+
+
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MapEvent), "GetMemberRosterReceivingLootShare")]
+        public static void GetMemberRosterPostfix(TroopRoster __result)
+        {
+            if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+                PendingLootedTroopManager.ApplyMemberModifications(__result);
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MapEvent), "GetPrisonerRosterReceivingLootShare")]
+        public static void GetPrisonerRosterPostfix(TroopRoster __result)
+        {
+            if (__result != null && PendingLootedTroopManager.HasPendingModifications)
+                PendingLootedTroopManager.ApplyPrisonerModifications(__result);
         }
     }
 }

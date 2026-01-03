@@ -5,7 +5,7 @@
     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed"
             SuggestedWidth="80" SuggestedHeight="455"
             HorizontalAlignment="Right" VerticalAlignment="Center"
-            MarginRight="5"
+            MarginRight="-5"
             IsVisible="@IsVisible">
       <Children>
         <!-- Background with bar as children -->
@@ -35,7 +35,7 @@
 
             <!-- Level 0: Internal Fightin' -->
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="52" SuggestedHeight="52"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="@Level0Position" MarginRight="-12"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="@Level0Position" MarginRight="0"
                     Sprite="BlankWhiteSquare_9" Color="#00000000">
               <Children>
                 <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="38" SuggestedHeight="38"
@@ -47,7 +47,7 @@
 
             <!-- Level 1: Petty Squabblin' -->
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="52" SuggestedHeight="52"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="@Level1Position" MarginRight="-12"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="@Level1Position" MarginRight="0"
                     Sprite="BlankWhiteSquare_9" Color="#00000000">
               <Children>
                 <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="38" SuggestedHeight="38"
@@ -59,7 +59,7 @@
 
             <!-- Level 2: 'Ere We Go! -->
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="52" SuggestedHeight="52"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="@Level2Position" MarginRight="-12"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="@Level2Position" MarginRight="0"
                     Sprite="BlankWhiteSquare_9" Color="#00000000">
               <Children>
                 <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="38" SuggestedHeight="38"
@@ -71,7 +71,7 @@
 
             <!-- Level 3: WAAAGH!!!! (positioned at top of bar) -->
             <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="52" SuggestedHeight="52"
-                    HorizontalAlignment="Right" VerticalAlignment="Top" MarginTop="6" MarginRight="-12"
+                    HorizontalAlignment="Right" VerticalAlignment="Top" MarginTop="6" MarginRight="0"
                     Sprite="BlankWhiteSquare_9" Color="#00000000">
               <Children>
                 <Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="38" SuggestedHeight="38"

@@ -126,7 +126,7 @@ namespace TOR_Core.Extensions
         {
             if (characterObject.IsHero)
             {
-                characterObject.HeroObject.IsDwarf();
+                return characterObject.HeroObject.IsDwarf();
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("dwarf");
         }
@@ -135,7 +135,7 @@ namespace TOR_Core.Extensions
         {
             if (characterObject.IsHero)
             {
-                characterObject.HeroObject.IsOrc();
+                return characterObject.HeroObject.IsOrc();
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("orc");
         }
@@ -143,7 +143,7 @@ namespace TOR_Core.Extensions
         {
             if (characterObject.IsHero)
             {
-                characterObject.HeroObject.IsGoblin();
+                return characterObject.HeroObject.IsGoblin();
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("goblin");
         }

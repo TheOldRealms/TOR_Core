@@ -20,10 +20,10 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 
     private readonly string _secularSealIcon = "reiksguard_icon";
     private readonly string _sigmarSealIcon = "sigmar_comet_icon";
-    private readonly string _taalSealIcon = "ghur";
+    private readonly string _taalSealIcon = "taal_icon";
     private readonly string _ulricSealIcon = "whitewolf_icon";
     private readonly string _shallyaSealIcon = "shallya_dove_icon";
-    private readonly string _manaanSealIcon = "azyr";
+    private readonly string _manaanSealIcon = "manann_icon";
     private readonly string _myrmidiaSealIcon = "blazingsun_icon";
     private CharacterObject _setCharacter;
 
