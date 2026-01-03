@@ -10,9 +10,35 @@ namespace TOR_Core.Extensions
 {
     public static class ViewModelExtensions
     {
-        public static bool HasExtensionType(this ViewModel model) => ViewModelExtensionManager.Instance.HasViewModelExtensionType(model);
-        public static bool HasExtensionInstance(this ViewModel model) => ViewModelExtensionManager.Instance.HasViewModelExtensionInstance(model);
-        public static IViewModelExtension GetExtensionInstance(this ViewModel model) => ViewModelExtensionManager.Instance.GetExtensionInstance(model);
-        public static Type GetExtensionType(this ViewModel model) => ViewModelExtensionManager.Instance.GetExtensionType(model);
+        public static bool HasExtensionType(this ViewModel model)
+        {
+            if (model == null)
+            {
+                return false;
+            }
+            var manager = ViewModelExtensionManager.Instance;
+            return manager != null && manager.HasViewModelExtensionType(model);
+        }
+        public static Type GetExtensionType(this ViewModel model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+            var manager = ViewModelExtensionManager.Instance;
+            return manager != null ? manager.GetExtensionType(model) : null;
+        }
+
+        public static IViewModelExtension GetExtensionInstance(this ViewModel model)
+        {
+            var manager = ViewModelExtensionManager.Instance;
+            return manager != null ? manager.GetExtensionInstance(model) : null;
+        }
+
+        public static bool HasExtensionInstance(this ViewModel model)
+        {
+            var manager = ViewModelExtensionManager.Instance;
+            return manager != null && manager.HasViewModelExtensionInstance(model);
+        }
     }
 }

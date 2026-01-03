@@ -715,6 +715,7 @@
     <Compile Include="HarmonyPatches\ModelPatches.cs" />
     <Compile Include="HarmonyPatches\MountCreationPatches.cs" />
     <Compile Include="HarmonyPatches\ObjectManagerPatches.cs" />
+    <Compile Include="HarmonyPatches\PartyScreenPerformancePatches.cs" />
     <Compile Include="HarmonyPatches\PerkResetRelatedPatch.cs" />
     <Compile Include="HarmonyPatches\RaceFixPatches.cs" />
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />

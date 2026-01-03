@@ -1,5 +1,6 @@
     using Ink.Parsed;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -27,6 +28,10 @@ namespace TOR_Core.Extensions.UI
         private string _remainingBlessingTime;
         private bool _hasBaseVMBeenInitialized = false;
         private bool _haveInfoItemsBeenAdded = false;
+        private const double MAP_INFO_REFRESH_THROTTLE_SECONDS = 0.2;
+        private static readonly long MapInfoRefreshThrottleTicks =
+            (long)(Stopwatch.Frequency * MAP_INFO_REFRESH_THROTTLE_SECONDS);
+        private long _lastRefreshTimestamp;
 
         private MapInfoItemVM _windsInfo;
         private MapInfoItemVM _artilleryInfo;
@@ -202,6 +207,13 @@ namespace TOR_Core.Extensions.UI
                 (_vm as MapInfoVM).SecondaryInfoItems.Add(_blessingInfo);
                 _haveInfoItemsBeenAdded = true;
             }
+            var nowTimestamp = Stopwatch.GetTimestamp();
+            if (_lastRefreshTimestamp != 0 &&
+                (nowTimestamp - _lastRefreshTimestamp) <= MapInfoRefreshThrottleTicks)
+            {
+                return;
+            }
+            _lastRefreshTimestamp = nowTimestamp;
 
             var heroInfo = Hero.MainHero.GetExtendedInfo();
             _windsOfMagic = (int)heroInfo.GetCustomResourceValue("WindsOfMagic");

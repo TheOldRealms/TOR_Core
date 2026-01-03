@@ -1,4 +1,7 @@
+using Ink.Runtime;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -15,10 +18,40 @@ namespace TOR_Core.Models
     public class TORClanFinanceModel : DefaultClanFinanceModel
     {
         private static readonly string _cheatGoldAdjustmentName = "AI Gold Adjustment";
+        private const double GOLD_CHANGE_CACHE_TTL_SECONDS = 0.5;
+        private static readonly long GoldChangeCacheTtlTicks =
+            (long)(Stopwatch.Frequency * GOLD_CHANGE_CACHE_TTL_SECONDS);
 
+        private sealed class ClanGoldChangeCacheEntry
+        {
+            public long Timestamp;
+            public bool ApplyWithdrawals;
+            public bool IncludeDetails;
+            public ExplainedNumber Value;
+        }
+        private static readonly Dictionary<string, ClanGoldChangeCacheEntry> _goldChangeCache = new();
 
         public override ExplainedNumber CalculateClanGoldChange(Clan clan, bool includeDescriptions = false, bool applyWithdrawals = false, bool includeDetails = false)
         {
+            long nowTimestamp = 0;
+
+            var canUseCache = clan != null && !includeDescriptions && !includeDetails;
+
+            if (canUseCache)
+            {
+                nowTimestamp = Stopwatch.GetTimestamp();
+                var clanKey = clan.StringId;
+
+                if (_goldChangeCache.TryGetValue(clanKey, out var cacheEntry) &&
+                    cacheEntry.ApplyWithdrawals == applyWithdrawals &&
+                    cacheEntry.IncludeDetails == includeDetails &&
+                    (nowTimestamp - cacheEntry.Timestamp) <= GoldChangeCacheTtlTicks)
+                {
+                    return cacheEntry.Value;
+                }
+            }
+
+
             var num = base.CalculateClanGoldChange(clan, includeDescriptions, applyWithdrawals, includeDetails);
             AddCareerPerkBenefits(clan, ref num);
 
@@ -39,7 +72,19 @@ namespace TOR_Core.Models
                 }
 
             }
+            if (canUseCache)
+            {
+                if (nowTimestamp == 0)
+                    nowTimestamp = Stopwatch.GetTimestamp();
 
+                _goldChangeCache[clan.StringId] = new ClanGoldChangeCacheEntry
+                {
+                    Timestamp = nowTimestamp,
+                    ApplyWithdrawals = applyWithdrawals,
+                    IncludeDetails = includeDetails,
+                    Value = num
+                };
+            }
             return num;
         }
 

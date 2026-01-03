@@ -128,10 +128,37 @@ namespace TOR_Core.HarmonyPatches
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(SettlementNameplatesVM), "AddNameplate")]
-        public static bool AddCustomNamePlateVM(SettlementNameplatesVM __instance, SettlementNameplateVM nameplate, 
+        public static bool AddCustomNamePlateVM(SettlementNameplatesVM __instance, SettlementNameplateVM nameplate,
             MBList<SettlementNameplateVM> ____allNameplates, Dictionary<Settlement, SettlementNameplateVM> ____allNameplatesBySettlements,
             Camera ____mapCamera, Action<CampaignVec2> ____fastMoveCameraToPosition)
         {
+            var settlement = nameplate.Settlement;
+
+            if (____allNameplatesBySettlements.TryGetValue(settlement, out var existingNameplate) && existingNameplate != null)
+            {
+                if (!____allNameplates.Contains(existingNameplate))
+                    ____allNameplates.Add(existingNameplate);
+
+                switch (nameplate.SettlementTypeEnum)
+                {
+                    case SettlementNameplateVM.Type.Village:
+                        if (!__instance.SmallNameplates.Contains(existingNameplate))
+                            __instance.SmallNameplates.Add(existingNameplate);
+                        break;
+
+                    case SettlementNameplateVM.Type.Castle:
+                        if (!__instance.MediumNameplates.Contains(existingNameplate))
+                            __instance.MediumNameplates.Add(existingNameplate);
+                        break;
+
+                    case SettlementNameplateVM.Type.Town:
+                        if (!__instance.LargeNameplates.Contains(existingNameplate))
+                            __instance.LargeNameplates.Add(existingNameplate);
+                        break;
+                }
+
+                return false;
+            }
             GameEntity entity = AccessTools.Field(typeof(SettlementNameplateVM), "_entity").GetValue(nameplate) as GameEntity;
             ToRSettlementNameplateVM torNameplate = new(nameplate.Settlement, entity, ____mapCamera, ____fastMoveCameraToPosition);
 

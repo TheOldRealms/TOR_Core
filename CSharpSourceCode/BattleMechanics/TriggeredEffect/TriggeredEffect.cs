@@ -99,7 +99,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 {
                     if (triggererAgent.Character is CharacterObject triggererCharacter && triggererCharacter.GetPerkValue(TORPerks.Spellcraft.ArcaneLink) && effect.IsBuffEffect)
                     {
-                        if (!targets.Contains(triggererAgent)) targets.Append(triggererAgent);
+                        if (!targets.Contains(triggererAgent)) targets.Add(triggererAgent);
                     }
                     TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
                 }
@@ -143,6 +143,10 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             if (_template != null && _template.SoundEffectId != "none")
             {
                 _soundIndex = SoundEvent.GetEventIdFromString(_template.SoundEffectId);
+                if (_soundIndex == -1)
+                {
+                    return;
+                }
                 _sound = SoundEvent.CreateEvent(_soundIndex, Mission.Current.Scene);
                 _sound?.PlayInPosition(position);
             }
@@ -154,7 +158,15 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             {
                 try
                 {
-                    var obj = Activator.CreateInstance(Type.GetType(_template.ScriptNameToTrigger));
+                    var scriptType = Type.GetType(_template.ScriptNameToTrigger, throwOnError: false);
+                    if (scriptType == null)
+                    {
+                        TORCommon.Log("Tried to spawn TriggeredScript: " + _template.ScriptNameToTrigger + ", but type could not be resolved.", NLog.LogLevel.Error);
+                        return;
+                    }
+
+
+                    var obj = Activator.CreateInstance(scriptType);
                     if (obj is PrefabSpawnerScript)
                     {
                         var script = obj as PrefabSpawnerScript;
@@ -189,7 +201,9 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             _sound = null;
             _soundIndex = -1;
             _template = null;
-            _timer.Stop();
+            _timer?.Stop();
+            _timer?.Dispose();
+            _timer = null;
         }
     }
 }

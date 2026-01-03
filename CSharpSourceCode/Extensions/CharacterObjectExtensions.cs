@@ -158,6 +158,11 @@ namespace TOR_Core.Extensions
             return characterObject.Race == FaceGen.GetRaceOrDefault("medium_humanoid_monster") && characterObject.HasAttribute("Minotaur");
         }
 
+        public static bool IsLargeTarget(this CharacterObject characterObject)
+        {
+            return characterObject.IsMounted || characterObject.IsTroll() || characterObject.IsMinotaur();
+        }
+
         public static bool IsHuman(this CharacterObject characterObject)
         {
             if (characterObject.Culture.IsBandit)
@@ -202,7 +207,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsKnightUnit(this CharacterObject characterObject)
         {
-            return !characterObject.IsHero && characterObject.IsMounted && IsEliteTroop(characterObject);
+            return !characterObject.IsHero && characterObject.IsMounted && (IsEliteTroop(characterObject) || characterObject.HasAttribute("Knightly"));
         }
 
         public static bool IsRunesmith(this CharacterObject characterObject)

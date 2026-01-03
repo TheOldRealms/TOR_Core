@@ -702,7 +702,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
             AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), sign * (int)explainedNumber.ResultNumber);
 
-            partyVm.GetExtensionInstance().RefreshValues();
+            partyVm.GetExtensionInstance()?.RefreshValues();
         }
 
         public static void OverridePendingResources(Dictionary<CustomResource, int> spendMap)

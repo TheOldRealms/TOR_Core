@@ -60,9 +60,20 @@ namespace TOR_Core.Extensions
 
         public static bool IsInventoryUsable(this ItemObject item)
         {
-            if (item.HasAnyTrait())
+            if (item == null) return false;
+
+            var props = item.GetTorSpecificDataReadOnly();
+            if (props?.ItemTraits == null || props.ItemTraits.Count == 0)
+                return false;
+
+            foreach (var traitId in props.ItemTraits)
             {
-                return item.GetTraits().Any(trait => trait.OnInventoryUseScript != null && !string.IsNullOrWhiteSpace(trait.OnInventoryUseScript.InventoryScriptName));
+                var trait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == traitId);
+                if (trait?.OnInventoryUseScript != null &&
+                    !string.IsNullOrWhiteSpace(trait.OnInventoryUseScript.InventoryScriptName))
+                {
+                    return true;
+                }
             }
 
             return false;
@@ -71,19 +82,18 @@ namespace TOR_Core.Extensions
 
         public static List<ItemTrait> GetTraits(this ItemObject item)
         {
-            if (item == null) return new List<ItemTrait>();
-            List<ItemTrait> result = [];
-            var props = ExtendedItemObjectManager.GetAdditionalProperties(item.StringId);
-            if (props == null) props = ExtendedItemObjectProperties.CreateDefault(item.StringId);
-            if (props.ItemTraits != null && props.ItemTraits.Count > 0)
+            if (item == null) return [];
+
+            var props = item.GetTorSpecificDataReadOnly();
+            if (props?.ItemTraits == null || props.ItemTraits.Count == 0) return [];
+
+            var result = new List<ItemTrait>(props.ItemTraits.Count);
+            foreach (var traitId in props.ItemTraits)
             {
-                foreach (var trait in props.ItemTraits)
+                var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == traitId);
+                if (itemTrait != null)
                 {
-                    var itemTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == trait);
-                    if (itemTrait != null)
-                    {
-                        result.Add(itemTrait);
-                    }
+                    result.Add(itemTrait);
                 }
             }
             return result;
@@ -102,6 +112,10 @@ namespace TOR_Core.Extensions
             return result;
         }
 
+        public static ExtendedItemObjectProperties GetTorSpecificDataReadOnly(this ItemObject item)
+        {
+            return item == null ? null : ExtendedItemObjectManager.GetAdditionalPropertiesReadOnly(item.StringId);
+        }
         public static ExtendedItemObjectProperties GetTorSpecificData(this ItemObject item)
         {
             var result = ExtendedItemObjectManager.GetAdditionalProperties(item.StringId);
@@ -124,11 +138,10 @@ namespace TOR_Core.Extensions
 
         public static bool HasAnyTrait(this ItemObject item)
         {
-            if (item.GetTraits() != null)
-            {
-                return item.GetTraits().Count > 0;
-            }
-            else return false;
+            if (item == null) return false;
+
+            var props = item.GetTorSpecificDataReadOnly();
+            return props?.ItemTraits != null && props.ItemTraits.Count > 0;
         }
 
         public static bool HasAnyLootTraits(this ItemObject item)
@@ -145,11 +158,14 @@ namespace TOR_Core.Extensions
 
         public static bool HasAnyTrait(this ItemObject item, Agent agent)
         {
-            if (item.GetTraits(agent) != null)
-            {
-                return item.GetTraits(agent).Count > 0;
-            }
-            else return false;
+            if (item == null) return false;
+
+            var props = item.GetTorSpecificDataReadOnly();
+            if (props?.ItemTraits != null && props.ItemTraits.Count > 0)
+                return true;
+
+            var comp = agent.GetComponent<ItemTraitAgentComponent>();
+            return comp != null && comp.HasDynamicTraits(item);
         }
 
         public static bool IsTorItem(this ItemObject item)
@@ -159,12 +175,11 @@ namespace TOR_Core.Extensions
 
         public static bool IsMagicalItem(this ItemObject item)
         {
-            var info = item.GetTorSpecificData();
-            if (info != null)
-            {
-                return info.DamageProportions.Any(x => x.DamageType != DamageType.Physical) || info.ItemTraits.Count > 0;
-            }
-            return false;
+            var info = item.GetTorSpecificDataReadOnly();
+            if (info == null) return false;
+
+            return info.DamageProportions.Any(x => x.DamageType != DamageType.Physical) ||
+                   (info.ItemTraits != null && info.ItemTraits.Count > 0);
         }
 
         /// <summary>

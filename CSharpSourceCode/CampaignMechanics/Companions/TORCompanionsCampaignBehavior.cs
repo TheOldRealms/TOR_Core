@@ -27,6 +27,7 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         //cache of companions to avoid going through AliveHeroes; there's 119 towns with dawi+greenskin update => minimum of 119 companions at 1 per town
         private HashSet<Hero> _spawnedCompanions = [];
+        private List<SkillObject> _cachedSkillObjects = [];
 
         public override void RegisterEvents()
         {
@@ -51,6 +52,7 @@ namespace TOR_Core.CampaignMechanics.Companions
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
             CacheCompanionTemplates();
+            _cachedSkillObjects = MBObjectManager.Instance.GetObjectTypeList<SkillObject>().ToList();
 
             //fill cache when wanderers will already exist
             if (Campaign.Current.CampaignGameLoadingType == Campaign.GameLoadingType.SavedCampaign)
@@ -214,18 +216,32 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void AddDailySkillXpToCompanions(Clan clan)
         {
+            if (_cachedSkillObjects.Count == 0)
+            {
+                return;
+            }
+
+            var amount = TORPerks.Spellcraft.StoryTeller.PrimaryBonus;
+            var skillCount = _cachedSkillObjects.Count;
+
             foreach (Hero clanmember in clan.AliveLords)
             {
-                if (clanmember.IsPartyLeader && clanmember.GetPerkValue(TORPerks.Spellcraft.StoryTeller))//If prisoner, their mobile party would be null. CompanionsInParty iterates through the whole clan's companion cache and compares the parties for the source hero and the companion. For a clan with no companions it's possibly a faster check than looking at the perk value, but as the companion count grows there's more to check for each noble in the clan.
+                if (!clanmember.IsPartyLeader)
                 {
-                    //Sly : CompanionsInParty in party is a yield return so we don't actually need to check for more than 0 companions; we can just execute and there will be no iterations if nothing is found.
-                    foreach(var companion in clanmember.CompanionsInParty)
-                    {
-                        var skills = MBObjectManager.Instance.GetObjectTypeList<SkillObject>();
-                        var randomskill = skills.TakeRandom(1).FirstOrDefault();
-                        var amount = TORPerks.Spellcraft.StoryTeller.PrimaryBonus;
-                        companion.AddSkillXp(randomskill, amount);
-                    }
+                    continue;
+                }
+
+                if (!clanmember.GetPerkValue(TORPerks.Spellcraft.StoryTeller))
+                {
+                    continue;
+                }
+
+                foreach (var companion in clanmember.CompanionsInParty)
+                {
+                    var randomSkillIndex = MBRandom.RandomInt(skillCount);
+                    var randomSkill = _cachedSkillObjects[randomSkillIndex];
+
+                    companion.AddSkillXp(randomSkill, amount);
                 }
             }
         }
