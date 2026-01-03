@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.MountAndBlade;
@@ -315,7 +316,11 @@ namespace TOR_Core.CharacterDevelopment
 
         public static float WaywatcherCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
-            if (mask != AttackTypeMask.Ranged) return 0;
+            if (mask != AttackTypeMask.Ranged)
+            {
+                if(mask == AttackTypeMask.Melee && ! Hero.MainHero.HasCareerChoice("PathfinderKeystone"))
+                return 0;
+            }
             if (chargeType == ChargeType.NumberOfKills) return 0;
             if (collisionFlag == CareerHelper.ChargeCollisionFlag.HitShield) return 0;
             if (affectingAgent.Team == affectedAgent.Team) return 0;
@@ -337,11 +342,12 @@ namespace TOR_Core.CharacterDevelopment
                 explainedNumber.AddFactor(-0.95f);
             }
 
-            if (Hero.MainHero.HasCareerChoice("ProtectorOfTheWoodsKeystone"))
+            // Reduce charge by 10% for each keystone selected (excluding root)
+            var keystoneCount = Hero.MainHero.GetAllCareerChoices().Count(x => x.Contains("Keystone") && !x.Contains("Root"));
+            if (keystoneCount > 0)
             {
-                explainedNumber.AddFactor(0.25f);
+                explainedNumber.AddFactor(-0.10f * keystoneCount);
             }
-
 
             if (collisionFlag == CareerHelper.ChargeCollisionFlag.HeadShot && Hero.MainHero.HasCareerChoice("HawkeyedPassive2"))
             {

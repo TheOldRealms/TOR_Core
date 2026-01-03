@@ -4015,6 +4015,49 @@
         </LightColorRGB>
         <TriggeredEffect>place_fieldtrebuchet</TriggeredEffect>
     </AbilityTemplate>
+    <AbilityTemplate StringID="AnvilOfDoomSpawner"
+                     Name="{=anvil_of_doom_spawner_label_str}Place Anvil of Doom"
+                     SpriteName="placeartillery_icon"
+                     CoolDown="1"
+                     WindsOfMagicCost="0"
+                     BaseMisCastChance="0.0"
+                     Duration="1"
+                     Radius="2"
+                     AbilityType="ItemBound"
+                     AbilityEffectType="ArtilleryPlacement"
+                     BaseMovementSpeed="0"
+                     TickInterval="0.2"
+                     TriggerType="TickOnce"
+                     HasLight="false"
+                     LightIntensity="0"
+                     LightRadius="0"
+                     LightFlickeringMagnitude="0"
+                     LightFlickeringInterval="0"
+                     ShadowCastEnabled="false"
+                     ParticleEffectPrefab="none"
+                     ParticleEffectSizeModifier="1"
+                     SoundEffectToPlay="none"
+                     ShouldSoundLoopOverDuration="false"
+                     AbilityTargetType="GroundAtPosition"
+                     CastType="Instant"
+                     CastTime="0"
+                     AnimationActionName="act_release_heavy_thrown"
+                     Offset="10"
+                     CrosshairType="Pointer"
+                     MinDistance="1"
+                     MaxDistance="30"
+                     TargetCapturingRadius="2.5">
+        <LightColorRGB x="200"
+                       y="150"
+                       z="50"
+                       w="-1">
+            <AsVec2>
+                <x>200</x>
+                <y>150</y>
+            </AsVec2>
+        </LightColorRGB>
+        <TriggeredEffect>place_anvil_of_doom</TriggeredEffect>
+    </AbilityTemplate>
     <!-- Career Abilities -->
     <AbilityTemplate StringID="ShadowStep"
                      Name="{=shadowstep_label_str}Mist Form"
@@ -4766,6 +4809,53 @@
                           Derivative="1"
                           DisableDistance="2" />
     </AbilityTemplate>
+
+	<!-- Lethal Shot - Reworked Waywatcher Career Ability -->
+	<AbilityTemplate StringID="LethalShot"
+                     Name="{=lethal_shot_label_str}Lethal Shot"
+                     SpriteName="arrowofkurnous_icon"
+                     CoolDown="10"
+                     WindsOfMagicCost="0"
+                     BaseMisCastChance="0"
+                     Duration="20"
+                     Radius="0"
+                     AbilityType="CareerAbility"
+                     AbilityEffectType="Augment"
+                     BaseMovementSpeed="0"
+                     TickInterval="-1"
+                     TriggerType="TickOnce"
+                     HasLight="false"
+                     LightIntensity="0"
+                     LightRadius="0"
+                     LightFlickeringMagnitude="0"
+                     LightFlickeringInterval="0"
+                     ShadowCastEnabled="false"
+                     ParticleEffectPrefab=""
+                     ParticleEffectSizeModifier="0"
+                     SoundEffectToPlay=""
+                     ShouldSoundLoopOverDuration="false"
+                     CastType="Instant"
+                     CastTime="0"
+                     AnimationActionName=""
+                     Offset="0"
+                     AbilityTargetType="Self"
+                     TargetCapturingRadius="0"
+                     MaxDistance="0"
+                     CrosshairType="Self"
+                     SpellTier="2"
+                     TooltipDescription="{=lethal_shot_description_str}Imbue your bow with deadly power. Your next arrows deal increased damage with effects based on your chosen path.">
+        <LightColorRGB x="52"
+                       y="235"
+                       z="88"
+                       w="-1">
+            <AsVec2>
+                <x>52</x>
+                <y>235</y>
+                <z>88</z>
+            </AsVec2>
+        </LightColorRGB>
+    </AbilityTemplate>
+
     <AbilityTemplate StringID="WrathOfTheWood"
                      Name="{=wrath_of_the_wood_label_str}Wrath of the Wood"
                      SpriteName="wraith_of_the_forest_icon"

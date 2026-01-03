@@ -202,18 +202,6 @@ namespace TOR_Core.HarmonyPatches
 
             if (attacker.IsMainAgent)
             {
-                if (attackTypeMask == AttackTypeMask.Ranged && Campaign.Current != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
-                {
-                    if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
-                    {
-                        CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
-                        if (careerPerkBehavior != null)
-                        {
-                            damageProportions[(int)DamageType.Magical] += 0.01f * careerPerkBehavior.CareerMissionVariables[0];
-                        }
-                    }
-                }
-
                 if (attackTypeMask == AttackTypeMask.Melee && Campaign.Current != null && Hero.MainHero.HasCareer(TORCareers.Slayer))
                 {
                     CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
@@ -253,7 +241,8 @@ namespace TOR_Core.HarmonyPatches
             }
             else if (Campaign.Current != null && victim.IsMainAgent && attackTypeMask == AttackTypeMask.Ranged && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
-                if (Hero.MainHero.HasCareerChoice("PathfinderPassive4"))
+                // HailOfArrowsPassive3: Ranged damage is shrugged off
+                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
                 {
                     b.BlowFlag |= BlowFlags.ShrugOff;
                 }

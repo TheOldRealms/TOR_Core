@@ -232,6 +232,7 @@ namespace TOR_Core.Models
             int minotaurCount = 0;
             int dryadCount = 0;
             int elfCount = 0;
+            int goblinCount = 0;
 
             foreach (var element in party.MemberRoster.GetTroopRoster())
             {
@@ -252,6 +253,10 @@ namespace TOR_Core.Models
                 else if (element.Character.Culture?.StringId == TORConstants.Cultures.ASRAI && element.Character.IsElf())
                 {
                     elfCount += element.Number;
+                }
+                else if (element.Character.IsGoblin())
+                {
+                    goblinCount += element.Number;
                 }
             }
 
@@ -289,6 +294,12 @@ namespace TOR_Core.Models
                 {
                     number.Add(-1 * dryadCount, new TextObject("Dryad weight"));
                 }
+            }
+
+            // Goblins count as 0.5 units (half a slot each)
+            if (goblinCount > 0)
+            {
+                number.Add(0.5f * goblinCount, new TextObject("Goblin weight"));
             }
         }
     }

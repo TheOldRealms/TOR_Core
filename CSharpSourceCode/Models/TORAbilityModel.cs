@@ -180,6 +180,12 @@ namespace TOR_Core.Models
                             var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
                             explainedNumber.AddFactor(0.005f * smithingValue);
                         }
+
+                        if (playerHero.HasCareerChoice("LegacyOfGrungniPassive4"))
+                        {
+                            var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
+                            explainedNumber.AddFactor(0.005f * smithingValue);
+                        }
                     }
                 }
 
@@ -276,6 +282,18 @@ namespace TOR_Core.Models
                                 }
                             }
                         }
+                    }
+                }
+
+                if (Hero.MainHero.HasCareer(TORCareers.Runelord))
+                {
+                    if (Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive4"))
+                    {
+                        // 10% base duration increase
+                        explainedNumber.AddFactor(0.1f);
+                        // +0.1% per faith point (30% at 300 faith)
+                        var faithValue = Hero.MainHero.GetSkillValue(TORSkills.Faith);
+                        explainedNumber.AddFactor(0.001f * faithValue);
                     }
                 }
             }

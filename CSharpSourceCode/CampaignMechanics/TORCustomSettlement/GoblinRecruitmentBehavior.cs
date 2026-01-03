@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements.Locations;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -28,12 +29,57 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
     private CampaignTime _startWaitTime;
     private float _progress;
     private Dictionary<string, CampaignTime> _goblinRecruitmentCooldowns = new();
+    private int _pendingGoblins = 0;
 
     public override void RegisterEvents()
     {
         CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionStart);
         CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, AfterSessionLaunched);
+        CampaignEvents.OnUnitRecruitedEvent.AddNonSerializedListener(this, OnOrcRecruitedAddGoblins);
+        CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, AddExtraGoblinsForOrcRecruitment);
         // CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnBattleEnded);
+    }
+
+    private void AddExtraGoblinsForOrcRecruitment(MobileParty party, Settlement settlement)
+    {
+        if (party != MobileParty.MainParty) return;
+        if (_pendingGoblins <= 0) return;
+
+        var goblinCharacter = MBObjectManager.Instance.GetObject<CharacterObject>(_goblinTroopId);
+        if (goblinCharacter == null)
+        {
+            _pendingGoblins = 0;
+            return;
+        }
+
+        int availableSpace = party.Party.PartySizeLimit - party.Party.NumberOfAllMembers;
+        if (availableSpace <= 0)
+        {
+            _pendingGoblins = 0;
+            return;
+        }
+
+        int goblinsToAdd = Math.Min(_pendingGoblins, availableSpace);
+        party.AddElementToMemberRoster(goblinCharacter, goblinsToAdd);
+
+        var message = goblinsToAdd == 1
+            ? $"{goblinsToAdd} goblin joined by recruiting da big boys!"
+            : $"{goblinsToAdd} goblins joined by recruiting da big boys!";
+        InformationManager.DisplayMessage(new InformationMessage(message, Colors.Green));
+
+        _pendingGoblins = 0;
+    }
+
+    // Very stupid TW Event: it fires for each troop card individually (amount is always 1 ). the check for left size doesnt apply correctly and a single message display is not possible.
+    private void OnOrcRecruitedAddGoblins(CharacterObject troop, int amount)
+    {
+        if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN) return;
+        if (!troop.IsOrc()) return;
+
+        for (var i = 0; i < amount; i++)
+        {
+            _pendingGoblins += MBRandom.RandomInt(0, 3); // 0-2 goblins per orc
+        }
     }
 
 
@@ -69,6 +115,10 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
             GameTexts.FindText("tor_goblin_recruitment_start").ToString(),
             args =>
             {
+                // Hide entirely for non-greenskin players
+                if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN)
+                    return false;
+
                 args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
                 bool canRecruit = CanStartGoblinRecruitment();
                 bool shouldBeDisabled = ShouldBeDisabled(canRecruit, out TextObject disableReason);

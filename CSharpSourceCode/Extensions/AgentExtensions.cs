@@ -151,7 +151,7 @@ namespace TOR_Core.Extensions
         }
         public static bool HasPartyAnvilOfDoom(this Agent agent)
         {
-            var party = agent.GetOriginMobileParty();
+            var party = agent.GetHero()?.PartyBelongedTo;
             if (party == null) return false;
 
             return party.HasAnvilOfDoom();
@@ -479,7 +479,7 @@ namespace TOR_Core.Extensions
             if (comp != null)
             {
                 comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated, stack);
-                TORCommon.Say("ApplyStatusEffect: " + effectId);
+                //TORCommon.Say("ApplyStatusEffect: " + effectId);
             }
         }
 

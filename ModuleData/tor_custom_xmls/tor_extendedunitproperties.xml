@@ -222,7 +222,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_reiksguard_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Knightly</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -256,7 +258,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_reiksguard_preceptor">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Knightly</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -266,7 +270,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_innercircle_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Knightly</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -276,7 +282,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_demigryph_knight">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Knightly</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -308,7 +316,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_reiksguard_preceptor_innercircle">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Knightly</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -318,7 +328,9 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_demigryph_innercircle">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>Knightly</string>
+    </Attributes>
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -732,7 +744,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Chivalry" UpkeepCost="1" UpgradeCost="100" />
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="300" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_grail_knight">
     <Abilities />
@@ -747,7 +759,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
       <DamageProportionTuple DamageType="Holy" Percent="0.40" />
     </DamageProportions>
-    <ResourceCost ResourceType="Chivalry" UpkeepCost="6" UpgradeCost="400" />
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="1200" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_caravan_guard">
     <Abilities />
@@ -1685,6 +1697,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="2" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_boar_boy">
     <Abilities />
@@ -1708,7 +1721,7 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
-    <ResourceCost ResourceType="Teef" UpkeepCost="1" UpgradeCost="3" />
+    <ResourceCost ResourceType="Teef" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_gs_orc_arrer_boy">
     <Abilities />
@@ -3645,9 +3658,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_blazing_sun_initiate">
     <Abilities />
-    <Attributes>
-      <string>Knightly</string>
-    </Attributes>
+    <Attributes />
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
@@ -4429,7 +4440,7 @@
       <DamageProportionTuple DamageType="Physical" Percent="0.80" />
       <DamageProportionTuple DamageType="Magical" Percent="0.20" />
     </DamageProportions>
-    <ResourceCost ResourceType="Chivalry" UpkeepCost="1" UpgradeCost="150" />
+    <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="500" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_ror_loec_trickster">
     <Abilities />
@@ -9576,20 +9587,6 @@
       <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_shaman_lord">
-    <Abilities>
-      <string>GazeUvMork</string>
-      <string>ArdAsNails</string>
-      <string>BrainBursta</string>
-      <string>DaHandUvGork</string>
-      <string>EreWeGo</string>
-      <string>FootUvGork</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-    </Attributes>
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_empire_0">
     <Abilities>
       <string>Dart</string>
@@ -10272,9 +10269,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_spelltrainer_greenskins_0">
     <Abilities />
-    <Attributes>
-      <string>SkillTrainer</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eonir_druchii_envoy_0">
     <Abilities />

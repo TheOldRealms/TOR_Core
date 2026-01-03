@@ -84,9 +84,9 @@ namespace TOR_Core.Missions
         }
 
         [MissionMethod]
-        public static Mission OpenDuelMission(Action<bool> onMissionEnd, Hero duelHero = null)
+        public static Mission OpenDuelMission(Action<bool> onMissionEnd, Hero duelHero = null, string scene = "TOR_duel_001")
         {
-            return MissionState.OpenNew("InkDuelFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord("TOR_duel_001", "", false, DecalAtlasGroup.All), (Mission mission) => new MissionBehavior[]
+            return MissionState.OpenNew("InkDuelFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) => new MissionBehavior[]
             {
                 new MissionOptionsComponent(),
                 new CampaignMissionComponent(),

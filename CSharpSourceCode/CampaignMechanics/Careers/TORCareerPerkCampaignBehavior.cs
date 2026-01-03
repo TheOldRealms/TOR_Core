@@ -270,7 +270,7 @@ namespace TOR_Core.CampaignMechanics
             if (!mainParty.LeaderHero.HasAnyCareer()) return;
             var choices = mainParty.LeaderHero.GetAllCareerChoices();
 
-            if (choices.Contains("SurvivalistPassive4") || choices.Contains("ForestStalkerPassive1")) LaunchHuntingEvent(mainParty);
+            if (choices.Contains("SurvivalistPassive4") || choices.Contains("PathfinderPassive4")) LaunchHuntingEvent(mainParty);
 
             if (choices.Contains("PeerlessWarriorPassive4"))
             {
