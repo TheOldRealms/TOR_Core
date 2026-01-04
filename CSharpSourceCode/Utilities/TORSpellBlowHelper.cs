@@ -1,7 +1,5 @@
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.BattleMechanics;
-using TOR_Core.Extensions.ExtendedInfoSystem;
 
 namespace TOR_Core.Utilities
 {
@@ -42,34 +40,6 @@ namespace TOR_Core.Utilities
         public static bool IsSpellBlow(KillingBlow b)
         {
             return b.AttackType == AgentAttackType.Kick && b.WeaponItemKind == -1 && b.VictimBodyPart == BoneBodyPartType.Chest;
-        }
-
-        /// <summary>
-        /// Determines the attack type mask from a Blow.
-        /// </summary>
-        public static AttackTypeMask DetermineMask(Blow blow)
-        {
-            if (IsSpellBlow(blow)) return AttackTypeMask.Spell;
-            if (blow.IsMissile)
-            {
-                return AttackTypeMask.Ranged;
-            }
-
-            return AttackTypeMask.Melee;
-        }
-
-        /// <summary>
-        /// Determines the attack type mask from a KillingBlow.
-        /// </summary>
-        public static AttackTypeMask DetermineMask(KillingBlow blow)
-        {
-            if (IsSpellBlow(blow)) return AttackTypeMask.Spell;
-            if (blow.IsMissile)
-            {
-                return AttackTypeMask.Ranged;
-            }
-
-            return AttackTypeMask.Melee;
         }
     }
 }

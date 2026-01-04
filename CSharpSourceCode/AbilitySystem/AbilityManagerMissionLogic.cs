@@ -300,8 +300,11 @@ namespace TOR_Core.AbilitySystem
                 if (model != null && hero != null)
                 {
                     var skill = model.GetRelevantSkillForAbility(ability.Template);
-                    var amount = model.GetSkillXpForCastingAbility(ability.Template);
-                    hero.AddSkillXp(skill, amount);
+                    if (skill != null) // Career abilities return null - no skill XP for them
+                    {
+                        var amount = model.GetSkillXpForCastingAbility(ability.Template);
+                        hero.AddSkillXp(skill, amount);
+                    }
                 }
             }
         }
@@ -603,7 +606,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
-                var attackMask = TORSpellBlowHelper.DetermineMask(blow);
+                var attackMask = TORDamageHelper.DetermineMask(blow);
                 CareerHelper.ApplyCareerAbilityCharge(1, ChargeType.NumberOfKills, attackMask, affectorAgent, affectedAgent);
             }
         }
@@ -612,7 +615,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
-                var attackMask = TORSpellBlowHelper.DetermineMask(blow);
+                var attackMask = TORDamageHelper.DetermineMask(blow);
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageDone, attackMask, affectorAgent, affectedAgent, attackCollisionData);
 
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageTaken, attackMask, affectorAgent, affectedAgent, attackCollisionData);
@@ -833,10 +836,7 @@ namespace TOR_Core.AbilitySystem
             _activeSpellSessions[castId] = session;
             return castId;
         }
-
-        /// <summary>
-        /// Books damage to an active spell session.
-        /// </summary>
+        
         public void BookSpellDamage(int castId, Agent victim, int damageDealt, int damageAbsorbed, DamageType damageType)
         {
             if (_activeSpellSessions.TryGetValue(castId, out var session))
@@ -844,10 +844,7 @@ namespace TOR_Core.AbilitySystem
                 session.BookDamage(victim, damageDealt, damageAbsorbed, damageType);
             }
         }
-
-        /// <summary>
-        /// Books healing to an active spell session.
-        /// </summary>
+        
         public void BookSpellHealing(int castId, Agent target, int healingDone)
         {
             if (_activeSpellSessions.TryGetValue(castId, out var session))
@@ -855,11 +852,7 @@ namespace TOR_Core.AbilitySystem
                 session.BookHealing(target, healingDone);
             }
         }
-
-        /// <summary>
-        /// Books a kill to an active or pending spell session.
-        /// Checks both active and pending sessions since DOT kills can occur after ability ends.
-        /// </summary>
+        
         public void BookSpellKill(int castId, Agent victim)
         {
             if (_activeSpellSessions.TryGetValue(castId, out var session))
@@ -1007,16 +1000,19 @@ namespace TOR_Core.AbilitySystem
                 var model = Campaign.Current.Models.GetAbilityModel();
                 if (model != null)
                 {
-                    var xpAmount = model.CalculateSpellSessionXp(session);
-                    if (xpAmount > 0)
+                    var skill = model.GetRelevantSkillForAbility(session.AbilityTemplate);
+                    if (skill != null) // Career abilities return null - no skill XP for them
                     {
-                        var skill = model.GetRelevantSkillForAbility(session.AbilityTemplate);
-                        session.CasterHero.AddSkillXp(skill, xpAmount);
-
-                        // DarkVisionPassive3 - also grants Roguery XP
-                        if (session.CasterHero.HasAnyCareer() && session.CasterHero.HasCareerChoice("DarkVisionPassive3"))
+                        var xpAmount = model.CalculateSpellSessionXp(session);
+                        if (xpAmount > 0)
                         {
-                            session.CasterHero.AddSkillXp(DefaultSkills.Roguery, xpAmount);
+                            session.CasterHero.AddSkillXp(skill, xpAmount);
+
+                            // DarkVisionPassive3 - also grants Roguery XP
+                            if (session.CasterHero.HasAnyCareer() && session.CasterHero.HasCareerChoice("DarkVisionPassive3"))
+                            {
+                                session.CasterHero.AddSkillXp(DefaultSkills.Roguery, xpAmount);
+                            }
                         }
                     }
                 }

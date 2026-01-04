@@ -4,6 +4,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.DamageSystem
 {
@@ -109,6 +110,34 @@ namespace TOR_Core.BattleMechanics.DamageSystem
             damageAmplifications[damageTypeIndex] -= resistancePercentages[damageTypeIndex];
 
             return baseDamage * (1 + damageAmplifications[damageTypeIndex]);
+        }
+
+        /// <summary>
+        /// Determines the attack type mask from a Blow.
+        /// </summary>
+        public static AttackTypeMask DetermineMask(Blow blow)
+        {
+            if (TORSpellBlowHelper.IsSpellBlow(blow)) return AttackTypeMask.Spell;
+            if (blow.IsMissile)
+            {
+                return AttackTypeMask.Ranged;
+            }
+
+            return AttackTypeMask.Melee;
+        }
+
+        /// <summary>
+        /// Determines the attack type mask from a KillingBlow.
+        /// </summary>
+        public static AttackTypeMask DetermineMask(KillingBlow blow)
+        {
+            if (TORSpellBlowHelper.IsSpellBlow(blow)) return AttackTypeMask.Spell;
+            if (blow.IsMissile)
+            {
+                return AttackTypeMask.Ranged;
+            }
+
+            return AttackTypeMask.Melee;
         }
     }
 }

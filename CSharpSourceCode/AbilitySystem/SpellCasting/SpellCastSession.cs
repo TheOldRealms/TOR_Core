@@ -57,15 +57,22 @@ namespace TOR_Core.AbilitySystem.SpellCasting
 
         /// <summary>
         /// Books damage dealt to an agent in this session.
+        /// Friendly fire damage is tracked but not counted towards XP.
         /// </summary>
         public void BookDamage(Agent victim, int damageDealt, int damageAbsorbed, DamageType damageType)
         {
-            if (victim != null)
+            if (victim == null) return;
+
+            bool isFriendlyFire = Caster != null && victim.Team == Caster.Team;
+
+            _agentsDamaged.Add(victim.Index);
+
+            // Only count damage towards XP if it's not friendly fire
+            if (!isFriendlyFire)
             {
-                _agentsDamaged.Add(victim.Index);
+                TotalDamageDealt += damageDealt;
             }
 
-            TotalDamageDealt += damageDealt;
             TotalDamageAbsorbed += damageAbsorbed;
             PrimaryDamageType = damageType;
         }
@@ -85,10 +92,16 @@ namespace TOR_Core.AbilitySystem.SpellCasting
 
         /// <summary>
         /// Books a kill in this session.
+        /// Friendly fire kills are not counted.
         /// </summary>
         public void BookKill(Agent victim)
         {
-            if (victim != null)
+            if (victim == null) return;
+
+            bool isFriendlyFire = Caster != null && victim.Team == Caster.Team;
+
+            // Only count kills if not friendly fire
+            if (!isFriendlyFire)
             {
                 _agentsKilled.Add(victim.Index);
             }

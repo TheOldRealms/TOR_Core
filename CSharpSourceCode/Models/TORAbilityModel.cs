@@ -39,7 +39,8 @@ namespace TOR_Core.Models
             {
                 AbilityType.Spell => TORSkills.Spellcraft,
                 AbilityType.Prayer => TORSkills.Faith,
-                _ => TORSkills.Spellcraft,
+                AbilityType.CareerAbility => null, // Career abilities don't grant skill XP
+                _ => null,
             };
         }
 

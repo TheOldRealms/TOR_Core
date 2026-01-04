@@ -437,18 +437,14 @@ namespace TOR_Core.Models
             var baseShrugOff = base.DecideAgentShrugOffBlow(victimAgent, collisionData, blow);
             if (baseShrugOff)
                 return true;
-
-            // TOR-specific shrug off logic
-
-            // Unstoppable attribute (e.g., large monsters, bosses)
+            
             if (victimAgent.HasAttribute("Unstoppable"))
                 return true;
 
             // Agent's own damage threshold check
             if (victimAgent.IsDamageShruggedOff(blow.InflictedDamage))
                 return true;
-
-            // Waywatcher PathfinderPassive4 - player shrugs off ranged attacks
+            
             if (collisionData.IsMissile && victimAgent.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
             {
                 if (Hero.MainHero.HasCareerChoice("PathfinderPassive4"))
