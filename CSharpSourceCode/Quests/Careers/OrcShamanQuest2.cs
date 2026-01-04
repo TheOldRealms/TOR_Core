@@ -181,7 +181,7 @@ namespace TOR_Core.Quests.Careers
             UpdateQuest();
         }
 
-        public override bool IsSpecialQuest => true;
+        public override string SpecialQuestType => "OrcShamanQuest2";
 
         private void UpdateQuest()
         {

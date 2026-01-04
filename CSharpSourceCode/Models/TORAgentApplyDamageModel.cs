@@ -37,39 +37,26 @@ namespace TOR_Core.Models
                 {
                     var choices = Hero.MainHero.GetAllCareerChoices();
 
-                    if (choices.Contains("EyeOfTheHunterPassive2"))
-                    {
-                        missileWeaponFlags |= WeaponFlags.MultiplePenetration;
-                    }
-
-                    if (choices.Contains("StarfireEssencePassive3"))
+                    // StarfireEssencePassive4: Arrows can penetrate shields
+                    if (choices.Contains("StarfireEssencePassive4"))
                     {
                         missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
-                    }
-
-                    if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Javelin && choices.Contains("WardenOfTalsynPassive4"))
-                    {
-                        missileWeaponFlags |= WeaponFlags.MultiplePenetration;
-                    }
-
-
-                    if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && choices.Contains("StarfireEssencePassive4"))
-                    {
-                        CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
-                        if (careerPerkBehavior != null)
-                        {
-                            var value = careerPerkBehavior.CareerMissionVariables[2] *= 0.05f;
-                            if (MBRandom.RandomFloat < value)
-                            {
-                                missileWeaponFlags |= WeaponFlags.AffectsAreaBig;
-                            }
-                        }
                     }
                 }
 
                 if (attackerAgent.HasAttribute("ShieldPenetration"))
                 {
                     missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                }
+
+                // Check for ShieldPenetration trait on wielded weapon
+                if (!attackerAgent.WieldedWeapon.IsEmpty && attackerAgent.WieldedWeapon.Item != null)
+                {
+                    var traits = attackerAgent.WieldedWeapon.Item.GetTraits(attackerAgent);
+                    if (traits.Any(t => t.StatsTuple?.StatType == ItemTraitStatType.ShieldPenetration))
+                    {
+                        missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
+                    }
                 }
             }
         }
@@ -194,6 +181,46 @@ namespace TOR_Core.Models
         }
         */
 
+
+        public override bool CanWeaponDealSneakAttack(in AttackInformation attackInformation, WeaponComponentData weapon)
+        {
+            var value = base.CanWeaponDealSneakAttack(in attackInformation, weapon);
+
+            // ForestStalkerPassive1: Bows and throwing weapons can perform stealth attacks
+            var attacker = attackInformation.AttackerAgent;
+
+            // Check vanilla sneak attack conditions (excluding weapon type check)
+            // Victim must be human, not the player, and either:
+            // 1. Not alarmed and can get alarmed, OR
+            // 2. Not fully alarmed and attacker is behind them
+            if (!attackInformation.IsVictimAgentHuman || attackInformation.IsVictimPlayer)
+                return value;
+
+            bool isVictimUnaware =
+                ((attackInformation.VictimAgentAIStateFlags & Agent.AIStateFlag.Alarmed) == Agent.AIStateFlag.None
+                 && attackInformation.VictimAgentFlags.HasAnyFlag(AgentFlag.CanGetAlarmed))
+                ||
+                (!attackInformation.VictimAgentAIStateFlags.HasAllFlags(Agent.AIStateFlag.Alarmed)
+                 && !attackInformation.IsAttackerAgentNull
+                 && Vec2.DotProduct((attackInformation.AttackerAgentPosition - attackInformation.VictimAgentPosition).AsVec2.Normalized(),
+                                    attackInformation.VictimAgentMovementDirection) < 0.174f);
+
+            if (!isVictimUnaware)
+                return value;
+
+            if (attacker == Agent.Main && Hero.MainHero.HasCareerChoice("ForestStalkerPassive1") && weapon != null)
+            {
+                if (weapon.WeaponClass == WeaponClass.Arrow ||
+                    weapon.WeaponClass == WeaponClass.Javelin || weapon.WeaponClass == WeaponClass.ThrowingAxe ||
+                    weapon.WeaponClass == WeaponClass.ThrowingKnife)
+                {
+                    value = true;
+                }
+            }
+
+            return value;
+        }
+
         public override MeleeCollisionReaction DecidePassiveAttackCollisionReaction(
             Agent attacker,
             Agent defender,
@@ -257,6 +284,42 @@ namespace TOR_Core.Models
                 }
             }
             return result.ResultNumber;
+        }
+
+        /// <summary>
+        /// Calculates damage for custom missiles (e.g., scatter shot, career ability projectiles).
+        /// Called from Harmony prefix patches on AddMissileAux/AddMissileSingleUsageAux.
+        /// </summary>
+        public static float CalculateCustomMissileDamage(Agent shooterAgent)
+        {
+            if (shooterAgent == null || shooterAgent.WieldedWeapon.IsEmpty)
+                return 0f;
+            
+
+            var weapon = shooterAgent.WieldedWeapon;
+            if (weapon.CurrentUsageItem == null || weapon.Item == null)
+                return 0f;
+
+            // Get base weapon damage
+            float baseDamage = weapon.GetModifiedThrustDamageForCurrentUsage();
+
+            if (weapon.Item.StringId.Contains("drake"))
+            {
+                baseDamage *= 0.1f;
+                return baseDamage;
+            }
+            
+            // Check for damage modifiers from traits
+            var traits = weapon.Item.GetTraits(shooterAgent);
+
+            // Scatter shot: reduce damage per projectile
+            var scatterTrait = traits.FirstOrDefault(t => t.StatsTuple?.StatType == ItemTraitStatType.ScatterShot);
+            if (scatterTrait != null)
+            {
+                baseDamage *= 0.4f; // Each scatter projectile deals 40% damage
+            }
+
+            return baseDamage;
         }
 
         public override bool DecideMountRearedByBlow(Agent attackerAgent, Agent victimAgent, in AttackCollisionData collisionData, WeaponComponentData attackerWeapon, in Blow blow)
@@ -478,7 +541,8 @@ namespace TOR_Core.Models
 
                         if (ammoItem != null)
                             rangeItemTraits.AddRange(ammoItem.GetTraits());
-                        rangeItemTraits.AddRange(weapon.GetTraits());
+                        rangeItemTraits.AddRange(weapon.GetTraits(agent));
+
                         foreach (var itemTrait in rangeItemTraits)
                         {
                             var property = itemTrait.AmplifierTuple;
@@ -680,19 +744,19 @@ namespace TOR_Core.Models
             if (agentLeader != null && agentLeader.Culture.StringId == TORConstants.Cultures.GREENSKIN &&
                 (mask == PropertyMask.Attack || mask == PropertyMask.All))
             {
-                if (agentLeader.HasAttribute("Wargh1"))
+                if (agentLeader.HasAttribute("Waaagh0"))
                 {
                     damageBonuses[(int)DamageType.Physical] -= 0.2f;
                 }
-                else if (agentLeader.HasAttribute("Wargh2"))
+                else if (agentLeader.HasAttribute("Waaagh1"))
                 {
                     damageBonuses[(int)DamageType.Physical] -= 0.1f;
                 }
-                else if (agentLeader.HasAttribute("Wargh3"))
+                else if (agentLeader.HasAttribute("Waaagh2"))
                 {
                     damageBonuses[(int)DamageType.Physical] += 0.1f;
                 }
-                else if (agentLeader.HasAttribute("Wargh4"))
+                else if (agentLeader.HasAttribute("Waaagh3"))
                 {
                     damageBonuses[(int)DamageType.Physical] += 0.2f;
                 }

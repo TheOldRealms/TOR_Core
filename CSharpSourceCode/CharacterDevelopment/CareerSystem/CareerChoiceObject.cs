@@ -300,6 +300,9 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         InventoryCapacity,
         BonusDamageShield,
         BattleRenownGain,    //applied as a factor
-        MoraleDamageToEnemyOnKill  // Extra enemy morale loss when filtered unit kills, percentage based
+        MoraleDamageToEnemyOnKill,  // Extra enemy morale loss when filtered unit kills, percentage based
+        EnchantmentCostReduction,   //Enchantment ingredient cost reduction as Percentage
+        UnitPartyWeight,             //Reduces party weight of matching units (0.2 = 20% reduction). Stacks additively with other perks.
+        StealthBonus                 //Increases equipment stealth bonus for sneak attack detection
     }
 }

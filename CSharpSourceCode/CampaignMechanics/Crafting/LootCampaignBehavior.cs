@@ -183,8 +183,22 @@ public class LootCampaignBehavior : CampaignBehaviorBase
                     }
                     else
                     {
-                        if (item.IsShield()) traits = traits.Where(x => x.ValidItemType == ItemTraitItemType.Shield).ToList();
-                        traits = traits.Where(x => x.ValidItemType == ItemTraitItemType.Weapon).ToList();
+                        var validTypes = new HashSet<ItemTraitItemType> {ItemTraitItemType.Weapon};
+                        if (item.HasWeaponComponent && item.PrimaryWeapon != null)
+                        {
+                            var primaryWeapon = item.PrimaryWeapon;
+                            if (primaryWeapon.IsMeleeWeapon)
+                                validTypes.Add(ItemTraitItemType.Melee);
+                            if (primaryWeapon.IsRangedWeapon)
+                                validTypes.Add(ItemTraitItemType.Ranged);
+                            if (primaryWeapon.IsRangedWeapon && primaryWeapon.IsConsumable) //throwables
+                                validTypes.Add(ItemTraitItemType.Thrown);
+                            if (primaryWeapon.IsAmmo)
+                                validTypes.Add(ItemTraitItemType.Ammo);
+                            if (primaryWeapon.IsShield)
+                                validTypes.Add(ItemTraitItemType.Shield);
+                        }
+                        traits = traits.Where(x => validTypes.Contains(x.ValidItemType)).ToList();
                     }
                     traits = traits.Where(x => !traitList.Contains(x.ItemTraitStringId)).ToList();
                     var trait = traits.TakeRandom(1).FirstOrDefault(); //Sly : could do TakeRandom(traitCount) and skip iteration

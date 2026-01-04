@@ -20,10 +20,10 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 
     private readonly string _secularSealIcon = "reiksguard_icon";
     private readonly string _sigmarSealIcon = "sigmar_comet_icon";
-    private readonly string _taalSealIcon = "ghur";
+    private readonly string _taalSealIcon = "taal_icon";
     private readonly string _ulricSealIcon = "whitewolf_icon";
     private readonly string _shallyaSealIcon = "shallya_dove_icon";
-    private readonly string _manaanSealIcon = "azyr";
+    private readonly string _manaanSealIcon = "manann_icon";
     private readonly string _myrmidiaSealIcon = "blazingsun_icon";
     private CharacterObject _setCharacter;
 
@@ -234,6 +234,9 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
     public override bool ShouldButtonBeVisible(CharacterObject characterObject, bool isPrisoner = false)
     {
         if (characterObject.Race != 0) return false;
+        
+        if (characterObject.IsRanged) return false;
+
 
         if (characterObject.IsKnightUnit() && characterObject.Culture.StringId != TORConstants.Cultures.BRETONNIA) return true;
 
@@ -247,7 +250,7 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
 
     public override bool ShouldButtonBeActive(CharacterObject characterObject, out TextObject displayText, bool isPrisoner = false)
     {
-        displayText = TORTextHelper.GetTextObject("tor_purity_seal_add_text", "Add a Purity Seal to this knight.");
+        displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "default", "Add a Purity Seal to this knight.");
 
         var currentSeals = GetCurrentActiveSeals(characterObject);
 
@@ -268,53 +271,52 @@ public class KnightOldWorldCareerButtonBehavior : CareerButtonBehaviorBase
         var playerReligion = Hero.MainHero.GetDominantReligion();
         var isDevout = playerReligion != null && Hero.MainHero.GetDevotionLevelForReligion(playerReligion) >= DevotionLevel.Fanatic;
 
-        if (characterObject.IsReligiousEliteUnit())
+        if (characterObject.IsKnightUnit() && characterObject.Tier >= 5 && !characterObject.IsRanged)
         {
-            var troopReligion = characterObject.GetReligionForReligiousEliteUnit();
+            if (characterObject.IsReligiousEliteUnit()) //templar knight case
+            {
+                var troopReligion = characterObject.GetReligionForReligiousEliteUnit();
 
-            if (isDevout)
-            {
-                // Player is religious enough for templar seals - must match troop's religion
-                if (troopReligion != playerReligion)
+                if (isDevout)
                 {
-                    displayText = TORTextHelper.GetTextObject("tor_purity_seal_religion_mismatch_text", "Your religion does not match this unit's religion.");
-                    return false;
+                    // Player is religious enough for templar seals - must match troop's religion
+                    if (troopReligion.StringId != playerReligion.StringId)
+                    {
+                        displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "templar_religion_no_match", "Your religion does not match this unit's religion.");
+                        return false;
+                    }
+                    displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "templar_seal", "Apply Templar Seal.");
+                    return true;
+
                 }
-            }
-            else
-            {
-                // Player is not devout enough - can only apply secular seals to templar knights with perk
+
+                // Player is not devout enough - can  apply secular seals to templar knights with perk
                 if (!Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
                 {
-                    displayText = TORTextHelper.GetTextObject("tor_purity_seal_secular_on_religious_text", "You need the Secular Orders perk to apply seals to templar knights.");
+                    displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "secular_no_perk_for_templar", "You need the Secular Orders perk to apply seals to templar knights.");
                     return false;
                 }
+                displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "secular_seal", "Apply Secular Seal.");
+                return true;
             }
-        }
-        else
-        {
-            // Unit is a secular knight - devout players need perk to apply templar seals
-            if (isDevout && !Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
+
+            //secular knight case
+            if (isDevout)                 // Unit is a secular knight - devout players need perk to apply templar seals
             {
-                displayText = TORTextHelper.GetTextObject("tor_purity_seal_templar_on_secular_text", "You need the Secular Orders perk to apply templar seals to secular knights.");
+                if (Hero.MainHero.HasCareerChoice("SecularOrdersPassive4"))
+                {
+                    displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "templar_seal", "Apply Templar Seal.");
+                    return true;
+                }
+                displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "devout_no_perk_for_secular", "You need the Secular Orders perk to apply Templar seals to secular knights.");
                 return false;
             }
-        }
 
-        var devotion = Hero.MainHero.GetDominantReligion();
-
-        if (devotion != null || Hero.MainHero.HasCareerChoice("SecularOrdersPassive3"))
-        {
-            if (characterObject.Tier < MINIMUMLEVELFORSEAL)
-            {
-                GameTexts.SetVariable("MINIMUMSEALLEVEL", MINIMUMLEVELFORSEAL);
-                displayText = TORTextHelper.GetTextObject("tor_purity_seal_tier_too_low_text", "Unit tier is not high enough. Minimum tier is {MINIMUMSEALLEVEL}.");
-                return false;
-            }
+            displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_accept", "secular_seal", "Apply Secular Seal.");
             return true;
         }
 
-        displayText = TORTextHelper.GetTextObject("tor_purity_seal_not_religious_enough_text", "You are not religious enough to provide a seal.");
+        displayText = TORTextHelper.GetTextObject("tor_career_button_knightoldworld_seal_decline", "not_eligible", "Not eligible for seal.");
         return false;
     }
 }

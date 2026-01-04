@@ -108,6 +108,11 @@ namespace TOR_Core.Extensions
             return characterObject.GetAttributes().Contains("Undead");
         }
 
+        public static bool IsGhost(this CharacterObject characterObject)
+        {
+            return characterObject.StringId.Contains("spirit_host") || characterObject.StringId.Contains("wraith");
+        }
+
         public static bool IsVampire(this CharacterObject characterObject)
         {
             if (characterObject.IsHero)
@@ -121,7 +126,7 @@ namespace TOR_Core.Extensions
         {
             if (characterObject.IsHero)
             {
-                characterObject.HeroObject.IsDwarf();
+                return characterObject.HeroObject.IsDwarf();
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("dwarf");
         }
@@ -130,7 +135,7 @@ namespace TOR_Core.Extensions
         {
             if (characterObject.IsHero)
             {
-                characterObject.HeroObject.IsOrc();
+                return characterObject.HeroObject.IsOrc();
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("orc");
         }
@@ -138,9 +143,14 @@ namespace TOR_Core.Extensions
         {
             if (characterObject.IsHero)
             {
-                characterObject.HeroObject.IsGoblin();
+                return characterObject.HeroObject.IsGoblin();
             }
             return characterObject.Race == FaceGen.GetRaceOrDefault("goblin");
+        }
+
+        public static bool IsGreenskin(this CharacterObject characterObject)
+        {
+            return characterObject.IsOrc() || characterObject.IsGoblin();
         }
 
         public static bool IsTroll(this CharacterObject characterObject)
@@ -151,6 +161,11 @@ namespace TOR_Core.Extensions
         public static bool IsMinotaur(this CharacterObject characterObject)
         {
             return characterObject.Race == FaceGen.GetRaceOrDefault("medium_humanoid_monster") && characterObject.HasAttribute("Minotaur");
+        }
+
+        public static bool IsLargeTarget(this CharacterObject characterObject)
+        {
+            return characterObject.IsMounted || characterObject.IsTroll() || characterObject.IsMinotaur();
         }
 
         public static bool IsHuman(this CharacterObject characterObject)
@@ -197,7 +212,7 @@ namespace TOR_Core.Extensions
 
         public static bool IsKnightUnit(this CharacterObject characterObject)
         {
-            return !characterObject.IsHero && characterObject.IsMounted && IsEliteTroop(characterObject);
+            return !characterObject.IsHero && characterObject.IsMounted && (IsEliteTroop(characterObject) || characterObject.HasAttribute("Knightly"));
         }
 
         public static bool IsRunesmith(this CharacterObject characterObject)
@@ -283,6 +298,11 @@ namespace TOR_Core.Extensions
         public static bool IsUndead(this BasicCharacterObject characterObject)
         {
             return characterObject.GetAttributes().Contains("Undead");
+        }
+
+        public static bool IsGhost(this BasicCharacterObject characterObject)
+        {
+            return characterObject.StringId.Contains("spirit_host") || characterObject.StringId.Contains("wraith");
         }
 
         public static bool IsIronbreakerUnit(this BasicCharacterObject characterObject)

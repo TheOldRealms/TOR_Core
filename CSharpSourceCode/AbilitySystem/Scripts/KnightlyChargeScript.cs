@@ -13,6 +13,8 @@ namespace TOR_Core.AbilitySystem.Scripts
     public class KnightlyChargeScript : CareerAbilityScript
     {
         private bool propagateToCompanions;
+        private bool targetsSet = false;
+
         protected override void OnInit()
         {
             base.OnInit();
@@ -22,7 +24,8 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected override void OnBeforeTick(float dt)
         {
-            if (!propagateToCompanions) return;
+            // Only calculate targets once at the start of the ability
+            if (!propagateToCompanions || targetsSet) return;
 
             MBList<Agent> list = new MBList<Agent>();
 
@@ -49,7 +52,11 @@ namespace TOR_Core.AbilitySystem.Scripts
                 return;
             }
 
-            SetExplicitTargetAgents(list);
+            // Remove duplicates - agents can be within 5m of multiple heroes
+            var uniqueTargets = list.Distinct().ToMBList();
+
+            SetExplicitTargetAgents(uniqueTargets);
+            targetsSet = true; // Mark targets as set, don't recalculate
         }
     }
 }

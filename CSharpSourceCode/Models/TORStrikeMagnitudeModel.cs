@@ -37,6 +37,15 @@ namespace TOR_Core.Models
                     if (weaponComponent.IsRangedWeapon) attackMask = AttackTypeMask.Ranged;
 
                     CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultArmor, PassiveEffectType.ArmorPenetration, attackMask, true);
+
+                    // EyeOfTheHunterPassive4: Roguery skill reduces target armor by up to 60%
+                    if (attackMask == AttackTypeMask.Ranged && Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
+                    {
+                        var roguerySkill = attacker.HeroObject.GetSkillValue(DefaultSkills.Roguery);
+                        var maxSkill = 300f;
+                        var armorReduction = (roguerySkill / maxSkill) * 0.6f;
+                        resultArmor.AddFactor(-armorReduction);
+                    }
                 }
 
                 if (attacker.IsHero) // never remove this check. operations for item traits can be very heavy
@@ -91,16 +100,10 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (attackerCaptain.IsPlayerCharacter && Hero.MainHero.HasCareer(TORCareers.Spellsinger))
+                    // Tree spirits always ignore 80% of enemy armor
+                    if (attacker.IsTreeSpirit())
                     {
-                        if (Hero.MainHero.HasCareerChoice("HeartOfTheTreePassive4"))
-                        {
-                            if (attacker.IsTreeSpirit())
-                            {
-                                resultArmor.AddFactor(-0.8f);
-                            }
-                        }
-
+                        resultArmor.AddFactor(-0.8f);
                     }
 
                 }

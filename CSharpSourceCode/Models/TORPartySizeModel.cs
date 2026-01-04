@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CampaignMechanics.RaidingParties;
@@ -52,9 +53,11 @@ namespace TOR_Core.Models
             if (party == null || party.LeaderHero == null)
                 return num;
 
+            ApplyMonstrousUnitWeight(party, ref num);
+
             if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
             {
-                AddCareerPassivesForPartySize(Hero.MainHero, ref num);
+                AddCareerPassivesForPartySize(Hero.MainHero, party, ref num);
             }
 
             if (party.LeaderHero?.Culture?.StringId == TORConstants.Cultures.ASRAI)
@@ -77,7 +80,7 @@ namespace TOR_Core.Models
 
                     if (Hero.MainHero.HasAttribute("WEDurthuSymbol"))
                     {
-                        num.AddFactor(-0.25f, ForestHarmonyHelper.TreeSymbolText("WEDurthuSymbol"));
+                        num.AddFactor(-0.40f, ForestHarmonyHelper.TreeSymbolText("WEDurthuSymbol"));
                     }
                 }
             }
@@ -85,11 +88,11 @@ namespace TOR_Core.Models
             if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero &&
                 Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Wargh3"))
+                if (Hero.MainHero.HasAttribute("Waaagh2"))
                 {
                     num.Add(60, new TextObject("'Ere We Go!"));
                 }
-                else if (Hero.MainHero.HasAttribute("Wargh4"))
+                else if (Hero.MainHero.HasAttribute("Waaagh3"))
                 {
                     num.Add(120, new TextObject("WAAAGH!!!!"));
                 }
@@ -139,14 +142,14 @@ namespace TOR_Core.Models
             return troopRoster;
         }
 
-        private void AddCareerPassivesForPartySize(Hero playerHero, ref ExplainedNumber number)
+        private void AddCareerPassivesForPartySize(Hero playerHero, PartyBase party, ref ExplainedNumber number)
         {
             if (playerHero == null) return;
             if (playerHero.HasAnyCareer())
             {
                 CareerHelper.ApplyBasicCareerPassives(playerHero, ref number, PassiveEffectType.PartySize, false);
+                AddUnitPartyWeightBonus(playerHero, party, ref number);
             }
-
 
             if (playerHero.HasCareer(TORCareers.Spellsinger))
             {
@@ -184,6 +187,119 @@ namespace TOR_Core.Models
                         }
                     }
                 }
+            }
+        }
+
+        private void AddUnitPartyWeightBonus(Hero playerHero, PartyBase party, ref ExplainedNumber number)
+        {
+            if (party?.MemberRoster == null) return;
+
+            var choices = playerHero.GetAllCareerChoices();
+            foreach (var choiceId in choices)
+            {
+                var choice = TORCareerChoices.GetChoice(choiceId);
+                if (choice?.Passive == null) continue;
+                if (choice.Passive.PassiveEffectType != PassiveEffectType.UnitPartyWeight) continue;
+
+                float reduction = MathF.Clamp(choice.Passive.EffectMagnitude, 0f, 0.9f);
+                if (reduction <= 0f) continue;
+
+                int matchingUnitCount = 0;
+                foreach (var element in party.MemberRoster.GetTroopRoster())
+                {
+                    if (element.Character != null && choice.Passive.IsValidCharacterObject(element.Character))
+                    {
+                        matchingUnitCount += element.Number;
+                    }
+                }
+
+                if (matchingUnitCount > 0)
+                {
+                    // Reduction 0.2 means 20% weight reduction, freeing 0.2 slots per matching unit
+                    // Multiple perks stack additively: 0.2 + 0.2 = 0.4 (40% total reduction)
+                    float bonusSlots = matchingUnitCount * reduction;
+                    number.Add(bonusSlots, new TextObject(choice.BelongsToGroup.Name.ToString()));
+                }
+            }
+        }
+
+        private void ApplyMonstrousUnitWeight(PartyBase party, ref ExplainedNumber number)
+        {
+            if (party?.MemberRoster == null) return;
+            if (party.LeaderHero?.Clan != Clan.PlayerClan) return;
+
+            int treemenCount = 0;
+            int minotaurCount = 0;
+            int dryadCount = 0;
+            int elfCount = 0;
+            int goblinCount = 0;
+
+            foreach (var element in party.MemberRoster.GetTroopRoster())
+            {
+                if (element.Character == null) continue;
+
+                if (element.Character.StringId.Contains("treeman"))
+                {
+                    treemenCount += element.Number;
+                }
+                else if (element.Character.IsMinotaur())
+                {
+                    minotaurCount += element.Number;
+                }
+                else if (element.Character.StringId == "tor_we_dryad")
+                {
+                    dryadCount += element.Number;
+                }
+                else if (element.Character.Culture?.StringId == TORConstants.Cultures.ASRAI && element.Character.IsElf())
+                {
+                    elfCount += element.Number;
+                }
+                else if (element.Character.IsGoblin())
+                {
+                    goblinCount += element.Number;
+                }
+            }
+
+            // Treemen weight: 10 slots with WEDurthuSymbol, 25 slots otherwise
+            bool hasDurthuSymbol = party.LeaderHero.HasAttribute("WEDurthuSymbol");
+            int treemenWeight = hasDurthuSymbol ? 10 : 25;
+
+            if (treemenCount > 0)
+            {
+                number.Add(-(treemenWeight - 1) * treemenCount, new TextObject("Treemen weight"));
+            }
+
+            // Minotaurs take 8 slots each (7 extra beyond the 1 they already occupy)
+            if (minotaurCount > 0)
+            {
+                number.Add(-7 * minotaurCount, new TextObject("Minotaur weight"));
+            }
+
+            // WETreekinSymbol: Dryads cost 1 slot, Elves cost 2 slots
+            // Without it: Dryads cost 2 slots, Elves cost 1 slot
+            bool hasTreekinSymbol = party.LeaderHero.HasAttribute("WETreekinSymbol");
+
+            if (hasTreekinSymbol)
+            {
+                // Elves take 2 slots each (1 extra)
+                if (elfCount > 0)
+                {
+                    number.Add(-1 * elfCount, new TextObject("Elf weight (Tree Spirit focus)"));
+                }
+            }
+            else
+            {
+                // Dryads take 2 slots each (1 extra)
+                if (dryadCount > 0)
+                {
+                    number.Add(-1 * dryadCount, new TextObject("Dryad weight"));
+                }
+            }
+
+            // Goblins count as 0.5 units (half a slot each)
+            if (goblinCount > 0)
+            {
+                number.Add(0.5f * goblinCount, new TextObject("Goblin weight"));
             }
         }
     }

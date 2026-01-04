@@ -24,20 +24,31 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 public class IronbreakerCareerButtonBehavior(CareerObject careerObject) : CareerButtonBehaviorBase(careerObject)
 {
     private const string IronbreakerId = "tor_dw_ironbreaker";
-    private const int ExchangeCost = 15;
+    private const int BaseExchangeCost = 15;
     private const int GoldCost = 1000;
+
+    private int GetExchangeCost()
+    {
+        var cost = BaseExchangeCost;
+        if (Hero.MainHero.HasCareerChoice("IronPricePassive4"))
+        {
+            cost = (int)(cost * 0.75f);
+        }
+        return cost;
+    }
 
     public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner, bool shiftClick)
     {
         var ironbreakerUnit = MBObjectManager.Instance.GetObject<CharacterObject>(IronbreakerId);
+        var exchangeCost = GetExchangeCost();
 
         if (shiftClick)
         {
-            var buyableTroops = CareerButtonHelper.GetMaximumExchangeTroops(characterObject, false, 5, GoldCost, ExchangeCost);
+            var buyableTroops = CareerButtonHelper.GetMaximumExchangeTroops(characterObject, false, 5, GoldCost, exchangeCost);
 
             for (int i = 0; i < buyableTroops; i++)
             {
-                CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), ExchangeCost);
+                CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), exchangeCost);
                 PartyScreenHelper.GetActivePartyState().PartyScreenLogic.CurrentData.PartyGoldChangeAmount -= GoldCost;
                 CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, ironbreakerUnit, true);
 
@@ -46,7 +57,7 @@ public class IronbreakerCareerButtonBehavior(CareerObject careerObject) : Career
         else
         {
             PartyScreenHelper.GetActivePartyState().PartyScreenLogic.CurrentData.PartyGoldChangeAmount -= GoldCost;
-            CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), ExchangeCost);
+            CustomResourceManager.AddResourceChanges(Hero.MainHero.GetCultureSpecificCustomResource(), exchangeCost);
             CareerButtonHelper.ExchangeUnitForNewUnit(characterObject, ironbreakerUnit, true);
         }
 
@@ -77,8 +88,9 @@ public class IronbreakerCareerButtonBehavior(CareerObject careerObject) : Career
         displayText = TextObject.GetEmpty();
 
         var pending = CustomResourceManager.GetPendingResources().Values.ToList().Sum();
+        var exchangeCost = GetExchangeCost();
 
-        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < pending + ExchangeCost)
+        if (Hero.MainHero.GetCultureSpecificCustomResourceValue() < pending + exchangeCost)
         {
             displayText = TORTextHelper.GetTextObject("tor_ironbreaker_not_enough_resources_text", "Not enough resources");
             return false;

@@ -122,7 +122,7 @@ public class RunelordQuest : QuestBase
         UpdateQuest();
     }
 
-    public override bool IsSpecialQuest => true;
+    public override string SpecialQuestType => "RunelordQuest";
 
     private void UpdateQuest()
     {

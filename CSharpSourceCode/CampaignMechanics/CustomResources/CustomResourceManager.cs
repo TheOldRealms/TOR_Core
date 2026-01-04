@@ -262,7 +262,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             var playerHero = Hero.MainHero;
             var playerParty = MobileParty.MainParty;
             var playerCulture = playerHero.Culture;
-            var defeatedSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide);
+            var defeatedSide = mapEvent.GetMapEventSide(mapEvent.DefeatedSide); //crash when defeated in hideout battle
             mapEvent.GetBattleRewards(playerParty.Party, out var renownChange, out _, out _, out _, out _);
 
 
@@ -309,9 +309,30 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                         }
                 }
 
+                if (playerHero.HasCareerChoice("HuntTheWickedPassive2"))
+                {
+                    var evilCultures = new[] { TORConstants.Cultures.CHAOS, TORConstants.Cultures.BEASTMEN, TORConstants.Cultures.SYLVANIA, TORConstants.Cultures.MOUSILLON };
+                    foreach (var party in defeatedSide.Parties)
+                    {
+                        if (evilCultures.Contains(party.Party.Culture.StringId))
+                        {
+                            var choice = TORCareerChoices.GetChoice("HuntTheWickedPassive2");
+                            var value = choice.GetPassiveValue() / 100f;
+                            renownChange *= (1 + value);
+                            break;
+                        }
+                    }
+                }
+
                 if (playerHero.HasCareerChoice("UnrestrictedMagicPassive3"))
                 {
-                    renownChange *= 1.2f;
+                    var choice = TORCareerChoices.GetChoice("UnrestrictedMagicPassive3");
+                    if (choice != null)
+                    {
+                        var bonus = choice.GetPassiveValue();
+                        if (choice.Passive.InterpretAsPercentage) bonus /= 100;
+                        renownChange *= (1 + bonus);
+                    }
                 }
 
                 if (playerHero.HasCareerChoice("CollegeOrdersPassive3"))
@@ -468,6 +489,45 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                 PartyScreenHelper.GetActivePartyState().PartyScreenLogic.AfterReset += PartyScreenLogic_AfterReset;
             }
         }
+        
+        private static int CalculateTeefFromBattle(MapEvent mapEvent)
+        {
+            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN)
+            {
+                return 0;
+            }
+            
+            int totalTeef = 0;
+            const int BaseTeefPerKill = 2;
+
+            var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
+            
+            foreach (var party in partiesOnSide)
+            {
+                // Get killed troops from the defeated side
+                var killedTroops = party.Troops.Where(x => x.IsKilled);
+
+                foreach (var killed in killedTroops)
+                {
+                    // Teef based on tier: higher tier enemies = more valuable loot
+                    int teefFromTroop = BaseTeefPerKill * Math.Min(1, killed.Troop.Tier);
+
+                    if (killed.Troop.IsHero)
+                    {
+                        teefFromTroop += 50;
+                    }
+                    totalTeef += teefFromTroop;
+                }
+            }
+            
+            if (mapEvent.GetLeaderParty(mapEvent.PlayerSide) != PartyBase.MainParty)
+            {
+                var partyCount = mapEvent.PartiesOnSide(mapEvent.PlayerSide).Count;
+                totalTeef /= partyCount;
+            }
+
+            return totalTeef;
+        }
 
         private static void ResetResourcesAndRefillInitially()
         {
@@ -536,6 +596,31 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     foreach (var element in prisonerRoster)
                     {
                         AddChivarlyForUnit(ref explainedNumber, element.Character, element.Number);
+                    }
+                }
+            }
+
+            // Meat from killed troops
+            var meatGained = CalculateMeatFromBattle(mapEvent);
+            if (meatGained > 0)
+            {
+                var meatResource = GetResourceObject("Meat");
+                if (meatResource != null)
+                {
+                    AddResourceChanges(meatResource, -meatGained);
+                }
+            }
+
+            // Teef from killed troops (Greenskins only)
+            if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
+            {
+                var teefGained = CalculateTeefFromBattle(mapEvent);
+                if (teefGained > 0)
+                {
+                    var teefResource = GetResourceObject("Teef");
+                    if (teefResource != null)
+                    {
+                        AddResourceChanges(teefResource, -teefGained);
                     }
                 }
             }
@@ -613,6 +698,51 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             {
                 number.Add(2 * amount);
             }
+        }
+
+        private static int CalculateMeatFromBattle(MapEvent mapEvent)
+        {
+            if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN)
+                return 0;
+            
+            int rawMeat = 0;
+
+            var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
+
+            // First collect all potential meat
+            foreach (var party in partiesOnSide)
+            {
+                var killedTroops = party.Troops.Where(x => x.IsKilled);
+
+                foreach (var killed in killedTroops)
+                {
+                    // No meat from undead
+                    if (killed.Troop.IsUndead())
+                        continue;
+
+                    // 5 meat chances for large targets, 1 for regular
+                    if (killed.Troop.IsLargeTarget())
+                    {
+                        rawMeat += 5;
+                        continue;
+                    }
+
+                    if (killed.Troop.IsBeastman())
+                    {
+                        rawMeat += 2;
+                        continue;
+                    }
+
+                    rawMeat += 1;
+                    continue;
+                }
+            }
+
+            // Apply random 15%-30% of meat chances
+            float meatPercent = MBRandom.RandomFloatRanged(0.15f, 0.35f);
+            int totalMeat = (int)(rawMeat * meatPercent);
+
+            return totalMeat;
         }
 
         public static void OnPartyScreenTroopUpgrade(PartyVM partyVM, PartyScreenLogic.PartyCommand command)

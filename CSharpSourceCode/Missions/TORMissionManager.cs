@@ -84,9 +84,9 @@ namespace TOR_Core.Missions
         }
 
         [MissionMethod]
-        public static Mission OpenDuelMission(Action<bool> onMissionEnd, Hero duelHero = null)
+        public static Mission OpenDuelMission(Action<bool> onMissionEnd, Hero duelHero = null, string scene = "TOR_duel_001")
         {
-            return MissionState.OpenNew("InkDuelFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord("TOR_duel_001", "", false, DecalAtlasGroup.All), (Mission mission) => new MissionBehavior[]
+            return MissionState.OpenNew("InkDuelFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) => new MissionBehavior[]
             {
                 new MissionOptionsComponent(),
                 new CampaignMissionComponent(),
@@ -184,26 +184,22 @@ namespace TOR_Core.Missions
         public static Mission OpenBrawlFightMission(Location location, TroopRoster playerSideTroops,
             TroopRoster enemyPartyRoster, int enemyPartySize, Action<BrawlMissionResult> onMissionEnd = null)
         {
-
             return MissionState.OpenNew("BrawlFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(location.GetSceneName(3), "", false, DecalAtlasGroup.All),
             (Mission mission) =>
                 [
                     new MissionOptionsComponent(),
-                        new CampaignMissionComponent(),
-                        new MissionBasicTeamLogic(),
-                        new MissionAgentLookHandler(),
-                        new BattleSpawnLogic("battle_set"), //OK
-						new AgentHumanAILogic(),
-                        new MissionConversationLogic(),
-                        new BrawlMissionController(playerSideTroops, enemyPartyRoster, enemyPartySize, onMissionEnd),
-                        new TORMissionAgentHandler(),
-                        new HeroSkillHandler(),
-                        new MissionFightHandler(),
-                        new MissionFacialAnimationHandler(),
-                        new MissionHardBorderPlacer(),
-                        new MissionBoundaryPlacer(),
-                        new MissionBoundaryCrossingHandler(),
-                        new EquipmentControllerLeaveLogic()
+                    new CampaignMissionComponent(),
+                    new MissionAgentLookHandler(),
+                    new BattleSpawnLogic("battle_set"),
+                    new AgentHumanAILogic(),
+                    new BrawlMissionController(playerSideTroops, enemyPartyRoster, enemyPartySize, onMissionEnd),
+                    new HeroSkillHandler(),
+                    new MissionFightHandler(),
+                    new MissionFacialAnimationHandler(),
+                    new MissionHardBorderPlacer(),
+                    new MissionBoundaryPlacer(),
+                    new MissionBoundaryCrossingHandler(),
+                    new EquipmentControllerLeaveLogic()
             ], true, true);
         }
     }

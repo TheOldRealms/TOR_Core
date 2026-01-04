@@ -2,8 +2,12 @@
 using SandBox.Missions.MissionLogics.Arena;
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.HarmonyPatches;
+using TOR_Core.Items;
 
 namespace TOR_Core.Extensions
 {
@@ -57,6 +61,28 @@ namespace TOR_Core.Extensions
         public static List<Team> GetAllyTeamsOf(this Mission mission, Team team)
         {
             return mission.Teams.Where(x => x.IsFriendOf(team)).ToList();
+        }
+
+        /// <summary>
+        /// Adds a custom missile with the shooter's weapon damage bonus applied.
+        /// This wraps AddCustomMissile and ensures the bow/weapon damage is included in the missile damage calculation.
+        /// Note: Call FirearmsMissionLogic.ApplyWeaponTraitParticles() after this if particle effects are needed.
+        /// </summary>
+        public static Mission.Missile AddCustomMissileWithWeaponDamage(this Mission mission, Agent shooterAgent,
+            MissionWeapon missileWeapon, Vec3 position, Vec3 direction, Mat3 orientation,
+            float baseSpeed, float speed, bool addRigidBody, MissionObject missionObjectToIgnore = null,
+            int forcedMissileIndex = -1)
+        {
+            MissionPatches.UseWeaponDamageForCustomMissile = true;
+            try
+            {
+                return mission.AddCustomMissile(shooterAgent, missileWeapon, position, direction, orientation,
+                    baseSpeed, speed, addRigidBody, missionObjectToIgnore, forcedMissileIndex);
+            }
+            finally
+            {
+                MissionPatches.UseWeaponDamageForCustomMissile = false;
+            }
         }
     }
 }

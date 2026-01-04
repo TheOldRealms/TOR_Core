@@ -58,7 +58,7 @@ namespace TOR_Core.Quests
         public MobileParty TargetParty => _targetParty;
         public string QuestEnemyLeaderName => CultistPartyLeaderName.ToString();
         public bool FailState => _failstate;
-        public override bool IsSpecialQuest => true;
+        public override string SpecialQuestType => "EngineerQuest";
         public override TextObject Title => new TextObject(QuestName);
         public override bool IsRemainingTimeHidden => false;
 

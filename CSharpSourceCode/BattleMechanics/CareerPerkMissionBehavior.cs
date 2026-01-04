@@ -61,30 +61,11 @@ namespace TOR_Core.BattleMechanics
                 return;
             }
 
-            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Hero.MainHero.HasCareerChoice("HawkeyedPassive4"))
-            {
-                if (Agent.Main != null && Agent.Main.GetComponent<AbilityComponent>().CareerAbility.ChargeLevel < 0.1f)
-                {
-                    return;
-                }
-
-                var timeRequest = new Mission.TimeSpeedRequest(0.60f, TimeRequestId);
-                Mission.Current.AddTimeSpeedRequest(timeRequest);
-            }
-
             _zoomKeyEventStarted = true;
         }
 
         private void ZoomKeyUpEvents()
         {
-            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher))
-            {
-                if (Mission.Current.GetRequestedTimeSpeed(TimeRequestId, out float _))
-                {
-                    Mission.Current.RemoveTimeSpeedRequest(TimeRequestId);
-                }
-            }
-
             _zoomKeyEventStarted = false;
         }
 
@@ -102,30 +83,6 @@ namespace TOR_Core.BattleMechanics
                         var value = TORCareers.Necrarch.GetCalculatedCareerAbilityCharge(Mission.Current.MainAgent, null, ChargeType.DamageDone, 15, AttackTypeMask.Spell, CareerHelper.ChargeCollisionFlag.None);
                         cAbility.CareerAbility.AddCharge(value);
                     }
-                }
-            }
-
-            if (Agent.Main != null && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
-            {
-                if (Hero.MainHero.HasCareerChoice("StarfireEssencePassive4"))
-                {
-                    CareerMissionVariables[2]++;
-
-                    if (Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
-                    {
-                        CareerMissionVariables[2]++;
-                    }
-                }
-
-                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
-                {
-                    CareerMissionVariables[0] = Mathf.Max(0, CareerMissionVariables[0] - 0.10f);
-                }
-
-                if (_zoomKeyEventStarted && Hero.MainHero.HasCareerChoice("HawkeyedPassive4"))
-                {
-                    var lose = 100;
-                    Agent.Main.GetComponent<AbilityComponent>().CareerAbility.AddCharge(-lose);
                 }
             }
 
@@ -150,50 +107,7 @@ namespace TOR_Core.BattleMechanics
                 }
             }
         }
-
-        public override void OnMissileHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
-        {
-            if (victim == null) return;
-            if (attacker.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher) && Agent.Main != null)
-            {
-                CareerMissionVariables[2] = 0;
-
-                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive3"))
-                {
-                    //TODO find replacement
-                }
-
-                if (Hero.MainHero.HasCareerChoice("HawkeyedPassive3") && Agent.Main != null)
-                {
-                    CareerMissionVariables[1]++;
-
-                    var hitCount = 6;
-
-                    if (Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
-                    {
-                        hitCount /= 2;
-                    }
-
-                    if (CareerMissionVariables[1] >= hitCount)
-                    {
-                        victim.ApplyStatusEffect("hawkeyed_debuff", Agent.Main, 6, false);
-                        victim.ApplyStatusEffect("hawkeyed_debuff2", Agent.Main, 6, false);
-                        CareerMissionVariables[1] = 0;
-                    }
-                }
-
-                if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4") && Agent.Main != null)
-                {
-                    CareerMissionVariables[0]++;
-
-                    if (Hero.MainHero.HasCareerChoice("EyeOfTheHunterPassive4"))
-                    {
-                        CareerMissionVariables[0]++;
-                    }
-                }
-            }
-        }
-
+        
         public override void OnMeleeHit(Agent attacker, Agent victim, bool isCanceled, AttackCollisionData collisionData)
         {
             if (victim == null || attacker == null) return;
@@ -238,7 +152,7 @@ namespace TOR_Core.BattleMechanics
 
             CareerAbility ability = Agent.Main.GetComponent<AbilityComponent>().CareerAbility;
 
-            var reapplyChance = 0.5f;
+            var reapplyChance = 0.6f;
 
             reapplyChance = Mathf.Clamp(reapplyChance, 0.1f, 1);
 

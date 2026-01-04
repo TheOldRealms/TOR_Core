@@ -1076,6 +1076,18 @@
                              DamageVariance="0"
                              ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.PrefabSpawnerScript"
                              SpawnPrefabName="tor_fieldtrebuchet" />
+    <TriggeredEffectTemplate StringID="place_anvil_of_doom"
+                             BurstParticleEffectPrefab="none"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Invalid"
+                             DamageAmount="0"
+                             Radius="5"
+                             HasShockWave="false"
+                             TargetType="All"
+                             DamageVariance="0"
+                             ScriptNameToTrigger="TOR_Core.BattleMechanics.TriggeredEffect.Scripts.AnvilOfDoomSpawnerScript"
+                             SpawnPrefabName="tor_anvil_of_doom" />
     <!-- Sigmarite Prayers -->
     <TriggeredEffectTemplate StringID="comet_of_sigmar_explosion"
                              BurstParticleEffectPrefab="psys_burning_projectile_default_coll"
@@ -2780,7 +2792,7 @@
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Fire"
-                             DamageAmount="40"
+                             DamageAmount="20"
                              Radius="0"
                              HasShockWave="false"
                              TargetType="Enemy"
@@ -3541,5 +3553,21 @@
                              TargetType="All"
                              DamageVariance="0.2"
                              ScriptNameToTrigger="none" />
+
+	<!-- Lethal Shot - Moonfire Explosion (Waywatcher) -->
+	<TriggeredEffectTemplate StringID="moonfire_explosion"
+                             BurstParticleEffectPrefab="blast_of_agony_explosion"
+                             SoundEffectId="fireball_explosion"
+                             SoundEffectLength="2.5"
+                             DamageType="Magical"
+                             DamageAmount="10"
+                             Radius="2"
+                             HasShockWave="false"
+                             TargetType="Enemy"
+                             ImbuedStatusEffectDuration="10"
+                             DamageVariance="0.1"
+                             ScriptNameToTrigger="none">
+        <ImbuedStatusEffect>arrow_of_kurnous_debuff_res</ImbuedStatusEffect>
+    </TriggeredEffectTemplate>
 
 </TriggeredEffectTemplates>

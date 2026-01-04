@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
@@ -155,10 +156,23 @@ namespace TOR_Core.AbilitySystem
             {
                 if (usageCounter >= Template.ScaleVariable1)
                 {
-                    failureReason = new TextObject($"Not enough Usages (maximum {Template.ScaleVariable1})");
+                    failureReason = TORTextHelper.GetTextObject("tor_ability_not_enough_usages_text", "Not enough Usages (maximum {MAXIMUM})");
+                    failureReason.SetTextVariable("MAXIMUM", (int)Template.ScaleVariable1);
                     return false;
                 }
             }
+
+            // Waywatcher requires a bow to be wielded
+            if (Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                var weapon = casterAgent.WieldedWeapon;
+                if (weapon.IsEmpty || weapon.CurrentUsageItem == null || !weapon.CurrentUsageItem.IsRangedWeapon || weapon.CurrentUsageItem.WeaponClass == WeaponClass.Crossbow)
+                {
+                    failureReason = new TextObject("{=tor_ability_requires_bow}You must wield a bow to use this ability");
+                    return false;
+                }
+            }
+
             if (IsSingleTarget && !((SingleTargetCrosshair)Crosshair).IsTargetLocked)
             {
                 failureReason = TORTextHelper.GetTextObject("tor_ability_no_target_locked_text", "No target locked");

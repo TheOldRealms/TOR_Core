@@ -187,7 +187,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
         _secularOrdersPassive2.Initialize(CareerID, "All Knight troops receive 20 bonus points in their One and Two-handed skill.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded), nameof(DefaultSkills.OneHanded) }, characterObject =>
             characterObject.HasAttribute("Knightly")));
 
-        _secularOrdersPassive3.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true,
+        _secularOrdersPassive3.Initialize(CareerID, "All Knight troops upgrade costs are reduced by 25%.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true,
             characterObject => characterObject.HasAttribute("Knightly")));
         _secularOrdersPassive4.Initialize(CareerID, "Secular seals work on templar knights; your templar seals work on secular knights.", "SecularOrders", false, ChoiceType.Passive);
 

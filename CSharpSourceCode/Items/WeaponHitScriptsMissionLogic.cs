@@ -7,6 +7,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.MountAndBlade;
+using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Items.WeaponHitScripts;
 using TOR_Core.Utilities;
@@ -141,7 +142,7 @@ namespace TOR_Core.Items
         }
 
         /// <summary>
-        /// this is to find a currently "destroyed" shield a last time to trigger it´s effect.
+        /// this is to find a currently "destroyed" shield a last time to trigger itï¿½s effect.
         /// </summary>
         /// <param name="agent"></param>
         /// <returns></returns>
@@ -237,15 +238,34 @@ namespace TOR_Core.Items
                                     victim.ApplyStatusEffect(trait.ImbuedStatusEffectId, attacker, 5, false);
                                 }
                             }
+
+                            // StarfireEssencePassive3: Troops with Starfire Shafts also apply fire vulnerability
+                            if (Campaign.Current != null && trait.ItemTraitStringId == "ca_starfire_shards" &&
+                                !attacker.IsMainAgent && attacker.BelongsToMainParty() &&
+                                Hero.MainHero.HasCareerChoice("StarfireEssencePassive3"))
+                            {
+                                victim.ApplyStatusEffect("starfire_fire_vulnerability", attacker, 6, false);
+                            }
+                        }
+                    }
+
+                    // Trigger OnWeaponHitScripts for missiles (same pattern as OnAgentHit)
+                    var onHitTraits = traits.WhereQ(x => x.OnWeaponHitScript != null &&
+                        !string.IsNullOrWhiteSpace(x.OnWeaponHitScript.WeaponScriptName) &&
+                        x.OnWeaponHitScript.WeaponScriptName != "invalid");
+
+                    if (onHitTraits != null && onHitTraits.Any())
+                    {
+                        foreach (var trait in onHitTraits)
+                        {
+                            ApplySpecialTrait(trait, attacker, victim, false, default, attacker.WieldedWeapon, collisionData);
                         }
                     }
 
                     var missileIndex = collisionData.AffectorWeaponSlotOrMissileIndex;
                     var targetMissile = Mission.Current.MissilesList.FirstOrDefault(x => x.Index == missileIndex);
-                    targetMissile.Entity.RemoveAllParticleSystems();
+                    targetMissile?.Entity.RemoveAllParticleSystems();
                 }
-
-                //TODO check if scripts are applied anyway for onHit scripts
             }
         }
 

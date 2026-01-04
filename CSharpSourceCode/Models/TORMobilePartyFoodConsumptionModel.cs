@@ -72,19 +72,19 @@ namespace TOR_Core.Models
 
             if (party.LeaderHero == Hero.MainHero && Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Wargh1"))
+                if (Hero.MainHero.HasAttribute("Waaagh0"))
                 {
                     explainedNumber.AddFactor(-0.6f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_text", "Internal Fightin'"));
                 }
-                else if (Hero.MainHero.HasAttribute("Wargh2"))
+                else if (Hero.MainHero.HasAttribute("Waaagh1"))
                 {
                     explainedNumber.AddFactor(-0.3f, TORTextHelper.GetTextObject("tor_greenskin_petty_squabblin_text", "Petty Squabblin'"));
                 }
-                else if (Hero.MainHero.HasAttribute("Wargh3"))
+                else if (Hero.MainHero.HasAttribute("Waaagh2"))
                 {
                     explainedNumber.AddFactor(0.25f, TORTextHelper.GetTextObject("tor_greenskin_ere_we_go_text", "'Ere We Go!"));
                 }
-                else if (Hero.MainHero.HasAttribute("Wargh4"))
+                else if (Hero.MainHero.HasAttribute("Waaagh3"))
                 {
                     explainedNumber.AddFactor(1.0f, TORTextHelper.GetTextObject("tor_greenskin_waaagh_text", "WAAAGH!!!!"));
                 }
@@ -97,51 +97,6 @@ namespace TOR_Core.Models
 
         private void AddCareerSpecificFoodPerks(ref ExplainedNumber values, MobileParty party)
         {
-            var choices = party.LeaderHero.GetAllCareerChoices();
-
-            if (choices.Contains("SigmarsProclaimerPassive3"))
-            {
-                bool includeRegularTroops = choices.Contains("ArchLectorPassive2");
-                var choice = TORCareerChoices.GetChoice("SigmarsProclaimerPassive3");
-                var perkValue = AddSigmarsProclaimerPerk(values, party, choice, includeRegularTroops);
-                values.Add(perkValue, choice.BelongsToGroup.Name);
-            }
-
-
-        }
-
-        private float AddSigmarsProclaimerPerk(ExplainedNumber values, MobileParty party, CareerChoiceObject perkChoice, bool includeRegularTroops)
-        {
-            if (perkChoice == null) return 0;
-            var choices = party.LeaderHero.GetAllCareerChoices();
-
-
-            var troops = party.MemberRoster.GetTroopRoster();
-            var sigmarRiteTroops = new MBList<TroopRosterElement>();
-
-            foreach (var troopRosterElement in troops.Where(troopRosterElement => troopRosterElement.Character.IsSoldier)) //could be all a nice query , doesn't work for whatever reason
-            {
-                if (!troopRosterElement.Character.UnitBelongsToCult("cult_of_sigmar"))
-                {
-                    if (troopRosterElement.Character.IsReligiousUnit())
-                        continue;
-                    if (includeRegularTroops)
-                    {
-                        sigmarRiteTroops.Add(troopRosterElement);
-                    }
-                }
-                else
-                {
-                    sigmarRiteTroops.Add(troopRosterElement);
-                }
-            }
-
-            var count = sigmarRiteTroops.Sum(x => x.Number);
-            if (perkChoice.Passive == null) return 0f;
-            var effectMagnitude = perkChoice.Passive.EffectMagnitude;
-            if (perkChoice.Passive.InterpretAsPercentage) effectMagnitude /= 100;
-            float basefoodConsumptionForRoster = ((float)count / NumberOfMenOnMapToEatOneFood);
-            return basefoodConsumptionForRoster * effectMagnitude;
         }
 
 

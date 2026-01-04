@@ -61,7 +61,7 @@ public class RunesmithQuest : QuestBase
         UpdateQuest();
     }
 
-    public override bool IsSpecialQuest => true;
+    public override string SpecialQuestType => "RunesmithQuest";
 
     private void UpdateQuest()
     {

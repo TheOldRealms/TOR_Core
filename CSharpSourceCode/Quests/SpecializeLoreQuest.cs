@@ -24,7 +24,7 @@ namespace TOR_Core.Quests
 
         public override TextObject Title => _title;
         public override bool IsRemainingTimeHidden => false;
-        public override bool IsSpecialQuest => true;
+        public override string SpecialQuestType => "SpecializeLoreQuest"; 
         public bool Task1Complete => _task1.HasBeenCompleted();
 
         public SpecializeLoreQuest(string questId, Hero questGiver, CampaignTime duration, int rewardGold) : base(questId, questGiver, duration, rewardGold)

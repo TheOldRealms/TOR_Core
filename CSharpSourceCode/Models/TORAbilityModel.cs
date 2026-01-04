@@ -155,14 +155,15 @@ namespace TOR_Core.Models
 
                 if (playerHero.HasCareer(TORCareers.GreyLord))
                 {
-                    if (Hero.MainHero.HasCareerChoice("UnrestrictedMagicPassive4"))
+                    var choice = TORCareerChoices.GetChoice("UnrestrictedMagicPassive4");
+                    if (choice != null && Hero.MainHero.HasCareerChoice("UnrestrictedMagicPassive4"))
                     {
                         if (Agent.Main != null)
                         {
                             var comp = Agent.Main.GetComponent<AbilityComponent>();
                             if (!CareerChoicesHelper.ContainsSpellType(comp, [AbilityTargetType.AlliesInAOE, AbilityTargetType.EnemiesInAOE, AbilityTargetType.GroundAtPosition]))
                             {
-                                explainedNumber.AddFactor(2);
+                                explainedNumber.AddFactor(choice.GetPassiveValue());
                             }
                         }
 
@@ -225,12 +226,13 @@ namespace TOR_Core.Models
                 {
                     if (playerHero.HasCareer(TORCareers.GreyLord))
                     {
-                        if (playerHero.HasCareerChoice("LegendsOfMalokPassive4")) //this can go into BasicCareerPassives if the perk was set up differently
+                        var choice = TORCareerChoices.GetChoice("LegendsOfMalokPassive4");
+                        if (choice != null && playerHero.HasCareerChoice("LegendsOfMalokPassive4"))
                         {
-                            var count = Agent.Main.GetAbilities().Count; //Sly : this is wrong - description states equipped spells, not known ones
+                            var count = Agent.Main.GetAbilities().Count;
                             if (!CareerChoicesHelper.ContainsSpellType(Agent.Main.GetComponent<AbilityComponent>(), count, AbilityEffectType.Hex))
                             {
-                                explainedNumber.AddFactor(0.25f); //value is wrong, PassiveEffect should be corrected, then access it's value here
+                                explainedNumber.AddFactor(choice.GetPassiveValue());
                             }
                         }
                     }
@@ -244,6 +246,12 @@ namespace TOR_Core.Models
                         if (playerHero.HasCareerChoice("ChiselAndHammerKeystone"))
                         {
                             var comp = Agent.Main.GetComponent<AbilityComponent>(); //what's this component for?
+                            var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
+                            explainedNumber.AddFactor(0.005f * smithingValue);
+                        }
+
+                        if (playerHero.HasCareerChoice("LegacyOfGrungniPassive4"))
+                        {
                             var smithingValue = playerHero.GetSkillValue(DefaultSkills.Crafting);
                             explainedNumber.AddFactor(0.005f * smithingValue);
                         }
@@ -294,43 +302,67 @@ namespace TOR_Core.Models
             {
                 if (Hero.MainHero.HasCareer(TORCareers.GreyLord))
                 {
-                    if (template.AbilityEffectType == AbilityEffectType.Heal && Hero.MainHero.HasCareerChoice("SoulBindingPassive4"))
+                    if (template.AbilityEffectType == AbilityEffectType.Heal)
                     {
-                        var comp = Agent.Main.GetComponent<AbilityComponent>();
-                        if (comp != null)
+                        var choice = TORCareerChoices.GetChoice("SoulBindingPassive4");
+                        if (choice != null && Hero.MainHero.HasCareerChoice("SoulBindingPassive4"))
                         {
-                            var count = Agent.Main.GetAbilities().Count;
-                            if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Projectile))
+                            var comp = Agent.Main.GetComponent<AbilityComponent>();
+                            if (comp != null)
                             {
-                                explainedNumber.AddFactor(0.5f);
+                                var count = Agent.Main.GetAbilities().Count;
+                                if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Projectile))
+                                {
+                                    explainedNumber.AddFactor(choice.GetPassiveValue());
+                                }
                             }
                         }
                     }
 
-                    if (template.AbilityEffectType == AbilityEffectType.Hex && Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryPassive4"))
+                    if (template.AbilityEffectType == AbilityEffectType.Hex)
                     {
-                        var comp = Agent.Main.GetComponent<AbilityComponent>();
-                        if (comp != null)
+                        var choice = TORCareerChoices.GetChoice("ForbiddenScrollsOfSapheryPassive4");
+                        if (choice != null && Hero.MainHero.HasCareerChoice("ForbiddenScrollsOfSapheryPassive4"))
                         {
-                            var count = Agent.Main.GetAbilities().Count;
-                            if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Heal))
+                            var comp = Agent.Main.GetComponent<AbilityComponent>();
+                            if (comp != null)
                             {
-                                explainedNumber.AddFactor(0.5f);
+                                var count = Agent.Main.GetAbilities().Count;
+                                if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Heal))
+                                {
+                                    explainedNumber.AddFactor(choice.GetPassiveValue());
+                                }
                             }
                         }
                     }
 
-                    if (template.AbilityEffectType == AbilityEffectType.Vortex || template.AbilityEffectType == AbilityEffectType.Bombardment && Hero.MainHero.HasCareerChoice("ByAllMeansPassive4"))
+                    if (template.AbilityEffectType == AbilityEffectType.Vortex || template.AbilityEffectType == AbilityEffectType.Bombardment)
                     {
-                        var comp = Agent.Main.GetComponent<AbilityComponent>();
-                        if (comp != null)
+                        var choice = TORCareerChoices.GetChoice("ByAllMeansPassive4");
+                        if (choice != null && Hero.MainHero.HasCareerChoice("ByAllMeansPassive4"))
                         {
-                            var count = Agent.Main.GetAbilities().Count;
-                            if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Augment))
+                            var comp = Agent.Main.GetComponent<AbilityComponent>();
+                            if (comp != null)
                             {
-                                explainedNumber.AddFactor(0.5f);
+                                var count = Agent.Main.GetAbilities().Count;
+                                if (!CareerChoicesHelper.ContainsSpellType(comp, count, AbilityEffectType.Augment))
+                                {
+                                    explainedNumber.AddFactor(choice.GetPassiveValue());
+                                }
                             }
                         }
+                    }
+                }
+
+                if (Hero.MainHero.HasCareer(TORCareers.Runelord))
+                {
+                    if (Hero.MainHero.HasCareerChoice("ForHearthAndHomePassive4"))
+                    {
+                        // 10% base duration increase
+                        explainedNumber.AddFactor(0.1f);
+                        // +0.1% per faith point (30% at 300 faith)
+                        var faithValue = Hero.MainHero.GetSkillValue(TORSkills.Faith);
+                        explainedNumber.AddFactor(0.001f * faithValue);
                     }
                 }
             }
@@ -452,6 +484,28 @@ namespace TOR_Core.Models
             if (hero == Hero.MainHero)
             {
                 CareerHelper.ApplyBasicCareerPassives(hero, ref explainedNumber, PassiveEffectType.WindsRegeneration, false);
+
+                // WellspringOfDharPassive4: +0.1 Winds regen per spellcasting companion
+                if (Hero.MainHero.HasCareerChoice("WellspringOfDharPassive4"))
+                {
+                    var companions = Hero.MainHero.PartyBelongedTo?.GetMemberHeroes();
+                    if (companions != null)
+                    {
+                        int spellcasterCount = 0;
+                        foreach (var companion in companions)
+                        {
+                            if (companion != Hero.MainHero && companion.IsSpellCaster())
+                            {
+                                spellcasterCount++;
+                            }
+                        }
+                        if (spellcasterCount > 0)
+                        {
+                            var choice = TORCareerChoices.GetChoice("WellspringOfDharPassive4");
+                            explainedNumber.Add(choice.GetPassiveValue() * spellcasterCount);
+                        }
+                    }
+                }
             }
 
 
@@ -553,12 +607,14 @@ namespace TOR_Core.Models
                     {
                         var characterEquipment = baseCharacter.GetCharacterEquipment();
                         var choice = TORCareerChoices.GetChoice("DiscipleOfAccursedPassive4");
+                        var traitCount = 0;
                         foreach (var item in characterEquipment)
                         {
-                            if (item.IsMagicalItem())
-                            {
-                                explainedNumber.Add(choice.GetPassiveValue());
-                            }
+                            traitCount += item.GetTraits().Count;
+                        }
+                        if (traitCount > 0)
+                        {
+                            explainedNumber.Add(choice.GetPassiveValue() * traitCount);
                         }
                     }
 
@@ -573,6 +629,28 @@ namespace TOR_Core.Models
                             if (member.IsImperialMagister())
                             {
                                 explainedNumber.Add(choice.GetPassiveValue());
+                            }
+                        }
+                    }
+
+                    // HeartOfTheTreePassive4: +0.5 max Winds per tree spirit unit in party
+                    if (careerChoices.Contains("HeartOfTheTreePassive4"))
+                    {
+                        var party = hero.PartyBelongedTo;
+                        if (party?.MemberRoster != null)
+                        {
+                            int treeSpiritCount = 0;
+                            foreach (var element in party.MemberRoster.GetTroopRoster())
+                            {
+                                if (element.Character != null && element.Character.IsTreeSpirit())
+                                {
+                                    treeSpiritCount += element.Number;
+                                }
+                            }
+                            if (treeSpiritCount > 0)
+                            {
+                                var choice = TORCareerChoices.GetChoice("HeartOfTheTreePassive4");
+                                explainedNumber.Add(choice.GetPassiveValue() * treeSpiritCount);
                             }
                         }
                     }
@@ -637,11 +715,11 @@ namespace TOR_Core.Models
                 {
                     if (hero.PartyBelongedTo.InAthelLoren())
                     {
-                        explainedNumber.Add(20, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                        explainedNumber.Add(15, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                     }
                     else
                     {
-                        explainedNumber.Add(10, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
+                        explainedNumber.Add(5, ForestHarmonyHelper.TreeSymbolText("WEArielSymbol"));
                     }
                 }
             }

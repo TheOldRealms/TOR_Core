@@ -356,6 +356,7 @@
     <Compile Include="AbilitySystem\Scripts\ImpenetrableScript.cs" />
     <Compile Include="AbilitySystem\Scripts\KnightlyChargeScript.cs" />
     <Compile Include="AbilitySystem\Scripts\KnightlyStrikeScript.cs" />
+    <Compile Include="AbilitySystem\Scripts\LethalShotScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MindControlScript.cs" />
     <Compile Include="AbilitySystem\Scripts\MissileScript.cs" />
     <Compile Include="AbilitySystem\Scripts\ProjectileScript.cs" />
@@ -472,6 +473,7 @@
     <Compile Include="BattleMechanics\TriggeredEffect\AnimationTrigger.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\AnimationTriggerManager.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\AnimationTriggerMissionLogic.cs" />
+    <Compile Include="BattleMechanics\TriggeredEffect\Scripts\AnvilOfDoomSpawnerScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\DynamicItemTraitScripts.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\ITriggeredScript.cs" />
     <Compile Include="BattleMechanics\TriggeredEffect\Scripts\KnockDownScript.cs" />
@@ -548,6 +550,7 @@
     <Compile Include="CampaignMechanics\RaidingParties\IRaidingParty.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyComponent.cs" />
+    <Compile Include="CampaignMechanics\PostBattleLoot\PendingLootedTroopManager.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\GraveyardNightWatchPartyComponent.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\PostBattleCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\RaiseDeadInTownBehavior.cs" />
@@ -699,6 +702,7 @@
     <Compile Include="HarmonyPatches\CustomResourcePatches.cs" />
     <Compile Include="HarmonyPatches\CustomWorldMapPatch.cs" />
     <Compile Include="HarmonyPatches\EncounterPatches.cs" />
+    <Compile Include="HarmonyPatches\HideoutPatches.cs" />
     <Compile Include="HarmonyPatches\EncyclopediaPatches.cs" />
     <Compile Include="HarmonyPatches\FaceGenPatches.cs" />
     <Compile Include="HarmonyPatches\FactionBannerPatches.cs" />
@@ -749,6 +753,7 @@
     <Compile Include="Items\WeaponHitScripts\DefenseScripts.cs" />
     <Compile Include="Items\WeaponHitScripts\IWeaponHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\KnightlyStrikeHitScript.cs" />
+    <Compile Include="Items\WeaponHitScripts\LethalShotHitScript.cs" />
     <Compile Include="Items\WeaponHitScripts\WeaponScripts.cs" />
     <Compile Include="Missions\ArcheryContestMissionController.cs" />
     <Compile Include="Missions\BrawlMissionController.cs" />

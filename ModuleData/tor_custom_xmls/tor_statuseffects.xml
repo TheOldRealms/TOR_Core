@@ -40,12 +40,12 @@
 		do_not_attach_to_agent_skeleton="true"
 		base_effect_value="1"
 		type="TemporaryAttributeOnly"/>
-	<StatusEffectTemplate 
-		id="mistwalk_healing" 
+	<StatusEffectTemplate
+		id="mistwalk_healing"
 		particle_id="mistform_heal"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="3"
+		base_effect_value="1"
 		type="HealthOverTime"/>
 	<StatusEffectTemplate 
 		id="mistwalk_wom" 
@@ -134,20 +134,20 @@
 		<temporary_attribute>HorseLink</temporary_attribute>
 	</StatusEffectTemplate> 
 	
-	<StatusEffectTemplate 
-		id="knightly_charge_healing" 
+	<StatusEffectTemplate
+		id="knightly_charge_healing"
 		particle_id=""
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="5"
+		base_effect_value="2"
 		type="HealthOverTime"/>
 		
-	<StatusEffectTemplate 
-		id="knightly_charge_healing_dark" 
+	<StatusEffectTemplate
+		id="knightly_charge_healing_dark"
 		particle_id="breath_of_darkness"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"
-		base_effect_value="5"
+		base_effect_value="2"
 		type="HealthOverTime"/>
 		
 	<StatusEffectTemplate 
@@ -790,9 +790,9 @@
 		particle_intensity="Low"
 		apply_particle_to_root_bone_only="true"
 		do_not_attach_to_agent_skeleton="true"
-    	base_effect_value="-0.2"
+    	base_effect_value="-0.4"
 		type="Resistance"
-		damage_type="Physical" > 
+		damage_type="Physical" >
 		<temporary_attribute>AccusationMark</temporary_attribute>
 	</StatusEffectTemplate>
 	
@@ -801,7 +801,7 @@
 		particle_id=""
 		particle_intensity="Low"
 		apply_particle_to_root_bone_only="true"
-    	base_effect_value="-0.2"
+    	base_effect_value="-0.4"
 		type="Resistance"
 		damage_type="Physical"/>
 	<StatusEffectTemplate
@@ -809,7 +809,7 @@
 		particle_id=""
 		particle_intensity="Low"
 		apply_particle_to_root_bone_only="true"
-    	base_effect_value="-0.2"
+    	base_effect_value="-0.4"
 		type="Resistance"
 		damage_type="Holy"/>
 	<StatusEffectTemplate 
@@ -1080,8 +1080,8 @@
 		<temporary_attribute>KnightlyStrike</temporary_attribute>		
 		</StatusEffectTemplate>
 		
-	<StatusEffectTemplate 
-		id="knightly_strike_ws" 
+	<StatusEffectTemplate
+		id="knightly_strike_ws"
 		do_not_attach_to_agent_skeleton="true"
 		particle_id="armour_of_the_righteous"
 		particle_intensity="Low"
@@ -1089,10 +1089,24 @@
 		damage_type="All"
 		type="Resistance"
 		rotation="true"
-		rotation_speed="200">		
+		rotation_speed="200">
 		</StatusEffectTemplate>
 
-	<StatusEffectTemplate 
+	<!-- Lethal Shot - Waywatcher Career Ability -->
+	<StatusEffectTemplate
+		id="lethal_shot"
+		do_not_attach_to_agent_skeleton="true"
+		particle_id=""
+		particle_intensity="Low"
+		base_effect_value="0.0"
+		damage_type="Physical"
+		type="TemporaryAttributeOnly"
+		rotation="false"
+		rotation_speed="0">
+		<temporary_attribute>LethalShot</temporary_attribute>
+	</StatusEffectTemplate>
+
+	<StatusEffectTemplate
 		id="armour_of_the_righteous" 
 		do_not_attach_to_agent_skeleton="true"
 		particle_id="armour_of_the_righteous"
@@ -1261,7 +1275,25 @@
     	base_effect_value="0.25"
 		type="ReloadSpeedManipulation"
 		damage_type="Magical"/>
-	
+
+	<StatusEffectTemplate
+		id="swiftshiver_reload_bonus"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="0.25"
+		type="ReloadSpeedManipulation"
+		damage_type="Physical"/>
+
+	<StatusEffectTemplate
+		id="starfire_fire_vulnerability"
+		particle_id=""
+		particle_intensity="Low"
+		do_not_attach_to_agent_skeleton="true"
+    	base_effect_value="-0.25"
+		type="Resistance"
+		damage_type="Fire"/>
+
 	<StatusEffectTemplate
 		id="arrow_of_kurnous_debuff_res"
 		particle_id="curse_of_years"
@@ -1277,8 +1309,8 @@
 		particle_intensity="Low"
 		apply_particle_to_root_bone_only="true"
     	base_effect_value="-0.5"
-		type="Resistance"
-		damage_type="Magical"/>
+		type="MovementManipulation"
+		damage_type="Physical"/>
 		
 	<StatusEffectTemplate
 		id="arrow_of_kurnous_debuff_dot"

@@ -12,6 +12,7 @@ using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
+using TOR_Core.Items;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Firearms
@@ -103,6 +104,20 @@ namespace TOR_Core.BattleMechanics.Firearms
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody, int forcedMissileIndex)
         {
             var weaponData = shooterAgent.WieldedWeapon.CurrentUsageItem;
+
+            // Check for any weapon with scatter trait
+            var traits = shooterAgent.WieldedWeapon.Item?.GetTraits(shooterAgent);
+            var scatterTrait = traits?.FirstOrDefaultQ(t => t.StatsTuple?.StatType == ItemTraitStatType.ScatterShot);
+            if (scatterTrait != null)
+            {
+                RemoveLastProjectile(shooterAgent);
+                float accuracy = 0.05f; // Higher value = more spread for shotgun-style shots
+                short amount = (short)scatterTrait.StatsTuple.Value;
+                ScatterShot(shooterAgent, accuracy, shooterAgent.WieldedWeapon.AmmoWeapon, position, orientation,
+                    weaponData.MissileSpeed, amount);
+                return;
+            }
+
             if (weaponData.WeaponClass != WeaponClass.Musket && weaponData.WeaponClass != WeaponClass.Pistol) return;
 
             var frame = new MatrixFrame(orientation, position);
@@ -199,8 +214,31 @@ namespace TOR_Core.BattleMechanics.Firearms
             for (int i = 0; i < scatterShotAmount; i++)
             {
                 var deviation = TORCommon.GetRandomOrientation(shotOrientation, accuracy);
-                Mission.AddCustomMissile(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
+                var missile = Mission.AddCustomMissileWithWeaponDamage(shooterAgent, projectileType, shotPosition, deviation.f, deviation,
                     missileSpeed, missileSpeed, false, null);
+                ApplyWeaponTraitParticles(missile, shooterAgent);
+            }
+        }
+
+        /// <summary>
+        /// Applies weapon trait particle effects to a missile.
+        /// </summary>
+        public static void ApplyWeaponTraitParticles(Mission.Missile missile, Agent shooterAgent)
+        {
+            if (missile == null || shooterAgent == null || shooterAgent.WieldedWeapon.IsEmpty)
+                return;
+
+            var weapon = shooterAgent.WieldedWeapon;
+            if (weapon.Item == null || !weapon.Item.HasAnyTrait(shooterAgent))
+                return;
+
+            var traits = weapon.Item.GetTraits(shooterAgent);
+            foreach (var trait in traits)
+            {
+                if (trait.WeaponParticlePreset != null)
+                {
+                    missile.Entity.AddParticleSystemComponent(trait.WeaponParticlePreset.ParticlePrefab);
+                }
             }
         }
 
@@ -222,8 +260,12 @@ namespace TOR_Core.BattleMechanics.Firearms
             var baseSpeed = 15;
             var bonusSpeed = 18;
 
-            Mission.AddCustomMissile(shooterAgent, ammo, frame.origin, frame.rotation.f, frame.rotation,
+            var missile = Mission.AddCustomMissileWithWeaponDamage(shooterAgent, ammo, frame.origin, frame.rotation.f, frame.rotation,
                 baseSpeed, bonusSpeed, true, null);
+            
+            missile.Entity.RemoveAllParticleSystems();
+            
+            
         }
 
         public override void OnMissileCollisionReaction(Mission.MissileCollisionReaction collisionReaction,

@@ -373,7 +373,7 @@ public class DuelBehavior : CampaignBehaviorBase
         _isDuelInProgress = false;
 
 
-        TorMissionManager.OpenDuelMission(EvaluateDuel, _currentDuelTarget);
+        TorMissionManager.OpenDuelMission(EvaluateDuel, _currentDuelTarget, "TOR_greenskin_duel_001");
 
 
         // Return to the town or wherever the player was

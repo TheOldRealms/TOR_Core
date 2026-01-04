@@ -253,11 +253,11 @@ namespace TOR_Core.AbilitySystem
                 var playerHero = agent.GetHero();
                 var choices = playerHero.GetAllCareerChoices();
 
-                if (choices.Contains("SecretsOFTheGrailPassive3"))
+                if (choices.Contains("SecretsOfTheGrailPassive3"))
                 {
                     if (ability.Template.AbilityType == AbilityType.Prayer)
                     {
-                        var choice = TORCareerChoices.GetChoice("SecretsOFTheGrailPassive3");
+                        var choice = TORCareerChoices.GetChoice("SecretsOfTheGrailPassive3");
                         if (choice != null)
                         {
                             float random = MBRandom.RandomFloatRanged(0, 1);
@@ -273,7 +273,9 @@ namespace TOR_Core.AbilitySystem
 
         internal void OnCastComplete(Ability ability, Agent agent)
         {
-            if (ability is ItemBoundAbility && ability.Template.AbilityEffectType == AbilityEffectType.ArtilleryPlacement)
+            // Decrement artillery slots for regular artillery, but not for Anvil of Doom
+            if (ability is ItemBoundAbility && ability.Template.AbilityEffectType == AbilityEffectType.ArtilleryPlacement
+                && ability.Template.StringID != "AnvilOfDoomSpawner")
             {
                 if (_artillerySlots.ContainsKey(agent.Team))
                 {
@@ -578,6 +580,8 @@ namespace TOR_Core.AbilitySystem
             base.OnEndMission();
             BindWeaponKeys();
             Mission.OnItemPickUp -= OnItemPickup;
+
+            // Reset Anvil of Doom position for Runelord rune magic
         }
 
         public override void OnAgentCreated(Agent agent)
@@ -797,7 +801,7 @@ namespace TOR_Core.AbilitySystem
             if (mainHero != null && mainHero.HasAnyCareer())
             {
                 Agent.Main
-                    .GetComponent<AbilityComponent>()
+                    .GetComponent<AbilityComponent>()?
                     .SetIntialPrayerCoolDown();
             }
         }

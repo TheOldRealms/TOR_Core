@@ -5,6 +5,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 namespace TOR_Core.HarmonyPatches;
 
 [HarmonyPatch]
+[HarmonyPatchCategory("LatePatches")]
 public static class ModelPatches
 {
 

@@ -30,6 +30,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             }
         }
 
+        public static bool HealthLostCheck(Agent agent, float healthLost)
+        {
+            if (agent == null) return false;
+            return agent.HealthLimit - agent.Health >= healthLost;
+        }
+
 
         public static bool ContainsSpellType(AbilityComponent component, int spellCount, AbilityEffectType excludedEffectType)
         {

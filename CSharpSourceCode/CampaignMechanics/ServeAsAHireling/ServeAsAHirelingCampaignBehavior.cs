@@ -13,6 +13,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.PostBattleLoot;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -666,7 +667,9 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         private void party_wait_talk_to_other_members_on_init(MenuCallbackArgs args) { }
 
         /// <remarks>
-        /// This event triggers before MapEventEnded.
+        /// This event triggers before MapEventEnded (via OnPlayerBattleEndEvent).
+        /// At this point, prisoners don't exist yet in the actual loot rosters.
+        /// We use PendingLootManager to clear them when DoLootParty runs.
         /// </remarks>
         private void ControlPlayerLoot(MapEvent mapEvent)
         {
@@ -677,9 +680,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     _manuallyFoughtBattles++;
                 }
 
+                // Clear alternative rosters (items handled separately)
                 PlayerEncounter.Current.RosterToReceiveLootItems.Clear();
-                PlayerEncounter.Current.RosterToReceiveLootMembers.Clear();
-                PlayerEncounter.Current.RosterToReceiveLootPrisoners.Clear();
+
+                // Use PendingLootedTroopManager to clear the actual rosters that DoLootParty uses
+                // The alternative rosters (PlayerEncounter.Current.RosterToReceive*) don't affect DoLootParty
+                PendingLootedTroopManager.ClearPendingMembers();
+                PendingLootedTroopManager.ClearPendingPrisoners();
             }
 
             _hirelingWaitMenuShown = false;
