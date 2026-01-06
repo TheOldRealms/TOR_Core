@@ -346,15 +346,12 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
             var getAllStones = GetAllPowerstones();
 
-            if (!Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
+            foreach (var alreadyTakenStone in
+                     getAllStones.Select(stone =>
+                         displayedStones.FirstOrDefault(X => X.Id == stone.Id)).
+                         Where(alreadyTakenStone => alreadyTakenStone != null))
             {
-                foreach (var alreadyTakenStone in
-                         getAllStones.Select(stone =>
-                             displayedStones.FirstOrDefault(X => X.Id == stone.Id)).
-                             Where(alreadyTakenStone => alreadyTakenStone != null))
-                {
-                    displayedStones.Remove(alreadyTakenStone);
-                }
+                displayedStones.Remove(alreadyTakenStone);
             }
 
             var currenstone = GetPowerstone(characterObject);

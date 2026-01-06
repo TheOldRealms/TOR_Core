@@ -3052,7 +3052,7 @@
   <string id="tor_careerchoice_description.StudyAndPractisePassive4" text="{=str_tor_careerchoice_description_StudyAndPractisePassive4}Increases Magic resistance against spells by 10%." />
   <string id="tor_careerchoice_description.TeclisTeachingsKeystone" text="{=str_tor_careerchoice_description_TeclisTeachingsKeystone}You charge 25% longer. Additional charge." />
   <string id="tor_careerchoice_description.TeclisTeachingsPassive1" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive1}Increases fire spell damage by 5%." />
-  <string id="tor_careerchoice_description.TeclisTeachingsPassive2" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive2}Increases electric spell damage by 5%." />
+  <string id="tor_careerchoice_description.TeclisTeachingsPassive2" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive2}Increases lightning spell damage by 5%." />
   <string id="tor_careerchoice_description.TeclisTeachingsPassive3" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive3}Increases max Winds of Magic by 3." />
   <string id="tor_careerchoice_description.TeclisTeachingsPassive4" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive4}Powerstones cost 35% less Prestige" />
   <string id="tor_careerchoice_description.ImperialEnchantmentKeystone" text="{=str_tor_careerchoice_description_ImperialEnchantmentKeystone}You are less slowed down using Arcane Conduit." />
