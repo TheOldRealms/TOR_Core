@@ -31,6 +31,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             var entity = GameEntity.Instantiate(Mission.Current.Scene, PrefabName, true); 
             entity.SetMobility(GameEntity.Mobility.Dynamic);
             entity.EntityFlags = (entity.EntityFlags | EntityFlags.DontSaveToScene);
+            entity.SetPhysicsState(true, true);
             var frame = new MatrixFrame(rotation, position);
             entity.SetGlobalFrame(frame);
 

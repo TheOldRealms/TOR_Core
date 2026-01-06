@@ -1358,11 +1358,14 @@
 			</game_entity>
 		</children>
 	</game_entity>
-	<game_entity name="tor_anvil_of_doom" old_prefab_name="">
+	<game_entity name="tor_anvil_of_doom" old_prefab_name="" mobility="1">
+		<flags>
+			<flag name="record_to_scene_replay" value="true"/>
+		</flags>
 		<transform position="0.000, 0.000, 0.000" rotation_euler="0.000, 0.000, 0.000"/>
 		<physics shape="bo_dwarf_anvil_of_doom" override_material="metal">
 			<body_flags>
-				<body_flag name="dynamic"/>
+				<body_flag name="moveable"/>
 				<body_flag name="dynamic_convex_hull"/>
 			</body_flags>
 		</physics>
