@@ -325,7 +325,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _studyAndPractisePassive4.Initialize(CareerID, "Increases Magic resistance against spells by 10%.", "StudyAndPractise", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 10), AttackTypeMask.Spell));
 
             _teclisTeachingsPassive1.Initialize(CareerID, "Increases fire spell damage by 5%.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 5), AttackTypeMask.Spell));
-            _teclisTeachingsPassive2.Initialize(CareerID, "Increases electric spell damage by 5%.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Fire, 5), AttackTypeMask.Spell));
+            _teclisTeachingsPassive2.Initialize(CareerID, "Increases lightning spell damage by 5%.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Lightning, 5), AttackTypeMask.Spell));
             _teclisTeachingsPassive3.Initialize(CareerID, "Increases max Winds of Magic by 3.", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(3, PassiveEffectType.WindsOfMagic));
             _teclisTeachingsPassive4.Initialize(CareerID, "Powerstones cost 35% less Prestige", "TeclisTeachings", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
 
@@ -349,7 +349,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _ancientScrollsPassive1.Initialize(CareerID, "Increase hex durations by 25%.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(25f, PassiveEffectType.DebuffDuration, true));
             _ancientScrollsPassive2.Initialize(CareerID, "Increases Windsregeneration by 1.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.WindsRegeneration));
             _ancientScrollsPassive3.Initialize(CareerID, "Recover 80% used Prestige from used Powerstones", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));
-            _ancientScrollsPassive4.Initialize(CareerID, "For every varying imperial wizard, reduce the powerstone winds upkeep by 5%.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
+            _ancientScrollsPassive4.Initialize(CareerID, "For every varying lore in your party, reduce the powerstone winds upkeep by 5%. Party spellcasters deal 20% more spell damage.", "AncientScrolls", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.Special, true));
 
 
             _arcaneKnowledgePassive1.Initialize(CareerID, "Spelldamage of companions is increased by 10%", "ArcaneKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0, PassiveEffectType.Special));

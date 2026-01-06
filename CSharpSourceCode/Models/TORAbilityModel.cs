@@ -861,6 +861,11 @@ namespace TOR_Core.Models
                             {
                                 damageAmplifications[damageTypeIndex] += 0.2f;
                             }
+
+                            if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive1") && hero != Hero.MainHero)
+                            {
+                                damageAmplifications[damageTypeIndex] += 0.1f;
+                            }
                         }
                     }
 
