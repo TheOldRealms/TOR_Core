@@ -230,6 +230,16 @@ namespace TOR_Core.BattleMechanics
                 }
             }
 
+            // Call of da Green: WoM from linked Greenskin kills/deaths
+            if (affectorAgent.HasAttribute("WindsLink"))
+            {
+                Hero.MainHero.AddWindsOfMagic(0.5f);
+            }
+
+            if (affectedAgent.HasAttribute("WindsDeathLink"))
+            {
+                Hero.MainHero.AddWindsOfMagic(-0.25f);
+            }
 
             if (affectorAgent.IsMainAgent)
             {
@@ -382,16 +392,6 @@ namespace TOR_Core.BattleMechanics
                     }
                 }
                 
-                if (affectorAgent.HasAttribute("WindsLink"))
-                {
-                    Hero.MainHero.AddWindsOfMagic(0.5f);
-                }
-                
-                if (affectedAgent.HasAttribute("WindsDeathLink"))
-                {
-                    Hero.MainHero.AddWindsOfMagic(-0.25f);
-                }
-
             }
         }
     }
