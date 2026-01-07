@@ -10730,7 +10730,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_factionleader}Warlord Snagga Ironbita" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.554" build="0.813" key="00239804034400005548662154A867C536699BC78DB82241FFFFFFFF4894D56C01FC86130FFFFFFF45CCBADB4CBCBABC00000000000000160000000015FC1000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10748,7 +10748,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_2}Warboss Guzor Deffbringa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.5262" build="0.6867" key="001BFC0406000000FF5CA6A734C66A963669FFDFFF0FFFB9FFFFFFFF4894D56C01CA86130CFFFFFF45CCBADB4CBCBABC00000000000000160000000015842000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10766,7 +10766,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_3" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_3}Warboss Crazag Goblobba" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.3966" build="0.4738" key="001B840B804400004EF000FFFFFF8FF4642C0014F0F898485B459E959329AC8901C766130C467AD345CCBADB4CBCBABC0000000000000016000000003F840000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10784,7 +10784,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_4}Warboss Rugud Boartoof" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="1" build="0.1559" key="000AFC0406CC0000005CA6A734C66A9666FF00F00FFFFFFF0010000070FF003701D2F6130D00110E45CCBADB4CBCBABC0000000000000016000000003BB40000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10802,7 +10802,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_5" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_5}Warboss Braggat Gobbspitta" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.1328" build="0.7731" key="002B8C0FC3440000E496BBFFA8A8FF00C99F44CA4965A8926C4DB69AFFFF046601AC26130A9A787C45CCBADB4CBCBABC00000000000000160000000053442000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10820,7 +10820,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_6" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_6}Warboss Narlok Da Weird" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.446" build="0.8883" key="001B840B854400004E5687D17976852C9FF00014F0F898485B459E959E5EF08701ED76130E467AD345CCBADB4CBCBABC00000000000000160000000039DC1000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10838,7 +10838,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_7" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_7}Warboss Karug Pig ‘Ead" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="1" build="0" key="0013880400440000785CA6A734C66A96C76999249A998865001000004C4846BC01C0F6130C00110E45CCBADB4CBCBABC00000000000000160000000035940000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10856,7 +10856,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_8}Warboss Skargut Snotbreff" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="1" build="0.5201" key="001BB408C4440000FFDFFFF5FFFF0FFFBA854DFEFDDFFFFFFFFCEFFFBA89969401D8F6130DF27F9F45CCBADB4CBCBABC00000000000000160000000079BC2000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10874,7 +10874,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_9" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_9}Warboss Trug Far-Seer" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.0046" build="0.3843" key="000DC40000A00000C2B9437CBA8465B05D9172554775656C77475973C928379801D606130D3AA55D45CCBADB4CBCBABC0000000000000016000000002BAC1000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10892,7 +10892,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_1" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_1}Warboss Nabrot Gitmuncha" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.9342" build="0.7524" key="0018840085CC00008C7D34986BE33DC7958B2D6C85B98548C7DC64878686439C01BBE6130B9B448445CCBADB4CBCBABC000000000000001600000000416C2000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10910,7 +10910,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_2}Warboss Roglum Da Kunnin’" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.0075" build="0.1834" key="0018B804065800008520208C89F0AFB0B57C5777A9FFC8B965721A3769885B7A0193061309A1716A45CCBADB4CBCBABC000000000000001600000000533C2000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10928,7 +10928,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_3}Warboss Spurkol Blackbasha" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.4171" build="0.3554" key="0023740B83E40000EA58BD82647C7879443886C29B7B6392B6B88DA54927385501D566130DD9979745CCBADB4CBCBABC0000000000000016000000001DAC1000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10946,7 +10946,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_4" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_4}Warboss Brugrag Legtaker" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.5705" build="0.2438" key="00208400032C0000E965B24D4574DF84A95348CB52356D2C7CDA4184932A7B3901B496130B8879A845CCBADB4CBCBABC000000000000001600000000297C0000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10964,7 +10964,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_5" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_5}Warboss Urruzk Bonerattla" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.3114" build="0.2283" key="001B500FC0CC0000CF97818E95988D696779C87FF6A984F797C6667CA35B542A01C356130C9DC75945CCBADB4CBCBABC00000000000000160000000059A41000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -10982,7 +10982,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_6" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_6}Warboss Zugrok Skarr-’Ead" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.4822" build="0.6988" key="0020F803460000009C46D3A62A5888A86345C75CC5A6958743874716A85C67DE01BA76130B28948645CCBADB4CBCBABC000000000000001600000000637C2000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -11000,7 +11000,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_7" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_7}Warboss Gurnak Wildhacka" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="1" build="1" key="002B300FC3CC00003C78376BDAB887B1784EAE9B78A6A18B69AA9D399CE3754B01FFF6130F6444D645CCBADB4CBCBABC00000000000000160000000053FC0000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -11018,7 +11018,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_8" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_8}Warboss Dimnak Stunty Strangla" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
+      <BodyProperties version="4" age="22" weight="0.3645" build="0.4645" key="0008740D84CC000066410205900C0E0F5A6955679A7697B3774A6749873B98D801C756130C479A8C45CCBADB4CBCBABC0000000000000016000000001D841000" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
