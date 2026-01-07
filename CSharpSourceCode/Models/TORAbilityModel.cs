@@ -785,11 +785,7 @@ namespace TOR_Core.Models
 
             // Apply ward save
             resultDamage *= wardSaveFactor;
-
-            // Clamp to prevent negative damage on enemies
-            if (!friendlyFire && resultDamage < 0)
-                resultDamage = 0;
-
+            
             return Math.Max(0, (int)resultDamage);
         }
 
@@ -869,6 +865,9 @@ namespace TOR_Core.Models
                         }
                     }
 
+                    // Note: Using temporary attribute instead of StatusEffect DamageAmplification because
+                    // the DamageAmplification system doesn't properly handle damage_type="All" - it stores
+                    // the value at the "All" index but damage calculations only read specific damage type indices.
                     if (attacker.HasAttribute("Arcane_Dmg"))
                     {
                         damageAmplifications[damageTypeIndex] += 0.3f;
