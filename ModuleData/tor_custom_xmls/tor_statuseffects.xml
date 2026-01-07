@@ -368,10 +368,10 @@
 		particle_intensity="High"
     	base_effect_value="0"
 		type="TemporaryAttributeOnly"
-		damage_type="Fire"
-		temporary_attribute="WindsLink">
+		damage_type="Fire">
+		<temporary_attribute>WindsLink</temporary_attribute>
   	</StatusEffectTemplate>
-	
+
 	<StatusEffectTemplate
 		id="callofdagreen_windslink"
 		particle_id="breath_of_darkness"
@@ -379,8 +379,8 @@
 		particle_intensity="High"
     	base_effect_value="0"
 		type="TemporaryAttributeOnly"
-		damage_type="Fire"
-		temporary_attribute="WindsLink">
+		damage_type="Fire">
+		<temporary_attribute>WindsLink</temporary_attribute>
   	</StatusEffectTemplate>
 
 	<StatusEffectTemplate
@@ -390,8 +390,8 @@
 		particle_intensity="High"
 		base_effect_value="0"
 		type="TemporaryAttributeOnly"
-		damage_type="Physical"
-		temporary_attribute="WindsDeathLink">
+		damage_type="Physical">
+		<temporary_attribute>WindsDeathLink</temporary_attribute>
 	</StatusEffectTemplate>
 
 	<StatusEffectTemplate
@@ -709,8 +709,8 @@
 		particle_intensity="High"
     	base_effect_value="-3"
 		type="DamageOverTime"
-		damage_type="Fire"
-		temporary_attribute="Piercing">
+		damage_type="Fire">
+		<temporary_attribute>Piercing</temporary_attribute>
   	</StatusEffectTemplate>
 	
 	
@@ -1498,8 +1498,8 @@
 		particle_intensity="High"
     	base_effect_value="-3"
 		type="DamageOverTime"
-		damage_type="Fire"
-		temporary_attribute="Piercing">
+		damage_type="Fire">
+		<temporary_attribute>Piercing</temporary_attribute>
   	</StatusEffectTemplate>
 	
 	

@@ -1366,7 +1366,7 @@
 	</CharacterCreationOption> 
 
 	<!-- Orcs stage 1 -->
-	<CharacterCreationOption Id="option_1_gs_rocky_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_dw_miners_1">
+	<CharacterCreationOption Id="option_1_gs_rocky_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_gs_rocky_terrain_1">
 		<SkillsToIncrease>
 			<string>Athletics</string>
 			<string>Athletics</string>
@@ -1378,7 +1378,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_gs_rocky_terrain_text_str}The rocky terrain of the Black Mountains is where your spores fell. The cold stone around you seems to have overdeveloped your muscles, making them bigger and stronger. ‘Iz gunna be ded ‘ard!’ you thought while still inside your fungal pod, feeling your limbs contracting with a crack.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_gs_forest_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_dw_brewers_1">
+	<CharacterCreationOption Id="option_1_gs_forest_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_gs_forest_terrain_1">
 		<SkillsToIncrease>
 			<string>Riding</string>
 			<string>Bow</string>
@@ -1390,7 +1390,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_gs_forest_terrain_text_str}The intricate forest covering the Imperial mainland served well in hiding your fungal pod. What you did not know – the silent woods transmitted to you an enhanced ability to move silently among the trees (for an Orc), making you a fearsome hunter of both animals and humans. After a raid on an Imperial caravan, your fellow Orcs addressed you as ‘da sneaky ‘un’.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_gs_volcanic_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_dw_engineers_1">
+	<CharacterCreationOption Id="option_1_gs_volcanic_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_gs_volcanic_terrain_1">
 		<SkillsToIncrease>
 			<string>Leadership</string>
 			<string>Tactics</string>
@@ -1402,7 +1402,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_gs_volcanic_terrain_text_str}Your spores were planted in the blackened soil of the Dark Lands, the dominion of Chaos Dwarfs. Inside your fungal pod, a perfect war machine was growing. When your maturation process came to an end, you broke your mushroom-womb and let out a bellowing war cry: WAAAAAAAAAAAGH!!!</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_gs_arid_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_dw_smelters_1">
+	<CharacterCreationOption Id="option_1_gs_arid_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_gs_arid_terrain_1">
 		<SkillsToIncrease>
 			<string>Faith</string>
 			<string>Athletics</string>
@@ -1414,7 +1414,7 @@
 		<OptionFlavourText>{=tor_cc_option_1_gs_arid_terrain_text_str}The heat of the Badlands, amplified by the subterranean hot pools, really had some effects on your breeding, shrinking your brain to the point it resembled more a Squig’s brain than an Orc’s. What you lost in intelligence, though, you gained in physical strength – an instinct-driven being ready to roam the lands with bone-clad Savage Orcs, superstitious fanatics of Gork and Mork.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_1_gs_snowy_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_dw_warriors_1">
+	<CharacterCreationOption Id="option_1_gs_snowy_terrain" Culture="aserai" StageNumber="1" EquipmentSetId="tor_cc_gs_snowy_terrain_1">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Polearm</string>
@@ -1427,7 +1427,7 @@
 	</CharacterCreationOption>
 	
 	<!-- Greenskin stage 2 -->
-	<CharacterCreationOption Id="option_2_gs_dung_pillar" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_dw_umgi_2">
+	<CharacterCreationOption Id="option_2_gs_dung_pillar" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_dung_pillar_2">
 		<SkillsToIncrease>
 			<string>Athletics</string>
 			<string>Athletics</string>
@@ -1439,7 +1439,7 @@
 		<OptionFlavourText>{=tor_cc_option_2_gs_dung_pillar_text_str}Orcs are remarkably creative when it comes to erecting idols to their gods, using whatever materials they can find: scrap, corpses, and, of course, dung. Great heaps of excrement shaped into crude effigies of Orc heads are built by Greenskins eager to earn their gods’ favour. Your pillar was by far the largest in the tribe, which only helped prove your endurance. Gork and Mork were surely impressed with such a tall idol erected in their name.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_gs_arm_wrestling" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_dw_elgi_2">
+	<CharacterCreationOption Id="option_2_gs_arm_wrestling" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_arm_wrestling_2">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>OneHanded</string>
@@ -1451,7 +1451,7 @@
 		<OptionFlavourText>{=tor_cc_option_2_gs_arm_wrestling_text_str}Orcs love displays of strength, and few things are more entertaining than a good scrap, a head-butting contest, or maybe arm wrestling. It is a fine way to pass the time between raids, and your tribe was home to a particularly tough Troll. If an Orc loses, he usually ends up missing an arm, or worse, but you managed to arm-wrestle the dim brute, and as the only non-Boss in the tribe! Many Boys were thoroughly impressed with this show of physical prowess.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_gs_eating_snotlings" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_dw_urks_2">
+	<CharacterCreationOption Id="option_2_gs_eating_snotlings" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_eating_snotlings_2">
 		<SkillsToIncrease>
 			<string>Medicine</string>
 			<string>Medicine</string>
@@ -1463,7 +1463,7 @@
 		<OptionFlavourText>{=tor_cc_option_2_gs_eating_snotlings_text_str}It is no small feat to devour an entire gang of Snotlings in one go. There are, of course, tales of Orcs trying to swallow them whole, only to be killed from the inside when the squirming little gits claw their way out. For that reason, it certainly is wise to chew your Snotlings properly, spit out the bits, and inspect them to make sure they stop moving before you swallow. During such meals you learned a great deal about anatomy, and planning such a gigantic meal required ‘sum proppa taktikz'.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_gs_teef_collection" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_dw_zanguzaz_2">
+	<CharacterCreationOption Id="option_2_gs_teef_collection" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_teef_collection_2">
 		<SkillsToIncrease>
 			<string>Roguery</string>
 			<string>Roguery</string>
@@ -1475,7 +1475,7 @@
 		<OptionFlavourText>{=tor_cc_option_2_gs_teef_collection_text_str}Teef are the currency of all Greenskins. A few Teef can buy meat or weapons, and since Orcs’ tusks steadily grow back, one could call it a self-sustaining economy. The bigger and meaner Orcs usually bully weaker individuals into handing over their Teef, while the more cunning types scour the battlefield for dead bodies, prying their Teef out before the bodies go cold. You managed to amass the shiniest collection of Teef ever seen, mostly by extorting Teef from weaker Boys and Goblins, but that is irrelevant. Alas, it was later stolen by some smelly git. The culprit was never found, but it is only natural to suspect a Goblin, so these long-nosed gits definitely ‘got wot’s comin' to 'em’.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_2_gs_goblin_throwing" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_dw_thaggoraki_2">
+	<CharacterCreationOption Id="option_2_gs_goblin_throwing" Culture="aserai" StageNumber="2" EquipmentSetId="tor_cc_gs_goblin_throwing_2">
 		<SkillsToIncrease>
 			<string>Throwing</string>
 			<string>Throwing</string>
@@ -1488,7 +1488,7 @@
 	</CharacterCreationOption>
 	
 	<!-- Greenskin stage 3 -->
-	<CharacterCreationOption Id="option_3_gs_path_of_boss" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_dw_shield_breaker_3">
+	<CharacterCreationOption Id="option_3_gs_path_of_boss" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_gs_path_of_boss_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Polearm</string>
@@ -1501,7 +1501,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_gs_path_of_boss_text_str}To become an Orc Boss, one must first prove himself in battle, both on the field and within the war camp. Only through bullying, brawling, and beating other Orcs into submission can an Orc earn the attention of the Warboss. When the Warboss sees promise, he’ll raise the contender to the rank of Boss. Bigger, meaner, and louder than their lesser kin, these brutes take every chance to assert their dominance.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_3_gs_path_of_shaman" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_dw_rune_smith_3">
+	<CharacterCreationOption Id="option_3_gs_path_of_shaman" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_gs_path_of_shaman_3">
 		<SkillsToIncrease>
 			<string>Spellcraft</string>
 			<string>Faith</string>
@@ -1514,7 +1514,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_gs_path_of_shaman_text_str}The Shaman is both a spiritual leader and a conduit of raw Waaagh! energy. By inhaling weird fumes and performing odd dances, Greenskin Shamans can enter trances through which they commune with the Greenskin gods. In battle, they channel the power of ‘Da Great Green’, causing heads to burst or unleashing crackling blasts of emerald energy from their eyes. Most Boys consider Shamans and their strange ways complete lunacy, but only the bravest (or perhaps the dimmest) would dare mock these rituals. Orcs are highly superstitious and believe Gork and Mork are always watching – It would be best to not oppose their agents.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_3_gs_path_of_bully" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_dw_slayer_3">
+	<CharacterCreationOption Id="option_3_gs_path_of_bully" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_gs_path_of_bully_3">
 		<SkillsToIncrease>
 			<string>OneHanded</string>
 			<string>Roguery</string>
@@ -1527,7 +1527,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_gs_path_of_bully_text_str}The Bully’s job is to keep Goblins in line, mostly by kicking them about until they ‘use dere noggin’. Under a Bully’s ‘encouragement,’ Goblins design and construct ramshackle war machines and siege engines that accompany Greenskin invasions. As naturally lazy creatures, Goblins need every incentive at hand to not abandon their posts and simply lie around all day. Turns out you were exceptionally talented at cracking the whip as well as Goblin skulls.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_3_gs_path_of_boar_boys" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_dw_engineer_3">
+	<CharacterCreationOption Id="option_3_gs_path_of_boar_boys" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_path_of_boar_boys_3">
 		<SkillsToIncrease>
 			<string>Polearm</string>
 			<string>OneHanded</string>
@@ -1540,7 +1540,7 @@
 		<OptionFlavourText>{=tor_cc_option_3_gs_path_of_boar_boys_text_str}Boar Boyz revel in the chaos of battle, charging headlong into enemy ranks atop their snarling, tusked mounts. The thick skull and brutal tusks of a war boar can tear through armour and flesh with ease, leaving only ruin in their wake. Few sights are more terrifying than a stampede of Boar Boys thundering across the battlefield, howling for blood.</OptionFlavourText>
 	</CharacterCreationOption>
 
-	<CharacterCreationOption Id="option_3_gs_path_of_savage_boys" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_dw_ranger_3">
+	<CharacterCreationOption Id="option_3_gs_path_of_savage_boys" Culture="aserai" StageNumber="3" EquipmentSetId="tor_cc_path_of_savage_boys_3">
 		<SkillsToIncrease>
 			<string>TwoHanded</string>
 			<string>Polearm</string>
