@@ -1073,7 +1073,7 @@
   <string id="tor_grail_envoy_demand_response1" text="{=str_tor_grail_envoy_demand_response1}Mylady, how dare you demand me... oh she does?"/>
   <string id="tor_grail_envoy_demand_response2" text="{=str_tor_grail_envoy_demand_response2}I guess, I can't deny your biding. If the lady demands, I will obey."/>
   <string id="tor_grail_envoy_war_demand" text="{=str_tor_grail_envoy_war_demand}Our fair and noble land has been invaded! The lady demands that you strike her enemies!({WAR_COST}{CHIVALRY_ICON})"/>
-  <string id="tor_grail_envoy_war_response1" text="{=str_tor_grail_envoy_war_response1}Ah yeah so you know better, which thread bothers us most ?"/>
+  <string id="tor_grail_envoy_war_response1" text="{=str_tor_grail_envoy_war_response1}Ah yeah so you know better, which thread bothers us most?"/>
   <string id="tor_grail_envoy_war_response2" text="{=str_tor_grail_envoy_war_response2}I guess, I can't deny you your biding. If the lady demands, I will obey."/>
   <string id="tor_grail_envoy_stop_war_faction1" text="{=str_tor_grail_envoy_stop_war_faction1}Stop war with {FACTION_NAME_1}."/>
   <string id="tor_grail_envoy_stop_war_faction2" text="{=str_tor_grail_envoy_stop_war_faction2}Stop war with {FACTION_NAME_2}."/>
