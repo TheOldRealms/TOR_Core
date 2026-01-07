@@ -396,11 +396,11 @@ namespace TOR_Core.Models
                 {
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber, PassiveEffectType.SpellEffectiveness, true);
                 }
-                if (character.GetPerkValue(TORPerks.Spellcraft.OverCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (character.GetPerkValue(TORPerks.Spellcraft.OverCaster) && abilityTemplate.IsSpell && (abilityTemplate.DoesDamage || abilityTemplate.DoesHeal))
                 {
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.OverCaster, character, true, ref explainedNumber);
                 }
-                if (character.GetPerkValue(TORPerks.Spellcraft.EfficientSpellCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (character.GetPerkValue(TORPerks.Spellcraft.EfficientSpellCaster) && abilityTemplate.IsSpell && (abilityTemplate.DoesDamage || abilityTemplate.DoesHeal))
                 {
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.EfficientSpellCaster, character, true, ref explainedNumber);
                 }
@@ -891,6 +891,9 @@ namespace TOR_Core.Models
                 var hero = caster.GetHero();
                 if (hero != null)
                 {
+                    // Perk effects multiplier (includes Overcaster/EfficientSpellCaster)
+                    healing *= GetPerkEffectsOnAbilityDamage(hero.CharacterObject, target, abilityTemplate);
+
                     // Skill effectiveness for healing
                     healing *= GetSkillEffectivenessForAbilityDamage(hero.CharacterObject, abilityTemplate);
                 }

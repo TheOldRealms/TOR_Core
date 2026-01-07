@@ -38,7 +38,7 @@ namespace TOR_Core.CharacterDevelopment
         private PerkObject _catalyst;
         private PerkObject _dampener;
         private PerkObject _arcaneLink;
-        private PerkObject _exchange;
+        private PerkObject _trueTransmutation;
 
         //Faith perks
         private PerkObject _novicePrayers;
@@ -93,8 +93,7 @@ namespace TOR_Core.CharacterDevelopment
             _catalyst = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Catalyst"));
             _dampener = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Dampener"));
             _arcaneLink = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("ArcaneLink"));
-            _exchange = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("Exchange"));
-
+            _trueTransmutation = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("TrueTransmutation"));
             //Faith perks
             _novicePrayers = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("NovicePrayers"));
             _adeptPrayers = Game.Current.ObjectManager.RegisterPresumedObject(new PerkObject("AdeptPrayers"));
@@ -202,12 +201,12 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.PartyLeader, 5f, EffectIncrementType.Add, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _overCaster.Initialize("{=str_tor_perk_overcaster_label}Overcaster", TORSkills.Spellcraft, 150, _efficientSpellCaster,
-                "{=str_tor_perk_overcaster_1}Your damaging spells do 20% more damage but cost 30% more winds of magic.",
+                "{=str_tor_perk_overcaster_1}Your instant damaging and healing spells are 20% more effective but cost 30% more winds of magic.",
                 PartyRole.Personal, 0.2f, EffectIncrementType.AddFactor,
                 string.Empty,
                 PartyRole.None, 0.15f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
             _efficientSpellCaster.Initialize("{=str_tor_perk_effective_spellcaster_label}Efficient Spellcaster", TORSkills.Spellcraft, 150, _overCaster,
-                "{=str_tor_perk_effective_spellcaster_1}Your damaging spells do 20% less damage, but cost 30% less winds of magic.",
+                "{=str_tor_perk_effective_spellcaster_1}Your instant damaging and healing spells are 20% less effective, but cost 30% less winds of magic.",
                 PartyRole.Personal, -0.2f, EffectIncrementType.AddFactor,
                 string.Empty,
                 PartyRole.None, -0.15f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
@@ -234,9 +233,9 @@ namespace TOR_Core.CharacterDevelopment
                 "{=str_tor_perk_arcane_link_2}As formation Captain, all troops in your formation deal additonal 10% magic damage.",
                 PartyRole.Captain, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
-            _exchange.Initialize("{=str_tor_perk_exchange_label}Exchange", TORSkills.Spellcraft, 300, null,
-                "{=str_tor_perk_exchange_1}All physical damage done by your weapons is doubled and dealt again as magical damage.",
-                PartyRole.Personal, 2f, EffectIncrementType.AddFactor);
+            _trueTransmutation.Initialize("{=str_tor_perk_true_transmutation_label}True Transmutation", TORSkills.Spellcraft, 300, null,
+                "{=str_tor_perk_true_transmutation_1}Allows you to apply 2 enchantments to weapons. Dwarfs can apply a 3rd enchantment.",
+                PartyRole.Personal, 2f, EffectIncrementType.Add);
 
             _novicePrayers.Initialize("{=str_tor_perk_novice_prayer_label}Novice Prayers", TORSkills.Faith, 25, null,
                 "{=str_tor_perk_novice_prayer_1}Gain access to all novice level battle prayers.", PartyRole.Personal, 0, EffectIncrementType.Invalid);
@@ -292,7 +291,9 @@ namespace TOR_Core.CharacterDevelopment
 
             _miracle.Initialize("{=str_tor_perk_miracle_label}Miracle", TORSkills.Faith, 300, null,
                 "{=str_tor_perk_miracle_1}Your faith is so strong that it is able to manifest miraculous events from time to time.",
-                PartyRole.Personal, 1f, EffectIncrementType.Add);
+                PartyRole.Personal, 1f, EffectIncrementType.Add,
+                "{=str_tor_perk_miracle_2}Allows you to apply 2 blessings to weapons.",
+                PartyRole.Personal, 2f, EffectIncrementType.Add);
         }
 
         public static class Spellcraft
@@ -310,7 +311,7 @@ namespace TOR_Core.CharacterDevelopment
             public static PerkObject Catalyst => Instance._catalyst;
             public static PerkObject Dampener => Instance._dampener;
             public static PerkObject ArcaneLink => Instance._arcaneLink;
-            public static PerkObject Exchange => Instance._exchange;
+            public static PerkObject TrueTransmutation => Instance._trueTransmutation;
         }
 
         public static class GunPowder

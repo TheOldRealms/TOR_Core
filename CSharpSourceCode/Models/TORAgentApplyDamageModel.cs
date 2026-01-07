@@ -768,11 +768,6 @@ namespace TOR_Core.Models
             {
                 if (mask == PropertyMask.Attack || mask == PropertyMask.All)
                 {
-                    if (agentCharacter.GetPerkValue(TORPerks.Spellcraft.Exchange))
-                    {//Sly : description states that physical damage is converted to magical, nothing about bonuses - this should manipulate "propotions" and not "damageBonuses"
-                        damageBonuses[(int)DamageType.Magical] += damageBonuses[(int)DamageType.Physical];
-                    }
-
                     if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.Spellcraft.ArcaneLink))
                     {
                         damageBonuses[(int)DamageType.Magical] += (TORPerks.Spellcraft.ArcaneLink.SecondaryBonus);

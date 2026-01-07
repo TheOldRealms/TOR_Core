@@ -8,6 +8,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Items;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models;
 
@@ -17,18 +18,27 @@ public class TOREnchantmentCraftingModel : GameModel
     {
         foreach (var hero in heroes)
         {
-            if (hero == Hero.MainHero && Hero.MainHero.HasCareer(TORCareers.Runelord) && Hero.MainHero.HasUnlockedCareerChoiceTier(3))
+            // True Transmutation perk: 2 enchantments, 3 if dwarf
+            if (hero == Hero.MainHero && Hero.MainHero.GetPerkValue(TORPerks.Spellcraft.TrueTransmutation))
             {
-                return 3;
+                bool isDwarf = Hero.MainHero.Culture?.StringId == TORConstants.Cultures.DAWI;
+                return isDwarf ? 3 : 2;
             }
 
-            if (hero.HasAttribute("Runelord") && hero.HasAttribute("MasterCrafter"))
+            // Miracle perk: 2 blessings
+            if (hero == Hero.MainHero && Hero.MainHero.GetPerkValue(TORPerks.Faith.Miracle))
             {
-                return 3;
+                return 2;
+            }
+
+            // Dwarfs get 2 enchantments by default
+            if (hero == Hero.MainHero && Hero.MainHero.Culture?.StringId == TORConstants.Cultures.DAWI)
+            {
+                return 2;
             }
         }
 
-        return 2;
+        return 1;
     }
 
 
