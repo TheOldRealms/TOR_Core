@@ -155,6 +155,25 @@ namespace TOR_Core.BattleMechanics.Firearms
                     weaponData.MissileSpeed, amount);
             }
 
+            // Add drakefire effect for drakefire pistol
+            if (shooterAgent.WieldedWeapon.Item.StringId.Contains("drakefire"))
+            {
+                var missile = Mission.MissilesList.FirstOrDefaultQ(x => x.ShooterAgent == shooterAgent);
+                if (missile != null)
+                {
+                    missile.Entity.AddParticleSystemComponent("drakefire_effect");
+                    var light = Light.CreatePointLight(5f);
+                    light.Intensity = 80f;
+                    light.LightColor = new Vec3(1f, 0.5f, 0.1f); // Orange fire glow
+                    light.SetLightFlicker(0.3f, 0.1f);
+                    light.Frame = MatrixFrame.Identity;
+                    light.SetVisibility(true);
+                    missile.Entity.AddLight(light);
+                    CreateMuzzleFireSound(position);
+                    return;
+                }
+            }
+
             // play sound of shot and create shot effects
             if (!shooterAgent.WieldedWeapon.AmmoWeapon.Item.StringId.Contains("grenade"))
             {

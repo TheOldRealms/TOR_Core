@@ -37,7 +37,6 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
         CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, AfterSessionLaunched);
         CampaignEvents.OnUnitRecruitedEvent.AddNonSerializedListener(this, OnOrcRecruitedAddGoblins);
         CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, AddExtraGoblinsForOrcRecruitment);
-        // CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnBattleEnded);
     }
 
     private void AddExtraGoblinsForOrcRecruitment(MobileParty party, Settlement settlement)

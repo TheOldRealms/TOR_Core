@@ -72,19 +72,19 @@ namespace TOR_Core.Models
 
             if (party.LeaderHero == Hero.MainHero && Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
-                if (Hero.MainHero.HasAttribute("Wargh1"))
+                if (Hero.MainHero.HasAttribute("Waaagh0"))
                 {
                     explainedNumber.AddFactor(-0.6f, TORTextHelper.GetTextObject("tor_greenskin_internal_fightin_text", "Internal Fightin'"));
                 }
-                else if (Hero.MainHero.HasAttribute("Wargh2"))
+                else if (Hero.MainHero.HasAttribute("Waaagh1"))
                 {
                     explainedNumber.AddFactor(-0.3f, TORTextHelper.GetTextObject("tor_greenskin_petty_squabblin_text", "Petty Squabblin'"));
                 }
-                else if (Hero.MainHero.HasAttribute("Wargh3"))
+                else if (Hero.MainHero.HasAttribute("Waaagh2"))
                 {
                     explainedNumber.AddFactor(0.25f, TORTextHelper.GetTextObject("tor_greenskin_ere_we_go_text", "'Ere We Go!"));
                 }
-                else if (Hero.MainHero.HasAttribute("Wargh4"))
+                else if (Hero.MainHero.HasAttribute("Waaagh3"))
                 {
                     explainedNumber.AddFactor(1.0f, TORTextHelper.GetTextObject("tor_greenskin_waaagh_text", "WAAAGH!!!!"));
                 }

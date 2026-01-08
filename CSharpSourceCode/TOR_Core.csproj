@@ -548,6 +548,7 @@
     <Compile Include="CampaignMechanics\RaidingParties\IRaidingParty.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RaidingParties\RaidingPartyComponent.cs" />
+    <Compile Include="CampaignMechanics\PostBattleLoot\PendingLootedTroopManager.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\GraveyardNightWatchPartyComponent.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\PostBattleCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\RaiseDead\RaiseDeadInTownBehavior.cs" />

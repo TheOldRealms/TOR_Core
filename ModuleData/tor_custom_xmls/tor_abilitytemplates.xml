@@ -5768,7 +5768,7 @@
     <!-- Orc Shaman Career Ability -->
     <AbilityTemplate StringID="CallOfDaGreen"
                      Name="{=call_of_da_green_label_str}Call uf da Green"
-                     SpriteName="waaagh_symbol"
+                     SpriteName="call_uf_green_icon"
                      CoolDown="60"
                      WindsOfMagicCost="0"
                      BaseMisCastChance="0"
@@ -5791,7 +5791,7 @@
                      ShouldSoundLoopOverDuration="true"
                      CastType="Instant"
                      CastTime="0.5"
-                     AnimationActionName="act_cheer_1"
+                     AnimationActionName="act_command"
                      Offset="0"
                      AbilityTargetType="Self"
                      CrosshairType="Self"

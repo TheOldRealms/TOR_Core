@@ -33,16 +33,16 @@ namespace TOR_Core.Models
 
             if (town.Settlement.IsDwarfKarak())
             {
-                explainedNumber.Add(50, new TextObject("Dwarf Karak"));
+                explainedNumber.Add(75, new TextObject("Dwarf Karak"));
                 if (Hero.MainHero.Culture.StringId == TORConstants.Cultures.DAWI)
                 {
                     if (Hero.MainHero.HasAttribute("DwarfBrewersIII"))
                     {
-                        explainedNumber.Add(50f, new TextObject("Brewers Guild"));
+                        explainedNumber.Add(25f, new TextObject("Brewers Guild"));
                     }
                     else if (Hero.MainHero.HasAttribute("DwarfBrewersII"))
                     {
-                        explainedNumber.Add(25f, new TextObject("Brewers Guild"));
+                        explainedNumber.Add(15f, new TextObject("Brewers Guild"));
                     }
                     else if (Hero.MainHero.HasAttribute("DwarfBrewersI"))
                     {
