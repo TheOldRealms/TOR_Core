@@ -75,6 +75,43 @@ namespace TOR_Core.Utilities
         }
 
         /// <summary>
+        /// Displays aggregate friendly fire damage for all allies hit by a single spell cast.
+        /// </summary>
+        public static void DisplayAggregateSpellFriendlyFire(int totalDamage, int agentsAffected, int agentsKilled, string spellName = null)
+        {
+            var displayColor = Colors.Magenta;
+
+            var spellNameText = string.IsNullOrEmpty(spellName)
+                ? TORTextHelper.GetTextObject("tor_damage_display_spell", "Spell")
+                : new TextObject(spellName);
+
+            var targetText = agentsAffected == 1
+                ? TORTextHelper.GetTextObject("tor_damage_display_ally_singular", "ally")
+                : TORTextHelper.GetTextObject("tor_damage_display_ally_plural", "allies");
+
+            TextObject resultText;
+            if (agentsKilled > 0)
+            {
+                resultText = TORTextHelper.GetTextObject("tor_damage_display_friendly_fire_with_kills",
+                    "{ICON} {SPELL_NAME} hit {COUNT} {TARGET_TEXT} for {DAMAGE} friendly fire damage, {KILL_COUNT} killed");
+                resultText.SetTextVariable("KILL_COUNT", agentsKilled);
+            }
+            else
+            {
+                resultText = TORTextHelper.GetTextObject("tor_damage_display_friendly_fire",
+                    "{ICON} {SPELL_NAME} hit {COUNT} {TARGET_TEXT} for {DAMAGE} friendly fire damage");
+            }
+
+            resultText.SetTextVariable("ICON", "<img src=\"skull_icon\"/>");
+            resultText.SetTextVariable("SPELL_NAME", spellNameText);
+            resultText.SetTextVariable("DAMAGE", totalDamage);
+            resultText.SetTextVariable("COUNT", agentsAffected);
+            resultText.SetTextVariable("TARGET_TEXT", targetText);
+
+            InformationManager.DisplayMessage(new InformationMessage(resultText.ToString(), displayColor));
+        }
+
+        /// <summary>
         /// Displays aggregate spell healing for all targets healed by a single spell cast.
         /// </summary>
         public static void DisplayAggregateSpellHealing(int totalHealing, int agentsAffected, string spellName = null)

@@ -992,6 +992,15 @@ namespace TOR_Core.AbilitySystem
                         session.AgentsHealedCount,
                         spellName);
                 }
+
+                if (session.TotalFriendlyFireDamage > 0)
+                {
+                    TORDamageDisplay.DisplayAggregateSpellFriendlyFire(
+                        session.TotalFriendlyFireDamage,
+                        session.AgentsFriendlyFiredCount,
+                        session.AgentsFriendlyKilledCount,
+                        spellName);
+                }
             }
 
             // Grant XP for all hero casters (player and companions)

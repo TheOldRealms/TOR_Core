@@ -18,6 +18,9 @@ namespace TOR_Core.AbilitySystem.SpellCasting
         private readonly HashSet<int> _agentsHealed = new();
         private readonly HashSet<int> _agentsKilled = new();
         private readonly HashSet<int> _agentsAffectedByStatusEffects = new();
+        // TODO: Check if separate friendly fire tracking affects performance
+        private readonly HashSet<int> _agentsFriendlyFired = new();
+        private readonly HashSet<int> _agentsFriendlyKilled = new();
 
         public int CastID { get; }
         public Agent Caster { get; }
@@ -27,12 +30,15 @@ namespace TOR_Core.AbilitySystem.SpellCasting
 
         public int TotalDamageDealt { get; private set; }
         public int TotalDamageAbsorbed { get; private set; }
+        public int TotalFriendlyFireDamage { get; private set; }
         public int TotalHealingDone { get; private set; }
         public int TickCount { get; private set; }
 
         public int AgentsDamagedCount => _agentsDamaged.Count;
         public int AgentsHealedCount => _agentsHealed.Count;
         public int AgentsKilledCount => _agentsKilled.Count;
+        public int AgentsFriendlyFiredCount => _agentsFriendlyFired.Count;
+        public int AgentsFriendlyKilledCount => _agentsFriendlyKilled.Count;
         public int AgentsAffectedByStatusEffectsCount => _agentsAffectedByStatusEffects.Count;
         public int StatusEffectsApplied { get; private set; }
 
@@ -57,7 +63,7 @@ namespace TOR_Core.AbilitySystem.SpellCasting
 
         /// <summary>
         /// Books damage dealt to an agent in this session.
-        /// Friendly fire damage is tracked but not counted towards XP.
+        /// Friendly fire damage is tracked separately and not counted towards XP.
         /// </summary>
         public void BookDamage(Agent victim, int damageDealt, int damageAbsorbed, DamageType damageType)
         {
@@ -65,11 +71,14 @@ namespace TOR_Core.AbilitySystem.SpellCasting
 
             bool isFriendlyFire = Caster != null && victim.Team == Caster.Team;
 
-            _agentsDamaged.Add(victim.Index);
-
-            // Only count damage towards XP if it's not friendly fire
-            if (!isFriendlyFire)
+            if (isFriendlyFire)
             {
+                _agentsFriendlyFired.Add(victim.Index);
+                TotalFriendlyFireDamage += damageDealt;
+            }
+            else
+            {
+                _agentsDamaged.Add(victim.Index);
                 TotalDamageDealt += damageDealt;
             }
 
@@ -92,7 +101,7 @@ namespace TOR_Core.AbilitySystem.SpellCasting
 
         /// <summary>
         /// Books a kill in this session.
-        /// Friendly fire kills are not counted.
+        /// Friendly fire kills are tracked separately.
         /// </summary>
         public void BookKill(Agent victim)
         {
@@ -100,8 +109,11 @@ namespace TOR_Core.AbilitySystem.SpellCasting
 
             bool isFriendlyFire = Caster != null && victim.Team == Caster.Team;
 
-            // Only count kills if not friendly fire
-            if (!isFriendlyFire)
+            if (isFriendlyFire)
+            {
+                _agentsFriendlyKilled.Add(victim.Index);
+            }
+            else
             {
                 _agentsKilled.Add(victim.Index);
             }
