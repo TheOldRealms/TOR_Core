@@ -96,7 +96,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             var model = (TOREnchantmentCraftingModel)Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
             if (model != null)
             {
-                traitAmount = model.MaximumAmountOfEnchantments(PartyBase.MainParty.MobileParty.GetMemberHeroes());
+                traitAmount = model.MaximumAmountOfEnchantments(MobileParty.MainParty.GetMemberHeroes());
             }
 
             return traitAmount;
@@ -109,7 +109,7 @@ namespace TOR_Core.CampaignMechanics.Crafting
             var model = (TOREnchantmentCraftingModel)Campaign.Current.Models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TOREnchantmentCraftingModel));
             if (model != null)
             {
-                cost = model.GetEffectiveIngredientAmount(PartyBase.MainParty.MobileParty.GetMemberHeroes(), itemTrait,
+                cost = model.GetEffectiveIngredientAmount(MobileParty.MainParty.GetMemberHeroes(), itemTrait,
                     itemTrait.IngredientItem);
             }
 

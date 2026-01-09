@@ -1072,5 +1072,43 @@ namespace TOR_Core.Models
 
             return false;
         }
+
+        public override float CalculateRemainingMomentum(float originalMomentum, in Blow b, in AttackCollisionData collisionData, Agent attacker, Agent victim, in MissionWeapon attackerWeapon, bool isCrushThrough)
+        {
+            float newMomentum = 0f;
+
+            if (isCrushThrough || ShouldCutThrough(collisionData, attacker, victim))//Sly : native uses 0.3 multiplier for CrushThrough, I've put it here directly to skip a method call and to have an equality between CrushThrough and CutThrough for remaining momentum. It would probably be more realistic if CutThrough had higher momentum as the weapon has less resistance from the body and armour and it has a far smaller contact area to mitigate received force. Future balance thought.
+            {
+                newMomentum = originalMomentum * 0.3f;
+            }
+            else
+            {
+                newMomentum = base.CalculateRemainingMomentum(originalMomentum, in b, in collisionData, attacker, victim, in attackerWeapon, isCrushThrough);
+            }
+                
+            return newMomentum;
+        }
+
+        public override bool DecideCrushedThrough(Agent attackerAgent, Agent defenderAgent, float totalAttackEnergy, Agent.UsageDirection attackDirection, StrikeType strikeType, WeaponComponentData defendItem, bool isPassiveUsage)
+        {
+            EquipmentIndex equipmentIndex = attackerAgent.GetOffhandWieldedItemIndex();
+            if (equipmentIndex == EquipmentIndex.None)
+            {
+                equipmentIndex = attackerAgent.GetPrimaryWieldedItemIndex();
+            }
+
+            if (((equipmentIndex != EquipmentIndex.None) ? attackerAgent.Equipment[equipmentIndex].CurrentUsageItem : null) == null || isPassiveUsage || strikeType != 0 || (attackDirection != 0 && !attackerAgent.HasAttribute("CrushThrough")))
+            {
+                return false;
+            }
+
+            float num = 58f;
+            if (defendItem != null && defendItem.IsShield)
+            {
+                num *= 1.2f;
+            }
+
+            return totalAttackEnergy > num;
+        }
     }
 }
