@@ -282,7 +282,6 @@ namespace TOR_Core
             if (toRemove != null) mission.RemoveMissionBehavior(toRemove);
 
             mission.AddMissionBehavior(new StatusEffectMissionLogic());
-            mission.AddMissionBehavior(new ExtendedInfoMissionLogic());
             mission.AddMissionBehavior(new AbilityManagerMissionLogic());
             mission.AddMissionBehavior(new AbilityHUDMissionView());
             mission.AddMissionBehavior(new CustomCrosshairMissionBehavior());

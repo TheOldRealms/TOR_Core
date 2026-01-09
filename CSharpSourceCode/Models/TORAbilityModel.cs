@@ -1,23 +1,31 @@
 using Helpers;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.TwoDimension;
 using TOR_Core.AbilitySystem;
+using TOR_Core.AbilitySystem.SpellCasting;
 using TOR_Core.AbilitySystem.Spells;
+using TOR_Core.BattleMechanics;
+using TOR_Core.BattleMechanics.DamageSystem;
+using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.CampaignMechanics.CustomResources;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 using TOR_Core.CharacterDevelopment.CareerSystem.Choices;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Items;
 using TOR_Core.Utilities;
 
@@ -31,7 +39,8 @@ namespace TOR_Core.Models
             {
                 AbilityType.Spell => TORSkills.Spellcraft,
                 AbilityType.Prayer => TORSkills.Faith,
-                _ => TORSkills.Spellcraft,
+                AbilityType.CareerAbility => null, // Career abilities don't grant skill XP
+                _ => null,
             };
         }
 
@@ -67,6 +76,83 @@ namespace TOR_Core.Models
         public int GetSkillXpForAbilityDamage(AbilityTemplate ability, int damageAmount)
         {
             return damageAmount / 5;
+        }
+
+        /// <summary>
+        /// Calculates total XP for a completed spell session based on damage, healing, and status effects.
+        /// </summary>
+        public int CalculateSpellSessionXp(SpellCastSession session)
+        {
+            if (session == null)
+                return 0;
+
+            int xp = 0;
+
+            // XP for damage dealt (damage / 5)
+            if (session.TotalDamageDealt > 0)
+            {
+                xp += session.TotalDamageDealt / 5;
+            }
+
+            // XP for healing done (healing / 5)
+            if (session.TotalHealingDone > 0)
+            {
+                xp += session.TotalHealingDone / 5;
+            }
+
+            // XP for status effects applied (10 XP per unique agent affected)
+            if (session.AgentsAffectedByStatusEffectsCount > 0)
+            {
+                xp += session.AgentsAffectedByStatusEffectsCount * 10;
+            }
+
+            // Single-target spells get 2x XP to balance against AoE spells
+            if (session.AbilityTemplate != null && IsSingleTargetAbility(session.AbilityTemplate))
+            {
+                xp *= 5;
+            }
+
+            return xp;
+        }
+
+        /// <summary>
+        /// Returns true if the ability is single-target (not AoE).
+        /// </summary>
+        private bool IsSingleTargetAbility(AbilityTemplate ability)
+        {
+            return ability.AbilityTargetType == AbilityTargetType.SingleEnemy ||
+                   ability.AbilityTargetType == AbilityTargetType.SingleAlly ||
+                   ability.AbilityTargetType == AbilityTargetType.Self;
+        }
+
+        /// <summary>
+        /// Grants skill XP for dealing ability damage. Call this after damage is applied.
+        /// </summary>
+        public void ApplyAbilityDamageXp(Agent attacker, AbilityTemplate abilityTemplate, int damageDealt)
+        {
+            if (attacker == null || abilityTemplate == null || damageDealt <= 0)
+                return;
+
+            if (!attacker.IsHero)
+                return;
+
+            var hero = attacker.GetHero();
+            if (hero == null)
+                return;
+
+            var skill = GetRelevantSkillForAbility(abilityTemplate);
+            var xpAmount = GetSkillXpForAbilityDamage(abilityTemplate, damageDealt);
+
+            if (xpAmount > 0)
+            {
+                hero.AddSkillXp(skill, xpAmount);
+
+                // DarkVisionPassive3 - also grants Roguery XP
+                if (hero.HasAnyCareer() && hero.HasCareerChoice("DarkVisionPassive3"))
+                {
+                    hero.AddSkillXp(DefaultSkills.Roguery, xpAmount);
+                }
+            }
         }
 
         public float GetSkillEffectivenessForAbilityDamage(CharacterObject character, AbilityTemplate ability)
@@ -326,11 +412,11 @@ namespace TOR_Core.Models
                 {
                     CareerHelper.ApplyBasicCareerPassives(Hero.MainHero, ref explainedNumber, PassiveEffectType.SpellEffectiveness, true);
                 }
-                if (character.GetPerkValue(TORPerks.Spellcraft.OverCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (character.GetPerkValue(TORPerks.Spellcraft.OverCaster) && abilityTemplate.IsSpell && (abilityTemplate.DoesDamage || abilityTemplate.DoesHeal))
                 {
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.OverCaster, character, true, ref explainedNumber);
                 }
-                if (character.GetPerkValue(TORPerks.Spellcraft.EfficientSpellCaster) && abilityTemplate.IsSpell && abilityTemplate.DoesDamage)
+                if (character.GetPerkValue(TORPerks.Spellcraft.EfficientSpellCaster) && abilityTemplate.IsSpell && (abilityTemplate.DoesDamage || abilityTemplate.DoesHeal))
                 {
                     PerkHelper.AddPerkBonusForCharacter(TORPerks.Spellcraft.EfficientSpellCaster, character, true, ref explainedNumber);
                 }
@@ -672,6 +758,275 @@ namespace TOR_Core.Models
                 return true;
             }
             return !loreObject.DisabledForCultures.Contains(hero.Culture.StringId);
+        }
+
+        /// <summary>
+        /// Calculates final ability damage with all modifiers applied.
+        /// Call this for spells/prayers that deal damage (positive DamageAmount).
+        /// </summary>
+        public int CalculateAbilityDamage(Agent attacker, Agent victim, int baseDamage, DamageType damageType, AbilityTemplate abilityTemplate)
+        {
+            if (attacker == null || victim == null || baseDamage <= 0)
+                return baseDamage;
+
+            var damageModel = MissionGameModels.Current?.AgentApplyDamageModel as TORAgentApplyDamageModel;
+            if (damageModel == null)
+                return baseDamage;
+
+            // Get property containers
+            var attackerPropertyContainer = damageModel.CreateAgentPropertyContainer(attacker, PropertyMask.Attack, AttackTypeMask.Spell);
+            var victimPropertyContainer = damageModel.CreateAgentPropertyContainer(victim, PropertyMask.Defense, AttackTypeMask.Spell);
+
+            var damageAmplifications = attackerPropertyContainer.DamagePercentages;
+            var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
+            var resistancePercentages = victimPropertyContainer.ResistancePercentages;
+
+            bool friendlyFire = attacker.Team == victim.Team;
+            int damageTypeIndex = (int)damageType;
+            float resultDamage = baseDamage;
+
+            // Apply career passives for damage values
+            TORDamageHelper.ApplyCareerPassives(attacker, victim, AttackTypeMask.Spell, additionalDamagePercentages, resistancePercentages);
+
+            // Apply damage modifiers (virtual hook)
+            resultDamage = ApplyDamageModifiers(resultDamage, attacker, victim, damageType, abilityTemplate, damageAmplifications, additionalDamagePercentages, resistancePercentages);
+
+            // Calculate ward save
+            float wardSaveFactor = damageModel.CalculateWardSaveFactor(victim, resistancePercentages, friendlyFire);
+
+            // Apply amplifications and resistances
+            damageAmplifications[damageTypeIndex] += additionalDamagePercentages[damageTypeIndex];
+            damageAmplifications[damageTypeIndex] -= resistancePercentages[damageTypeIndex];
+            resultDamage *= (1 + damageAmplifications[damageTypeIndex]);
+
+            // Apply ward save
+            resultDamage *= wardSaveFactor;
+            
+            return Math.Max(0, (int)resultDamage);
+        }
+
+        /// <summary>
+        /// Calculates final ability healing with all modifiers applied.
+        /// Call this for spells/prayers that heal (negative DamageAmount in XML).
+        /// </summary>
+        public int CalculateAbilityHealing(Agent caster, Agent target, int baseHealing, AbilityTemplate abilityTemplate)
+        {
+            if (caster == null || target == null || baseHealing <= 0)
+                return baseHealing;
+
+            float resultHealing = baseHealing;
+
+            // Apply healing modifiers (virtual hook)
+            resultHealing = ApplyHealingModifiers(resultHealing, caster, target, abilityTemplate);
+
+            return Math.Max(0, (int)resultHealing);
+        }
+
+        /// <summary>
+        /// Virtual hook for applying damage modifiers. Override to customize damage calculation.
+        /// </summary>
+        protected virtual float ApplyDamageModifiers(
+            float damage,
+            Agent attacker,
+            Agent victim,
+            DamageType damageType,
+            AbilityTemplate abilityTemplate,
+            float[] damageAmplifications,
+            float[] additionalDamagePercentages,
+            float[] resistancePercentages)
+        {
+            if (Game.Current.GameType is not Campaign)
+                return damage;
+
+            int damageTypeIndex = (int)damageType;
+
+            if (abilityTemplate != null && attacker.IsHero)
+            {
+                var hero = attacker.GetHero();
+                if (hero != null)
+                {
+                    // Perk effects multiplier
+                    damage *= GetPerkEffectsOnAbilityDamage(hero.CharacterObject, victim, abilityTemplate);
+
+                    // Skill effectiveness multiplier
+                    damage *= GetSkillEffectivenessForAbilityDamage(hero.CharacterObject, abilityTemplate);
+
+                    // Career-specific bonuses
+                    if (hero.HasAnyCareer())
+                    {
+                        if (hero.HasCareerChoice("EverlingsSecretPassive4"))
+                        {
+                            for (int i = (int)DamageType.Magical; i < (int)DamageType.All; i++)
+                            {
+                                if (i == damageTypeIndex) continue;
+                                damageAmplifications[damageTypeIndex] += additionalDamagePercentages[i];
+                                damageAmplifications[damageTypeIndex] += damageAmplifications[i];
+                            }
+                        }
+                    }
+
+                    if (hero.PartyBelongedTo == MobileParty.MainParty)
+                    {
+                        if (MobileParty.MainParty.LeaderHero.HasAnyCareer())
+                        {
+                            if (Hero.MainHero.HasCareerChoice("AncientScrollsPassive4"))
+                            {
+                                damageAmplifications[damageTypeIndex] += 0.2f;
+                            }
+
+                            if (Hero.MainHero.HasCareerChoice("ArcaneKnowledgePassive1") && hero != Hero.MainHero)
+                            {
+                                damageAmplifications[damageTypeIndex] += 0.1f;
+                            }
+                        }
+                    }
+
+                    // Note: Using temporary attribute instead of StatusEffect DamageAmplification because
+                    // the DamageAmplification system doesn't properly handle damage_type="All" - it stores
+                    // the value at the "All" index but damage calculations only read specific damage type indices.
+                    if (attacker.HasAttribute("Arcane_Dmg"))
+                    {
+                        damageAmplifications[damageTypeIndex] += 0.3f;
+                    }
+                }
+            }
+
+            return damage;
+        }
+
+        /// <summary>
+        /// Virtual hook for applying healing modifiers. Override to customize healing calculation.
+        /// </summary>
+        protected virtual float ApplyHealingModifiers(float healing, Agent caster, Agent target, AbilityTemplate abilityTemplate)
+        {
+            if (Game.Current.GameType is not Campaign)
+                return healing;
+
+            if (abilityTemplate != null && caster.IsHero)
+            {
+                var hero = caster.GetHero();
+                if (hero != null)
+                {
+                    // Perk effects multiplier (includes Overcaster/EfficientSpellCaster)
+                    healing *= GetPerkEffectsOnAbilityDamage(hero.CharacterObject, target, abilityTemplate);
+
+                    // Skill effectiveness for healing
+                    healing *= GetSkillEffectivenessForAbilityDamage(hero.CharacterObject, abilityTemplate);
+                }
+            }
+
+            return healing;
+        }
+
+        /// <summary>
+        /// Applies spell damage to a group of agents with aggregate tracking.
+        /// Handles damage calculation and application. XP and display are handled when session is collected.
+        /// </summary>
+        public void ApplySpellDamageToAgents(
+            IEnumerable<Agent> agents,
+            int minDamage,
+            int maxDamage,
+            Agent caster,
+            DamageType damageType,
+            AbilityTemplate abilityTemplate,
+            TriggeredEffectTemplate triggeredEffectTemplate,
+            bool hasShockWave,
+            Vec3 impactPosition,
+            int castId = -1)
+        {
+            if (agents == null || caster == null) return;
+
+            var logic = Mission.Current?.GetMissionBehavior<AbilitySystem.AbilityManagerMissionLogic>();
+
+            foreach (var agent in agents)
+            {
+                if (agent == null) continue;
+
+                // Calculate base damage with variance
+                var baseDamage = maxDamage < minDamage ? minDamage : MBRandom.RandomInt(minDamage, maxDamage);
+                if (baseDamage <= 0) continue;
+
+                // Apply radius falloff for shockwave effects
+                if (impactPosition != default && hasShockWave && triggeredEffectTemplate != null)
+                {
+                    var distance = agent.Position.Distance(impactPosition);
+                    baseDamage = (int)((triggeredEffectTemplate.Radius - distance) / triggeredEffectTemplate.Radius * baseDamage);
+                }
+
+                if (baseDamage <= 0) continue;
+
+                // Calculate final damage with all modifiers
+                int finalDamage = CalculateAbilityDamage(caster, agent, baseDamage, damageType, abilityTemplate);
+
+                if (finalDamage > 0)
+                {
+                    // Apply the damage
+                    agent.ApplyDamage(finalDamage, impactPosition, caster, doBlow: true, hasShockWave: hasShockWave, originatesFromAbility: abilityTemplate != null);
+
+                    // Book damage to session if we have a valid castId
+                    if (castId >= 0 && logic != null)
+                    {
+                        logic.BookSpellDamage(castId, agent, finalDamage, 0, damageType);
+
+                        // Track kill if the agent died from this damage
+                        if (agent.Health <= 0 || agent.State == AgentState.Killed || agent.State == AgentState.Unconscious)
+                        {
+                            logic.BookSpellKill(castId, agent);
+                        }
+                    }
+                    // Note: Career ability charge is applied through OnAgentHit when RegisterBlow is called
+                }
+            }
+        }
+
+        /// <summary>
+        /// Applies spell healing to a group of agents with aggregate tracking.
+        /// Handles healing application. XP and display are handled when session is collected.
+        /// </summary>
+        public void ApplySpellHealingToAgents(
+            IEnumerable<Agent> agents,
+            int minHeal,
+            int maxHeal,
+            Agent healer,
+            AbilityTemplate abilityTemplate,
+            int castId = -1)
+        {
+            if (agents == null) return;
+
+            var logic = Mission.Current?.GetMissionBehavior<AbilitySystem.AbilityManagerMissionLogic>();
+
+            foreach (var agent in agents)
+            {
+                if (agent == null) continue;
+
+                var baseHealing = minHeal;
+                if (maxHeal >= minHeal)
+                {
+                    baseHealing = MBRandom.RandomInt(minHeal, maxHeal);
+                }
+
+                if (baseHealing <= 0) continue;
+
+                // Calculate final healing with modifiers
+                int finalHealing = CalculateAbilityHealing(healer, agent, baseHealing, abilityTemplate);
+
+                if (finalHealing > 0)
+                {
+                    agent.Heal(finalHealing);
+
+                    // Book healing to session if we have a valid castId
+                    if (castId >= 0 && logic != null)
+                    {
+                        logic.BookSpellHealing(castId, agent, finalHealing);
+                    }
+
+                    // Apply career ability charge
+                    if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(healer, agent))
+                    {
+                        CareerHelper.ApplyCareerAbilityCharge(finalHealing, ChargeType.Healed, AttackTypeMask.Spell, healer, agent);
+                    }
+                }
+            }
         }
     }
 }

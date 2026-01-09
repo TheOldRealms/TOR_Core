@@ -42,6 +42,12 @@ namespace TOR_Core.Models
                     {
                         missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                     }
+
+                    // WardenOfTalsynPassive4: Javelins can penetrate multiple targets
+                    if (missileWeapon.CurrentUsageItem.WeaponClass == WeaponClass.Javelin && choices.Contains("WardenOfTalsynPassive4"))
+                    {
+                        missileWeaponFlags |= WeaponFlags.MultiplePenetration;
+                    }
                 }
 
                 if (attackerAgent.HasAttribute("ShieldPenetration"))
@@ -49,10 +55,27 @@ namespace TOR_Core.Models
                     missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                 }
 
-                // Check for ShieldPenetration trait on wielded weapon
-                if (!attackerAgent.WieldedWeapon.IsEmpty && attackerAgent.WieldedWeapon.Item != null)
+                // Check for ShieldPenetration trait - use missile weapon for thrown weapons, wielded weapon for bows/guns
+                ItemObject traitSourceItem = null;
+                switch (missileWeapon.CurrentUsageItem.WeaponClass)
                 {
-                    var traits = attackerAgent.WieldedWeapon.Item.GetTraits(attackerAgent);
+                    case WeaponClass.Javelin:
+                    case WeaponClass.ThrowingAxe:
+                    case WeaponClass.ThrowingKnife:
+                    case WeaponClass.Stone:
+                        // Thrown weapons: traits are on the thrown item itself
+                        traitSourceItem = missileWeapon.Item;
+                        break;
+                    default:
+                        // Ranged weapons (bows, crossbows, guns): traits are on the wielded weapon
+                        if (!attackerAgent.WieldedWeapon.IsEmpty)
+                            traitSourceItem = attackerAgent.WieldedWeapon.Item;
+                        break;
+                }
+
+                if (traitSourceItem != null)
+                {
+                    var traits = traitSourceItem.GetTraits(attackerAgent);
                     if (traits.Any(t => t.StatsTuple?.StatType == ItemTraitStatType.ShieldPenetration))
                     {
                         missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
@@ -332,6 +355,122 @@ namespace TOR_Core.Models
             }
 
             return value;
+        }
+
+        /// <summary>
+        /// Applies TOR's damage type system (proportions, amplifications, resistances, ward save).
+        /// Called last in the CalculateDamage chain, after all vanilla modifiers.
+        /// </summary>
+        public override float ApplyGeneralDamageModifiers(
+            in AttackInformation attackInformation,
+            in AttackCollisionData collisionData,
+            float baseDamage)
+        {
+            // First apply vanilla general modifiers
+            float vanillaDamage = base.ApplyGeneralDamageModifiers(attackInformation, collisionData, baseDamage);
+
+            // Get agents
+            var attackerAgent = attackInformation.IsAttackerAgentMount ? attackInformation.AttackerAgent?.RiderAgent : attackInformation.AttackerAgent;
+            var victimAgent = attackInformation.IsVictimAgentMount ? attackInformation.VictimAgent?.RiderAgent : attackInformation.VictimAgent;
+
+            if (attackerAgent == null || victimAgent == null)
+                return vanillaDamage;
+
+            if (!attackerAgent.IsHuman || !victimAgent.IsHuman)
+                return vanillaDamage;
+
+            if (attackerAgent == victimAgent)
+                return vanillaDamage;
+
+            // Skip arena missions
+            if (Mission.Current.IsArenaMission())
+                return vanillaDamage;
+
+            // Determine attack type mask
+            AttackTypeMask attackTypeMask = collisionData.IsMissile ? AttackTypeMask.Ranged : AttackTypeMask.Melee;
+
+            // Get property containers
+            var attackerPropertyContainer = CreateAgentPropertyContainer(attackerAgent, PropertyMask.Attack, attackTypeMask);
+            var victimPropertyContainer = CreateAgentPropertyContainer(victimAgent, PropertyMask.Defense, attackTypeMask);
+
+            var damageProportions = attackerPropertyContainer.DamageProportions;
+            var damageAmplifications = attackerPropertyContainer.DamagePercentages;
+            var additionalDamagePercentages = attackerPropertyContainer.AdditionalDamagePercentages;
+            var resistancePercentages = victimPropertyContainer.ResistancePercentages;
+
+            bool friendlyFire = attackerAgent.Team == victimAgent.Team;
+
+            // Apply career passives for damage values
+            TORDamageHelper.ApplyCareerPassives(attackerAgent, victimAgent, attackTypeMask, additionalDamagePercentages, resistancePercentages);
+
+            // Career-specific bonuses for melee/ranged
+            if (Game.Current.GameType is Campaign && attackerAgent.IsMainAgent)
+            {
+                if (attackTypeMask == AttackTypeMask.Ranged && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+                {
+                    if (Hero.MainHero.HasCareerChoice("HailOfArrowsPassive4"))
+                    {
+                        CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                        if (careerPerkBehavior != null)
+                        {
+                            damageProportions[(int)DamageType.Magical] += 0.01f * careerPerkBehavior.CareerMissionVariables[0];
+                        }
+                    }
+                }
+
+                if (attackTypeMask == AttackTypeMask.Melee && Hero.MainHero.HasCareer(TORCareers.Slayer))
+                {
+                    CareerPerkMissionBehavior careerPerkBehavior = Mission.Current.GetMissionBehavior<CareerPerkMissionBehavior>();
+                    if (careerPerkBehavior != null)
+                    {
+                        damageProportions[(int)DamageType.Physical] += 0.01f * careerPerkBehavior.CareerMissionVariables[0];
+                        if (Hero.MainHero.HasCareerChoice("BaneOfChaosKeystone"))
+                        {
+                            resistancePercentages[(int)DamageType.Physical] += 0.001f * careerPerkBehavior.CareerMissionVariables[0];
+                        }
+                    }
+                }
+            }
+
+            // Calculate damage with TOR's damage type system
+            float resultDamage = TORDamageHelper.CalculateDamageWithProportions(
+                vanillaDamage, damageProportions, damageAmplifications,
+                additionalDamagePercentages, resistancePercentages, out float[] damageCategories);
+
+            // Apply ward save
+            float wardSaveFactor = CalculateWardSaveFactor(victimAgent, resistancePercentages, friendlyFire);
+            resultDamage *= wardSaveFactor;
+
+            return resultDamage;
+        }
+
+        /// <summary>
+        /// Determines if the victim should shrug off the blow (no stagger/reaction).
+        /// Moved from DamagePatch to use the proper model override.
+        /// </summary>
+        public override bool DecideAgentShrugOffBlow(Agent victimAgent, in AttackCollisionData collisionData, in Blow blow)
+        {
+            // First check base game logic
+            var baseShrugOff = base.DecideAgentShrugOffBlow(victimAgent, collisionData, blow);
+            if (baseShrugOff)
+                return true;
+            
+            if (victimAgent.HasAttribute("Unstoppable"))
+                return true;
+
+            // Agent's own damage threshold check
+            if (victimAgent.IsDamageShruggedOff(blow.InflictedDamage))
+                return true;
+            
+            if (collisionData.IsMissile && victimAgent.IsMainAgent && Hero.MainHero.HasCareer(TORCareers.Waywatcher))
+            {
+                if (Hero.MainHero.HasCareerChoice("PathfinderPassive4"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public AgentPropertyContainer CreateAgentPropertyContainer(Agent agent, PropertyMask propertyMask, AttackTypeMask attackTypeMask)
@@ -646,11 +785,6 @@ namespace TOR_Core.Models
             {
                 if (mask == PropertyMask.Attack || mask == PropertyMask.All)
                 {
-                    if (agentCharacter.GetPerkValue(TORPerks.Spellcraft.Exchange))
-                    {//Sly : description states that physical damage is converted to magical, nothing about bonuses - this should manipulate "propotions" and not "damageBonuses"
-                        damageBonuses[(int)DamageType.Magical] += damageBonuses[(int)DamageType.Physical];
-                    }
-
                     if (agentCaptain != null && agentCaptain.GetPerkValue(TORPerks.Spellcraft.ArcaneLink))
                     {
                         damageBonuses[(int)DamageType.Magical] += (TORPerks.Spellcraft.ArcaneLink.SecondaryBonus);

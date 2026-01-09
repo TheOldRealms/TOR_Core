@@ -392,7 +392,7 @@ namespace TOR_Core.Extensions
                     direction.Normalize();
                     blow.Direction = direction;
                     blow.SwingDirection = direction;
-                    blow.DamageCalculated = true;
+                    blow.DamageCalculated = true;  // Damage already calculated in TORAbilityModel.CalculateFinalSpellDamage()
                     blow.AttackType = AgentAttackType.Kick;
                     blow.BlowFlag = BlowFlags.NoSound;
                     blow.VictimBodyPart = BoneBodyPartType.Chest;
@@ -416,6 +416,8 @@ namespace TOR_Core.Extensions
                         return;
                     }
                     sbyte mainHandItemBoneIndex = damagerAgent.Monster.MainHandItemBoneIndex;
+                    // Use spell sentinel value to identify this as a spell blow in damage model methods
+                    int weaponSlotOrMissileIndex = originatesFromAbility ? TORSpellBlowHelper.SpellBlowSentinel : -1;
                     AttackCollisionData attackCollisionData = AttackCollisionData.GetAttackCollisionDataForDebugPurpose(
                         false,
                         false,
@@ -430,7 +432,7 @@ namespace TOR_Core.Extensions
                         false,
                         false,
                         CombatCollisionResult.StrikeAgent,
-                        -1,
+                        weaponSlotOrMissileIndex,
                         1,
                         2,
                         blow.BoneIndex,
@@ -473,14 +475,10 @@ namespace TOR_Core.Extensions
             agent.Health = Math.Min(agent.Health + healingAmount, agent.HealthLimit);
         }
 
-        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false, bool stack = false)
+        public static void ApplyStatusEffect(this Agent agent, string effectId, Agent applierAgent, float duration = 5, bool append = true, bool isMutated = false, bool stack = false, int castId = -1)
         {
             var comp = agent?.GetComponent<StatusEffectComponent>();
-            if (comp != null)
-            {
-                comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated, stack);
-                //TORCommon.Say("ApplyStatusEffect: " + effectId);
-            }
+            if (comp != null) comp.RunStatusEffect(effectId, applierAgent, duration, append, isMutated, stack, castId);
         }
 
         public static void RemoveStatusEffect(this Agent agent, string effectId)

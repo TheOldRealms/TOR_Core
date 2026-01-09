@@ -119,6 +119,8 @@ namespace TOR_Core.AbilitySystem
         [XmlIgnore]
         public bool DoesDamage => AssociatedTriggeredEffectTemplates.Any(x => x.DamageType != DamageType.Invalid && x.DamageAmount > 0);
         [XmlIgnore]
+        public bool DoesHeal => AssociatedTriggeredEffectTemplates.Any(x => x.DamageAmount < 0);
+        [XmlIgnore]
         public int GoldCost
         {
             get

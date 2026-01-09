@@ -3052,7 +3052,7 @@
   <string id="tor_careerchoice_description.StudyAndPractisePassive4" text="{=str_tor_careerchoice_description_StudyAndPractisePassive4}Increases Magic resistance against spells by 10%." />
   <string id="tor_careerchoice_description.TeclisTeachingsKeystone" text="{=str_tor_careerchoice_description_TeclisTeachingsKeystone}You charge 25% longer. Additional charge." />
   <string id="tor_careerchoice_description.TeclisTeachingsPassive1" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive1}Increases fire spell damage by 5%." />
-  <string id="tor_careerchoice_description.TeclisTeachingsPassive2" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive2}Increases electric spell damage by 5%." />
+  <string id="tor_careerchoice_description.TeclisTeachingsPassive2" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive2}Increases lightning spell damage by 5%." />
   <string id="tor_careerchoice_description.TeclisTeachingsPassive3" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive3}Increases max Winds of Magic by 3." />
   <string id="tor_careerchoice_description.TeclisTeachingsPassive4" text="{=str_tor_careerchoice_description_TeclisTeachingsPassive4}Powerstones cost 35% less Prestige" />
   <string id="tor_careerchoice_description.ImperialEnchantmentKeystone" text="{=str_tor_careerchoice_description_ImperialEnchantmentKeystone}You are less slowed down using Arcane Conduit." />
@@ -3074,7 +3074,7 @@
   <string id="tor_careerchoice_description.AncientScrollsPassive1" text="{=str_tor_careerchoice_description_AncientScrollsPassive1}Increase hex durations by 25%." />
   <string id="tor_careerchoice_description.AncientScrollsPassive2" text="{=str_tor_careerchoice_description_AncientScrollsPassive2}Increases Windsregeneration by 1." />
   <string id="tor_careerchoice_description.AncientScrollsPassive3" text="{=str_tor_careerchoice_description_AncientScrollsPassive3}Recover 80% used Prestige from used Powerstones" />
-  <string id="tor_careerchoice_description.AncientScrollsPassive4" text="{=str_tor_careerchoice_description_AncientScrollsPassive4}For every varying imperial wizard, reduce the powerstone winds upkeep by 5%." />
+  <string id="tor_careerchoice_description.AncientScrollsPassive4" text="{=str_tor_careerchoice_description_AncientScrollsPassive4}For every varying lore in your party, reduce the powerstone winds upkeep by 5%. Party spellcasters deal 20% more spell damage." />
   <string id="tor_careerchoice_description.ArcaneKnowledgeKeystone" text="{=str_tor_careerchoice_description_ArcaneKnowledgeKeystone}Arcane Conduit resets cooldowns of spells. Halves duration and doubles gain. Additional usage" />
   <string id="tor_careerchoice_description.ArcaneKnowledgePassive1" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive1}Spelldamage of companions is increased by 10%" />
   <string id="tor_careerchoice_description.ArcaneKnowledgePassive2" text="{=str_tor_careerchoice_description_ArcaneKnowledgePassive2}Spell effect radius is increased by 10%." />
@@ -3669,6 +3669,25 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_damagetype.Holy" text="{=str_tor_damagetype_holy}Holy"/>
   <string id="tor_damagetype.Frost" text="{=str_tor_damagetype_frost}Frost"/>
   <string id="tor_damagetype.Lightning" text="{=str_tor_damagetype_lightning}Lightning"/>
+
+  <!-- Spell Damage/Healing Display System -->
+  <!-- Message Templates -->
+  <string id="tor_damage_display_spell_damage" text="{=str_tor_damage_display_spell_damage}{ICON} {SPELL_NAME} dealt {DAMAGE} {DAMAGE_TYPE} damage to {COUNT} {TARGET_TEXT}"/>
+  <string id="tor_damage_display_spell_damage_with_kills" text="{=str_tor_damage_display_spell_damage_with_kills}{ICON} {SPELL_NAME} dealt {DAMAGE} {DAMAGE_TYPE} damage to {COUNT} {TARGET_TEXT}, {KILL_COUNT} eliminated"/>
+  <string id="tor_damage_display_spell_healing" text="{=str_tor_damage_display_spell_healing}{ICON} {SPELL_NAME} healed {HEALING} health to {COUNT} {TARGET_TEXT}"/>
+
+  <!-- Shared Text -->
+  <string id="tor_damage_display_spell" text="{=str_tor_damage_display_spell}Spell"/>
+  <string id="tor_damage_display_target_singular" text="{=str_tor_damage_display_target_singular}target"/>
+  <string id="tor_damage_display_target_plural" text="{=str_tor_damage_display_target_plural}targets"/>
+
+  <!-- Damage Types -->
+  <string id="tor_damage_type_fire" text="{=str_tor_damage_type_fire}Fire"/>
+  <string id="tor_damage_type_holy" text="{=str_tor_damage_type_holy}Holy"/>
+  <string id="tor_damage_type_lightning" text="{=str_tor_damage_type_lightning}Lightning"/>
+  <string id="tor_damage_type_magical" text="{=str_tor_damage_type_magical}Magical"/>
+  <string id="tor_damage_type_frost" text="{=str_tor_damage_type_frost}Frost"/>
+  <string id="tor_damage_type_physical" text="{=str_tor_damage_type_physical}Physical"/>
 
   <string id="tor_attacktype.Melee" text="{=str_tor_attacktype_melee}Melee"/>
   <string id="tor_attacktype.Ranged" text="{=str_tor_attacktype_ranged}Ranged"/>

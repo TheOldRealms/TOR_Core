@@ -10,6 +10,7 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
+using static TOR_Core.Utilities.TORSpellBlowHelper;
 
 namespace TOR_Core.Models
 {
@@ -25,6 +26,10 @@ namespace TOR_Core.Models
 
         public override ExplainedNumber GetXpFromHit(CharacterObject attackerTroop, CharacterObject captain, CharacterObject attackedTroop, PartyBase party, int damage, bool isFatal, MissionTypeEnum missionType)
         {
+            // Spell hits get their own XP via TORAbilityModel - skip vanilla weapon XP
+            if (IsProcessingSpellHit)
+                return new ExplainedNumber(0f);
+
             var xpAmount = base.GetXpFromHit(attackerTroop, captain, attackedTroop, party, damage, isFatal, missionType);
 
             var previousFactor = xpAmount.SumOfFactors;
