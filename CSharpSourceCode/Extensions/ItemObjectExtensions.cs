@@ -255,7 +255,7 @@ namespace TOR_Core.Extensions
         {
             if (!IsAmmunitionItem(itemObject)) return false;
 
-            return itemObject.StringId.Contains("canister") || itemObject.StringId.Contains("weapon_gun_drakegun");
+            return itemObject.StringId.Contains("canister") || itemObject.StringId.Contains("weapon_gun_drakegun") || itemObject.StringId.Contains("drakefire");
         }
 
         public static bool IsAmmunitionItem(this ItemObject itemObject)
