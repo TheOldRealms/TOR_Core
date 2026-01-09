@@ -123,6 +123,9 @@ namespace TOR_Core.Utilities
                 case TORConstants.Cultures.GREENSKIN:
                     args.MenuContext.SetBackgroundMeshName("greenskin_captive");
                     return;
+                case TORConstants.Cultures.DAWI:
+                    args.MenuContext.SetBackgroundMeshName("dwarf_prisoner");
+                    return;
                 default:
                     args.MenuContext.SetBackgroundMeshName("wait_captive_male");
                     return;
