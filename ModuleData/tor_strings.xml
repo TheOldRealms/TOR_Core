@@ -4028,7 +4028,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_hirelingactivity0.GrailKnight" text="{=str_tor_hirelingactivity0_GrailKnight}Practice sword-fighting" />
   <string id="tor_hirelingactivity1.GrailKnight" text="{=str_tor_hirelingactivity1_GrailKnight}Socialize with other nobles" />
   <string id="tor_hirelingactivity2.GrailKnight" text="{=str_tor_hirelingactivity2_GrailKnight}Ride ahead of the army" />
-  <string id="tor_hirelingactivity3.GrailKnight" text="{=str_tor_hirelingactivity3_GrailKnight}Assist the commander" />
+  <string id="tor_hirelingactivity3.GrailKnight" text="{=str_tor_hirelingactivity3_GrailKnight}Practice jousting" />
   <string id="tor_hirelingactivity4.GrailKnight" text="{=str_tor_hirelingactivity4_GrailKnight}Pray to the Lady of the Lake" />
 
 
