@@ -958,6 +958,7 @@ namespace TOR_Core.Models
                             logic.BookSpellKill(castId, agent);
                         }
                     }
+                    // Note: Career ability charge is applied through OnAgentHit when RegisterBlow is called
                 }
             }
         }

@@ -55,10 +55,27 @@ namespace TOR_Core.Models
                     missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
                 }
 
-                // Check for ShieldPenetration trait on wielded weapon
-                if (!attackerAgent.WieldedWeapon.IsEmpty && attackerAgent.WieldedWeapon.Item != null)
+                // Check for ShieldPenetration trait - use missile weapon for thrown weapons, wielded weapon for bows/guns
+                ItemObject traitSourceItem = null;
+                switch (missileWeapon.CurrentUsageItem.WeaponClass)
                 {
-                    var traits = attackerAgent.WieldedWeapon.Item.GetTraits(attackerAgent);
+                    case WeaponClass.Javelin:
+                    case WeaponClass.ThrowingAxe:
+                    case WeaponClass.ThrowingKnife:
+                    case WeaponClass.Stone:
+                        // Thrown weapons: traits are on the thrown item itself
+                        traitSourceItem = missileWeapon.Item;
+                        break;
+                    default:
+                        // Ranged weapons (bows, crossbows, guns): traits are on the wielded weapon
+                        if (!attackerAgent.WieldedWeapon.IsEmpty)
+                            traitSourceItem = attackerAgent.WieldedWeapon.Item;
+                        break;
+                }
+
+                if (traitSourceItem != null)
+                {
+                    var traits = traitSourceItem.GetTraits(attackerAgent);
                     if (traits.Any(t => t.StatsTuple?.StatType == ItemTraitStatType.ShieldPenetration))
                     {
                         missileWeaponFlags |= WeaponFlags.CanPenetrateShield;
