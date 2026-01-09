@@ -106,7 +106,23 @@ namespace TOR_Core.Models
                 xp += session.AgentsAffectedByStatusEffectsCount * 10;
             }
 
+            // Single-target spells get 2x XP to balance against AoE spells
+            if (session.AbilityTemplate != null && IsSingleTargetAbility(session.AbilityTemplate))
+            {
+                xp *= 5;
+            }
+
             return xp;
+        }
+
+        /// <summary>
+        /// Returns true if the ability is single-target (not AoE).
+        /// </summary>
+        private bool IsSingleTargetAbility(AbilityTemplate ability)
+        {
+            return ability.AbilityTargetType == AbilityTargetType.SingleEnemy ||
+                   ability.AbilityTargetType == AbilityTargetType.SingleAlly ||
+                   ability.AbilityTargetType == AbilityTargetType.Self;
         }
 
         /// <summary>
