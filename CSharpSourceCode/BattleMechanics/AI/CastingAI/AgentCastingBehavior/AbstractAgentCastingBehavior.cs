@@ -75,7 +75,18 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
 
         protected virtual bool HaveLineOfSightToTarget(Target target)
         {
-            return true;
+            // hard veto range
+            return IsTargetWithinAbilityRange(target);
+        }
+
+        private bool IsTargetWithinAbilityRange(Target target)
+        {
+            var targetPoint = target.GetPositionPrioritizeCalculated();
+            if (targetPoint == Vec3.Invalid)
+                return false;
+
+            var distanceToTarget = Agent.Position.Distance(targetPoint);
+            return distanceToTarget <= AbilityTemplate.MaxDistance;
         }
 
         protected virtual void CastSpellAtCurrentTarget()

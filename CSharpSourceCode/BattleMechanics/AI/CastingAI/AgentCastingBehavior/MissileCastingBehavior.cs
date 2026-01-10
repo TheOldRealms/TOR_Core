@@ -47,18 +47,25 @@ namespace TOR_Core.BattleMechanics.AI.CastingAI.AgentCastingBehavior
             var targetPoint = target.GetPositionPrioritizeCalculated();
             if (targetPoint == Vec3.Invalid) return false;
             targetPoint.z += 0.75f;
+
+            var distanceToTarget = Agent.Position.Distance(targetPoint);
+            if (distanceToTarget < AbilityTemplate.MinDistance || distanceToTarget > AbilityTemplate.MaxDistance) return false;
+
+            var rayOrigin = Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight());
+
             Agent collidedAgent;
             float distance;
 
             using (new TWSharedMutexReadLock(Scene.PhysicsAndRayCastLock))
             {
-                collidedAgent = Mission.Current.RayCastForClosestAgent(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, Agent.Index, 0.25f, out _);
-                Mission.Current.Scene.RayCastForClosestEntityOrTerrain(Agent.Position + new Vec3(z: Agent.GetEyeGlobalHeight()), targetPoint, out distance, out _, out _, 0.25f);
+                collidedAgent = Mission.Current.RayCastForClosestAgent(rayOrigin, targetPoint, Agent.Index, 0.25f, out _);
+                Mission.Current.Scene.RayCastForClosestEntityOrTerrain(rayOrigin, targetPoint, out distance, out _, out _, 0.25f);
             }
 
-            return Agent.GetChestGlobalPosition().Distance(targetPoint) > 1 && (distance is Single.NaN || distance > 1) &&
-                   (collidedAgent == null || collidedAgent.IsEnemyOf(Agent) || collidedAgent.GetChestGlobalPosition().Distance(targetPoint) < 4) &&
-                   (float.IsNaN(distance) || Math.Abs(distance - targetPoint.Distance(Agent.Position)) < 0.3);
+            return Agent.GetChestGlobalPosition().Distance(targetPoint) > 1f &&
+                   (float.IsNaN(distance) || distance > 1f) &&
+                   (collidedAgent == null || collidedAgent.IsEnemyOf(Agent) || collidedAgent.GetChestGlobalPosition().Distance(targetPoint) < 4f) &&
+                   (float.IsNaN(distance) || Math.Abs(distance - targetPoint.Distance(rayOrigin)) < 0.3f);
         }
     }
 }

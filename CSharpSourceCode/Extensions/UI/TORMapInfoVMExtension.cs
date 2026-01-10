@@ -1,11 +1,14 @@
-    using Ink.Parsed;
 using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Map.MapBar;
+using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Information;
 using TaleWorlds.Library;
@@ -27,19 +30,22 @@ namespace TOR_Core.Extensions.UI
         private string _remainingBlessingTime;
         private bool _hasBaseVMBeenInitialized = false;
         private bool _haveInfoItemsBeenAdded = false;
+        private static readonly FieldInfo SpeedInfoField =
+    typeof(MapInfoVM).GetField("_speedInfo", BindingFlags.Instance | BindingFlags.NonPublic);
 
         private MapInfoItemVM _windsInfo;
         private MapInfoItemVM _artilleryInfo;
         private MapInfoItemVM _resourceInfo;
         private MapInfoItemVM _blessingInfo;
 
+        private MapInfoItemVM _partySpeedInfo;
         public TORMapInfoVMExtension(ViewModel vm) : base(vm)
         {
             _windsInfo = new MapInfoItemVM("winds", GetWindsHintText);
             _artilleryInfo = new MapInfoItemVM("artillery", GetArtilleryHintText);
             _resourceInfo = new MapInfoItemVM("resources", GetCultureResourceHintText);
             _blessingInfo = new MapInfoItemVM("blessing", GetBlessingHintText);
-            RefreshValues();
+            _partySpeedInfo = new MapInfoItemVM("speed", GetPartySpeedHintText);
         }
 
         private List<TooltipProperty> GetCultureResourceHintText()
@@ -191,9 +197,88 @@ namespace TOR_Core.Extensions.UI
             return list;
         }
 
+        private void ReplaceSpeedInfoItemIfNeeded(MapInfoVM mapInfoVm)
+        {
+            var existingSpeedInfo = (MapInfoItemVM)SpeedInfoField.GetValue(mapInfoVm);
+            if (ReferenceEquals(existingSpeedInfo, _partySpeedInfo))
+            {
+                return;
+            }
+            if (existingSpeedInfo != null)
+            {
+                _partySpeedInfo.Value = existingSpeedInfo.Value;
+
+                _partySpeedInfo.VisualId = existingSpeedInfo.VisualId;
+            }
+
+            for (int i = 0; i < mapInfoVm.PrimaryInfoItems.Count; i++)
+            {
+                var item = mapInfoVm.PrimaryInfoItems[i];
+                if (item.ItemId == "speed" && !ReferenceEquals(item, _partySpeedInfo))
+                {
+                    mapInfoVm.PrimaryInfoItems.RemoveAt(i);
+                    mapInfoVm.PrimaryInfoItems.Insert(i, _partySpeedInfo);
+                    break;
+                }
+            }
+
+            SpeedInfoField.SetValue(mapInfoVm, _partySpeedInfo);
+        }
+        private static string FormatSignedSpeedNumber(float value)
+        {
+            var format = MathF.Abs(value) < 1f
+                ? "+0.00;-0.00;0.00"
+                : "+0.##;-0.##;0.##";
+
+            return value.ToString(format, CultureInfo.InvariantCulture);
+        }
+
+        private List<TooltipProperty> GetPartySpeedHintText()
+        {
+            var inspectedParty = MobileParty.MainParty.Army?.LeaderParty ?? MobileParty.MainParty;
+
+            var effectiveSpeed = (inspectedParty.IsActive && inspectedParty.CurrentNavigationFace.IsValid())
+                ? inspectedParty.Speed
+                : 0f;
+
+            var effectiveSpeedRounded = MathF.Round(effectiveSpeed, 1);
+            var speedModel = Campaign.Current.Models.PartySpeedCalculatingModel;
+            var explainedBase = speedModel.CalculateBaseSpeed(inspectedParty, includeDescriptions: true);
+            var explained = speedModel.CalculateFinalSpeed(inspectedParty, explainedBase);
+
+            List<TooltipProperty> list =
+            [
+                new TooltipProperty("Party Speed", effectiveSpeedRounded.ToString("0.0", CultureInfo.InvariantCulture), 0, false, TooltipProperty.TooltipPropertyFlags.Title),
+    ];
+
+            foreach (var line in explained.GetLines())
+            {
+                if (!line.number.ApproximatelyEqualsTo(0.0f))
+                {
+                    list.Add(new TooltipProperty(
+                        line.name,
+                        FormatSignedSpeedNumber(line.number),
+                        0,
+                        false,
+                        TooltipProperty.TooltipPropertyFlags.None));
+                }
+            }
+
+            list.Add(new TooltipProperty(
+                "Total",
+                effectiveSpeedRounded.ToString("0.0", CultureInfo.InvariantCulture),
+                0,
+                false,
+                TooltipProperty.TooltipPropertyFlags.RundownResult));
+
+            return list;
+        }
+
         public override void RefreshValues()
         {
             base.RefreshValues();
+            var mapInfoVm = (MapInfoVM)_vm;
+            ReplaceSpeedInfoItemIfNeeded(mapInfoVm);
             if (_hasBaseVMBeenInitialized && !_haveInfoItemsBeenAdded)
             {
                 (_vm as MapInfoVM).SecondaryInfoItems.Add(_windsInfo);
