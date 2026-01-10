@@ -347,6 +347,7 @@ public class TORCustomResourceModel : GameModel
 
 
         var upkeep = new ExplainedNumber(0, true, UPKEEPTEXT);
+
         foreach (var element in hero.PartyBelongedTo.MemberRoster.GetTroopRoster())
         {
             if (element.Character.HasCustomResourceUpkeepRequirement())
@@ -392,6 +393,7 @@ public class TORCustomResourceModel : GameModel
         }
         if (!hero.IsClanLeader) return upkeep;
 
+        GarrisonUpkeep:
         foreach (var settlement in hero.Clan.Settlements)
         {
             if (!settlement.IsCastle && !settlement.IsTown) continue;
