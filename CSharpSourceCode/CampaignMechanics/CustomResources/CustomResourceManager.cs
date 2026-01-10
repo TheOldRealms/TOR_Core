@@ -572,6 +572,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     {
                         var totalCasualties = playerParty.MapEvent.GetMapEventSide(playerParty.MapEvent.DefeatedSide).TroopCasualties;
                         result += Math.Max(0, totalCasualties - prisoners.ToFlattenedRoster().Count());
+
+                        // Bonus dark energy from killing greenskins (they can't be raised, but fuel dark magic)
+                        result += CalculateGreenskinDarkEnergyBonus(playerParty.MapEvent);
                     }
 
                     if (leftMemberRoster != null && leftMemberRoster.Count > 0)
@@ -680,6 +683,25 @@ namespace TOR_Core.CampaignMechanics.CustomResources
             var tier = characterObject.Tier;
             var value = amount * tier;
             number.Add(value);
+        }
+
+        private static float CalculateGreenskinDarkEnergyBonus(MapEvent mapEvent)
+        {
+            float bonus = 0f;
+            var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
+
+            foreach (var party in partiesOnSide)
+            {
+                var killedTroops = party.Troops.Where(x => x.IsKilled);
+                foreach (var rosterMember in killedTroops)
+                {
+                    if (rosterMember.Troop.IsGreenskin())
+                    {
+                        bonus += rosterMember.Troop.Tier;
+                    }
+                }
+            }
+            return bonus;
         }
 
         private static void AddChivarlyForUnit(ref ExplainedNumber number, CharacterObject characterObject, int amount)
