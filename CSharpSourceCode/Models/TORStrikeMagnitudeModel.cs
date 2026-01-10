@@ -21,9 +21,10 @@ namespace TOR_Core.Models
         public override float CalculateAdjustedArmorForBlow(in AttackInformation attackInformation, in AttackCollisionData collisionData, float baseArmor, BasicCharacterObject attackerCharacter, BasicCharacterObject attackerCaptainCharacter, BasicCharacterObject victimCharacter, BasicCharacterObject victimCaptainCharacter, WeaponComponentData weaponComponent)
         {
             var result = base.CalculateAdjustedArmorForBlow(attackInformation, collisionData, baseArmor, attackerCharacter, attackerCaptainCharacter, victimCharacter, victimCaptainCharacter, weaponComponent);
-            ExplainedNumber resultArmor = new ExplainedNumber(result);
+            ExplainedNumber resultArmor = new(result);
             var attacker = attackerCharacter as CharacterObject;
             var attackerCaptain = attackerCharacter as CharacterObject;
+            var attackerAgent = attackInformation.AttackerAgent;
             if (weaponComponent != null && attacker != null)
             {
                 if (attacker.GetPerkValue(TORPerks.GunPowder.PiercingShots) && weaponComponent.IsGunPowderWeapon())
@@ -48,15 +49,12 @@ namespace TOR_Core.Models
                     }
                 }
 
-                if (attacker.IsHero) // never remove this check. operations for item traits can be very heavy
+                if (attacker.IsHero && attackerAgent!=null) // never remove this check. operations for item traits can be very heavy
                 {
-                    var agent = Mission.Current.Agents.FirstOrDefault(x => x.IsHero && x.Character == attacker);
-
-
-
+                    
                     if (weaponComponent.IsAmmo || weaponComponent.IsRangedWeapon)
                     {
-                        var missile = Mission.Current.MissilesList.FirstOrDefault(x => x.ShooterAgent == agent && x.Weapon.CurrentUsageItem.GetItemUsageIndex() == weaponComponent.GetItemUsageIndex());
+                        var missile = Mission.Current.MissilesList.FirstOrDefault(x => x.ShooterAgent == attackerAgent && x.Weapon.CurrentUsageItem.GetItemUsageIndex() == weaponComponent.GetItemUsageIndex());
 
                         if (missile != null)
                         {
@@ -72,11 +70,11 @@ namespace TOR_Core.Models
                         }
                     }
 
-                    if (agent.WieldedWeapon.CurrentUsageItem != null && agent.WieldedWeapon.CurrentUsageItem.GetItemUsageIndex() == weaponComponent.GetItemUsageIndex())
+                    if (attackerAgent.WieldedWeapon.CurrentUsageItem != null && attackerAgent.WieldedWeapon.CurrentUsageItem.GetItemUsageIndex() == weaponComponent.GetItemUsageIndex())
                     {
-                        if (!agent.WieldedWeapon.IsEmpty)
+                        if (!attackerAgent.WieldedWeapon.IsEmpty)
                         {
-                            var traits = agent.WieldedWeapon.Item.GetTraits();
+                            var traits = attackerAgent.WieldedWeapon.Item.GetTraits();
 
                             foreach (var trait in traits)
                             {

@@ -7,6 +7,7 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 using TOR_Core.BattleMechanics.TriggeredEffect;
+using TOR_Core.AbilitySystem.SpellCasting;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
@@ -30,8 +31,10 @@ namespace TOR_Core.AbilitySystem.Scripts
         private Vec3 _previousFrameOrigin = Vec3.Zero;
         private bool _lifeTimeExpired;
         private GameEntity _entity;
+        private int _castId = -1;
 
         public Agent CasterAgent => _casterAgent;
+        public int CastID => _castId;
         public MBReadOnlyList<Agent> ExplicitTargetAgents
         {
             get
@@ -252,6 +255,9 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         private void TriggerEffects(Vec3 position, Vec3 normal)
         {
+            // Create spell session lazily on first trigger
+            EnsureSpellSession();
+
             var effects = GetEffectsToTrigger();
             foreach (var effect in effects)
             {
@@ -259,16 +265,28 @@ namespace TOR_Core.AbilitySystem.Scripts
                 {
                     if (_ability.Template.AbilityTargetType == AbilityTargetType.Self)
                     {
-                        effect.Trigger(position, normal, _casterAgent, _ability.Template, [_casterAgent]);
+                        effect.Trigger(position, normal, _casterAgent, _ability.Template, [_casterAgent], _castId);
                     }
                     else if (_targetAgents != null && _targetAgents.Count() > 0)
                     {
-                        effect.Trigger(position, normal, _casterAgent, _ability.Template, _targetAgents.ToMBList());
+                        effect.Trigger(position, normal, _casterAgent, _ability.Template, _targetAgents.ToMBList(), _castId);
                     }
-                    else effect.Trigger(position, normal, _casterAgent, _ability.Template);
+                    else effect.Trigger(position, normal, _casterAgent, _ability.Template, null, _castId);
                 }
             }
             _hasTriggered = true;
+        }
+
+        private void EnsureSpellSession()
+        {
+            if (_castId >= 0 || _casterAgent == null || _ability == null)
+                return;
+
+            var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+            if (logic != null)
+            {
+                _castId = logic.CreateSpellSession(_casterAgent, _ability.Template);
+            }
         }
 
         protected virtual List<TriggeredEffect> GetEffectsToTrigger()
@@ -284,6 +302,14 @@ namespace TOR_Core.AbilitySystem.Scripts
 
         protected sealed override void OnRemoved(int removeReason)
         {
+            // Collect spell session before cleanup
+            if (_castId >= 0)
+            {
+                var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+                logic?.CollectSpellSession(_castId);
+                _castId = -1;
+            }
+
             OnBeforeRemoved(removeReason);
             _sound?.Release();
             _sound = null;

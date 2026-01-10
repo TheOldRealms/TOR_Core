@@ -48,6 +48,7 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
 
+        /* Moved to TORAgentApplyDamageModel.CalculateRemainingMomentum - to be removed after further testing. The melee hit callback calls AgentApplyDamageModel.CalculateRemainingMomentum and model overrides then take effect, so there's no need to postfix when we already have access to the method.
         [HarmonyPostfix]
         [HarmonyPatch(typeof(Mission), "MeleeHitCallback")]
         public static void MeleeHitCallbackPostfix(
@@ -83,6 +84,7 @@ namespace TOR_Core.HarmonyPatches
             float num2 = (float)collisionData.InflictedDamage / (float)inflictedDamage;
             inOutMomentumRemaining = num2 * 0.25f;
         }
+        */
 
 
 

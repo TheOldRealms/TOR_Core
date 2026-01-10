@@ -7,6 +7,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TOR_Core.AbilitySystem;
+using TOR_Core.BattleMechanics.StatusEffect;
 using TOR_Core.BattleMechanics.TriggeredEffect.Scripts;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
@@ -28,7 +29,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         public string SummonedTroopId => _template.TroopIdToSummon;
         public float ImbuedStatusEffectDuration => _template.ImbuedStatusEffectDuration;
         public List<string> StatusEffects => _template.ImbuedStatusEffects;
-        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null)
+        public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null, int castId = -1)
         {
             if (_template == null || !triggererAgent.IsActive()) return;
             _timer = new Timer(2000)
@@ -86,15 +87,17 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             //Cause Damage
             if (_template.DamageAmount > 0)
             {
-                TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate);
+                TORMissionHelper.DamageAgents(targets, (int)(_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, _template, _template.DamageType, _template.HasShockWave, position, originAbilityTemplate, castId);
             }
             else if (_template.DamageAmount < 0)
             {
-                TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate);
+                TORMissionHelper.HealAgents(targets, (int)(-_template.DamageAmount * (1 - _template.DamageVariance) * damageMultiplier), (int)(-_template.DamageAmount * (1 + _template.DamageVariance)), triggererAgent, _template.TargetType, originAbilityTemplate, castId);
             }
             //Apply status effects
             if (_template.AssociatedStatusEffects != null && _template.AssociatedStatusEffects.Count > 0)
             {
+                var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+
                 foreach (var effect in _template.AssociatedStatusEffects)
                 {
                     if (triggererAgent.Character is CharacterObject triggererCharacter && triggererCharacter.GetPerkValue(TORPerks.Spellcraft.ArcaneLink) && effect.IsBuffEffect)
@@ -102,6 +105,34 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                         if (!targets.Contains(triggererAgent)) targets.Add(triggererAgent);
                     }
                     TORMissionHelper.ApplyStatusEffectToAgents(targets, effect.StringID, triggererAgent, statusEffectDuration, true, _isTemplateMutated);
+
+                    // Book status effects and expected DOT/HOT immediately
+                    if (castId >= 0 && logic != null)
+                    {
+                        int expectedTicks = (int)statusEffectDuration;
+                        int expectedValuePerTarget = (int)(expectedTicks * effect.BaseEffectValue);
+
+                        foreach (var target in targets)
+                        {
+                            if (target == null) continue;
+
+                            // Book status effect application for XP
+                            logic.BookSpellStatusEffect(castId, target);
+
+                            // Book expected DOT/HOT values based on duration × value per tick
+                            if (effect.Type == StatusEffectTemplate.EffectType.DamageOverTime)
+                            {
+                                logic.BookSpellDamage(castId, target, expectedValuePerTarget, 0, effect.DamageType);
+                            }
+                            else if (effect.Type == StatusEffectTemplate.EffectType.HealthOverTime)
+                            {
+                                logic.BookSpellHealing(castId, target, expectedValuePerTarget);
+                            }
+                        }
+
+                        // Extend session collect time to wait for status effects to expire (for kill tracking)
+                        logic.ExtendSessionCollectTime(castId, statusEffectDuration);
+                    }
                 }
             }
             if (_template.DoNotAlignParticleEffectPrefabOnImpact)

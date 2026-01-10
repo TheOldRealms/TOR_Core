@@ -45,7 +45,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             return result;
         }
 
-        public static StatusEffect CreateNewStatusEffect(string effectId, Agent applierAgent, bool requestClone)
+        public static StatusEffect CreateNewStatusEffect(string effectId, Agent applierAgent, bool requestClone, int castId = -1)
         {
             StatusEffectTemplate template = _idToStatusEffect[effectId];
             if (requestClone) template = (StatusEffectTemplate)template.Clone(effectId + "*cloned*" + (applierAgent?.Index.ToString() ?? "nullAgent") + _randomCount);//if a persistent effect can apply a status, then the applier agent can die and become null before a future status is applied
@@ -59,7 +59,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 TORCommon.Log("Template : " + template.ToString(), NLog.LogLevel.Info);
             }
             _randomCount++;
-            return new StatusEffect(template, applierAgent);
+            return new StatusEffect(template, applierAgent, castId);
         }
     }
 }

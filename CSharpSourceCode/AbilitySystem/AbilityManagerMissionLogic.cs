@@ -21,7 +21,8 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
 using TOR_Core.GameManagers;
-using TOR_Core.HarmonyPatches;
+using TOR_Core.AbilitySystem.SpellCasting;
+using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Items;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
@@ -57,6 +58,12 @@ namespace TOR_Core.AbilitySystem
         private bool _disableCombatActionsAfterCast;
         private float _elapsedTimeSinceLastActivation;
         private bool _wieldOffHandStaff;
+
+        // Spell cast session tracking
+        private readonly Dictionary<int, SpellCastSession> _activeSpellSessions = new();
+        private readonly List<SpellCastSession> _pendingCollectSessions = new();
+        private int _nextCastId = 1;
+
         public delegate void OnHideOutBossFightInit();
         public event OnHideOutBossFightInit OnInitHideOutBossFight;
         private static ActionIndexCache IdleAnimation
@@ -97,6 +104,9 @@ namespace TOR_Core.AbilitySystem
 
         public override void OnPreMissionTick(float dt)
         {
+            // Process any pending spell sessions that are ready to collect
+            ProcessPendingSpellSessions();
+
             _elapsedTimeSinceLastActivation += dt;
             if (_disableCombatActionsAfterCast && _elapsedTimeSinceLastActivation > (_lastActivationDeltaTime + _disableCombatActionsDuration))
             {
@@ -290,8 +300,11 @@ namespace TOR_Core.AbilitySystem
                 if (model != null && hero != null)
                 {
                     var skill = model.GetRelevantSkillForAbility(ability.Template);
-                    var amount = model.GetSkillXpForCastingAbility(ability.Template);
-                    hero.AddSkillXp(skill, amount);
+                    if (skill != null) // Career abilities return null - no skill XP for them
+                    {
+                        var amount = model.GetSkillXpForCastingAbility(ability.Template);
+                        hero.AddSkillXp(skill, amount);
+                    }
                 }
             }
         }
@@ -538,6 +551,9 @@ namespace TOR_Core.AbilitySystem
         {
             if (missionResult.PlayerDefeated || missionResult.PlayerVictory)
             {
+                // Finalize all pending spell sessions before battle ends
+                FinalizeAllPendingSessions();
+
                 var agents = Mission.Current.Agents;
                 foreach (var agent in agents)
                 {
@@ -590,7 +606,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
-                var attackMask = DamagePatch.DetermineMask(blow);
+                var attackMask = TORDamageHelper.DetermineMask(blow);
                 CareerHelper.ApplyCareerAbilityCharge(1, ChargeType.NumberOfKills, attackMask, affectorAgent, affectedAgent);
             }
         }
@@ -599,7 +615,7 @@ namespace TOR_Core.AbilitySystem
         {
             if (CareerHelper.IsValidCareerMissionInteractionBetweenAgents(affectorAgent, affectedAgent))
             {
-                var attackMask = DamagePatch.DetermineMask(blow);
+                var attackMask = TORDamageHelper.DetermineMask(blow);
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageDone, attackMask, affectorAgent, affectedAgent, attackCollisionData);
 
                 CareerHelper.ApplyCareerAbilityCharge(blow.InflictedDamage, ChargeType.DamageTaken, attackMask, affectorAgent, affectedAgent, attackCollisionData);
@@ -807,6 +823,209 @@ namespace TOR_Core.AbilitySystem
         public override void OnEarlyAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
         {
             if (affectedAgent == Agent.Main) SlowDownTime(false);
+        }
+
+        /// <summary>
+        /// Creates a new spell cast session and returns its CastID.
+        /// Called when an ability starts (in AbilityScript.Initialize).
+        /// </summary>
+        public int CreateSpellSession(Agent caster, AbilityTemplate abilityTemplate)
+        {
+            var castId = _nextCastId++;
+            var session = new SpellCastSession(castId, caster, abilityTemplate);
+            _activeSpellSessions[castId] = session;
+            return castId;
+        }
+        
+        public void BookSpellDamage(int castId, Agent victim, int damageDealt, int damageAbsorbed, DamageType damageType)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.BookDamage(victim, damageDealt, damageAbsorbed, damageType);
+            }
+        }
+        
+        public void BookSpellHealing(int castId, Agent target, int healingDone)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.BookHealing(target, healingDone);
+            }
+        }
+        
+        public void BookSpellKill(int castId, Agent victim)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.BookKill(victim);
+                return;
+            }
+
+            // Also check pending sessions for DOT kills that happen after ability ends
+            var pendingSession = _pendingCollectSessions.Find(s => s.CastID == castId);
+            pendingSession?.BookKill(victim);
+        }
+
+        /// <summary>
+        /// Records a tick for lasting effects.
+        /// </summary>
+        public void RecordSpellTick(int castId)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.RecordTick();
+            }
+        }
+
+        /// <summary>
+        /// Books a status effect application to an active spell session.
+        /// </summary>
+        public void BookSpellStatusEffect(int castId, Agent target)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.BookStatusEffect(target);
+            }
+        }
+
+        /// <summary>
+        /// Extends the session collect time to wait for status effects to expire.
+        /// Called from TriggeredEffect when status effects are applied.
+        /// </summary>
+        public void ExtendSessionCollectTime(int castId, float duration)
+        {
+            if (_activeSpellSessions.TryGetValue(castId, out var session))
+            {
+                session.ExtendCollectTime(duration);
+            }
+        }
+
+        /// <summary>
+        /// Called when an ability ends. If status effects are still pending, queues for later collection.
+        /// </summary>
+        public void CollectSpellSession(int castId)
+        {
+            if (!_activeSpellSessions.TryGetValue(castId, out var session))
+                return;
+
+            _activeSpellSessions.Remove(castId);
+
+            // If not ready to collect (status effects still pending), queue for later
+            if (!session.IsReadyToCollect)
+            {
+                _pendingCollectSessions.Add(session);
+                return;
+            }
+
+            FinalizeSession(session);
+        }
+
+        /// <summary>
+        /// Processes pending sessions that are ready to be collected.
+        /// Called from OnPreMissionTick.
+        /// </summary>
+        private void ProcessPendingSpellSessions()
+        {
+            for (int i = _pendingCollectSessions.Count - 1; i >= 0; i--)
+            {
+                var session = _pendingCollectSessions[i];
+                if (session.IsReadyToCollect)
+                {
+                    _pendingCollectSessions.RemoveAt(i);
+                    FinalizeSession(session);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Finalizes all active and pending sessions immediately.
+        /// Called when battle ends to ensure all spell results are displayed.
+        /// </summary>
+        private void FinalizeAllPendingSessions()
+        {
+            // Finalize all active sessions
+            foreach (var session in _activeSpellSessions.Values)
+            {
+                FinalizeSession(session);
+            }
+            _activeSpellSessions.Clear();
+
+            // Finalize all pending sessions
+            foreach (var session in _pendingCollectSessions)
+            {
+                FinalizeSession(session);
+            }
+            _pendingCollectSessions.Clear();
+        }
+
+        /// <summary>
+        /// Finalizes a spell session - displays results and grants XP.
+        /// </summary>
+        private void FinalizeSession(SpellCastSession session)
+        {
+
+            if (!session.HasData)
+                return;
+
+            // Display results only for player or controlled agent
+            bool shouldDisplay = session.Caster == Agent.Main ||
+                                 (session.Caster != null && session.Caster.IsPlayerControlled);
+
+            if (shouldDisplay)
+            {
+                string spellName = session.AbilityTemplate?.Name?.ToString();
+
+                if (session.TotalDamageDealt > 0)
+                {
+                    TORDamageDisplay.DisplayAggregateSpellDamage(
+                        session.PrimaryDamageType,
+                        session.TotalDamageDealt,
+                        session.AgentsDamagedCount,
+                        session.AgentsKilledCount,
+                        spellName);
+                }
+
+                if (session.TotalHealingDone > 0)
+                {
+                    TORDamageDisplay.DisplayAggregateSpellHealing(
+                        session.TotalHealingDone,
+                        session.AgentsHealedCount,
+                        spellName);
+                }
+
+                if (session.TotalFriendlyFireDamage > 0)
+                {
+                    TORDamageDisplay.DisplayAggregateSpellFriendlyFire(
+                        session.TotalFriendlyFireDamage,
+                        session.AgentsFriendlyFiredCount,
+                        session.AgentsFriendlyKilledCount,
+                        spellName);
+                }
+            }
+
+            // Grant XP for all hero casters (player and companions)
+            if (Game.Current.GameType is Campaign && session.CasterHero != null)
+            {
+                var model = Campaign.Current.Models.GetAbilityModel();
+                if (model != null)
+                {
+                    var skill = model.GetRelevantSkillForAbility(session.AbilityTemplate);
+                    if (skill != null) // Career abilities return null - no skill XP for them
+                    {
+                        var xpAmount = model.CalculateSpellSessionXp(session);
+                        if (xpAmount > 0)
+                        {
+                            session.CasterHero.AddSkillXp(skill, xpAmount);
+
+                            // DarkVisionPassive3 - also grants Roguery XP
+                            if (session.CasterHero.HasAnyCareer() && session.CasterHero.HasCareerChoice("DarkVisionPassive3"))
+                            {
+                                session.CasterHero.AddSkillXp(DefaultSkills.Roguery, xpAmount);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

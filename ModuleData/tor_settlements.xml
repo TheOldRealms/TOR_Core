@@ -6272,7 +6272,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_special_empire_city_marienburg_01" scene_name_1="TOR_special_empire_city_marienburg_01" scene_name_2="TOR_special_empire_city_marienburg_01" scene_name_3="TOR_special_empire_city_marienburg_01" />
+      <Location id="center" scene_name="TOR_empire_city_marienburg_01" scene_name_1="TOR_empire_city_marienburg_01" scene_name_2="TOR_empire_city_marienburg_01" scene_name_3="TOR_empire_city_marienburg_01" />
       <Location id="arena" scene_name="TOR_empire_arena_averheim_01" />
       <Location id="tavern" scene_name="TOR_empire_tavern_ninian_02" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />

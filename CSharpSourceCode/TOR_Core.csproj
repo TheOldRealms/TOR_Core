@@ -388,6 +388,7 @@
     <Compile Include="AbilitySystem\Spells\SpellBook\SpellItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellBook\StatItemVM.cs" />
     <Compile Include="AbilitySystem\Spells\SpellCastingLevel.cs" />
+    <Compile Include="AbilitySystem\SpellCasting\SpellCastSession.cs" />
     <Compile Include="AbilitySystem\SummonedAgentOrigin.cs" />
     <Compile Include="Audio\CachedSound.cs" />
     <Compile Include="Audio\CachedSoundInstance.cs" />
@@ -450,6 +451,7 @@
     <Compile Include="BattleMechanics\CustomArenaModes\JoustTournamentGame.cs" />
     <Compile Include="BattleMechanics\CustomCrosshairMissionBehavior.cs" />
     <Compile Include="BattleMechanics\DamageSystem\DamageType.cs" />
+    <Compile Include="BattleMechanics\DamageSystem\TORDamageHelper.cs" />
     <Compile Include="BattleMechanics\Dismemberment\DismembermentMissionLogic.cs" />
     <Compile Include="BattleMechanics\Firearms\FirearmsMissionLogic.cs" />
     <Compile Include="BattleMechanics\Voice\AgentVoiceComponent.cs" />
@@ -662,7 +664,6 @@
     <Compile Include="Extensions\DebugMethods.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\CharacterExtendedInfo.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoManager.cs" />
-    <Compile Include="Extensions\ExtendedInfoSystem\ExtendedInfoMissionLogic.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\HeroExtendedInfo.cs" />
     <Compile Include="Extensions\ExtendedInfoSystem\MobilePartyExtendedInfo.cs" />
     <Compile Include="Extensions\FormationExtensions.cs" />
@@ -700,7 +701,6 @@
     <Compile Include="HarmonyPatches\CustomBattlePatches.cs" />
     <Compile Include="HarmonyPatches\CustomResourcePatches.cs" />
     <Compile Include="HarmonyPatches\CustomWorldMapPatch.cs" />
-    <Compile Include="HarmonyPatches\DamagePatch.cs" />
     <Compile Include="HarmonyPatches\EncounterPatches.cs" />
     <Compile Include="HarmonyPatches\HideoutPatches.cs" />
     <Compile Include="HarmonyPatches\EncyclopediaPatches.cs" />

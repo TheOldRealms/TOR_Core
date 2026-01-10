@@ -1,78 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
-using TOR_Core.AbilitySystem;
-using TOR_Core.BattleMechanics.DamageSystem;
 
 namespace TOR_Core.Utilities
 {
     public static class TORSpellBlowHelper
     {
-        private static Dictionary<Tuple<int, int>, Queue<SpellBlowInfo>> TriggeredEffects = new Dictionary<Tuple<int, int>, Queue<SpellBlowInfo>>();
-        public static void EnqueueSpellBlowInfo(int victimAgentIndex, int attackAgentIndex, string triggeredEffectId, DamageType damageType, string originSpellTemplateId)
+        /// <summary>
+        /// Sentinel value used in AttackCollisionData.AffectorWeaponSlotOrMissileIndex to identify spell blows.
+        /// This value is impossible in normal gameplay (weapon slots are 0-3, missile indices are positive).
+        /// </summary>
+        public const int SpellBlowSentinel = -999;
+
+        /// <summary>
+        /// Flag set during OnScoreHit processing for spell hits.
+        /// Used by TORCombatXpModel to skip weapon skill XP while still allowing kill tracking.
+        /// </summary>
+        public static bool IsProcessingSpellHit;
+
+        /// <summary>
+        /// Detects if the current attack is a spell based on the sentinel value.
+        /// Use this in damage model methods where Blow is not yet available.
+        /// </summary>
+        public static bool IsSpellAttack(in AttackCollisionData collisionData)
         {
-            if (victimAgentIndex == -1 || attackAgentIndex == -1)
-                return;
-
-            var coord = new Tuple<int, int>(victimAgentIndex, attackAgentIndex);
-
-            if (TriggeredEffects.ContainsKey(coord))
-            {
-                SpellBlowInfo info = new SpellBlowInfo();
-                info.TriggeredEffectId = triggeredEffectId;
-                info.DamageType = damageType;
-                info.DamagerIndex = attackAgentIndex;
-                info.OriginAbilityTemplateId = originSpellTemplateId;
-                TriggeredEffects[coord].Enqueue(info);
-                return;
-            }
-
-            var spellItem = new SpellBlowInfo();
-            spellItem.TriggeredEffectId = triggeredEffectId;
-            spellItem.DamageType = damageType;
-            spellItem.OriginAbilityTemplateId = originSpellTemplateId;
-            spellItem.DamagerIndex = attackAgentIndex;
-            Queue<SpellBlowInfo> queue = new Queue<SpellBlowInfo>();
-            queue.Enqueue(spellItem);
-            TriggeredEffects.Add(coord, queue);
+            return collisionData.AffectorWeaponSlotOrMissileIndex == SpellBlowSentinel;
         }
 
-        public static SpellBlowInfo GetSpellBlowInfo(int victimAgentIndex, int attackAgentIndex)
-        {
-            var coord = new Tuple<int, int>(victimAgentIndex, attackAgentIndex);
-            if (!TriggeredEffects.ContainsKey(coord)) return new SpellBlowInfo();
-
-            var item = TriggeredEffects[coord].Dequeue();
-
-            if (!TriggeredEffects[coord].IsEmpty())
-            {
-                return item;
-            }
-            //this should be null 
-            return item;
-        }
-
-        public static void Clear()
-        {
-            TriggeredEffects.Clear();
-        }
-
+        /// <summary>
+        /// Determines if a Blow originated from a spell based on its properties.
+        /// </summary>
         public static bool IsSpellBlow(Blow b)
         {
             return b.StrikeType == StrikeType.Thrust && b.AttackType == AgentAttackType.Kick && b.DamageCalculated && b.BlowFlag.HasFlag(BlowFlags.NoSound) && b.VictimBodyPart == BoneBodyPartType.Chest;
         }
 
+        /// <summary>
+        /// Determines if a KillingBlow originated from a spell based on its properties.
+        /// </summary>
         public static bool IsSpellBlow(KillingBlow b)
         {
             return b.AttackType == AgentAttackType.Kick && b.WeaponItemKind == -1 && b.VictimBodyPart == BoneBodyPartType.Chest;
         }
-    }
-    public struct SpellBlowInfo
-    {
-        public int DamagerIndex;
-        public string TriggeredEffectId;
-        public DamageType DamageType;
-        public string OriginAbilityTemplateId;
     }
 }

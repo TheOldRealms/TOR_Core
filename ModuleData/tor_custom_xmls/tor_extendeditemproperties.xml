@@ -5149,6 +5149,10 @@
     </ItemTraits>
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_greenskin_mountarmor_boar_saddle_001" RaceLock="orc">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_gs_gold_pile">
     <ItemTraits />
     <Description />

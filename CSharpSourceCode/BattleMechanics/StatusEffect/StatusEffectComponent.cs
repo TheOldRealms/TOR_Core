@@ -57,7 +57,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             _baseValues.AddOrReplace(DrivenProperty.MountDashAccelerationMultiplier, this.Agent.MountAgent.AgentDrivenProperties.MountDashAccelerationMultiplier);
         }
 
-        public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated, bool stack)
+        public void RunStatusEffect(string effectId, Agent applierAgent, float duration, bool append, bool isMutated, bool stack, int castId = -1)
         {
             if (Agent == null) return;
             if (_disabled) return;
@@ -73,16 +73,21 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 {
                     effect.CurrentDuration = duration;
                 }
+                // Update castId if a new one is provided (for tracking purposes)
+                if (castId >= 0)
+                {
+                    effect.CastId = castId;
+                }
                 if (stack)
                 {
-                    var clone = StatusEffectManager.CreateNewStatusEffect(effectId, applierAgent, true);
+                    var clone = StatusEffectManager.CreateNewStatusEffect(effectId, applierAgent, true, castId);
                     clone.CurrentDuration = duration;
                     AddEffect(clone);
                 }
             }
             else
             {
-                effect = StatusEffectManager.CreateNewStatusEffect(effectId, applierAgent, isMutated);
+                effect = StatusEffectManager.CreateNewStatusEffect(effectId, applierAgent, isMutated, castId);
                 if (applierAgent != null && applierAgent.IsMainAgent)
                 {
                     var career = applierAgent.GetHero().GetCareer();
@@ -136,7 +141,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                 if (_effectAggregate.DamageOverTime > 0)
                 {
-                    var value = _effectAggregate.DamageOverTime;
+                    var damageValue = (int)_effectAggregate.DamageOverTime;
                     var effect = _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime && x.ApplierAgent == Agent.Main) ??
                                   _currentEffects.Keys.FirstOrDefault(x => x.Template.Type == StatusEffectTemplate.EffectType.DamageOverTime);
 
@@ -144,10 +149,17 @@ namespace TOR_Core.BattleMechanics.StatusEffect
 
                     if (Campaign.Current != null && applier != null && (applier.IsMainAgent || applier.BelongsToMainParty()))
                     {
-                        CareerHelper.ApplyCareerAbilityCharge((int)value, ChargeType.DamageDone, AttackTypeMask.Spell, applier);
+                        CareerHelper.ApplyCareerAbilityCharge(damageValue, ChargeType.DamageDone, AttackTypeMask.Spell, applier);
                     }
 
-                    Agent.ApplyDamage((int)_effectAggregate.DamageOverTime, Agent.Position, applier, false, false);
+                    Agent.ApplyDamage(damageValue, Agent.Position, applier, false, false);
+
+                    // Track DOT kill if the agent died
+                    if (effect != null && effect.CastId >= 0 && (Agent.Health <= 0 || Agent.State == AgentState.Killed || Agent.State == AgentState.Unconscious))
+                    {
+                        var logic = Mission.Current?.GetMissionBehavior<AbilityManagerMissionLogic>();
+                        logic?.BookSpellKill(effect.CastId, Agent);
+                    }
                 }
                 else if (_effectAggregate.HealthOverTime > 0)
                 {

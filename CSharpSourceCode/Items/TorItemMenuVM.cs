@@ -215,7 +215,7 @@ namespace TOR_Core.Items
         private void AddTooltipForRaceLock(SPItemVM item, ItemVM comparedItem)
         {
             var equipmentElement = item.ItemRosterElement.EquipmentElement;
-            if (!equipmentElement.Item.HasArmorComponent) return;
+            if (!equipmentElement.Item.HasArmorComponent || equipmentElement.Item.ItemType == ItemObject.ItemTypeEnum.HorseHarness) return;
             var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
             var raceLock = equipmentElement.Item.GetTorSpecificDataReadOnly()?.RaceLock ?? "human";
             CreateColoredProperty(TargetItemProperties, GameTexts.FindText("str_inventory_race_lock").ToString(), raceLock, GetColorFromBool(ExtendedItemObjectManager.CanCharacterUseItemBasedOnRace(equipmentElement.Item, CurrentCharacter)), 0, null, TooltipProperty.TooltipPropertyFlags.None);
