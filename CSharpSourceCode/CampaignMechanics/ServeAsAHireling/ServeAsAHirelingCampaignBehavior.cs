@@ -529,6 +529,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                {
                    _hirelingLordIsFightingWithoutPlayer = true;
                    _startBattle = false;
+
+                   // Clean up player party associations to prevent siege abort
+                   var playerParty = MobileParty.MainParty;
+                   playerParty.MapEventSide = null;
+                   playerParty.BesiegerCamp = null;
+                   playerParty.CurrentSettlement = null;
+
                    args.MenuContext.GameMenu.StartWait();
                }
                , false, 4);
@@ -780,14 +787,10 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             var enemyText = TORTextHelper.GetTextObject("tor_hireling_battle_enemy", "Enemy: {ENEMY_LEADER}");
             enemyText.SetTextVariable("ENEMY_LEADER", enemyLeader);
 
-            var strengthText = TORTextHelper.GetTextObject("tor_hireling_battle_strength", "Allied troops: {ALLY_COUNT} vs Enemy troops: {ENEMY_COUNT}");
-            strengthText.SetTextVariable("ALLY_COUNT", allyStrength);
-            strengthText.SetTextVariable("ENEMY_COUNT", enemyStrength);
-
             var oddsLineText = TORTextHelper.GetTextObject("tor_hireling_battle_odds", "Odds: {ODDS}");
             oddsLineText.SetTextVariable("ODDS", oddsText);
 
-            var battleInfo = $"{battleTypeText}\n{enemyText}\n{strengthText}\n{oddsLineText}";
+            var battleInfo = $"{battleTypeText}\n{enemyText}\n{oddsLineText}";
 
             MBTextManager.SetTextVariable("BATTLE_INFO", battleInfo);
         }

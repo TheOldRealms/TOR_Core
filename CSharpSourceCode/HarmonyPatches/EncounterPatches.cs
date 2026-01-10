@@ -61,6 +61,23 @@ namespace TOR_Core.HarmonyPatches
 
 
 
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(GameMenu), "ActivateGameMenu")]
+        public static bool ActivateGameMenuPrefix(ref string menuId)
+        {
+            // When enlisted, intercept encounter menu activation to prevent crashes
+            // But only if there's no active battle (otherwise we block joining fights)
+            if (menuId == "encounter" && Hero.MainHero.IsEnlisted())
+            {
+                var hasActiveBattle = Hero.MainHero.PartyBelongedTo?.MapEvent != null;
+                if (!hasActiveBattle)
+                {
+                    menuId = "hireling_menu";
+                }
+            }
+            return true;
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MapEvent), "GetMemberRosterReceivingLootShare")]
         public static void GetMemberRosterPostfix(TroopRoster __result)

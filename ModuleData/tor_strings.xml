@@ -4020,7 +4020,6 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_hireling_battle_type_siege_assault" text="{=str_tor_hireling_battle_type_siege_assault}Siege Assault" />
   <string id="tor_hireling_battle_type_siege_defense" text="{=str_tor_hireling_battle_type_siege_defense}Siege Defense" />
   <string id="tor_hireling_battle_enemy" text="{=str_tor_hireling_battle_enemy}Enemy: {ENEMY_LEADER}" />
-  <string id="tor_hireling_battle_strength" text="{=str_tor_hireling_battle_strength}Allied troops: {ALLY_COUNT} vs Enemy troops: {ENEMY_COUNT}" />
   <string id="tor_hireling_battle_odds" text="{=str_tor_hireling_battle_odds}Odds: {ODDS}" />
   <string id="tor_hireling_odds_certain_victory" text="{=str_tor_hireling_odds_certain_victory}Certain Victory" />
   <string id="tor_hireling_odds_overwhelming_advantage" text="{=str_tor_hireling_odds_overwhelming_advantage}Overwhelming Advantage" />
@@ -4899,7 +4898,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_hireling_back_text" text="{=str_tor_hireling_back_text}Back"/>
 	<string id="tor_hireling_enter_settlement_text" text="{=str_tor_hireling_enter_settlement_text}Enter the settlement"/>
 	<string id="tor_hireling_desert_text" text="{=str_tor_hireling_desert_text}Desert"/>
-	<string id="tor_hireling_battle_menu_text" text="{=str_tor_hireling_battle_menu_text}Your Lord engages in a battle."/>
+	<string id="tor_hireling_battle_menu_text" text="{=str_tor_hireling_battle_menu_text}{BATTLE_INFO}"/>
 	<string id="tor_hireling_join_battle_text" text="{=str_tor_hireling_join_battle_text}Join battle"/>
 	<string id="tor_hireling_avoid_combat_text" text="{=str_tor_hireling_avoid_combat_text}Avoid Combat"/>
 	<string id="tor_hireling_flee_text" text="{=str_tor_hireling_flee_text}Flee"/>
