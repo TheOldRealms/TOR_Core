@@ -9560,7 +9560,10 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_slayer_lord">
     <Abilities />
-    <Attributes />
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>CanPlaceArtillery</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord">
     <Abilities>
