@@ -78,6 +78,11 @@ namespace TOR_Core.BattleMechanics.StatusEffect
                 CareerHelper.AddDefaultPermanentMissionEffect(agent, "loec_blessing_ats");
             }
 
+            // Race-based innate abilities (apply to all agents of that race)
+            if ((agent.Character as CharacterObject)?.IsTroll() == true)
+            {
+                CareerHelper.AddDefaultPermanentMissionEffect(agent, "troll_regeneration");
+            }
 
             if (!agent.BelongsToMainParty()) return;
 

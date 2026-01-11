@@ -36,7 +36,11 @@ namespace TOR_Core.Models
         {
             if (character.IsMinotaur())
             {
-                number.Add(250f, TORTextHelper.GetTextObject("tor_stats_minotaur_bonus_text", "Minotaur bonus"));
+                number.Add(350f, TORTextHelper.GetTextObject("tor_stats_minotaur_bonus_text", "Minotaur bonus"));
+            }
+            if (character.IsTroll())
+            {
+                number.Add(450f, TORTextHelper.GetTextObject("tor_stats_troll_bonus_text", "Troll bonus"));
             }
             if (character.IsTreeSpirit() && character.Race != FaceGen.GetRaceOrDefault("large_humanoid_monster"))
             {

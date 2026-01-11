@@ -2166,8 +2166,14 @@
 		type="HealthOverTime"
 		damage_type="All">
 	</StatusEffectTemplate>
-	
-	
+
+	<StatusEffectTemplate
+		id="troll_regeneration"
+		particle_id="none"
+		base_effect_value="1"
+		type="HealthOverTime">
+	</StatusEffectTemplate>
+
 	<StatusEffectTemplate
 		id="powerstone_beast_res_range"
 		particle_id="general_beast_buff"
