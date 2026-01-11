@@ -47,6 +47,12 @@ namespace TOR_Core.CharacterDevelopment
 
         public static float NecromancerCareerCharge(Agent affectingAgent, Agent affectedAgent, ChargeType chargeType, int chargeValue, AttackTypeMask mask = AttackTypeMask.Melee, CareerHelper.ChargeCollisionFlag collisionFlag = CareerHelper.ChargeCollisionFlag.None)
         {
+            // Custom charge type is used for summoning - pass through directly
+            if (chargeType == ChargeType.Custom)
+            {
+                return chargeValue;
+            }
+
             if (!affectingAgent.BelongsToMainParty()) return 0;
             if (mask == AttackTypeMask.Ranged) return 0;
 
@@ -54,10 +60,21 @@ namespace TOR_Core.CharacterDevelopment
             {
                 return 0;
             }
-
             if ((chargeType != ChargeType.DamageDone && chargeType != ChargeType.Healed)) return 0;
-
+            
             ExplainedNumber explainedNumber = new ExplainedNumber();
+
+            if (affectingAgent.IsUndead())
+            {
+                if (affectingAgent.IsSummoned())
+                {
+                    explainedNumber.AddFactor(-0.75f);
+                }
+            }
+
+
+
+ 
 
             explainedNumber.Add(chargeValue);
 

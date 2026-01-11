@@ -796,6 +796,19 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_vc_necromancer":
+                    hero.AddAttribute("SpellCaster");
+                    hero.AddAttribute("Necromancer");
+                    hero.AddAbility("SummonSkeleton");
+                    hero.AddKnownLore("MinorMagic");
+                    hero.AddKnownLore("Necromancy");
+                    hero.SetSpellCastingLevel(SpellCastingLevel.Entry);
+                    hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, 25);
+                    hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
+                    hero.AddCareer(TORCareers.Necromancer);
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(1666.918f, 1019.001f), true); // Sylvania Necromancer location
+                    break;
+
                 case "option_3_mousillon_necromancer":
                     hero.AddAttribute("SpellCaster");
                     hero.AddAttribute("Necromancer");
@@ -807,7 +820,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.Necromancer);
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
-                    _storedSpawnPosition = new CampaignVec2(new Vec2(1666.918f, 1019.001f), true); // Necromancer location
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true); // Mousillon Necromancer location
                     break;
 
                 case "option_3_dw_shield_breaker":

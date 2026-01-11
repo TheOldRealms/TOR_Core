@@ -1,6 +1,7 @@
 using Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Conversation;
@@ -37,6 +38,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private bool _startBattle;
         private bool _siegeBattleMissionStarted;
+
+        // Static accessor for Harmony patches to check if battle is being started
+        public static bool IsStartingBattle => Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>()?._startBattle ?? false;
+
+        // Tracks when we're in a post-battle transition where AI ticks might cause issues
+        private bool _inPostBattleTransition;
+        public static bool InPostBattleTransition => Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>()?._inPostBattleTransition ?? false;
 
         private bool _hirelingWaitMenuShown;
 
@@ -188,6 +196,16 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void MenuOpened(MenuCallbackArgs obj)
         {
+            // Intercept encounter menu when enlisted to prevent crashes from bad PlayerEncounter state
+            if (IsEnlisted() && obj.MenuContext.GameMenu.StringId == "encounter" && !_startBattle)
+            {
+                // After a battle ends, the game may try to open the encounter menu
+                // but the PlayerEncounter is in a bad state - redirect to hireling menu
+                GameMenu.SwitchToMenu("hireling_menu");
+                _hirelingWaitMenuShown = true;
+                return;
+            }
+
             if (_startBattle && obj.MenuContext.GameMenu.StringId == "encounter" && !_debugSkipBattles)
             {
                 _startBattle = false;
@@ -459,8 +477,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
         private void SetupBattleMenu(CampaignGameStarter campaignGameStarter)
         {
-            TextObject hirelingBattleTextMenu = TORTextHelper.GetTextObject("tor_hireling_battle_menu_text", "Your Lord engages in a battle.");
-            campaignGameStarter.AddGameMenu("hireling_battle_menu", hirelingBattleTextMenu.Value, party_wait_talk_to_other_members_on_init, GameMenu.MenuOverlayType.Encounter);
+            campaignGameStarter.AddGameMenu("hireling_battle_menu", "{BATTLE_INFO}", hireling_battle_menu_on_init, GameMenu.MenuOverlayType.Encounter);
 
             campaignGameStarter.AddGameMenuOption("hireling_battle_menu", "hireling_join_battle", TORTextHelper.GetText("tor_hireling_join_battle_text", "Join battle"),
                 hireling_battle_menu_join_battle_on_condition,
@@ -518,6 +535,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                {
                    _hirelingLordIsFightingWithoutPlayer = true;
                    _startBattle = false;
+
+                   // Clean up player party associations to prevent siege abort
+                   var playerParty = MobileParty.MainParty;
+                   playerParty.MapEventSide = null;
+                   playerParty.BesiegerCamp = null;
+                   playerParty.CurrentSettlement = null;
+
                    args.MenuContext.GameMenu.StartWait();
                }
                , false, 4);
@@ -638,15 +662,70 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 text2.SetTextVariable("ENLISTING_DURATION", days);
                 text2.SetTextVariable("HIRELING_BATTLE_COUNT", _manuallyFoughtBattles);
 
-                var armyInfo = "";
+                var statusInfo = "";
+
+                // Army status
                 if (_hirelingEnlistingLord.PartyBelongedTo.Army != null)
                 {
-                    armyInfo += "{newLine}";
-                    var armyPartText = TORTextHelper.GetTextObject("tor_hireling_is_part_of_army_text", "is Part of {ARMY_NAME}");
-                    armyPartText.SetTextVariable("ARMY_NAME", _hirelingEnlistingLord.PartyBelongedTo.Army.Name);
-                    armyInfo += armyPartText.ToString();
+                    statusInfo += "{newLine}";
+                    var armyText = TORTextHelper.GetTextObject("tor_hireling_serving_in_army_text", "Serving in {ARMY_NAME}");
+                    armyText.SetTextVariable("ARMY_NAME", _hirelingEnlistingLord.PartyBelongedTo.Army.Name);
+                    statusInfo += armyText.ToString();
                 }
-                text2.SetTextVariable("ENLISTING_ARMY", armyInfo);
+
+                // Siege status
+                var lordParty = _hirelingEnlistingLord.PartyBelongedTo;
+                var siegeEvent = lordParty.BesiegerCamp?.SiegeEvent ?? lordParty.Army?.ArmyOwner?.PartyBelongedTo?.BesiegerCamp?.SiegeEvent;
+                if (siegeEvent != null)
+                {
+                    statusInfo += "{newLine}";
+                    var siegeText = TORTextHelper.GetTextObject("tor_hireling_besieging_text", "Besieging {SETTLEMENT_NAME}");
+                    siegeText.SetTextVariable("SETTLEMENT_NAME", siegeEvent.BesiegedSettlement.Name);
+                    statusInfo += siegeText.ToString();
+
+                    // Siege preparations progress
+                    var besiegerEngines = siegeEvent.BesiegerCamp?.SiegeEngines;
+                    if (besiegerEngines != null)
+                    {
+                        var preparations = besiegerEngines.SiegePreparations;
+                        if (preparations != null && !preparations.IsConstructed)
+                        {
+                            statusInfo += "{newLine}";
+                            var prepProgress = (int)(preparations.Progress * 100);
+                            var prepText = TORTextHelper.GetTextObject("tor_hireling_siege_preparations_text", "Siege preparations: {PROGRESS}%");
+                            prepText.SetTextVariable("PROGRESS", prepProgress);
+                            statusInfo += prepText.ToString();
+                        }
+                        else
+                        {
+                            // Show active siege engines count
+                            var activeEngines = besiegerEngines.DeployedSiegeEngines.Count(e => e.IsConstructed);
+                            if (activeEngines > 0)
+                            {
+                                statusInfo += "{newLine}";
+                                var enginesText = TORTextHelper.GetTextObject("tor_hireling_siege_engines_text", "Siege engines ready: {COUNT}");
+                                enginesText.SetTextVariable("COUNT", activeEngines);
+                                statusInfo += enginesText.ToString();
+                            }
+                        }
+                    }
+                }
+
+                // Raid status
+                var lordMapEvent = lordParty.MapEvent;
+                if (lordMapEvent != null && (lordMapEvent.IsRaid || lordMapEvent.IsForcingSupplies || lordMapEvent.IsForcingVolunteers))
+                {
+                    statusInfo += "{newLine}";
+                    var raidSettlement = lordMapEvent.MapEventSettlement;
+                    if (raidSettlement != null)
+                    {
+                        var raidText = TORTextHelper.GetTextObject("tor_hireling_raiding_text", "Raiding {VILLAGE_NAME}");
+                        raidText.SetTextVariable("VILLAGE_NAME", raidSettlement.Name);
+                        statusInfo += raidText.ToString();
+                    }
+                }
+
+                text2.SetTextVariable("ENLISTING_ARMY", statusInfo);
 
                 TextObject variable = text2;
                 text1.SetTextVariable("ENLISTING_TEXT", variable);
@@ -665,6 +744,62 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         }
 
         private void party_wait_talk_to_other_members_on_init(MenuCallbackArgs args) { }
+
+        private void hireling_battle_menu_on_init(MenuCallbackArgs args)
+        {
+            if (_hirelingEnlistingLord?.PartyBelongedTo?.MapEvent == null)
+            {
+                MBTextManager.SetTextVariable("BATTLE_INFO", TORTextHelper.GetTextObject("tor_hireling_battle_fallback", "Your Lord engages in a battle."));
+                return;
+            }
+
+            var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
+            var lordSide = _hirelingEnlistingLord.PartyBelongedTo.MapEventSide;
+            var enemySide = lordSide?.OtherSide;
+
+            // Battle type
+            var battleTypeText = TORTextHelper.GetTextObject("tor_hireling_battle_type_battle", "Battle");
+            if (mapEvent.IsSiegeAssault)
+            {
+                var isDefender = lordSide?.MissionSide == TaleWorlds.Core.BattleSideEnum.Defender;
+                battleTypeText = isDefender
+                    ? TORTextHelper.GetTextObject("tor_hireling_battle_type_siege_defense", "Siege Defense")
+                    : TORTextHelper.GetTextObject("tor_hireling_battle_type_siege_assault", "Siege Assault");
+            }
+
+            // Enemy info
+            var enemyLeader = enemySide?.LeaderParty?.LeaderHero?.Name?.ToString() ?? enemySide?.LeaderParty?.Name?.ToString() ?? "Unknown";
+
+            // Strength calculation
+            var allyStrength = lordSide?.RecalculateMemberCountOfSide() ?? 0;
+            var enemyStrength = enemySide?.RecalculateMemberCountOfSide() ?? 0;
+
+            // Odds calculation
+            TextObject oddsText;
+            if (enemyStrength == 0)
+                oddsText = TORTextHelper.GetTextObject("tor_hireling_odds_certain_victory", "Certain Victory");
+            else
+            {
+                var ratio = (float)allyStrength / enemyStrength;
+                if (ratio >= 2.0f) oddsText = TORTextHelper.GetTextObject("tor_hireling_odds_overwhelming_advantage", "Overwhelming Advantage");
+                else if (ratio >= 1.5f) oddsText = TORTextHelper.GetTextObject("tor_hireling_odds_strong_advantage", "Strong Advantage");
+                else if (ratio >= 1.1f) oddsText = TORTextHelper.GetTextObject("tor_hireling_odds_slight_advantage", "Slight Advantage");
+                else if (ratio >= 0.9f) oddsText = TORTextHelper.GetTextObject("tor_hireling_odds_even", "Even Odds");
+                else if (ratio >= 0.66f) oddsText = TORTextHelper.GetTextObject("tor_hireling_odds_slight_disadvantage", "Slight Disadvantage");
+                else if (ratio >= 0.5f) oddsText = TORTextHelper.GetTextObject("tor_hireling_odds_strong_disadvantage", "Strong Disadvantage");
+                else oddsText = TORTextHelper.GetTextObject("tor_hireling_odds_overwhelming_disadvantage", "Overwhelming Disadvantage");
+            }
+
+            var enemyText = TORTextHelper.GetTextObject("tor_hireling_battle_enemy", "Enemy: {ENEMY_LEADER}");
+            enemyText.SetTextVariable("ENEMY_LEADER", enemyLeader);
+
+            var oddsLineText = TORTextHelper.GetTextObject("tor_hireling_battle_odds", "Odds: {ODDS}");
+            oddsLineText.SetTextVariable("ODDS", oddsText);
+
+            var battleInfo = $"{battleTypeText}\n{enemyText}\n{oddsLineText}";
+
+            MBTextManager.SetTextVariable("BATTLE_INFO", battleInfo);
+        }
 
         /// <remarks>
         /// This event triggers before MapEventEnded (via OnPlayerBattleEndEvent).
@@ -717,8 +852,22 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (MobileParty.MainParty.CurrentSettlement == settlement && PlayerEncounter.EncounterSettlement == settlement) return;
             if (_hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo == mobileParty)
             {
-                EnterSettlementAction.ApplyForParty(MobileParty.MainParty, _hirelingEnlistingLord.CurrentSettlement);
-                EncounterManager.StartSettlementEncounter(MobileParty.MainParty, settlement);
+                // Only start settlement encounter if there isn't already one active for this settlement
+                // After a siege, the encounter might be in an intermediate state - let the game handle cleanup
+                if (PlayerEncounter.Current == null || PlayerEncounter.EncounterSettlement != settlement)
+                {
+                    EnterSettlementAction.ApplyForParty(MobileParty.MainParty, _hirelingEnlistingLord.CurrentSettlement);
+
+                    // Only start a new encounter if there isn't one already
+                    if (PlayerEncounter.Current == null)
+                    {
+                        EncounterManager.StartSettlementEncounter(MobileParty.MainParty, settlement);
+                    }
+                }
+
+                // Clear post-battle transition flag - settlement encounter is now stable
+                _inPostBattleTransition = false;
+
                 GameMenu.SwitchToMenu("hireling_menu");
 
                 if (_pauseModeToggle)
@@ -741,6 +890,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 {
                     return;
                 }
+
+                // Mark that we're in a post-battle transition to prevent AI tick crashes
+                // This is especially important after sieges when the lord immediately enters the settlement
+                _inPostBattleTransition = true;
+
                 _hirelingLordIsFightingWithoutPlayer = false;
                 GameMenu.ActivateGameMenu("hireling_menu");
                 _hirelingWaitMenuShown = true;
@@ -751,6 +905,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             if (_hirelingEnlisted && _hirelingEnlistingLord?.PartyBelongedTo != null)
             {
+                // Clear post-battle transition flag once we're stable (no active battle, menu shown)
+                if (_inPostBattleTransition && _hirelingWaitMenuShown && _hirelingEnlistingLord.PartyBelongedTo.MapEvent == null)
+                {
+                    _inPostBattleTransition = false;
+                }
+
                 var menu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
                 var timeModel = Campaign.Current.Models.CampaignTimeModel;
                 _durationInDays = timeModel.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;//could be in an hourly or daily tick instead
@@ -769,6 +929,22 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 if (_hirelingEnlistingLord.PartyBelongedTo.MapEvent != null)
                 {
                     var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
+                    
+                    if (mapEvent.IsRaid || mapEvent.IsForcingSupplies || mapEvent.IsForcingVolunteers)
+                    {
+                        var lordRaidsParty = mapEvent.AttackerSide.Parties.FirstOrDefault(x => x.Party == _hirelingEnlistingLord.PartyBelongedTo.Party)!=null;
+                        if (lordRaidsParty)
+                        {
+                            if (!mapEvent.DefenderSide.HasReadyTroops)
+                            {
+                                //we return, there is no active defense.
+                                return;
+                            }
+                        }
+                        
+
+              
+                    }
 
                     if (!_hirelingLordIsFightingWithoutPlayer && !mapEvent.HasWinner)
                     {
@@ -802,6 +978,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
 
             while (Campaign.Current.CurrentMenuContext != null)
                 GameMenu.ExitToLast();
+
+            // Finish the PlayerEncounter from the conversation with the lord
+            // This prevents EncounteredMobileParty from blocking the lord's siege initiation
+            if (PlayerEncounter.Current != null)
+                PlayerEncounter.Finish(false);
+
             _hirelingEnlisted = true;
 
             SetActivities();

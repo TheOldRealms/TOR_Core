@@ -7,7 +7,9 @@ using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.AbilitySystem;
 using TOR_Core.CharacterDevelopment;
+using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
+using TOR_Core.Extensions.ExtendedInfoSystem;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
@@ -42,10 +44,22 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect.Scripts
             }
 
             var spawnPosition = position;
-            for (int i = 1; i < NumberToSummon + 1 + bonus; i++)
+            var totalSummoned = NumberToSummon + bonus;
+            for (int i = 1; i < totalSummoned + 1; i++)
             {
                 spawnPosition = Mission.Current.GetRandomPositionAroundPoint(spawnPosition, 0.1f, 0.6f);
                 TORSummonHelper.SpawnAgent(data, spawnPosition, true);
+            }
+
+            // Add career charge for necromancer when summoning undead
+            if (Game.Current.GameType is Campaign && triggeredByAgent.GetHero() == Hero.MainHero)
+            {
+                if (Hero.MainHero.HasCareer(TORCareers.Necromancer))
+                {
+                    var chargePerUnit = 50;
+                    var totalCharge = chargePerUnit * totalSummoned;
+                    CareerHelper.ApplyCareerAbilityCharge(totalCharge, ChargeType.Custom, AttackTypeMask.Spell, triggeredByAgent);
+                }
             }
         }
 

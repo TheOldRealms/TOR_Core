@@ -4824,7 +4824,7 @@
 		can_have_settlement="true"
 		villager_party_template="PartyTemplate.mousillon_villager_template"
 		default_party_template="PartyTemplate.mousillon_lordparty_template"
-		encounter_background_mesh="encounter_vlandia"
+		encounter_background_mesh="mousillon_encounter"
 		faction_banner_key="11.14.14.1536.1536.764.764.1.0.0.160.15.15.497.497.764.764.1.0.0"
 		militia_party_template="PartyTemplate.mousillon_militia_template"
 		settlement_patrol_template_level_1="PartyTemplate.patrol_party_ms_template_level_1"
