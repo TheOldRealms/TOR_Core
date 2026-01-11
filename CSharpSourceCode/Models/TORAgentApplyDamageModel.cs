@@ -84,126 +84,6 @@ namespace TOR_Core.Models
             }
         }
 
-        /*
-        public override float ApplyDamageAmplifications(in AttackInformation attackInformation, in AttackCollisionData collisionData, float baseDamage)
-        {
-            var attackerAgent = attackInformation.AttackerAgent;
-            var result = base.CalculateDamage(in attackInformation,in collisionData, baseDamage);
-            
-            var attacker = (attackInformation.IsAttackerAgentMount ? attackInformation.AttackerRiderAgentCharacter : attackInformation.AttackerAgentCharacter) as CharacterObject;
-            //attackInformation.XXXCaptainCharacter is null if character == captain
-            var attackerCaptain = attackInformation.AttackerCaptainCharacter as CharacterObject;
-            var defender = (attackInformation.IsVictimAgentMount ? attackInformation.VictimRiderAgentCharacter : attackInformation.VictimAgentCharacter) as CharacterObject;
-            var defenderCaptain = attackInformation.VictimCaptainCharacter as CharacterObject;
-
-            var resultDamage = new ExplainedNumber(result);
-
-            if (attacker == null)
-            {
-                return resultDamage.ResultNumber;
-            }
-
-            var weapon = attackInformation.AttackerWeapon;
-
-            
-            if (defender != null && !weapon.IsEmpty)
-            {
-                if (attacker.GetPerkValue(TORPerks.GunPowder.CloseQuarters) && weapon.CurrentUsageItem.WeaponClass == WeaponClass.Cartridge)
-                {
-                    var shotLength = (collisionData.CollisionGlobalPosition - collisionData.MissileStartingPosition).Length;
-                    if (shotLength <= 7)
-                        PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.CloseQuarters, attacker, true, ref resultDamage);
-                }
-
-                if (attacker.IsHero && weapon.Item.StringId.Contains("longrifle"))
-                {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.DeadEye, attacker, true, ref resultDamage);
-                }
-
-                if (weapon.Item.IsSmallArmsAmmunition())
-                {
-                    //Sly : idk why APBFC doesn't check for the perk immediately instead of going through every conditional; particularly because the method can be called for any agent with no prior checks for if they can have perks (ie. IsHero)
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.BulletProof, defender, true, ref resultDamage);
-
-                    PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.BulletProof, defenderCaptain, ref resultDamage);
-                }
-
-                if (weapon.Item.IsExplosiveAmmunition())
-                {
-                    PerkHelper.AddPerkBonusForCharacter(TORPerks.GunPowder.BombingSuit, defender, true, ref resultDamage);
-                    PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.BombingSuit, defenderCaptain, ref resultDamage);
-
-                    PerkHelper.AddPerkBonusFromCaptain(TORPerks.GunPowder.PackItIn, attackerCaptain, ref resultDamage);
-                }
-
-                var weaponComponentData = weapon.CurrentUsageItem;
-
-                if (attacker.IsHero && attacker.HeroObject == Hero.MainHero)
-                {
-                    if (Hero.MainHero.HasAnyCareer())
-                    {
-                        var choices = Hero.MainHero.GetAllCareerChoices();
-
-                        if (choices.Contains("MartiallePassive4") || 
-                            choices.Contains("NightRiderPassive4") || 
-                            choices.Contains("TeachingsOfTheWinterFatherPassive3")||
-                            choices.Contains("IronPricePassive2") ||
-                            choices.Contains("UrkSlayerPassive4"))
-                        {
-                            weaponComponentData.WeaponFlags |= WeaponFlags.BonusAgainstShield;
-                        }
-                        
-                        if (choices.Contains("DeadlyDeterminationPassive4"))
-                        {
-                            if (CareerChoicesHelper.ArmorWeightCheck(attackerAgent, 9) &&  attackerAgent.Health<= attackerAgent.HealthLimit-50)
-                            {
-                                resultDamage.AddFactor(0.1f);
-                            }
-                            
-                        }
-
-                        if (choices.Contains("GiantSlayerPassive4") && attackInformation.IsVictimAgentMount)
-                        {
-                            if (CareerChoicesHelper.ArmorWeightCheck(attackerAgent, 9))
-                            {
-                                resultDamage.Add(resultDamage.BaseNumber*0.25f);
-                            }
-                            
-                        }
-                    }
-                    
-                }
-                    
-
-                if (defender.IsUndead()|| defender.IsVampire() && attacker.HasAttribute("UndeadBane"))
-                {
-                    resultDamage.AddFactor(0.5f);
-                }
-            }
-            
-            
-            if (attacker.IsTreeSpirit())
-            {
-                resultDamage.AddFactor(20f);
-            }
-
-            if ( collisionData.IsHorseCharge && attacker.IsMounted)
-            {
-                if (attacker.IsPlayerCharacter && attacker.HeroObject.HasAnyCareer())
-                {
-                    CareerHelper.ApplyBasicCareerPassives(attacker.HeroObject, ref resultDamage, PassiveEffectType.HorseChargeDamage);
-                }
-
-                if (attacker.HasAttribute("KOWChargeBonus"))
-                {
-                    resultDamage.AddFactor(0.25f);
-                }
-            }
-             
-            return resultDamage.ResultNumber;
-        }
-        */
-
 
         public override bool CanWeaponDealSneakAttack(in AttackInformation attackInformation, WeaponComponentData weapon)
         {
@@ -1091,6 +971,15 @@ namespace TOR_Core.Models
 
         public override bool DecideCrushedThrough(Agent attackerAgent, Agent defenderAgent, float totalAttackEnergy, Agent.UsageDirection attackDirection, StrikeType strikeType, WeaponComponentData defendItem, bool isPassiveUsage)
         {
+            // Monster attacks (trolls, minotaurs, etc.) can only be blocked with shields
+            if (attackerAgent != null && attackerAgent.HasAttribute("MonsterAttack"))
+            {
+                if (defendItem == null || !defendItem.IsShield)
+                {
+                    return true;
+                }
+            }
+
             EquipmentIndex equipmentIndex = attackerAgent.GetOffhandWieldedItemIndex();
             if (equipmentIndex == EquipmentIndex.None)
             {
