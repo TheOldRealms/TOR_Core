@@ -55,6 +55,11 @@ namespace TOR_Core.BattleMechanics.Artillery
         private SynchedMissionObject _barrel;
         private SynchedMissionObject _wheel_R;
         private SynchedMissionObject _wheel_L;
+        private readonly string _leftGearTag = "Gear_L";
+        private readonly string _rightGearTag = "Gear_R";
+        private List<SynchedMissionObject> _gearsLeft = new List<SynchedMissionObject>();
+        private List<SynchedMissionObject> _gearsRight = new List<SynchedMissionObject>();
+        private bool _isDwarfCannon = false;
         private float _verticalOffsetAngle;
         private MatrixFrame _barrelInitialLocalFrame;
         private Agent _lastLoaderAgent;
@@ -339,6 +344,23 @@ namespace TOR_Core.BattleMechanics.Artillery
             _wheel_L = GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>(_leftWheelTag)[0];
             _wheel_R = GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>(_rightWheelTag)[0];
             RotationObject = _body;
+
+            // Collect gears for dwarf cannon
+            CollectGears();
+        }
+
+        private void CollectGears()
+        {
+            _gearsLeft.Clear();
+            _gearsRight.Clear();
+
+            var leftGears = GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>(_leftGearTag);
+            var rightGears = GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>(_rightGearTag);
+
+            _gearsLeft.AddRange(leftGears);
+            _gearsRight.AddRange(rightGears);
+
+            _isDwarfCannon = _gearsLeft.Count > 0 || _gearsRight.Count > 0;
         }
 
         public override TextObject GetActionTextForStandingPoint(UsableMissionObject usableGameObject)
@@ -518,6 +540,31 @@ namespace TOR_Core.BattleMechanics.Artillery
             var frame2 = _wheel_R.GameEntity.GetFrame();
             frame2.rotation.RotateAboutSide(rightwheeldirection * dt * speed);
             _wheel_R.GameEntity.SetFrame(ref frame2);
+
+            // Rotate gears for dwarf cannon
+            if (_isDwarfCannon)
+            {
+                DoGearRotation(dt, leftwheeldirection, rightwheeldirection, speed);
+            }
+        }
+
+        private void DoGearRotation(float dt, float leftDirection, float rightDirection, float speed = 1)
+        {
+            float gearSpeedMultiplier = 2f; // Gears spin faster than wheels
+
+            foreach (var gear in _gearsLeft)
+            {
+                var gearFrame = gear.GameEntity.GetFrame();
+                gearFrame.rotation.RotateAboutSide(leftDirection * dt * speed * gearSpeedMultiplier);
+                gear.GameEntity.SetFrame(ref gearFrame);
+            }
+
+            foreach (var gear in _gearsRight)
+            {
+                var gearFrame = gear.GameEntity.GetFrame();
+                gearFrame.rotation.RotateAboutSide(rightDirection * dt * speed * gearSpeedMultiplier);
+                gear.GameEntity.SetFrame(ref gearFrame);
+            }
         }
 
         private void UpdateWheelRotation(float dt)
