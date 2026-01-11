@@ -39,6 +39,13 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         private bool _startBattle;
         private bool _siegeBattleMissionStarted;
 
+        // Static accessor for Harmony patches to check if battle is being started
+        public static bool IsStartingBattle => Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>()?._startBattle ?? false;
+
+        // Tracks when we're in a post-battle transition where AI ticks might cause issues
+        private bool _inPostBattleTransition;
+        public static bool InPostBattleTransition => Campaign.Current?.GetCampaignBehavior<ServeAsAHirelingCampaignBehavior>()?._inPostBattleTransition ?? false;
+
         private bool _hirelingWaitMenuShown;
 
         private float _entryServiceTimeStamp;
@@ -846,8 +853,22 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
             if (MobileParty.MainParty.CurrentSettlement == settlement && PlayerEncounter.EncounterSettlement == settlement) return;
             if (_hirelingEnlistingLord != null && _hirelingEnlistingLord.PartyBelongedTo == mobileParty)
             {
-                EnterSettlementAction.ApplyForParty(MobileParty.MainParty, _hirelingEnlistingLord.CurrentSettlement);
-                EncounterManager.StartSettlementEncounter(MobileParty.MainParty, settlement);
+                // Only start settlement encounter if there isn't already one active for this settlement
+                // After a siege, the encounter might be in an intermediate state - let the game handle cleanup
+                if (PlayerEncounter.Current == null || PlayerEncounter.EncounterSettlement != settlement)
+                {
+                    EnterSettlementAction.ApplyForParty(MobileParty.MainParty, _hirelingEnlistingLord.CurrentSettlement);
+
+                    // Only start a new encounter if there isn't one already
+                    if (PlayerEncounter.Current == null)
+                    {
+                        EncounterManager.StartSettlementEncounter(MobileParty.MainParty, settlement);
+                    }
+                }
+
+                // Clear post-battle transition flag - settlement encounter is now stable
+                _inPostBattleTransition = false;
+
                 GameMenu.SwitchToMenu("hireling_menu");
 
                 if (_pauseModeToggle)
@@ -870,6 +891,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                 {
                     return;
                 }
+
+                // Mark that we're in a post-battle transition to prevent AI tick crashes
+                // This is especially important after sieges when the lord immediately enters the settlement
+                _inPostBattleTransition = true;
+
                 _hirelingLordIsFightingWithoutPlayer = false;
                 GameMenu.ActivateGameMenu("hireling_menu");
                 _hirelingWaitMenuShown = true;
@@ -880,6 +906,12 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
         {
             if (_hirelingEnlisted && _hirelingEnlistingLord?.PartyBelongedTo != null)
             {
+                // Clear post-battle transition flag once we're stable (no active battle, menu shown)
+                if (_inPostBattleTransition && _hirelingWaitMenuShown && _hirelingEnlistingLord.PartyBelongedTo.MapEvent == null)
+                {
+                    _inPostBattleTransition = false;
+                }
+
                 var menu = Campaign.Current.GameMenuManager.GetGameMenu("hireling_menu");
                 var timeModel = Campaign.Current.Models.CampaignTimeModel;
                 _durationInDays = timeModel.CampaignStartTime.ElapsedDaysUntilNow - _entryServiceTimeStamp;//could be in an hourly or daily tick instead
