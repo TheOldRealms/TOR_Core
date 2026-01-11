@@ -63,19 +63,17 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             if (mapEvent.PlayerSide == mapEvent.WinningSide && Hero.MainHero.CanRaiseDead())
             {
                 List<CharacterObject> troops = new List<CharacterObject>();
-                var reduction = 0;
+                HashSet<int> consumedTroopIndices = new HashSet<int>();
 
-                if (Hero.MainHero.HasAnyCareer())
+                if (Hero.MainHero.HasAnyCareer() && Hero.MainHero.GetAllCareerChoices().Contains("DoomRiderPassive4"))
                 {
-                    if (Hero.MainHero.GetAllCareerChoices().Contains("DoomRiderPassive4"))
-                    {
-                        var bloodKnights = CalculateBloodKnightsCandidates(mapEvent, out reduction);
-                        troops.AddRange(bloodKnights);
-                    }
+                    var bloodKnights = CalculateBloodKnightsCandidates(mapEvent, consumedTroopIndices);
+                    troops.AddRange(bloodKnights);
                 }
 
-                var undeadTroops = CalculateRaiseDeadTroops(mapEvent, reduction);
+                var undeadTroops = CalculateRaiseDeadTroops(mapEvent, consumedTroopIndices);
                 troops.AddRange(undeadTroops);
+
                 for (int i = 0; i < troops.Count; i++)
                 {
                     PlayerEncounter.Current.RosterToReceiveLootMembers.AddToCounts(troops[i], 1);
@@ -122,53 +120,70 @@ namespace TOR_Core.CampaignMechanics.RaiseDead
             //_treeSpiritUnits = characters.Where(x => x.Culture.StringId == TORConstants.Cultures.ASRAI && x.StringId.Contains("dryad")).ToList();
         }
 
-        private List<CharacterObject> CalculateBloodKnightsCandidates(MapEvent mapEvent, out int reduced)
+        private List<CharacterObject> CalculateBloodKnightsCandidates(MapEvent mapEvent, HashSet<int> consumedTroopIndices)
         {
-            reduced = 0;
             List<CharacterObject> elements = new List<CharacterObject>();
-
-            CharacterObject BloodKnightTemplate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_initiate");        //I assume that needs change, beware
+            CharacterObject bloodKnightTemplate = MBObjectManager.Instance.GetObject<CharacterObject>("tor_bd_blooddragon_initiate");
 
             var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
+            int troopIndex = 0;
 
             foreach (var party in partiesOnSide)
             {
-                var roster = party.Troops.Where(x => x.IsKilled);
-                foreach (var rosterMember in roster)
+                var killedTroops = party.Troops.Where(x => x.IsKilled);
+                foreach (var rosterMember in killedTroops)
                 {
-                    if (rosterMember.Troop.IsUndead() || rosterMember.Troop.IsBeastman())
+                    // Skip undead, beastmen, orcs and goblins - they cannot become blood knights
+                    if (rosterMember.Troop.IsUndead() || rosterMember.Troop.IsBeastman() || rosterMember.Troop.IsGreenskin())
+                    {
+                        troopIndex++;
                         continue;
+                    }
 
-                    if (rosterMember.Troop.Tier < 4)
+                    float bloodKnightChance = rosterMember.Troop.Tier < 4 ? 0.05f : 0.1f;
+                    if (MBRandom.RandomFloat < bloodKnightChance)
                     {
-                        if (MBRandom.RandomFloat >= 0.05f) continue;
-                        elements.Add(BloodKnightTemplate);
-                        reduced++;
+                        elements.Add(bloodKnightTemplate);
+                        consumedTroopIndices.Add(troopIndex);
                     }
-                    else
-                    {
-                        if (MBRandom.RandomFloat >= 0.1f) continue;
-                        elements.Add(BloodKnightTemplate);
-                        reduced++;
-                    }
+                    troopIndex++;
                 }
             }
             return elements;
         }
 
-        private List<CharacterObject> CalculateRaiseDeadTroops(MapEvent mapEvent, int reduction = 0)
+        private List<CharacterObject> CalculateRaiseDeadTroops(MapEvent mapEvent, HashSet<int> consumedTroopIndices)
         {
             List<CharacterObject> elements = new List<CharacterObject>();
-            var num = mapEvent.GetMapEventSide(mapEvent.DefeatedSide).TroopCasualties - reduction;
-            double raiseDeadChance = 0;
+            double raiseDeadChance = Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
 
-            raiseDeadChance = Hero.MainHero.PartyBelongedTo.GetMemberHeroes().Select(hero => hero.GetRaiseDeadChance()).Max();
+            var partiesOnSide = mapEvent.PartiesOnSide(mapEvent.DefeatedSide);
+            int troopIndex = 0;
 
-            for (int i = 0; i <= num; i++)
+            foreach (var party in partiesOnSide)
             {
-                if (MBRandom.RandomFloat <= raiseDeadChance)
+                var killedTroops = party.Troops.Where(x => x.IsKilled);
+                foreach (var rosterMember in killedTroops)
                 {
-                    elements.Add(_raiseableCharacters.GetRandomElement());
+                    // Skip orcs and goblins - they cannot be raised as undead
+                    if (rosterMember.Troop.IsOrc() || rosterMember.Troop.IsGoblin())
+                    {
+                        troopIndex++;
+                        continue;
+                    }
+
+                    // Skip troops already consumed for blood knight  or other recruitment
+                    if (consumedTroopIndices.Contains(troopIndex))
+                    {
+                        troopIndex++;
+                        continue;
+                    }
+
+                    if (MBRandom.RandomFloat <= raiseDeadChance)
+                    {
+                        elements.Add(_raiseableCharacters.GetRandomElement());
+                    }
+                    troopIndex++;
                 }
             }
             return elements;

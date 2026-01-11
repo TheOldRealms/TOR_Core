@@ -12,6 +12,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics.PostBattleLoot;
+using TOR_Core.CampaignMechanics.ServeAsAHireling;
 using TOR_Core.Extensions;
 
 namespace TOR_Core.HarmonyPatches
@@ -60,6 +61,45 @@ namespace TOR_Core.HarmonyPatches
         }
 
 
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(GameMenu), "ActivateGameMenu")]
+        public static bool ActivateGameMenuPrefix(ref string menuId)
+        {
+            // When enlisted, intercept encounter menu activation
+            if (menuId == "encounter" && Hero.MainHero.IsEnlisted())
+            {
+                // Let encounter through if player clicked "Join Battle"
+                if (ServeAsAHirelingCampaignBehavior.IsStartingBattle)
+                {
+                    return true;
+                }
+
+                var hasActiveBattle = Hero.MainHero.PartyBelongedTo?.MapEvent != null;
+                if (hasActiveBattle)
+                {
+                    menuId = "hireling_battle_menu";
+                }
+                else
+                {
+                    menuId = "hireling_menu";
+                }
+            }
+            return true;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PlayerEncounter), "Finish")]
+        public static bool PlayerEncounterFinishPrefix()
+        {
+            // Only block Finish during post-battle transitions when enlisted
+            // This prevents crashes from AI party ticks while allowing normal siege/encounter flow
+            if (Hero.MainHero.IsEnlisted() && ServeAsAHirelingCampaignBehavior.InPostBattleTransition)
+            {
+                return false;
+            }
+            return true;
+        }
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(MapEvent), "GetMemberRosterReceivingLootShare")]

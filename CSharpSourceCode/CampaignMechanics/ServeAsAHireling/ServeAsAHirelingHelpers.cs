@@ -33,7 +33,7 @@ public static class ServeAsAHirelingHelpers
 
         if ((cultureId == TORConstants.Cultures.SYLVANIA || cultureId == TORConstants.Cultures.MOUSILLON) && (hero.IsNecromancer() || (hero.PartyBelongedTo != null && hero.PartyBelongedTo.HasNecromancer())))
         {
-            number.Add(25, GameTexts.FindText("tor_custom_resource_vc_mo_hireling"));
+            number.Add(10, GameTexts.FindText("tor_custom_resource_vc_mo_hireling"));
             return;
         }
 

@@ -963,13 +963,13 @@ namespace TOR_Core.AbilitySystem
         /// </summary>
         private void FinalizeSession(SpellCastSession session)
         {
-
             if (!session.HasData)
                 return;
+            
+            var sessionAgent = session.Caster;
 
             // Display results only for player or controlled agent
-            bool shouldDisplay = session.Caster == Agent.Main ||
-                                 (session.Caster != null && session.Caster.IsPlayerControlled);
+            bool shouldDisplay = sessionAgent == Agent.Main;
 
             if (shouldDisplay)
             {

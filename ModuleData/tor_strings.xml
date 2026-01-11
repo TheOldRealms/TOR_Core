@@ -4007,7 +4007,28 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_hireling.talktolord" text="{=str_tor_hireling_talktolord}Talk to the Lord" />
   <string id="tor_hireling.pausetime" text="{=str_tor_hireling_pausetime}Pause on entering the next settlement: {PAUSE_ONOFF}" />
 
-  <string id="tor_hireling.enlistingarmy" text="{=str_tor_hireling_enlistingarmy}Party is part of: {ENLISTING_ARMY}" />
+  <string id="tor_hireling.enlistingarmy" text="{=str_tor_hireling_enlistingarmy}Serving in {ENLISTING_ARMY}" />
+  <string id="tor_hireling_serving_in_army_text" text="{=str_tor_hireling_serving_in_army_text}Serving in {ARMY_NAME}" />
+  <string id="tor_hireling_besieging_text" text="{=str_tor_hireling_besieging_text}Besieging {SETTLEMENT_NAME}" />
+  <string id="tor_hireling_siege_preparations_text" text="{=str_tor_hireling_siege_preparations_text}Siege preparations: {PROGRESS}%" />
+  <string id="tor_hireling_siege_engines_text" text="{=str_tor_hireling_siege_engines_text}Siege engines ready: {COUNT}" />
+  <string id="tor_hireling_raiding_text" text="{=str_tor_hireling_raiding_text}Raiding {VILLAGE_NAME}" />
+
+  <!-- Hireling Battle Menu -->
+  <string id="tor_hireling_battle_fallback" text="{=str_tor_hireling_battle_fallback}Your Lord engages in a battle." />
+  <string id="tor_hireling_battle_type_battle" text="{=str_tor_hireling_battle_type_battle}Battle" />
+  <string id="tor_hireling_battle_type_siege_assault" text="{=str_tor_hireling_battle_type_siege_assault}Siege Assault" />
+  <string id="tor_hireling_battle_type_siege_defense" text="{=str_tor_hireling_battle_type_siege_defense}Siege Defense" />
+  <string id="tor_hireling_battle_enemy" text="{=str_tor_hireling_battle_enemy}Enemy: {ENEMY_LEADER}" />
+  <string id="tor_hireling_battle_odds" text="{=str_tor_hireling_battle_odds}Odds: {ODDS}" />
+  <string id="tor_hireling_odds_certain_victory" text="{=str_tor_hireling_odds_certain_victory}Certain Victory" />
+  <string id="tor_hireling_odds_overwhelming_advantage" text="{=str_tor_hireling_odds_overwhelming_advantage}Overwhelming Advantage" />
+  <string id="tor_hireling_odds_strong_advantage" text="{=str_tor_hireling_odds_strong_advantage}Strong Advantage" />
+  <string id="tor_hireling_odds_slight_advantage" text="{=str_tor_hireling_odds_slight_advantage}Slight Advantage" />
+  <string id="tor_hireling_odds_even" text="{=str_tor_hireling_odds_even}Even Odds" />
+  <string id="tor_hireling_odds_slight_disadvantage" text="{=str_tor_hireling_odds_slight_disadvantage}Slight Disadvantage" />
+  <string id="tor_hireling_odds_strong_disadvantage" text="{=str_tor_hireling_odds_strong_disadvantage}Strong Disadvantage" />
+  <string id="tor_hireling_odds_overwhelming_disadvantage" text="{=str_tor_hireling_odds_overwhelming_disadvantage}Overwhelming Disadvantage" />
 
 
 	<!-- Hireling Activities -->
@@ -4028,7 +4049,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_hirelingactivity0.GrailKnight" text="{=str_tor_hirelingactivity0_GrailKnight}Practice sword-fighting" />
   <string id="tor_hirelingactivity1.GrailKnight" text="{=str_tor_hirelingactivity1_GrailKnight}Socialize with other nobles" />
   <string id="tor_hirelingactivity2.GrailKnight" text="{=str_tor_hirelingactivity2_GrailKnight}Ride ahead of the army" />
-  <string id="tor_hirelingactivity3.GrailKnight" text="{=str_tor_hirelingactivity3_GrailKnight}Assist the commander" />
+  <string id="tor_hirelingactivity3.GrailKnight" text="{=str_tor_hirelingactivity3_GrailKnight}Practice jousting" />
   <string id="tor_hirelingactivity4.GrailKnight" text="{=str_tor_hirelingactivity4_GrailKnight}Pray to the Lady of the Lake" />
 
 
@@ -4877,7 +4898,6 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_hireling_back_text" text="{=str_tor_hireling_back_text}Back"/>
 	<string id="tor_hireling_enter_settlement_text" text="{=str_tor_hireling_enter_settlement_text}Enter the settlement"/>
 	<string id="tor_hireling_desert_text" text="{=str_tor_hireling_desert_text}Desert"/>
-	<string id="tor_hireling_battle_menu_text" text="{=str_tor_hireling_battle_menu_text}Your Lord engages in a battle."/>
 	<string id="tor_hireling_join_battle_text" text="{=str_tor_hireling_join_battle_text}Join battle"/>
 	<string id="tor_hireling_avoid_combat_text" text="{=str_tor_hireling_avoid_combat_text}Avoid Combat"/>
 	<string id="tor_hireling_flee_text" text="{=str_tor_hireling_flee_text}Flee"/>
