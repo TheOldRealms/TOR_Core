@@ -351,6 +351,11 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     return false;
                 }
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
+                var enlistingParty = _hirelingEnlistingLord?.PartyBelongedTo;
+                if (enlistingParty?.MapEvent == null || enlistingParty.MapEventSide?.OtherSide?.LeaderParty == null)
+                {
+                    return false;
+                }
 
                 //Sly : this can return a null for PartyBelongedTo if the enlisted lord is part of a siege encampment and they lose with player being downed. (The original context was : besieger attacks town, I choose "Avoid Combat" to begin a simulation, an outside army attacks the encampment from behind, I then join join battle for a field one outside, we lose and the allied army retreats, I then had a native encounter menu, I choose "Attack" which creates another field battle, I down during the battle (enlisted lord was downed in one of the 2 battles), on battle end a NRE occurs here from null.CurrentSettlement.
                 //I believe that the issue stems from the player and lord being downed and therefore part of the prisoner loot roster for the otherside, ie. the lord is now without party, and the game attempts to restore the last relevant menu (hireling menu) which then checks this condition.
@@ -490,7 +495,7 @@ namespace TOR_Core.CampaignMechanics.ServeAsAHireling
                     if (_hirelingEnlistingLord.PartyBelongedTo.MapEvent != null)
                     {
                         var mapEvent = _hirelingEnlistingLord.PartyBelongedTo.MapEvent;
-                        var eventAlliedLeaderParty = _hirelingEnlistingLord.PartyBelongedTo.MapEventSide.LeaderParty.MobileParty;
+                        var eventAlliedLeaderParty = _hirelingEnlistingLord.PartyBelongedTo;
 
                         if (eventAlliedLeaderParty == null)
                         {
