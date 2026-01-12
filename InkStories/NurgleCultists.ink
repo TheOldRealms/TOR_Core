@@ -143,7 +143,7 @@ Sensing the weight of your suspicions, the healer's face contorts with a mix of 
     
 
 ===Descend===
-~ OpenCultistLairMission("TOR_nurgle_lair_001")
+~ OpenCultistLairMission("TOR_quest_nurgle_lair_001")
 ...
 {MadeDealWithCultists && not DealtWithCultists: The cult leader's eyes gleam with a mixture of triumph and satisfaction as he senses your acquiescence. His chant takes on a hypnotic quality, resonating within your being as if weaving an irrevocable connection. The sensation that envelops you is strange and unsettling, as if an otherworldly force begins to weave itself into your very essence. }
 {MadeDealWithCultists && not DealtWithCultists: An ineffable transformation begins, like the unfolding of a dream woven from reality. A surge of energy courses through your veins, invigorating your body and banishing fatigue. Aches and wounds seem to mend, leaving behind a renewed sense of vitality.}
