@@ -6625,7 +6625,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -6874,7 +6874,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -7123,7 +7123,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -7346,7 +7346,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -7596,7 +7596,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -7833,7 +7833,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -8136,7 +8136,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -8387,7 +8387,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -8688,7 +8688,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -8989,7 +8989,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -9290,7 +9290,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -9591,7 +9591,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_01" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
@@ -10007,7 +10007,7 @@
       </Town>
     </Components>
     <Locations complex_template="LocationComplexTemplate.town_complex">
-      <Location id="center" scene_name="TOR_bretonnia_city_001" scene_name_1="TOR_bretonnia_city_001" scene_name_2="TOR_bretonnia_city_001" scene_name_3="TOR_bretonnia_city_001" />
+      <Location id="center" scene_name="TOR_bretonnia_city_002" scene_name_1="TOR_bretonnia_city_002" scene_name_2="TOR_bretonnia_city_002" scene_name_3="TOR_bretonnia_city_002" />
       <Location id="arena" scene_name="TOR_bretonnia_joust_arena_001" />
       <Location id="tavern" scene_name="TOR_bretonnia_taverne_02" />
       <Location id="lordshall" scene_name_1="TOR_bretonnia_keep_01" scene_name_2="TOR_bretonnia_keep_01" scene_name_3="TOR_bretonnia_keep_01" />
