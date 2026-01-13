@@ -1,0 +1,352 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TOR_Core</RootNamespace>
+    <AssemblyName>TOR_Core</AssemblyName>
+    <Deterministic>true</Deterministic>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <!-- Disable auto-generated AssemblyInfo (we have Properties/AssemblyInfo.cs) -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
+    <!-- Output to mod's bin folder -->
+    <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
+  </PropertyGroup>
+
+  <!-- Platform detection for Bannerlord path (must come before debug config) -->
+  <PropertyGroup>
+    <!-- Override with environment variable: BANNERLORD_PATH -->
+    <BannerlordPath Condition="'$(BANNERLORD_PATH)' != ''">$(BANNERLORD_PATH)</BannerlordPath>
+
+    <!-- Default Windows path (absolute, since relative with forward slashes fails) -->
+    <BannerlordPath Condition="'$(BannerlordPath)' == '' AND '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">$(MSBuildThisFileDirectory)..\..\..</BannerlordPath>
+
+    <!-- Default Linux path (Steam Proton) - adjust as needed -->
+    <BannerlordPath Condition="'$(BannerlordPath)' == '' AND '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">$(HOME)/.steam/steam/steamapps/common/Mount &amp; Blade II Bannerlord</BannerlordPath>
+
+    <!-- Fallback for older MSBuild -->
+    <BannerlordPath Condition="'$(BannerlordPath)' == ''">$(MSBuildThisFileDirectory)..\..\..</BannerlordPath>
+
+    <GameBinPath>$(BannerlordPath)\bin\Win64_Shipping_Client</GameBinPath>
+    <ModulesPath>$(BannerlordPath)\Modules</ModulesPath>
+  </PropertyGroup>
+
+  <!-- Debug/Run configuration (F5 / green arrow) -->
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(GameBinPath)\Bannerlord.exe</StartProgram>
+    <StartArguments>/singleplayer _MODULES_*Native*SandBoxCore*SandBox*StoryMode*CustomBattle*TOR_Armory*TOR_Environment*TOR_Core*_MODULES_</StartArguments>
+    <StartWorkingDirectory>$(GameBinPath)</StartWorkingDirectory>
+  </PropertyGroup>
+
+  <!-- Configuration-specific settings -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE;_RGL_KEEP_ASSERTS</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- CRITICAL: This enables building .NET Framework 4.8 on Linux! -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- .NET Framework assembly references (required for SDK-style projects) -->
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Numerics" />
+  </ItemGroup>
+
+  <!-- Local lib references -->
+  <ItemGroup>
+    <Reference Include="ink-engine-runtime">
+      <HintPath>lib\ink-engine-runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="ink_compiler">
+      <HintPath>lib\ink_compiler.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- TaleWorlds core DLLs from game bin folder -->
+  <ItemGroup>
+    <Reference Include="TaleWorlds.AchievementSystem">
+      <HintPath>$(GameBinPath)\TaleWorlds.AchievementSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.CampaignSystem">
+      <HintPath>$(GameBinPath)\TaleWorlds.CampaignSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.CampaignSystem.ViewModelCollection">
+      <HintPath>$(GameBinPath)\TaleWorlds.CampaignSystem.ViewModelCollection.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Core">
+      <HintPath>$(GameBinPath)\TaleWorlds.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Core.ViewModelCollection">
+      <HintPath>$(GameBinPath)\TaleWorlds.Core.ViewModelCollection.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.DotNet.AutoGenerated">
+      <HintPath>$(GameBinPath)\TaleWorlds.DotNet.AutoGenerated.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.DotNet">
+      <HintPath>$(GameBinPath)\TaleWorlds.DotNet.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Engine.AutoGenerated">
+      <HintPath>$(GameBinPath)\TaleWorlds.Engine.AutoGenerated.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Engine">
+      <HintPath>$(GameBinPath)\TaleWorlds.Engine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Engine.GauntletUI">
+      <HintPath>$(GameBinPath)\TaleWorlds.Engine.GauntletUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI.Data">
+      <HintPath>$(GameBinPath)\TaleWorlds.GauntletUI.Data.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI">
+      <HintPath>$(GameBinPath)\TaleWorlds.GauntletUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI.ExtraWidgets">
+      <HintPath>$(GameBinPath)\TaleWorlds.GauntletUI.ExtraWidgets.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.GauntletUI.PrefabSystem">
+      <HintPath>$(GameBinPath)\TaleWorlds.GauntletUI.PrefabSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.InputSystem">
+      <HintPath>$(GameBinPath)\TaleWorlds.InputSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Library">
+      <HintPath>$(GameBinPath)\TaleWorlds.Library.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.LinQuick">
+      <HintPath>$(GameBinPath)\TaleWorlds.LinQuick.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Localization">
+      <HintPath>$(GameBinPath)\TaleWorlds.Localization.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.ModuleManager">
+      <HintPath>$(GameBinPath)\TaleWorlds.ModuleManager.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.AutoGenerated">
+      <HintPath>$(GameBinPath)\TaleWorlds.MountAndBlade.AutoGenerated.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Diamond">
+      <HintPath>$(GameBinPath)\TaleWorlds.MountAndBlade.Diamond.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade">
+      <HintPath>$(GameBinPath)\TaleWorlds.MountAndBlade.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.GauntletUI.Widgets">
+      <HintPath>$(GameBinPath)\TaleWorlds.MountAndBlade.GauntletUI.Widgets.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Helpers">
+      <HintPath>$(GameBinPath)\TaleWorlds.MountAndBlade.Helpers.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Launcher.Steam">
+      <HintPath>$(GameBinPath)\TaleWorlds.MountAndBlade.Launcher.Steam.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.ViewModelCollection">
+      <HintPath>$(GameBinPath)\TaleWorlds.MountAndBlade.ViewModelCollection.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.NavigationSystem">
+      <HintPath>$(GameBinPath)\TaleWorlds.NavigationSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Network">
+      <HintPath>$(GameBinPath)\TaleWorlds.Network.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.ObjectSystem">
+      <HintPath>$(GameBinPath)\TaleWorlds.ObjectSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlatformService">
+      <HintPath>$(GameBinPath)\TaleWorlds.PlatformService.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlatformService.Epic">
+      <HintPath>$(GameBinPath)\TaleWorlds.PlatformService.Epic.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlatformService.GOG">
+      <HintPath>$(GameBinPath)\TaleWorlds.PlatformService.GOG.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlatformService.Steam">
+      <HintPath>$(GameBinPath)\TaleWorlds.PlatformService.Steam.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PlayerServices">
+      <HintPath>$(GameBinPath)\TaleWorlds.PlayerServices.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.PSAI">
+      <HintPath>$(GameBinPath)\TaleWorlds.PSAI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.SaveSystem">
+      <HintPath>$(GameBinPath)\TaleWorlds.SaveSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.ScreenSystem">
+      <HintPath>$(GameBinPath)\TaleWorlds.ScreenSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.Starter.Library">
+      <HintPath>$(GameBinPath)\TaleWorlds.Starter.Library.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.TwoDimension">
+      <HintPath>$(GameBinPath)\TaleWorlds.TwoDimension.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.TwoDimension.Standalone">
+      <HintPath>$(GameBinPath)\TaleWorlds.TwoDimension.Standalone.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Module DLLs -->
+  <ItemGroup>
+    <Reference Include="TaleWorlds.MountAndBlade.Multiplayer">
+      <HintPath>$(ModulesPath)\Multiplayer\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Multiplayer.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.GauntletUI">
+      <HintPath>$(ModulesPath)\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.Platform.PC">
+      <HintPath>$(ModulesPath)\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.Platform.PC.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.View">
+      <HintPath>$(ModulesPath)\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.View.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SandBox">
+      <HintPath>$(ModulesPath)\SandBox\bin\Win64_Shipping_Client\SandBox.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SandBox.GauntletUI">
+      <HintPath>$(ModulesPath)\SandBox\bin\Win64_Shipping_Client\SandBox.GauntletUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SandBox.View">
+      <HintPath>$(ModulesPath)\SandBox\bin\Win64_Shipping_Client\SandBox.View.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SandBox.ViewModelCollection">
+      <HintPath>$(ModulesPath)\SandBox\bin\Win64_Shipping_Client\SandBox.ViewModelCollection.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StoryMode">
+      <HintPath>$(ModulesPath)\StoryMode\bin\Win64_Shipping_Client\StoryMode.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StoryMode.GauntletUI.AutoGenerated">
+      <HintPath>$(ModulesPath)\StoryMode\bin\Win64_Shipping_Client\StoryMode.GauntletUI.AutoGenerated.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StoryMode.GauntletUI">
+      <HintPath>$(ModulesPath)\StoryMode\bin\Win64_Shipping_Client\StoryMode.GauntletUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StoryMode.View">
+      <HintPath>$(ModulesPath)\StoryMode\bin\Win64_Shipping_Client\StoryMode.View.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="StoryMode.ViewModelCollection">
+      <HintPath>$(ModulesPath)\StoryMode\bin\Win64_Shipping_Client\StoryMode.ViewModelCollection.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade.CustomBattle">
+      <HintPath>$(ModulesPath)\CustomBattle\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.CustomBattle.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- NuGet packages -->
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.4.1" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="NAudio.Asio" Version="2.2.1" />
+    <PackageReference Include="NAudio.Core" Version="2.2.1" />
+    <PackageReference Include="NAudio.Midi" Version="2.2.1" />
+    <PackageReference Include="NAudio.Vorbis" Version="1.5.0" />
+    <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
+    <PackageReference Include="NAudio.WinForms" Version="2.2.1" />
+    <PackageReference Include="NAudio.WinMM" Version="2.2.1" />
+    <PackageReference Include="NLog" Version="6.0.5" />
+    <PackageReference Include="NVorbis" Version="0.10.5" />
+    <PackageReference Include="PolySharp" Version="1.15.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Buffers" Version="4.6.1" />
+    <PackageReference Include="System.Memory" Version="4.6.3" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.6.1" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
+    <PackageReference Include="System.ValueTuple" Version="4.6.1" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    <PackageReference Include="System.Security.AccessControl" Version="6.0.1" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
+  </ItemGroup>
+
+  <!-- Cross-platform post-build (optional) -->
+  <Target Name="CopyToEditor" AfterTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
+    <ItemGroup>
+      <FilesToCopy Include="$(TargetDir)**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(TargetDir)..\Win64_Shipping_wEditor\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>
