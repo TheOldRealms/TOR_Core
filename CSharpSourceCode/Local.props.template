@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Local configuration for TOR_Core cross-platform builds.
+
+  SETUP:
+  1. Copy this file to "Local.props" (same directory)
+  2. Uncomment and set your Bannerlord installation path below
+  3. Local.props is gitignored - your settings won't be committed
+
+  ALTERNATIVE: Set the BANNERLORD_PATH environment variable instead.
+-->
+<Project>
+  <PropertyGroup>
+    <!-- Uncomment and set your Bannerlord installation path -->
+
+    <!-- Linux examples: -->
+    <!-- <BannerlordPath>$(HOME)/.local/share/Steam/steamapps/common/Mount &amp; Blade II Bannerlord</BannerlordPath> -->
+    <!-- <BannerlordPath>$(HOME)/.steam/steam/steamapps/common/Mount &amp; Blade II Bannerlord</BannerlordPath> -->
+
+    <!-- Windows examples: -->
+    <!-- <BannerlordPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</BannerlordPath> -->
+    <!-- <BannerlordPath>D:\Games\Mount &amp; Blade II Bannerlord</BannerlordPath> -->
+  </PropertyGroup>
+</Project>

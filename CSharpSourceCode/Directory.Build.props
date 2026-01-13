@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <!--
+    Cross-platform build configuration for Linux.
+    The Microsoft.NETFramework.ReferenceAssemblies.net48 package (in csproj) provides
+    the .NET Framework reference assemblies needed for building on Linux.
+
+    NOTE: Do NOT override AssemblySearchPaths here as it breaks HintPath resolution
+    for TaleWorlds DLL references.
+  -->
+</Project>

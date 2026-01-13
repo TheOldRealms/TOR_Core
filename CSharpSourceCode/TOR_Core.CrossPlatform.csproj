@@ -18,6 +18,9 @@
     <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
   </PropertyGroup>
 
+  <!-- Import local configuration if exists (copy Local.props.template to Local.props) -->
+  <Import Project="Local.props" Condition="Exists('Local.props')" />
+
   <!-- Platform detection for Bannerlord path (must come before debug config) -->
   <PropertyGroup>
     <!-- Override with environment variable: BANNERLORD_PATH -->

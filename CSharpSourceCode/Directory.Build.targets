@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <!--
+    Cross-platform build targets.
+    Framework assemblies are provided by Microsoft.NETFramework.ReferenceAssemblies.net48 package.
+    NuGet packages are resolved automatically by the SDK.
+    This file is intentionally minimal to avoid interfering with reference resolution.
+  -->
+</Project>
