@@ -23,7 +23,7 @@ namespace TOR_Core.Audio
         {
             get
             {
-                if (_instance == null && !TORPaths.IsLinux)
+                if (_instance == null)
                     _instance = new TORAudioEngine(48000, 2);
                 return _instance;
             }
