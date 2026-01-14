@@ -48,8 +48,8 @@ namespace TOR_Core.CampaignMechanics.Menagery
                     CustomResourceManager.GetResourceObject("Prestige").GetCustomResourceIconAsText());
                 MBTextManager.SetTextVariable("DEMIGRYPH_COST", DemigryphCost.ToString());
 
-                MBTextManager.SetTextVariable("INFLUENCE_ICON", "{=!}<img src=\"General\\Icons\\Influence@2x\" extend=\"7\">");
-                MBTextManager.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"7\">");
+                MBTextManager.SetTextVariable("INFLUENCE_ICON", $"{{=!}}<img src=\"{TORPaths.NormalizeAssetPath("General\\Icons\\Influence@2x")}\" extend=\"7\">");
+                MBTextManager.SetTextVariable("GOLD_ICON", $"{{=!}}<img src=\"{TORPaths.NormalizeAssetPath("General\\Icons\\Coin@2x")}\" extend=\"7\">");
             }
 
             void AddPrestigeNobleDialogLines(CampaignGameStarter cgs)

@@ -101,7 +101,7 @@ namespace TOR_Core
 
         private Assembly ResolveDllPath(object sender, ResolveEventArgs args)
         {
-            var dllPath = TORPaths.TORCoreModuleRootPath + "bin/Win64_Shipping_Client/" + new AssemblyName(args.Name).Name + ".dll";
+            var dllPath = TORPaths.TORCoreModuleRootPath + TORPaths.BinaryFolderPath + new AssemblyName(args.Name).Name + ".dll";
             if (File.Exists(dllPath))
             {
                 return Assembly.LoadFrom(dllPath);

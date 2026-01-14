@@ -171,7 +171,7 @@ namespace TOR_Core.Ink
             var illustration = GetValueOfGlobalTag("illustration");
             if (illustration != null)
             {
-                return "InkStories\\Illustrations\\" + illustration.Trim();
+                return TORPaths.NormalizeAssetPath("InkStories\\Illustrations\\" + illustration.Trim());
             }
 
             return "";
@@ -186,7 +186,7 @@ namespace TOR_Core.Ink
                 {
                     var splits = tag.Split(new char[] { ':' });
                     var name = splits[splits.Length - 1].Trim();
-                    return "InkStories\\Illustrations\\" + name;
+                    return TORPaths.NormalizeAssetPath("InkStories\\Illustrations\\" + name);
                 }
             }
             return null;

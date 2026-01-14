@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.InputSystem;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Audio
 {
@@ -17,7 +18,16 @@ namespace TOR_Core.Audio
         public int Channels { get; private set; }
         public TORMixingSampleProvider Mixer => _mixer;
 
-        public static readonly TORAudioEngine Instance = new TORAudioEngine(48000, 2);
+        private static TORAudioEngine _instance;
+        public static TORAudioEngine Instance
+        {
+            get
+            {
+                if (_instance == null && !TORPaths.IsLinux)
+                    _instance = new TORAudioEngine(48000, 2);
+                return _instance;
+            }
+        }
 
         public TORAudioEngine(int sampleRate = 48000, int channelCount = 2)
         {

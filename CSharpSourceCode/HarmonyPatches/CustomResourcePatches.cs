@@ -174,7 +174,7 @@ namespace TOR_Core.HarmonyPatches
                 TextObject textObject4 = (Hero.MainHero.Gold + partyGoldChangeAmount < upgradeCoinCost) ? TORTextHelper.GetTextObject("tor_cost_not_enough", "Cost: {UPGRADE_COST} (You don't have)") : TORTextHelper.GetTextObject("tor_cost", "Cost: {UPGRADE_COST}");
                 textObject4.SetTextVariable("UPGRADE_COST", upgradeCoinCost);
                 GameTexts.SetVariable("STR1", textObject4);
-                GameTexts.SetVariable("STR2", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+                GameTexts.SetVariable("STR2", $"{{=!}}<img src=\"{TORPaths.NormalizeAssetPath("General\\Icons\\Coin@2x")}\" extend=\"8\">");
                 string content = GameTexts.FindText("str_STR1_STR2", null).ToString();
                 GameTexts.SetVariable("STR1", text);
                 GameTexts.SetVariable("STR2", content);

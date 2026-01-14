@@ -15,7 +15,7 @@ namespace TOR_Core.Audio
         public float[] AudioData => _cachedSound.AudioData;
         public bool IsLooping { get; set; }
         public bool IsLoaded => _cachedSound.IsLoaded;
-        public bool IsPlaying => TORAudioEngine.Instance.Mixer.MixerInputs.Contains(this);
+        public bool IsPlaying => TORAudioEngine.Instance?.Mixer?.MixerInputs.Contains(this) ?? false;
         public string AudioName => _cachedSound.AudioName;
         public WaveFormat WaveFormat { get { return _cachedSound.WaveFormat; } }
 
@@ -75,12 +75,12 @@ namespace TOR_Core.Audio
 
         public void Play()
         {
-            if (IsLoaded) TORAudioEngine.Instance.PlaySound(this);
+            if (IsLoaded) TORAudioEngine.Instance?.PlaySound(this);
         }
 
         public void Remove()
         {
-            if (IsPlaying) TORAudioEngine.Instance.RemoveSound(this);
+            if (IsPlaying) TORAudioEngine.Instance?.RemoveSound(this);
         }
 
         public void Dispose()

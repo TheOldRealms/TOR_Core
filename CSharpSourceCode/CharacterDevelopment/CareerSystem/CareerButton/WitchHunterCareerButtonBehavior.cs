@@ -23,7 +23,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 
         private const string RetinueId = "tor_wh_retinue";
 
-        public override string CareerButtonIcon => "CareerSystem\\ghal_maraz";
+        public override string CareerButtonIcon => TORPaths.NormalizeAssetPath("CareerSystem\\ghal_maraz");
 
         public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClick = false)
         {

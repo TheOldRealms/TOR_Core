@@ -15,7 +15,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 public class OrcBossCareerButton(CareerObject career) : GreenskinCareerButton(career)
 {
     private string _regularIcon = "teef_icon_100";
-    private string _extorsionIcon = "CareerSystem\\teef_extorsion";
+    private string _extorsionIcon = TORPaths.NormalizeAssetPath("CareerSystem\\teef_extorsion");
 
     private CharacterObject _setCharacter;
     private bool _setCharacterIsPrisoner;

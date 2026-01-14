@@ -23,6 +23,11 @@ namespace TOR_Core.Audio
         {
             SoundFilePath = audioFileName;
             AudioName = audioName;
+
+            // Audio disabled on Linux
+            if (TORAudioEngine.Instance == null)
+                return;
+
             var info = new FileInfo(audioFileName);
             if (info.Exists)
             {

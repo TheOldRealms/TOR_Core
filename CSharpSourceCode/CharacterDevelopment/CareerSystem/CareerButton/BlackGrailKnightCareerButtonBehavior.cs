@@ -21,7 +21,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         private const string _knightId = "tor_m_knight_of_misfortune";
         private const int ExchangeCost = 15;
 
-        public override string CareerButtonIcon => "CareerSystem\\blackgrail";
+        public override string CareerButtonIcon => TORPaths.NormalizeAssetPath("CareerSystem\\blackgrail");
 
         public override void ButtonClickedEvent(CharacterObject characterObject, bool isPrisoner = false, bool shiftClick = false)
         {

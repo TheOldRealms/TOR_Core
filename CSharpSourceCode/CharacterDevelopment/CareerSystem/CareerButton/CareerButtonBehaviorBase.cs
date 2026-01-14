@@ -1,6 +1,7 @@
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Localization;
 using TOR_Core.CampaignMechanics;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
 {
@@ -24,7 +25,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
         {
         }
 
-        public virtual string CareerButtonIcon => "General\\Icons\\Coin@2x";
+        public virtual string CareerButtonIcon => TORPaths.NormalizeAssetPath("General\\Icons\\Coin@2x");
 
         public void Register()
         {

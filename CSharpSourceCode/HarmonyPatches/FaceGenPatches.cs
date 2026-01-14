@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using TaleWorlds.MountAndBlade.ViewModelCollection.FaceGenerator;
 using TOR_Core.CampaignMechanics.CharacterCreation;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -27,7 +28,7 @@ namespace TOR_Core.HarmonyPatches
                 string name = FaceGenHelper.GetBeardName(item.Index, selectedRace, __instance.SelectedGender);
                 if (!string.IsNullOrEmpty(name))
                 {
-                    item.ImagePath = "FaceGen\\Beard\\" + name;
+                    item.ImagePath = TORPaths.NormalizeAssetPath("FaceGen\\Beard\\" + name);
                 }
             }
 
@@ -45,7 +46,7 @@ namespace TOR_Core.HarmonyPatches
                         name
                     });
 
-                    item.ImagePath = hairIconName;
+                    item.ImagePath = TORPaths.NormalizeAssetPath(hairIconName);
                 }
             }
 

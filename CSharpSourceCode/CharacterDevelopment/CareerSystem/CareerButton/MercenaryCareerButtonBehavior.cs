@@ -25,7 +25,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Button
 
         }
 
-        public override string CareerButtonIcon => "CareerSystem\\ghal_maraz";
+        public override string CareerButtonIcon => TORPaths.NormalizeAssetPath("CareerSystem\\ghal_maraz");
 
         public bool PlayerHasMoney()
         {

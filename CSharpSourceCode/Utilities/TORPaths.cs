@@ -1,9 +1,47 @@
-﻿using TaleWorlds.ModuleManager;
+﻿using System.IO;
+using System.Runtime.InteropServices;
+using TaleWorlds.ModuleManager;
 
 namespace TOR_Core.Utilities
 {
     public static class TORPaths
     {
+        /// <summary>
+        /// Returns true if the current platform is Linux.
+        /// </summary>
+        public static bool IsLinux => RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+        /// <summary>
+        /// Gets the binary folder name for the current platform.
+        /// Bannerlord uses Win64_Shipping_Client on all platforms (including Linux via Proton).
+        /// </summary>
+        public static string BinaryFolderPath => "bin/Win64_Shipping_Client/";
+
+        /// <summary>
+        /// Normalizes an asset path for the current platform.
+        /// On Linux: converts backslashes to forward slashes.
+        /// On Windows: keeps backslashes as-is (default behavior).
+        /// </summary>
+        /// <param name="path">The asset path to normalize (e.g., "CareerSystem\\Illustrations\\career_id")</param>
+        /// <returns>The normalized path appropriate for the current platform</returns>
+        public static string NormalizeAssetPath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return path;
+            return IsLinux ? path.Replace('\\', '/') : path;
+        }
+
+        /// <summary>
+        /// Combines path segments using the platform-specific directory separator.
+        /// Use this for filesystem paths (not asset paths).
+        /// </summary>
+        /// <param name="paths">The path segments to combine</param>
+        /// <returns>A combined path using the correct separator for the current platform</returns>
+        public static string CombineFilePath(params string[] paths)
+        {
+            return Path.Combine(paths);
+        }
+
         /// <summary>
         /// Gets the root directory path of the TOR Core module on disk.
         /// </summary>

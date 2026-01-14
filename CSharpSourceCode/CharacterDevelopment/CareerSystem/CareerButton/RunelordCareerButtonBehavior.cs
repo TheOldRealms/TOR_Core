@@ -17,13 +17,13 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton;
 
 public class RunelordCareerButtonBehavior(CareerObject career) : CareerButtonBehaviorBase(career)
 {
-    private string _fireIcon = "CareerSystem\\aqshy";
-    private string _lightIcon = "CareerSystem\\hysh";
-    private string _heavensIcon = "CareerSystem\\azyr";
-    private string _lifeIcon = "CareerSystem\\ghyran";
-    private string _beastIcon = "CareerSystem\\ghur";
-    private string _grungniRune = "CareerSystem\\chamon";
-    private string _deathIcon = "CareerSystem\\chamon";
+    private string _fireIcon = TORPaths.NormalizeAssetPath("CareerSystem\\aqshy");
+    private string _lightIcon = TORPaths.NormalizeAssetPath("CareerSystem\\hysh");
+    private string _heavensIcon = TORPaths.NormalizeAssetPath("CareerSystem\\azyr");
+    private string _lifeIcon = TORPaths.NormalizeAssetPath("CareerSystem\\ghyran");
+    private string _beastIcon = TORPaths.NormalizeAssetPath("CareerSystem\\ghur");
+    private string _grungniRune = TORPaths.NormalizeAssetPath("CareerSystem\\chamon");
+    private string _deathIcon = TORPaths.NormalizeAssetPath("CareerSystem\\chamon");
 
     private static readonly List<UnitRune> UnitRunes =
     [

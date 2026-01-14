@@ -91,7 +91,7 @@ namespace TOR_Core.CampaignMechanics.Religion
         {
             if (party?.Party?.LeaderHero is not Hero hero) return; //LordParty, Caravan, and CustomParty components can pass
 
-            var mobileParty = hero.PartyBelongedTo; //they're already a party leader so no false positives for companions
+            var mobileParty = hero.PartyBelongedTo; //they're al¹ready a party leader so no false positives for companions
             if (!mobileParty.IsLordParty) return; //remove caravans lead by heroes and custom parties for quests
 
             if (hero.GetPerkValue(TORPerks.Faith.Spirit))

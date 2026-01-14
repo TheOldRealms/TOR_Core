@@ -322,7 +322,7 @@ public class SkillTrainerBehavior : CampaignBehaviorBase
         }
 
         _currentSkill = skill;
-        GameTexts.SetVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+        GameTexts.SetVariable("GOLD_ICON", $"{{=!}}<img src=\"{TORPaths.NormalizeAssetPath("General\\Icons\\Coin@2x")}\" extend=\"8\">");
         GameTexts.SetVariable("CUSTOMRESOURCE", Hero.MainHero.GetCultureSpecificCustomResource().GetCustomResourceIconAsText(true));
         var title = TORTextHelper.GetTextObject("tor_skill_training_prompt", "title", "Companion Training: {SKILL_NAME}", true);
         title.SetTextVariable("SKILL_NAME", skill.Name);

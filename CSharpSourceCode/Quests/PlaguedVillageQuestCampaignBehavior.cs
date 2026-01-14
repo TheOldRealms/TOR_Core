@@ -88,7 +88,7 @@ namespace TOR_Core.Quests
                     TextObject textObject = TORTextHelper.GetTextObject("tor_quest_plagued_village_issue_explanation", "I need you to travel to {TARGET_SETTLEMENT}. Investigate the situation and find root cause of the plague. On successful completion, the order will pay you {REWARD}{GOLD_ICON}.");
                     textObject.SetTextVariable("TARGET_SETTLEMENT", _targetSettlement.EncyclopediaLinkWithName);
                     textObject.SetTextVariable("REWARD", RewardGold);
-                    textObject.SetTextVariable("GOLD_ICON", "{=!}<img src=\"General\\Icons\\Coin@2x\" extend=\"8\">");
+                    textObject.SetTextVariable("GOLD_ICON", $"{{=!}}<img src=\"{TORPaths.NormalizeAssetPath("General\\Icons\\Coin@2x")}\" extend=\"8\">");
                     return textObject;
                 }
             }

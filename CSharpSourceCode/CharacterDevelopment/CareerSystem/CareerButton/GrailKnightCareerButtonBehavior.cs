@@ -22,7 +22,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.CareerButton
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
 
-        public override string CareerButtonIcon => "CareerSystem\\grail";
+        public override string CareerButtonIcon => TORPaths.NormalizeAssetPath("CareerSystem\\grail");
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
