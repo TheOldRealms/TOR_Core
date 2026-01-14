@@ -345,8 +345,8 @@
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
 
-  <!-- Cross-platform post-build (optional) -->
-  <Target Name="CopyToEditor" AfterTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
+  <!-- Cross-platform post-build: Copy to editor folder -->
+  <Target Name="CopyToEditor" AfterTargets="Build">
     <ItemGroup>
       <FilesToCopy Include="$(TargetDir)**\*.*" />
     </ItemGroup>
