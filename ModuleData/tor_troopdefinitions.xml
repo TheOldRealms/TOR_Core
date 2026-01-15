@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
   <NPCCharacter id="tor_empire_villager" default_group="infantry" level="1" name="{=str_tor_empire_villager}Empire Villager" occupation="Villager" culture="Culture.empire" skill_template="SkillSet.tor_skills_level1">
     <face>
@@ -2223,7 +2223,7 @@
       <EquipmentSet id="tor_gs_orc_bully_bigun_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_gs_trolls" default_group="infantry" level="21" name="{=str_tor_gs_trolls}Troll" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level21" race="troll">
+  <NPCCharacter id="tor_gs_trolls" default_group="infantry" level="46" name="{=str_tor_gs_trolls}Troll" occupation="Soldier" culture="Culture.aserai" skill_template="SkillSet.tor_skills_level46" race="troll">
     <face>
       <face_key_template value="BodyProperty.troll" />
     </face>

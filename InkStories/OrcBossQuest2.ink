@@ -12,33 +12,23 @@ VAR QuestToStart = ""
 ->START
 
 ===START===
-You've proven yourself a proper Boss. Da boyz respect ya, fear ya even. You've krumped enough gits to make a mountain of bodies, and your pile of teef is big enough to buy half da world.
+Under the watchful gaze of Gork and Mork you have proven yourself time and time again. You are a Boss, a warrior, you are death upon the battlefield and countless corpses lie in your wake.
 
-But somefing still ain't right.
+Your mob of boys follows you, fears you, respects you. They know you will lead them to the biggest fights and the greatest loot.
 
-You sit on your pile of shinies, surrounded by your toughest boyz, and you feel it again—dat burning in your chest. Dat WAAAGH energy dat never quite goes away.
+You have become a boss among bosses, but the gods are not satisfied, never are, never will. There is more to be done.
 
-A nearby goblin squeaks somefing about "Da Big Boss," and it hits you like a choppa to da face.
-
-You ain't just A Boss. You're gonna be DA BIGGEST BOSS! Da one all da other Bosses look up to (or get krumped by). Da one who makes even da Black Orcs think twice before getting lippy.
-
-But being DA BIG BOSS ain't easy. You gotta be da strongest, da meanest, da most kunnin' (well, kunnin' enough), and have da biggest pile of teef anyone's ever seen!
-
-Time to show da whole world who's really in charge.
-
-+ [I'Z GONNA BE DA BIGGEST!]
++ [I'Z GUNNA BE DA BIGGEST DERE EVER WAS!!]
     -> confirm_big_boss
 
 ===confirm_big_boss===
-You stand up, your shadow falling over da gathered boyz. They look up at you with a mix of fear and excitement.
+You look to your boys, they are restless, they are ready. You look to the horizon, the road has been long, it's littered with loot, shinies and the corpses of all the runts that oppose you.
 
-"Listen up, ya gits!" you bellow. "We ain't done yet! We're gonna krump more gits, take more cities, and get so much teef dat even da humies will be jealous!"
+No enemy dares to face you in open battle, so you must take the fight to them, tear them from their walls and drag them screaming from their homes.
 
-Da boyz roar their approval. WAAAGH!
+The time is now, the green tide under your command will drown the world.
 
-Time to become DA BIG BOSS.
-
-+ [WAAAGH! Let's get even MORE krumpin'!]
++ [CRUSH 'EM ALL!! WAAAAAAAAAAAAAAAAGH!!!]
     ~ StartQuest("Quests.Careers.OrcBossQuest2")
     ~ CloseStory()
     -> END

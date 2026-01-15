@@ -10944,7 +10944,7 @@
       <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_4" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_4}Warboss Brugrag Legtaker" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_iron_tribe_second_4" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_second_4}Warboss Brugrag Rockbreaka" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.5705" build="0.2438" key="00208400032C0000E965B24D4574DF84A95348CB52356D2C7CDA4184932A7B3901B496130B8879A845CCBADB4CBCBABC000000000000001600000000297C0000" />
     </face>
@@ -11052,7 +11052,7 @@
       <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_massif_choppas_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_first_2}Warboss Mordrog Manstompa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_massif_choppas_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_first_2}Great Shaman Mordrog Manstompa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
     </face>
@@ -13086,7 +13086,7 @@
       <EquipmentSet id="tor_gs_goblin_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_red_eye_second_8" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_second_8}Warboss Digga Erfgloba" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_red_eye_second_8" default_group="infantry" name="{=str_tor_greenskin_lord_red_eye_second_8}Warboss Digga Erfglobba" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="goblin" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
     </face>
