@@ -12,19 +12,18 @@ VAR QuestToStart = ""
 ->START
 
 ===START===
-You wake from your mushroom slumber, da spores still clinging to your thick green skin. Your head pounds like a Troll's footsteps, but it ain't pain—it's somefing else. Somefing primal.
+It comes suddenly, not quite a thought, not quite a feeling. Something closer to instinct. Your heart rate quickens. There is something stirring inside you: excitement. Urgency. You need to move. You need to KILL.
 
-WAAAGH!
+A voice whispers, then roars. It urges you on.
 
-Da voice in your head screams it, over and over. Your muscles twitch, your fists clench. You need to SMASH. You need to CRUMP. You need to FIGHT!
+“Bigga… betta… stronga… kill… KILL… WAAAAAAAAAAAAAGH!”
 
-Every fiber of your being demands violence. Not da sneaky kind—no, you ain't no goblin. You need proper scrapping: breaking bones, crushing skulls, showing everyone who's DA BIGGEST AND DA STRONGEST!
+A sign from the gods? The voice leads you, drives you. To ignore it would be to invite the wrath of Gork and Mork themselves.
 
-Your vision goes red at da edges. If you don't find somefing to hit soon, you might just explode from all dis pent-up WAAAGH energy!
+You have been chosen. YOU. Given a chance to prove yourself before the gods.
+You must rise up. Face challenges. Smash everything. But above all, you must KILL.
 
-Time to get to work. Time to prove you're a proper Boss.
-
-+ [WAAAGH! Let's get krumpin'!]
++ [LET’S DO DIS!]
     ~ StartQuest("Quests.Careers.OrcBossQuest1")
     ~ CloseStory()
     -> END

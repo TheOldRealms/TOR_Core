@@ -12,17 +12,17 @@ VAR QuestToStart = ""
 ->START
 
 ===START===
-You wake with a pounding headache, but dis ain't from too much fungus beer. Your skull feels like it's gonna split open, and strange visions flash through your mind—green lightning, roaring gods, and da endless WAAAGH!
+After a night of prolonged dancing, you wake up with a horrible headache. You haved dealt with headaches before but this is different.
 
-Somefing's different about you. Da other boyz look at you funny. Some are scared. Others whisper words you've heard before: "Shaman." "Weird boy." "Touched by da gods."
+It’s a throbbing pain, as if the gods themselves are shaking you around.
 
-You don't understand it all yet, but you know one fing for certain—Gork and Mork are calling to you. Da twin gods of da Greenskins want somefing from you, and you ain't gonna ignore 'em unless you fancy getting your head stomped flat.
+Some boys gather around you, watching in awe and fear. You fall to your knees and vomit green bile onto the earth.
 
-You need to find a shrine. A proper one, where da Greenskin gods can speak to you without all dis noise in your head.
+In the foul-smelling mush you see meat chunks and bone splinters arranged in an image of a shrine, idols to Gork and Mork.
 
-Time to answer da call.
+The gods are calling, it is time to answer.
 
-+ [Alright, alright! I'll find a shrine!]
++ [Where’s dis bloody place!?]
     ~ StartQuest("Quests.Careers.OrcShamanQuest1")
     ~ CloseStory()
     -> END

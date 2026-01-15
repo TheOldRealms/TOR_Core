@@ -9,29 +9,23 @@ INCLUDE include.ink
 ->START
 
 ===START===
-You've proven yourself. Da boyz respect you now—some even fear your weird magic. You've learned da ways of da Waaagh, gathered teef, and shown you ain't just some weak goblin playing with sparkly lights.
+You have returned to the shrine. Your Waaagh! ju-jus have grown, your faith has deepened, and the gods have truly blessed you. The time has come to make your visions a reality.
 
-But da gods ain't satisfied yet.
+Once more, you approach the largest dung-pile and inhale deeply, drifting again into the realm of Gork and Mork.
 
-You return to da shrine, and before you even start da ritual, da visions come flooding back. Gork and Mork loom over you, bigger and angrier than before.
+The gods momentarily cease their bashing and seem pleased, but only now have you been granted the true chance to prove yourself.
 
-"NOT BAD, GIT," grunts Gork. "BUT YOU AIN'T DONE YET!"
+Visions flood your green mind once more: more battles, more foes to smash, more tribes to unite under the true banner of Gork and Mork. Burning cities crumble beneath your  Waaagh!, and dwarf holds are overrun and broken.
 
-"YEAH! WE NEED A GREAT SHAMAN LORD!" cackles Mork. "NOT JUST SOME APPRENTICE WHAT KNOWS A FEW TRICKS!"
+Their weak gods are humiliated, their shrines defiled and buried beneath reeking dungpiles. And there you stand again, at the heart of it all, witnessing the collapse of a vast temple complex as it is torn apart stone by stone.
 
-"DA BIGGEST WAAAGH IS COMIN'! AN' YOU'Z GONNA LEAD DA BOYZ! BUT FIRST—"
+All the other shamans and boys fall on their knees, and recognize you as the TRUE prophet of Gork and Mork, the GREENEST prophet.
 
-"MORE MAGIC! MORE TEEF! MORE CITIES KRUMPED!" they roar together.
+Then you awaken.
 
-"SHOW US YOU'Z DA GREATEST SHAMAN DA GREENSKINS EVER 'AD!"
+The lads awaits your instructions. The time has come to drown the world in green, and the Twin Gods shall dance amidst the ashes of dead empires.
 
-"AN' MAYBE," Gork adds with a wicked grin, "IF YOU'Z GOOD ENOUGH, WE'LL LET YA CALL DOWN DA FOOT UV GORK ON YOUR ENEMIES!"
-
-"OR DA FIST UV MORK!" Mork adds, not wanting to be left out.
-
-Da vision ends, but da weight of their expectations crushes down on you. Time to get back to work.
-
-+ [I'll show ya! I'll be da greatest!]
++ [FER GORK AN' MORK!! WAAAAAAAAAAAAAAAGH!!!]
     ~ StartQuest("Quests.Careers.OrcShamanQuest2")
     ~ CloseStory()
     -> END
