@@ -38,9 +38,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartAction>Program</StartAction>
-    <StartProgram>..\..\..\bin\Win64_Shipping_Client\Bannerlord.exe</StartProgram>
+    <StartProgram>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\Bannerlord.exe</StartProgram>
     <StartArguments>/singleplayer _MODULES_%2aNative%2aSandBoxCore%2aSandBox%2aStoryMode%2aCustomBattle%2aTOR_Armory%2aTOR_Environment%2aTOR_Core%2a_MODULES_</StartArguments>
-    <StartWorkingDirectory>..\..\..\bin\Win64_Shipping_Client</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -583,6 +583,8 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementMenuHelpers.cs" />
     <Compile Include="CampaignMechanics\TORFactionDiscontinuationCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORAllianceWarBehavior.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="Extensions\UI\SPItemVMExtension.cs" />
     <Compile Include="Extensions\UI\TORInitialScreen.cs" />
@@ -672,6 +674,7 @@
     <Compile Include="Extensions\HeroExtensions.cs" />
     <Compile Include="Extensions\ItemObjectExtensions.cs" />
     <Compile Include="Extensions\KingdomExtension.cs" />
+    <Compile Include="Extensions\FactionExtensions.cs" />
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />
@@ -786,6 +789,8 @@
     <Compile Include="Models\TORCompanionTrainingModel.cs" />
     <Compile Include="Models\TORCustomResourceModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
+    <Compile Include="Models\TORDiplomacyModel.cs" />
+    <Compile Include="Models\TORAllianceModel.cs" />
     <Compile Include="Models\TOREnchantmentCraftingModel.cs" />
     <Compile Include="Models\TOREnchantmentIngredientsModel.cs" />
     <Compile Include="Models\TOREncounterGameMenuModel.cs" />

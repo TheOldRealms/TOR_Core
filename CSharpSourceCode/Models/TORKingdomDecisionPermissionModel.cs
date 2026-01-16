@@ -38,6 +38,14 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         public override bool IsStartAllianceDecisionAllowedBetweenKingdoms(Kingdom kingdom1, Kingdom kingdom2, out TextObject reason)
         {
+            // Chaos cannot form alliances
+            if (kingdom1.Culture.StringId == TORConstants.Cultures.CHAOS || kingdom2.Culture.StringId == TORConstants.Cultures.CHAOS)
+            {
+                reason = TORTextHelper.GetTextObject("TOR_Alliance_Chaos_Forbidden", "The forces of Chaos cannot form alliances.");
+                return false;
+            }
+
+            // Check for hostile religions
             if ((bool)(kingdom1?.Leader?.GetDominantReligion()?.HostileReligions?.Contains(kingdom2?.Leader?.GetDominantReligion())))
             {
                 reason = TORTextHelper.GetTextObject("TOR_Alliance_Religion_Conflict", "The dominant religions of the two kingdoms are hostile towards each other.");
