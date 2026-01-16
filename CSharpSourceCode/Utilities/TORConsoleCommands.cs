@@ -577,8 +577,8 @@ namespace TOR_Core.Utilities
 
             var possibleScenes = GameSceneDataManager.Instance.SingleplayerBattleScenes.WhereQ((SingleplayerBattleSceneData scene) => scene.MapIndices.Contains(mapPatch.sceneIndex)).ToMBList();
             var scenesConcatenated = "";
-            possibleScenes.ForEach(x => scenesConcatenated = scenesConcatenated.Add(x.SceneID + " | ", false));
-            scenesConcatenated.TrimEnd([' ', '|']);
+            possibleScenes.ForEach(x => scenesConcatenated = scenesConcatenated.Add("\n" + x.SceneID, false));
+            //scenesConcatenated.TrimEnd([' ', '|']);
             result = result.Add("Battle scenes at position : " + scenesConcatenated);
 
 

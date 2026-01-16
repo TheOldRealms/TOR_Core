@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
+using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.CharacterDevelopment;
 using TOR_Core.CharacterDevelopment.CareerSystem;
 using TOR_Core.Extensions;
@@ -104,13 +105,25 @@ namespace TOR_Core.Models
         {
             var value = base.DoesPartyConsumeFood(mobileParty);
 
-            if (MobileParty.MainParty == mobileParty && Hero.MainHero.IsEnlisted())
+            //Sly : Raiding parties will stop starving once they've been away from their spawn settlement after ~40 days (they receive 2 food per party member on spawn).
+            if (mobileParty.PartyComponent is RaidingPartyComponent)
             {
                 return false;
             }
 
-            if (mobileParty.LeaderHero != null && mobileParty.LeaderHero.HasAttribute("Brasskeep") &&
-                !mobileParty.LeaderHero.Clan.Settlements.AnyQ(x => x.IsTown))
+            //Sly : both chaos revolts and brasskeep will have no food consumption to skip their AI needing to find settlements for replenishing.
+            if (mobileParty.Party.Culture.StringId == TORConstants.Cultures.CHAOS)
+            {
+                return false;
+            }
+
+            //Sly : rogue engineer party won't starve. This will need to be finessed as more quests are added.
+            if (mobileParty.IsCurrentlyUsedByAQuest)
+            {
+                return true;
+            }
+
+            if (MobileParty.MainParty == mobileParty && Hero.MainHero.IsEnlisted())
             {
                 return false;
             }

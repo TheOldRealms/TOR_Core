@@ -50,28 +50,35 @@ namespace TOR_Core.Models
                 }
             }
 
+            //Sly : prevents the parties from taking Overmanned speed penalties, they'll now move as fast as parties of foot bandits.
+            if (party.MobileParty.PartyComponent is RaidingPartyComponent)
+            {
+                num.Add(80);//Sly : raiding components are AI parties only, description left blank.
+            }
+
             if (party == null || party.LeaderHero == null)
                 return num;
 
-            ApplyMonstrousUnitWeight(party, ref num);
 
-            if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero)
+            if (party.LeaderHero == Hero.MainHero)
             {
                 AddCareerPassivesForPartySize(Hero.MainHero, party, ref num);
             }
 
-            if (party.LeaderHero?.Culture?.StringId == TORConstants.Cultures.ASRAI)
+            if (party.Culture?.StringId == TORConstants.Cultures.ASRAI)
             {
-                num.AddFactor(-0.25f, new TextObject("Woodelf party size cultural penalty"));
+                num.AddFactor(-0.25f, new TextObject("Woodelf cultural penalty"));
 
                 if (party.LeaderHero == Hero.MainHero)
                 {
                     var settlementBehavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
                     var list = settlementBehavior.GetUnlockedOakUpgradeCategory("WEPartySizeUpgrade");
+                    var oakPartyBonus = 0f;
                     foreach (var attribute in list)
                     {
-                        num.AddFactor(0.1f);
+                        oakPartyBonus += 0.1f;
                     }
+                    if (oakPartyBonus > 0) num.AddFactor(oakPartyBonus, new TextObject("Oak of Ages outposts"));
 
                     if (Hero.MainHero.HasAttribute("WEKithbandSymbol"))
                     {
@@ -85,7 +92,7 @@ namespace TOR_Core.Models
                 }
             }
 
-            if (party.LeaderHero != null && party.LeaderHero == Hero.MainHero &&
+            if (party.LeaderHero == Hero.MainHero &&
                 Hero.MainHero.Culture.StringId == TORConstants.Cultures.GREENSKIN)
             {
                 if (Hero.MainHero.HasAttribute("Waaagh2"))
@@ -98,7 +105,13 @@ namespace TOR_Core.Models
                 }
             }
 
-            return num;
+            //Sly : Prevents the subtractions for unit weights from applying to the multipliers and causing their values to fluctuate with troops changes providing predictability in party size.
+            var compositeNum = new ExplainedNumber(0, includeDescriptions, null);
+            compositeNum.AddFromExplainedNumber(num, GameTexts.FindText("str_base_size"));
+
+            ApplyMonstrousUnitWeight(party, ref compositeNum);//Player clan check immediately inside
+
+            return compositeNum;
         }
 
         public override TroopRoster FindAppropriateInitialRosterForMobileParty(MobileParty party, PartyTemplateObject partyTemplate)
@@ -266,7 +279,7 @@ namespace TOR_Core.Models
 
             if (treemenCount > 0)
             {
-                number.Add(-(treemenWeight - 1) * treemenCount, new TextObject("Treemen weight"));
+                number.Add(-(treemenWeight) * treemenCount, new TextObject("Treemen weight"));
             }
 
             // Minotaurs take 8 slots each (7 extra beyond the 1 they already occupy)
