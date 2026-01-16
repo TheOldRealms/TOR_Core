@@ -10,6 +10,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Core.ViewModelCollection.Information;
+using TOR_Core.Utilities;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -217,7 +218,8 @@ namespace TOR_Core.Items
             var equipmentElement = item.ItemRosterElement.EquipmentElement;
             if (!equipmentElement.Item.HasArmorComponent || equipmentElement.Item.ItemType == ItemObject.ItemTypeEnum.HorseHarness) return;
             var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
-            var raceLock = equipmentElement.Item.GetTorSpecificDataReadOnly()?.RaceLock ?? "human";
+            var raceLockId = equipmentElement.Item.GetTorSpecificDataReadOnly()?.RaceLock ?? "human";
+            var raceLock = TORTextHelper.GetTextObject("tor_race_name", raceLockId, raceLockId, skipValidation: true).ToString();
             CreateColoredProperty(TargetItemProperties, GameTexts.FindText("str_inventory_race_lock").ToString(), raceLock, GetColorFromBool(ExtendedItemObjectManager.CanCharacterUseItemBasedOnRace(equipmentElement.Item, CurrentCharacter)), 0, null, TooltipProperty.TooltipPropertyFlags.None);
         }
 

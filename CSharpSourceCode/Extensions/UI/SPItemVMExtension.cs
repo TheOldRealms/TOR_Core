@@ -30,7 +30,6 @@ namespace TOR_Core.Extensions.UI
 
         public override void RefreshValues()
         {
-            base.RefreshValues();
             var selectedItem = ((SPItemVM)_vm).ItemRosterElement.EquipmentElement.Item;
             IsUsableItem = selectedItem.IsInventoryUsable() && GetActiveInventoryState().InventoryMode == InventoryMode.Default;
         }

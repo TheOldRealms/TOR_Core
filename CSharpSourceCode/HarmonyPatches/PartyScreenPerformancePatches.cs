@@ -10,6 +10,8 @@ using TaleWorlds.Library;
 
 namespace TOR_Core.HarmonyPatches
 {
+    // naber: party screen can have kind of large rosters especially after huge battles. native TransferAllTroops flow clears and recreates partyCharacterVM lists, which causes avoidable
+    // allocations and really annoying micro lag in UIs . here we are reusing the existing PartyCharacterVM instances and only syncs the lists, reducing gc pressure during ''all'' transfers
 
     [HarmonyPatch(typeof(PartyVM), "TransferAllTroops")]
     internal static class PartyVM_TransferAllTroops_PerformancePatch

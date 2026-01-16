@@ -8,6 +8,10 @@ using TOR_Core.Extensions.UI;
 
 namespace TOR_Core.HarmonyPatches
 {
+    // naber: the goal here is to stop mutating vms internal property/method maps and instead only consult
+    // extensions afor a fallback when the base resolution fails. also cache extension member names per extension
+    // type so we dont reflect every call. overall less fragile coupling to internal vm structures + less repeated reflection.
+
     [HarmonyPatch]
     public static class ViewModelPatches
     {

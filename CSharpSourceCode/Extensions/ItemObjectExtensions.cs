@@ -1,4 +1,5 @@
 using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
@@ -13,6 +14,28 @@ namespace TOR_Core.Extensions
 {
     public static class ItemObjectExtensions
     {
+
+        private static Dictionary<string, ItemTrait> _itemTraitByStringId;
+
+        private static ItemTrait GetItemTraitByStringId(string itemTraitStringId)
+        {
+            if (_itemTraitByStringId == null)
+            {
+                _itemTraitByStringId = new Dictionary<string, ItemTrait>(StringComparer.Ordinal);
+
+                foreach (var trait in ItemTrait.All)
+                {
+                    if (!string.IsNullOrWhiteSpace(trait?.ItemTraitStringId))
+                    {
+                        _itemTraitByStringId[trait.ItemTraitStringId] = trait;
+                    }
+                }
+            }
+
+            _itemTraitByStringId.TryGetValue(itemTraitStringId, out var itemTrait);
+            return itemTrait;
+        }
+
         public static bool IsMeleeWeapon(this ItemObject item)
         {
             return item.ItemType == ItemObject.ItemTypeEnum.OneHandedWeapon ||
@@ -68,7 +91,7 @@ namespace TOR_Core.Extensions
 
             foreach (var traitId in props.ItemTraits)
             {
-                var trait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == traitId);
+                var trait = GetItemTraitByStringId(traitId);
                 if (trait?.OnInventoryUseScript != null &&
                     !string.IsNullOrWhiteSpace(trait.OnInventoryUseScript.InventoryScriptName))
                 {

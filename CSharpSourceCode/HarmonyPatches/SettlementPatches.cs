@@ -126,6 +126,11 @@ namespace TOR_Core.HarmonyPatches
             }
         }
 
+        // replaces the vanilla SettlementNameplateVM creation with TORSettlementNameplateVM so we can display stuff like ror on the campaign map nameplates
+        // naber's changes: prevent duplicate settlement nameplates from accumulating when ui refreshes and rebuilds
+        // if a settlement already has a cached nameplate vm, we reuse it instead of creating/adding another one
+        // this avoids duplicate rendering and list growth during campaign map ui refresh bursts. it seemed unimportant at first but i can assure you it is not.
+
         [HarmonyPrefix]
         [HarmonyPatch(typeof(SettlementNameplatesVM), "AddNameplate")]
         public static bool AddCustomNamePlateVM(SettlementNameplatesVM __instance, SettlementNameplateVM nameplate,

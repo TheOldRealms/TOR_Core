@@ -16,8 +16,7 @@ namespace TOR_Core.Extensions
             {
                 return false;
             }
-            var manager = ViewModelExtensionManager.Instance;
-            return manager != null && manager.HasViewModelExtensionType(model);
+            return ViewModelExtensionManager.Instance.HasViewModelExtensionType(model);
         }
         public static Type GetExtensionType(this ViewModel model)
         {
@@ -25,20 +24,17 @@ namespace TOR_Core.Extensions
             {
                 return null;
             }
-            var manager = ViewModelExtensionManager.Instance;
-            return manager != null ? manager.GetExtensionType(model) : null;
+            return ViewModelExtensionManager.Instance.GetExtensionType(model);
         }
 
         public static IViewModelExtension GetExtensionInstance(this ViewModel model)
         {
-            var manager = ViewModelExtensionManager.Instance;
-            return manager != null ? manager.GetExtensionInstance(model) : null;
+            return ViewModelExtensionManager.Instance.GetExtensionInstance(model);
         }
 
         public static bool HasExtensionInstance(this ViewModel model)
         {
-            var manager = ViewModelExtensionManager.Instance;
-            return manager != null && manager.HasViewModelExtensionInstance(model);
+            return ViewModelExtensionManager.Instance.HasViewModelExtensionInstance(model);
         }
     }
 }

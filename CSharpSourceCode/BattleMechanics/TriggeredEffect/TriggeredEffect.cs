@@ -174,10 +174,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             if (_template != null && _template.SoundEffectId != "none")
             {
                 _soundIndex = SoundEvent.GetEventIdFromString(_template.SoundEffectId);
-                if (_soundIndex == -1)
-                {
-                    return;
-                }
                 _sound = SoundEvent.CreateEvent(_soundIndex, Mission.Current.Scene);
                 _sound?.PlayInPosition(position);
             }

@@ -28,6 +28,10 @@ namespace TOR_Core.CampaignMechanics.Companions
         //cache of companions to avoid going through AliveHeroes; there's 119 towns with dawi+greenskin update => minimum of 119 companions at 1 per town
         private HashSet<Hero> _spawnedCompanions = [];
         private List<SkillObject> _cachedSkillObjects = [];
+        private List<SkillObject> _cachedSkillObjectsNoFaith = [];
+        private List<SkillObject> _cachedSkillObjectsNoSpellcraft = [];
+        private List<SkillObject> _cachedSkillObjectsNoFaithNoSpellcraft = [];
+
 
         public override void RegisterEvents()
         {
@@ -53,6 +57,7 @@ namespace TOR_Core.CampaignMechanics.Companions
         {
             CacheCompanionTemplates();
             _cachedSkillObjects = MBObjectManager.Instance.GetObjectTypeList<SkillObject>().ToList();
+            BuildCachedSkillPools();
 
             //fill cache when wanderers will already exist
             if (Campaign.Current.CampaignGameLoadingType == Campaign.GameLoadingType.SavedCampaign)
@@ -214,6 +219,63 @@ namespace TOR_Core.CampaignMechanics.Companions
             if (causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Executed || causeOfDeath != KillCharacterAction.KillCharacterActionDetail.Lost ) {result = false;}
         }
 
+        private void BuildCachedSkillPools()
+        {
+            _cachedSkillObjectsNoFaith = new List<SkillObject>(_cachedSkillObjects.Count);
+            _cachedSkillObjectsNoSpellcraft = new List<SkillObject>(_cachedSkillObjects.Count);
+            _cachedSkillObjectsNoFaithNoSpellcraft = new List<SkillObject>(_cachedSkillObjects.Count);
+
+            var faithSkill = TORSkills.Faith;
+            var spellcraftSkill = TORSkills.Spellcraft;
+
+            for (var i = 0; i < _cachedSkillObjects.Count; i++)
+            {
+                var skill = _cachedSkillObjects[i];
+                if (skill == null)
+                {
+                    continue;
+                }
+
+                if (skill != faithSkill)
+                {
+                    _cachedSkillObjectsNoFaith.Add(skill);
+                }
+
+                if (skill != spellcraftSkill)
+                {
+                    _cachedSkillObjectsNoSpellcraft.Add(skill);
+                }
+
+                if (skill != faithSkill && skill != spellcraftSkill)
+                {
+                    _cachedSkillObjectsNoFaithNoSpellcraft.Add(skill);
+                }
+            }
+        }
+
+        private List<SkillObject> GetEligibleSkillPool(Hero companion)
+        {
+            var blocksFaith = companion.IsVampire();
+            var blocksSpellcraft = !companion.IsSpellCaster();
+
+            if (blocksFaith && blocksSpellcraft)
+            {
+                return _cachedSkillObjectsNoFaithNoSpellcraft;
+            }
+
+            if (blocksFaith)
+            {
+                return _cachedSkillObjectsNoFaith;
+            }
+
+            if (blocksSpellcraft)
+            {
+                return _cachedSkillObjectsNoSpellcraft;
+            }
+
+            return _cachedSkillObjects;
+        }
+
         private void AddDailySkillXpToCompanions(Clan clan)
         {
             if (_cachedSkillObjects.Count == 0)
@@ -238,10 +300,19 @@ namespace TOR_Core.CampaignMechanics.Companions
 
                 foreach (var companion in clanmember.CompanionsInParty)
                 {
-                    var randomSkillIndex = MBRandom.RandomInt(skillCount);
-                    var randomSkill = _cachedSkillObjects[randomSkillIndex];
+                    var eligibleSkills = GetEligibleSkillPool(companion);
+                    var eligibleSkillCount = eligibleSkills.Count;
+
+                    if (eligibleSkillCount == 0)
+                    {
+                        continue;
+                    }
+
+                    var randomSkillIndex = MBRandom.RandomInt(eligibleSkillCount);
+                    var randomSkill = eligibleSkills[randomSkillIndex];
 
                     companion.AddSkillXp(randomSkill, amount);
+
                 }
             }
         }

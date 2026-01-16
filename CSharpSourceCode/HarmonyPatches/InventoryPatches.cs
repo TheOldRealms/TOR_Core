@@ -27,6 +27,8 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class InventoryPatches
     {
+        // naber: this patch runs very frequently while the inventory screen is open (OnFrameTick). we cache FieldInfo lookups once to avoid repeated AccessTools reflection costs/allocations
+        // this does not change behavior. it just reduces overhead in a hot ui path.
         private static readonly FieldInfo CurrentCharacterField =
     AccessTools.Field(typeof(SPInventoryVM), "_currentCharacter");
 
