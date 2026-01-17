@@ -146,22 +146,11 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         /// </summary>
         public float CalculateJoinWarSupportPublic(Clan clan) => CalculateJoinWarSupport(clan);
 
-        // DEBUG: Set to true to force clans to want to break alliance (for testing)
-        private static bool DEBUG_FORCE_BREAK_ALLIANCE = true;
-
         /// <summary>
         /// Calculate how much a clan supports joining the war based on religion, strength, and relations.
         /// </summary>
         private float CalculateJoinWarSupport(Clan clan)
         {
-            // DEBUG: Force negative support to test break alliance path
-            if (DEBUG_FORCE_BREAK_ALLIANCE && Kingdom == Clan.PlayerClan?.Kingdom)
-            {
-                InformationManager.DisplayMessage(new InformationMessage(
-                    $"[TOR DEBUG] Forcing {clan.Name} to want to BREAK alliance", Colors.Red));
-                return -100f;
-            }
-
             float support = 0f;
 
             var clanReligion = clan.Leader?.GetDominantReligion();
@@ -225,6 +214,17 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             support += clan.Leader.GetTraitLevel(DefaultTraits.Honor) * 25f; // Honorable leaders keep their word (+25/+50/+75)
             support += clan.Leader.GetTraitLevel(DefaultTraits.Valor) * 10f; // Brave leaders are willing to fight
             support -= clan.Leader.GetTraitLevel(DefaultTraits.Calculating) * 10f; // Calculating leaders weigh risks
+
+            // Culture compatibility factors
+            // Hostile cultures with attacker = more support for war
+            float attackerCultureCompat = CultureHelper.CalculateCultureCompatibility(
+                Kingdom.Culture?.StringId, Attacker.Culture?.StringId);
+            support -= attackerCultureCompat * 25f; // -25 to +25 (negative compat = more war support)
+
+            // Friendly cultures with ally = more support for honoring alliance
+            float allyCultureCompat = CultureHelper.CalculateCultureCompatibility(
+                Kingdom.Culture?.StringId, AttackedAlly.Culture?.StringId);
+            support += allyCultureCompat * 15f; // -15 to +15
 
             // Chaos attacker - always support joining war against Chaos
             if (Attacker.Culture?.StringId == TORConstants.Cultures.CHAOS)

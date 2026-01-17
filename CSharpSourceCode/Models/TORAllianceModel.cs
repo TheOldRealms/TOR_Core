@@ -63,16 +63,14 @@ namespace TOR_Core.Models
                 }
             }
 
-            // Add culture compatibility bonus
-            if (kingdomDeclaresAlliance.Culture == kingdomDeclaredAlliance.Culture)
-            {
-                score.Add(15f, _cultureCompatibilityText);
-            }
-            else
-            {
-                // Slight penalty for different cultures
-                score.Add(-5f, _cultureCompatibilityText);
-            }
+            // Add culture compatibility factor using detailed culture relationships
+            // CultureHelper returns -1.0 (bitter enemies) to +1.0 (same culture/strong allies)
+            // Scale to meaningful diplomatic range: -30 to +30
+            float cultureCompatibility = CultureHelper.CalculateCultureCompatibility(
+                kingdomDeclaresAlliance.Culture?.StringId,
+                kingdomDeclaredAlliance.Culture?.StringId);
+            float scaledCultureScore = cultureCompatibility * 30f;
+            score.Add(scaledCultureScore, _cultureCompatibilityText);
 
             return score;
         }

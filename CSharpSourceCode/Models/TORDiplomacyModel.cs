@@ -221,6 +221,15 @@ namespace TOR_Core.Models
                     candidateScores[tuple.Item1] += -tuple.Item2 * TORConfig.DeclareWarScoreReligiousEffectMultiplier;
                 }
 
+                // Culture compatibility - more likely to declare war on culturally hostile factions
+                foreach (var targetKingdom in kingdomCandidates)
+                {
+                    float cultureCompat = CultureHelper.CalculateCultureCompatibility(
+                        consideringKingdom.Culture?.StringId, targetKingdom.Culture?.StringId);
+                    // Negative compatibility = higher war score (multiply by -50 to get +50 for -1.0 compat)
+                    candidateScores[targetKingdom] += -cultureCompat * 50f;
+                }
+
                 var candidate = candidateScores.MaxBy(x => x.Value).Key;
                 return candidate;
             }
@@ -299,11 +308,11 @@ namespace TOR_Core.Models
                         consideringKingdom.Leader.GetDominantReligion());
                     score += religionScore * 100;
 
-                    // Cultural similarity bonus
-                    if (candidate.Culture == consideringKingdom.Culture)
-                    {
-                        score += 50;
-                    }
+                    // Cultural compatibility bonus using detailed culture relationships
+                    // CultureHelper returns -1.0 to +1.0, scale to -75 to +75
+                    float cultureCompat = CultureHelper.CalculateCultureCompatibility(
+                        consideringKingdom.Culture?.StringId, candidate.Culture?.StringId);
+                    score += cultureCompat * 75;
 
                     // Strength consideration - prefer allying with stronger kingdoms when threatened
                     var totalEnemyStrength = consideringKingdom.GetSumEnemyKingdomPower();

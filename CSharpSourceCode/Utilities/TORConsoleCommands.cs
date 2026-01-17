@@ -268,67 +268,6 @@ namespace TOR_Core.Utilities
             return result;
         }
 
-        [CommandLineFunctionality.CommandLineArgumentFunction("test_alliance_decision", "tor")]
-        public static string TestAllianceDecision(List<string> strings)
-        {
-            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
-                return CampaignCheats.ErrorType;
-
-            string usage = "tor.test_alliance_decision [AllyKingdom] | [AttackerKingdom]\nManually dispatches a HonorAllianceDecision to test the UI.";
-
-            if (CampaignCheats.CheckHelp(strings) || CampaignCheats.CheckParameters(strings, 0) || CampaignCheats.CheckParameters(strings, 1))
-                return usage;
-
-            var playerKingdom = Clan.PlayerClan?.Kingdom;
-            if (playerKingdom == null)
-                return "Player must be in a kingdom.\n";
-
-            List<string> separatedNames = CampaignCheats.GetSeparatedNames(strings, true);
-            if (separatedNames.Count != 2)
-                return usage;
-
-            string allyStr = separatedNames[0].ToLower().Replace(" ", "");
-            string attackerStr = separatedNames[1].ToLower().Replace(" ", "");
-
-            Kingdom ally = Campaign.Current.Kingdoms.FirstOrDefault(k => k.StringId.ToLower() == allyStr);
-            Kingdom attacker = Campaign.Current.Kingdoms.FirstOrDefault(k => k.StringId.ToLower() == attackerStr);
-
-            if (ally == null)
-                return "Ally kingdom not found: " + allyStr + "\n";
-            if (attacker == null)
-                return "Attacker kingdom not found: " + attackerStr + "\n";
-
-            string result = "Debug info:\n";
-            result += $"  Player kingdom: {playerKingdom.Name}\n";
-            result += $"  Player ruling clan: {playerKingdom.RulingClan?.Name}\n";
-            result += $"  Player clan: {Clan.PlayerClan?.Name}\n";
-            result += $"  Is allied with {ally.Name}: {playerKingdom.IsAllyWith(ally)}\n";
-            result += $"  {ally.Name} at war with {attacker.Name}: {ally.IsAtWarWith(attacker)}\n";
-            result += $"  Player at war with {attacker.Name}: {playerKingdom.IsAtWarWith(attacker)}\n";
-
-            var decision = new TOR_Core.CampaignMechanics.Diplomacy.HonorAllianceDecision(
-                playerKingdom.RulingClan, ally, attacker);
-
-            result += $"  Decision.IsAllowed(): {decision.IsAllowed()}\n";
-            result += $"  Decision.Kingdom: {decision.Kingdom?.Name}\n";
-
-            decision.IsEnforced = true;
-            result += $"  Decision.IsEnforced: {decision.IsEnforced}\n";
-            result += $"  Decision.NeedsPlayerResolution: {decision.NeedsPlayerResolution}\n";
-
-            if (!decision.IsAllowed())
-            {
-                decision.CanMakeDecision(out var reason, true);
-                result += $"  CanMakeDecision reason: {reason}\n";
-                return result + "\nDecision not allowed - check conditions above.\n";
-            }
-
-            playerKingdom.AddDecision(decision, true);
-            result += "\nDecision dispatched! Check if election UI appears.\n";
-
-            return result;
-        }
-
         [CommandLineFunctionality.CommandLineArgumentFunction("add_enchantment_blueprint", "tor")]
         public static string AddEnchantmentBlueprint(List<string> arguments)
         {
