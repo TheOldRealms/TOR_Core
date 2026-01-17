@@ -84,7 +84,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             var attacker = (Kingdom)faction1;
             var defender = (Kingdom)faction2;
 
-            // Get all allies of the defender
+            // Get all allies of the defender - they must decide to join or break alliance
             var defenderAllies = defender.AlliedKingdoms.ToList();
 
             foreach (var ally in defenderAllies)
@@ -92,59 +92,90 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 if (ally == attacker) continue; // Shouldn't happen, but safety check
                 if (ally.IsAtWarWith(attacker)) continue; // Already at war
 
-                // Total War style: ally must join or break alliance
-                bool willJoin = ShouldAllyJoinWar(ally, defender, attacker);
+                // Create an internal kingdom decision for the ally
+                // Total War style: must join or break alliance
+                var decision = new HonorAllianceDecision(ally.RulingClan, defender, attacker);
 
-                if (willJoin)
+                // For AI kingdoms, resolve immediately
+                // For player kingdom, add as enforced decision requiring player choice
+                if (ally == Clan.PlayerClan?.Kingdom)
                 {
-                    // Join the war - this is an alliance war, not offensive
-                    MarkAsAllianceWar(ally, attacker);
-
-                    // Declare war
-                    DeclareWarAction.ApplyByKingdomDecision(ally, attacker);
-
-                    // Notify player if involved
-                    if (ally == Clan.PlayerClan?.Kingdom)
-                    {
-                        var message = new TextObject("{=TOR_Alliance_Joined}Your kingdom has joined the war against {ENEMY} to honor your alliance with {ALLY}.");
-                        message.SetTextVariable("ENEMY", attacker.Name);
-                        message.SetTextVariable("ALLY", defender.Name);
-                        InformationManager.DisplayMessage(new InformationMessage(message.ToString(), Colors.Yellow));
-                    }
+                    // Player gets to choose - add as enforced decision
+                    ally.AddDecision(decision, true);
                 }
                 else
                 {
-                    // Break the alliance
-                    var allianceBehavior = Campaign.Current.GetCampaignBehavior<IAllianceCampaignBehavior>();
-                    allianceBehavior?.EndAlliance(ally, defender);
-
-                    // Notify player if involved
-                    if (ally == Clan.PlayerClan?.Kingdom)
-                    {
-                        var message = new TextObject("{=TOR_Alliance_Broken}Your alliance with {ALLY} has ended - you refused to join the war against {ENEMY}.");
-                        message.SetTextVariable("ENEMY", attacker.Name);
-                        message.SetTextVariable("ALLY", defender.Name);
-                        InformationManager.DisplayMessage(new InformationMessage(message.ToString(), Colors.Red));
-                    }
+                    // AI resolves immediately based on scoring
+                    ResolveAIDecision(ally, decision);
                 }
             }
 
-            // Also handle allies of the attacker (they may be called to join offensive war)
+            // Also handle allies of the attacker (offensive alliance call)
+            // These are less obligatory - don't break alliance for refusing
             var attackerAllies = attacker.AlliedKingdoms.ToList();
             foreach (var ally in attackerAllies)
             {
                 if (ally == defender) continue;
                 if (ally.IsAtWarWith(defender)) continue;
 
-                // Offensive alliance call - less obligatory, but still considered
-                bool willJoin = ShouldAllyJoinOffensiveWar(ally, attacker, defender);
-
-                if (willJoin)
+                // For offensive calls, use the native Call to War system
+                // or simply have AI decide without breaking alliance
+                if (ally != Clan.PlayerClan?.Kingdom)
                 {
-                    MarkAsAllianceWar(ally, defender);
-                    DeclareWarAction.ApplyByKingdomDecision(ally, defender);
+                    bool willJoin = ShouldAllyJoinOffensiveWar(ally, attacker, defender);
+                    if (willJoin)
+                    {
+                        MarkAsAllianceWar(ally, defender);
+                        DeclareWarAction.ApplyByKingdomDecision(ally, defender);
+                    }
                 }
-                // Note: Not breaking alliance for refusing offensive war call
+                // Note: Not creating decision for offensive calls - less obligatory
+            }
+        }
+
+        /// <summary>
+        /// Resolves the HonorAllianceDecision for AI kingdoms immediately.
+        /// </summary>
+        private void ResolveAIDecision(Kingdom kingdom, HonorAllianceDecision decision)
+        {
+            if (!decision.IsAllowed()) return;
+
+            // Calculate total support for joining war
+            float joinSupport = 0f;
+            float breakSupport = 0f;
+            int clanCount = 0;
+
+            foreach (var clan in kingdom.Clans)
+            {
+                if (clan.IsUnderMercenaryService) continue;
+
+                float clanSupport = decision.CalculateJoinWarSupportPublic(clan);
+
+                // Weight by clan tier/power
+                float weight = 1f + clan.Tier * 0.2f;
+                if (clan == kingdom.RulingClan) weight *= 2f; // Ruler has more say
+
+                if (clanSupport > 0)
+                    joinSupport += clanSupport * weight;
+                else
+                    breakSupport += -clanSupport * weight;
+
+                clanCount++;
+            }
+
+            // Decide based on total support
+            bool shouldJoin = joinSupport >= breakSupport;
+
+            // Apply the outcome
+            if (shouldJoin)
+            {
+                MarkAsAllianceWar(kingdom, decision.Attacker);
+                DeclareWarAction.ApplyByKingdomDecision(kingdom, decision.Attacker);
+            }
+            else
+            {
+                var allianceBehavior = Campaign.Current.GetCampaignBehavior<IAllianceCampaignBehavior>();
+                allianceBehavior?.EndAlliance(kingdom, decision.AttackedAlly);
             }
         }
 
@@ -227,7 +258,10 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             return MBRandom.RandomFloat < 0.4f;
         }
 
-        private void MarkAsAllianceWar(Kingdom kingdom, Kingdom enemy)
+        /// <summary>
+        /// Marks a war as an alliance war (defensive) so it doesn't count toward offensive war limits.
+        /// </summary>
+        public void MarkAsAllianceWar(Kingdom kingdom, Kingdom enemy)
         {
             if (!_allianceWars.ContainsKey(kingdom.StringId))
             {
