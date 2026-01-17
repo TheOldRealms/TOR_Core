@@ -18,14 +18,20 @@ namespace TOR_Core.HarmonyPatches
             foreach (var type in ViewModelExtensionManager.Instance.ExtensionTypes.Values.Distinct())
             {
                 var attribute = type.GetCustomAttribute<ViewModelExtensionAttribute>();
-                yield return attribute.BaseType.GetMethod(attribute.RefreshMethodName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                var refreshMethod = attribute.BaseType.GetMethod(
+                    attribute.RefreshMethodName,
+                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+                if (refreshMethod != null)
+                    yield return refreshMethod;
             }
         }
 
         [HarmonyPostfix]
         static void Postfix(ViewModel __instance)
         {
-            if (__instance.HasExtensionInstance()) __instance.GetExtensionInstance().RefreshValues();
+            var extension = __instance.GetExtensionInstance();
+            extension?.RefreshValues();
         }
     }
 }

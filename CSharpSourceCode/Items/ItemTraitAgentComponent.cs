@@ -269,5 +269,16 @@ namespace TOR_Core.Items
             }
             return list;
         }
+        internal bool HasDynamicTraits(ItemObject itemObject)
+        {
+            for (int i = 0; i < _dynamicTraits.Count; i++)
+            {
+                var entry = _dynamicTraits[i];
+                if (entry.Item1.Item == itemObject)
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

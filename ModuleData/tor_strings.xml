@@ -11,6 +11,16 @@
   <string id="str_career_screen.ability_title" text="{=str_tor_career_ability_title}Career Ability"/>
   <string id="str_career_screen.free_points" text="{=str_tor_career_free_points_label}Free career points: {FREE_CAREERPOINTS}"/>
   <string id="str_inventory_race_lock" text="{=str_tor_inventory_race_lock_text}This item is only usable by"/>
+  <string id="tor_race_name.human" text="{=str_tor_race_name_human}Humanoid"/>
+  <string id="tor_race_name.dwarf" text="{=str_tor_race_name_dwarf}Dwarf"/>
+  <string id="tor_race_name.orc" text="{=str_tor_race_name_orc}Orc"/>
+  <string id="tor_race_name.goblin" text="{=str_tor_race_name_goblin}Goblin"/>
+  <string id="tor_race_name.gor" text="{=str_tor_race_name_gor}Gor"/>
+  <string id="tor_race_name.ungor" text="{=str_tor_race_name_ungor}Ungor"/>
+  <string id="tor_race_name.skeleton" text="{=str_tor_race_name_skeleton}Skeleton"/>
+  <string id="tor_race_name.wraith" text="{=str_tor_race_name_wraith}Wraith"/>
+  <string id="tor_race_name.spirit_host" text="{=str_tor_race_name_spirit_host}Spirit Host"/>
+  <string id="tor_race_name.troll" text="{=str_tor_race_name_troll}Troll"/>
 
 
 

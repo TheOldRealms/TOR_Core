@@ -10,6 +10,7 @@ using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.Core.ViewModelCollection.Information;
+using TOR_Core.Utilities;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TOR_Core.BattleMechanics.DamageSystem;
@@ -129,13 +130,13 @@ namespace TOR_Core.Items
             ItemTraitList.Clear();
             IsMagicItem = false;
             _lastSetItem = item.ItemRosterElement.EquipmentElement.Item;
-            ItemDescription = _lastSetItem.GetTorSpecificData().Description;
+            var info = _lastSetItem.GetTorSpecificDataReadOnly();
+            ItemDescription = info?.Description ?? "";
             HasDescription = !ItemDescription.IsEmpty();
             item.UpdateCanBeSlaughtered();
 
-            if (_lastSetItem != null && _lastSetItem.GetTorSpecificData() != null)
+            if (_lastSetItem != null && info != null)
             {
-                var info = _lastSetItem.GetTorSpecificData();
                 if (_lastSetItem.IsMagicalItem())
                 {
                     IsMagicItem = true;
@@ -217,8 +218,9 @@ namespace TOR_Core.Items
             var equipmentElement = item.ItemRosterElement.EquipmentElement;
             if (!equipmentElement.Item.HasArmorComponent || equipmentElement.Item.ItemType == ItemObject.ItemTypeEnum.HorseHarness) return;
             var comparedEquipmentElement = comparedItem == null ? EquipmentElement.Invalid : comparedItem.ItemRosterElement.EquipmentElement;
-            var info = equipmentElement.Item.GetTorSpecificData();
-            CreateColoredProperty(TargetItemProperties, GameTexts.FindText("str_inventory_race_lock").ToString(), info.RaceLock.ToString(), GetColorFromBool(ExtendedItemObjectManager.CanCharacterUseItemBasedOnRace(equipmentElement.Item, CurrentCharacter)), 0, null, TooltipProperty.TooltipPropertyFlags.None);
+            var raceLockId = equipmentElement.Item.GetTorSpecificDataReadOnly()?.RaceLock ?? "human";
+            var raceLock = TORTextHelper.GetTextObject("tor_race_name", raceLockId, raceLockId, skipValidation: true).ToString();
+            CreateColoredProperty(TargetItemProperties, GameTexts.FindText("str_inventory_race_lock").ToString(), raceLock, GetColorFromBool(ExtendedItemObjectManager.CanCharacterUseItemBasedOnRace(equipmentElement.Item, CurrentCharacter)), 0, null, TooltipProperty.TooltipPropertyFlags.None);
         }
 
         private Color GetColorFromBool(bool value)
