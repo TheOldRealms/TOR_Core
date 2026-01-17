@@ -105,8 +105,15 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         protected override bool ShouldBeCancelledInternal()
         {
+            // Only cancel if the decision conditions are no longer valid
+            // Do NOT cancel based on proposer support (base class does this)
             return !CanMakeDecision(out _, false);
         }
+
+        // Allow proposer clan to change opinion without cancelling the decision
+        // This is important for HonorAllianceDecision - even if the ruling clan
+        // changes their mind, the decision should still be voted on
+        protected override bool CanProposerClanChangeOpinion() => true;
 
         public override void DetermineSponsors(MBReadOnlyList<DecisionOutcome> possibleOutcomes)
         {
@@ -139,11 +146,22 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         /// </summary>
         public float CalculateJoinWarSupportPublic(Clan clan) => CalculateJoinWarSupport(clan);
 
+        // DEBUG: Set to true to force clans to want to break alliance (for testing)
+        private static bool DEBUG_FORCE_BREAK_ALLIANCE = true;
+
         /// <summary>
         /// Calculate how much a clan supports joining the war based on religion, strength, and relations.
         /// </summary>
         private float CalculateJoinWarSupport(Clan clan)
         {
+            // DEBUG: Force negative support to test break alliance path
+            if (DEBUG_FORCE_BREAK_ALLIANCE && Kingdom == Clan.PlayerClan?.Kingdom)
+            {
+                InformationManager.DisplayMessage(new InformationMessage(
+                    $"[TOR DEBUG] Forcing {clan.Name} to want to BREAK alliance", Colors.Red));
+                return -100f;
+            }
+
             float support = 0f;
 
             var clanReligion = clan.Leader?.GetDominantReligion();

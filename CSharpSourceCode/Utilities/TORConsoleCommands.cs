@@ -190,58 +190,9 @@ namespace TOR_Core.Utilities
 
             // Use the clean alliance method that removes native Call to War decisions
             // This is preferred for TOR since we use our own HonorAllianceDecision system
-            faction1.SetAllianceClean(faction2);
+            faction1.SetAlliance(faction2);
 
-            return "Alliance created between " + faction1.Name + " and " + faction2.Name + ".\n" +
-                   "Native 'Call to War' decisions for existing wars have been removed.\n";
-        }
-
-        [CommandLineFunctionality.CommandLineArgumentFunction("set_alliance_clean", "tor")]
-        public static string SetAllianceClean(List<string> strings)
-        {
-            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
-                return CampaignCheats.ErrorType;
-
-            string usage = "tor.set_alliance_clean [Kingdom1] | [Kingdom2]\nCreates an alliance WITHOUT triggering Call to War for existing wars.";
-
-            if (CampaignCheats.CheckParameters(strings, 0) || CampaignCheats.CheckParameters(strings, 1) || CampaignCheats.CheckHelp(strings))
-                return usage;
-
-            List<string> separatedNames = CampaignCheats.GetSeparatedNames(strings, true);
-            if (separatedNames.Count != 2)
-                return usage;
-
-            string kingdom_str1 = separatedNames[0].ToLower().Replace(" ", "");
-            string kingdom_str2 = separatedNames[1].ToLower().Replace(" ", "");
-
-            Kingdom faction1 = null;
-            Kingdom faction2 = null;
-
-            foreach (var kingdom in Campaign.Current.Kingdoms)
-            {
-                if (kingdom_str1 == kingdom.StringId.ToLower())
-                    faction1 = kingdom;
-                if (kingdom_str2 == kingdom.StringId.ToLower())
-                    faction2 = kingdom;
-            }
-
-            if (faction1 == null)
-                return "Kingdom not found: " + kingdom_str1 + "\n" + usage;
-            if (faction2 == null)
-                return "Kingdom not found: " + kingdom_str2 + "\n" + usage;
-            if (faction1 == faction2)
-                return "Cannot create alliance with self.\n";
-            if (faction1.IsAtWarWith(faction2))
-                return "Cannot create alliance - kingdoms are at war. Use tor.declare_peace first.\n";
-            if (faction1.IsAllyWith(faction2))
-                return faction1.Name + " and " + faction2.Name + " are already allies.\n";
-
-            // Use extension method that creates alliance and removes native Call to War decisions
-            faction1.SetAllianceClean(faction2);
-
-            return "Clean alliance created between " + faction1.Name + " and " + faction2.Name + ".\n" +
-                   "Native 'Call to War' decisions for existing wars have been removed.\n" +
-                   "Only NEW wars declared after this alliance will trigger our HonorAllianceDecision.\n";
+            return "Alliance created between " + faction1.Name + " and " + faction2.Name + ".\n";
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("break_alliance", "tor")]
@@ -314,6 +265,67 @@ namespace TOR_Core.Utilities
                     : "";
                 result += $"  {kingdom.StringId} - {kingdom.Name}{allies}\n";
             }
+            return result;
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("test_alliance_decision", "tor")]
+        public static string TestAllianceDecision(List<string> strings)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            string usage = "tor.test_alliance_decision [AllyKingdom] | [AttackerKingdom]\nManually dispatches a HonorAllianceDecision to test the UI.";
+
+            if (CampaignCheats.CheckHelp(strings) || CampaignCheats.CheckParameters(strings, 0) || CampaignCheats.CheckParameters(strings, 1))
+                return usage;
+
+            var playerKingdom = Clan.PlayerClan?.Kingdom;
+            if (playerKingdom == null)
+                return "Player must be in a kingdom.\n";
+
+            List<string> separatedNames = CampaignCheats.GetSeparatedNames(strings, true);
+            if (separatedNames.Count != 2)
+                return usage;
+
+            string allyStr = separatedNames[0].ToLower().Replace(" ", "");
+            string attackerStr = separatedNames[1].ToLower().Replace(" ", "");
+
+            Kingdom ally = Campaign.Current.Kingdoms.FirstOrDefault(k => k.StringId.ToLower() == allyStr);
+            Kingdom attacker = Campaign.Current.Kingdoms.FirstOrDefault(k => k.StringId.ToLower() == attackerStr);
+
+            if (ally == null)
+                return "Ally kingdom not found: " + allyStr + "\n";
+            if (attacker == null)
+                return "Attacker kingdom not found: " + attackerStr + "\n";
+
+            string result = "Debug info:\n";
+            result += $"  Player kingdom: {playerKingdom.Name}\n";
+            result += $"  Player ruling clan: {playerKingdom.RulingClan?.Name}\n";
+            result += $"  Player clan: {Clan.PlayerClan?.Name}\n";
+            result += $"  Is allied with {ally.Name}: {playerKingdom.IsAllyWith(ally)}\n";
+            result += $"  {ally.Name} at war with {attacker.Name}: {ally.IsAtWarWith(attacker)}\n";
+            result += $"  Player at war with {attacker.Name}: {playerKingdom.IsAtWarWith(attacker)}\n";
+
+            var decision = new TOR_Core.CampaignMechanics.Diplomacy.HonorAllianceDecision(
+                playerKingdom.RulingClan, ally, attacker);
+
+            result += $"  Decision.IsAllowed(): {decision.IsAllowed()}\n";
+            result += $"  Decision.Kingdom: {decision.Kingdom?.Name}\n";
+
+            decision.IsEnforced = true;
+            result += $"  Decision.IsEnforced: {decision.IsEnforced}\n";
+            result += $"  Decision.NeedsPlayerResolution: {decision.NeedsPlayerResolution}\n";
+
+            if (!decision.IsAllowed())
+            {
+                decision.CanMakeDecision(out var reason, true);
+                result += $"  CanMakeDecision reason: {reason}\n";
+                return result + "\nDecision not allowed - check conditions above.\n";
+            }
+
+            playerKingdom.AddDecision(decision, true);
+            result += "\nDecision dispatched! Check if election UI appears.\n";
+
             return result;
         }
 

@@ -79,7 +79,16 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private void OnWarDeclared(IFaction faction1, IFaction faction2, DeclareWarAction.DeclareWarDetail detail)
         {
-            if (!faction1.IsKingdomFaction || !faction2.IsKingdomFaction) return;
+            // Debug output
+            InformationManager.DisplayMessage(new InformationMessage(
+                $"[TOR] OnWarDeclared: {faction1.Name} vs {faction2.Name}", Colors.Cyan));
+
+            if (!faction1.IsKingdomFaction || !faction2.IsKingdomFaction)
+            {
+                InformationManager.DisplayMessage(new InformationMessage(
+                    $"[TOR] Skipping - not kingdom factions", Colors.Gray));
+                return;
+            }
 
             var attacker = (Kingdom)faction1;
             var defender = (Kingdom)faction2;
@@ -87,25 +96,44 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             // Get all allies of the defender - they must decide to join or break alliance
             var defenderAllies = defender.AlliedKingdoms.ToList();
 
+            InformationManager.DisplayMessage(new InformationMessage(
+                $"[TOR] {defender.Name} has {defenderAllies.Count} allies", Colors.Cyan));
+
             foreach (var ally in defenderAllies)
             {
+                InformationManager.DisplayMessage(new InformationMessage(
+                    $"[TOR] Checking ally: {ally.Name}", Colors.Cyan));
+
                 if (ally == attacker) continue; // Shouldn't happen, but safety check
-                if (ally.IsAtWarWith(attacker)) continue; // Already at war
+                if (ally.IsAtWarWith(attacker))
+                {
+                    InformationManager.DisplayMessage(new InformationMessage(
+                        $"[TOR] {ally.Name} already at war with {attacker.Name}", Colors.Gray));
+                    continue;
+                }
 
                 // Create an internal kingdom decision for the ally
                 // Total War style: must join or break alliance
                 var decision = new HonorAllianceDecision(ally.RulingClan, defender, attacker);
+
+                InformationManager.DisplayMessage(new InformationMessage(
+                    $"[TOR] Decision.IsAllowed: {decision.IsAllowed()}, PlayerKingdom: {Clan.PlayerClan?.Kingdom?.Name}", Colors.Cyan));
 
                 // For AI kingdoms, resolve immediately
                 // For player kingdom, add as enforced decision requiring player choice
                 if (ally == Clan.PlayerClan?.Kingdom)
                 {
                     // Player gets to choose - add as enforced decision
-                    ally.AddDecision(decision, true);
+                    decision.IsEnforced = true;
+                    InformationManager.DisplayMessage(new InformationMessage(
+                        $"[TOR] Dispatching decision to player kingdom {ally.Name}", Colors.Green));
+                    ally.AddDecision(decision, true); // true = ignoreInfluenceCost
                 }
                 else
                 {
                     // AI resolves immediately based on scoring
+                    InformationManager.DisplayMessage(new InformationMessage(
+                        $"[TOR] AI resolving for {ally.Name}", Colors.Yellow));
                     ResolveAIDecision(ally, decision);
                 }
             }

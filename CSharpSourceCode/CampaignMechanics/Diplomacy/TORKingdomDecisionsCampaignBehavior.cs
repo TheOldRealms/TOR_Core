@@ -159,30 +159,16 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private void OnPeaceMade(IFaction side1Faction, IFaction side2Faction, MakePeaceAction.MakePeaceDetail detail)
         {
-            if (!(side1Faction.IsAllyTriggered() || side2Faction.IsAllyTriggered()))
-            {
-                HandleDiplomaticChangeBetweenFactions(side1Faction, side2Faction);
-
-                UpdateWarPeaceForAlliance(side1Faction);
-                side1Faction.SetAllyTriggered(false);
-
-                UpdateWarPeaceForAlliance(side2Faction);
-                side2Faction.SetAllyTriggered(false);
-            }
+            // Only handle decision updates, not alliance war/peace syncing
+            // Alliance war handling is done by TORAllianceWarBehavior
+            HandleDiplomaticChangeBetweenFactions(side1Faction, side2Faction);
         }
 
         private void OnWarDeclared(IFaction side1Faction, IFaction side2Faction, DeclareWarAction.DeclareWarDetail detail)
         {
-            if (!(side1Faction.IsAllyTriggered() || side2Faction.IsAllyTriggered()))
-            {
-                HandleDiplomaticChangeBetweenFactions(side1Faction, side2Faction);
-
-                UpdateWarPeaceForAlliance(side1Faction);
-                side1Faction.SetAllyTriggered(false);
-
-                UpdateWarPeaceForAlliance(side2Faction);
-                side2Faction.SetAllyTriggered(false);
-            }
+            // Only handle decision updates, not alliance war syncing
+            // Alliance war handling (HonorAllianceDecision) is done by TORAllianceWarBehavior
+            HandleDiplomaticChangeBetweenFactions(side1Faction, side2Faction);
         }
 
         private void HandleDiplomaticChangeBetweenFactions(IFaction side1Faction, IFaction side2Faction)
