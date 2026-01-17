@@ -586,6 +586,7 @@
     <Compile Include="CampaignMechanics\Diplomacy\TORAllianceWarBehavior.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\HonorAllianceDecision.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionsCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORTradeAgreementAIBehavior.cs" />
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="Extensions\UI\SPItemVMExtension.cs" />
     <Compile Include="Extensions\UI\TORInitialScreen.cs" />
@@ -792,6 +793,7 @@
     <Compile Include="Models\TORDamageParticleModel.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TORAllianceModel.cs" />
+    <Compile Include="Models\TORTradeAgreementModel.cs" />
     <Compile Include="Models\TOREnchantmentCraftingModel.cs" />
     <Compile Include="Models\TOREnchantmentIngredientsModel.cs" />
     <Compile Include="Models\TOREncounterGameMenuModel.cs" />
