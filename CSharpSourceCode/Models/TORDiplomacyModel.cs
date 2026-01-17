@@ -16,6 +16,16 @@ namespace TOR_Core.Models
 {
     public class TORDiplomacyModel : DefaultDiplomacyModel
     {
+        // War declaration weights
+        private const float WarCultureCompatibilityWeight = 50f;
+
+        // Alliance candidate weights
+        private const float AllianceReligionCompatibilityWeight = 100f;
+        private const float AllianceCultureCompatibilityWeight = 75f;
+        private const float AllianceStrengthWeight = 50f;
+        private const float AllianceDistancePenaltyFactor = 0.01f;
+        private const float AllianceMinimumScoreThreshold = 50f;
+
         public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 150;
         public override int GetInfluenceCostOfProposingWar(Clan proposingClan) => 150;
 
@@ -197,7 +207,7 @@ namespace TOR_Core.Models
                 var kingdomListByStrength = kingdomCandidates.SelectQ(x =>
                     new Tuple<Kingdom, float>(x, x.GetAllianceTotalStrength())).ToListQ();
                 var hostileReligionKingdoms = kingdomCandidates.SelectQ(x =>
-                    new Tuple<Kingdom, float>(x, ReligionObjectHelper.CalculateSimilarityScore(x.Leader.GetDominantReligion(), consideringKingdom.Leader.GetDominantReligion()))).ToListQ();
+                    new Tuple<Kingdom, float>(x, ReligionObjectHelper.CalculateReligionCompatibility(x.Leader.GetDominantReligion(), consideringKingdom.Leader.GetDominantReligion()))).ToListQ();
 
                 Dictionary<Kingdom, float> candidateScores = [];
                 float minDistance = kingdomListByDistance.MinBy(x => x.Item2).Item2;
@@ -224,10 +234,10 @@ namespace TOR_Core.Models
                 // Culture compatibility - more likely to declare war on culturally hostile factions
                 foreach (var targetKingdom in kingdomCandidates)
                 {
-                    float cultureCompat = CultureHelper.CalculateCultureCompatibility(
+                    float cultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(
                         consideringKingdom.Culture?.StringId, targetKingdom.Culture?.StringId);
-                    // Negative compatibility = higher war score (multiply by -50 to get +50 for -1.0 compat)
-                    candidateScores[targetKingdom] += -cultureCompat * 50f;
+                    // Negative compatibility = higher war score
+                    candidateScores[targetKingdom] += -cultureCompat * WarCultureCompatibilityWeight;
                 }
 
                 var candidate = candidateScores.MaxBy(x => x.Value).Key;
@@ -303,27 +313,26 @@ namespace TOR_Core.Models
                     float score = 0;
 
                     // Religious similarity bonus
-                    var religionScore = ReligionObjectHelper.CalculateSimilarityScore(
+                    var religionScore = ReligionObjectHelper.CalculateReligionCompatibility(
                         candidate.Leader.GetDominantReligion(),
                         consideringKingdom.Leader.GetDominantReligion());
-                    score += religionScore * 100;
+                    score += religionScore * AllianceReligionCompatibilityWeight;
 
-                    // Cultural compatibility bonus using detailed culture relationships
-                    // CultureHelper returns -1.0 to +1.0, scale to -75 to +75
-                    float cultureCompat = CultureHelper.CalculateCultureCompatibility(
+                    // Cultural compatibility bonus
+                    float cultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(
                         consideringKingdom.Culture?.StringId, candidate.Culture?.StringId);
-                    score += cultureCompat * 75;
+                    score += cultureCompat * AllianceCultureCompatibilityWeight;
 
                     // Strength consideration - prefer allying with stronger kingdoms when threatened
                     var totalEnemyStrength = consideringKingdom.GetSumEnemyKingdomPower();
                     if (totalEnemyStrength > consideringKingdom.CurrentTotalStrength)
                     {
-                        score += candidate.CurrentTotalStrength / consideringKingdom.CurrentTotalStrength * 50;
+                        score += candidate.CurrentTotalStrength / consideringKingdom.CurrentTotalStrength * AllianceStrengthWeight;
                     }
 
                     // Distance consideration - prefer nearby allies
                     float distance = GetKingdomDistance(consideringKingdom, candidate);
-                    score -= distance * 0.01f;
+                    score -= distance * AllianceDistancePenaltyFactor;
 
                     candidateScores[candidate] = score;
                 }
@@ -331,7 +340,7 @@ namespace TOR_Core.Models
                 if (candidateScores.Any())
                 {
                     var bestCandidate = candidateScores.MaxBy(x => x.Value);
-                    if (bestCandidate.Value > 50) // Only consider if score is high enough
+                    if (bestCandidate.Value > AllianceMinimumScoreThreshold)
                     {
                         return bestCandidate.Key;
                     }

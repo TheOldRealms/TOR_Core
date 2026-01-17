@@ -842,7 +842,6 @@
     <Compile Include="Utilities\StringExtensions.cs" />
     <Compile Include="Utilities\TextObjectExtension.cs" />
     <Compile Include="Utilities\TORAnimationLogger.cs" />
-    <Compile Include="Utilities\CultureHelper.cs" />
     <Compile Include="Utilities\TORCampaignEvents.cs" />
     <Compile Include="Utilities\TORCommon.cs" />
     <Compile Include="Utilities\TORConfig.cs" />

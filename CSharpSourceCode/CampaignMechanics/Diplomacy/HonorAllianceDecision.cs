@@ -23,6 +23,14 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
     /// </summary>
     public class HonorAllianceDecision : KingdomDecision
     {
+        // Religion/culture compatibility weights for support calculation
+        private const float HostileReligionBonus = 50f;
+        private const float AttackerReligionCompatibilityWeight = 20f;
+        private const float AllyReligionCompatibilityWeight = 15f;
+        private const float AttackerCultureCompatibilityWeight = 25f;
+        private const float AllyCultureCompatibilityWeight = 15f;
+        private const float ChaosAttackerBonus = 100f;
+
         [SaveableField(101)]
         public readonly Kingdom AttackedAlly;
 
@@ -162,21 +170,21 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             {
                 if (clanReligion.HostileReligions?.Contains(attackerReligion) == true)
                 {
-                    support += 50f; // Strongly support war against religious enemies
+                    support += HostileReligionBonus;
                 }
                 else
                 {
                     // Similarity with attacker reduces support for war
-                    float attackerSimilarity = clanReligion.GetSimilarityScore(attackerReligion);
-                    support -= attackerSimilarity * 20f;
+                    float attackerSimilarity = ReligionObjectHelper.CalculateReligionCompatibility(clanReligion, attackerReligion);
+                    support -= attackerSimilarity * AttackerReligionCompatibilityWeight;
                 }
             }
 
             // Bonus for defending co-religionists
             if (clanReligion != null && allyReligion != null)
             {
-                float allySimilarity = clanReligion.GetSimilarityScore(allyReligion);
-                support += allySimilarity * 15f;
+                float allySimilarity = ReligionObjectHelper.CalculateReligionCompatibility(clanReligion, allyReligion);
+                support += allySimilarity * AllyReligionCompatibilityWeight;
             }
 
             // Relation with ally leader - strong factor (good relations = honor alliance)
@@ -217,19 +225,19 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
             // Culture compatibility factors
             // Hostile cultures with attacker = more support for war
-            float attackerCultureCompat = CultureHelper.CalculateCultureCompatibility(
+            float attackerCultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(
                 Kingdom.Culture?.StringId, Attacker.Culture?.StringId);
-            support -= attackerCultureCompat * 25f; // -25 to +25 (negative compat = more war support)
+            support -= attackerCultureCompat * AttackerCultureCompatibilityWeight;
 
             // Friendly cultures with ally = more support for honoring alliance
-            float allyCultureCompat = CultureHelper.CalculateCultureCompatibility(
+            float allyCultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(
                 Kingdom.Culture?.StringId, AttackedAlly.Culture?.StringId);
-            support += allyCultureCompat * 15f; // -15 to +15
+            support += allyCultureCompat * AllyCultureCompatibilityWeight;
 
             // Chaos attacker - always support joining war against Chaos
             if (Attacker.Culture?.StringId == TORConstants.Cultures.CHAOS)
             {
-                support += 100f;
+                support += ChaosAttackerBonus;
             }
 
             return support;

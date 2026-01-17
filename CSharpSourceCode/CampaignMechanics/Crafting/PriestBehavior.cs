@@ -203,7 +203,10 @@ public class PriestBehavior : CampaignBehaviorBase
             {
                 if (!Hero.MainHero.HasAnyReligion()) return false;
 
-                if (Hero.MainHero.IsPriest() && Hero.MainHero.GetDominantReligion().Affinity == ReligionAffinity.Order) return true;
+                // A priest can access any priest of the same Pantheon
+                var cultReligion = ReligionObject.All.FirstOrDefault(x => x.StringId == cult);
+                if (Hero.MainHero.IsPriest() && cultReligion != null &&
+                    Hero.MainHero.GetDominantReligion().Pantheon == cultReligion.Pantheon) return true;
 
                 if (Hero.MainHero.GetDominantReligion().StringId == cult) return true;
 

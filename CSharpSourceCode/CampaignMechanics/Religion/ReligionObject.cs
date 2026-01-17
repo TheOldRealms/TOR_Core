@@ -29,7 +29,7 @@ namespace TOR_Core.CampaignMechanics.Religion
         public List<CharacterObject> EliteUnits { get; private set; } = [];
         public List<ItemObject> ReligiousArtifacts { get; private set; } = [];
         public List<string> InitialClans { get; private set; } = [];
-        public ReligionAffinity Affinity { get; private set; }
+        public Pantheon Pantheon { get; private set; }
 
         public static MBReadOnlyList<ReligionObject> All => _all ?? [];
         public static void FillAll() => _all = MBObjectManager.Instance.GetObjectTypeList<ReligionObject>();
@@ -41,17 +41,16 @@ namespace TOR_Core.CampaignMechanics.Religion
         public TextObject EncyclopediaLinkWithName => HyperlinkTexts.GetSettlementHyperlinkText(EncyclopediaLink, Name);
 
         /// <summary>
-        /// Gets similarity score between this and another religion
+        /// Gets the hostility factor between this religion and another.
+        /// Returns a negative value if the other religion is in the HostileReligions list.
+        /// This is meant to be added on top of Pantheon compatibility calculations.
         /// </summary>
-        /// <param name="other">The other <see cref="ReligionObject"/> to calculare similarity with</param>
-        /// <returns>Similarity score between -1 (hostile) and 1 (same culture, same religion)</returns>
-        public float GetSimilarityScore(ReligionObject other)
+        /// <param name="other">The other religion to check hostility against</param>
+        /// <returns>-0.5 if hostile, 0 otherwise</returns>
+        public float GetHostilityFactor(ReligionObject other)
         {
-            if (HostileReligions.Contains(other) && Culture != other.Culture) return -1f;
-            else if (HostileReligions.Contains(other) && Culture == other.Culture) return -0.75f;
-            else if (!HostileReligions.Contains(other) && Culture != other.Culture) return 0.25f;
-            else if (!HostileReligions.Contains(other) && Culture == other.Culture) return 1f;
-            else return 0f;
+            if (other == null) return 0f;
+            return HostileReligions.Contains(other) ? -0.5f : 0f;
         }
 
         public override void Deserialize(MBObjectManager objectManager, XmlNode node)
@@ -60,7 +59,7 @@ namespace TOR_Core.CampaignMechanics.Religion
             Name = new TextObject(node.Attributes.GetNamedItem("Name").Value);
             DeityName = new TextObject(node.Attributes.GetNamedItem("DeityName").Value);
             Culture = MBObjectManager.Instance.ReadObjectReferenceFromXml<CultureObject>("Culture", node);
-            Affinity = (ReligionAffinity)Enum.Parse(typeof(ReligionAffinity), node.Attributes.GetNamedItem("Affinity").Value);
+            Pantheon = (Pantheon)Enum.Parse(typeof(Pantheon), node.Attributes.GetNamedItem("Pantheon").Value);
             LoreText = GameTexts.FindText("tor_religion_description", StringId);
 
             if (GameTexts.TryGetText("tor_religion_blessing_name", out var blessingName, this.StringId))
@@ -140,11 +139,23 @@ namespace TOR_Core.CampaignMechanics.Religion
         Fanatic
     }
 
-    public enum ReligionAffinity
+    /// <summary>
+    /// Represents the broad pantheon/faction grouping for diplomatic compatibility.
+    /// Used to determine cultural and religious alignment between factions.
+    /// </summary>
+    public enum Pantheon
     {
-        Order,
-        Chaos,
-        Vampire,
-        Destruction
+        /// <summary>Human gods: Sigmar, Ulric, Morr, Taal, Lady of the Lake, etc.</summary>
+        Human,
+        /// <summary>Elven gods: Isha, Kurnous, Lileath, Khaine, etc.</summary>
+        Elven,
+        /// <summary>Dwarven Ancestor Gods: Grungni, Valaya, Grimnir</summary>
+        Dwarven,
+        /// <summary>Undead worship: Nagash, dark necromancy</summary>
+        Undead,
+        /// <summary>Greenskin gods: Gork and Mork</summary>
+        Greenskin,
+        /// <summary>Chaos gods: Khorne, Nurgle, Tzeentch, Slaanesh</summary>
+        Chaos
     }
 }

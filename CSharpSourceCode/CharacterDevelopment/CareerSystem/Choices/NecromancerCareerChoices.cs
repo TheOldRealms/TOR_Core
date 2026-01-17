@@ -236,8 +236,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         public override void InitialCareerSetup()
         {
-            var religions = ReligionObject.All.FindAll(x => x.Affinity == ReligionAffinity.Order);
-
+            // Become hostile to Human pantheon religions (your former faith)
+            var religions = ReligionObject.All.FindAll(x => x.Pantheon == Pantheon.Human);
             foreach (var religion in religions)
             {
                 Hero.MainHero.AddReligiousInfluence(religion, -100, true);

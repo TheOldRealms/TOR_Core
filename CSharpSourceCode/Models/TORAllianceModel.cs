@@ -10,6 +10,12 @@ namespace TOR_Core.Models
 {
     public class TORAllianceModel : DefaultAllianceModel
     {
+        // Scaling constants for alliance score calculations
+        private const float ReligionCompatibilityWeight = 20f;
+        private const float CultureCompatibilityWeight = 30f;
+        private const float HostileReligionPenalty = -100f;
+        private const float ChaosFactionPenalty = -1000f;
+
         private static readonly TextObject _religionCompatibilityText = new TextObject("{=TOR_Alliance_Religion}Religious compatibility");
         private static readonly TextObject _cultureCompatibilityText = new TextObject("{=TOR_Alliance_Culture}Cultural ties");
         private static readonly TextObject _chaosFactorText = new TextObject("{=TOR_Alliance_Chaos}Forces of Chaos");
@@ -38,7 +44,7 @@ namespace TOR_Core.Models
             if (kingdomDeclaresAlliance.Culture.StringId == TORConstants.Cultures.CHAOS ||
                 kingdomDeclaredAlliance.Culture.StringId == TORConstants.Cultures.CHAOS)
             {
-                score.Add(-1000f, _chaosFactorText);
+                score.Add(ChaosFactionPenalty, _chaosFactorText);
                 return score;
             }
 
@@ -51,26 +57,20 @@ namespace TOR_Core.Models
                 // Check for hostile religions - major penalty
                 if (religion1.HostileReligions != null && religion1.HostileReligions.Contains(religion2))
                 {
-                    score.Add(-100f, _religionCompatibilityText);
+                    score.Add(HostileReligionPenalty, _religionCompatibilityText);
                 }
                 else
                 {
-                    // Calculate religion similarity score
-                    float religionScore = ReligionObjectHelper.CalculateSimilarityScore(religion1, religion2);
-                    // Scale to a reasonable range (-20 to +20)
-                    float scaledReligionScore = religionScore * 20f;
-                    score.Add(scaledReligionScore, _religionCompatibilityText);
+                    float religionScore = ReligionObjectHelper.CalculateReligionCompatibility(religion1, religion2);
+                    score.Add(religionScore * ReligionCompatibilityWeight, _religionCompatibilityText);
                 }
             }
 
-            // Add culture compatibility factor using detailed culture relationships
-            // CultureHelper returns -1.0 (bitter enemies) to +1.0 (same culture/strong allies)
-            // Scale to meaningful diplomatic range: -30 to +30
-            float cultureCompatibility = CultureHelper.CalculateCultureCompatibility(
+            // Add culture compatibility factor using pantheon-based relationships
+            float cultureCompatibility = ReligionObjectHelper.CalculateCultureCompatibility(
                 kingdomDeclaresAlliance.Culture?.StringId,
                 kingdomDeclaredAlliance.Culture?.StringId);
-            float scaledCultureScore = cultureCompatibility * 30f;
-            score.Add(scaledCultureScore, _cultureCompatibilityText);
+            score.Add(cultureCompatibility * CultureCompatibilityWeight, _cultureCompatibilityText);
 
             return score;
         }
