@@ -7,6 +7,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics
 {
@@ -69,7 +70,7 @@ namespace TOR_Core.CampaignMechanics
                 }
                 if (MBRandom.RandomFloat > 0.7f)
                 {
-                    var candidateKingdoms = Kingdom.All.WhereQ(x => !x.IsEliminated && x.Culture == clan.Culture);
+                    var candidateKingdoms = GetCandidateKingdomsForClan(clan);
                     if (candidateKingdoms != null && candidateKingdoms.Count() > 0)
                     {
                         var targetKingdom = candidateKingdoms.MinBy(x => x.CurrentTotalStrength);
@@ -82,6 +83,38 @@ namespace TOR_Core.CampaignMechanics
                 }
                 if (_independentClans[clan.StringId] < CampaignTime.Now.ToWeeks) DiscontinueClan(clan);
             }
+        }
+
+        /// <summary>
+        /// Gets candidate kingdoms for a destroyed clan to join.
+        /// Includes special faction pairings for closely-related factions.
+        /// </summary>
+        private IEnumerable<Kingdom> GetCandidateKingdomsForClan(Clan clan)
+        {
+            var originalKingdomId = clan.StringId?.Split('_')[0]; // Extract faction from clan ID (e.g., "laurelorn" from "laurelorn_clan_1")
+
+            // Special faction pairings - these factions should merge with each other
+            var specialPairings = new Dictionary<string, string>
+            {
+                { TORConstants.Factions.LAURELORN, TORConstants.Factions.ATHEL_LOREN },
+                { TORConstants.Factions.ATHEL_LOREN, TORConstants.Factions.LAURELORN },
+                { TORConstants.Factions.MOUSILLON, TORConstants.Factions.SYLVANIA },
+                { TORConstants.Factions.SYLVANIA, TORConstants.Factions.MOUSILLON }
+            };
+
+            // Check if this clan's original faction has a special pairing
+            if (specialPairings.TryGetValue(originalKingdomId, out string pairedFactionId))
+            {
+                var pairedKingdom = Kingdom.All.FirstOrDefault(k => !k.IsEliminated && k.StringId == pairedFactionId);
+                if (pairedKingdom != null)
+                {
+                    // Prioritize the paired faction - return only it
+                    return new[] { pairedKingdom };
+                }
+            }
+
+            // Fallback to normal culture-based matching
+            return Kingdom.All.WhereQ(x => !x.IsEliminated && x.Culture == clan.Culture);
         }
 
         private bool CanKingdomBeDiscontinued(Kingdom kingdom)

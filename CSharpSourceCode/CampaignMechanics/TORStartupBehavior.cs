@@ -73,15 +73,6 @@ namespace TOR_Core.CampaignMechanics
                 TORKingdomDecisionsCampaignBehavior.UpdateWarPeaceForAlliance(stirland);
                 stirland.SetAllyTriggered(false);
             }
-            
-            var mousillon = Kingdom.All.Find(m => m.StringId ==TORConstants.Factions.MOUSILLON);
-            var sylvania =  Kingdom.All.Find(s => s.StringId == TORConstants.Factions.SYLVANIA);
-            if (mousillon != null && sylvania != null)
-            {
-                mousillon.SetAlliance(sylvania);
-                TORKingdomDecisionsCampaignBehavior.UpdateWarPeaceForAlliance(sylvania);
-                sylvania.SetAllyTriggered(false);
-            }
 
             // Additional alliances can be added here as needed
             // Example: Empire provinces that should be allied

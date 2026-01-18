@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace TOR_Core.Utilities
 {
@@ -181,6 +183,178 @@ namespace TOR_Core.Utilities
                 NECK_SNAPPERS, RED_EYE, SKULL_SMASHERZ, REAVAZ
  
             ];
+        }
+
+        /// <summary>
+        /// Maps settlement prefix codes (e.g., "RL", "ST", "AV") to their rightful faction StringIds.
+        /// Used for territorial integrity calculations in war scoring.
+        /// </summary>
+        public static class SettlementPrefixToFaction
+        {
+            private static readonly Dictionary<string, string> _prefixMap = new()
+            {
+                // Empire Provinces
+                { "RL", Factions.REIKLAND },
+                { "ML", Factions.MIDDENLAND },
+                { "OL", Factions.OSTLAND },
+                { "OM", Factions.OSTERMARK },
+                { "ST", Factions.STIRLAND },
+                { "HL", Factions.HOCHLAND },
+                { "AV", Factions.AVERLAND },
+                { "WI", Factions.WISSENLAND },
+                { "TB", Factions.TALABECLAND },
+                { "NL", Factions.NORDLAND },
+                { "MT", Factions.MOOT },
+
+                // Bretonnia Duchies
+                { "CO", Factions.COURONNE },
+                { "AQ", Factions.AQUITAINE },
+                { "AS", Factions.ARTOIS },
+                { "BL", Factions.BORDELEAUX },
+                { "GX", Factions.GISOREUX },
+                { "MO", Factions.MONTFORT },
+                { "PA", Factions.PARRAVON },
+                { "QU", Factions.QUENELLES },
+                { "CC", Factions.CARCASSONNE },
+                { "BA", Factions.BASTONNE },
+                { "BE", Factions.BRIONNE },
+                { "LA", Factions.ANGUILLE },
+                { "LY", Factions.LYONESSE },
+
+                // Vampire Counts
+                { "SY", Factions.SYLVANIA },
+                { "MS", Factions.MOUSILLON },
+                { "MT", Factions.NECRACHS },
+                { "BK", Factions.BLOODDRAGONS },
+
+                // Dwarf Holds
+                { "KK", Factions.KARAK_KADRIN },
+                { "NO", Factions.KARAK_NORN },
+                { "KH", Factions.KARAK_HIRN },
+                { "KI", Factions.KARAK_IZOR },
+                { "AZ", Factions.KARAK_AZGARAZ },
+                { "KF", Factions.KARAK_KAFERKAMMAZ },
+                { "ZI", Factions.KARAK_ZIFLIN },
+                { "ZH", Factions.KARAK_ZHUFBAR },
+                { "KG", Factions.KARAK_GANTUK },
+                { "EZ", Factions.KARAK_EKSFILAZ },
+                { "AN", Factions.KARAK_ANGAZHAR },
+
+                // Elf Kingdoms
+                { "LA", Factions.ATHEL_LOREN },
+                { "LL", Factions.LAURELORN },
+
+                // Greenskin Tribes
+                { "BX", Factions.BAD_AXES },
+                { "BP", Factions.BLACK_PIT },
+                { "BZ", Factions.BLACK_SUNZ },
+                { "BS", Factions.BLOODY_SPEARZ },
+                { "BK", Factions.BRASSKEEP },
+                { "CE", Factions.CROOKED_EYE },
+                { "DG", Factions.DEFF_GRINDAZ },
+                { "IT", Factions.IRON_TRIBE },
+                { "MC", Factions.MASSIF_CHOPPAS },
+                { "NS", Factions.NECK_SNAPPERS },
+                { "RE", Factions.RED_EYE },
+                { "SM", Factions.SKULL_SMASHERZ },
+
+                // Other Greenskin
+                { "RZ", Factions.REAVAZ },
+
+                // Other
+                { "WA", Factions.WASTELAND },
+            };
+
+            /// <summary>
+            /// Gets the faction StringId that a settlement with the given prefix belongs to.
+            /// </summary>
+            /// <param name="settlementId">The settlement ID (e.g., "town_RL1", "castle_ST2")</param>
+            /// <returns>The faction StringId that historically owns this settlement, or null if not found</returns>
+            public static string GetRightfulOwner(string settlementId)
+            {
+                if (string.IsNullOrEmpty(settlementId))
+                    return null;
+
+                // Extract the prefix (two letters after "town_" or "castle_")
+                // Format: town_XX# or castle_XX#
+                string prefix = null;
+
+                if (settlementId.StartsWith("town_") && settlementId.Length >= 7)
+                {
+                    prefix = settlementId.Substring(5, 2).ToUpper();
+                }
+                else if (settlementId.StartsWith("castle_") && settlementId.Length >= 9)
+                {
+                    prefix = settlementId.Substring(7, 2).ToUpper();
+                }
+
+                if (prefix != null && _prefixMap.TryGetValue(prefix, out string factionId))
+                {
+                    return factionId;
+                }
+
+                return null;
+            }
+
+            /// <summary>
+            /// Checks if a settlement belongs originally to a specific faction based on its prefix.
+            /// </summary>
+            public static bool SettlementBelongsOriginallyToFaction(Settlement settlement, Kingdom faction)
+            {
+                var id = "";
+                var kingdom="";
+                if (settlement != null)
+                {
+                    id = settlement.StringId;
+                }
+                var rightfulOwner = GetRightfulOwner(id);
+                return rightfulOwner != null && rightfulOwner == faction.StringId;
+            }
+
+            /// <summary>
+            /// Gets the culture StringId for a faction StringId.
+            /// </summary>
+            public static string GetFactionCulture(string factionId)
+            {
+                if (string.IsNullOrEmpty(factionId))
+                    return null;
+
+                // Empire provinces
+                if (Factions.AllEmpire.Contains(factionId))
+                    return Cultures.EMPIRE;
+
+                // Bretonnia duchies
+                if (Factions.AllBretonnia.Contains(factionId))
+                    return Cultures.BRETONNIA;
+
+                // Vampire Counts - mixed cultures
+                if (factionId == Factions.SYLVANIA)
+                    return Cultures.SYLVANIA;
+                if (factionId == Factions.MOUSILLON)
+                    return Cultures.MOUSILLON;
+                if (factionId == Factions.NECRACHS || factionId == Factions.BLOODDRAGONS)
+                    return Cultures.SYLVANIA; // Generic vampire culture
+
+                // Dwarf Holds
+                if (Factions.AllDwarfs.Contains(factionId))
+                    return Cultures.DAWI;
+
+                // Elf Kingdoms
+                if (factionId == Factions.ATHEL_LOREN)
+                    return Cultures.ASRAI;
+                if (factionId == Factions.LAURELORN)
+                    return Cultures.EONIR;
+
+                // Greenskin Tribes
+                if (Factions.AllGreenskins.Contains(factionId) || factionId == Factions.REAVAZ)
+                    return Cultures.GREENSKIN;
+
+                // Wasteland
+                if (factionId == Factions.WASTELAND)
+                    return Cultures.EMPIRE;
+
+                return null;
+            }
         }
 
     }
