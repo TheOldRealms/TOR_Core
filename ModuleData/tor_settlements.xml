@@ -2186,7 +2186,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_WI1_3" name="{=Settlements.Settlement.name.village_WI1_3}Maselhof" posX="1336.25" posY="928.922" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WI1_3}WIP">
+  <Settlement id="village_WI1_3" name="{=Settlements.Settlement.name.village_WI1_3}Maselhof" posX="1336.25" posY="928.922" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WI1_3}A bunch of galleries too small for orcs, which serves to prevent goblins from taking a beating from their larger kin.">
     <Components>
       <Village id="village_comp_WI1_3" village_type="VillageType.europe_horse_ranch" hearth="250" bound="Settlement.town_WI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
