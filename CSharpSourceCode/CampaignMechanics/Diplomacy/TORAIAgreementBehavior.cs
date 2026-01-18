@@ -27,7 +27,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         public override void SyncData(IDataStore dataStore)
         {
-            // No persistent data needed
+            
         }
 
         /// <summary>
@@ -37,16 +37,13 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         {
             if (clan == null || clan.IsEliminated || clan.Kingdom == null)
                 return;
-
-            // Only ruling clan triggers the kingdom's considerations
-            if (clan != clan.Kingdom.RulingClan)
+            
+            if (clan != clan.Kingdom.RulingClan)    //this reduces bloat code. per faction just one time
                 return;
-
-            // Skip player kingdom - let player decide
+            
             if (clan.Kingdom == Clan.PlayerClan?.Kingdom)
                 return;
-
-            // Each kingdom has its own consideration interval based on its ID
+            
             if (!ShouldConsiderAgreementsToday(clan.Kingdom))
                 return;
 
@@ -54,12 +51,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             ConsiderTradeAgreements(clan.Kingdom);
             ConsiderAlliances(clan.Kingdom);
         }
-
-        #region Trade Agreements
-
-        /// <summary>
-        /// Main entry point for a kingdom considering trade agreements.
-        /// </summary>
+        
         private void ConsiderTradeAgreements(Kingdom kingdom)
         {
             if (!CanKingdomConsiderTrade(kingdom))
@@ -217,8 +209,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
             return true;
         }
-
-        #endregion
 
         #region Alliances
 
@@ -450,7 +440,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         }
 
         /// <summary>
-        /// Determines if a kingdom should consider agreements today.
+        /// Determines if a kingdom should consider agreements today. No serialization needed. just pure randomization
         /// </summary>
         private bool ShouldConsiderAgreementsToday(Kingdom kingdom)
         {
