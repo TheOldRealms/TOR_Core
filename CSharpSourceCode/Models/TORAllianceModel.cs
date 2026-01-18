@@ -71,6 +71,18 @@ namespace TOR_Core.Models
                 kingdomDeclaresAlliance.Culture?.StringId,
                 kingdomDeclaredAlliance.Culture?.StringId);
             score.Add(cultureCompatibility * CultureCompatibilityWeight, _cultureCompatibilityText);
+            
+            
+            //Eonir bonus
+            if (kingdomDeclaresAlliance.Leader.Culture.StringId == TORConstants.Cultures.EONIR)
+            {
+                score.Add(10);
+            }
+            
+            
+            // Alliance score is typically higher values, scale it down for chance
+            score.Add(-50);
+            score.AddFactor(2);
 
             return score;
         }

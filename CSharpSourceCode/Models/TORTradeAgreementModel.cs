@@ -42,15 +42,11 @@ namespace TOR_Core.Models
         {
             reason = includeReason ? TextObject.GetEmpty() : null;
 
-            // Check lore restrictions first
+            // Check lore restrictions first - chaos check . maybe later more
             if (!CanKingdomTrade(kingdom, out reason, includeReason))
                 return false;
 
             if (!CanKingdomTrade(other, out reason, includeReason))
-                return false;
-
-            // Check pantheon compatibility for trade
-            if (!ArePantheonsTradeCompatible(kingdom, other, out reason, includeReason))
                 return false;
 
             // Call base game validation (war status, max agreements, etc.)
@@ -97,27 +93,11 @@ namespace TOR_Core.Models
                 case Pantheon.Chaos:
                     reason = _chaosCannotTradeText;
                     return false;
-
-                case Pantheon.Greenskin:
-                    reason = _greenskinCannotTradeText;
-                    return false;
-
             }
 
             return true;
         }
-
-        /// <summary>
-        /// Checks if two kingdoms' pantheons allow for trade between them.
-        /// </summary>
-        private bool ArePantheonsTradeCompatible(Kingdom kingdom1, Kingdom kingdom2, out TextObject reason, bool includeReason)
-        {
-            reason = includeReason ? TextObject.GetEmpty() : null;
-
-            // Chaos and Greenskin already handled in CanKingdomTrade
-            // All other factions (including Undead) can trade with each other
-            return true;
-        }
+        
 
         /// <summary>
         /// Adds culture-based modifiers to the trade score.
@@ -183,10 +163,7 @@ namespace TOR_Core.Models
                 score.Add(EonirTradeBonus, _eonirTradeText);
             }
         }
-
-        /// <summary>
-        /// Gets the dominant pantheon for a kingdom based on its culture.
-        /// </summary>
+        
         private Pantheon GetKingdomPantheon(Kingdom kingdom)
         {
             // First try to get from leader's religion

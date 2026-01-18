@@ -89,11 +89,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             // Chaos never trades
             if (pantheon == Pantheon.Chaos)
                 return false;
-
-            // Greenskins never trade
-            if (pantheon == Pantheon.Greenskin)
-                return false;
-
+            
             return true;
         }
 
@@ -149,7 +145,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             }
 
             var validPartners = candidateKingdoms
-                .Where(k => IsTradeLoreCompatible(myPantheon, GetKingdomPantheon(k)))
+                .Where(otherkingdom => AllowTrade(otherkingdom,kingdom))
                 .Where(k => tradeModel.CanMakeTradeAgreement(kingdom, k, true, out _))
                 .ToList();
 
@@ -195,50 +191,40 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             var decision = new TradeAgreementDecision(proposingLord.Clan, target);
             proposer.AddDecision(decision, true);
         }
-
-        /// <summary>
-        /// Checks if trade is allowed between two pantheons.
-        /// </summary>
-        private bool IsTradeLoreCompatible(Pantheon pantheon1, Pantheon pantheon2)
+        
+        private bool AllowTrade(Kingdom kingdom, Kingdom otherKingdom)
         {
-            if (pantheon1 == Pantheon.Chaos || pantheon2 == Pantheon.Chaos)
-                return false;
-
-            if (pantheon1 == Pantheon.Greenskin || pantheon2 == Pantheon.Greenskin)
-                return false;
-
-            return true;
+            var tradeModel = Campaign.Current?.Models?.TradeAgreementModel;
+            return tradeModel != null && tradeModel.CanMakeTradeAgreement(kingdom,otherKingdom,true,out _);
         }
-
-        #region Alliances
 
         /// <summary>
         /// Main entry point for a kingdom considering alliances.
         /// </summary>
-        private void ConsiderAlliances(Kingdom kingdom)
+        private void ConsiderAlliances(Kingdom ownKingdom)
         {
-            if (!CanKingdomConsiderAlliance(kingdom))
+            if (!CanKingdomConsiderAlliance(ownKingdom))
                 return;
 
-            var potentialAllies = GetPotentialAlliancePartners(kingdom);
+            var potentialAllies = GetPotentialAlliancePartners(ownKingdom);
             if (!potentialAllies.Any())
                 return;
 
             // Get candidates and randomly select one to evaluate
-            var candidates = GetCandidateLords(kingdom);
+            var candidates = GetCandidateLords(ownKingdom);
             var proposingLord = SelectProposingLord(candidates);
             if (proposingLord == null)
                 return;
 
-            foreach (var targetKingdom in potentialAllies)
-            {
-                float chance = CalculateAllianceProposalChance(proposingLord, kingdom, targetKingdom);
 
-                if (MBRandom.RandomFloat * 100f < chance)
-                {
-                    ProposeAlliance(kingdom, targetKingdom, proposingLord);
-                    return; // Only one proposal per tick
-                }
+            var targetKingdom = potentialAllies.GetRandomElement();
+            if(targetKingdom == null) return;
+            
+            float chance = CalculateAllianceProposalChance(proposingLord, ownKingdom, targetKingdom);
+
+            if (MBRandom.RandomFloat * 100f < chance)
+            {
+                ProposeAlliance(ownKingdom, targetKingdom, proposingLord);
             }
         }
 
@@ -299,7 +285,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                         .Where(k => k != kingdom && !k.IsEliminated)
                         .Select(k => new { Kingdom = k, Distance = GetKingdomDistance(kingdom, k) })
                         .OrderBy(x => x.Distance)
-                        .Take(10)
                         .Select(x => x.Kingdom)
                         .ToList();
                 }
@@ -334,7 +319,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 })
                 .Where(x => x.Score > 50) // Alliance threshold is higher than trade
                 .OrderByDescending(x => x.Score)
-                .Take(3)
+                .TakeRandom(3)
                 .Select(x => x.Kingdom)
                 .ToList();
 
@@ -352,13 +337,11 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
             float score = allianceModel.GetScoreOfStartingAlliance(
                 proposingKingdom, targetKingdom, lord.Clan, out _).ResultNumber;
-
-            // Alliance score is typically higher values, scale it down for chance
-            // Only propose if score > 50, and scale chance from there
+            
             if (score <= 50)
                 return 0f;
 
-            return (score - 50) * 2; // Score of 100 = 100% chance, Score of 75 = 50% chance
+            return score;
         }
 
         /// <summary>
@@ -388,8 +371,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
             return true;
         }
-
-        #endregion
 
         #region Shared Helper Methods
 
