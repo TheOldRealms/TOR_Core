@@ -15,6 +15,7 @@ namespace TOR_Core.Models
         private const float CultureCompatibilityWeight = 30f;
         private const float HostileReligionPenalty = -100f;
         private const float ChaosFactionPenalty = -1000f;
+        private const float EonirDiplomacyBonus = 10f;
 
         private static readonly TextObject _religionCompatibilityText = new TextObject("{=TOR_Alliance_Religion}Religious compatibility");
         private static readonly TextObject _cultureCompatibilityText = new TextObject("{=TOR_Alliance_Culture}Cultural ties");
@@ -76,7 +77,7 @@ namespace TOR_Core.Models
             //Eonir bonus
             if (kingdomDeclaresAlliance.Leader.Culture.StringId == TORConstants.Cultures.EONIR)
             {
-                score.Add(10);
+                score.Add(EonirDiplomacyBonus);
             }
             
             

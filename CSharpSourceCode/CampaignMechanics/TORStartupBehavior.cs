@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.Core;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics
 {
@@ -64,13 +65,22 @@ namespace TOR_Core.CampaignMechanics
         private void SetupInitialAlliances()
         {
             // Moot and Stirland alliance (Dwarves and Empire)
-            var moot = Kingdom.All.Find(m => m.StringId == "moot");
-            var stirland = Kingdom.All.Find(s => s.StringId == "stirland");
+            var moot = Kingdom.All.Find(m => m.StringId == TORConstants.Factions.MOOT);
+            var stirland = Kingdom.All.Find(s => s.StringId == TORConstants.Factions.STIRLAND);
             if (moot != null && stirland != null)
             {
                 moot.SetAlliance(stirland);
                 TORKingdomDecisionsCampaignBehavior.UpdateWarPeaceForAlliance(stirland);
                 stirland.SetAllyTriggered(false);
+            }
+            
+            var mousillon = Kingdom.All.Find(m => m.StringId ==TORConstants.Factions.MOUSILLON);
+            var sylvania =  Kingdom.All.Find(s => s.StringId == TORConstants.Factions.SYLVANIA);
+            if (mousillon != null && sylvania != null)
+            {
+                mousillon.SetAlliance(sylvania);
+                TORKingdomDecisionsCampaignBehavior.UpdateWarPeaceForAlliance(sylvania);
+                sylvania.SetAllyTriggered(false);
             }
 
             // Additional alliances can be added here as needed

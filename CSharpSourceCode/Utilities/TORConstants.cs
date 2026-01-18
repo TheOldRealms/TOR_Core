@@ -52,5 +52,136 @@ namespace TOR_Core.Utilities
             ];
         }
 
+        public readonly struct Factions
+        {
+            // Empire Provinces
+            public const string REIKLAND = "reikland";
+            public const string MIDDENLAND = "middenland";
+            public const string OSTLAND = "ostland";
+            public const string OSTERMARK = "ostermark";
+            public const string STIRLAND = "stirland";
+            public const string HOCHLAND = "hochland";
+            public const string AVERLAND = "averland";
+            public const string WISSENLAND = "wissenland";
+            public const string TALABECLAND = "talabecland";
+            public const string NORDLAND = "nordland";
+            public const string MOOT = "moot";
+
+            // Bretonnia Duchies
+            public const string COURONNE = "couronne";
+            public const string AQUITAINE = "aquitaine";
+            public const string ARTOIS = "artois";
+            public const string BORDELEAUX = "bordeleaux";
+            public const string GISOREUX = "gisoreux";
+            public const string MONTFORT = "montfort";
+            public const string PARRAVON = "parravon";
+            public const string QUENELLES = "quenelles";
+            public const string CARCASSONNE = "carcassonne";
+            public const string BASTONNE = "bastonne";
+            public const string BRIONNE = "brionne";
+            public const string ANGUILLE = "anguille";
+            public const string LYONESSE = "lyonesse";
+
+            // Vampire Counts
+            public const string SYLVANIA = "sylvania";
+            public const string MOUSILLON = "mousillon";
+            public const string NECRACHS = "necrachs";
+            public const string BLOODDRAGONS = "blooddragons";
+
+            // Dwarf Holds
+            public const string KARAK_KADRIN = "karak_kadrin";
+            public const string KARAK_NORN = "karak_norn";
+            public const string KARAK_HIRN = "karak_hirn";
+            public const string KARAK_IZOR = "karak_izor";
+            public const string KARAK_AZGARAZ = "karak_azgaraz";
+            public const string KARAK_KAFERKAMMAZ = "karak_kaferkammaz";
+            public const string KARAK_ZIFLIN = "karak_ziflin";
+            public const string KARAK_ZHUFBAR = "karak_zhufbar";
+            public const string KARAK_GANTUK = "karak_gantuk";
+            public const string KARAK_EKSFILAZ = "karak_eksfilaz";
+            public const string KARAK_ANGAZHAR = "karak_angazhar";
+
+            // Elf Kingdoms
+            public const string ATHEL_LOREN = "athel_loren";
+            public const string LAURELORN = "laurelorn";
+
+            // Greenskin Tribes
+            public const string BAD_AXES = "bad_axes";
+            public const string BLACK_PIT = "black_pit";
+            public const string BLACK_SUNZ = "black_sunz";
+            public const string BLOODY_SPEARZ = "bloody_spearz";
+            public const string BRASSKEEP = "brasskeep";
+            public const string CROOKED_EYE = "crooked_eye";
+            public const string DEFF_GRINDAZ = "deff_grindaz";
+            public const string IRON_TRIBE = "iron_tribe";
+            public const string MASSIF_CHOPPAS = "massif_choppas";
+            public const string NECK_SNAPPERS = "neck_snappers";
+            public const string RED_EYE = "red_eye";
+            public const string SKULL_SMASHERZ = "skull_smasherz";
+
+            // Other
+            public const string REAVAZ = "reavaz";
+            public const string WASTELAND = "wasteland";
+
+            public static readonly List<string> AllEmpire =
+            [
+                REIKLAND, MIDDENLAND, OSTLAND, OSTERMARK, STIRLAND, HOCHLAND,
+                AVERLAND, WISSENLAND, TALABECLAND, NORDLAND, MOOT
+            ];
+
+            public static readonly List<string> AllBretonnia =
+            [
+                COURONNE, AQUITAINE, ARTOIS, BORDELEAUX, GISOREUX, MONTFORT,
+                PARRAVON, QUENELLES, CARCASSONNE, BASTONNE, BRIONNE, ANGUILLE, LYONESSE
+            ];
+
+            public static readonly List<string> AllVampire =
+            [
+                SYLVANIA, MOUSILLON, NECRACHS, BLOODDRAGONS
+            ];
+
+            public static readonly List<string> AllDwarfs =
+            [
+                KARAK_KADRIN, KARAK_NORN, KARAK_HIRN, KARAK_IZOR, KARAK_AZGARAZ,
+                KARAK_KAFERKAMMAZ, KARAK_ZIFLIN, KARAK_ZHUFBAR, KARAK_GANTUK,
+                KARAK_EKSFILAZ, KARAK_ANGAZHAR
+            ];
+
+            public static readonly List<string> AllElves =
+            [
+                ATHEL_LOREN, LAURELORN
+            ];
+
+            public static readonly List<string> AllGreenskins =
+            [
+                BAD_AXES, BLACK_PIT, BLACK_SUNZ, BLOODY_SPEARZ, BRASSKEEP,
+                CROOKED_EYE, DEFF_GRINDAZ, IRON_TRIBE, MASSIF_CHOPPAS,
+                NECK_SNAPPERS, RED_EYE, SKULL_SMASHERZ
+            ];
+
+            public static readonly List<string> All =
+            [
+                // Empire
+                REIKLAND, MIDDENLAND, OSTLAND, OSTERMARK, STIRLAND, HOCHLAND,
+                AVERLAND, WISSENLAND, TALABECLAND, NORDLAND, MOOT, WASTELAND,
+                // Bretonnia
+                COURONNE, AQUITAINE, ARTOIS, BORDELEAUX, GISOREUX, MONTFORT,
+                PARRAVON, QUENELLES, CARCASSONNE, BASTONNE, BRIONNE, ANGUILLE, LYONESSE,
+                // Vampires
+                SYLVANIA, MOUSILLON, NECRACHS, BLOODDRAGONS,
+                // Dwarfs
+                KARAK_KADRIN, KARAK_NORN, KARAK_HIRN, KARAK_IZOR, KARAK_AZGARAZ,
+                KARAK_KAFERKAMMAZ, KARAK_ZIFLIN, KARAK_ZHUFBAR, KARAK_GANTUK,
+                KARAK_EKSFILAZ, KARAK_ANGAZHAR,
+                // Elves
+                ATHEL_LOREN, LAURELORN,
+                // Greenskins
+                BAD_AXES, BLACK_PIT, BLACK_SUNZ, BLOODY_SPEARZ, BRASSKEEP,
+                CROOKED_EYE, DEFF_GRINDAZ, IRON_TRIBE, MASSIF_CHOPPAS,
+                NECK_SNAPPERS, RED_EYE, SKULL_SMASHERZ, REAVAZ
+ 
+            ];
+        }
+
     }
 }

@@ -181,51 +181,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         }
 
         /// <summary>
-        /// Determines if an ally should join a defensive war (ally was attacked).
-        /// </summary>
-        private bool ShouldAllyJoinWar(Kingdom ally, Kingdom attackedAlly, Kingdom attacker)
-        {
-            // Player kingdom - always join for now (could add popup later)
-            if (ally == Clan.PlayerClan?.Kingdom)
-            {
-                return true; // TODO: Could add player choice popup here
-            }
-
-            // Chaos factions don't honor alliances (shouldn't have any, but safety)
-            if (ally.Culture.StringId == TORConstants.Cultures.CHAOS)
-            {
-                return false;
-            }
-
-            // Check religion - much more likely to join against hostile religions
-            var allyReligion = ally.Leader?.GetDominantReligion();
-            var attackerReligion = attacker.Leader?.GetDominantReligion();
-
-            if (allyReligion != null && attackerReligion != null)
-            {
-                // Always join against religious enemies
-                if (allyReligion.HostileReligions?.Contains(attackerReligion) == true)
-                {
-                    return true;
-                }
-            }
-
-            // Check relative strength - might break alliance if massively outmatched
-            float ourStrength = ally.CurrentTotalStrength + attackedAlly.CurrentTotalStrength;
-            float enemyStrength = attacker.CurrentTotalStrength;
-
-            // If enemy is 5x stronger than combined alliance, consider breaking
-            if (enemyStrength > ourStrength * 5f)
-            {
-                // Still 30% chance to honor alliance even against overwhelming odds
-                return MBRandom.RandomFloat < 0.3f;
-            }
-
-            // Default: honor the alliance
-            return true;
-        }
-
-        /// <summary>
         /// Determines if an ally should join an offensive war (ally declared war).
         /// Less obligatory than defensive.
         /// </summary>
@@ -242,8 +197,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             {
                 return false;
             }
-
-            // Check if target is a religious enemy
+            
             var allyReligion = ally.Leader?.GetDominantReligion();
             var targetReligion = target.Leader?.GetDominantReligion();
 
@@ -251,11 +205,10 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             {
                 if (allyReligion.HostileReligions?.Contains(targetReligion) == true)
                 {
-                    return true; // Gladly join war against religious enemies
+                    return true; 
                 }
             }
-
-            // Less likely to join offensive wars - 40% chance
+            
             return MBRandom.RandomFloat < 0.4f;
         }
 
