@@ -32,17 +32,7 @@ public static class KingdomExtension
 
     public static bool IsCoastalKingdom(this Kingdom kingdom)
     {
-
-        //Nordland
-        //Marienburg
-        //Ostland
-        //Mousillon
-        //Lyonesse
-        //Bordeleaux
-        //Coronne
-        //Brionne
-        //Languille
-
+        
         string[] coastalKingdoms = { "nordland", "ostland", "wasteland", "couronne", "anguille", "lyonesse", "mousillon", "bordeleaux", "brionne" };
 
 
@@ -53,10 +43,7 @@ public static class KingdomExtension
     {
         return kingdom.RulingClan.IsCastleFaction();
     }
-
-    /// <summary>
-    /// Gets all kingdoms that have a trade agreement with this kingdom.
-    /// </summary>
+    
     public static IEnumerable<Kingdom> GetTradeAgreementKingdoms(this Kingdom kingdom)
     {
         var tradeAgreementBehavior = Campaign.Current?.GetCampaignBehavior<TradeAgreementsCampaignBehavior>();
@@ -67,18 +54,12 @@ public static class KingdomExtension
             .Where(k => k != kingdom && !k.IsEliminated)
             .Where(k => tradeAgreementBehavior.HasTradeAgreement(kingdom, k));
     }
-
-    /// <summary>
-    /// Gets the count of trade agreements for this kingdom.
-    /// </summary>
+    
     public static int GetTradeAgreementCount(this Kingdom kingdom)
     {
         return kingdom.GetTradeAgreementKingdoms().Count();
     }
-
-    /// <summary>
-    /// Checks if this kingdom has a trade agreement with another kingdom.
-    /// </summary>
+    
     public static bool HasTradeAgreementWith(this Kingdom kingdom, Kingdom otherKingdom)
     {
         var tradeAgreementBehavior = Campaign.Current?.GetCampaignBehavior<TradeAgreementsCampaignBehavior>();
@@ -87,10 +68,7 @@ public static class KingdomExtension
 
         return tradeAgreementBehavior.HasTradeAgreement(kingdom, otherKingdom);
     }
-
-    /// <summary>
-    /// Gets all kingdoms currently at war with this kingdom.
-    /// </summary>
+    
     public static IEnumerable<Kingdom> GetEnemyKingdoms(this Kingdom kingdom)
     {
         if (kingdom == null)
@@ -99,18 +77,12 @@ public static class KingdomExtension
         return Kingdom.All
             .Where(k => k != kingdom && !k.IsEliminated && kingdom.IsAtWarWith(k));
     }
-
-    /// <summary>
-    /// Gets the total military strength of all enemy kingdoms.
-    /// </summary>
+    
     public static float GetTotalEnemyStrength(this Kingdom kingdom)
     {
         return kingdom.GetEnemyKingdoms().Sum(k => k.CurrentTotalStrength);
     }
 
-    /// <summary>
-    /// Gets all kingdoms currently allied with this kingdom.
-    /// </summary>
     public static IEnumerable<Kingdom> GetAlliedKingdoms(this Kingdom kingdom)
     {
         if (kingdom == null)
@@ -119,10 +91,7 @@ public static class KingdomExtension
         return Kingdom.All
             .Where(k => k != kingdom && !k.IsEliminated && kingdom.IsAlliedWith(k));
     }
-
-    /// <summary>
-    /// Gets the count of alliances for this kingdom.
-    /// </summary>
+    
     public static int GetAllianceCount(this Kingdom kingdom)
     {
         return kingdom.GetAlliedKingdoms().Count();

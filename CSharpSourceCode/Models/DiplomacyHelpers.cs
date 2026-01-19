@@ -13,7 +13,7 @@ namespace TOR_Core.Models
     public static class DiplomacyHelpers
     {
         // Distance thresholds for different diplomatic actions
-        public const float MaxWarDistance = 350f;
+        public const float MaxWarDistance = 300f;
         public const float MaxAllianceDistance = 500f;
         public const float MaxTradeDistance = 600f;
 

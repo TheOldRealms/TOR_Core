@@ -494,11 +494,7 @@ namespace TOR_Core.Models
 
             return MBMath.ClampFloat(score, 0f, 40f);
         }
-
-        /// <summary>
-        /// Checks if two kingdoms can form an alliance based on lore restrictions.
-        /// Chaos and Greenskins cannot form alliances.
-        /// </summary>
+        
         public bool CanFormAlliance(Kingdom kingdom1, Kingdom kingdom2)
         {
             var pantheon1 = DiplomacyHelpers.GetKingdomPantheon(kingdom1);
