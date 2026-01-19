@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
 using TaleWorlds.Localization;
+using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TOR_Core.CampaignMechanics.Diplomacy;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.CharacterDevelopment;
@@ -39,6 +40,9 @@ namespace TOR_Core.Models
         private const float AllianceStrengthWeight = 50f;
         private const float AllianceDistancePenaltyFactor = 0.01f;
         private const float AllianceMinimumScoreThreshold = 50f;
+
+        // Personality trait modifier step (trait level -2 to +2 maps to 0.25 to 1.75)
+        private const float TraitModifierStep = 0.375f;
 
         public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 150;
         public override int GetInfluenceCostOfProposingWar(Clan proposingClan) => 150;
@@ -162,19 +166,42 @@ namespace TOR_Core.Models
         /// </summary>
         private float CalculateWarTargetScore(Kingdom declaringKingdom, Kingdom targetKingdom, Clan evaluatingClan)
         {
-            // Traitorous behavior penalties (scaled by 100)
-            float tradeAgreementPenalty = declaringKingdom.HasTradeAgreementWith(targetKingdom) ? -3000f : 0f;
-            float alliancePenalty = declaringKingdom.IsAllyWith(targetKingdom) ? -7000f : 0f;
+            var leader = evaluatingClan?.Leader;
+
+            // Get trait modifiers for the evaluating clan's leader
+            float honorModifier = GetTraitModifier(leader, DefaultTraits.Honor);
+            float generosityInverseModifier = GetInverseTraitModifier(leader, DefaultTraits.Generosity);
+            float calculatingModifier = GetTraitModifier(leader, DefaultTraits.Calculating);
+            float calculatingInverseModifier = GetInverseTraitModifier(leader, DefaultTraits.Calculating);
+            float mercyModifier = GetTraitModifier(leader, DefaultTraits.Mercy);
+            float valorModifier = GetTraitModifier(leader, DefaultTraits.Valor);
+
+            // Traitorous behavior penalties (scaled by 100, modified by Honor)
+            // Dishonorable lords (-2 Honor) barely care about breaking agreements
+            float tradeAgreementPenalty = declaringKingdom.HasTradeAgreementWith(targetKingdom) ? -3000f * honorModifier : 0f;
+            float alliancePenalty = declaringKingdom.IsAllyWith(targetKingdom) ? -7000f * honorModifier : 0f;
 
             // Individual scoring factors
-            float richesScore = CalculateRichesScore(targetKingdom);
-            float relationScore = CalculateRelationScore(evaluatingClan, targetKingdom);
+            // Riches: Greedy lords (low Generosity) care more, Calculating lords amplify awareness
+            float richesScore = CalculateRichesScore(declaringKingdom, targetKingdom) * generosityInverseModifier * calculatingModifier;
+            // Relations: Cruel lords (-2 Mercy) ignore personal relationships
+            float relationScore = CalculateRelationScore(evaluatingClan, targetKingdom) * mercyModifier;
             float distanceScore = CalculateDistanceScore(declaringKingdom, targetKingdom);
-            float religionScore = CalculateReligionScore(declaringKingdom, targetKingdom);
-            float cultureScore = CalculateCultureScore(declaringKingdom, targetKingdom);
-            float territorialScore = CalculateTerritorialIntegrityScore(declaringKingdom, targetKingdom);
-            float rivalryScore = CalculateLorewiseRivalryScore(declaringKingdom, targetKingdom);
-            float tacticalScore = CalculateTacticalScore(declaringKingdom, targetKingdom);
+            // Religion: Pragmatists (high Calculating) and cruel lords (low Mercy) ignore religion
+            float religionScore = CalculateReligionScore(declaringKingdom, targetKingdom) * calculatingInverseModifier * mercyModifier;
+            // Culture: Honorable lords respect cultural bonds, Pragmatists ignore cultural sentiment
+            float cultureScore = CalculateCultureScore(declaringKingdom, targetKingdom) * honorModifier * calculatingInverseModifier;
+            // Territorial: Greedy lords (low Generosity) protect direct claims, Merciful lords liberate kin
+            float territorialScore = CalculateTerritorialIntegrityScore(declaringKingdom, targetKingdom, leader);
+            // Rivalry: Brave lords (+2 Valor) are more motivated by glory/grudges
+            float rivalryScore = CalculateLorewiseRivalryScore(declaringKingdom, targetKingdom) * valorModifier;
+            // Tactical: Cruel lords strike harder when strong, Brave/Merciful lords ignore unfavorable odds, Calculating amplifies
+            float baseTacticalScore = CalculateTacticalScore(declaringKingdom, targetKingdom);
+            float mercyInverseModifier = GetInverseTraitModifier(leader, DefaultTraits.Mercy);
+            float adjustedTactical = baseTacticalScore >= 0
+                ? baseTacticalScore * valorModifier * mercyInverseModifier  // Positive: brave + cruel hit harder
+                : baseTacticalScore / Math.Max(valorModifier * mercyModifier, 0.1f);  // Negative: brave + merciful ignore bad odds
+            float tacticalScore = adjustedTactical * calculatingModifier;
 
             float totalScore = tradeAgreementPenalty
                              + alliancePenalty
@@ -258,13 +285,16 @@ namespace TOR_Core.Models
 
         /// <summary>
         /// Calculates territorial integrity score based on claims.
-        /// - Direct claims: Settlements that rightfully belong to the declaring kingdom
-        /// - Cultural claims: Settlements of same culture held by foreign culture
-        /// - Pantheon claims: Settlements of same pantheon held by different pantheon
+        /// - Direct claims: Settlements that rightfully belong to the declaring kingdom (modified by Generosity inverse)
+        /// - Cultural claims: Settlements of same culture held by foreign culture (modified by Mercy)
+        /// - Pantheon claims: Settlements of same pantheon held by different pantheon (modified by Mercy)
         /// Distance factor applied: nearby claims worth more than distant ones.
         /// </summary>
-        private float CalculateTerritorialIntegrityScore(Kingdom declaringKingdom, Kingdom targetKingdom)
+        private float CalculateTerritorialIntegrityScore(Kingdom declaringKingdom, Kingdom targetKingdom, Hero leader = null)
         {
+            // Trait modifiers for territorial claims
+            float generosityInverseMod = GetInverseTraitModifier(leader, DefaultTraits.Generosity);
+            float mercyMod = GetTraitModifier(leader, DefaultTraits.Mercy);
             float directClaimScore = 0f;
             float culturalClaimScore = 0f;
             float pantheonClaimScore = 0f;
@@ -311,51 +341,104 @@ namespace TOR_Core.Models
                 }
             }
 
-            return directClaimScore * DirectClaimWeight
-                 + culturalClaimScore * CulturalClaimWeight
-                 + pantheonClaimScore * PantheonClaimWeight;
+            // Apply trait modifiers: Greedy lords care about direct claims, Merciful lords care about liberating kin
+            return directClaimScore * DirectClaimWeight * generosityInverseMod
+                 + culturalClaimScore * CulturalClaimWeight * mercyMod
+                 + pantheonClaimScore * PantheonClaimWeight * mercyMod;
         }
 
+        // Resource value tiers for missing resource bonus
+        private static readonly Dictionary<string, float> ResourceValues = new()
+        {
+            // Strategic (high value)
+            { "iron_mine", 1500f },
+            { "silver_mine", 1500f },
+            // Valuable
+            { "salt_mine", 800f },
+            { "europe_horse_ranch", 600f },
+            { "steppe_horse_ranch", 600f },
+            { "desert_horse_ranch", 600f },
+            { "battanian_horse_ranch", 600f },
+            { "sturgian_horse_ranch", 600f },
+            { "vlandian_horse_ranch", 600f },
+            // Useful materials
+            { "lumberjack", 400f },
+            { "clay_mine", 300f },
+            { "flax_plant", 300f },
+            // Luxury
+            { "silk_plant", 500f },
+            { "trapper", 400f },
+            { "vineyard", 300f },
+            // Food (common but still valuable)
+            { "wheat_farm", 200f },
+            { "fisherman", 200f },
+            { "cattle_farm", 200f },
+            { "sheep_farm", 200f },
+            { "swine_farm", 200f },
+            { "date_farm", 150f },
+            { "olive_trees", 150f },
+        };
+
         /// <summary>
-        /// Calculates score based on target kingdom's riches (prosperity).
-        /// Rich kingdoms are more attractive targets, but riches are reduced
-        /// if many competitors are already at war with the target.
-        /// Returns: -5000 (poor) to +5000 (rich), reduced by competition (scaled by 100)
+        /// Calculates score based on target kingdom's overall wealth.
+        /// Considers: village hearth, town prosperity, and missing resources.
         /// </summary>
-        private float CalculateRichesScore(Kingdom targetKingdom)
+        private float CalculateRichesScore(Kingdom declaringKingdom, Kingdom targetKingdom)
         {
             if (targetKingdom.Settlements == null || !targetKingdom.Settlements.Any())
                 return 0f;
 
-            // Calculate total prosperity from towns
+            float totalHearth = 0f;
             float totalProsperity = 0f;
-            int townCount = 0;
+            HashSet<string> ourResources = new();
+            HashSet<string> theirResources = new();
 
+            // Gather our kingdom's resources
+            foreach (var settlement in declaringKingdom.Settlements)
+            {
+                if (settlement.IsVillage && settlement.Village?.VillageType != null)
+                    ourResources.Add(settlement.Village.VillageType.StringId);
+            }
+
+            // Gather target kingdom's wealth and resources
             foreach (var settlement in targetKingdom.Settlements)
             {
-                if (settlement.IsTown && settlement.Town != null)
+                if (settlement.IsVillage && settlement.Village != null)
+                {
+                    totalHearth += settlement.Village.Hearth;
+                    if (settlement.Village.VillageType != null)
+                        theirResources.Add(settlement.Village.VillageType.StringId);
+                }
+                else if (settlement.IsTown && settlement.Town != null)
                 {
                     totalProsperity += settlement.Town.Prosperity;
-                    townCount++;
                 }
             }
 
-            if (townCount == 0)
-                return -2500f; // No towns = poor target
+            // Calculate missing resource bonus (resources they have that we don't)
+            float missingResourceScore = 0f;
+            foreach (var resource in theirResources)
+            {
+                if (!ourResources.Contains(resource))
+                {
+                    missingResourceScore += ResourceValues.GetValueOrDefault(resource, 100f);
+                }
+            }
 
-            float averageProsperity = totalProsperity / townCount;
+            // Weight components (scaled for war scoring)
+            // Hearth: ~200-800 per village, total could be 2000-8000 for a kingdom
+            float hearthScore = totalHearth * 0.5f;  // 1000-4000 range
+            // Prosperity: ~3000-6000 per town, total could be 10000-30000
+            float prosperityScore = totalProsperity * 0.1f;  // 1000-3000 range
+            // Missing resources: 0-5000+ depending on what they have
 
-            // Scale prosperity to -5000 to +5000 range (scaled by 100)
-            // Assume average prosperity is around 3000, rich is 6000+, poor is 1000-
-            float normalized = (averageProsperity - 3000f) / 3000f;
-            float baseRiches = Math.Max(-5000f, Math.Min(5000f, normalized * 5000f));
+            float totalScore = hearthScore + prosperityScore + missingResourceScore;
 
-            // Competition factor: reduce expected riches if others are already carving them up
-            // -40% per competitor, minimum 0.1
+            // Competition factor: reduce if others are already at war with target
             int competitorCount = targetKingdom.GetNumActiveKingdomWars();
-            float competitionFactor = Math.Max(0.1f, 1f - competitorCount * 0.4f);
+            float competitionFactor = Math.Max(0.2f, 1f - competitorCount * 0.25f);
 
-            return baseRiches * competitionFactor;
+            return totalScore * competitionFactor;
         }
 
         /// <summary>
@@ -725,6 +808,30 @@ namespace TOR_Core.Models
 
             // Scale to range [TerritorialMinDistanceFactor, 1.0]
             return TerritorialMinDistanceFactor + rawFactor * (1f - TerritorialMinDistanceFactor);
+        }
+
+        /// <summary>
+        /// Gets a trait-based modifier for war scoring.
+        /// Maps trait level (-2 to +2) to multiplier (0.25 to 1.75).
+        /// Higher trait level = higher modifier.
+        /// </summary>
+        private float GetTraitModifier(Hero leader, TraitObject trait)
+        {
+            if (leader == null) return 1f;
+            int traitLevel = leader.GetTraitLevel(trait);
+            return 1f + (traitLevel * TraitModifierStep);
+        }
+
+        /// <summary>
+        /// Gets an inverse trait-based modifier for war scoring.
+        /// Maps trait level (-2 to +2) to multiplier (1.75 to 0.25).
+        /// Higher trait level = lower modifier.
+        /// </summary>
+        private float GetInverseTraitModifier(Hero leader, TraitObject trait)
+        {
+            if (leader == null) return 1f;
+            int traitLevel = leader.GetTraitLevel(trait);
+            return 1f - (traitLevel * TraitModifierStep);
         }
     }
 }
