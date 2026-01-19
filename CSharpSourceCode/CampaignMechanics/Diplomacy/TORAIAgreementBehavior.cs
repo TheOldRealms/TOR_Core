@@ -516,6 +516,11 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         /// </summary>
         private bool ShouldConsiderAgreementsToday(Kingdom kingdom)
         {
+            if (MBRandom.RandomFloatRanged(0, 1f) < 0.25f)
+            {
+                return false;
+            }
+            
             int hash = kingdom.StringId?.GetHashCode() ?? 0;
             if (hash < 0) hash = -hash;
 
