@@ -41,11 +41,7 @@ namespace TOR_Core.Models
         private const float AllianceDistancePenaltyFactor = 0.01f;
         private const float AllianceMinimumScoreThreshold = 50f;
 
-        // Personality trait modifier step (trait level -2 to +2 maps to 0.25 to 1.75)
-        private const float TraitModifierStep = 0.375f;
-
-        // Distance threshold - beyond this, war is not considered (prevents proxy wars)
-        private const float MaxWarDistance = 800f;
+        // Note: Trait modifiers and distance thresholds are now in DiplomacyHelpers
 
         public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 150;
         public override int GetInfluenceCostOfProposingWar(Clan proposingClan) => 150;
@@ -170,19 +166,18 @@ namespace TOR_Core.Models
         private float CalculateWarTargetScore(Kingdom declaringKingdom, Kingdom targetKingdom, Clan evaluatingClan)
         {
             // DISTANCE CHECK FIRST - prevent proxy wars against distant kingdoms
-            float distance = GetKingdomDistance(declaringKingdom, targetKingdom);
-            if (distance > MaxWarDistance)
+            if (!DiplomacyHelpers.IsWithinWarDistance(declaringKingdom, targetKingdom))
                 return -200000f; // Too far - don't even consider this war
 
             var leader = evaluatingClan?.Leader;
 
             // Get trait modifiers for the evaluating clan's leader
-            float honorModifier = GetTraitModifier(leader, DefaultTraits.Honor);
-            float generosityInverseModifier = GetInverseTraitModifier(leader, DefaultTraits.Generosity);
-            float calculatingModifier = GetTraitModifier(leader, DefaultTraits.Calculating);
-            float calculatingInverseModifier = GetInverseTraitModifier(leader, DefaultTraits.Calculating);
-            float mercyModifier = GetTraitModifier(leader, DefaultTraits.Mercy);
-            float valorModifier = GetTraitModifier(leader, DefaultTraits.Valor);
+            float honorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Honor);
+            float generosityInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Generosity);
+            float calculatingModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Calculating);
+            float calculatingInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Calculating);
+            float mercyModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Mercy);
+            float valorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Valor);
 
             // Traitorous behavior penalties (scaled by 100, modified by Honor)
             // Dishonorable lords (-2 Honor) barely care about breaking agreements
@@ -205,7 +200,7 @@ namespace TOR_Core.Models
             float rivalryScore = CalculateLorewiseRivalryScore(declaringKingdom, targetKingdom) * valorModifier;
             // Tactical: Cruel lords strike harder when strong, Brave/Merciful lords ignore unfavorable odds, Calculating amplifies
             float baseTacticalScore = CalculateTacticalScore(declaringKingdom, targetKingdom);
-            float mercyInverseModifier = GetInverseTraitModifier(leader, DefaultTraits.Mercy);
+            float mercyInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Mercy);
             float adjustedTactical = baseTacticalScore >= 0
                 ? baseTacticalScore * valorModifier * mercyInverseModifier  // Positive: brave + cruel hit harder
                 : baseTacticalScore / Math.Max(valorModifier * mercyModifier, 0.1f);  // Negative: brave + merciful ignore bad odds
@@ -301,8 +296,8 @@ namespace TOR_Core.Models
         private float CalculateTerritorialIntegrityScore(Kingdom declaringKingdom, Kingdom targetKingdom, Hero leader = null)
         {
             // Trait modifiers for territorial claims
-            float generosityInverseMod = GetInverseTraitModifier(leader, DefaultTraits.Generosity);
-            float mercyMod = GetTraitModifier(leader, DefaultTraits.Mercy);
+            float generosityInverseMod = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Generosity);
+            float mercyMod = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Mercy);
             float directClaimScore = 0f;
             float culturalClaimScore = 0f;
             float pantheonClaimScore = 0f;
@@ -818,28 +813,5 @@ namespace TOR_Core.Models
             return TerritorialMinDistanceFactor + rawFactor * (1f - TerritorialMinDistanceFactor);
         }
 
-        /// <summary>
-        /// Gets a trait-based modifier for war scoring.
-        /// Maps trait level (-2 to +2) to multiplier (0.25 to 1.75).
-        /// Higher trait level = higher modifier.
-        /// </summary>
-        private float GetTraitModifier(Hero leader, TraitObject trait)
-        {
-            if (leader == null) return 1f;
-            int traitLevel = leader.GetTraitLevel(trait);
-            return 1f + (traitLevel * TraitModifierStep);
-        }
-
-        /// <summary>
-        /// Gets an inverse trait-based modifier for war scoring.
-        /// Maps trait level (-2 to +2) to multiplier (1.75 to 0.25).
-        /// Higher trait level = lower modifier.
-        /// </summary>
-        private float GetInverseTraitModifier(Hero leader, TraitObject trait)
-        {
-            if (leader == null) return 1f;
-            int traitLevel = leader.GetTraitLevel(trait);
-            return 1f - (traitLevel * TraitModifierStep);
-        }
     }
 }

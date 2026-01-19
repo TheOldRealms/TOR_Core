@@ -791,6 +791,7 @@
     <Compile Include="Models\TORCompanionTrainingModel.cs" />
     <Compile Include="Models\TORCustomResourceModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
+    <Compile Include="Models\DiplomacyHelpers.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TORAllianceModel.cs" />
     <Compile Include="Models\TORTradeAgreementModel.cs" />
