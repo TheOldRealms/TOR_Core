@@ -22,7 +22,7 @@ namespace TOR_Core.Extensions
             int count = 0;
             foreach (var kingdom in Kingdom.All)
             {
-                if (kingdom != faction && faction.IsAtWarWith(kingdom))
+                if (kingdom != faction && faction.IsAtWarWith(kingdom) )
                 {
                     count++;
                 }
