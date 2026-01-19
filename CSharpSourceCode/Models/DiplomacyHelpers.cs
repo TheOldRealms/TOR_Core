@@ -104,5 +104,92 @@ namespace TOR_Core.Models
         }
 
         #endregion
+
+        #region Culture Compatibility
+
+        /// <summary>
+        /// Checks if two kingdoms share the same culture.
+        /// </summary>
+        public static bool AreSameCulture(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            var culture1 = kingdom1?.Culture?.StringId;
+            var culture2 = kingdom2?.Culture?.StringId;
+            return !string.IsNullOrEmpty(culture1) && culture1 == culture2;
+        }
+
+        /// <summary>
+        /// Gets the culture compatibility between two kingdoms.
+        /// Returns: -1 (hostile) to +1 (friendly), 0 = neutral
+        /// </summary>
+        public static float GetCultureCompatibility(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            var culture1 = kingdom1?.Culture?.StringId;
+            var culture2 = kingdom2?.Culture?.StringId;
+
+            if (string.IsNullOrEmpty(culture1) || string.IsNullOrEmpty(culture2))
+                return 0f;
+
+            return ReligionObjectHelper.CalculateCultureCompatibility(culture1, culture2);
+        }
+
+        #endregion
+
+        #region Religion Compatibility
+
+        /// <summary>
+        /// Checks if two kingdoms share the same religion.
+        /// </summary>
+        public static bool AreSameReligion(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            var religion1 = kingdom1?.Leader?.GetDominantReligion();
+            var religion2 = kingdom2?.Leader?.GetDominantReligion();
+            return religion1 != null && religion1 == religion2;
+        }
+
+        /// <summary>
+        /// Checks if two kingdoms have hostile religions.
+        /// </summary>
+        public static bool AreReligionsHostile(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            var religion1 = kingdom1?.Leader?.GetDominantReligion();
+            var religion2 = kingdom2?.Leader?.GetDominantReligion();
+
+            if (religion1 == null || religion2 == null)
+                return false;
+
+            return religion1.HostileReligions != null && religion1.HostileReligions.Contains(religion2);
+        }
+
+        /// <summary>
+        /// Gets the religion compatibility between two kingdoms.
+        /// Returns: -1 (hostile) to +1 (friendly), 0 = neutral
+        /// </summary>
+        public static float GetReligionCompatibility(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            var religion1 = kingdom1?.Leader?.GetDominantReligion();
+            var religion2 = kingdom2?.Leader?.GetDominantReligion();
+
+            if (religion1 == null || religion2 == null)
+                return 0f;
+
+            return ReligionObjectHelper.CalculateReligionCompatibility(religion1, religion2);
+        }
+
+        /// <summary>
+        /// Gets the pantheon compatibility between two kingdoms.
+        /// Returns: -1 (hostile) to +1 (friendly), 0 = neutral
+        /// </summary>
+        public static float GetPantheonCompatibility(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            var religion1 = kingdom1?.Leader?.GetDominantReligion();
+            var religion2 = kingdom2?.Leader?.GetDominantReligion();
+
+            if (religion1 == null || religion2 == null)
+                return 0f;
+
+            return ReligionObjectHelper.GetPantheonCompatibility(religion1.Pantheon, religion2.Pantheon);
+        }
+
+        #endregion
     }
 }

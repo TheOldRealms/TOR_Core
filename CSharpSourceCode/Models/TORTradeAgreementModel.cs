@@ -1,3 +1,4 @@
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -12,62 +13,36 @@ namespace TOR_Core.Models
 {
     /// <summary>
     /// TOR Trade Agreement Model - Determines AI willingness to form trade agreements.
-    ///
-    /// Score Components:
-    /// 1. DISTANCE - Geographic proximity affects trade route viability
-    /// 2. CULTURE - Same/compatible cultures trade more willingly
-    /// 3. RELIGION - Religious compatibility affects trust
-    /// 4. PERSONALITY - Leader traits affect trade attitude
-    /// 5. FACTION - Special faction bonuses (e.g., Eonir merchants)
+    /// Trade agreements provide a diplomatic penalty when declaring war on trade partners.
     /// </summary>
     public class TORTradeAgreementModel : DefaultTradeAgreementModel
     {
-        #region Constants
-
-        // Distance scoring
-        private const float DistanceNeutralThreshold = 300f;  // No penalty below this
-        private const float DistancePenaltyPerUnit = 0.2f;    // Penalty per unit beyond threshold
-        private const float DistanceTooFarPenalty = -50f;     // Hard cutoff penalty
-
         // Culture scoring
         private const float SameCultureBonus = 15f;
         private const float CultureCompatibilityWeight = 15f;
 
         // Religion scoring
         private const float SameReligionBonus = 25f;
-        private const float PantheonCompatibilityWeight = 20f;
+        private const float HostileReligionPenalty = -30f;
+        private const float PantheonCompatibilityWeight = 10f;
         private const float ReligionCompatibilityWeight = 15f;
 
-        // Personality scoring (base values, modified by trait level)
-        private const float CalculatingTraitWeight = 10f;     // Strategic economic thinking
-        private const float GenerosityTraitWeight = 8f;       // Openness to partnerships
-        private const float HonorTraitWeight = 6f;            // Reliable partner preference
+        // Personality trait weights
+        private const float CalculatingTraitWeight = 10f;
+        private const float GenerosityTraitWeight = 8f;
+        private const float HonorTraitWeight = 6f;
 
-        // Faction bonuses
+        // Faction-specific bonuses
         private const float EonirTradeBonus = 10f;
 
-        #endregion
-
-        #region TextObjects
-
-        private static readonly TextObject _chaosCannotTradeText = new("{=TOR_Trade_Chaos}The forces of Chaos do not engage in trade.");
-        private static readonly TextObject _distanceText = new("{=TOR_Trade_Distance}Geographic distance");
-        private static readonly TextObject _sameCultureText = new("{=TOR_Trade_SameCulture}Same Culture");
-        private static readonly TextObject _cultureCompatibilityText = new("{=TOR_Trade_CultureCompat}Cultural Compatibility");
-        private static readonly TextObject _sameReligionText = new("{=TOR_Trade_SameReligion}Same Religion");
-        private static readonly TextObject _pantheonCompatibilityText = new("{=TOR_Trade_PantheonCompat}Pantheon Compatibility");
-        private static readonly TextObject _religionCompatibilityText = new("{=TOR_Trade_ReligionCompat}Religious Compatibility");
-        private static readonly TextObject _calculatingText = new("{=TOR_Trade_Calculating}Economic opportunity");
-        private static readonly TextObject _generosityText = new("{=TOR_Trade_Generosity}Partnership openness");
-        private static readonly TextObject _honorText = new("{=TOR_Trade_Honor}Reliable partner");
-        private static readonly TextObject _eonirTradeText = new("{=TOR_Trade_Eonir}Eonir Trade Affinity");
-
-        #endregion
+        // Note: Distance thresholds are in DiplomacyHelpers (MaxTradeDistance = 600)
 
         public override int GetMaximumTradeAgreementCount(Kingdom kingdom) => 3;
 
-        #region Main Scoring Method
-
+        /// <summary>
+        /// Calculates TOR custom trade agreement scoring factors.
+        /// Used for AI decision making on trade agreements.
+        /// </summary>
         public override float GetScoreOfStartingTradeAgreement(
             Kingdom kingdom,
             Kingdom targetKingdom,
@@ -75,155 +50,166 @@ namespace TOR_Core.Models
             out TextObject explanation,
             bool includeExplanation = false)
         {
-            // Get base game score
             float baseScore = base.GetScoreOfStartingTradeAgreement(
                 kingdom, targetKingdom, clan, out explanation, includeExplanation);
 
             if (baseScore <= 0)
                 return 0f;
 
-            var score = new ExplainedNumber(baseScore, includeExplanation);
-            var evaluatingLeader = clan?.Leader;
+            // DISTANCE CHECK FIRST - prevent trade with distant kingdoms
+            if (!DiplomacyHelpers.IsWithinTradeDistance(kingdom, targetKingdom))
+                return 0f; // Too far - don't even consider this trade agreement
 
-            // 1. DISTANCE - Check viability first
+            var leader = clan?.Leader;
+
+            // Get trait modifiers for the evaluating clan's leader
+            float calculatingModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Calculating);
+            float generosityModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Generosity);
+            float honorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Honor);
+
+            // Individual scoring factors
             float distanceScore = CalculateDistanceScore(kingdom, targetKingdom);
-            if (distanceScore <= DistanceTooFarPenalty)
-            {
-                score.Add(distanceScore, _distanceText);
-                return MBMath.ClampFloat(score.ResultNumber, 0f, 100f);
-            }
-            if (distanceScore != 0f)
-                score.Add(distanceScore, _distanceText);
+            float cultureScore = CalculateCultureScore(kingdom, targetKingdom);
+            float religionScore = CalculateReligionScore(kingdom, targetKingdom);
+            float factionScore = CalculateFactionScore(kingdom);
 
-            // 2. CULTURE
-            AddCultureScore(ref score, kingdom, targetKingdom);
+            // Personality scoring
+            // Calculating: Strategic lords value trade for economic benefit
+            float calculatingScore = CalculateCalculatingScore(calculatingModifier);
+            // Generosity: Generous lords are more open to partnerships
+            float generosityScore = CalculateGenerosityScore(generosityModifier);
+            // Honor: Honorable lords prefer trading with same background (culture/religion)
+            float honorScore = CalculateHonorScore(kingdom, targetKingdom, honorModifier);
 
-            // 3. RELIGION
-            AddReligionScore(ref score, kingdom, targetKingdom);
+            float totalScore = baseScore
+                             + distanceScore
+                             + cultureScore
+                             + religionScore
+                             + factionScore
+                             + calculatingScore
+                             + generosityScore
+                             + honorScore;
 
-            // 4. PERSONALITY
-            AddPersonalityScore(ref score, kingdom, targetKingdom, evaluatingLeader);
+            return MBMath.ClampFloat(totalScore, 0f, 100f);
+        }
 
-            // 5. FACTION
-            AddFactionScore(ref score, kingdom);
+        #region Distance
 
-            return MBMath.ClampFloat(score.ResultNumber, 0f, 100f);
+        /// <summary>
+        /// Calculates distance score for trade agreements.
+        /// Closer kingdoms are better trade partners (shorter routes).
+        /// Returns: 0 (close) to -60 (far but within range)
+        /// </summary>
+        private float CalculateDistanceScore(Kingdom kingdom, Kingdom targetKingdom)
+        {
+            float distance = DiplomacyHelpers.GetKingdomDistance(kingdom, targetKingdom);
+
+            // No penalty for close kingdoms (below 300)
+            if (distance <= 300f)
+                return 0f;
+
+            // Gradual penalty: -0.2 per unit beyond 300
+            return (300f - distance) * 0.2f;
         }
 
         #endregion
 
-        #region Score Components
+        #region Culture
 
         /// <summary>
-        /// Distance affects trade route viability.
-        /// - Below 300: No penalty
-        /// - 300-600: Gradual penalty (-0.2 per unit)
-        /// - Above 600: Hard cutoff (-50)
+        /// Calculates culture compatibility score for trade.
+        /// Same culture or compatible cultures trade more willingly.
+        /// Returns: -15 to +15
         /// </summary>
-        private float CalculateDistanceScore(Kingdom kingdom, Kingdom targetKingdom)
+        private float CalculateCultureScore(Kingdom kingdom, Kingdom targetKingdom)
         {
-            if (!DiplomacyHelpers.IsWithinTradeDistance(kingdom, targetKingdom))
-                return DistanceTooFarPenalty;
+            if (DiplomacyHelpers.AreSameCulture(kingdom, targetKingdom))
+                return SameCultureBonus;
 
-            float distance = DiplomacyHelpers.GetKingdomDistance(kingdom, targetKingdom);
-            if (distance <= DistanceNeutralThreshold)
+            float compatibility = DiplomacyHelpers.GetCultureCompatibility(kingdom, targetKingdom);
+            return compatibility * CultureCompatibilityWeight;
+        }
+
+        #endregion
+
+        #region Religion
+
+        /// <summary>
+        /// Calculates religion compatibility score for trade.
+        /// Same religion or compatible pantheons increase trust.
+        /// Hostile religions severely penalize trade willingness.
+        /// Returns: -30 to +25
+        /// </summary>
+        private float CalculateReligionScore(Kingdom kingdom, Kingdom targetKingdom)
+        {
+            // Same religion - strong bonus
+            if (DiplomacyHelpers.AreSameReligion(kingdom, targetKingdom))
+                return SameReligionBonus;
+
+            // Hostile religions - major penalty
+            if (DiplomacyHelpers.AreReligionsHostile(kingdom, targetKingdom))
+                return HostileReligionPenalty;
+
+            // Otherwise use compatibility
+            float pantheonCompat = DiplomacyHelpers.GetPantheonCompatibility(kingdom, targetKingdom);
+            float religionCompat = DiplomacyHelpers.GetReligionCompatibility(kingdom, targetKingdom);
+
+            return pantheonCompat * PantheonCompatibilityWeight + religionCompat * ReligionCompatibilityWeight;
+        }
+
+        #endregion
+
+        #region Faction
+
+        /// <summary>
+        /// Calculates faction-specific trade bonuses.
+        /// Some factions are naturally more inclined to trade.
+        /// </summary>
+        private float CalculateFactionScore(Kingdom kingdom)
+        {
+            // Eonir are natural merchants
+            if (kingdom.Culture?.StringId == TORConstants.Cultures.EONIR)
+                return EonirTradeBonus;
+
+            return 0f;
+        }
+
+        #endregion
+
+        #region Personality
+
+        /// <summary>
+        /// Calculating lords value trade for strategic economic benefit.
+        /// Returns: -7.5 to +7.5
+        /// </summary>
+        private float CalculateCalculatingScore(float calculatingModifier)
+        {
+            return (calculatingModifier - 1f) * CalculatingTraitWeight;
+        }
+
+        /// <summary>
+        /// Generous lords are more open to mutual partnerships.
+        /// Returns: -6 to +6
+        /// </summary>
+        private float CalculateGenerosityScore(float generosityModifier)
+        {
+            return (generosityModifier - 1f) * GenerosityTraitWeight;
+        }
+
+        /// <summary>
+        /// Honorable lords prefer trading with same background (culture/religion).
+        /// Only applies if kingdoms share culture or religion.
+        /// Returns: 0, or -4.5 to +4.5
+        /// </summary>
+        private float CalculateHonorScore(Kingdom kingdom, Kingdom targetKingdom, float honorModifier)
+        {
+            bool sameBackground = DiplomacyHelpers.AreSameCulture(kingdom, targetKingdom) ||
+                                  DiplomacyHelpers.AreSameReligion(kingdom, targetKingdom);
+
+            if (!sameBackground)
                 return 0f;
 
-            return (DistanceNeutralThreshold - distance) * DistancePenaltyPerUnit;
-        }
-
-        /// <summary>
-        /// Culture compatibility affects trade willingness.
-        /// - Same culture: +15
-        /// - Compatible cultures: Scaled by compatibility
-        /// </summary>
-        private void AddCultureScore(ref ExplainedNumber score, Kingdom kingdom, Kingdom targetKingdom)
-        {
-            var culture1 = kingdom.Culture?.StringId;
-            var culture2 = targetKingdom.Culture?.StringId;
-
-            if (string.IsNullOrEmpty(culture1) || string.IsNullOrEmpty(culture2))
-                return;
-
-            if (culture1 == culture2)
-            {
-                score.Add(SameCultureBonus, _sameCultureText);
-                return;
-            }
-
-            float cultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(culture1, culture2);
-            if (cultureCompat != 0f)
-                score.Add(cultureCompat * CultureCompatibilityWeight, _cultureCompatibilityText);
-        }
-
-        /// <summary>
-        /// Religion compatibility affects trust for trade.
-        /// - Same religion: +25
-        /// - Same pantheon: Scaled by compatibility
-        /// - Different pantheon: Scaled by compatibility (can be negative)
-        /// </summary>
-        private void AddReligionScore(ref ExplainedNumber score, Kingdom kingdom, Kingdom targetKingdom)
-        {
-            var religion1 = kingdom.Leader?.GetDominantReligion();
-            var religion2 = targetKingdom.Leader?.GetDominantReligion();
-
-            if (religion1 == null || religion2 == null)
-                return;
-
-            if (religion1 == religion2)
-            {
-                score.Add(SameReligionBonus, _sameReligionText);
-                return;
-            }
-
-            float pantheonCompat = ReligionObjectHelper.GetPantheonCompatibility(religion1.Pantheon, religion2.Pantheon);
-            if (pantheonCompat != 0f)
-                score.Add(pantheonCompat * PantheonCompatibilityWeight, _pantheonCompatibilityText);
-
-            float religionCompat = ReligionObjectHelper.CalculateReligionCompatibility(religion1, religion2);
-            if (religionCompat != 0f)
-                score.Add(religionCompat * ReligionCompatibilityWeight, _religionCompatibilityText);
-        }
-
-        /// <summary>
-        /// Leader personality affects trade attitude.
-        /// - Calculating: Strategic lords value economic opportunities
-        /// - Generosity: Generous lords are open to partnerships
-        /// - Honor: Honorable lords prefer reliable same-background partners
-        /// </summary>
-        private void AddPersonalityScore(ref ExplainedNumber score, Kingdom kingdom, Kingdom targetKingdom, Hero leader)
-        {
-            if (leader == null) return;
-
-            // CALCULATING - Economic strategic thinking
-            float calculatingMod = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Calculating);
-            if (calculatingMod != 1f)
-                score.Add((calculatingMod - 1f) * CalculatingTraitWeight, _calculatingText);
-
-            // GENEROSITY - Openness to mutual partnerships
-            float generosityMod = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Generosity);
-            if (generosityMod != 1f)
-                score.Add((generosityMod - 1f) * GenerosityTraitWeight, _generosityText);
-
-            // HONOR - Preference for reliable partners (only applies to same background)
-            bool sameBackground = kingdom.Culture?.StringId == targetKingdom.Culture?.StringId ||
-                                  kingdom.Leader?.GetDominantReligion() == targetKingdom.Leader?.GetDominantReligion();
-            if (sameBackground)
-            {
-                float honorMod = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Honor);
-                if (honorMod != 1f)
-                    score.Add((honorMod - 1f) * HonorTraitWeight, _honorText);
-            }
-        }
-
-        /// <summary>
-        /// Faction-specific trade bonuses.
-        /// - Eonir: Natural merchants (+10)
-        /// </summary>
-        private void AddFactionScore(ref ExplainedNumber score, Kingdom kingdom)
-        {
-            if (kingdom.Culture?.StringId == TORConstants.Cultures.EONIR)
-                score.Add(EonirTradeBonus, _eonirTradeText);
+            return (honorModifier - 1f) * HonorTraitWeight;
         }
 
         #endregion
@@ -239,6 +225,7 @@ namespace TOR_Core.Models
         {
             reason = includeReason ? TextObject.GetEmpty() : null;
 
+            // Check lore restrictions
             if (!CanKingdomTrade(kingdom, out reason, includeReason))
                 return false;
 
@@ -247,6 +234,8 @@ namespace TOR_Core.Models
 
             return base.CanMakeTradeAgreement(kingdom, other, checkOtherSideTradeSupport, out reason, includeReason);
         }
+
+        private static readonly TextObject _chaosCannotTradeText = new("{=TOR_Trade_Chaos}The forces of Chaos do not engage in trade.");
 
         /// <summary>
         /// Checks lore restrictions on trade capability.
