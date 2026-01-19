@@ -10,6 +10,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
@@ -176,7 +177,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         /// </summary>
         private bool CanKingdomConsiderTrade(Kingdom kingdom)
         {
-            var pantheon = GetKingdomPantheon(kingdom);
+            var pantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
 
             // Chaos never trades
             if (pantheon == Pantheon.Chaos)
@@ -195,7 +196,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             if (tradeModel == null)
                 return new List<Kingdom>();
 
-            var myPantheon = GetKingdomPantheon(kingdom);
+            var myPantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
             var isUndead = myPantheon == Pantheon.Undead;
 
             List<Kingdom> candidateKingdoms;
@@ -205,7 +206,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 // Vampires prioritize other Undead factions first, regardless of distance
                 var undeadKingdoms = Kingdom.All
                     .Where(k => k != kingdom && !k.IsEliminated)
-                    .Where(k => GetKingdomPantheon(k) == Pantheon.Undead)
+                    .Where(k => DiplomacyHelpers.GetKingdomPantheon(k) == Pantheon.Undead)
                     .ToList();
 
                 if (undeadKingdoms.Any())
@@ -217,7 +218,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                     // No other undead - look at wider range (10 closest instead of 5)
                     candidateKingdoms = Kingdom.All
                         .Where(k => k != kingdom && !k.IsEliminated)
-                        .Select(k => new { Kingdom = k, Distance = GetKingdomDistance(kingdom, k) })
+                        .Select(k => new { Kingdom = k, Distance = DiplomacyHelpers.GetKingdomDistance(kingdom, k) })
                         .OrderBy(x => x.Distance)
                         .Take(10)
                         .Select(x => x.Kingdom)
@@ -229,7 +230,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 // Normal factions - take 5 closest
                 candidateKingdoms = Kingdom.All
                     .Where(k => k != kingdom && !k.IsEliminated)
-                    .Select(k => new { Kingdom = k, Distance = GetKingdomDistance(kingdom, k) })
+                    .Select(k => new { Kingdom = k, Distance = DiplomacyHelpers.GetKingdomDistance(kingdom, k) })
                     .OrderBy(x => x.Distance)
                     .Take(5)
                     .Select(x => x.Kingdom)
@@ -325,7 +326,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         /// </summary>
         private bool CanKingdomConsiderAlliance(Kingdom kingdom)
         {
-            var pantheon = GetKingdomPantheon(kingdom);
+            var pantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
 
             // Chaos cannot form alliances
             if (pantheon == Pantheon.Chaos)
@@ -353,7 +354,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             if (allianceModel == null)
                 return new List<Kingdom>();
 
-            var myPantheon = GetKingdomPantheon(kingdom);
+            var myPantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
             var isUndead = myPantheon == Pantheon.Undead;
 
             List<Kingdom> candidateKingdoms;
@@ -363,7 +364,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 // Vampires prioritize other Undead factions first, regardless of distance
                 var undeadKingdoms = Kingdom.All
                     .Where(k => k != kingdom && !k.IsEliminated)
-                    .Where(k => GetKingdomPantheon(k) == Pantheon.Undead)
+                    .Where(k => DiplomacyHelpers.GetKingdomPantheon(k) == Pantheon.Undead)
                     .ToList();
 
                 if (undeadKingdoms.Any())
@@ -375,7 +376,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                     // No other undead - look at wider range (10 closest instead of 5)
                     candidateKingdoms = Kingdom.All
                         .Where(k => k != kingdom && !k.IsEliminated)
-                        .Select(k => new { Kingdom = k, Distance = GetKingdomDistance(kingdom, k) })
+                        .Select(k => new { Kingdom = k, Distance = DiplomacyHelpers.GetKingdomDistance(kingdom, k) })
                         .OrderBy(x => x.Distance)
                         .Select(x => x.Kingdom)
                         .ToList();
@@ -386,7 +387,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 // Normal factions - take 5 closest
                 candidateKingdoms = Kingdom.All
                     .Where(k => k != kingdom && !k.IsEliminated)
-                    .Select(k => new { Kingdom = k, Distance = GetKingdomDistance(kingdom, k) })
+                    .Select(k => new { Kingdom = k, Distance = DiplomacyHelpers.GetKingdomDistance(kingdom, k) })
                     .OrderBy(x => x.Distance)
                     .Take(5)
                     .Select(x => x.Kingdom)
@@ -394,7 +395,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             }
 
             var validPartners = candidateKingdoms
-                .Where(k => IsAllianceLoreCompatible(myPantheon, GetKingdomPantheon(k)))
+                .Where(k => IsAllianceLoreCompatible(myPantheon, DiplomacyHelpers.GetKingdomPantheon(k)))
                 .Where(k => !kingdom.IsAtWarWith(k))
                 .Where(k => !kingdom.IsAllyWith(k))
                 .Where(k => k.AlliedKingdoms.Count < allianceModel.MaxNumberOfAlliances)
@@ -464,8 +465,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             return true;
         }
 
-        #region Shared Helper Methods
-
         /// <summary>
         /// Gets the candidate lords for proposing agreements.
         /// Returns the ruling clan leader + up to 2 random clan leaders.
@@ -527,30 +526,5 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             int currentDay = (int)CampaignTime.Now.ToDays;
             return (currentDay + kingdomOffset) % kingdomInterval == 0;
         }
-
-        /// <summary>
-        /// Gets the approximate distance between two kingdoms.
-        /// </summary>
-        private float GetKingdomDistance(Kingdom kingdom1, Kingdom kingdom2)
-        {
-            if (kingdom1.FactionMidSettlement == null || kingdom2.FactionMidSettlement == null)
-                return float.MaxValue;
-
-            return kingdom1.FactionMidSettlement.Position.Distance(kingdom2.FactionMidSettlement.Position);
-        }
-
-        /// <summary>
-        /// Gets the dominant pantheon for a kingdom.
-        /// </summary>
-        private Pantheon GetKingdomPantheon(Kingdom kingdom)
-        {
-            var leaderReligion = kingdom.Leader?.GetDominantReligion();
-            if (leaderReligion != null)
-                return leaderReligion.Pantheon;
-
-            return ReligionObjectHelper.GetPantheon(kingdom.Culture?.StringId);
-        }
-
-        #endregion
     }
 }

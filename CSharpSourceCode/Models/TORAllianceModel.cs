@@ -4,7 +4,6 @@ using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
-using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -91,27 +90,18 @@ namespace TOR_Core.Models
             float mercyModifier = DiplomacyHelpers.GetTraitModifier(evaluatingLeader, DefaultTraits.Mercy);
 
             // Add religion compatibility factor
-            var religion1 = kingdomDeclaresAlliance.Leader?.GetDominantReligion();
-            var religion2 = kingdomDeclaredAlliance.Leader?.GetDominantReligion();
-
-            if (religion1 != null && religion2 != null)
+            if (DiplomacyHelpers.AreReligionsHostile(kingdomDeclaresAlliance, kingdomDeclaredAlliance))
             {
-                // Check for hostile religions - major penalty
-                if (religion1.HostileReligions != null && religion1.HostileReligions.Contains(religion2))
-                {
-                    score.Add(HostileReligionPenalty, _religionCompatibilityText);
-                }
-                else
-                {
-                    float religionScore = ReligionObjectHelper.CalculateReligionCompatibility(religion1, religion2);
-                    score.Add(religionScore * ReligionCompatibilityWeight, _religionCompatibilityText);
-                }
+                score.Add(HostileReligionPenalty, _religionCompatibilityText);
+            }
+            else
+            {
+                float religionScore = DiplomacyHelpers.GetReligionCompatibility(kingdomDeclaresAlliance, kingdomDeclaredAlliance);
+                score.Add(religionScore * ReligionCompatibilityWeight, _religionCompatibilityText);
             }
 
             // Add culture compatibility factor using pantheon-based relationships
-            float cultureCompatibility = ReligionObjectHelper.CalculateCultureCompatibility(
-                kingdomDeclaresAlliance.Culture?.StringId,
-                kingdomDeclaredAlliance.Culture?.StringId);
+            float cultureCompatibility = DiplomacyHelpers.GetCultureCompatibility(kingdomDeclaresAlliance, kingdomDeclaredAlliance);
             score.Add(cultureCompatibility * CultureCompatibilityWeight, _cultureCompatibilityText);
 
             // Eonir bonus

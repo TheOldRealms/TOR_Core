@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -32,8 +34,35 @@ namespace TOR_Core.Models
         private const float GenerosityTraitWeight = 8f;
         private const float HonorTraitWeight = 6f;
 
+        // Economic benefit weights
+        private const float ComplementaryResourceWeight = 3f;   // Per unique resource they have that we lack
+        private const float FoodScarcityBonusWeight = 10f;      // Bonus if we lack food and they have it
+        private const float ProsperityDifferenceWeight = 0.002f; // Slight bonus for trading with prosperous kingdoms
+
         // Faction-specific bonuses
         private const float EonirTradeBonus = 10f;
+        
+        private const float WastelandBonus = 20f;
+        
+        private const float MontfortBonus = 20f;
+
+        // Resource categories for trade value
+        private static readonly HashSet<string> FoodResources = new()
+        {
+            "grain_farm", "cattle_farm", "sheep_farm", "swine_farm",
+            "fisherman", "date_farm", "olive_trees"
+        };
+
+        private static readonly HashSet<string> LuxuryResources = new()
+        {
+            "silver_mine", "vineyard", "silk", "silkworm_farm", "fur_trader"
+        };
+
+        private static readonly HashSet<string> MilitaryResources = new()
+        {
+            "iron_mine", "europe_horse_ranch", "steppe_horse_ranch",
+            "desert_horse_ranch", "lumberjack"
+        };
 
         // Note: Distance thresholds are in DiplomacyHelpers (MaxTradeDistance = 600)
 
@@ -71,29 +100,30 @@ namespace TOR_Core.Models
             float distanceScore = CalculateDistanceScore(kingdom, targetKingdom);
             float cultureScore = CalculateCultureScore(kingdom, targetKingdom);
             float religionScore = CalculateReligionScore(kingdom, targetKingdom);
-            float factionScore = CalculateFactionScore(kingdom);
+            float loreConsiderations = CalculateLoreConsiderations(kingdom, targetKingdom);
+            // Economic: What trade benefits can we gain? (affected by Calculating trait)
+            float economicScore = CalculateEconomicBenefitScore(kingdom, targetKingdom) * calculatingModifier;
+            // War alternative: Calculating lords consider if war would be more profitable
+            float warAlternativePenalty = CalculateWarAlternativePenalty(kingdom, targetKingdom, calculatingModifier);
 
             // Personality scoring
-            // Calculating: Strategic lords value trade for economic benefit
             float calculatingScore = CalculateCalculatingScore(calculatingModifier);
-            // Generosity: Generous lords are more open to partnerships
             float generosityScore = CalculateGenerosityScore(generosityModifier);
-            // Honor: Honorable lords prefer trading with same background (culture/religion)
             float honorScore = CalculateHonorScore(kingdom, targetKingdom, honorModifier);
 
             float totalScore = baseScore
                              + distanceScore
                              + cultureScore
                              + religionScore
-                             + factionScore
+                             + loreConsiderations
+                             + economicScore
+                             + warAlternativePenalty
                              + calculatingScore
                              + generosityScore
                              + honorScore;
 
             return MBMath.ClampFloat(totalScore, 0f, 100f);
         }
-
-        #region Distance
 
         /// <summary>
         /// Calculates distance score for trade agreements.
@@ -112,10 +142,6 @@ namespace TOR_Core.Models
             return (300f - distance) * 0.2f;
         }
 
-        #endregion
-
-        #region Culture
-
         /// <summary>
         /// Calculates culture compatibility score for trade.
         /// Same culture or compatible cultures trade more willingly.
@@ -129,10 +155,6 @@ namespace TOR_Core.Models
             float compatibility = DiplomacyHelpers.GetCultureCompatibility(kingdom, targetKingdom);
             return compatibility * CultureCompatibilityWeight;
         }
-
-        #endregion
-
-        #region Religion
 
         /// <summary>
         /// Calculates religion compatibility score for trade.
@@ -157,26 +179,142 @@ namespace TOR_Core.Models
             return pantheonCompat * PantheonCompatibilityWeight + religionCompat * ReligionCompatibilityWeight;
         }
 
-        #endregion
-
-        #region Faction
-
         /// <summary>
         /// Calculates faction-specific trade bonuses.
         /// Some factions are naturally more inclined to trade.
         /// </summary>
-        private float CalculateFactionScore(Kingdom kingdom)
+        private float CalculateLoreConsiderations(Kingdom kingdom, Kingdom targetKingdom)
         {
             // Eonir are natural merchants
             if (kingdom.Culture?.StringId == TORConstants.Cultures.EONIR)
                 return EonirTradeBonus;
+            
+            // Marienburg is the biggest harbor in world - there are goods that nobody can aquire
+            if (targetKingdom.StringId == TORConstants.Factions.WASTELAND)
+                return WastelandBonus;
+            
+            // Montfort like to trade with humans
+            if (kingdom.StringId == TORConstants.Factions.MONTFORT && DiplomacyHelpers.GetKingdomPantheon(targetKingdom) == Pantheon.Human)
+                return MontfortBonus;
 
             return 0f;
         }
 
-        #endregion
+        /// <summary>
+        /// Calculates economic benefit of trading with target kingdom.
+        /// Considers: complementary resources, food scarcity, prosperity.
+        /// Returns: 0 to ~30 (higher = more beneficial trade partner)
+        /// </summary>
+        private float CalculateEconomicBenefitScore(Kingdom kingdom, Kingdom targetKingdom)
+        {
+            if (kingdom.Settlements == null || targetKingdom.Settlements == null)
+                return 0f;
 
-        #region Personality
+            // Gather our resources
+            HashSet<string> ourResources = new();
+            bool weHaveFood = false;
+            float ourProsperity = 0f;
+
+            foreach (var settlement in kingdom.Settlements)
+            {
+                if (settlement.IsVillage && settlement.Village?.VillageType != null)
+                {
+                    string resourceId = settlement.Village.VillageType.StringId;
+                    ourResources.Add(resourceId);
+                    if (FoodResources.Contains(resourceId))
+                        weHaveFood = true;
+                }
+                else if (settlement.IsTown && settlement.Town != null)
+                {
+                    ourProsperity += settlement.Town.Prosperity;
+                }
+            }
+
+            // Gather their resources
+            HashSet<string> theirResources = new();
+            bool theyHaveFood = false;
+            float theirProsperity = 0f;
+
+            foreach (var settlement in targetKingdom.Settlements)
+            {
+                if (settlement.IsVillage && settlement.Village?.VillageType != null)
+                {
+                    string resourceId = settlement.Village.VillageType.StringId;
+                    theirResources.Add(resourceId);
+                    if (FoodResources.Contains(resourceId))
+                        theyHaveFood = true;
+                }
+                else if (settlement.IsTown && settlement.Town != null)
+                {
+                    theirProsperity += settlement.Town.Prosperity;
+                }
+            }
+
+            float score = 0f;
+
+            // Complementary resources - resources they have that we lack
+            int complementaryCount = 0;
+            foreach (var resource in theirResources)
+            {
+                if (!ourResources.Contains(resource))
+                {
+                    complementaryCount++;
+                    // Bonus for luxury and military resources
+                    if (LuxuryResources.Contains(resource) || MilitaryResources.Contains(resource))
+                        complementaryCount++; // Double count valuable resources
+                }
+            }
+            score += complementaryCount * ComplementaryResourceWeight;
+
+            // Food scarcity bonus - if we lack food and they have it
+            if (!weHaveFood && theyHaveFood)
+                score += FoodScarcityBonusWeight;
+
+            // Prosperity difference - slight bonus for trading with prosperous kingdoms
+            if (theirProsperity > ourProsperity)
+            {
+                float prosperityDiff = theirProsperity - ourProsperity;
+                score += prosperityDiff * ProsperityDifferenceWeight;
+            }
+
+            return score;
+        }
+
+        /// <summary>
+        /// Calculating lords consider if war would be more profitable than trade.
+        /// Uses actual war scoring to determine if conquest is preferable.
+        /// Returns: 0 (war not attractive) to -30 (war much better option)
+        /// </summary>
+        private float CalculateWarAlternativePenalty(Kingdom kingdom, Kingdom targetKingdom, float calculatingModifier)
+        {
+            // Only calculating lords think this way
+            if (calculatingModifier <= 1f)
+                return 0f;
+
+            // Already at war - trade not relevant
+            if (kingdom.IsAtWarWith(targetKingdom))
+                return 0f;
+
+            // Get the actual war score using the diplomacy model
+            var diplomacyModel = Campaign.Current?.Models?.DiplomacyModel as TORDiplomacyModel;
+            if (diplomacyModel == null)
+                return 0f;
+
+            float warScore = diplomacyModel.GetScoreOfDeclaringWar(kingdom, targetKingdom, kingdom.RulingClan, out _);
+
+            // If war score is negative or low, trade is the better option
+            if (warScore <= 0f)
+                return 0f;
+
+            // War looks attractive - penalty scales with how good war looks
+            // Normalize war score (typically ranges from 0 to ~50000 for very attractive wars)
+            float normalizedWarScore = Math.Min(warScore / 10000f, 3f); // Cap at 3x multiplier
+
+            // Scale by how calculating the lord is
+            float penalty = -normalizedWarScore * 10f * (calculatingModifier - 1f);
+
+            return Math.Max(penalty, -30f); // Cap at -30
+        }
 
         /// <summary>
         /// Calculating lords value trade for strategic economic benefit.
@@ -212,10 +350,13 @@ namespace TOR_Core.Models
             return (honorModifier - 1f) * HonorTraitWeight;
         }
 
-        #endregion
+        private static readonly TextObject _chaosCannotTradeText = new("{=TOR_Trade_Chaos}The forces of Chaos do not engage in trade.");
+        private static readonly TextObject _greenskinCannotTradeText = new("{=TOR_Trade_Greenskin}Greenskins do not understand the concept of trade.");
 
-        #region Lore Restrictions
-
+        /// <summary>
+        /// Checks if two kingdoms can form a trade agreement.
+        /// Lore restrictions: Chaos and Greenskins cannot trade.
+        /// </summary>
         public override bool CanMakeTradeAgreement(
             Kingdom kingdom,
             Kingdom other,
@@ -225,36 +366,23 @@ namespace TOR_Core.Models
         {
             reason = includeReason ? TextObject.GetEmpty() : null;
 
-            // Check lore restrictions
-            if (!CanKingdomTrade(kingdom, out reason, includeReason))
-                return false;
+            // Check lore restrictions for both kingdoms
+            var ourPantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
+            var theirPantheon = DiplomacyHelpers.GetKingdomPantheon(other);
 
-            if (!CanKingdomTrade(other, out reason, includeReason))
-                return false;
-
-            return base.CanMakeTradeAgreement(kingdom, other, checkOtherSideTradeSupport, out reason, includeReason);
-        }
-
-        private static readonly TextObject _chaosCannotTradeText = new("{=TOR_Trade_Chaos}The forces of Chaos do not engage in trade.");
-
-        /// <summary>
-        /// Checks lore restrictions on trade capability.
-        /// - Chaos: Cannot trade
-        /// </summary>
-        private bool CanKingdomTrade(Kingdom kingdom, out TextObject reason, bool includeReason)
-        {
-            reason = includeReason ? TextObject.GetEmpty() : null;
-
-            var pantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
-            if (pantheon == Pantheon.Chaos)
+            if (ourPantheon == Pantheon.Chaos || theirPantheon == Pantheon.Chaos)
             {
                 reason = _chaosCannotTradeText;
                 return false;
             }
 
-            return true;
-        }
+            if (ourPantheon == Pantheon.Greenskin || theirPantheon == Pantheon.Greenskin)
+            {
+                reason = _greenskinCannotTradeText;
+                return false;
+            }
 
-        #endregion
+            return base.CanMakeTradeAgreement(kingdom, other, checkOtherSideTradeSupport, out reason, includeReason);
+        }
     }
 }

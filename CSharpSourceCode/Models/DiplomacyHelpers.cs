@@ -20,8 +20,6 @@ namespace TOR_Core.Models
         // Personality trait modifier step (trait level -2 to +2 maps to 0.25 to 1.75)
         private const float TraitModifierStep = 0.375f;
 
-        #region Distance Calculations
-
         /// <summary>
         /// Gets the approximate distance between two kingdoms based on their mid settlements.
         /// </summary>
@@ -57,10 +55,6 @@ namespace TOR_Core.Models
             return GetKingdomDistance(kingdom1, kingdom2) <= MaxTradeDistance;
         }
 
-        #endregion
-
-        #region Trait Modifiers
-
         /// <summary>
         /// Gets a trait-based modifier for diplomacy scoring.
         /// Maps trait level (-2 to +2) to multiplier (0.25 to 1.75).
@@ -85,10 +79,6 @@ namespace TOR_Core.Models
             return 1f - (traitLevel * TraitModifierStep);
         }
 
-        #endregion
-
-        #region Pantheon Helpers
-
         /// <summary>
         /// Gets the dominant pantheon for a kingdom based on its leader's religion or culture.
         /// </summary>
@@ -102,10 +92,6 @@ namespace TOR_Core.Models
 
             return ReligionObjectHelper.GetPantheon(kingdom.Culture?.StringId);
         }
-
-        #endregion
-
-        #region Culture Compatibility
 
         /// <summary>
         /// Checks if two kingdoms share the same culture.
@@ -131,10 +117,6 @@ namespace TOR_Core.Models
 
             return ReligionObjectHelper.CalculateCultureCompatibility(culture1, culture2);
         }
-
-        #endregion
-
-        #region Religion Compatibility
 
         /// <summary>
         /// Checks if two kingdoms share the same religion.
@@ -189,7 +171,5 @@ namespace TOR_Core.Models
 
             return ReligionObjectHelper.GetPantheonCompatibility(religion1.Pantheon, religion2.Pantheon);
         }
-
-        #endregion
     }
 }
