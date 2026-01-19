@@ -17,7 +17,7 @@
     DeclareWarScoreFactionStrengthMultiplier="0.5"
     DeclareWarScoreReligiousEffectMultiplier="5"
     NumMinKingdomWars="0"
-    NumMaxKingdomWars="3"
+    NumMaxKingdomWars="5"
     MinPeaceDays="20"
     MinWarDays="40"
     AIGoldAdjustmentAmount="20000"

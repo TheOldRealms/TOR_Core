@@ -224,8 +224,8 @@ namespace TOR_Core.Utilities
                 // Vampire Counts
                 { "SY", Factions.SYLVANIA },
                 { "MS", Factions.MOUSILLON },
-                { "MT", Factions.NECRACHS },
-                { "BK", Factions.BLOODDRAGONS },
+                // Note: Necrachs and Blooddragons share "BK" prefix with Brasskeep
+                // BK1 = Blooddragons, BK2 = Brasskeep - cannot map cleanly
 
                 // Dwarf Holds
                 { "KK", Factions.KARAK_KADRIN },
@@ -241,7 +241,7 @@ namespace TOR_Core.Utilities
                 { "AN", Factions.KARAK_ANGAZHAR },
 
                 // Elf Kingdoms
-                { "LA", Factions.ATHEL_LOREN },
+                { "AL", Factions.ATHEL_LOREN },
                 { "LL", Factions.LAURELORN },
 
                 // Greenskin Tribes
