@@ -384,5 +384,74 @@ namespace TOR_Core.Models
 
             return base.CanMakeTradeAgreement(kingdom, other, checkOtherSideTradeSupport, out reason, includeReason);
         }
+
+        /// <summary>
+        /// Gets potential trade partners for a kingdom.
+        /// Undead factions prioritize other Undead, others use distance-based selection.
+        /// Returns top scored candidates that pass all filters.
+        /// </summary>
+        public List<Kingdom> GetPotentialTradePartners(Kingdom kingdom, int maxCandidates = 3)
+        {
+            if (kingdom == null)
+                return new List<Kingdom>();
+
+            var myPantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
+            var isUndead = myPantheon == Pantheon.Undead;
+
+            // Get candidate kingdoms based on faction type
+            List<Kingdom> candidateKingdoms = GetCandidateKingdoms(kingdom, isUndead);
+
+            // Filter by trade rules
+            var validPartners = candidateKingdoms
+                .Where(k => CanMakeTradeAgreement(kingdom, k, true, out _))
+                .ToList();
+
+            if (!validPartners.Any())
+                return new List<Kingdom>();
+
+            // Score and return top candidates
+            var scoredPartners = validPartners
+                .Select(k => new
+                {
+                    Kingdom = k,
+                    Score = GetScoreOfStartingTradeAgreement(kingdom, k, kingdom.RulingClan, out _)
+                })
+                .Where(x => x.Score > 0)
+                .OrderByDescending(x => x.Score)
+                .Take(maxCandidates)
+                .Select(x => x.Kingdom)
+                .ToList();
+
+            return scoredPartners;
+        }
+
+        private List<Kingdom> GetCandidateKingdoms(Kingdom kingdom, bool isUndead)
+        {
+            if (isUndead)
+            {
+                // Undead prioritize other Undead factions regardless of distance
+                var undeadKingdoms = Kingdom.All
+                    .Where(k => k != kingdom && !k.IsEliminated)
+                    .Where(k => DiplomacyHelpers.GetKingdomPantheon(k) == Pantheon.Undead)
+                    .ToList();
+
+                if (undeadKingdoms.Any())
+                    return undeadKingdoms;
+
+                // No other undead - use 10 closest kingdoms
+                return Kingdom.All
+                    .Where(k => k != kingdom && !k.IsEliminated)
+                    .OrderBy(k => DiplomacyHelpers.GetKingdomDistance(kingdom, k))
+                    .Take(10)
+                    .ToList();
+            }
+
+            // Normal factions - take 5 closest
+            return Kingdom.All
+                .Where(k => k != kingdom && !k.IsEliminated)
+                .OrderBy(k => DiplomacyHelpers.GetKingdomDistance(kingdom, k))
+                .Take(5)
+                .ToList();
+        }
     }
 }
