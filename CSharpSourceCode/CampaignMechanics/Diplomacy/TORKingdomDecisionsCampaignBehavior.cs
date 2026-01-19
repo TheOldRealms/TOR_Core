@@ -173,10 +173,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private void DailyTick()
         {
-            // Debug logging
-            if (EnableDiplomacyDebug)
-                LogDiplomacyStatus();
-
             // Clean up old decisions
             if (_kingdomDecisionsList != null)
             {
@@ -364,72 +360,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         #endregion
         
-
-        private void LogDiplomacyStatus()
-        {
-            var kingdoms = Kingdom.All.Where(k => !k.IsEliminated).ToList();
-            var sb = new StringBuilder();
-
-            sb.AppendLine("=== TOR DIPLOMACY DEBUG ===");
-            sb.AppendLine($"Day: {(int)CampaignTime.Now.ToDays}");
-            sb.AppendLine();
-
-            int totalWars = 0;
-
-            var tradeAgreementBehavior = Campaign.Current.GetCampaignBehavior<TradeAgreementsCampaignBehavior>();
-
-            int totalTradeAgreements = (from kingdom in kingdoms from otherKingdom in kingdoms where tradeAgreementBehavior.HasTradeAgreement(kingdom, otherKingdom) select kingdom).Count();
-            int totalAlliances = kingdoms.Sum(kingdom => kingdom.AlliedKingdoms.Count);
-
-            totalAlliances /= 2;
-            totalTradeAgreements /= 2;
-
-            var warPairs = new HashSet<string>();
-            foreach (var kingdom in kingdoms)
-            {
-                foreach (var enemy in kingdoms.Where(k => k != kingdom && kingdom.IsAtWarWith(k)))
-                {
-                    var key = string.Compare(kingdom.StringId, enemy.StringId) < 0
-                        ? $"{kingdom.StringId}|{enemy.StringId}"
-                        : $"{enemy.StringId}|{kingdom.StringId}";
-                    warPairs.Add(key);
-                }
-            }
-            totalWars = warPairs.Count;
-
-            sb.AppendLine($"TOTALS: Wars={totalWars}, Alliances={totalAlliances}, TradeAgreements={totalTradeAgreements}");
-            sb.AppendLine();
-
-            sb.AppendLine("--- KINGDOM STATUS ---");
-            foreach (var kingdom in kingdoms.OrderBy(k => k.Name.ToString()))
-            {
-                var wars = kingdoms.Where(k => k != kingdom && kingdom.IsAtWarWith(k)).Select(k => k.Name.ToString()).ToList();
-                var allies = kingdom.AlliedKingdoms.Select(k => k.Name.ToString()).ToList();
-                var tradePartners = kingdom.GetTradeAgreementKingdoms().Select(k => k.Name.ToString()).ToList();
-
-                sb.AppendLine($"{kingdom.Name}:");
-                sb.AppendLine($"  Wars ({wars.Count}): {(wars.Any() ? string.Join(", ", wars) : "None")}");
-                sb.AppendLine($"  Allies ({allies.Count}): {(allies.Any() ? string.Join(", ", allies) : "None")}");
-                sb.AppendLine($"  Trade ({tradePartners.Count}): {(tradePartners.Any() ? string.Join(", ", tradePartners) : "None")}");
-            }
-
-            sb.AppendLine();
-            sb.AppendLine("--- ALL WARS ---");
-            foreach (var warPair in warPairs.OrderBy(x => x))
-            {
-                var parts = warPair.Split('|');
-                var k1 = kingdoms.FirstOrDefault(k => k.StringId == parts[0]);
-                var k2 = kingdoms.FirstOrDefault(k => k.StringId == parts[1]);
-                if (k1 != null && k2 != null)
-                {
-                    sb.AppendLine($"  {k1.Name} vs {k2.Name}");
-                }
-            }
-
-            sb.AppendLine("=== END DIPLOMACY DEBUG ===");
-
-            TORCommon.Log(sb.ToString(), LogLevel.Info);
-        }
         
     }
 }
