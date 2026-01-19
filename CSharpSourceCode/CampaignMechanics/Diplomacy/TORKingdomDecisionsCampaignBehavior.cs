@@ -63,12 +63,19 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 return;
 
             // Agreement consideration - only ruling clan, separate timing
-            if (clan == clan.Kingdom.RulingClan &&
-                clan.Kingdom != Clan.PlayerClan?.Kingdom &&
+            if (clan.Kingdom != Clan.PlayerClan?.Kingdom &&
                 ShouldConsiderAgreementsToday(clan.Kingdom))
             {
-                ConsiderTradeAgreements(clan.Kingdom);
-                ConsiderAlliances(clan.Kingdom);
+                if (MBRandom.RandomFloat < 0.5f)
+                {
+                    ConsiderTradeAgreements(clan);
+                }
+                else
+                {
+                    ConsiderAlliances(clan);
+                }
+        
+
             }
 
             // War/Peace decisions - all eligible clans
@@ -281,11 +288,13 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         #region Trade Agreement Consideration
 
-        private void ConsiderTradeAgreements(Kingdom kingdom)
+        private void ConsiderTradeAgreements(Clan consideringClan)
         {
             var tradeModel = Campaign.Current?.Models?.TradeAgreementModel as TORTradeAgreementModel;
             if (tradeModel == null)
                 return;
+            
+            Kingdom kingdom = consideringClan.Kingdom;
 
             var potentialPartners = tradeModel.GetPotentialTradePartners(kingdom);
             if (!potentialPartners.Any())
@@ -293,11 +302,11 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
             foreach (var targetKingdom in potentialPartners)
             {
-                float score = tradeModel.GetScoreOfStartingTradeAgreement(kingdom, targetKingdom, kingdom.RulingClan, out _);
+                float score = tradeModel.GetScoreOfStartingTradeAgreement(kingdom, targetKingdom, consideringClan, out _);
 
                 if (MBRandom.RandomFloat * 100f < score)
                 {
-                    kingdom.AddDecision(new TradeAgreementDecision(kingdom.RulingClan, targetKingdom), true);
+                    kingdom.AddDecision(new TradeAgreementDecision(consideringClan, targetKingdom), true);
                     return;
                 }
             }
@@ -307,11 +316,13 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         #region Alliance Consideration
 
-        private void ConsiderAlliances(Kingdom kingdom)
+        private void ConsiderAlliances(Clan consideringClan)
         {
             var allianceModel = Campaign.Current?.Models?.AllianceModel as TORAllianceModel;
             if (allianceModel == null)
                 return;
+            
+            var kingdom = consideringClan.Kingdom;
 
             var potentialAllies = allianceModel.GetPotentialAlliancePartners(kingdom);
             if (!potentialAllies.Any())
@@ -335,7 +346,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private bool ShouldConsiderAgreementsToday(Kingdom kingdom)
         {
-            if (MBRandom.RandomFloatRanged(0, 1f) < 0.25f)
+            if (MBRandom.RandomFloat< 0.25f)
             {
                 return false;
             }
@@ -352,8 +363,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         }
 
         #endregion
-
-        #region Debug Logging
+        
 
         private void LogDiplomacyStatus()
         {
@@ -420,7 +430,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
             TORCommon.Log(sb.ToString(), LogLevel.Info);
         }
-
-        #endregion
+        
     }
 }
