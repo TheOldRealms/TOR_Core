@@ -1,20 +1,44 @@
 ﻿using HarmonyLib;
 using System;
+using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.Reflection;
 using TaleWorlds.Library;
-using TaleWorlds.LinQuick;
 
 namespace TOR_Core.Extensions.UI
 {
     public class ViewModelExtensionManager
     {
-        private readonly Dictionary<ViewModel, IViewModelExtension> _extensionInstances = [];
-        public static ViewModelExtensionManager Instance { get; private set; }
+        private readonly ConditionalWeakTable<ViewModel, ExtensionHolder> _extensionInstances = new();
+
+        private sealed class ExtensionHolder
+        {
+            public IViewModelExtension Extension { get; }
+
+            public ExtensionHolder(IViewModelExtension extension)
+            {
+                Extension = extension;
+            }
+        }
+        private static ViewModelExtensionManager _instance;
+
+        public static ViewModelExtensionManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ViewModelExtensionManager();
+                }
+
+                return _instance;
+            }
+        }
         public Dictionary<Type, Type> ExtensionTypes { get; private set; } = new Dictionary<Type, Type>();
+
         private ViewModelExtensionManager()
         {
-            Instance = this;
+            _instance = this;
             CollectViewModelExtensions();
         }
 
@@ -22,19 +46,23 @@ namespace TOR_Core.Extensions.UI
         {
             if (vm != null && extension != null && extension.GetType().GetCustomAttribute<ViewModelExtensionAttribute>() != null)
             {
-                _extensionInstances.Add(vm, extension);
+                _extensionInstances.Remove(vm);
+                _extensionInstances.Add(vm, new ExtensionHolder(extension));
             }
         }
 
         internal void UnRegisterExtension(IViewModelExtension extension, ViewModel vm)
         {
-            if (_extensionInstances.ContainsKey(vm))
+            if (vm != null)
             {
                 _extensionInstances.Remove(vm);
             }
         }
 
-        public static void Initialize() => _ = new ViewModelExtensionManager();
+        public static void Initialize()
+        {
+            _ = Instance;
+        }
 
         public void CollectViewModelExtensions()
         {
@@ -47,9 +75,10 @@ namespace TOR_Core.Extensions.UI
                 {
                     if ((typeof(IViewModelExtension)).IsAssignableFrom(type))
                     {
-                        if (type.GetCustomAttribute<ViewModelExtensionAttribute>()?.BaseType != null)
+                        var attribute = type.GetCustomAttribute<ViewModelExtensionAttribute>();
+                        if (attribute?.BaseType != null)
                         {
-                            ExtensionTypes.Add(type.GetCustomAttribute<ViewModelExtensionAttribute>().BaseType, type);
+                            ExtensionTypes[attribute.BaseType] = type;
                         }
                     }
                 }
@@ -58,12 +87,16 @@ namespace TOR_Core.Extensions.UI
 
         public bool HasViewModelExtensionType(ViewModel vm)
         {
+            if (vm == null)
+            {
+                return false;
+            }
             return ExtensionTypes.TryGetValue(vm.GetType(), out _);
         }
 
         public bool HasViewModelExtensionInstance(ViewModel vm)
         {
-            return GetExtensionInstance(vm) != null;
+            return vm != null && _extensionInstances.TryGetValue(vm, out _);
         }
 
         public Type GetExtensionType(ViewModel vm)
@@ -77,7 +110,7 @@ namespace TOR_Core.Extensions.UI
 
         public IViewModelExtension GetExtensionInstance(ViewModel vm)
         {
-            return _extensionInstances.FirstOrDefaultQ(x => x.Key == vm).Value;
+            return vm != null && _extensionInstances.TryGetValue(vm, out var holder) ? holder.Extension : null;
         }
     }
 }

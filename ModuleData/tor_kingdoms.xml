@@ -608,7 +608,7 @@
     </Kingdom>
     <Kingdom id="sylvania"
              owner="Hero.tor_vc_lord_sylvania_factionleader"
-             banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.45.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania"
+             banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania"
              primary_banner_color="0xff211F1F"
              secondary_banner_color="0xffC94B4E"
              label_color="FF211F1F"

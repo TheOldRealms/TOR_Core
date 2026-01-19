@@ -36,6 +36,8 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 
     public override void RegisterEvents()
     {
+        CampaignEvents.OnPlayerBattleEndEvent.ClearListeners(this);
+        CampaignEvents.DailyTickSettlementEvent.ClearListeners(this);
         CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, SetLootedIngredients);
         CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, SettlementDailyTickEvent);
     }
@@ -43,9 +45,13 @@ public class EnchantmentIngredientLootCampaignBehavior : CampaignBehaviorBase
 
     private void SettlementDailyTickEvent(Settlement settlement)
     {
-        foreach (var element in TorEnchantingIngredients.All.SelectQ(ingredient => ingredient.Value).SelectQ(item => settlement.ItemRoster.FirstOrDefaultQ(x => x.EquipmentElement.Item == item)))
+        foreach (var ingredientItem in TorEnchantingIngredients.All.SelectQ(x => x.Value))
         {
-            settlement.ItemRoster.Remove(element);
+            var rosterElement = settlement.ItemRoster.FirstOrDefaultQ(x => x.EquipmentElement.Item == ingredientItem);
+            if (rosterElement.Amount > 0)
+            {
+                settlement.ItemRoster.Remove(rosterElement);
+            }
         }
     }
 

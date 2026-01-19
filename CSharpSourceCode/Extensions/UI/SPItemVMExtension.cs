@@ -18,12 +18,14 @@ namespace TOR_Core.Extensions.UI
     [ViewModelExtension(typeof(SPItemVM), "UpdateCanBeSlaughtered")]
     public class SPItemVMExtension : BaseViewModelExtension
     {
+        private static HintViewModel _sharedUseHint;
         private HintViewModel _useHint;
         private bool _isUsableItem;
 
         public SPItemVMExtension(ViewModel vm) : base(vm)
         {
-            _useHint = new HintViewModel(TORTextHelper.GetTextObject("tor_item_hint_use", "Use Item"));
+            _sharedUseHint ??= new HintViewModel(TORTextHelper.GetTextObject("tor_item_hint_use", "Use Item"));
+            _useHint = _sharedUseHint;
         }
 
         public override void RefreshValues()

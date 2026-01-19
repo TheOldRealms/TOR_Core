@@ -2,6 +2,7 @@ using Ink.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
@@ -24,6 +25,21 @@ namespace TOR_Core.Models
     public class TORPartyWageModel : DefaultPartyWageModel
     {
         private static readonly Dictionary<CharacterObject, int> _wageCache = [];
+        private const double TOTAL_WAGE_CACHE_TTL_SECONDS = 0.3;
+        private static readonly long TotalWageCacheTtlTicks =
+            (long)(Stopwatch.Frequency * TOTAL_WAGE_CACHE_TTL_SECONDS);
+
+        private static readonly ConditionalWeakTable<MobileParty, TotalWageCacheEntry> _totalWageCache = new();
+
+        private sealed class TotalWageCacheEntry
+        {
+            public long Timestamp;
+            public int TotalManCount;
+            public string LeaderHeroStringId;
+            public bool IncludeDescriptions;
+            public ExplainedNumber Value;
+        }
+
 
         private int CalculateCharacterWageCache(CharacterObject character)
         {
@@ -90,17 +106,74 @@ namespace TOR_Core.Models
 
         public override ExplainedNumber GetTotalWage(MobileParty mobileParty, TroopRoster troopRoster, bool includeDescriptions = false)
         {
+            TotalWageCacheEntry cacheEntry = null;
+            long nowTimestamp = 0;
+            string leaderHeroStringId = null;
+            int totalManCount = 0;
+
+            if (mobileParty != null)
+            {
+                nowTimestamp = Stopwatch.GetTimestamp();
+                leaderHeroStringId = mobileParty.LeaderHero?.StringId ?? string.Empty;
+                totalManCount = troopRoster.TotalManCount;
+
+                if (_totalWageCache.TryGetValue(mobileParty, out cacheEntry) &&
+                    cacheEntry.IncludeDescriptions == includeDescriptions &&
+                    cacheEntry.TotalManCount == totalManCount &&
+                    cacheEntry.LeaderHeroStringId == leaderHeroStringId &&
+                    (nowTimestamp - cacheEntry.Timestamp) <= TotalWageCacheTtlTicks)
+                {
+                    return cacheEntry.Value;
+                }
+
+                if (cacheEntry == null)
+                {
+                    cacheEntry = _totalWageCache.GetValue(mobileParty, _ => new TotalWageCacheEntry());
+                }
+
+            }
+
             var value = base.GetTotalWage(mobileParty, troopRoster, includeDescriptions);
             value.LimitMin(0f); //no getting paid after all bonuses are applied
+            if (mobileParty == null)
+            {
+                return value;
+            }
+            void StoreCacheIfPossible()
+            {
+                if (mobileParty == null || cacheEntry == null)
+                    return;
 
-            if (!mobileParty.IsMainParty) return value;
+                if (nowTimestamp == 0)
+                    nowTimestamp = Stopwatch.GetTimestamp();
+
+                cacheEntry.Timestamp = nowTimestamp;
+                cacheEntry.TotalManCount = totalManCount;
+                cacheEntry.LeaderHeroStringId = leaderHeroStringId ?? string.Empty;
+                cacheEntry.IncludeDescriptions = includeDescriptions;
+                cacheEntry.Value = value;
+            }
+
+            if (!mobileParty.IsMainParty)
+            {
+                StoreCacheIfPossible();
+                return value;
+            }
 
             var leaderHero = mobileParty.LeaderHero;
-            if (leaderHero != Hero.MainHero) return value; //Sly : when player is prisoner
+            if (leaderHero != Hero.MainHero) //Sly : when player is prisoner
+            {
+                StoreCacheIfPossible();
+                return value;
+            }
 
 
             bool hasCareer = leaderHero.HasAnyCareer();
             var leaderCulture = leaderHero.Culture;
+            var isKnightOldWorld = hasCareer && leaderHero.HasCareer(TORCareers.KnightOldWorld);
+            var partyAttributes = isKnightOldWorld
+                ? ExtendedInfoManager.Instance.GetPartyInfoFor(mobileParty.StringId)
+                : null;
             for (int index = 0; index < mobileParty.MemberRoster.Count; ++index)
             {
                 TroopRosterElement elementCopyAtIndex = mobileParty.MemberRoster.GetElementCopyAtIndex(index);
@@ -111,24 +184,30 @@ namespace TOR_Core.Models
 
                 if (hasCareer)
                 {
-                    var careerFactors = new ExplainedNumber(0, true);
+                    var careerFactors = new ExplainedNumber(0, includeDescriptions);
                     careerFactors = AddCareerSpecificWagePerks(careerFactors, leaderHero, elementCopyAtIndex);
-                    foreach (var line in careerFactors.GetLines())
+
+                    if (includeDescriptions)
                     {
-                        value.Add(line.number, new TextObject(line.name));//Sly : could probably be done with AddCareerPerks returning a number with just all of the factors added, then using .AddFromExplainedNumber()
+                        foreach (var line in careerFactors.GetLines())
+                        {
+                            value.Add(line.number, new TextObject(line.name));
+                        }
+                    }
+                    else
+                    {
+                        value.Add(careerFactors.ResultNumber);
                     }
 
-                    if (leaderHero.HasCareer(TORCareers.KnightOldWorld))
+                    if (partyAttributes != null &&
+                        partyAttributes.TroopAttributes.TryGetValue(elementCopyAtIndex.Character.StringId, out var attributes) &&
+                        attributes != null)
                     {
-                        var partyAttributes = ExtendedInfoManager.Instance.GetPartyInfoFor(mobileParty.StringId);
-
-                        var attributes = partyAttributes.TroopAttributes.FirstOrDefaultQ(x => x.Key == elementCopyAtIndex.Character.StringId).Value;
-
-                        if (attributes != null)
+                        for (var attributeIndex = 0; attributeIndex < attributes.Count; attributeIndex++)
                         {
-                            foreach (var attribute in attributes.Where(attribute => attribute == "SecularSeal2"))
+                            if (attributes[attributeIndex] == "SecularSeal2")
                             {
-                                value.Add(-0.25f * troopwage, new TextObject("Secular Seal")); //this should probably retrieve the value better
+                                value.Add(-0.25f * troopwage, includeDescriptions ? new TextObject("Secular Seal") : null);
                             }
                         }
                     }
@@ -140,11 +219,11 @@ namespace TOR_Core.Models
                     {
                         if (leaderHero.HasAttribute("DwarfEngineersIII"))
                         {
-                            value.Add(-0.25f * troopwage, new TextObject("Engineers Guild"));
+                            value.Add(-0.25f * troopwage, includeDescriptions ? new TextObject("Engineers Guild") : null);
                         }
                         else if (leaderHero.HasAttribute("DwarfEngineersII"))
                         {
-                            value.AddFactor(-0.15f * troopwage, new TextObject("Engineers Guild"));
+                            value.Add(-0.15f * troopwage, includeDescriptions ? new TextObject("Engineers Guild") : null);
                         }
                     }
                 }
@@ -212,6 +291,7 @@ namespace TOR_Core.Models
                 }
             }
 
+            StoreCacheIfPossible();
             return value;
         }
 

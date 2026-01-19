@@ -87,7 +87,7 @@
              tier="1" />
 
     <Faction id="desert_bandits"
-             banner_key="11.12.148.14020.11010.764.764.0.1.0.116.23.111.647.670.765.839.1.0.0.504.126.111.276.284.651.580.1.0.180.512.129.111.187.193.649.575.1.0.178.509.126.111.299.116.654.476.1.0.178.507.126.111.177.69.654.471.1.0.178.424.142.111.239.248.935.542.1.0.0"
+             banner_key="11.138.148.1500.1500.758.769.1.1.0.505.92.41.1848.894.384.1144.0.0.-54.122.20.41.600.600.764.764.0.0.0:kingdom_herrimaults"
              label_color="FF8B7C73"
              color="FF8B7C73"
              color2="FF8B7C73"
@@ -169,7 +169,7 @@
              super_faction="Kingdom.sylvania"
              is_noble="true"
              text="{=str_tor_clan_sylvania_clan_1_desc}They say history is made by great men and women. That is certainly true for the Vampires, but none have written that history so boldly or so thick with blood as the Von Carsteins. They are the aristocracy of the night, creatures of enormous passion and unbridled ambition, and their most trivial desires shape the destinies of entire nations. They are the greatest of all the accursed bloodlines, their vile breed spawned from the ancient terror, Count Vlad von Carstein. For centuries, they have waged their war on the living, Vlad’s seed forever tainting the land and soddening the earth with blood. Near four hundred years ago, the last great count of Sylvania, Mannfred von Carstein, was slain at the battle of Hel Fenn. Now, he has returned, to reclaim what was rightly once his."
-             banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.45.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
+             banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
     <Faction id="sylvania_clan_2"
              name="{=str_tor_clan_sylvania_clan_2_name}Nightmarish Pedigree"
              tier="6"
@@ -178,7 +178,7 @@
              super_faction="Kingdom.sylvania"
              is_noble="true"
              text="{=str_tor_clan_sylvania_clan_2_desc}Even before the coming of Vlad von Carstein and his bloodthirsty children, Sylvania was a cursed land, loathed by the Empire as a haven for Necromancers and Sorcerers. Many of these dark practitioners were those who ruled the unquiet graves, lords and nobles that studied the forbidden arts for power and longevity. In the centuries since the von Carsteins came to power, the mortal nobility and the vampiric aristocracy have formed a symbiotic relationship, a mutual assurance that Sylvania will forever remain in the hands of those who wield the power of Nagash. Though Vampire Counts have risen and fallen, the nobility have remained, powerful Necromancers who forever seek the wisdom of Nagash."
-			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.45.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
+			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
     <Faction id="sylvania_clan_4"
              name="{=str_tor_clan_sylvania_clan_3_name}The Scarlet Order"
              tier="6"
@@ -187,7 +187,7 @@
              super_faction="Kingdom.sylvania"
              is_noble="true"
              text="{=str_tor_clan_sylvania_clan_3_desc}During the Third Vampire War, it is said that Mannfred von Carstein came upon a lonely tower in the mountains and  petitioned his distant blood-cousins, the Blood Dragons of Abhorash, for their aid in his bid to conquer the Empire of Sigmar. Whatever the price he promised, the Blood Dragons marched alongside the Prince of Sylvania, fell warriors of unmatched martial prowess and oathed by honour to the von Carstein cause. Though the war ended and Mannfred was slain, some of the Blood Dragons remained, taking their due right of Sylvanian soil for their service. As the only other Vampiric bloodline of note in Sylvania, the Blood Dragons have carved a dark reputation, as warriors without equal and sworn only to those they deem worthy. When Mannfred returned once more, he bound the Blood Dragons to their oaths once more, and again the Blood Dragons rode to war."
-			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.45.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
+			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
     <Faction id="sylvania_clan_3"
              name="{=str_tor_clan_sylvania_clan_4_name}Traitor's Blood"
              tier="6"
@@ -196,7 +196,7 @@
              super_faction="Kingdom.sylvania"
              is_noble="true"
              text="{=str_tor_clan_sylvania_clan_4_desc} At the end of the third Vampire Wars and the cleansing of Gottlieb the Stern, the land of Sylvania was legally subsumed into the Grand County of Stirland. Even so, the land was forever a cursed and unloved place, rarely ventured into by the nobility that knew better. Instead, it became a place of exile, inheritance for prodigal sons and washed up nobility that had no place in the courts of Stirland. While many of these outcasts took to their new responsibilities with stoic determination, others sought greater opportunity. These are such traitors, kinslayers and deceivers who betrayed their homeland and family for damnation. They are the youngest of the vampires, newborn babes with the strength and appetite of daemons. Their only desire is to revel in their new unlife, to exult in their dark nature and live as gods among cowering men."
-			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.45.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
+			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
     <!-- Blood Dragons faction -->
     <Faction id="blooddragons_clan_1"
              name="{=str_tor_clan_blooddragons_clan_1_name}Order of the Blood Dragon"
@@ -1432,7 +1432,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_br_troubadour_leader"
              culture="Culture.vlandia"
-             banner_key="2.143.12.2499.1836.781.722.1.0.0.506.144.18.166.68.870.584.0.0.0.506.144.18.166.68.995.584.0.0.0.510.144.18.164.192.898.505.0.0.-90.510.144.18.164.192.1023.506.0.0.-90.510.144.18.172.192.961.428.0.0.-181.312.144.18.352.317.520.871.0.1.-28.510.12.18.128.548.568.1003.0.0.-142.505.12.18.316.238.439.889.0.0.-91.506.144.18.166.68.527.1035.0.0.0.505.12.18.202.287.611.779.0.0.-90.510.144.18.185.192.555.955.0.0.-90.424.35.18.207.171.576.504.0.0.1.105.144.18.543.483.760.797.0.0.0.424.35.18.207.171.961.997.0.0.1"
+             banner_key="11.138.148.1500.1500.758.769.1.1.0.218.14.41.3000.1500.1589.414.0.0.0.218.14.41.3000.1500.-61.414.0.0.0.218.14.41.3500.1500.1364.-161.0.0.0.218.14.41.3500.1500.164.-161.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_troubador"
              label_color="FF224277"
              color="FF224277"
              color2="FFf4ca14"
@@ -1522,7 +1522,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_braganza"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.142.142.2138.2527.767.767.0.1.0.510.28.28.1190.696.323.640.1.1.38.510.28.28.1219.713.1184.638.1.0.321.510.28.28.1190.696.331.897.1.1.38.510.28.28.1219.713.1192.895.1.0.321.510.28.28.1190.696.347.1168.1.1.38.510.28.28.1219.713.1208.1166.1.0.321.510.28.28.1190.696.341.1482.1.1.38.510.28.28.1219.713.1202.1480.1.0.321.510.28.28.1190.696.313.317.1.1.38.510.28.28.1219.713.1174.315.1.0.321.317.2.2.482.516.765.726.1.1.180.317.2.2.482.516.764.831.1.1.-1.154.28.2.323.514.760.785.1.1.5.302.28.2.338.533.767.785.1.1.-1"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.511.83.41.800.1000.764.1264.0.0.0.511.83.41.800.1000.764.964.0.0.0.511.83.41.800.1000.764.664.0.0.0.511.83.41.800.1000.764.364.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_braganza"
              label_color="FF830808"
              color="FF830808"
              color2="FF34671e"
@@ -1546,7 +1546,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_cursed"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.0.0.2138.2527.767.767.0.1.0.505.116.116.1180.2527.188.784.0.1.0.512.28.28.383.593.758.853.0.1.0.426.28.28.281.374.760.764.0.1.89.503.116.116.221.88.764.736.0.1.0.347.28.28.337.365.765.664.0.1.0.427.28.28.666.411.765.668.0.1.180.426.28.28.125.263.758.706.0.1.269.503.28.28.294.237.762.610.0.1.0.504.116.116.43.258.799.913.0.1.175.504.116.116.43.258.716.915.0.0.184.504.116.116.29.258.756.915.0.0.179"
+             banner_key="1.131.72.1500.1500.758.769.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_cursed_company"
              label_color="FFAC5F2E"
              color="FFAC5F2E"
              color2="FFAC5F2E"
@@ -1570,7 +1570,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_leopard"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.28.28.2138.2527.767.767.0.1.0.510.142.28.1609.641.769.349.0.1.0.510.142.28.1609.641.777.552.0.1.0.510.142.28.1609.641.783.760.0.1.0.510.142.28.1609.641.785.979.0.1.0.510.142.28.1609.641.791.1200.0.1.0.503.116.116.408.404.764.754.0.1.0.423.143.116.510.504.764.748.1.1.0.140.143.116.295.292.760.760.0.0.0"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.510.83.41.1500.600.764.1134.0.0.0.510.83.41.1500.600.764.984.0.0.0.510.83.41.1500.600.764.839.0.0.0.510.83.41.1500.600.764.689.0.0.0.510.83.41.1500.600.764.544.0.0.0.510.83.41.1500.600.764.394.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_leopard_company"
              label_color="FF830808"
              color="FF830808"
              color2="FFf3f3f3"
@@ -1594,7 +1594,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_voland"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.116.116.2138.2527.767.767.0.1.0.511.143.116.1422.1740.769.765.0.1.180"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_voland"
              label_color="FFf4d32e"
              color="FFf4d32e"
              color2="FF0b0c11"
@@ -1618,7 +1618,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_miragliano"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.28.28.2138.2527.767.767.0.1.0.510.142.28.2138.1214.764.764.0.1.0.510.142.28.2138.1214.764.406.0.1.0.510.142.28.2138.1214.773.1129.0.1.0.426.119.116.216.287.765.969.0.1.89.503.116.116.397.401.764.764.0.1.0.423.126.116.440.401.764.764.1.1.0.304.143.116.224.204.795.813.1.1.-58.304.143.116.224.204.813.823.1.1.-74.304.143.116.224.204.813.839.1.1.-83.103.143.116.224.204.765.744.1.1.19.510.119.116.115.320.596.1005.0.1.157.510.119.116.115.320.937.1003.0.0.202"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.510.83.41.1500.600.764.1134.0.0.0.510.83.41.1500.600.764.984.0.0.0.510.83.41.1500.600.764.839.0.0.0.510.83.41.1500.600.764.689.0.0.0.510.83.41.1500.600.764.544.0.0.0.510.83.41.1500.600.764.394.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_miragliano_marksmen"
              label_color="FFf3f3f3"
              color="FFf3f3f3"
              color2="FF830808"
@@ -1642,7 +1642,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_ricco"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.28.28.2138.2527.767.767.0.1.0.510.142.28.2138.1214.764.764.0.1.0.510.142.28.2138.1214.764.406.0.1.0.510.142.28.2138.1214.773.1129.0.1.0.503.116.116.397.401.764.764.0.1.0.423.143.116.525.478.764.764.1.1.0.336.143.116.254.232.764.754.1.1.0.304.143.116.357.325.760.742.1.1.0"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.510.83.41.1500.600.764.1134.0.0.0.510.83.41.1500.600.764.984.0.0.0.510.83.41.1500.600.764.839.0.0.0.510.83.41.1500.600.764.689.0.0.0.510.83.41.1500.600.764.544.0.0.0.510.83.41.1500.600.764.394.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_ricco"
              label_color="FFf1c232"
              color="FFf1c232"
              color2="FF830808"
@@ -1666,7 +1666,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_muktar"
              culture="Culture.empire"
-             banner_key="11.12.140.8000.8000.768.788.1.0.-30.309.143.116.240.240.596.764.1.1.41.309.143.116.240.240.764.764.1.1.41.309.143.116.240.240.927.762.1.1.41"
+             banner_key="11.116.148.1500.1500.758.769.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_muktar"
              label_color="FF0335fc"
              color="FF0335fc"
              color2="FFfcc603"

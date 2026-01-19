@@ -235,18 +235,24 @@ namespace TOR_Core.Extensions.ExtendedInfoSystem
         private void HourlyTick() //I wonder if this could be done on the quarter daily tick instead and reduce the load significantly? The quarter tick is party-based, it could be performed on the main party's quarter tick, ie QuarterDailyTick above.
         {
             //fill winds of magic
-            foreach (var entry in _heroInfos)
+            foreach (var hero in Hero.AllAliveHeroes)
             {
-                if (entry.Value.AllAttributes.Contains("SpellCaster"))
+                if (hero.IsNotable)
+                    continue;
+                if (!_heroInfos.TryGetValue(hero.GetInfoKey(), out var heroInfo))
+                    continue;
+                if (!heroInfo.AllAttributes.Contains("SpellCaster"))
+                    continue;
+
+                var bonusRegen = 1f;
+                if (hero.GetPerkValue(TORPerks.Spellcraft.Catalyst) &&
+                    hero.CurrentSettlement != null &&
+                    hero.CurrentSettlement.IsTown)
                 {
-                    var hero = Hero.FindFirst(x => x.StringId == entry.Key);
-                    float bonusRegen = 1f;
-                    if (hero != null && hero.GetPerkValue(TORPerks.Spellcraft.Catalyst) && hero.CurrentSettlement != null && hero.CurrentSettlement.IsTown)
-                    {
-                        bonusRegen += TORPerks.Spellcraft.Catalyst.SecondaryBonus;
-                    }
-                    entry.Value.AddCustomResource("WindsOfMagic", entry.Value.WindsOfMagicRechargeRate * bonusRegen);
+                    bonusRegen += TORPerks.Spellcraft.Catalyst.SecondaryBonus;
                 }
+
+                heroInfo.AddCustomResource("WindsOfMagic", heroInfo.WindsOfMagicRechargeRate * bonusRegen);
             }
             //count down blessing duration
             foreach (var entry in _partyInfos)
