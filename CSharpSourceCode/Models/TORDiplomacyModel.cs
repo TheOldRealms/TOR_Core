@@ -491,7 +491,7 @@ namespace TOR_Core.Models
         /// </summary>
         private float CalculateDistanceScore(Kingdom declaringKingdom, Kingdom targetKingdom)
         {
-            float distance = GetKingdomDistance(declaringKingdom, targetKingdom);
+            float distance = DiplomacyHelpers.GetKingdomDistance(declaringKingdom, targetKingdom);
 
             if (distance >= 300)
                 return -5000f; // No valid distance = strong penalty
@@ -515,13 +515,7 @@ namespace TOR_Core.Models
         /// </summary>
         private float CalculateReligionScore(Kingdom declaringKingdom, Kingdom targetKingdom)
         {
-            var religion1 = declaringKingdom.Leader?.GetDominantReligion();
-            var religion2 = targetKingdom.Leader?.GetDominantReligion();
-
-            if (religion1 == null || religion2 == null)
-                return 0f;
-
-            float religionCompatibility = ReligionObjectHelper.CalculateReligionCompatibility(religion1, religion2);
+            float religionCompatibility = DiplomacyHelpers.GetReligionCompatibility(declaringKingdom, targetKingdom);
             // Negative compatibility = more likely to declare war (scaled by 100)
             return -religionCompatibility * TORConfig.DeclareWarScoreReligiousEffectMultiplier * 100f;
         }
@@ -532,8 +526,7 @@ namespace TOR_Core.Models
         /// </summary>
         private float CalculateCultureScore(Kingdom declaringKingdom, Kingdom targetKingdom)
         {
-            float cultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(
-                declaringKingdom.Culture?.StringId, targetKingdom.Culture?.StringId);
+            float cultureCompat = DiplomacyHelpers.GetCultureCompatibility(declaringKingdom, targetKingdom);
             // Negative compatibility = more likely to declare war
             return -cultureCompat * WarCultureCompatibilityWeight;
         }
@@ -756,7 +749,7 @@ namespace TOR_Core.Models
                     }
 
                     // Distance consideration - prefer nearby allies
-                    float distance = GetKingdomDistance(consideringKingdom, candidate);
+                    float distance = DiplomacyHelpers.GetKingdomDistance(consideringKingdom, candidate);
                     score -= distance * AllianceDistancePenaltyFactor;
 
                     candidateScores[candidate] = score;
@@ -775,21 +768,7 @@ namespace TOR_Core.Models
         }
 
         // Note: Trade agreements were removed in 1.3. Alliances are now handled by IAllianceCampaignBehavior.
-
-        /// <summary>
-        /// Gets the approximate distance between two kingdoms based on their mid settlements.
-        /// </summary>
-        private float GetKingdomDistance(Kingdom kingdom1, Kingdom kingdom2)
-        {
-            if (kingdom1.FactionMidSettlement == null || kingdom2.FactionMidSettlement == null)
-            {
-                return float.MaxValue;
-            }
-
-            var pos1 = kingdom1.FactionMidSettlement.Position;
-            var pos2 = kingdom2.FactionMidSettlement.Position;
-            return pos1.Distance(pos2);
-        }
+        // Note: GetKingdomDistance moved to DiplomacyHelpers
 
         /// <summary>
         /// Calculates a distance factor for territorial claims.
