@@ -254,7 +254,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 allianceWarBehavior?.MarkAsAllianceWar(Kingdom, Attacker);
 
                 // Declare war
-                DeclareWarAction.ApplyByKingdomDecision(Kingdom, Attacker);
+                //DeclareWarAction.ApplyByKingdomDecision(Kingdom, Attacker);
+                
+                DeclareWarAction.ApplyByCallToWarAgreement(Kingdom, Attacker);
 
                 // Notify
                 if (Kingdom == Clan.PlayerClan?.Kingdom)

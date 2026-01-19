@@ -93,3 +93,4 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         public string[] AttributesToIncrease;
     }
 }
+

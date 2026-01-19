@@ -174,7 +174,6 @@ namespace TOR_Core
                 starter.AddBehavior(new TORStartupBehavior());
                 starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
                 starter.AddBehavior(new TORAllianceWarBehavior());
-                starter.AddBehavior(new TORAIAgreementBehavior());
                 starter.AddBehavior(new TORArtisanDistrictCampaignBehavior());
                 starter.AddBehavior(new PriestBehavior());
                 starter.AddBehavior(new SkillTrainerBehavior());

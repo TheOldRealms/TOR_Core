@@ -586,7 +586,6 @@
     <Compile Include="CampaignMechanics\Diplomacy\TORAllianceWarBehavior.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\HonorAllianceDecision.cs" />
     <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionsCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\Diplomacy\TORAIAgreementBehavior.cs" />
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="Extensions\UI\SPItemVMExtension.cs" />
     <Compile Include="Extensions\UI\TORInitialScreen.cs" />
@@ -676,7 +675,6 @@
     <Compile Include="Extensions\HeroExtensions.cs" />
     <Compile Include="Extensions\ItemObjectExtensions.cs" />
     <Compile Include="Extensions\KingdomExtension.cs" />
-    <Compile Include="Extensions\FactionExtensions.cs" />
     <Compile Include="Extensions\MissionExtensions.cs" />
     <Compile Include="Extensions\MobilePartyExtensions.cs" />
     <Compile Include="Extensions\SettlementExtensions.cs" />

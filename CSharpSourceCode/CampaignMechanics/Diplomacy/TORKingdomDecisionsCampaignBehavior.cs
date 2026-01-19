@@ -1,23 +1,34 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using NLog;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Election;
 using TaleWorlds.Core;
 using TaleWorlds.LinQuick;
+using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
 using TOR_Core.Models;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
 {
     public class TORKingdomDecisionsCampaignBehavior : CampaignBehaviorBase
     {
+        // War/Peace decision settings
         private List<KingdomDecision> _kingdomDecisionsList = [];
         private float _minDaysBetweenDecisions = 20f;
         private Dictionary<string, CampaignTime> _lastDecisionTime = [];
         private float _influenceReserveToKeep = 300f;
         private float _outnumberRatioForEmergencyPeace = 5f;
+
+        // Agreement consideration settings
+        private const int AgreementConsiderationIntervalMinDays = 5;
+        private const int AgreementConsiderationIntervalMaxDays = 10;
+        private const bool EnableDiplomacyDebug = false;
 
         public override void RegisterEvents()
         {
@@ -48,6 +59,19 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private void DailyTickClan(Clan clan)
         {
+            if (clan == null || clan.IsEliminated || clan.Kingdom == null)
+                return;
+
+            // Agreement consideration - only ruling clan, separate timing
+            if (clan == clan.Kingdom.RulingClan &&
+                clan.Kingdom != Clan.PlayerClan?.Kingdom &&
+                ShouldConsiderAgreementsToday(clan.Kingdom))
+            {
+                ConsiderTradeAgreements(clan.Kingdom);
+                ConsiderAlliances(clan.Kingdom);
+            }
+
+            // War/Peace decisions - all eligible clans
             if (!IsEligibleForDecisionMaking(clan)) return;
 
             if (Campaign.Current?.Models?.DiplomacyModel is not TORDiplomacyModel model) return;
@@ -142,6 +166,11 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private void DailyTick()
         {
+            // Debug logging
+            if (EnableDiplomacyDebug)
+                LogDiplomacyStatus();
+
+            // Clean up old decisions
             if (_kingdomDecisionsList != null)
             {
                 int count = _kingdomDecisionsList.Count;
@@ -243,13 +272,412 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                         else
                         {
                             ally.SetAllyTriggered(true);
-                            // In 1.3, ApplyByKingdomDecision requires tribute parameters (dailyTribute, dailyTributeInstallments)
-                            // Alliance-triggered peace has no tribute
                             MakePeaceAction.ApplyByKingdomDecision(ally, otherKingdom, 0, 0);
                         }
                     }
                 }
             }
         }
+
+        #region Trade Agreement Consideration
+
+        private void ConsiderTradeAgreements(Kingdom kingdom)
+        {
+            if (!CanKingdomConsiderTrade(kingdom))
+                return;
+
+            var potentialPartners = GetPotentialTradePartners(kingdom);
+            if (!potentialPartners.Any())
+                return;
+
+            var candidates = GetCandidateLords(kingdom);
+            var proposingLord = SelectProposingLord(candidates);
+            if (proposingLord == null)
+                return;
+
+            foreach (var targetKingdom in potentialPartners)
+            {
+                float chance = CalculateTradeProposalChance(proposingLord, kingdom, targetKingdom);
+
+                if (MBRandom.RandomFloat * 100f < chance)
+                {
+                    ProposeTradeAgreement(kingdom, targetKingdom, proposingLord);
+                    return;
+                }
+            }
+        }
+
+        private bool CanKingdomConsiderTrade(Kingdom kingdom)
+        {
+            var pantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
+            if (pantheon == Pantheon.Chaos)
+                return false;
+            return true;
+        }
+
+        private List<Kingdom> GetPotentialTradePartners(Kingdom kingdom)
+        {
+            var tradeModel = Campaign.Current?.Models?.TradeAgreementModel;
+            if (tradeModel == null)
+                return new List<Kingdom>();
+
+            var myPantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
+            var isUndead = myPantheon == Pantheon.Undead;
+
+            List<Kingdom> candidateKingdoms;
+
+            if (isUndead)
+            {
+                var undeadKingdoms = Kingdom.All
+                    .Where(k => k != kingdom && !k.IsEliminated)
+                    .Where(k => DiplomacyHelpers.GetKingdomPantheon(k) == Pantheon.Undead)
+                    .ToList();
+
+                if (undeadKingdoms.Any())
+                {
+                    candidateKingdoms = undeadKingdoms;
+                }
+                else
+                {
+                    candidateKingdoms = Kingdom.All
+                        .Where(k => k != kingdom && !k.IsEliminated)
+                        .Select(k => new { Kingdom = k, Distance = DiplomacyHelpers.GetKingdomDistance(kingdom, k) })
+                        .OrderBy(x => x.Distance)
+                        .Take(10)
+                        .Select(x => x.Kingdom)
+                        .ToList();
+                }
+            }
+            else
+            {
+                candidateKingdoms = Kingdom.All
+                    .Where(k => k != kingdom && !k.IsEliminated)
+                    .Select(k => new { Kingdom = k, Distance = DiplomacyHelpers.GetKingdomDistance(kingdom, k) })
+                    .OrderBy(x => x.Distance)
+                    .Take(5)
+                    .Select(x => x.Kingdom)
+                    .ToList();
+            }
+
+            var validPartners = candidateKingdoms
+                .Where(k => tradeModel.CanMakeTradeAgreement(kingdom, k, true, out _))
+                .ToList();
+
+            if (!validPartners.Any())
+                return new List<Kingdom>();
+
+            var scoredPartners = validPartners
+                .Select(k => new
+                {
+                    Kingdom = k,
+                    Score = tradeModel.GetScoreOfStartingTradeAgreement(kingdom, k, kingdom.RulingClan, out _)
+                })
+                .Where(x => x.Score > 0)
+                .OrderByDescending(x => x.Score)
+                .Take(3)
+                .Select(x => x.Kingdom)
+                .ToList();
+
+            return scoredPartners;
+        }
+
+        private float CalculateTradeProposalChance(Hero lord, Kingdom proposingKingdom, Kingdom targetKingdom)
+        {
+            var tradeModel = Campaign.Current?.Models?.TradeAgreementModel;
+            if (tradeModel == null)
+                return 0f;
+
+            return tradeModel.GetScoreOfStartingTradeAgreement(
+                proposingKingdom, targetKingdom, lord.Clan, out _);
+        }
+
+        private void ProposeTradeAgreement(Kingdom proposer, Kingdom target, Hero proposingLord)
+        {
+            if (proposingLord?.Clan == null)
+                return;
+
+            var decision = new TradeAgreementDecision(proposingLord.Clan, target);
+            proposer.AddDecision(decision, true);
+        }
+
+        #endregion
+
+        #region Alliance Consideration
+
+        private void ConsiderAlliances(Kingdom ownKingdom)
+        {
+            if (!CanKingdomConsiderAlliance(ownKingdom))
+                return;
+
+            var potentialAllies = GetPotentialAlliancePartners(ownKingdom);
+            if (!potentialAllies.Any())
+                return;
+
+            var candidates = GetCandidateLords(ownKingdom);
+            var proposingLord = SelectProposingLord(candidates);
+            if (proposingLord == null)
+                return;
+
+            var targetKingdom = potentialAllies.GetRandomElement();
+            if (targetKingdom == null) return;
+
+            float chance = CalculateAllianceProposalChance(proposingLord, ownKingdom, targetKingdom);
+
+            if (MBRandom.RandomFloat * 100f < chance)
+            {
+                ProposeAlliance(ownKingdom, targetKingdom, proposingLord);
+            }
+        }
+
+        private bool CanKingdomConsiderAlliance(Kingdom kingdom)
+        {
+            var pantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
+
+            if (pantheon == Pantheon.Chaos)
+                return false;
+
+            if (pantheon == Pantheon.Greenskin)
+                return false;
+
+            var allianceModel = Campaign.Current?.Models?.AllianceModel;
+            if (allianceModel != null && kingdom.AlliedKingdoms.Count >= allianceModel.MaxNumberOfAlliances)
+                return false;
+
+            return true;
+        }
+
+        private List<Kingdom> GetPotentialAlliancePartners(Kingdom kingdom)
+        {
+            var allianceModel = Campaign.Current?.Models?.AllianceModel;
+            if (allianceModel == null)
+                return new List<Kingdom>();
+
+            var myPantheon = DiplomacyHelpers.GetKingdomPantheon(kingdom);
+            var isUndead = myPantheon == Pantheon.Undead;
+
+            List<Kingdom> candidateKingdoms;
+
+            if (isUndead)
+            {
+                var undeadKingdoms = Kingdom.All
+                    .Where(k => k != kingdom && !k.IsEliminated)
+                    .Where(k => DiplomacyHelpers.GetKingdomPantheon(k) == Pantheon.Undead)
+                    .ToList();
+
+                if (undeadKingdoms.Any())
+                {
+                    candidateKingdoms = undeadKingdoms;
+                }
+                else
+                {
+                    candidateKingdoms = Kingdom.All
+                        .Where(k => k != kingdom && !k.IsEliminated)
+                        .Select(k => new { Kingdom = k, Distance = DiplomacyHelpers.GetKingdomDistance(kingdom, k) })
+                        .OrderBy(x => x.Distance)
+                        .Select(x => x.Kingdom)
+                        .ToList();
+                }
+            }
+            else
+            {
+                candidateKingdoms = Kingdom.All
+                    .Where(k => k != kingdom && !k.IsEliminated)
+                    .Select(k => new { Kingdom = k, Distance = DiplomacyHelpers.GetKingdomDistance(kingdom, k) })
+                    .OrderBy(x => x.Distance)
+                    .Take(5)
+                    .Select(x => x.Kingdom)
+                    .ToList();
+            }
+
+            var validPartners = candidateKingdoms
+                .Where(k => IsAllianceLoreCompatible(myPantheon, DiplomacyHelpers.GetKingdomPantheon(k)))
+                .Where(k => !kingdom.IsAtWarWith(k))
+                .Where(k => !kingdom.IsAllyWith(k))
+                .Where(k => k.AlliedKingdoms.Count < allianceModel.MaxNumberOfAlliances)
+                .ToList();
+
+            if (!validPartners.Any())
+                return new List<Kingdom>();
+
+            var scoredPartners = validPartners
+                .Select(k => new
+                {
+                    Kingdom = k,
+                    Score = allianceModel.GetScoreOfStartingAlliance(kingdom, k, kingdom.RulingClan, out _).ResultNumber
+                })
+                .Where(x => x.Score > 50)
+                .OrderByDescending(x => x.Score)
+                .TakeRandom(3)
+                .Select(x => x.Kingdom)
+                .ToList();
+
+            return scoredPartners;
+        }
+
+        private float CalculateAllianceProposalChance(Hero lord, Kingdom proposingKingdom, Kingdom targetKingdom)
+        {
+            var allianceModel = Campaign.Current?.Models?.AllianceModel;
+            if (allianceModel == null)
+                return 0f;
+
+            float score = allianceModel.GetScoreOfStartingAlliance(
+                proposingKingdom, targetKingdom, lord.Clan, out _).ResultNumber;
+
+            if (score <= 50)
+                return 0f;
+
+            return score;
+        }
+
+        private void ProposeAlliance(Kingdom proposer, Kingdom target, Hero proposingLord)
+        {
+            if (proposingLord?.Clan == null)
+                return;
+
+            var decision = new StartAllianceDecision(proposingLord.Clan, target);
+            proposer.AddDecision(decision, true);
+        }
+
+        private bool IsAllianceLoreCompatible(Pantheon pantheon1, Pantheon pantheon2)
+        {
+            if (pantheon1 == Pantheon.Chaos || pantheon2 == Pantheon.Chaos)
+                return false;
+
+            if (pantheon1 == Pantheon.Greenskin || pantheon2 == Pantheon.Greenskin)
+                return false;
+
+            return true;
+        }
+
+        #endregion
+
+        #region Shared Helpers
+
+        private List<Hero> GetCandidateLords(Kingdom kingdom)
+        {
+            var candidates = new List<Hero>();
+
+            if (kingdom.Leader != null && kingdom.Leader.IsAlive)
+            {
+                candidates.Add(kingdom.Leader);
+            }
+
+            var otherClanLeaders = kingdom.Clans
+                .Where(c => c != kingdom.RulingClan && !c.IsUnderMercenaryService && c.Leader?.IsAlive == true)
+                .Select(c => c.Leader)
+                .ToList();
+
+            int additionalLords = Math.Min(2, otherClanLeaders.Count);
+
+            for (int i = 0; i < additionalLords; i++)
+            {
+                var randomLord = otherClanLeaders.GetRandomElement();
+                if (randomLord != null)
+                {
+                    candidates.Add(randomLord);
+                    otherClanLeaders.Remove(randomLord);
+                }
+            }
+
+            return candidates;
+        }
+
+        private Hero SelectProposingLord(List<Hero> candidates)
+        {
+            if (candidates == null || !candidates.Any())
+                return null;
+
+            return candidates.GetRandomElement();
+        }
+
+        private bool ShouldConsiderAgreementsToday(Kingdom kingdom)
+        {
+            if (MBRandom.RandomFloatRanged(0, 1f) < 0.25f)
+            {
+                return false;
+            }
+
+            int hash = kingdom.StringId?.GetHashCode() ?? 0;
+            if (hash < 0) hash = -hash;
+
+            int intervalRange = AgreementConsiderationIntervalMaxDays - AgreementConsiderationIntervalMinDays + 1;
+            int kingdomInterval = AgreementConsiderationIntervalMinDays + (hash % intervalRange);
+            int kingdomOffset = (hash / intervalRange) % kingdomInterval;
+
+            int currentDay = (int)CampaignTime.Now.ToDays;
+            return (currentDay + kingdomOffset) % kingdomInterval == 0;
+        }
+
+        #endregion
+
+        #region Debug Logging
+
+        private void LogDiplomacyStatus()
+        {
+            var kingdoms = Kingdom.All.Where(k => !k.IsEliminated).ToList();
+            var sb = new StringBuilder();
+
+            sb.AppendLine("=== TOR DIPLOMACY DEBUG ===");
+            sb.AppendLine($"Day: {(int)CampaignTime.Now.ToDays}");
+            sb.AppendLine();
+
+            int totalWars = 0;
+
+            var tradeAgreementBehavior = Campaign.Current.GetCampaignBehavior<TradeAgreementsCampaignBehavior>();
+
+            int totalTradeAgreements = (from kingdom in kingdoms from otherKingdom in kingdoms where tradeAgreementBehavior.HasTradeAgreement(kingdom, otherKingdom) select kingdom).Count();
+            int totalAlliances = kingdoms.Sum(kingdom => kingdom.AlliedKingdoms.Count);
+
+            totalAlliances /= 2;
+            totalTradeAgreements /= 2;
+
+            var warPairs = new HashSet<string>();
+            foreach (var kingdom in kingdoms)
+            {
+                foreach (var enemy in kingdoms.Where(k => k != kingdom && kingdom.IsAtWarWith(k)))
+                {
+                    var key = string.Compare(kingdom.StringId, enemy.StringId) < 0
+                        ? $"{kingdom.StringId}|{enemy.StringId}"
+                        : $"{enemy.StringId}|{kingdom.StringId}";
+                    warPairs.Add(key);
+                }
+            }
+            totalWars = warPairs.Count;
+
+            sb.AppendLine($"TOTALS: Wars={totalWars}, Alliances={totalAlliances}, TradeAgreements={totalTradeAgreements}");
+            sb.AppendLine();
+
+            sb.AppendLine("--- KINGDOM STATUS ---");
+            foreach (var kingdom in kingdoms.OrderBy(k => k.Name.ToString()))
+            {
+                var wars = kingdoms.Where(k => k != kingdom && kingdom.IsAtWarWith(k)).Select(k => k.Name.ToString()).ToList();
+                var allies = kingdom.AlliedKingdoms.Select(k => k.Name.ToString()).ToList();
+                var tradePartners = kingdom.GetTradeAgreementKingdoms().Select(k => k.Name.ToString()).ToList();
+
+                sb.AppendLine($"{kingdom.Name}:");
+                sb.AppendLine($"  Wars ({wars.Count}): {(wars.Any() ? string.Join(", ", wars) : "None")}");
+                sb.AppendLine($"  Allies ({allies.Count}): {(allies.Any() ? string.Join(", ", allies) : "None")}");
+                sb.AppendLine($"  Trade ({tradePartners.Count}): {(tradePartners.Any() ? string.Join(", ", tradePartners) : "None")}");
+            }
+
+            sb.AppendLine();
+            sb.AppendLine("--- ALL WARS ---");
+            foreach (var warPair in warPairs.OrderBy(x => x))
+            {
+                var parts = warPair.Split('|');
+                var k1 = kingdoms.FirstOrDefault(k => k.StringId == parts[0]);
+                var k2 = kingdoms.FirstOrDefault(k => k.StringId == parts[1]);
+                if (k1 != null && k2 != null)
+                {
+                    sb.AppendLine($"  {k1.Name} vs {k2.Name}");
+                }
+            }
+
+            sb.AppendLine("=== END DIPLOMACY DEBUG ===");
+
+            TORCommon.Log(sb.ToString(), LogLevel.Info);
+        }
+
+        #endregion
     }
 }
