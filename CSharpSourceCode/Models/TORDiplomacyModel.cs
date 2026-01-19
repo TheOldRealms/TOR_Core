@@ -44,6 +44,9 @@ namespace TOR_Core.Models
         // Personality trait modifier step (trait level -2 to +2 maps to 0.25 to 1.75)
         private const float TraitModifierStep = 0.375f;
 
+        // Distance threshold - beyond this, war is not considered (prevents proxy wars)
+        private const float MaxWarDistance = 800f;
+
         public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 150;
         public override int GetInfluenceCostOfProposingWar(Clan proposingClan) => 150;
 
@@ -166,6 +169,11 @@ namespace TOR_Core.Models
         /// </summary>
         private float CalculateWarTargetScore(Kingdom declaringKingdom, Kingdom targetKingdom, Clan evaluatingClan)
         {
+            // DISTANCE CHECK FIRST - prevent proxy wars against distant kingdoms
+            float distance = GetKingdomDistance(declaringKingdom, targetKingdom);
+            if (distance > MaxWarDistance)
+                return -200000f; // Too far - don't even consider this war
+
             var leader = evaluatingClan?.Leader;
 
             // Get trait modifiers for the evaluating clan's leader
@@ -490,7 +498,7 @@ namespace TOR_Core.Models
         {
             float distance = GetKingdomDistance(declaringKingdom, targetKingdom);
 
-            if (distance >= float.MaxValue)
+            if (distance >= 300)
                 return -5000f; // No valid distance = strong penalty
 
             // Neutral distance where score is 0
