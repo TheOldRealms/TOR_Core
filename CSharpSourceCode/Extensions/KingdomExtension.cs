@@ -87,4 +87,44 @@ public static class KingdomExtension
 
         return tradeAgreementBehavior.HasTradeAgreement(kingdom, otherKingdom);
     }
+
+    /// <summary>
+    /// Gets all kingdoms currently at war with this kingdom.
+    /// </summary>
+    public static IEnumerable<Kingdom> GetEnemyKingdoms(this Kingdom kingdom)
+    {
+        if (kingdom == null)
+            return Enumerable.Empty<Kingdom>();
+
+        return Kingdom.All
+            .Where(k => k != kingdom && !k.IsEliminated && kingdom.IsAtWarWith(k));
+    }
+
+    /// <summary>
+    /// Gets the total military strength of all enemy kingdoms.
+    /// </summary>
+    public static float GetTotalEnemyStrength(this Kingdom kingdom)
+    {
+        return kingdom.GetEnemyKingdoms().Sum(k => k.CurrentTotalStrength);
+    }
+
+    /// <summary>
+    /// Gets all kingdoms currently allied with this kingdom.
+    /// </summary>
+    public static IEnumerable<Kingdom> GetAlliedKingdoms(this Kingdom kingdom)
+    {
+        if (kingdom == null)
+            return Enumerable.Empty<Kingdom>();
+
+        return Kingdom.All
+            .Where(k => k != kingdom && !k.IsEliminated && kingdom.IsAlliedWith(k));
+    }
+
+    /// <summary>
+    /// Gets the count of alliances for this kingdom.
+    /// </summary>
+    public static int GetAllianceCount(this Kingdom kingdom)
+    {
+        return kingdom.GetAlliedKingdoms().Count();
+    }
 }
