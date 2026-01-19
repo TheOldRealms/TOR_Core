@@ -115,7 +115,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private bool ConsiderEmergencyPeace(Kingdom kingdom)
         {
-            if (kingdom.GetSumEnemyKingdomPower() > kingdom.GetAllianceTotalStrength() * _outnumberRatioForEmergencyPeace) return true;
+            if (kingdom.GetTotalEnemyAllianceStrength() > kingdom.GetAllianceTotalStrength() * _outnumberRatioForEmergencyPeace) return true;
             return false;
         }
 
@@ -227,7 +227,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         public static void UpdateWarPeaceForAlliance(IFaction kingdom)
         {
             var allKingdoms = Kingdom.All.Where(k => !k.IsEliminated);
-            var allAllies = kingdom.GetAlliedFactions().ToList();
+            var allAllies = kingdom.GetAlliedKingdoms().ToList();
 
             foreach (var ally in allAllies)
             {

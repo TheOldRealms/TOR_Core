@@ -130,7 +130,7 @@ namespace TOR_Core.Models
             if (factionDeclaresPeace is Kingdom kingdom && factionDeclaredPeace is Kingdom enemyKingdom)
             {
                 int offensiveWars = GetOffensiveWarCount(kingdom);
-                int totalWars = kingdom.GetNumActiveKingdomWars();
+                int totalWars = kingdom.GetWarCount();
 
                 // If under minimum wars, don't seek peace
                 if (totalWars <= TORConfig.NumMinKingdomWars) return -100000;
@@ -438,7 +438,7 @@ namespace TOR_Core.Models
             float totalScore = hearthScore + prosperityScore + missingResourceScore;
 
             // Competition factor: reduce if others are already at war with target
-            int competitorCount = targetKingdom.GetNumActiveKingdomWars();
+            int competitorCount = targetKingdom.GetWarCount();
             float competitionFactor = Math.Max(0.2f, 1f - competitorCount * 0.25f);
 
             return totalScore * competitionFactor;
@@ -553,7 +553,7 @@ namespace TOR_Core.Models
             // Target's current enemy count - opportunity to strike while they're distracted
             // Bonus for each enemy, but plateau after 2 (scaled by 100)
             // 0 enemies: 0, 1 enemy: +1500, 2+ enemies: +3000 (cap)
-            int targetEnemyCount = targetKingdom.GetNumActiveKingdomWars();
+            int targetEnemyCount = targetKingdom.GetWarCount();
             score += Math.Min(targetEnemyCount * 1500f, 3000f);
 
             // Our current war count - penalty for overextension (scaled by 100)
@@ -577,7 +577,7 @@ namespace TOR_Core.Models
                 return allianceWarBehavior.GetOffensiveWarCount(kingdom);
             }
             // Fallback to total wars if behavior not available
-            return kingdom.GetNumActiveKingdomWars();
+            return kingdom.GetWarCount();
         }
 
         public override float GetScoreOfMercenaryToJoinKingdom(Clan mercenaryClan, Kingdom kingdom)
@@ -719,7 +719,7 @@ namespace TOR_Core.Models
                 !x.IsEliminated &&
                 x != consideringKingdom &&
                 !consideringKingdom.IsAtWarWith(x) &&
-                !consideringKingdom.IsAlliedWith(x) &&
+                !consideringKingdom.IsAllyWith(x) &&
                 permissionModel.IsStartAllianceDecisionAllowedBetweenKingdoms(consideringKingdom, x, out _)).ToListQ();
 
             if (kingdomCandidates.Count > 0)
@@ -742,7 +742,7 @@ namespace TOR_Core.Models
                     score += cultureCompat * AllianceCultureCompatibilityWeight;
 
                     // Strength consideration - prefer allying with stronger kingdoms when threatened
-                    var totalEnemyStrength = consideringKingdom.GetSumEnemyKingdomPower();
+                    var totalEnemyStrength = consideringKingdom.GetTotalEnemyAllianceStrength();
                     if (totalEnemyStrength > consideringKingdom.CurrentTotalStrength)
                     {
                         score += candidate.CurrentTotalStrength / consideringKingdom.CurrentTotalStrength * AllianceStrengthWeight;

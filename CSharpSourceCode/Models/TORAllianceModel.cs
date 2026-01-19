@@ -403,7 +403,7 @@ namespace TOR_Core.Models
             float score = 0f;
 
             // How many wars are they fighting?
-            int theirWarCount = targetKingdom.GetNumActiveKingdomWars();
+            int theirWarCount = targetKingdom.GetWarCount();
             score += theirWarCount * EnemyCountPenaltyWeight;
 
             // Are their enemies strong? Would we inherit dangerous wars?
@@ -476,7 +476,7 @@ namespace TOR_Core.Models
             float score = 0f;
 
             // Is target kingdom under threat?
-            int theirWarCount = targetKingdom.GetNumActiveKingdomWars();
+            int theirWarCount = targetKingdom.GetWarCount();
             if (theirWarCount > 0)
             {
                 score += theirWarCount * ProtectThreatenedWeight;
