@@ -109,10 +109,9 @@ namespace TOR_Core.Models
                 // Add TOR custom scoring factors
                 float customScore = CalculateWarTargetScore(declaringKingdom, targetKingdom, evaluatingClan);
 
-                customScore += 0;
-                customScore += MBRandom.RandomInt(-25,25);
+                // Small random variance to prevent identical scores
+                customScore += MBRandom.RandomInt(-25, 25);
 
-                TORCommon.Say(customScore+"");
                 return customScore;
             }
 

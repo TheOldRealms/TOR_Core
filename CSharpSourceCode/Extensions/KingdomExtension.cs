@@ -35,11 +35,15 @@ public static class KingdomExtension
 
     public static bool IsCoastalKingdom(this Kingdom kingdom)
     {
-        
-        string[] coastalKingdoms = { "nordland", "ostland", "wasteland", "couronne", "anguille", "lyonesse", "mousillon", "bordeleaux", "brionne" };
-
-
-        return coastalKingdoms.Any(id => kingdom.StringId == id);
+        return kingdom.StringId == TORConstants.Factions.NORDLAND ||
+               kingdom.StringId == TORConstants.Factions.OSTLAND ||
+               kingdom.StringId == TORConstants.Factions.WASTELAND ||
+               kingdom.StringId == TORConstants.Factions.COURONNE ||
+               kingdom.StringId == TORConstants.Factions.ANGUILLE ||
+               kingdom.StringId == TORConstants.Factions.LYONESSE ||
+               kingdom.StringId == TORConstants.Factions.MOUSILLON ||
+               kingdom.StringId == TORConstants.Factions.BORDELEAUX ||
+               kingdom.StringId == TORConstants.Factions.BRIONNE;
     }
 
     public static bool IsCastleFaction(this Kingdom kingdom)

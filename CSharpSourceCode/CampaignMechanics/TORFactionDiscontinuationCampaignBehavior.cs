@@ -70,7 +70,7 @@ namespace TOR_Core.CampaignMechanics
                 }
                 if (MBRandom.RandomFloat > 0.7f)
                 {
-                    var candidateKingdoms = GetCandidateKingdomsForClan(clan);
+                    var candidateKingdoms = GetCandidateKingdomsForJoiningClan(clan);
                     if (candidateKingdoms != null && candidateKingdoms.Count() > 0)
                     {
                         var targetKingdom = candidateKingdoms.MinBy(x => x.CurrentTotalStrength);
@@ -89,7 +89,7 @@ namespace TOR_Core.CampaignMechanics
         /// Gets candidate kingdoms for a destroyed clan to join.
         /// Includes special faction pairings for closely-related factions.
         /// </summary>
-        private IEnumerable<Kingdom> GetCandidateKingdomsForClan(Clan clan)
+        private IEnumerable<Kingdom> GetCandidateKingdomsForJoiningClan(Clan clan)
         {
             var originalKingdomId = clan.StringId?.Split('_')[0]; // Extract faction from clan ID (e.g., "laurelorn" from "laurelorn_clan_1")
 
@@ -101,19 +101,17 @@ namespace TOR_Core.CampaignMechanics
                 { TORConstants.Factions.MOUSILLON, TORConstants.Factions.SYLVANIA },
                 { TORConstants.Factions.SYLVANIA, TORConstants.Factions.MOUSILLON }
             };
-
-            // Check if this clan's original faction has a special pairing
+            
             if (specialPairings.TryGetValue(originalKingdomId, out string pairedFactionId))
             {
                 var pairedKingdom = Kingdom.All.FirstOrDefault(k => !k.IsEliminated && k.StringId == pairedFactionId);
                 if (pairedKingdom != null)
                 {
                     // Prioritize the paired faction - return only it
-                    return new[] { pairedKingdom };
+                    return [pairedKingdom];
                 }
             }
-
-            // Fallback to normal culture-based matching
+            
             return Kingdom.All.WhereQ(x => !x.IsEliminated && x.Culture == clan.Culture);
         }
 
