@@ -20,8 +20,8 @@ namespace TOR_Core.Models
     public class TORAllianceModel : DefaultAllianceModel
     {
         // Distance scoring
-        private const float CloseDistanceThreshold = 200f;
-        private const float DistancePenaltyMultiplier = 0.5f;
+        private const float CloseDistanceThreshold = 150f;
+        private const float DistancePenaltyMultiplier = 1.5f;
 
         // Reliability scoring (culture/religion)
         private const float SameReligionBonus = 30f;

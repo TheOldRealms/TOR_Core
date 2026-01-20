@@ -20,15 +20,13 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
     {
         // War/Peace decision settings
         private List<KingdomDecision> _kingdomDecisionsList = [];
-        private float _minDaysBetweenDecisions = 20f;
+        private const float MinDaysBetweenDecisions = 10f;  
+        private const float VariationDaysBetweenDecisions = 10f;  //0-10 days
+        private const float AgreementConsiderationChance = 0.15f;  //0-10 days
         private Dictionary<string, CampaignTime> _lastDecisionTime = [];
         private float _influenceReserveToKeep = 300f;
         private float _outnumberRatioForEmergencyPeace = 5f;
 
-        // Agreement consideration settings
-        private const int AgreementConsiderationIntervalMinDays = 5;
-        private const int AgreementConsiderationIntervalMaxDays = 10;
-        private const bool EnableDiplomacyDebug = false;
 
         public override void RegisterEvents()
         {
@@ -54,13 +52,24 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
-            Kingdom.All.ForEach(k => _lastDecisionTime[k.StringId] = CampaignTime.Zero);
+            Kingdom.All.ForEach(k => _lastDecisionTime[k.StringId] = CampaignTime.Now);
         }
 
         private void DailyTickClan(Clan clan)
         {
             if (clan == null || clan.IsEliminated || clan.Kingdom == null)
                 return;
+            
+            if (_lastDecisionTime.Keys.ContainsQ(clan.Kingdom.StringId))
+            {
+                if (_lastDecisionTime[clan.Kingdom.StringId].ElapsedDaysUntilNow < MinDaysBetweenDecisions + MBRandom.RandomFloatRanged(0,VariationDaysBetweenDecisions))
+                {
+                    return;
+                }
+            }
+            
+            // War/Peace decisions - all eligible clans
+            if (!IsEligibleForDecisionMaking(clan)) return;
 
             // Agreement consideration - only ruling clan, separate timing
             if (clan.Kingdom != Clan.PlayerClan?.Kingdom &&
@@ -74,12 +83,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 {
                     ConsiderAlliances(clan);
                 }
-        
-
             }
 
-            // War/Peace decisions - all eligible clans
-            if (!IsEligibleForDecisionMaking(clan)) return;
+
 
             if (Campaign.Current?.Models?.DiplomacyModel is not TORDiplomacyModel model) return;
 
@@ -101,10 +107,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             }
             else
             {
-                if (_lastDecisionTime[clan.Kingdom.StringId].ElapsedDaysUntilNow < _minDaysBetweenDecisions) return;
+                if (_lastDecisionTime[clan.Kingdom.StringId].ElapsedDaysUntilNow < MinDaysBetweenDecisions) return;
 
                 // Calculate candidates only if there isn't already another clan that has proposed a decision
-                // Priority: Peace > Alliance > Trade Agreement > War
                 KingdomDecision decision = null;
 
                 // Check for peace
@@ -117,9 +122,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                         decision = new MakePeaceKingdomDecision(clan, peaceCandidate);
                     }
                 }
-
-                // Note: Alliance and Trade Agreement decisions are handled by the base game's IAllianceCampaignBehavior in 1.3
-                // We focus on war and peace decisions here
 
                 // Check for war if no peace decision
                 if (decision == null &&
@@ -281,8 +283,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 }
             }
         }
-
-        #region Trade Agreement Consideration
+        
 
         private void ConsiderTradeAgreements(Clan consideringClan)
         {
@@ -303,14 +304,12 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 if (MBRandom.RandomFloat * 100f < score)
                 {
                     kingdom.AddDecision(new TradeAgreementDecision(consideringClan, targetKingdom), true);
+                    _lastDecisionTime[kingdom.StringId] = CampaignTime.Now;
                     return;
                 }
             }
         }
-
-        #endregion
-
-        #region Alliance Consideration
+        
 
         private void ConsiderAlliances(Clan consideringClan)
         {
@@ -323,42 +322,35 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             var potentialAllies = allianceModel.GetPotentialAlliancePartners(kingdom);
             if (!potentialAllies.Any())
                 return;
-
-            var targetKingdom = potentialAllies.GetRandomElement();
-            if (targetKingdom == null)
-                return;
-
-            float score = allianceModel.GetScoreOfStartingAlliance(kingdom, targetKingdom, kingdom.RulingClan, out _).ResultNumber;
-
-            if (score > 50 && MBRandom.RandomFloat * 100f < score)
+            
+            
+            var alliesByScore = new List<(Kingdom kingdom, float value)>();
+            foreach (var targetKingdom in potentialAllies)
             {
-                kingdom.AddDecision(new StartAllianceDecision(kingdom.RulingClan, targetKingdom), true);
+                float score = allianceModel.GetScoreOfStartingAlliance(kingdom, targetKingdom, kingdom.RulingClan, out _).ResultNumber;
+                alliesByScore.Add((targetKingdom, (int)score));
+            }
+
+
+            var bestCandidate = alliesByScore.MaxBy(value => value.value).kingdom;
+            
+            var result = alliesByScore.MaxBy(value => value.value).value;
+            
+
+            if (result > 50 && MBRandom.RandomFloat * 1000f < result)
+            {
+                kingdom.AddDecision(new StartAllianceDecision(kingdom.RulingClan, bestCandidate), true);
+                _lastDecisionTime[kingdom.StringId] = CampaignTime.Now;
             }
         }
-
-        #endregion
-
-        #region Shared Helpers
 
         private bool ShouldConsiderAgreementsToday(Kingdom kingdom)
         {
-            if (MBRandom.RandomFloat< 0.25f)
-            {
-                return false;
-            }
-
-            int hash = kingdom.StringId?.GetHashCode() ?? 0;
-            if (hash < 0) hash = -hash;
-
-            int intervalRange = AgreementConsiderationIntervalMaxDays - AgreementConsiderationIntervalMinDays + 1;
-            int kingdomInterval = AgreementConsiderationIntervalMinDays + (hash % intervalRange);
-            int kingdomOffset = (hash / intervalRange) % kingdomInterval;
-
-            int currentDay = (int)CampaignTime.Now.ToDays;
-            return (currentDay + kingdomOffset) % kingdomInterval == 0;
+            if (MBRandom.RandomFloat < AgreementConsiderationChance) return false;
+            
+            return true;
         }
-
-        #endregion
+        
         
         
     }
