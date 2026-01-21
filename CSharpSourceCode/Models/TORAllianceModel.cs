@@ -59,6 +59,7 @@ namespace TOR_Core.Models
 
         // Lore considerations
         private const float EonirDiplomacyBonus = 15f;
+        private const float DawiAsraiRivalryPenalty = -60f;  // War of the Beard grudge
 
         // Personality trait weights
         private const float HonorTraitWeight = 15f;
@@ -215,6 +216,7 @@ namespace TOR_Core.Models
         /// <summary>
         /// Lore-based alliance considerations.
         /// Eonir are natural diplomats.
+        /// Dwarfs and Wood Elves have ancient grudges (War of the Beard).
         /// </summary>
         private float CalculateLoreConsiderations(Kingdom proposingKingdom, Kingdom targetKingdom)
         {
@@ -223,6 +225,15 @@ namespace TOR_Core.Models
             // Eonir are skilled diplomats
             if (proposingKingdom.Culture?.StringId == TORConstants.Cultures.EONIR)
                 score += EonirDiplomacyBonus;
+
+            // War of the Beard - Dwarfs and Wood Elves distrust each other
+            var proposingCulture = proposingKingdom.Culture?.StringId;
+            var targetCulture = targetKingdom.Culture?.StringId;
+            if ((proposingCulture == TORConstants.Cultures.DAWI && targetCulture == TORConstants.Cultures.ASRAI) ||
+                (proposingCulture == TORConstants.Cultures.ASRAI && targetCulture == TORConstants.Cultures.DAWI))
+            {
+                score += DawiAsraiRivalryPenalty;
+            }
 
             return score;
         }

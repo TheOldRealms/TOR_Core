@@ -13,6 +13,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
@@ -23,14 +24,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
     /// </summary>
     public class HonorAllianceDecision : KingdomDecision
     {
-        // Religion/culture compatibility weights for support calculation
-        private const float HostileReligionBonus = 50f;
-        private const float AttackerReligionCompatibilityWeight = 20f;
-        private const float AllyReligionCompatibilityWeight = 15f;
-        private const float AttackerCultureCompatibilityWeight = 25f;
-        private const float AllyCultureCompatibilityWeight = 15f;
-        private const float ChaosAttackerBonus = 100f;
-
         [SaveableField(101)]
         public readonly Kingdom AttackedAlly;
 

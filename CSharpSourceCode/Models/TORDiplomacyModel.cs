@@ -29,6 +29,7 @@ namespace TOR_Core.Models
         private const float KarakReclamationWeight = 15000f;  // Dwarfs vs Greenskins holding Karaks
         private const float AntiChaosWeight = 12000f;         // Good factions vs Chaos
         private const float NordlandLaurelornRivalryWeight = 5000f; // Nordland vs Laurelorn (territorial dispute)
+        private const float DawiAsraiRivalryWeight = 8000f;   // Dwarfs vs Wood Elves (War of the Beard grudge)
 
         // Territorial distance factor settings
         private const float TerritorialDistanceScaling = 100f;  // Distance at which factor is ~0.5
@@ -261,6 +262,14 @@ namespace TOR_Core.Models
                     int chaosSettlements = targetKingdom.Settlements.Count(s => s.Town != null);
                     score += chaosSettlements * AntiChaosWeight;
                 }
+            }
+
+            // 3. WAR OF THE BEARD - Dwarfs vs Wood Elves (ancient grudge)
+            var myCulture = declaringKingdom.Culture?.StringId;
+            if ((myCulture == TORConstants.Cultures.DAWI && targetCulture == TORConstants.Cultures.ASRAI) ||
+                (myCulture == TORConstants.Cultures.ASRAI && targetCulture == TORConstants.Cultures.DAWI))
+            {
+                score += DawiAsraiRivalryWeight;
             }
 
             switch (declaringKingdom.StringId)
