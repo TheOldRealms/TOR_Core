@@ -64,6 +64,21 @@ namespace TOR_Core.Models
         // Personality trait weights
         private const float HonorTraitWeight = 15f;
 
+        // Honor Alliance Decision weights
+        private const float HonorAllianceBaseHonorWeight = 30f;     // Honorable lords keep their word
+        private const float HonorAllianceBaseValorWeight = 20f;     // Brave lords want to fight
+        private const float HonorAllianceHostileReligionBonus = 50f;
+        private const float HonorAllianceAttackerReligionWeight = 20f;
+        private const float HonorAllianceAllyReligionWeight = 15f;
+        private const float HonorAllianceAttackerCultureWeight = 25f;
+        private const float HonorAllianceAllyCultureWeight = 15f;
+        private const float HonorAllianceRelationWeight = 0.5f;
+        private const float HonorAllianceHighRelationBonus = 20f;
+        private const float HonorAllianceVeryHighRelationBonus = 40f;
+        private const float HonorAllianceLowRelationPenalty = -15f;
+        private const float HonorAllianceStrengthHopelessPenalty = -30f;
+        private const float HonorAllianceStrengthConfidentBonus = 15f;
+
         private static readonly TextObject _loreText = new("{=TOR_Alliance_Lore}Faction disposition");
         private static readonly TextObject _distanceText = new("{=TOR_Alliance_Distance}Geographic distance");
         private static readonly TextObject _reliabilityText = new("{=TOR_Alliance_Reliability}Partner reliability");
@@ -521,6 +536,151 @@ namespace TOR_Core.Models
                 return false;
 
             return true;
+        }
+
+        /// <summary>
+        /// Calculates the average relation between a clan's members and a kingdom's clan leaders.
+        /// </summary>
+        private float CalculateClanToKingdomRelation(Clan clan, Kingdom kingdom)
+        {
+            if (clan == null || kingdom == null)
+                return 0f;
+
+            var clanHeroes = clan.Heroes.Where(h => h.IsAlive && !h.IsChild).ToList();
+            var kingdomLeaders = kingdom.Clans
+                .Where(c => c.Leader != null && c.Leader.IsAlive)
+                .Select(c => c.Leader)
+                .ToList();
+
+            if (!clanHeroes.Any() || !kingdomLeaders.Any())
+                return 0f;
+
+            float totalRelation = 0f;
+            int count = 0;
+
+            foreach (var clanHero in clanHeroes)
+            {
+                foreach (var kingdomLeader in kingdomLeaders)
+                {
+                    totalRelation += clanHero.GetRelation(kingdomLeader);
+                    count++;
+                }
+            }
+
+            return count > 0 ? totalRelation / count : 0f;
+        }
+
+        /// <summary>
+        /// Calculates how much a clan supports joining a war to honor an alliance.
+        /// Uses personality traits to modify various factors.
+        /// Positive = support joining, Negative = support breaking alliance.
+        /// </summary>
+        public float CalculateHonorAllianceSupport(Clan clan, Kingdom ourKingdom, Kingdom attackedAlly, Kingdom attacker)
+        {
+            if (clan?.Leader == null)
+                return 0f;
+
+            var leader = clan.Leader;
+            float support = 0f;
+
+            // Get trait modifiers
+            float honorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Honor);
+            float valorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Valor);
+            float valorInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Valor);
+            float mercyModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Mercy);
+            float calculatingModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Calculating);
+            float calculatingInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Calculating);
+
+            // === BASE TRAIT BONUSES ===
+            // Honorable lords keep their word
+            support += (honorModifier - 1f) * HonorAllianceBaseHonorWeight / 0.375f;
+            // Brave lords want to fight
+            support += (valorModifier - 1f) * HonorAllianceBaseValorWeight / 0.375f;
+
+            // === RELIGION FACTORS (modified by Calculating inverse + Mercy) ===
+            var clanReligion = leader.GetDominantReligion();
+            var attackerReligion = attacker.Leader?.GetDominantReligion();
+            var allyReligion = attackedAlly.Leader?.GetDominantReligion();
+
+            float religionScore = 0f;
+
+            // Strong bonus for fighting religious enemies
+            if (clanReligion != null && attackerReligion != null)
+            {
+                if (clanReligion.HostileReligions?.Contains(attackerReligion) == true)
+                {
+                    religionScore += HonorAllianceHostileReligionBonus;
+                }
+                else
+                {
+                    // Similarity with attacker reduces support for war
+                    float attackerSimilarity = ReligionObjectHelper.CalculateReligionCompatibility(clanReligion, attackerReligion);
+                    religionScore -= attackerSimilarity * HonorAllianceAttackerReligionWeight;
+                }
+            }
+
+            // Bonus for defending co-religionists
+            if (clanReligion != null && allyReligion != null)
+            {
+                float allySimilarity = ReligionObjectHelper.CalculateReligionCompatibility(clanReligion, allyReligion);
+                religionScore += allySimilarity * HonorAllianceAllyReligionWeight;
+            }
+
+            // Apply trait modifiers: Pragmatists ignore religion, Merciful defend faith
+            support += religionScore * calculatingInverseModifier * mercyModifier;
+
+            // === RELATION WITH ALLY (modified by Mercy + Calculating inverse) ===
+            float allyRelation = CalculateClanToKingdomRelation(clan, attackedAlly);
+            float allyRelationScore = allyRelation * HonorAllianceRelationWeight;
+
+            // Very high relations make breaking almost unthinkable
+            if (allyRelation > 80)
+                allyRelationScore += HonorAllianceVeryHighRelationBonus;
+            else if (allyRelation > 50)
+                allyRelationScore += HonorAllianceHighRelationBonus;
+
+            // Very low relations make breaking more acceptable
+            if (allyRelation < -20)
+                allyRelationScore += HonorAllianceLowRelationPenalty;
+
+            support += allyRelationScore * mercyModifier * calculatingInverseModifier;
+
+            // === RELATION WITH ATTACKER (modified by Calculating inverse only) ===
+            float attackerRelation = CalculateClanToKingdomRelation(clan, attacker);
+            float attackerRelationScore = -attackerRelation * 0.4f; // Good relations = less willing to fight
+            support += attackerRelationScore * calculatingInverseModifier;
+
+            // === STRENGTH CONSIDERATION (modified by Calculating + Valor inverse) ===
+            float allianceStrength = ourKingdom.CurrentTotalStrength + attackedAlly.CurrentTotalStrength;
+            float enemyStrength = attacker.CurrentTotalStrength;
+
+            float strengthScore = 0f;
+            if (enemyStrength > allianceStrength * 3f)
+            {
+                strengthScore = HonorAllianceStrengthHopelessPenalty; // Hesitant to join hopeless war
+            }
+            else if (allianceStrength > enemyStrength * 2f)
+            {
+                strengthScore = HonorAllianceStrengthConfidentBonus; // Confident in victory
+            }
+
+            // Calculating lords weigh odds carefully, Brave lords ignore odds
+            support += strengthScore * calculatingModifier * valorInverseModifier;
+
+            // === CULTURE COMPATIBILITY (modified by Honor + Calculating inverse) ===
+            // Hostile cultures with attacker = more support for war
+            float attackerCultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(
+                ourKingdom.Culture?.StringId, attacker.Culture?.StringId);
+            float attackerCultureScore = -attackerCultureCompat * HonorAllianceAttackerCultureWeight;
+
+            // Friendly cultures with ally = more support for honoring alliance
+            float allyCultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(
+                ourKingdom.Culture?.StringId, attackedAlly.Culture?.StringId);
+            float allyCultureScore = allyCultureCompat * HonorAllianceAllyCultureWeight;
+
+            support += (attackerCultureScore + allyCultureScore) * honorModifier * calculatingInverseModifier;
+
+            return support;
         }
 
         /// <summary>

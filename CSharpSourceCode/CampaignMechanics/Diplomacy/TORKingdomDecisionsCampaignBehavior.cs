@@ -193,15 +193,11 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private void OnPeaceMade(IFaction side1Faction, IFaction side2Faction, MakePeaceAction.MakePeaceDetail detail)
         {
-            // Only handle decision updates, not alliance war/peace syncing
-            // Alliance war handling is done by TORAllianceWarBehavior
             HandleDiplomaticChangeBetweenFactions(side1Faction, side2Faction);
         }
 
         private void OnWarDeclared(IFaction side1Faction, IFaction side2Faction, DeclareWarAction.DeclareWarDetail detail)
         {
-            // Only handle decision updates, not alliance war syncing
-            // Alliance war handling (HonorAllianceDecision) is done by TORAllianceWarBehavior
             HandleDiplomaticChangeBetweenFactions(side1Faction, side2Faction);
         }
 
@@ -323,20 +319,16 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             if (!potentialAllies.Any())
                 return;
             
-            
             var alliesByScore = new List<(Kingdom kingdom, float value)>();
             foreach (var targetKingdom in potentialAllies)
             {
                 float score = allianceModel.GetScoreOfStartingAlliance(kingdom, targetKingdom, kingdom.RulingClan, out _).ResultNumber;
                 alliesByScore.Add((targetKingdom, (int)score));
             }
-
-
-            var bestCandidate = alliesByScore.MaxBy(value => value.value).kingdom;
             
+            var bestCandidate = alliesByScore.MaxBy(value => value.value).kingdom;
             var result = alliesByScore.MaxBy(value => value.value).value;
             
-
             if (result > 50 && MBRandom.RandomFloat * 1000f < result)
             {
                 kingdom.AddDecision(new StartAllianceDecision(kingdom.RulingClan, bestCandidate), true);

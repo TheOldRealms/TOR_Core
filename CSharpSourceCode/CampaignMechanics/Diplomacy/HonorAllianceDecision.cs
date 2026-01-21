@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
@@ -6,15 +5,11 @@ using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Election;
-using TaleWorlds.Core;
 using TaleWorlds.Core.ImageIdentifiers;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.SaveSystem;
-using TOR_Core.CampaignMechanics.Religion;
-using TOR_Core.Extensions;
 using TOR_Core.Models;
-using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.Diplomacy
 {
@@ -148,92 +143,19 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         public float CalculateJoinWarSupportPublic(Clan clan) => CalculateJoinWarSupport(clan);
 
         /// <summary>
-        /// Calculate how much a clan supports joining the war based on religion, strength, and relations.
+        /// Calculate how much a clan supports joining the war.
+        /// Delegates to TORAllianceModel for trait-modified scoring.
         /// </summary>
         private float CalculateJoinWarSupport(Clan clan)
         {
-            float support = 0f;
-
-            var clanReligion = clan.Leader?.GetDominantReligion();
-            var attackerReligion = Attacker.Leader?.GetDominantReligion();
-            var allyReligion = AttackedAlly.Leader?.GetDominantReligion();
-
-            // Strong bonus for fighting religious enemies
-            if (clanReligion != null && attackerReligion != null)
+            var allianceModel = Campaign.Current?.Models?.AllianceModel as TORAllianceModel;
+            if (allianceModel != null)
             {
-                if (clanReligion.HostileReligions?.Contains(attackerReligion) == true)
-                {
-                    support += HostileReligionBonus;
-                }
-                else
-                {
-                    // Similarity with attacker reduces support for war
-                    float attackerSimilarity = ReligionObjectHelper.CalculateReligionCompatibility(clanReligion, attackerReligion);
-                    support -= attackerSimilarity * AttackerReligionCompatibilityWeight;
-                }
+                return allianceModel.CalculateHonorAllianceSupport(clan, Kingdom, AttackedAlly, Attacker);
             }
 
-            // Bonus for defending co-religionists
-            if (clanReligion != null && allyReligion != null)
-            {
-                float allySimilarity = ReligionObjectHelper.CalculateReligionCompatibility(clanReligion, allyReligion);
-                support += allySimilarity * AllyReligionCompatibilityWeight;
-            }
-
-            // Relation with ally leader - strong factor (good relations = honor alliance)
-            int allyRelation = clan.Leader.GetRelation(AttackedAlly.Leader);
-            support += allyRelation * 0.5f; // -100 to +100 relation = -50 to +50 support
-
-            // Very high relations make breaking almost unthinkable
-            if (allyRelation > 50)
-                support += 20f;
-            else if (allyRelation > 80)
-                support += 40f;
-
-            // Very low relations make breaking more acceptable
-            if (allyRelation < -20)
-                support -= 15f;
-
-            // Relation with attacker (negative = more likely to fight them)
-            int attackerRelation = clan.Leader.GetRelation(Attacker.Leader);
-            support -= attackerRelation * 0.4f; // Good relations with attacker = less willing to fight
-
-            // Strength consideration - less likely to join if massively outmatched
-            float allianceStrength = Kingdom.CurrentTotalStrength + AttackedAlly.CurrentTotalStrength;
-            float enemyStrength = Attacker.CurrentTotalStrength;
-
-            if (enemyStrength > allianceStrength * 3f)
-            {
-                support -= 30f; // Hesitant to join hopeless war
-            }
-            else if (allianceStrength > enemyStrength * 2f)
-            {
-                support += 15f; // Confident in victory
-            }
-
-            // Trait effects
-            support += clan.Leader.GetTraitLevel(DefaultTraits.Honor) * 25f; // Honorable leaders keep their word (+25/+50/+75)
-            support += clan.Leader.GetTraitLevel(DefaultTraits.Valor) * 10f; // Brave leaders are willing to fight
-            support -= clan.Leader.GetTraitLevel(DefaultTraits.Calculating) * 10f; // Calculating leaders weigh risks
-
-            // Culture compatibility factors
-            // Hostile cultures with attacker = more support for war
-            float attackerCultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(
-                Kingdom.Culture?.StringId, Attacker.Culture?.StringId);
-            support -= attackerCultureCompat * AttackerCultureCompatibilityWeight;
-
-            // Friendly cultures with ally = more support for honoring alliance
-            float allyCultureCompat = ReligionObjectHelper.CalculateCultureCompatibility(
-                Kingdom.Culture?.StringId, AttackedAlly.Culture?.StringId);
-            support += allyCultureCompat * AllyCultureCompatibilityWeight;
-
-            // Chaos attacker - always support joining war against Chaos
-            if (Attacker.Culture?.StringId == TORConstants.Cultures.CHAOS)
-            {
-                support += ChaosAttackerBonus;
-            }
-
-            return support;
+            // Fallback if model not available
+            return 0f;
         }
 
         public override void ApplyChosenOutcome(DecisionOutcome chosenOutcome)
