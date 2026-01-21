@@ -545,7 +545,6 @@
     <Compile Include="CampaignMechanics\CustomResources\WaaaghMeter\WaaaghMeterVM.cs" />
     <Compile Include="CampaignMechanics\TORCampaignMusicHandler.cs" />
     <Compile Include="CampaignMechanics\TORLogsCampaignBehavior.cs" />
-    <Compile Include="CampaignMechanics\TORNotificationCampaignBehavior.cs" />
     <Compile Include="Extensions\UI\PartyVMExtension.cs" />
     <Compile Include="CampaignMechanics\CustomResources\TeefHelper.cs" />
     <Compile Include="CampaignMechanics\MasterEngineer\MasterEngineerTownBehavior.cs" />

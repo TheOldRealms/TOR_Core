@@ -185,7 +185,6 @@ namespace TOR_Core
                 starter.AddBehavior(new GreenskinBrawlBehavior());
                 starter.AddBehavior(new GoblinRecruitmentBehavior());
                 starter.AddBehavior(new DuelBehavior());
-                starter.AddBehavior(new TORNotificationCampaignBehavior());
                 TORGameStarterHelper.AddVerifiedIssueBehaviors(starter);
 
             }

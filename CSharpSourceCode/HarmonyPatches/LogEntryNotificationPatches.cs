@@ -10,7 +10,7 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch(typeof(CampaignInformationManager), "NewLogEntryAdded")]
     public static class LogEntryNotificationPatch
     {
-        private static readonly bool DebugkingdomDecisions=true;
+        private static readonly bool DebugkingdomDecisions=false;
         
         public static bool Prefix(LogEntry log)
         {
