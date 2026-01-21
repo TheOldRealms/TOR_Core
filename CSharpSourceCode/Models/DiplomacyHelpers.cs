@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TOR_Core.CampaignMechanics.Religion;
@@ -170,6 +171,74 @@ namespace TOR_Core.Models
                 return 0f;
 
             return ReligionObjectHelper.GetPantheonCompatibility(religion1.Pantheon, religion2.Pantheon);
+        }
+
+        /// <summary>
+        /// Calculates the average relation between a clan's members and a kingdom's clan leaders.
+        /// </summary>
+        public static float CalculateClanToKingdomRelation(Clan clan, Kingdom kingdom)
+        {
+            if (clan == null || kingdom == null)
+                return 0f;
+
+            var clanHeroes = clan.Heroes.Where(h => h.IsAlive && !h.IsChild).ToList();
+            var kingdomLeaders = kingdom.Clans
+                .Where(c => c.Leader != null && c.Leader.IsAlive)
+                .Select(c => c.Leader)
+                .ToList();
+
+            if (!clanHeroes.Any() || !kingdomLeaders.Any())
+                return 0f;
+
+            float totalRelation = 0f;
+            int count = 0;
+
+            foreach (var clanHero in clanHeroes)
+            {
+                foreach (var kingdomLeader in kingdomLeaders)
+                {
+                    totalRelation += clanHero.GetRelation(kingdomLeader);
+                    count++;
+                }
+            }
+
+            return count > 0 ? totalRelation / count : 0f;
+        }
+
+        /// <summary>
+        /// Calculates the average relation between two kingdoms based on all clan leaders.
+        /// </summary>
+        public static float CalculateKingdomToKingdomRelation(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            if (kingdom1 == null || kingdom2 == null)
+                return 0f;
+
+            var leaders1 = kingdom1.Clans
+                .Where(c => c.Leader != null && c.Leader.IsAlive)
+                .Select(c => c.Leader)
+                .ToList();
+
+            var leaders2 = kingdom2.Clans
+                .Where(c => c.Leader != null && c.Leader.IsAlive)
+                .Select(c => c.Leader)
+                .ToList();
+
+            if (!leaders1.Any() || !leaders2.Any())
+                return 0f;
+
+            float totalRelation = 0f;
+            int count = 0;
+
+            foreach (var leader1 in leaders1)
+            {
+                foreach (var leader2 in leaders2)
+                {
+                    totalRelation += leader1.GetRelation(leader2);
+                    count++;
+                }
+            }
+
+            return count > 0 ? totalRelation / count : 0f;
         }
     }
 }

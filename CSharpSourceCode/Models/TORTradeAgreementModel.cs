@@ -41,10 +41,13 @@ namespace TOR_Core.Models
 
         // Faction-specific bonuses
         private const float EonirTradeBonus = 10f;
-        
+
         private const float WastelandBonus = 20f;
-        
+
         private const float MontfortBonus = 20f;
+
+        // Kingdom relations
+        private const float KingdomRelationWeight = 0.2f;  // -100 to +100 relation = -20 to +20 score
 
         // Resource categories for trade value
         private static readonly HashSet<string> FoodResources = new()
@@ -95,6 +98,7 @@ namespace TOR_Core.Models
             float calculatingModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Calculating);
             float generosityModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Generosity);
             float honorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Honor);
+            float mercyModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Mercy);
 
             // Individual scoring factors
             float distanceScore = CalculateDistanceScore(kingdom, targetKingdom);
@@ -111,6 +115,10 @@ namespace TOR_Core.Models
             float generosityScore = CalculateGenerosityScore(generosityModifier);
             float honorScore = CalculateHonorScore(kingdom, targetKingdom, honorModifier);
 
+            // Kingdom relations - average of all clan leaders' relations
+            float kingdomRelation = DiplomacyHelpers.CalculateKingdomToKingdomRelation(kingdom, targetKingdom);
+            float relationScore = kingdomRelation * KingdomRelationWeight * mercyModifier;
+
             float totalScore = baseScore
                              + distanceScore
                              + cultureScore
@@ -120,7 +128,8 @@ namespace TOR_Core.Models
                              + warAlternativePenalty
                              + calculatingScore
                              + generosityScore
-                             + honorScore;
+                             + honorScore
+                             + relationScore;
 
             return MBMath.ClampFloat(totalScore, 0f, 100f);
         }

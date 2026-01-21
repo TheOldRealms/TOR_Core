@@ -64,6 +64,9 @@ namespace TOR_Core.Models
         // Personality trait weights
         private const float HonorTraitWeight = 15f;
 
+        // Kingdom relations
+        private const float KingdomRelationWeight = 0.3f;  // -100 to +100 relation = -30 to +30 score
+
         // Honor Alliance Decision weights
         private const float HonorAllianceBaseHonorWeight = 30f;     // Honorable lords keep their word
         private const float HonorAllianceBaseValorWeight = 20f;     // Brave lords want to fight
@@ -89,6 +92,7 @@ namespace TOR_Core.Models
         private static readonly TextObject _protectiveText = new("{=TOR_Alliance_Protect}Protective instinct");
         private static readonly TextObject _honorText = new("{=TOR_Alliance_Honor}Alliance commitment");
         private static readonly TextObject _allianceNetworkText = new("{=TOR_Alliance_Network}Alliance network");
+        private static readonly TextObject _relationText = new("{=TOR_Alliance_Relation}Personal relations");
 
         private static readonly TextObject _chaosCannotAllyText = new("{=TOR_Alliance_Chaos}The forces of Chaos do not form alliances.");
         private static readonly TextObject _greenskinCannotAllyText = new("{=TOR_Alliance_Greenskin}Greenskins do not understand alliances.");
@@ -154,6 +158,10 @@ namespace TOR_Core.Models
             float entanglementScore = CalculateEntanglementRiskScore(proposingKingdom, targetKingdom) * calculatingModifier * valorInverseModifier;
             float allianceNetworkScore = CalculateAllianceNetworkScore(proposingKingdom, targetKingdom) * calculatingModifier;
 
+            // Kingdom relations - average of all clan leaders' relations
+            float kingdomRelation = DiplomacyHelpers.CalculateKingdomToKingdomRelation(proposingKingdom, targetKingdom);
+            float relationScore = kingdomRelation * KingdomRelationWeight * mercyModifier;
+
             // Protective alliances require both mercy AND generosity - cruel or greedy lords don't consider them
             float protectiveScore = 0f;
             if (mercyModifier > 1f && generosityModifier > 1f)
@@ -177,6 +185,7 @@ namespace TOR_Core.Models
             if (commonEnemiesScore != 0) score.Add(commonEnemiesScore, _commonEnemiesText);
             if (entanglementScore != 0) score.Add(entanglementScore, _entanglementText);
             if (allianceNetworkScore != 0) score.Add(allianceNetworkScore, _allianceNetworkText);
+            if (relationScore != 0) score.Add(relationScore, _relationText);
             if (protectiveScore != 0) score.Add(protectiveScore, _protectiveText);
             if (honorScore != 0) score.Add(honorScore, _honorText);
 
@@ -539,38 +548,6 @@ namespace TOR_Core.Models
         }
 
         /// <summary>
-        /// Calculates the average relation between a clan's members and a kingdom's clan leaders.
-        /// </summary>
-        private float CalculateClanToKingdomRelation(Clan clan, Kingdom kingdom)
-        {
-            if (clan == null || kingdom == null)
-                return 0f;
-
-            var clanHeroes = clan.Heroes.Where(h => h.IsAlive && !h.IsChild).ToList();
-            var kingdomLeaders = kingdom.Clans
-                .Where(c => c.Leader != null && c.Leader.IsAlive)
-                .Select(c => c.Leader)
-                .ToList();
-
-            if (!clanHeroes.Any() || !kingdomLeaders.Any())
-                return 0f;
-
-            float totalRelation = 0f;
-            int count = 0;
-
-            foreach (var clanHero in clanHeroes)
-            {
-                foreach (var kingdomLeader in kingdomLeaders)
-                {
-                    totalRelation += clanHero.GetRelation(kingdomLeader);
-                    count++;
-                }
-            }
-
-            return count > 0 ? totalRelation / count : 0f;
-        }
-
-        /// <summary>
         /// Calculates how much a clan supports joining a war to honor an alliance.
         /// Uses personality traits to modify various factors.
         /// Positive = support joining, Negative = support breaking alliance.
@@ -630,7 +607,7 @@ namespace TOR_Core.Models
             support += religionScore * calculatingInverseModifier * mercyModifier;
 
             // === RELATION WITH ALLY (modified by Mercy + Calculating inverse) ===
-            float allyRelation = CalculateClanToKingdomRelation(clan, attackedAlly);
+            float allyRelation = DiplomacyHelpers.CalculateClanToKingdomRelation(clan, attackedAlly);
             float allyRelationScore = allyRelation * HonorAllianceRelationWeight;
 
             // Very high relations make breaking almost unthinkable
@@ -646,7 +623,7 @@ namespace TOR_Core.Models
             support += allyRelationScore * mercyModifier * calculatingInverseModifier;
 
             // === RELATION WITH ATTACKER (modified by Calculating inverse only) ===
-            float attackerRelation = CalculateClanToKingdomRelation(clan, attacker);
+            float attackerRelation = DiplomacyHelpers.CalculateClanToKingdomRelation(clan, attacker);
             float attackerRelationScore = -attackerRelation * 0.4f; // Good relations = less willing to fight
             support += attackerRelationScore * calculatingInverseModifier;
 
