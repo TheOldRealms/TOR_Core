@@ -82,21 +82,21 @@ namespace TOR_Core.Models
         private const float HonorAllianceStrengthHopelessPenalty = -30f;
         private const float HonorAllianceStrengthConfidentBonus = 15f;
 
-        private static readonly TextObject _loreText = new("{=TOR_Alliance_Lore}Faction disposition");
-        private static readonly TextObject _distanceText = new("{=TOR_Alliance_Distance}Geographic distance");
-        private static readonly TextObject _reliabilityText = new("{=TOR_Alliance_Reliability}Partner reliability");
-        private static readonly TextObject _powerText = new("{=TOR_Alliance_Power}Military strength");
-        private static readonly TextObject _positioningText = new("{=TOR_Alliance_Position}Strategic positioning");
-        private static readonly TextObject _commonEnemiesText = new("{=TOR_Alliance_CommonEnemy}Common enemies");
-        private static readonly TextObject _entanglementText = new("{=TOR_Alliance_Entangle}Entanglement risk");
-        private static readonly TextObject _protectiveText = new("{=TOR_Alliance_Protect}Protective instinct");
-        private static readonly TextObject _honorText = new("{=TOR_Alliance_Honor}Alliance commitment");
-        private static readonly TextObject _allianceNetworkText = new("{=TOR_Alliance_Network}Alliance network");
-        private static readonly TextObject _relationText = new("{=TOR_Alliance_Relation}Personal relations");
+        private static TextObject _loreText => TORTextHelper.GetTextObject("tor_alliance_lore", "Faction disposition");
+        private static TextObject _distanceText => TORTextHelper.GetTextObject("tor_alliance_distance", "Geographic distance");
+        private static TextObject _reliabilityText => TORTextHelper.GetTextObject("tor_alliance_reliability", "Partner reliability");
+        private static TextObject _powerText => TORTextHelper.GetTextObject("tor_alliance_power", "Military strength");
+        private static TextObject _positioningText => TORTextHelper.GetTextObject("tor_alliance_position", "Strategic positioning");
+        private static TextObject _commonEnemiesText => TORTextHelper.GetTextObject("tor_alliance_common_enemy", "Common enemies");
+        private static TextObject _entanglementText => TORTextHelper.GetTextObject("tor_alliance_entangle", "Entanglement risk");
+        private static TextObject _protectiveText => TORTextHelper.GetTextObject("tor_alliance_protect", "Protective instinct");
+        private static TextObject _honorText => TORTextHelper.GetTextObject("tor_alliance_honor", "Alliance commitment");
+        private static TextObject _allianceNetworkText => TORTextHelper.GetTextObject("tor_alliance_network", "Alliance network");
+        private static TextObject _relationText => TORTextHelper.GetTextObject("tor_alliance_relation", "Personal relations");
 
-        private static readonly TextObject _chaosCannotAllyText = new("{=TOR_Alliance_Chaos}The forces of Chaos do not form alliances.");
-        private static readonly TextObject _greenskinCannotAllyText = new("{=TOR_Alliance_Greenskin}Greenskins do not understand alliances.");
-        private static readonly TextObject _allianceLimitText = new("{=TOR_Alliance_Limit}Alliance limit reached");
+        private static TextObject _chaosCannotAllyText => TORTextHelper.GetTextObject("tor_alliance_chaos", "The forces of Chaos do not form alliances.");
+        private static TextObject _greenskinCannotAllyText => TORTextHelper.GetTextObject("tor_alliance_greenskin", "Greenskins do not understand alliances.");
+        private static TextObject _allianceLimitText => TORTextHelper.GetTextObject("tor_alliance_limit", "Alliance limit reached");
 
         public override int MaxNumberOfAlliances => 2;
 

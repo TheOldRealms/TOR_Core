@@ -359,8 +359,8 @@ namespace TOR_Core.Models
             return (honorModifier - 1f) * HonorTraitWeight;
         }
 
-        private static readonly TextObject _chaosCannotTradeText = new("{=TOR_Trade_Chaos}The forces of Chaos do not engage in trade.");
-        private static readonly TextObject _greenskinCannotTradeText = new("{=TOR_Trade_Greenskin}Greenskins do not understand the concept of trade.");
+        private static TextObject _chaosCannotTradeText => TORTextHelper.GetTextObject("tor_trade_chaos", "The forces of Chaos do not engage in trade.");
+        private static TextObject _greenskinCannotTradeText => TORTextHelper.GetTextObject("tor_trade_greenskin", "Greenskins do not understand the concept of trade.");
 
         /// <summary>
         /// Checks if two kingdoms can form a trade agreement.

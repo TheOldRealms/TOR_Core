@@ -5051,4 +5051,22 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 
 	<!-- Other Missing Texts -->
 	<string id="ironingot6_name" text="{=str_ironingot6_name}Gromril{@Plural}loads of gromril{\@}"/>
+
+	<!-- Diplomacy -->
+	<string id="tor_alliance_lore" text="{=str_tor_alliance_lore}Faction disposition"/>
+	<string id="tor_alliance_distance" text="{=str_tor_alliance_distance}Geographic distance"/>
+	<string id="tor_alliance_reliability" text="{=str_tor_alliance_reliability}Partner reliability"/>
+	<string id="tor_alliance_power" text="{=str_tor_alliance_power}Military strength"/>
+	<string id="tor_alliance_position" text="{=str_tor_alliance_position}Strategic positioning"/>
+	<string id="tor_alliance_common_enemy" text="{=str_tor_alliance_common_enemy}Common enemies"/>
+	<string id="tor_alliance_entangle" text="{=str_tor_alliance_entangle}Entanglement risk"/>
+	<string id="tor_alliance_protect" text="{=str_tor_alliance_protect}Protective instinct"/>
+	<string id="tor_alliance_honor" text="{=str_tor_alliance_honor}Alliance commitment"/>
+	<string id="tor_alliance_network" text="{=str_tor_alliance_network}Alliance network"/>
+	<string id="tor_alliance_relation" text="{=str_tor_alliance_relation}Personal relations"/>
+	<string id="tor_alliance_chaos" text="{=str_tor_alliance_chaos}The forces of Chaos do not form alliances."/>
+	<string id="tor_alliance_greenskin" text="{=str_tor_alliance_greenskin}Greenskins do not understand alliances."/>
+	<string id="tor_alliance_limit" text="{=str_tor_alliance_limit}Alliance limit reached"/>
+	<string id="tor_trade_chaos" text="{=str_tor_trade_chaos}The forces of Chaos do not engage in trade."/>
+	<string id="tor_trade_greenskin" text="{=str_tor_trade_greenskin}Greenskins do not understand the concept of trade."/>
 </strings>
