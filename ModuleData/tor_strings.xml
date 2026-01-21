@@ -3207,33 +3207,41 @@
 
   <!-- KnightOldWorld Career Choice Descriptions -->
   <string id="tor_careerchoice_description.KnightOldWorldRoot" text="{=str_tor_careerchoice_description_KnightOldWorldRoot}Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15 seconds. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)" />
-  <string id="tor_careerchoice_description.SecularOrdersKeystone" text="{=str_tor_careerchoice_description_SecularOrdersKeystone}Knightly Strike gains +2 charges and starts charged." />
+  <!-- TODO Zedforen: Review - changed to match code implementation -->
+  <string id="tor_careerchoice_description.SecularOrdersKeystone" text="{=str_tor_careerchoice_description_SecularOrdersKeystone}For every 100 points in Onehanded and Two handed and Polearm get one charge more. (max 15)" />
   <string id="tor_careerchoice_description.SecularOrdersPassive1" text="{=str_tor_careerchoice_description_SecularOrdersPassive1}-25% 'Prestige' cost for upgrading 'Knight' troops." />
   <string id="tor_careerchoice_description.SecularOrdersPassive2" text="{=str_tor_careerchoice_description_SecularOrdersPassive2}+20 One/Two-handed skill for all 'Knight' troops." />
   <string id="tor_careerchoice_description.SecularOrdersPassive3" text="{=str_tor_careerchoice_description_SecularOrdersPassive3}-25% 'Gold' cost for upgrading 'Knight' troops." />
   <string id="tor_careerchoice_description.SecularOrdersPassive4" text="{=str_tor_careerchoice_description_SecularOrdersPassive4}Can apply 'Secular Seals' to 'Templar Knights' and 'Templar Seals' to 'Secular Knights'." />
-  <string id="tor_careerchoice_description.PathOfConquestKeystone" text="{=str_tor_careerchoice_description_PathOfConquestKeystone}Knightly Strike also scales with Two-handed weapon skill and now cleaves." />
+  <!-- TODO Zedforen: Review - changed to match code implementation (Two-handed scaling was never implemented) -->
+  <string id="tor_careerchoice_description.PathOfConquestKeystone" text="{=str_tor_careerchoice_description_PathOfConquestKeystone}Adds cleaving attacks for ability. Ability starts charged." />
   <string id="tor_careerchoice_description.PathOfConquestPassive1" text="{=str_tor_careerchoice_description_PathOfConquestPassive1}+5% personal 'Physical' melee damage." />
   <string id="tor_careerchoice_description.PathOfConquestPassive2" text="{=str_tor_careerchoice_description_PathOfConquestPassive2}+1 party move speed on campaign map." />
   <string id="tor_careerchoice_description.PathOfConquestPassive3" text="{=str_tor_careerchoice_description_PathOfConquestPassive3}+40% charge damage bonus for your personal mount." />
   <string id="tor_careerchoice_description.PathOfConquestPassive4" text="{=str_tor_careerchoice_description_PathOfConquestPassive4}+30 Polearm weapon skill for 'Knight' troops." />
-  <string id="tor_careerchoice_description.SquiresKeystone" text="{=str_tor_careerchoice_description_SquiresKeystone}Knightly Strike also scales with Riding. Companions assist with charging Knightly Strike." />
+  <!-- TODO Zedforen: Review - changed to match code implementation -->
+  <string id="tor_careerchoice_description.SquiresKeystone" text="{=str_tor_careerchoice_description_SquiresKeystone}10% extra damage during ability. The overall duration is increased by 1 second for every 50 riding skill." />
   <string id="tor_careerchoice_description.SquiresPassive1" text="{=str_tor_careerchoice_description_SquiresPassive1}+15 personal Hitpoints." />
   <string id="tor_careerchoice_description.SquiresPassive2" text="{=str_tor_careerchoice_description_SquiresPassive2}-25% wages for 'Knight' troops." />
   <string id="tor_careerchoice_description.SquiresPassive3" text="{=str_tor_careerchoice_description_SquiresPassive3}Wounded troops heal faster." />
   <string id="tor_careerchoice_description.SquiresPassive4" text="{=str_tor_careerchoice_description_SquiresPassive4}Victories against 'Non-Human' enemies give +100% 'Prestige'." />
   <string id="tor_careerchoice_description.TemplarOrdersKeystone" text="{=str_tor_careerchoice_description_TemplarOrdersKeystone}Knightly Strike gains +2 charges, a -15 second cooldown, and also scales with Faith." />
   <string id="tor_careerchoice_description.TemplarOrdersPassive1" text="{=str_tor_careerchoice_description_TemplarOrdersPassive1}+15 personal Hitpoints" />
-  <string id="tor_careerchoice_description.TemplarOrdersPassive2" text="{=str_tor_careerchoice_description_TemplarOrdersPassive2}Every foe you slay provides Faith experience." />
+  <!-- TODO Zedforen: Review - changed to match implementation (only undead/cultists, not every foe) -->
+  <string id="tor_careerchoice_description.TemplarOrdersPassive2" text="{=str_tor_careerchoice_description_TemplarOrdersPassive2}Slaying 'Undead' or 'Cultists' provides Faith experience." />
   <string id="tor_careerchoice_description.TemplarOrdersPassive3" text="{=str_tor_careerchoice_description_TemplarOrdersPassive3}'Knight' troops that follow your patron deity gain +15% 'Physical' melee damage." />
-  <string id="tor_careerchoice_description.TemplarOrdersPassive4" text="{=str_tor_careerchoice_description_TemplarOrdersPassive4}Deal increased personal 'Physical' melee damage to the forces of the 'Undead'." />
-  <string id="tor_careerchoice_description.PathOfVigilanceKeystone" text="{=str_tor_careerchoice_description_PathOfVigilanceKeystone}Knightly Strike scales with Polearm skill. The charge is not spent when couching your lance." />
+  <!-- TODO Zedforen: Review - added 20% to match code implementation -->
+  <string id="tor_careerchoice_description.TemplarOrdersPassive4" text="{=str_tor_careerchoice_description_TemplarOrdersPassive4}+20% personal 'Physical' melee damage against the 'Undead'." />
+  <!-- TODO Zedforen: Review - changed to match code implementation -->
+  <string id="tor_careerchoice_description.PathOfVigilanceKeystone" text="{=str_tor_careerchoice_description_PathOfVigilanceKeystone}Adds 20% attack speed as long effect is active. Charge twice for every hit." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive1" text="{=str_tor_careerchoice_description_PathOfVigilancePassive1}+50% personal mount Hitpoints." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive2" text="{=str_tor_careerchoice_description_PathOfVigilancePassive2}+6% personal 'Physical Resistance'." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive3" text="{=str_tor_careerchoice_description_PathOfVigilancePassive3}Hits below 15 damage no longer stagger you." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive4" text="{=str_tor_careerchoice_description_PathOfVigilancePassive4}+15% personal 'Ward Save' when using a shield." />
-  <string id="tor_careerchoice_description.WrathAgainstChaosKeystone" text="{=str_tor_careerchoice_description_WrathAgainstChaosKeystone}Knightly Strike charges 20% faster and applies +25% 'Ward Save' upon striking an enemy." />
-  <string id="tor_careerchoice_description.WrathAgainstChaosPassive1" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive1}Your party deals increased 'Physical' damage when facing the forces of 'Chaos'." />
+  <!-- TODO Zedforen: Review - changed to match code (armor penetration, not ward save) -->
+  <string id="tor_careerchoice_description.WrathAgainstChaosKeystone" text="{=str_tor_careerchoice_description_WrathAgainstChaosKeystone}Adds 25% Armor Penetration during ability." />
+  <!-- TODO Zedforen: Review - changed Physical to Holy to match implementation -->
+  <string id="tor_careerchoice_description.WrathAgainstChaosPassive1" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive1}Your party deals increased 'Holy' damage when facing the forces of 'Chaos'." />
   <string id="tor_careerchoice_description.WrathAgainstChaosPassive2" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive2}+15% personal 'Magic Resistance'. " /> <!-- is this meant to be spell resistance or magic resistance? -->
   <string id="tor_careerchoice_description.WrathAgainstChaosPassive3" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive3}+10% personal weapon swing speed." />
   <string id="tor_careerchoice_description.WrathAgainstChaosPassive4" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive4}+10% personal 'Armor Penetration' of melee attacks." />
@@ -4920,7 +4928,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 
 	<!-- Eonir Envoy Texts -->
 	<string id="eonir_envoy_foreign_text" text="{=str_eonir_envoy_foreign_text}You are not part of these people, begone."/>
-	<string id="eonir_envoy_low_renown_text" text="{=str_eonir_envoy_low_renown_text}You do not have the privilege to serve the council. You are of no use. (Low Clan Tier)."/>
+	<string id="eonir_envoy_low_clan_tier_text" text="{=str_eonir_envoy_low_clan_tier_text}You do not have the privilege to serve the council. You are of no use. (Low Clan Tier)."/>
 	<string id="eonir_envoy_why_are_you_here_text" text="{=str_eonir_envoy_why_are_you_here_text}Why are you here?"/>
 	<string id="eonir_envoy_close_text" text="{=str_eonir_envoy_close_text}That is all thank you."/>
 	<string id="eonir_envoy_understood_text" text="{=str_eonir_envoy_understood_text}Understood."/>
