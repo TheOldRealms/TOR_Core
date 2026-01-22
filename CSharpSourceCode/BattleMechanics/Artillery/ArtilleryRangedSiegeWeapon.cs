@@ -131,6 +131,33 @@ namespace TOR_Core.BattleMechanics.Artillery
             UpdateRecoilEffect(dt);
             UpdateWheelRotation(dt);
             HandleAITeamUsage();
+            EnsureCrewDetachedFromFormation();
+        }
+
+        private void EnsureCrewDetachedFromFormation()
+        {
+            // Detach crew members from formation orders while they're actively working on the cannon
+            // This prevents them from running off when the formation receives attack/move orders
+            foreach (var sp in StandingPoints)
+            {
+                // Skip the wait standing point - agents there can respond to orders
+                if (sp.GameEntity.HasTag(WaitStandingPointTag)) continue;
+
+                if (sp.HasUser && sp.UserAgent != null && sp.UserAgent.IsAIControlled)
+                {
+                    var agent = sp.UserAgent;
+                    if (agent.Formation != null && !agent.IsDetachedFromFormation)
+                    {
+                        agent.Formation.DetachUnit(agent, false);
+                    }
+                }
+            }
+
+            // Also detach the ReloaderAgent if they exist and are moving to a point
+            if (ReloaderAgent != null && ReloaderAgent.IsAIControlled && ReloaderAgent.Formation != null && !ReloaderAgent.IsDetachedFromFormation)
+            {
+                ReloaderAgent.Formation.DetachUnit(ReloaderAgent, false);
+            }
         }
         
         private void HandleAITeamUsage()
@@ -161,6 +188,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         {
             if (ReloaderAgentOriginalPoint == null && ReloaderAgent != null)
             {
+                TORCommon.Say($"[Artillery DEBUG] CheckNullReloaderOriginalPoint: Clearing ReloaderAgent '{ReloaderAgent.Name}' because OriginalPoint is null");
                 ReloaderAgent.StopUsingGameObject(true);
                 ReloaderAgent = null;
             }
@@ -194,6 +222,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                     EquipmentIndex wieldedItemIndex = user.GetPrimaryWieldedItemIndex();
                     if (wieldedItemIndex != EquipmentIndex.None && user.Equipment[wieldedItemIndex].CurrentUsageItem.WeaponClass == OriginalMissileItem.PrimaryWeapon.WeaponClass)
                     {
+                        TORCommon.Say($"[Artillery DEBUG] HandleAmmoLoad: '{user.Name}' completed loading, transitioning to WaitingBeforeIdle");
                         user.RemoveEquippedWeapon(wieldedItemIndex);
                         user.StopUsingGameObject(true, Agent.StopUsingGameObjectFlags.None);
                         State = WeaponState.WaitingBeforeIdle;
@@ -234,6 +263,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                         {
                             if (action == act_pickup_boulder_end)
                             {
+                                TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup: '{user.Name}' finished picking up ammo. LoadAmmoPoint.HasUser={LoadAmmoStandingPoint.HasUser}, IsDeactivated={LoadAmmoStandingPoint.IsDeactivated}");
                                 MissionWeapon missionWeapon = new MissionWeapon(LoadedMissileItem, null, null, 1);
                                 user.EquipWeaponToExtraSlotAndWield(ref missionWeapon);
                                 user.StopUsingGameObject(true, Agent.StopUsingGameObjectFlags.None);
@@ -241,20 +271,31 @@ namespace TOR_Core.BattleMechanics.Artillery
                                 {
                                     if (!LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.IsDeactivated)
                                     {
+                                        TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup: Sending '{user.Name}' to LoadAmmoStandingPoint");
                                         user.AIMoveToGameObjectEnable(LoadAmmoStandingPoint, this, Agent.AIScriptedFrameFlags.NoAttack);
                                     }
                                     else if (ReloaderAgentOriginalPoint != null && !ReloaderAgentOriginalPoint.HasUser && !ReloaderAgentOriginalPoint.HasAIMovingTo)
                                     {
+                                        TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup: Sending '{user.Name}' to ReloaderAgentOriginalPoint");
                                         user.AIMoveToGameObjectEnable(ReloaderAgentOriginalPoint, this, Agent.AIScriptedFrameFlags.NoAttack);
                                     }
                                     else
                                     {
+                                        // DEBUG: Log why we're clearing the reloader
+                                        string reason = ReloaderAgentOriginalPoint == null
+                                            ? "OriginalPoint is null"
+                                            : (ReloaderAgentOriginalPoint.HasUser
+                                                ? $"OriginalPoint has user '{ReloaderAgentOriginalPoint.UserAgent?.Name}'"
+                                                : $"OriginalPoint has AI moving to it");
+                                        TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup ELSE: User='{user.Name}', ReloaderAgent='{ReloaderAgent?.Name}', Reason: {reason}");
+
                                         Agent reloaderAgent = ReloaderAgent;
                                         if (reloaderAgent != null)
                                         {
                                             Formation formation = reloaderAgent.Formation;
                                             if (formation != null)
                                             {
+                                                TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup: Detaching ReloaderAgent '{reloaderAgent.Name}' back to formation");
                                                 formation.AttachUnit(ReloaderAgent);
                                             }
                                         }
@@ -290,6 +331,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                     }
                 case WeaponState.WaitingBeforeIdle:
                     {
+                        //SendLingeringAgentsBackToFormation();
                         SendLoaderAgentToWaitingPoint();
                         SetWaitingTimer();
                         return;
@@ -299,6 +341,65 @@ namespace TOR_Core.BattleMechanics.Artillery
                         SetActivationWaitingPoint(false);
                         return;
                     }
+                case WeaponState.Idle:
+                    {
+         
+                        return;
+                    }
+            }
+        }
+
+        private void SendLingeringAgentsBackToFormation()
+        {
+            // When cannon is ready to fire, send any non-essential crew back to formation
+            // Only the pilot needs to stay - everyone else should clear the area
+
+            // First, clear agents from the wait point since cannon is now ready
+            if (_waitStandingPoint != null && _waitStandingPoint.HasUser)
+            {
+                var waitAgent = _waitStandingPoint.UserAgent;
+                if (waitAgent != null && waitAgent.IsAIControlled && waitAgent != PilotAgent)
+                {
+                    waitAgent.StopUsingGameObject(true);
+                    if (waitAgent.Formation != null)
+                    {
+                        waitAgent.Formation.AttachUnit(waitAgent);
+                    }
+                }
+            }
+
+            // Then check for any other lingering agents nearby
+            float clearanceRadius = 8f;
+            var nearbyAgents = Mission.Current.GetNearbyAgents(GameEntity.GlobalPosition.AsVec2, clearanceRadius, new MBList<Agent>());
+
+            foreach (var agent in nearbyAgents)
+            {
+                if (agent == null || !agent.IsActive() || !agent.IsAIControlled) continue;
+                if (agent == PilotAgent) continue; // Don't send the pilot away
+
+                // Check if agent is using any standing point on this machine (except wait point, handled above)
+                bool isUsingEssentialPoint = false;
+                foreach (var sp in StandingPoints)
+                {
+                    if (sp == _waitStandingPoint) continue; // Already handled
+
+                    if (sp.HasUser && sp.UserAgent == agent)
+                    {
+                        isUsingEssentialPoint = true;
+                        break;
+                    }
+                    if (sp.HasAIMovingTo && sp.MovingAgent == agent)
+                    {
+                        isUsingEssentialPoint = true;
+                        break;
+                    }
+                }
+
+                // If not using an essential point on this machine, send them back
+                if (!isUsingEssentialPoint && agent.Formation != null)
+                {
+                    agent.Formation.AttachUnit(agent);
+                }
             }
         }
 
