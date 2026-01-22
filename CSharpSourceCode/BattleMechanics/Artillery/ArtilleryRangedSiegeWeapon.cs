@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
@@ -73,7 +73,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         private bool _isRotating;
         private int _rotationDirection = 0;
         private float _lastCurrentDirection;
-
+        
         protected override float ShootingSpeed => BaseMuzzleVelocity;
         public override float ProjectileVelocity => ShootingSpeed;
         protected override Vec3 ShootingDirection => Projectile.GameEntity.GetGlobalFrame().rotation.f;
@@ -126,13 +126,34 @@ namespace TOR_Core.BattleMechanics.Artillery
             HandleAnimations();
             HandleAmmoPickup();
             HandleAmmoLoad();
-            ForceAmmoPointUsage();
+            CheckAmmoPointUsage();
             HandleWaitingTimer();
             UpdateRecoilEffect(dt);
             UpdateWheelRotation(dt);
             HandleAITeamUsage();
             EnsureCrewDetachedFromFormation();
         }
+
+        private void CheckAmmoPointUsage()
+        {
+            if (ReloaderAgent == null)
+            {
+                ForceAmmoPointUsage();
+            }
+            if (ReloaderAgent!=null && ReloaderAgent.IsActive())
+            {
+                foreach (var sp in StandingPoints)
+                {
+                    if ((sp.HasUser && sp.UserAgent == ReloaderAgent) || (sp.HasAIMovingTo && sp.MovingAgent == ReloaderAgent))
+                    {
+                        return;
+                    }
+                }
+            }
+            ForceAmmoPointUsage();
+        }
+        
+        
 
         private void EnsureCrewDetachedFromFormation()
         {
@@ -162,6 +183,8 @@ namespace TOR_Core.BattleMechanics.Artillery
         
         private void HandleAITeamUsage()
         {
+
+
             if (!Team?.IsPlayerTeam ?? false)
             {
                 if (UserFormations.Count > 0 && UserFormations.All(formation => formation.Index != (int) TORFormationClass.Artillery))
@@ -171,7 +194,12 @@ namespace TOR_Core.BattleMechanics.Artillery
 
                 if (UserFormations.Count == 0)
                 {
-                    Team.FormationsIncludingSpecialAndEmpty.ToList().FirstOrDefault(form => form.Index == (int) TORFormationClass.Artillery)?.StartUsingMachine(this);
+                    var formation = Team.FormationsIncludingSpecialAndEmpty.ToList()
+                        .FirstOrDefault(form => form.Index == (int)TORFormationClass.Artillery);
+                        formation.StartUsingMachine(this);
+
+
+
                 }
             }
             else if(Team?.IsPlayerTeam ?? false)
@@ -331,9 +359,9 @@ namespace TOR_Core.BattleMechanics.Artillery
                     }
                 case WeaponState.WaitingBeforeIdle:
                     {
-                        //SendLingeringAgentsBackToFormation();
-                        SendLoaderAgentToWaitingPoint();
+                        SendLoaderAgentToWaitingPoint(); 
                         SetWaitingTimer();
+                       //ClearFiringArea();
                         return;
                     }
                 case WeaponState.LoadingAmmo:
@@ -343,62 +371,50 @@ namespace TOR_Core.BattleMechanics.Artillery
                     }
                 case WeaponState.Idle:
                     {
-         
                         return;
                     }
             }
         }
 
-        private void SendLingeringAgentsBackToFormation()
+        private void ClearFiringArea()
         {
-            // When cannon is ready to fire, send any non-essential crew back to formation
-            // Only the pilot needs to stay - everyone else should clear the area
+            // Find detached agents near the loading point who aren't actively using the cannon
+            // and re-attach them to their formation so they return to normal behavior
+            if (Mission.Current == null) return;
+            if (LoadAmmoStandingPoint == null) return;
 
-            // First, clear agents from the wait point since cannon is now ready
-            if (_waitStandingPoint != null && _waitStandingPoint.HasUser)
-            {
-                var waitAgent = _waitStandingPoint.UserAgent;
-                if (waitAgent != null && waitAgent.IsAIControlled && waitAgent != PilotAgent)
-                {
-                    waitAgent.StopUsingGameObject(true);
-                    if (waitAgent.Formation != null)
-                    {
-                        waitAgent.Formation.AttachUnit(waitAgent);
-                    }
-                }
-            }
+            var loadingPos = LoadAmmoStandingPoint.GameEntity.GlobalPosition;
+            float checkRadius = 5f;
 
-            // Then check for any other lingering agents nearby
-            float clearanceRadius = 8f;
-            var nearbyAgents = Mission.Current.GetNearbyAgents(GameEntity.GlobalPosition.AsVec2, clearanceRadius, new MBList<Agent>());
+            var nearbyAgents = new MBList<Agent>();
+            Mission.Current.GetNearbyAgents(loadingPos.AsVec2, checkRadius, nearbyAgents);
 
             foreach (var agent in nearbyAgents)
             {
                 if (agent == null || !agent.IsActive() || !agent.IsAIControlled) continue;
-                if (agent == PilotAgent) continue; // Don't send the pilot away
+                if (agent == PilotAgent) continue;
+                if (agent.Formation == null) continue;
 
-                // Check if agent is using any standing point on this machine (except wait point, handled above)
-                bool isUsingEssentialPoint = false;
+                // Check if agent is actively using this cannon's standing points - if so, skip
+                bool isUsingCannon = false;
                 foreach (var sp in StandingPoints)
                 {
-                    if (sp == _waitStandingPoint) continue; // Already handled
-
-                    if (sp.HasUser && sp.UserAgent == agent)
+                    if ((sp.HasUser && sp.UserAgent == agent) || (sp.HasAIMovingTo && sp.MovingAgent == agent))
                     {
-                        isUsingEssentialPoint = true;
-                        break;
-                    }
-                    if (sp.HasAIMovingTo && sp.MovingAgent == agent)
-                    {
-                        isUsingEssentialPoint = true;
+                        isUsingCannon = true;
                         break;
                     }
                 }
+                if (isUsingCannon) continue;
 
-                // If not using an essential point on this machine, send them back
-                if (!isUsingEssentialPoint && agent.Formation != null)
+                // If agent is detached from formation and not using the cannon, re-attach them
+                
+                if(agent == this.ReloaderAgent) return;
+                
+                if (!agent.IsDetachedFromFormation)
                 {
-                    agent.Formation.AttachUnit(agent);
+                    agent.SetShouldCatchUpWithFormation(true);
+                    
                 }
             }
         }
