@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using SandBox.GauntletUI;
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -8,6 +9,8 @@ using System.Windows;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Inventory;
 using TaleWorlds.CampaignSystem.ViewModelCollection.Inventory;
+using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.ViewModelCollection.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection;
 using TaleWorlds.InputSystem;
@@ -24,6 +27,13 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch]
     public static class InventoryPatches
     {
+        // naber: this patch runs very frequently while the inventory screen is open (OnFrameTick). we cache FieldInfo lookups once to avoid repeated AccessTools reflection costs/allocations
+        // this does not change behavior. it just reduces overhead in a hot ui path.
+        private static readonly FieldInfo CurrentCharacterField =
+    AccessTools.Field(typeof(SPInventoryVM), "_currentCharacter");
+
+        private static readonly FieldInfo InventoryLogicField =
+            AccessTools.Field(typeof(SPInventoryVM), "_inventoryLogic");
         [HarmonyPostfix]
         [HarmonyPatch(typeof(GauntletInventoryScreen), "OnFrameTick")]
         public static void Postfix(SPInventoryVM ____dataSource)
@@ -40,7 +50,7 @@ namespace TOR_Core.HarmonyPatches
                 thread.Start();
                 thread.Join(); //Wait for the thread to end
                 var list = text.Split(',');
-                var logic = AccessTools.Field(typeof(SPInventoryVM), "_inventoryLogic").GetValue(____dataSource) as InventoryLogic;
+                var logic = InventoryLogicField.GetValue(____dataSource) as InventoryLogic;
                 List<Tuple<string, int>> itemList = new List<Tuple<string, int>>();
                 for (int i = 0; i < list.Length; i++)
                 {
@@ -58,23 +68,42 @@ namespace TOR_Core.HarmonyPatches
             var itemindex = Delegate.CreateDelegate(typeof(Func<EquipmentIndex, SPItemVM>), __instance, "GetItemFromIndex");
             if (reset != null && itemindex != null && ____inventoryLogic != null && ____getItemUsageSetFlags != null)
             {
+                if (__instance.ItemMenu != null)
+                {
+                    __instance.ItemMenu.OnFinalize();
+                }
                 __instance.ItemMenu = new TorItemMenuVM((Action<ItemVM, int>)reset, ____inventoryLogic, ____getItemUsageSetFlags, (Func<EquipmentIndex, SPItemVM>)itemindex);
             }
         }
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(SPInventoryVM), "UpdateFilteredStatusOfItem")]
-        public static bool SearchByStringId(SPItemVM item, SPInventoryVM __instance, Dictionary<SPInventoryVM.Filters, List<int>> ____filters, SPInventoryVM.Filters ____activeFilterIndex)
+        public static bool SearchByStringId(
+         SPItemVM item,
+         SPInventoryVM __instance,
+         Dictionary<SPInventoryVM.Filters, List<int>> ____filters,
+         SPInventoryVM.Filters ____activeFilterIndex)
         {
             bool isFilteredByCategory = !____filters[____activeFilterIndex].Contains(item.TypeId);
             bool isFilteredBySearchString = false;
-            if (__instance.IsSearchAvailable && (item.InventorySide == InventoryLogic.InventorySide.OtherInventory || item.InventorySide == InventoryLogic.InventorySide.PlayerInventory))
+
+            if (__instance.IsSearchAvailable &&
+                (item.InventorySide == InventoryLogic.InventorySide.OtherInventory ||
+                 item.InventorySide == InventoryLogic.InventorySide.PlayerInventory))
             {
-                string text = (item.InventorySide == InventoryLogic.InventorySide.OtherInventory) ? __instance.LeftSearchText : __instance.RightSearchText;
+                string text = (item.InventorySide == InventoryLogic.InventorySide.OtherInventory)
+                    ? __instance.LeftSearchText
+                    : __instance.RightSearchText;
+
                 if (text.Length > 1)
                 {
-                    text = text.ToLower();
-                    isFilteredBySearchString = !item.StringId.ToLower().Contains(text) && !item.ItemDescription.ToLower().Contains(text);
+                    bool matchFound =
+                        (!string.IsNullOrEmpty(item.StringId) &&
+                         item.StringId.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                        (!string.IsNullOrEmpty(item.ItemDescription) &&
+                         item.ItemDescription.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                    isFilteredBySearchString = !matchFound;
                 }
             }
             item.IsFiltered = (isFilteredByCategory || isFilteredBySearchString);
@@ -95,7 +124,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(SPInventoryVM), "RefreshCharacterCanUseItem")]
         public static void PostFix4(ref SPInventoryVM __instance)
         {
-            var currentCharacter = AccessTools.Field(typeof(SPInventoryVM), "_currentCharacter").GetValue(__instance) as CharacterObject;
+            var currentCharacter = CurrentCharacterField.GetValue(__instance) as CharacterObject;
 
             for (int i = 0; i < __instance.RightItemListVM.Count; i++)
             {
@@ -111,7 +140,7 @@ namespace TOR_Core.HarmonyPatches
         [HarmonyPatch(typeof(SPInventoryVM), "IsItemEquipmentPossible")]
         public static void PostFix5(ref SPInventoryVM __instance, ref bool __result, SPItemVM itemVM)
         {
-            var currentCharacter = AccessTools.Field(typeof(SPInventoryVM), "_currentCharacter").GetValue(__instance) as CharacterObject;
+            var currentCharacter = CurrentCharacterField.GetValue(__instance) as CharacterObject;
             if (__result)
             {
                 __result = ExtendedItemObjectManager.CanCharacterUseItem(itemVM.ItemRosterElement.EquipmentElement.Item, currentCharacter);
@@ -141,6 +170,8 @@ namespace TOR_Core.HarmonyPatches
         private static void EquipItemsFromClipboard(List<Tuple<string, int>> itemList, InventoryLogic logic, SPInventoryVM inventoryVM)
         {
             List<TransferCommand> commands = new List<TransferCommand>();
+            var playerItems = logic.GetElementsInRoster(InventoryLogic.InventorySide.PlayerInventory);
+            var otherItems = logic.GetElementsInRoster(InventoryLogic.InventorySide.OtherInventory);
             foreach (var tuple in itemList)
             {
                 if (tuple.Item1.StartsWith("Item."))
@@ -149,8 +180,6 @@ namespace TOR_Core.HarmonyPatches
                     var itemObject = MBObjectManager.Instance.GetObject<ItemObject>(itemId);
                     if (itemObject != null)
                     {
-                        var playerItems = logic.GetElementsInRoster(InventoryLogic.InventorySide.PlayerInventory);
-                        var otherItems = logic.GetElementsInRoster(InventoryLogic.InventorySide.OtherInventory);
 
                         var element = playerItems.FirstOrDefault(x => x.EquipmentElement.Item.StringId == itemObject.StringId);
                         var side = InventoryLogic.InventorySide.PlayerInventory;

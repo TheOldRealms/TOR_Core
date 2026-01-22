@@ -9,32 +9,26 @@ INCLUDE include.ink
 ->START
 
 ===START===
-You approach da shrine—a crude pile of stones and bones, smeared with warpaint and topped with skulls. It ain't much to look at, but you can FEEL da power radiating from it.
+You have found the shrine, crude idols of Gork and Mork, carved from towering piles of rock and dung.
 
-You start da ritual like da voice in your head tells you. Dancing around crackling firepits. Casting bones upon da earth. Chanting guttural prayers in words you didn't know you knew.
+Scattered around them lie weapons and armour unlike anything you have seen before. Some you recognise as dwarf-made, but others are beyond your comprehension.
 
-Your vision blurs. Da world spins. And then...
+You step forward alone. The closer you get, the more pungent the stench becomes. Reaching the largest dung-pile, you inhale the rancid fumes deeply. They flood your senses and knock you out cold.
 
-THEY appear.
+Then THEY appear.
 
-Two massive forms tower over you in da green mist. One is BRUTAL—all muscles and rage, slamming his fists together. Da other is KUNNIN'—eyes gleaming with sneaky thoughts, grinning with too many teeth.
+Two green gigantic silhouettes wrestling and smashing into each other relentlessly.
 
-GORK AND MORK. Da twin gods of da Greenskins.
+Otherworldly voices and sights fill your thick skull, accompanied by incoherent bellowing and roaring laughter: Burning cities, the thunder of pounding drums, the green tide marching as it tramples corpses and shattered banners beneath its feet. The idols of weak, pathetic gods, human and dwarf alike, are cast down into the dirt, broken apart or reshaped into crude figures of Gork and Mork.
 
-"DIS ONE'Z GOT POTENTIAL," rumbles Gork, his voice like an avalanche of boulders.
+Amidst the ruins and the feasting boys, you see a figure, dancing, cackling madly as crackling green bolts of energy rain across the battlefield.
 
-"YEAH, BUT IZ 'E KUNNIN' ENOUGH?" snickers Mork, his voice like knives scraping together.
+It is you.
 
-"DON'T MATTER! 'E'LL LEARN! DA BOYZ NEED A PROPER SHAMAN!"
+Then you awaken.
 
-"LISTEN UP, YA GIT!" they roar together. "WE GOT BIG FINGS PLANNED! MASSIVE WAAAGHS! CITIES BURNIN'! GITZ GETTIN' KRUMPED LEFT AND RIGHT!"
+The air trembles with anticipation. And your destiny is clear.
 
-"AN' YOU'Z GONNA 'ELP DA BOYZ WIN! YOU'Z GONNA BE OUR SHAMAN!"
-
-"BUT FIRST, YA GOTTA PROVE YERSELF! LEARN DA MAGICS! GET KUNNIN'! GATHER DA TEEF! SHOW US YOU'Z WORTHY!"
-
-Da vision fades, and you awaken with renewed purpose. You know what you must do.
-
-+ [WAAAGH! I'll make ya proud, bosses!]
++ [I'Z GUNNA BE DA BEST SHAMAN DERE EVER WAS!!!]
     ~ CloseStory()
     -> END

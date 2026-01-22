@@ -112,7 +112,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
 
     protected override void InitializeKeyStones()
     {
-        _knightOldWorldRoot.Initialize(CareerID, "The Knight focuses on his grand mission, which results in a 20% boost to damage for the next melee hit. The boost lasts for 15 seconds. For every Keystone enabled, you acquire another use, enhancing your strikes and give you an additional load. Deal melee damage to recharge your ability.", null, true,
+        _knightOldWorldRoot.Initialize(CareerID, "Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15 seconds. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
 
@@ -149,7 +149,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                 }
             });
 
-        _templarOrdersKeystone.Initialize(CareerID, "2 additional charges. Ability scales with Faith. Reduce base cooldown by 15 seconds", "TemplarOrders", false,
+        _templarOrdersKeystone.Initialize(CareerID, "Knightly Strike gains +2 charges, a -15 second cooldown, and also scales with Faith.", "TemplarOrders", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -162,17 +162,17 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                 },
             });
 
-        _pathOfVigilanceKeystone.Initialize(CareerID, "Adds 20% attack speed as long effect is active. charge twice for every hit", "PathOfVigilance", false,
+        _pathOfVigilanceKeystone.Initialize(CareerID, "Adds 20% attack speed as long effect is active. Charge twice for every hit.", "PathOfVigilance", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             });
 
-        _wrathAgainstChaosKeystone.Initialize(CareerID, "Adds 30% Armor Penetration during ability.", "WrathAgainstChaos", false,
+        _wrathAgainstChaosKeystone.Initialize(CareerID, "Adds 25% Armor Penetration during ability.", "WrathAgainstChaos", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             }, new CareerChoiceObject.PassiveEffect());
 
-        _pathOfGloryKeystone.Initialize(CareerID, "Adds a Deity based weapon effect or 20% extra physical damage.", "PathOfGlory", false,
+        _pathOfGloryKeystone.Initialize(CareerID, "Your patron deity blesses your weapon. If no patron, +20% personal 'Physical' weapon damage.", "PathOfGlory", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
 
@@ -182,54 +182,54 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
 
     protected override void InitializePassives()
     {
-        _secularOrdersPassive1.Initialize(CareerID, "custom resource upgrade costs for knights are reduced by 25%.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true,
+        _secularOrdersPassive1.Initialize(CareerID, "-25% 'Prestige' cost for upgrading 'Knight' troops.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.CustomResourceUpgradeCostModifier, true,
             characterObject => characterObject.HasAttribute("Knightly")));
-        _secularOrdersPassive2.Initialize(CareerID, "All Knight troops receive 20 bonus points in their One and Two-handed skill.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded), nameof(DefaultSkills.OneHanded) }, characterObject =>
+        _secularOrdersPassive2.Initialize(CareerID, "+20 One/Two-handed skill for all 'Knight' troops.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, new List<string>() { nameof(DefaultSkills.TwoHanded), nameof(DefaultSkills.OneHanded) }, characterObject =>
             characterObject.HasAttribute("Knightly")));
 
-        _secularOrdersPassive3.Initialize(CareerID, "All Knight troops upgrade costs are reduced by 25%.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true,
+        _secularOrdersPassive3.Initialize(CareerID, "-25% 'Gold' cost for upgrading 'Knight' troops.", "SecularOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopUpgradeCost, true,
             characterObject => characterObject.HasAttribute("Knightly")));
-        _secularOrdersPassive4.Initialize(CareerID, "Secular seals work on templar knights; your templar seals work on secular knights.", "SecularOrders", false, ChoiceType.Passive);
+        _secularOrdersPassive4.Initialize(CareerID, "Can apply 'Secular Seals' to 'Templar Knights' and 'Templar Seals' to 'Secular Knights'.", "SecularOrders", false, ChoiceType.Passive);
 
-        _pathOfConquestPassive1.Initialize(CareerID, "Extra melee damage (5%).", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
-        _pathOfConquestPassive2.Initialize(CareerID, "Party movement speed is increased by 1.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
-        _pathOfConquestPassive3.Initialize(CareerID, "Horse charge damage is increased by 40%.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
-        _pathOfConquestPassive4.Initialize(CareerID, "All Knight troops receive 30 bonus points in their Polearm skill.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, nameof(DefaultSkills.Polearm),
+        _pathOfConquestPassive1.Initialize(CareerID, "+5% personal 'Physical' melee damage.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 5), AttackTypeMask.Melee));
+        _pathOfConquestPassive2.Initialize(CareerID, "+1 party move speed on campaign map.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(1, PassiveEffectType.PartyMovementSpeed));
+        _pathOfConquestPassive3.Initialize(CareerID, "+40% charge damage bonus for your personal mount.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(40, PassiveEffectType.HorseChargeDamage, true));
+        _pathOfConquestPassive4.Initialize(CareerID, "+30 Polearm weapon skill for 'Knight' troops.", "PathOfConquest", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, nameof(DefaultSkills.Polearm),
             (characterObject) => characterObject.HasAttribute("Knightly")));
 
-        _squiresPassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
-        _squiresPassive2.Initialize(CareerID, "All Knight troops wages are reduced by 25%.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true,
+        _squiresPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+        _squiresPassive2.Initialize(CareerID, "-25% wages for 'Knight' troops.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-25, PassiveEffectType.TroopWages, true,
             characterObject => characterObject.HasAttribute("Knightly")));
-        _squiresPassive3.Initialize(CareerID, "Wounded troops in your party heal faster.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration)); //can be more precise
-        _squiresPassive4.Initialize(CareerID, "Battles against non-humans provide 100% prestige gain.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //
+        _squiresPassive3.Initialize(CareerID, "Wounded troops heal faster.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
+        _squiresPassive4.Initialize(CareerID, "Victories against 'Non-Human' enemies give +100% 'Prestige'.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special));
 
-        _templarOrdersPassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "TemplarOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
-        _templarOrdersPassive2.Initialize(CareerID, "kills add faith skill.", "TemplarOrders", false, ChoiceType.Passive);
-        _templarOrdersPassive3.Initialize(CareerID, "Having matching knights of deity increase their damage by 15%", "TemplarOrders", false, ChoiceType.Passive, null,
+        _templarOrdersPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "TemplarOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+        _templarOrdersPassive2.Initialize(CareerID, "Slaying 'Undead' or 'Cultists' provides Faith experience.", "TemplarOrders", false, ChoiceType.Passive);
+        _templarOrdersPassive3.Initialize(CareerID, "'Knight' troops that follow your patron deity gain +15% 'Physical' melee damage.", "TemplarOrders", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
                 (attacker, victim, mask) => (attacker.Character.HasAttribute("Knightly")) && attacker.BelongsToMainParty() && mask == AttackTypeMask.Melee && Hero.MainHero.GetDominantReligion().ReligiousTroops.Contains((CharacterObject)attacker.Character)));
-        _templarOrdersPassive4.Initialize(CareerID, "Bonus damage against undead", "TemplarOrders", false, ChoiceType.Passive, null,
+        _templarOrdersPassive4.Initialize(CareerID, "+20% personal 'Physical' melee damage against the 'Undead'.", "TemplarOrders", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 20), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.IsUndead() && attacker.IsMainAgent && mask == AttackTypeMask.Melee));
 
-        _pathOfVigilancePassive1.Initialize(CareerID, "50% additional Hitpoints for the player's mount.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true));
-        _pathOfVigilancePassive2.Initialize(CareerID, "Gain 6% physical resistance to melee and ranged attacks.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 6), AttackTypeMask.Ranged | AttackTypeMask.Melee));
-        _pathOfVigilancePassive3.Initialize(CareerID, "Hits below 15 damage do not stagger the player.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
-        _pathOfVigilancePassive4.Initialize(CareerID, "Wielding a shield increases wardsave by 15%.", "PathOfVigilance", false, ChoiceType.Passive, null,
+        _pathOfVigilancePassive1.Initialize(CareerID, "+50% personal mount Hitpoints.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(50, PassiveEffectType.HorseHealth, true));
+        _pathOfVigilancePassive2.Initialize(CareerID, "+6% personal 'Physical Resistance'.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Physical, 6), AttackTypeMask.Ranged | AttackTypeMask.Melee));
+        _pathOfVigilancePassive3.Initialize(CareerID, "Hits below 15 damage no longer stagger you.", "PathOfVigilance", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.ShruggedOff));
+        _pathOfVigilancePassive4.Initialize(CareerID, "+15% personal 'Ward Save' when using a shield.", "PathOfVigilance", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 15), AttackTypeMask.All,
                 (attacker, victim, mask) => victim.IsMainAgent && victim.WieldedOffhandWeapon.IsShield()));
 
-        _wrathAgainstChaosPassive1.Initialize(CareerID, "All units deal more damage against chaos.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,
+        _wrathAgainstChaosPassive1.Initialize(CareerID, "Your party deals increased 'Holy' damage when facing the forces of 'Chaos'.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopDamage, new DamageProportionTuple(DamageType.Holy, 15), AttackTypeMask.All,
             (attacker, victim, mask) => victim.Character.Race != 0));
-        _wrathAgainstChaosPassive2.Initialize(CareerID, "Gain 15% Magic Resistance.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
-        _wrathAgainstChaosPassive3.Initialize(CareerID, "Weapon swing speed increased by 10%.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
-        _wrathAgainstChaosPassive4.Initialize(CareerID, "Extra 10% armor penetration of melee attacks.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+        _wrathAgainstChaosPassive2.Initialize(CareerID, "+15% personal 'Magic Resistance'.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.Magical, 15), AttackTypeMask.Spell));
+        _wrathAgainstChaosPassive3.Initialize(CareerID, "+10% personal weapon swing speed.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10f, PassiveEffectType.SwingSpeed, true));
+        _wrathAgainstChaosPassive4.Initialize(CareerID, "+10% personal 'Armor Penetration' of melee attacks.", "WrathAgainstChaos", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-10, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
 
-        _pathOfGloryPassive1.Initialize(CareerID, "Increases Hitpoints by 15.", "PathOfGlory", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
-        _pathOfGloryPassive2.Initialize(CareerID, "10% Ward save for all knight units.", "PathOfGlory", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.Spell,
+        _pathOfGloryPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "PathOfGlory", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
+        _pathOfGloryPassive2.Initialize(CareerID, "+10% 'Ward Save' for all 'Knight' troops.", "PathOfGlory", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 10), AttackTypeMask.All,
             (attacker, victim, mask) => !victim.BelongsToMainParty() && !victim.IsHero && victim.Character.IsKnightUnit()));
-        _pathOfGloryPassive3.Initialize(CareerID, "Gain 6% Ward save.", "PathOfGlory", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 6), AttackTypeMask.All));
-        _pathOfGloryPassive4.Initialize(CareerID, "Gain the option to add an additional seal on a troop.", "PathOfGlory", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special)); //
+        _pathOfGloryPassive3.Initialize(CareerID, "+6% personal 'Ward Save'.", "PathOfGlory", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Resistance, new DamageProportionTuple(DamageType.All, 6), AttackTypeMask.All));
+        _pathOfGloryPassive4.Initialize(CareerID, "'Knight' troops can now be given an additional 'Templar or Secular seal'.", "PathOfGlory", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special));
 
 
     }

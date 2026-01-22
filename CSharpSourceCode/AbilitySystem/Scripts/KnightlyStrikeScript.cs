@@ -25,7 +25,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
             var traitList = new List<ItemTrait>();
             
-            if (Hero.MainHero.HasCareerChoice("PathOfGloryKeystone"))
+            if (Hero.MainHero.HasCareerChoice("PathOfConquestKeystone"))
             {
                 var cleaveTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_cleave");
                 if (cleaveTrait != null && cleaveTrait != ItemTrait.Invalid) traitList.Add(cleaveTrait);
@@ -45,8 +45,8 @@ namespace TOR_Core.AbilitySystem.Scripts
             
             if (Hero.MainHero.HasCareerChoice("PathOfVigilanceKeystone"))
             {
-                var armorPenTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_extra_armorpen");
-                if (armorPenTrait != null && armorPenTrait != ItemTrait.Invalid) traitList.Add(armorPenTrait);
+                var swingSpeedTrait = ItemTrait.All.FirstOrDefault(x => x.ItemTraitStringId == "ca_knightlystrike_swing_speed");
+                if (swingSpeedTrait != null && swingSpeedTrait != ItemTrait.Invalid) traitList.Add(swingSpeedTrait);
             }
 
             if (Hero.MainHero.HasCareerChoice("PathOfGloryKeystone"))

@@ -411,7 +411,7 @@ public class EonirFavorEnvoyTownBehavior : CampaignBehaviorBase
         //Exchange all Prestige to Council Favor
 
         campaignGameStarter.AddDialogLine("empire_envoy_prestige_to_favour", "empire_envoy_prestige_to_favour", "empire_envoy_prestige_to_favour_choice",
-            TORTextHelper.GetText("eonir_empire_prestige_to_favor_offer_text", "Obviously your offering to the empire can benefit the Council. (Exchange all Prestige for Council Favor"), () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("Prestige") > 0, null, 200);
+            TORTextHelper.GetText("eonir_empire_prestige_to_favor_offer_text", "Obviously your offering to the empire can benefit the Council."), () => IsEmpireEnvoy() && Hero.MainHero.GetCustomResourceValue("Prestige") > 0, null, 200);
 
         campaignGameStarter.AddPlayerLine("empire_envoy_prestige_to_favour_choice_1", "empire_envoy_prestige_to_favour_choice", "empire_envoy_prestige_to_favour_result",
             TORTextHelper.GetText("eonir_empire_exchange_prestige_to_favor", "Let us do this. (Receive {CONVERTED_FAVOR} {FAVOR_ICON})"), () => IsEmpireEnvoy() && CalculateFavorConversion(Hero.MainHero.GetCustomResourceValue("Prestige")), null, 200);

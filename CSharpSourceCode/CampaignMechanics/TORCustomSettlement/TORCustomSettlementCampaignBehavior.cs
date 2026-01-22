@@ -429,7 +429,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                     var text = new MBStringBuilder();
                     text.Initialize();
 
-                    var hintInfo = item.GetTorSpecificData();
+                    var hintInfo = item.GetTorSpecificDataReadOnly();
                     if (hintInfo != null && !hintInfo.Description.IsEmpty())
                     {
                         text.AppendLine(hintInfo.Description);

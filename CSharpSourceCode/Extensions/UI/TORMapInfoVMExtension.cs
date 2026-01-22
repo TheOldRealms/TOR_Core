@@ -30,6 +30,10 @@ namespace TOR_Core.Extensions.UI
         private string _remainingBlessingTime;
         private bool _hasBaseVMBeenInitialized = false;
         private bool _haveInfoItemsBeenAdded = false;
+        private const double MAP_INFO_REFRESH_THROTTLE_SECONDS = 0.2;
+        private static readonly long MapInfoRefreshThrottleTicks =
+            (long)(Stopwatch.Frequency * MAP_INFO_REFRESH_THROTTLE_SECONDS);
+        private long _lastRefreshTimestamp;
         private static readonly FieldInfo SpeedInfoField =
     typeof(MapInfoVM).GetField("_speedInfo", BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -37,7 +41,6 @@ namespace TOR_Core.Extensions.UI
         private MapInfoItemVM _artilleryInfo;
         private MapInfoItemVM _resourceInfo;
         private MapInfoItemVM _blessingInfo;
-
         private MapInfoItemVM _partySpeedInfo;
         public TORMapInfoVMExtension(ViewModel vm) : base(vm)
         {
@@ -226,11 +229,7 @@ namespace TOR_Core.Extensions.UI
         }
         private static string FormatSignedSpeedNumber(float value)
         {
-            var format = MathF.Abs(value) < 1f
-                ? "+0.00;-0.00;0.00"
-                : "+0.##;-0.##;0.##";
-
-            return value.ToString(format, CultureInfo.InvariantCulture);
+            return value.ToString("+0.##;-0.##;0.##", CultureInfo.InvariantCulture);
         }
 
         private List<TooltipProperty> GetPartySpeedHintText()
@@ -287,6 +286,13 @@ namespace TOR_Core.Extensions.UI
                 (_vm as MapInfoVM).SecondaryInfoItems.Add(_blessingInfo);
                 _haveInfoItemsBeenAdded = true;
             }
+            var nowTimestamp = Stopwatch.GetTimestamp();
+            if (_lastRefreshTimestamp != 0 &&
+                (nowTimestamp - _lastRefreshTimestamp) <= MapInfoRefreshThrottleTicks)
+            {
+                return;
+            }
+            _lastRefreshTimestamp = nowTimestamp;
 
             var heroInfo = Hero.MainHero.GetExtendedInfo();
             _windsOfMagic = (int)heroInfo.GetCustomResourceValue("WindsOfMagic");

@@ -7131,6 +7131,18 @@
       <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_troll_001" />
       <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_troll_001" />
     </EquipmentSet>
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_greenskins_troll_2h_hammer_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_troll_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_troll_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_troll_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_greenskins_troll_2h_hammer_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_troll_001" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_troll_001" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_troll_001" />
+    </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_empire_scout_template" culture="Culture.empire">
     <EquipmentSet>

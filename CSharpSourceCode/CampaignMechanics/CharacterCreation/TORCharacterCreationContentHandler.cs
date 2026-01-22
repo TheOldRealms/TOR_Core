@@ -963,6 +963,39 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.AddCareer(TORCareers.BloodKnight);
                     _storedSpawnPosition = new CampaignVec2(new Vec2(1277.776f, 942.5178f), true); // Blood Dragon location
                     break;
+                // MOUSILLON VAMPIRE BLOODLINE OPTIONS
+                case "bloodline_von_carstein_mous":
+                    {
+                        hero.AddAttribute("SpellCaster");
+                        hero.AddAbility("NagashGaze");
+                        hero.AddKnownLore("MinorMagic");
+                        hero.AddKnownLore("Necromancy");
+                        var skill = hero.GetSkillValue(TORSkills.Spellcraft);
+                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
+                        hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
+                        hero.AddCareer(TORCareers.MinorVampire);
+                        _storedSpawnPosition = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true); // Mousillon territory
+                        MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_cc_learned_necromancy_text", "Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                        break;
+                    }
+                case "bloodline_blood_dragon_mous":
+                    hero.AddCareer(TORCareers.BloodKnight);
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true); // Mousillon territory
+                    break;
+                case "bloodline_necrarch_mous":
+                    {
+                        hero.AddAttribute("SpellCaster");
+                        hero.AddAbility("NagashGaze");
+                        hero.AddKnownLore("MinorMagic");
+                        hero.AddKnownLore("Necromancy");
+                        hero.AddCareer(TORCareers.Necrarch);
+                        var skill = hero.GetSkillValue(TORSkills.Spellcraft);
+                        hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
+                        hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
+                        _storedSpawnPosition = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true); // Mousillon territory
+                        MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_cc_learned_necromancy_text", "Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
+                        break;
+                    }
                 case "bloodline_necrarch":
                     {
                         hero.AddAttribute("SpellCaster");

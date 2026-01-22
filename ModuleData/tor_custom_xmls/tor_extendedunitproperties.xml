@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -503,7 +503,8 @@
     </Resistances>
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.75" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.25" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_wolfkin">
@@ -514,7 +515,8 @@
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.75" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.25" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_wolfbrother">
@@ -525,7 +527,8 @@
     <Resistances />
     <DamageAmplifiers />
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.60" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.40" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="3" />
   </CharacterExtendedInfo>
@@ -536,10 +539,11 @@
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.10" />
+      <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.25" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.60" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="8" />
   </CharacterExtendedInfo>
@@ -550,10 +554,11 @@
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.25" />
+      <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.50" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.60" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="15" />
   </CharacterExtendedInfo>
@@ -565,7 +570,7 @@
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.25" />
+      <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.50" />
     </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
@@ -753,11 +758,11 @@
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.60" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-      <DamageProportionTuple DamageType="Holy" Percent="0.40" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.05" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.95" />
     </DamageProportions>
     <ResourceCost ResourceType="Chivalry" UpkeepCost="0" UpgradeCost="1200" />
   </CharacterExtendedInfo>
@@ -935,11 +940,11 @@
       <ResistanceTuple ResistedDamageType="All" ReductionPercent="0.35" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.60" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
-      <DamageProportionTuple DamageType="Magical" Percent="0.40" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.05" />
+      <DamageProportionTuple DamageType="Magical" Percent="0.95" />
     </DamageProportions>
     <ResourceCost ResourceType="DarkEnergy" UpkeepCost="8" UpgradeCost="150" />
   </CharacterExtendedInfo>
@@ -1994,12 +1999,18 @@
     <Abilities />
     <Attributes>
       <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
-    <Resistances />
-    <DamageAmplifiers />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.60" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+    <ResourceCost ResourceType="Teef" UpkeepCost="8" UpgradeCost="0" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_eo_forestborn">
     <Abilities />
@@ -2687,11 +2698,11 @@
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.25" />
+      <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
-      <DamageProportionTuple DamageType="Magical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.05" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.95" />
     </DamageProportions>
     <ResourceCost ResourceType="DarkEnergy" UpkeepCost="1" UpgradeCost="0" />
   </CharacterExtendedInfo>
@@ -2705,11 +2716,11 @@
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.25" />
+      <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
-      <DamageProportionTuple DamageType="Magical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.05" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.95" />
     </DamageProportions>
     <ResourceCost ResourceType="DarkEnergy" UpkeepCost="3" UpgradeCost="35" />
   </CharacterExtendedInfo>
@@ -2723,11 +2734,11 @@
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.25" />
+      <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
-      <DamageProportionTuple DamageType="Magical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.05" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.95" />
     </DamageProportions>
     <ResourceCost ResourceType="DarkEnergy" UpkeepCost="5" UpgradeCost="50" />
   </CharacterExtendedInfo>
@@ -2741,11 +2752,11 @@
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.25" />
+      <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
-      <DamageProportionTuple DamageType="Magical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.05" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.95" />
     </DamageProportions>
     <ResourceCost ResourceType="DarkEnergy" UpkeepCost="5" UpgradeCost="50" />
   </CharacterExtendedInfo>
@@ -2759,11 +2770,11 @@
       <ResistanceTuple ResistedDamageType="Holy" ReductionPercent="-0.50" />
     </Resistances>
     <DamageAmplifiers>
-      <AmplifierTuple AmplifiedDamageType="Magical" DamageAmplifier="0.25" />
+      <AmplifierTuple AmplifiedDamageType="Frost" DamageAmplifier="0.45" />
     </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.40" />
-      <DamageProportionTuple DamageType="Magical" Percent="0.80" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.05" />
+      <DamageProportionTuple DamageType="Frost" Percent="0.95" />
     </DamageProportions>
     <ResourceCost ResourceType="DarkEnergy" UpkeepCost="6" UpgradeCost="75" />
   </CharacterExtendedInfo>
@@ -3295,6 +3306,7 @@
       <string>Minotaur</string>
       <string>Unbreakable</string>
       <string>Unstoppable</string>
+      <string>MonsterAttack</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers>
@@ -3685,7 +3697,9 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.10" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="1.00" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.90" />
       <DamageProportionTuple DamageType="Fire" Percent="0.10" />
@@ -3701,7 +3715,9 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="1.50" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.90" />
       <DamageProportionTuple DamageType="Fire" Percent="0.10" />
@@ -3717,7 +3733,9 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="1.50" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.90" />
       <DamageProportionTuple DamageType="Fire" Percent="0.10" />
@@ -3733,7 +3751,9 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.90" />
       <DamageProportionTuple DamageType="Fire" Percent="0.10" />
@@ -3749,7 +3769,9 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Fire" DamageAmplifier="2.00" />
+    </DamageAmplifiers>
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="0.90" />
       <DamageProportionTuple DamageType="Fire" Percent="0.10" />
@@ -4470,10 +4492,12 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.15" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.15" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.75" />
-      <DamageProportionTuple DamageType="Magical" Percent="0.25" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.50" />
     </DamageProportions>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wh_retinue_hunter">
@@ -4482,12 +4506,14 @@
       <string>Piercing</string>
     </Attributes>
     <Resistances>
-      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.25" />
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.20" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.30" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.75" />
-      <DamageProportionTuple DamageType="Magical" Percent="0.35" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.50" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="7" />
   </CharacterExtendedInfo>
@@ -4499,10 +4525,12 @@
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
     </Resistances>
-    <DamageAmplifiers />
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Holy" DamageAmplifier="0.50" />
+    </DamageAmplifiers>
     <DamageProportions>
-      <DamageProportionTuple DamageType="Physical" Percent="0.75" />
-      <DamageProportionTuple DamageType="Magical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Physical" Percent="0.50" />
+      <DamageProportionTuple DamageType="Holy" Percent="0.50" />
     </DamageProportions>
     <ResourceCost ResourceType="Prestige" UpkeepCost="0" UpgradeCost="10" />
   </CharacterExtendedInfo>

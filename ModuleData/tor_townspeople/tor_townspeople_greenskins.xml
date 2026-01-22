@@ -129,7 +129,21 @@
     </Equipments>
   </NPCCharacter>
 
-  <NPCCharacter id="tavernkeeper_greenskins" name="{=str_tavernkeeper_greenskins}Orc Tavernkeeper" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Tavernkeeper">
+  <NPCCharacter id="tavernkeeper_greenskins" name="{=str_tavernkeeper_greenskins}Orc Tavernkeeper" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="Tavernkeeper" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+    <face>
+      <face_key_template value="BodyProperty.orc_small" />
+    </face>
+    <Traits>
+      <Trait id="Valor" value="-1" />
+      <Trait id="Calculating" value="1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" />
+      <EquipmentSet id="tor_gs_people_notable_artisan_shopworker" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  
+  <NPCCharacter id="taverngamehost_greenskins" name="{=str_taverngamehost_greenskins}Gamehost" voice="ironic" is_template="true" default_group="Infantry" is_hero="false" race ="orc" culture="Culture.aserai" occupation="TavernGameHost" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>

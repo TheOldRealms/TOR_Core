@@ -87,7 +87,7 @@
              tier="1" />
 
     <Faction id="desert_bandits"
-             banner_key="11.12.148.14020.11010.764.764.0.1.0.116.23.111.647.670.765.839.1.0.0.504.126.111.276.284.651.580.1.0.180.512.129.111.187.193.649.575.1.0.178.509.126.111.299.116.654.476.1.0.178.507.126.111.177.69.654.471.1.0.178.424.142.111.239.248.935.542.1.0.0"
+             banner_key="11.138.148.1500.1500.758.769.1.1.0.505.92.41.1848.894.384.1144.0.0.-54.122.20.41.600.600.764.764.0.0.0:kingdom_herrimaults"
              label_color="FF8B7C73"
              color="FF8B7C73"
              color2="FF8B7C73"
@@ -169,7 +169,7 @@
              super_faction="Kingdom.sylvania"
              is_noble="true"
              text="{=str_tor_clan_sylvania_clan_1_desc}They say history is made by great men and women. That is certainly true for the Vampires, but none have written that history so boldly or so thick with blood as the Von Carsteins. They are the aristocracy of the night, creatures of enormous passion and unbridled ambition, and their most trivial desires shape the destinies of entire nations. They are the greatest of all the accursed bloodlines, their vile breed spawned from the ancient terror, Count Vlad von Carstein. For centuries, they have waged their war on the living, Vlad’s seed forever tainting the land and soddening the earth with blood. Near four hundred years ago, the last great count of Sylvania, Mannfred von Carstein, was slain at the battle of Hel Fenn. Now, he has returned, to reclaim what was rightly once his."
-             banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.45.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
+             banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
     <Faction id="sylvania_clan_2"
              name="{=str_tor_clan_sylvania_clan_2_name}Nightmarish Pedigree"
              tier="6"
@@ -178,7 +178,7 @@
              super_faction="Kingdom.sylvania"
              is_noble="true"
              text="{=str_tor_clan_sylvania_clan_2_desc}Even before the coming of Vlad von Carstein and his bloodthirsty children, Sylvania was a cursed land, loathed by the Empire as a haven for Necromancers and Sorcerers. Many of these dark practitioners were those who ruled the unquiet graves, lords and nobles that studied the forbidden arts for power and longevity. In the centuries since the von Carsteins came to power, the mortal nobility and the vampiric aristocracy have formed a symbiotic relationship, a mutual assurance that Sylvania will forever remain in the hands of those who wield the power of Nagash. Though Vampire Counts have risen and fallen, the nobility have remained, powerful Necromancers who forever seek the wisdom of Nagash."
-			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.45.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
+			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
     <Faction id="sylvania_clan_4"
              name="{=str_tor_clan_sylvania_clan_3_name}The Scarlet Order"
              tier="6"
@@ -187,7 +187,7 @@
              super_faction="Kingdom.sylvania"
              is_noble="true"
              text="{=str_tor_clan_sylvania_clan_3_desc}During the Third Vampire War, it is said that Mannfred von Carstein came upon a lonely tower in the mountains and  petitioned his distant blood-cousins, the Blood Dragons of Abhorash, for their aid in his bid to conquer the Empire of Sigmar. Whatever the price he promised, the Blood Dragons marched alongside the Prince of Sylvania, fell warriors of unmatched martial prowess and oathed by honour to the von Carstein cause. Though the war ended and Mannfred was slain, some of the Blood Dragons remained, taking their due right of Sylvanian soil for their service. As the only other Vampiric bloodline of note in Sylvania, the Blood Dragons have carved a dark reputation, as warriors without equal and sworn only to those they deem worthy. When Mannfred returned once more, he bound the Blood Dragons to their oaths once more, and again the Blood Dragons rode to war."
-			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.45.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
+			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
     <Faction id="sylvania_clan_3"
              name="{=str_tor_clan_sylvania_clan_4_name}Traitor's Blood"
              tier="6"
@@ -196,7 +196,7 @@
              super_faction="Kingdom.sylvania"
              is_noble="true"
              text="{=str_tor_clan_sylvania_clan_4_desc} At the end of the third Vampire Wars and the cleansing of Gottlieb the Stern, the land of Sylvania was legally subsumed into the Grand County of Stirland. Even so, the land was forever a cursed and unloved place, rarely ventured into by the nobility that knew better. Instead, it became a place of exile, inheritance for prodigal sons and washed up nobility that had no place in the courts of Stirland. While many of these outcasts took to their new responsibilities with stoic determination, others sought greater opportunity. These are such traitors, kinslayers and deceivers who betrayed their homeland and family for damnation. They are the youngest of the vampires, newborn babes with the strength and appetite of daemons. Their only desire is to revel in their new unlife, to exult in their dark nature and live as gods among cowering men."
-			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.45.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
+			 banner_key="11.149.116.1500.1500.764.764.1.1.0.505.148.41.1312.2582.1135.429.0.0.50.505.20.41.600.600.764.764.0.0.0:kingdom_sylvania" />
     <!-- Blood Dragons faction -->
     <Faction id="blooddragons_clan_1"
              name="{=str_tor_clan_blooddragons_clan_1_name}Order of the Blood Dragon"
@@ -1105,7 +1105,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.bad_axes"
              is_noble="true"
-             text="{=str_tor_clan_bad_axes_2_desc}How you doin?? "
+             text="{=str_tor_clan_bad_axes_2_desc}Git-Bitaz Orcs are dreaded by Men and other Greenskins alike for their pronounced tendency to aggressively 'chomp' at their foes, both in and out of combat. Whilst cannibalism is widely accepted in Greenskin society, only Snotlings and Squigs are eaten alive; as such, the Git-Bitaz have earned an unsavoury reputation even amongst their own kind. Some scholars speculate that the especially 'feisty' Hagranyms working with the clan might be responsible for this disturbing behaviour. "
              banner_key="11.142.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_badaxes" />
 
 	<Faction id="black_sunz_clan_1"
@@ -1127,7 +1127,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.black_sunz"
              is_noble="true"
-			 text="{=str_tor_clan_black_sunz_clan_2_desc}WIP "
+			 text="{=str_tor_clan_black_sunz_clan_2_desc}The Spiky ‘Eadz have learned much from their former Chaos Dwarfs masters. They already had their cruelty, they also had their proportion to explosive bursts of violence. As Orcs, they didn’t really understand the art of crafting intricate siege engines. All in all, Spiky ‘Eadz only kept the spiky hats from Chaos Dwarfs. They also innovated through good ol’ Greenskins mentality, putting spikes on their armor, their head, and inside their enemies’ skulls. As far as Orcs go, they are an especially bloody bunch. "
              banner_key="11.149.90.1449.1410.815.674.0.0.-90.505.149.142.787.787.764.764.0.1.0:kingdom_blacksunz" />
                 
 	<Faction id="crooked_eye_clan_1"
@@ -1149,7 +1149,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.crooked_eye"
              is_noble="true"
-			 text="{=str_tor_clan_crooked_eye_clan_2_desc}WIPerino "
+			 text="{=str_tor_clan_crooked_eye_clan_2_desc}The Orcs of the Doomhandz carved their clan into existence after hacking their way through a great stretch of the Ghoul Wood and raising crude camps of hide and timber amidst the rotting trees. Like all Greenskins, they raid and pillage wherever they please, but the taint of nearby Vampiric corruption has left its mark upon this tribe. Many Greenskins of the Doomhandz suffer from strange visions and waking trances, falling upon their own kin in sudden fits of madness before snapping back to their senses, dazed and bloodied. Despite their constant raids to keep the restless dead at bay, more corpses always rise to hound them from the shadows. The Orcs care little for this, of course, to them, it simply means there’s always another scrap to be had. "
              banner_key="11.8.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_crookedeye" />
   
 	<Faction id="deff_grindaz_clan_1"
@@ -1171,7 +1171,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.deff_grindaz"
              is_noble="true"
-			 text="{=str_tor_clan_deff_grindaz_clan_2_desc}Big Boss WIP"
+			 text="{=str_tor_clan_deff_grindaz_clan_2_desc}This tribe has seen more changes in leadership than most, for the Asrai are relentless in their assassinations of Greenskin Bosses and Warbosses. Yet the Orcs have proven impossible to eradicate entirely; where one grove is purged of them, another warband soon festers elsewhere. In recent years, the tribe had been kept in check, but since the rise of the new Warboss, their movements have become utterly unpredictable. Their leader, Cragskar da Mean, has proven maddeningly elusive to Asrai blades and arrows. This is because the warboss himself never stops moving, always twitching, always flailing, always thrashing. Cragskar leads his boyz in raids that seem completely random, striking without warning and vanishing just as swiftly. Under his deranged command, the tribe’s fortunes have shifted dramatically, their chaos proving far deadlier than any plan. "
              banner_key="11.119.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_deffgrindaz" />
             
 	<Faction id="massif_choppas_clan_1"
@@ -1193,7 +1193,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.massif_choppas"
              is_noble="true"
-			 text="{=str_tor_clan_massif_choppas_clan_2_desc}The Massif Choppas Tribe is led by Skulgul Horsesmakka. They occupy the stronghold of Massif Orcal, an ancient Greenskin fortress looming over the Forest of Chalons. The Massif Choppas are known for their colossal weapons, which are often used to smash and gut Brettonian horses first before finishing the rider. "
+			 text="{=str_tor_clan_massif_choppas_clan_2_desc}The Green Craggz were a loose group of Orcs that plundered the trade routes along the borders of the Empire and Bretonnia. Since theirs is a fairly small tribe, when the Empire decided to take action, the Greenskins fled to Bretonnia and found a new home at the foot of Massif Orcal, joining the larger clan ruling these mountain peaks. "
              banner_key="11.84.116.1633.1633.764.764.0.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_massif_choppas" />            
 			
 		<Faction id="neck_snappers_clan_1"
@@ -1215,7 +1215,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.neck_snappers"
              is_noble="true"
-			 text="{=str_tor_clan_neck_snappers_clan_2_desc}WIP or not??"
+			 text="{=str_tor_clan_neck_snappers_clan_2_desc}The Redbone Tribe pride themselves in fighting everyone, smashing ‘umies, clobbering twiggies, and stunties alike. The variety of meat and scrap they gather has ensured the tribe’s continued prosperity, and they are never short of enemies to fight. There’s been many attempts at stopping the tribe’s raids, but so far every attack has been repelled by the bulky black orcs that make up the majority of the tribe. "
              banner_key="11.26.90.1449.1410.764.764.0.0.-90.505.26.142.787.787.764.764.0.1.0:kingdom_necksnappers" />
          
 		<Faction id="iron_tribe_clan_1"
@@ -1237,7 +1237,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.iron_tribe"
              is_noble="true"
-             text="{=str_tor_clan_tribe_clan_2_desc}Da WIPpast "
+             text="{=str_tor_clan_tribe_clan_2_desc}Nabrot Gitmuncha led his tribe north from Estalia after most of his boys were wiped out by mercenaries. Nabrot himself was found standing amidst a pile of bronze- and brass-clad corpses, knowing full well the tribe was doomed if they stayed. Gathering the survivors, he led them on a brutal exodus north through the Irrana Mountains, the mercenaries refused to follow, thinking the elements will take care of the remaining tribe. Many Goblins perished along the way, mostly ending up as meals for the Orcs. The tribe raided few desolate villages to keep their bellies full, but hunger gnawed at them all the same. Nabrot had to bash more than a few heads to keep order, and when the beasts of the mountains came for them, he slew the monsters himself, trolls, manticores, even chimerae by some accounts. The tribe feasted well on the flesh of their kills and pressed ever northwards. At last, they descended from the mountains and found a rich hunting ground in the southern lands of Carcassonne. There they remain, a blight upon peasant and knight alike, raiding with the same hunger that once nearly consumed them. "
              banner_key="11.116.116.1400.1400.768.788.1.0.0.505.116.116.694.694.764.764.0.0.0:kingdom_irontribe" />
 	
 		<Faction id="skull_smasherz_clan_1"
@@ -1259,7 +1259,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.skull_smasherz"
              is_noble="true"
-             text="{=str_tor_clan_skull_smasherz_clan_2_desc}To WIP or not to WIP - that is the question. "
+             text="{=str_tor_clan_skull_smasherz_clan_2_desc}This tribe is made up of survivors from various  tribes that escaped destruction at the hands of a Bretonnian crusade, launched to cleanse the Grey Mountains of the Greenskin infestation. Known to the Bretonnians as the Grey Mountain Massacre, the campaign ended in disaster when the crusaders were lured into a cunning trap by a wily warboss and slaughtered to a man. It is said that a river of blood flowed down from the Grey Mountains into the Bretonnian countryside that day, a mark of the crusade’s failure and the rise of the Greypeakz Tribe. "
              banner_key="11.35.140.1398.1615.785.765.1.0.90.505.35.142.714.714.764.764.0.0.0:kingdom_skullsmasherz" />
 	
 		<Faction id="bloody_spearz_clan_1"
@@ -1281,7 +1281,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.bloody_spearz"
              is_noble="true"
-             text="{=str_tor_clan_bloody_spearz_clan_2_desc}Daggerz WIP "
+             text="{=str_tor_clan_bloody_spearz_clan_2_desc}The Drippin’ Daggerz are an offshoot tribe of the Bloody Spearz, borne from a dispute about the length of the stabbing tool. After losing and, surprisingly, surviving a duel against Gnashrak Gloomguzzla over the matter of the better stabbing tool, Borguk Da Stabbiest decided to start his own clan, with a captured human assassin called Black Jack, and daggers. "
              banner_key="11.126.90.1449.1410.764.764.0.0.-90.505.129.142.787.787.764.764.0.1.0:kingdom_bloodyspearz" />
 	
 		<Faction id="red_eye_clan_1"
@@ -1303,7 +1303,7 @@
 			 default_party_template="PartyTemplate.greenskins_lordparty_template"
              super_faction="Kingdom.red_eye"
              is_noble="true"
-			 text="{=str_tor_clan_red_eye_clan_2_desc}The Red Eye Tribe is a tribe of Night Goblins settled on the ancient dwarfen fortress of Karak Ungor. After the goblin occupation, it was renamed Red Eye Mountain. The greenskins stormed the dwarfen fortress by surprise from an underground route, driving the dwarfs out and taking over the fortress. Orcs were also involved in the assault, but they later abandoned the city, leaving the goblins of the Red Eye Tribe as sole owners of the hold. Today, Goblins of the Red Eye continue to be the owner of the place, ending the lives of up to 3 dwarf lords who wished to retake it. "
+			 text="{=str_tor_clan_red_eye_clan_2_desc}The Night Goblin tribe of the Bloody Gitz is part of the larger Red Eye Tribe, located in the Northern World’s Edge Mountains. Their proximity to the province of Sylvania has led the Night Goblins of this tribe to develop some unusual rituals, all centred around the use and imbibing of blood. "
              banner_key="11.83.90.1449.1410.764.764.0.0.-90.505.83.142.787.787.764.764.0.1.0:kingdom_redeye" />
            
 		<Faction id="reavaz_clan_1"
@@ -1432,7 +1432,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_br_troubadour_leader"
              culture="Culture.vlandia"
-             banner_key="2.143.12.2499.1836.781.722.1.0.0.506.144.18.166.68.870.584.0.0.0.506.144.18.166.68.995.584.0.0.0.510.144.18.164.192.898.505.0.0.-90.510.144.18.164.192.1023.506.0.0.-90.510.144.18.172.192.961.428.0.0.-181.312.144.18.352.317.520.871.0.1.-28.510.12.18.128.548.568.1003.0.0.-142.505.12.18.316.238.439.889.0.0.-91.506.144.18.166.68.527.1035.0.0.0.505.12.18.202.287.611.779.0.0.-90.510.144.18.185.192.555.955.0.0.-90.424.35.18.207.171.576.504.0.0.1.105.144.18.543.483.760.797.0.0.0.424.35.18.207.171.961.997.0.0.1"
+             banner_key="11.138.148.1500.1500.758.769.1.1.0.218.14.41.3000.1500.1589.414.0.0.0.218.14.41.3000.1500.-61.414.0.0.0.218.14.41.3500.1500.1364.-161.0.0.0.218.14.41.3500.1500.164.-161.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_troubador"
              label_color="FF224277"
              color="FF224277"
              color2="FFf4ca14"
@@ -1522,7 +1522,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_braganza"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.142.142.2138.2527.767.767.0.1.0.510.28.28.1190.696.323.640.1.1.38.510.28.28.1219.713.1184.638.1.0.321.510.28.28.1190.696.331.897.1.1.38.510.28.28.1219.713.1192.895.1.0.321.510.28.28.1190.696.347.1168.1.1.38.510.28.28.1219.713.1208.1166.1.0.321.510.28.28.1190.696.341.1482.1.1.38.510.28.28.1219.713.1202.1480.1.0.321.510.28.28.1190.696.313.317.1.1.38.510.28.28.1219.713.1174.315.1.0.321.317.2.2.482.516.765.726.1.1.180.317.2.2.482.516.764.831.1.1.-1.154.28.2.323.514.760.785.1.1.5.302.28.2.338.533.767.785.1.1.-1"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.511.83.41.800.1000.764.1264.0.0.0.511.83.41.800.1000.764.964.0.0.0.511.83.41.800.1000.764.664.0.0.0.511.83.41.800.1000.764.364.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_braganza"
              label_color="FF830808"
              color="FF830808"
              color2="FF34671e"
@@ -1546,7 +1546,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_cursed"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.0.0.2138.2527.767.767.0.1.0.505.116.116.1180.2527.188.784.0.1.0.512.28.28.383.593.758.853.0.1.0.426.28.28.281.374.760.764.0.1.89.503.116.116.221.88.764.736.0.1.0.347.28.28.337.365.765.664.0.1.0.427.28.28.666.411.765.668.0.1.180.426.28.28.125.263.758.706.0.1.269.503.28.28.294.237.762.610.0.1.0.504.116.116.43.258.799.913.0.1.175.504.116.116.43.258.716.915.0.0.184.504.116.116.29.258.756.915.0.0.179"
+             banner_key="1.131.72.1500.1500.758.769.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_cursed_company"
              label_color="FFAC5F2E"
              color="FFAC5F2E"
              color2="FFAC5F2E"
@@ -1570,7 +1570,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_leopard"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.28.28.2138.2527.767.767.0.1.0.510.142.28.1609.641.769.349.0.1.0.510.142.28.1609.641.777.552.0.1.0.510.142.28.1609.641.783.760.0.1.0.510.142.28.1609.641.785.979.0.1.0.510.142.28.1609.641.791.1200.0.1.0.503.116.116.408.404.764.754.0.1.0.423.143.116.510.504.764.748.1.1.0.140.143.116.295.292.760.760.0.0.0"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.510.83.41.1500.600.764.1134.0.0.0.510.83.41.1500.600.764.984.0.0.0.510.83.41.1500.600.764.839.0.0.0.510.83.41.1500.600.764.689.0.0.0.510.83.41.1500.600.764.544.0.0.0.510.83.41.1500.600.764.394.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_leopard_company"
              label_color="FF830808"
              color="FF830808"
              color2="FFf3f3f3"
@@ -1594,7 +1594,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_voland"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.116.116.2138.2527.767.767.0.1.0.511.143.116.1422.1740.769.765.0.1.180"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_voland"
              label_color="FFf4d32e"
              color="FFf4d32e"
              color2="FF0b0c11"
@@ -1618,7 +1618,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_miragliano"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.28.28.2138.2527.767.767.0.1.0.510.142.28.2138.1214.764.764.0.1.0.510.142.28.2138.1214.764.406.0.1.0.510.142.28.2138.1214.773.1129.0.1.0.426.119.116.216.287.765.969.0.1.89.503.116.116.397.401.764.764.0.1.0.423.126.116.440.401.764.764.1.1.0.304.143.116.224.204.795.813.1.1.-58.304.143.116.224.204.813.823.1.1.-74.304.143.116.224.204.813.839.1.1.-83.103.143.116.224.204.765.744.1.1.19.510.119.116.115.320.596.1005.0.1.157.510.119.116.115.320.937.1003.0.0.202"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.510.83.41.1500.600.764.1134.0.0.0.510.83.41.1500.600.764.984.0.0.0.510.83.41.1500.600.764.839.0.0.0.510.83.41.1500.600.764.689.0.0.0.510.83.41.1500.600.764.544.0.0.0.510.83.41.1500.600.764.394.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_miragliano_marksmen"
              label_color="FFf3f3f3"
              color="FFf3f3f3"
              color2="FF830808"
@@ -1642,7 +1642,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_ricco"
              culture="Culture.empire"
-             banner_key="11.149.149.8000.8000.764.764.1.0.0.505.28.28.2138.2527.767.767.0.1.0.510.142.28.2138.1214.764.764.0.1.0.510.142.28.2138.1214.764.406.0.1.0.510.142.28.2138.1214.773.1129.0.1.0.503.116.116.397.401.764.764.0.1.0.423.143.116.525.478.764.764.1.1.0.336.143.116.254.232.764.754.1.1.0.304.143.116.357.325.760.742.1.1.0"
+             banner_key="11.127.148.1500.1500.758.769.1.1.0.510.83.41.1500.600.764.1134.0.0.0.510.83.41.1500.600.764.984.0.0.0.510.83.41.1500.600.764.839.0.0.0.510.83.41.1500.600.764.689.0.0.0.510.83.41.1500.600.764.544.0.0.0.510.83.41.1500.600.764.394.0.0.0.122.20.41.600.600.764.764.0.0.0:kingdom_ricco"
              label_color="FFf1c232"
              color="FFf1c232"
              color2="FF830808"
@@ -1666,7 +1666,7 @@
              is_clan_type_mercenary="true"
              owner="Hero.tor_dog_clan_hero_muktar"
              culture="Culture.empire"
-             banner_key="11.12.140.8000.8000.768.788.1.0.-30.309.143.116.240.240.596.764.1.1.41.309.143.116.240.240.764.764.1.1.41.309.143.116.240.240.927.762.1.1.41"
+             banner_key="11.116.148.1500.1500.758.769.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_muktar"
              label_color="FF0335fc"
              color="FF0335fc"
              color2="FFfcc603"

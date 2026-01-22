@@ -33,6 +33,12 @@ namespace TOR_Core.Items
             return info;
         }
 
+        internal static ExtendedItemObjectProperties GetAdditionalPropertiesReadOnly(string itemId)
+        {
+            _itemToInfoMap.TryGetValue(itemId, out var info);
+            return info;
+        }
+
         public static bool HasMagicItemId(string uiStringID)
         {
             var modifier = MBObjectManager.Instance.GetObjectTypeList<ItemModifier>().FirstOrDefaultQ(x => uiStringID.EndsWith(x.StringId));

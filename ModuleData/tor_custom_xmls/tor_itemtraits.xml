@@ -4577,7 +4577,7 @@
     <IngredientItem>Invalid</IngredientItem>
     <IngredientAmount>-1</IngredientAmount>
     <ItemTraitDescription>Charge your weapon with knightly power</ItemTraitDescription>
-    <StatsTuple StatType="ArmorPenetration" Value="20" />
+    <StatsTuple StatType="ArmorPenetration" Value="25" />
     <WeaponParticlePreset ParticlePrefab="psys_flaming_weapon" IsUniqueSingleCopy="false" />
   </ItemTrait>
   <ItemTrait ItemTraitStringId="ca_knight_religion_default" ItemTraitName="Default Religious Damage Bonus" IsCraftable="false" IconName="winds_icon_45">
