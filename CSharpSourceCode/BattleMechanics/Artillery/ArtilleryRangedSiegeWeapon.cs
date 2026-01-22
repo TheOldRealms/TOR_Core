@@ -126,39 +126,18 @@ namespace TOR_Core.BattleMechanics.Artillery
             HandleAnimations();
             HandleAmmoPickup();
             HandleAmmoLoad();
-            CheckAmmoPointUsage();
+            ForceAmmoPointUsage();
             HandleWaitingTimer();
             UpdateRecoilEffect(dt);
             UpdateWheelRotation(dt);
             HandleAITeamUsage();
             EnsureCrewDetachedFromFormation();
         }
-
-        private void CheckAmmoPointUsage()
-        {
-            if (ReloaderAgent == null)
-            {
-                ForceAmmoPointUsage();
-            }
-            if (ReloaderAgent!=null && ReloaderAgent.IsActive())
-            {
-                foreach (var sp in StandingPoints)
-                {
-                    if ((sp.HasUser && sp.UserAgent == ReloaderAgent) || (sp.HasAIMovingTo && sp.MovingAgent == ReloaderAgent))
-                    {
-                        return;
-                    }
-                }
-            }
-            ForceAmmoPointUsage();
-        }
         
         
 
         private void EnsureCrewDetachedFromFormation()
         {
-            // Detach crew members from formation orders while they're actively working on the cannon
-            // This prevents them from running off when the formation receives attack/move orders
             foreach (var sp in StandingPoints)
             {
                 // Skip the wait standing point - agents there can respond to orders
@@ -173,18 +152,10 @@ namespace TOR_Core.BattleMechanics.Artillery
                     }
                 }
             }
-
-            // Also detach the ReloaderAgent if they exist and are moving to a point
-            if (ReloaderAgent != null && ReloaderAgent.IsAIControlled && ReloaderAgent.Formation != null && !ReloaderAgent.IsDetachedFromFormation)
-            {
-                ReloaderAgent.Formation.DetachUnit(ReloaderAgent, false);
-            }
         }
         
         private void HandleAITeamUsage()
         {
-
-
             if (!Team?.IsPlayerTeam ?? false)
             {
                 if (UserFormations.Count > 0 && UserFormations.All(formation => formation.Index != (int) TORFormationClass.Artillery))
@@ -197,9 +168,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                     var formation = Team.FormationsIncludingSpecialAndEmpty.ToList()
                         .FirstOrDefault(form => form.Index == (int)TORFormationClass.Artillery);
                         formation.StartUsingMachine(this);
-
-
-
                 }
             }
             else if(Team?.IsPlayerTeam ?? false)
@@ -216,7 +184,6 @@ namespace TOR_Core.BattleMechanics.Artillery
         {
             if (ReloaderAgentOriginalPoint == null && ReloaderAgent != null)
             {
-                TORCommon.Say($"[Artillery DEBUG] CheckNullReloaderOriginalPoint: Clearing ReloaderAgent '{ReloaderAgent.Name}' because OriginalPoint is null");
                 ReloaderAgent.StopUsingGameObject(true);
                 ReloaderAgent = null;
             }
@@ -250,7 +217,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                     EquipmentIndex wieldedItemIndex = user.GetPrimaryWieldedItemIndex();
                     if (wieldedItemIndex != EquipmentIndex.None && user.Equipment[wieldedItemIndex].CurrentUsageItem.WeaponClass == OriginalMissileItem.PrimaryWeapon.WeaponClass)
                     {
-                        TORCommon.Say($"[Artillery DEBUG] HandleAmmoLoad: '{user.Name}' completed loading, transitioning to WaitingBeforeIdle");
                         user.RemoveEquippedWeapon(wieldedItemIndex);
                         user.StopUsingGameObject(true, Agent.StopUsingGameObjectFlags.None);
                         State = WeaponState.WaitingBeforeIdle;
@@ -291,7 +257,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                         {
                             if (action == act_pickup_boulder_end)
                             {
-                                TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup: '{user.Name}' finished picking up ammo. LoadAmmoPoint.HasUser={LoadAmmoStandingPoint.HasUser}, IsDeactivated={LoadAmmoStandingPoint.IsDeactivated}");
                                 MissionWeapon missionWeapon = new MissionWeapon(LoadedMissileItem, null, null, 1);
                                 user.EquipWeaponToExtraSlotAndWield(ref missionWeapon);
                                 user.StopUsingGameObject(true, Agent.StopUsingGameObjectFlags.None);
@@ -299,12 +264,10 @@ namespace TOR_Core.BattleMechanics.Artillery
                                 {
                                     if (!LoadAmmoStandingPoint.HasUser && !LoadAmmoStandingPoint.IsDeactivated)
                                     {
-                                        TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup: Sending '{user.Name}' to LoadAmmoStandingPoint");
                                         user.AIMoveToGameObjectEnable(LoadAmmoStandingPoint, this, Agent.AIScriptedFrameFlags.NoAttack);
                                     }
                                     else if (ReloaderAgentOriginalPoint != null && !ReloaderAgentOriginalPoint.HasUser && !ReloaderAgentOriginalPoint.HasAIMovingTo)
                                     {
-                                        TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup: Sending '{user.Name}' to ReloaderAgentOriginalPoint");
                                         user.AIMoveToGameObjectEnable(ReloaderAgentOriginalPoint, this, Agent.AIScriptedFrameFlags.NoAttack);
                                     }
                                     else
@@ -315,7 +278,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                                             : (ReloaderAgentOriginalPoint.HasUser
                                                 ? $"OriginalPoint has user '{ReloaderAgentOriginalPoint.UserAgent?.Name}'"
                                                 : $"OriginalPoint has AI moving to it");
-                                        TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup ELSE: User='{user.Name}', ReloaderAgent='{ReloaderAgent?.Name}', Reason: {reason}");
 
                                         Agent reloaderAgent = ReloaderAgent;
                                         if (reloaderAgent != null)
@@ -323,11 +285,11 @@ namespace TOR_Core.BattleMechanics.Artillery
                                             Formation formation = reloaderAgent.Formation;
                                             if (formation != null)
                                             {
-                                                TORCommon.Say($"[Artillery DEBUG] HandleAmmoPickup: Detaching ReloaderAgent '{reloaderAgent.Name}' back to formation");
                                                 formation.AttachUnit(ReloaderAgent);
                                             }
                                         }
                                         ReloaderAgent = null;
+                                        
                                     }
                                 }
                             }
@@ -361,7 +323,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                     {
                         SendLoaderAgentToWaitingPoint(); 
                         SetWaitingTimer();
-                       //ClearFiringArea();
+                 //      ClearFiringArea();
                         return;
                     }
                 case WeaponState.LoadingAmmo:
@@ -373,49 +335,6 @@ namespace TOR_Core.BattleMechanics.Artillery
                     {
                         return;
                     }
-            }
-        }
-
-        private void ClearFiringArea()
-        {
-            // Find detached agents near the loading point who aren't actively using the cannon
-            // and re-attach them to their formation so they return to normal behavior
-            if (Mission.Current == null) return;
-            if (LoadAmmoStandingPoint == null) return;
-
-            var loadingPos = LoadAmmoStandingPoint.GameEntity.GlobalPosition;
-            float checkRadius = 5f;
-
-            var nearbyAgents = new MBList<Agent>();
-            Mission.Current.GetNearbyAgents(loadingPos.AsVec2, checkRadius, nearbyAgents);
-
-            foreach (var agent in nearbyAgents)
-            {
-                if (agent == null || !agent.IsActive() || !agent.IsAIControlled) continue;
-                if (agent == PilotAgent) continue;
-                if (agent.Formation == null) continue;
-
-                // Check if agent is actively using this cannon's standing points - if so, skip
-                bool isUsingCannon = false;
-                foreach (var sp in StandingPoints)
-                {
-                    if ((sp.HasUser && sp.UserAgent == agent) || (sp.HasAIMovingTo && sp.MovingAgent == agent))
-                    {
-                        isUsingCannon = true;
-                        break;
-                    }
-                }
-                if (isUsingCannon) continue;
-
-                // If agent is detached from formation and not using the cannon, re-attach them
-                
-                if(agent == this.ReloaderAgent) return;
-                
-                if (!agent.IsDetachedFromFormation)
-                {
-                    agent.SetShouldCatchUpWithFormation(true);
-                    
-                }
             }
         }
 
