@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
@@ -9,6 +10,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.ArtilleryAI;
 using TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Artillery
@@ -479,7 +481,20 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         private void SetWaitingTimer()
         {
-            _timer = new Timer(Mission.Current.CurrentTime, 2f, false);
+            var speed = 5f;
+            var model = Campaign.Current?.Models.GetSiegeEngineCalculationModel();
+
+            var hero = PilotAgent.Formation.Captain.GetHero();
+
+            if (hero != null)
+            {
+                if (Campaign.Current != null)
+                { 
+                    speed = model.CalculateCannonReloadSpeed(TORSiegeEngineCalculationModel.BaseCannonReloadSpeed, hero);
+                }
+            }
+            
+            _timer = new Timer(Mission.Current.CurrentTime, speed, false);
         }
 
         protected override void RegisterAnimationParameters()
