@@ -737,13 +737,19 @@ public class OathGoldBehavior : CampaignBehaviorBase
                     x.IsGunPowderWeapon() && !x.IsFlameThrowerItem()).ToMBList());
 
                 //Add cannons
+                var cannon = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_artillery_cannon_001");
+                if (cannon != null) items.Add(cannon);
+
+                var drakegunCanister = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_drakegun_canister");
+                if (drakegunCanister != null) items.Add(drakegunCanister);
+
+                var drakefirePistol = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_drakefire_pistol");
+                if (drakefirePistol != null) items.Add(drakefirePistol);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
             {
-                items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x =>
-                    x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() &&
-                     x.IsFlameThrowerItem()).ToMBList());
-
+                var drakegun = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_drakegun");
+                if (drakegun != null) items.Add(drakegun);
             }
 
 
