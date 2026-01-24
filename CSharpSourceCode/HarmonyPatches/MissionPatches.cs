@@ -134,8 +134,9 @@ namespace TOR_Core.HarmonyPatches
         {
             if (PlayerSiege.BesiegedSettlement != null && PlayerSiege.BesiegedSettlement.OriginalCulture().StringId == TORConstants.Cultures.ASRAI)
             {
+                var sceneName = scene;
                 //__result = SandBoxMissions.OpenBattleMission(GetBattleSceneForAsraiSiege(), true);
-                __result = SandBoxMissions.OpenBattleMission("TOR_wood_elf_city_001", true);
+                __result = SandBoxMissions.OpenBattleMission(sceneName, true);
                 return false;
             }
 
@@ -148,8 +149,9 @@ namespace TOR_Core.HarmonyPatches
         {
             if (PlayerSiege.BesiegedSettlement != null && PlayerSiege.BesiegedSettlement.OriginalCulture().StringId == TORConstants.Cultures.ASRAI)
             {
+                var sceneName = scene;
                 //__result = SandBoxMissions.OpenBattleMission(GetBattleSceneForAsraiSiege(), true);
-                __result = SandBoxMissions.OpenBattleMission("TOR_wood_elf_city_001", true);
+                __result = SandBoxMissions.OpenBattleMission(sceneName, true);
                 return false;
             }
 
