@@ -253,6 +253,7 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORVillageProductionCalculatorModel());
                 gameStarterObject.AddModel(new TOREnchantmentCraftingModel());
                 gameStarterObject.AddModel(new TORCampaignTimeModel());
+                gameStarterObject.AddModel(new TORSiegeEngineCalculationModel());
 
                 CampaignOptions.IsLifeDeathCycleDisabled = true;
             }

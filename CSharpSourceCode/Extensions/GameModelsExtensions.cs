@@ -44,7 +44,7 @@ namespace TOR_Core.Extensions
         public static TORSiegeEngineCalculationModel GetSiegeEngineCalculationModel(this GameModels models)
         {
             var result = models.GetGameModels().FirstOrDefault(x => x.GetType() == typeof(TORSiegeEngineCalculationModel));
-            return result == null ? null : (TORSiegeEngineCalculationModel)result;
+            return (TORSiegeEngineCalculationModel)result;
         }
     }
 }

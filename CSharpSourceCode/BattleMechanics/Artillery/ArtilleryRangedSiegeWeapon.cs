@@ -488,13 +488,15 @@ namespace TOR_Core.BattleMechanics.Artillery
 
             if (hero != null)
             {
-                if (Campaign.Current != null)
+                if (Campaign.Current != null && model!=null)
                 { 
                     speed = model.CalculateCannonReloadSpeed(TORSiegeEngineCalculationModel.BaseCannonReloadSpeed, PilotAgent, _lastLoaderAgent);
                 }
             }
             
             _timer = new Timer(Mission.Current.CurrentTime, speed, false);
+            
+            
         }
 
         protected override void RegisterAnimationParameters()
