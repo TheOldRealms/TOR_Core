@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -342,6 +342,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewI</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -353,6 +354,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewI</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -365,6 +367,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewI</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -387,6 +390,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -400,6 +404,7 @@
     <Attributes>
       <string>ArtilleryCrew</string>
       <string>Piercing</string>
+      <string>CrewII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -424,6 +429,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewIII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -437,6 +443,7 @@
     <Attributes>
       <string>ArtilleryCrew</string>
       <string>Piercing</string>
+      <string>CrewII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4540,6 +4547,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4553,6 +4562,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4566,6 +4577,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4579,6 +4592,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />

@@ -482,7 +482,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         private void SetWaitingTimer()
         {
             var speed = 5f;
-            var model = Campaign.Current?.Models.GetSiegeEngineCalculationModel();
+            var model = Campaign.Current.Models.GetSiegeEngineCalculationModel();
 
             var hero = PilotAgent.Formation.Captain.GetHero();
 
@@ -490,7 +490,7 @@ namespace TOR_Core.BattleMechanics.Artillery
             {
                 if (Campaign.Current != null)
                 { 
-                    speed = model.CalculateCannonReloadSpeed(TORSiegeEngineCalculationModel.BaseCannonReloadSpeed, hero);
+                    speed = model.CalculateCannonReloadSpeed(TORSiegeEngineCalculationModel.BaseCannonReloadSpeed, PilotAgent, _lastLoaderAgent);
                 }
             }
             
