@@ -29,6 +29,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         private ActionIndexCache _reload2IdleActionIndex;
         private static readonly ActionIndexCache act_pickup_boulder_begin = ActionIndexCache.Create("act_pickup_boulder_begin");
         private static readonly ActionIndexCache act_pickup_boulder_end = ActionIndexCache.Create("act_pickup_boulder_end");
+        private static readonly ActionIndexCache act_lookout_idle = ActionIndexCache.Create("act_usage_trebuchet_idle");
 
         public string IdleActionName;
         public string ShootActionName;
@@ -195,6 +196,16 @@ namespace TOR_Core.BattleMechanics.Artillery
         {
             if(State == WeaponState.WaitingBeforeIdle)
             {
+                // Apply lookout animation to pilot while waiting for reload
+                if (PilotAgent != null && PilotAgent.IsAIControlled)
+                {
+                    var currentAction = PilotAgent.GetCurrentAction(1);
+                    if (currentAction != act_lookout_idle && currentAction != _shootAnimationActionIndex)
+                    {
+                        PilotAgent.SetActionChannel(1, act_lookout_idle, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
+                    }
+                }
+
                 if(_timer != null && _timer.Check(Mission.Current.CurrentTime))
                 {
                     _timer = null;
@@ -335,6 +346,11 @@ namespace TOR_Core.BattleMechanics.Artillery
                     }
                 case WeaponState.Idle:
                     {
+                        // Clear the lookout animation and return pilot to relaxed idle
+                        if (PilotAgent != null && PilotAgent.GetCurrentAction(1) == act_lookout_idle)
+                        {
+                            PilotAgent.SetActionChannel(1, _idleAnimationActionIndex, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
+                        }
                         return;
                     }
             }
@@ -483,17 +499,11 @@ namespace TOR_Core.BattleMechanics.Artillery
         {
             var speed = 5f;
             var model = Campaign.Current.Models.GetSiegeEngineCalculationModel();
-
-            var hero = PilotAgent.Formation.Captain.GetHero();
-
-            if (hero != null)
-            {
-                if (Campaign.Current != null && model!=null)
-                { 
-                    speed = model.CalculateCannonReloadSpeed(TORSiegeEngineCalculationModel.BaseCannonReloadSpeed, PilotAgent, _lastLoaderAgent);
-                }
-            }
             
+            if (Campaign.Current != null && model!=null)
+            { 
+                speed = model.CalculateCannonReloadSpeed(model.BaseCannonReloadSpeed, PilotAgent, _lastLoaderAgent);
+            }
             _timer = new Timer(Mission.Current.CurrentTime, speed, false);
             
             

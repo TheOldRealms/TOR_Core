@@ -9,7 +9,7 @@ namespace TOR_Core.Models
     public class TORSiegeEngineCalculationModel : DefaultSiegeEngineCalculationModel
     {
 
-        public static readonly float BaseCannonReloadSpeed = 20f;
+        public virtual float BaseCannonReloadSpeed => 20f;
 
         public static TORSiegeEngineCalculationModel Current => Campaign.Current?.Models?.GetSiegeEngineCalculationModel();
 
