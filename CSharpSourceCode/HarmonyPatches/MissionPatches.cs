@@ -134,8 +134,8 @@ namespace TOR_Core.HarmonyPatches
         {
             if (PlayerSiege.BesiegedSettlement != null && PlayerSiege.BesiegedSettlement.OriginalCulture().StringId == TORConstants.Cultures.ASRAI)
             {
-                var sceneName = scene;
-                //__result = SandBoxMissions.OpenBattleMission(GetBattleSceneForAsraiSiege(), true);
+                var sceneName = scene; //TODO This is to test the kingsglade map, this might revision later since we have now more woodelf city/castle  maps!
+                //__result = SandBoxMissions.OpenBattleMission(GetBattleSceneForAsraiSiege(), true); //This method is not useful, it would randomize maps, but we want specific map load.
                 __result = SandBoxMissions.OpenBattleMission(sceneName, true);
                 return false;
             }
