@@ -19,13 +19,15 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
     /// </summary>
     public class TORAllianceWarBehavior : CampaignBehaviorBase
     {
-        // Track which wars were joined due to alliance obligations (kingdom StringId -> list of enemy kingdom StringIds)
-        private Dictionary<string, List<string>> _allianceWars = new();
+        // Track which wars were joined due to alliance obligations
+        // Structure: kingdom StringId -> (enemy kingdom StringId -> ally kingdom StringId that caused us to join)
+        private Dictionary<string, Dictionary<string, string>> _allianceWars = new();
 
         public override void RegisterEvents()
         {
             CampaignEvents.WarDeclared.AddNonSerializedListener(this, OnWarDeclared);
             CampaignEvents.MakePeace.AddNonSerializedListener(this, OnPeaceMade);
+            CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -40,11 +42,28 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         {
             if (kingdom == null || enemy == null) return false;
 
-            if (_allianceWars.TryGetValue(kingdom.StringId, out var enemies))
+            if (_allianceWars.TryGetValue(kingdom.StringId, out var enemyToAllyMap))
             {
-                return enemies.Contains(enemy.StringId);
+                return enemyToAllyMap.ContainsKey(enemy.StringId);
             }
             return false;
+        }
+
+        /// <summary>
+        /// Gets which ally caused us to join this war. Returns null if not an alliance war.
+        /// </summary>
+        public Kingdom GetAllianceWarAlly(Kingdom kingdom, Kingdom enemy)
+        {
+            if (kingdom == null || enemy == null) return null;
+
+            if (_allianceWars.TryGetValue(kingdom.StringId, out var enemyToAllyMap))
+            {
+                if (enemyToAllyMap.TryGetValue(enemy.StringId, out var allyId))
+                {
+                    return Kingdom.All.FirstOrDefault(k => k.StringId == allyId);
+                }
+            }
+            return null;
         }
 
         /// <summary>
@@ -65,8 +84,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 if (enemy.Culture?.StringId == TORConstants.Cultures.CHAOS) continue;
 
                 // Skip alliance wars
-                if (_allianceWars.TryGetValue(kingdom.StringId, out var allianceEnemies) &&
-                    allianceEnemies.Contains(enemy.StringId))
+                if (_allianceWars.TryGetValue(kingdom.StringId, out var enemyToAllyMap) &&
+                    enemyToAllyMap.ContainsKey(enemy.StringId))
                 {
                     continue;
                 }
@@ -126,7 +145,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                     bool willJoin = ShouldAllyJoinOffensiveWar(ally, attacker, defender);
                     if (willJoin)
                     {
-                        MarkAsAllianceWar(ally, defender);
+                        MarkAsAllianceWar(ally, defender, attacker);
                         DeclareWarAction.ApplyByKingdomDecision(ally, defender);
                     }
                 }
@@ -170,7 +189,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             // Apply the outcome
             if (shouldJoin)
             {
-                MarkAsAllianceWar(kingdom, decision.Attacker);
+                MarkAsAllianceWar(kingdom, decision.Attacker, decision.AttackedAlly);
                 DeclareWarAction.ApplyByKingdomDecision(kingdom, decision.Attacker);
             }
             else
@@ -214,17 +233,52 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         /// <summary>
         /// Marks a war as an alliance war (defensive) so it doesn't count toward offensive war limits.
+        /// Tracks which ally caused us to join this war.
         /// </summary>
-        public void MarkAsAllianceWar(Kingdom kingdom, Kingdom enemy)
+        public void MarkAsAllianceWar(Kingdom kingdom, Kingdom enemy, Kingdom allyWeJoinedFor)
         {
+            if (kingdom == null || enemy == null || allyWeJoinedFor == null) return;
+
             if (!_allianceWars.ContainsKey(kingdom.StringId))
             {
-                _allianceWars[kingdom.StringId] = new List<string>();
+                _allianceWars[kingdom.StringId] = new Dictionary<string, string>();
             }
 
-            if (!_allianceWars[kingdom.StringId].Contains(enemy.StringId))
+            // Only set if not already tracked (don't overwrite existing reason)
+            if (!_allianceWars[kingdom.StringId].ContainsKey(enemy.StringId))
             {
-                _allianceWars[kingdom.StringId].Add(enemy.StringId);
+                _allianceWars[kingdom.StringId][enemy.StringId] = allyWeJoinedFor.StringId;
+            }
+        }
+
+        /// <summary>
+        /// Converts an alliance war to a regular offensive war (orphaning).
+        /// Called when no ally is fighting this enemy anymore.
+        /// </summary>
+        private void OrphanAllianceWar(Kingdom kingdom, Kingdom enemy)
+        {
+            if (kingdom == null || enemy == null) return;
+
+            if (_allianceWars.TryGetValue(kingdom.StringId, out var enemyToAllyMap))
+            {
+                enemyToAllyMap.Remove(enemy.StringId);
+            }
+        }
+
+        /// <summary>
+        /// Re-parents an alliance war to a different ally.
+        /// Called when the original ally no longer qualifies but another ally is still fighting.
+        /// </summary>
+        private void ReparentAllianceWar(Kingdom kingdom, Kingdom enemy, Kingdom newAlly)
+        {
+            if (kingdom == null || enemy == null || newAlly == null) return;
+
+            if (_allianceWars.TryGetValue(kingdom.StringId, out var enemyToAllyMap))
+            {
+                if (enemyToAllyMap.ContainsKey(enemy.StringId))
+                {
+                    enemyToAllyMap[enemy.StringId] = newAlly.StringId;
+                }
             }
         }
 
@@ -242,9 +296,97 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         private void RemoveAllianceWarTracking(Kingdom kingdom, Kingdom enemy)
         {
-            if (_allianceWars.TryGetValue(kingdom.StringId, out var enemies))
+            if (_allianceWars.TryGetValue(kingdom.StringId, out var enemyToAllyMap))
             {
-                enemies.Remove(enemy.StringId);
+                enemyToAllyMap.Remove(enemy.StringId);
+            }
+        }
+
+        /// <summary>
+        /// Daily check to orphan or re-parent alliance wars when alliances change.
+        /// </summary>
+        private void OnDailyTick()
+        {
+            // Create a list of changes to apply (avoid modifying during iteration)
+            var warsToOrphan = new List<(string kingdomId, string enemyId)>();
+            var warsToReparent = new List<(string kingdomId, string enemyId, string newAllyId)>();
+
+            foreach (var kvp in _allianceWars)
+            {
+                var kingdom = Kingdom.All.FirstOrDefault(k => k.StringId == kvp.Key);
+                if (kingdom == null || kingdom.IsEliminated) continue;
+
+                foreach (var enemyAllyPair in kvp.Value)
+                {
+                    var enemy = Kingdom.All.FirstOrDefault(k => k.StringId == enemyAllyPair.Key);
+                    var trackedAlly = Kingdom.All.FirstOrDefault(k => k.StringId == enemyAllyPair.Value);
+
+                    if (enemy == null || enemy.IsEliminated)
+                    {
+                        // Enemy no longer exists - remove tracking
+                        warsToOrphan.Add((kvp.Key, enemyAllyPair.Key));
+                        continue;
+                    }
+
+                    // Check if we're still at war with this enemy
+                    if (!kingdom.IsAtWarWith(enemy))
+                    {
+                        // War ended - remove tracking
+                        warsToOrphan.Add((kvp.Key, enemyAllyPair.Key));
+                        continue;
+                    }
+
+                    // Check if tracked ally still qualifies (allied with us AND at war with enemy)
+                    bool trackedAllyQualifies = trackedAlly != null &&
+                                                 !trackedAlly.IsEliminated &&
+                                                 kingdom.IsAllyWith(trackedAlly) &&
+                                                 trackedAlly.IsAtWarWith(enemy);
+
+                    if (trackedAllyQualifies)
+                    {
+                        // All good - keep as is
+                        continue;
+                    }
+
+                    // Tracked ally no longer qualifies - look for another ally fighting this enemy
+                    Kingdom newParentAlly = null;
+                    foreach (var potentialAlly in kingdom.AlliedKingdoms)
+                    {
+                        if (potentialAlly.IsAtWarWith(enemy))
+                        {
+                            newParentAlly = potentialAlly;
+                            break;
+                        }
+                    }
+
+                    if (newParentAlly != null)
+                    {
+                        // Re-parent to new ally
+                        warsToReparent.Add((kvp.Key, enemyAllyPair.Key, newParentAlly.StringId));
+                    }
+                    else
+                    {
+                        // No ally fighting this enemy - orphan to regular war
+                        warsToOrphan.Add((kvp.Key, enemyAllyPair.Key));
+                    }
+                }
+            }
+
+            // Apply changes
+            foreach (var (kingdomId, enemyId) in warsToOrphan)
+            {
+                if (_allianceWars.TryGetValue(kingdomId, out var enemyToAllyMap))
+                {
+                    enemyToAllyMap.Remove(enemyId);
+                }
+            }
+
+            foreach (var (kingdomId, enemyId, newAllyId) in warsToReparent)
+            {
+                if (_allianceWars.TryGetValue(kingdomId, out var enemyToAllyMap))
+                {
+                    enemyToAllyMap[enemyId] = newAllyId;
+                }
             }
         }
     }
@@ -258,8 +400,8 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         protected override void DefineContainerDefinitions()
         {
-            ConstructContainerDefinition(typeof(Dictionary<string, List<string>>));
-            ConstructContainerDefinition(typeof(List<string>));
+            ConstructContainerDefinition(typeof(Dictionary<string, Dictionary<string, string>>));
+            ConstructContainerDefinition(typeof(Dictionary<string, string>));
         }
     }
 }

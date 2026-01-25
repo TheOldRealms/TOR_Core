@@ -166,7 +166,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             {
                 // Mark as alliance war (doesn't count toward offensive war limit)
                 var allianceWarBehavior = Campaign.Current.GetCampaignBehavior<TORAllianceWarBehavior>();
-                allianceWarBehavior?.MarkAsAllianceWar(Kingdom, Attacker);
+                allianceWarBehavior?.MarkAsAllianceWar(Kingdom, Attacker, AttackedAlly);
 
                 // Declare war
                 //DeclareWarAction.ApplyByKingdomDecision(Kingdom, Attacker);

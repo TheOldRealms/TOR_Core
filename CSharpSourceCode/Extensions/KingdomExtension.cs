@@ -173,7 +173,7 @@ public static class KingdomExtension
             if (enemy.Culture?.StringId == TORConstants.Cultures.CHAOS) continue;
             if (enemy == kingdom) continue;
 
-            allianceWarBehavior?.MarkAsAllianceWar(kingdom, enemy);
+            allianceWarBehavior?.MarkAsAllianceWar(kingdom, enemy, ally);
             DeclareWarAction.ApplyByKingdomDecision(kingdom, enemy);
         }
     }
