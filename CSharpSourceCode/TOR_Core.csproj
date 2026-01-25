@@ -865,6 +865,7 @@
     <Compile Include="Utilities\TORSummonHelper.cs" />
     <Compile Include="Utilities\TORTests.cs" />
     <Compile Include="Utilities\TORTextHelper.cs" />
+    <Compile Include="Utilities\ShaderSourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
