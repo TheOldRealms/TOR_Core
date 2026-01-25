@@ -42,6 +42,22 @@ namespace TOR_Core.Models
         private const float AllianceDistancePenaltyFactor = 0.01f;
         private const float AllianceMinimumScoreThreshold = 50f;
 
+        // Peace declaration weights
+        private const float PeaceLosingWarWeight = 50f;           // Base weight for losing wars
+        private const float PeaceLosingWarThreshold = 0.7f;       // Strength ratio below which we're "losing"
+        private const float PeaceWarDurationWeight = 0.5f;        // Per-day weight for war weariness
+        private const float PeaceWarDurationThreshold = 30f;      // Days before weariness kicks in
+        private const float PeaceRelationWeight = 0.3f;           // Base relation effect
+        private const float PeaceRelationDurationScale = 0.01f;   // Additional per-day scaling for relations
+        private const float PeaceCompatibilityWeight = 20f;       // Religion/culture compatibility base
+        private const float PeaceCompatibilityDurationScale = 0.3f; // Additional per-day scaling
+        private const float PeaceTerritorialSatisfactionWeight = 40f; // Bonus when claims satisfied
+        private const float PeaceOverWarLimitWeight = 80f;        // Strong factor for being over limit
+        private const float PeaceExternalThreatWeight = 60f;      // Weight for common threats
+        private const float PeaceExternalThreatThreshold = 1.5f;  // Threat must be 1.5x our strength
+        private const float PeaceAllianceWarPenalty = -60f;       // Penalty for abandoning alliance war
+        private const float PeaceLoreRivalryPenalty = -50f;       // Penalty for lore-based rivalries
+
         // Note: Trait modifiers and distance thresholds are now in DiplomacyHelpers
 
         public override int GetInfluenceCostOfProposingPeace(Clan proposingClan) => 150;
@@ -122,41 +138,307 @@ namespace TOR_Core.Models
         public override float GetScoreOfDeclaringPeace(IFaction factionDeclaresPeace, IFaction factionDeclaredPeace)
         {
             // Chaos really shouldn't be allowed to make peace
-            if (factionDeclaresPeace.Culture.StringId == TORConstants.Cultures.CHAOS || factionDeclaredPeace.Culture.StringId == TORConstants.Cultures.CHAOS)
+            if (factionDeclaresPeace.Culture.StringId == TORConstants.Cultures.CHAOS ||
+                factionDeclaredPeace.Culture.StringId == TORConstants.Cultures.CHAOS)
             {
                 return float.MinValue;
             }
 
             if (factionDeclaresPeace is Kingdom kingdom && factionDeclaredPeace is Kingdom enemyKingdom)
             {
-                int offensiveWars = GetOffensiveWarCount(kingdom);
                 int totalWars = kingdom.GetWarCount();
 
                 // If under minimum wars, don't seek peace
-                if (totalWars <= TORConfig.NumMinKingdomWars) return -100000;
+                if (totalWars <= TORConfig.NumMinKingdomWars)
+                    return -100000;
 
-                // If over maximum offensive wars, strongly favor peace
-                if (offensiveWars > TORConfig.NumMaxKingdomWars) return 100000;
-
-                // If we have alliance wars pushing us over the limit, prioritize peace with NON-alliance enemies
-                if (totalWars > TORConfig.NumMaxKingdomWars)
-                {
-                    var allianceWarBehavior = Campaign.Current?.GetCampaignBehavior<TORAllianceWarBehavior>();
-                    if (allianceWarBehavior != null)
-                    {
-                        bool isAllianceWar = allianceWarBehavior.IsAllianceWar(kingdom, enemyKingdom);
-                        if (!isAllianceWar)
-                        {
-                            // Strongly favor peace with non-alliance enemies when stretched thin
-                            return 50000;
-                        }
-                        // Less likely to abandon alliance wars
-                        return -50000;
-                    }
-                }
+                // Calculate detailed peace score using ruling clan's perspective
+                return CalculatePeaceScore(kingdom, enemyKingdom, kingdom.RulingClan);
             }
 
             return base.GetScoreOfDeclaringPeace(factionDeclaresPeace, factionDeclaredPeace);
+        }
+
+        /// <summary>
+        /// Calculates detailed peace score for a specific enemy kingdom.
+        /// Positive score = want peace, Negative score = want to continue war.
+        /// </summary>
+        public float CalculatePeaceScore(Kingdom kingdom, Kingdom enemyKingdom, Clan evaluatingClan)
+        {
+            float score = 0f;
+            var leader = evaluatingClan?.Leader;
+
+            // Get trait modifiers
+            float honorModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Honor);
+            float honorInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Honor);
+            float valorInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Valor);
+            float calculatingModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Calculating);
+            float mercyModifier = DiplomacyHelpers.GetTraitModifier(leader, DefaultTraits.Mercy);
+            float generosityInverseModifier = DiplomacyHelpers.GetInverseTraitModifier(leader, DefaultTraits.Generosity);
+
+            // Get war context
+            var allianceWarBehavior = Campaign.Current?.GetCampaignBehavior<TORAllianceWarBehavior>();
+            bool isAllianceWar = allianceWarBehavior?.IsAllianceWar(kingdom, enemyKingdom) ?? false;
+            float warDurationDays = kingdom.GetStanceWith(enemyKingdom)?.WarStartDate.ElapsedDaysUntilNow ?? 0f;
+
+            // === PRO-PEACE FACTORS ===
+
+            // 1. Strength comparison - losing wants peace, winning wants war
+            score += CalculateStrengthPeaceScore(kingdom, enemyKingdom) * honorInverseModifier * calculatingModifier;
+
+            // 2. War duration / weariness - Valor (inverse) increases effect
+            score += CalculateWarWearinessScore(warDurationDays) * valorInverseModifier;
+
+            // 3. Personal relations - immediate + duration scaling
+            score += CalculateRelationPeaceScore(evaluatingClan, enemyKingdom, warDurationDays);
+
+            // 4. Religion/Culture compatibility - Mercy increases, immediate + duration scaling
+            score += CalculateCompatibilityPeaceScore(kingdom, enemyKingdom, warDurationDays) * mercyModifier;
+
+            // 5. Territorial satisfaction - Generosity (inverse) mitigates
+            score += CalculateTerritorialSatisfactionScore(kingdom, enemyKingdom) * generosityInverseModifier;
+
+            // 6. Over war limit - strong factor, no trait modifier
+            score += CalculateWarLimitPeaceScore(kingdom, enemyKingdom, isAllianceWar);
+
+            // 7. Common external threat
+            score += CalculateExternalThreatPeaceScore(kingdom, enemyKingdom);
+
+            // 8. Lore rivalries (always anti-peace)
+            score += CalculateLoreRivalryPeaceScore(kingdom, enemyKingdom);
+
+            // === ALLIANCE WAR PENALTY ===
+            if (isAllianceWar)
+            {
+                score += PeaceAllianceWarPenalty * honorModifier;
+            }
+
+            return score;
+        }
+
+        /// <summary>
+        /// Calculates peace score based on relative strength.
+        /// Positive when losing (want peace), negative when winning (want to continue).
+        /// </summary>
+        private float CalculateStrengthPeaceScore(Kingdom kingdom, Kingdom enemyKingdom)
+        {
+            float ourStrength = kingdom.GetAllianceTotalStrength();
+            float theirStrength = Math.Max(enemyKingdom.GetAllianceTotalStrength(), 1f);
+            float strengthRatio = ourStrength / theirStrength;
+
+            // Clearly winning - want to press advantage (anti-peace)
+            if (strengthRatio > 1.4f)
+            {
+                float winningFactor = Math.Min(strengthRatio - 1f, 2f);
+                return -PeaceLosingWarWeight * winningFactor;
+            }
+
+            // Roughly even - neutral
+            if (strengthRatio >= 1f)
+                return 0f;
+
+            // Below threshold, we're clearly losing (pro-peace)
+            if (strengthRatio < PeaceLosingWarThreshold)
+            {
+                float losingFactor = PeaceLosingWarThreshold / Math.Max(strengthRatio, 0.1f);
+                return PeaceLosingWarWeight * losingFactor;
+            }
+
+            // Between 0.7 and 1.0 - mild pressure for peace
+            return PeaceLosingWarWeight * 0.5f * (1f - strengthRatio) / (1f - PeaceLosingWarThreshold);
+        }
+
+        /// <summary>
+        /// Calculates peace score based on war duration (weariness).
+        /// Longer wars increase desire for peace.
+        /// </summary>
+        private float CalculateWarWearinessScore(float warDurationDays)
+        {
+            if (warDurationDays <= PeaceWarDurationThreshold)
+                return 0f;
+
+            float daysOverThreshold = warDurationDays - PeaceWarDurationThreshold;
+            return daysOverThreshold * PeaceWarDurationWeight;
+        }
+
+        /// <summary>
+        /// Calculates peace score based on personal relations with enemy lords.
+        /// Positive relations = pro-peace (fighting friends wears on you).
+        /// Negative relations = anti-peace (want to keep fighting hated enemies).
+        /// Scales with war duration in both directions.
+        /// </summary>
+        private float CalculateRelationPeaceScore(Clan evaluatingClan, Kingdom enemyKingdom, float warDurationDays)
+        {
+            float avgRelation = DiplomacyHelpers.CalculateClanToKingdomRelation(evaluatingClan, enemyKingdom);
+
+            // Immediate effect (works for both positive and negative)
+            float immediateScore = avgRelation * PeaceRelationWeight;
+
+            // Duration scaling - fighting friends/enemies intensifies over time
+            // Positive relations: longer war = more desire for peace
+            // Negative relations: longer war = more desire to continue (revenge)
+            float durationEffect = avgRelation * warDurationDays * PeaceRelationDurationScale;
+
+            return immediateScore + durationEffect;
+        }
+
+        /// <summary>
+        /// Calculates peace score based on religion/culture compatibility.
+        /// Positive compatibility = pro-peace (fighting kin wears on you).
+        /// Negative compatibility = anti-peace (want to keep fighting heretics/enemies).
+        /// Scales with war duration in both directions.
+        /// </summary>
+        private float CalculateCompatibilityPeaceScore(Kingdom kingdom, Kingdom enemyKingdom, float warDurationDays)
+        {
+            float religionCompat = DiplomacyHelpers.GetReligionCompatibility(kingdom, enemyKingdom);
+            float cultureCompat = DiplomacyHelpers.GetCultureCompatibility(kingdom, enemyKingdom);
+            float totalCompat = religionCompat + cultureCompat;
+
+            // Immediate effect (works for both positive and negative)
+            float immediateScore = totalCompat * PeaceCompatibilityWeight;
+
+            // Duration scaling
+            // Positive: fighting kin becomes harder over time
+            // Negative: righteous war against heretics intensifies over time
+            float durationEffect = totalCompat * warDurationDays * PeaceCompatibilityDurationScale;
+
+            return immediateScore + durationEffect;
+        }
+
+        /// <summary>
+        /// Calculates peace score based on territorial claims.
+        /// Positive when satisfied (they don't hold our claims).
+        /// Negative when they hold our rightful lands (want to continue war).
+        /// </summary>
+        private float CalculateTerritorialSatisfactionScore(Kingdom kingdom, Kingdom enemyKingdom)
+        {
+            int ourClaimsTheyHold = 0;
+            int theirClaimsWeHold = 0;
+
+            // Check how many of our rightful settlements the enemy holds
+            foreach (var settlement in enemyKingdom.Settlements)
+            {
+                if (settlement.Town == null) continue;
+                string rightfulOwner = TORConstants.SettlementPrefixToFaction.GetRightfulOwner(settlement.StringId);
+                if (rightfulOwner == kingdom.StringId)
+                    ourClaimsTheyHold++;
+            }
+
+            // Check how many of their rightful settlements we hold
+            foreach (var settlement in kingdom.Settlements)
+            {
+                if (settlement.Town == null) continue;
+                string rightfulOwner = TORConstants.SettlementPrefixToFaction.GetRightfulOwner(settlement.StringId);
+                if (rightfulOwner == enemyKingdom.StringId)
+                    theirClaimsWeHold++;
+            }
+
+            // They hold our claims - want to continue war to reclaim (anti-peace)
+            if (ourClaimsTheyHold > 0)
+                return -PeaceTerritorialSatisfactionWeight * ourClaimsTheyHold;
+
+            // Satisfied = we hold their stuff but they don't hold ours (pro-peace)
+            if (theirClaimsWeHold > 0)
+                return PeaceTerritorialSatisfactionWeight;
+
+            // Neutral = neither holds the other's claims (mild pro-peace)
+            return PeaceTerritorialSatisfactionWeight * 0.3f;
+        }
+
+        /// <summary>
+        /// Calculates peace score based on being over war limit.
+        /// Strong factor that pushes toward peace with non-alliance wars.
+        /// </summary>
+        private float CalculateWarLimitPeaceScore(Kingdom kingdom, Kingdom enemyKingdom, bool isAllianceWar)
+        {
+            int offensiveWars = GetOffensiveWarCount(kingdom);
+            int totalWars = kingdom.GetWarCount();
+
+            // Not over limit - no pressure
+            if (totalWars <= TORConfig.NumMaxKingdomWars)
+                return 0f;
+
+            int warsOverLimit = totalWars - (int) TORConfig.NumMaxKingdomWars;
+
+            // Alliance wars - less willing to abandon even when over limit
+            if (isAllianceWar)
+                return PeaceOverWarLimitWeight * warsOverLimit * 0.3f;
+
+            // Offensive wars - much more willing to peace when over limit
+            return PeaceOverWarLimitWeight * warsOverLimit;
+        }
+
+        /// <summary>
+        /// Calculates peace score based on common external threats.
+        /// If Chaos or other major threat exists and is stronger, want peace with minor enemies.
+        /// </summary>
+        private float CalculateExternalThreatPeaceScore(Kingdom kingdom, Kingdom enemyKingdom)
+        {
+            float ourStrength = kingdom.GetAllianceTotalStrength();
+
+            // Find the biggest external threat (not this enemy)
+            float biggestThreatStrength = 0f;
+            foreach (var otherEnemy in kingdom.GetEnemyKingdoms())
+            {
+                if (otherEnemy == enemyKingdom) continue;
+
+                // Chaos is always a priority threat
+                if (otherEnemy.Culture?.StringId == TORConstants.Cultures.CHAOS)
+                {
+                    biggestThreatStrength = Math.Max(biggestThreatStrength, otherEnemy.GetAllianceTotalStrength() * 1.5f);
+                }
+                else
+                {
+                    biggestThreatStrength = Math.Max(biggestThreatStrength, otherEnemy.GetAllianceTotalStrength());
+                }
+            }
+
+            // No significant external threat
+            if (biggestThreatStrength < ourStrength * PeaceExternalThreatThreshold)
+                return 0f;
+
+            // External threat is significant - want peace with this enemy to focus
+            float threatRatio = biggestThreatStrength / ourStrength;
+
+            // The current enemy's strength relative to the threat
+            // Want peace more with weaker enemies when facing big threat
+            float enemyStrength = enemyKingdom.GetAllianceTotalStrength();
+            float priorityFactor = biggestThreatStrength / Math.Max(enemyStrength, 1f);
+
+            return PeaceExternalThreatWeight * (threatRatio - PeaceExternalThreatThreshold) * Math.Min(priorityFactor, 3f);
+        }
+
+        /// <summary>
+        /// Calculates peace penalty based on lore rivalries.
+        /// Always returns negative (anti-peace) for rival factions.
+        /// </summary>
+        private float CalculateLoreRivalryPeaceScore(Kingdom kingdom, Kingdom enemyKingdom)
+        {
+            var myCulture = kingdom.Culture?.StringId;
+            var theirCulture = enemyKingdom.Culture?.StringId;
+
+            // War of the Beard - Dwarfs vs Wood Elves (ancient grudge)
+            if ((myCulture == TORConstants.Cultures.DAWI && theirCulture == TORConstants.Cultures.ASRAI) ||
+                (myCulture == TORConstants.Cultures.ASRAI && theirCulture == TORConstants.Cultures.DAWI))
+            {
+                return PeaceLoreRivalryPenalty * 1.5f; // Extra strong rivalry
+            }
+
+            // Nordland vs Laurelorn - territorial forest dispute
+            if ((kingdom.StringId == TORConstants.Factions.NORDLAND && enemyKingdom.StringId == TORConstants.Factions.LAURELORN) ||
+                (kingdom.StringId == TORConstants.Factions.LAURELORN && enemyKingdom.StringId == TORConstants.Factions.NORDLAND))
+            {
+                return PeaceLoreRivalryPenalty;
+            }
+
+            // Wissenland vs Montfort rivalry
+            if ((kingdom.StringId == TORConstants.Factions.WISSENLAND && enemyKingdom.StringId == TORConstants.Factions.MONTFORT) ||
+                (kingdom.StringId == TORConstants.Factions.MONTFORT && enemyKingdom.StringId == TORConstants.Factions.WISSENLAND))
+            {
+                return PeaceLoreRivalryPenalty;
+            }
+
+            return 0f;
         }
 
         /// <summary>
