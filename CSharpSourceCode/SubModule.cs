@@ -78,8 +78,11 @@ namespace TOR_Core
             currentDomain.AssemblyResolve += new ResolveEventHandler(ResolveDllPath);
 
             ConfigureLogging();
+
+            // Copy TOR_Armory shader sources to game folder (must happen before shaders are compiled)
+            ShaderSourceManager.CopyShaderSourcesToGame();
+
             ViewModelExtensionManager.Initialize(); //has to happen before harmony PatchAll
-            
 
             HarmonyInstance = new Harmony("mod.harmony.theoldrealms");
             HarmonyInstance.PatchAllUncategorized();

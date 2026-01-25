@@ -532,10 +532,10 @@
   <string id="tor_enchantmentshop_title.aserai" text="{=str_tor_enchantmentshop_title_aserai}Make your choice…"/>
   <string id="tor_enchantmentshop_title.blessings" text="{=str_tor_enchantmentshop_title_blessings}Make your choice…"/>
 
-  <string id="tor_enchantmentshop_description.empire" text="{=str_tor_enchantmentshop_description_empire}Select an enchantment scroll to study"/>
-  <string id="tor_enchantmentshop_description.sturgia" text="{=str_tor_enchantmentshop_description_sturgia}Select a rune carving to study"/>
-  <string id="tor_enchantmentshop_description.aserai" text="{=str_tor_enchantmentshop_description_aserai}Select a shamanic totem to study"/>
-  <string id="tor_enchantmentshop_description.blessings" text="{=str_tor_enchantmentshop_description_blessings}Select a blessed tome to study"/>
+  <string id="tor_enchantmentshop_description.empire" text="{=str_tor_enchantmentshop_description_empire}Select an enchantment scroll to study:"/>
+  <string id="tor_enchantmentshop_description.sturgia" text="{=str_tor_enchantmentshop_description_sturgia}Select a rune carving to study:"/>
+  <string id="tor_enchantmentshop_description.aserai" text="{=str_tor_enchantmentshop_description_aserai}Take one uv da weird ju-ju bits:"/>
+  <string id="tor_enchantmentshop_description.blessings" text="{=str_tor_enchantmentshop_description_blessings}Select a blessed tome to study:"/>
 
   <string id="tor_enchantmentshop_restriction.Armor" text="{=str_tor_enchantmentshop_restriction_Armor}Applies to armour"/>
   <string id="tor_enchantmentshop_restriction.Melee" text="{=str_tor_enchantmentshop_restriction_Melee}Applies to melee weapons"/>
@@ -570,7 +570,7 @@
   <string id="tor_enchanter_start_enchanter.empire" text="{=str_tor_enchanter_start_enchanter_empire}TODO: EMPIRE - Enchanter greets fellow practitioner (career check)"/>
   <string id="tor_enchanter_dialog_start.empire" text="{=str_tor_enchanter_dialog_start_empire}TODO: EMPIRE - Enchanter greets general visitor"/>
   <string id="tor_enchanter_dialog_start_quit.empire" text="{=str_tor_enchanter_dialog_start_quit_empire}You are not serving the empire. begone"/>
-  <string id="tor_enchanter_dialog_start_1.empire" text="{=str_tor_enchanter_dialog_start_1_empire}It would appear you have made quite a name for yourself, those loyal to the Empire are always welcome here."/>
+  <string id="tor_enchanter_dialog_start_1.empire" text="{=str_tor_enchanter_dialog_start_1_empire}Greetings, those loyal to the Empire are always welcome here."/>
   <string id="tor_enchanter_dialog_start_2.empire" text="{=str_tor_enchanter_dialog_start_2_empire}Ah, a fellow practioner! You are most welcome, there is much we can discuss as colleagues."/>
   <string id="tor_enchanter_hub_intro.empire" text="{=str_tor_enchanter_hub_intro_empire}So, to what do I owe this visit?"/>
   <string id="tor_enchanter_hub_reintro.empire" text="{=str_tor_enchanter_hub_reintro_empire}What else do you need?"/>
@@ -579,16 +579,16 @@
   <string id="tor_enchanter_hub_donate_items_p.empire" text="{=str_tor_enchanter_hub_donate_items_p_empire}I have magical items I no longer need, can you put them to good use?"/>
   <string id="tor_enchanter_hub_open_enchanter_p.empire" text="{=str_tor_enchanter_hub_open_enchanter_p_empire}May I use your laboratory?"/>
   <string id="tor_enchanter_hub_return_p.empire" text="{=str_tor_enchanter_hub_return_p_empire}I must go, farewell."/>
-  <string id="tor_enchanter_blueprints.empire" text="{=str_tor_enchanter_blueprints_empire}TODO: EMPIRE - Enchanter opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.empire" text="{=str_tor_enchanter_blueprints_decline_empire}TODO: EMPIRE - No eligible character for blueprints"/>
+  <string id="tor_enchanter_blueprints.empire" text="{=str_tor_enchanter_blueprints_empire}Let us browse the Imperial collection of scrolls and tomes."/>
+  <string id="tor_enchanter_blueprints_decline.empire" text="{=str_tor_enchanter_blueprints_decline_empire}I sense you don't possess the gift of Witchsight, and neither do your companions. You should return in the company of a wizard."/>
   <string id="tor_enchanter_donate_items_1.empire" text="{=str_tor_enchanter_donate_items_1_empire}I am interested in your magical items you find in your journeys. What do you have to offer?"/>
-  <string id="tor_enchanter_donate_items_1_negative.empire" text="{=str_tor_enchanter_donate_items_1_negative_empire}You dont have anything of interest for me. I am not interested in the enchanted items of yours, but to study the artefacts of this world."/>
+  <string id="tor_enchanter_donate_items_1_negative.empire" text="{=str_tor_enchanter_donate_items_1_negative_empire}You don't have anything of interest for me. I wish not to see the enchanted items of yours, but to study the artefacts of this world."/>
   <string id="tor_enchanter_donate_items_hub_p.empire" text="{=str_tor_enchanter_donate_items_hub_p_empire}Let me provide you these items…"/>
   <string id="tor_enchanter_gift_items_hub_return_p.empire" text="{=str_tor_enchanter_gift_items_hub_return_p_empire}I need to think about this."/>
   <string id="tor_enchanter_donate_items_2.empire" text="{=str_tor_enchanter_donate_items_2_empire}Which items do you want to donate?"/>
   <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.empire" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_empire}Of course! In fact, I have just the thing to get you started, take this, and we can discuss it all more detail."/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.empire" text="{=str_tor_enchanter_info_hub_intro_first_visit_empire}Of course! I would read this book here."/>
-  <string id="tor_enchanter_info_hub_intro_read_book.empire" text="{=str_tor_enchanter_info_hub_intro_read_book_empire}Just read the book I gave you."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.empire" text="{=str_tor_enchanter_info_hub_intro_first_visit_empire}Naturally. I can explain with little difficulty, the burden of understanding lies with you. Study this tome."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.empire" text="{=str_tor_enchanter_info_hub_intro_read_book_empire}Read the tome I gave you, it should cover all the basic principles of alchemy."/>
 
   <!-- BRETONNIA (vlandia) - TODO: Complete Bretonnian Prophetess dialogs following Empire pattern -->
   <string id="tor_enchanter_start_p.vlandia" text="{=str_tor_enchanter_start_p_vlandia}TODO: BRETONNIA - Player initiates conversation about enchantment"/>
@@ -616,29 +616,29 @@
   <string id="tor_enchanter_info_hub_intro_read_book.vlandia" text="{=str_tor_enchanter_info_hub_intro_read_book_vlandia}TODO: BRETONNIA - Already has manual"/>
 
   <!-- SYLVANIA (khuzait) - TODO: Complete Vampiric Necromancer dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.khuzait" text="{=str_tor_enchanter_start_p_khuzait}TODO: SYLVANIA - Player initiates conversation"/>
-  <string id="tor_enchanter_start_enchanter.khuzait" text="{=str_tor_enchanter_start_enchanter_khuzait}TODO: SYLVANIA - Necromancer greets fellow practitioner"/>
-  <string id="tor_enchanter_dialog_start.khuzait" text="{=str_tor_enchanter_dialog_start_khuzait}TODO: SYLVANIA - Necromancer greets visitor"/>
-  <string id="tor_enchanter_dialog_start_quit.khuzait" text="{=str_tor_enchanter_dialog_start_quit_khuzait}TODO: SYLVANIA - Wrong culture rejection"/>
-  <string id="tor_enchanter_dialog_start_1.khuzait" text="{=str_tor_enchanter_dialog_start_1_khuzait}TODO: SYLVANIA - Welcome message"/>
-  <string id="tor_enchanter_dialog_start_2.khuzait" text="{=str_tor_enchanter_dialog_start_2_khuzait}TODO: SYLVANIA - Fellow practitioner greeting"/>
-  <string id="tor_enchanter_hub_intro.khuzait" text="{=str_tor_enchanter_hub_intro_khuzait}TODO: SYLVANIA - Hub intro"/>
-  <string id="tor_enchanter_hub_reintro.khuzait" text="{=str_tor_enchanter_hub_reintro_khuzait}TODO: SYLVANIA - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.khuzait" text="{=str_tor_enchanter_hub_info_p_khuzait}TODO: SYLVANIA - Ask about necromancy"/>
-  <string id="tor_enchanter_hub_blueprints_p.khuzait" text="{=str_tor_enchanter_hub_blueprints_p_khuzait}TODO: SYLVANIA - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.khuzait" text="{=str_tor_enchanter_hub_donate_items_p_khuzait}TODO: SYLVANIA - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.khuzait" text="{=str_tor_enchanter_hub_open_enchanter_p_khuzait}TODO: SYLVANIA - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.khuzait" text="{=str_tor_enchanter_hub_return_p_khuzait}TODO: SYLVANIA - Leave"/>
-  <string id="tor_enchanter_blueprints.khuzait" text="{=str_tor_enchanter_blueprints_khuzait}TODO: SYLVANIA - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.khuzait" text="{=str_tor_enchanter_blueprints_decline_khuzait}TODO: SYLVANIA - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.khuzait" text="{=str_tor_enchanter_donate_items_1_khuzait}TODO: SYLVANIA - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.khuzait" text="{=str_tor_enchanter_donate_items_1_negative_khuzait}TODO: SYLVANIA - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.khuzait" text="{=str_tor_enchanter_donate_items_hub_p_khuzait}TODO: SYLVANIA - Player offers"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.khuzait" text="{=str_tor_enchanter_gift_items_hub_return_p_khuzait}TODO: SYLVANIA - Player backs out"/>
+  <string id="tor_enchanter_start_p.khuzait" text="{=str_tor_enchanter_start_p_khuzait}I wish to know more of magical and cursed items."/>
+  <string id="tor_enchanter_start_enchanter.khuzait" text="{=str_tor_enchanter_start_enchanter_khuzait}Greetings, fellow practitioner of dark arts, shall we convene together?"/>
+  <string id="tor_enchanter_dialog_start.khuzait" text="{=str_tor_enchanter_dialog_start_khuzait}What do you require?"/>
+  <string id="tor_enchanter_dialog_start_quit.khuzait" text="{=str_tor_enchanter_dialog_start_quit_khuzait}I know you not, stranger; best be gone before a great misfortune falls upon you."/>
+  <string id="tor_enchanter_dialog_start_1.khuzait" text="{=str_tor_enchanter_dialog_start_1_khuzait}Greetings stranger, I sense the darkness within you."/>
+  <string id="tor_enchanter_dialog_start_2.khuzait" text="{=str_tor_enchanter_dialog_start_2_khuzait}Fellow practitioner of dark arts, shall we convene together?"/>
+  <string id="tor_enchanter_hub_intro.khuzait" text="{=str_tor_enchanter_hub_intro_khuzait}What do you require?"/>
+  <string id="tor_enchanter_hub_reintro.khuzait" text="{=str_tor_enchanter_hub_reintro_khuzait}What is it that you need?"/>
+  <string id="tor_enchanter_hub_info_p.khuzait" text="{=str_tor_enchanter_hub_info_p_khuzait}Part with me your knowledge of enchantments and curses."/>
+  <string id="tor_enchanter_hub_blueprints_p.khuzait" text="{=str_tor_enchanter_hub_blueprints_p_khuzait}Show me what magic formulas you possess."/>
+  <string id="tor_enchanter_hub_donate_items_p.khuzait" text="{=str_tor_enchanter_hub_donate_items_p_khuzait}Take these baubles, they are unfit for my retinue."/>
+  <string id="tor_enchanter_hub_open_enchanter_p.khuzait" text="{=str_tor_enchanter_hub_open_enchanter_p_khuzait}Show me the way to your dark altar."/>
+  <string id="tor_enchanter_hub_return_p.khuzait" text="{=str_tor_enchanter_hub_return_p_khuzait}We are finished."/>
+  <string id="tor_enchanter_blueprints.khuzait" text="{=str_tor_enchanter_blueprints_khuzait}Let us delve into grimoires and cursed tomes."/>
+  <string id="tor_enchanter_blueprints_decline.khuzait" text="{=str_tor_enchanter_blueprints_decline_khuzait}I sense no darkness within you, nor does it reside within your retinue. Return to me in the company of a wizard."/>
+  <string id="tor_enchanter_donate_items_1.khuzait" text="{=str_tor_enchanter_donate_items_1_khuzait}Very well, I shall take these and put them to good use."/>
+  <string id="tor_enchanter_donate_items_1_negative.khuzait" text="{=str_tor_enchanter_donate_items_1_negative_khuzait}These will likely not be of use to me or my master. Return with the treasures and artifacts of this world."/>
+  <string id="tor_enchanter_donate_items_hub_p.khuzait" text="{=str_tor_enchanter_donate_items_hub_p_khuzait}Take these relics then."/>
+  <string id="tor_enchanter_gift_items_hub_return_p.khuzait" text="{=str_tor_enchanter_gift_items_hub_return_p_khuzait}I think I would rather keep these for now."/>
   <string id="tor_enchanter_donate_items_2.khuzait" text="{=str_tor_enchanter_donate_items_2_khuzait}TODO: SYLVANIA - Select items"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_khuzait}TODO: SYLVANIA - First visit career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_first_visit_khuzait}TODO: SYLVANIA - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.khuzait" text="{=str_tor_enchanter_info_hub_intro_read_book_khuzait}TODO: SYLVANIA - Has manual"/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_khuzait}There are dark energies coiling around you. I shall impart this knowledge to you."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_first_visit_khuzait}This tome holds everything you shall need."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.khuzait" text="{=str_tor_enchanter_info_hub_intro_read_book_khuzait}The grimoire I bestowed upon you covers all the required basics."/>
 
   <!-- MOUSILLON (mousillon) - TODO: Complete Mousillon Necromancer dialogs following Empire pattern -->
   <string id="tor_enchanter_start_p.mousillon" text="{=str_tor_enchanter_start_p_mousillon}TODO: MOUSILLON - Player initiates conversation"/>
@@ -694,29 +694,29 @@
   <!-- GREENSKIN CULTURE: Aserai              -->
   <!-- Greenskins use shamanic totems and tribal enchantment -->
 
-  <string id="tor_enchanter_start_p.aserai" text="{=str_tor_enchanter_start_p_aserai}Oi, I wants ta know 'bout speshul bits an' choppas."/>
+  <string id="tor_enchanter_start_p.aserai" text="{=str_tor_enchanter_start_p_aserai}I wants ta know 'bout speshul bits."/>
   <string id="tor_enchanter_start_enchanter.aserai" text="{=str_tor_enchanter_start_enchanter_aserai}You come to look into da fire?"/>
-  <string id="tor_enchanter_dialog_start.aserai" text="{=str_tor_enchanter_dialog_start_aserai}You'z a big git, you'z. Gork'z wiv yoo."/>
-  <string id="tor_enchanter_dialog_start_quit.aserai" text="{=str_tor_enchanter_dialog_start_quit_aserai}TODO: GREENSKIN - Wrong culture rejection"/>
-  <string id="tor_enchanter_dialog_start_1.aserai" text="{=str_tor_enchanter_dialog_start_1_aserai}TODO: GREENSKIN - Shaman welcomes big boss"/>
-  <string id="tor_enchanter_dialog_start_2.aserai" text="{=str_tor_enchanter_dialog_start_2_aserai}TODO: GREENSKIN - Shaman greets fellow shaman"/>
-  <string id="tor_enchanter_hub_intro.aserai" text="{=str_tor_enchanter_hub_intro_aserai}Guhh, what yoo wants to know?"/>
+  <string id="tor_enchanter_dialog_start.aserai" text="{=str_tor_enchanter_dialog_start_aserai}Gork an' Mork bring great fings to da best uv us."/>
+  <string id="tor_enchanter_dialog_start_quit.aserai" text="{=str_tor_enchanter_dialog_start_quit_aserai}Git lost! Or I'z turnin' you into a squig!"/>
+  <string id="tor_enchanter_dialog_start_1.aserai" text="{=str_tor_enchanter_dialog_start_1_aserai}You'z a big git, you'z. Gork'z wiv you."/>
+  <string id="tor_enchanter_dialog_start_2.aserai" text="{=str_tor_enchanter_dialog_start_2_aserai}You come to look into da fire?"/>
+  <string id="tor_enchanter_hub_intro.aserai" text="{=str_tor_enchanter_hub_intro_aserai}Guhh, what you wants to know?"/>
   <string id="tor_enchanter_hub_reintro.aserai" text="{=str_tor_enchanter_hub_reintro_aserai}Wot you wants?"/>
   <string id="tor_enchanter_hub_info_p.aserai" text="{=str_tor_enchanter_hub_info_p_aserai}I'z lookin' fer… errrp… in-strukk-shuns…"/>
   <string id="tor_enchanter_hub_blueprints_p.aserai" text="{=str_tor_enchanter_hub_blueprints_p_aserai}'Ow to make fings proppa shiny?"/>
   <string id="tor_enchanter_hub_donate_items_p.aserai" text="{=str_tor_enchanter_hub_donate_items_p_aserai}I's got sum gud scrap fer Gork an' Mork."/>
   <string id="tor_enchanter_hub_open_enchanter_p.aserai" text="{=str_tor_enchanter_hub_open_enchanter_p_aserai}(Look into the fire when the Shaman is busy dancing)"/>
   <string id="tor_enchanter_hub_return_p.aserai" text="{=str_tor_enchanter_hub_return_p_aserai}Nuffin'"/>
-  <string id="tor_enchanter_blueprints.aserai" text="{=str_tor_enchanter_blueprints_aserai}TODO: GREENSKIN - Opens totem shop"/>
-  <string id="tor_enchanter_blueprints_decline.aserai" text="{=str_tor_enchanter_blueprints_decline_aserai}TODO: GREENSKIN - No eligible shaman"/>
+  <string id="tor_enchanter_blueprints.aserai" text="{=str_tor_enchanter_blueprints_aserai}Get yer 'ead in da smoke, take a breff."/>
+  <string id="tor_enchanter_blueprints_decline.aserai" text="{=str_tor_enchanter_blueprints_decline_aserai}Dere be no Shaman wiv you, git lost."/>
   <string id="tor_enchanter_donate_items_1.aserai" text="{=str_tor_enchanter_donate_items_1_aserai}Da godz will be pleased with yer giftz."/>
   <string id="tor_enchanter_donate_items_1_negative.aserai" text="{=str_tor_enchanter_donate_items_1_negative_aserai}Dis puny scrap? Da godz ain't interested in dat."/>
   <string id="tor_enchanter_donate_items_hub_p.aserai" text="{=str_tor_enchanter_donate_items_hub_p_aserai}'Ere, 'erez sum scrap fer ya…"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.aserai" text="{=str_tor_enchanter_gift_items_hub_return_p_aserai}Dis bits are actually fer da Boss…"/>
+  <string id="tor_enchanter_gift_items_hub_return_p.aserai" text="{=str_tor_enchanter_gift_items_hub_return_p_aserai}Dis bits iz actually fer da Boss…"/>
   <string id="tor_enchanter_donate_items_2.aserai" text="{=str_tor_enchanter_donate_items_2_aserai}Wot's dat fing?"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.aserai" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_aserai}TODO: GREENSKIN - First visit shaman"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.aserai" text="{=str_tor_enchanter_info_hub_intro_first_visit_aserai}TODO: GREENSKIN - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.aserai" text="{=str_tor_enchanter_info_hub_intro_read_book_aserai}TODO: GREENSKIN - Has shaman scroll"/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.aserai" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_aserai}Get yer 'ead in da smoke, take a breff. You'z can 'ave dis carvin' too."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.aserai" text="{=str_tor_enchanter_info_hub_intro_first_visit_aserai}I gots dis carvin' I ain't usin, you'z can 'ave it."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.aserai" text="{=str_tor_enchanter_info_hub_intro_read_book_aserai}You'z already got dat stone carvin'. Git lost!"/>
 
   <!-- ELVEN CULTURES: Asrai (Wood Elves), Eonir (High Elves) -->
   <!-- Elves use nature-based/arcane enchantment -->
@@ -3408,7 +3408,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_careerchoice_description.AnvilOfDoomKeystone" text="{=str_tor_careerchoice_description_AnvilOfDoomKeystone}Every point in spellcraft increase the damage of Wrath and Ruin by 0.05%" />
 
   <!-- OrcBoss Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when yoos in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
+  <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when you'z in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
   <string id="tor_careerchoice_description.TufferDanNailsPassive1" text="{=str_tor_careerchoice_description_TufferDanNailsPassive1}10% resistance." />
   <string id="tor_careerchoice_description.TufferDanNailsPassive2" text="{=str_tor_careerchoice_description_TufferDanNailsPassive2}Tripples health regeneration when traveling" />
   <string id="tor_careerchoice_description.TufferDanNailsPassive3" text="{=str_tor_careerchoice_description_TufferDanNailsPassive3}75 Health" />
@@ -3446,7 +3446,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_careerchoice_description.BestofDaBestKeystone" text="{=str_tor_careerchoice_description_BestofDaBestKeystone}Armed to da Teef slams enemies to the ground." />
 
   <!-- OrcShaman Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! Yoo kunnect yerself to da boys ‘round, an’ dey will give yoo more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more yoo can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
+  <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys ‘round, an’ dey will give you more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive1}10% extra melee damage." />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}+10 Maximum Winds of Magic." />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Extra enchantment ingredients when looting." />
@@ -4651,12 +4651,12 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_spellweaver_companion" text="{=str_tor_spelltrainer_spellweaver_companion}My companion is ready to become a spellweaver."/>
 
 	<!--Spell Trainer Greenskin Dialogs-->
-	<string id="tor_spelltrainer_greenskin_start" text="{=str_tor_spelltrainer_greenskin_start}Wot you want, git? Da Waaagh! don't wait fer nobody!"/>
+	<string id="tor_spelltrainer_greenskin_start" text="{=str_tor_spelltrainer_greenskin_start}Whoo'z dere? Wot you want?"/>
 	<string id="tor_spelltrainer_greenskin_hub" text="{=str_tor_spelltrainer_greenskin_hub}Wot else ya need? Speak up!"/>
-	<string id="tor_spelltrainer_greenskin_open_book" text="{=str_tor_spelltrainer_greenskin_open_book}Teach me more of da Waaagh! magic."/>
-	<string id="tor_spelltrainer_greenskin_close_book" text="{=str_tor_spelltrainer_greenskin_close_book}Right, ya got it now. Da godz favor ya!"/>
-	<string id="tor_spelltrainer_greenskin_player_goodbye" text="{=str_tor_spelltrainer_greenskin_player_goodbye}I'll be goin' now."/>
-	<string id="tor_spelltrainer_greenskin_goodbye" text="{=str_tor_spelltrainer_greenskin_goodbye}Get outta 'ere! An' don't forget - WAAAGH!"/>
+	<string id="tor_spelltrainer_greenskin_open_book" text="{=str_tor_spelltrainer_greenskin_open_book}I'z here fer sum ju-ju spooks."/>
+	<string id="tor_spelltrainer_greenskin_close_book" text="{=str_tor_spelltrainer_greenskin_close_book}Eat dis shroom an' dance wiv me."/>
+	<string id="tor_spelltrainer_greenskin_player_goodbye" text="{=str_tor_spelltrainer_greenskin_player_goodbye}I'z outta 'ere."/>
+	<string id="tor_spelltrainer_greenskin_goodbye" text="{=str_tor_spelltrainer_greenskin_goodbye}I'z can feel da Gods talkin'. Get outta 'ere!"/>
 
 	<!--Spell Trainer Eonir Dialogs-->
 	<string id="tor_spelltrainer_eonir_open_book" text="{=str_tor_spelltrainer_eonir_open_book}I seek to further my knowledge of the Winds of Magic, can you help me achieve this?"/>
@@ -4706,7 +4706,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_greenskin_close_book_str" text="{=str_tor_spelltrainer_greenskin_close_book_str}Eat dis shroom an' dance wiv me." />
 	<string id="tor_spelltrainer_greenskin_enchantments_str" text="{=str_tor_spelltrainer_greenskin_enchantments_str}I wanna learn how ta make some proppa gear wif da runes." />
 	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=str_tor_spelltrainer_greenskin_player_goodbye_str}I'z outta 'ere." />
-	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=str_tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'ze dispersin' my smoke." />
+	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=str_tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'z lettin' out da smoke!" />
 	
 	<!--Vanilla Perk Changes-->
 	<string id="tor_veterinarian_description" text="{=str_tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles." />
