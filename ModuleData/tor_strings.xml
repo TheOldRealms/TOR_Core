@@ -4875,6 +4875,11 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Sure let me show what I got"/>
 	<string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better weapons master engineer"/>
 	<string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}Thats all"/>
+	<string id="tor_dw_engineer_recruit_crew_text" text="{=str_tor_dw_engineer_recruit_crew_text}I need some artillery crew."/>
+	<string id="tor_dw_engineer_recruit_crew_offer_text" text="{=str_tor_dw_engineer_recruit_crew_offer_text}Aye, a pair of our beardlings are eager to prove themselves. It'll cost ye {ENGINEER_GOLD_PRICE}{GOLD_ICON} and {ENGINEER_OATHGOLD_PRICE} Oathgold."/>
+	<string id="tor_dw_engineer_recruit_crew_accept_text" text="{=str_tor_dw_engineer_recruit_crew_accept_text}They'll serve the hold well."/>
+	<string id="tor_dw_engineer_recruit_crew_no_funds_text" text="{=str_tor_dw_engineer_recruit_crew_no_funds_text}I don't have enough coin or Oathgold right now."/>
+	<string id="tor_dw_engineer_recruit_crew_decline_text" text="{=str_tor_dw_engineer_recruit_crew_decline_text}Maybe another time."/>
 
 	<!-- Skill Trainer Texts -->
 	<string id="tor_teach_skills_dialog_p" text="{=str_tor_teach_skills_dialog_p}I would like to arrange training for one of my companions."/>

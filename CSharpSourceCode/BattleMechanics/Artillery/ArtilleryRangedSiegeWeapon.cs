@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
@@ -9,6 +10,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.ArtilleryAI;
 using TOR_Core.BattleMechanics.AI.TeamAI.FormationBehavior;
 using TOR_Core.Extensions;
+using TOR_Core.Models;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.BattleMechanics.Artillery
@@ -27,6 +29,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         private ActionIndexCache _reload2IdleActionIndex;
         private static readonly ActionIndexCache act_pickup_boulder_begin = ActionIndexCache.Create("act_pickup_boulder_begin");
         private static readonly ActionIndexCache act_pickup_boulder_end = ActionIndexCache.Create("act_pickup_boulder_end");
+        private static readonly ActionIndexCache act_lookout_idle = ActionIndexCache.Create("act_usage_trebuchet_idle");
 
         public string IdleActionName;
         public string ShootActionName;
@@ -55,6 +58,11 @@ namespace TOR_Core.BattleMechanics.Artillery
         private SynchedMissionObject _barrel;
         private SynchedMissionObject _wheel_R;
         private SynchedMissionObject _wheel_L;
+        private readonly string _leftGearTag = "Gear_L";
+        private readonly string _rightGearTag = "Gear_R";
+        private List<SynchedMissionObject> _gearsLeft = new List<SynchedMissionObject>();
+        private List<SynchedMissionObject> _gearsRight = new List<SynchedMissionObject>();
+        private bool _isDwarfCannon = false;
         private float _verticalOffsetAngle;
         private MatrixFrame _barrelInitialLocalFrame;
         private Agent _lastLoaderAgent;
@@ -68,7 +76,7 @@ namespace TOR_Core.BattleMechanics.Artillery
         private bool _isRotating;
         private int _rotationDirection = 0;
         private float _lastCurrentDirection;
-
+        
         protected override float ShootingSpeed => BaseMuzzleVelocity;
         public override float ProjectileVelocity => ShootingSpeed;
         protected override Vec3 ShootingDirection => Projectile.GameEntity.GetGlobalFrame().rotation.f;
@@ -126,6 +134,27 @@ namespace TOR_Core.BattleMechanics.Artillery
             UpdateRecoilEffect(dt);
             UpdateWheelRotation(dt);
             HandleAITeamUsage();
+            EnsureCrewDetachedFromFormation();
+        }
+        
+        
+
+        private void EnsureCrewDetachedFromFormation()
+        {
+            foreach (var sp in StandingPoints)
+            {
+                // Skip the wait standing point - agents there can respond to orders
+                if (sp.GameEntity.HasTag(WaitStandingPointTag)) continue;
+
+                if (sp.HasUser && sp.UserAgent != null && sp.UserAgent.IsAIControlled)
+                {
+                    var agent = sp.UserAgent;
+                    if (agent.Formation != null && !agent.IsDetachedFromFormation)
+                    {
+                        agent.Formation.DetachUnit(agent, false);
+                    }
+                }
+            }
         }
         
         private void HandleAITeamUsage()
@@ -139,7 +168,9 @@ namespace TOR_Core.BattleMechanics.Artillery
 
                 if (UserFormations.Count == 0)
                 {
-                    Team.FormationsIncludingSpecialAndEmpty.ToList().FirstOrDefault(form => form.Index == (int) TORFormationClass.Artillery)?.StartUsingMachine(this);
+                    var formation = Team.FormationsIncludingSpecialAndEmpty.ToList()
+                        .FirstOrDefault(form => form.Index == (int)TORFormationClass.Artillery);
+                        formation.StartUsingMachine(this);
                 }
             }
             else if(Team?.IsPlayerTeam ?? false)
@@ -165,6 +196,16 @@ namespace TOR_Core.BattleMechanics.Artillery
         {
             if(State == WeaponState.WaitingBeforeIdle)
             {
+                // Apply lookout animation to pilot while waiting for reload
+                if (PilotAgent != null && PilotAgent.IsAIControlled)
+                {
+                    var currentAction = PilotAgent.GetCurrentAction(1);
+                    if (currentAction != act_lookout_idle && currentAction != _shootAnimationActionIndex)
+                    {
+                        PilotAgent.SetActionChannel(1, act_lookout_idle, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
+                    }
+                }
+
                 if(_timer != null && _timer.Check(Mission.Current.CurrentTime))
                 {
                     _timer = null;
@@ -244,6 +285,13 @@ namespace TOR_Core.BattleMechanics.Artillery
                                     }
                                     else
                                     {
+                                        // DEBUG: Log why we're clearing the reloader
+                                        string reason = ReloaderAgentOriginalPoint == null
+                                            ? "OriginalPoint is null"
+                                            : (ReloaderAgentOriginalPoint.HasUser
+                                                ? $"OriginalPoint has user '{ReloaderAgentOriginalPoint.UserAgent?.Name}'"
+                                                : $"OriginalPoint has AI moving to it");
+
                                         Agent reloaderAgent = ReloaderAgent;
                                         if (reloaderAgent != null)
                                         {
@@ -254,6 +302,7 @@ namespace TOR_Core.BattleMechanics.Artillery
                                             }
                                         }
                                         ReloaderAgent = null;
+                                        
                                     }
                                 }
                             }
@@ -285,13 +334,23 @@ namespace TOR_Core.BattleMechanics.Artillery
                     }
                 case WeaponState.WaitingBeforeIdle:
                     {
-                        SendLoaderAgentToWaitingPoint();
+                        SendLoaderAgentToWaitingPoint(); 
                         SetWaitingTimer();
+                 //      ClearFiringArea();
                         return;
                     }
                 case WeaponState.LoadingAmmo:
                     {
                         SetActivationWaitingPoint(false);
+                        return;
+                    }
+                case WeaponState.Idle:
+                    {
+                        // Clear the lookout animation and return pilot to relaxed idle
+                        if (PilotAgent != null && PilotAgent.GetCurrentAction(1) == act_lookout_idle)
+                        {
+                            PilotAgent.SetActionChannel(1, _idleAnimationActionIndex, false, 0UL, 0f, 1f, -0.2f, 0.4f, 0f, false, -0.2f, 0, true);
+                        }
                         return;
                     }
             }
@@ -339,6 +398,23 @@ namespace TOR_Core.BattleMechanics.Artillery
             _wheel_L = GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>(_leftWheelTag)[0];
             _wheel_R = GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>(_rightWheelTag)[0];
             RotationObject = _body;
+
+            // Collect gears for dwarf cannon
+            CollectGears();
+        }
+
+        private void CollectGears()
+        {
+            _gearsLeft.Clear();
+            _gearsRight.Clear();
+
+            var leftGears = GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>(_leftGearTag);
+            var rightGears = GameEntity.CollectScriptComponentsWithTagIncludingChildrenRecursive<SynchedMissionObject>(_rightGearTag);
+
+            _gearsLeft.AddRange(leftGears);
+            _gearsRight.AddRange(rightGears);
+
+            _isDwarfCannon = _gearsLeft.Count > 0 || _gearsRight.Count > 0;
         }
 
         public override TextObject GetActionTextForStandingPoint(UsableMissionObject usableGameObject)
@@ -421,7 +497,16 @@ namespace TOR_Core.BattleMechanics.Artillery
 
         private void SetWaitingTimer()
         {
-            _timer = new Timer(Mission.Current.CurrentTime, 2f, false);
+            var speed = 5f;
+            var model = Campaign.Current.Models.GetSiegeEngineCalculationModel();
+            
+            if (Campaign.Current != null && model!=null)
+            { 
+                speed = model.CalculateCannonReloadSpeed(model.BaseCannonReloadSpeed, PilotAgent, _lastLoaderAgent);
+            }
+            _timer = new Timer(Mission.Current.CurrentTime, speed, false);
+            
+            
         }
 
         protected override void RegisterAnimationParameters()
@@ -518,6 +603,31 @@ namespace TOR_Core.BattleMechanics.Artillery
             var frame2 = _wheel_R.GameEntity.GetFrame();
             frame2.rotation.RotateAboutSide(rightwheeldirection * dt * speed);
             _wheel_R.GameEntity.SetFrame(ref frame2);
+
+            // Rotate gears for dwarf cannon
+            if (_isDwarfCannon)
+            {
+                DoGearRotation(dt, leftwheeldirection, rightwheeldirection, speed);
+            }
+        }
+
+        private void DoGearRotation(float dt, float leftDirection, float rightDirection, float speed = 1)
+        {
+            float gearSpeedMultiplier = 2f; // Gears spin faster than wheels
+
+            foreach (var gear in _gearsLeft)
+            {
+                var gearFrame = gear.GameEntity.GetFrame();
+                gearFrame.rotation.RotateAboutSide(leftDirection * dt * speed * gearSpeedMultiplier);
+                gear.GameEntity.SetFrame(ref gearFrame);
+            }
+
+            foreach (var gear in _gearsRight)
+            {
+                var gearFrame = gear.GameEntity.GetFrame();
+                gearFrame.rotation.RotateAboutSide(rightDirection * dt * speed * gearSpeedMultiplier);
+                gear.GameEntity.SetFrame(ref gearFrame);
+            }
         }
 
         private void UpdateWheelRotation(float dt)

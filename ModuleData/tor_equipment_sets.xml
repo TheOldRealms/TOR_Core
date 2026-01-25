@@ -6334,6 +6334,24 @@
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_basic_dawi_001" />
     </EquipmentSet>
   </EquipmentRoster>
+  <EquipmentRoster id="tor_dw_artillery_crew_template" culture="Culture.sturgia">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_pickaxe_004" />
+      <Equipment slot="Head" id="Item.tor_dw_head_helm_miner_002" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_miner_001" />
+      <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_militia_001" />
+      <Equipment slot="Gloves" id="Item.tor_dw_arm_bracers_miner_001" />
+      <Equipment slot="Leg" id="Item.tor_dw_leg_boots_miner_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_pickaxe_004" />
+      <Equipment slot="Head" id="Item.tor_dw_head_helm_miner_002" />
+      <Equipment slot="Body" id="Item.tor_dw_body_armour_miner_001" />
+      <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_militia_001" />
+      <Equipment slot="Gloves" id="Item.tor_dw_arm_bracers_miner_001" />
+      <Equipment slot="Leg" id="Item.tor_dw_leg_boots_miner_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
   <EquipmentRoster id="tor_gs_orc_template" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_sword_002" />
