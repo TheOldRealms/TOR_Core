@@ -307,7 +307,15 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
         /// </summary>
         private void OnDailyTick()
         {
-            // Create a list of changes to apply (avoid modifying during iteration)
+            CleanupAllianceWarTracking();
+        }
+
+        /// <summary>
+        /// Reviews all tracked alliance wars and updates their status.
+        /// Wars are orphaned if no ally is fighting the enemy, or re-parented to a new ally.
+        /// </summary>
+        private void CleanupAllianceWarTracking()
+        {
             var warsToOrphan = new List<(string kingdomId, string enemyId)>();
             var warsToReparent = new List<(string kingdomId, string enemyId, string newAllyId)>();
 
@@ -316,77 +324,97 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 var kingdom = Kingdom.All.FirstOrDefault(k => k.StringId == kvp.Key);
                 if (kingdom == null || kingdom.IsEliminated) continue;
 
-                foreach (var enemyAllyPair in kvp.Value)
-                {
-                    var enemy = Kingdom.All.FirstOrDefault(k => k.StringId == enemyAllyPair.Key);
-                    var trackedAlly = Kingdom.All.FirstOrDefault(k => k.StringId == enemyAllyPair.Value);
-
-                    if (enemy == null || enemy.IsEliminated)
-                    {
-                        // Enemy no longer exists - remove tracking
-                        warsToOrphan.Add((kvp.Key, enemyAllyPair.Key));
-                        continue;
-                    }
-
-                    // Check if we're still at war with this enemy
-                    if (!kingdom.IsAtWarWith(enemy))
-                    {
-                        // War ended - remove tracking
-                        warsToOrphan.Add((kvp.Key, enemyAllyPair.Key));
-                        continue;
-                    }
-
-                    // Check if tracked ally still qualifies (allied with us AND at war with enemy)
-                    bool trackedAllyQualifies = trackedAlly != null &&
-                                                 !trackedAlly.IsEliminated &&
-                                                 kingdom.IsAllyWith(trackedAlly) &&
-                                                 trackedAlly.IsAtWarWith(enemy);
-
-                    if (trackedAllyQualifies)
-                    {
-                        // All good - keep as is
-                        continue;
-                    }
-
-                    // Tracked ally no longer qualifies - look for another ally fighting this enemy
-                    Kingdom newParentAlly = null;
-                    foreach (var potentialAlly in kingdom.AlliedKingdoms)
-                    {
-                        if (potentialAlly.IsAtWarWith(enemy))
-                        {
-                            newParentAlly = potentialAlly;
-                            break;
-                        }
-                    }
-
-                    if (newParentAlly != null)
-                    {
-                        // Re-parent to new ally
-                        warsToReparent.Add((kvp.Key, enemyAllyPair.Key, newParentAlly.StringId));
-                    }
-                    else
-                    {
-                        // No ally fighting this enemy - orphan to regular war
-                        warsToOrphan.Add((kvp.Key, enemyAllyPair.Key));
-                    }
-                }
+                EvaluateKingdomAllianceWars(kingdom, kvp.Value, warsToOrphan, warsToReparent);
             }
 
-            // Apply changes
+            ApplyOrphanChanges(warsToOrphan);
+            ApplyReparentChanges(warsToReparent);
+        }
+
+        /// <summary>
+        /// Evaluates all alliance wars for a single kingdom.
+        /// </summary>
+        private void EvaluateKingdomAllianceWars(
+            Kingdom kingdom,
+            Dictionary<string, string> enemyToAllyMap,
+            List<(string kingdomId, string enemyId)> warsToOrphan,
+            List<(string kingdomId, string enemyId, string newAllyId)> warsToReparent)
+        {
+            foreach (var enemyAllyPair in enemyToAllyMap)
+            {
+                var enemy = Kingdom.All.FirstOrDefault(k => k.StringId == enemyAllyPair.Key);
+                var trackedAlly = Kingdom.All.FirstOrDefault(k => k.StringId == enemyAllyPair.Value);
+
+                if (ShouldRemoveTracking(kingdom, enemy))
+                {
+                    warsToOrphan.Add((kingdom.StringId, enemyAllyPair.Key));
+                    continue;
+                }
+
+                if (AllyStillQualifies(kingdom, enemy, trackedAlly))
+                    continue;
+
+                var newParentAlly = FindAllyFightingEnemy(kingdom, enemy);
+                if (newParentAlly != null)
+                    warsToReparent.Add((kingdom.StringId, enemyAllyPair.Key, newParentAlly.StringId));
+                else
+                    warsToOrphan.Add((kingdom.StringId, enemyAllyPair.Key));
+            }
+        }
+
+        /// <summary>
+        /// Checks if tracking should be removed entirely (enemy gone or war ended).
+        /// </summary>
+        private bool ShouldRemoveTracking(Kingdom kingdom, Kingdom enemy)
+        {
+            if (enemy == null || enemy.IsEliminated)
+                return true;
+
+            if (!kingdom.IsAtWarWith(enemy))
+                return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if the tracked ally still qualifies (allied with us AND at war with enemy).
+        /// </summary>
+        private bool AllyStillQualifies(Kingdom kingdom, Kingdom enemy, Kingdom trackedAlly)
+        {
+            return trackedAlly != null &&
+                   !trackedAlly.IsEliminated &&
+                   kingdom.IsAllyWith(trackedAlly) &&
+                   trackedAlly.IsAtWarWith(enemy);
+        }
+
+        /// <summary>
+        /// Finds an ally that is currently fighting the specified enemy.
+        /// </summary>
+        private Kingdom FindAllyFightingEnemy(Kingdom kingdom, Kingdom enemy)
+        {
+            foreach (var potentialAlly in kingdom.AlliedKingdoms)
+            {
+                if (potentialAlly.IsAtWarWith(enemy))
+                    return potentialAlly;
+            }
+            return null;
+        }
+
+        private void ApplyOrphanChanges(List<(string kingdomId, string enemyId)> warsToOrphan)
+        {
             foreach (var (kingdomId, enemyId) in warsToOrphan)
             {
                 if (_allianceWars.TryGetValue(kingdomId, out var enemyToAllyMap))
-                {
                     enemyToAllyMap.Remove(enemyId);
-                }
             }
+        }
 
+        private void ApplyReparentChanges(List<(string kingdomId, string enemyId, string newAllyId)> warsToReparent)
+        {
             foreach (var (kingdomId, enemyId, newAllyId) in warsToReparent)
             {
                 if (_allianceWars.TryGetValue(kingdomId, out var enemyToAllyMap))
-                {
                     enemyToAllyMap[enemyId] = newAllyId;
-                }
             }
         }
     }
