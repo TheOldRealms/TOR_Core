@@ -324,7 +324,9 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 var kingdom = Kingdom.All.FirstOrDefault(k => k.StringId == kvp.Key);
                 if (kingdom == null || kingdom.IsEliminated) continue;
 
-                EvaluateKingdomAllianceWars(kingdom, kvp.Value, warsToOrphan, warsToReparent);
+                var (orphans, reparents) = EvaluateKingdomAllianceWars(kingdom, kvp.Value);
+                warsToOrphan.AddRange(orphans);
+                warsToReparent.AddRange(reparents);
             }
 
             ApplyOrphanChanges(warsToOrphan);
@@ -333,13 +335,14 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
         /// <summary>
         /// Evaluates all alliance wars for a single kingdom.
+        /// Returns lists of wars to orphan and wars to re-parent.
         /// </summary>
-        private void EvaluateKingdomAllianceWars(
-            Kingdom kingdom,
-            Dictionary<string, string> enemyToAllyMap,
-            List<(string kingdomId, string enemyId)> warsToOrphan,
-            List<(string kingdomId, string enemyId, string newAllyId)> warsToReparent)
+        private (List<(string kingdomId, string enemyId)> orphans, List<(string kingdomId, string enemyId, string newAllyId)> reparents)
+            EvaluateKingdomAllianceWars(Kingdom kingdom, Dictionary<string, string> enemyToAllyMap)
         {
+            var orphans = new List<(string kingdomId, string enemyId)>();
+            var reparents = new List<(string kingdomId, string enemyId, string newAllyId)>();
+
             foreach (var enemyAllyPair in enemyToAllyMap)
             {
                 var enemy = Kingdom.All.FirstOrDefault(k => k.StringId == enemyAllyPair.Key);
@@ -347,7 +350,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
                 if (ShouldRemoveTracking(kingdom, enemy))
                 {
-                    warsToOrphan.Add((kingdom.StringId, enemyAllyPair.Key));
+                    orphans.Add((kingdom.StringId, enemyAllyPair.Key));
                     continue;
                 }
 
@@ -356,10 +359,12 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
 
                 var newParentAlly = FindAllyFightingEnemy(kingdom, enemy);
                 if (newParentAlly != null)
-                    warsToReparent.Add((kingdom.StringId, enemyAllyPair.Key, newParentAlly.StringId));
+                    reparents.Add((kingdom.StringId, enemyAllyPair.Key, newParentAlly.StringId));
                 else
-                    warsToOrphan.Add((kingdom.StringId, enemyAllyPair.Key));
+                    orphans.Add((kingdom.StringId, enemyAllyPair.Key));
             }
+
+            return (orphans, reparents);
         }
 
         /// <summary>
