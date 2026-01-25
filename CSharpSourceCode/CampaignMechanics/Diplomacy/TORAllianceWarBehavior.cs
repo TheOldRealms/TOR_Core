@@ -251,37 +251,6 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
             }
         }
 
-        /// <summary>
-        /// Converts an alliance war to a regular offensive war (orphaning).
-        /// Called when no ally is fighting this enemy anymore.
-        /// </summary>
-        private void OrphanAllianceWar(Kingdom kingdom, Kingdom enemy)
-        {
-            if (kingdom == null || enemy == null) return;
-
-            if (_allianceWars.TryGetValue(kingdom.StringId, out var enemyToAllyMap))
-            {
-                enemyToAllyMap.Remove(enemy.StringId);
-            }
-        }
-
-        /// <summary>
-        /// Re-parents an alliance war to a different ally.
-        /// Called when the original ally no longer qualifies but another ally is still fighting.
-        /// </summary>
-        private void ReparentAllianceWar(Kingdom kingdom, Kingdom enemy, Kingdom newAlly)
-        {
-            if (kingdom == null || enemy == null || newAlly == null) return;
-
-            if (_allianceWars.TryGetValue(kingdom.StringId, out var enemyToAllyMap))
-            {
-                if (enemyToAllyMap.ContainsKey(enemy.StringId))
-                {
-                    enemyToAllyMap[enemy.StringId] = newAlly.StringId;
-                }
-            }
-        }
-
         private void OnPeaceMade(IFaction faction1, IFaction faction2, MakePeaceAction.MakePeaceDetail detail)
         {
             if (!faction1.IsKingdomFaction || !faction2.IsKingdomFaction) return;
