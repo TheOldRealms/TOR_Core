@@ -49,6 +49,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
     private const int GromrilGain = 150;
     private const int WheatToOathGoldGain = 2;
     private const int ArtilleryCrewOathGoldCost = 50;
+    private const int ArtilleryCrewGoldCost = 500;
     private Dictionary<string, int> _guildValues;
     private double _lastTimeVistedTown;
     private int _expeditionMaximum;
@@ -709,7 +710,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             null, null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_recruit_crew_p", hub, "tor_dw_guildmaster_engineer_recruit_crew", TORTextHelper.GetText("tor_dw_engineer_recruit_crew_text", "I need some artillery crew."),
-            () => Hero.MainHero.HasAttribute("DwarfEngineersI"), UpdateEngineerRecruitmentPrices, 200);
+            () => Hero.MainHero.HasAttribute("DwarfEngineersI"), null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "Thats all"),
             null, null, 200);
@@ -721,7 +722,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
         //recruit artillery crew
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_engineer_recruit_crew", "tor_dw_guildmaster_engineer_recruit_crew", "tor_dw_guildmaster_engineer_recruit_crew_options",
             TORTextHelper.GetText("tor_dw_engineer_recruit_crew_offer_text", "Aye, a pair of our beardlings are eager to prove themselves. It'll cost ye {ENGINEER_GOLD_PRICE}{GOLD_ICON} and {ENGINEER_OATHGOLD_PRICE} Oathgold."),
-            null, null, 200);
+            UpdateEngineerRecruitmentPrices, null, 200);
 
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_recruit_crew_accept_p", "tor_dw_guildmaster_engineer_recruit_crew_options", "tor_dw_guildmaster_engineer_start_reintro",
             TORTextHelper.GetText("tor_dw_engineer_recruit_crew_accept_text", "They'll serve the hold well."),
@@ -780,25 +781,16 @@ public class OathGoldBehavior : CampaignBehaviorBase
             InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
         }
 
-        void UpdateEngineerRecruitmentPrices()
+        bool UpdateEngineerRecruitmentPrices()
         {
-            var artilleryCrew = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_artillery_crew");
-            if (artilleryCrew == null) return;
-
-            int goldPrice = (int)(Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(artilleryCrew, Hero.MainHero, false).ResultNumber * 2 * 10);
-
-            MBTextManager.SetTextVariable("ENGINEER_GOLD_PRICE", goldPrice.ToString());
+            MBTextManager.SetTextVariable("ENGINEER_GOLD_PRICE", ArtilleryCrewGoldCost.ToString());
             MBTextManager.SetTextVariable("ENGINEER_OATHGOLD_PRICE", ArtilleryCrewOathGoldCost.ToString());
+            return true;
         }
 
         bool HasEnoughForEngineerRecruitment()
         {
-            var artilleryCrew = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_artillery_crew");
-            if (artilleryCrew == null) return false;
-
-            int goldPrice = (int)(Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(artilleryCrew, Hero.MainHero, false).ResultNumber * 2 * 10);
-
-            return Hero.MainHero.Gold >= goldPrice && Hero.MainHero.GetCustomResourceValue("OathGold") >= ArtilleryCrewOathGoldCost;
+            return Hero.MainHero.Gold >= ArtilleryCrewGoldCost && Hero.MainHero.GetCustomResourceValue("OathGold") >= ArtilleryCrewOathGoldCost;
         }
 
         void RecruitEngineerCrew()
@@ -806,9 +798,7 @@ public class OathGoldBehavior : CampaignBehaviorBase
             var artilleryCrew = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_artillery_crew");
             if (artilleryCrew == null) return;
 
-            int goldPrice = (int)(Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(artilleryCrew, Hero.MainHero, false).ResultNumber * 2 * 10);
-
-            GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, null, goldPrice);
+            GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, null, ArtilleryCrewGoldCost);
             Hero.MainHero.AddCustomResource("OathGold", -ArtilleryCrewOathGoldCost);
             MobileParty.MainParty.MemberRoster.AddToCounts(artilleryCrew, 2);
         }
