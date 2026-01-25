@@ -342,6 +342,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewI</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -353,6 +354,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewI</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -365,6 +367,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewI</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -387,6 +390,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -400,6 +404,7 @@
     <Attributes>
       <string>ArtilleryCrew</string>
       <string>Piercing</string>
+      <string>CrewII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -424,6 +429,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewIII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -437,6 +443,7 @@
     <Attributes>
       <string>ArtilleryCrew</string>
       <string>Piercing</string>
+      <string>CrewII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1666,6 +1673,25 @@
   <CharacterExtendedInfo id="tor_dw_master_trader">
     <Abilities />
     <Attributes />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="2" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_dw_artillery_crew">
+    <Abilities />
+    <Attributes>
+      <string>ArtilleryCrew</string>
+      <string>CrewI</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -4540,6 +4566,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4553,6 +4581,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4566,6 +4596,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4579,6 +4611,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
