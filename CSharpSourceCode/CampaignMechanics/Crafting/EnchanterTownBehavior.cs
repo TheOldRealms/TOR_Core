@@ -87,7 +87,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
         TORConstants.Cultures.DAWI
     };
 
-    private List<string> _careerEligableForFreebee = ["GrailDamsel", "ImperialMagister", "Spellsinger", "Greylord", "Necromancer", "Runelord"];
+    private List<string> _careerEligableForFreebee = ["GrailDamsel", "ImperialMagister", "Spellsinger", "Greylord", "Necromancer", "Runelord", "OrcShaman"];
 
     public bool SpokeToEnchanter => _spokeToEnchanter;
 
