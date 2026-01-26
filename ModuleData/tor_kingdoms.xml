@@ -263,7 +263,7 @@
     </Kingdom>
     <Kingdom id="wasteland"
              owner="Hero.tor_emp_lord_wasteland_factionleader"
-             banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_wasteland"
+             banner_key="11.131.148.1500.1500.764.764.1.1.0.122.20.41.601.601.764.764.0.0.0:kingdom_wasteland"
              primary_banner_color="0xffffe25e"
              secondary_banner_color="0xfffafafa"
              label_color="FFffe25e"
@@ -516,7 +516,7 @@
     </Kingdom>
     <Kingdom id="carcassonne"
              owner="Hero.tor_br_lord_carcassonne_factionleader"
-             banner_key="1.12.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_carcassonne"
+             banner_key="1.12.148.1500.1500.764.764.1.1.0.122.20.41.600.600.766.766.0.0.0:kingdom_carcassonne"
              primary_banner_color="0xff830d0d"
              secondary_banner_color="0xff244373"
              label_color="FF34671e"

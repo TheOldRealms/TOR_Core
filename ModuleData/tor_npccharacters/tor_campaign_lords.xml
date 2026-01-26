@@ -9536,8 +9536,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bad_axes_first_2" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_first_2}Warboss Bazodrak" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -9630,7 +9630,7 @@
       <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_bad_axes_first_7" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_first_7}Warboss Kraggoth" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_bad_axes_first_7" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_first_7}Arrer Boy Big Boss Kraggoth" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0" build="0.4059" key="0015940001FC00000F712FF7407FFEFFC492659D8FA628607209054AD783C4860086060308A4704845CCBADB4CBCBABC000000000000001600000000671C0000" />
     </face>
@@ -9644,8 +9644,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bad_axes_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_first_8}Warboss Gollog Rockshredda" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -9716,8 +9716,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bad_axes_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_second_2}Warboss Granug Big Basha" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -9738,7 +9738,7 @@
       <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_bad_axes_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_second_3}Warboss Narlob Gutrot" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_bad_axes_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_second_3}Shaman Narlob Gutrot" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="1" build="0.4954" key="0015A404C0CC0000857F0018FF6FFBFFC2957565B3A69995CFECD5788971687B00A7F6030AFCBFFE45CCBADB4CBCBABC00000000000000160000000031540000" />
     </face>
@@ -9752,8 +9752,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_shaman_template_001" />
+      <EquipmentSet id="tor_gs_orc_shaman_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bad_axes_second_4" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_second_4}Warboss Zogrosh Red Fist" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -9789,7 +9789,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_gs_orc_shaman_template_001" />
-      <EquipmentSet id="tor_gs_orc_shaman_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_shaman_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_sunz_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_factionleader}Warlord Zorbak Bearthwakka" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -9860,8 +9860,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_sunz_first_5" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_first_5}Warboss Zarklok" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -9936,7 +9936,7 @@
       <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_black_sunz_first_9" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_first_9}Warboss Dazodra" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_black_sunz_first_9" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_first_9}Arrer Boy Big Boss Dazodra" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4695" build="0.1979" key="00027C0FC2E400014685B44996A57763D8A158B784759AB7CA1A8926467E99C500A376030A865CB945CCBADB4CBCBABC0000000000000016000000003B5C0000" />
     </face>
@@ -9950,8 +9950,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_black_sunz_first_10" default_group="infantry" name="{=str_tor_greenskin_lord_black_sunz_first_10}Warboss Orgul" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -10098,7 +10098,7 @@
       <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_crooked_eye_first_3" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_first_3}Warboss Grombak" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_crooked_eye_first_3" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_first_3}Arrer Boy Big Boss Grombak" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
     </face>
@@ -10112,8 +10112,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_crooked_eye_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_first_4}Warboss Morngor" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -10184,8 +10184,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_crooked_eye_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_first_8}Warboss Molglot" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -10274,8 +10274,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_crooked_eye_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_second_2}Warboss Grubuk Yellowtoof" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -10292,8 +10292,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_crooked_eye_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_second_3}Shaman Ruzzud Spateye" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -10404,7 +10404,7 @@
       <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_crooked_eye_second_9" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_second_9}Warboss Grog Arrermasta" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_crooked_eye_second_9" default_group="infantry" name="{=str_tor_greenskin_lord_crooked_eye_second_9}Arrer Boy Big Boss Grog Arrermasta" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
     </face>
@@ -10418,8 +10418,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_deff_grindaz_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_deff_grindaz_factionleader}Warlord Zorkar Throat Ripper" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -10472,8 +10472,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_deff_grindaz_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_deff_grindaz_first_4}Warboss Stinky Bolg" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -10508,8 +10508,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_deff_grindaz_first_6" default_group="infantry" name="{=str_tor_greenskin_lord_deff_grindaz_first_6}Warboss Gurbak" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -10544,8 +10544,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_deff_grindaz_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_deff_grindaz_first_8}Warboss Ragdak Stuntyrippa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -10796,8 +10796,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_iron_tribe_first_5" default_group="infantry" name="{=str_tor_greenskin_lord_iron_tribe_first_5}Warboss Braggat Gobbspitta" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11030,8 +11030,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_factionleader}Warlord Skulgul Horsesmakka" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11102,8 +11102,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_first_5" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_first_5}Warboss Dakkgoth Horserippa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11156,8 +11156,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_first_8" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_first_8}Warboss Stogrut" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11372,8 +11372,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_massif_choppas_second_8" default_group="infantry" name="{=str_tor_greenskin_lord_massif_choppas_second_8}Warboss Borug" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11462,8 +11462,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_3" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_3}Warboss Gazak" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11588,8 +11588,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_neck_snappers_first_10" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_first_10}Great Shaman Ugmuzz Bonehat" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11624,8 +11624,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" />
+      <EquipmentSet id="tor_gs_black_orc_warboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_neck_snappers_second_2" default_group="infantry" name="{=str_tor_greenskin_lord_neck_snappers_second_2}Warboss Orlob Fangrippa" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11786,11 +11786,11 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_greenskin_lord_skull_smasherz_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_skull_smasherz_first_4}Warboss Olgork" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
+  <NPCCharacter id="tor_greenskin_lord_skull_smasherz_first_4" default_group="infantry" name="{=str_tor_greenskin_lord_skull_smasherz_first_4}Arrer Boy Big Boss Olgork" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
     <face>
       <BodyProperties version="4" age="22" weight="0.4275" build="0.733" key="0002940780000000DACB77728188777384B72636A7665600945BD76A753C94481C7666130F791D76B68D56A5677A9054000000000000001F0000000033F40000" />
     </face>
@@ -11804,8 +11804,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" />
+      <EquipmentSet id="tor_gs_arrer_bigboss_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_skull_smasherz_first_5" default_group="infantry" name="{=str_tor_greenskin_lord_skull_smasherz_first_5}Warboss Zummork Skrapheaf" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11876,8 +11876,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_skull_smasherz_second_1" default_group="infantry" name="{=str_tor_greenskin_lord_skull_smasherz_second_1}Warboss Gutlob Blood Riva" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -11912,8 +11912,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" />
+      <EquipmentSet id="tor_gs_orc_warboss_boar_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_skull_smasherz_second_3" default_group="infantry" name="{=str_tor_greenskin_lord_skull_smasherz_second_3}Shaman Duzzrag Mad Eye" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
@@ -12002,8 +12002,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" />
-      <EquipmentSet id="tor_gs_orc_warboss_template_001" civilian="true" />
+      <EquipmentSet id="tor_gs_orc_shaman_template_001" />
+      <EquipmentSet id="tor_gs_orc_shaman_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_skull_smasherz_second_8" default_group="infantry" name="{=str_tor_greenskin_lord_skull_smasherz_second_8}Warboss Dorkork" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_warrior_lord" is_female="false" race="orc" is_hero="true">
