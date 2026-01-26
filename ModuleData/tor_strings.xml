@@ -532,10 +532,10 @@
   <string id="tor_enchantmentshop_title.aserai" text="{=str_tor_enchantmentshop_title_aserai}Make your choice…"/>
   <string id="tor_enchantmentshop_title.blessings" text="{=str_tor_enchantmentshop_title_blessings}Make your choice…"/>
 
-  <string id="tor_enchantmentshop_description.empire" text="{=str_tor_enchantmentshop_description_empire}Select an enchantment scroll to study"/>
-  <string id="tor_enchantmentshop_description.sturgia" text="{=str_tor_enchantmentshop_description_sturgia}Select a rune carving to study"/>
-  <string id="tor_enchantmentshop_description.aserai" text="{=str_tor_enchantmentshop_description_aserai}Select a shamanic totem to study"/>
-  <string id="tor_enchantmentshop_description.blessings" text="{=str_tor_enchantmentshop_description_blessings}Select a blessed tome to study"/>
+  <string id="tor_enchantmentshop_description.empire" text="{=str_tor_enchantmentshop_description_empire}Select an enchantment scroll to study:"/>
+  <string id="tor_enchantmentshop_description.sturgia" text="{=str_tor_enchantmentshop_description_sturgia}Select a rune carving to study:"/>
+  <string id="tor_enchantmentshop_description.aserai" text="{=str_tor_enchantmentshop_description_aserai}Take one uv da weird ju-ju bits:"/>
+  <string id="tor_enchantmentshop_description.blessings" text="{=str_tor_enchantmentshop_description_blessings}Select a blessed tome to study:"/>
 
   <string id="tor_enchantmentshop_restriction.Armor" text="{=str_tor_enchantmentshop_restriction_Armor}Applies to armour"/>
   <string id="tor_enchantmentshop_restriction.Melee" text="{=str_tor_enchantmentshop_restriction_Melee}Applies to melee weapons"/>
@@ -570,7 +570,7 @@
   <string id="tor_enchanter_start_enchanter.empire" text="{=str_tor_enchanter_start_enchanter_empire}TODO: EMPIRE - Enchanter greets fellow practitioner (career check)"/>
   <string id="tor_enchanter_dialog_start.empire" text="{=str_tor_enchanter_dialog_start_empire}TODO: EMPIRE - Enchanter greets general visitor"/>
   <string id="tor_enchanter_dialog_start_quit.empire" text="{=str_tor_enchanter_dialog_start_quit_empire}You are not serving the empire. begone"/>
-  <string id="tor_enchanter_dialog_start_1.empire" text="{=str_tor_enchanter_dialog_start_1_empire}It would appear you have made quite a name for yourself, those loyal to the Empire are always welcome here."/>
+  <string id="tor_enchanter_dialog_start_1.empire" text="{=str_tor_enchanter_dialog_start_1_empire}Greetings, those loyal to the Empire are always welcome here."/>
   <string id="tor_enchanter_dialog_start_2.empire" text="{=str_tor_enchanter_dialog_start_2_empire}Ah, a fellow practioner! You are most welcome, there is much we can discuss as colleagues."/>
   <string id="tor_enchanter_hub_intro.empire" text="{=str_tor_enchanter_hub_intro_empire}So, to what do I owe this visit?"/>
   <string id="tor_enchanter_hub_reintro.empire" text="{=str_tor_enchanter_hub_reintro_empire}What else do you need?"/>
@@ -579,16 +579,16 @@
   <string id="tor_enchanter_hub_donate_items_p.empire" text="{=str_tor_enchanter_hub_donate_items_p_empire}I have magical items I no longer need, can you put them to good use?"/>
   <string id="tor_enchanter_hub_open_enchanter_p.empire" text="{=str_tor_enchanter_hub_open_enchanter_p_empire}May I use your laboratory?"/>
   <string id="tor_enchanter_hub_return_p.empire" text="{=str_tor_enchanter_hub_return_p_empire}I must go, farewell."/>
-  <string id="tor_enchanter_blueprints.empire" text="{=str_tor_enchanter_blueprints_empire}TODO: EMPIRE - Enchanter opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.empire" text="{=str_tor_enchanter_blueprints_decline_empire}TODO: EMPIRE - No eligible character for blueprints"/>
+  <string id="tor_enchanter_blueprints.empire" text="{=str_tor_enchanter_blueprints_empire}Let us browse the Imperial collection of scrolls and tomes."/>
+  <string id="tor_enchanter_blueprints_decline.empire" text="{=str_tor_enchanter_blueprints_decline_empire}I sense you don't possess the gift of Witchsight, and neither do your companions. You should return in the company of a wizard."/>
   <string id="tor_enchanter_donate_items_1.empire" text="{=str_tor_enchanter_donate_items_1_empire}I am interested in your magical items you find in your journeys. What do you have to offer?"/>
-  <string id="tor_enchanter_donate_items_1_negative.empire" text="{=str_tor_enchanter_donate_items_1_negative_empire}You dont have anything of interest for me. I am not interested in the enchanted items of yours, but to study the artefacts of this world."/>
+  <string id="tor_enchanter_donate_items_1_negative.empire" text="{=str_tor_enchanter_donate_items_1_negative_empire}You don't have anything of interest for me. I wish not to see the enchanted items of yours, but to study the artefacts of this world."/>
   <string id="tor_enchanter_donate_items_hub_p.empire" text="{=str_tor_enchanter_donate_items_hub_p_empire}Let me provide you these items…"/>
   <string id="tor_enchanter_gift_items_hub_return_p.empire" text="{=str_tor_enchanter_gift_items_hub_return_p_empire}I need to think about this."/>
   <string id="tor_enchanter_donate_items_2.empire" text="{=str_tor_enchanter_donate_items_2_empire}Which items do you want to donate?"/>
   <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.empire" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_empire}Of course! In fact, I have just the thing to get you started, take this, and we can discuss it all more detail."/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.empire" text="{=str_tor_enchanter_info_hub_intro_first_visit_empire}Of course! I would read this book here."/>
-  <string id="tor_enchanter_info_hub_intro_read_book.empire" text="{=str_tor_enchanter_info_hub_intro_read_book_empire}Just read the book I gave you."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.empire" text="{=str_tor_enchanter_info_hub_intro_first_visit_empire}Naturally. I can explain with little difficulty, the burden of understanding lies with you. Study this tome."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.empire" text="{=str_tor_enchanter_info_hub_intro_read_book_empire}Read the tome I gave you, it should cover all the basic principles of alchemy."/>
 
   <!-- BRETONNIA (vlandia) - TODO: Complete Bretonnian Prophetess dialogs following Empire pattern -->
   <string id="tor_enchanter_start_p.vlandia" text="{=str_tor_enchanter_start_p_vlandia}TODO: BRETONNIA - Player initiates conversation about enchantment"/>
@@ -616,29 +616,29 @@
   <string id="tor_enchanter_info_hub_intro_read_book.vlandia" text="{=str_tor_enchanter_info_hub_intro_read_book_vlandia}TODO: BRETONNIA - Already has manual"/>
 
   <!-- SYLVANIA (khuzait) - TODO: Complete Vampiric Necromancer dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.khuzait" text="{=str_tor_enchanter_start_p_khuzait}TODO: SYLVANIA - Player initiates conversation"/>
-  <string id="tor_enchanter_start_enchanter.khuzait" text="{=str_tor_enchanter_start_enchanter_khuzait}TODO: SYLVANIA - Necromancer greets fellow practitioner"/>
-  <string id="tor_enchanter_dialog_start.khuzait" text="{=str_tor_enchanter_dialog_start_khuzait}TODO: SYLVANIA - Necromancer greets visitor"/>
-  <string id="tor_enchanter_dialog_start_quit.khuzait" text="{=str_tor_enchanter_dialog_start_quit_khuzait}TODO: SYLVANIA - Wrong culture rejection"/>
-  <string id="tor_enchanter_dialog_start_1.khuzait" text="{=str_tor_enchanter_dialog_start_1_khuzait}TODO: SYLVANIA - Welcome message"/>
-  <string id="tor_enchanter_dialog_start_2.khuzait" text="{=str_tor_enchanter_dialog_start_2_khuzait}TODO: SYLVANIA - Fellow practitioner greeting"/>
-  <string id="tor_enchanter_hub_intro.khuzait" text="{=str_tor_enchanter_hub_intro_khuzait}TODO: SYLVANIA - Hub intro"/>
-  <string id="tor_enchanter_hub_reintro.khuzait" text="{=str_tor_enchanter_hub_reintro_khuzait}TODO: SYLVANIA - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.khuzait" text="{=str_tor_enchanter_hub_info_p_khuzait}TODO: SYLVANIA - Ask about necromancy"/>
-  <string id="tor_enchanter_hub_blueprints_p.khuzait" text="{=str_tor_enchanter_hub_blueprints_p_khuzait}TODO: SYLVANIA - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.khuzait" text="{=str_tor_enchanter_hub_donate_items_p_khuzait}TODO: SYLVANIA - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.khuzait" text="{=str_tor_enchanter_hub_open_enchanter_p_khuzait}TODO: SYLVANIA - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.khuzait" text="{=str_tor_enchanter_hub_return_p_khuzait}TODO: SYLVANIA - Leave"/>
-  <string id="tor_enchanter_blueprints.khuzait" text="{=str_tor_enchanter_blueprints_khuzait}TODO: SYLVANIA - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.khuzait" text="{=str_tor_enchanter_blueprints_decline_khuzait}TODO: SYLVANIA - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.khuzait" text="{=str_tor_enchanter_donate_items_1_khuzait}TODO: SYLVANIA - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.khuzait" text="{=str_tor_enchanter_donate_items_1_negative_khuzait}TODO: SYLVANIA - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.khuzait" text="{=str_tor_enchanter_donate_items_hub_p_khuzait}TODO: SYLVANIA - Player offers"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.khuzait" text="{=str_tor_enchanter_gift_items_hub_return_p_khuzait}TODO: SYLVANIA - Player backs out"/>
+  <string id="tor_enchanter_start_p.khuzait" text="{=str_tor_enchanter_start_p_khuzait}I wish to know more of magical and cursed items."/>
+  <string id="tor_enchanter_start_enchanter.khuzait" text="{=str_tor_enchanter_start_enchanter_khuzait}Greetings, fellow practitioner of dark arts, shall we convene together?"/>
+  <string id="tor_enchanter_dialog_start.khuzait" text="{=str_tor_enchanter_dialog_start_khuzait}What do you require?"/>
+  <string id="tor_enchanter_dialog_start_quit.khuzait" text="{=str_tor_enchanter_dialog_start_quit_khuzait}I know you not, stranger; best be gone before a great misfortune falls upon you."/>
+  <string id="tor_enchanter_dialog_start_1.khuzait" text="{=str_tor_enchanter_dialog_start_1_khuzait}Greetings stranger, I sense the darkness within you."/>
+  <string id="tor_enchanter_dialog_start_2.khuzait" text="{=str_tor_enchanter_dialog_start_2_khuzait}Fellow practitioner of dark arts, shall we convene together?"/>
+  <string id="tor_enchanter_hub_intro.khuzait" text="{=str_tor_enchanter_hub_intro_khuzait}What do you require?"/>
+  <string id="tor_enchanter_hub_reintro.khuzait" text="{=str_tor_enchanter_hub_reintro_khuzait}What is it that you need?"/>
+  <string id="tor_enchanter_hub_info_p.khuzait" text="{=str_tor_enchanter_hub_info_p_khuzait}Part with me your knowledge of enchantments and curses."/>
+  <string id="tor_enchanter_hub_blueprints_p.khuzait" text="{=str_tor_enchanter_hub_blueprints_p_khuzait}Show me what magic formulas you possess."/>
+  <string id="tor_enchanter_hub_donate_items_p.khuzait" text="{=str_tor_enchanter_hub_donate_items_p_khuzait}Take these baubles, they are unfit for my retinue."/>
+  <string id="tor_enchanter_hub_open_enchanter_p.khuzait" text="{=str_tor_enchanter_hub_open_enchanter_p_khuzait}Show me the way to your dark altar."/>
+  <string id="tor_enchanter_hub_return_p.khuzait" text="{=str_tor_enchanter_hub_return_p_khuzait}We are finished."/>
+  <string id="tor_enchanter_blueprints.khuzait" text="{=str_tor_enchanter_blueprints_khuzait}Let us delve into grimoires and cursed tomes."/>
+  <string id="tor_enchanter_blueprints_decline.khuzait" text="{=str_tor_enchanter_blueprints_decline_khuzait}I sense no darkness within you, nor does it reside within your retinue. Return to me in the company of a wizard."/>
+  <string id="tor_enchanter_donate_items_1.khuzait" text="{=str_tor_enchanter_donate_items_1_khuzait}Very well, I shall take these and put them to good use."/>
+  <string id="tor_enchanter_donate_items_1_negative.khuzait" text="{=str_tor_enchanter_donate_items_1_negative_khuzait}These will likely not be of use to me or my master. Return with the treasures and artifacts of this world."/>
+  <string id="tor_enchanter_donate_items_hub_p.khuzait" text="{=str_tor_enchanter_donate_items_hub_p_khuzait}Take these relics then."/>
+  <string id="tor_enchanter_gift_items_hub_return_p.khuzait" text="{=str_tor_enchanter_gift_items_hub_return_p_khuzait}I think I would rather keep these for now."/>
   <string id="tor_enchanter_donate_items_2.khuzait" text="{=str_tor_enchanter_donate_items_2_khuzait}TODO: SYLVANIA - Select items"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_khuzait}TODO: SYLVANIA - First visit career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_first_visit_khuzait}TODO: SYLVANIA - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.khuzait" text="{=str_tor_enchanter_info_hub_intro_read_book_khuzait}TODO: SYLVANIA - Has manual"/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_khuzait}There are dark energies coiling around you. I shall impart this knowledge to you."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_first_visit_khuzait}This tome holds everything you shall need."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.khuzait" text="{=str_tor_enchanter_info_hub_intro_read_book_khuzait}The grimoire I bestowed upon you covers all the required basics."/>
 
   <!-- MOUSILLON (mousillon) - TODO: Complete Mousillon Necromancer dialogs following Empire pattern -->
   <string id="tor_enchanter_start_p.mousillon" text="{=str_tor_enchanter_start_p_mousillon}TODO: MOUSILLON - Player initiates conversation"/>
@@ -694,29 +694,29 @@
   <!-- GREENSKIN CULTURE: Aserai              -->
   <!-- Greenskins use shamanic totems and tribal enchantment -->
 
-  <string id="tor_enchanter_start_p.aserai" text="{=str_tor_enchanter_start_p_aserai}Oi, I wants ta know 'bout speshul bits an' choppas."/>
+  <string id="tor_enchanter_start_p.aserai" text="{=str_tor_enchanter_start_p_aserai}I wants ta know 'bout speshul bits."/>
   <string id="tor_enchanter_start_enchanter.aserai" text="{=str_tor_enchanter_start_enchanter_aserai}You come to look into da fire?"/>
-  <string id="tor_enchanter_dialog_start.aserai" text="{=str_tor_enchanter_dialog_start_aserai}You'z a big git, you'z. Gork'z wiv yoo."/>
-  <string id="tor_enchanter_dialog_start_quit.aserai" text="{=str_tor_enchanter_dialog_start_quit_aserai}TODO: GREENSKIN - Wrong culture rejection"/>
-  <string id="tor_enchanter_dialog_start_1.aserai" text="{=str_tor_enchanter_dialog_start_1_aserai}TODO: GREENSKIN - Shaman welcomes big boss"/>
-  <string id="tor_enchanter_dialog_start_2.aserai" text="{=str_tor_enchanter_dialog_start_2_aserai}TODO: GREENSKIN - Shaman greets fellow shaman"/>
-  <string id="tor_enchanter_hub_intro.aserai" text="{=str_tor_enchanter_hub_intro_aserai}Guhh, what yoo wants to know?"/>
+  <string id="tor_enchanter_dialog_start.aserai" text="{=str_tor_enchanter_dialog_start_aserai}Gork an' Mork bring great fings to da best uv us."/>
+  <string id="tor_enchanter_dialog_start_quit.aserai" text="{=str_tor_enchanter_dialog_start_quit_aserai}Git lost! Or I'z turnin' you into a squig!"/>
+  <string id="tor_enchanter_dialog_start_1.aserai" text="{=str_tor_enchanter_dialog_start_1_aserai}You'z a big git, you'z. Gork'z wiv you."/>
+  <string id="tor_enchanter_dialog_start_2.aserai" text="{=str_tor_enchanter_dialog_start_2_aserai}You come to look into da fire?"/>
+  <string id="tor_enchanter_hub_intro.aserai" text="{=str_tor_enchanter_hub_intro_aserai}Guhh, what you wants to know?"/>
   <string id="tor_enchanter_hub_reintro.aserai" text="{=str_tor_enchanter_hub_reintro_aserai}Wot you wants?"/>
   <string id="tor_enchanter_hub_info_p.aserai" text="{=str_tor_enchanter_hub_info_p_aserai}I'z lookin' fer… errrp… in-strukk-shuns…"/>
   <string id="tor_enchanter_hub_blueprints_p.aserai" text="{=str_tor_enchanter_hub_blueprints_p_aserai}'Ow to make fings proppa shiny?"/>
   <string id="tor_enchanter_hub_donate_items_p.aserai" text="{=str_tor_enchanter_hub_donate_items_p_aserai}I's got sum gud scrap fer Gork an' Mork."/>
   <string id="tor_enchanter_hub_open_enchanter_p.aserai" text="{=str_tor_enchanter_hub_open_enchanter_p_aserai}(Look into the fire when the Shaman is busy dancing)"/>
   <string id="tor_enchanter_hub_return_p.aserai" text="{=str_tor_enchanter_hub_return_p_aserai}Nuffin'"/>
-  <string id="tor_enchanter_blueprints.aserai" text="{=str_tor_enchanter_blueprints_aserai}TODO: GREENSKIN - Opens totem shop"/>
-  <string id="tor_enchanter_blueprints_decline.aserai" text="{=str_tor_enchanter_blueprints_decline_aserai}TODO: GREENSKIN - No eligible shaman"/>
+  <string id="tor_enchanter_blueprints.aserai" text="{=str_tor_enchanter_blueprints_aserai}Get yer 'ead in da smoke, take a breff."/>
+  <string id="tor_enchanter_blueprints_decline.aserai" text="{=str_tor_enchanter_blueprints_decline_aserai}Dere be no Shaman wiv you, git lost."/>
   <string id="tor_enchanter_donate_items_1.aserai" text="{=str_tor_enchanter_donate_items_1_aserai}Da godz will be pleased with yer giftz."/>
   <string id="tor_enchanter_donate_items_1_negative.aserai" text="{=str_tor_enchanter_donate_items_1_negative_aserai}Dis puny scrap? Da godz ain't interested in dat."/>
   <string id="tor_enchanter_donate_items_hub_p.aserai" text="{=str_tor_enchanter_donate_items_hub_p_aserai}'Ere, 'erez sum scrap fer ya…"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.aserai" text="{=str_tor_enchanter_gift_items_hub_return_p_aserai}Dis bits are actually fer da Boss…"/>
+  <string id="tor_enchanter_gift_items_hub_return_p.aserai" text="{=str_tor_enchanter_gift_items_hub_return_p_aserai}Dis bits iz actually fer da Boss…"/>
   <string id="tor_enchanter_donate_items_2.aserai" text="{=str_tor_enchanter_donate_items_2_aserai}Wot's dat fing?"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.aserai" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_aserai}TODO: GREENSKIN - First visit shaman"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.aserai" text="{=str_tor_enchanter_info_hub_intro_first_visit_aserai}TODO: GREENSKIN - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.aserai" text="{=str_tor_enchanter_info_hub_intro_read_book_aserai}TODO: GREENSKIN - Has shaman scroll"/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.aserai" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_aserai}Get yer 'ead in da smoke, take a breff. You'z can 'ave dis carvin' too."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.aserai" text="{=str_tor_enchanter_info_hub_intro_first_visit_aserai}I gots dis carvin' I ain't usin, you'z can 'ave it."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.aserai" text="{=str_tor_enchanter_info_hub_intro_read_book_aserai}You'z already got dat stone carvin'. Git lost!"/>
 
   <!-- ELVEN CULTURES: Asrai (Wood Elves), Eonir (High Elves) -->
   <!-- Elves use nature-based/arcane enchantment -->
@@ -2339,7 +2339,7 @@
   <string id="tor_career_title.WarriorPriest" text="{=str_tor_career_title_WarriorPriest}Warrior Priest of Sigmar" />
   <string id="tor_career_title.WarriorPriestUlric" text="{=str_tor_career_title_WarriorPriestUlric}Warrior Priest of Ulric" />
   <string id="tor_career_title.WitchHunter" text="{=str_tor_career_title_WitchHunter}Witch Hunter" />
-  <string id="tor_career_title.MinorVampire" text="{=str_tor_career_title_MinorVampire}Vampire Nobility" />
+  <string id="tor_career_title.MinorVampire" text="{=str_tor_career_title_MinorVampire}Von Carstein" />
   <string id="tor_career_title.GrailKnight" text="{=str_tor_career_title_GrailKnight}Knight of Bretonnia" />
   <string id="tor_career_title.GrailDamsel" text="{=str_tor_career_title_GrailDamsel}Damsel of the Lady" />
   <string id="tor_career_title.BloodKnight" text="{=str_tor_career_title_BloodKnight}Blood Knight" />
@@ -2636,7 +2636,7 @@
   <string id="tor_career_choicegroup_name.PowerUvDaWaaagh" text="{=str_tor_career_choicegroup_name_PowerUvDaWaaagh}Power uv da Waaagh!" />
 
   <!-- WarriorPriest Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.WarriorPriestRoot" text="{=str_tor_careerchoice_description_WarriorPriestRoot}Unleash Sigmar's wrath with your Righteous Fury! Empower both you and nearby allies with +20% melee damage for 8 seconds. For every level of Faith, increase effect damage by 0.05% and duration by 0.05 seconds. (Ability charges by taking damage.)" />
+  <string id="tor_careerchoice_description.WarriorPriestRoot" text="{=str_tor_careerchoice_description_WarriorPriestRoot}Unleash Sigmar's wrath with your Righteous Fury! Empower both you and nearby allies with +20% melee damage for 8s. For every level of Faith, increase effect damage by 0.05% and duration by 0.05s. (Ability charges by taking damage.)" />
   <string id="tor_careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_careerchoice_description_BookOfSigmarKeyStone}Righteous Fury is now also charged by melee attacks." />
   <string id="tor_careerchoice_description.SigmarsProclaimerKeystone" text="{=str_tor_careerchoice_description_SigmarsProclaimerKeystone}Double the aura size of Righteous Fury." />
   <string id="tor_careerchoice_description.RelentlessFanaticKeyStone" text="{=str_tor_careerchoice_description_RelentlessFanaticKeyStone}Righteous Fury also scales with Leadership and applies 'Unbreakable'." />
@@ -2645,7 +2645,7 @@
   <string id="tor_careerchoice_description.ArchLectorKeyStone" text="{=str_tor_careerchoice_description_ArchLectorKeyStone}Righteous Fury now restores +3 Hitpoints per second." />
   <string id="tor_careerchoice_description.TwinTailedCometKeystone" text="{=str_tor_careerchoice_description_TwinTailedCometKeystone}Righteous Fury's aura now damages enemies." />
   <string id="tor_careerchoice_description.BookOfSigmarPassive1" text="{=str_tor_careerchoice_description_BookOfSigmarPassive1}+10 personal Hitpoints." />
-  <string id="tor_careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_careerchoice_description_BookOfSigmarPassive2}+10 Morale for all troops." />
+  <string id="tor_careerchoice_description.BookOfSigmarPassive2" text="{=str_tor_careerchoice_description_BookOfSigmarPassive2}+10 'Morale' for all troops." />
   <string id="tor_careerchoice_description.BookOfSigmarPassive3" text="{=str_tor_careerchoice_description_BookOfSigmarPassive3}After battle, wounded Companions heal +20 Hitpoints." />
   <string id="tor_careerchoice_description.BookOfSigmarPassive4" text="{=str_tor_careerchoice_description_BookOfSigmarPassive4}Wounded troops heal faster." />
   <string id="tor_careerchoice_description.SigmarsProclaimerPassive1" text="{=str_tor_careerchoice_description_SigmarsProclaimerPassive1}+5% personal 'Holy' melee damage." />
@@ -2670,20 +2670,20 @@
   <string id="tor_careerchoice_description.ArchLectorPassive4" text="{=str_tor_careerchoice_description_ArchLectorPassive4}+10% 'Ward Save' for 'Sigmarite' troops." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive1" text="{=str_tor_careerchoice_description_TwinTailedCometPassive1}+5% personal 'Holy' melee damage." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive2" text="{=str_tor_careerchoice_description_TwinTailedCometPassive2}+5 Companion limit." />
-  <string id="tor_careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_careerchoice_description_TwinTailedCometPassive3}+20% personal melee 'Armor Penetration'." />
+  <string id="tor_careerchoice_description.TwinTailedCometPassive3" text="{=str_tor_careerchoice_description_TwinTailedCometPassive3}+20% personal melee 'Armour Penetration'." />
   <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}+20 personal Hitpoints." />
 
   <!-- WitchHunter Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}Accuse an enemy of Heresy! Place an Accusation Mark on an enemy for the next 8 seconds, the first hit you inflict deals +20% 'Physical' damage. After a hit there is a 50% chance the foe stays marked. For every level of Gunpowder or Crossbow, increase Accusation Mark's chance to remain on the foe by 0.1%. (Ability charges by dealing ranged 'Physical' damage.)" />
-  <string id="tor_careerchoice_description.ToolsOfJudgementKeystone" text="{=str_tor_careerchoice_description_ToolsOfJudgementKeystone}Accusation also scales with the highest skill of either One/Two-handed and gains +6 seconds." />
+  <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}Accuse an enemy of Heresy! Place an Accusation Mark on an enemy for the next 8s, the first hit you inflict deals +20% 'Physical' damage. After a hit there is a 50% chance the foe stays marked. For every level of Gunpowder or Crossbow, increase Accusation Mark's chance to remain on the foe by 0.1%. (Ability charges by dealing ranged 'Physical' damage.)" />
+  <string id="tor_careerchoice_description.ToolsOfJudgementKeystone" text="{=str_tor_careerchoice_description_ToolsOfJudgementKeystone}Accusation also scales with the highest skill of either One/Two-handed and gains +6s." />
   <string id="tor_careerchoice_description.HuntTheWickedKeystone" text="{=str_tor_careerchoice_description_HuntTheWickedKeystone}Accusation is now also charged by melee damage, and gains +40% 'Physical' damage." />
   <string id="tor_careerchoice_description.SilverHammerKeystone" text="{=str_tor_careerchoice_description_SilverHammerKeystone}Accusation also scales with Faith, and gains +40% 'Holy' damage." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilKeystone" text="{=str_tor_careerchoice_description_NoRestAgainstEvilKeystone}Accusation now allows for 'Shield Penetration' and no longer risks losing its Mark on hit." />
   <string id="tor_careerchoice_description.SwiftProcedureKeystone" text="{=str_tor_careerchoice_description_SwiftProcedureKeystone}Accusation also scales with Athletics and applies a swing/move speed decrease." />
   <string id="tor_careerchoice_description.GuiltyByAssociationKeystone" text="{=str_tor_careerchoice_description_GuiltyByAssociationKeystone}Companions also charge Accusation. Companions/Retinue now benefit from your Mark." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansKeystone" text="{=str_tor_careerchoice_description_EndsJustifiesMeansKeystone}Accusation also scales with Rougery, overkilling an 'Accused' enemy spreads the Mark." />
-  <string id="tor_careerchoice_description.ToolsOfJudgementPassive1" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive1}+25 Hitpoints." />
-  <string id="tor_careerchoice_description.ToolsOfJudgementPassive2" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive2}+5 extra ammo per ammunition pouch." />
+  <string id="tor_careerchoice_description.ToolsOfJudgementPassive1" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive1}+25 personal Hitpoints." />
+  <string id="tor_careerchoice_description.ToolsOfJudgementPassive2" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive2}+5 extra ammo per ammunition pouch you equip." />
   <string id="tor_careerchoice_description.ToolsOfJudgementPassive3" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive3}+5% 'Physical' melee damage." />
   <string id="tor_careerchoice_description.ToolsOfJudgementPassive4" text="{=str_tor_careerchoice_description_ToolsOfJudgementPassive4}Ranged headshot kills grant Roguery experience, twice for 'Accused' targets." />
   <string id="tor_careerchoice_description.HuntTheWickedPassive1" text="{=str_tor_careerchoice_description_HuntTheWickedPassive1}Personal healing rate increased by +1." />
@@ -2698,132 +2698,132 @@
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive2" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive2}'Ranged' troops recieve +50 to their ranged skills." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive3" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive3}Personal ranged weapons recieve +15% accuracy." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilPassive4" text="{=str_tor_careerchoice_description_NoRestAgainstEvilPassive4}+5 Companion limit." />
-  <string id="tor_careerchoice_description.SwiftProcedurePassive1" text="{=str_tor_careerchoice_description_SwiftProcedurePassive1}+8 extra ammo per ammunition pouch." />
+  <string id="tor_careerchoice_description.SwiftProcedurePassive1" text="{=str_tor_careerchoice_description_SwiftProcedurePassive1}+8 extra ammo per ammunition pouch you equip." />
   <string id="tor_careerchoice_description.SwitftProcedurePassive2" text="{=str_tor_careerchoice_description_SwitftProcedurePassive2}Personal accuracy movement penalty reduced by -10%." />
   <string id="tor_careerchoice_description.SwitftProcedurePassive3" text="{=str_tor_careerchoice_description_SwitftProcedurePassive3}+1 party move speed on campaign map." />
   <string id="tor_careerchoice_description.SwitftProcedurePassive4" text="{=str_tor_careerchoice_description_SwitftProcedurePassive4}+10% personal weapon swing speed." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive1" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive1}+10% personal ranged 'Physical' damage." />
   <string id="tor_careerchoice_description.EndsJustifiesMeansPassive2" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive2}+15% personal ranged 'Physical Resistance'." />
-  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive3" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive3}+15% 'Armor Penetration' for personal melee attacks." />
-  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive4" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive4}+20% 'Armor Penetration' for personal ranged attacks." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive3" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive3}+15% 'Armour Penetration' for personal melee attacks." />
+  <string id="tor_careerchoice_description.EndsJustifiesMeansPassive4" text="{=str_tor_careerchoice_description_EndsJustifiesMeansPassive4}+20% 'Armour Penetration' for personal ranged attacks." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive1" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive1}+25 personal Hitpoints." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive2" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive2}'Ranged' troops recieve +15% 'Holy' 'Ranged' damage." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive3" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive3}Companions gain +25 Hitpoints." />
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive4" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive4}Headshot kills provide a temporary increase to reload/swing speed." />
 
   <!-- Necromancer Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.NecromancerRoot" text="{=str_tor_careerchoice_description_NecromancerRoot}Summon a champion that the necromancer take control of. The Champion loses every 2 seconds 5 health points. For every 3 points in spell casting skill the champion gains 1 health point. Charging: applying spell- damage or healing. Alternatively, Let undead units inflict damage." />
-  <string id="tor_careerchoice_description.LiberNecrisKeystone" text="{=str_tor_careerchoice_description_LiberNecrisKeystone}Your Harbinger gains a two handed weapon. Ability scales with Roguery" />
-  <string id="tor_careerchoice_description.DeArcanisKadonKeystone" text="{=str_tor_careerchoice_description_DeArcanisKadonKeystone}Pressing Ability key allows to switch between characters; Harbinger acts independent." />
-  <string id="tor_careerchoice_description.CodexMortificaKeystone" text="{=str_tor_careerchoice_description_CodexMortificaKeystone}During Champion control gain 90% damage resistance for caster. Ability scales with Medicine." />
-  <string id="tor_careerchoice_description.LiberMortisKeystone" text="{=str_tor_careerchoice_description_LiberMortisKeystone}Your champion gains 25% extra melee damage. Ability starts charged" />
-  <string id="tor_careerchoice_description.BookofWsoranKeystone" text="{=str_tor_careerchoice_description_BookofWsoranKeystone}Your Champion gains 25% Wardsave and can't be staggered." />
-  <string id="tor_careerchoice_description.GrimoireNecrisKeystone" text="{=str_tor_careerchoice_description_GrimoireNecrisKeystone}Harbinger kills gain 2HP for caster and the Champion. Harbinger gains a plate armor" />
-  <string id="tor_careerchoice_description.BooksOfNagashKeystone" text="{=str_tor_careerchoice_description_BooksOfNagashKeystone}Regenerate per kill of your champion 1 winds of magic. Adds 20% magical damage to champion" />
-  <string id="tor_careerchoice_description.LiberNecrisPassive1" text="{=str_tor_careerchoice_description_LiberNecrisPassive1}Undead troops party weight is reduced by 20%." />
-  <string id="tor_careerchoice_description.LiberNecrisPassive2" text="{=str_tor_careerchoice_description_LiberNecrisPassive2}Harbinger kills increase rougery" />
-  <string id="tor_careerchoice_description.LiberNecrisPassive3" text="{=str_tor_careerchoice_description_LiberNecrisPassive3}Increases your health by 10." />
-  <string id="tor_careerchoice_description.LiberNecrisPassive4" text="{=str_tor_careerchoice_description_LiberNecrisPassive4}Increases magic spell damage by 10%." />
-  <string id="tor_careerchoice_description.DeArcanisKadonPassive1" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive1}10% extra melee damage for undead troops." />
-  <string id="tor_careerchoice_description.DeArcanisKadonPassive2" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive2}Undead troops party weight is reduced by 20%." />
-  <string id="tor_careerchoice_description.DeArcanisKadonPassive3" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive3}15% cost reduction for spells." />
-  <string id="tor_careerchoice_description.DeArcanisKadonPassive4" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive4}Increases maximum winds of magic capacities by 5." />
-  <string id="tor_careerchoice_description.CodexMortificaPassive1" text="{=str_tor_careerchoice_description_CodexMortificaPassive1}Undead troops party weight is reduced by 20%." />
-  <string id="tor_careerchoice_description.CodexMortificaPassive2" text="{=str_tor_careerchoice_description_CodexMortificaPassive2}Increases maximum winds of magic capacities by 5." />
-  <string id="tor_careerchoice_description.CodexMortificaPassive3" text="{=str_tor_careerchoice_description_CodexMortificaPassive3}Wounded troops in your party heal faster." />
-  <string id="tor_careerchoice_description.CodexMortificaPassive4" text="{=str_tor_careerchoice_description_CodexMortificaPassive4}Tier 4 Undead troops can get wounded with a 20% lower chance." />
-  <string id="tor_careerchoice_description.LiberMortisPassive1" text="{=str_tor_careerchoice_description_LiberMortisPassive1}Increases maximum winds of magic capacities by 10." />
-  <string id="tor_careerchoice_description.LiberMortisPassive2" text="{=str_tor_careerchoice_description_LiberMortisPassive2}Attacks of undead troops can penetrate 15% armor." />
-  <string id="tor_careerchoice_description.LiberMortisPassive3" text="{=str_tor_careerchoice_description_LiberMortisPassive3}Undead troops gain 10% extra physical melee damage." />
-  <string id="tor_careerchoice_description.LiberMortisPassive4" text="{=str_tor_careerchoice_description_LiberMortisPassive4}20% Spell cooldown reduction." />
-  <string id="tor_careerchoice_description.BookofWsoranPassive1" text="{=str_tor_careerchoice_description_BookofWsoranPassive1}Increases Party size by 50." />
-  <string id="tor_careerchoice_description.BookofWsoranPassive2" text="{=str_tor_careerchoice_description_BookofWsoranPassive2}Increase hex durations by 50%." />
-  <string id="tor_careerchoice_description.BookofWsoranPassive3" text="{=str_tor_careerchoice_description_BookofWsoranPassive3}Undead troops gain 25% Ward save." />
-  <string id="tor_careerchoice_description.BookofWsoranPassive4" text="{=str_tor_careerchoice_description_BookofWsoranPassive4}Gain 0.5 Dark Energy for every Grave guard troop." />
-  <string id="tor_careerchoice_description.GrimoireNecrisPassive1" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive1}Undead troops gain 10% extra magical melee damage." />
-  <string id="tor_careerchoice_description.GrimoireNecrisPassive2" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive2}Dark Energy Upkeep costs are reduced by 25%" />
-  <string id="tor_careerchoice_description.GrimoireNecrisPassive3" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive3}Buffs and healing duration is increased by 50%." />
-  <string id="tor_careerchoice_description.GrimoireNecrisPassive4" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive4}For every enchantment on equipment you summon 1 unit more." />
-  <string id="tor_careerchoice_description.BooksOfNagashPassive1" text="{=str_tor_careerchoice_description_BooksOfNagashPassive1}Gain 15 Dark Energy daily." />
-  <string id="tor_careerchoice_description.BooksOfNagashPassive2" text="{=str_tor_careerchoice_description_BooksOfNagashPassive2}Increases Party size by 50." />
-  <string id="tor_careerchoice_description.BooksOfNagashPassive3" text="{=str_tor_careerchoice_description_BooksOfNagashPassive3}Increases maximum winds of magic capacities by 25." />
-  <string id="tor_careerchoice_description.BooksOfNagashPassive4" text="{=str_tor_careerchoice_description_BooksOfNagashPassive4}Dark Energy cost for undead troop upgrades is reduced by 50%." />
+  <string id="tor_careerchoice_description.NecromancerRoot" text="{=str_tor_careerchoice_description_NecromancerRoot}Let the puppets dance! Summon an ancient Harbinger to slay your foes! Every 2s, the Harbinger loses -5 Hitpoints. For every 3 levels in Spellcraft, the Harbinger gains 1 Hitpoint. (Ability charges by dealing 'Spell' damage or healing or, by 'Skeleton' troop damage.)" />
+  <string id="tor_careerchoice_description.LiberNecrisKeystone" text="{=str_tor_careerchoice_description_LiberNecrisKeystone}Harbinger also scales with Roguery and gains a Two-Handed weapon." />
+  <string id="tor_careerchoice_description.DeArcanisKadonKeystone" text="{=str_tor_careerchoice_description_DeArcanisKadonKeystone}Harbinger can now be 'Possessed'. (Ability key allows swapping between caster and Harbinger)." />
+  <string id="tor_careerchoice_description.CodexMortificaKeystone" text="{=str_tor_careerchoice_description_CodexMortificaKeystone}Harbinger also scales with Medicine. Caster gains +90% 'Ward Save' when switching control." />
+  <string id="tor_careerchoice_description.LiberMortisKeystone" text="{=str_tor_careerchoice_description_LiberMortisKeystone}Harbinger can be summoned on battle start and gains +25% 'Physical' melee damage." />
+  <string id="tor_careerchoice_description.BookofWsoranKeystone" text="{=str_tor_careerchoice_description_BookofWsoranKeystone}Harbinger gains +25% 'Ward Save' and can no longer be staggered." />
+  <string id="tor_careerchoice_description.GrimoireNecrisKeystone" text="{=str_tor_careerchoice_description_GrimoireNecrisKeystone}Harbinger kills restore 2 Hitpoints to you and Harbinger. Harbinger gains a set of ancient armour." />
+  <string id="tor_careerchoice_description.BooksOfNagashKeystone" text="{=str_tor_careerchoice_description_BooksOfNagashKeystone}+20% 'Magic' melee damage for Harbinger, every kill it makes restores 1 of your 'Winds of Magic'." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive1" text="{=str_tor_careerchoice_description_LiberNecrisPassive1}-20% party weight of 'Lesser Undead' troops." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive2" text="{=str_tor_careerchoice_description_LiberNecrisPassive2}Harbinger kills grant Rougery experience." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive3" text="{=str_tor_careerchoice_description_LiberNecrisPassive3}+10 personal Hitpoints." />
+  <string id="tor_careerchoice_description.LiberNecrisPassive4" text="{=str_tor_careerchoice_description_LiberNecrisPassive4}+10% personal 'Magic' spell damage." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive1" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive1}+10% 'Physical' melee damage for 'Lesser Undead' troops." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive2" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive2}-20% party weight of 'Lesser Undead' troops." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive3" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive3}-15% personal 'Winds of Magic' cost for spells." />
+  <string id="tor_careerchoice_description.DeArcanisKadonPassive4" text="{=str_tor_careerchoice_description_DeArcanisKadonPassive4}+5 personal 'Winds of Magic' capacity." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive1" text="{=str_tor_careerchoice_description_CodexMortificaPassive1}-20% party weight of 'Lesser Undead' troops." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive2" text="{=str_tor_careerchoice_description_CodexMortificaPassive2}+5 personal 'Winds of Magic' capacity." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive3" text="{=str_tor_careerchoice_description_CodexMortificaPassive3}Wounded troops heal faster." />
+  <string id="tor_careerchoice_description.CodexMortificaPassive4" text="{=str_tor_careerchoice_description_CodexMortificaPassive4}+20% chance tier 4+ 'Lesser Undead' troops will be wounded instead of killed." />
+  <string id="tor_careerchoice_description.LiberMortisPassive1" text="{=str_tor_careerchoice_description_LiberMortisPassive1}+10 personal 'Winds of Magic' capacity." />
+  <string id="tor_careerchoice_description.LiberMortisPassive2" text="{=str_tor_careerchoice_description_LiberMortisPassive2}+15% 'Armour Penetration' for 'Lesser Undead' troops." />
+  <string id="tor_careerchoice_description.LiberMortisPassive3" text="{=str_tor_careerchoice_description_LiberMortisPassive3}+10% 'Physical' melee damage for 'Lesser Undead' troops." />
+  <string id="tor_careerchoice_description.LiberMortisPassive4" text="{=str_tor_careerchoice_description_LiberMortisPassive4}+20% personal spell cooldown reduction." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive1" text="{=str_tor_careerchoice_description_BookofWsoranPassive1}+50 increased party size." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive2" text="{=str_tor_careerchoice_description_BookofWsoranPassive2}+50% duration of 'Hex' spells." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive3" text="{=str_tor_careerchoice_description_BookofWsoranPassive3}+25% 'Ward Save' for 'Lesser Undead' troops." />
+  <string id="tor_careerchoice_description.BookofWsoranPassive4" text="{=str_tor_careerchoice_description_BookofWsoranPassive4}+0.5 daily 'Dark Energy' per Grave Guard troop." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive1" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive1}+10% 'Magic' melee damage for 'Lesser Undead' troops." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive2" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive2}-25% 'Dark Energy' upkeep cost for troops." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive3" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive3}+50% duration for 'Augment' and 'Healing' spells." />
+  <string id="tor_careerchoice_description.GrimoireNecrisPassive4" text="{=str_tor_careerchoice_description_GrimoireNecrisPassive4}'Summon' spells raise 1 more troop per cast for every 'Enchantment' on worn equipment." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive1" text="{=str_tor_careerchoice_description_BooksOfNagashPassive1}+15 'Dark Energy' daily." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive2" text="{=str_tor_careerchoice_description_BooksOfNagashPassive2}+50 increased party size." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive3" text="{=str_tor_careerchoice_description_BooksOfNagashPassive3}+25 personal 'Winds of Magic' capacity." />
+  <string id="tor_careerchoice_description.BooksOfNagashPassive4" text="{=str_tor_careerchoice_description_BooksOfNagashPassive4}-50% 'Dark Energy' cost for upgrading troops." />
 
   <!-- VampireCount Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.VampireCountRoot" text="{=str_tor_careerchoice_description_VampireCountRoot}The player transforms into fog, which is impossible to catch and can fly in every direction. The ability lasts 5 seconds and the duration increases by 0.03 seconds for each point in Athletics. Mist Form can be deactivated at will by pressing attack." />
-  <string id="tor_careerchoice_description.NewBloodKeystone" text="{=str_tor_careerchoice_description_NewBloodKeystone}Ability needs 20% less damage to get charged." />
-  <string id="tor_careerchoice_description.NewBloodPassive1" text="{=str_tor_careerchoice_description_NewBloodPassive1}Increases Hitpoints by 15." />
-  <string id="tor_careerchoice_description.NewBloodPassive2" text="{=str_tor_careerchoice_description_NewBloodPassive2}Increases Party size by 15." />
-  <string id="tor_careerchoice_description.NewBloodPassive3" text="{=str_tor_careerchoice_description_NewBloodPassive3}Increases max Winds of Magic by 10." />
-  <string id="tor_careerchoice_description.NewBloodPassive4" text="{=str_tor_careerchoice_description_NewBloodPassive4}Immune to sunlight speed malus." />
-  <string id="tor_careerchoice_description.FeralKeystone" text="{=str_tor_careerchoice_description_FeralKeystone}Mistform speed is increased by 20%." />
-  <string id="tor_careerchoice_description.FeralPassive1" text="{=str_tor_careerchoice_description_FeralPassive1}10% extra melee damage." />
-  <string id="tor_careerchoice_description.FeralPassive2" text="{=str_tor_careerchoice_description_FeralPassive2}Player healing rate increased by 2" />
-  <string id="tor_careerchoice_description.FeralPassive3" text="{=str_tor_careerchoice_description_FeralPassive3}Party movement speed is increased by 1." />
-  <string id="tor_careerchoice_description.FeralPassive4" text="{=str_tor_careerchoice_description_FeralPassive4}Increases Hitpoints by 15." />
-  <string id="tor_careerchoice_description.ArkayneKeystone" text="{=str_tor_careerchoice_description_ArkayneKeystone}Mistform scales with Spellcraft. Spell damage can charge ability with 90% reduced power." />
-  <string id="tor_careerchoice_description.ArkaynePassive1" text="{=str_tor_careerchoice_description_ArkaynePassive1}Armor weight doesn't affect winds recharge rate" />
-  <string id="tor_careerchoice_description.ArkaynePassive2" text="{=str_tor_careerchoice_description_ArkaynePassive2}Increases Magical spell damage by 3%." />
-  <string id="tor_careerchoice_description.ArkaynePassive3" text="{=str_tor_careerchoice_description_ArkaynePassive3}5% extra Magical melee damage." />
-  <string id="tor_careerchoice_description.ArkaynePassive4" text="{=str_tor_careerchoice_description_ArkaynePassive4}5% cost reduction for spells." />
-  <string id="tor_careerchoice_description.CourtleyKeystone" text="{=str_tor_careerchoice_description_CourtleyKeystone}Mist Form is recharged on battle start and now also scales with Roguery." />
-  <string id="tor_careerchoice_description.CourtleyPassive1" text="{=str_tor_careerchoice_description_CourtleyPassive1}Increases positive Relation gains by 20%." />
-  <string id="tor_careerchoice_description.CourtleyPassive2" text="{=str_tor_careerchoice_description_CourtleyPassive2}Increases Hitpoints by 15." />
-  <string id="tor_careerchoice_description.CourtleyPassive3" text="{=str_tor_careerchoice_description_CourtleyPassive3}3% extra Magical spell and ranged damage." />
-  <string id="tor_careerchoice_description.CourtleyPassive4" text="{=str_tor_careerchoice_description_CourtleyPassive4}Killing blows in the head replenish 2 Winds of Magic." />
-  <string id="tor_careerchoice_description.LordlyKeystone" text="{=str_tor_careerchoice_description_LordlyKeystone}Mist Form heals 1 HP per second. The ability duration scales with the wielded weapon skill." />
-  <string id="tor_careerchoice_description.LordlyPassive1" text="{=str_tor_careerchoice_description_LordlyPassive1}Increases Companion Limit by 5." />
-  <string id="tor_careerchoice_description.LordlyPassive2" text="{=str_tor_careerchoice_description_LordlyPassive2}Party size is increased by 20." />
-  <string id="tor_careerchoice_description.LordlyPassive3" text="{=str_tor_careerchoice_description_LordlyPassive3}All Vampire troops wages are reduced by 15%." />
-  <string id="tor_careerchoice_description.LordlyPassive4" text="{=str_tor_careerchoice_description_LordlyPassive4}Every 2 Undead troops gain 1 additional party slot." />
-  <string id="tor_careerchoice_description.MartialleKeystone" text="{=str_tor_careerchoice_description_MartialleKeystone}+20% swing speed. Buffs are active after Mist Form (requires extra 30% damage dealt)." />
-  <string id="tor_careerchoice_description.MartiallePassive1" text="{=str_tor_careerchoice_description_MartiallePassive1}5% extra melee damage." />
-  <string id="tor_careerchoice_description.MartiallePassive2" text="{=str_tor_careerchoice_description_MartiallePassive2}Increases Hitpoints by 35." />
-  <string id="tor_careerchoice_description.MartiallePassive3" text="{=str_tor_careerchoice_description_MartiallePassive3}All troops gain 10% extra damage against human enemies." />
-  <string id="tor_careerchoice_description.MartiallePassive4" text="{=str_tor_careerchoice_description_MartiallePassive4}All attacks deal bonus damage against shields." />
-  <string id="tor_careerchoice_description.MasterOfDeadKeystone" text="{=str_tor_careerchoice_description_MasterOfDeadKeystone}All buffs are propagated while remaining in Mist Form (requires extra 30% damage dealt)." />
-  <string id="tor_careerchoice_description.MasterOfDeadPassive1" text="{=str_tor_careerchoice_description_MasterOfDeadPassive1}Gain 5 Dark Energy per day." />
-  <string id="tor_careerchoice_description.MasterOfDeadPassive2" text="{=str_tor_careerchoice_description_MasterOfDeadPassive2}Undead troops gain 10% Ward save." />
-  <string id="tor_careerchoice_description.MasterOfDeadPassive3" text="{=str_tor_careerchoice_description_MasterOfDeadPassive3}20% higher chance for raised dead after battle." />
-  <string id="tor_careerchoice_description.MasterOfDeadPassive4" text="{=str_tor_careerchoice_description_MasterOfDeadPassive4}Tier 4 Undead troops can get wounded with a 20% lower chance." />
+  <string id="tor_careerchoice_description.VampireCountRoot" text="{=str_tor_careerchoice_description_VampireCountRoot}The Empire shall soon belong to the Midnight Aristocracy! Disappear and take flight into a swarm of bats and fog for up to 5s. For every level in Athletics, Mist Form's duration increases by +0.03s. (Ability is charged by dealing any form of damage.)" />
+  <string id="tor_careerchoice_description.NewBloodKeystone" text="{=str_tor_careerchoice_description_NewBloodKeystone}Mist Form charges 20% faster." />
+  <string id="tor_careerchoice_description.NewBloodPassive1" text="{=str_tor_careerchoice_description_NewBloodPassive1}+15 personal Hitpoints." />
+  <string id="tor_careerchoice_description.NewBloodPassive2" text="{=str_tor_careerchoice_description_NewBloodPassive2}+15 increased party size." />
+  <string id="tor_careerchoice_description.NewBloodPassive3" text="{=str_tor_careerchoice_description_NewBloodPassive3}+10 personal 'Winds of Magic' capacity." />
+  <string id="tor_careerchoice_description.NewBloodPassive4" text="{=str_tor_careerchoice_description_NewBloodPassive4}Sunlight no longer weakens you." />
+  <string id="tor_careerchoice_description.FeralKeystone" text="{=str_tor_careerchoice_description_FeralKeystone}+20% speed when in Mist Form." />
+  <string id="tor_careerchoice_description.FeralPassive1" text="{=str_tor_careerchoice_description_FeralPassive1}+10% personal 'Physical' melee damage." />
+  <string id="tor_careerchoice_description.FeralPassive2" text="{=str_tor_careerchoice_description_FeralPassive2}Personal healing rate is increased by +2." />
+  <string id="tor_careerchoice_description.FeralPassive3" text="{=str_tor_careerchoice_description_FeralPassive3}+1 party move speed on the campaign map." />
+  <string id="tor_careerchoice_description.FeralPassive4" text="{=str_tor_careerchoice_description_FeralPassive4}+15 personal Hitpoints." />
+  <string id="tor_careerchoice_description.ArkayneKeystone" text="{=str_tor_careerchoice_description_ArkayneKeystone}Mist Form also scales with Spellcraft, and can now be charged by dealing 'Spell' damage." />
+  <string id="tor_careerchoice_description.ArkaynePassive1" text="{=str_tor_careerchoice_description_ArkaynePassive1}Personal armour weight no longer impedes your 'Winds of Magic' recharge rate." />
+  <string id="tor_careerchoice_description.ArkaynePassive2" text="{=str_tor_careerchoice_description_ArkaynePassive2}+3% personal 'Magic' damage." />
+  <string id="tor_careerchoice_description.ArkaynePassive3" text="{=str_tor_careerchoice_description_ArkaynePassive3}+5% personal 'Magic' melee damage." />
+  <string id="tor_careerchoice_description.ArkaynePassive4" text="{=str_tor_careerchoice_description_ArkaynePassive4}-5% personal 'Winds of Magic' cost for spells." />
+  <string id="tor_careerchoice_description.CourtleyKeystone" text="{=str_tor_careerchoice_description_CourtleyKeystone}Mist Form also scales with Roguery, and can be cast on battle start." />
+  <string id="tor_careerchoice_description.CourtleyPassive1" text="{=str_tor_careerchoice_description_CourtleyPassive1}+20% relation gains with 'Notables'." />
+  <string id="tor_careerchoice_description.CourtleyPassive2" text="{=str_tor_careerchoice_description_CourtleyPassive2}+15 personal Hitpoints." />
+  <string id="tor_careerchoice_description.CourtleyPassive3" text="{=str_tor_careerchoice_description_CourtleyPassive3}+3% personal 'Magic' and 'Ranged' damage." />
+  <string id="tor_careerchoice_description.CourtleyPassive4" text="{=str_tor_careerchoice_description_CourtleyPassive4}Slaying foes with a headstrike (melee) restores +2 personal 'Winds of Magic'." />
+  <string id="tor_careerchoice_description.LordlyKeystone" text="{=str_tor_careerchoice_description_LordlyKeystone}Mist Form also scales with currently equipped weapon skill, and restores 1 Hitpoint per second." />
+  <string id="tor_careerchoice_description.LordlyPassive1" text="{=str_tor_careerchoice_description_LordlyPassive1}+5 Companion limit." />
+  <string id="tor_careerchoice_description.LordlyPassive2" text="{=str_tor_careerchoice_description_LordlyPassive2}+20 increased party size." />
+  <string id="tor_careerchoice_description.LordlyPassive3" text="{=str_tor_careerchoice_description_LordlyPassive3}-15% 'Dark Energy' upkeep for 'Vampire' troops." />
+  <string id="tor_careerchoice_description.LordlyPassive4" text="{=str_tor_careerchoice_description_LordlyPassive4}For every 2 'Lesser Undead' increase party size by 1." />
+  <string id="tor_careerchoice_description.MartialleKeystone" text="{=str_tor_careerchoice_description_MartialleKeystone}+30% longer charge time for Mist Form, its buffs remain briefly after ability, and +20% swing speed." />
+  <string id="tor_careerchoice_description.MartiallePassive1" text="{=str_tor_careerchoice_description_MartiallePassive1}+5% personal 'Physical' melee damage." />
+  <string id="tor_careerchoice_description.MartiallePassive2" text="{=str_tor_careerchoice_description_MartiallePassive2}+35 personal Hitpoints." />
+  <string id="tor_careerchoice_description.MartiallePassive3" text="{=str_tor_careerchoice_description_MartiallePassive3}+10% 'Physical' melee damage for all troops when facing forces of 'Humans'." />
+  <string id="tor_careerchoice_description.MartiallePassive4" text="{=str_tor_careerchoice_description_MartiallePassive4}Personal damage against shields is increased." />
+  <string id="tor_careerchoice_description.MasterOfDeadKeystone" text="{=str_tor_careerchoice_description_MasterOfDeadKeystone}+30% longer charge time for Mist Form, but now spreads its benefits to nearby troops." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive1" text="{=str_tor_careerchoice_description_MasterOfDeadPassive1}+5 'Dark Energy' daily." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive2" text="{=str_tor_careerchoice_description_MasterOfDeadPassive2}+10% 'Ward Save' for 'Lesser Undead'." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive3" text="{=str_tor_careerchoice_description_MasterOfDeadPassive3}+20% higher chance to 'Raise Dead' after a battle." />
+  <string id="tor_careerchoice_description.MasterOfDeadPassive4" text="{=str_tor_careerchoice_description_MasterOfDeadPassive4}+20% chance tier 4+ 'Lesser Undead' troops will be wounded instead of killed." />
 
   <!-- BloodKnight Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.BloodKnightRoot" text="{=str_tor_careerchoice_description_BloodKnightRoot}The Blood Knight is channeling focus and rage towards the enemies. Damage increased by 45% and physical resistance by 10% for the next 6 seconds. Both bonuses increase with the skill of the equipped weapon by 0.05% per point. Requires 5 kills to recharge, +1 kill per a final perk picked up to max 10." />
-  <string id="tor_careerchoice_description.PeerlessWarriorKeystone" text="{=str_tor_careerchoice_description_PeerlessWarriorKeystone}Career Ability scales with Athletics. Speed increased by 20% when the ability is active." />
-  <string id="tor_careerchoice_description.PeerlessWarriorPassive1" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.PeerlessWarriorPassive2" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive2}Extra melee damage (10%)." />
-  <string id="tor_careerchoice_description.PeerlessWarriorPassive3" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive3}Every troop of Tier 4 and above gains an extra 20% exp for kills." />
-  <string id="tor_careerchoice_description.PeerlessWarriorPassive4" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive4}You gain 100 exp in one of the melee combat skills at random every day." />
-  <string id="tor_careerchoice_description.NightRiderKeystone" text="{=str_tor_careerchoice_description_NightRiderKeystone}Companion Kills will count for career charge." />
-  <string id="tor_careerchoice_description.NightRiderPassive1" text="{=str_tor_careerchoice_description_NightRiderPassive1}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.NightRiderPassive2" text="{=str_tor_careerchoice_description_NightRiderPassive2}All undead and vampire troops receive 20 points to their melee skills." />
-  <string id="tor_careerchoice_description.NightRiderPassive3" text="{=str_tor_careerchoice_description_NightRiderPassive3}Raiding is at Night 50% faster." />
-  <string id="tor_careerchoice_description.NightRiderPassive4" text="{=str_tor_careerchoice_description_NightRiderPassive4}Attacks deal bonus damage against shields." />
-  <string id="tor_careerchoice_description.BladeMasterKeystone" text="{=str_tor_careerchoice_description_BladeMasterKeystone}All melee weapon skills, wielded or not, count towards the career ability effects." />
-  <string id="tor_careerchoice_description.BladeMasterPassive1" text="{=str_tor_careerchoice_description_BladeMasterPassive1}5% extra melee damage." />
-  <string id="tor_careerchoice_description.BladeMasterPassive2" text="{=str_tor_careerchoice_description_BladeMasterPassive2}Player healing rate increased by 3" />
-  <string id="tor_careerchoice_description.BladeMasterPassive3" text="{=str_tor_careerchoice_description_BladeMasterPassive3}Hits below 15 damage do not stagger the player." />
-  <string id="tor_careerchoice_description.BladeMasterPassive4" text="{=str_tor_careerchoice_description_BladeMasterPassive4}All troops, the player included, gain exp when raiding villages." />
-  <string id="tor_careerchoice_description.DoomRiderKeystone" text="{=str_tor_careerchoice_description_DoomRiderKeystone}The Career Ability scales with Tactics. Nearby troops receive the Red Fury buff." />
-  <string id="tor_careerchoice_description.DoomRiderPassive1" text="{=str_tor_careerchoice_description_DoomRiderPassive1}15% extra melee damage." />
-  <string id="tor_careerchoice_description.DoomRiderPassive2" text="{=str_tor_careerchoice_description_DoomRiderPassive2}Reduce the Dark Energy upkeep for vampire troops by 10%." />
-  <string id="tor_careerchoice_description.DoomRiderPassive3" text="{=str_tor_careerchoice_description_DoomRiderPassive3}Party speed increases by 2." />
-  <string id="tor_careerchoice_description.DoomRiderPassive4" text="{=str_tor_careerchoice_description_DoomRiderPassive4}Recruit defeated units as Blood Knights with a chance of 5% (10% for Tier >4)." />
-  <string id="tor_careerchoice_description.ControlledHungerKeystone" text="{=str_tor_careerchoice_description_ControlledHungerKeystone}The duration of Red Fury is doubled." />
-  <string id="tor_careerchoice_description.ControlledHungerPassive1" text="{=str_tor_careerchoice_description_ControlledHungerPassive1}Immune to sunlight malus." />
-  <string id="tor_careerchoice_description.ControlledHungerPassive2" text="{=str_tor_careerchoice_description_ControlledHungerPassive2}Increases Hitpoints by 25." />
-  <string id="tor_careerchoice_description.ControlledHungerPassive3" text="{=str_tor_careerchoice_description_ControlledHungerPassive3}Mount health is increased by 35%." />
-  <string id="tor_careerchoice_description.ControlledHungerPassive4" text="{=str_tor_careerchoice_description_ControlledHungerPassive4}For every 200 damage hit the player gets healed by 1 Hit point(Maximum 5)." />
-  <string id="tor_careerchoice_description.AvatarOfDeathKeystone" text="{=str_tor_careerchoice_description_AvatarOfDeathKeystone}Red Fury's resistance is now Ward save. The ability grants a scaling attack speed boost." />
-  <string id="tor_careerchoice_description.AvatarOfDeathPassive1" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive1}Gain 15% physical resistance to melee and ranged attacks." />
-  <string id="tor_careerchoice_description.AvatarOfDeathPassive2" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive2}Reduce the Dark Energy upkeep for vampire troops by 20%." />
-  <string id="tor_careerchoice_description.AvatarOfDeathPassive3" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive3}The player gains 20% Magic resistance against spells." />
-  <string id="tor_careerchoice_description.AvatarOfDeathPassive4" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive4}15% Ward save for all vampire units." />
-  <string id="tor_careerchoice_description.DreadKnightKeystone" text="{=str_tor_careerchoice_description_DreadKnightKeystone}Red Fury scales with Riding and consecutive kills during ability increase duration by 2 sec each." />
-  <string id="tor_careerchoice_description.DreadKnightPassive1" text="{=str_tor_careerchoice_description_DreadKnightPassive1}Increases Hitpoints by 35." />
-  <string id="tor_careerchoice_description.DreadKnightPassive2" text="{=str_tor_careerchoice_description_DreadKnightPassive2}Horse charge damage is increased by 50%." />
-  <string id="tor_careerchoice_description.DreadKnightPassive3" text="{=str_tor_careerchoice_description_DreadKnightPassive3}Cavalry units get a 20% damage increase in damage." />
-  <string id="tor_careerchoice_description.DreadKnightPassive4" text="{=str_tor_careerchoice_description_DreadKnightPassive4}Extra 20% armor penetration of melee attacks." />
+  <string id="tor_careerchoice_description.BloodKnightRoot" text="{=str_tor_careerchoice_description_BloodKnightRoot}The Ordo Draconis shall rise once again! Channel your urges into a Red Fury towards the foe, and slay them in The Wanderer's name! For the next 6s, gain +45% 'Physical' melee damage and +20% 'Physical Resistance'. Red Fury's buffs increase by 0.05% per skill level of the currently equipped melee weapon. (Ability charges by killing enemies.)" />
+  <string id="tor_careerchoice_description.PeerlessWarriorKeystone" text="{=str_tor_careerchoice_description_PeerlessWarriorKeystone}Red Fury also scales with Athletics, and provides a +20% personal movement speed increase." />
+  <string id="tor_careerchoice_description.PeerlessWarriorPassive1" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive1}+25 personal Hitpoints." />
+  <string id="tor_careerchoice_description.PeerlessWarriorPassive2" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive2}+10% personal 'Physical' melee damage." />
+  <string id="tor_careerchoice_description.PeerlessWarriorPassive3" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive3}+20% experience gains by tier 4+ troops." />
+  <string id="tor_careerchoice_description.PeerlessWarriorPassive4" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive4}Gain 100 experience in a random melee weapon skill daily." />
+  <string id="tor_careerchoice_description.NightRiderKeystone" text="{=str_tor_careerchoice_description_NightRiderKeystone}Red Fury can now be charged by your Companion's kills." />
+  <string id="tor_careerchoice_description.NightRiderPassive1" text="{=str_tor_careerchoice_description_NightRiderPassive1}+25 personal Hitpoints." />
+  <string id="tor_careerchoice_description.NightRiderPassive2" text="{=str_tor_careerchoice_description_NightRiderPassive2}+20 to all melee skills of 'Lesser Undead', and 'Vampire' troops." />
+  <string id="tor_careerchoice_description.NightRiderPassive3" text="{=str_tor_careerchoice_description_NightRiderPassive3}+50% faster raiding speed during the night." />
+  <string id="tor_careerchoice_description.NightRiderPassive4" text="{=str_tor_careerchoice_description_NightRiderPassive4}Personal damage against shields is increased." />
+  <string id="tor_careerchoice_description.BladeMasterKeystone" text="{=str_tor_careerchoice_description_BladeMasterKeystone}Red Fury now scales with every melee weapon skill regardless of equipped weapons." />
+  <string id="tor_careerchoice_description.BladeMasterPassive1" text="{=str_tor_careerchoice_description_BladeMasterPassive1}+5% personal 'Physical' melee damage." />
+  <string id="tor_careerchoice_description.BladeMasterPassive2" text="{=str_tor_careerchoice_description_BladeMasterPassive2}Personal healing rate increased by +3." />
+  <string id="tor_careerchoice_description.BladeMasterPassive3" text="{=str_tor_careerchoice_description_BladeMasterPassive3}Hits below 15 damage no longer stagger you." />
+  <string id="tor_careerchoice_description.BladeMasterPassive4" text="{=str_tor_careerchoice_description_BladeMasterPassive4}Raiding now provides personal weapon experience and troop experience." />
+  <string id="tor_careerchoice_description.DoomRiderKeystone" text="{=str_tor_careerchoice_description_DoomRiderKeystone}Red Fury also scales with Tactics, and now applies to nearby troops." />
+  <string id="tor_careerchoice_description.DoomRiderPassive1" text="{=str_tor_careerchoice_description_DoomRiderPassive1}+15% personal 'Physical' melee damage." />
+  <string id="tor_careerchoice_description.DoomRiderPassive2" text="{=str_tor_careerchoice_description_DoomRiderPassive2}-10% 'Dark Energy' upkeep for 'Vampire' troops." />
+  <string id="tor_careerchoice_description.DoomRiderPassive3" text="{=str_tor_careerchoice_description_DoomRiderPassive3}+2 party move speed on campaign map." />
+  <string id="tor_careerchoice_description.DoomRiderPassive4" text="{=str_tor_careerchoice_description_DoomRiderPassive4}+5% chance defeated 'Humans' become 'Vampire' troops, 10% for tier 4+ troops." />
+  <string id="tor_careerchoice_description.ControlledHungerKeystone" text="{=str_tor_careerchoice_description_ControlledHungerKeystone}Red Fury duration is doubled." />
+  <string id="tor_careerchoice_description.ControlledHungerPassive1" text="{=str_tor_careerchoice_description_ControlledHungerPassive1}Sunlight no longer weakens you." />
+  <string id="tor_careerchoice_description.ControlledHungerPassive2" text="{=str_tor_careerchoice_description_ControlledHungerPassive2}+25 personal Hitpoints." />
+  <string id="tor_careerchoice_description.ControlledHungerPassive3" text="{=str_tor_careerchoice_description_ControlledHungerPassive3}+35% personal mount Hitpoints." />
+  <string id="tor_careerchoice_description.ControlledHungerPassive4" text="{=str_tor_careerchoice_description_ControlledHungerPassive4}Every 200 personal damage restore 1 Hitpoint up to a max of 5 per hit." />
+  <string id="tor_careerchoice_description.AvatarOfDeathKeystone" text="{=str_tor_careerchoice_description_AvatarOfDeathKeystone}Red Fury's 'Physical Resistance' turns into 'Ward Save', and provides weapon swing speed." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive1" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive1}+15% 'Physical Resistance'." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive2" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive2}-20% 'Dark Energy' upkeep costs for 'Vampire' troops." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive3" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive3}+20% personal 'Spell Resistance'." />
+  <string id="tor_careerchoice_description.AvatarOfDeathPassive4" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive4}+15% 'Ward Save' for 'Vampire' troops." />
+  <string id="tor_careerchoice_description.DreadKnightKeystone" text="{=str_tor_careerchoice_description_DreadKnightKeystone}Red Fury also scales with Riding. Kills made during Red Fury increase duration by +2s." />
+  <string id="tor_careerchoice_description.DreadKnightPassive1" text="{=str_tor_careerchoice_description_DreadKnightPassive1}+35 personal Hitpoints." />
+  <string id="tor_careerchoice_description.DreadKnightPassive2" text="{=str_tor_careerchoice_description_DreadKnightPassive2}+50% charge damage bonus for your mount." />
+  <string id="tor_careerchoice_description.DreadKnightPassive3" text="{=str_tor_careerchoice_description_DreadKnightPassive3}+20% 'Physical' melee damage for 'Cavalry' troops." />
+  <string id="tor_careerchoice_description.DreadKnightPassive4" text="{=str_tor_careerchoice_description_DreadKnightPassive4}+20% personal 'Armour Penetration' for melee attacks." />
 
   <!-- Mercenary Career Choice Descriptions -->
   <string id="tor_careerchoice_description.MercenaryRoot" text="{=str_tor_careerchoice_description_MercenaryRoot}The Mercenary prepares the men around him for the next attack. Makes all troops unbreakable for a short amount of time. The duration is prolonged by the leadership skills" />
@@ -3032,7 +3032,7 @@
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive2" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive2}Praying at a shrine of Ulric, fully restores personal Hitpoints. (5-day cooldown.)" />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive3" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive3}Melee attacks deal increased damage to shields." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive4" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive4}+20% ranged 'Physical Resistance' for 'Melee' troops." />
-  <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Axe of Ulric now deals 'Frost' damage, and enemies are slowed for 6 seconds when hit." />
+  <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Axe of Ulric now deals 'Frost' damage, and enemies are slowed for 6s when hit." />
   <string id="tor_careerchoice_description.FrostsBitePassive1" text="{=str_tor_careerchoice_description_FrostsBitePassive1}+10% personal 'Frost' damage." />
   <string id="tor_careerchoice_description.FrostsBitePassive2" text="{=str_tor_careerchoice_description_FrostsBitePassive2}+10% 'Frost' damage for 'Melee' troops." />
   <string id="tor_careerchoice_description.FrostsBitePassive3" text="{=str_tor_careerchoice_description_FrostsBitePassive3}Party is no longer affected by snow penalties." />
@@ -3054,7 +3054,7 @@
   <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills done by you or 'Ulrician' troops cause 25% morale damage to enemies." />
 
   <!-- ImperialMagister Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}Channel the 'Winds of Magic' into a wondrous gale! Every second up to 10, regain 2% of your total 'Winds of Magic' pool. While channeling, you are more vulnerable to damage, and your movements become sluggish. Every second 'Keystone' career talent unlocked provides +1 charge of Arcane Conduit. For every 50 levels in Spellcraft, Arcane Conduit's duration increases by +1 second. (Ability charges by dealing spell damage.)" /> <!-- not sure how the ability is charged -->
+  <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}Channel the 'Winds of Magic' into a wondrous gale! Every second up to 10, regain 2% of your total 'Winds of Magic' pool. While channeling, you are more vulnerable to damage, and your movements become sluggish. Every second 'Keystone' career talent unlocked provides +1 charge of Arcane Conduit. For every 50 levels in Spellcraft, Arcane Conduit's duration increases by +1s. (Ability charges by dealing spell damage.)" /> <!-- not sure how the ability is charged -->
   <string id="tor_careerchoice_description.StudyAndPractiseKeystone" text="{=str_tor_careerchoice_description_StudyAndPractiseKeystone}+1 charge of Arcane Conduit, and +50% 'Physical Resistance' while channeling." />
   <string id="tor_careerchoice_description.StudyAndPractisePassive1" text="{=str_tor_careerchoice_description_StudyAndPractisePassive1}+3 personal max 'Winds of Magic' capacity." />
   <string id="tor_careerchoice_description.StudyAndPractisePassive2" text="{=str_tor_careerchoice_description_StudyAndPractisePassive2}+10% personal 'Ward Save' if armor weight does not exceed 11." />
@@ -3206,41 +3206,33 @@
   <string id="tor_careerchoice_description.SecretOfFellfangPassive4" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive4}Increases fire spell damage by 10%." />
 
   <!-- KnightOldWorld Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.KnightOldWorldRoot" text="{=str_tor_careerchoice_description_KnightOldWorldRoot}Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15 seconds. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)" />
-  <!-- TODO Zedforen: Review - changed to match code implementation -->
-  <string id="tor_careerchoice_description.SecularOrdersKeystone" text="{=str_tor_careerchoice_description_SecularOrdersKeystone}For every 100 points in Onehanded and Two handed and Polearm get one charge more. (max 15)" />
+  <string id="tor_careerchoice_description.KnightOldWorldRoot" text="{=str_tor_careerchoice_description_KnightOldWorldRoot}Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15s. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)" />
+  <string id="tor_careerchoice_description.SecularOrdersKeystone" text="{=str_tor_careerchoice_description_SecularOrdersKeystone}Knightly Strike gains a charge every 100 points in a melee weapon skill up to a max of 15." />
   <string id="tor_careerchoice_description.SecularOrdersPassive1" text="{=str_tor_careerchoice_description_SecularOrdersPassive1}-25% 'Prestige' cost for upgrading 'Knight' troops." />
   <string id="tor_careerchoice_description.SecularOrdersPassive2" text="{=str_tor_careerchoice_description_SecularOrdersPassive2}+20 One/Two-handed skill for all 'Knight' troops." />
   <string id="tor_careerchoice_description.SecularOrdersPassive3" text="{=str_tor_careerchoice_description_SecularOrdersPassive3}-25% 'Gold' cost for upgrading 'Knight' troops." />
   <string id="tor_careerchoice_description.SecularOrdersPassive4" text="{=str_tor_careerchoice_description_SecularOrdersPassive4}Can apply 'Secular Seals' to 'Templar Knights' and 'Templar Seals' to 'Secular Knights'." />
-  <!-- TODO Zedforen: Review - changed to match code implementation (Two-handed scaling was never implemented) -->
-  <string id="tor_careerchoice_description.PathOfConquestKeystone" text="{=str_tor_careerchoice_description_PathOfConquestKeystone}Adds cleaving attacks for ability. Ability starts charged." />
+  <string id="tor_careerchoice_description.PathOfConquestKeystone" text="{=str_tor_careerchoice_description_PathOfConquestKeystone}Knightly Strike now cleaves, and can be used at battle start." />
   <string id="tor_careerchoice_description.PathOfConquestPassive1" text="{=str_tor_careerchoice_description_PathOfConquestPassive1}+5% personal 'Physical' melee damage." />
   <string id="tor_careerchoice_description.PathOfConquestPassive2" text="{=str_tor_careerchoice_description_PathOfConquestPassive2}+1 party move speed on campaign map." />
   <string id="tor_careerchoice_description.PathOfConquestPassive3" text="{=str_tor_careerchoice_description_PathOfConquestPassive3}+40% charge damage bonus for your personal mount." />
   <string id="tor_careerchoice_description.PathOfConquestPassive4" text="{=str_tor_careerchoice_description_PathOfConquestPassive4}+30 Polearm weapon skill for 'Knight' troops." />
-  <!-- TODO Zedforen: Review - changed to match code implementation -->
-  <string id="tor_careerchoice_description.SquiresKeystone" text="{=str_tor_careerchoice_description_SquiresKeystone}10% extra damage during ability. The overall duration is increased by 1 second for every 50 riding skill." />
+  <string id="tor_careerchoice_description.SquiresKeystone" text="{=str_tor_careerchoice_description_SquiresKeystone}Knightly Strike lasts +1s longer per 50 Riding, and grants +10% personal 'Physical' melee damage." />
   <string id="tor_careerchoice_description.SquiresPassive1" text="{=str_tor_careerchoice_description_SquiresPassive1}+15 personal Hitpoints." />
   <string id="tor_careerchoice_description.SquiresPassive2" text="{=str_tor_careerchoice_description_SquiresPassive2}-25% wages for 'Knight' troops." />
   <string id="tor_careerchoice_description.SquiresPassive3" text="{=str_tor_careerchoice_description_SquiresPassive3}Wounded troops heal faster." />
   <string id="tor_careerchoice_description.SquiresPassive4" text="{=str_tor_careerchoice_description_SquiresPassive4}Victories against 'Non-Human' enemies give +100% 'Prestige'." />
-  <string id="tor_careerchoice_description.TemplarOrdersKeystone" text="{=str_tor_careerchoice_description_TemplarOrdersKeystone}Knightly Strike gains +2 charges, a -15 second cooldown, and also scales with Faith." />
+  <string id="tor_careerchoice_description.TemplarOrdersKeystone" text="{=str_tor_careerchoice_description_TemplarOrdersKeystone}Knightly Strike gains +2 charges, -15s cooldown, and scales with Faith." />
   <string id="tor_careerchoice_description.TemplarOrdersPassive1" text="{=str_tor_careerchoice_description_TemplarOrdersPassive1}+15 personal Hitpoints" />
-  <!-- TODO Zedforen: Review - changed to match implementation (only undead/cultists, not every foe) -->
-  <string id="tor_careerchoice_description.TemplarOrdersPassive2" text="{=str_tor_careerchoice_description_TemplarOrdersPassive2}Slaying 'Undead' or 'Cultists' provides Faith experience." />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive2" text="{=str_tor_careerchoice_description_TemplarOrdersPassive2}Gain Faith experience for slaying the forces of 'Undead' or 'Chaos'." />
   <string id="tor_careerchoice_description.TemplarOrdersPassive3" text="{=str_tor_careerchoice_description_TemplarOrdersPassive3}'Knight' troops that follow your patron deity gain +15% 'Physical' melee damage." />
-  <!-- TODO Zedforen: Review - added 20% to match code implementation -->
-  <string id="tor_careerchoice_description.TemplarOrdersPassive4" text="{=str_tor_careerchoice_description_TemplarOrdersPassive4}+20% personal 'Physical' melee damage against the 'Undead'." />
-  <!-- TODO Zedforen: Review - changed to match code implementation -->
-  <string id="tor_careerchoice_description.PathOfVigilanceKeystone" text="{=str_tor_careerchoice_description_PathOfVigilanceKeystone}Adds 20% attack speed as long effect is active. Charge twice for every hit." />
+  <string id="tor_careerchoice_description.TemplarOrdersPassive4" text="{=str_tor_careerchoice_description_TemplarOrdersPassive4}+20% personal 'Physical' melee damage against the forces of 'Undead'." />
+  <string id="tor_careerchoice_description.PathOfVigilanceKeystone" text="{=str_tor_careerchoice_description_PathOfVigilanceKeystone}+20% personal attack speed during Knightly Strike, and it charges twice as fast." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive1" text="{=str_tor_careerchoice_description_PathOfVigilancePassive1}+50% personal mount Hitpoints." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive2" text="{=str_tor_careerchoice_description_PathOfVigilancePassive2}+6% personal 'Physical Resistance'." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive3" text="{=str_tor_careerchoice_description_PathOfVigilancePassive3}Hits below 15 damage no longer stagger you." />
   <string id="tor_careerchoice_description.PathOfVigilancePassive4" text="{=str_tor_careerchoice_description_PathOfVigilancePassive4}+15% personal 'Ward Save' when using a shield." />
-  <!-- TODO Zedforen: Review - changed to match code (armor penetration, not ward save) -->
-  <string id="tor_careerchoice_description.WrathAgainstChaosKeystone" text="{=str_tor_careerchoice_description_WrathAgainstChaosKeystone}Adds 25% Armor Penetration during ability." />
-  <!-- TODO Zedforen: Review - changed Physical to Holy to match implementation -->
+  <string id="tor_careerchoice_description.WrathAgainstChaosKeystone" text="{=str_tor_careerchoice_description_WrathAgainstChaosKeystone}Knightly Strike gains +25% 'Armor Penetration'." />
   <string id="tor_careerchoice_description.WrathAgainstChaosPassive1" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive1}Your party deals increased 'Holy' damage when facing the forces of 'Chaos'." />
   <string id="tor_careerchoice_description.WrathAgainstChaosPassive2" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive2}+15% personal 'Magic Resistance'. " /> <!-- is this meant to be spell resistance or magic resistance? -->
   <string id="tor_careerchoice_description.WrathAgainstChaosPassive3" text="{=str_tor_careerchoice_description_WrathAgainstChaosPassive3}+10% personal weapon swing speed." />
@@ -3408,7 +3400,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_careerchoice_description.AnvilOfDoomKeystone" text="{=str_tor_careerchoice_description_AnvilOfDoomKeystone}Every point in spellcraft increase the damage of Wrath and Ruin by 0.05%" />
 
   <!-- OrcBoss Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when yoos in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
+  <string id="tor_careerchoice_description.OrcBossRoot" text="{=str_tor_careerchoice_description_OrcBossRoot}Take yer choppa, an' smash it proppa 'ard on any o' da gits, make 'em scream. Sum choppas are betta at uvva fings: Smalla choppas an' blockas are good fer timez when you'z in da scrap, an' iz time fer sum speedy 'taktikz'. Bigga choppas are best fer mobs o' gits. Makes 'em weaker da more ya hit 'em too. Longa choppas, now dese be useful fer ridas, an' uva pesky beasties. An' if you fink you can't chop any more, you jus' need ta wait, an' den chop sum more!" />
   <string id="tor_careerchoice_description.TufferDanNailsPassive1" text="{=str_tor_careerchoice_description_TufferDanNailsPassive1}10% resistance." />
   <string id="tor_careerchoice_description.TufferDanNailsPassive2" text="{=str_tor_careerchoice_description_TufferDanNailsPassive2}Tripples health regeneration when traveling" />
   <string id="tor_careerchoice_description.TufferDanNailsPassive3" text="{=str_tor_careerchoice_description_TufferDanNailsPassive3}75 Health" />
@@ -3446,7 +3438,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_careerchoice_description.BestofDaBestKeystone" text="{=str_tor_careerchoice_description_BestofDaBestKeystone}Armed to da Teef slams enemies to the ground." />
 
   <!-- OrcShaman Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! Yoo kunnect yerself to da boys ‘round, an’ dey will give yoo more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more yoo can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
+  <string id="tor_careerchoice_description.OrcShamanRoot" text="{=str_tor_careerchoice_description_OrcShamanRoot}Da Shaman iz da centah uv da WAAAGH! You kunnect yerself to da boys ‘round, an’ dey will give you more ju-ju powa’ fer ZAPPIN’ an’ BLASTIN’. But if da boys start dyin’, den yer zappy energy gets blasted outta ya, an’ they take it wiv dem! Da betta ya get, de more you can kunnect to da WAAAGH!. An’ remember to stay close to da old ways. Wearin’ ‘ard bits an’ metal an’ stuff like dem ‘ard boyz iz gunna get ya less ju-ju powa’." />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive1" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive1}10% extra melee damage." />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive2" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive2}+10 Maximum Winds of Magic." />
   <string id="tor_careerchoice_description.BonesAnFirepitzPassive3" text="{=str_tor_careerchoice_description_BonesAnFirepitzPassive3}Extra enchantment ingredients when looting." />
@@ -4651,12 +4643,12 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_spellweaver_companion" text="{=str_tor_spelltrainer_spellweaver_companion}My companion is ready to become a spellweaver."/>
 
 	<!--Spell Trainer Greenskin Dialogs-->
-	<string id="tor_spelltrainer_greenskin_start" text="{=str_tor_spelltrainer_greenskin_start}Wot you want, git? Da Waaagh! don't wait fer nobody!"/>
+	<string id="tor_spelltrainer_greenskin_start" text="{=str_tor_spelltrainer_greenskin_start}Whoo'z dere? Wot you want?"/>
 	<string id="tor_spelltrainer_greenskin_hub" text="{=str_tor_spelltrainer_greenskin_hub}Wot else ya need? Speak up!"/>
-	<string id="tor_spelltrainer_greenskin_open_book" text="{=str_tor_spelltrainer_greenskin_open_book}Teach me more of da Waaagh! magic."/>
-	<string id="tor_spelltrainer_greenskin_close_book" text="{=str_tor_spelltrainer_greenskin_close_book}Right, ya got it now. Da godz favor ya!"/>
-	<string id="tor_spelltrainer_greenskin_player_goodbye" text="{=str_tor_spelltrainer_greenskin_player_goodbye}I'll be goin' now."/>
-	<string id="tor_spelltrainer_greenskin_goodbye" text="{=str_tor_spelltrainer_greenskin_goodbye}Get outta 'ere! An' don't forget - WAAAGH!"/>
+	<string id="tor_spelltrainer_greenskin_open_book" text="{=str_tor_spelltrainer_greenskin_open_book}I'z here fer sum ju-ju spooks."/>
+	<string id="tor_spelltrainer_greenskin_close_book" text="{=str_tor_spelltrainer_greenskin_close_book}Eat dis shroom an' dance wiv me."/>
+	<string id="tor_spelltrainer_greenskin_player_goodbye" text="{=str_tor_spelltrainer_greenskin_player_goodbye}I'z outta 'ere."/>
+	<string id="tor_spelltrainer_greenskin_goodbye" text="{=str_tor_spelltrainer_greenskin_goodbye}I'z can feel da Gods talkin'. Get outta 'ere!"/>
 
 	<!--Spell Trainer Eonir Dialogs-->
 	<string id="tor_spelltrainer_eonir_open_book" text="{=str_tor_spelltrainer_eonir_open_book}I seek to further my knowledge of the Winds of Magic, can you help me achieve this?"/>
@@ -4706,7 +4698,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_greenskin_close_book_str" text="{=str_tor_spelltrainer_greenskin_close_book_str}Eat dis shroom an' dance wiv me." />
 	<string id="tor_spelltrainer_greenskin_enchantments_str" text="{=str_tor_spelltrainer_greenskin_enchantments_str}I wanna learn how ta make some proppa gear wif da runes." />
 	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=str_tor_spelltrainer_greenskin_player_goodbye_str}I'z outta 'ere." />
-	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=str_tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'ze dispersin' my smoke." />
+	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=str_tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'z lettin' out da smoke!" />
 	
 	<!--Vanilla Perk Changes-->
 	<string id="tor_veterinarian_description" text="{=str_tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles." />
@@ -4875,6 +4867,11 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Sure let me show what I got"/>
 	<string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better weapons master engineer"/>
 	<string id="tor_dw_quit_text" text="{=str_tor_dw_quit_text}Thats all"/>
+	<string id="tor_dw_engineer_recruit_crew_text" text="{=str_tor_dw_engineer_recruit_crew_text}I need some artillery crew."/>
+	<string id="tor_dw_engineer_recruit_crew_offer_text" text="{=str_tor_dw_engineer_recruit_crew_offer_text}Aye, a pair of our beardlings are eager to prove themselves. It'll cost ye {ENGINEER_GOLD_PRICE}{GOLD_ICON} and {ENGINEER_OATHGOLD_PRICE} Oathgold."/>
+	<string id="tor_dw_engineer_recruit_crew_accept_text" text="{=str_tor_dw_engineer_recruit_crew_accept_text}They'll serve the hold well."/>
+	<string id="tor_dw_engineer_recruit_crew_no_funds_text" text="{=str_tor_dw_engineer_recruit_crew_no_funds_text}I don't have enough coin or Oathgold right now."/>
+	<string id="tor_dw_engineer_recruit_crew_decline_text" text="{=str_tor_dw_engineer_recruit_crew_decline_text}Maybe another time."/>
 
 	<!-- Skill Trainer Texts -->
 	<string id="tor_teach_skills_dialog_p" text="{=str_tor_teach_skills_dialog_p}I would like to arrange training for one of my companions."/>

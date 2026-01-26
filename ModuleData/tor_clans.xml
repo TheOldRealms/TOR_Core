@@ -523,7 +523,7 @@
 			 default_party_template="PartyTemplate.brasskeep_lordparty_template"
              super_faction="Kingdom.brasskeep"
              is_noble="true"
-             text="{=str_tor_clan_brasskeep_clan_1_desc}"
+             text="{=str_tor_clan_brasskeep_clan_1_desc}The Repugnauts of Brass Keep are not a single tribe or clan, but a festering congregation of several Chaos warbands united beneath a single banner. Each pursues its own vile agenda, yet all are bound together by their shared worship of the Urfather. The Brass Keep gives them a formidable defensive position from which they launch raids into the Empire. How their numbers continue to swell remains a mystery. Imperial patrols report no sightings of warbands travelling to the Keep, yet the Blightkings grow ever stronger and more numerous. There are rumours of a hidden portal buried deep beneath the Brass Keep, through which reinforcements are said to arrive from the frozen North."
              banner_key="11.64.148.1500.1500.764.764.1.1.0.122.20.41.650.650.764.764.0.0.0:kingdom_repugnants"/>
     <!-- Wasteland faction -->
     <Faction id="wasteland_clan_1"

@@ -1,5 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SkillSets>
+	<!--Wanderer-->
+	<SkillSet id="tor_skills_wanderer_engineer">
+		<skill id="Athletics"
+		       value="10" />
+		<skill id="Riding"
+		       value="10" />
+		<skill id="OneHanded"
+		       value="10" />
+		<skill id="TwoHanded"
+		       value="10" />
+		<skill id="Polearm"
+		       value="10" />
+		<skill id="Bow"
+		       value="10" />
+		<skill id="Crossbow"
+		       value="120" />
+		<skill id="Gunpowder"
+		       value="120" />
+		<skill id="Throwing"
+		       value="10" />
+		<skill id="Scouting"
+		       value="10" />
+		<skill id="Roguery"
+		       value="10" />
+		<skill id="Steward"
+		       value="10" />
+		<skill id="Medicine"
+		       value="10" />
+		<skill id="Engineering"
+		       value="150" />
+		<skill id="Tactics"
+		       value="10" />
+		<skill id="Faith"
+		       value="10" />
+		<skill id="Spellcraft"
+	           value="10" />
+	</SkillSet>
 	<!--Duelist-->
 	<SkillSet id="tor_skills_duelist">
 		<skill id="Athletics"

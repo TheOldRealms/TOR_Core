@@ -131,6 +131,17 @@ namespace TOR_Core.AbilitySystem
                             _knownAbilitySystem.Add(ability3);
                         }
                     }
+                    else if (hero.Culture?.StringId == TORConstants.Cultures.DAWI)
+                    {
+                        var ability4 = (ItemBoundAbility)AbilityFactory.CreateNew("DwarfCannonSpawner", agent);
+                        if (ability4 != null)
+                        {
+                            ability4.OnCastStart += OnCastStart;
+                            ability4.OnCastComplete += OnCastComplete;
+                            ability4.SetChargeNum(1);
+                            _knownAbilitySystem.Add(ability4);
+                        }
+                    }
 
 
                 }
@@ -166,6 +177,17 @@ namespace TOR_Core.AbilitySystem
                             ability3.OnCastComplete += OnCastComplete;
                             ability3.SetChargeNum(2);
                             _knownAbilitySystem.Add(ability3);
+                        }
+                    }
+                    else if (heroChar.Culture?.StringId == TORConstants.Cultures.DAWI)
+                    {
+                        var ability4 = (ItemBoundAbility)AbilityFactory.CreateNew("DwarfCannonSpawner", agent);
+                        if (ability4 != null)
+                        {
+                            ability4.OnCastStart += OnCastStart;
+                            ability4.OnCastComplete += OnCastComplete;
+                            ability4.SetChargeNum(1);
+                            _knownAbilitySystem.Add(ability4);
                         }
                     }
                 }

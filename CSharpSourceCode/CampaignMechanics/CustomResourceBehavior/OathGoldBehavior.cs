@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms.VisualStyles;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.CraftingSystem;
@@ -47,6 +48,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
     private const int FineSteelGain = 50;
     private const int GromrilGain = 150;
     private const int WheatToOathGoldGain = 2;
+    private const int ArtilleryCrewOathGoldCost = 50;
+    private const int ArtilleryCrewGoldCost = 500;
     private Dictionary<string, int> _guildValues;
     private double _lastTimeVistedTown;
     private int _expeditionMaximum;
@@ -706,12 +709,32 @@ public class OathGoldBehavior : CampaignBehaviorBase
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_buy_weapons_shop_p", hub, "tor_dw_guildmaster_engineer_buy_weapons_shop", TORTextHelper.GetText("tor_dw_engineer_buy_weapons_text", "I need better weapons master engineer"),
             null, null, 200);
 
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_recruit_crew_p", hub, "tor_dw_guildmaster_engineer_recruit_crew", TORTextHelper.GetText("tor_dw_engineer_recruit_crew_text", "I need some artillery crew."),
+            () => Hero.MainHero.HasAttribute("DwarfEngineersI"), null, 200);
+
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_hub_quit_p", hub, "close_window", TORTextHelper.GetText("tor_dw_quit_text", "Thats all"),
             null, null, 200);
 
         //buy equipment
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_buy_weapons_shop", "tor_dw_guildmaster_engineer_start_reintro", TORTextHelper.GetText("tor_dw_shop_show_goods_text", "Sure let me show what I got"),
             null, OpenEngineerShop, 200);
+
+        //recruit artillery crew
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_engineer_recruit_crew", "tor_dw_guildmaster_engineer_recruit_crew", "tor_dw_guildmaster_engineer_recruit_crew_options",
+            TORTextHelper.GetText("tor_dw_engineer_recruit_crew_offer_text", "Aye, a pair of our beardlings are eager to prove themselves. It'll cost ye {ENGINEER_GOLD_PRICE}{GOLD_ICON} and {ENGINEER_OATHGOLD_PRICE} Oathgold."),
+            UpdateEngineerRecruitmentPrices, null, 200);
+
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_recruit_crew_accept_p", "tor_dw_guildmaster_engineer_recruit_crew_options", "tor_dw_guildmaster_engineer_start_reintro",
+            TORTextHelper.GetText("tor_dw_engineer_recruit_crew_accept_text", "They'll serve the hold well."),
+            HasEnoughForEngineerRecruitment, RecruitEngineerCrew, 200);
+
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_recruit_crew_decline_funds_p", "tor_dw_guildmaster_engineer_recruit_crew_options", "tor_dw_guildmaster_engineer_start_reintro",
+            TORTextHelper.GetText("tor_dw_engineer_recruit_crew_no_funds_text", "I don't have enough coin or Oathgold right now."),
+            () => !HasEnoughForEngineerRecruitment(), null, 200);
+
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_engineer_recruit_crew_decline_p", "tor_dw_guildmaster_engineer_recruit_crew_options", "tor_dw_guildmaster_engineer_start_reintro",
+            TORTextHelper.GetText("tor_dw_engineer_recruit_crew_decline_text", "Maybe another time."),
+            null, null, 200);
 
 
         bool IsEngineer()
@@ -737,19 +760,47 @@ public class OathGoldBehavior : CampaignBehaviorBase
                     x.IsGunPowderWeapon() && !x.IsFlameThrowerItem()).ToMBList());
 
                 //Add cannons
+                var cannon = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_artillery_cannon_001");
+                if (cannon != null) items.Add(cannon);
+
+                var drakegunCanister = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_drakegun_canister");
+                if (drakegunCanister != null) items.Add(drakegunCanister);
+
+                var drakefirePistol = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_drakefire_pistol");
+                if (drakefirePistol != null) items.Add(drakefirePistol);
             }
             if (Hero.MainHero.HasAttribute("DwarfEngineersIII"))
             {
-                items.AppendList(MBObjectManager.Instance.GetObjectTypeList<ItemObject>().WhereQ(x =>
-                    x.Culture?.StringId == TORConstants.Cultures.DAWI && x.IsTorItem() &&
-                     x.IsFlameThrowerItem()).ToMBList());
-
+                var drakegun = MBObjectManager.Instance.GetObject<ItemObject>("tor_dw_weapon_gun_drakegun");
+                if (drakegun != null) items.Add(drakegun);
             }
 
 
             items.ForEach(x => roster.Add(new ItemRosterElement(x, MBRandom.RandomInt(1, 2))));
 
             InventoryScreenHelper.OpenScreenAsTrade(roster, Settlement.CurrentSettlement.Town);
+        }
+
+        bool UpdateEngineerRecruitmentPrices()
+        {
+            MBTextManager.SetTextVariable("ENGINEER_GOLD_PRICE", ArtilleryCrewGoldCost.ToString());
+            MBTextManager.SetTextVariable("ENGINEER_OATHGOLD_PRICE", ArtilleryCrewOathGoldCost.ToString());
+            return true;
+        }
+
+        bool HasEnoughForEngineerRecruitment()
+        {
+            return Hero.MainHero.Gold >= ArtilleryCrewGoldCost && Hero.MainHero.GetCustomResourceValue("OathGold") >= ArtilleryCrewOathGoldCost;
+        }
+
+        void RecruitEngineerCrew()
+        {
+            var artilleryCrew = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_artillery_crew");
+            if (artilleryCrew == null) return;
+
+            GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, null, ArtilleryCrewGoldCost);
+            Hero.MainHero.AddCustomResource("OathGold", -ArtilleryCrewOathGoldCost);
+            MobileParty.MainParty.MemberRoster.AddToCounts(artilleryCrew, 2);
         }
 
     }

@@ -819,6 +819,7 @@
     <Compile Include="Models\TORSettlementFoodModel.cs" />
     <Compile Include="Models\TORSettlementLoyaltyModel.cs" />
     <Compile Include="Models\TORSettlementMilitiaModel.cs" />
+    <Compile Include="Models\TORSiegeEngineCalculationModel.cs" />
     <Compile Include="Models\TORSmithingModel.cs" />
     <Compile Include="Models\TORStrikeMagnitudeModel.cs" />
     <Compile Include="Models\TORTournamentModel.cs" />

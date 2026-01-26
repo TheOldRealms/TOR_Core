@@ -310,7 +310,7 @@ namespace TOR_Core.BattleMechanics.Firearms
             {
                 RunExplosionSoundEffects(pos, "mortar_explosion_1");
                 RunExplosionVisualEffects(pos, "cannonball_explosion_7");
-                //ApplySplashDamage(attackerAgent, pos, _explosionRadius, _explosionDamage, __explosionDamageVariance);
+                ApplySplashDamage(attackerAgent, pos, _explosionRadius, _explosionDamage, __explosionDamageVariance);
             }
         }
 
@@ -354,8 +354,7 @@ namespace TOR_Core.BattleMechanics.Firearms
 
         private void ApplySplashDamage(Agent affector, Vec3 position, float explosionRadius, int explosionDamage, float damageVariance)
         {
-            /*
-            var nearbyAgents = Mission.Current.GetNearbyAgents(position.AsVec2, explosionRadius).ToArray();
+            var nearbyAgents = Mission.Current.GetNearbyAgents(position.AsVec2, explosionRadius, new MBList<Agent>()).ToArray();
             for (int i = 0; i < nearbyAgents.Length; i++)
             {
                 var agent = nearbyAgents[i];
@@ -367,7 +366,6 @@ namespace TOR_Core.BattleMechanics.Firearms
                     agent.ApplyDamage((int)damage, position, affector, doBlow: true, hasShockWave: true);
                 }
             }
-            */
         }
     }
 
