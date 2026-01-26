@@ -2636,7 +2636,7 @@
   <string id="tor_career_choicegroup_name.PowerUvDaWaaagh" text="{=str_tor_career_choicegroup_name_PowerUvDaWaaagh}Power uv da Waaagh!" />
 
   <!-- WarriorPriest Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.WarriorPriestRoot" text="{=str_tor_careerchoice_description_WarriorPriestRoot}Unleash Sigmar's wrath with your Righteous Fury! Empower both you and nearby allies with +20% melee damage for 8 seconds. For every level of Faith, increase effect damage by 0.05% and duration by 0.05 seconds. (Ability charges by taking damage.)" />
+  <string id="tor_careerchoice_description.WarriorPriestRoot" text="{=str_tor_careerchoice_description_WarriorPriestRoot}Unleash Sigmar's wrath with your Righteous Fury! Empower both you and nearby allies with +20% melee damage for 8s. For every level of Faith, increase effect damage by 0.05% and duration by 0.05s. (Ability charges by taking damage.)" />
   <string id="tor_careerchoice_description.BookOfSigmarKeyStone" text="{=str_tor_careerchoice_description_BookOfSigmarKeyStone}Righteous Fury is now also charged by melee attacks." />
   <string id="tor_careerchoice_description.SigmarsProclaimerKeystone" text="{=str_tor_careerchoice_description_SigmarsProclaimerKeystone}Double the aura size of Righteous Fury." />
   <string id="tor_careerchoice_description.RelentlessFanaticKeyStone" text="{=str_tor_careerchoice_description_RelentlessFanaticKeyStone}Righteous Fury also scales with Leadership and applies 'Unbreakable'." />
@@ -2674,8 +2674,8 @@
   <string id="tor_careerchoice_description.TwinTailedCometPassive4" text="{=str_tor_careerchoice_description_TwinTailedCometPassive4}+20 personal Hitpoints." />
 
   <!-- WitchHunter Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}Accuse an enemy of Heresy! Place an Accusation Mark on an enemy for the next 8 seconds, the first hit you inflict deals +20% 'Physical' damage. After a hit there is a 50% chance the foe stays marked. For every level of Gunpowder or Crossbow, increase Accusation Mark's chance to remain on the foe by 0.1%. (Ability charges by dealing ranged 'Physical' damage.)" />
-  <string id="tor_careerchoice_description.ToolsOfJudgementKeystone" text="{=str_tor_careerchoice_description_ToolsOfJudgementKeystone}Accusation also scales with the highest skill of either One/Two-handed and gains +6 seconds." />
+  <string id="tor_careerchoice_description.WitchHunterRoot" text="{=str_tor_careerchoice_description_WitchHunterRoot}Accuse an enemy of Heresy! Place an Accusation Mark on an enemy for the next 8s, the first hit you inflict deals +20% 'Physical' damage. After a hit there is a 50% chance the foe stays marked. For every level of Gunpowder or Crossbow, increase Accusation Mark's chance to remain on the foe by 0.1%. (Ability charges by dealing ranged 'Physical' damage.)" />
+  <string id="tor_careerchoice_description.ToolsOfJudgementKeystone" text="{=str_tor_careerchoice_description_ToolsOfJudgementKeystone}Accusation also scales with the highest skill of either One/Two-handed and gains +6s." />
   <string id="tor_careerchoice_description.HuntTheWickedKeystone" text="{=str_tor_careerchoice_description_HuntTheWickedKeystone}Accusation is now also charged by melee damage, and gains +40% 'Physical' damage." />
   <string id="tor_careerchoice_description.SilverHammerKeystone" text="{=str_tor_careerchoice_description_SilverHammerKeystone}Accusation also scales with Faith, and gains +40% 'Holy' damage." />
   <string id="tor_careerchoice_description.NoRestAgainstEvilKeystone" text="{=str_tor_careerchoice_description_NoRestAgainstEvilKeystone}Accusation now allows for 'Shield Penetration' and no longer risks losing its Mark on hit." />
@@ -2712,7 +2712,7 @@
   <string id="tor_careerchoice_description.GuiltyByAssociationPassive4" text="{=str_tor_careerchoice_description_GuiltyByAssociationPassive4}Headshot kills provide a temporary increase to reload/swing speed." />
 
   <!-- Necromancer Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.NecromancerRoot" text="{=str_tor_careerchoice_description_NecromancerRoot}Let the puppets dance! Summon an ancient Harbinger to slay your foes! Every 2 seconds, the Harbinger loses -5 Hitpoints. For every 3 levels in Spellcraft, the Harbinger gains 1 Hitpoint. (Ability charges by dealing 'Spell' damage or healing or, by 'Skeleton' troop damage.)" />
+  <string id="tor_careerchoice_description.NecromancerRoot" text="{=str_tor_careerchoice_description_NecromancerRoot}Let the puppets dance! Summon an ancient Harbinger to slay your foes! Every 2s, the Harbinger loses -5 Hitpoints. For every 3 levels in Spellcraft, the Harbinger gains 1 Hitpoint. (Ability charges by dealing 'Spell' damage or healing or, by 'Skeleton' troop damage.)" />
   <string id="tor_careerchoice_description.LiberNecrisKeystone" text="{=str_tor_careerchoice_description_LiberNecrisKeystone}Harbinger also scales with Roguery and gains a Two-Handed weapon." />
   <string id="tor_careerchoice_description.DeArcanisKadonKeystone" text="{=str_tor_careerchoice_description_DeArcanisKadonKeystone}Harbinger can now be 'Possessed'. (Ability key allows swapping between caster and Harbinger)." />
   <string id="tor_careerchoice_description.CodexMortificaKeystone" text="{=str_tor_careerchoice_description_CodexMortificaKeystone}Harbinger also scales with Medicine. Caster gains +90% 'Ward Save' when switching control." />
@@ -2750,7 +2750,7 @@
   <string id="tor_careerchoice_description.BooksOfNagashPassive4" text="{=str_tor_careerchoice_description_BooksOfNagashPassive4}-50% 'Dark Energy' cost for upgrading troops." />
 
   <!-- VampireCount Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.VampireCountRoot" text="{=str_tor_careerchoice_description_VampireCountRoot}The Empire shall soon belong to the Midnight Aristocracy! Disappear and take flight into a swarm of bats and fog for up to 5 seconds. For every level in Athletics, Mist Form's duration increases by +0.03 seconds. (Ability is charged by dealing any form of damage.)" />
+  <string id="tor_careerchoice_description.VampireCountRoot" text="{=str_tor_careerchoice_description_VampireCountRoot}The Empire shall soon belong to the Midnight Aristocracy! Disappear and take flight into a swarm of bats and fog for up to 5s. For every level in Athletics, Mist Form's duration increases by +0.03s. (Ability is charged by dealing any form of damage.)" />
   <string id="tor_careerchoice_description.NewBloodKeystone" text="{=str_tor_careerchoice_description_NewBloodKeystone}Mist Form charges 20% faster." />
   <string id="tor_careerchoice_description.NewBloodPassive1" text="{=str_tor_careerchoice_description_NewBloodPassive1}+15 personal Hitpoints." />
   <string id="tor_careerchoice_description.NewBloodPassive2" text="{=str_tor_careerchoice_description_NewBloodPassive2}+15 increased party size." />
@@ -2788,7 +2788,7 @@
   <string id="tor_careerchoice_description.MasterOfDeadPassive4" text="{=str_tor_careerchoice_description_MasterOfDeadPassive4}+20% chance tier 4+ 'Lesser Undead' troops will be wounded instead of killed." />
 
   <!-- BloodKnight Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.BloodKnightRoot" text="{=str_tor_careerchoice_description_BloodKnightRoot}The Ordo Draconis shall rise once again! Channel your urges into a Red Fury towards the foe, and slay them in The Wanderer's name! For the next 6 seconds, gain +45% 'Physical' melee damage and +20% 'Physical Resistance'. Red Fury's buffs increase by 0.05% per skill level of the currently equipped melee weapon. (Ability charges by killing enemies.)" />
+  <string id="tor_careerchoice_description.BloodKnightRoot" text="{=str_tor_careerchoice_description_BloodKnightRoot}The Ordo Draconis shall rise once again! Channel your urges into a Red Fury towards the foe, and slay them in The Wanderer's name! For the next 6s, gain +45% 'Physical' melee damage and +20% 'Physical Resistance'. Red Fury's buffs increase by 0.05% per skill level of the currently equipped melee weapon. (Ability charges by killing enemies.)" />
   <string id="tor_careerchoice_description.PeerlessWarriorKeystone" text="{=str_tor_careerchoice_description_PeerlessWarriorKeystone}Red Fury also scales with Athletics, and provides a +20% personal movement speed increase." />
   <string id="tor_careerchoice_description.PeerlessWarriorPassive1" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive1}+25 personal Hitpoints." />
   <string id="tor_careerchoice_description.PeerlessWarriorPassive2" text="{=str_tor_careerchoice_description_PeerlessWarriorPassive2}+10% personal 'Physical' melee damage." />
@@ -2819,7 +2819,7 @@
   <string id="tor_careerchoice_description.AvatarOfDeathPassive2" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive2}-20% 'Dark Energy' upkeep costs for 'Vampire' troops." />
   <string id="tor_careerchoice_description.AvatarOfDeathPassive3" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive3}+20% personal 'Spell Resistance'." />
   <string id="tor_careerchoice_description.AvatarOfDeathPassive4" text="{=str_tor_careerchoice_description_AvatarOfDeathPassive4}+15% 'Ward Save' for 'Vampire' troops." />
-  <string id="tor_careerchoice_description.DreadKnightKeystone" text="{=str_tor_careerchoice_description_DreadKnightKeystone}Red Fury also scales with Riding. Kills made during Red Fury increase duration by +2 seconds." />
+  <string id="tor_careerchoice_description.DreadKnightKeystone" text="{=str_tor_careerchoice_description_DreadKnightKeystone}Red Fury also scales with Riding. Kills made during Red Fury increase duration by +2s." />
   <string id="tor_careerchoice_description.DreadKnightPassive1" text="{=str_tor_careerchoice_description_DreadKnightPassive1}+35 personal Hitpoints." />
   <string id="tor_careerchoice_description.DreadKnightPassive2" text="{=str_tor_careerchoice_description_DreadKnightPassive2}+50% charge damage bonus for your mount." />
   <string id="tor_careerchoice_description.DreadKnightPassive3" text="{=str_tor_careerchoice_description_DreadKnightPassive3}+20% 'Physical' melee damage for 'Cavalry' troops." />
@@ -3032,7 +3032,7 @@
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive2" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive2}Praying at a shrine of Ulric, fully restores personal Hitpoints. (5-day cooldown.)" />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive3" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive3}Melee attacks deal increased damage to shields." />
   <string id="tor_careerchoice_description.TeachingsOfTheWinterFatherPassive4" text="{=str_tor_careerchoice_description_TeachingsOfTheWinterFatherPassive4}+20% ranged 'Physical Resistance' for 'Melee' troops." />
-  <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Axe of Ulric now deals 'Frost' damage, and enemies are slowed for 6 seconds when hit." />
+  <string id="tor_careerchoice_description.FrostsBiteKeystone" text="{=str_tor_careerchoice_description_FrostsBiteKeystone}Axe of Ulric now deals 'Frost' damage, and enemies are slowed for 6s when hit." />
   <string id="tor_careerchoice_description.FrostsBitePassive1" text="{=str_tor_careerchoice_description_FrostsBitePassive1}+10% personal 'Frost' damage." />
   <string id="tor_careerchoice_description.FrostsBitePassive2" text="{=str_tor_careerchoice_description_FrostsBitePassive2}+10% 'Frost' damage for 'Melee' troops." />
   <string id="tor_careerchoice_description.FrostsBitePassive3" text="{=str_tor_careerchoice_description_FrostsBitePassive3}Party is no longer affected by snow penalties." />
@@ -3054,7 +3054,7 @@
   <string id="tor_careerchoice_description.FlameOfUlricPassive4" text="{=str_tor_careerchoice_description_FlameOfUlricPassive4}Kills done by you or 'Ulrician' troops cause 25% morale damage to enemies." />
 
   <!-- ImperialMagister Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}Channel the 'Winds of Magic' into a wondrous gale! Every second up to 10, regain 2% of your total 'Winds of Magic' pool. While channeling, you are more vulnerable to damage, and your movements become sluggish. Every second 'Keystone' career talent unlocked provides +1 charge of Arcane Conduit. For every 50 levels in Spellcraft, Arcane Conduit's duration increases by +1 second. (Ability charges by dealing spell damage.)" /> <!-- not sure how the ability is charged -->
+  <string id="tor_careerchoice_description.ImperialMagisterRoot" text="{=str_tor_careerchoice_description_ImperialMagisterRoot}Channel the 'Winds of Magic' into a wondrous gale! Every second up to 10, regain 2% of your total 'Winds of Magic' pool. While channeling, you are more vulnerable to damage, and your movements become sluggish. Every second 'Keystone' career talent unlocked provides +1 charge of Arcane Conduit. For every 50 levels in Spellcraft, Arcane Conduit's duration increases by +1s. (Ability charges by dealing spell damage.)" /> <!-- not sure how the ability is charged -->
   <string id="tor_careerchoice_description.StudyAndPractiseKeystone" text="{=str_tor_careerchoice_description_StudyAndPractiseKeystone}+1 charge of Arcane Conduit, and +50% 'Physical Resistance' while channeling." />
   <string id="tor_careerchoice_description.StudyAndPractisePassive1" text="{=str_tor_careerchoice_description_StudyAndPractisePassive1}+3 personal max 'Winds of Magic' capacity." />
   <string id="tor_careerchoice_description.StudyAndPractisePassive2" text="{=str_tor_careerchoice_description_StudyAndPractisePassive2}+10% personal 'Ward Save' if armor weight does not exceed 11." />
@@ -3206,7 +3206,7 @@
   <string id="tor_careerchoice_description.SecretOfFellfangPassive4" text="{=str_tor_careerchoice_description_SecretOfFellfangPassive4}Increases fire spell damage by 10%." />
 
   <!-- KnightOldWorld Career Choice Descriptions -->
-  <string id="tor_careerchoice_description.KnightOldWorldRoot" text="{=str_tor_careerchoice_description_KnightOldWorldRoot}Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15 seconds. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)" />
+  <string id="tor_careerchoice_description.KnightOldWorldRoot" text="{=str_tor_careerchoice_description_KnightOldWorldRoot}Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15s. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)" />
   <string id="tor_careerchoice_description.SecularOrdersKeystone" text="{=str_tor_careerchoice_description_SecularOrdersKeystone}Knightly Strike gains a charge every 100 points in a melee weapon skill up to a max of 15." />
   <string id="tor_careerchoice_description.SecularOrdersPassive1" text="{=str_tor_careerchoice_description_SecularOrdersPassive1}-25% 'Prestige' cost for upgrading 'Knight' troops." />
   <string id="tor_careerchoice_description.SecularOrdersPassive2" text="{=str_tor_careerchoice_description_SecularOrdersPassive2}+20 One/Two-handed skill for all 'Knight' troops." />
@@ -3217,12 +3217,12 @@
   <string id="tor_careerchoice_description.PathOfConquestPassive2" text="{=str_tor_careerchoice_description_PathOfConquestPassive2}+1 party move speed on campaign map." />
   <string id="tor_careerchoice_description.PathOfConquestPassive3" text="{=str_tor_careerchoice_description_PathOfConquestPassive3}+40% charge damage bonus for your personal mount." />
   <string id="tor_careerchoice_description.PathOfConquestPassive4" text="{=str_tor_careerchoice_description_PathOfConquestPassive4}+30 Polearm weapon skill for 'Knight' troops." />
-  <string id="tor_careerchoice_description.SquiresKeystone" text="{=str_tor_careerchoice_description_SquiresKeystone}Knightly Strike duration increased by +1 second per 50 Riding, gives +10% personal 'Physical' melee attack." />
+  <string id="tor_careerchoice_description.SquiresKeystone" text="{=str_tor_careerchoice_description_SquiresKeystone}Knightly Strike lasts +1s longer per 50 Riding, and grants +10% personal 'Physical' melee damage." />
   <string id="tor_careerchoice_description.SquiresPassive1" text="{=str_tor_careerchoice_description_SquiresPassive1}+15 personal Hitpoints." />
   <string id="tor_careerchoice_description.SquiresPassive2" text="{=str_tor_careerchoice_description_SquiresPassive2}-25% wages for 'Knight' troops." />
   <string id="tor_careerchoice_description.SquiresPassive3" text="{=str_tor_careerchoice_description_SquiresPassive3}Wounded troops heal faster." />
   <string id="tor_careerchoice_description.SquiresPassive4" text="{=str_tor_careerchoice_description_SquiresPassive4}Victories against 'Non-Human' enemies give +100% 'Prestige'." />
-  <string id="tor_careerchoice_description.TemplarOrdersKeystone" text="{=str_tor_careerchoice_description_TemplarOrdersKeystone}Knightly Strike gains +2 charges, a -15 second cooldown, and also scales with Faith." />
+  <string id="tor_careerchoice_description.TemplarOrdersKeystone" text="{=str_tor_careerchoice_description_TemplarOrdersKeystone}Knightly Strike gains +2 charges, -15s cooldown, and scales with Faith." />
   <string id="tor_careerchoice_description.TemplarOrdersPassive1" text="{=str_tor_careerchoice_description_TemplarOrdersPassive1}+15 personal Hitpoints" />
   <string id="tor_careerchoice_description.TemplarOrdersPassive2" text="{=str_tor_careerchoice_description_TemplarOrdersPassive2}Gain Faith experience for slaying the forces of 'Undead' or 'Chaos'." />
   <string id="tor_careerchoice_description.TemplarOrdersPassive3" text="{=str_tor_careerchoice_description_TemplarOrdersPassive3}'Knight' troops that follow your patron deity gain +15% 'Physical' melee damage." />
