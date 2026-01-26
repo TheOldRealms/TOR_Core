@@ -342,6 +342,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewI</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -353,6 +354,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewI</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -365,6 +367,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewI</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -387,6 +390,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -400,6 +404,7 @@
     <Attributes>
       <string>ArtilleryCrew</string>
       <string>Piercing</string>
+      <string>CrewII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -424,6 +429,7 @@
     <Abilities />
     <Attributes>
       <string>ArtilleryCrew</string>
+      <string>CrewIII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -437,6 +443,7 @@
     <Attributes>
       <string>ArtilleryCrew</string>
       <string>Piercing</string>
+      <string>CrewII</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -1666,6 +1673,25 @@
   <CharacterExtendedInfo id="tor_dw_master_trader">
     <Abilities />
     <Attributes />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.20" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="2" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_dw_artillery_crew">
+    <Abilities />
+    <Attributes>
+      <string>ArtilleryCrew</string>
+      <string>CrewI</string>
+    </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -4540,6 +4566,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4553,6 +4581,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4566,6 +4596,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -4579,6 +4611,8 @@
       <string>Undead</string>
       <string>NecromancerChampion</string>
       <string>Slice</string>
+      <string>MonsterAttack</string>
+      <string>Unstoppable</string>
     </Attributes>
     <Resistances />
     <DamageAmplifiers />
@@ -8314,9 +8348,15 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_bad_axes_second_3">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_bad_axes_second_4">
@@ -8326,9 +8366,15 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_bad_axes_second_5">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_black_sunz_factionleader">
@@ -8446,9 +8492,15 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_first_5">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_first_6">
@@ -8500,9 +8552,15 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_second_3">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_crooked_eye_second_4">
@@ -8608,9 +8666,15 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_deff_grindaz_second_3">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_deff_grindaz_second_4">
@@ -8692,9 +8756,17 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_iron_tribe_first_9">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_iron_tribe_second_1">
@@ -8704,9 +8776,15 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_iron_tribe_second_2">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_iron_tribe_second_3">
@@ -8752,9 +8830,18 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_massif_choppas_first_2">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_massif_choppas_first_3">
@@ -8828,9 +8915,15 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_massif_choppas_second_3">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_massif_choppas_second_4">
@@ -8948,9 +9041,15 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_neck_snappers_second_3">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_neck_snappers_second_4">
@@ -9014,9 +9113,17 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_skull_smasherz_first_7">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_skull_smasherz_first_8">
@@ -9038,9 +9145,15 @@
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_skull_smasherz_second_3">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_skull_smasherz_second_4">
@@ -9060,9 +9173,15 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_skull_smasherz_second_7">
-    <Abilities />
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>DaHandUvGork</string>
+    </Abilities>
     <Attributes>
       <string>Tough</string>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_skull_smasherz_second_8">
@@ -9901,6 +10020,26 @@
       <string>Tough</string>
       <string>BigBoss</string>
     </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_greenskins_1">
+    <Abilities>
+      <string>GazeUvMork</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+      <string>Tough</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_greenskins_2">
+    <Abilities />
+    <Attributes>
+      <string>Tough</string>
+    </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_greenskins_3">
+    <Abilities />
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_deserter_lord_0">
     <Abilities />
