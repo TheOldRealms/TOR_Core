@@ -41,10 +41,12 @@ namespace TOR_Core.Models
 
         // Faction-specific bonuses
         private const float EonirTradeBonus = 10f;
-
         private const float WastelandBonus = 20f;
-
         private const float MontfortBonus = 20f;
+
+        // Lore rivalry/affinity weights for trade (multiplied by level)
+        private const float LoreRivalryTradePenalty = -25f;
+        private const float LoreAffinityTradeBonus = 20f;
 
         // Kingdom relations
         private const float KingdomRelationWeight = 0.2f;  // -100 to +100 relation = -20 to +20 score
@@ -189,24 +191,34 @@ namespace TOR_Core.Models
         }
 
         /// <summary>
-        /// Calculates faction-specific trade bonuses.
-        /// Some factions are naturally more inclined to trade.
+        /// Calculates faction-specific trade bonuses and rivalry penalties.
+        /// Some factions are naturally more inclined to trade, rivals are less so.
         /// </summary>
         private float CalculateLoreConsiderations(Kingdom kingdom, Kingdom targetKingdom)
         {
+            float score = 0f;
+
             // Eonir are natural merchants
             if (kingdom.Culture?.StringId == TORConstants.Cultures.EONIR)
-                return EonirTradeBonus;
-            
-            // Marienburg is the biggest harbor in world - there are goods that nobody can aquire
+                score += EonirTradeBonus;
+
+            // Marienburg is the biggest harbor in world - there are goods that nobody can acquire
             if (targetKingdom.StringId == TORConstants.Factions.WASTELAND)
-                return WastelandBonus;
-            
+                score += WastelandBonus;
+
             // Montfort like to trade with humans
             if (kingdom.StringId == TORConstants.Factions.MONTFORT && DiplomacyHelpers.GetKingdomPantheon(targetKingdom) == Pantheon.Human)
-                return MontfortBonus;
+                score += MontfortBonus;
 
-            return 0f;
+            // Lore rivalry penalty - rivals make poor trade partners
+            float rivalryLevel = DiplomacyHelpers.GetLoreRivalryLevel(kingdom, targetKingdom);
+            score += rivalryLevel * LoreRivalryTradePenalty;
+
+            // Lore affinity bonus - friends make good trade partners
+            float affinityLevel = DiplomacyHelpers.GetLoreAffinityLevel(kingdom, targetKingdom);
+            score += affinityLevel * LoreAffinityTradeBonus;
+
+            return score;
         }
 
         /// <summary>

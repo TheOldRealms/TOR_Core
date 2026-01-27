@@ -4,6 +4,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TOR_Core.CampaignMechanics.Religion;
 using TOR_Core.Extensions;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.Models
 {
@@ -239,6 +240,188 @@ namespace TOR_Core.Models
             }
 
             return count > 0 ? totalRelation / count : 0f;
+        }
+
+        /// <summary>
+        /// Gets the lore-based rivalry level between two kingdoms.
+        /// Returns: 0 = no rivalry, 1.0 = standard rivalry, 1.5 = major rivalry.
+        /// Rivalries are symmetric (A vs B = B vs A).
+        /// Used for war scoring (bonus), peace scoring (penalty), alliance scoring (penalty), trade scoring (penalty).
+        /// </summary>
+        public static float GetLoreRivalryLevel(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            if (kingdom1 == null || kingdom2 == null)
+                return 0f;
+
+            var culture1 = kingdom1.Culture?.StringId;
+            var culture2 = kingdom2.Culture?.StringId;
+            var faction1 = kingdom1.StringId;
+            var faction2 = kingdom2.StringId;
+
+            // === MAJOR RIVALRIES (1.5) ===
+
+            // War of the Beard - Dwarfs vs Wood Elves (ancient grudge)
+            // Includes both Asrai culture and Laurelorn faction
+            if ((culture1 == TORConstants.Cultures.DAWI && culture2 == TORConstants.Cultures.ASRAI) ||
+                (culture1 == TORConstants.Cultures.ASRAI && culture2 == TORConstants.Cultures.DAWI))
+            {
+                return 1.5f;
+            }
+
+            // Dawi vs Laurelorn specifically (Wood Elves faction)
+            if ((culture1 == TORConstants.Cultures.DAWI && faction2 == TORConstants.Factions.LAURELORN) ||
+                (faction1 == TORConstants.Factions.LAURELORN && culture2 == TORConstants.Cultures.DAWI))
+            {
+                return 1.5f;
+            }
+
+            // Middenland vs Reikland - Ulric vs Sigmar theological conflict
+            if ((faction1 == TORConstants.Factions.MIDDENLAND && faction2 == TORConstants.Factions.REIKLAND) ||
+                (faction1 == TORConstants.Factions.REIKLAND && faction2 == TORConstants.Factions.MIDDENLAND))
+            {
+                return 1.5f;
+            }
+
+            // === STANDARD RIVALRIES (1.0) ===
+
+            // Nordland vs Laurelorn - territorial forest dispute
+            if ((faction1 == TORConstants.Factions.NORDLAND && faction2 == TORConstants.Factions.LAURELORN) ||
+                (faction1 == TORConstants.Factions.LAURELORN && faction2 == TORConstants.Factions.NORDLAND))
+            {
+                return 1.0f;
+            }
+
+            // Grey Mountains border disputes - Bretonnian vs Empire mountain passes
+            if (IsGreyMountainsRivalry(faction1, faction2))
+            {
+                return 1.0f;
+            }
+
+            // Gisoreux vs Wasteland (Marienburg) - trade/border rivalry
+            if ((faction1 == TORConstants.Factions.GISOREUX && faction2 == TORConstants.Factions.WASTELAND) ||
+                (faction1 == TORConstants.Factions.WASTELAND && faction2 == TORConstants.Factions.GISOREUX))
+            {
+                return 1.0f;
+            }
+
+            // Montfort vs non-humans - xenophobic duchy
+            if (IsMontfortXenophobiaRivalry(faction1, faction2, kingdom1, kingdom2))
+            {
+                return 1.0f;
+            }
+
+            return 0f;
+        }
+
+        /// <summary>
+        /// Checks if the two factions are part of the Grey Mountains border rivalry.
+        /// Parravon and Montfort (Bretonnia) vs Wissenland and Reikland (Empire).
+        /// </summary>
+        private static bool IsGreyMountainsRivalry(string faction1, string faction2)
+        {
+            bool isBretonnianMountain1 = faction1 == TORConstants.Factions.PARRAVON || faction1 == TORConstants.Factions.MONTFORT;
+            bool isBretonnianMountain2 = faction2 == TORConstants.Factions.PARRAVON || faction2 == TORConstants.Factions.MONTFORT;
+            bool isEmpireMountain1 = faction1 == TORConstants.Factions.WISSENLAND || faction1 == TORConstants.Factions.REIKLAND;
+            bool isEmpireMountain2 = faction2 == TORConstants.Factions.WISSENLAND || faction2 == TORConstants.Factions.REIKLAND;
+
+            return (isBretonnianMountain1 && isEmpireMountain2) || (isEmpireMountain1 && isBretonnianMountain2);
+        }
+
+        /// <summary>
+        /// Checks if Montfort's xenophobia creates a rivalry with a non-human faction.
+        /// </summary>
+        private static bool IsMontfortXenophobiaRivalry(string faction1, string faction2, Kingdom kingdom1, Kingdom kingdom2)
+        {
+            if (faction1 == TORConstants.Factions.MONTFORT && kingdom2?.Leader?.CharacterObject != null)
+            {
+                return !kingdom2.Leader.CharacterObject.IsHuman();
+            }
+            if (faction2 == TORConstants.Factions.MONTFORT && kingdom1?.Leader?.CharacterObject != null)
+            {
+                return !kingdom1.Leader.CharacterObject.IsHuman();
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Gets the lore-based affinity level between two kingdoms.
+        /// Returns: 0 = no special affinity, 0.75 = moderate affinity, 1.0 = good affinity, 1.5 = strong affinity.
+        /// Affinities are symmetric (A with B = B with A).
+        /// Used for war scoring (penalty), peace scoring (bonus), alliance scoring (bonus), trade scoring (bonus).
+        /// </summary>
+        public static float GetLoreAffinityLevel(Kingdom kingdom1, Kingdom kingdom2)
+        {
+            if (kingdom1 == null || kingdom2 == null)
+                return 0f;
+
+            var culture1 = kingdom1.Culture?.StringId;
+            var culture2 = kingdom2.Culture?.StringId;
+            var faction1 = kingdom1.StringId;
+            var faction2 = kingdom2.StringId;
+
+            // === STRONG AFFINITIES (1.5) ===
+
+            // Dwarfs + Empire - Strong historical alliance against Greenskins and Chaos
+            if ((culture1 == TORConstants.Cultures.DAWI && culture2 == TORConstants.Cultures.EMPIRE) ||
+                (culture1 == TORConstants.Cultures.EMPIRE && culture2 == TORConstants.Cultures.DAWI))
+            {
+                return 1.5f;
+            }
+
+            // === GOOD AFFINITIES (1.0) ===
+
+            // Eonir (Laurelorn Wood Elves) - Natural traders with most factions
+            // Exceptions: Dwarfs (War of the Beard), Nordland (territorial rivalry)
+            if (culture1 == TORConstants.Cultures.EONIR || culture2 == TORConstants.Cultures.EONIR)
+            {
+                var otherCulture = culture1 == TORConstants.Cultures.EONIR ? culture2 : culture1;
+                var otherFaction = culture1 == TORConstants.Cultures.EONIR ? faction2 : faction1;
+
+                // No affinity with Dwarfs (War of the Beard)
+                if (otherCulture == TORConstants.Cultures.DAWI)
+                    return 0f;
+
+                // No affinity with Nordland (territorial rivalry)
+                if (otherFaction == TORConstants.Factions.NORDLAND)
+                    return 0f;
+
+                return 1.0f;
+            }
+
+            // === MODERATE AFFINITIES (0.75) ===
+
+            // Bretonnia + Asrai (Wood Elves) - Complex but peaceful coexistence with Athel Loren
+            if ((culture1 == TORConstants.Cultures.BRETONNIA && culture2 == TORConstants.Cultures.ASRAI) ||
+                (culture1 == TORConstants.Cultures.ASRAI && culture2 == TORConstants.Cultures.BRETONNIA))
+            {
+                return 0.75f;
+            }
+
+            // === SMALL AFFINITIES (0.5) ===
+
+            // Montfort prefers humans (xenophobic but friendly to fellow humans)
+            if (IsMontfortHumanAffinity(faction1, faction2, kingdom1, kingdom2))
+            {
+                return 0.5f;
+            }
+
+            return 0f;
+        }
+
+        /// <summary>
+        /// Checks if Montfort has affinity with another human faction.
+        /// </summary>
+        private static bool IsMontfortHumanAffinity(string faction1, string faction2, Kingdom kingdom1, Kingdom kingdom2)
+        {
+            if (faction1 == TORConstants.Factions.MONTFORT && kingdom2?.Leader?.CharacterObject != null)
+            {
+                return kingdom2.Leader.CharacterObject.IsHuman();
+            }
+            if (faction2 == TORConstants.Factions.MONTFORT && kingdom1?.Leader?.CharacterObject != null)
+            {
+                return kingdom1.Leader.CharacterObject.IsHuman();
+            }
+            return false;
         }
     }
 }

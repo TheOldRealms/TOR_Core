@@ -25,11 +25,11 @@ namespace TOR_Core.Models
         private const float CulturalClaimWeight = 2500f;     // My culture's settlement held by foreigners
         private const float PantheonClaimWeight = 1000f;     // My pantheon's settlement held by other pantheons
 
-        // Lorewise Rivalry weights
+        // Lorewise Rivalry/Affinity weights
         private const float KarakReclamationWeight = 15000f;  // Dwarfs vs Greenskins holding Karaks
         private const float AntiChaosWeight = 12000f;         // Good factions vs Chaos
-        private const float NordlandLaurelornRivalryWeight = 5000f; // Nordland vs Laurelorn (territorial dispute)
-        private const float DawiAsraiRivalryWeight = 8000f;   // Dwarfs vs Wood Elves (War of the Beard grudge)
+        private const float LoreRivalryWarWeight = 5000f;     // Base weight for lore rivalries (multiplied by rivalry level)
+        private const float LoreAffinityWarPenalty = -3000f;  // Base penalty for lore affinities (multiplied by affinity level)
 
         // Territorial distance factor settings
         private const float TerritorialDistanceScaling = 100f;  // Distance at which factor is ~0.5
@@ -41,6 +41,8 @@ namespace TOR_Core.Models
         private const float AllianceStrengthWeight = 50f;
         private const float AllianceDistancePenaltyFactor = 0.01f;
         private const float AllianceMinimumScoreThreshold = 50f;
+        private const float AllianceLoreRivalryPenalty = -80f;     // Penalty for lore rivalries (multiplied by rivalry level)
+        private const float AllianceLoreAffinityBonus = 60f;       // Bonus for lore affinities (multiplied by affinity level)
 
         // Peace declaration weights
         private const float PeaceLosingWarWeight = 50f;           // Base weight for losing wars
@@ -57,6 +59,7 @@ namespace TOR_Core.Models
         private const float PeaceExternalThreatThreshold = 1.5f;  // Threat must be 1.5x our strength
         private const float PeaceAllianceWarPenalty = -60f;       // Penalty for abandoning alliance war
         private const float PeaceLoreRivalryPenalty = -50f;       // Penalty for lore-based rivalries
+        private const float PeaceLoreAffinityBonus = 40f;         // Bonus for lore-based affinities
 
         // Note: Trait modifiers and distance thresholds are now in DiplomacyHelpers
 
@@ -204,8 +207,8 @@ namespace TOR_Core.Models
             // 7. Common external threat
             score += CalculateExternalThreatPeaceScore(kingdom, enemyKingdom);
 
-            // 8. Lore rivalries (always anti-peace)
-            score += CalculateLoreRivalryPeaceScore(kingdom, enemyKingdom);
+            // 8. Lore rivalries and affinities
+            score += CalculateLoreRelationshipPeaceScore(kingdom, enemyKingdom);
 
             // === ALLIANCE WAR PENALTY ===
             if (isAllianceWar)
@@ -409,36 +412,22 @@ namespace TOR_Core.Models
         }
 
         /// <summary>
-        /// Calculates peace penalty based on lore rivalries.
-        /// Always returns negative (anti-peace) for rival factions.
+        /// Calculates peace score based on lore rivalries and affinities.
+        /// Rivalries return negative (anti-peace), affinities return positive (pro-peace).
         /// </summary>
-        private float CalculateLoreRivalryPeaceScore(Kingdom kingdom, Kingdom enemyKingdom)
+        private float CalculateLoreRelationshipPeaceScore(Kingdom kingdom, Kingdom enemyKingdom)
         {
-            var myCulture = kingdom.Culture?.StringId;
-            var theirCulture = enemyKingdom.Culture?.StringId;
+            float score = 0f;
 
-            // War of the Beard - Dwarfs vs Wood Elves (ancient grudge)
-            if ((myCulture == TORConstants.Cultures.DAWI && theirCulture == TORConstants.Cultures.ASRAI) ||
-                (myCulture == TORConstants.Cultures.ASRAI && theirCulture == TORConstants.Cultures.DAWI))
-            {
-                return PeaceLoreRivalryPenalty * 1.5f; // Extra strong rivalry
-            }
+            // Rivalries - want to keep fighting
+            float rivalryLevel = DiplomacyHelpers.GetLoreRivalryLevel(kingdom, enemyKingdom);
+            score += rivalryLevel * PeaceLoreRivalryPenalty;
 
-            // Nordland vs Laurelorn - territorial forest dispute
-            if ((kingdom.StringId == TORConstants.Factions.NORDLAND && enemyKingdom.StringId == TORConstants.Factions.LAURELORN) ||
-                (kingdom.StringId == TORConstants.Factions.LAURELORN && enemyKingdom.StringId == TORConstants.Factions.NORDLAND))
-            {
-                return PeaceLoreRivalryPenalty;
-            }
+            // Affinities - more willing to make peace with friends
+            float affinityLevel = DiplomacyHelpers.GetLoreAffinityLevel(kingdom, enemyKingdom);
+            score += affinityLevel * PeaceLoreAffinityBonus;
 
-            // Wissenland vs Montfort rivalry
-            if ((kingdom.StringId == TORConstants.Factions.WISSENLAND && enemyKingdom.StringId == TORConstants.Factions.MONTFORT) ||
-                (kingdom.StringId == TORConstants.Factions.MONTFORT && enemyKingdom.StringId == TORConstants.Factions.WISSENLAND))
-            {
-                return PeaceLoreRivalryPenalty;
-            }
-
-            return 0f;
+            return score;
         }
 
         /// <summary>
@@ -520,10 +509,7 @@ namespace TOR_Core.Models
                     foreach (var settlement in targetKingdom.Settlements)
                     {
                         if (settlement.Town == null) continue;
-                        
-                        
-                        if(!settlement.IsDwarfKarak())continue;
-                        
+                        if (!settlement.IsDwarfKarak()) continue;
                         karakCount++;
                     }
                     score += karakCount * KarakReclamationWeight;
@@ -534,7 +520,7 @@ namespace TOR_Core.Models
             var targetCulture = targetKingdom.Culture?.StringId;
             if (targetCulture == TORConstants.Cultures.CHAOS)
             {
-                var myPantheon = targetKingdom.Leader.GetDominantReligion().Pantheon;
+                var myPantheon = declaringKingdom.Leader.GetDominantReligion().Pantheon;
                 // Good pantheons: Empire, Bretonnia, Dwarfs, Elves
                 if (myPantheon == Pantheon.Human ||
                     myPantheon == Pantheon.Dwarven ||
@@ -546,32 +532,13 @@ namespace TOR_Core.Models
                 }
             }
 
-            // 3. WAR OF THE BEARD - Dwarfs vs Wood Elves (ancient grudge)
-            var myCulture = declaringKingdom.Culture?.StringId;
-            if ((myCulture == TORConstants.Cultures.DAWI && targetCulture == TORConstants.Cultures.ASRAI) ||
-                (myCulture == TORConstants.Cultures.ASRAI && targetCulture == TORConstants.Cultures.DAWI))
-            {
-                score += DawiAsraiRivalryWeight;
-            }
+            // 3. LORE RIVALRIES - Use centralized helper for faction-specific rivalries
+            float rivalryLevel = DiplomacyHelpers.GetLoreRivalryLevel(declaringKingdom, targetKingdom);
+            score += rivalryLevel * LoreRivalryWarWeight;
 
-            switch (declaringKingdom.StringId)
-            {
-                // NORDLAND vs LAURELORN - Territorial forest dispute
-                case TORConstants.Factions.NORDLAND when
-                    targetKingdom.StringId == TORConstants.Factions.LAURELORN:
-                case TORConstants.Factions.LAURELORN when
-                    targetKingdom.StringId == TORConstants.Factions.NORDLAND:
-                    score += NordlandLaurelornRivalryWeight;
-                    break;
-
-                // Wissenland and Montfort rivalry
-                case TORConstants.Factions.WISSENLAND when
-                    targetKingdom.StringId == TORConstants.Factions.MONTFORT:
-                case TORConstants.Factions.WISSENLAND when
-                    targetKingdom.StringId == TORConstants.Factions.MONTFORT:
-                    score += NordlandLaurelornRivalryWeight;
-                    break;
-            }
+            // 4. LORE AFFINITIES - Friendly factions are less likely to war
+            float affinityLevel = DiplomacyHelpers.GetLoreAffinityLevel(declaringKingdom, targetKingdom);
+            score += affinityLevel * LoreAffinityWarPenalty;
 
             return score;
         }
@@ -1041,6 +1008,14 @@ namespace TOR_Core.Models
                     // Distance consideration - prefer nearby allies
                     float distance = DiplomacyHelpers.GetKingdomDistance(consideringKingdom, candidate);
                     score -= distance * AllianceDistancePenaltyFactor;
+
+                    // Lore rivalry penalty - rivals make poor allies
+                    float rivalryLevel = DiplomacyHelpers.GetLoreRivalryLevel(consideringKingdom, candidate);
+                    score += rivalryLevel * AllianceLoreRivalryPenalty;
+
+                    // Lore affinity bonus - friends make good allies
+                    float affinityLevel = DiplomacyHelpers.GetLoreAffinityLevel(consideringKingdom, candidate);
+                    score += affinityLevel * AllianceLoreAffinityBonus;
 
                     candidateScores[candidate] = score;
                 }
