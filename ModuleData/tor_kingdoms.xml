@@ -244,7 +244,7 @@
     </Kingdom>
     <Kingdom id="brasskeep"
              owner="Hero.tor_chaos_lord_brasskeep_factionleader"
-             banner_key="11.64.148.1500.1500.764.764.1.1.0.122.20.41.650.650.764.764.0.0.0:kingdom_repugnants"
+             banner_key="11.64.148.1500.1500.764.764.1.1.0.122.20.41.650.650.765.765.0.0.0:kingdom_repugnants"
              primary_banner_color="0xffC94B4E"
              secondary_banner_color="0xff211F1F"
              label_color="FF211F1F"
@@ -286,7 +286,7 @@
     </Kingdom>
     <Kingdom id="moot"
              owner="Hero.tor_emp_lord_moot_factionleader"
-             banner_key="11.126.148.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_mootland"
+             banner_key="11.126.148.1500.1500.764.764.1.1.0.122.20.41.605.605.764.764.0.0.0:kingdom_mootland"
              primary_banner_color="0xff34671e"
              secondary_banner_color="0xfff3f3f3"
              label_color="FF34671e"
