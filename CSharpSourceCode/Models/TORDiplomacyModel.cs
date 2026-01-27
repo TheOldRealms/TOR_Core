@@ -18,7 +18,7 @@ namespace TOR_Core.Models
     public class TORDiplomacyModel : DefaultDiplomacyModel
     {
         // War declaration weights (scaled by 100 for DenarsToInfluence compatibility)
-        private const float WarCultureCompatibilityWeight = 5000f;
+        private const float WarCultureCompatibilityWeight = 3000f;  // Reduced to allow same-culture civil wars
 
         // Territorial Integrity weights (hierarchical claims)
         private const float DirectClaimWeight = 5000f;      // My own settlement
