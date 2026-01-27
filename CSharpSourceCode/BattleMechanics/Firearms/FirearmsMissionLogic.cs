@@ -27,6 +27,7 @@ namespace TOR_Core.BattleMechanics.Firearms
         private readonly float _continousFiringBurstLength = 1.5f;
         private readonly Dictionary<int, SoundEvent> _activeSounds = [];
         private readonly List<int> _soundsToRemove = [];
+        private readonly List<int> _firingAgentsToRemove = [];
 
         private const int _explosionDamage = 125;
         private const float _explosionRadius = 6;
@@ -49,28 +50,59 @@ namespace TOR_Core.BattleMechanics.Firearms
 
         public override void OnMissionTick(float dt)
         {
-            foreach (int index in _continousFiringAgents.Keys)
+            _firingAgentsToRemove.Clear();
+            foreach (int index in _continousFiringAgents.Keys.ToList())
+            //naber: Keys.ToList() so we dont blow up if the dict gets touched midtick
             {
                 //Sly : agents that have died are kept in the AllAgents cache until they are nulled out by mission end (or possibly during reinforcement waves that need to make new space). When the tick iterates through the dictionary, an agent may be nulled during processing leading to future NREs depending on timing.
                 //While putting additional null checks into BurstFireShot as well will protect against this, dead agents should instead be cleared from the dictionary to avoid the risk completely.
                 var firingData = _continousFiringAgents[index];
-                if (firingData.RemainingTime <= 0.5f)
+                var agent = firingData.OwnerAgent;
+                //naber note: intentionally firingData.OwnerAgent here instead of Mission.FindAgentWithIndex
+                //to avoid index reuse causing tick to latch a wrong agent after the inital spawns
+
+                if (agent?.IsActive() != true)
                 {
-                    if (firingData.IsParticleEnabled) firingData.IsParticleEnabled = false; //Sly : there's a bug with flame particles that persist in the battle, seemingly unattached to a source. I wonder if these are the locations where an agent died and the particles persist.
+                    firingData.IsParticleEnabled = false; //Sly : there's a bug with flame particles that persist in the battle, seemingly unattached to a source. I wonder if these are the locations where an agent died and the particles persist. 
                     //OnAgentShootMissile is responsible for removing the previous projectile, but if the agent has died and become null, they will never fire another missile and so their previous one will keep persisting at its final location until we remove it (which isn't done atm), or the game despawns it (which i'm unsure if it's doing because i've seen the flame puff effect persist for multiple minutes).
                     //this does make sense because the RemainingTime is only decreased if the agent is not null and still active and therefore the time is static and will persist until mission end
+                    RemoveLastProjectileByShooterIndex(index);
+                    _firingAgentsToRemove.Add(index);
                     continue;
                 }
-                var agent = Mission.FindAgentWithIndex(index);
-                if (agent?.IsActive() != true) continue;
 
                 firingData.RemainingTime -= dt;
-                firingData.RemainingTime = Math.Max(0, firingData.RemainingTime);
+                if (firingData.RemainingTime <= 0f)
+                {
+                    firingData.IsParticleEnabled = false;
+                    RemoveLastProjectileByShooterIndex(index);
+                    _firingAgentsToRemove.Add(index);
+                    continue;
+                }
+                //naber: why the previous approach early continued here? it could kill flame vfx / struck entires but it also kills the last 0.5s of firing. lmk if that was intentional
+                if (firingData.RemainingTime <= 0.5f)
+                {
+                    firingData.IsParticleEnabled = false;
+                }
+
+                // switch/reload
+                if (agent.WieldedWeapon.IsEmpty || agent.WieldedWeapon.CurrentUsageItem == null)
+                {
+                    firingData.IsParticleEnabled = false;
+                    _firingAgentsToRemove.Add(index);
+                    continue;
+                }
+
                 if (MissionTime.Now.ToMilliseconds - _continousFiringInterval > firingData.LastFiredTime)
                 {
                     firingData.LastFiredTime = MissionTime.Now.ToMilliseconds;
                     BurstFireShot(agent, 0.2f, firingData.FireAmmoId);
                 }
+            }
+
+            foreach (int index in _firingAgentsToRemove)
+            {
+                _continousFiringAgents.Remove(index);
             }
 
             _soundsToRemove.Clear();
@@ -99,6 +131,18 @@ namespace TOR_Core.BattleMechanics.Firearms
                 item.Value?.Release();
             }
             _activeSounds.Clear();
+        }
+
+        public override void OnAgentRemoved(Agent affectedAgent, Agent affectorAgent, AgentState agentState, KillingBlow blow)
+        {
+            var affectedIndex = affectedAgent.Index;
+
+            if (_continousFiringAgents.TryGetValue(affectedIndex, out var firingData))
+            {
+                firingData.IsParticleEnabled = false;
+                RemoveLastProjectileByShooterIndex(affectedIndex);
+                _continousFiringAgents.Remove(affectedIndex);
+            }
         }
 
         public override void OnAgentShootMissile(Agent shooterAgent, EquipmentIndex weaponIndex, Vec3 position, Vec3 velocity, Mat3 orientation, bool hasRigidBody, int forcedMissileIndex)
@@ -227,6 +271,14 @@ namespace TOR_Core.BattleMechanics.Firearms
             if (falseMissle != null) Mission.RemoveMissileAsClient(falseMissle.Index);
         }
 
+        private void RemoveLastProjectileByShooterIndex(int shooterAgentIndex)
+        {
+            var missile = Mission.MissilesList.FirstOrDefault(m => m.ShooterAgent?.Index == shooterAgentIndex);
+            if (missile != null)
+            {
+                Mission.RemoveMissileAsClient(missile.Index);
+            }
+        }
         public void ScatterShot(Agent shooterAgent, float accuracy, MissionWeapon projectileType, Vec3 shotPosition,
             Mat3 shotOrientation, float missileSpeed, short scatterShotAmount)
         {
@@ -263,6 +315,10 @@ namespace TOR_Core.BattleMechanics.Firearms
 
         public void BurstFireShot(Agent shooterAgent, float accuracy, string ammoID)
         {
+            if (shooterAgent.AgentVisuals == null || shooterAgent.WieldedWeapon.IsEmpty || shooterAgent.WieldedWeapon.CurrentUsageItem == null)
+            {
+                return;
+            }
             //Sly : NREs can occur here due to dead agents that are nulled out by the mission at some moments.
             var itemBoneFrame = shooterAgent.AgentVisuals.GetBoneEntitialFrame(Game.Current.DefaultMonster.MainHandItemBoneIndex, false);
             var agentFrame = shooterAgent.AgentVisuals.GetGlobalFrame();
