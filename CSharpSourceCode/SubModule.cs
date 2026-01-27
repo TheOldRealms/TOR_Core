@@ -175,6 +175,8 @@ namespace TOR_Core
                 starter.AddBehavior(new TORFactionDiscontinuationCampaignBehavior());
                 starter.AddBehavior(new ServeAsAHirelingCampaignBehavior());
                 starter.AddBehavior(new TORStartupBehavior());
+                starter.AddBehavior(new TORKingdomDecisionsCampaignBehavior());
+                starter.AddBehavior(new TORAllianceWarBehavior());
                 starter.AddBehavior(new TORArtisanDistrictCampaignBehavior());
                 starter.AddBehavior(new PriestBehavior());
                 starter.AddBehavior(new SkillTrainerBehavior());
@@ -243,6 +245,9 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORRaidModel());
                 gameStarterObject.AddModel(new TORBattleBannerBearersModel());
                 gameStarterObject.AddModel(new TORKingdomDecisionPermissionModel());
+                gameStarterObject.AddModel(new TORDiplomacyModel());
+                gameStarterObject.AddModel(new TORAllianceModel());
+                gameStarterObject.AddModel(new TORTradeAgreementModel());
                 gameStarterObject.AddModel(new TORSettlementLoyaltyModel());
                 gameStarterObject.AddModel(new TORBattleRewardModel());
                 gameStarterObject.AddModel(new TORTroopSupplierModel());

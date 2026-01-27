@@ -23,6 +23,12 @@ namespace TOR_Core.CampaignMechanics.Religion
 {
     public class ReligionCampaignBehavior : CampaignBehaviorBase, IDisposable
     {
+        // Initial relation adjustment weights for religion compatibility
+        private const int SameReligionBonusMin = 25;
+        private const int SameReligionBonusMax = 50;
+        private const int CompatiblePantheonBonusMax = 25;
+        private const int HostilePantheonMalusMax = 75;
+
         public override void RegisterEvents()
         {
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, AfterNewGameStart);
@@ -312,28 +318,23 @@ namespace TOR_Core.CampaignMechanics.Religion
 
             if (heroDomReligion == otherHeroDomReligion)
             {
-                var bonus = MBRandom.RandomInt(25, 50);
+                var bonus = MBRandom.RandomInt(SameReligionBonusMin, SameReligionBonusMax);
                 hero.SetPersonalRelation(otherHero, currentRelation + bonus);
                 return;
             }
-            if (heroDomReligion.Affinity == otherHeroDomReligion.Affinity)
-            {//this causes chaos religions to have a bonus towards each other despite being on each other's hostile religions list - shouldn't matter until chaos is implemented more fully
-                var bonus = MBRandom.RandomInt(0, 25);
-                hero.SetPersonalRelation(otherHero, currentRelation + bonus);
-                return;
-            }
-            else //this is the default for all heroes who have different religions and different affinities (order, chaos, or nagash)
+
+            // Use Pantheon compatibility for relation adjustments
+            float compatibility = ReligionObjectHelper.GetPantheonCompatibility(heroDomReligion.Pantheon, otherHeroDomReligion.Pantheon);
+            if (compatibility > 0)
             {
-                var malus = MBRandom.RandomInt(25, 75);
+                var bonus = MBRandom.RandomInt(0, (int)(CompatiblePantheonBonusMax * compatibility));
+                hero.SetPersonalRelation(otherHero, currentRelation + bonus);
+            }
+            else if (compatibility < 0)
+            {
+                var malus = MBRandom.RandomInt(0, (int)(HostilePantheonMalusMax * -compatibility));
                 hero.SetPersonalRelation(otherHero, currentRelation - malus);
             }
-            //this doesn't make sense in the context of how affinities and hostile religions are grouped - all religion pairs where affinities differ contain one another and could instead be covered by a more efficient affinity1 != affinity2 check except for chaos cults which have already received a relation bonus because of identical affinities
-            //if (heroDomReligion.HostileReligions.Contains(otherHeroDomReligion))
-            //{
-            //    var malus = MBRandom.RandomInt(25, 75);
-            //    hero.SetPersonalRelation(otherHero, currentRelation - malus);
-            //    return;
-            //}
         }
     }
 }

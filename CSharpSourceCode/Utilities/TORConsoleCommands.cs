@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -139,39 +140,132 @@ namespace TOR_Core.Utilities
             return result;
         }
 
-        [CommandLineFunctionality.CommandLineArgumentFunction("declare_peace", "tor")]
-        public static string DeclarePeace(List<string> strings)
+        [CommandLineFunctionality.CommandLineArgumentFunction("set_alliance", "tor")]
+        public static string SetAlliance(List<string> strings)
         {
             if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
                 return CampaignCheats.ErrorType;
-            string str1 = "campaign.declare_peace [Faction1] | [Faction2]";
+
+            string usage = "tor.set_alliance [Kingdom1] | [Kingdom2]\nCreates an alliance between two kingdoms. Use kingdom StringIds (e.g., 'empire', 'bretonnia').";
+
             if (CampaignCheats.CheckParameters(strings, 0) || CampaignCheats.CheckParameters(strings, 1) || CampaignCheats.CheckHelp(strings))
-                return str1;
+                return usage;
+
             List<string> separatedNames = CampaignCheats.GetSeparatedNames(strings, true);
             if (separatedNames.Count != 2)
-                return str1;
+                return usage;
+
             string kingdom_str1 = separatedNames[0].ToLower().Replace(" ", "");
             string kingdom_str2 = separatedNames[1].ToLower().Replace(" ", "");
+
             Kingdom faction1 = null;
             Kingdom faction2 = null;
+
             foreach (var kingdom in Campaign.Current.Kingdoms)
             {
-                if (kingdom_str1 == kingdom.StringId)
+                if (kingdom_str1 == kingdom.StringId.ToLower())
                 {
                     faction1 = kingdom;
                 }
-                if (kingdom_str2 == kingdom.StringId)
+                if (kingdom_str2 == kingdom.StringId.ToLower())
                 {
                     faction2 = kingdom;
                 }
             }
 
-            if (faction1 != null && faction2 != null)
+            if (faction1 == null)
+                return "Kingdom not found: " + kingdom_str1 + "\n" + usage;
+
+            if (faction2 == null)
+                return "Kingdom not found: " + kingdom_str2 + "\n" + usage;
+
+            if (faction1 == faction2)
+                return "Cannot create alliance with self.\n" + usage;
+
+            if (faction1.IsAtWarWith(faction2))
+                return "Cannot create alliance - kingdoms are at war. Use tor.declare_peace first.\n";
+
+            if (faction1.IsAllyWith(faction2))
+                return faction1.Name + " and " + faction2.Name + " are already allies.\n";
+
+            // Use the clean alliance method that removes native Call to War decisions
+            // This is preferred for TOR since we use our own HonorAllianceDecision system
+            faction1.SetAlliance(faction2);
+
+            return "Alliance created between " + faction1.Name + " and " + faction2.Name + ".\n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("break_alliance", "tor")]
+        public static string BreakAlliance(List<string> strings)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            string usage = "tor.break_alliance [Kingdom1] | [Kingdom2]\nBreaks an alliance between two kingdoms.";
+
+            if (CampaignCheats.CheckParameters(strings, 0) || CampaignCheats.CheckParameters(strings, 1) || CampaignCheats.CheckHelp(strings))
+                return usage;
+
+            List<string> separatedNames = CampaignCheats.GetSeparatedNames(strings, true);
+            if (separatedNames.Count != 2)
+                return usage;
+
+            string kingdom_str1 = separatedNames[0].ToLower().Replace(" ", "");
+            string kingdom_str2 = separatedNames[1].ToLower().Replace(" ", "");
+
+            Kingdom faction1 = null;
+            Kingdom faction2 = null;
+
+            foreach (var kingdom in Campaign.Current.Kingdoms)
             {
-                MakePeaceAction.Apply(faction1, faction2);
-                return "Peace declared between " + (object)faction1.Name + " and " + (object)faction2.Name;
+                if (kingdom_str1 == kingdom.StringId.ToLower())
+                {
+                    faction1 = kingdom;
+                }
+                if (kingdom_str2 == kingdom.StringId.ToLower())
+                {
+                    faction2 = kingdom;
+                }
             }
-            return faction1 == null ? "Faction is not found: " + kingdom_str1 + "\n" + str1 : "Faction is not found: " + kingdom_str2;
+
+            if (faction1 == null)
+                return "Kingdom not found: " + kingdom_str1 + "\n" + usage;
+
+            if (faction2 == null)
+                return "Kingdom not found: " + kingdom_str2 + "\n" + usage;
+
+            if (!faction1.IsAllyWith(faction2))
+                return faction1.Name + " and " + faction2.Name + " are not allies.\n";
+
+            // Use the IAllianceCampaignBehavior to break the alliance
+            var allianceBehavior = Campaign.Current.GetCampaignBehavior<IAllianceCampaignBehavior>();
+            if (allianceBehavior != null)
+            {
+                allianceBehavior.EndAlliance(faction1, faction2);
+                return "Alliance broken between " + faction1.Name + " and " + faction2.Name + ".\n";
+            }
+
+            return "Error: Could not find alliance behavior.\n";
+        }
+
+        [CommandLineFunctionality.CommandLineArgumentFunction("list_kingdoms", "tor")]
+        public static string ListKingdoms(List<string> strings)
+        {
+            if (!CampaignCheats.CheckCheatUsage(ref CampaignCheats.ErrorType))
+                return CampaignCheats.ErrorType;
+
+            if (CampaignCheats.CheckHelp(strings))
+                return "Lists all kingdoms with their StringIds for use with alliance/war commands.";
+
+            string result = "Available Kingdoms:\n";
+            foreach (var kingdom in Campaign.Current.Kingdoms.OrderBy(k => k.StringId))
+            {
+                string allies = kingdom.AlliedKingdoms.Count > 0
+                    ? " [Allies: " + string.Join(", ", kingdom.AlliedKingdoms.Select(a => a.StringId)) + "]"
+                    : "";
+                result += $"  {kingdom.StringId} - {kingdom.Name}{allies}\n";
+            }
+            return result;
         }
 
         [CommandLineFunctionality.CommandLineArgumentFunction("add_enchantment_blueprint", "tor")]

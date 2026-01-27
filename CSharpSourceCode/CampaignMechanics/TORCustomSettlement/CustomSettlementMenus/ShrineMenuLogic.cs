@@ -248,9 +248,10 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
             return true;
         }
 
-        // Only Order affinity + Greenskins (Destruction) can donate
+        // Undead, Chaos, and Greenskin pantheon cannot donate
         var playerReligion = Hero.MainHero.GetDominantReligion();
-        if (playerReligion != null && playerReligion.Affinity != ReligionAffinity.Order && playerReligion.Affinity != ReligionAffinity.Destruction)
+        if (playerReligion != null && (playerReligion.Pantheon == Pantheon.Undead ||
+            playerReligion.Pantheon == Pantheon.Chaos || playerReligion.Pantheon == Pantheon.Greenskin))
         {
             args.Tooltip = TORTextHelper.GetTextObject("tor_custom_settlement_shrine_no_donate_affinity", "You do not honor the gods through offerings.");
             args.IsEnabled = false;
@@ -486,7 +487,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                 }
             }
 
-            if (shrineReligion.Affinity == dominantReligion.Affinity) hero.SetPersonalRelation(Hero.MainHero, (int)relation - 10);
+            if (shrineReligion.Pantheon == dominantReligion.Pantheon) hero.SetPersonalRelation(Hero.MainHero, (int)relation - 10);
         }
         Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastDefileTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
     }
@@ -550,37 +551,21 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
                 }
             }
 
-            if (shrineReligion.Affinity == dominantReligion.Affinity) hero.SetPersonalRelation(Hero.MainHero, (int)relation - 10);
+            if (shrineReligion.Pantheon == dominantReligion.Pantheon) hero.SetPersonalRelation(Hero.MainHero, (int)relation - 10);
         }
         Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>().SetLastDefileTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
     }
 
 
     /// <summary>
-    /// Checks if a hero's culture is compatible with a shrine's religion culture for praying.
+    /// Checks if a hero's culture is compatible with a shrine's religion for praying.
+    /// Uses Pantheon matching - Undead cultures (Mousillon/Sylvania) won't match Human shrines.
     /// </summary>
     private static bool IsCultureCompatibleWithShrine(Hero hero, ReligionObject religion)
     {
-        if (hero == null || religion == null || religion.Culture == null) return false;
+        if (hero == null || religion == null) return false;
 
-        // Direct culture match
-        if (hero.Culture == religion.Culture) return true;
-
-        var heroCultureId = hero.Culture.StringId;
-        var religionCultureId = religion.Culture.StringId;
-
-        // Special case: Wood Elves (battania) and High Elves (eonir) can pray at each other's shrines
-        bool heroIsElf = heroCultureId == "battania" || heroCultureId == "eonir";
-        bool shrineIsElf = religionCultureId == "battania" || religionCultureId == "eonir";
-        if (heroIsElf && shrineIsElf) return true;
-
-        // Special case: Human cultures (Empire, Bretonnia) share the same pantheon
-        // Note: Mousillon and Sylvania are NOT included - they cannot pray at human shrines
-        bool heroIsHuman = heroCultureId == "empire" || heroCultureId == "vlandia";
-        bool shrineIsHuman = religionCultureId == "empire" || religionCultureId == "vlandia";
-        if (heroIsHuman && shrineIsHuman) return true;
-
-        return false;
+        return ReligionObjectHelper.GetPantheon(hero.Culture?.StringId) == religion.Pantheon;
     }
 
     public static bool CanPartyGoToShrine(MobileParty party)

@@ -583,6 +583,9 @@
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementComponents.cs" />
     <Compile Include="CampaignMechanics\TORCustomSettlement\TORSettlementMenuHelpers.cs" />
     <Compile Include="CampaignMechanics\TORFactionDiscontinuationCampaignBehavior.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORAllianceWarBehavior.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\HonorAllianceDecision.cs" />
+    <Compile Include="CampaignMechanics\Diplomacy\TORKingdomDecisionsCampaignBehavior.cs" />
     <Compile Include="CampaignMechanics\TorMapBarSpriteWidget.cs" />
     <Compile Include="Extensions\UI\SPItemVMExtension.cs" />
     <Compile Include="Extensions\UI\TORInitialScreen.cs" />
@@ -710,6 +713,7 @@
     <Compile Include="HarmonyPatches\GameTextPatches.cs" />
     <Compile Include="HarmonyPatches\InventoryResetPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
+    <Compile Include="HarmonyPatches\LogEntryNotificationPatches.cs" />
     <Compile Include="HarmonyPatches\ItemPatches.cs" />
     <Compile Include="HarmonyPatches\LoadingScreenPatches.cs" />
     <Compile Include="HarmonyPatches\MainMenuOptionsPatches.cs" />
@@ -787,6 +791,10 @@
     <Compile Include="Models\TORCompanionTrainingModel.cs" />
     <Compile Include="Models\TORCustomResourceModel.cs" />
     <Compile Include="Models\TORDamageParticleModel.cs" />
+    <Compile Include="Models\DiplomacyHelpers.cs" />
+    <Compile Include="Models\TORDiplomacyModel.cs" />
+    <Compile Include="Models\TORAllianceModel.cs" />
+    <Compile Include="Models\TORTradeAgreementModel.cs" />
     <Compile Include="Models\TOREnchantmentCraftingModel.cs" />
     <Compile Include="Models\TOREnchantmentIngredientsModel.cs" />
     <Compile Include="Models\TOREncounterGameMenuModel.cs" />
@@ -851,6 +859,7 @@
     <Compile Include="Utilities\TORGameStarterHelper.cs" />
     <Compile Include="Utilities\TORMassMaterialSwitcher.cs" />
     <Compile Include="Utilities\TORMissionHelper.cs" />
+    <Compile Include="Utilities\TORNotificationHelper.cs" />
     <Compile Include="Utilities\TORParticleSystem.cs" />
     <Compile Include="Utilities\TORPaths.cs" />
     <Compile Include="Utilities\TORSpellBlowHelper.cs" />
