@@ -76,6 +76,7 @@
     <module_sound name="fireball" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/fireball.wav" />
     <module_sound name="gas_cloud_release" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/gas_cloud_release.ogg" />
     <module_sound name="dust_storm" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/dust_storm.ogg" />
+	<module_sound name="dwellers_below" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/dwellers_below.ogg" />
     <module_sound name="lightning_strike" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/lightningstrike.ogg" />
     <module_sound name="dart" sound_category="mission_foley" path="../../TOR_Armory/ModuleSounds/dart_sound.ogg" />
     <module_sound name="fireball_explosion" sound_category="mission_combat" path="../../TOR_Armory/ModuleSounds/fireball_explosion.wav" />
