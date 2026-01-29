@@ -2362,7 +2362,7 @@
 
 
 
-  <string id="tor_career_switch_title.MinorVampire" text="{=str_tor_career_switch_title_MinorVampire}Become a Carstein Vampire" />
+  <string id="tor_career_switch_title.MinorVampire" text="{=str_tor_career_switch_title_MinorVampire}Become a von Carstein Vampire" />
   <string id="tor_career_switch_title.BloodKnight" text="{=str_tor_career_switch_title_BloodKnight}Become a Blood Knight" />
   <string id="tor_career_switch_title.BlackGrailKnight" text="{=str_tor_career_switch_title_BlackGrailKnight}Become a Knight of Mousillon" />
    <string id="tor_career_switch_title.Necrarch" text="{=str_tor_career_switch_title_Necrarch}Become a Necrach" />
@@ -2377,7 +2377,7 @@
   <string id="tor_career_switch_decline" text="{=str_tor_career_switch_decline}Decline" />
 
   <string id="tor_career_switch_explanation.MinorVampire" text="{=str_tor_career_switch_explanation_MinorVampire}
-  Accept and you shall become a Von Carstein Vampire. This decision is permanent and cannot be reversed.{newline}
+  Accept and you shall become a von Carstein Vampire. This decision is permanent and cannot be reversed.{newline}
   {newline}
   By becoming a Vampire, you will be stripped of your original Lore of Magic as well as the Faith skill.{newline}
   Instead you shall gain unholy powers of the undead…{newline}
@@ -3555,7 +3555,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_career_description.WarriorPriest" text="{=str_tor_career_description_warriorpriest}In life, Sigmar stood for the unification of Mankind, the destruction of evil and defiance against corruption. You hold the path set for you in his example high in your mind. To be a Priest of His faith is to be a Shepard to all mankind. Many of the cloth remain in their temples and cathedrals but you know the truth; the cursed and the damned must be sought out and vanquished." />
   <string id="tor_career_description.WarriorPriestUlric" text="{=str_tor_career_description_warriorpriestulric}To be a Wolf Priest is to be one of Ulrics champions, powerful, zealous, and blessed by the feral god himself. The battleground is where the word of Ulric is spread, and it is through bloodshed that he is honoured in worship." />
   <string id="tor_career_description.BloodKnight" text="{=str_tor_career_description_bloodknight}Sired by Abhorash, the Blood Knight is a dark mockery of everything noble or virtuous that can be said about their mortal counterparts. Where before the Blood Kiss there was honour is now cruelty; faith turns to irreverence and duty falls to wanton ambition. This is true of all vampires but seems particularly tragic for the fallen knights of the Old World." />
-  <string id="tor_career_description.MinorVampire" text="{=str_tor_career_description_MinorVampire}Known and feared by many names, Vampires are the night's dark master. Nighly anyone be they Man or Beast, Holy or Daemonic can face one and survive. All Vampires strive to be the only masters of their unlife, free from any obligations to religions or masters. This egomaniacal drive is what fuels them to greater and greater ambitions, so that one day they may be lord of all they observe." />
+  <string id="tor_career_description.MinorVampire" text="{=str_tor_career_description_MinorVampire}The von Carsteins have always been as ambitious as they are arrogant. With a history steeped in war, and intrigue, they consider themselves the true rulers of mankind, viewing mortals as little more than cattle. The von Carstein bloodline claims no single specialty in warfare or spellcraft; instead, they profess mastery over all such disciplines. To them, there is no art they cannot command, no foe they cannot outwit, and no weapon they cannot master." />
   <string id="tor_career_description.Mercenary" text="{=str_tor_career_description_mercenary}To be a Man in the 25th century is to be one of thousands. The Old World finds itself on the precipice of destruction and turmoil, of chaos and death. No one in this age can be weak; some use the times to their advantage and turn warfare into wealth, combat into glory and tragedy into destiny. Mercenary they may call you, whatever the name no one will control your fate." />
   <string id="tor_career_description.GrailKnight" text="{=str_tor_career_description_grailknight}To be a knight of Bretonnia is to strive for the blessing of the Lady and her holy grail. Any man deemed worthy to sup from her chalice becomes a holy warrior honored and respected across all of Bretonnia and yet farther. The road to that goal is difficult, so much so that most knights fail to accomplish despite all sharing the same dream." />
   <string id="tor_career_description.GrailDamsel" text="{=str_tor_career_description_graildamsel}Damsels are sought out as children by the Fey Enchantress for their latent magical potential. Taken away from their families they are raised in secret to be potent guardians of fair Bretonnia. Upon completion of their training they embark out into the land, coming to the aid of the people and influencing knights in order to fulfill their martial potential." />
