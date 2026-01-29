@@ -319,12 +319,12 @@ namespace TOR_Core.Quests
             party.Aggressiveness = 0f;
             party.IgnoreByOtherPartiesTill(CampaignTime.Never);
             //SetPartyUsedByQuest == true would normally prevent a party from having map trackers on them; see MapMobilePartyTrackerVMPatches for changes to that
+            AddTrackedObject(party);
             party.SetPartyUsedByQuest(true);
             _targetParty = party;
             List<PartyBase> list = new List<PartyBase>();
             list.Add(_targetParty.Party);
             //AddTrackedObject is used to add the object to the QuestManager and VisualManager. The former is responsible for at least the yellow exclamation mark shown next to a party's name that indicates that it's used in a quest (may be related to Special quests in particular). The latter is used by MapMobilePartyTrackerVM.InitList and by other VMs for settlement nameplates, etc...
-            AddTrackedObject(party);
         }
 
         protected override void HourlyTick()

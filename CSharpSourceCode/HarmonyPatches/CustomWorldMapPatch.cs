@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using SandBox;
 using SandBox.View.Map;
+using SandBox.ViewModelCollection.Map.Tracker;
 using System.IO;
 using System.Xml;
 using TaleWorlds.CampaignSystem;
@@ -8,6 +9,7 @@ using TaleWorlds.CampaignSystem.Map.DistanceCache;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Library;
 using TOR_Core.Utilities;
+using TOR_Core.Quests;
 
 namespace TOR_Core.HarmonyPatches
 {
@@ -48,4 +50,42 @@ namespace TOR_Core.HarmonyPatches
             return true;
         }
     }
+    [HarmonyPatch(typeof(MapTrackerProvider))]
+    internal static class QuestPartyMapTrackerProviderPatches
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch("CanAddMobileParty")]
+        private static void CanAddMobilePartyPostfix(MobileParty party, ref bool __result)
+        {
+            if (__result)
+                return;
+
+            if (!party.IsCurrentlyUsedByAQuest)
+                return;
+
+            if (party.PartyComponent is not QuestPartyComponent)
+                return;
+
+            if (Campaign.Current.VisualTrackerManager.CheckTracked(party))
+                __result = true;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("OnPartyQuestStatusChanged")]
+        private static void OnPartyQuestStatusChangedPostfix(MapTrackerProvider __instance, MobileParty mobileParty, bool isUsedByQuest)
+        {
+            if (!isUsedByQuest)
+                return;
+
+            if (mobileParty.PartyComponent is not QuestPartyComponent)
+                return;
+
+            if (!Campaign.Current.VisualTrackerManager.CheckTracked(mobileParty))
+                return;
+
+            var addIfEligibleMethod = AccessTools.Method(typeof(MapTrackerProvider), "AddIfEligible", new[] { typeof(MobileParty) });
+            addIfEligibleMethod.Invoke(__instance, new object[] { mobileParty });
+        }
+    }
+
 }

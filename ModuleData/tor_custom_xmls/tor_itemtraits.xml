@@ -523,9 +523,8 @@
     <OnWeaponHitScript WeaponScriptName="TOR_Core.Items.WeaponHitScripts.DefenseTriggerEffectScript">
       <WeaponScriptArguments>
         <WeaponScriptArgument>ghyran_tendrils_enchant</WeaponScriptArgument>
-        <WeaponScriptArgument>10</WeaponScriptArgument>
-        <WeaponScriptArgument>true</WeaponScriptArgument>
-        <WeaponScriptArgument>true</WeaponScriptArgument>
+	    <WeaponScriptArgument>false</WeaponScriptArgument>
+        <WeaponScriptArgument>false</WeaponScriptArgument>
       </WeaponScriptArguments>
     </OnWeaponHitScript>
   </ItemTrait>
