@@ -259,6 +259,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         private void CalculateCustomResourceGainFromBattles(MapEvent mapEvent) //PlayerBattleEndEvent
         {
+            if (mapEvent == null || !mapEvent.IsPlayerMapEvent)
+                return;
+            var playerWon = mapEvent.DefeatedSide != mapEvent.PlayerSide;
             var playerHero = Hero.MainHero;
             var playerParty = MobileParty.MainParty;
             var playerCulture = playerHero.Culture;
@@ -470,8 +473,15 @@ namespace TOR_Core.CampaignMechanics.CustomResources
                     renownChange *= leadershipFactor;
                 }
 
-                playerHero.AddCultureSpecificCustomResource((int)(1 + renownChange));
-            }
+                var cultureSpecificResourceChange = (int)(1 + renownChange);
+
+                if (playerWon)
+                {
+                    // 0 renown bug safe
+                    cultureSpecificResourceChange = Math.Max(1, cultureSpecificResourceChange);
+                }
+
+                playerHero.AddCultureSpecificCustomResource(cultureSpecificResourceChange);            }
         }
 
         private static void ScreenManager_OnPopScreen(ScreenBase poppedScreen)
