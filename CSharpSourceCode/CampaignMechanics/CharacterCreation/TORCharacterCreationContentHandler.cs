@@ -49,6 +49,11 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
         private const int FocusToAdd = 1;
         private const int SkillLevelToAdd = 10;
         private const int AttributeLevelToAdd = 1;
+        private static CampaignVec2 PickSpawn(params Vec2[] candidates)
+        {
+            var selectedIndex = candidates.Length == 1 ? 0 : MBRandom.RandomInt(candidates.Length);
+            return new CampaignVec2(candidates[selectedIndex], true);
+        }
 
         // Store original skill levels before applying bonuses (ChangeSkillLevel with negative values doesn't work)
         private Dictionary<string, int> _originalSkillLevels = new Dictionary<string, int>();
@@ -752,7 +757,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, 25);
                     hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.GrailDamsel);
-                    _storedSpawnPosition = new CampaignVec2(new Vec2(941.8889f, 1249.213f), true); // Grail Chapel
+                    _storedSpawnPosition = PickSpawn(
+                        new Vec2(1009.691f, 800.1613f),
+                        new Vec2(1039.543f, 1066.16f),
+                        new Vec2(965.3187f, 1159.331f),
+                        new Vec2(851.0214f, 1169.646f),
+                        new Vec2(1060.879f, 1256.079f)
+                    ); // Grail Chapel
                     // Add Realm Knight companion
                     var knight = MBObjectManager.Instance.GetObject<CharacterObject>("tor_br_realm_knight");
                     if (knight != null) hero.PartyBelongedTo.Party.AddMember(knight, 1);
@@ -788,11 +799,17 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_vc_vampire":
+                    hero.AddAttribute("Vampire");
+                    hero.AddAttribute("Necromancer");
+                    hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
+                    break;
+
                 case "option_3_mousillon_vampire":
                     hero.AddAttribute("Vampire");
                     hero.AddAttribute("Necromancer");
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 60);
                     // Bloodline career will be applied by ApplyStoredSpecializations
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(918.8679f, 1025.561f), true); // Mousillon Vampire
                     break;
 
                 case "option_3_vc_necromancer":
@@ -820,7 +837,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                     hero.AddCareer(TORCareers.Necromancer);
                     hero.AddReligiousInfluence(ReligionObject.All.FirstOrDefault(x => x.StringId == "cult_of_nagash"), 25);
-                    _storedSpawnPosition = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true); // Mousillon Necromancer location
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(894.7675f, 1050.645f), true); // Mousillon Necromancer location
                     break;
 
                 case "option_3_dw_shield_breaker":
@@ -855,10 +872,15 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                     break;
 
                 case "option_3_we_waywatcher":
+                    hero.AddCareer(TORCareers.Waywatcher);
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(1243.44f, 910.1643f), true); // Waywatcher location WE
+                    break;
+
                 case "option_3_eo_ghost_strider":
                     hero.AddCareer(TORCareers.Waywatcher);
-                    _storedSpawnPosition = new CampaignVec2(new Vec2(1243.44f, 910.1643f), true); // Waywatcher location
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(1252.19f, 1280.544f), true); // Waywatcher location eonir
                     break;
+
 
                 case "option_3_gs_path_of_boss":
                 case "option_3_gs_path_of_bully":
@@ -889,10 +911,40 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                 if (hero.Culture.StringId == TORConstants.Cultures.ASRAI)
                 {
                     hero.AddCareer(TORCareers.Warden);
+
+                    if (!_storedSpawnPosition.HasValue)
+                    {
+                        _storedSpawnPosition = PickSpawn(new Vec2(1187.113f, 864.41f)); // we ward
+                    }
                 }
                 else
                 {
                     hero.AddCareer(TORCareers.Mercenary);
+
+                    if (!_storedSpawnPosition.HasValue)
+                    {
+                        switch (hero.Culture.StringId)
+                        {
+                            case TORConstants.Cultures.EMPIRE:
+                                _storedSpawnPosition = PickSpawn(new Vec2(1135.848f, 1176.32f));
+                                break;
+                            case TORConstants.Cultures.SYLVANIA:
+                                _storedSpawnPosition = PickSpawn(new Vec2(1655.133f, 1059.423f));
+                                break;
+                            case TORConstants.Cultures.MOUSILLON:
+                                _storedSpawnPosition = PickSpawn(new Vec2(918.8679f, 1025.561f));
+                                break;
+                            case TORConstants.Cultures.EONIR:
+                                _storedSpawnPosition = PickSpawn(new Vec2(1295.974f, 1336.11f));
+                                break;
+                            case TORConstants.Cultures.DAWI:
+                                _storedSpawnPosition = PickSpawn(new Vec2(1485.11f, 809.4648f));
+                                break;
+                            case TORConstants.Cultures.BRETONNIA:
+                                _storedSpawnPosition = PickSpawn(new Vec2(1070.923f, 1116.021f));
+                                break;
+                        }
+                    }
                 }
             }
         }
@@ -930,7 +982,14 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         var skill = hero.GetSkillValue(TORSkills.Faith);
                         hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
                         hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(1283.261f, 1067.676f), true); // Altdorf gate - Sigmar's holy city
+                        _storedSpawnPosition = PickSpawn(
+                            new Vec2(1289.739f, 1037.714f),
+                            new Vec2(1469.832f, 1305.994f),
+                            new Vec2(1469.479f, 1203.471f),
+                            new Vec2(1624.668f, 1119.038f),
+                            new Vec2(1502.115f, 868.7839f),
+                            new Vec2(1462.291f, 993.9441f)
+                        ); // Altdorf gate - Sigmar's holy city
                         break;
                     }
                 case "priest_ulric":
@@ -941,7 +1000,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         var skill = hero.GetSkillValue(TORSkills.Faith);
                         hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Faith, Math.Max(skill, 25));
                         hero.HeroDeveloper.AddPerk(TORPerks.Faith.NovicePrayers);
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(1346.493f, 1244.102f), true); // Middenheim gate - Ulric's holy city
+                        _storedSpawnPosition = PickSpawn(
+                            new Vec2(1244.913f, 1189.293f),
+                            new Vec2(1355.957f, 1284.822f),
+                            new Vec2(1365.743f, 1175.629f),
+                            new Vec2(1553.345f, 1252.731f),
+                            new Vec2(1496.961f, 1175.854f)
+                        ); // Middenheim gate - Ulric's holy city
                         break;
                     }
                 // VAMPIRE BLOODLINE OPTIONS
@@ -974,13 +1039,13 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
                         hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
                         hero.AddCareer(TORCareers.MinorVampire);
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true); // Mousillon territory
+                        _storedSpawnPosition = new CampaignVec2(new Vec2(918.8679f, 1025.561f), true); // Mousillon territory
                         MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_cc_learned_necromancy_text", "Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                         break;
                     }
                 case "bloodline_blood_dragon_mous":
                     hero.AddCareer(TORCareers.BloodKnight);
-                    _storedSpawnPosition = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true); // Mousillon territory
+                    _storedSpawnPosition = new CampaignVec2(new Vec2(918.8679f, 1025.561f), true); // Mousillon territory
                     break;
                 case "bloodline_necrarch_mous":
                     {
@@ -992,7 +1057,7 @@ namespace TOR_Core.CampaignMechanics.CharacterCreation
                         var skill = hero.GetSkillValue(TORSkills.Spellcraft);
                         hero.HeroDeveloper.SetInitialSkillLevel(TORSkills.Spellcraft, Math.Max(skill, 25));
                         hero.HeroDeveloper.AddPerk(TORPerks.Spellcraft.EntrySpells);
-                        _storedSpawnPosition = new CampaignVec2(new Vec2(958.4354f, 1044.788f), true); // Mousillon territory
+                        _storedSpawnPosition = new CampaignVec2(new Vec2(918.8679f, 1025.561f), true); // Mousillon territory
                         MBInformationManager.AddQuickInformation(TORTextHelper.GetTextObject("tor_cc_learned_necromancy_text", "Successfully learned Necromancy"), 0, CharacterObject.PlayerCharacter);
                         break;
                     }
