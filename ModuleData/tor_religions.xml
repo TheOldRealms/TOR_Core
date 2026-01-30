@@ -441,7 +441,7 @@
         <ReligiousTroops>
         </ReligiousTroops>
     </Religion>
-	<Religion id="cult_of_grimnir" Name="{=tor_religion_cult_name_cult_of_loec_str}Cult of Grimnir" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Grimnir">
+	<Religion id="cult_of_grimnir" Name="{=tor_religion_cult_name_cult_of_grimnir_str}Cult of Grimnir" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Grimnir">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_nagash" />
             <HostileReligion id="Religion.cult_of_slaanesh" />
@@ -458,7 +458,7 @@
             <ReligiousTroop id="NPCCharacter.tor_dw_slayer" />
         </ReligiousTroops>
     </Religion>
-	<Religion id="cult_of_thungni" Name="{=tor_religion_cult_name_cult_of_loec_str}Cult of Thungni" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Thungni">
+	<Religion id="cult_of_thungni" Name="{=tor_religion_cult_name_cult_of_thungni_str}Cult of Thungni" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Thungni">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_nagash" />
             <HostileReligion id="Religion.cult_of_slaanesh" />
