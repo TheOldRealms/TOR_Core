@@ -744,6 +744,22 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_ranger_001" RaceLock="dwarf">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_ranger_002" RaceLock="dwarf">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_ranger_003" RaceLock="dwarf">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_ranger_004" RaceLock="dwarf">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_head_helm_ironbreaker_001" RaceLock="dwarf">
     <ItemTraits />
     <Description />
@@ -1187,6 +1203,14 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulder_shoulderpads_longbeard_001" RaceLock="dwarf">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulder_cape_ranger_001" RaceLock="dwarf">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_shoulder_cape_ranger_002" RaceLock="dwarf">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
@@ -1880,6 +1904,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_ranger_001" RaceLock="dwarf">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_body_armour_ironbreaker_001" RaceLock="dwarf">
     <ItemTraits />
     <Description />
@@ -2434,6 +2462,10 @@
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_ranger_001" RaceLock="dwarf">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_arm_bracers_ironbreaker_001" RaceLock="dwarf">
     <ItemTraits />
     <Description />
@@ -2873,6 +2905,10 @@
     <Description />
   </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_longbeard_001" RaceLock="dwarf">
+    <ItemTraits />
+    <Description />
+  </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_dw_leg_boots_ranger_001" RaceLock="dwarf">
     <ItemTraits />
     <Description />
   </ExtendedItemObjectProperties>
