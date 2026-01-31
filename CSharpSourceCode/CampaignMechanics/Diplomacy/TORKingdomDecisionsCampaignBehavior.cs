@@ -220,7 +220,7 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 {
                     cancelList.Add(kingdomDecision);
                 }
-                else if (kingdomDecision.TriggerTime.IsPast && Clan.PlayerClan.IsUnderMercenaryService)
+                else if (kingdomDecision.TriggerTime.IsPast)
                 {
                     electionList.Add(kingdomDecision);
                 }
@@ -239,9 +239,18 @@ namespace TOR_Core.CampaignMechanics.Diplomacy
                 kingdom.RemoveDecision(decisionToCancel);
                 CampaignEventDispatcher.Instance.OnKingdomDecisionCancelled(decisionToCancel, isPlayerInvolved);
             }
+            // vanilla fallback? im not sure what was intended here
             foreach (KingdomDecision decisionToVote in electionList)
             {
-                new KingdomElection(decisionToVote).StartElectionWithoutPlayer();
+                if (kingdom == Clan.PlayerClan.Kingdom && !Clan.PlayerClan.IsUnderMercenaryService)
+                {
+                    new KingdomElection(decisionToVote).StartElection();
+                }
+                else
+                {
+                    new KingdomElection(decisionToVote).StartElectionWithoutPlayer();
+                }
+
                 _lastDecisionTime[kingdom.StringId] = CampaignTime.Now;
             }
         }

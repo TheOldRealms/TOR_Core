@@ -22,4 +22,13 @@ public static class ModelPatches
 
         return true;
     }
+
+    // removes auto recruitment hard cap
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(DefaultSettlementGarrisonModel), nameof(DefaultSettlementGarrisonModel.GetMaximumDailyAutoRecruitmentCount))]
+    private static bool Prefix_UncapDailyGarrisonAutoRecruitment(ref int __result)
+    {
+        __result = int.MaxValue; 
+        return false; 
+    }
 }

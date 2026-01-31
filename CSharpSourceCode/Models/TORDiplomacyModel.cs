@@ -60,6 +60,7 @@ namespace TOR_Core.Models
         private const float PeaceAllianceWarPenalty = -60f;       // Penalty for abandoning alliance war
         private const float PeaceLoreRivalryPenalty = -50f;       // Penalty for lore-based rivalries
         private const float PeaceLoreAffinityBonus = 40f;         // Bonus for lore-based affinities
+        private const float PeaceScoreThresholdBaseline = 80f; // or whatever the sweetspot is. vanilla peace voting expects scores roughly comparable to DecisionMakingThreshold. tor custom CalculatePeaceScore is on a much smaller scale, so we should scale it up to match the threshold
 
         // Note: Trait modifiers and distance thresholds are now in DiplomacyHelpers
 
@@ -156,11 +157,42 @@ namespace TOR_Core.Models
                     return -100000;
 
                 // Calculate detailed peace score using ruling clan's perspective
-                return CalculatePeaceScore(kingdom, enemyKingdom, kingdom.RulingClan);
+                float rawPeaceScore = CalculatePeaceScore(kingdom, enemyKingdom, kingdom.RulingClan);
+                float decisionMakingThreshold = GetDecisionMakingThreshold(kingdom);
+                return rawPeaceScore * (decisionMakingThreshold / PeaceScoreThresholdBaseline);
             }
 
             return base.GetScoreOfDeclaringPeace(factionDeclaresPeace, factionDeclaredPeace);
         }
+
+        // 1.3 peace votes also gate on the 2arg score vs DecisionMakingThreshold
+        public override float GetScoreOfDeclaringPeaceForClan(IFaction factionDeclaresPeace, IFaction factionDeclaredPeace, Clan evaluatingClan, out TextObject reason, bool includeReason = false)
+        {
+            reason = TextObject.GetEmpty();
+            if (factionDeclaresPeace.Culture.StringId == TORConstants.Cultures.CHAOS ||
+                factionDeclaredPeace.Culture.StringId == TORConstants.Cultures.CHAOS)
+            {
+                return float.MinValue;
+            }
+
+            if (factionDeclaresPeace is Kingdom kingdom && factionDeclaredPeace is Kingdom enemyKingdom)
+            {
+                int totalWars = kingdom.GetWarCount();
+
+                // under min wars
+                if (totalWars <= TORConfig.NumMinKingdomWars)
+                    return -100000;
+
+                //use the evaluating clan,not the ruling clan
+                float rawPeaceScore = CalculatePeaceScore(kingdom, enemyKingdom, evaluatingClan);
+                float decisionMakingThreshold = GetDecisionMakingThreshold(kingdom);
+                return rawPeaceScore * (decisionMakingThreshold / PeaceScoreThresholdBaseline);
+            }
+
+            return base.GetScoreOfDeclaringPeaceForClan(
+                factionDeclaresPeace, factionDeclaredPeace, evaluatingClan, out reason, includeReason);
+        }
+
 
         /// <summary>
         /// Calculates detailed peace score for a specific enemy kingdom.
