@@ -6183,6 +6183,7 @@
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_008" />
       <Equipment slot="Item1" id="Item.tor_dw_weapon_gun_handgun_002" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_miner_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_miner_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_miner_001" />
@@ -6193,6 +6194,7 @@
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_008" />
       <Equipment slot="Item1" id="Item.tor_dw_weapon_gun_handgun_002" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_miner_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_miner_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_miner_001" />
@@ -6203,6 +6205,7 @@
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_007" />
       <Equipment slot="Item1" id="Item.tor_dw_weapon_gun_handgun_002" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_warrior_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_miner_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_miner_001" />
@@ -6213,6 +6216,7 @@
       <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_007" />
       <Equipment slot="Item1" id="Item.tor_dw_weapon_gun_handgun_002" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_warrior_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_miner_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_miner_001" />
@@ -6222,10 +6226,10 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_dw_sharpshooter_template" culture="Culture.sturgia">
     <EquipmentSet>
-      <Equipment slot="Item0" id="tor_dwarf_weapon_greataxe_002_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
       <Equipment slot="Item1" id="Item.tor_dw_weapon_gun_handgun_003" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
-      <Equipment slot="Item3" id="Item.tor_dwarf_weapon_shield_004" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_warrior_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_warrior_002" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_warrior_001" />
@@ -6233,10 +6237,10 @@
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_miner_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="tor_dwarf_weapon_greataxe_002_004" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_004" />
       <Equipment slot="Item1" id="Item.tor_dw_weapon_gun_handgun_003" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
-      <Equipment slot="Item3" id="Item.tor_dwarf_weapon_shield_004" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_warrior_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_warrior_002" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_warrior_001" />
@@ -6244,10 +6248,10 @@
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_miner_001" />
     </EquipmentSet>
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_greataxe_002_003" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_003" />
       <Equipment slot="Item1" id="Item.tor_dw_weapon_gun_handgun_003" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
-      <Equipment slot="Item3" id="Item.tor_dwarf_weapon_shield_004" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_warrior_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_warrior_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_warrior_001" />
@@ -6255,10 +6259,10 @@
       <Equipment slot="Leg" id="Item.tor_dw_leg_boots_warrior_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_greataxe_002_003" />
+      <Equipment slot="Item0" id="Item.tor_dwarf_weapon_1h_axe_003" />
       <Equipment slot="Item1" id="Item.tor_dw_weapon_gun_handgun_003" />
       <Equipment slot="Item2" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
-      <Equipment slot="Item3" id="Item.tor_dwarf_weapon_shield_004" />
+      <Equipment slot="Item3" id="Item.tor_neutral_weapon_ammo_steel_musket_ball" />
       <Equipment slot="Head" id="Item.tor_dw_head_helm_warrior_001" />
       <Equipment slot="Body" id="Item.tor_dw_body_armour_warrior_001" />
       <Equipment slot="Cape" id="Item.tor_dw_shoulderpads_warrior_001" />

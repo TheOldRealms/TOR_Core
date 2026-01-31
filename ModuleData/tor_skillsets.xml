@@ -576,7 +576,20 @@
 		<skill id="Gunpowder"
 			   value="225" />
 	</SkillSet>
-	
+
+	<SkillSet id="tor_skills_dwarf_ranger">
+		<skill id="Athletics"
+			   value="150" />
+		<skill id="OneHanded"
+			   value="160" />
+		<skill id="TwoHanded"
+			   value="160" />
+		<skill id="Crossbow"
+			   value="225" />
+		<skill id="Throwing"
+			   value="180" />
+	</SkillSet>
+
 	<SkillSet id="tor_skills_dwarf_oldguard">
 		<skill id="Athletics"
 			   value="120" />
@@ -602,6 +615,19 @@
 		<skill id="OneHanded"
 			   value="250" />
 		<skill id="TwoHanded"
+			   value="250" />
+	</SkillSet>
+
+	<SkillSet id="tor_skills_dwarf_ol_deadeye">
+		<skill id="Athletics"
+			   value="160" />
+		<skill id="OneHanded"
+			   value="175" />
+		<skill id="TwoHanded"
+			   value="175" />
+		<skill id="Crossbow"
+			   value="250" />
+		<skill id="Throwing"
 			   value="250" />
 	</SkillSet>
 	
