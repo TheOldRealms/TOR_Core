@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ArrayOfCharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_empire_villager">
     <Abilities />
@@ -1460,6 +1460,38 @@
       <string>DwarfGun</string>
       <string>Piercing</string>
     </Attributes>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="9" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_dw_ranger">
+    <Abilities />
+    <Attributes />
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
+    </Resistances>
+    <DamageAmplifiers>
+      <AmplifierTuple AmplifiedDamageType="Physical" DamageAmplifier="0.15" />
+    </DamageAmplifiers>
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="OathGold" UpkeepCost="0" UpgradeCost="1" />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_dw_ol_deadeye">
+    <Abilities />
+    <Attributes />
     <Resistances>
       <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
@@ -4511,6 +4543,23 @@
     <DamageProportions>
       <DamageProportionTuple DamageType="Physical" Percent="1.00" />
     </DamageProportions>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_ror_bugman_ranger">
+    <Abilities />
+    <Attributes>
+      <string>Piercing</string>
+      <string>Unbreakable</string>
+    </Attributes>
+    <Resistances>
+      <ResistanceTuple ResistedDamageType="Magical" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="0.35" />
+      <ResistanceTuple ResistedDamageType="Lightning" ReductionPercent="0.35" />
+    </Resistances>
+    <DamageAmplifiers />
+    <DamageProportions>
+      <DamageProportionTuple DamageType="Physical" Percent="1.00" />
+    </DamageProportions>
+    <ResourceCost ResourceType="OathGold" UpkeepCost="3" UpgradeCost="0" />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wh_retinue">
     <Abilities />
@@ -9707,10 +9756,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_slayer_lord">
     <Abilities />
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>CanPlaceArtillery</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord">
     <Abilities>

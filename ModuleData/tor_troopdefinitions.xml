@@ -1647,6 +1647,7 @@
     <upgrade_targets>
       <upgrade_target id="NPCCharacter.tor_dw_quarreller" />
       <upgrade_target id="NPCCharacter.tor_dw_thunderer" />
+      <upgrade_target id="NPCCharacter.tor_dw_ranger" />
     </upgrade_targets>
     <Equipments>
       <EquipmentSet id="tor_dw_scout_template" />
@@ -1721,6 +1722,40 @@
       <EquipmentSet id="tor_dw_sharpshooter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
+  <NPCCharacter id="tor_dw_ranger" default_group="ranged" level="26" name="{=str_tor_dw_ranger}Dawi Ranger" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_quarreller" race="dwarf">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <hair_tags>
+        <hair_tag name="Bald" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="DawiBeard" />
+      </beard_tags>
+    </face>
+    <upgrade_targets>
+      <upgrade_target id="NPCCharacter.tor_dw_ol_deadeye" />
+    </upgrade_targets>
+    <Equipments>
+      <EquipmentSet id="tor_dw_ranger_template" />
+      <EquipmentSet id="tor_dw_ranger_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_dw_ol_deadeye" default_group="ranged" level="31" name="{=str_tor_dw_ol_deadeye}Dawi Ol' Deadeye" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_sharpshooter" race="dwarf">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <hair_tags>
+        <hair_tag name="Bald" />
+      </hair_tags>
+      <beard_tags>
+        <beard_tag name="RangerBeard" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_dw_ol_deadeye_template" />
+      <EquipmentSet id="tor_dw_ol_deadeye_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
   <NPCCharacter id="tor_dw_oldguard" default_group="infantry" level="26" name="{=str_tor_dw_oldguard}Dawi Old Guard" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_dwarf_oldguard" is_basic_troop="true" race="dwarf">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
@@ -1728,7 +1763,7 @@
         <hair_tag name="Bald" />
       </hair_tags>
       <beard_tags>
-        <beard_tag name="DawiWarriorBeard" />
+        <beard_tag name="RangerBeard" />
       </beard_tags>
     </face>
     <upgrade_targets>
@@ -4808,7 +4843,7 @@
       <EquipmentSet id="tor_corduins_knightly_mariners_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_carcasonne_mountain_guard" default_group="infantry" level="16" name="{=str_tor_ror_carcasonne_mountain_guard}Carcasonne Mountain Guard" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
+  <NPCCharacter id="tor_ror_carcasonne_mountain_guard" default_group="infantry" level="16" name="{=str_tor_ror_carcasonne_mountain_guard}Kharmourt's Blades" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -4820,7 +4855,7 @@
       <EquipmentSet id="tor_carcasonne_mountainguard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_kharmourts_blades" default_group="infantry" level="26" name="{=str_tor_ror_kharmourts_blades}Kharmourt's Blades" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+  <NPCCharacter id="tor_ror_kharmourts_blades" default_group="infantry" level="26" name="{=str_tor_ror_kharmourts_blades}Kharmourt's Blades Serjeant" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -4830,7 +4865,7 @@
       <EquipmentSet id="tor_kharmourts_blade_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_br_mounted_bowman" default_group="horsearcher" level="21" name="{=str_tor_ror_br_mounted_bowman}Brettonnian Mounted Bowman" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
+  <NPCCharacter id="tor_ror_br_mounted_bowman" default_group="cavalry" level="21" name="{=str_tor_ror_br_mounted_bowman}Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level21" is_basic_troop="true">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -4842,7 +4877,7 @@
       <EquipmentSet id="tor_brettonian_mounted_bowman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_ror_warden_montfort" default_group="horsearcher" level="26" name="{=str_tor_ror_warden_montfort}Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
+  <NPCCharacter id="tor_ror_warden_montfort" default_group="cavalry" level="26" name="{=str_tor_ror_warden_montfort}Yeoman Warden of Montfort" occupation="Soldier" culture="Culture.vlandia" skill_template="SkillSet.tor_skills_level26">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -4904,6 +4939,19 @@
     <Equipments>
       <EquipmentSet id="tor_loec_trickster_template" />
       <EquipmentSet id="tor_loec_trickster_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_ror_bugman_ranger" default_group="ranged" level="36" name="{=str_tor_ror_bugman_ranger}Bugman's Ranger" occupation="Soldier" culture="Culture.sturgia" skill_template="SkillSet.tor_skills_level36" is_basic_troop="true" race="dwarf">
+    <face>
+      <face_key_template value="BodyProperty.dwarf_high_tier" />
+      <beard_tags>
+        <beard_tag name="RangerBeard" />
+      </beard_tags>
+    </face>
+    <upgrade_targets />
+    <Equipments>
+      <EquipmentSet id="tor_bugman_ranger_template" />
+      <EquipmentSet id="tor_bugman_ranger_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_wh_retinue" default_group="ranged" level="16" name="{=str_tor_wh_retinue}Retinue Apprentice" occupation="Soldier" culture="Culture.empire" skill_template="SkillSet.tor_skills_level16" is_basic_troop="true">
