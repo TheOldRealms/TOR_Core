@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
-  <NPCCharacter id="tor_wanderer_empire_0" default_group="ranged" name="{=str_tor_wanderer_empire_0}{FIRSTNAME} the Bright Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="55" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_0" default_group="ranged" name="{=str_tor_wanderer_empire_0}{FIRSTNAME} the Bright Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.brightwizard" />
       <hair_tags>
@@ -24,7 +24,7 @@
       <EquipmentSet id="tor_bright_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_1" default_group="infantry" name="{=str_tor_wanderer_empire_1}{FIRSTNAME} the Priest of Sigmar" occupation="Wanderer" culture="Culture.empire" voice="curt" age="45" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_1" default_group="infantry" name="{=str_tor_wanderer_empire_1}{FIRSTNAME} the Priest of Sigmar" occupation="Wanderer" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_wanderer_priest" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.warriorpriest" />
       <hair_tags>
@@ -48,7 +48,7 @@
       <EquipmentSet id="tor_warrior_priest_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_2" default_group="infantry" name="{=str_tor_wanderer_empire_2}{FIRSTNAME} the Witch Hunter" occupation="Wanderer" culture="Culture.empire" voice="curt" age="29" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_2" default_group="infantry" name="{=str_tor_wanderer_empire_2}{FIRSTNAME} the Witch Hunter" occupation="Wanderer" culture="Culture.empire" voice="curt" age="29" skill_template="SkillSet.tor_skills_wanderer_witch_hunter" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -72,7 +72,7 @@
       <EquipmentSet id="tor_witch_hunter_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_3" default_group="ranged" name="{=str_tor_wanderer_empire_3}{FIRSTNAME} the Light Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_3" default_group="ranged" name="{=str_tor_wanderer_empire_3}{FIRSTNAME} the Light Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -96,7 +96,7 @@
       <EquipmentSet id="tor_light_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_4" default_group="ranged" name="{=str_tor_wanderer_empire_4}{FIRSTNAME} the Celestial Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_4" default_group="ranged" name="{=str_tor_wanderer_empire_4}{FIRSTNAME} the Celestial Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -145,7 +145,7 @@
       <EquipmentSet id="tor_engineer_companion_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_6" default_group="infantry" name="{=str_tor_wanderer_empire_6}{FIRSTNAME} the Priestess of Shallya" occupation="Wanderer" culture="Culture.empire" voice="curt" age="31" is_female="true" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_6" default_group="infantry" name="{=str_tor_wanderer_empire_6}{FIRSTNAME} the Priestess of Shallya" occupation="Wanderer" culture="Culture.empire" voice="curt" age="31" skill_template="SkillSet.tor_skills_wanderer_shallya" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
@@ -162,7 +162,7 @@
       <EquipmentSet id="tor_priestess_of_shallya_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_7" default_group="infantry" name="{=str_tor_wanderer_empire_7}{FIRSTNAME} the Huntsman" occupation="Wanderer" culture="Culture.empire" voice="curt" age="42" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_7" default_group="infantry" name="{=str_tor_wanderer_empire_7}{FIRSTNAME} the Huntsman" occupation="Wanderer" culture="Culture.empire" voice="curt" age="42" skill_template="SkillSet.tor_skills_wanderer_huntsman" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -179,7 +179,7 @@
       <EquipmentSet id="tor_huntsman_wanderer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_8" default_group="infantry" name="{=str_tor_wanderer_empire_8}{FIRSTNAME} the Gold Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="44" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_8" default_group="infantry" name="{=str_tor_wanderer_empire_8}{FIRSTNAME} the Gold Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="44" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -204,7 +204,7 @@
       <EquipmentSet id="tor_gold_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_9" default_group="infantry" name="{=str_tor_wanderer_empire_9}{FIRSTNAME} the Life Wizard" occupation="Wanderer" culture="Culture.empire" voice="softspoken" age="25" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_9" default_group="infantry" name="{=str_tor_wanderer_empire_9}{FIRSTNAME} the Life Wizard" occupation="Wanderer" culture="Culture.empire" voice="softspoken" age="25" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -228,7 +228,7 @@
       <EquipmentSet id="tor_life_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_10" default_group="infantry" name="{=str_tor_wanderer_empire_10}{FIRSTNAME} the Beast Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_10" default_group="infantry" name="{=str_tor_wanderer_empire_10}{FIRSTNAME} the Beast Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="50" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <beard_tags>
@@ -249,7 +249,7 @@
       <EquipmentSet id="tor_beast_wizard_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_11" default_group="infantry" name="{=str_tor_wanderer_empire_11}{FIRSTNAME} the Priest of Ulric" occupation="Wanderer" culture="Culture.empire" voice="curt" age="45" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_11" default_group="infantry" name="{=str_tor_wanderer_empire_11}{FIRSTNAME} the Priest of Ulric" occupation="Wanderer" culture="Culture.empire" voice="curt" age="45" skill_template="SkillSet.tor_skills_wanderer_priest" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.ulric_warrior" />
     </face>
@@ -267,7 +267,7 @@
       <EquipmentSet id="tor_priest_of_ulric_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_12" default_group="infantry" name="{=str_tor_wanderer_empire_12}{FIRSTNAME} the Empire Captain" occupation="Wanderer" culture="Culture.empire" voice="curt" age="85" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_12" default_group="infantry" name="{=str_tor_wanderer_empire_12}{FIRSTNAME} the Empire Captain" occupation="Wanderer" culture="Culture.empire" voice="curt" age="85" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.empire_captain" />
     </face>
@@ -284,7 +284,7 @@
       <EquipmentSet id="tor_empire_captain_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_empire_13" default_group="cavalry" name="{=str_tor_wanderer_empire_13}{FIRSTNAME} the Empire Noble" occupation="Wanderer" culture="Culture.empire" voice="ironic" age="30" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_empire_13" default_group="cavalry" name="{=str_tor_wanderer_empire_13}{FIRSTNAME} the Empire Noble" occupation="Wanderer" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
@@ -302,7 +302,7 @@
       <EquipmentSet id="tor_empire_noble_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_bretonnia_0" default_group="cavalry" name="{=str_tor_wanderer_bretonnia_0}{FIRSTNAME} the Bretonnian Knight" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="38" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_bretonnia_0" default_group="cavalry" name="{=str_tor_wanderer_bretonnia_0}{FIRSTNAME} the Bretonnian Knight" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="38" skill_template="SkillSet.tor_skills_wanderer_knight" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
       <hair_tags>
@@ -325,7 +325,7 @@
       <EquipmentSet id="tor_bretonnian_knight_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_bretonnia_1" default_group="infantry" name="{=str_tor_wanderer_bretonnia_1}{FIRSTNAME} the Damsel of the Lady" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="30" is_female="true" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_bretonnia_1" default_group="infantry" name="{=str_tor_wanderer_bretonnia_1}{FIRSTNAME} the Damsel of the Lady" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_wizard" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
@@ -344,7 +344,7 @@
       <EquipmentSet id="tor_prophetess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_bretonnia_2" default_group="infantry" name="{=str_tor_wanderer_bretonnia_2}{FIRSTNAME} the Yeoman" occupation="Wanderer" culture="Culture.vlandia" voice="softspoken" age="56" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_bretonnia_2" default_group="infantry" name="{=str_tor_wanderer_bretonnia_2}{FIRSTNAME} the Yeoman" occupation="Wanderer" culture="Culture.vlandia" voice="softspoken" age="56" skill_template="SkillSet.tor_skills_wanderer_huntsman" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
       <beard_tags>
@@ -365,7 +365,7 @@
       <EquipmentSet id="tor_yeoman_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_bretonnia_3" default_group="ranged" name="{=str_tor_wanderer_bretonnia_3}{FIRSTNAME} the Herrimault" occupation="Wanderer" culture="Culture.vlandia" voice="ironic" age="33" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_bretonnia_3" default_group="ranged" name="{=str_tor_wanderer_bretonnia_3}{FIRSTNAME} the Herrimault" occupation="Wanderer" culture="Culture.vlandia" voice="ironic" age="33" skill_template="SkillSet.tor_skills_wanderer_rogue" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
       <beard_tags>
@@ -385,7 +385,7 @@
       <EquipmentSet id="tor_herrimault_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_bretonnia_4" default_group="infantry" name="{=str_tor_wanderer_bretonnia_4}{FIRSTNAME} the Wall Warden" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="42" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_bretonnia_4" default_group="infantry" name="{=str_tor_wanderer_bretonnia_4}{FIRSTNAME} the Wall Warden" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="42" skill_template="SkillSet.tor_skills_wanderer_engineer" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -403,7 +403,7 @@
       <EquipmentSet id="tor_wall_warden_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_bretonnia_5" default_group="infantry" name="{=str_tor_wanderer_bretonnia_5}{FIRSTNAME} the Marchand" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="34" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_bretonnia_5" default_group="infantry" name="{=str_tor_wanderer_bretonnia_5}{FIRSTNAME} the Marchand" occupation="Wanderer" culture="Culture.vlandia" voice="curt" age="34" skill_template="SkillSet.fill_here" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -420,7 +420,7 @@
       <EquipmentSet id="tor_marchand_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_mousillon_0" default_group="infantry" name="{=str_tor_wanderer_mousillon_0}{FIRSTNAME} the Fallen Knight" occupation="Wanderer" culture="Culture.mousillon" voice="curt" age="38" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_mousillon_0" default_group="infantry" name="{=str_tor_wanderer_mousillon_0}{FIRSTNAME} the Fallen Knight" occupation="Wanderer" culture="Culture.mousillon" voice="curt" age="38" skill_template="SkillSet.tor_skills_wanderer_knight" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
       <hair_tags>
@@ -444,7 +444,7 @@
       <EquipmentSet id="tor_fallen_knight" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_mousillon_1" default_group="infantry" name="{=str_tor_wanderer_mousillon_1}{FIRSTNAME} the Necromancer of Mousillon" occupation="Wanderer" culture="Culture.mousillon" voice="ironic" age="55" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_mousillon_1" default_group="infantry" name="{=str_tor_wanderer_mousillon_1}{FIRSTNAME} the Necromancer of Mousillon" occupation="Wanderer" culture="Culture.mousillon" voice="ironic" age="55" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -469,7 +469,7 @@
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_mousillon_2" default_group="infantry" name="{=str_tor_wanderer_mousillon_2}{FIRSTNAME} the Hedge Witch" occupation="Wanderer" culture="Culture.mousillon" voice="ironic" age="82" is_female="true" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_mousillon_2" default_group="infantry" name="{=str_tor_wanderer_mousillon_2}{FIRSTNAME} the Hedge Witch" occupation="Wanderer" culture="Culture.mousillon" voice="ironic" age="82" skill_template="SkillSet.tor_skills_wanderer_wizard" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
@@ -487,7 +487,7 @@
       <EquipmentSet id="tor_hedge_witch_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_mousillon_3" default_group="infantry" name="{=str_tor_wanderer_mousillon_3}{FIRSTNAME} the Smuggler" occupation="Wanderer" culture="Culture.mousillon" voice="ironic" age="34" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_mousillon_3" default_group="infantry" name="{=str_tor_wanderer_mousillon_3}{FIRSTNAME} the Smuggler" occupation="Wanderer" culture="Culture.mousillon" voice="ironic" age="34" skill_template="SkillSet.tor_skills_wanderer_rogue" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_vlandia" />
     </face>
@@ -505,7 +505,7 @@
       <EquipmentSet id="tor_smuggler_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_0" default_group="infantry" name="{=str_tor_wanderer_vampire_0}{FIRSTNAME} the Necromancer" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="55" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_0" default_group="infantry" name="{=str_tor_wanderer_vampire_0}{FIRSTNAME} the Necromancer" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="55" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
       <hair_tags>
@@ -530,7 +530,7 @@
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_1" default_group="cavalry" name="{=str_tor_wanderer_vampire_1}{FIRSTNAME} the Vampire" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" race="vampire" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_1" default_group="cavalry" name="{=str_tor_wanderer_vampire_1}{FIRSTNAME} the Vampire" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" skill_template="SkillSet.tor_skills_wanderer_vampire" race="vampire" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.vampire" />
       <hair_tags>
@@ -555,7 +555,7 @@
       <EquipmentSet id="tor_generic_vampire_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_2" default_group="infantry" name="{=str_tor_wanderer_vampire_2}{FIRSTNAME} the Wight King" occupation="Wanderer" culture="Culture.khuzait" voice="curt" age="30" race="skeleton" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_2" default_group="infantry" name="{=str_tor_wanderer_vampire_2}{FIRSTNAME} the Wight King" occupation="Wanderer" culture="Culture.khuzait" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_warrior" race="skeleton" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.skeleton" />
     </face>
@@ -572,7 +572,7 @@
       <EquipmentSet id="tor_wight_king_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_3" default_group="cavalry" name="{=str_tor_wanderer_vampire_3}{FIRSTNAME} the Lahmian Countess" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" race="vampire" is_female="true" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_3" default_group="cavalry" name="{=str_tor_wanderer_vampire_3}{FIRSTNAME} the Lahmian Countess" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="19" skill_template="SkillSet.tor_skills_wanderer_vampire" race="vampire" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.vampire_female" />
     </face>
@@ -591,7 +591,7 @@
       <EquipmentSet id="tor_vc_lahmian_countess_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_vampire_4" default_group="infantry" name="{=str_tor_wanderer_vampire_4}{FIRSTNAME} of the Strigany" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="30" is_female="true" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_vampire_4" default_group="infantry" name="{=str_tor_wanderer_vampire_4}{FIRSTNAME} of the Strigany" occupation="Wanderer" culture="Culture.khuzait" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_rogue" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.townswoman_empire" />
     </face>
@@ -610,7 +610,7 @@
       <EquipmentSet id="tor_strigany_female_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_woodelf_0" default_group="infantry" name="{=str_tor_wanderer_woodelf_0}{FIRSTNAME} the Spellsinger" occupation="Wanderer" culture="Culture.battania" voice="softspoken" age="19" race="elf" is_female="true" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_woodelf_0" default_group="infantry" name="{=str_tor_wanderer_woodelf_0}{FIRSTNAME} the Spellsinger" occupation="Wanderer" culture="Culture.battania" voice="softspoken" age="19" skill_template="SkillSet.tor_skills_wanderer_wizard" race="elf" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
@@ -628,7 +628,7 @@
       <EquipmentSet id="tor_we_spellsinger_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_woodelf_1" default_group="infantry" name="{=str_tor_wanderer_woodelf_1}{FIRSTNAME} the Glade Captain" occupation="Wanderer" culture="Culture.battania" voice="curt" age="19" race="elf" is_female="true" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_woodelf_1" default_group="infantry" name="{=str_tor_wanderer_woodelf_1}{FIRSTNAME} the Glade Captain" occupation="Wanderer" culture="Culture.battania" voice="curt" age="19" skill_template="SkillSet.tor_skills_wanderer_commander" race="elf" is_female="true" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.female_wood_elf" />
     </face>
@@ -645,7 +645,7 @@
       <EquipmentSet id="tor_we_glade_captain_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_woodelf_2" default_group="infantry" name="{=str_tor_wanderer_woodelf_2}{FIRSTNAME} the Waywatcher" occupation="Wanderer" culture="Culture.battania" voice="curt" age="22" race="elf" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_woodelf_2" default_group="infantry" name="{=str_tor_wanderer_woodelf_2}{FIRSTNAME} the Waywatcher" occupation="Wanderer" culture="Culture.battania" voice="curt" age="22" skill_template="SkillSet.tor_skills_wanderer_scout" race="elf" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -663,7 +663,7 @@
       <EquipmentSet id="tor_we_waywatcher_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_eonir_0" default_group="infantry" name="{=str_tor_wanderer_eonir_0}{FIRSTNAME} the Ghost Strider" occupation="Wanderer" culture="Culture.eonir" voice="curt" age="22" race="elf" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_eonir_0" default_group="infantry" name="{=str_tor_wanderer_eonir_0}{FIRSTNAME} the Ghost Strider" occupation="Wanderer" culture="Culture.eonir" voice="curt" age="22" skill_template="SkillSet.tor_skills_wanderer_scout" race="elf" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -681,7 +681,7 @@
       <EquipmentSet id="tor_eo_ghoststrider_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_eonir_1" default_group="infantry" name="{=str_tor_wanderer_eonir_1}{FIRSTNAME} the Guardian Mage" occupation="Wanderer" culture="Culture.eonir" voice="ironic" age="30" race="elf" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_eonir_1" default_group="infantry" name="{=str_tor_wanderer_eonir_1}{FIRSTNAME} the Guardian Mage" occupation="Wanderer" culture="Culture.eonir" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_wizard" race="elf" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.male_wood_elf" />
     </face>
@@ -699,7 +699,7 @@
       <EquipmentSet id="tor_eo_guardian_mage_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_dawi_0" default_group="infantry" name="{=str_tor_wanderer_dawi_0}{FIRSTNAME} the Thane" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_dawi_0" default_group="infantry" name="{=str_tor_wanderer_dawi_0}{FIRSTNAME} the Thane" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" race="dwarf" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
@@ -715,7 +715,7 @@
       <EquipmentSet id="tor_dw_warrior_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_dawi_1" default_group="infantry" name="{=str_tor_wanderer_dawi_1}{FIRSTNAME} the Runesmith" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" race="dwarf" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_dawi_1" default_group="infantry" name="{=str_tor_wanderer_dawi_1}{FIRSTNAME} the Runesmith" occupation="Wanderer" culture="Culture.sturgia" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_runesmith" race="dwarf" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.dwarf_high_tier" />
     </face>
@@ -731,7 +731,7 @@
       <EquipmentSet id="tor_dw_runelord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_greenskins_0" default_group="infantry" name="{=str_tor_wanderer_greenskins_0}{FIRSTNAME} the Big Boss" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" race="orc" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_greenskins_0" default_group="infantry" name="{=str_tor_wanderer_greenskins_0}{FIRSTNAME} the Big Boss" occupation="Wanderer" culture="Culture.aserai" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" race="orc" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.orc_small" />
     </face>
@@ -1893,7 +1893,7 @@
       <EquipmentSet id="tor_cult_fsf_archbacillus_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_wanderer_chaos_0" default_group="infantry" name="{=str_tor_wanderer_chaos_0}{FIRSTNAME} the Chosen of Chaos" occupation="Wanderer" culture="Culture.chaos_culture" voice="curt" age="30" race="chaos_ud_cultist" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_wanderer_chaos_0" default_group="infantry" name="{=str_tor_wanderer_chaos_0}{FIRSTNAME} the Chosen of Chaos" occupation="Wanderer" culture="Culture.chaos_culture" voice="curt" age="30" skill_template="SkillSet.tor_skills_wanderer_warrior" race="chaos_ud_cultist" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.undivided_cultist" />
     </face>
