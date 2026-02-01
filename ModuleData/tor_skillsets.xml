@@ -1220,21 +1220,21 @@
 		       value="300" />
 	</SkillSet>
 	
-			<SkillSet id="tor_skills_mannfredvoncarstein">
+			<SkillSet id="tor_skills_walachharkon">
 		<skill id="Athletics"
 		       value="330" />
 		<skill id="Riding"
-		       value="220" />
+		       value="350" />
 		<skill id="OneHanded"
 		       value="330" />
 		<skill id="TwoHanded"
 		       value="300" />
 		<skill id="Polearm"
-		       value="300" />
+		       value="330" />
 		<skill id="Bow"
-		       value="100" />
+		       value="0" />
 		<skill id="Crossbow"
-		       value="100" />
+		       value="0" />
 		<skill id="Throwing"
 		       value="0" />
 		<skill id="Smithing"
@@ -1252,7 +1252,7 @@
 		<skill id="Charm"
 		       value="200" />
 		<skill id="Leadership"
-		       value="250" />
+		       value="260" />
 		<skill id="Roguery"
 		       value="300" />
 		<skill id="Trade"
@@ -1262,7 +1262,7 @@
 		<skill id="Faith"
 		       value="0" />
 		<skill id="Spellcraft"
-		       value="300" />
+		       value="0" />
 	</SkillSet>
 	
 	<SkillSet id="tor_skills_queenmarrisith">
