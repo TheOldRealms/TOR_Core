@@ -8380,9 +8380,7 @@
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_bad_axes_first_10">
     <Abilities />
-    <Attributes>
-      <string>Tough</string>
-    </Attributes>
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_lord_bad_axes_second_1">
     <Abilities />
@@ -9757,6 +9755,20 @@
   <CharacterExtendedInfo id="tor_slayer_lord">
     <Abilities />
     <Attributes />
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_shaman_lord">
+    <Abilities>
+      <string>GazeUvMork</string>
+      <string>ArdAsNails</string>
+      <string>BrainBursta</string>
+      <string>DaHandUvGork</string>
+      <string>EreWeGo</string>
+      <string>FootUvGork</string>
+    </Abilities>
+    <Attributes>
+      <string>AbilityUser</string>
+      <string>SpellCaster</string>
+    </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_vc_lord">
     <Abilities>

@@ -200,7 +200,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_slayer_lord" default_group="infantry" name="{=str_tor_slayer_lord}Slayer Lord" occupation="Lord" culture="Culture.sturgia" voice="ironic" age="40" skill_template="SkillSet.tor_custombattle_generic" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="40" weight="0.4954" build="0.8441"  key="00050004C28800C1F77664884754DCBAFF9E566095F09F1F74414A49893F81FE3F77760305A7B7A5D700000000200060000000000000000500000000129C0002"  />
+      <BodyProperties version="4" age="40" weight="0.6" build="0.5" key="000D5C0780FC0001736793597B969A3B37868255399CAC17A6C9A2FA8C7C5799D7803603073B5D8789394BC56E7A3B6200000000000000070000000036F40002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="5" />
@@ -214,6 +214,24 @@
     <Equipments>
       <EquipmentSet id="tor_dw_slayer_lord_template" />
       <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_shaman_lord" default_group="infantry" name="{=str_tor_shaman_lord}Shaman Lord" occupation="Lord" culture="Culture.aserai" voice="curt" age="40" skill_template="SkillSet.tor_custombattle_generic" race="orc" is_hero="true">
+    <face>
+      <BodyProperties version="4" age="40" weight="0.3071" build="0.1744" key="00001008C0CC00005C12429361532471D9656C584FA9A47724B588AAD7B53C5D588926130A5787783572331445343533000000000000001A000000002F440000" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="5" />
+      <Trait id="Commander" value="7" />
+      <Trait id="Politician" value="5" />
+      <Trait id="Manager" value="6" />
+      <Trait id="Honor" value="1" />
+      <Trait id="Mercy" value="-1" />
+      <Trait id="Generosity" value="-1" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_orc_great_shaman_template_001" />
+      <EquipmentSet id="tor_gs_orc_great_shaman_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_vc_lord" default_group="cavalry" name="{=str_tor_vc_lord}Vampire Lord" occupation="Lord" culture="Culture.khuzait" voice="curt" age="50" skill_template="SkillSet.tor_custombattle_generic" race="vampire" is_hero="true">
@@ -250,24 +268,6 @@
     <Equipments>
       <EquipmentSet id="tor_necromancer_template" />
       <EquipmentSet id="tor_necromancer_template" civilian="true" />
-    </Equipments>
-  </NPCCharacter>
-  <NPCCharacter id="tor_shaman_lord" default_group="infantry" name="{=str_tor_shaman_lord}Orc Shaman" occupation="Lord" culture="Culture.aserai" voice="curt" age="40" race="orc" skill_template="SkillSet.tor_custombattle_generic" is_hero="true">
-    <face>
-      <face_key_template value="BodyProperty.orc_mid" />
-    </face>
-    <Traits>
-      <Trait id="BalancedFightingSkills" value="3" />
-      <Trait id="Commander" value="5" />
-      <Trait id="Politician" value="2" />
-      <Trait id="Manager" value="4" />
-      <Trait id="Honor" value="-2" />
-      <Trait id="Mercy" value="-2" />
-      <Trait id="Generosity" value="-1" />
-    </Traits>
-    <Equipments>
-      <EquipmentSet id="tor_gs_orc_template" />
-      <EquipmentSet id="tor_gs_orc_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
 </NPCCharacters>
