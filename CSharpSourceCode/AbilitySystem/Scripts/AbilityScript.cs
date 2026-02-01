@@ -81,9 +81,17 @@ namespace TOR_Core.AbilitySystem.Scripts
         {
             _ability = ability;
             _entity = entity;
-            if (_ability.Template.SoundEffectToPlay != "none" && _ability.Template.SoundEffectToPlay != null)
+            var soundEffectToPlay = _ability.Template.SoundEffectToPlay?.Trim();
+            if (!string.IsNullOrEmpty(soundEffectToPlay) && soundEffectToPlay != "none")
             {
-                _soundIndex = SoundEvent.GetEventIdFromString(_ability.Template.SoundEffectToPlay);
+                _soundIndex = SoundEvent.GetEventIdFromString(soundEffectToPlay);
+
+                if (_soundIndex < 0)
+                {
+                    throw new InvalidOperationException(
+                        $"[TOR] Missing sound event '{soundEffectToPlay}' for ability '{_ability.Template.StringID}'. ");
+                }
+
                 _sound = SoundEvent.CreateEvent(_soundIndex, Scene);
             }
         }

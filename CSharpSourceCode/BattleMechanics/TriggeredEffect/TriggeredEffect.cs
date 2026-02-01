@@ -32,23 +32,6 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
         public void Trigger(Vec3 position, Vec3 normal, Agent triggererAgent, AbilityTemplate originAbilityTemplate = null, MBList<Agent> targets = null, int castId = -1)
         {
             if (_template == null || !triggererAgent.IsActive()) return;
-            _timer = new Timer(2000)
-            {
-                AutoReset = false,
-                Enabled = false
-            };
-            _timer.Elapsed += (s, e) =>
-            {
-                lock (_sync)
-                {
-                    Dispose();
-                }
-            };
-            if (_template.SoundEffectLength > 0)
-            {
-                _timer.Interval = _template.SoundEffectLength * 1000;
-            }
-            _timer.Start();
 
             float damageMultiplier = 1f;
             float statusEffectDuration = _template.ImbuedStatusEffectDuration;
@@ -152,16 +135,40 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             SpawnVisuals(position, normal);
             PlaySound(position);
             TriggerScript(position, triggererAgent, targets, statusEffectDuration);
+            if (_sound != null)
+            {
+                _timer = new Timer(2000)
+                {
+                    AutoReset = false,
+                    Enabled = false
+                };
+
+                _timer.Elapsed += (s, e) =>
+                {
+                    lock (_sync)
+                    {
+                        Dispose();
+                    }
+                };
+
+                if (_template.SoundEffectLength > 0)
+                {
+                    _timer.Interval = _template.SoundEffectLength * 1000;
+                }
+
+                _timer.Start();
+            }
         }
 
         private void SpawnVisuals(Vec3 position, Vec3 normal)
         {
             //play visuals
-            if (_template != null && _template.BurstParticleEffectPrefab != "none")
+            var burstPrefab = _template?.BurstParticleEffectPrefab?.Trim();
+            if (!string.IsNullOrEmpty(burstPrefab) && burstPrefab != "none")
             {
                 var effect = GameEntity.CreateEmpty(Mission.Current.Scene);
                 MatrixFrame frame = MatrixFrame.Identity;
-                ParticleSystem.CreateParticleSystemAttachedToEntity(_template.BurstParticleEffectPrefab, effect, ref frame);
+                ParticleSystem.CreateParticleSystemAttachedToEntity(burstPrefab, effect, ref frame);
                 var globalFrame = new MatrixFrame(Mat3.CreateMat3WithForward(in normal), position);
                 effect.SetGlobalFrame(globalFrame);
                 effect.FadeOut(_template.SoundEffectLength, true);
@@ -170,25 +177,36 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
         private void PlaySound(Vec3 position)
         {
-            //play sound
-            if (_template != null && _template.SoundEffectId != "none")
+            // play sound
+            if (_template == null) return;
+
+            var soundEffectId = _template.SoundEffectId?.Trim();
+            if (string.IsNullOrEmpty(soundEffectId) || soundEffectId == "none")
+                return;
+
+            var soundIndex = SoundEvent.GetEventIdFromString(soundEffectId);
+            if (soundIndex < 0)
             {
-                _soundIndex = SoundEvent.GetEventIdFromString(_template.SoundEffectId);
-                _sound = SoundEvent.CreateEvent(_soundIndex, Mission.Current.Scene);
-                _sound?.PlayInPosition(position);
+                throw new InvalidOperationException(
+                    $"[TOR] Missing sound event '{soundEffectId}' for triggered effect '{_template.StringID}'.");
             }
+
+            _soundIndex = soundIndex;
+            _sound = SoundEvent.CreateEvent(_soundIndex, Mission.Current.Scene);
+            _sound?.PlayInPosition(position);
         }
 
         private void TriggerScript(Vec3 position, Agent triggerer, IEnumerable<Agent> triggeredAgents, float duration)
         {
-            if (_template != null && _template.ScriptNameToTrigger != "none")
+            var scriptNameToTrigger = _template?.ScriptNameToTrigger?.Trim();
+            if (!string.IsNullOrEmpty(scriptNameToTrigger) && scriptNameToTrigger != "none")
             {
                 try
                 {
-                    var scriptType = Type.GetType(_template.ScriptNameToTrigger, throwOnError: false);
+                    var scriptType = Type.GetType(scriptNameToTrigger, throwOnError: false);
                     if (scriptType == null)
                     {
-                        TORCommon.Log("Tried to spawn TriggeredScript: " + _template.ScriptNameToTrigger + ", but type could not be resolved.", NLog.LogLevel.Error);
+                        TORCommon.Log("Tried to spawn TriggeredScript: " + scriptNameToTrigger + ", but type couldnt be resolved.", NLog.LogLevel.Error);
                         return;
                     }
 
@@ -217,7 +235,7 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
                 }
                 catch (Exception)
                 {
-                    TORCommon.Log("Tried to spawn TriggeredScript: " + _template.ScriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
+                    TORCommon.Log("Tried to spawn TriggeredScript: " + scriptNameToTrigger + ", but failed.", NLog.LogLevel.Error);
                 }
             }
         }
