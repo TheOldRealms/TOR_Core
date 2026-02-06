@@ -18,35 +18,23 @@ namespace TOR_Core.Models
         public override int GetEnergyCostForRefining(ref Crafting.RefiningFormula refineFormula, Hero hero)
         {
             var value = base.GetEnergyCostForRefining(ref refineFormula, hero);
-
-            if (hero.HasCareer(TORCareers.Runelord))
-            {
-                if (Hero.MainHero.HasCareerChoice("ForgefireBurningPassive3"))
-                {
-                    var reduction = value * 0.4f;
-                    value -= (int)MathF.Round(reduction);
-                }
-            }
-            return value;
+            return ApplyEnergyCostModifiers(value, hero);
         }
 
         public override int GetEnergyCostForSmelting(ItemObject item, Hero hero)
         {
             var value = base.GetEnergyCostForSmelting(item, hero);
-            if (hero.HasCareer(TORCareers.Runelord))
-            {
-                if (Hero.MainHero.HasCareerChoice("ForgefireBurningPassive3"))
-                {
-                    var reduction = value * 0.4f;
-                    value -= (int)MathF.Round(reduction);
-                }
-            }
-            return value;
+            return ApplyEnergyCostModifiers(value, hero);
         }
 
         public override int GetEnergyCostForSmithing(ItemObject item, Hero hero)
         {
             var value = base.GetEnergyCostForSmithing(item, hero);
+            return ApplyEnergyCostModifiers(value, hero);
+        }
+
+        private int ApplyEnergyCostModifiers(int value, Hero hero)
+        {
             if (hero.HasCareer(TORCareers.Runelord))
             {
                 if (Hero.MainHero.HasCareerChoice("ForgefireBurningPassive3"))
@@ -55,6 +43,13 @@ namespace TOR_Core.Models
                     value -= (int)MathF.Round(reduction);
                 }
             }
+
+            if (hero.PartyBelongedTo != null && hero.PartyBelongedTo.HasBlessing("cult_of_grungni"))
+            {
+                var reduction = value * 0.25f;
+                value -= (int)MathF.Round(reduction);
+            }
+
             return value;
         }
 
