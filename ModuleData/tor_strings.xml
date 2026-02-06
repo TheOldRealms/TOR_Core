@@ -3798,16 +3798,16 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_custom_resource_name.WindsOfMagic" text="{=str_tor_custom_resource_name_windsofmagic}Winds of Magic" />
 	
 	
-	<string id="tor_custom_resource_description.Prestige" text="{=str_tor_custom_resource_description_prestige}Is used for upgrading special units of the Empire and special actions. - very drab description, consider the one for Dark Energy which blends both a narrative use with mechanical ones. Eonir favor is a good one as well; it contextualizes the resource's use as being part of the society - it's an intangible thing that has taken a specific form for a game mechanic, but it situates the player within the narrative of the society in lore." />
-	<string id="tor_custom_resource_description.Chivalry" text="{=str_tor_custom_resource_description_chivalry}Is used for upgrading special units of Bretonnia and special actions." />
-	<string id="tor_custom_resource_description.DarkEnergy" text="{=str_tor_custom_resource_description_darkenergy}Dark Energy is used by practitioners of necromancy to raise and upkeep their undead minions." />
-	<string id="tor_custom_resource_description.ForestHarmony" text="{=str_tor_custom_resource_description_forestharmony}Forest Binding is used to upgrade and maintain troops of the woodelves, as well as retrieve upgrades at the Oak of Ages. - binding looks like it was an old term that was used temporarily and was never changed" />
-	<string id="tor_custom_resource_description.CouncilFavor" text="{=str_tor_custom_resource_description_councilfavor}Retrieve power in the Eonir council and use it to your benefit. - retrieve is not the right word, perhaps curry, gain, accumulate, consolidate, find(nyeh), build, etc…" />
-	<string id="tor_custom_resource_description.OathGold" text="{=str_tor_custom_resource_description_oathgold}Spend Oathgold to unlock various perks and support Dwarfen guilds." />
+	<string id="tor_custom_resource_description.Prestige" text="{=str_tor_custom_resource_description_prestige}Prestige is a sign of respect within the Empire. A symbolic currency that allows upgrading Imperial troops and striking special deals with influential individuals." />
+	<string id="tor_custom_resource_description.Chivalry" text="{=str_tor_custom_resource_description_chivalry}A representation of the chivalrous code of conduct driving the people of the fair land of Bretonnia. Higher Chivalry allows for greater recruitment of special troops and utilization of unique mechanics." />
+	<string id="tor_custom_resource_description.DarkEnergy" text="{=str_tor_custom_resource_description_darkenergy}Dark Energy is used by practitioners of necromancy to raise and support their undead minions." />
+	<string id="tor_custom_resource_description.ForestHarmony" text="{=str_tor_custom_resource_description_forestharmony}Forest Harmony represents the overall safety and balance of Athel Loren. All Asrai are soulbound to the forest—whether its strength grows or wanes, the Elves shall suffer a similar fate. Use it to upgrade and maintain troops of the Wood Elves, as well as unlock upgrades at the Oak of Ages." />
+	<string id="tor_custom_resource_description.CouncilFavor" text="{=str_tor_custom_resource_description_councilfavor}Earn the favour of the Eonir Council and use it to your benefit. Allows for securing deals with various factions and unlocking special troops." />
+	<string id="tor_custom_resource_description.OathGold" text="{=str_tor_custom_resource_description_oathgold}Oathgold (or Galbaraz in Khazalid) is one of the rarest and most valuable metals. In Dwarf sociaties it is associated with respect and reliability. Spend it to unlock various perks and support Dwarfen Guilds." />
 	<string id="tor_custom_resource_description.Teef" text="{=str_tor_custom_resource_description_teef}In Greenskin societies, Teef are proof of dominance, as well as the main currency of their tribes." />
-	<string id="tor_custom_resource_description.Meat" text="{=str_tor_custom_resource_description_meat}Just a helper resource nothing to see here" />
+	<string id="tor_custom_resource_description.Meat" text="{=str_tor_custom_resource_description_meat}Butcher your prisoners and acquire meat to feed the mob." />
 	<string id="tor_custom_resource_description.Waaagh" text="{=str_tor_custom_resource_description_waaagh}Fightiness increases through smashing enemies and decreases during periods of inactivity or suffering defeats. Greenskins thrive on constant warfare." />
-	<string id="tor_custom_resource_description.WindsOfMagic" text="{=str_tor_custom_resource_description_windsofmagic}Winds of Magic is used by spellcasters to cast spells." />
+	<string id="tor_custom_resource_description.WindsOfMagic" text="{=str_tor_custom_resource_description_windsofmagic}Winds of Magic are channeled by wizards and sorcerers to cast spells." />
 
 
 	<!-- Custom resource bonus strings -->
