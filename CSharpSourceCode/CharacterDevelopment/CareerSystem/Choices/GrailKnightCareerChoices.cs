@@ -140,7 +140,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _errantryWarKeystone.Initialize(CareerID, "10% extra physical damage during Knightly Charge. The ability scales with the One Handed skill.", "ErrantryWar", false,
+            _errantryWarKeystone.Initialize(CareerID, "10% extra physical damage and 20% extra speed during Knightly Charge.", "ErrantryWar", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -148,24 +148,8 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(TriggeredEffectTemplate),
                         MutationTargetOriginalId = "apply_knightly_charge",
                         PropertyName = "ImbuedStatusEffects",
-                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "knightly_charge_phys_dmg" }).ToList(),
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "knightly_charge_phys_dmg", "knightly_charge_speed_bonus" }).ToList(),
                         MutationType = OperationType.Replace
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "knightly_charge_lsc",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded }, 0.001f),
-                        MutationType = OperationType.Add
-                    },
-                    new CareerChoiceObject.MutationObject()
-                    {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "knightly_charge_phys_res",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.OneHanded }, 0.001f),
-                        MutationType = OperationType.Add
                     }
                 });
             _enhancedHorseCombatKeystone.Initialize(CareerID, "Ability scales now  with the Polearm skill and starts recharged.", "EnhancedHorseCombat", false,
@@ -210,7 +194,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                     }
                 });
 
-            _monsterSlayerKeystone.Initialize(CareerID, "Ability duration scales with Polearm and Riding. The lance attack scales with Two Handed.", "MonsterSlayer", false,
+            _monsterSlayerKeystone.Initialize(CareerID, "Ability duration scales with Riding. Physical damage scales with Polearm.", "MonsterSlayer", false,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -218,23 +202,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
                         MutationTargetType = typeof(AbilityTemplate),
                         MutationTargetOriginalId = "KnightlyCharge",
                         PropertyName = "Duration",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Polearm, DefaultSkills.Riding }, 0.025f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Riding }, 0.025f),
                         MutationType = OperationType.Add
                     },
                     new CareerChoiceObject.MutationObject()
                     {
-                        MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "knightly_charge_lsc",
-                        PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.TwoHanded }, 0.001f),
-                        MutationType = OperationType.Add
+                        MutationTargetType = typeof(TriggeredEffectTemplate),
+                        MutationTargetOriginalId = "apply_knightly_charge",
+                        PropertyName = "ImbuedStatusEffects",
+                        PropertyValue = (choice, originalValue, agent) => ((List<string>)originalValue).Concat(new[] { "knightly_charge_phys_dmg" }).ToList(),
+                        MutationType = OperationType.Replace
                     },
                     new CareerChoiceObject.MutationObject()
                     {
                         MutationTargetType = typeof(StatusEffectTemplate),
-                        MutationTargetOriginalId = "knightly_charge_phys_res",
+                        MutationTargetOriginalId = "knightly_charge_phys_dmg",
                         PropertyName = "BaseEffectValue",
-                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.TwoHanded }, 0.001f),
+                        PropertyValue = (choice, originalValue, agent) => CareerHelper.AddSkillEffectToValue(choice, agent, new List<SkillObject>() { DefaultSkills.Polearm }, 0.001f),
                         MutationType = OperationType.Add
                     }
                 });

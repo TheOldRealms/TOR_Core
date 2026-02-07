@@ -101,8 +101,18 @@
 		damage_type="Physical"
 		applies_for_attack_type="Melee">
 	</StatusEffectTemplate>
-	<StatusEffectTemplate 
-		id="knightly_charge_phys_res" 
+	<StatusEffectTemplate
+		id="knightly_charge_speed_bonus"
+		particle_id=""
+		particle_intensity="High"
+		do_not_attach_to_agent_skeleton="true"
+		base_effect_value="0.2"
+		type= "MovementManipulation"
+		damage_type="Physical"
+		applies_for_attack_type="Melee">
+	</StatusEffectTemplate>
+	<StatusEffectTemplate
+		id="knightly_charge_phys_res"
 		particle_id="knightlycharge_res2"
 		particle_intensity="High"
 		do_not_attach_to_agent_skeleton="true"

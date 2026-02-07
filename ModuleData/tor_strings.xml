@@ -2865,10 +2865,10 @@
 
   <!-- GrailKnight Career Choice Descriptions -->
   <string id="tor_careerchoice_description.GrailKnightRoot" text="{=str_tor_careerchoice_description_GrailKnightRoot}The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds, increasing the speed by 20%. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs." />
-  <string id="tor_careerchoice_description.ErrantryWarKeystone" text="{=str_tor_careerchoice_description_ErrantryWarKeystone}10% extra physical damage during Knightly Charge. The ability scales with the One Handed skill." />
+  <string id="tor_careerchoice_description.ErrantryWarKeystone" text="{=str_tor_careerchoice_description_ErrantryWarKeystone}10% extra physical damage and 20% extra speed during Knightly Charge." />
   <string id="tor_careerchoice_description.EnhancedHorseCombatKeystone" text="{=str_tor_careerchoice_description_EnhancedHorseCombatKeystone}Ability scales now  with the Polearm skill and starts recharged." />
   <string id="tor_careerchoice_description.QuestingVowKeyStone" text="{=str_tor_careerchoice_description_QuestingVowKeyStone}Knightly Charge grants 20% physical resistance. Mount will not rear during the ability." />
-  <string id="tor_careerchoice_description.MonsterSlayerKeystone" text="{=str_tor_careerchoice_description_MonsterSlayerKeystone}Ability duration scales with Polearm and Riding. The lance attack scales with Two Handed." />
+  <string id="tor_careerchoice_description.MonsterSlayerKeystone" text="{=str_tor_careerchoice_description_MonsterSlayerKeystone}Ability duration scales with Riding. Physical damage scales with Polearm." />
   <string id="tor_careerchoice_description.MasterHorsemanKeystone" text="{=str_tor_careerchoice_description_MasterHorsemanKeystone}Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse." />
   <string id="tor_careerchoice_description.GrailVowKeystone" text="{=str_tor_careerchoice_description_GrailVowKeystone}Ability scales with Faith. When active, get +20% holy damage and regen." />
   <string id="tor_careerchoice_description.HolyCrusaderKeystone" text="{=str_tor_careerchoice_description_HolyCrusaderKeystone}Ability scales with Leadership and propagates from all Companions to units in a 5m radius " />
@@ -2941,10 +2941,10 @@
 
   <!-- BlackGrailKnight Career Choice Descriptions -->
   <string id="tor_careerchoice_description.BlackGrailKnightRoot" text="{=str_tor_careerchoice_description_BlackGrailKnightRoot}The knight prepares a devastating charge, mounted or on foot, for the next 6 seconds. When mounted, the knight receives perk buffs as well as a 20% chance of his lance not bouncing off after a couched lance attack. The couched lance attack chance increases by 0.1% for every point in Riding. When on foot, the knight only receives perk buffs." />
-  <string id="tor_careerchoice_description.CurseOfMousillonKeystone" text="{=str_tor_careerchoice_description_CurseOfMousillonKeystone}10% extra physical damage during Knightly Charge. The ability scales with the One Handed skill." />
+  <string id="tor_careerchoice_description.CurseOfMousillonKeystone" text="{=str_tor_careerchoice_description_CurseOfMousillonKeystone}10% extra physical damage and 20% extra speed during Knightly Charge." />
   <string id="tor_careerchoice_description.SwampRiderKeystone" text="{=str_tor_careerchoice_description_SwampRiderKeystone}+20% speed during the ability, which now scales with the Polearm skill and starts recharged." />
   <string id="tor_careerchoice_description.UnbreakableArmyKeystone" text="{=str_tor_careerchoice_description_UnbreakableArmyKeystone}Knightly Charge grants 20% physical resistance. Mount will not rear during the ability." />
-  <string id="tor_careerchoice_description.ScourgeOfBretonniaKeystone" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaKeystone}Ability duration scales with Polearm and Riding. The lance attack scales with Two Handed." />
+  <string id="tor_careerchoice_description.ScourgeOfBretonniaKeystone" text="{=str_tor_careerchoice_description_ScourgeOfBretonniaKeystone}Ability duration scales with Riding. Physical damage scales with Polearm." />
   <string id="tor_careerchoice_description.RobberKnightKeystone" text="{=str_tor_careerchoice_description_RobberKnightKeystone}Reduces cooldown of Knightly Charge by 30s. During the ability, all healing affects the horse." />
   <string id="tor_careerchoice_description.LieOfLadyKeystone" text="{=str_tor_careerchoice_description_LieOfLadyKeystone}Ability scales with Roguery. When active, get +20% magic damage and health regen." />
   <string id="tor_careerchoice_description.BlackGrailVowKeystone" text="{=str_tor_careerchoice_description_BlackGrailVowKeystone}Ability scales with Leadership and propagates from all heroes to units in a 5m radius." />
