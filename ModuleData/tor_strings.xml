@@ -2886,7 +2886,7 @@
   <string id="tor_careerchoice_description.QuestingVowPassive4" text="{=str_tor_careerchoice_description_QuestingVowPassive4}For every Knight Companion you gain 2 Chivalry per Day." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive1" text="{=str_tor_careerchoice_description_MonsterSlayerPassive1}5% extra melee fire damage." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive2" text="{=str_tor_careerchoice_description_MonsterSlayerPassive2}20% extra armor penetration of melee attacks." />
-  <string id="tor_careerchoice_description.MonsterSlayerPassive3" text="{=str_tor_careerchoice_description_MonsterSlayerPassive3}40% chance to recruit an extra unit of the same type free of charge." />
+  <string id="tor_careerchoice_description.MonsterSlayerPassive3" text="{=str_tor_careerchoice_description_MonsterSlayerPassive3}20% extra melee damage against mounted enemies and monsters." />
   <string id="tor_careerchoice_description.MonsterSlayerPassive4" text="{=str_tor_careerchoice_description_MonsterSlayerPassive4}Hits below 15 damage do not stagger the player." />
   <string id="tor_careerchoice_description.MasterHorsemanPassive1" text="{=str_tor_careerchoice_description_MasterHorsemanPassive1}Horse charge damage is increased by 40%." />
   <string id="tor_careerchoice_description.MasterHorsemanPassive2" text="{=str_tor_careerchoice_description_MasterHorsemanPassive2}Party movement speed is increased by 1." />

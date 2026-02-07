@@ -112,13 +112,13 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
 
     protected override void InitializeKeyStones()
     {
-        _knightOldWorldRoot.Initialize(CareerID, "Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15 seconds. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)", null, true,
+        _knightOldWorldRoot.Initialize(CareerID, "Slay the Empire's foes with a Knightly Strike! Gain +20% personal 'Physical' melee damage on the next enemy hit within 15s. Every 'Keystone' career talent unlocked provides +1 charge of Knightly Strike. Each level in the One Handed skill increases the damage of Knightly Strike by 1%. (Ability charges by dealing 'Physical' melee damage.)", null, true,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
 
             });
 
-        _secularOrdersKeystone.Initialize(CareerID, "For every 100 points in Onehanded and Two handed and Polearm get one charge more. (max 15)", "SecularOrders", false,
+        _secularOrdersKeystone.Initialize(CareerID, "Knightly Strike gains a charge every 100 points in a melee weapon skill up to a max of 15.", "SecularOrders", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -131,12 +131,12 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                 }
             }, new CareerChoiceObject.PassiveEffect());
 
-        _pathOfConquestKeystone.Initialize(CareerID, "Adds cleaving attacks for ability. Ability starts charged", "PathOfConquest", false,
+        _pathOfConquestKeystone.Initialize(CareerID, "Knightly Strike now cleaves, and can be used at battle start.", "PathOfConquest", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             });
 
-        _squiresKeystone.Initialize(CareerID, "10% extra damage during ability.  the overall duration is increased by 1  second for every 50 riding skill", "Squires", false,
+        _squiresKeystone.Initialize(CareerID, "Knightly Strike lasts +1s longer per 50 Riding, and grants +10% personal 'Physical' melee damage.", "Squires", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -149,7 +149,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                 }
             });
 
-        _templarOrdersKeystone.Initialize(CareerID, "Knightly Strike gains +2 charges, a -15 second cooldown, and also scales with Faith.", "TemplarOrders", false,
+        _templarOrdersKeystone.Initialize(CareerID, "Knightly Strike gains +2 charges, -15s cooldown, and scales with Faith.", "TemplarOrders", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
                 new CareerChoiceObject.MutationObject()
@@ -162,12 +162,12 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
                 },
             });
 
-        _pathOfVigilanceKeystone.Initialize(CareerID, "Adds 20% attack speed as long effect is active. Charge twice for every hit.", "PathOfVigilance", false,
+        _pathOfVigilanceKeystone.Initialize(CareerID, "+20% personal attack speed during Knightly Strike, and it charges twice as fast.", "PathOfVigilance", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             });
 
-        _wrathAgainstChaosKeystone.Initialize(CareerID, "Adds 25% Armor Penetration during ability.", "WrathAgainstChaos", false,
+        _wrathAgainstChaosKeystone.Initialize(CareerID, "Knightly Strike gains +25% 'Armor Penetration'.", "WrathAgainstChaos", false,
             ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
             {
             }, new CareerChoiceObject.PassiveEffect());
@@ -204,7 +204,7 @@ public class KnightOldWorldCareerChoices(CareerObject id) : TORCareerChoicesBase
         _squiresPassive4.Initialize(CareerID, "Victories against 'Non-Human' enemies give +100% 'Prestige'.", "Squires", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(30, PassiveEffectType.Special));
 
         _templarOrdersPassive1.Initialize(CareerID, "+15 personal Hitpoints.", "TemplarOrders", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(15, PassiveEffectType.Health));
-        _templarOrdersPassive2.Initialize(CareerID, "Slaying 'Undead' or 'Cultists' provides Faith experience.", "TemplarOrders", false, ChoiceType.Passive);
+        _templarOrdersPassive2.Initialize(CareerID, "Gain Faith experience for slaying the forces of 'Undead' or 'Chaos'.", "TemplarOrders", false, ChoiceType.Passive);
         _templarOrdersPassive3.Initialize(CareerID, "'Knight' troops that follow your patron deity gain +15% 'Physical' melee damage.", "TemplarOrders", false, ChoiceType.Passive, null,
             new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Physical, 15), AttackTypeMask.All,
                 (attacker, victim, mask) => (attacker.Character.HasAttribute("Knightly")) && attacker.BelongsToMainParty() && mask == AttackTypeMask.Melee && Hero.MainHero.GetDominantReligion().ReligiousTroops.Contains((CharacterObject)attacker.Character)));

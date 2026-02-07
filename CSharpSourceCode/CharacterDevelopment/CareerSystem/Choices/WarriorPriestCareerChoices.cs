@@ -112,7 +112,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
         protected override void InitializeKeyStones()
         {
-            _warriorPriestRoot.Initialize(CareerID, "Unleash Sigmar's wrath with your Righteous Fury! Empower both you and nearby allies with +20% melee damage for 8 seconds. For every level of Faith, increase effect damage by 0.05% and duration by 0.05 seconds. (Ability charges by taking damage.)", null, true,
+            _warriorPriestRoot.Initialize(CareerID, "Unleash Sigmar's wrath with your Righteous Fury! Empower both you and nearby allies with +20% melee damage for 8s. For every level of Faith, increase effect damage by 0.05% and duration by 0.05s. (Ability charges by taking damage.)", null, true,
                 ChoiceType.Keystone, new List<CareerChoiceObject.MutationObject>()
                 {
                     new CareerChoiceObject.MutationObject()
@@ -296,7 +296,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
         protected override void InitializePassives()
         {
             _bookOfSigmarPassive1.Initialize(CareerID, "+10 personal Hitpoints.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.Health));
-            _bookOfSigmarPassive2.Initialize(CareerID, "+10 Morale for all troops.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale, true));
+            _bookOfSigmarPassive2.Initialize(CareerID, "+10 'Morale' for all troops.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(10, PassiveEffectType.TroopMorale, true));
             _bookOfSigmarPassive3.Initialize(CareerID, "After battle, wounded Companions heal +20 Hitpoints.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Special));
             _bookOfSigmarPassive4.Initialize(CareerID, "Wounded troops heal faster.", "BookOfSigmar", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(2, PassiveEffectType.TroopRegeneration));
 
@@ -329,7 +329,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
 
             _twinTailedCometPassive1.Initialize(CareerID, "+5% personal 'Holy' melee damage.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Holy, 5), AttackTypeMask.Melee));
             _twinTailedCometPassive2.Initialize(CareerID, "+5 Companion limit.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(5, PassiveEffectType.CompanionLimit));
-            _twinTailedCometPassive3.Initialize(CareerID, "+20% personal melee 'Armor Penetration'.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
+            _twinTailedCometPassive3.Initialize(CareerID, "+20% personal melee 'Armour Penetration'.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.ArmorPenetration, AttackTypeMask.Melee));
             _twinTailedCometPassive4.Initialize(CareerID, "+20 personal Hitpoints.", "TwinTailedComet", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(20, PassiveEffectType.Health));
         }
 

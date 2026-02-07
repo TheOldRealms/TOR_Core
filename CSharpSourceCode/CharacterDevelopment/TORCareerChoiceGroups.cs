@@ -492,7 +492,7 @@ namespace TOR_Core.CharacterDevelopment
                 text = "Required clan renown: 2";
                 return hero.Clan.Tier >= 2;
             });
-            _endsJustifiesMeans.Initialize("Ends Justifies Means", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
+            _endsJustifiesMeans.Initialize("Ends Justify Means", TORCareers.WitchHunter, 3, (Hero hero, out string text) =>
             {
                 text = "Required clan renown: 4";
                 return hero.Clan.Tier >= 4;

@@ -51,7 +51,7 @@ namespace TOR_Core.CampaignMechanics.Careers
             campaignGameStarter.AddDialogLine("convincelord2", "convincelord2", "convincelordplayerchoice", TORTextHelper.GetText("tor_grail_envoy_demand_response2", "I guess, I can't deny your biding. If the lady demands, I will obey."), null, null, 200, null);
 
             campaignGameStarter.AddPlayerLine("convincelordwar0", "lord_talk_speak_diplomacy_2", "convincelordWar1", TORTextHelper.GetText("tor_grail_envoy_war_demand", "Our fair and noble land has been invaded! The lady demands that you strike her enemies!({WAR_COST}{CHIVALRY_ICON})"), WarDialogCondition, null, 200, null, null);
-            campaignGameStarter.AddDialogLine("convincelordWar1", "convincelordWar1", "convincelordWar2", TORTextHelper.GetText("tor_grail_envoy_war_response1", "Ah yeah so you know better, which thread bothers us most ?"), null, null, 200, null);
+            campaignGameStarter.AddDialogLine("convincelordWar1", "convincelordWar1", "convincelordWar2", TORTextHelper.GetText("tor_grail_envoy_war_response1", "Ah yeah so you know better, which thread bothers us most?"), null, null, 200, null);
             campaignGameStarter.AddDialogLine("convincelordWar2", "convincelordWar2", "convincelordplayerchoicewar", TORTextHelper.GetText("tor_grail_envoy_war_response2", "I guess, I can't deny you your biding. If the lady demands, I will obey."), null, null, 200, null);
 
             campaignGameStarter.AddPlayerLine("convincelordplayerchoice1", "convincelordplayerchoice", "convincelord_end", TORTextHelper.GetText("tor_grail_envoy_stop_war_faction1", "Stop war with {FACTION_NAME_1}."), condition_faction_war1, consequence_stop_war_faction1, 200, null, null);

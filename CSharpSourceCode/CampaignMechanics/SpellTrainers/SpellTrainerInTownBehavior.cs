@@ -402,7 +402,7 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
         {
             // Greenskin Shaman greeting and main hub
             obj.AddDialogLine("trainer_greenskin_start", "start", "choices_greenskin",
-                TORTextHelper.GetText("tor_spelltrainer_greenskin_start", "Wot you want, git? Da Waaagh! don't wait fer nobody!"),
+                TORTextHelper.GetText("tor_spelltrainer_greenskin_start", "Whoo'z dere? Wot you want?"),
                 isGreenskinTrainer, null, 200, null);
             obj.AddDialogLine("trainer_greenskin_hub", "hub_greenskin", "choices_greenskin",
                 TORTextHelper.GetText("tor_spelltrainer_greenskin_hub", "Wot else ya need? Speak up!"),
@@ -410,19 +410,19 @@ namespace TOR_Core.CampaignMechanics.SpellTrainers
 
             // Learn spells (open spell book)
             obj.AddPlayerLine("trainer_greenskin_learnspells", "choices_greenskin", "openbook_greenskin",
-                TORTextHelper.GetText("tor_spelltrainer_greenskin_open_book", "Teach me more of da Waaagh! magic."),
+                TORTextHelper.GetText("tor_spelltrainer_greenskin_open_book", "I'z here fer sum ju-ju spooks."),
                 () => MobileParty.MainParty.HasSpellCasterMember() && greenskinCondition(), null, 200, null);
             obj.AddDialogLine("trainer_greenskin_afterlearnspells", "openbook_greenskin", "hub_greenskin",
-                TORTextHelper.GetText("tor_spelltrainer_greenskin_close_book", "Right, ya got it now. Da godz favor ya!"),
+                TORTextHelper.GetText("tor_spelltrainer_greenskin_close_book", "Eat dis shroom an' dance wiv me."),
                 null, openbookconsequence, 200, null);
 
 
             // Goodbye
             obj.AddPlayerLine("trainer_greenskin_playergoodbye", "choices_greenskin", "saygoodbye_greenskin",
-                TORTextHelper.GetText("tor_spelltrainer_greenskin_player_goodbye", "I'll be goin' now."),
+                TORTextHelper.GetText("tor_spelltrainer_greenskin_player_goodbye", "I'z outta 'ere."),
                 null, null, 200, null);
             obj.AddDialogLine("trainer_greenskin_goodbye", "saygoodbye_greenskin", "close_window",
-                TORTextHelper.GetText("tor_spelltrainer_greenskin_goodbye", "Get outta 'ere! An' don't forget - WAAAGH!"),
+                TORTextHelper.GetText("tor_spelltrainer_greenskin_goodbye", "I'z can feel da Gods talkin'. Get outta 'ere!"),
                 isGreenskinTrainer, null, 200, null);
 
             // Helper condition: is this a greenskin trainer?

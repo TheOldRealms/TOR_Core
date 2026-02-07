@@ -262,7 +262,7 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem.Choices
             _hungerForKnowledgePassive1.Initialize(CareerID, "Increase hex durations by 20%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(0.20f, PassiveEffectType.DebuffDuration, true));
             _hungerForKnowledgePassive2.Initialize(CareerID, "Wraiths are immune to friendly fire spell damage.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.TroopResistance, new DamageProportionTuple(DamageType.All, 100), AttackTypeMask.Spell,
                 (attacker, victim, mask) => mask == AttackTypeMask.Spell && attacker.BelongsToMainParty() && victim.BelongsToMainParty() && victim.Character.IsGhost()));
-            _hungerForKnowledgePassive3.Initialize(CareerID, "Reduce co^sts for enchantments by 20%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EnchantmentCostReduction, true));
+            _hungerForKnowledgePassive3.Initialize(CareerID, "Reduce costs for enchantments by 20%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(-20, PassiveEffectType.EnchantmentCostReduction, true));
             _hungerForKnowledgePassive4.Initialize(CareerID, "Increases Magic melee and spell damage by 5%.", "HungerForKnowledge", false, ChoiceType.Passive, null, new CareerChoiceObject.PassiveEffect(PassiveEffectType.Damage, new DamageProportionTuple(DamageType.Magical, 5), AttackTypeMask.Spell,
                 (attacker, victim, mask) => attacker.IsMainAgent && mask == AttackTypeMask.Melee || mask == AttackTypeMask.Spell));
 
