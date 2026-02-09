@@ -5810,7 +5810,7 @@
 
     <!-- Orc Shaman Career Ability -->
     <AbilityTemplate StringID="CallOfDaGreen"
-                     Name="{=call_of_da_green_label_str}Call uf da Green"
+                     Name="{=call_of_da_green_label_str}Call uv da Green"
                      SpriteName="call_uf_green_icon"
                      CoolDown="60"
                      WindsOfMagicCost="0"
