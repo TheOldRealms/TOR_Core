@@ -13,6 +13,7 @@ namespace TOR_Core.Extensions
 {
     public static class TORTextHelper
     {
+        private static readonly HashSet<string> _missingTextsLogged = new();
         public static TextObject GetTextObjectOfSkillId(string SkillId)
         {
             List<SkillObject> skills = Game.Current.DefaultSkills.GetDefaultSkills();
@@ -62,7 +63,11 @@ namespace TOR_Core.Extensions
                 return textObject;
             }
 
-            TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0}.  switch to default: {1}", id, defaultText), LogLevel.Error);
+            if (_missingTextsLogged.Add(id))
+            {
+                TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0}.  switch to default: {1}", id, defaultText), LogLevel.Error);
+            }
+
             return new TextObject(defaultText);
         }
 
@@ -82,8 +87,12 @@ namespace TOR_Core.Extensions
                 return textObject;
                 
             }
+            var key = $"{id}::{variation}";
+            if (_missingTextsLogged.Add(key))
+            {
+                TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0} {1}.  switch to default.", id, variation), LogLevel.Error);
+            }
 
-            TORCommon.Log(string.Format("[TEXT]Couldn't find text with id: {0} {1}.  switch to default.", id, variation), LogLevel.Error);
             return new TextObject(defaultText);
         }
     }

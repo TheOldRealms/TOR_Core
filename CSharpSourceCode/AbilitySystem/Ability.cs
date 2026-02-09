@@ -180,12 +180,20 @@ namespace TOR_Core.AbilitySystem
             else if (Template.CastType == CastType.WindUp)
             {
                 IsCasting = true;
-                var timer = new Timer(Template.CastTime * 1000)
+
+                var activationTimer = new Timer(Template.CastTime * 1000)
                 {
                     AutoReset = false
                 };
-                timer.Elapsed += (s, e) => { IsActivationPending = true; };
-                timer.Start();
+
+                activationTimer.Elapsed += (s, e) =>
+                {
+                    IsActivationPending = true;
+                    activationTimer.Stop();
+                    activationTimer.Dispose();
+                };
+
+                activationTimer.Start();
             }
         }
 

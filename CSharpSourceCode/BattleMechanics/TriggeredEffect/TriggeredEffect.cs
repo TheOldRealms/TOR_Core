@@ -158,7 +158,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
 
                 _timer.Start();
             }
+            else
+            {
+                Dispose();
+            }
         }
+
 
         private void SpawnVisuals(Vec3 position, Vec3 normal)
         {
@@ -180,8 +185,12 @@ namespace TOR_Core.BattleMechanics.TriggeredEffect
             // play sound
             if (_template == null) return;
 
-            var soundEffectId = _template.SoundEffectId?.Trim();
-            if (string.IsNullOrEmpty(soundEffectId) || soundEffectId == "none")
+            var soundEffectId = _template.SoundEffectId;
+            if (string.IsNullOrWhiteSpace(soundEffectId))
+                return;
+
+            soundEffectId = soundEffectId.Trim();
+            if (soundEffectId == "none")
                 return;
 
             var soundIndex = SoundEvent.GetEventIdFromString(soundEffectId);

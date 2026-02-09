@@ -22,6 +22,7 @@ namespace TOR_Core.BattleMechanics.Firearms
         private readonly string[] _grenadeSoundNames = new string[5];
         private readonly string[] _soundNames = new string[5];
         private readonly Random _random;
+        private bool _soundEventsValidated;
         private readonly Dictionary<int, ContinousFiringData> _continousFiringAgents = [];
         private readonly float _continousFiringInterval = 100f;
         private readonly float _continousFiringBurstLength = 1.5f;
@@ -47,9 +48,40 @@ namespace TOR_Core.BattleMechanics.Firearms
 
             _random = new Random();
         }
+        private void ValidateSoundEvents()
+        {
+            for (int i = 0; i < _soundNames.Length; i++)
+            {
+                string soundName = _soundNames[i];
+                int soundIndex = SoundEvent.GetEventIdFromString(soundName);
+
+                if (soundIndex < 0)
+                {
+                    throw new InvalidOperationException(
+                        $"[TOR] Missing firearm sound event '{soundName}' in FirearmsMissionLogic.");
+                }
+            }
+
+            for (int i = 0; i < _grenadeSoundNames.Length; i++)
+            {
+                string soundName = _grenadeSoundNames[i];
+                int soundIndex = SoundEvent.GetEventIdFromString(soundName);
+
+                if (soundIndex < 0)
+                {
+                    throw new InvalidOperationException(
+                        $"[TOR] Missing grenade launcher sound event '{soundName}' in FirearmsMissionLogic.");
+                }
+            }
+        }
 
         public override void OnMissionTick(float dt)
         {
+            if (!_soundEventsValidated)
+            {
+                ValidateSoundEvents();
+                _soundEventsValidated = true;
+            }
             _firingAgentsToRemove.Clear();
             foreach (int index in _continousFiringAgents.Keys.ToList())
             //naber: Keys.ToList() so we dont blow up if the dict gets touched midtick

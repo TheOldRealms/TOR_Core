@@ -36,6 +36,7 @@ namespace TOR_Core.CampaignMechanics.CustomResources
     public class CustomResourceManager
     {
         public static CustomResourceManager Instance { get; private set; }
+        private static bool _eventsRegistered;
         private readonly Dictionary<string, CustomResource> _resources = [];
         private ScreenBase _currentPartyScreen;
         private PartyVM _currentPartyVM;
@@ -48,6 +49,9 @@ namespace TOR_Core.CampaignMechanics.CustomResources
         public static void Initialize()
         {
             Instance = new CustomResourceManager();
+            _eventsRegistered = false;
+            ScreenManager.OnPushScreen -= ScreenManager_OnPushScreen;
+            ScreenManager.OnPopScreen -= ScreenManager_OnPopScreen;
             Instance._resources.Clear();
             Instance._resources.Add("Prestige",
                 new CustomResource("Prestige", "prestige_icon_45", TORConstants.Cultures.EMPIRE));
@@ -92,10 +96,22 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
         public static void RegisterEvents()
         {
+            if (_eventsRegistered)
+            {
+                return;
+            }
+
+            _eventsRegistered = true;
+
+            ScreenManager.OnPushScreen -= ScreenManager_OnPushScreen;
+            ScreenManager.OnPopScreen -= ScreenManager_OnPopScreen;
+
             ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
             ScreenManager.OnPopScreen += ScreenManager_OnPopScreen;
+
             Instance.RegisterCampaignEvents();
         }
+
 
         private void RegisterCampaignEvents()
         {

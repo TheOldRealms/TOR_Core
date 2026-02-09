@@ -116,13 +116,18 @@ namespace TOR_Core.BattleMechanics.Voice
             try
             {
                 var voiceToPlay = TORVoiceManager.Instance.GetVoiceToPlay(Agent, voiceType);
-                if (string.IsNullOrEmpty(voiceToPlay))
+                if (string.IsNullOrWhiteSpace(voiceToPlay))
                 {
-                    TORCommon.Log($"VoiceManager: No voice definition found for agent race/character", NLog.LogLevel.Warn);
+                    TORCommon.Log("VoiceManager: No voice definition found for agent race/character", NLog.LogLevel.Warn);
                     return;
                 }
 
+                voiceToPlay = voiceToPlay.Trim();
+                if (voiceToPlay.Equals("none", StringComparison.OrdinalIgnoreCase))
+                    return;
+
                 PlaySound(voiceToPlay);
+
             }
             catch (Exception ex)
             {
@@ -133,12 +138,18 @@ namespace TOR_Core.BattleMechanics.Voice
         private void PlaySound(string soundDef)
         {
             // Create and play sound event
+            if (string.IsNullOrWhiteSpace(soundDef))
+                return;
+
+            soundDef = soundDef.Trim();
+            if (soundDef.Equals("none", StringComparison.OrdinalIgnoreCase))
+                return;
+
             int soundIndex = SoundEvent.GetEventIdFromString(soundDef);
             if (soundIndex < 0)
             {
-                // Fallback: try to register the sound dynamically if needed
-                TORCommon.Log($"VoiceManager: Sound event '{soundDef}' not registered in engine", NLog.LogLevel.Debug);
-                return;
+                throw new InvalidOperationException(
+                    $"[TOR] Missing voice sound event '{soundDef}' for agent '{Agent?.Character?.StringId ?? "null"}'.");
             }
 
             var soundEvent = SoundEvent.CreateEvent(soundIndex, Mission.Current.Scene);

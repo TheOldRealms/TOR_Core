@@ -31,11 +31,12 @@ public class WaaaghBehavior : CampaignBehaviorBase
         CampaignEvents.OnMissionStartedEvent.AddNonSerializedListener(this, InitialCombatStrengthCalculation);
         CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDailyTick);
         CampaignEvents.MapEventEnded.AddNonSerializedListener(this, CalculateWaaaghGainFromBattle);
+        ScreenManager.OnPushScreen -= ScreenManager_OnPushScreen;
         ScreenManager.OnPushScreen += ScreenManager_OnPushScreen;
     }
 
 
-    private void ScreenManager_OnPushScreen(ScreenBase pushedScreen)
+    private static void ScreenManager_OnPushScreen(ScreenBase pushedScreen)
     {
         if (pushedScreen is not MapScreen mapScreen) return;
         // Only add WaaaghMeter for Greenskin players
