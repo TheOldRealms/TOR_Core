@@ -16,8 +16,11 @@ namespace TOR_Core.HarmonyPatches
     [HarmonyPatch(typeof(PartyVM), "TransferAllTroops")]
     internal static class PartyVM_TransferAllTroops_PerformancePatch
     {
-        private static readonly Action<PartyVM> RefreshPartyInformation =
-            AccessTools.MethodDelegate<Action<PartyVM>>(AccessTools.Method(typeof(PartyVM), "RefreshPartyInformation"));
+        private static readonly MethodInfo RefreshPartyInformationMethod =
+            AccessTools.DeclaredMethod(typeof(PartyVM), "RefreshPartyInformation");
+
+        private static readonly MethodInfo RefreshTopInformationMethod =
+            AccessTools.DeclaredMethod(typeof(PartyVM), "RefreshTopInformation");
 
         private static bool Prefix(PartyVM __instance, PartyScreenLogic.PartyCommand command)
         {
@@ -37,10 +40,11 @@ namespace TOR_Core.HarmonyPatches
             SyncList(__instance, leftList, leftRoster, command.Type, PartyScreenLogic.PartyRosterSide.Left);
             SyncList(__instance, rightList, rightRoster, command.Type, PartyScreenLogic.PartyRosterSide.Right);
 
-            __instance.OtherPartyComposition.RefreshCounts(leftList);
-            __instance.MainPartyComposition.RefreshCounts(rightList);
+            __instance.OtherPartyComposition.RefreshCounts(__instance.OtherPartyTroops);
+            __instance.MainPartyComposition.RefreshCounts(__instance.MainPartyTroops);
 
-            RefreshPartyInformation(__instance);
+            RefreshTopInformationMethod?.Invoke(__instance, null);
+            RefreshPartyInformationMethod?.Invoke(__instance, null);
             return false;
         }
 

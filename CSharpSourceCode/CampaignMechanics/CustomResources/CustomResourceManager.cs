@@ -103,6 +103,8 @@ namespace TOR_Core.CampaignMechanics.CustomResources
 
             _eventsRegistered = true;
 
+            // RegisterEvents can get called more than once and stack handlers
+            // not the cleanest but prevent dupes
             ScreenManager.OnPushScreen -= ScreenManager_OnPushScreen;
             ScreenManager.OnPopScreen -= ScreenManager_OnPopScreen;
 
