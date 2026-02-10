@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <partyTemplates>
 	<!--lord party templates-->
 	<MBPartyTemplate id="main_hero_party_template" >
@@ -662,6 +662,11 @@
 		<stacks>
 		  <PartyTemplateStack min_value="2" max_value="35" troop="NPCCharacter.tor_gs_bandit_raider" />
 		  <PartyTemplateStack min_value="1" max_value="10" troop="NPCCharacter.tor_gs_bandit_raider_boss" />
+		</stacks>
+	</MBPartyTemplate>
+	<MBPartyTemplate id="troll_party_template" >
+		<stacks>
+		  <PartyTemplateStack min_value="1" max_value="4" troop="NPCCharacter.tor_gs_trolls" />
 		</stacks>
 	</MBPartyTemplate>
 	<MBPartyTemplate id="br_bandit_party" >

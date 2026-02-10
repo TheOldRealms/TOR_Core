@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
   <NPCCharacter id="tor_wanderer_empire_0" default_group="ranged" name="{=str_tor_wanderer_empire_0}{FIRSTNAME} the Bright Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
@@ -2051,6 +2051,21 @@
     <Equipments>
       <EquipmentSet id="tor_generic_druchii_lord_template" />
       <EquipmentSet id="tor_generic_druchii_lord_template" civilian="true" />
+    </Equipments>
+  </NPCCharacter>
+  <NPCCharacter id="tor_troll_lord_0" default_group="infantry" name="{=str_tor_troll_lord_0}{DOESNTMATTER}" occupation="Lord" culture="Culture.aserai" voice="curt" age="30" race="troll" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+    <face>
+      <face_key_template value="BodyProperty.troll" />
+    </face>
+    <Traits>
+      <Trait id="BalancedFightingSkills" value="8" />
+      <Trait id="Commander" value="3" />
+      <Trait id="Mercy" value="-2" />
+      <Trait id="Valor" value="2" />
+    </Traits>
+    <Equipments>
+      <EquipmentSet id="tor_gs_troll_template" />
+      <EquipmentSet id="tor_gs_troll_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_beastman_lord_0" default_group="infantry" name="{=str_tor_beastman_lord_0}{DOESNTMATTER]" occupation="Lord" culture="Culture.chaos_culture" voice="curt" age="30" race="ungor" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">

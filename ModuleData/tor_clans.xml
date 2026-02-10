@@ -1374,6 +1374,26 @@
             <template id="NPCCharacter.tor_beastman_lord_2" />
         </minor_faction_character_templates>
 	</Faction>
+    <!-- Troll faction -->
+    <Faction id="troll_clan_1"
+             name="{=str_tor_clan_troll_clan_1_name}Cave Trolls"
+             tier="3"
+             is_minor_faction="true"
+             is_outlaw="true"
+             owner="Hero.tor_troll_lord_factionleader"
+             culture="Culture.aserai"
+             default_party_template="PartyTemplate.troll_party_template"
+             banner_key="11.142.116.1633.1633.767.764.0.1.0.122.20.41.600.600.764.764.0.0.0"
+             label_color="FF4A6741"
+             color="FF4A6741"
+             color2="FF3D5636"
+             alternative_color="FF4A6741"
+             alternative_color2="FF3D5636"
+             text="{=str_tor_clan_troll_clan_1_desc}Trolls are massive, dim-witted creatures." >
+        <minor_faction_character_templates>
+            <template id="NPCCharacter.tor_troll_lord_0" />
+        </minor_faction_character_templates>
+    </Faction>
     <!-- Druchii faction -->
     <Faction id="druchii_clan_1"
              name="{=str_tor_clan_druchii_clan_1_name}Druchii Slavers"
