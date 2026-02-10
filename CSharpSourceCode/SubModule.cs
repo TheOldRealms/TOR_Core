@@ -334,6 +334,7 @@ namespace TOR_Core
                 game.ObjectManager.RegisterType<SlaverCampComponent>("SlaverCamp", "Components", 107U, true);
                 game.ObjectManager.RegisterType<OakOfAgesComponent>("OakOfAges", "Components", 108U, true);
                 game.ObjectManager.RegisterType<WorldRootsComponent>("WorldRoots", "Components", 109U, true);
+                game.ObjectManager.RegisterType<TrollCaveComponent>("TrollCave", "Components", 110U, true);
                 _ = new TORCareers();
                 _ = new TORCareerChoiceGroups();
                 _ = new TORCareerChoices();

@@ -598,7 +598,8 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
             new ShrineMenuLogic(starter),
             new CursedSiteMenuLogic(starter),
             new RaidingSiteMenuLogic(starter),
-            new OakOfAgesMenuLogic(starter)
+            new OakOfAgesMenuLogic(starter),
+            new TrollCaveMenuLogic(starter)
         };
 
 
