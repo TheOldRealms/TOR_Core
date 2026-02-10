@@ -5830,7 +5830,7 @@
                      ShadowCastEnabled="false"
                      ParticleEffectPrefab="waaagh_aura"
                      ParticleEffectSizeModifier="1"
-                     SoundEffectToPlay="waaagh_chant"
+                     SoundEffectToPlay="none"
                      ShouldSoundLoopOverDuration="true"
                      CastType="Instant"
                      CastTime="0.5"
