@@ -6,6 +6,7 @@ using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
@@ -85,6 +86,17 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
                 return true;
             },
             (args) => GameMenu.SwitchToMenu("trollcave_menu"), true);
+
+        // Troll attack encounter menu
+        starter.AddGameMenu("trollcave_attack", "{TROLLCAVE_ATTACK_TEXT}", TrollCaveAttackInit);
+        starter.AddGameMenuOption("trollcave_attack", "trollcave_attack_fight",
+            TORTextHelper.GetText("tor_trollcave_attack_fight", "Fight!"),
+            delegate (MenuCallbackArgs args)
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
+                return true;
+            },
+            (args) => StartTrollBattle(), false);
     }
 
     private void TrollCaveMenuInit(MenuCallbackArgs args)
@@ -190,7 +202,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
                     args.MenuContext.GameMenu.EndWait();
                     args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(0f);
                     PlayerEncounter.Current.IsPlayerWaiting = false;
-                    StartTrollBattle();
+                    GameMenu.SwitchToMenu("trollcave_attack");
                     return;
                 }
 
@@ -250,6 +262,13 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             GameMenu.SwitchToMenu("trollcave_result_success");
         }
         // If aggressive, battle is already started in LuringTick
+    }
+
+    private void TrollCaveAttackInit(MenuCallbackArgs args)
+    {
+        var attackText = TORTextHelper.GetTextObject("tor_trollcave_attack_text",
+            "The trolls have turned aggressive! They emerge from the cave, hungry for more than just meat!");
+        MBTextManager.SetTextVariable("TROLLCAVE_ATTACK_TEXT", attackText);
     }
 
     private void StartTrollBattle()
