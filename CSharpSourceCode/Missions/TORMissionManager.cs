@@ -209,7 +209,6 @@ namespace TOR_Core.Missions
             return MissionState.OpenNew("TrollCaveFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) =>
             [
                 new MissionOptionsComponent(),
-                new CampaignMissionComponent(),
                 new MissionBasicTeamLogic(),
                 new BattleEndLogic(),
                 new MissionAgentLookHandler(),

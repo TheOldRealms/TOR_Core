@@ -281,7 +281,8 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         _battleTrollCount = _trollsRecruited + MBRandom.RandomInt(1, 3);
 
         var preSelectedTroops = TroopRoster.CreateDummyTroopRoster();
-        var strongestTroops = MobilePartyHelper.GetStrongestAndPriorTroops(MobileParty.MainParty, MaxTroopsForRaid, true);
+        // Don't include heroes - player is spawned separately by the mission controller
+        var strongestTroops = MobilePartyHelper.GetStrongestAndPriorTroops(MobileParty.MainParty, MaxTroopsForRaid, false);
         preSelectedTroops.Add(strongestTroops);
 
         args.MenuContext.OpenTroopSelection(

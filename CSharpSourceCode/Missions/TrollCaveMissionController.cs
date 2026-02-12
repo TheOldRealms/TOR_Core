@@ -108,6 +108,9 @@ namespace TOR_Core.Missions
 
         private void SpawnPlayer()
         {
+            // Check if player already spawned by another behavior
+            if (Agent.Main != null) return;
+
             var spawnFrame = GetPlayerSpawnFrame();
             if (spawnFrame == MatrixFrame.Identity)
             {
@@ -139,6 +142,9 @@ namespace TOR_Core.Missions
 
             foreach (var element in _selectedTroops.GetTroopRoster())
             {
+                // Skip the player character - they're spawned separately
+                if (element.Character.IsPlayerCharacter) continue;
+
                 for (int i = 0; i < element.Number; i++)
                 {
                     // Spawn near player with small offset
