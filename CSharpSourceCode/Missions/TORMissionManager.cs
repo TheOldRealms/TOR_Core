@@ -202,6 +202,30 @@ namespace TOR_Core.Missions
                     new EquipmentControllerLeaveLogic()
             ], true, true);
         }
+
+        [MissionMethod]
+        public static Mission OpenTrollCaveMission(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, string scene = "TOR_troll_hideout_01")
+        {
+            return MissionState.OpenNew("TrollCaveFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) =>
+            [
+                new MissionOptionsComponent(),
+                new CampaignMissionComponent(),
+                new MissionBasicTeamLogic(),
+                new BattleEndLogic(),
+                new MissionAgentLookHandler(),
+                new BasicLeaveMissionLogic(false),
+                new LeaveMissionLogic(),
+                new AgentHumanAILogic(),
+                new TrollCaveMissionController(selectedTroops, trollCount, onMissionEnd),
+                new HeroSkillHandler(),
+                new MissionFightHandler(),
+                new MissionFacialAnimationHandler(),
+                new MissionHardBorderPlacer(),
+                new MissionBoundaryPlacer(),
+                new MissionBoundaryCrossingHandler(),
+                new EquipmentControllerLeaveLogic()
+            ], true, true);
+        }
     }
 
     [ViewCreatorModule]
@@ -362,6 +386,36 @@ namespace TOR_Core.Missions
                     new MissionCampaignBattleSpectatorView(),
                     ViewCreator.CreatePhotoModeView(),
                     new MissionCameraFadeView()
+                }.ToArray();
+        }
+    }
+
+    [ViewCreatorModule]
+    public class TrollCaveFightViewCreatorModule
+    {
+        [ViewMethod("TrollCaveFight")]
+        public static MissionView[] OpenTrollCaveFightMission(Mission mission)
+        {
+            return new List<MissionView>
+                {
+                    new MissionCampaignView(),
+                    new MissionConversationCameraView(),
+                    ViewCreator.CreateMissionSingleplayerEscapeMenu(CampaignOptions.IsIronmanMode),
+                    ViewCreator.CreateOptionsUIHandler(),
+                    ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+                    new MissionSingleplayerViewHandler(),
+                    ViewCreator.CreateMissionAgentStatusUIHandler(mission),
+                    ViewCreator.CreateMissionMainAgentEquipmentController(mission),
+                    ViewCreator.CreateMissionAgentLockVisualizerView(mission),
+                    ViewCreator.CreateMissionBoundaryCrossingView(),
+                    ViewCreator.CreateMissionLeaveView(),
+                    new MissionBoundaryWallView(),
+                    SandBoxViewCreator.CreateMissionNameMarkerUIHandler(mission),
+                    new MissionItemContourControllerView(),
+                    new MissionAgentContourControllerView(),
+                    new MissionCampaignBattleSpectatorView(),
+                    ViewCreator.CreatePhotoModeView(),
+                    ViewCreator.CreateSingleplayerMissionKillNotificationUIHandler()
                 }.ToArray();
         }
     }

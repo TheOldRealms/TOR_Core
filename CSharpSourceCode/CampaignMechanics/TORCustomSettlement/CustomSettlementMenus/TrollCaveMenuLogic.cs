@@ -1,9 +1,11 @@
+using Helpers;
 using System;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -11,8 +13,8 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
-using TOR_Core.CampaignMechanics.RaidingParties;
 using TOR_Core.Extensions;
+using TOR_Core.Missions;
 using TOR_Core.Utilities;
 
 namespace TOR_Core.CampaignMechanics.TORCustomSettlement.CustomSettlementMenus;
@@ -22,9 +24,12 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
     private const int MeatCost = 10;
     private const float TotalWaitHours = 4f;
     private const string TrollTroopId = "tor_gs_trolls";
+    private const int MaxTroopsForRaid = 20;
 
     private int _trollsRecruited = 0;
     private bool _trollsAggressive = false;
+    private int _battleTrollCount = 0;
+    private bool _playerWonBattle = false;
 
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
@@ -96,7 +101,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
                 args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
                 return true;
             },
-            (args) => StartTrollBattle(), false);
+            StartTrollBattle, false);
     }
 
     private void TrollCaveMenuInit(MenuCallbackArgs args)
@@ -271,59 +276,46 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         MBTextManager.SetTextVariable("TROLLCAVE_ATTACK_TEXT", attackText);
     }
 
-    private void StartTrollBattle()
+    private void StartTrollBattle(MenuCallbackArgs args)
     {
-        var settlement = Settlement.CurrentSettlement;
+        _battleTrollCount = _trollsRecruited + MBRandom.RandomInt(1, 3);
 
-        // Determine number of trolls to fight (recruited trolls + 1-2 additional)
-        int battleTrolls = _trollsRecruited + MBRandom.RandomInt(1, 3);
+        var preSelectedTroops = TroopRoster.CreateDummyTroopRoster();
+        var strongestTroops = MobilePartyHelper.GetStrongestAndPriorTroops(MobileParty.MainParty, MaxTroopsForRaid, true);
+        preSelectedTroops.Add(strongestTroops);
 
-        // Create enemy party with trolls
-        var trollCharacter = MBObjectManager.Instance.GetObject<CharacterObject>(TrollTroopId);
-        if (trollCharacter == null)
+        args.MenuContext.OpenTroopSelection(
+            MobileParty.MainParty.MemberRoster,
+            preSelectedTroops,
+            CanSelectTroop,
+            OnTroopSelectionDone,
+            MaxTroopsForRaid,
+            1);
+    }
+
+    private bool CanSelectTroop(CharacterObject character)
+    {
+        // Don't allow selecting the player character or non-transferable troops
+        return !character.IsPlayerCharacter && !character.IsNotTransferableInHideouts;
+    }
+
+    private void OnTroopSelectionDone(TroopRoster selectedTroops)
+    {
+        if (selectedTroops == null || selectedTroops.TotalManCount == 0)
         {
-            // Fallback if troll troop doesn't exist
-            GameMenu.SwitchToMenu("trollcave_result_battle");
+            GameMenu.SwitchToMenu("trollcave_attack");
             return;
         }
 
-        // Get the troll party template and a greenskin clan for the battle
-        var trollPartyTemplate = MBObjectManager.Instance.GetObject<PartyTemplateObject>("troll_party_template");
-        // Use an existing greenskin clan for now (troll_clan_1 can be added later with proper setup)
-        Clan trollClan = Clan.FindFirst(x => x.StringId == "troll_clan_1");
-        trollClan ??= Clan.FindFirst(x => x.Culture?.StringId == TORConstants.Cultures.GREENSKIN && x.Leader != null);
+        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd);
+    }
 
-        if (trollClan == null || trollPartyTemplate == null)
-        {
-            // Fallback - just go to result menu
-            GameMenu.SwitchToMenu("trollcave_result_battle");
-            return;
-        }
+    private void OnMissionEnd(bool playerWon)
+    {
+        _playerWonBattle = playerWon;
 
-        // Create a party for the battle
-        var party = RaidingPartyComponent.CreateRaidingParty(
-            settlement.StringId + "_troll_defenders_" + (int)CampaignTime.Now.ElapsedSecondsUntilNow,
-            settlement,
-            "Angry Trolls",
-            trollPartyTemplate,
-            trollClan,
-            battleTrolls
-        );
-
-        // Clear the party and add the exact number of trolls we want
-        party.MemberRoster.Clear();
-        party.MemberRoster.AddToCounts(trollCharacter, battleTrolls);
-
-        // Start the battle
-        PlayerEncounter.RestartPlayerEncounter(party.Party, PartyBase.MainParty, false);
-        if (PlayerEncounter.Battle == null)
-        {
-            PlayerEncounter.StartBattle();
-            PlayerEncounter.Update();
-        }
-
-        // Use a field battle scene
-        CampaignMission.OpenBattleMission("battle_terrain_001", false);
+        // Return to result menu after mission ends
+        GameMenu.SwitchToMenu("trollcave_result_battle");
     }
 
     private void TrollCaveSuccessInit(MenuCallbackArgs args)
@@ -345,8 +337,17 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
 
     private void TrollCaveBattleResultInit(MenuCallbackArgs args)
     {
-        MBTextManager.SetTextVariable("TROLLCAVE_BATTLE_RESULT",
-            TORTextHelper.GetTextObject("tor_trollcave_battle_aftermath",
-                "The trolls turned hostile! You survived the encounter."));
+        if (_playerWonBattle)
+        {
+            MBTextManager.SetTextVariable("TROLLCAVE_BATTLE_RESULT",
+                TORTextHelper.GetTextObject("tor_trollcave_battle_victory",
+                    "You cleared the troll cave! The beasts have been slain."));
+        }
+        else
+        {
+            MBTextManager.SetTextVariable("TROLLCAVE_BATTLE_RESULT",
+                TORTextHelper.GetTextObject("tor_trollcave_battle_defeat",
+                    "The trolls proved too powerful. You barely escaped with your life."));
+        }
     }
 }
