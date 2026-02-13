@@ -204,7 +204,7 @@ namespace TOR_Core.Missions
         }
 
         [MissionMethod]
-        public static Mission OpenTrollCaveMission(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, string scene = "TOR_troll_hideout_01")
+        public static Mission OpenTrollCaveMission(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, bool stealthMode = false, string scene = "TOR_troll_hideout_01")
         {
             return MissionState.OpenNew("TrollCaveFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) =>
             [
@@ -215,7 +215,7 @@ namespace TOR_Core.Missions
                 new BasicLeaveMissionLogic(false),
                 new LeaveMissionLogic(),
                 new AgentHumanAILogic(),
-                new TrollCaveMissionController(selectedTroops, trollCount, onMissionEnd),
+                new TrollCaveMissionController(selectedTroops, trollCount, onMissionEnd, stealthMode),
                 new HeroSkillHandler(),
                 new MissionFightHandler(),
                 new MissionFacialAnimationHandler(),

@@ -25,11 +25,15 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
     private const float TotalWaitHours = 4f;
     private const string TrollTroopId = "tor_gs_trolls";
     private const int MaxTroopsForRaid = 20;
+    private const int ClearTrollCount = 6; // Base trolls when clearing the cave
+    private const int LuringAttackTrollCountMin = 2; // Min trolls when luring goes wrong
+    private const int LuringAttackTrollCountMax = 4; // Max trolls when luring goes wrong
 
     private int _trollsRecruited = 0;
     private bool _trollsAggressive = false;
     private int _battleTrollCount = 0;
     private bool _playerWonBattle = false;
+    private bool _isClearingCave = false; // True when clearing, false when luring gone wrong
 
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
@@ -41,11 +45,17 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         // Main menu
         starter.AddGameMenu("trollcave_menu", "{LOCATION_DESCRIPTION}", TrollCaveMenuInit);
 
-        // Lure trolls option
+        // Lure trolls option (Greenskins only)
         starter.AddGameMenuOption("trollcave_menu", "lure_trolls",
             "{LURE_TROLLS_TEXT}",
             LureTrollsCondition,
             (args) => GameMenu.SwitchToMenu("trollcave_menu_luring"));
+
+        // Clear the cave option (all factions)
+        starter.AddGameMenuOption("trollcave_menu", "clear_cave",
+            TORTextHelper.GetText("tor_trollcave_clear_option", "Clear the cave"),
+            ClearCaveCondition,
+            StartClearCave);
 
         // Leave option
         starter.AddGameMenuOption("trollcave_menu", "leave",
@@ -167,6 +177,78 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         return component.IsActive;
     }
 
+    private bool ClearCaveCondition(MenuCallbackArgs args)
+    {
+        var settlement = Settlement.CurrentSettlement;
+        var component = settlement.SettlementComponent as TrollCaveComponent;
+
+        args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
+
+        // Check if wounded
+        if (Hero.MainHero.IsWounded)
+        {
+            args.Tooltip = TORTextHelper.GetTextObject("tor_wounded", "You are wounded.");
+            args.IsEnabled = false;
+        }
+
+        return component.IsActive;
+    }
+
+    private void StartClearCave(MenuCallbackArgs args)
+    {
+        _isClearingCave = true;
+        _battleTrollCount = ClearTrollCount + MBRandom.RandomInt(0, 3); // 6-8 trolls
+
+        var preSelectedTroops = TroopRoster.CreateDummyTroopRoster();
+        var strongestTroops = MobilePartyHelper.GetStrongestAndPriorTroops(MobileParty.MainParty, MaxTroopsForRaid, false);
+        preSelectedTroops.Add(strongestTroops);
+
+        // Filter out any trolls from pre-selection
+        FilterOutTrolls(preSelectedTroops);
+
+        args.MenuContext.OpenTroopSelection(
+            MobileParty.MainParty.MemberRoster,
+            preSelectedTroops,
+            CanSelectTroopForClearing,
+            OnClearTroopSelectionDone,
+            MaxTroopsForRaid,
+            1);
+    }
+
+    private void FilterOutTrolls(TroopRoster roster)
+    {
+        var trollCharacter = MBObjectManager.Instance.GetObject<CharacterObject>(TrollTroopId);
+        if (trollCharacter != null && roster.Contains(trollCharacter))
+        {
+            roster.RemoveTroop(trollCharacter, roster.GetTroopCount(trollCharacter));
+        }
+    }
+
+    private bool CanSelectTroopForClearing(CharacterObject character)
+    {
+        // Don't allow selecting player, non-transferable troops, or trolls
+        if (character.IsPlayerCharacter || character.IsNotTransferableInHideouts)
+            return false;
+
+        // Exclude trolls when clearing the cave
+        if (character.StringId == TrollTroopId)
+            return false;
+
+        return true;
+    }
+
+    private void OnClearTroopSelectionDone(TroopRoster selectedTroops)
+    {
+        if (selectedTroops == null || selectedTroops.TotalManCount == 0)
+        {
+            GameMenu.SwitchToMenu("trollcave_menu");
+            return;
+        }
+
+        // Start mission with stealth mode (trolls not alerted)
+        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: true);
+    }
+
     private void LuringInit(MenuCallbackArgs args)
     {
         _startWaitTime = CampaignTime.Now;
@@ -278,7 +360,9 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
 
     private void StartTrollBattle(MenuCallbackArgs args)
     {
-        _battleTrollCount = _trollsRecruited + MBRandom.RandomInt(1, 3);
+        _isClearingCave = false;
+        // Luring gone wrong - fewer trolls based on how many were being recruited
+        _battleTrollCount = MBRandom.RandomInt(LuringAttackTrollCountMin, LuringAttackTrollCountMax + 1);
 
         var preSelectedTroops = TroopRoster.CreateDummyTroopRoster();
         // Don't include heroes - player is spawned separately by the mission controller
@@ -308,7 +392,8 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             return;
         }
 
-        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd);
+        // Luring gone wrong - trolls are already alerted (no stealth)
+        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: false);
     }
 
     private void OnMissionEnd(bool playerWon)

@@ -1,10 +1,13 @@
+using SandBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SandBox.Missions.AgentBehaviors;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Library;
@@ -25,6 +28,8 @@ namespace TOR_Core.Missions
         private readonly TroopRoster _selectedTroops;
         private readonly int _trollCount;
         private readonly Action<bool> _onMissionEnd;
+        private readonly bool _stealthMode;
+        private readonly Settlement _settlement;
 
         private List<MatrixFrame> _enemySpawnFrames = new List<MatrixFrame>();
         private int _enemySpawnIndex;
@@ -32,11 +37,13 @@ namespace TOR_Core.Missions
         private int _spawnedTrollCount;
         private int _spawnedPlayerTroopCount;
 
-        public TrollCaveMissionController(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd)
+        public TrollCaveMissionController(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, bool stealthMode = false, Settlement settlement = null)
         {
             _selectedTroops = selectedTroops;
             _trollCount = trollCount;
             _onMissionEnd = onMissionEnd;
+            _stealthMode = stealthMode;
+            _settlement = settlement ?? Settlement.CurrentSettlement;
         }
 
         public override void AfterStart()
@@ -207,14 +214,45 @@ namespace TOR_Core.Missions
                     spawnPos.z = Mission.Scene.GetGroundHeightAtPosition(spawnPos, BodyFlags.CommonCollisionExcludeFlags);
                 }
 
-                var origin = new SimpleAgentOrigin(trollCharacter);
+                // Use PartyAgentOrigin to get CampaignAgentComponent for alarm behaviors
+                IAgentOriginBase origin;
+                if (_settlement?.Party != null)
+                {
+                    origin = new PartyAgentOrigin(_settlement.Party, trollCharacter);
+                }
+                else
+                {
+                    origin = new SimpleAgentOrigin(trollCharacter);
+                }
 
                 // Spawn on Defender side (enemy side)
                 var agent = Mission.SpawnTroop(origin, false, false, false, false, 0, 0, false, false, false,
                     spawnPos, spawnDir);
 
                 agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp);
-                agent.SetWatchState(Agent.WatchState.Alarmed);
+
+                // Set up alarm behavior flags
+                var agentFlags = agent.GetAgentFlags();
+                agent.SetAgentFlags((agentFlags | AgentFlag.CanGetAlarmed) & ~AgentFlag.CanRetreat);
+
+                // In stealth mode, trolls patrol and can be alerted
+                // In battle mode (luring gone wrong), trolls are already aggressive
+                if (_stealthMode)
+                {
+                    agent.SetWatchState(Agent.WatchState.Patrolling);
+
+                    // Add campaign alarm behaviors if agent has CampaignAgentComponent
+                    var campaignComponent = agent.GetComponent<CampaignAgentComponent>();
+                    if (campaignComponent != null)
+                    {
+                        var navigator = campaignComponent.CreateAgentNavigator();
+                        navigator.AddBehaviorGroup<AlarmedBehaviorGroup>().AddBehavior<CautiousBehavior>();
+                    }
+                }
+                else
+                {
+                    agent.SetWatchState(Agent.WatchState.Alarmed);
+                }
 
                 _spawnedTrollCount++;
             }
