@@ -2192,6 +2192,15 @@
   <string id="tor_response_2.tor_wanderer_eonir_1" text="{=str_tor_response_2_tor_wanderer_eonir_1}Many people claim to be descended from great heroes of the past." />
   <string id="tor_backstory_d.tor_wanderer_eonir_1" text="{=str_tor_backstory_d_tor_wanderer_eonir_1}Right." />
   <string id="tor_generic_backstory.tor_wanderer_eonir_1" text="{=str_tor_generic_backstory_tor_wanderer_eonir_1}Hold a moment, stranger. My services do not come cheap — you'd best prove your worth." />
+  
+  <string id="tor_prebackstory.tor_wanderer_eonir_2" text="{=str_tor_prebackstory_tor_wanderer_eonir_2}As the envoy of Laurelorn, i speak with the authority of the Eonir Senate and Crown" />
+  <string id="tor_backstory_a.tor_wanderer_eonir_2" text="{=str_tor_backstory_a_tor_wanderer_eonir_2}You should leave the treacherous tides of politics to me, content yourself with the shallow streams more suitable for your talents." />
+  <string id="tor_backstory_b.tor_wanderer_eonir_2" text="{=str_tor_backstory_b_tor_wanderer_eonir_2}All Toriour trace their lines to the war of the beard, when the Asur abandoned us." />
+  <string id="tor_backstory_c.tor_wanderer_eonir_2" text="{=str_tor_backstory_c_tor_wanderer_eonir_2}My ancestors settled the great city of Laurelorn, and were there when Maruviel was appointed our first queen." />
+  <string id="tor_response_1.tor_wanderer_eonir_2" text="{=str_tor_response_1_tor_wanderer_eonir_2}A proud lineage." />
+  <string id="tor_response_2.tor_wanderer_eonir_2" text="{=str_tor_response_2_tor_wanderer_eonir_2}Anyone can claim an ancestory they do not deserve." />
+  <string id="tor_backstory_d.tor_wanderer_eonir_2" text="{=str_tor_backstory_d_tor_wanderer_eonir_2}Hhm." />
+  <string id="tor_generic_backstory.tor_wanderer_eonir_2" text="{=str_tor_generic_backstory_tor_wanderer_eonir_2}My time is valuable, I am not yet sure I can say the same of yours." />
 
   <string id="tor_prebackstory.tor_wanderer_woodelf_0" text="{=str_tor_prebackstory_tor_wanderer_woodelf_0}Ah, I do not believe we have met. Peace be upon you, stranger." />
   <string id="tor_backstory_a.tor_wanderer_woodelf_0" text="{=str_tor_backstory_a_tor_wanderer_woodelf_0}Have you not encountered someone like me before? It is not surprising for I am a Spellsinger of the Asrai." />

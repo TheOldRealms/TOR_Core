@@ -9548,6 +9548,12 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_troll_lord_factionleader">
+    <Abilities />
+    <Attributes>
+      <string>Tough</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_leader">
     <Abilities />
     <Attributes>
