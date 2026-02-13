@@ -9972,6 +9972,7 @@
     <Abilities>
       <string>Dart</string>
       <string>AuraOfResistance</string>
+      <string>WardOfArrows</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -10058,6 +10059,10 @@
       <string>AbilityUser</string>
       <string>SpellCaster</string>
     </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_eonir_2">
+    <Abilities />
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_dawi_0">
     <Abilities />

@@ -295,7 +295,7 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
-
+	
 	<SkillSet id="tor_skills_wanderer_warrior">
 		<skill id="Athletics"
 		       value="100" />
@@ -304,7 +304,7 @@
 		<skill id="OneHanded"
 		       value="150" />
 		<skill id="TwoHanded"
-		       value="150" />
+		       value="120" />
 		<skill id="Polearm"
 		       value="120" />
 		<skill id="Bow"
@@ -324,13 +324,13 @@
 		<skill id="Scouting"
 		       value="0" />
 		<skill id="Charm"
-		       value="" />
+		       value="0" />
 		<skill id="Leadership"
 		       value="80" />
 		<skill id="Roguery"
-		       value="0" />
+		       value="60" />
 		<skill id="Trade"
-		       value="0" />
+		       value="160" />
 		<skill id="Gunpowder"
 		       value="0" />
 		<skill id="Faith"
@@ -339,7 +339,7 @@
 		       value="0" />
 	</SkillSet>
 
-	<SkillSet id="tor_skills_wanderer_commander">
+<SkillSet id="tor_skills_wanderer_commander">
 		<skill id="Athletics"
 		       value="80" />
 		<skill id="Riding"
@@ -357,13 +357,13 @@
 		<skill id="Throwing"
 		       value="50" />
 		<skill id="Medicine"
-		       value="00" />
+		       value="0" />
 		<skill id="Steward"
 		       value="140" />
 		<skill id="Engineering"
 		       value="20" />
 		<skill id="Tactics"
-		       value="60" />
+		       value="0" />
 		<skill id="Scouting"
 		       value="0" />
 		<skill id="Charm"
@@ -381,6 +381,7 @@
 		<skill id="Spellcraft"
 		       value="0" />
 	</SkillSet>
+
 
 	<SkillSet id="tor_skills_wanderer_rogue">
 		<skill id="Athletics"
