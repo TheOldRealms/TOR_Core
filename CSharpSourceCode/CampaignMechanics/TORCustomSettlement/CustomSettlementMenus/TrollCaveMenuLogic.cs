@@ -209,10 +209,10 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         args.MenuContext.OpenTroopSelection(
             MobileParty.MainParty.MemberRoster,
             preSelectedTroops,
-            CanSelectTroopForClearing,
+            CanSelectTroopForCaveMission,
             OnClearTroopSelectionDone,
             MaxTroopsForRaid,
-            1);
+            0);
     }
 
     private void FilterOutTrolls(TroopRoster roster)
@@ -224,13 +224,13 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         }
     }
 
-    private bool CanSelectTroopForClearing(CharacterObject character)
+    private bool CanSelectTroopForCaveMission(CharacterObject character)
     {
         // Don't allow selecting player, non-transferable troops, or trolls
         if (character.IsPlayerCharacter || character.IsNotTransferableInHideouts)
             return false;
 
-        // Exclude trolls when clearing the cave
+        // Exclude trolls - can't bring trolls to fight trolls
         if (character.StringId == TrollTroopId)
             return false;
 
@@ -239,13 +239,14 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
 
     private void OnClearTroopSelectionDone(TroopRoster selectedTroops)
     {
-        if (selectedTroops == null || selectedTroops.TotalManCount == 0)
+        // Player cancelled selection
+        if (selectedTroops == null)
         {
             GameMenu.SwitchToMenu("trollcave_menu");
             return;
         }
 
-        // Start mission with stealth mode (trolls not alerted)
+        // Start mission with stealth mode (trolls not alerted) - player can go alone
         TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: true);
     }
 
@@ -369,38 +370,34 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         var strongestTroops = MobilePartyHelper.GetStrongestAndPriorTroops(MobileParty.MainParty, MaxTroopsForRaid, false);
         preSelectedTroops.Add(strongestTroops);
 
+        // Filter out trolls - can't bring trolls to fight trolls
+        FilterOutTrolls(preSelectedTroops);
+
         args.MenuContext.OpenTroopSelection(
             MobileParty.MainParty.MemberRoster,
             preSelectedTroops,
-            CanSelectTroop,
+            CanSelectTroopForCaveMission,
             OnTroopSelectionDone,
             MaxTroopsForRaid,
-            1);
-    }
-
-    private bool CanSelectTroop(CharacterObject character)
-    {
-        // Don't allow selecting the player character or non-transferable troops
-        return !character.IsPlayerCharacter && !character.IsNotTransferableInHideouts;
+            0);
     }
 
     private void OnTroopSelectionDone(TroopRoster selectedTroops)
     {
-        if (selectedTroops == null || selectedTroops.TotalManCount == 0)
+        // Player cancelled selection
+        if (selectedTroops == null)
         {
             GameMenu.SwitchToMenu("trollcave_attack");
             return;
         }
 
-        // Luring gone wrong - trolls are already alerted (no stealth)
+        // Luring gone wrong - trolls are already alerted (no stealth) - player can fight alone
         TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: false);
     }
 
     private void OnMissionEnd(bool playerWon)
     {
         _playerWonBattle = playerWon;
-
-        // Return to result menu after mission ends
         GameMenu.SwitchToMenu("trollcave_result_battle");
     }
 

@@ -212,8 +212,6 @@ namespace TOR_Core.Missions
                 new MissionBasicTeamLogic(),
                 new BattleEndLogic(),
                 new MissionAgentLookHandler(),
-                new BasicLeaveMissionLogic(false),
-                new LeaveMissionLogic(),
                 new AgentHumanAILogic(),
                 new TrollCaveMissionController(selectedTroops, trollCount, onMissionEnd, stealthMode),
                 new HeroSkillHandler(),
