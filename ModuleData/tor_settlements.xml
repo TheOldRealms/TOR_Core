@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Settlements>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settlements>
   <!--Custom Settlements-->
   <Settlement id="oak_of_ages" name="{=str_tor_settlements_oak_of_ages}Oak of Ages" owner="Faction.athel_loren_clan_1" posX="1218.711" posY="798.5" culture="Culture.battania" text="{=!}Oak of Ages" gate_posX="1218.711" gate_posY="798.5">
     <Components>
@@ -143,6 +144,31 @@
   <Settlement id="grimnir_shrine_04" name="{=str_tor_settlements_grimnir_shrine04}Shrine of Grimnir" owner="Faction.karak_hirn_clan_1" posX="1411.903" posY="765.506" culture="Culture.vlandia" text="{=!}Shrine of Grimnir" gate_posX="1411.903" gate_posY="765.506">
     <Components>
       <Shrine id="grimnir_shrine_04" religion="cult_of_grimnir" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="grungni_shrine_01" name="{=str_tor_settlements_grimnir_shrine01}Shrine of Grugni" owner="Faction.karak_kadrin_clan_1" posX="1204.403" posY="676.666" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
+    <Components>
+      <Shrine id="grungni_shrine_01" religion="cult_of_grimnir" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="grungni_shrine_02" name="{=str_tor_settlements_grimnir_shrine01}Shrine of Grugni" owner="Faction.karak_kadrin_clan_1" posX="1710.184" posY="887.722" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
+    <Components>
+      <Shrine id="grungni_shrine_02" religion="cult_of_grimnir" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="grungni_shrine_03" name="{=str_tor_settlements_grimnir_shrine01}Shrine of Grugni" owner="Faction.karak_kadrin_clan_1" posX="1512.274" posY="810.563" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
+    <Components>
+      <Shrine id="grungni_shrine_03" religion="cult_of_grimnir" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="valaya_shrine_01" name="{=str_tor_settlements_grimnir_shrine01}Shrine of Valaya" owner="Faction.karak_kadrin_clan_1" posX="1223.375" posY="686.964" culture="Culture.sturgia" text="{=!}Shrine of Valaya">
+    <Components>
+      <Shrine id="valaya_shrine_01" religion="cult_of_grimnir" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="valaya_shrine_02" name="{=str_tor_settlements_grimnir_shrine01}Shrine of Valaya" owner="Faction.karak_kadrin_clan_1" posX="1457.496" posY="783.512" culture="Culture.sturgia" text="{=!}Shrine of Valaya">
+    <Components>
+      <Shrine id="valaya_shrine_02" religion="cult_of_grimnir" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="herdstone_01" name="{=str_tor_settlements_beastmen_herdstone1}Beastmen Herdstone" owner="Faction.beastmen_clan_1" posX="1472.928" posY="1069.09" culture="Culture.chaos_culture" text="{=!}Beastmen Herdstone" gate_posX="1472.928" gate_posY="1069.09">
@@ -300,14 +326,29 @@
       <Shrine id="gork_shrine_03" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
+  <Settlement id="gork_shrine_04" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.crooked_eye_clan_1" posX="1037.916" posY="1194.657" culture="Culture.aserai" text="{=!}Shrine of Gork">
+    <Components>
+      <Shrine id="gork_shrine_04" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
   <Settlement id="mork_shrine_01" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.red_eye_clan_1" posX="1778.073" posY="1119.793" culture="Culture.aserai" text="{=!}Mork is da bestest">
     <Components>
       <Shrine id="mork_shrine_01" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="mork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1620.704" posY="863.309" culture="Culture.aserai" text="{=!}Shrine of Mork">
+  <Settlement id="mork_shrine_02" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1619.786" posY="863.173" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
       <Shrine id="mork_shrine_02" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="mork_shrine_03" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1104.753" posY="1182.195" culture="Culture.aserai" text="{=!}Shrine of Mork">
+    <Components>
+      <Shrine id="mork_shrine_03" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="mork_shrine_04" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1284.803" posY="877.619" culture="Culture.aserai" text="{=!}Shrine of Mork">
+    <Components>
+      <Shrine id="mork_shrine_04" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <Settlement id="haunted_site_01" name="{=str_tor_settlements_haunted_site1}Hunger Woods" owner="Faction.sylvania_clan_1" posX="1582.078" posY="1016.387" culture="Culture.khuzait" text="{=!}Called Verhungern by local Slyvanians, this dispersed land is a ghoul, and likely spirit, infested maze of briars and bogs. Only the insane or desperate would venture into its boughs." gate_posX="1582.078" gate_posY="1016.387">
@@ -328,6 +369,26 @@
   <Settlement id="haunted_site_04" name="{=str_tor_settlements_haunted_site4}The Charnel Hills" owner="Faction.mousillon_clan_1" posX="904.914" posY="1032.623" culture="Culture.mousillon" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." gate_posX="904.914" gate_posY="1032.623">
     <Components>
       <CursedSite id="haunted_site_04" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="troll_cave_01" name="{=str_tor_settlements_haunted_site4}Troll Cave" owner="Faction.mousillon_clan_1" posX="1565.3" posY="1294.267" culture="Culture.mousillon" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." gate_posX="904.914" gate_posY="1032.623">
+    <Components>
+      <CursedSite id="troll_cave_01" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="troll_cave_02" name="{=str_tor_settlements_haunted_site4}Troll Cave" owner="Faction.mousillon_clan_1" posX="1057.335" posY="998.37" culture="Culture.mousillon" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." gate_posX="904.914" gate_posY="1032.623">
+    <Components>
+      <CursedSite id="troll_cave_02" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="troll_cave_03" name="{=str_tor_settlements_haunted_site4}Troll Cave" owner="Faction.mousillon_clan_1" posX="1719.524" posY="867.392" culture="Culture.mousillon" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." gate_posX="904.914" gate_posY="1032.623">
+    <Components>
+      <CursedSite id="troll_cave_03" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
+    </Components>
+  </Settlement>
+  <Settlement id="troll_cave_04" name="{=str_tor_settlements_haunted_site4}Troll Cave" owner="Faction.mousillon_clan_1" posX="1258.702" posY="726.793" culture="Culture.mousillon" text="{=!}Centuries ago, the hills outside of Mousillon were used as a mass grave to bury the thousands who died of Red Pox. So many victims were there that to this day the soil covering their pits is visible from the city walls. The air here is sometimes poisonous and like the rest of the cursed land the long dead rest uneasily." gate_posX="904.914" gate_posY="1032.623">
+    <Components>
+      <CursedSite id="troll_cave_04" religion="cult_of_nagash" background_crop_position="0.0" background_mesh="cursed_battlesite" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
   <!-- Averland 2 Towns 11 villages 2 castles -->
@@ -970,7 +1031,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#13;&#10;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
+  <Settlement id="town_ST4" name="{=Settlements.Settlement.name.town_ST4}Mittlenburg" owner="Faction.stirland_clan_1" posX="1554.683" posY="881.617" culture="Culture.empire" gate_posX="1554.314" gate_posY="882.6886" text="{=Settlements.Settlement.text.town_ST4}Mittlenburg sits at the foot of the black mountains, not far from the fallen Karak Varn and lake Black Water. The town is a modest one, the people here are very aware of their precarious position between Black Fire Pass and Sylvania, as such the town is decently fortified in preparation for these threats. The temples of Sigmar and Taal are well consecrated, and the Garden of Morr has a protective curtain wall around it. Many pilgrims on their way to take the trek up to the final temple of Skaranorak stop in Mittlenburg to purchase supplies.&#xD;&#xA;Special Scenes: no special scenes, besides maybe the temples, would be nice if one of the temples of Skaranorak was visible from a vantage point somewhere in the town.">
     <Components>
       <Town id="town_comp_ST4" is_castle="false" background_crop_position="0.0" background_mesh="menu_empire_1" wait_mesh="empire_city_background" gate_rotation="0.908" prosperity="2150">
         <Buildings>
@@ -16316,7 +16377,7 @@
       <Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_greenskin_50" name="{=Settlements.Settlement.name.hideout_greenskin_48}Orc Raiders" type="Hideout" posX="1723.22" posY="872.006" culture="Culture.greenskin_bandit">
+  <Settlement id="hideout_greenskin_50" name="{=Settlements.Settlement.name.hideout_greenskin_48}Orc Raiders" type="Hideout" posX="1728.118" posY="876.371" culture="Culture.greenskin_bandit">
     <Components>
       <Hideout id="hideout_greenskin_50" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16476,7 +16537,7 @@
       <Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_greenskin_70" name="{=Settlements.Settlement.name.hideout_greenskin_70}Orc Raiders" type="Hideout" posX="1056.018" posY="1000.122" culture="Culture.greenskin_bandit">
+  <Settlement id="hideout_greenskin_70" name="{=Settlements.Settlement.name.hideout_greenskin_70}Orc Raiders" type="Hideout" posX="1023.44" posY="988.673" culture="Culture.greenskin_bandit">
     <Components>
       <Hideout id="hideout_greenskin_70" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16484,7 +16545,7 @@
       <Location id="hideout_center" scene_name="mountain_hideout_004_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_greenskin_71" name="{=Settlements.Settlement.name.hideout_greenskin_71}Orc Raiders" type="Hideout" posX="1383.11" posY="1254.998" culture="Culture.greenskin_bandit">
+  <Settlement id="hideout_greenskin_71" name="{=Settlements.Settlement.name.hideout_greenskin_71}Orc Raiders" type="Hideout" posX="1383.048" posY="1257.03" culture="Culture.greenskin_bandit">
     <Components>
       <Hideout id="hideout_greenskin_71" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
@@ -16556,7 +16617,7 @@
       <Location id="hideout_center" scene_name="mountain_hideout_002_sv" />
     </Locations>
   </Settlement>
-  <Settlement id="hideout_greenskin_80" name="{=Settlements.Settlement.name.hideout_greenskin_78}Orc Raiders" type="Hideout" posX="1258.526" posY="726.457" culture="Culture.greenskin_bandit">
+  <Settlement id="hideout_greenskin_80" name="{=Settlements.Settlement.name.hideout_greenskin_78}Orc Raiders" type="Hideout" posX="1235.851" posY="716.04" culture="Culture.greenskin_bandit">
     <Components>
       <Hideout id="hideout_greenskin_80" map_icon="bandit_hideout_a" background_crop_position="0.0" background_mesh="empire_twn_scene_bg" wait_mesh="wait_hideout_mountain" gate_rotation="0.0" />
     </Components>
