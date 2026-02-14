@@ -458,7 +458,7 @@
             <ReligiousTroop id="NPCCharacter.tor_dw_slayer" />
         </ReligiousTroops>
     </Religion>
-	<Religion id="cult_of_thungni" Name="{=tor_religion_cult_name_cult_of_thungni_str}Cult of Thungni" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Thungni">
+	<Religion id="cult_of_valaya" Name="{=tor_religion_cult_name_cult_of_valaya_str}Cult of Valaya" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Valaya">
         <HostileReligions>
             <HostileReligion id="Religion.cult_of_nagash" />
             <HostileReligion id="Religion.cult_of_slaanesh" />
@@ -470,7 +470,22 @@
             <HostileReligion id="Religion.cult_of_mork" />
         </HostileReligions>
         <Followers>
-            <FollowerClan stringId="athel_loren_clan_8" />
+        </Followers>
+        <ReligiousTroops>
+        </ReligiousTroops>
+    </Religion>
+	<Religion id="cult_of_grungni" Name="{=tor_religion_cult_name_cult_of_grungni_str}Cult of Grungni" Culture="Culture.sturgia" Pantheon="Dwarven" DeityName="Grungni">
+        <HostileReligions>
+            <HostileReligion id="Religion.cult_of_nagash" />
+            <HostileReligion id="Religion.cult_of_slaanesh" />
+            <HostileReligion id="Religion.cult_of_nurgle" />
+            <HostileReligion id="Religion.cult_of_khorne" />
+            <HostileReligion id="Religion.cult_of_tzeentch" />
+            <HostileReligion id="Religion.chaos_undivided" />
+            <HostileReligion id="Religion.cult_of_gork" />
+            <HostileReligion id="Religion.cult_of_mork" />
+        </HostileReligions>
+        <Followers>
         </Followers>
         <ReligiousTroops>
         </ReligiousTroops>
@@ -492,7 +507,8 @@
 			<HostileReligion id="Religion.cult_of_anath_raema" />
 			<HostileReligion id="Religion.cult_of_loec" />
 			<HostileReligion id="Religion.cult_of_grimnir" />
-			<HostileReligion id="Religion.cult_of_thungni" />
+			<HostileReligion id="Religion.cult_of_valaya" />
+			<HostileReligion id="Religion.cult_of_grungni" />
 			<HostileReligion id="Religion.cult_of_slaanesh" />
 			<HostileReligion id="Religion.cult_of_nurgle" />
 			<HostileReligion id="Religion.cult_of_khorne" />
@@ -522,7 +538,8 @@
 			<HostileReligion id="Religion.cult_of_anath_raema" />
 			<HostileReligion id="Religion.cult_of_loec" />
 			<HostileReligion id="Religion.cult_of_grimnir" />
-			<HostileReligion id="Religion.cult_of_thungni" />
+			<HostileReligion id="Religion.cult_of_valaya" />
+			<HostileReligion id="Religion.cult_of_grungni" />
 			<HostileReligion id="Religion.cult_of_slaanesh" />
 			<HostileReligion id="Religion.cult_of_nurgle" />
 			<HostileReligion id="Religion.cult_of_khorne" />
