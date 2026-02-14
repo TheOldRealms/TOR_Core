@@ -160,10 +160,9 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         var component = settlement.SettlementComponent as TrollCaveComponent;
         if (component == null) return false;
 
-        // Check cooldown first - use stored settlement if available
-        var checkSettlement = _currentCaveSettlement ?? settlement;
+        // Check cooldown - always use current settlement
         var behavior = Campaign.Current.GetCampaignBehavior<TrollCaveCampaignBehavior>();
-        if (behavior != null && behavior.IsCaveOnCooldown(checkSettlement))
+        if (behavior != null && behavior.IsCaveOnCooldown(settlement))
         {
             return false;
         }
@@ -223,10 +222,9 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
 
         args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
 
-        // Check cooldown first - use stored settlement if current is somehow different
-        var checkSettlement = _currentCaveSettlement ?? settlement;
+        // Check cooldown - always use current settlement
         var behavior = Campaign.Current.GetCampaignBehavior<TrollCaveCampaignBehavior>();
-        if (behavior != null && behavior.IsCaveOnCooldown(checkSettlement))
+        if (behavior != null && behavior.IsCaveOnCooldown(settlement))
         {
             return false;
         }
@@ -458,6 +456,9 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             var behavior = Campaign.Current.GetCampaignBehavior<TrollCaveCampaignBehavior>();
             behavior?.SetCaveCleared(_currentCaveSettlement);
         }
+
+        // Clear the stored settlement reference now that we're done with it
+        _currentCaveSettlement = null;
 
         GameMenu.SwitchToMenu("trollcave_result_battle");
     }
