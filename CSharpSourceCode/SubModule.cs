@@ -143,6 +143,7 @@ namespace TOR_Core
                 starter.AddBehavior(new ChaosCampaignBehavior());
                 starter.AddBehavior(new InventoryUseScriptsCampaignBehavior());
                 starter.AddBehavior(new TORCustomSettlementCampaignBehavior());
+                starter.AddBehavior(new TrollCaveCampaignBehavior());
                 starter.AddBehavior(new RaidingPartyCampaignBehavior());
                 starter.AddBehavior(new CustomDialogCampaignBehavior());
                 starter.AddBehavior(new PostBattleCampaignBehavior());

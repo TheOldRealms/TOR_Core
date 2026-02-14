@@ -120,9 +120,39 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         public override IFaction MapFaction => Settlement.Owner.Clan;
     }
 
-    public class TrollCaveComponent : TORBaseSettlementComponent
+    public class TrollCaveComponent : BaseRaiderSpawnerComponent
     {
+        public override int BattlePartySize => 200;
+        public override string BattleSceneName => "TOR_troll_hideout_01";
+
+        public override List<string> RewardItemIds =>
+        [
+            "tor_orc_weapon_2h_axe_001",
+            "tor_orc_weapon_2h_axe_002",
+            "tor_orc_weapon_1h_axe_001",
+            "tor_orc_weapon_1h_axe_002",
+        ];
+
         public override IFaction MapFaction => Settlement.Owner.Clan;
+
+        public override void SpawnNewParty(out MobileParty party, Settlement initialTarget)
+        {
+            PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("troll_party_template");
+            Clan trollClan = Clan.FindFirst(x => x.StringId == "troll_clan_1");
+            var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
+            var trollRaidingParty = RaidingPartyComponent.CreateRaidingParty("troll_clan_1_party_" + RaidingPartyCount + 1, Settlement, "Troll Raiders", template, trollClan, MBRandom.RandomInt(15, 25));
+            if (find != null)
+            {
+                SetPartyAiAction.GetActionForRaidingSettlement(trollRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);
+                ((RaidingPartyComponent)trollRaidingParty.PartyComponent).Target = initialTarget ?? find;
+            }
+            else
+            {
+                ((RaidingPartyComponent)trollRaidingParty.PartyComponent).Target = null;
+            }
+
+            party = trollRaidingParty;
+        }
     }
 
     //Sly : I wonder if we could send out large armies from these components that target settlements to capture. Unsure what would happen if the siege was a success; would it be attributed to the chaos clan?

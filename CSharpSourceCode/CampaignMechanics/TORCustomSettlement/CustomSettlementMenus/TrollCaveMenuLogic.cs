@@ -34,6 +34,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
     private int _battleTrollCount = 0;
     private bool _playerWonBattle = false;
     private bool _isClearingCave = false; // True when clearing, false when luring gone wrong
+    private Settlement _currentCaveSettlement = null; // Store reference before mission
 
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
@@ -100,7 +101,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
                 args.optionLeaveType = GameMenuOption.LeaveType.Continue;
                 return true;
             },
-            (args) => GameMenu.SwitchToMenu("trollcave_menu"), true);
+            BattleResultContinue, true);
 
         // Troll attack encounter menu
         starter.AddGameMenu("trollcave_attack", "{TROLLCAVE_ATTACK_TEXT}", TrollCaveAttackInit);
@@ -119,18 +120,53 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         var settlement = Settlement.CurrentSettlement;
         var component = settlement.SettlementComponent as TrollCaveComponent;
 
-        var text = TORTextHelper.GetTextObject("tor_customsettlement_intro", settlement.StringId,
-            "A dark cave emanates a terrible stench. Massive footprints and gnawed bones litter the entrance - clear signs of troll habitation.",
-            skipValidation: true);
+        string descriptionText;
+        var behavior = Campaign.Current.GetCampaignBehavior<TrollCaveCampaignBehavior>();
 
-        MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", text);
+        if (behavior != null && behavior.IsCaveOnCooldown(settlement))
+        {
+            string baseText = "The cave is quiet. The trolls you slew still litter the ground, but their kind will return in time.";
+
+            if (Game.Current.CheatMode)
+            {
+                int daysRemaining = behavior.GetCooldownDaysRemaining(settlement);
+                baseText += $" ({daysRemaining} days)";
+            }
+
+            descriptionText = baseText;
+        }
+        else if (!component.IsActive)
+        {
+            descriptionText = TORTextHelper.GetTextObject("tor_trollcave_inactive",
+                "The cave is empty. No trolls dwell here currently.",
+                skipValidation: true).ToString();
+        }
+        else
+        {
+            descriptionText = TORTextHelper.GetTextObject("tor_customsettlement_intro", settlement.StringId,
+                "A dark cave emanates a terrible stench. Massive footprints and gnawed bones litter the entrance - clear signs of troll habitation.",
+                skipValidation: true).ToString();
+        }
+
+        MBTextManager.SetTextVariable("LOCATION_DESCRIPTION", descriptionText);
         args.MenuContext.SetBackgroundMeshName(component.BackgroundMeshName);
     }
 
     private bool LureTrollsCondition(MenuCallbackArgs args)
     {
         var settlement = Settlement.CurrentSettlement;
+        if (settlement == null) return false;
+
         var component = settlement.SettlementComponent as TrollCaveComponent;
+        if (component == null) return false;
+
+        // Check cooldown first - use stored settlement if available
+        var checkSettlement = _currentCaveSettlement ?? settlement;
+        var behavior = Campaign.Current.GetCampaignBehavior<TrollCaveCampaignBehavior>();
+        if (behavior != null && behavior.IsCaveOnCooldown(checkSettlement))
+        {
+            return false;
+        }
 
         // Set up the text variable for meat cost
         var meatIcon = CustomResourceManager.GetResourceObject("Meat").GetCustomResourceIconAsText();
@@ -180,9 +216,20 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
     private bool ClearCaveCondition(MenuCallbackArgs args)
     {
         var settlement = Settlement.CurrentSettlement;
+        if (settlement == null) return false;
+
         var component = settlement.SettlementComponent as TrollCaveComponent;
+        if (component == null) return false;
 
         args.optionLeaveType = GameMenuOption.LeaveType.HostileAction;
+
+        // Check cooldown first - use stored settlement if current is somehow different
+        var checkSettlement = _currentCaveSettlement ?? settlement;
+        var behavior = Campaign.Current.GetCampaignBehavior<TrollCaveCampaignBehavior>();
+        if (behavior != null && behavior.IsCaveOnCooldown(checkSettlement))
+        {
+            return false;
+        }
 
         // Check if wounded
         if (Hero.MainHero.IsWounded)
@@ -245,6 +292,9 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             GameMenu.SwitchToMenu("trollcave_menu");
             return;
         }
+
+        // Store settlement reference before mission
+        _currentCaveSettlement = Settlement.CurrentSettlement;
 
         // Start mission with stealth mode (trolls not alerted) - player can go alone
         TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: true);
@@ -391,6 +441,9 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             return;
         }
 
+        // Store settlement reference before mission
+        _currentCaveSettlement = Settlement.CurrentSettlement;
+
         // Luring gone wrong - trolls are already alerted (no stealth) - player can fight alone
         TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: false);
     }
@@ -398,6 +451,14 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
     private void OnMissionEnd(bool playerWon)
     {
         _playerWonBattle = playerWon;
+
+        // Set cooldown immediately when player wins
+        if (playerWon && _currentCaveSettlement != null)
+        {
+            var behavior = Campaign.Current.GetCampaignBehavior<TrollCaveCampaignBehavior>();
+            behavior?.SetCaveCleared(_currentCaveSettlement);
+        }
+
         GameMenu.SwitchToMenu("trollcave_result_battle");
     }
 
@@ -424,7 +485,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         {
             MBTextManager.SetTextVariable("TROLLCAVE_BATTLE_RESULT",
                 TORTextHelper.GetTextObject("tor_trollcave_battle_victory",
-                    "You cleared the troll cave! The beasts have been slain."));
+                    "You cleared the troll cave! The beasts have been slain. It will take time for more trolls to move in."));
         }
         else
         {
@@ -432,5 +493,12 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
                 TORTextHelper.GetTextObject("tor_trollcave_battle_defeat",
                     "The trolls proved too powerful. You barely escaped with your life."));
         }
+    }
+
+    private void BattleResultContinue(MenuCallbackArgs args)
+    {
+        // Force re-check of cave status by switching to the main menu
+        // The cooldown was already set in OnMissionEnd
+        GameMenu.SwitchToMenu("trollcave_menu");
     }
 }
