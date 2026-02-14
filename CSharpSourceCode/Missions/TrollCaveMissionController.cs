@@ -316,7 +316,6 @@ namespace TOR_Core.Missions
             if (Agent.Main == null || !Agent.Main.IsActive())
             {
                 missionResult = MissionResult.CreateDefeated(Mission);
-                _onMissionEnd?.Invoke(false);
                 return true;
             }
 
@@ -324,11 +323,21 @@ namespace TOR_Core.Missions
             if (GetActiveTrollCount() == 0)
             {
                 missionResult = MissionResult.CreateSuccessful(Mission, false);
-                _onMissionEnd?.Invoke(true);
                 return true;
             }
 
             return false;
+        }
+
+        protected override void OnEndMission()
+        {
+            base.OnEndMission();
+
+            // Invoke callback after mission has fully ended
+            if (Mission.MissionResult != null)
+            {
+                _onMissionEnd?.Invoke(Mission.MissionResult.PlayerVictory);
+            }
         }
 
         // IMissionAgentSpawnLogic implementation
