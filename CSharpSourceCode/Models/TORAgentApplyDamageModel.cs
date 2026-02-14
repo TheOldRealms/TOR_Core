@@ -635,6 +635,16 @@ namespace TOR_Core.Models
                 {
                     damageBonuses[(int)DamageType.Fire] += 0.1f;
                 }
+
+                if (agentParty.HasBlessing("cult_of_grimnir"))
+                {
+                    damageBonuses[(int)DamageType.Physical] += 0.15f;
+                }
+
+                if (agentParty.HasBlessing("cult_of_valaya"))
+                {
+                    resistances[(int)DamageType.All] += 0.05f;
+                }
             }
 
             var wieldedItem = agent.WieldedWeapon.Item;

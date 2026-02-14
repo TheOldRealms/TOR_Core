@@ -2284,6 +2284,8 @@
   <string id="tor_religion_description.cult_of_loec" text="{=str_tor_religion_description_cult_of_loec}" />
   
   <string id="tor_religion_description.cult_of_grimnir" text="{=str_tor_religion_description_cult_of_grimnir}It is said that in the age when the Ancestor Gods still walked the world, the Dwarfen god Grimnir ventured northwards clad in nothing but his famed red crest and bearing his mighty axe. There, he met his doom, cutting down countless daemons until he reached the collapsed warpgate, where he stood vigil to bar their passage into the south. Since that time, those who now bear the name of 'Slayer' have followed in Grimnir's footsteps, seeking out mighty foes and striving to meet their end in battle or die trying. Yet it was in the time of King Baragor, the first of the Slayer Kings, that the Slayer Cult took a steep rise. Karak Kadrin became a haven for these doomed warriors, a place where they could find food and rest before marching towards their doom once more. The Cult of Grimnir is open to all warriors, but only a Slayer can access sacred shrines in Karak Kadrin. These deadly berserkers are bound by an oath to find their death against worthy foes, while regular warriors must uphold the warrior's code set by the cult, which includes attacking when possible, defending when required, always aiding your brothers-in-arms, and slaying as many foes as possible." />
+  <string id="tor_religion_description.cult_of_valaya" text="{=str_tor_religion_description_cult_of_valaya}TODO: Add lore description for Cult of Valaya" />
+  <string id="tor_religion_description.cult_of_grungni" text="{=str_tor_religion_description_cult_of_grungni}TODO: Add lore description for Cult of Grungni" />
 
   <string id="tor_religion_name_of_god.cult_of_sigmar" text="{=str_tor_religion_name_of_god_cult_of_sigmar}Sigmar" />
   <string id="tor_religion_name_of_god.cult_of_taal" text="{=str_tor_religion_name_of_god_cult_of_taal}Taal" />
@@ -2300,6 +2302,8 @@
   <string id="tor_religion_name_of_god.cult_of_asuryan" text="{=str_tor_religion_name_of_god_cult_of_asuryan}Asuryan" />
   <string id="tor_religion_name_of_god.cult_of_loec" text="{=str_tor_religion_name_of_god_cult_of_loec}Loec" />
   <string id="tor_religion_name_of_god.cult_of_grimnir" text="{=str_tor_religion_name_of_god_cult_of_grimnir}Grimnir" />
+  <string id="tor_religion_name_of_god.cult_of_valaya" text="{=str_tor_religion_name_of_god_cult_of_valaya}Valaya" />
+  <string id="tor_religion_name_of_god.cult_of_grungni" text="{=str_tor_religion_name_of_god_cult_of_grungni}Grungni" />
   <string id="tor_religion_name_of_god.chaos_undivided" text="{=str_tor_religion_name_of_god_chaos_undivided}Ruinous Powers" />
   <string id="tor_religion_name_of_god.cult_of_slaanesh" text="{=str_tor_religion_name_of_god_cult_of_slaanesh}Slaanesh" />
   <string id="tor_religion_name_of_god.cult_of_nurgle" text="{=str_tor_religion_name_of_god_cult_of_nurgle}Nurgle" />
@@ -2323,6 +2327,9 @@
   <string id="tor_religion_blessing_effect_description.cult_of_gork" text="{=str_tor_religion_blessing_effect_description_cult_of_gork}All melee troops in your party deal an extra 10% physical damage." />
   <string id="tor_religion_blessing_effect_description.cult_of_mork" text="{=str_tor_religion_blessing_effect_description_cult_of_mork}All troops in your party deal an extra 10% damage as fire damage." />
   <string id="tor_religion_blessing_effect_description.cult_of_myrmidia" text="{=str_tor_religion_blessing_effect_description_cult_of_myrmidia}All heroes in your party earn 10% more xp and your clan earns 10% more renown from battles." />
+  <string id="tor_religion_blessing_effect_description.cult_of_grimnir" text="{=str_tor_religion_blessing_effect_description_cult_of_grimnir}All troops in your party deal an extra 15% physical damage." />
+  <string id="tor_religion_blessing_effect_description.cult_of_valaya" text="{=str_tor_religion_blessing_effect_description_cult_of_valaya}All troops in your party gain 5% ward save." />
+  <string id="tor_religion_blessing_effect_description.cult_of_grungni" text="{=str_tor_religion_blessing_effect_description_cult_of_grungni}Gain 25% bonus crafting stamina." />
 
   <string id="tor_religion_blessing_name.cult_of_sigmar" text="{=str_tor_religion_blessing_name_cult_of_sigmar}Blessing of Sigmar" />
   <string id="tor_religion_blessing_name.cult_of_shallya" text="{=str_tor_religion_blessing_name_cult_of_shallya}Blessing of Shallya" />
@@ -2339,6 +2346,9 @@
   <string id="tor_religion_blessing_name.cult_of_gork" text="{=str_tor_religion_blessing_name_cult_of_gork}Blessing of Gork" />
   <string id="tor_religion_blessing_name.cult_of_mork" text="{=str_tor_religion_blessing_name_cult_of_mork}Blessing of Mork" />
   <string id="tor_religion_blessing_name.cult_of_myrmidia" text="{=str_tor_religion_blessing_name_cult_of_myrmidia}Blessing of Myrmidia" />
+  <string id="tor_religion_blessing_name.cult_of_grimnir" text="{=str_tor_religion_blessing_name_cult_of_grimnir}Blessing of Grimnir" />
+  <string id="tor_religion_blessing_name.cult_of_valaya" text="{=str_tor_religion_blessing_name_cult_of_valaya}Blessing of Valaya" />
+  <string id="tor_religion_blessing_name.cult_of_grungni" text="{=str_tor_religion_blessing_name_cult_of_grungni}Blessing of Grungni" />
 
 
 
@@ -4269,6 +4279,9 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_religion_cult_name_cult_of_loec" text="{=str_tor_religion_cult_name_cult_of_loec}Cult of Loec" />
 	<string id="tor_religion_cult_name_cult_of_gork" text="{=str_tor_religion_cult_name_cult_of_gork}Cult of Gork" />
 	<string id="tor_religion_cult_name_cult_of_mork" text="{=str_tor_religion_cult_name_cult_of_mork}Cult of Mork" />
+	<string id="tor_religion_cult_name_cult_of_grimnir_str" text="{=str_tor_religion_cult_name_cult_of_grimnir}Cult of Grimnir" />
+	<string id="tor_religion_cult_name_cult_of_valaya_str" text="{=str_tor_religion_cult_name_cult_of_valaya}Cult of Valaya" />
+	<string id="tor_religion_cult_name_cult_of_grungni_str" text="{=str_tor_religion_cult_name_cult_of_grungni}Cult of Grungni" />
 
 
 
