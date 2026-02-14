@@ -37,6 +37,7 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
         CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, AfterSessionLaunched);
         CampaignEvents.OnUnitRecruitedEvent.AddNonSerializedListener(this, OnOrcRecruitedAddGoblins);
         CampaignEvents.OnSettlementLeftEvent.AddNonSerializedListener(this, AddExtraGoblinsForOrcRecruitment);
+        CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, OnAIOrcRecruitedAddGoblins);
     }
 
     private void AddExtraGoblinsForOrcRecruitment(MobileParty party, Settlement settlement)
@@ -78,6 +79,35 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
         for (var i = 0; i < amount; i++)
         {
             _pendingGoblins += MBRandom.RandomInt(0, 3); // 0-2 goblins per orc
+        }
+    }
+
+    // AI greenskin lords also get goblins when recruiting orcs
+    private void OnAIOrcRecruitedAddGoblins(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int amount)
+    {
+        if (recruiter == null || recruiter == Hero.MainHero) return;
+        if (recruiter.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
+        if (!troop.IsOrc()) return;
+        if (recruiter.PartyBelongedTo == null) return;
+
+        var party = recruiter.PartyBelongedTo;
+        int availableSpace = party.Party.PartySizeLimit - party.Party.NumberOfAllMembers;
+        if (availableSpace <= 0) return;
+
+        var goblinCharacter = MBObjectManager.Instance.GetObject<CharacterObject>(_goblinTroopId);
+        if (goblinCharacter == null) return;
+
+        // 0-2 goblins per orc recruited, same as player
+        int goblinsToAdd = 0;
+        for (var i = 0; i < amount; i++)
+        {
+            goblinsToAdd += MBRandom.RandomInt(0, 3);
+        }
+
+        if (goblinsToAdd > 0)
+        {
+            goblinsToAdd = Math.Min(goblinsToAdd, availableSpace);
+            party.AddElementToMemberRoster(goblinCharacter, goblinsToAdd);
         }
     }
 
