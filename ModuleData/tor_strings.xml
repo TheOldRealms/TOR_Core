@@ -4581,6 +4581,22 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_beastmen_raiders" text="{=str_tor_beastmen_raiders}Beastmen Raiders"/>
 	<string id="tor_chaos_raiders" text="{=str_tor_chaos_raiders}Chaos Raiders"/>
 
+	<!--Troll Cave Menus-->
+	<string id="tor_trollcave_clear_option" text="{=str_tor_trollcave_clear_option}Clear the cave"/>
+	<string id="tor_trollcave_lure_option" text="{=str_tor_trollcave_lure_option}Lure some trolls ({MEAT_COST} {MEATICON})"/>
+	<string id="tor_trollcave_not_enough_meat" text="{=str_tor_trollcave_not_enough_meat}You need at least {MEAT_COST} Meat to lure the trolls."/>
+	<string id="tor_trollcave_party_full" text="{=str_tor_trollcave_party_full}Your party is full. You cannot recruit any trolls."/>
+	<string id="tor_trollcave_luring_progress" text="{=str_tor_trollcave_luring_progress}Laying out meat to lure the trolls..."/>
+	<string id="tor_trollcave_attack_text" text="{=str_tor_trollcave_attack_text}The trolls have turned aggressive! They emerge from the cave, hungry for more than just meat!"/>
+	<string id="tor_trollcave_attack_fight" text="{=str_tor_trollcave_attack_fight}Fight!"/>
+	<string id="tor_trollcave_success" text="{=str_tor_trollcave_success}The smell of meat drew {TROLLS_RECRUITED} troll(s) from the depths. They seem content to follow you... for now."/>
+	<string id="tor_trollcave_no_trolls" text="{=str_tor_trollcave_no_trolls}The trolls were not interested in your offerings. Perhaps more meat, or better scouting skills, would help next time."/>
+	<string id="tor_trollcave_battle_victory" text="{=str_tor_trollcave_battle_victory}You cleared the troll cave! The beasts have been slain. It will take time for more trolls to move in."/>
+	<string id="tor_trollcave_battle_defeat" text="{=str_tor_trollcave_battle_defeat}The trolls proved too powerful. You barely escaped with your life."/>
+	<string id="tor_trollcave_cannot_leave" text="{=str_tor_trollcave_cannot_leave}You cannot leave until the trolls are dealt with!"/>
+	<string id="tor_wounded" text="{=str_tor_wounded}You are wounded."/>
+	<string id="tor_troll_greeting" text="{=str_tor_troll_greeting}*GRAAAAWWWRR* *sniff* *sniff* ...MEAT!"/>
+
 	<!--Blood Kiss Dialogs-->
 	<string id="tor_bloodkiss_request" text="{=str_tor_bloodkiss_request}My lord von Carstein, I wish to shed my mortal shell and serve you eternally."/>
 	<string id="tor_bloodkiss_answer_line2" text="{=str_tor_bloodkiss_answer_line2}Thou hast served me and mine loyally, I shall grant thee the Blood kiss if thou so desireth."/>

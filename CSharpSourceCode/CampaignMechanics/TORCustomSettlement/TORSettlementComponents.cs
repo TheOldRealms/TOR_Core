@@ -127,6 +127,8 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
         public override List<string> RewardItemIds =>
         [
+            
+            // not really necessary. doesnt do anything. Though I am not in the mood to change the heritage here.
             "tor_orc_weapon_2h_axe_001",
             "tor_orc_weapon_2h_axe_002",
             "tor_orc_weapon_1h_axe_001",
