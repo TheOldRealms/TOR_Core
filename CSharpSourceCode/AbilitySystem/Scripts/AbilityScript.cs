@@ -8,6 +8,7 @@ using TaleWorlds.MountAndBlade;
 using TOR_Core.BattleMechanics.AI.CommonAIFunctions;
 using TOR_Core.BattleMechanics.TriggeredEffect;
 using TOR_Core.AbilitySystem.SpellCasting;
+using TOR_Core.Utilities;
 
 namespace TOR_Core.AbilitySystem.Scripts
 {
@@ -88,8 +89,7 @@ namespace TOR_Core.AbilitySystem.Scripts
 
                 if (_soundIndex < 0)
                 {
-                    throw new InvalidOperationException(
-                        $"[TOR] Missing sound event '{soundEffectToPlay}' for ability '{_ability.Template.StringID}'. ");
+                    TORCommon.Log($"Sound effect '{soundEffectToPlay}' not found for ability '{_ability.Template.StringID}'.", NLog.LogLevel.Warn);
                 }
 
                 _sound = SoundEvent.CreateEvent(_soundIndex, Scene);

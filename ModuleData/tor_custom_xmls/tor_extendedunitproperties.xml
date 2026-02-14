@@ -9548,6 +9548,12 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_troll_lord_factionleader">
+    <Abilities />
+    <Attributes>
+      <string>Tough</string>
+    </Attributes>
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_leader">
     <Abilities />
     <Attributes>
@@ -9972,6 +9978,7 @@
     <Abilities>
       <string>Dart</string>
       <string>AuraOfResistance</string>
+      <string>WardOfArrows</string>
     </Abilities>
     <Attributes>
       <string>AbilityUser</string>
@@ -10058,6 +10065,10 @@
       <string>AbilityUser</string>
       <string>SpellCaster</string>
     </Attributes>
+  </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_wanderer_eonir_2">
+    <Abilities />
+    <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_dawi_0">
     <Abilities />
