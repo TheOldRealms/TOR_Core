@@ -53,21 +53,16 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
         }
 
         int availableSpace = party.Party.PartySizeLimit - party.Party.NumberOfAllMembers;
-        if (availableSpace <= 0)
-        {
-            _pendingGoblins = 0;
-            return;
-        }
-
-        int goblinsToAdd = Math.Min(_pendingGoblins, availableSpace);
-        party.AddElementToMemberRoster(goblinCharacter, goblinsToAdd);
-
-        var message = goblinsToAdd == 1
-            ? $"{goblinsToAdd} goblin joined by recruiting da big boys!"
-            : $"{goblinsToAdd} goblins joined by recruiting da big boys!";
-        InformationManager.DisplayMessage(new InformationMessage(message, Colors.Green));
-
+        int goblinsToAdd = Math.Min(_pendingGoblins, Math.Max(0, availableSpace));
         _pendingGoblins = 0;
+
+        if (goblinsToAdd > 0)
+        {
+            party.AddElementToMemberRoster(goblinCharacter, goblinsToAdd);
+            var messageText = TORTextHelper.GetTextObject("tor_goblin_orc_recruitment_message", "{GOBLIN_COUNT} goblin(s) joined by recruiting da big boys!");
+            messageText.SetTextVariable("GOBLIN_COUNT", goblinsToAdd);
+            InformationManager.DisplayMessage(new InformationMessage(messageText.ToString(), Colors.Green));
+        }
     }
 
     // Very stupid TW Event: it fires for each troop card individually (amount is always 1 ). the check for left size doesnt apply correctly and a single message display is not possible.
@@ -76,10 +71,7 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
         if (Hero.MainHero.Culture.StringId != TORConstants.Cultures.GREENSKIN) return;
         if (!troop.IsOrc()) return;
 
-        for (var i = 0; i < amount; i++)
-        {
-            _pendingGoblins += MBRandom.RandomInt(0, 3); // 0-2 goblins per orc
-        }
+        _pendingGoblins += CalculateGoblinsForOrcs(amount);
     }
 
     // AI greenskin lords also get goblins when recruiting orcs
@@ -97,18 +89,24 @@ public class GoblinRecruitmentBehavior : CampaignBehaviorBase
         var goblinCharacter = MBObjectManager.Instance.GetObject<CharacterObject>(_goblinTroopId);
         if (goblinCharacter == null) return;
 
-        // 0-2 goblins per orc recruited, same as player
-        int goblinsToAdd = 0;
-        for (var i = 0; i < amount; i++)
-        {
-            goblinsToAdd += MBRandom.RandomInt(0, 3);
-        }
-
+        int goblinsToAdd = Math.Min(CalculateGoblinsForOrcs(amount), availableSpace);
         if (goblinsToAdd > 0)
         {
-            goblinsToAdd = Math.Min(goblinsToAdd, availableSpace);
             party.AddElementToMemberRoster(goblinCharacter, goblinsToAdd);
         }
+    }
+
+    /// <summary>
+    /// Calculates how many goblins should join based on orcs recruited (0-2 per orc).
+    /// </summary>
+    private int CalculateGoblinsForOrcs(int orcAmount)
+    {
+        int goblins = 0;
+        for (var i = 0; i < orcAmount; i++)
+        {
+            goblins += MBRandom.RandomInt(0, 3);
+        }
+        return goblins;
     }
 
 
