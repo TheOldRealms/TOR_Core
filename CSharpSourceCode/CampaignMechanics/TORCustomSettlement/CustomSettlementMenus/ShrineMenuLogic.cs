@@ -21,6 +21,7 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 {
     private const int DefillingCooldownInDays = 5;
     private const int DefilingDarkEnergyPerTick = 125;
+    private const int PrayerTroopRewardCooldownInDays = 5;
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
         AddShrineMenus(campaignGameStarter);
@@ -325,6 +326,12 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         PlayerEncounter.Current.IsPlayerWaiting = false;
         args.MenuContext.GameMenu.EndWait();
         args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(0f);
+        //cd for shrine troops
+        if (numberOfTroopsFromInteraction > 0)
+        {
+            Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>()
+                .SetLastPrayerTroopRewardTime(Hero.MainHero, (int)CampaignTime.Now.ToDays);
+        }
         GameMenu.SwitchToMenu("shrine_menu_pray_result");
     }
 
@@ -380,45 +387,59 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
 
     private void PrayingTick(MenuCallbackArgs args, CampaignTime dt)
     {
-        //Sly : with blessings able to be refreshed before the current one has ran out, do we care that someone can sit at a shrine and spam out praying to acquire a bunch of religious troops in a row?
-        var progress = args.MenuContext.GameMenu.Progress;
+        const float ProgressPerHour = 0.25f;
+
+        var previousProgress = args.MenuContext.GameMenu.Progress;
         var diff = (int)_startWaitTime.ElapsedHoursUntilNow;
-        if (diff > 0)
+        if (diff <= 0) return;
+
+        args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * ProgressPerHour);
+
+        var currentProgress = args.MenuContext.GameMenu.Progress;
+        if (currentProgress == previousProgress) return;
+
+        var settlement = Settlement.CurrentSettlement;
+        if (settlement.SettlementComponent is not ShrineComponent component) return;
+
+        var heroReligion = Hero.MainHero.GetDominantReligion();
+        if (heroReligion != component.Religion) return;
+
+        var behavior = Campaign.Current.GetCampaignBehavior<TORCustomSettlementCampaignBehavior>();
+        var lastRewardDay = behavior.LastPrayerTroopRewardTime(Hero.MainHero);
+        if (lastRewardDay >= 0 && (int)CampaignTime.Now.ToDays - lastRewardDay < PrayerTroopRewardCooldownInDays)
         {
-            args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(diff * 0.25f);
-            if (args.MenuContext.GameMenu.Progress != progress)
+            return;
+        }
+
+        var devotion = Hero.MainHero.GetDevotionLevelForReligion(heroReligion);
+        if ((int)devotion < (int)DevotionLevel.Devoted) return;
+
+        var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
+        if (troop == null) return;
+
+        var previousStep = (int)(previousProgress / ProgressPerHour);
+        var currentStep = (int)(currentProgress / ProgressPerHour);
+
+        var stepsAdvanced = currentStep - previousStep;
+        if (stepsAdvanced < 1) stepsAdvanced = 1;
+
+        for (int i = 0; i < stepsAdvanced; i++)
+        {
+            var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
+            if (freeSlots < 1) break;
+
+            var count = MBRandom.RandomInt(1, 4);
+
+            if (Hero.MainHero.HasCareerChoice("AxeOfGrimnirPassive4"))
             {
-                var settlement = Settlement.CurrentSettlement;
-                if (settlement.SettlementComponent is not ShrineComponent component) return;
-                var heroReligion = Hero.MainHero.GetDominantReligion();
-                if (heroReligion == component.Religion)
-                {
-                    var devotion = Hero.MainHero.GetDevotionLevelForReligion(heroReligion);
-                    if ((int)devotion >= (int)DevotionLevel.Devoted)
-                    {
-                        var freeSlots = MobileParty.MainParty.Party.PartySizeLimit - MobileParty.MainParty.MemberRoster.TotalManCount;
-                        if (freeSlots < 1) return;
-
-                        var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);
-                        if (troop == null)
-                        {
-                            return;
-                        }
-
-                        var count = MBRandom.RandomInt(1, 4);
-
-                        if (Hero.MainHero.HasCareerChoice("AxeOfGrimnirPassive4"))
-                        {
-                            count *= 2;
-                        }
-
-                        if (freeSlots < count) count = freeSlots;
-                        MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
-                        CampaignEventDispatcher.Instance.OnTroopRecruited(Hero.MainHero, settlement, null, troop, count);
-                        numberOfTroopsFromInteraction += count;
-                    }
-                }
+                count *= 2;
             }
+
+            if (freeSlots < count) count = freeSlots;
+
+            MobileParty.MainParty.MemberRoster.AddToCounts(troop, count);
+            CampaignEventDispatcher.Instance.OnTroopRecruited(Hero.MainHero, settlement, null, troop, count);
+            numberOfTroopsFromInteraction += count;
         }
     }
 
@@ -590,6 +611,9 @@ public class ShrineMenuLogic : TORBaseSettlementMenuLogic
         var godName = TORTextHelper.GetTextObject("tor_religion_name_of_god", component.Religion.StringId, "the god", skipValidation: true);
         MBTextManager.SetTextVariable("GOD_NAME", godName);
         MBTextManager.SetTextVariable("PRAY_RESULT", TORTextHelper.GetTextObject("tor_custom_settlement_shrine_pray_result", "You received the blessing of {GOD_NAME}."));
+        MBTextManager.SetTextVariable("FOLLOWERS_RESULT", string.Empty);
+        MBTextManager.SetTextVariable("FOLLOWER_RESULT_NUMBER", string.Empty);
+        MBTextManager.SetTextVariable("FOLLOWER_RESULT_TROOP", string.Empty); // it leaks
         if (numberOfTroopsFromInteraction > 0)
         {
             var troop = component.Religion.ReligiousTroops.FirstOrDefault(x => x.IsBasicTroop && x.Occupation == Occupation.Soldier);

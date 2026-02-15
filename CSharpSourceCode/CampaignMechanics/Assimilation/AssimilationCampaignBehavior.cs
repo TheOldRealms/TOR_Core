@@ -9,6 +9,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
+using TaleWorlds.ObjectSystem;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -18,6 +19,8 @@ namespace TOR_Core.CampaignMechanics.Assimilation
     {
         private Dictionary<Settlement, CultureObject> _settlementCulturePairs = [];
         private Dictionary<Settlement, CultureObject> _originalSettlementCulturePairs = [];
+        private readonly Dictionary<string, List<CharacterObject>> _mercenaryTroopsByCulture = []; // caravans
+        private bool _isMercenaryTroopCacheInitialized;
 
         public static CultureObject GetOriginalCultureForSettlement(Settlement settlement)
         {
@@ -36,6 +39,7 @@ namespace TOR_Core.CampaignMechanics.Assimilation
             CampaignEvents.OnBeforeSaveEvent.AddNonSerializedListener(this, BeforeSave);
             CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, OnTroopRecruited);
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, DailyTickSettlement);
+            CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this, DailyTickParty);
             CampaignEvents.OnLootDistributedToPartyEvent.AddNonSerializedListener(this, OnDistributeLootToParty);
         }
 
@@ -61,11 +65,96 @@ namespace TOR_Core.CampaignMechanics.Assimilation
                 SwapTroopsIfNeeded(settlement.Owner, settlement.Town.GarrisonParty?.MemberRoster, rosterElement.Character, rosterElement.Number);
             }
         }
+        private void DailyTickParty(MobileParty party)
+        {
+            if (!party.IsCaravan) return;
+
+            EnsureMercenaryTroopCacheInitialized();
+
+            var partyCulture = party.HomeSettlement?.Culture ?? party.ActualClan?.Culture ?? party.Party.Culture ?? party.LeaderHero?.Culture;
+            if (partyCulture == null) return;
+
+            foreach (var rosterElement in party.MemberRoster.GetTroopRoster().ToList())
+            {
+                var troop = rosterElement.Character;
+                if (troop.IsHero) continue;
+                if (!troop.StringId.StartsWith("tor_")) continue;
+                if (troop.Culture == partyCulture) continue;
+
+                if (troop.Occupation != Occupation.Mercenary && troop.Occupation != Occupation.CaravanGuard) continue;
+
+                var replacement = FindMercenaryEquivalent(partyCulture, troop);
+                if (replacement == null) continue;
+
+                int count = rosterElement.Number;
+                party.MemberRoster.RemoveTroop(troop, count);
+                party.MemberRoster.AddToCounts(replacement, count);
+            }
+            party.MemberRoster.RemoveZeroCounts();
+        }
+
+        private void EnsureMercenaryTroopCacheInitialized()
+        {
+            if (_isMercenaryTroopCacheInitialized) return;
+
+            foreach (var character in MBObjectManager.Instance.GetObjectTypeList<CharacterObject>())
+            {
+                if (character.IsHero) continue;
+                if (character.Culture == null) continue;
+
+                if (character.Occupation != Occupation.Mercenary && character.Occupation != Occupation.CaravanGuard) continue;
+                if (!character.StringId.StartsWith("tor_")) continue;
+
+                if (!_mercenaryTroopsByCulture.TryGetValue(character.Culture.StringId, out var cultureMercenaries))
+                {
+                    cultureMercenaries = [];
+                    _mercenaryTroopsByCulture.Add(character.Culture.StringId, cultureMercenaries);
+                }
+
+                cultureMercenaries.Add(character);
+            }
+
+            _isMercenaryTroopCacheInitialized = true;
+        }
+
+        private CharacterObject FindMercenaryEquivalent(CultureObject targetCulture, CharacterObject sourceTroop)
+        {
+            if (!_mercenaryTroopsByCulture.TryGetValue(targetCulture.StringId, out var cultureMercenaries))
+            {
+                return null;
+            }
+
+            var desiredFallbackClass = FormationClassExtensions.FallbackClass(sourceTroop.DefaultFormationClass);
+
+            var sameOccupation = cultureMercenaries.Where(x => x.Occupation == sourceTroop.Occupation).ToList();
+            var candidates = sameOccupation.Count > 0 ? sameOccupation : cultureMercenaries;
+
+            var sameClassAndTier = candidates
+                .Where(x => FormationClassExtensions.FallbackClass(x.DefaultFormationClass) == desiredFallbackClass && x.Tier == sourceTroop.Tier)
+                .ToList();
+            if (sameClassAndTier.Count > 0) return sameClassAndTier[MBRandom.RandomInt(sameClassAndTier.Count)];
+
+            var sameClass = candidates
+                .Where(x => FormationClassExtensions.FallbackClass(x.DefaultFormationClass) == desiredFallbackClass)
+                .ToList();
+            if (sameClass.Count > 0) return sameClass[MBRandom.RandomInt(sameClass.Count)];
+
+            var sameTier = candidates.Where(x => x.Tier == sourceTroop.Tier).ToList();
+            if (sameTier.Count > 0) return sameTier[MBRandom.RandomInt(sameTier.Count)];
+
+            return candidates.Count > 0 ? candidates[MBRandom.RandomInt(candidates.Count)] : null;
+        }
+
 
         //this occurs after same event in TORAIRecruitmentCampaignBehavior
         private void OnTroopRecruited(Hero recruiter, Settlement settlement, Hero recruitmentSource, CharacterObject troop, int count)
         {
             SwapTroopsIfNeeded(recruiter, recruiter?.PartyBelongedTo?.MemberRoster, troop, count);
+            var recruiterParty = recruiter?.PartyBelongedTo;
+            if (recruiterParty != null && recruiterParty.IsCaravan)
+            {
+                DailyTickParty(recruiterParty);
+            }
         }
 
         private void OnNewGameStart(CampaignGameStarter starter, int index)

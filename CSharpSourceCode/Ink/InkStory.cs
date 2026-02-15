@@ -526,7 +526,11 @@ namespace TOR_Core.Ink
 
             var logic = new InventoryLogic(null);
             ItemRoster roster = new ItemRoster();
-            var items = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => (x.HasWeaponComponent || x.HasArmorComponent) && x.StringId.StartsWith("tor_") && !x.NotMerchandise);
+            var items = MBObjectManager.Instance.GetObjectTypeList<ItemObject>()
+                .Where(x => (x.HasWeaponComponent || x.HasArmorComponent)
+                         && x.StringId.StartsWith("tor_")
+                         && !x.NotMerchandise
+                         && !x.IsCraftedByPlayer);
             var foods = MBObjectManager.Instance.GetObjectTypeList<ItemObject>().Where(x => x.HasFoodComponent);
             var selectedItems = items.TakeRandom(20);
             var selectedFoods = foods.TakeRandom(5);

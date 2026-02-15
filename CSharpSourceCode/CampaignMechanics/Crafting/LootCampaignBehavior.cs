@@ -183,21 +183,44 @@ public class LootCampaignBehavior : CampaignBehaviorBase
                     }
                     else
                     {
-                        var validTypes = new HashSet<ItemTraitItemType> {ItemTraitItemType.Weapon};
+                        //ammo/shields having weapon traits
+                        var validTypes = new HashSet<ItemTraitItemType>();
+
                         if (item.HasWeaponComponent && item.PrimaryWeapon != null)
                         {
                             var primaryWeapon = item.PrimaryWeapon;
-                            if (primaryWeapon.IsMeleeWeapon)
-                                validTypes.Add(ItemTraitItemType.Melee);
-                            if (primaryWeapon.IsRangedWeapon)
-                                validTypes.Add(ItemTraitItemType.Ranged);
-                            if (primaryWeapon.IsRangedWeapon && primaryWeapon.IsConsumable) //throwables
-                                validTypes.Add(ItemTraitItemType.Thrown);
+
                             if (primaryWeapon.IsAmmo)
+                            {
                                 validTypes.Add(ItemTraitItemType.Ammo);
-                            if (primaryWeapon.IsShield)
+                            }
+                            else if (primaryWeapon.IsShield || item.ItemType == ItemObject.ItemTypeEnum.Shield)
+                            {
                                 validTypes.Add(ItemTraitItemType.Shield);
+                            }
+                            else
+                            {
+                                validTypes.Add(ItemTraitItemType.Weapon);
+
+                                if (primaryWeapon.IsMeleeWeapon)
+                                    validTypes.Add(ItemTraitItemType.Melee);
+
+                                if (primaryWeapon.IsRangedWeapon)
+                                    validTypes.Add(ItemTraitItemType.Ranged);
+
+                                if (primaryWeapon.IsRangedWeapon && primaryWeapon.IsConsumable) //throwables
+                                    validTypes.Add(ItemTraitItemType.Thrown);
+                            }
                         }
+                        else if (item.ItemType == ItemObject.ItemTypeEnum.Shield)
+                        {
+                            validTypes.Add(ItemTraitItemType.Shield);
+                        }
+                        else
+                        {
+                            validTypes.Add(ItemTraitItemType.Weapon);
+                        }
+
                         traits = traits.Where(x => validTypes.Contains(x.ValidItemType)).ToList();
                     }
                     traits = traits.Where(x => !traitList.Contains(x.ItemTraitStringId)).ToList();
@@ -208,8 +231,11 @@ public class LootCampaignBehavior : CampaignBehaviorBase
 
                     traitList.Add(trait.ItemTraitStringId);
                 }
-
-            var nameModifier = model.GetNameModifierForTraits(traitCount);
+            if (traitList.Count == 0)
+            {
+                continue;
+            }
+            var nameModifier = model.GetNameModifierForTraits(traitList.Count);
             GameTexts.SetVariable("NAMEMODIFIER", nameModifier);
             GameTexts.SetVariable("NAMEOFITEM", item.Name);
 

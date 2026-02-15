@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
+using TaleWorlds.MountAndBlade.View.Screens;
 using TaleWorlds.ScreenSystem;
 using TWModule = TaleWorlds.MountAndBlade.Module;
 
@@ -34,6 +35,7 @@ namespace TOR_Core.HarmonyPatches
         private static int _endGameInProgress;
         private static int _cleanScreensDepth;
         private static int _mapScreenFinalizeDepth;
+        private static int _flushRequested;
         private static int _isFlushing;
 
         private enum DeferredCallKind
@@ -63,7 +65,6 @@ namespace TOR_Core.HarmonyPatches
 
         private static bool IsInDangerWindow =>
             Volatile.Read(ref _isFlushing) == 0 &&
-            Volatile.Read(ref _endGameInProgress) != 0 &&
             Volatile.Read(ref _cleanScreensDepth) > 0 &&
             Volatile.Read(ref _mapScreenFinalizeDepth) > 0;
 
@@ -84,6 +85,9 @@ namespace TOR_Core.HarmonyPatches
         private static void MBGameManager_EndGame_Prefix()
         {
             Interlocked.Exchange(ref _endGameInProgress, 1);
+            Interlocked.Exchange(ref _flushRequested, 0);
+            Interlocked.Exchange(ref _isFlushing, 0);
+            Interlocked.Exchange(ref _mapScreenFinalizeDepth, 0);
 
             lock (_pendingLock)
             {
@@ -103,6 +107,24 @@ namespace TOR_Core.HarmonyPatches
         }
 
         [HarmonyPatch(typeof(ScreenManager), "CleanScreens")]
+        [HarmonyPostfix]
+        [HarmonyPriority(Priority.Last)]
+        private static void ScreenManager_CleanScreens_Postfix()
+        {
+            if (Volatile.Read(ref _flushRequested) == 0)
+            {
+                return;
+            }
+
+            if (Volatile.Read(ref _mapScreenFinalizeDepth) > 0)
+            {
+                return;
+            }
+
+            FlushDeferredIfSafe();
+        }
+
+        [HarmonyPatch(typeof(ScreenManager), "CleanScreens")]
         [HarmonyFinalizer]
         private static Exception ScreenManager_CleanScreens_Finalizer(Exception __exception)
         {
@@ -112,6 +134,7 @@ namespace TOR_Core.HarmonyPatches
             {
                 // EndGame window is closed
                 Interlocked.Exchange(ref _endGameInProgress, 0);
+                Interlocked.Exchange(ref _flushRequested, 0);
 
                 // after CleanScreens, stale pointer goes wild so just drop
                 DropPendingCalls();
@@ -125,23 +148,57 @@ namespace TOR_Core.HarmonyPatches
         private static class ScreenBase_HandleFinalize_MapScreenDepthPatch
         {
             [HarmonyPrefix]
-            private static void Prefix(ScreenBase __instance)
+            private static void Prefix(ScreenBase __instance, ref bool __state)
             {
-                if (__instance.GetType().FullName == MAP_SCREEN_TYPE_NAME)
+                __state =
+                    Volatile.Read(ref _cleanScreensDepth) > 0;
+
+                if (__state)
                 {
                     Interlocked.Increment(ref _mapScreenFinalizeDepth);
                 }
             }
 
             [HarmonyFinalizer]
-            private static Exception Finalizer(ScreenBase __instance, Exception __exception)
+            private static Exception Finalizer(ScreenBase __instance, bool __state, Exception __exception)
             {
-                if (__instance.GetType().FullName == MAP_SCREEN_TYPE_NAME)
+                if (__state)
                 {
                     var newDepth = Interlocked.Decrement(ref _mapScreenFinalizeDepth);
 
-                    // flush when MapScreen finalize ends when pointers are fresh
-                    if (newDepth <= 0)
+                    if (newDepth <= 0 && Volatile.Read(ref _flushRequested) != 0)
+                    {
+                        FlushDeferredIfSafe();
+                    }
+                }
+
+                return __exception;
+            }
+        }
+
+        [HarmonyPatch(typeof(ScreenBase), "HandleDeactivate")]
+        private static class ScreenBase_HandleDeactivate_MapScreenDepthPatch
+        {
+            [HarmonyPrefix]
+            private static void Prefix(ScreenBase __instance, ref bool __state)
+            {
+                __state =
+                    Volatile.Read(ref _cleanScreensDepth) > 0;
+
+                if (__state)
+                {
+                    Interlocked.Increment(ref _mapScreenFinalizeDepth);
+                }
+            }
+
+            [HarmonyFinalizer]
+            private static Exception Finalizer(ScreenBase __instance, bool __state, Exception __exception)
+            {
+                if (__state)
+                {
+                    var newDepth = Interlocked.Decrement(ref _mapScreenFinalizeDepth);
+
+                    if (newDepth <= 0 && Volatile.Read(ref _flushRequested) != 0)
                     {
                         FlushDeferredIfSafe();
                     }
@@ -168,9 +225,9 @@ namespace TOR_Core.HarmonyPatches
             }
 
             [HarmonyPrefix]
-            private static bool Prefix([HarmonyArgument(0)] UIntPtr scenePointer)
+            private static bool Prefix(UIntPtr __0)
             {
-                return SceneClearAllOrDefer(scenePointer);
+                return SceneClearAllOrDefer(__0);
             }
         }
 
@@ -191,12 +248,9 @@ namespace TOR_Core.HarmonyPatches
             }
 
             [HarmonyPrefix]
-            private static bool Prefix(
-                [HarmonyArgument(0)] UIntPtr sceneViewPointer,
-                [HarmonyArgument(1)] bool clearScene,
-                [HarmonyArgument(2)] bool removeTerrain)
+            private static bool Prefix(UIntPtr __0, bool __1, bool __2)
             {
-                return SceneViewClearAllOrDefer(sceneViewPointer, clearScene, removeTerrain);
+                return SceneViewClearAllOrDefer(__0, __1, __2);
             }
         }
 
@@ -226,6 +280,8 @@ namespace TOR_Core.HarmonyPatches
                     });
                 }
             }
+
+            Interlocked.Exchange(ref _flushRequested, 1);
             return false;
         }
 
@@ -265,6 +321,7 @@ namespace TOR_Core.HarmonyPatches
                 }
             }
 
+            Interlocked.Exchange(ref _flushRequested, 1);
             return false;
         }
 
@@ -272,6 +329,11 @@ namespace TOR_Core.HarmonyPatches
         // same engine path, just delayed to safer timing
         private static void FlushDeferredIfSafe()
         {
+            if (Volatile.Read(ref _cleanScreensDepth) <= 0)
+            {
+                return;
+            }
+
             if (Volatile.Read(ref _mapScreenFinalizeDepth) > 0)
             {
                 return;
@@ -297,6 +359,7 @@ namespace TOR_Core.HarmonyPatches
                 {
                     if (_pendingCallsOrdered.Count == 0)
                     {
+                        Interlocked.Exchange(ref _flushRequested, 0);
                         return;
                     }
 
@@ -305,6 +368,8 @@ namespace TOR_Core.HarmonyPatches
                     _scenePointers.Clear();
                     _sceneViewIndexByPointer.Clear();
                 }
+
+                Interlocked.Exchange(ref _flushRequested, 0);
 
                 foreach (var call in callsToFlush)
                 {

@@ -12,7 +12,39 @@ namespace TOR_Core.Items
     public class ItemTraitAgentComponent : AgentComponent
     {
         private readonly List<Tuple<MissionWeapon, ItemTrait, float>> _dynamicTraits = new List<Tuple<MissionWeapon, ItemTrait, float>>();
-        private readonly List<Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>> _currentPresets = new List<Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>>();
+        private readonly List<Tuple<ItemTrait, float>> _wieldedSlotTraits = new List<Tuple<ItemTrait, float>>();
+        private readonly List<WeaponParticlePresetState> _currentPresets = new List<WeaponParticlePresetState>();
+
+        //weapon swaps can keep the old particle offsets so rebuild it
+        private const float WeaponLengthRebuildThreshold = 0.01f;
+        private sealed class WeaponParticlePresetState
+        {
+            public WeaponParticlePreset Preset { get; }
+            public List<ParticleSystem> Particles { get; }
+            public List<GameEntity> ChildEntities { get; }
+
+            public bool IsEnabled { get; set; }
+
+            public float CachedWeaponLength { get; }
+            public WeaponClass CachedWeaponClass { get; }
+
+            public WeaponParticlePresetState(
+                WeaponParticlePreset preset,
+                List<ParticleSystem> particles,
+                List<GameEntity> childEntities,
+                float cachedWeaponLength,
+                WeaponClass cachedWeaponClass,
+                bool isEnabled)
+            {
+                Preset = preset;
+                Particles = particles;
+                ChildEntities = childEntities;
+                CachedWeaponLength = cachedWeaponLength;
+                CachedWeaponClass = cachedWeaponClass;
+                IsEnabled = isEnabled;
+            }
+        }
+
         private readonly BasicMissionTimer _missionTimer = new BasicMissionTimer();
         private readonly float _tickInterval = 1f;
 
@@ -33,19 +65,44 @@ namespace TOR_Core.Items
             if (_missionTimer.ElapsedTime > _tickInterval)
             {
                 _missionTimer.Reset();
-                if (_dynamicTraits.Count > 0)
+                bool removedAnyTrait = false;
+
+                for (int i = _dynamicTraits.Count - 1; i >= 0; i--)
                 {
-                    for (int i = 0; i < _dynamicTraits.Count; i++)
+                    var entry = _dynamicTraits[i];
+                    float remaining = entry.Item3 - _tickInterval;
+
+                    if (remaining <= 0f)
                     {
-                        var itemTrait = _dynamicTraits[i];
-                        _dynamicTraits[i] = new Tuple<MissionWeapon, ItemTrait, float>(itemTrait.Item1, itemTrait.Item2, itemTrait.Item3 - _tickInterval);
-                        if (itemTrait.Item3 < 0)
-                        {
-                            _dynamicTraits.RemoveAt(i);
-                            UpdatePresets();
-                        }
+                        _dynamicTraits.RemoveAt(i);
+                        removedAnyTrait = true;
+                        continue;
                     }
+
+                    _dynamicTraits[i] = new Tuple<MissionWeapon, ItemTrait, float>(entry.Item1, entry.Item2, remaining);
                 }
+
+                // persist across swaps
+                for (int i = _wieldedSlotTraits.Count - 1; i >= 0; i--)
+                {
+                    var entry = _wieldedSlotTraits[i];
+                    float remaining = entry.Item2 - _tickInterval;
+
+                    if (remaining <= 0f)
+                    {
+                        _wieldedSlotTraits.RemoveAt(i);
+                        removedAnyTrait = true;
+                        continue;
+                    }
+
+                    _wieldedSlotTraits[i] = new Tuple<ItemTrait, float>(entry.Item1, remaining);
+                }
+
+                if (removedAnyTrait)
+                {
+                    UpdatePresets();
+                }
+    
             }
         }
 
@@ -54,59 +111,123 @@ namespace TOR_Core.Items
             UpdatePresets();
         }
 
-        public void ApplyParticlePreset(WeaponParticlePreset preset, MissionWeapon weapon)
+        private static float GetStartOffsetPercentage(WeaponClass weaponClass)
         {
-            if (_currentPresets.Any(x => x.Item1 == preset))
+            switch (weaponClass)
             {
-                for (int i = 0; i < _currentPresets.Count; i++)
+                case WeaponClass.OneHandedSword:
+                case WeaponClass.TwoHandedSword:
+                    return 0.3f;
+                case WeaponClass.LowGripPolearm:
+                case WeaponClass.OneHandedPolearm:
+                case WeaponClass.TwoHandedPolearm:
+                    return 0.7f;
+                default:
+                    return 0.85f;
+            }
+        }
+
+        private void CreatePresetVisuals(WeaponParticlePreset preset, MissionWeapon weapon, out List<ParticleSystem> particles, out List<GameEntity> childEntities)
+        {
+            particles = new List<ParticleSystem>();
+            childEntities = new List<GameEntity>();
+
+            float weaponLength = weapon.CurrentUsageItem.GetRealWeaponLength();
+            WeaponClass weaponClass = weapon.CurrentUsageItem.WeaponClass;
+
+            float startOffsetPercentage = GetStartOffsetPercentage(weaponClass);
+            float startOffset = weaponLength * startOffsetPercentage;
+            float effectLength = weaponLength - startOffset;
+
+            int particleCount = (int)(effectLength / 0.1f);
+            if (particleCount <= 0) particleCount = 1;
+
+            if (preset.IsUniqueSingleCopy)
+            {
+                var particle = TORParticleSystem.ApplyParticleToAgentBone(Agent, preset.ParticlePrefab, Game.Current.DefaultMonster.MainHandItemBoneIndex, out var entity);
+                if (particle != null)
                 {
-                    var tuple = _currentPresets[i];
-                    if (tuple.Item1 == preset && tuple.Item2 != null && tuple.Item2.Count > 0 && tuple.Item3 == false)
-                    {
-                        _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(tuple.Item1, tuple.Item2, true);
-                    }
+                    particle.SetEnable(false); //enable happens explicitly to avoid any gaps during rebuilds
+                    particles.Add(particle);
+                    childEntities.Add(entity);
                 }
             }
             else
             {
-                var length = weapon.CurrentUsageItem.GetRealWeaponLength();
-                float startOffsetPrc = 0;
-                switch (weapon.CurrentUsageItem.WeaponClass)
+                for (int i = 0; i < particleCount; i++)
                 {
-                    case WeaponClass.OneHandedSword:
-                    case WeaponClass.TwoHandedSword:
-                        startOffsetPrc = 0.3f;
-                        break;
-                    case WeaponClass.LowGripPolearm:
-                    case WeaponClass.OneHandedPolearm:
-                    case WeaponClass.TwoHandedPolearm:
-                        startOffsetPrc = 0.7f;
-                        break;
-                    default:
-                        startOffsetPrc = 0.85f;
-                        break;
-                }
-                float startOffset = length * startOffsetPrc;
-                float effectlength = length - startOffset;
-                int num = (int)(effectlength / 0.1f);
-                if (num <= 0) num = 1;
-                GameEntity entity;
-                List<ParticleSystem> particles = new List<ParticleSystem>();
-                if (preset.IsUniqueSingleCopy)
-                {
-                    var particle = TORParticleSystem.ApplyParticleToAgentBone(Agent, preset.ParticlePrefab, Game.Current.DefaultMonster.MainHandItemBoneIndex, out entity);
-                    particles.Add(particle);
-                }
-                else
-                {
-                    for (int j = 0; j < num; j++)
+                    var particle = TORParticleSystem.ApplyParticleToAgentBone(Agent, preset.ParticlePrefab, Game.Current.DefaultMonster.MainHandItemBoneIndex, out var entity, startOffset + i * 0.1f);
+                    if (particle != null)
                     {
-                        var particle = TORParticleSystem.ApplyParticleToAgentBone(Agent, preset.ParticlePrefab, Game.Current.DefaultMonster.MainHandItemBoneIndex, out entity, startOffset + j * 0.1f);
+                        particle.SetEnable(false);
                         particles.Add(particle);
+                        childEntities.Add(entity);
                     }
                 }
-                _currentPresets.Add(new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(preset, particles, true));
             }
+        }
+
+        private void RemovePresetVisuals(WeaponParticlePresetState presetState)
+        {
+            //no invis entities
+            foreach (var particle in presetState.Particles)
+            {
+                particle?.SetEnable(false);
+            }
+
+            foreach (var entity in presetState.ChildEntities)
+            {
+                entity.FadeOut(1, true);
+                entity.RemoveAllParticleSystems();
+                Agent.AgentVisuals.RemoveChildEntity(entity, 0);
+            }
+        }
+
+        private void SetPresetEnabled(WeaponParticlePresetState presetState, bool enable)
+        {
+            presetState.IsEnabled = enable;
+            foreach (var particle in presetState.Particles)
+            {
+                particle?.SetEnable(enable);
+            }
+        }
+
+
+        public void ApplyParticlePreset(WeaponParticlePreset preset, MissionWeapon weapon)
+        {
+            float weaponLength = weapon.CurrentUsageItem.GetRealWeaponLength();
+            WeaponClass weaponClass = weapon.CurrentUsageItem.WeaponClass;
+
+            var existing = _currentPresets.FirstOrDefault(x => x.Preset == preset);
+            if (existing != null)
+            {
+                bool weaponSignatureChanged =
+                    existing.CachedWeaponClass != weaponClass ||
+                    Math.Abs(existing.CachedWeaponLength - weaponLength) > WeaponLengthRebuildThreshold;
+
+                if (!weaponSignatureChanged)
+                {
+                    SetPresetEnabled(existing, true);
+                    return;
+                }
+                CreatePresetVisuals(preset, weapon, out var newParticles, out var newChildEntities);
+
+                RemovePresetVisuals(existing);
+
+                var rebuiltState = new WeaponParticlePresetState(preset, newParticles, newChildEntities, weaponLength, weaponClass, true);
+                _currentPresets.Remove(existing);
+                _currentPresets.Add(rebuiltState);
+
+                SetPresetEnabled(rebuiltState, true);
+                return;
+
+            }
+
+            CreatePresetVisuals(preset, weapon, out var particles, out var childEntities);
+            var presetState = new WeaponParticlePresetState(preset, particles, childEntities, weaponLength, weaponClass, true);
+            _currentPresets.Add(presetState);
+
+            SetPresetEnabled(presetState, true);
         }
 
         public void AddTraitToWeapon(MissionWeapon weapon, ItemTrait trait, float duration)
@@ -137,30 +258,31 @@ namespace TOR_Core.Items
         {
             if (trait != null && duration > 0)
             {
-                var weapon = Agent.WieldedWeapon;
-                if (weapon.CurrentUsageItem != null)
+                var existing = _wieldedSlotTraits.FirstOrDefault(x => x.Item1.Equals(trait));
+                if (existing != null)
                 {
-                    if (_dynamicTraits.Any(x => x.Item1.Item == weapon.Item && x.Item2.Equals(trait)))
-                    {
-                        var match = _dynamicTraits.FirstOrDefault(x => x.Item1.Item == weapon.Item && x.Item2.Equals(trait));
-                        if (match != null)
-                        {
-                            var newTuple = new Tuple<MissionWeapon, ItemTrait, float>(match.Item1, match.Item2, match.Item3 + duration);
-                            _dynamicTraits.Remove(match);
-                            _dynamicTraits.Add(newTuple);
-                        }
-                    }
-                    else
-                    {
-                        _dynamicTraits.Add(new Tuple<MissionWeapon, ItemTrait, float>(weapon, trait, duration));
-                        UpdatePresets();
-                    }
+                    _wieldedSlotTraits.Remove(existing);
+                    _wieldedSlotTraits.Add(new Tuple<ItemTrait, float>(trait, existing.Item2 + duration));
+                }
+                else
+                {
+                    _wieldedSlotTraits.Add(new Tuple<ItemTrait, float>(trait, duration));
+                    UpdatePresets();
                 }
             }
+
         }
+
 
         public void RemoveTraitFromWieldedWeapon(string traitName)
         {
+            var slotMatch = _wieldedSlotTraits.FirstOrDefault(x => x.Item1.ItemTraitStringId == traitName);
+            if (slotMatch != null)
+            {
+                _wieldedSlotTraits.Remove(slotMatch);
+                UpdatePresets();
+                return;
+            }
             if (traitName != null)
             {
                 var weapon = Agent.WieldedWeapon;
@@ -179,11 +301,17 @@ namespace TOR_Core.Items
         private void UpdatePresets()
         {
             var index = Agent.GetPrimaryWieldedItemIndex();
-            if (index == EquipmentIndex.None) return;
+            if (index == EquipmentIndex.None)
+            {
+                for (int i = 0; i < _currentPresets.Count; i++)
+                {
+                    SetPresetEnabled(_currentPresets[i], false);
+                }
+                return;
+            }
             for (int i = 0; i < _currentPresets.Count; i++)
             {
-                var item = _currentPresets[i];
-                _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(item.Item1, item.Item2, false);
+                _currentPresets[i].IsEnabled = false;
             }
             var weapon = Agent.WieldedWeapon;
             if (weapon.Item != null && weapon.Item.HasAnyTrait(Agent) && !weapon.CurrentUsageItem.IsRangedWeapon)
@@ -203,49 +331,22 @@ namespace TOR_Core.Items
 
         public void EnableAllParticles(bool enable)
         {
-            if (enable)
+            for (int i = 0; i < _currentPresets.Count; i++)
             {
-                for (int i = 0; i < _currentPresets.Count; i++)
-                {
-                    var item = _currentPresets[i];
-                    if (_currentPresets[i].Item3 == false) _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(item.Item1, item.Item2, true);
-                }
+                _currentPresets[i].IsEnabled = enable;
             }
-            else
-            {
-                for (int i = 0; i < _currentPresets.Count; i++)
-                {
-                    var item = _currentPresets[i];
-                    if (_currentPresets[i].Item3 == true) _currentPresets[i] = new Tuple<WeaponParticlePreset, List<ParticleSystem>, bool>(item.Item1, item.Item2, false);
-                }
-            }
+
             RefreshVisuals();
         }
 
         private void RefreshVisuals()
         {
-            foreach (var item in _currentPresets.Where(x => x.Item3 == true))
+            foreach (var presetState in _currentPresets)
             {
-                if (item.Item2.Count > 0)
+                bool enable = presetState.IsEnabled;
+                foreach (var particle in presetState.Particles)
                 {
-                    foreach (var ps in item.Item2)
-                    {
-                        if (ps != null)
-                        {
-                            ps.SetEnable(true);
-                        }
-
-                    }
-                }
-            }
-            foreach (var item in _currentPresets.Where(x => x.Item3 == false))
-            {
-                if (item.Item2.Count > 0)
-                {
-                    foreach (var ps in item.Item2)
-                    {
-                        ps.SetEnable(false);
-                    }
+                    particle?.SetEnable(enable);
                 }
             }
         }
@@ -256,6 +357,13 @@ namespace TOR_Core.Items
             foreach (var item in _dynamicTraits)
             {
                 if (item.Item1.Item == itemObject) list.Add(item.Item2);
+            }
+            if (Agent.WieldedWeapon.Item == itemObject && _wieldedSlotTraits.Count > 0)
+            {
+                foreach (var entry in _wieldedSlotTraits)
+                {
+                    list.Add(entry.Item1);
+                }
             }
             return list;
         }

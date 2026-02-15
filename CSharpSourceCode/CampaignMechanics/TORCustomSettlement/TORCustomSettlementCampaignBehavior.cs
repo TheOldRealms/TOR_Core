@@ -33,6 +33,7 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     [SaveableField(3)] private Dictionary<string, int> _lastDefileTime = [];
     [SaveableField(4)] private List<string> _unlockedOakUpgrades = [];
     [SaveableField(5)] private Dictionary<string, int> _lastPrayerTime = [];
+    [SaveableField(6)] private Dictionary<string, int> _lastPrayerTroopRewardTime = [];
 
     private TORFaithModel _model;
 
@@ -96,6 +97,20 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
     public void SetLastPrayerTime(Hero hero, int value)
     {
         _lastPrayerTime.AddOrReplace(hero.StringId, value);
+    }
+    public int LastPrayerTroopRewardTime(Hero hero)
+    {
+        if (_lastPrayerTroopRewardTime.TryGetValue(hero.StringId, out var lastPrayerTroopRewardTime))
+        {
+            return lastPrayerTroopRewardTime;
+        }
+
+        return -1;
+    }
+
+    public void SetLastPrayerTroopRewardTime(Hero hero, int time)
+    {
+        _lastPrayerTroopRewardTime.AddOrReplace(hero.StringId, time);
     }
 
     public override void RegisterEvents()
@@ -374,23 +389,39 @@ public class TORCustomSettlementCampaignBehavior : CampaignBehaviorBase
                         }
                         else
                         {
-                            validTypes.Add(ItemTraitItemType.Weapon);
-
                             if (item.HasWeaponComponent && item.PrimaryWeapon != null)
                             {
                                 var primaryWeapon = item.PrimaryWeapon;
 
-                                if (primaryWeapon.IsMeleeWeapon)
-                                    validTypes.Add(ItemTraitItemType.Melee);
-
-                                if (primaryWeapon.IsRangedWeapon)
-                                    validTypes.Add(ItemTraitItemType.Ranged);
-
-                                if (primaryWeapon.IsRangedWeapon && primaryWeapon.IsConsumable) // throwables
-                                    validTypes.Add(ItemTraitItemType.Thrown);
-
                                 if (primaryWeapon.IsAmmo)
+                                {
                                     validTypes.Add(ItemTraitItemType.Ammo);
+                                }
+                                else if (primaryWeapon.IsShield || item.ItemType == ItemObject.ItemTypeEnum.Shield)
+                                {
+                                    validTypes.Add(ItemTraitItemType.Shield);
+                                }
+                                else
+                                {
+                                    validTypes.Add(ItemTraitItemType.Weapon);
+
+                                    if (primaryWeapon.IsMeleeWeapon)
+                                        validTypes.Add(ItemTraitItemType.Melee);
+
+                                    if (primaryWeapon.IsRangedWeapon)
+                                        validTypes.Add(ItemTraitItemType.Ranged);
+
+                                    if (primaryWeapon.IsRangedWeapon && primaryWeapon.IsConsumable) // throwables
+                                        validTypes.Add(ItemTraitItemType.Thrown);
+                                }
+                            }
+                            else if (item.ItemType == ItemObject.ItemTypeEnum.Shield)
+                            {
+                                validTypes.Add(ItemTraitItemType.Shield);
+                            }
+                            else
+                            {
+                                validTypes.Add(ItemTraitItemType.Weapon);
                             }
                         }
 
