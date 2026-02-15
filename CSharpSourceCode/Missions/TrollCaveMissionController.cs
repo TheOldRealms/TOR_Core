@@ -65,11 +65,27 @@ namespace TOR_Core.Missions
 
         private void InitializeMission()
         {
+            SetupTeams();
             CollectSpawnFrames();
             SpawnPlayer();
             SpawnPlayerTroops();
             SpawnTrolls();
             SetupFormations();
+        }
+
+        private void SetupTeams()
+        {
+            // Create player team (Attacker side)
+            var playerTeam = Mission.Teams.Add(BattleSideEnum.Attacker, Hero.MainHero.Clan.Color, Hero.MainHero.Clan.Color2, Hero.MainHero.Clan.Banner, true, false, true);
+
+            // Create enemy team (Defender side)
+            var enemyTeam = Mission.Teams.Add(BattleSideEnum.Defender, _settlement.Owner.Clan.Color, _settlement.Owner.Clan.Color2, _settlement.Owner.Clan.Banner, false, false, true);
+
+            // Set teams as enemies
+            playerTeam.SetIsEnemyOf(enemyTeam, true);
+
+            // Set player team
+            Mission.PlayerTeam = playerTeam;
         }
 
         private void CollectSpawnFrames()
@@ -131,13 +147,24 @@ namespace TOR_Core.Missions
             }
 
             var playerCharacter = CharacterObject.PlayerCharacter;
-            var origin = new PartyAgentOrigin(PartyBase.MainParty, playerCharacter, -1, default, false);
 
-            // Spawn player on Attacker side (like vanilla hideout)
-            var agent = Mission.SpawnTroop(origin, true, true, false, false, 0, 0, true, true, true,
-                spawnFrame.origin, spawnFrame.rotation.f.AsVec2.Normalized());
+            var agentBuildData = new AgentBuildData(playerCharacter)
+                .Team(Mission.PlayerTeam)
+                .InitialPosition(spawnFrame.origin)
+                .InitialDirection(spawnFrame.rotation.f.AsVec2.Normalized())
+                .NoHorses(true)
+                .ClothingColor1(Mission.PlayerTeam.Color)
+                .ClothingColor2(Mission.PlayerTeam.Color2)
+                .TroopOrigin(new PartyAgentOrigin(PartyBase.MainParty, playerCharacter, -1, default, false))
+                .Controller(AgentControllerType.Player);
 
-            agent.Controller = AgentControllerType.Player;
+            var hero = playerCharacter.HeroObject;
+            if (hero?.ClanBanner != null)
+            {
+                agentBuildData.Banner(hero.ClanBanner);
+            }
+
+            var agent = Mission.SpawnAgent(agentBuildData);
             agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp);
         }
 
@@ -167,13 +194,19 @@ namespace TOR_Core.Missions
                         spawnPos.z = Mission.Scene.GetGroundHeightAtPosition(spawnPos, BodyFlags.CommonCollisionExcludeFlags);
                     }
 
-                    var origin = new PartyAgentOrigin(PartyBase.MainParty, element.Character);
+                    var agentBuildData = new AgentBuildData(element.Character)
+                        .Team(Mission.PlayerTeam)
+                        .InitialPosition(spawnPos)
+                        .InitialDirection(playerSpawnFrame.rotation.f.AsVec2.Normalized())
+                        .NoHorses(true)
+                        .ClothingColor1(Mission.PlayerTeam.Color)
+                        .ClothingColor2(Mission.PlayerTeam.Color2)
+                        .TroopOrigin(new PartyAgentOrigin(PartyBase.MainParty, element.Character));
 
-                    // Spawn on Attacker side (player's side)
-                    var agent = Mission.SpawnTroop(origin, true, true, false, false, 0, 0, true, true, false,
-                        spawnPos, playerSpawnFrame.rotation.f.AsVec2.Normalized());
-
+                    var agent = Mission.SpawnAgent(agentBuildData);
                     agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp);
+                    
+                    
                     _spawnedPlayerTroopCount++;
                 }
             }
