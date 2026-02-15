@@ -458,7 +458,7 @@
              super_faction="Kingdom.nordland"
              is_noble="true"
              text="{=str_tor_clan_nordland_clan_1_desc}The Gaussers are an ancient family of Nordland whose lineage can be traced back to a Juton chieftain, Gansser the Patient, who claims he was the first of the tribe to recognize the divinity of Sigmar. Descendant of Sovereign Countess Eleonore Gausser, one of the city's most beloved historical figures. Eleonore oversaw the construction of Manann Cathedral, founded the Knights of the North Star, defended Salzenmund from the Earl of the Wildlands in 1700 IC, and signed an alliance pact with the Eonir. Over the past few centuries, the Gaussers remained powerful, but were sidelined by the Nikse who have dominated since 2209 IC. Middenheim has kept Nordland and its capital under control, while the Gaussers were furious. Although the Nikse tried to gain Theoderic's support by appointing him Northern Marshal of the State Army, the Gaussers wanted to right centuries of perceived wrongs. Currently, Theoderic has aspirations within the empire, such as building the second fleet of the Imperial Navy, reclaiming the coastal land of Ostland that was historically part of Nordland; and another series of ideas which are more crazy than the previous one."
-             banner_key="11.149.140.8000.8000.764.764.0.1.0.505.140.116.672.672.764.764.0.0.0:kingdom_nordland"/>
+             banner_key="3.116.12.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_nordland"/>
     <Faction id="nordland_clan_2"
              name="{=str_tor_clan_nordland_clan_2_name}Salzblut"
              tier="6"
@@ -467,7 +467,7 @@
              super_faction="Kingdom.nordland"
              is_noble="true"
              text="{=str_tor_clan_nordland_clan_2_desc}The Salzblut clan is relatively new, established to distinguish those old souls who are part of the new Imperial fleet and most of the prominent figures are either renowned sailors or esteemed warriors. Ever since the secession of Marienburg from the Empire, the wind has been taken out of the sails from the Imperial navy. The navy has been struggling ever since, while the first Imperial fleet has enough warships, there is too much diversity on the decks, mixing arrogant nobles with weathered sailors, but the sailors are not very noble, and the nobles are certainly not sailors. Nordland, being a maritime province, has a long history of naval combat and dealing with coastal raids upon their lands. Many a Nordland sailor claim they are worth their weight in salt ten times over compared to those snobby fops in Reikland."
-             banner_key="11.149.140.8000.8000.764.764.0.1.0.505.140.116.672.672.764.764.0.0.0:kingdom_nordland"/>
+             banner_key="3.116.12.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_nordland"/>
     <Faction id="nordland_clan_3"
              name="{=str_tor_clan_nordland_clan_3_name}Meergott"
              tier="6"
@@ -476,7 +476,7 @@
              super_faction="Kingdom.nordland"
              is_noble="true"
              text="{=str_tor_clan_nordland_clan_3_desc}The Meergott clan has had many identities over the years, but was always meant to contain some aspect of Manann. The clan mostly deals with religious affairs and ensures the proper rites are taken when a ship first sets sail and makes sure it doesn’t sink on its maiden voyage. The clan usually contains several figureheads who are dedicated to Manann, but also contain a representative of the church of Sigmar to ensure Manann doesn’t overshadow the warrior god. This doesn’t mean that every member is a devout priest, usually they are an admiral or an old seadog with experience in maritime matters."
-             banner_key="11.149.140.8000.8000.764.764.0.1.0.505.140.116.672.672.764.764.0.0.0:kingdom_nordland"/>
+             banner_key="3.116.12.1500.1500.764.764.1.1.0.122.20.41.600.600.764.764.0.0.0:kingdom_nordland"/>
 	<!-- Ostland faction -->
     <Faction id="ostland_clan_1"
              name="{=str_tor_clan_ostland_clan_1_name}von Raukov"
