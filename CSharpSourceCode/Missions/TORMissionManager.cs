@@ -24,6 +24,8 @@ using TaleWorlds.MountAndBlade.Source.Missions.Handlers;
 using TaleWorlds.MountAndBlade.Source.Missions.Handlers.Logic;
 using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
+using TaleWorlds.MountAndBlade.View.MissionViews.Order;
+using TaleWorlds.MountAndBlade.ViewModelCollection.OrderOfBattle;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using static TaleWorlds.MountAndBlade.Mission;
@@ -206,23 +208,43 @@ namespace TOR_Core.Missions
         [MissionMethod]
         public static Mission OpenTrollCaveMission(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, bool stealthMode = false, string scene = "TOR_troll_hideout_01")
         {
-            return MissionState.OpenNew("TrollCaveFight", SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All), (Mission mission) =>
-            [
-                new MissionOptionsComponent(),
-                new CampaignMissionComponent(),
-                new MissionBasicTeamLogic(),
-                new BattleEndLogic(),
-                new MissionAgentLookHandler(),
-                new AgentHumanAILogic(),
-                new TrollCaveMissionController(selectedTroops, trollCount, onMissionEnd, stealthMode),
-                new HeroSkillHandler(),
-                new MissionFightHandler(),
-                new MissionFacialAnimationHandler(),
-                new MissionHardBorderPlacer(),
-                new MissionBoundaryPlacer(),
-                new MissionBoundaryCrossingHandler(),
-                new EquipmentControllerLeaveLogic()
-            ], true, true);
+            // Follow vanilla hideout pattern: NoTeamAI, custom spawning, direct PlayerOwner setup
+            var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
+            return MissionState.OpenNew("TrollCaveFight", rec, delegate (Mission mission)
+            {
+                List<MissionBehavior> list =
+                [
+                    new MissionOptionsComponent(),
+                    new CampaignMissionComponent(),
+                    new BattleEndLogic(),
+                    // NoTeamAI like vanilla hideout - player controls formations directly
+                    new MissionCombatantsLogic(
+                        MobileParty.MainParty.MapEvent.InvolvedParties,
+                        PartyBase.MainParty,
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Defender),
+                        MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Attacker),
+                        Mission.MissionTeamAITypeEnum.NoTeamAI,
+                        false),
+                    new BattleAgentLogic(),
+                    new BattleObserverMissionLogic(),
+                    new AgentVictoryLogic(),
+                    new MissionAgentLookHandler(),
+                    new AgentHumanAILogic(),
+                    new MissionAgentPanicHandler(),
+                    new AgentMoraleInteractionLogic(),
+                    // Custom spawning controller - sets PlayerOwner directly like HideoutMissionController
+                    new TrollCaveMissionController(selectedTroops, trollCount, onMissionEnd, stealthMode),
+                    new HeroSkillHandler(),
+                    new MissionFightHandler(),
+                    new MissionFacialAnimationHandler(),
+                    new MissionHardBorderPlacer(),
+                    new MissionBoundaryPlacer(),
+                    new MissionBoundaryCrossingHandler(),
+                    new EquipmentControllerLeaveLogic(),
+                ];
+
+                return list.ToArray();
+            }, true, true);
         }
     }
 
@@ -413,7 +435,11 @@ namespace TOR_Core.Missions
                     new MissionAgentContourControllerView(),
                     new MissionCampaignBattleSpectatorView(),
                     ViewCreator.CreatePhotoModeView(),
-                    ViewCreator.CreateSingleplayerMissionKillNotificationUIHandler()
+                    ViewCreator.CreateSingleplayerMissionKillNotificationUIHandler(),
+                    ViewCreator.CreateMissionOrderUIHandler(),
+                    new OrderTroopPlacer(null),
+                    ViewCreator.CreateMissionFormationMarkerUIHandler(mission),
+                    new MissionFormationTargetSelectionHandler()
                 }.ToArray();
         }
     }

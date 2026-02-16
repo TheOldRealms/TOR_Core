@@ -53,6 +53,7 @@ namespace TOR_Core.SaveGameSystem
             AddClassDefinition(typeof(SkillBookScript), 19);
             AddClassDefinition(typeof(HeroTrainingData), 20);
             AddClassDefinition(typeof(TrollCaveComponent), 21);
+            AddClassDefinition(typeof(TrollCaveDefenderPartyComponent), 22);
 
 
             //Quests and issues begin at 200 - they generally can't be expanded to cover new use cases

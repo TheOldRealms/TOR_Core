@@ -35,6 +35,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
     private bool _playerWonBattle = false;
     private bool _isClearingCave = false; // True when clearing, false when luring gone wrong
     private Settlement _currentCaveSettlement = null; // Store reference before mission
+    private MobileParty _trollDefenderParty = null; // Temporary party for battle encounter
 
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
@@ -294,8 +295,26 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         // Store settlement reference before mission
         _currentCaveSettlement = Settlement.CurrentSettlement;
 
+        // Create temporary troll defender party for proper battle encounter
+        StartTrollCaveEncounter();
+
         // Start mission with stealth mode (trolls not alerted) - player can go alone
         TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: true);
+    }
+
+    private void StartTrollCaveEncounter()
+    {
+        // Create temporary troll defender party (like RaidingSiteMenuLogic)
+        _trollDefenderParty = TrollCaveDefenderPartyComponent.CreateTrollDefenderParty(
+            Settlement.CurrentSettlement, _battleTrollCount);
+
+        // Setup encounter with the defender party
+        PlayerEncounter.RestartPlayerEncounter(_trollDefenderParty.Party, PartyBase.MainParty, false);
+        if (PlayerEncounter.Battle == null)
+        {
+            PlayerEncounter.StartBattle();
+            PlayerEncounter.Update();
+        }
     }
 
     private void LuringInit(MenuCallbackArgs args)
@@ -442,6 +461,9 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         // Store settlement reference before mission
         _currentCaveSettlement = Settlement.CurrentSettlement;
 
+        // Create temporary troll defender party for proper battle encounter
+        StartTrollCaveEncounter();
+
         // Luring gone wrong - trolls are already alerted (no stealth) - player can fight alone
         TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: false);
     }
@@ -455,6 +477,13 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         {
             var behavior = Campaign.Current.GetCampaignBehavior<TrollCaveCampaignBehavior>();
             behavior?.SetCaveCleared(_currentCaveSettlement);
+        }
+
+        // Clean up temporary defender party
+        if (_trollDefenderParty != null)
+        {
+            TrollCaveDefenderPartyComponent.DestroyDefenderParty(_trollDefenderParty);
+            _trollDefenderParty = null;
         }
 
         // Clear the stored settlement reference now that we're done with it

@@ -18,6 +18,12 @@ using TOR_Core.Utilities;
 
 namespace TOR_Core.Missions
 {
+    /// <summary>
+    /// Mission controller for troll cave fights.
+    /// Uses custom spawning for hideout-style scene and sets up player orders directly
+    /// (similar to vanilla HideoutMissionController pattern).
+    /// Implements IMissionAgentSpawnLogic so BattleEndLogic can query troop counts.
+    /// </summary>
     public class TrollCaveMissionController : MissionLogic, IMissionAgentSpawnLogic
     {
         private const string TrollTroopId = "tor_gs_trolls";
@@ -34,7 +40,6 @@ namespace TOR_Core.Missions
         private List<MatrixFrame> _enemySpawnFrames = new List<MatrixFrame>();
         private int _enemySpawnIndex;
         private bool _isMissionInitialized;
-        private int _spawnedTrollCount;
         private int _spawnedPlayerTroopCount;
 
         public TrollCaveMissionController(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, bool stealthMode = false, Settlement settlement = null)
@@ -49,6 +54,8 @@ namespace TOR_Core.Missions
         public override void AfterStart()
         {
             Mission.SetMissionMode(MissionMode.Battle, true);
+            // CRITICAL: Must be false for order UI to work - DefaultVisualOrderProvider.IsAvailable() checks this
+            Mission.IsFriendlyMission = false;
             Mission.IsInventoryAccessible = false;
             Mission.IsQuestScreenAccessible = false;
             Mission.DoesMissionRequireCivilianEquipment = false;
@@ -65,27 +72,26 @@ namespace TOR_Core.Missions
 
         private void InitializeMission()
         {
-            SetupTeams();
+            // Teams are created by MissionCombatantsLogic from the MapEvent
+            if (Mission.PlayerTeam == null)
+            {
+                Mission.PlayerTeam = Mission.AttackerTeam;
+            }
+
+            // Deployment plan setup
+            Mission.DeploymentPlan.MakeDefaultDeploymentPlans();
+
             CollectSpawnFrames();
+
             SpawnPlayer();
             SpawnPlayerTroops();
             SpawnTrolls();
-            SetupFormations();
-        }
 
-        private void SetupTeams()
-        {
-            // Create player team (Attacker side)
-            var playerTeam = Mission.Teams.Add(BattleSideEnum.Attacker, Hero.MainHero.Clan.Color, Hero.MainHero.Clan.Color2, Hero.MainHero.Clan.Banner, true, false, true);
+            // Signal deployment finished
+            Mission.OnDeploymentFinished();
 
-            // Create enemy team (Defender side)
-            var enemyTeam = Mission.Teams.Add(BattleSideEnum.Defender, _settlement.Owner.Clan.Color, _settlement.Owner.Clan.Color2, _settlement.Owner.Clan.Banner, false, false, true);
-
-            // Set teams as enemies
-            playerTeam.SetIsEnemyOf(enemyTeam, true);
-
-            // Set player team
-            Mission.PlayerTeam = playerTeam;
+            // Set formation orders and PlayerOwner directly (vanilla hideout pattern)
+            SetupFormationOrders();
         }
 
         private void CollectSpawnFrames()
@@ -131,7 +137,6 @@ namespace TOR_Core.Missions
 
         private void SpawnPlayer()
         {
-            // Check if player already spawned by another behavior
             if (Agent.Main != null) return;
 
             var spawnFrame = GetPlayerSpawnFrame();
@@ -176,12 +181,10 @@ namespace TOR_Core.Missions
 
             foreach (var element in _selectedTroops.GetTroopRoster())
             {
-                // Skip the player character - they're spawned separately
                 if (element.Character.IsPlayerCharacter) continue;
 
                 for (int i = 0; i < element.Number; i++)
                 {
-                    // Spawn near player with small offset
                     var offset = new Vec3(
                         MBRandom.RandomFloat * 4f - 2f,
                         MBRandom.RandomFloat * 4f - 2f,
@@ -194,19 +197,21 @@ namespace TOR_Core.Missions
                         spawnPos.z = Mission.Scene.GetGroundHeightAtPosition(spawnPos, BodyFlags.CommonCollisionExcludeFlags);
                     }
 
-                    var agentBuildData = new AgentBuildData(element.Character)
-                        .Team(Mission.PlayerTeam)
-                        .InitialPosition(spawnPos)
-                        .InitialDirection(playerSpawnFrame.rotation.f.AsVec2.Normalized())
-                        .NoHorses(true)
-                        .ClothingColor1(Mission.PlayerTeam.Color)
-                        .ClothingColor2(Mission.PlayerTeam.Color2)
-                        .TroopOrigin(new PartyAgentOrigin(PartyBase.MainParty, element.Character));
+                    var origin = new PartyAgentOrigin(PartyBase.MainParty, element.Character);
+                    Mission.SpawnTroop(
+                        origin,
+                        isPlayerSide: true,
+                        hasFormation: true,
+                        spawnWithHorse: false,
+                        isReinforcement: false,
+                        formationTroopCount: 0,
+                        formationTroopIndex: 0,
+                        isAlarmed: true,
+                        wieldInitialWeapons: true,
+                        forceDismounted: true,
+                        initialPosition: spawnPos,
+                        initialDirection: playerSpawnFrame.rotation.f.AsVec2.Normalized());
 
-                    var agent = Mission.SpawnAgent(agentBuildData);
-                    agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp);
-                    
-                    
                     _spawnedPlayerTroopCount++;
                 }
             }
@@ -230,7 +235,6 @@ namespace TOR_Core.Missions
                 }
                 else if (Agent.Main != null)
                 {
-                    // Fallback: spawn away from player
                     spawnPos = Agent.Main.Position + new Vec3(
                         MBRandom.RandomFloat * 20f - 10f,
                         MBRandom.RandomFloat * 20f - 10f,
@@ -247,7 +251,6 @@ namespace TOR_Core.Missions
                     spawnPos.z = Mission.Scene.GetGroundHeightAtPosition(spawnPos, BodyFlags.CommonCollisionExcludeFlags);
                 }
 
-                // Use PartyAgentOrigin to get CampaignAgentComponent for alarm behaviors
                 IAgentOriginBase origin;
                 if (_settlement?.Party != null)
                 {
@@ -258,23 +261,17 @@ namespace TOR_Core.Missions
                     origin = new SimpleAgentOrigin(trollCharacter);
                 }
 
-                // Spawn on Defender side (enemy side)
-                var agent = Mission.SpawnTroop(origin, false, false, false, false, 0, 0, false, false, false,
+                var agent = Mission.SpawnTroop(origin, false, true, false, false, 0, 0, true, true, false,
                     spawnPos, spawnDir);
 
                 agent.WieldInitialWeapons(Agent.WeaponWieldActionType.InstantAfterPickUp);
 
-                // Set up alarm behavior flags
                 var agentFlags = agent.GetAgentFlags();
                 agent.SetAgentFlags((agentFlags | AgentFlag.CanGetAlarmed) & ~AgentFlag.CanRetreat);
 
-                // In stealth mode, trolls patrol and can be alerted
-                // In battle mode (luring gone wrong), trolls are already aggressive
                 if (_stealthMode)
                 {
                     agent.SetWatchState(Agent.WatchState.Patrolling);
-
-                    // Add campaign alarm behaviors if agent has CampaignAgentComponent
                     var campaignComponent = agent.GetComponent<CampaignAgentComponent>();
                     if (campaignComponent != null)
                     {
@@ -286,29 +283,35 @@ namespace TOR_Core.Missions
                 {
                     agent.SetWatchState(Agent.WatchState.Alarmed);
                 }
-
-                _spawnedTrollCount++;
             }
         }
 
-        private void SetupFormations()
+        private void SetupFormationOrders()
         {
-            // Setup player team formations for command
-            foreach (var formation in Mission.AttackerTeam.FormationsIncludingEmpty)
+            // CRITICAL: Set player role as general - required for order UI to show order types
+            // This is normally done by AssignPlayerRoleInTeamMissionController.AfterStart()
+            // Without this, MissionOrderVM.CheckCanBeOpened() fails the IsPlayerGeneral check
+            Mission.PlayerTeam.SetPlayerRole(true, false);
+
+            // Vanilla hideout pattern: set PlayerOwner directly on player formations
+            // See HideoutMissionController.MissionSide.SpawnTroops lines 593-600
+            foreach (var formation in Mission.PlayerTeam.FormationsIncludingEmpty)
             {
                 if (formation.CountOfUnits > 0)
                 {
                     formation.SetMovementOrder(MovementOrder.MovementOrderCharge);
                     formation.SetFiringOrder(FiringOrder.FiringOrderFireAtWill);
-
-                    if (Mission.AttackerTeam == Mission.PlayerTeam)
-                    {
-                        formation.PlayerOwner = Agent.Main;
-                    }
                 }
+                // Set PlayerOwner so player can command this formation
+                formation.PlayerOwner = Agent.Main;
             }
 
-            // Setup enemy formations
+            // Set PlayerOrderController owner and select all formations
+            Mission.PlayerTeam.PlayerOrderController.Owner = Agent.Main;
+            Mission.PlayerTeam.PlayerOrderController.SelectAllFormations();
+            Mission.PlayerTeam.PlayerOrderController.SetOrder(OrderType.Charge);
+
+            // Set enemy formation orders
             foreach (var formation in Mission.DefenderTeam.FormationsIncludingEmpty)
             {
                 if (formation.CountOfUnits > 0)
@@ -345,14 +348,12 @@ namespace TOR_Core.Missions
         {
             if (!_isMissionInitialized) return false;
 
-            // Player died
             if (Agent.Main == null || !Agent.Main.IsActive())
             {
                 missionResult = MissionResult.CreateDefeated(Mission);
                 return true;
             }
 
-            // All trolls dead - victory
             if (GetActiveTrollCount() == 0)
             {
                 missionResult = MissionResult.CreateSuccessful(Mission, false);
@@ -366,14 +367,13 @@ namespace TOR_Core.Missions
         {
             base.OnEndMission();
 
-            // Invoke callback after mission has fully ended
             if (Mission.MissionResult != null)
             {
                 _onMissionEnd?.Invoke(Mission.MissionResult.PlayerVictory);
             }
         }
 
-        // IMissionAgentSpawnLogic implementation
+        // IMissionAgentSpawnLogic implementation - required for SandboxGeneralsAndCaptainsAssignmentLogic
         public void StartSpawner(BattleSideEnum side) { }
         public void StopSpawner(BattleSideEnum side) { }
         public bool IsSideSpawnEnabled(BattleSideEnum side) => false;
