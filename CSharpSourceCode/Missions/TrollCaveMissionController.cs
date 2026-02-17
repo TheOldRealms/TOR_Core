@@ -5,6 +5,8 @@ using System.Linq;
 using SandBox.Missions.AgentBehaviors;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
+using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
@@ -14,6 +16,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 
@@ -383,6 +386,23 @@ namespace TOR_Core.Missions
 
             if (Agent.Main == null || !Agent.Main.IsActive())
             {
+                // Player defeated - handle specially to prevent imprisonment by trolls
+                // Finalize the MapEvent to prevent vanilla from processing imprisonment
+                var mapEvent = MapEvent.PlayerMapEvent;
+                if (mapEvent != null)
+                {
+                    mapEvent.FinalizeEvent();
+                }
+
+                // Destroy the defender party to clean up
+                if (_defenderParty != null && _defenderParty.IsActive)
+                {
+                    TrollCaveDefenderPartyComponent.DestroyDefenderParty(_defenderParty);
+                }
+
+                // Switch to custom defeat menu instead of imprisonment
+                GameMenu.ActivateGameMenu("trollcave_defeat");
+
                 missionResult = MissionResult.CreateDefeated(Mission);
                 return true;
             }

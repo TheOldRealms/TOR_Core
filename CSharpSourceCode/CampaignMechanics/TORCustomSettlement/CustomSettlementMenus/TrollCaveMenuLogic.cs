@@ -93,6 +93,17 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             },
             (args) => GameMenu.SwitchToMenu("trollcave_menu"), true);
 
+        // Defeat menu (player was overwhelmed by trolls)
+        starter.AddGameMenu("trollcave_defeat", "{TROLLCAVE_DEFEAT_TEXT}", TrollCaveDefeatInit);
+        starter.AddGameMenuOption("trollcave_defeat", "trollcave_defeat_continue",
+            TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"),
+            delegate (MenuCallbackArgs args)
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Continue;
+                return true;
+            },
+            (args) => PlayerEncounter.Finish(true), true);
+
         // Troll attack encounter menu
         starter.AddGameMenu("trollcave_attack", "{TROLLCAVE_ATTACK_TEXT}", TrollCaveAttackInit);
         starter.AddGameMenuOption("trollcave_attack", "trollcave_attack_fight",
@@ -473,4 +484,10 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         }
     }
 
+    private void TrollCaveDefeatInit(MenuCallbackArgs args)
+    {
+        MBTextManager.SetTextVariable("TROLLCAVE_DEFEAT_TEXT",
+            TORTextHelper.GetTextObject("tor_trollcave_defeat",
+                "The trolls proved too powerful. You barely escaped with your life, dragging yourself from the cave as the beasts feasted on the fallen."));
+    }
 }
