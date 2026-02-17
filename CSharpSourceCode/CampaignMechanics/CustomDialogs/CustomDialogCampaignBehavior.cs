@@ -63,7 +63,7 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
                     args.IsEnabled = false;
                     args.Tooltip = TORTextHelper.GetTextObject("tor_no_prisoners_to_sell_tooltip_text", "You have no prisoners to sell.");
                 }
-                if ((bool)PlayerEncounter.EncounteredParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction))
+                if (PlayerEncounter.EncounteredParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction) == true)
                 {
                     args.IsEnabled = false;
                     args.Tooltip = TORTextHelper.GetTextObject("tor_at_war_tooltip_text", "You are at war with this faction.");

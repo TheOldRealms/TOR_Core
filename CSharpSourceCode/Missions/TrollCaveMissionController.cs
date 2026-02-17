@@ -5,6 +5,7 @@ using System.Linq;
 using SandBox.Missions.AgentBehaviors;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.AgentOrigins;
+using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Roster;
 using TaleWorlds.CampaignSystem.Settlements;
@@ -42,8 +43,8 @@ namespace TOR_Core.Missions
         private bool _isMissionInitialized;
         private int _spawnedPlayerTroopCount;
         private bool _playerCanLeave;
-        private bool _missionEndTriggered;
-        private bool? _playerWon;
+        private bool _battleResolved;
+        private BattleEndLogic _battleEndLogic;
 
         public TrollCaveMissionController(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, bool stealthMode = false, Settlement settlement = null)
         {
@@ -52,6 +53,14 @@ namespace TOR_Core.Missions
             _onMissionEnd = onMissionEnd;
             _stealthMode = stealthMode;
             _settlement = settlement ?? Settlement.CurrentSettlement;
+        }
+
+        public override void OnBehaviorInitialize()
+        {
+            base.OnBehaviorInitialize();
+            // Get BattleEndLogic and disable end condition checking initially (vanilla hideout pattern)
+            _battleEndLogic = Mission.GetMissionBehavior<BattleEndLogic>();
+            _battleEndLogic?.ChangeCanCheckForEndCondition(false);
         }
 
         public override void AfterStart()
@@ -73,22 +82,29 @@ namespace TOR_Core.Missions
                 return;
             }
 
-            // Check end conditions and trigger mission end
-            if (!_missionEndTriggered)
+            // Check battle resolved (vanilla hideout pattern)
+            if (!_battleResolved)
             {
-                if (Agent.Main == null || !Agent.Main.IsActive())
-                {
-                    _missionEndTriggered = true;
-                    _playerCanLeave = true;
-                    _playerWon = false;
-                    Mission.EndMission();
-                }
-                else if (GetActiveTrollCount() == 0)
-                {
-                    _missionEndTriggered = true;
-                    _playerWon = true;
-                    Mission.EndMission();
-                }
+                CheckBattleResolved();
+            }
+        }
+
+        private void CheckBattleResolved()
+        {
+            // Player defeated
+            if (Agent.Main == null || !Agent.Main.IsActive())
+            {
+                _battleResolved = true;
+                _playerCanLeave = true;
+                _battleEndLogic?.ChangeCanCheckForEndCondition(true);
+            }
+            // Victory - all trolls dead
+            else if (GetActiveTrollCount() == 0)
+            {
+                _battleResolved = true;
+                _battleEndLogic?.ChangeCanCheckForEndCondition(true);
+                // Set winner to player (attacker) - this enables proper loot screen
+                MapEvent.PlayerMapEvent?.SetOverrideWinner(BattleSideEnum.Attacker);
             }
         }
 
@@ -341,17 +357,12 @@ namespace TOR_Core.Missions
 
         public override InquiryData OnEndMissionRequest(out bool canLeave)
         {
-            // Allow leaving if all trolls are dead (victory) or player was defeated
-            canLeave = GetActiveTrollCount() == 0 || _playerCanLeave;
+            // Allow leaving if battle is resolved (BattleEndLogic will handle the actual end)
+            canLeave = _battleResolved || _playerCanLeave;
             if (!canLeave)
             {
                 MBInformationManager.AddQuickInformation(
                     TORTextHelper.GetTextObject("tor_trollcave_cannot_leave", "You cannot leave until the trolls are dealt with!"));
-            }
-            else
-            {
-                // Explicitly end the mission (like BrawlMissionController)
-                Mission.Current.EndMission();
             }
             return null;
         }
@@ -399,10 +410,8 @@ namespace TOR_Core.Missions
             base.OnEndMission();
 
             // Invoke callback after mission has fully ended
-            if (_playerWon.HasValue)
-            {
-                _onMissionEnd?.Invoke(_playerWon.Value);
-            }
+            bool playerWon = Mission.MissionResult?.PlayerVictory ?? false;
+            _onMissionEnd?.Invoke(playerWon);
         }
 
         // IMissionAgentSpawnLogic implementation - required for SandboxGeneralsAndCaptainsAssignmentLogic

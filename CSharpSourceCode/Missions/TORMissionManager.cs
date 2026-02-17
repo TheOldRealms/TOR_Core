@@ -26,6 +26,7 @@ using TaleWorlds.MountAndBlade.View;
 using TaleWorlds.MountAndBlade.View.MissionViews;
 using TaleWorlds.MountAndBlade.View.MissionViews.Order;
 using TaleWorlds.MountAndBlade.ViewModelCollection.OrderOfBattle;
+using SandBox.ViewModelCollection;
 using TOR_Core.BattleMechanics.CustomArenaModes;
 using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using static TaleWorlds.MountAndBlade.Mission;
@@ -216,6 +217,7 @@ namespace TOR_Core.Missions
                 [
                     new MissionOptionsComponent(),
                     new CampaignMissionComponent(),
+                    new BattleEndLogic(),
                     // NoTeamAI like vanilla hideout - player controls formations directly
                     new MissionCombatantsLogic(
                         MobileParty.MainParty.MapEvent.InvolvedParties,
@@ -224,6 +226,7 @@ namespace TOR_Core.Missions
                         MobileParty.MainParty.MapEvent.GetLeaderParty(BattleSideEnum.Attacker),
                         Mission.MissionTeamAITypeEnum.NoTeamAI,
                         false),
+                    new BattleObserverMissionLogic(),
                     new BattleAgentLogic(),
                     new AgentVictoryLogic(),
                     new MissionAgentLookHandler(),
@@ -421,6 +424,7 @@ namespace TOR_Core.Missions
                     ViewCreator.CreateMissionSingleplayerEscapeMenu(CampaignOptions.IsIronmanMode),
                     ViewCreator.CreateOptionsUIHandler(),
                     ViewCreator.CreateMissionMainAgentEquipDropView(mission),
+                    ViewCreator.CreateMissionBattleScoreUIHandler(mission, new SPScoreboardVM(null)),
                     new MissionSingleplayerViewHandler(),
                     ViewCreator.CreateMissionAgentStatusUIHandler(mission),
                     ViewCreator.CreateMissionMainAgentEquipmentController(mission),

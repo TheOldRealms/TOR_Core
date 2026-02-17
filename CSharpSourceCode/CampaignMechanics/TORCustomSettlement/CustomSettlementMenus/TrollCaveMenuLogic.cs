@@ -479,23 +479,13 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             behavior?.SetCaveCleared(_currentCaveSettlement);
         }
 
-        // Clean up temporary defender party
-        if (_trollDefenderParty != null)
-        {
-            TrollCaveDefenderPartyComponent.DestroyDefenderParty(_trollDefenderParty);
-            _trollDefenderParty = null;
-        }
-
         // Clear the stored settlement reference now that we're done with it
         _currentCaveSettlement = null;
 
-        // End the PlayerEncounter to prevent vanilla battle result menu from showing
-        if (PlayerEncounter.Current != null)
-        {
-            PlayerEncounter.LeaveEncounter = true;
-        }
-
-        GameMenu.SwitchToMenu("trollcave_result_battle");
+        // NOTE: Don't destroy the defender party here - the MapEvent still needs it
+        // for battle end processing (loot, logs, etc.). It will be cleaned up
+        // after the encounter fully resolves.
+        // Let vanilla battle flow handle loot screens and encounter resolution
     }
 
     private void TrollCaveSuccessInit(MenuCallbackArgs args)

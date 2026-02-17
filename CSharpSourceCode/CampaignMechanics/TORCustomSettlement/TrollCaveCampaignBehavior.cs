@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.MapEvents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.SaveSystem;
 
@@ -19,6 +21,19 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, EnforceWarWithTrolls);
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, OnDailyTickSettlement);
+            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnPlayerBattleEnd);
+        }
+
+        private void OnPlayerBattleEnd(MapEvent mapEvent)
+        {
+            // Clean up any troll defender parties after battle ends
+            foreach (var party in mapEvent.InvolvedParties)
+            {
+                if (party.MobileParty?.PartyComponent is TrollCaveDefenderPartyComponent)
+                {
+                    TrollCaveDefenderPartyComponent.DestroyDefenderParty(party.MobileParty);
+                }
+            }
         }
 
         public override void SyncData(IDataStore dataStore)
