@@ -714,6 +714,7 @@
     <Compile Include="HarmonyPatches\FactionBannerPatches.cs" />
     <Compile Include="HarmonyPatches\GameKeyOptionsCategoryPatch.cs" />
     <Compile Include="HarmonyPatches\GameTextPatches.cs" />
+    <Compile Include="HarmonyPatches\FastTradeInventoryPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryResetPatch.cs" />
     <Compile Include="HarmonyPatches\InventoryPatches.cs" />
     <Compile Include="HarmonyPatches\LogEntryNotificationPatches.cs" />
@@ -878,6 +879,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Bannerlord.ReferenceAssemblies">
+      <Version>1.3.14.107738</Version>
+    </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.4.1</Version>
     </PackageReference>
