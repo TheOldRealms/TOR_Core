@@ -1,7 +1,9 @@
 using Helpers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Encounters;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Party;
@@ -13,6 +15,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TOR_Core.CampaignMechanics.CustomResources;
+using TOR_Core.CampaignMechanics.TORCustomSettlement;
 using TOR_Core.Extensions;
 using TOR_Core.Missions;
 using TOR_Core.Utilities;
@@ -32,10 +35,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
     private int _trollsRecruited = 0;
     private bool _trollsAggressive = false;
     private int _battleTrollCount = 0;
-    private bool _playerWonBattle = false;
     private bool _isClearingCave = false; // True when clearing, false when luring gone wrong
-    private Settlement _currentCaveSettlement = null; // Store reference before mission
-    private MobileParty _trollDefenderParty = null; // Temporary party for battle encounter
 
     protected override void AddSettlementMenu(CampaignGameStarter campaignGameStarter)
     {
@@ -82,7 +82,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             GameMenu.MenuFlags.None,
             null);
 
-        // Success result menu
+        // Success result menu (for luring trolls)
         starter.AddGameMenu("trollcave_result_success", "{TROLLCAVE_SUCCESS_RESULT}", TrollCaveSuccessInit);
         starter.AddGameMenuOption("trollcave_result_success", "return_to_root",
             TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"),
@@ -92,17 +92,6 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
                 return true;
             },
             (args) => GameMenu.SwitchToMenu("trollcave_menu"), true);
-
-        // Battle result menu (shown after returning from battle)
-        starter.AddGameMenu("trollcave_result_battle", "{TROLLCAVE_BATTLE_RESULT}", TrollCaveBattleResultInit);
-        starter.AddGameMenuOption("trollcave_result_battle", "return_to_root",
-            TORTextHelper.GetText("tor_custom_settlement_menu_continue", "Continue"),
-            delegate (MenuCallbackArgs args)
-            {
-                args.optionLeaveType = GameMenuOption.LeaveType.Continue;
-                return true;
-            },
-            BattleResultContinue, true);
 
         // Troll attack encounter menu
         starter.AddGameMenu("trollcave_attack", "{TROLLCAVE_ATTACK_TEXT}", TrollCaveAttackInit);
@@ -292,29 +281,21 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             return;
         }
 
-        // Store settlement reference before mission
-        _currentCaveSettlement = Settlement.CurrentSettlement;
+        var settlement = Settlement.CurrentSettlement;
 
-        // Create temporary troll defender party for proper battle encounter
-        StartTrollCaveEncounter();
+        // Create defender party with trolls - this establishes proper MapEvent
+        var defenderParty = TrollCaveDefenderPartyComponent.CreateTrollDefenderParty(settlement, _battleTrollCount);
 
-        // Start mission with stealth mode (trolls not alerted) - player can go alone
-        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: true);
-    }
-
-    private void StartTrollCaveEncounter()
-    {
-        // Create temporary troll defender party (like RaidingSiteMenuLogic)
-        _trollDefenderParty = TrollCaveDefenderPartyComponent.CreateTrollDefenderParty(
-            Settlement.CurrentSettlement, _battleTrollCount);
-
-        // Setup encounter with the defender party
-        PlayerEncounter.RestartPlayerEncounter(_trollDefenderParty.Party, PartyBase.MainParty, false);
+        // Set up battle encounter (like RaidingSiteMenuLogic)
+        PlayerEncounter.RestartPlayerEncounter(defenderParty.Party, PartyBase.MainParty, false);
         if (PlayerEncounter.Battle == null)
         {
             PlayerEncounter.StartBattle();
             PlayerEncounter.Update();
         }
+
+        // Open mission - vanilla handles loot/prisoners when battle ends
+        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, defenderParty, stealthMode: true);
     }
 
     private void LuringInit(MenuCallbackArgs args)
@@ -458,34 +439,21 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
             return;
         }
 
-        // Store settlement reference before mission
-        _currentCaveSettlement = Settlement.CurrentSettlement;
+        var settlement = Settlement.CurrentSettlement;
 
-        // Create temporary troll defender party for proper battle encounter
-        StartTrollCaveEncounter();
+        // Create defender party with trolls - this establishes proper MapEvent
+        var defenderParty = TrollCaveDefenderPartyComponent.CreateTrollDefenderParty(settlement, _battleTrollCount);
 
-        // Luring gone wrong - trolls are already alerted (no stealth) - player can fight alone
-        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, OnMissionEnd, stealthMode: false);
-    }
-
-    private void OnMissionEnd(bool playerWon)
-    {
-        _playerWonBattle = playerWon;
-
-        // Set cooldown immediately when player wins
-        if (playerWon && _currentCaveSettlement != null)
+        // Set up battle encounter (like RaidingSiteMenuLogic)
+        PlayerEncounter.RestartPlayerEncounter(defenderParty.Party, PartyBase.MainParty, false);
+        if (PlayerEncounter.Battle == null)
         {
-            var behavior = Campaign.Current.GetCampaignBehavior<TrollCaveCampaignBehavior>();
-            behavior?.SetCaveCleared(_currentCaveSettlement);
+            PlayerEncounter.StartBattle();
+            PlayerEncounter.Update();
         }
 
-        // Clear the stored settlement reference now that we're done with it
-        _currentCaveSettlement = null;
-
-        // NOTE: Don't destroy the defender party here - the MapEvent still needs it
-        // for battle end processing (loot, logs, etc.). It will be cleaned up
-        // after the encounter fully resolves.
-        // Let vanilla battle flow handle loot screens and encounter resolution
+        // Open mission - vanilla handles loot/prisoners when battle ends
+        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, defenderParty, stealthMode: false);
     }
 
     private void TrollCaveSuccessInit(MenuCallbackArgs args)
@@ -505,26 +473,4 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         }
     }
 
-    private void TrollCaveBattleResultInit(MenuCallbackArgs args)
-    {
-        if (_playerWonBattle)
-        {
-            MBTextManager.SetTextVariable("TROLLCAVE_BATTLE_RESULT",
-                TORTextHelper.GetTextObject("tor_trollcave_battle_victory",
-                    "You cleared the troll cave! The beasts have been slain. It will take time for more trolls to move in."));
-        }
-        else
-        {
-            MBTextManager.SetTextVariable("TROLLCAVE_BATTLE_RESULT",
-                TORTextHelper.GetTextObject("tor_trollcave_battle_defeat",
-                    "The trolls proved too powerful. You barely escaped with your life."));
-        }
-    }
-
-    private void BattleResultContinue(MenuCallbackArgs args)
-    {
-        // Force re-check of cave status by switching to the main menu
-        // The cooldown was already set in OnMissionEnd
-        GameMenu.SwitchToMenu("trollcave_menu");
-    }
 }

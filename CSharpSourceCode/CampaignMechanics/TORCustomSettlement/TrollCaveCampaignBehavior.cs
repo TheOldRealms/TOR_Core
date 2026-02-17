@@ -21,17 +21,32 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, EnforceWarWithTrolls);
             CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, OnDailyTickSettlement);
-            CampaignEvents.OnPlayerBattleEndEvent.AddNonSerializedListener(this, OnPlayerBattleEnd);
+            CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnMapEventEnded);
         }
 
-        private void OnPlayerBattleEnd(MapEvent mapEvent)
+        private void OnMapEventEnded(MapEvent mapEvent)
         {
-            // Clean up any troll defender parties after battle ends
-            foreach (var party in mapEvent.InvolvedParties)
+            // Check if this was a troll cave battle
+            if (!mapEvent.IsPlayerMapEvent) return;
+
+            // Find troll defender party in the battle
+            foreach (var party in mapEvent.DefenderSide.Parties)
             {
-                if (party.MobileParty?.PartyComponent is TrollCaveDefenderPartyComponent)
+                if (party.Party?.MobileParty?.PartyComponent is TrollCaveDefenderPartyComponent defenderComponent)
                 {
-                    TrollCaveDefenderPartyComponent.DestroyDefenderParty(party.MobileParty);
+                    var settlement = defenderComponent.HomeSettlement;
+
+                    // Player won if they were on the winning side
+                    bool playerWon = mapEvent.WinningSide == mapEvent.PlayerSide;
+
+                    if (playerWon && settlement != null)
+                    {
+                        SetCaveCleared(settlement);
+                    }
+
+                    // Destroy the temporary defender party
+                    TrollCaveDefenderPartyComponent.DestroyDefenderParty(party.Party?.MobileParty);
+                    break;
                 }
             }
         }

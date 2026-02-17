@@ -34,9 +34,8 @@ namespace TOR_Core.Missions
 
         private readonly TroopRoster _selectedTroops;
         private readonly int _trollCount;
-        private readonly Action<bool> _onMissionEnd;
         private readonly bool _stealthMode;
-        private readonly Settlement _settlement;
+        private readonly MobileParty _defenderParty;
 
         private List<MatrixFrame> _enemySpawnFrames = new List<MatrixFrame>();
         private int _enemySpawnIndex;
@@ -46,13 +45,12 @@ namespace TOR_Core.Missions
         private bool _battleResolved;
         private BattleEndLogic _battleEndLogic;
 
-        public TrollCaveMissionController(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, bool stealthMode = false, Settlement settlement = null)
+        public TrollCaveMissionController(TroopRoster selectedTroops, int trollCount, MobileParty defenderParty, bool stealthMode = false)
         {
             _selectedTroops = selectedTroops;
             _trollCount = trollCount;
-            _onMissionEnd = onMissionEnd;
+            _defenderParty = defenderParty;
             _stealthMode = stealthMode;
-            _settlement = settlement ?? Settlement.CurrentSettlement;
         }
 
         public override void OnBehaviorInitialize()
@@ -289,15 +287,8 @@ namespace TOR_Core.Missions
                     spawnPos.z = Mission.Scene.GetGroundHeightAtPosition(spawnPos, BodyFlags.CommonCollisionExcludeFlags);
                 }
 
-                IAgentOriginBase origin;
-                if (_settlement?.Party != null)
-                {
-                    origin = new PartyAgentOrigin(_settlement.Party, trollCharacter);
-                }
-                else
-                {
-                    origin = new SimpleAgentOrigin(trollCharacter);
-                }
+                // Use PartyAgentOrigin with defender party so deaths sync with MapEvent
+                var origin = new PartyAgentOrigin(_defenderParty.Party, trollCharacter);
 
                 var agent = Mission.SpawnTroop(origin, false, true, false, false, 0, 0, true, true, false,
                     spawnPos, spawnDir);
@@ -403,15 +394,6 @@ namespace TOR_Core.Missions
             }
 
             return false;
-        }
-
-        protected override void OnEndMission()
-        {
-            base.OnEndMission();
-
-            // Invoke callback after mission has fully ended
-            bool playerWon = Mission.MissionResult?.PlayerVictory ?? false;
-            _onMissionEnd?.Invoke(playerWon);
         }
 
         // IMissionAgentSpawnLogic implementation - required for SandboxGeneralsAndCaptainsAssignmentLogic

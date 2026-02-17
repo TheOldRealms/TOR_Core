@@ -207,7 +207,7 @@ namespace TOR_Core.Missions
         }
 
         [MissionMethod]
-        public static Mission OpenTrollCaveMission(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, bool stealthMode = false, string scene = "TOR_troll_hideout_01")
+        public static Mission OpenTrollCaveMission(TroopRoster selectedTroops, int trollCount, MobileParty defenderParty, bool stealthMode = false, string scene = "TOR_troll_hideout_01")
         {
             // Follow vanilla hideout pattern: NoTeamAI, custom spawning, direct PlayerOwner setup
             var rec = SandBoxMissions.CreateSandBoxMissionInitializerRecord(scene, "", false, DecalAtlasGroup.All);
@@ -234,7 +234,7 @@ namespace TOR_Core.Missions
                     new MissionAgentPanicHandler(),
                     new AgentMoraleInteractionLogic(),
                     // Custom spawning controller - sets PlayerOwner directly like HideoutMissionController
-                    new TrollCaveMissionController(selectedTroops, trollCount, onMissionEnd, stealthMode),
+                    new TrollCaveMissionController(selectedTroops, trollCount, defenderParty, stealthMode),
                     new HeroSkillHandler(),
                     new MissionFightHandler(),
                     new MissionFacialAnimationHandler(),
