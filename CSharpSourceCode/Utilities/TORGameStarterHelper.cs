@@ -20,6 +20,7 @@ namespace TOR_Core.Utilities
             starter.RemoveBehaviors<FactionDiscontinuationCampaignBehavior>();
             starter.RemoveBehaviors<KingdomDecisionProposalBehavior>();
             starter.RemoveBehaviors<RebellionsCampaignBehavior>();
+            starter.RemoveBehaviors<IncidentsCampaignBehaviour>();
             starter.RemoveBehaviors<SallyOutsCampaignBehavior>();
             starter.RemoveBehaviors<CompanionsCampaignBehavior>();
 
