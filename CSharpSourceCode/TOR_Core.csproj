@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;_RGL_KEEP_ASSERTS</DefineConstants>
+<DefineConstants>DEBUG;TRACE;_RGL_KEEP_ASSERTS;TOR_CTB_LOG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
@@ -45,7 +45,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+<DefineConstants>DEBUG;TRACE;TOR_CTB_LOG</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>12.0</LangVersion>
@@ -53,7 +53,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+<DefineConstants>TRACE;TOR_CTB_LOG</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -848,6 +848,7 @@
     <Compile Include="SaveGameSystem\SaveableTypeDefiners.cs" />
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\CTBlog.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
     <Compile Include="Utilities\StringExtensions.cs" />
     <Compile Include="Utilities\TextObjectExtension.cs" />
