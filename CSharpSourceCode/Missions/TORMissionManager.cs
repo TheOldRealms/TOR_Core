@@ -216,7 +216,6 @@ namespace TOR_Core.Missions
                 [
                     new MissionOptionsComponent(),
                     new CampaignMissionComponent(),
-                    new BattleEndLogic(),
                     // NoTeamAI like vanilla hideout - player controls formations directly
                     new MissionCombatantsLogic(
                         MobileParty.MainParty.MapEvent.InvolvedParties,
@@ -226,7 +225,6 @@ namespace TOR_Core.Missions
                         Mission.MissionTeamAITypeEnum.NoTeamAI,
                         false),
                     new BattleAgentLogic(),
-                    new BattleObserverMissionLogic(),
                     new AgentVictoryLogic(),
                     new MissionAgentLookHandler(),
                     new AgentHumanAILogic(),

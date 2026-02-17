@@ -41,6 +41,9 @@ namespace TOR_Core.Missions
         private int _enemySpawnIndex;
         private bool _isMissionInitialized;
         private int _spawnedPlayerTroopCount;
+        private bool _playerCanLeave;
+        private bool _missionEndTriggered;
+        private bool? _playerWon;
 
         public TrollCaveMissionController(TroopRoster selectedTroops, int trollCount, Action<bool> onMissionEnd, bool stealthMode = false, Settlement settlement = null)
         {
@@ -67,6 +70,25 @@ namespace TOR_Core.Missions
             {
                 InitializeMission();
                 _isMissionInitialized = true;
+                return;
+            }
+
+            // Check end conditions and trigger mission end
+            if (!_missionEndTriggered)
+            {
+                if (Agent.Main == null || !Agent.Main.IsActive())
+                {
+                    _missionEndTriggered = true;
+                    _playerCanLeave = true;
+                    _playerWon = false;
+                    Mission.EndMission();
+                }
+                else if (GetActiveTrollCount() == 0)
+                {
+                    _missionEndTriggered = true;
+                    _playerWon = true;
+                    Mission.EndMission();
+                }
             }
         }
 
@@ -288,11 +310,6 @@ namespace TOR_Core.Missions
 
         private void SetupFormationOrders()
         {
-            // CRITICAL: Set player role as general - required for order UI to show order types
-            // This is normally done by AssignPlayerRoleInTeamMissionController.AfterStart()
-            // Without this, MissionOrderVM.CheckCanBeOpened() fails the IsPlayerGeneral check
-            Mission.PlayerTeam.SetPlayerRole(true, false);
-
             // Vanilla hideout pattern: set PlayerOwner directly on player formations
             // See HideoutMissionController.MissionSide.SpawnTroops lines 593-600
             foreach (var formation in Mission.PlayerTeam.FormationsIncludingEmpty)
@@ -324,13 +341,27 @@ namespace TOR_Core.Missions
 
         public override InquiryData OnEndMissionRequest(out bool canLeave)
         {
-            canLeave = Mission.MissionResult != null && Mission.MissionResult.BattleResolved;
+            // Allow leaving if all trolls are dead (victory) or player was defeated
+            canLeave = GetActiveTrollCount() == 0 || _playerCanLeave;
             if (!canLeave)
             {
                 MBInformationManager.AddQuickInformation(
                     TORTextHelper.GetTextObject("tor_trollcave_cannot_leave", "You cannot leave until the trolls are dealt with!"));
             }
+            else
+            {
+                // Explicitly end the mission (like BrawlMissionController)
+                Mission.Current.EndMission();
+            }
             return null;
+        }
+
+        public override void OnMissionResultReady(MissionResult missionResult)
+        {
+            if (missionResult.PlayerDefeated)
+            {
+                _playerCanLeave = true;
+            }
         }
 
         private int GetActiveTrollCount()
@@ -367,9 +398,10 @@ namespace TOR_Core.Missions
         {
             base.OnEndMission();
 
-            if (Mission.MissionResult != null)
+            // Invoke callback after mission has fully ended
+            if (_playerWon.HasValue)
             {
-                _onMissionEnd?.Invoke(Mission.MissionResult.PlayerVictory);
+                _onMissionEnd?.Invoke(_playerWon.Value);
             }
         }
 
