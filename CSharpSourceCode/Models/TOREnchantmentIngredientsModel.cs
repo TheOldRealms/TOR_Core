@@ -252,10 +252,10 @@ public class TOREnchantmentIngredientsModel : GameModel
                 amplitude = 0.05f;
                 break;
             case TorTradeGoodType.AmberCrystal:
-                amplitude = 0.05f;
+                amplitude = 0.05f / 3f;
                 break;
             case TorTradeGoodType.WarpstoneDust:
-                amplitude = 0.05f;
+                amplitude = 0.05f / 3f; // this and amber will need further adjustments
                 break;
             case TorTradeGoodType.GemStone:
                 amplitude = 0.05f;
