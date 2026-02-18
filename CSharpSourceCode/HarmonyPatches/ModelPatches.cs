@@ -108,5 +108,39 @@ public static class ModelPatches
             __result.LimitMin(CapturedSettlementGarrisonMoraleFloor.MIN_GARRISON_MORALE);
         }
     }
+    // prevent ai armies from leaving more troops in a garrison than the settlements garrison capacity
+    [HarmonyPatch(typeof(DefaultSettlementGarrisonModel), nameof(DefaultSettlementGarrisonModel.FindNumberOfTroopsToLeaveToGarrison))]
+    internal static class ClampTroopsLeftToGarrisonCapacityPatch
+    {
+        [HarmonyPostfix]
+        private static void Postfix(MobileParty mobileParty, Settlement settlement, ref int __result)
+        {
+            if (settlement == null || !settlement.IsFortification)
+            {
+                return;
+            }
 
+            var garrisonParty = settlement.Town.GarrisonParty;
+            var currentGarrisonCount = garrisonParty.Party.NumberOfAllMembers;
+
+            var garrisonCapacityExplained = Campaign.Current.Models.PartySizeLimitModel.CalculateGarrisonPartySizeLimit(settlement);
+            var garrisonCapacity = (int)garrisonCapacityExplained.ResultNumber;
+
+            var freeSlots = garrisonCapacity - currentGarrisonCount;
+            if (freeSlots < 0)
+            {
+                freeSlots = 0;
+            }
+
+            if (__result > freeSlots)
+            {
+                __result = freeSlots;
+            }
+
+            if (__result < 0)
+            {
+                __result = 0;
+            }
+        }
+    }
 }
