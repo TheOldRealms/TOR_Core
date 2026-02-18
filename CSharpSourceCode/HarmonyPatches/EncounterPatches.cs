@@ -117,4 +117,64 @@ namespace TOR_Core.HarmonyPatches
                 PendingLootedTroopManager.ApplyPrisonerModifications(__result);
         }
     }
+
+    [HarmonyPatch(typeof(PartyBaseHelper), "DoesSurrenderIsLogicalForParty")] // villager parties and caravans will no longer surrender if there's a lord helping them
+    internal static class CaravanSurrenderPatches
+    {
+        [HarmonyPrefix]
+        private static bool Prefix(MobileParty ourParty, MobileParty enemyParty, float acceptablePowerRatio, ref bool __result)
+        {
+            if (ourParty == null || (!ourParty.IsCaravan && !ourParty.IsVillager))
+            {
+                return true;
+            }
+
+            var mapEvent = ourParty.MapEvent;
+            if (mapEvent == null)
+            {
+                return true;
+            }
+
+            if (!TryGetPartySide(mapEvent, ourParty.Party, out var caravanSide))
+            {
+                return true;
+            }
+
+            foreach (var mapEventParty in mapEvent.PartiesOnSide(caravanSide))
+            {
+                var mobileParty = mapEventParty.Party?.MobileParty;
+                if (mobileParty != null && mobileParty != ourParty && mobileParty.IsLordParty)
+                {
+                    __result = false;
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool TryGetPartySide(MapEvent mapEvent, PartyBase partyBase, out BattleSideEnum side)
+        {
+            foreach (var attackerParty in mapEvent.PartiesOnSide(BattleSideEnum.Attacker))
+            {
+                if (attackerParty.Party == partyBase)
+                {
+                    side = BattleSideEnum.Attacker;
+                    return true;
+                }
+            }
+
+            foreach (var defenderParty in mapEvent.PartiesOnSide(BattleSideEnum.Defender))
+            {
+                if (defenderParty.Party == partyBase)
+                {
+                    side = BattleSideEnum.Defender;
+                    return true;
+                }
+            }
+
+            side = default;
+            return false;
+        }
+    }
 }
