@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.GameComponents;
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.MapEvents;
 using TaleWorlds.CampaignSystem.Party;
@@ -118,63 +119,36 @@ namespace TOR_Core.HarmonyPatches
         }
     }
 
-    [HarmonyPatch(typeof(PartyBaseHelper), "DoesSurrenderIsLogicalForParty")] // villager parties and caravans will no longer surrender if there's a lord helping them
+    [HarmonyPatch(typeof(DefaultEncounterModel), nameof(DefaultEncounterModel.GetSurrenderChance))] // villager parties and caravans will no longer surrender if there's a lord helping them
     internal static class CaravanSurrenderPatches
     {
         [HarmonyPrefix]
-        private static bool Prefix(MobileParty ourParty, MobileParty enemyParty, float acceptablePowerRatio, ref bool __result)
+        private static bool Prefix(MobileParty defenderParty, MobileParty attackerParty, ref float __result)
         {
-            if (ourParty == null || (!ourParty.IsCaravan && !ourParty.IsVillager))
+            if (defenderParty == null || (!defenderParty.IsCaravan && !defenderParty.IsVillager))
             {
                 return true;
             }
 
-            var mapEvent = ourParty.MapEvent;
+            var mapEvent = defenderParty.MapEvent;
             if (mapEvent == null)
             {
                 return true;
             }
 
-            if (!TryGetPartySide(mapEvent, ourParty.Party, out var caravanSide))
-            {
-                return true;
-            }
+            var defenderSide = mapEvent.DefenderSide;
 
-            foreach (var mapEventParty in mapEvent.PartiesOnSide(caravanSide))
+            foreach (var mapEventParty in defenderSide.Parties)
             {
                 var mobileParty = mapEventParty.Party?.MobileParty;
-                if (mobileParty != null && mobileParty != ourParty && mobileParty.IsLordParty)
+                if (mobileParty != null && mobileParty != defenderParty && mobileParty.IsLordParty)
                 {
-                    __result = false;
+                    __result = 0f;
                     return false;
                 }
             }
 
             return true;
-        }
-
-        private static bool TryGetPartySide(MapEvent mapEvent, PartyBase partyBase, out BattleSideEnum side)
-        {
-            foreach (var attackerParty in mapEvent.PartiesOnSide(BattleSideEnum.Attacker))
-            {
-                if (attackerParty.Party == partyBase)
-                {
-                    side = BattleSideEnum.Attacker;
-                    return true;
-                }
-            }
-
-            foreach (var defenderParty in mapEvent.PartiesOnSide(BattleSideEnum.Defender))
-            {
-                if (defenderParty.Party == partyBase)
-                {
-                    side = BattleSideEnum.Defender;
-                    return true;
-                }
-            }
-
-            side = default;
-            return false;
         }
     }
 }
