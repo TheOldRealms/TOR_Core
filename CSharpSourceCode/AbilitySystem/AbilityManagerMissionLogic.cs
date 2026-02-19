@@ -24,6 +24,7 @@ using TOR_Core.GameManagers;
 using TOR_Core.AbilitySystem.SpellCasting;
 using TOR_Core.BattleMechanics.DamageSystem;
 using TOR_Core.Items;
+using TOR_Core.Missions;
 using TOR_Core.Quests;
 using TOR_Core.Utilities;
 
@@ -643,10 +644,13 @@ namespace TOR_Core.AbilitySystem
 
         public bool IsCastingMission()
         {
+            // Custom combat missions that don't set CombatType properly
+            if (Mission.GetMissionBehavior<TrollCaveMissionController>() != null)
+                return true;
+
             return !Mission.IsFriendlyMission &&
                    Mission.CombatType != Mission.MissionCombatType.ArenaCombat &&
                    Mission.CombatType != Mission.MissionCombatType.NoCombat;
-            ;
         }
 
         private bool IsAbilityModeAvailableForMainAgent()

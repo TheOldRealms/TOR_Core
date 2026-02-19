@@ -40,6 +40,8 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
 
             obj.AddDialogLine("undead_notalk", "start", "close_window", TORTextHelper.GetText("tor_undead_no_talk_text", "..."), () => CharacterObject.OneToOneConversationCharacter.IsUndead() && CharacterObject.OneToOneConversationCharacter.HeroObject == null, null, 199);
 
+            obj.AddDialogLine("troll_greeting", "start", "close_window", TORTextHelper.GetText("tor_troll_greeting", "*GRAAAAWWWRR* *sniff* *sniff* ...MEAT!"), () => EncounteredPartyMatch("troll_clan_1"), null, 199);
+
             obj.AddDialogLine("druchii_greeting_war", "start", "close_window", TORTextHelper.GetText("tor_druchii_greeting_neutral", "What do you want, stranger? Speak quickly before you find yourself chained up in the bowels of my ship."), () => EncounteredPartyMatch("druchii_clan_1") && !HeroIsWounded()
             && (bool)PlayerEncounter.EncounteredMobileParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction), null, 199);
 
@@ -61,7 +63,7 @@ namespace TOR_Core.CampaignMechanics.CustomEncounterDialogs
                     args.IsEnabled = false;
                     args.Tooltip = TORTextHelper.GetTextObject("tor_no_prisoners_to_sell_tooltip_text", "You have no prisoners to sell.");
                 }
-                if ((bool)PlayerEncounter.EncounteredParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction))
+                if (PlayerEncounter.EncounteredParty?.MapFaction?.IsAtWarWith(Hero.MainHero.MapFaction) == true)
                 {
                     args.IsEnabled = false;
                     args.Tooltip = TORTextHelper.GetTextObject("tor_at_war_tooltip_text", "You are at war with this faction.");
