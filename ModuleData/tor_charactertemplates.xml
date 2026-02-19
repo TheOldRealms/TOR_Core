@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <NPCCharacters>
   <NPCCharacter id="tor_wanderer_empire_0" default_group="ranged" name="{=str_tor_wanderer_empire_0}{FIRSTNAME} the Bright Wizard" occupation="Wanderer" culture="Culture.empire" voice="curt" age="55" skill_template="SkillSet.tor_skills_wanderer_wizard" is_template="true" is_hero="false">
     <face>

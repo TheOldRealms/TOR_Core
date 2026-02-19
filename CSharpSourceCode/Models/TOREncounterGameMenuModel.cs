@@ -22,6 +22,7 @@ namespace TOR_Core.Models
                 else if (settlement.SettlementComponent is HerdStoneComponent) return "raidingsite_menu";
                 else if (settlement.SettlementComponent is SlaverCampComponent) return "raidingsite_menu";
                 else if (settlement.SettlementComponent is CursedSiteComponent) return "cursedsite_menu";
+                else if (settlement.SettlementComponent is TrollCaveComponent) return "trollcave_menu";
                 else return string.Empty;
             }
             else return base.GetEncounterMenu(attackerParty, defenderParty, out startBattle, out joinBattle);

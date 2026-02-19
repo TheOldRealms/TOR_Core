@@ -22,9 +22,11 @@ namespace TOR_Core.CampaignMechanics
         private CharacterObject _raider;
         private CharacterObject _wraith;
         private CharacterObject _artilleryCrew;
+        private CharacterObject _troll;
 
         private const int UndeadCountVillages = 5;
         private const int UndeadCountTowns = 20;
+        private const int MaxTrollsPerParty = 20;
 
         public override void RegisterEvents()
         {
@@ -32,6 +34,7 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.SettlementEntered.AddNonSerializedListener(this, AddArtilleryCrewmanToPartyOnEnteringSettlement);
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddUndeadToPartyOnEnteringSettlement);
             CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddDryadsToPartyOnEnteringSettlement);
+            CampaignEvents.AfterSettlementEntered.AddNonSerializedListener(this, AddTrollsToPartyOnEnteringSettlement);
             CampaignEvents.OnTroopRecruitedEvent.AddNonSerializedListener(this, TORRecruitmentBehavior);
             CampaignEvents.DailyTickPartyEvent.AddNonSerializedListener(this, DailyTickEvents);
         }
@@ -115,6 +118,7 @@ namespace TOR_Core.CampaignMechanics
             _dryad = MBObjectManager.Instance.GetObject<CharacterObject>("tor_we_dryad");
             _treeman = MBObjectManager.Instance.GetObject<CharacterObject>("tor_we_treeman");
             _artilleryCrew = MBObjectManager.Instance.GetObject<CharacterObject>("tor_empire_veteran_artillery_crew");
+            _troll = MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_trolls");
         }
 
         private void AddDryadsToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero leaderHero)
@@ -135,6 +139,27 @@ namespace TOR_Core.CampaignMechanics
 
                 var number = settlement.IsVillage ? UndeadCountVillages : UndeadCountTowns;
                 party.MemberRoster.AddToCounts(_dryad, Math.Min(number, party.Party.PartySizeLimit - party.MemberRoster.TotalManCount));
+            }
+        }
+
+        private void AddTrollsToPartyOnEnteringSettlement(MobileParty party, Settlement settlement, Hero leaderHero)
+        {
+            if (party == null || settlement == null || leaderHero == null) return;
+            if (party.IsMainParty || settlement.IsHideout) return;
+            if (leaderHero.Culture.StringId != TORConstants.Cultures.GREENSKIN) return;
+            if (settlement.Culture?.StringId != TORConstants.Cultures.GREENSKIN) return;
+            if (_troll == null) return;
+
+            if (party.MemberRoster.TotalManCount < party.Party.PartySizeLimit)
+            {
+                int currentTrolls = party.MemberRoster.GetTroopCount(_troll);
+                if (currentTrolls >= MaxTrollsPerParty) return;
+
+                // 5% chance to recruit 1 troll, same as treemen
+                if (MBRandom.RandomFloat < 0.05f)
+                {
+                    party.MemberRoster.AddToCounts(_troll, 1);
+                }
             }
         }
 

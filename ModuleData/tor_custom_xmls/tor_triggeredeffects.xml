@@ -2405,13 +2405,26 @@
                              ScriptNameToTrigger="none">
         <ImbuedStatusEffect>fireball_dot</ImbuedStatusEffect>
     </TriggeredEffectTemplate>
+    <TriggeredEffectTemplate StringID="troll_smash"
+                             BurstParticleEffectPrefab="treeman_smash"
+                             SoundEffectId="none"
+                             SoundEffectLength="0"
+                             DamageType="Physical"
+                             DamageAmount="100"
+                             Radius="5"
+                             HasShockWave="true"
+                             DoNotAlignParticleEffectPrefabOnImpact="true"
+                             TargetType="Enemy"
+                             ImbuedStatusEffectDuration="0"
+                             DamageVariance="0.2"
+                             ScriptNameToTrigger="none" />	
     <TriggeredEffectTemplate StringID="treeman_smash"
                              BurstParticleEffectPrefab="treeman_smash"
                              SoundEffectId="none"
                              SoundEffectLength="0"
                              DamageType="Physical"
-                             DamageAmount="70"
-                             Radius="4"
+                             DamageAmount="90"
+                             Radius="3"
                              HasShockWave="true"
                              DoNotAlignParticleEffectPrefabOnImpact="true"
                              TargetType="Enemy"

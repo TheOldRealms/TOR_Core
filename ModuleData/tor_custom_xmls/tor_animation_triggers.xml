@@ -20,4 +20,9 @@
         animation_percent_to_trigger="0.7"
         bone_index="7"
         triggered_effect="treeman_smash" />
+    <AnimationTrigger
+        action_name="act_lhm_stomp_attack_down_troll"
+        animation_percent_to_trigger="0.5"
+        bone_index="7"
+        triggered_effect="troll_smash" />		
 </AnimationTriggers>
