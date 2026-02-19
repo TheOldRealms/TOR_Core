@@ -3,6 +3,7 @@ using SandBox.View.Map;
 using SandBox.View.Map.Managers;
 using System;
 using System.Collections.Generic;
+using System.Xml;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
@@ -122,12 +123,14 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
     public class TrollCaveComponent : BaseRaiderSpawnerComponent
     {
+        private string _battleSceneName;
+
         public override int BattlePartySize => 200;
-        public override string BattleSceneName => "TOR_troll_hideout_01";
+        public override string BattleSceneName => string.IsNullOrEmpty(_battleSceneName) ? "TOR_troll_hideout_01" : _battleSceneName;
 
         public override List<string> RewardItemIds =>
         [
-            
+
             // not really necessary. doesnt do anything. Though I am not in the mood to change the heritage here.
             "tor_orc_weapon_2h_axe_001",
             "tor_orc_weapon_2h_axe_002",
@@ -136,6 +139,15 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
         ];
 
         public override IFaction MapFaction => Settlement.Owner.Clan;
+
+        public override void Deserialize(MBObjectManager objectManager, XmlNode node)
+        {
+            base.Deserialize(objectManager, node);
+            if (node.Attributes["battle_scene"] != null)
+            {
+                _battleSceneName = node.Attributes["battle_scene"].Value;
+            }
+        }
 
         public override void SpawnNewParty(out MobileParty party, Settlement initialTarget)
         {

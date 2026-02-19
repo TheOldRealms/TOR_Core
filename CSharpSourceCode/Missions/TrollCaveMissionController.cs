@@ -320,13 +320,12 @@ namespace TOR_Core.Missions
 
         private void SetupFormationOrders()
         {
-            // Vanilla hideout pattern: set PlayerOwner directly on player formations
-            // See HideoutMissionController.MissionSide.SpawnTroops lines 593-600
+            // Set PlayerOwner on player formations so player can command them
+            // Do NOT issue automatic charge orders - let player decide tactics
             foreach (var formation in Mission.PlayerTeam.FormationsIncludingEmpty)
             {
                 if (formation.CountOfUnits > 0)
                 {
-                    formation.SetMovementOrder(MovementOrder.MovementOrderCharge);
                     formation.SetFiringOrder(FiringOrder.FiringOrderFireAtWill);
                 }
                 // Set PlayerOwner so player can command this formation
@@ -334,11 +333,11 @@ namespace TOR_Core.Missions
             }
 
             // Set PlayerOrderController owner and select all formations
+            // Player starts with full control, no automatic orders
             Mission.PlayerTeam.PlayerOrderController.Owner = Agent.Main;
             Mission.PlayerTeam.PlayerOrderController.SelectAllFormations();
-            Mission.PlayerTeam.PlayerOrderController.SetOrder(OrderType.Charge);
 
-            // Set enemy formation orders
+            // Set enemy formation orders - trolls charge aggressively
             foreach (var formation in Mission.DefenderTeam.FormationsIncludingEmpty)
             {
                 if (formation.CountOfUnits > 0)

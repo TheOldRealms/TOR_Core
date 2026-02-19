@@ -293,6 +293,8 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         }
 
         var settlement = Settlement.CurrentSettlement;
+        var component = settlement.SettlementComponent as TrollCaveComponent;
+        string sceneName = component?.BattleSceneName ?? "TOR_troll_hideout_01";
 
         // Create defender party with trolls - this establishes proper MapEvent
         var defenderParty = TrollCaveDefenderPartyComponent.CreateTrollDefenderParty(settlement, _battleTrollCount);
@@ -306,7 +308,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         }
 
         // Open mission - vanilla handles loot/prisoners when battle ends
-        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, defenderParty, stealthMode: true);
+        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, defenderParty, stealthMode: true, scene: sceneName);
     }
 
     private void LuringInit(MenuCallbackArgs args)
@@ -451,6 +453,8 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         }
 
         var settlement = Settlement.CurrentSettlement;
+        var component = settlement.SettlementComponent as TrollCaveComponent;
+        string sceneName = component?.BattleSceneName ?? "TOR_troll_hideout_01";
 
         // Create defender party with trolls - this establishes proper MapEvent
         var defenderParty = TrollCaveDefenderPartyComponent.CreateTrollDefenderParty(settlement, _battleTrollCount);
@@ -464,7 +468,7 @@ public class TrollCaveMenuLogic(CampaignGameStarter starter) : TORBaseSettlement
         }
 
         // Open mission - vanilla handles loot/prisoners when battle ends
-        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, defenderParty, stealthMode: false);
+        TorMissionManager.OpenTrollCaveMission(selectedTroops, _battleTrollCount, defenderParty, stealthMode: false, scene: sceneName);
     }
 
     private void TrollCaveSuccessInit(MenuCallbackArgs args)
