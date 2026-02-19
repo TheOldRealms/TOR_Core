@@ -210,7 +210,7 @@ namespace TOR_Core.Missions
 
                         if (agent.IsMainAgent)
                         {
-                            agent.ApplyStatusEffect("ArenaImpairment", agent, 1.5f);
+                            agent.ApplyStatusEffect("ArenaImpairment", agent, 1f);//Sly : reduced from 1.5 as it would take very high riding skill to be able to reach couch speed in time and as a result the player was playing chicken with thrust attacks each pass.
                         }
                     }
                 }

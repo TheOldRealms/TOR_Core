@@ -104,6 +104,7 @@ namespace TOR_Core.AbilitySystem.Scripts
         private float GetDistance()
         {
             float num = 3;
+            //Sly : this should be accounting for the chair's volume when advancing to avoid clipping the chair or player into terrain. The ray thickness can account for the widest part of the chair, and the distance reduced to leave a minimum amount of space for the depth.
             var pos2 = GameEntity.GetGlobalFrame().origin;
             var pos = GameEntity.GetGlobalFrame().Elevate(-_minimalDistance).origin;
 

@@ -379,6 +379,12 @@ namespace TOR_Core.Models
                         agent.Defensiveness = 0.001f;
                     }
 
+                    if (character.IsTroll())
+                    {
+                        agent.SetAgentFlags(agent.GetAgentFlags() & ~AgentFlag.CanDefend);
+                        agent.Defensiveness = 0.001f;
+                    }
+
                     if (character.IsDwarf())
                     {
                         if (character.IsIronbreakerUnit())

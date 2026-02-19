@@ -193,7 +193,13 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
             PartyTemplateObject template = MBObjectManager.Instance.GetObject<PartyTemplateObject>("chaos_lordparty_template");
             Clan chaosClan = Clan.FindFirst(x => x.StringId == "chaos_clan_1");
             var find = TORCommon.FindSettlementsAroundPosition(Settlement.Position.ToVec2(), 60, x => !x.IsRaided && !x.IsUnderRaid && x.IsVillage).GetRandomElementInefficiently();
-            var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), template, chaosClan, MBRandom.RandomInt(75, 99));
+            var targetPartySize = MBRandom.RandomInt(75, 99);
+            if (MBRandom.RandomInt(4) == 0)
+            {
+                targetPartySize *= 2;//20% chance for doubled party size
+            }
+
+            var chaosRaidingParty = RaidingPartyComponent.CreateRaidingParty("chaos_clan_1_party_" + RaidingPartyCount + 1, Settlement, TORTextHelper.GetText("tor_chaos_raiders", "Chaos Raiders"), template, chaosClan, targetPartySize);
             if (find != null)
             {
                 SetPartyAiAction.GetActionForRaidingSettlement(chaosRaidingParty, initialTarget ?? find, MobileParty.NavigationType.Default, false);

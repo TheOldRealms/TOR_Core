@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.GameComponents;
@@ -118,38 +119,29 @@ namespace TOR_Core.Models
         {
             if (party?.PartyComponent is not RaidingPartyComponent) return base.FindAppropriateInitialRosterForMobileParty(party, partyTemplate);
 
-            //scales up the party size to the approximately approriate amount based on the field that stores the intended amount during component initialization
+            //scales the party size to the approximately approriate amount based on the field that stores the intended amount during component initialization
             var raidingComponent = party.PartyComponent as RaidingPartyComponent;
             var targetPartySize = raidingComponent._partySize;
 
-
-            //copied from native with adjustments to fit usage
             TroopRoster troopRoster = TroopRoster.CreateDummyTroopRoster();
+            if (targetPartySize <= 0)
+            {
+                TORCommon.Log("TORPartySizeModel : party attempted to be spawned with no troops in it. Adding one troop to it.", NLog.LogLevel.Info);
+                var defaultCharObj = Campaign.Current.ObjectManager.GetFirstObject<CharacterObject>();
+                troopRoster.AddToCounts(defaultCharObj, 1);
+                return troopRoster;
+            }
+            
             float templateMaxCount = partyTemplate.Stacks.Sum((PartyTemplateStack s) => s.MaxValue);
             float initialPartySizeRatio = targetPartySize / templateMaxCount;
-            for (int i = 0; i < partyTemplate.Stacks.Count; i++)
+            //reverse iteration as the troops are added to the party in the order of the Stacks and so depleted troops during subtraction here will be removed from the last indexes first and avoid index errors
+            for (int i = partyTemplate.Stacks.Count - 1; i > -1 ; i--)
             {
-                int minValue = partyTemplate.Stacks[i].MinValue;
                 int maxValue = partyTemplate.Stacks[i].MaxValue;
-                int num = minValue;
-                if (initialPartySizeRatio <= 0f)
-                {
-                    num = minValue;
-                }
-                else if (initialPartySizeRatio <= 1f)
-                {
-                    num = MBRandom.RoundRandomized((float)minValue + (float)(maxValue - minValue) * initialPartySizeRatio);
-                }
-                else
-                {
-                    num = (int)(maxValue * initialPartySizeRatio);
-                }
+                int num = (int)(maxValue * initialPartySizeRatio);
 
-                if (num > 0)
-                {
-                    CharacterObject character = partyTemplate.Stacks[i].Character;
-                    troopRoster.AddToCounts(character, num);
-                }
+                CharacterObject character = partyTemplate.Stacks[i].Character;
+                troopRoster.AddToCounts(character, num);
             }
 
             return troopRoster;

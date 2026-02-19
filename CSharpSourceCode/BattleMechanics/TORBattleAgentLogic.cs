@@ -28,7 +28,9 @@ namespace TOR_Core.BattleMechanics
 
         public override void OnScoreHit(Agent affectedAgent, Agent affectorAgent, WeaponComponentData attackerWeapon, bool isBlocked, bool isSiegeEngineHit, in Blow blow, in AttackCollisionData collisionData, float damagedHp, float hitDistance, float shotDifficulty)
         {
+            //Sly : base leads to EnemyHitReward which casts Origin.BattleCombattant to PartyBase which is unsupported for summoned troops
             if (affectorAgent.Origin is SummonedAgentOrigin) return;
+            if (affectorAgent.IsMount && affectorAgent.RiderAgent?.Origin is SummonedAgentOrigin) return; //necromancer champion riding a mount which deals damage
 
             // Set flag for spell hits so TORCombatXpModel can skip weapon XP while still tracking kills
             bool isSpellHit = collisionData.AffectorWeaponSlotOrMissileIndex == TORSpellBlowHelper.SpellBlowSentinel;

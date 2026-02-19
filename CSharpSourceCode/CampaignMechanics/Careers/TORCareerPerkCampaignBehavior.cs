@@ -41,19 +41,18 @@ namespace TOR_Core.CampaignMechanics
             CampaignEvents.OnEquipmentSmeltedByHeroEvent.AddNonSerializedListener(this, SmeltingPartyEvent);
             CampaignEvents.OnNewItemCraftedEvent.AddNonSerializedListener(this, OnSmithedItem);
             CampaignEvents.OnItemsRefinedEvent.AddNonSerializedListener(this, RefinedItemEvent);
-            CampaignEvents.HourlyTickPartyEvent.AddNonSerializedListener(this, HourlyPartyEvent);
+            CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, HourlyPartyEvent);
         }
 
-        private void HourlyPartyEvent(MobileParty party)
+        private void HourlyPartyEvent()
         {
-            if (!party.IsMainParty) return;
-
-            if (party.CurrentSettlement != null) return;
+            var mainParty = MobileParty.MainParty;
+            if (mainParty.CurrentSettlement != null) return;
             if (Hero.MainHero.HasCareerChoice("ForgefireBurningPassive3"))
             {
                 var campaignBehavior = Campaign.Current.GetCampaignBehavior<ICraftingCampaignBehavior>();
 
-                foreach (var hero in party.GetMemberHeroes())
+                foreach (var hero in mainParty.GetMemberHeroes())
                 {
                     var stamina = campaignBehavior.GetHeroCraftingStamina(hero);
                     var max = campaignBehavior.GetMaxHeroCraftingStamina(hero);

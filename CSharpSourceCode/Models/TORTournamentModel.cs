@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.GameComponents;
+using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.TournamentGames;
 using TaleWorlds.Core;
@@ -39,7 +40,17 @@ namespace TOR_Core.Models
         public override float GetTournamentStartChance(Town town)
         {
             //return 1f; //DEBUG
-            return base.GetTournamentStartChance(town);
+            if (town.Settlement.SiegeEvent != null)
+            {
+                return 0f;
+            }
+
+            if (Math.Abs(town.StringId.GetHashCode() % 3) != CampaignTime.Now.GetWeekOfSeason)
+            {
+                return 0f;
+            }
+
+            return 0.1f * (float)(town.Settlement.Parties.Count((MobileParty x) => x.IsLordParty)) + 0.05f * (float)(town.Settlement.HeroesWithoutParty.WhereQ(x => x.IsWanderer).Count());
         }
 
         public override MBList<ItemObject> GetRegularRewardItems(Town town, int regularRewardMinValue, int regularRewardMaxValue)

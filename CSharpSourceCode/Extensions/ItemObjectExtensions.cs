@@ -53,7 +53,8 @@ namespace TOR_Core.Extensions
                      itemType == ItemObject.ItemTypeEnum.Crossbow ||
                      itemType == ItemObject.ItemTypeEnum.Polearm ||
                      itemType == ItemObject.ItemTypeEnum.Musket ||
-                     itemType == ItemObject.ItemTypeEnum.Pistol;
+                     itemType == ItemObject.ItemTypeEnum.Pistol ||
+                     itemType == ItemObject.ItemTypeEnum.Sling;
             return result;
         }
 
@@ -241,6 +242,7 @@ namespace TOR_Core.Extensions
             {
                 case WeaponClass.Arrow:
                 case WeaponClass.Bolt:
+                case WeaponClass.SlingStone:
                 case WeaponClass.Cartridge:
                     result = true;
                     break;

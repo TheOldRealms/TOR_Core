@@ -6,9 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
+using TaleWorlds.CampaignSystem.ComponentInterfaces;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.ViewModelCollection;
 using TaleWorlds.Core;
+using TaleWorlds.DotNet;
 using TaleWorlds.Library;
 using TaleWorlds.LinQuick;
 using TaleWorlds.ObjectSystem;
@@ -16,7 +19,6 @@ using TOR_Core.CharacterDevelopment;
 using TOR_Core.Extensions;
 using TOR_Core.Utilities;
 using static TOR_Core.Utilities.TORConstants;
-using TaleWorlds.DotNet;
 
 namespace TOR_Core.CampaignMechanics.Companions
 {
@@ -25,7 +27,7 @@ namespace TOR_Core.CampaignMechanics.Companions
         //store by culture id, then manipulate the returned list
         public Dictionary<string, List<CharacterObject>> _companionTemplates = [];
 
-        //cache of companions to avoid going through AliveHeroes; there's 119 towns with dawi+greenskin update => minimum of 119 companions at 1 per town
+        //cache of companions to avoid going through AliveHeroes; there's ~119 towns with dawi+greenskin update => minimum of 119 companions at 1 per town
         private HashSet<Hero> _spawnedCompanions = [];
         private List<SkillObject> _cachedSkillObjects = [];
         private List<SkillObject> _cachedSkillObjectsNoFaith = [];
@@ -50,7 +52,7 @@ namespace TOR_Core.CampaignMechanics.Companions
 
             //to be determined if I keep here or move elsewhere
             CampaignEvents.CanHeroDieEvent.AddNonSerializedListener(this, CanHeroDie);
-            CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, AddDailySkillXpToCompanions); //checking all parties via the daily party event includes caravans, patrols, bandits, etc... which are a waste; because heroes must be part of clans (generally, and particularly in this case which ignores things like temporary heroes created for the engineer quest), and we patch clans to spawn as many parties as possible, we can interate through the clan members and check for their party to restrict the amount checked
+            CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, AddDailySkillXpToCompanions); //checking all parties via the daily party event includes caravans, patrols, bandits, etc... which are a waste. Because heroes who have companions in their party and could therefore make use of the perk checked by this action are part of clans (eg. temporary heroes created for the engineer quest have no other hero in the party and we don't care about their long-term growth), we can iterate through the clan members and check for their party to restrict the amount checked significantly. 
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
@@ -83,28 +85,55 @@ namespace TOR_Core.CampaignMechanics.Companions
             {
                 foreach (var town in Town.AllTowns)
                 {
-                    SpawnWanderer(town.Settlement);
+                    SpawnWanderer(town.Settlement, out _);
                 }
             }
         }
 
         private void WeeklyTick()
         {
-            //this spawns new wanderers weekly to fill empty towns, but this will not shuffle/refresh the existing wanderers; a wanderer needs to be hired or the town changes culture in order to make space for a new wanderer to allow a turnover of wanderer type if the existing ones are not what a player wants
-            foreach (var town in Town.AllTowns)
+            //Sly : The useless creation and deletion cycle bothered me so I've opted for some shuffling with a low turnover, but it's on a kingdom-basis which will increase the effective turnover earlier in the campaign when the number of kingdoms is maximal.
+            
+
+            //Iterating through kingdoms assumes that no rebellions occur besides the chaos ones as normal rebellions don't create kingdoms, only Factions. If a native rebellion does occur, they will have no wanderer until the player enters the town and one is forced to be created.
+            foreach (var kingdom in Campaign.Current.Kingdoms)
             {
-                //this assumes that all deletion of incorrect wanderers is correctly handled by other methods - tbd if that holds true
-                if (town.IsUnderSiege || town.Settlement.HeroesWithoutParty.WhereQ(x => x.IsWanderer && x.CompanionOf == null).AnyQ())
+                if (kingdom.Fiefs.Count == 0) continue;
+
+                var townList = kingdom.Fiefs.WhereQ(x => x.IsTown && !x.IsUnderSiege).ToList();
+                townList.Randomize();
+
+                int townCount = townList.Count;
+                for (var i = 0; i < townCount; i++)
                 {
-                    //Skip towns under siege : EnterSettlementAction unsafe
-                    //Skip towns that already have a wanderer not in a party AND who is not hired by a clan. The 2nd condition is necessary to not detect governors, or companions who have been separated from their party after a defeat.
-                    continue;
+                    var wanderer = townList[i].Settlement.HeroesWithoutParty.WhereQ(x => x.IsWanderer && x.CompanionOf == null).FirstOrDefault();
+                    if (wanderer == null)
+                    {
+                        SpawnWanderer(townList[i].Settlement, out wanderer);//weekly refill of wanderers if the town doesn't have one
+                    }
+
+                    //wanderers are shuffled forward 1 town, and the last town generates a new wanderer to replace the old one.
+                    if (i == 0)
+                    {
+                        DisableWanderer(wanderer);
+                        if (townCount == 1) SpawnWanderer(townList[i].Settlement, out _);//single town kingdoms have no shuffling and therefore replace immediately
+                    }
+                    //Tried to use the TeleportHeroAction to perform a delayed teleport to simulate travel times for the wanderers. Turns out the delay calculation checks for naval navigation capacity via the hero's clan with no null detection or handling. Yay null ref.
+                    else if (i < townCount - 1)
+                    {
+                        LeaveSettlementAction.ApplyForCharacterOnly(wanderer);
+                        EnterSettlementAction.ApplyForCharacterOnly(wanderer, townList[i-1].Settlement);
+                    }
+                    else
+                    {
+                        LeaveSettlementAction.ApplyForCharacterOnly(wanderer);
+                        EnterSettlementAction.ApplyForCharacterOnly(wanderer, townList[i - 1].Settlement);
+                        SpawnWanderer(townList[i].Settlement, out _);
+                    }
                 }
-                
-                SpawnWanderer(town.Settlement);
             }
 
-
+            //weekly check for outdated wanderer cleanup. Also removes the wanderers that were just disabled by the cycling.
             foreach (var wandererToRemove in _spawnedCompanions.ToArray())
             {
                 if (wandererToRemove.HeroState == Hero.CharacterStates.Disabled || wandererToRemove.HeroState == Hero.CharacterStates.Dead)
@@ -137,7 +166,7 @@ namespace TOR_Core.CampaignMechanics.Companions
                 if (clanless > 0) return;//a wanderer of the correct culture is still left in the settlement and there's no need to spawn another 
             }
                 
-            SpawnWanderer(settlement);
+            SpawnWanderer(settlement, out _);
         }
 
         /// <remarks>
@@ -167,7 +196,7 @@ namespace TOR_Core.CampaignMechanics.Companions
                 }
             }
 
-            SpawnWanderer(settlement);
+            SpawnWanderer(settlement, out _);
         }
 
 
@@ -342,9 +371,10 @@ namespace TOR_Core.CampaignMechanics.Companions
             }
         }
 
-        private void SpawnWanderer(Settlement settlement)
+        private void SpawnWanderer(Settlement settlement, out Hero hero)
         {
             var culture = settlement.Owner.Culture;//the new owner is set before tor's culture swap takes place so base on the Owner's culture to guarantee that the wanderer spawned will match the upcoming town culture
+            hero = null;
             if (culture == null)
             {
                 TORCommon.Log("TORCompanionCampaignBehavior : null culture on " + settlement.StringId, NLog.LogLevel.Warn);
@@ -359,7 +389,7 @@ namespace TOR_Core.CampaignMechanics.Companions
                 return;
             }
 
-            Hero hero = HeroCreator.CreateSpecialHero(companionTemplate, settlement, null, null, Campaign.Current.Models.AgeModel.HeroComesOfAge + 5 + MBRandom.RandomInt(12)); //age is arbitrary, it will be adjusted up based on the trait levels of the hero.
+            hero = HeroCreator.CreateSpecialHero(companionTemplate, settlement, null, null, Campaign.Current.Models.AgeModel.HeroComesOfAge + 5 + MBRandom.RandomInt(12)); //age is arbitrary, it will be adjusted up based on the trait levels of the hero.
             //Sly : Given that traits no longer tie into skills, will wanderers generally be younger because their traits will be lower? Do tor's traits get caught in TraitObject.All and lead to an approximately uniform age across wanderers from the same template?
 
             //adding the wanderer to the _aliveCompanions cache is handled by the HeroCreated event dispatched by the HeroCreator
@@ -376,7 +406,7 @@ namespace TOR_Core.CampaignMechanics.Companions
 
         private void UnregisterWandererObject(Hero hero)
         {
-            //does this handle encyclopedia entries?
+            //does this handle encyclopedia entries? somewhat? the entry is no longer searchable, but haven't checked to see if it's truly removed
             
             //UnregisterDeadHero takes care of calling methods to remove the hero from the cache lists, deleting their dictionary entries from hero-hero relations, etc...; it does *not* handle deleting their unique character object. In the case of wanderers, the template exists as a charObject, then upon creating the wanderer a new unique charObject is created and the template is copied onto it.
             var method = AccessTools.Method(typeof(CampaignObjectManager), "UnregisterDeadHero");
