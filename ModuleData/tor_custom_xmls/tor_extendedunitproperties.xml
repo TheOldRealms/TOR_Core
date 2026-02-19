@@ -2058,6 +2058,7 @@
     <Attributes>
       <string>MonsterAttack</string>
       <string>Unstoppable</string>
+      <string>HasAnimationTriggeredEffects</string>	  
     </Attributes>
     <Resistances>
       <ResistanceTuple ResistedDamageType="Fire" ReductionPercent="-0.50" />
