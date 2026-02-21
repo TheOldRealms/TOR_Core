@@ -102,7 +102,7 @@ namespace TOR_Core.Missions
 
         private void CheckBattleResolved()
         {
-            // Player defeated
+            // Player defeated - allow retreat or wait for auto-defeat
             if (Agent.Main == null || !Agent.Main.IsActive())
             {
                 if (!_isPlayerDefeated)
@@ -110,7 +110,7 @@ namespace TOR_Core.Missions
                     _battleResolved = true;
                     _isPlayerDefeated = true;
                     _defeatStartTime = Mission.CurrentTime;
-                    // Don't allow manual leave - mission will force close after delay
+                    // Player can manually retreat, or mission will auto-end after delay
                 }
             }
             // Victory - all trolls dead
@@ -386,14 +386,31 @@ namespace TOR_Core.Missions
 
         public override InquiryData OnEndMissionRequest(out bool canLeave)
         {
-            // Only allow leaving on victory - defeat is handled forcefully by timer
-            canLeave = _playerCanLeave;
-            if (!canLeave)
-            {
-                MBInformationManager.AddQuickInformation(
-                    TORTextHelper.GetTextObject("tor_trollcave_cannot_leave", "You cannot leave until the trolls are dealt with!"));
-            }
+            // Allow leaving at any time (like vanilla hideouts)
+            canLeave = true;
             return null;
+        }
+
+        public override void OnRetreatMission()
+        {
+            // Player is retreating - finish encounter and go to appropriate menu
+            // This prevents "trapped by enemies" screen
+
+            if (PlayerEncounter.Current != null)
+            {
+                PlayerEncounter.Finish(true);
+            }
+
+            // If player won (all trolls dead), they're just leaving after victory
+            // If trolls are still alive, treat as tactical retreat
+            if (GetActiveTrollCount() > 0)
+            {
+                // Retreating with trolls still alive - go to retreat menu
+                GameMenu.ActivateGameMenu("trollcave_retreat");
+            }
+            // If all trolls dead, vanilla loot/prisoner screens already shown, just leave normally
+
+            base.OnRetreatMission();
         }
 
 
