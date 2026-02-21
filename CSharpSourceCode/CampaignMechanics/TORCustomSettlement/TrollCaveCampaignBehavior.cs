@@ -41,8 +41,10 @@ namespace TOR_Core.CampaignMechanics.TORCustomSettlement
 
                     if (playerWon && settlement != null)
                     {
+                        // Victory - set cooldown, vanilla handles loot/prisoners
                         SetCaveCleared(settlement);
                     }
+                    // On defeat, TrollCaveMissionController.HandleForcedDefeatEnd handles everything
 
                     // Destroy the temporary defender party
                     TrollCaveDefenderPartyComponent.DestroyDefenderParty(party.Party?.MobileParty);
