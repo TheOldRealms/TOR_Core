@@ -386,8 +386,8 @@ namespace TOR_Core.Missions
 
         public override InquiryData OnEndMissionRequest(out bool canLeave)
         {
-            // Allow leaving if battle is resolved (BattleEndLogic will handle the actual end)
-            canLeave = _battleResolved || _playerCanLeave;
+            // Only allow leaving on victory - defeat is handled forcefully by timer
+            canLeave = _playerCanLeave;
             if (!canLeave)
             {
                 MBInformationManager.AddQuickInformation(
@@ -396,13 +396,6 @@ namespace TOR_Core.Missions
             return null;
         }
 
-        public override void OnMissionResultReady(MissionResult missionResult)
-        {
-            if (missionResult.PlayerDefeated)
-            {
-                _playerCanLeave = true;
-            }
-        }
 
         private int GetActiveTrollCount()
         {
