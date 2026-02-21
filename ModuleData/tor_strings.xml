@@ -4596,6 +4596,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_trollcave_cannot_leave" text="{=str_tor_trollcave_cannot_leave}You cannot leave until the trolls are dealt with!"/>
 	<string id="tor_wounded" text="{=str_tor_wounded}You are wounded."/>
 	<string id="tor_troll_greeting" text="{=str_tor_troll_greeting}*GRAAAAWWWRR* *sniff* *sniff* ...MEAT!"/>
+	<string id="tor_trollcave_retreat" text="{=str_tor_trollcave_retreat}You chose to tactical retreat from the scene. Living to fight another day is often the wisest choice when facing such formidable foes."/>
 
 	<!--Goblin Recruitment-->
 	<string id="tor_goblin_orc_recruitment_message" text="{=str_tor_goblin_orc_recruitment_message}{GOBLIN_COUNT} goblin(s) joined by recruiting da big boys!"/>
