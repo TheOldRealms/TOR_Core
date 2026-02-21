@@ -6701,6 +6701,7 @@
   <EquipmentRoster id="tor_gs_black_orc_template" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_001" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_1_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_2_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_2_001" />
@@ -6709,6 +6710,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_001" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_1_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_2_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_2_001" />
@@ -6717,6 +6719,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_001" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_2_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_2_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_2_001" />
@@ -6725,6 +6728,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_001" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_2_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_2_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_2_001" />
@@ -6733,6 +6737,7 @@
     </EquipmentSet>
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_sword_004" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_001" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_2_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_2_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_1_001" />
@@ -6741,6 +6746,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_sword_004" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_001" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_2_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_2_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_1_001" />
@@ -6751,7 +6757,7 @@
   <EquipmentRoster id="tor_gs_black_orc_brute_template" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
-      <Equipment slot="Item1" id="Item.leather_round_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_002" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_3_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_3_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_3_001" />
@@ -6760,7 +6766,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
-      <Equipment slot="Item1" id="Item.leather_round_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_002" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_3_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_3_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_3_001" />
@@ -6771,7 +6777,7 @@
   <EquipmentRoster id="tor_gs_black_orc_boss_template" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
-      <Equipment slot="Item1" id="Item.leather_round_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_003" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_4_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_4_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_4_001" />
@@ -6780,7 +6786,7 @@
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.tor_greenskin_weapon_axe_1h_black_orc_001" />
-      <Equipment slot="Item1" id="Item.leather_round_shield" />
+      <Equipment slot="Item1" id="Item.tor_greenskins_black_orc_shield_003" />
       <Equipment slot="Head" id="Item.tor_greenskin_orc_black_4_helmet_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_orc_black_4_001" />
       <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_orc_black_4_001" />
@@ -23434,13 +23440,13 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_magister_apprentice_3" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_bright_wizard_001" />
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_bright_wizard_001" />
       <Equipment slot="Cape" id="Item.hood" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
@@ -23670,84 +23676,84 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_magister_apprentice_life_4" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_life_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_life_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_magister_apprentice_fire_4" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_bright_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_bright_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_magister_apprentice_death_4" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.monk_robe" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.monk_robe" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_magister_apprentice_light_4" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_light_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_light_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_magister_apprentice_heavens_4" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_celestial_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_celestial_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_magister_apprentice_beasts_4" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.aserai_axe_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_beast_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.aserai_axe_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_beast_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_magister_apprentice_metal_4" culture="Culture.empire">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_gold_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.tor_empire_body_robe_gold_wizard_001" />
       <Equipment slot="Leg" id="Item.turndown_leather_boots" />
     </EquipmentSet>
@@ -23900,7 +23906,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_novice_necromancer_3" culture="Culture.khuzait">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.hooked_cleaver" />
+      <Equipment slot="Item0" id="Item.falchion_sword_t2" />
       <Equipment slot="Head" id="Item.battania_civil_hood" />
       <Equipment slot="Body" id="Item.long_hemp_tunic" />
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
@@ -23908,7 +23914,7 @@
       <Equipment slot="Leg" id="Item.fine_town_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.hooked_cleaver" />
+      <Equipment slot="Item0" id="Item.falchion_sword_t2" />
       <Equipment slot="Head" id="Item.battania_civil_hood" />
       <Equipment slot="Body" id="Item.long_hemp_tunic" />
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
@@ -24020,11 +24026,11 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_bloodline_necrarch_4" culture="Culture.khuzait">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
       <Equipment slot="Body" id="Item.tor_vc_body_basic_robe_necrarch_001" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
       <Equipment slot="Body" id="Item.tor_vc_body_basic_robe_necrarch_001" />
     </EquipmentSet>
   </EquipmentRoster>
@@ -24197,14 +24203,14 @@
   <EquipmentRoster id="tor_cc_damsel_3" culture="Culture.vlandia">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.bo_staff" />
-      <Equipment slot="Item1" id="Item.seax_blunt" />
+      <Equipment slot="Item1" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.vlandian_noble_woman_dress" />
       <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
       <Equipment slot="Item0" id="Item.bo_staff" />
-      <Equipment slot="Item1" id="Item.seax_blunt" />
+      <Equipment slot="Item1" id="Item.sturgia_sword_1_t2" />
       <Equipment slot="Body" id="Item.vlandian_noble_woman_dress" />
       <Equipment slot="Horse" id="Item.tor_bretonnia_mount_horse_001" />
       <Equipment slot="HorseHarness" id="Item.light_harness" />
@@ -24456,7 +24462,7 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_necromancer_3" culture="Culture.mousillon">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.hooked_cleaver" />
+      <Equipment slot="Item0" id="Item.falchion_sword_t2" />
       <Equipment slot="Head" id="Item.battania_civil_hood" />
       <Equipment slot="Body" id="Item.long_hemp_tunic" />
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
@@ -24464,7 +24470,7 @@
       <Equipment slot="Leg" id="Item.fine_town_boots" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.hooked_cleaver" />
+      <Equipment slot="Item0" id="Item.falchion_sword_t2" />
       <Equipment slot="Head" id="Item.battania_civil_hood" />
       <Equipment slot="Body" id="Item.long_hemp_tunic" />
       <Equipment slot="Cape" id="Item.wrapped_scarf" />
@@ -24758,12 +24764,12 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_eo_greylord_apprentice_3" culture="Culture.eonir">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
       <Equipment slot="Body" id="Item.tor_we_body_armour_exiled_wizard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.seax" />
+      <Equipment slot="Item0" id="Item.peasant_sickle_1_t1" />
       <Equipment slot="Body" id="Item.tor_we_body_armour_exiled_wizard_001" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
     </EquipmentSet>
@@ -25010,14 +25016,14 @@
   </EquipmentRoster>
   <EquipmentRoster id="tor_cc_we_spellsinger_3" culture="Culture.battania">
     <EquipmentSet>
-      <Equipment slot="Item0" id="Item.hooked_cleaver" />
+      <Equipment slot="Item0" id="Item.simple_sabre_sword_t2" />
       <Equipment slot="Head" id="Item.tor_we_head_sister_001" />
       <Equipment slot="Body" id="Item.bandit_envelope_dress_v2" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
       <Equipment slot="Leg" id="Item.tor_we_leg_boots_militia_003" />
     </EquipmentSet>
     <EquipmentSet civilian="true">
-      <Equipment slot="Item0" id="Item.hooked_cleaver" />
+      <Equipment slot="Item0" id="Item.simple_sabre_sword_t2" />
       <Equipment slot="Head" id="Item.tor_we_head_sister_001" />
       <Equipment slot="Body" id="Item.bandit_envelope_dress_v2" />
       <Equipment slot="Gloves" id="Item.buttoned_leather_bracers" />
