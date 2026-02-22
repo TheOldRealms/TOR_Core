@@ -3690,6 +3690,8 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew -  Can and is required to operate a cannon"/>
   <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable -  Unit will not flee due to low morale"/>
   <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable -  Unit will not show any signs of pain when being hit"/>
+  <string id="tor_extendedInfo.Troll Regeneration" text="{=str_tor_extendedinfo_troll_regeneration}Troll Regeneration -  Unit will regenerate health over time"/>
+  
 
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid"/>
   <string id="tor_damagetype.Physical" text="{=str_tor_damagetype_physical}Physical"/>

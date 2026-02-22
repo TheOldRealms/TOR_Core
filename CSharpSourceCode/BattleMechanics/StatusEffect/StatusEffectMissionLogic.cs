@@ -79,7 +79,7 @@ namespace TOR_Core.BattleMechanics.StatusEffect
             }
 
             // Race-based innate abilities (apply to all agents of that race)
-            if ((agent.Character as CharacterObject)?.IsTroll() == true)
+            if ((agent.HasAttribute("TrollRegeneration")))
             {
                 CareerHelper.AddDefaultPermanentMissionEffect(agent, "troll_regeneration");
             }
