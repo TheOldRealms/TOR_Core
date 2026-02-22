@@ -1431,6 +1431,122 @@
   <string id="tor_feudal_oath_line3.brasskeep" text="{=str_tor_feudal_oath_line3_brasskeep}From death our power grows." />
   <string id="tor_feudal_oath_line4.brasskeep" text="{=str_tor_feudal_oath_line4_brasskeep}In Nurgle's name we will deliver death!" />
 
+  <string id="tor_feudal_oath_line1.karak_kadrin" text="{=tor_feudal_oath_line1_kadrin_str}By axe and oath, I kneel before Slayer King Ungrim Ironfist, lord of Karak Kadrin and heir to Grimnir’s fury." />
+  <string id="tor_feudal_oath_line2.karak_kadrin" text="{=tor_feudal_oath_line2_kadrin_str}I swear to keep Peak Pass and stand unbroken where dawi fall and legends rise." />
+  <string id="tor_feudal_oath_line3.karak_kadrin" text="{=tor_feudal_oath_line3_kadrin_str}Let my blood join the Slayers’ toll, and my wrath echo through Khaz Drengi." />
+  <string id="tor_feudal_oath_line4.karak_kadrin" text="{=tor_feudal_oath_line4_kadrin_str}By the fire of Grimnir and the will of the King, I pledge my life to Karak Kadrin — and to doom, if need be." />
+
+  <string id="tor_feudal_oath_line1.karak_angazhar" text="{=tor_feudal_oath_line1_angazhar_str}By stone, steel, and the roaring forges of Karak Angazhar, I offer my service." />
+  <string id="tor_feudal_oath_line2.karak_angazhar" text="{=tor_feudal_oath_line2_angazhar_str}I kneel before King Duregar Sharpblade, whose name is etched in rune and rock—I pledge my axe to his command." />
+  <string id="tor_feudal_oath_line3.karak_angazhar" text="{=tor_feudal_oath_line3_angazhar_str}May the anvils of our ancestors ring true as I take up this oath." />
+  <string id="tor_feudal_oath_line4.karak_angazhar" text="{=tor_feudal_oath_line4_angazhar_str}With beard unshorn and grudges remembered, I will not yield a step while a forge still burns in this hold." />
+
+  <string id="tor_feudal_oath_line1.karak_azgaraz" text="{=tor_feudal_oath_line1_azgaraz_str}By the Fearless Axe and the halls of my forebears, I pledge my unwavering oath." />
+  <string id="tor_feudal_oath_line2.karak_azgaraz" text="{=tor_feudal_oath_line2_azgaraz_str}To King Thuringar Orc-hewer, bold son of the Grey Mountains, I swear my loyalty and strength." />
+  <string id="tor_feudal_oath_line3.karak_azgaraz" text="{=tor_feudal_oath_line3_azgaraz_str}May my deeds be carved in stone beside the honored dead, and my oath echo through Heroes’ Deep." />
+  <string id="tor_feudal_oath_line4.karak_azgaraz" text="{=tor_feudal_oath_line4_azgaraz_str}No grobi, wyrdspawn, nor oathbreaker shall breach our gates while I draw breath." />
+
+  <string id="tor_feudal_oath_line1.karak_eksfilaz" text="{=tor_feudal_oath_line1_eksfilaz_str}By stone oath and silver seal, I kneel before King Hergar Steelclad, lord of Karak Eksfilaz." />
+  <string id="tor_feudal_oath_line2.karak_eksfilaz" text="{=tor_feudal_oath_line2_eksfilaz_str}I swear to guard the gates of Eksfilaz and strike down all who skulk beneath the Vaults." />
+  <string id="tor_feudal_oath_line3.karak_eksfilaz" text="{=tor_feudal_oath_line3_eksfilaz_str}Let my axe serve the Vermin Hunters, and may my deeds honor Grung Mizpal." />
+  <string id="tor_feudal_oath_line4.karak_eksfilaz" text="{=tor_feudal_oath_line4_eksfilaz_str}By clan and kin, I pledge gold and steel to uphold the will of King Hergar." />
+
+  <string id="tor_feudal_oath_line1.karak_gantuk" text="{=tor_feudal_oath_line1_gantuk_str}By hammer’s ring and ore’s yield, I bend the knee to King Skag Hammerfist of Karak Gantuk." />
+  <string id="tor_feudal_oath_line2.karak_gantuk" text="{=tor_feudal_oath_line2_gantuk_str}I vow to shield our forges and keep the veins of Khazid Hafak flowing with iron." />
+  <string id="tor_feudal_oath_line3.karak_gantuk" text="{=tor_feudal_oath_line3_gantuk_str}Let my arm strike true for the hold, and may no greenskin tread the stones of Gantuk unchallenged." />
+  <string id="tor_feudal_oath_line4.karak_gantuk" text="{=tor_feudal_oath_line4_gantuk_str}In flame and steel, I pledge my strength to the throne and the craft of our forebears." />
+
+  <string id="tor_feudal_oath_line1.karak_hirn" text="{=tor_feudal_oath_line1_hirn_str}By hammer-sound and mountain breath, I kneel before King Alrik Ranulfsson of the Hornhold." />
+  <string id="tor_feudal_oath_line2.karak_hirn" text="{=tor_feudal_oath_line2_hirn_str}I swear to guard the cliff-roads and merchant halls, and sound the Horn in times of strife." />
+  <string id="tor_feudal_oath_line3.karak_hirn" text="{=tor_feudal_oath_line3_hirn_str}Let my axe strike down any foe, stoneborn or risen, who dares our gate." />
+  <string id="tor_feudal_oath_line4.karak_hirn" text="{=tor_feudal_oath_line4_hirn_str}By oath and ore, I stand for Hirn, and carve my name in its honored ledger." />
+
+  <string id="tor_feudal_oath_line1.karak_izor" text="{=tor_feudal_oath_line1_izor_str}By copper vein and mountain root, I swear fealty to King Kazran Grimbrow of Karak Izor." />
+  <string id="tor_feudal_oath_line2.karak_izor" text="{=tor_feudal_oath_line2_izor_str}I vow to defend the Vaults and shield our kin in the valley holds." />
+  <string id="tor_feudal_oath_line3.karak_izor" text="{=tor_feudal_oath_line3_izor_str}Let my axe answer troll-roar and daemon-howl alike, beneath these ancient peaks." />
+  <string id="tor_feudal_oath_line4.karak_izor" text="{=tor_feudal_oath_line4_izor_str}By stone, steel, and brewed oath, I serve the throne and honor the name of Izor." />
+
+  <string id="tor_feudal_oath_line1.karak_kaferkammaz" text="{=tor_feudal_oath_line1_kaferkammaz_str}By marble vein and mountain breath, I bend the knee to King Skalf Redbeard of Karak Kaferkammaz." />
+  <string id="tor_feudal_oath_line2.karak_kaferkammaz" text="{=tor_feudal_oath_line2_kaferkammaz_str}I vow to guard the escarpment heights and watch the forest’s edge from our white-stone towers." />
+  <string id="tor_feudal_oath_line3.karak_kaferkammaz" text="{=tor_feudal_oath_line3_kaferkammaz_str}Let my hammer ring true where the Kaferdrin winds, and my honor weigh as heavy as carved stone." />
+  <string id="tor_feudal_oath_line4.karak_kaferkammaz" text="{=tor_feudal_oath_line4_kaferkammaz_str}By Dawi craft and the cold light of the high Vaults, I pledge steel, stone, and soul to Kaferkammaz." />
+
+  <string id="tor_feudal_oath_line1.karak_norn" text="{=tor_feudal_oath_line1_norn_str}By oath unbroken and iron resolve, I bend the knee to King Brokk Ironpick of Karak Norn, where even barren stone bears Dawi pride." />
+  <string id="tor_feudal_oath_line2.karak_norn" text="{=tor_feudal_oath_line2_norn_str}I swear to hold the Montdidier Pass and guard the high Grey halls against treeborn shadow and lowland treachery alike." />
+  <string id="tor_feudal_oath_line3.karak_norn" text="{=tor_feudal_oath_line3_norn_str}Let my axe bite deep for the clans of Silverspear and the watchfires of Mad Dog Pass, lost but not forgotten." />
+  <string id="tor_feudal_oath_line4.karak_norn" text="{=tor_feudal_oath_line4_norn_str}By the bedrock beneath my boots, I pledge steel, spite, and silence to the will of Brokk Ironpick and the hold of Norn." />
+
+  <string id="tor_feudal_oath_line1.karak_zhufbar" text="{=tor_feudal_oath_line1_zhufbar_str}By smoke-wreathed peaks and the torrent's roar, I swear to King Morgrim Ironforge, Lord of Flame and Forge." />
+  <string id="tor_feudal_oath_line2.karak_zhufbar" text="{=tor_feudal_oath_line2_zhufbar_str}Let my craft serve the anvils of Zhufbar, where Gromril sings and engines wake." />
+  <string id="tor_feudal_oath_line3.karak_zhufbar" text="{=tor_feudal_oath_line3_zhufbar_str}I vow to shield the deep vaults from Skaven claw and greenskin horde alike." />
+  <string id="tor_feudal_oath_line4.karak_zhufbar" text="{=tor_feudal_oath_line4_zhufbar_str}By blast-wall, airship, and rune-wrought steel, I bind my life to the Iron Gate." />
+
+  <string id="tor_feudal_oath_line1.karak_ziflin" text="{=tor_feudal_oath_line1_ziflin_str}By granite grip and grudge-bound will, I swear to King Rorek Granitehand, lord of Ziflin’s high halls." />
+  <string id="tor_feudal_oath_line2.karak_ziflin" text="{=tor_feudal_oath_line2_ziflin_str}I vow to guard the traderoads and vault-forges, where Dwarfen steel still speaks louder than foreign gold." />
+  <string id="tor_feudal_oath_line3.karak_ziflin" text="{=tor_feudal_oath_line3_ziflin_str}May my shield hold fast where promises fail, and let no oath-breaker pass Axe Bite unchallenged." />
+  <string id="tor_feudal_oath_line4.karak_ziflin" text="{=tor_feudal_oath_line4_ziflin_str}For hold, clan, and king, I pledge hammer and heart to the stubborn stone of Ziflin." />
+
+  <string id="tor_feudal_oath_line1.bad_axes" text="{=tor_feudal_oath_line1_bad_axes_str}I’z lookin' at ya an' I sees a Boss. My choppa is sharp, an' da boyz is hungry fer a smashin'." />
+  <string id="tor_feudal_oath_line2.bad_axes" text="{=tor_feudal_oath_line2_bad_axes_str}Gromodrak Hoofslasha is da biggest git around—so I’z followin' you till da wurld iz green or red." />
+  <string id="tor_feudal_oath_line3.bad_axes" text="{=tor_feudal_oath_line3_bad_axes_str}Wiv da Bad Axes, we’z gonna chop 'em till dere’s nuffin' left of dem gitz." />
+  <string id="tor_feudal_oath_line4.bad_axes" text="{=tor_feudal_oath_line4_bad_axes_str}If you'z ever not happy by me choppa, Gork'll stomp me flat into da ground!" />
+  
+  <string id="tor_feudal_oath_line1.black_sunz" text="{=tor_feudal_oath_line1_black_sunz_str}Da Black Sun shines on us, an' we kill an' dance in itz… guhhh… shine!" />
+  <string id="tor_feudal_oath_line2.black_sunz" text="{=tor_feudal_oath_line2_black_sunz_str}Da great Zorbak Bearthwakka has shown uz da shinin' darkness an' we'z here to spread it!" />
+  <string id="tor_feudal_oath_line3.black_sunz" text="{=tor_feudal_oath_line3_black_sunz_str}We'z gun make da world blind, takin' eyez fer eyez an' lotz of dere teef as well!" />
+  <string id="tor_feudal_oath_line4.black_sunz" text="{=tor_feudal_oath_line4_black_sunz_str}In da name of da Bearthwakka, I'z going to shove 'iz enemiez where no Sunz shine!" />
+  
+  <string id="tor_feudal_oath_line1.crooked_eye" text="{=tor_feudal_oath_line1_crooked_eye_str}Da Crooked Eye sees all da gitz what needs killin'. I’z ready to stomp 'em fer ya." />
+  <string id="tor_feudal_oath_line2.crooked_eye" text="{=tor_feudal_oath_line2_crooked_eye_str}Bazglud, you’z da Daemonstompa! You’z bigga an' betta dan da weird fings, so I’z doin' wot you sez." />
+  <string id="tor_feudal_oath_line3.crooked_eye" text="{=tor_feudal_oath_line3_crooked_eye_str}Let dis 'un stomp you'z enemies wiv me boots an' smash them wiv me fists!" />
+  <string id="tor_feudal_oath_line4.crooked_eye" text="{=tor_feudal_oath_line4_crooked_eye_str}I'll join ya Waaaagh! to break an' bash an' fight!" />
+  
+  <string id="tor_feudal_oath_line1.deff_grindaz" text="{=tor_feudal_oath_line1_deff_grindaz_str}We'z the strongest, meanest, greenest der iz." />
+  <string id="tor_feudal_oath_line2.deff_grindaz" text="{=tor_feudal_oath_line2_deff_grindaz_str}An' Zorkar Throat Ripper iz da best uv all dis out dere." />
+  <string id="tor_feudal_oath_line3.deff_grindaz" text="{=tor_feudal_oath_line3_deff_grindaz_str}So, I join ya mob so ya can make me even more green dan I iz." />
+  <string id="tor_feudal_oath_line4.deff_grindaz" text="{=tor_feudal_oath_line4_deff_grindaz_str}Fer da Great Green Gods an' a good bashin'! WAAAAAGH!!!" />
+  
+  <string id="tor_feudal_oath_line1.iron_tribe" text="{=tor_feudal_oath_line1_iron_tribe_str}Oaf?! Who you'z callin' an oaf, ya pansy!?" />
+  <string id="tor_feudal_oath_line2.iron_tribe" text="{=tor_feudal_oath_line2_iron_tribe_str}I'z gunna teach ya a lesson! Any last of dem stoopid wordz, git?" />
+  <string id="tor_feudal_oath_line3.iron_tribe" text="{=tor_feudal_oath_line3_iron_tribe_str}What you'z sayin'? Oath, not oaf? Ughhrrrrp… we'z can fight togeva', fer sum time…" />
+  <string id="tor_feudal_oath_line4.iron_tribe" text="{=tor_feudal_oath_line4_iron_tribe_str}Da land iz big, plenty uv dem puny gits an' all dem stunties fer both uv us." />
+  
+  <string id="tor_feudal_oath_line1.massif_choppas" text="{=tor_feudal_oath_line1_massif_choppas_str}By Gork n Mork, I swear to ya Skulgul Horsesmakka dat I'll smash any gitz ya wants." />
+  <string id="tor_feudal_oath_line2.massif_choppas" text="{=tor_feudal_oath_line2_massif_choppas_str}Skulgul, you’z got da biggest choppa in da mob. It mean you da best Boss dere is." />
+  <string id="tor_feudal_oath_line3.massif_choppas" text="{=tor_feudal_oath_line3_massif_choppas_str}We'z gonna knock dem ridas an' big gitz right off der asses!" />
+  <string id="tor_feudal_oath_line4.massif_choppas" text="{=tor_feudal_oath_line4_massif_choppas_str}Dis choppa I’z yours. I’ll keep whackin' till dere’s nuffin' but red mud on da ground." />
+  
+  <string id="tor_feudal_oath_line1.neck_snappers" text="{=tor_feudal_oath_line1_neck_snappers_str}I'z been lookin' fer a propa Boss an' Morglum is da best dere is." />
+  <string id="tor_feudal_oath_line2.neck_snappers" text="{=tor_feudal_oath_line2_neck_snappers_str}We Waaagh! wiv da tuffest boyz an' da best choppas thanks to ya." />
+  <string id="tor_feudal_oath_line3.neck_snappers" text="{=tor_feudal_oath_line3_neck_snappers_str}I'll smash anyone 'oo dun showz da propa respect ta ya, Boss." />
+  <string id="tor_feudal_oath_line4.neck_snappers" text="{=tor_feudal_oath_line4_neck_snappers_str}Fer da world belongs to Morglum. Da world'll be green." />
+  
+  <string id="tor_feudal_oath_line1.skull_smasherz" text="{=tor_feudal_oath_line1_skull_smasherz_str}I want to do sum proppa skull crackin' an' you'z da best Boss fer dat." />
+  <string id="tor_feudal_oath_line2.skull_smasherz" text="{=tor_feudal_oath_line2_skull_smasherz_str}I'z swear by Gork an' Mork to follow Ugrok Craktoof to Waaaagh! An' bash 'iz enemies proppa!" />
+  <string id="tor_feudal_oath_line3.skull_smasherz" text="{=tor_feudal_oath_line3_skull_smasherz_str}Cuz you'z fist iz bigga dan me 'ead an' you meaner dan a pair uv dem big squigs" />
+  <string id="tor_feudal_oath_line4.skull_smasherz" text="{=tor_feudal_oath_line4_skull_smasherz_str}So let'z find sum gitz fer da Skull Smasherz to smash!" />
+  
+  <string id="tor_feudal_oath_line1.bloody_spearz" text="{=tor_feudal_oath_line1_bloody_spearz_str}We'z da Bloody Spearz, terrorz uv da stunties. We'z didn't Gunbad, we'z always been bad!" />
+  <string id="tor_feudal_oath_line2.bloody_spearz" text="{=tor_feudal_oath_line2_bloody_spearz_str}I'z to strike fear into da hearts of da stunties an' da gitz of da Red Face tribe, bloody softies an' pansies!" />
+  <string id="tor_feudal_oath_line3.bloody_spearz" text="{=tor_feudal_oath_line3_bloody_spearz_str}Wen I'z raidin' da stunties, da biggest share iz fer da Boss Gnashrak, an' wen I'z smashin' Red Face Gitz, I send 'iz regardz." />
+  <string id="tor_feudal_oath_line4.bloody_spearz" text="{=tor_feudal_oath_line4_bloody_spearz_str}If I'z to backstab da Bloody Spearz, I'z no betta den da stoopid Red Facez." />
+
+  <string id="tor_feudal_oath_line1.red_eye" text="{=tor_feudal_oath_line1_red_eye_str}We'z to fight fer da Ornery Backslider, an' fight we will." />
+  <string id="tor_feudal_oath_line2.red_eye" text="{=tor_feudal_oath_line2_red_eye_str}Cuz da Red Eye neva blinks, it looks froo' da cloudz, da gloom, da earth an' meat." />
+  <string id="tor_feudal_oath_line3.red_eye" text="{=tor_feudal_oath_line3_red_eye_str}So we'z sneaky an' stabby to da uva' gitz, but not to da own gitz." />
+  <string id="tor_feudal_oath_line4.red_eye" text="{=tor_feudal_oath_line4_red_eye_str}An' if I backstab da boyz, I'z to be fed to da wyverns 'til I'z ded." />
+
+  <string id="tor_feudal_oath_line1.reavaz" text="{=tor_feudal_oath_line1_reavaz_str}I'z will follow da code of da brothaz uv da Reavaz. To loot all dem humies, stunties, an' uva gitz stoopid enuff to cross da mob." />
+  <string id="tor_feudal_oath_line2.reavaz" text="{=tor_feudal_oath_line2_reavaz_str}Any booty I get iz to be shared wiv me brothaz an' da biggest share iz fer da Kap'n Snozzsnik Skumclaw." />
+  <string id="tor_feudal_oath_line3.reavaz" text="{=tor_feudal_oath_line3_reavaz_str}An' if I'z to be sunken I'z to be goin' down wiv da ship coz grovelin' befor da Kap'n is wors." />
+  <string id="tor_feudal_oath_line4.reavaz" text="{=tor_feudal_oath_line4_reavaz_str}I'z to keep tru to da wordz to ma wo'ery grave." />
+
+  <string id="tor_feudal_oath_line1.black_pit" text="{=tor_feudal_oath_line1_black_pit_str}I’z come from da deep web. Da Spider-Bod whispers you'z name, Snagla. I’z here." />
+  <string id="tor_feudal_oath_line2.black_pit" text="{=tor_feudal_oath_line2_black_pit_str}You da sneakiest an' stabbiest gobbo there is. I’z part of da Deff Creepers now." />
+  <string id="tor_feudal_oath_line3.black_pit" text="{=tor_feudal_oath_line3_black_pit_str}By da Black Pit, we'z gonna feed dem gitz to da spiders." />
+  <string id="tor_feudal_oath_line4.black_pit" text="{=tor_feudal_oath_line4_black_pit_str}Da webz guide us an' da boyz, fer da Spider-God! Fer Snagla Grobspit!" />
+
+
   <string id="tor_player_accept_vassalage.empire" text="{=str_tor_player_accept_vassalage_empire}I proclaim you a noble of the Empire. Your life and property shall be protected by our laws, and shall not be taken from you except by law. You may serve as an official over towns and villages and as a general over armies, if we call upon you to do so." />
   <string id="tor_player_accept_vassalage.khuzait" text="{=str_tor_player_accept_vassalage_khuzait}I proclaim you a noble of the Sylvania and a servant of the von Carsteins. You are expected to carry out our bidding and bear arms in times of war. " />
   <string id="tor_player_accept_vassalage.mousillon" text="{=str_tor_player_accept_vassalage_mousillon}I have great hopes for you {PLAYER.NAME}. I know you shall prove yourself worthy of the trust I have placed in you." />
@@ -1438,6 +1554,8 @@
   <string id="tor_player_accept_vassalage.vlandia" text="{=str_tor_player_accept_vassalage_vlandia}By the lady of the lake. I proclaim you a noble of Brettonia and defender of the realm.  " />
   <string id="tor_player_accept_vassalage.battania" text="{=str_tor_player_accept_vassalage_battania}I name you guardian of Athel Loren, noble of the Asrai, may thy bow aim true." />
   <string id="tor_player_accept_vassalage.eonir" text="{=str_tor_player_accept_vassalage_eonir}I proclaim you a noble of the Eonir, stand proud for you are now a protector of the holy forest of Laurelorn." />
+  <string id="tor_player_accept_vassalage.sturgia" text="{=tor_player_accept_vassalage_empire_str}Your oath is heard and hammered into the annals. Stand proud, for your kin shall weigh your deeds in stone." />
+  <string id="tor_player_accept_vassalage.aserai" text="{=tor_player_accept_vassalage_aserai_str}You'z part uv me mob now! Go an' get to smashin' before I stab ya. WAAAAAAAGH!!!" />
   <string id="tor_player_accept_vassalage.chaos_culture" text="{=str_tor_player_accept_vassalage_chaos_culture}May Nurgle gift you with his blessings." />
 
   <string id="str_liege_title.empire" text="{=str_tor_liege_title_empire}Elector Count of one of the Provinces of the Empire">
@@ -3686,11 +3804,11 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 
   <!--TOR Information and data !-->
 
-  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead- Is not affected by morale and instead of fleeing this unit crumble. If defeated, unit cannot be wounded."/>
-  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew -  Can and is required to operate a cannon"/>
-  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable -  Unit will not flee due to low morale"/>
-  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable -  Unit will not show any signs of pain when being hit"/>
-  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Troll Regeneration -  Unit will regenerate health over time"/>
+  <string id="tor_extendedInfo.Undead" text="{=str_tor_extendedinfo_undead}Undead - not affected by morale, and instead of fleeing, shall crumble to dust. If defeated, this unit cannot be wounded."/>
+  <string id="tor_extendedInfo.ArtilleryCrew" text="{=str_tor_extendedinfo_artillerycrew}Artillery Crew - required to operate most artillery pieces."/>
+  <string id="tor_extendedInfo.Unbreakable" text="{=str_tor_extendedinfo_unbreakable}Unbreakable - shall never flee due to low morale."/>
+  <string id="tor_extendedInfo.Unstoppable" text="{=str_tor_extendedinfo_unstoppable}Unstoppable - does not stagger upon receiving damage."/>
+  <string id="tor_extendedInfo.TrollRegeneration" text="{=str_tor_extendedinfo_troll_regeneration}Troll Regeneration - regenerates health over time."/>
   
 
   <string id="tor_damagetype.Invalid" text="{=str_tor_damagetype_invalid}Invalid"/>
@@ -4900,13 +5018,13 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<!-- Vampire Bonus -->
 
 	<!-- Quartermaster/Shop Texts -->
-	<string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Hey yu. wanna spend for the big boss?"/>
-	<string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Anything else?"/>
+	<string id="tor_gs_quartermaster_intro_text" text="{=str_tor_gs_quartermaster_intro_text}Yoo dere, youz got sumfing fer da Boss?"/>
+	<string id="tor_gs_quartermaster_anything_else_text" text="{=str_tor_gs_quartermaster_anything_else_text}Wot, youz got more?"/>
 	<string id="tor_gs_quartermaster_shinies_option_text" text="{=str_tor_gs_quartermaster_shinies_option_text}Shinies"/>
 	<string id="tor_gs_quartermaster_loot_option_text" text="{=str_tor_gs_quartermaster_loot_option_text}Loot"/>
-	<string id="tor_gs_quartermaster_leave_option_text" text="{=str_tor_gs_quartermaster_leave_option_text}Leave"/>
-	<string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Hey Big Boss. you wanna pile some loot?"/>
-	<string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Anything else Big Boss?"/>
+	<string id="tor_gs_quartermaster_leave_option_text" text="{=str_tor_gs_quartermaster_leave_option_text}Iz outta 'ere!"/>
+	<string id="tor_gs_quartermaster_owner_intro_text" text="{=str_tor_gs_quartermaster_owner_intro_text}Oi, Boss, youz got sum loot fer da pile?"/>
+	<string id="tor_gs_quartermaster_owner_anything_else_text" text="{=str_tor_gs_quartermaster_owner_anything_else_text}Iz dere more, Boss?"/>
 	<string id="tor_gs_quartermaster_make_teefbags_option_text" text="{=str_tor_gs_quartermaster_make_teefbags_option_text}Make Teefbags"/>
 	<string id="tor_dw_shop_show_goods_text" text="{=str_tor_dw_shop_show_goods_text}Sure let me show what I got"/>
 	<string id="tor_dw_engineer_buy_weapons_text" text="{=str_tor_dw_engineer_buy_weapons_text}I need better weapons master engineer"/>
