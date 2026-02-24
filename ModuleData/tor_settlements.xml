@@ -5396,7 +5396,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_NL4_4" name="{=Settlements.Settlement.name.village_NL4_4}Salzmorast" posX="1433.925" posY="1326.61" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_4}Salzmorast Famous for its Mannan’s crown coaching inn. It is a large trading post. Salzmorast territory is a swampy one with salt water.">
+  <Settlement id="village_NL4_4" name="{=Settlements.Settlement.name.village_NL4_4}Salzmorast" posX="1433.925" posY="1326.61" culture="Culture.empire" text="{=Settlements.Settlement.text.village_NL4_4}Salzmorast Famous for its Manann’s Crown coaching inn. It is a large trading post. Salzmorast territory is a swampy one with salt water.">
     <Components>
       <Village id="village_comp_NL4_4" village_type="VillageType.salt_mine" hearth="250" bound="Settlement.town_NL4" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
