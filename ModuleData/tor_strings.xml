@@ -378,18 +378,24 @@
   
    <!-- priest blessings -->
   <string id="tor_priest_hub_intro.cult_of_ulric" text="{=str_tor_priest_hub_intro_cult_of_ulric}In the name of Ulric, how can I help you?"/>
-  <string id="tor_priest_hub_reintro.cult_of_ulric" text="{=str_tor_priest_hub_reintro_cult_of_ulric}What else?"/>
+  <string id="tor_priest_hub_reintro.cult_of_ulric" text="{=str_tor_priest_hub_reintro_cult_of_ulric}Did you need something else?"/>
   
   <string id="tor_priest_hub_blessings_p.cult_of_ulric" text="{=str_tor_priest_hub_blessings_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>
   <string id="tor_priest_hub_quit_p.cult_of_ulric" text="{=str_tor_priest_hub_quit_p_cult_of_ulric}Have a great day Mr Wolf man - Sir."/>
 
   <string id="tor_priest_blessings_1.cult_of_ulric" text="{=str_tor_priest_blessings_1_cult_of_ulric}For a donation in Sigmar's name, I can grant you access to our holy tomes."/>
   <string id="tor_priest_blessings_decline.cult_of_ulric" text="{=str_tor_priest_blessings_decline_cult_of_ulric}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
-<string id="tor_priest_start_accept.cult_of_ulric" text="{=str_tor_priest_start_accept_cult_of_ulric}Welcome, follower of the White Wolf."/>  <string id="tor_priest_start_decline.cult_of_ulric" text="{=str_tor_priest_start_decline_cult_of_ulric}You need a follower of Ulric in your party if you wish to speak to me, stranger."/>  <string id="tor_priest_start_decline_hard.cult_of_ulric" text="{=str_tor_priest_start_decline_hard_cult_of_ulric}Begone from my sight, coward!"/>  <string id="tor_priest_hub_blessingshop_p.cult_of_ulric" text="{=str_tor_priest_hub_blessingshop_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>  <string id="tor_priest_hub_party_blessing_p.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_p_cult_of_ulric}Can my party receive Ulric's blessing?"/>  <string id="tor_priest_blessingshop_1.cult_of_ulric" text="{=str_tor_priest_blessingshop_1_cult_of_ulric}Against a small donation, I will show you the sacred rites of the Winter Wolf."/>  <string id="tor_priest_blessing_party_1.cult_of_ulric" text="{=str_tor_priest_blessing_party_1_cult_of_ulric}In the name of Ulric, may his fury guide your strikes!"/>  <string id="tor_priest_hub_party_blessing_decline.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_ulric}You have been blessed by Ulric recently, there is no need for another blessing."/>  <string id="tor_priest_hub_quit.cult_of_ulric" text="{=str_tor_priest_hub_quit_cult_of_ulric}May the White Wolf watch over you."/>
-  
-  
-  
-  
+  <string id="tor_priest_start_accept.cult_of_ulric" text="{=str_tor_priest_start_accept_cult_of_ulric}Children of the Wolf, welcome!"/>
+  <string id="tor_priest_start_decline.cult_of_ulric" text="{=str_tor_priest_start_decline_cult_of_ulric}You need a follower of Ulric in your party if you wish to speak to me, stranger."/>
+  <string id="tor_priest_start_decline_hard.cult_of_ulric" text="{=str_tor_priest_start_decline_hard_cult_of_ulric}Leave, before I bare my fangs, outsider!"/>
+  <string id="tor_priest_hub_blessingshop_p.cult_of_ulric" text="{=str_tor_priest_hub_blessingshop_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>
+  <string id="tor_priest_hub_party_blessing_p.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_p_cult_of_ulric}I wish for the White Wolf's blessing."/>
+  <string id="tor_priest_blessingshop_1.cult_of_ulric" text="{=str_tor_priest_blessingshop_1_cult_of_ulric}With gifts of gold, you may access our Tomes of the Wolf."/>
+  <string id="tor_priest_blessing_party_1.cult_of_ulric" text="{=str_tor_priest_blessing_party_1_cult_of_ulric}Oh, Great Wolf! With your blade and fang, allow this warrior to become one with the winter's cold…"/>
+  <string id="tor_priest_hub_party_blessing_decline.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_ulric}The Wolf stands with you already, return later."/>
+  <string id="tor_priest_hub_quit.cult_of_ulric" text="{=str_tor_priest_hub_quit_cult_of_ulric}I must leave."/>
+
+
   <string id="tor_priest_start_accept.cult_of_sigmar" text="{=str_tor_priest_start_accept_cult_of_sigmar}Welcome, friends of the Empire."/>
   <string id="tor_priest_start_decline.cult_of_sigmar" text="{=str_tor_priest_start_decline_cult_of_sigmar}You need a follower of Sigmar if you wish to speak to me, stranger."/>
   <string id="tor_priest_start_decline_hard.cult_of_sigmar" text="{=str_tor_priest_start_decline_hard_cult_of_sigmar}Begone from my sight, at once!"/>
@@ -397,44 +403,39 @@
   <string id="tor_priest_hub_intro.cult_of_sigmar" text="{=str_tor_priest_hub_intro_cult_of_sigmar}In the name of Sigmar, how can I help you?"/>
   <string id="tor_priest_hub_reintro.cult_of_sigmar" text="{=str_tor_priest_hub_reintro_cult_of_sigmar}Was there something else?"/>
 
-
   <string id="tor_priest_hub_blessings_p.cult_of_sigmar" text="{=str_tor_priest_hub_blessings_p_cult_of_sigmar}Can you show me how to bless weapons in the name of Sigmar?"/>
   <string id="tor_priest_hub_blessingshop_p.cult_of_sigmar" text="{=str_tor_priest_hub_blessingshop_p_cult_of_sigmar}Tell me more about blessing items in the name of Sigmar."/>
-<string id="tor_priest_hub_party_blessing_p.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_p_cult_of_sigmar}Can we receive the Heldenhammer's Blessing?"/>
+  <string id="tor_priest_hub_party_blessing_p.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_p_cult_of_sigmar}Can we receive the Heldenhammer's Blessing?"/>
   <string id="tor_priest_hub_quit_p.cult_of_sigmar" text="{=str_tor_priest_hub_quit_p_cult_of_sigmar}I must leave."/>
 
-  <string id="tor_priest_blessingshop_1.cult_of_sigmar" text="{=str_tor_priest_blessingshop_1_cult_of_sigmar}Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
+  <string id="tor_priest_blessingshop_1.cult_of_sigmar" text="{=str_tor_priest_blessingshop_1_cult_of_sigmar}For a donation, in Sigmar's name, I can grant you access to our holy tomes."/>
   <string id="tor_priest_blessingshop_decline.cult_of_sigmar" text="{=str_tor_priest_blessingshop_decline_cult_of_sigmar}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
 
-
-    <string id="tor_priest_blessing_party_1.cult_of_sigmar" text="{=str_tor_priest_blessing_party_1_cult_of_sigmar}By Sigmar Heldenhammer and Ghal Maraz, may your righteous wrath smite the unclean. Suffer not the foul, the mutant, the heretic for Sigmar walks with thee…"/>
+  <string id="tor_priest_blessing_party_1.cult_of_sigmar" text="{=str_tor_priest_blessing_party_1_cult_of_sigmar}By Sigmar Heldenhammer and Ghal Maraz, may your righteous wrath smite the unclean. Suffer not the foul, the mutant, the heretic for Sigmar walks with thee…"/>
   <string id="tor_priest_blessings_decline.cult_of_sigmar" text="{=str_tor_priest_blessings_decline_cult_of_sigmar}You have been blessed recently, there is no need of giving you the blessing."/>
   <string id="tor_priest_hub_party_blessing_decline.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_sigmar}You have been blessed by Sigmar recently, there is no need for another blessing."/>
   <string id="tor_priest_hub_quit.cult_of_sigmar" text="{=str_tor_priest_hub_quit_cult_of_sigmar}Sigmar guide your path."/>
-  
-  
-
-  
+   
   
   <string id="tor_priest_start_accept.cult_of_shallya" text="{=str_tor_priest_start_accept_cult_of_shallya}Welcome, friend of Shallya."/>
   <string id="tor_priest_start_decline.cult_of_shallya" text="{=str_tor_priest_start_decline_cult_of_shallya}You need a follower of Shallya in your party if you wish to speak to me, stranger."/>
   <string id="tor_priest_start_decline_hard.cult_of_shallya" text="{=str_tor_priest_start_decline_hard_cult_of_shallya}You are not welcome here, leave at once!"/>
 
-  <string id="tor_priest_hub_intro.cult_of_shallya" text="{=str_tor_priest_hub_intro_cult_of_shallya}Shallya welcomes you with open arms."/>
+  <string id="tor_priest_hub_intro.cult_of_shallya" text="{=str_tor_priest_hub_intro_cult_of_shallya}The White Dove of Mercy welcomes you with open arms."/>
   <string id="tor_priest_hub_reintro.cult_of_shallya" text="{=str_tor_priest_hub_reintro_cult_of_shallya}Was there something else you needed, friend?"/>
 
-  <string id="tor_priest_hub_blessingshop_p.cult_of_shallya" text="{=str_tor_priest_hub_blessingshop_p_cult_of_shallya}Tell me more about blessing items in the name of Shallya."/>
+  <string id="tor_priest_hub_blessingshop_p.cult_of_shallya" text="{=str_tor_priest_hub_blessingshop_p_cult_of_shallya}Tell me more about the holy tomes of Shallya."/>
 
-<string id="tor_priest_hub_party_blessing_p.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_p_cult_of_shallya}We wish to be blessed by the Lady in White."/>
+  <string id="tor_priest_hub_party_blessing_p.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_p_cult_of_shallya}We wish to be blessed by the Lady in White."/>
   <string id="tor_priest_hub_quit_p.cult_of_shallya" text="{=str_tor_priest_hub_quit_p_cult_of_shallya}I must take my leave."/>
 
   <string id="tor_priest_blessingshop_1.cult_of_shallya" text="{=str_tor_priest_blessingshop_1_cult_of_shallya}For a small donation, you may access our tomes of healing and faith."/>
   <string id="tor_priest_blessingshop_decline.cult_of_shallya" text="{=str_tor_priest_blessingshop_decline_cult_of_shallya}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
 
 
-    <string id="tor_priest_blessing_party_1.cult_of_shallya" text="{=str_tor_priest_blessing_party_1_cult_of_shallya}In the name of Shallya, I bless you."/>
-  <string id="tor_priest_blessings_decline.cult_of_shallya" text="{=str_tor_priest_blessings_decline_cult_of_shallya}You have been blessed recently, there is no need of giving you the blessing of a god."/>
-  <string id="tor_priest_hub_party_blessing_decline.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_shallya}You have been blessed by Shallya recently, there is no need for another blessing."/>
+  <string id="tor_priest_blessing_party_1.cult_of_shallya" text="{=str_tor_priest_blessing_party_1_cult_of_shallya}May Her mercy and compassion serve Her humble followers…"/>
+  <string id="tor_priest_blessings_decline.cult_of_shallya" text="{=str_tor_priest_blessings_decline_cult_of_shallya}You have been blessed recently, there is no need of giving you the blessing of a deity."/>
+  <string id="tor_priest_hub_party_blessing_decline.cult_of_shallya" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_shallya}The Lady's healing light is with you still, return at a later time."/>
   <string id="tor_priest_hub_quit.cult_of_shallya" text="{=str_tor_priest_hub_quit_cult_of_shallya}May Shallya's mercy be with you."/>
   
   
@@ -483,17 +484,18 @@
 	<string id="tor_skill_training_hover.Full" text="{=str_tor_skill_training_hover_Full}{SKILLTRAINING_REASON} {SKILL_TRAINING_COSTS}"/>
 	
 	
-	<string id="tor_teach_skills_dialog_p.ShallyaTrainRE" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainRE}Can you teach my companion more about Medicine?"/>
-	<string id="tor_teach_skills_dialog_p.ShallyaTrainCO" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainCO}Can you teach my companion more about Faith?"/>
-  <string id="tor_skill_teacher_train_1.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_1_ShallyaTrainRE}Shallya's mercy guides our hands in healing. I can teach your companion the ways of medicine."/>
+	<string id="tor_teach_skills_dialog_p.ShallyaTrainRE" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainRE}Can you teach my companions more about Medicine?"/>
+	<string id="tor_teach_skills_dialog_p.ShallyaTrainCO" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainCO}My companions wish to learn more of Shallya's mercy."/>
+  <string id="tor_skill_teacher_train_1.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_1_ShallyaTrainRE}The Dove's mercy guides our hands in healing. I can teach your companion the ways of the merciful."/>
   <string id="tor_skill_teacher_train_2.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_2_ShallyaTrainRE}Who among your companions shall learn the healing arts?"/>
   <string id="tor_skill_train_hub_select_companion_p.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_p_ShallyaTrainRE}Yes, please guide one of my companions in the healing arts."/>
-  <string id="tor_skill_train_hub_select_companion.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainRE}Very well, they shall learn under Shallya's guidance. Your companion will return when the training is complete."/>
+  <string id="tor_skill_train_hub_select_companion.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainRE}We will return them in time, they are in good hands."/>
   <string id="tor_skill_train_hub_select_companion_decline.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_decline_ShallyaTrainRE}None of your companions are suited for learning the healing arts."/>
   <string id="tor_priest_train_hub_quit_p.ShallyaTrainRE" text="{=str_tor_priest_train_hub_quit_p_ShallyaTrainRE}Perhaps another time, sister."/>
-  <string id="tor_skill_teacher_train_1.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_1_ShallyaTrainCO}The path of faith requires dedication and compassion. I can guide your companion in Shallya's ways."/>	<string id="tor_skill_teacher_train_2.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_2_ShallyaTrainCO}Who among your companions seeks to walk the path of faith?"/>
+  <string id="tor_skill_teacher_train_1.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_1_ShallyaTrainCO}The path of faith requires dedication and compassion. I can guide your companion in Shallya's ways."/>
+  <string id="tor_skill_teacher_train_2.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_2_ShallyaTrainCO}There is much on both mercy and compassion that we can teach."/>
   <string id="tor_skill_train_hub_select_companion_p.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_p_ShallyaTrainCO}Yes, please guide one of my companions in the ways of faith."/>
-  <string id="tor_skill_train_hub_select_companion.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainCO}Very well, they shall learn the sacred ways. Your companion will return when the training is complete."/>
+  <string id="tor_skill_train_hub_select_companion.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainCO}We will return them in time, they are in good hands."/>
   <string id="tor_skill_train_hub_select_companion_decline.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_decline_ShallyaTrainCO}None of your companions are suited for learning the ways of faith."/>
   <string id="tor_priest_train_hub_quit_p.ShallyaTrainCO" text="{=str_tor_priest_train_hub_quit_p_ShallyaTrainCO}Perhaps another time, sister."/>
   <string id="tor_teach_skills_dialog_p.SigmarPriest" text="{=str_tor_teach_skills_dialog_p_SigmarPriest}My companion wishes to deepen his faith, can you guide them?"/>
@@ -591,29 +593,29 @@
   <string id="tor_enchanter_info_hub_intro_read_book.empire" text="{=str_tor_enchanter_info_hub_intro_read_book_empire}Read the tome I gave you, it should cover all the basic principles of alchemy."/>
 
   <!-- BRETONNIA (vlandia) - TODO: Complete Bretonnian Prophetess dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.vlandia" text="{=str_tor_enchanter_start_p_vlandia}TODO: BRETONNIA - Player initiates conversation about enchantment"/>
-  <string id="tor_enchanter_start_enchanter.vlandia" text="{=str_tor_enchanter_start_enchanter_vlandia}TODO: BRETONNIA - Prophetess greets fellow practitioner"/>
-  <string id="tor_enchanter_dialog_start.vlandia" text="{=str_tor_enchanter_dialog_start_vlandia}TODO: BRETONNIA - Prophetess greets general visitor"/>
-  <string id="tor_enchanter_dialog_start_quit.vlandia" text="{=str_tor_enchanter_dialog_start_quit_vlandia}TODO: BRETONNIA - Wrong culture rejection"/>
+  <string id="tor_enchanter_start_p.vlandia" text="{=str_tor_enchanter_start_p_vlandia}My lady, can we discuss the mysteries of the Grail?"/>
+  <string id="tor_enchanter_start_enchanter.vlandia" text="{=str_tor_enchanter_start_enchanter_vlandia}Fellow Daughter of the Grail, I shall gladly help you."/>
+  <string id="tor_enchanter_dialog_start.vlandia" text="{=str_tor_enchanter_dialog_start_vlandia}Friends of Bretonnia are always welcome here."/>
+  <string id="tor_enchanter_dialog_start_quit.vlandia" text="{=str_tor_enchanter_dialog_start_quit_vlandia}Vile filth, begone from my sight."/>
   <string id="tor_enchanter_dialog_start_1.vlandia" text="{=str_tor_enchanter_dialog_start_1_vlandia}TODO: BRETONNIA - Prophetess welcomes visitor"/>
   <string id="tor_enchanter_dialog_start_2.vlandia" text="{=str_tor_enchanter_dialog_start_2_vlandia}TODO: BRETONNIA - Prophetess greets fellow practitioner"/>
-  <string id="tor_enchanter_hub_intro.vlandia" text="{=str_tor_enchanter_hub_intro_vlandia}TODO: BRETONNIA - Hub introduction"/>
-  <string id="tor_enchanter_hub_reintro.vlandia" text="{=str_tor_enchanter_hub_reintro_vlandia}TODO: BRETONNIA - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.vlandia" text="{=str_tor_enchanter_hub_info_p_vlandia}TODO: BRETONNIA - Ask about enchanting"/>
-  <string id="tor_enchanter_hub_blueprints_p.vlandia" text="{=str_tor_enchanter_hub_blueprints_p_vlandia}TODO: BRETONNIA - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.vlandia" text="{=str_tor_enchanter_hub_donate_items_p_vlandia}TODO: BRETONNIA - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.vlandia" text="{=str_tor_enchanter_hub_open_enchanter_p_vlandia}TODO: BRETONNIA - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.vlandia" text="{=str_tor_enchanter_hub_return_p_vlandia}TODO: BRETONNIA - Leave"/>
-  <string id="tor_enchanter_blueprints.vlandia" text="{=str_tor_enchanter_blueprints_vlandia}TODO: BRETONNIA - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.vlandia" text="{=str_tor_enchanter_blueprints_decline_vlandia}TODO: BRETONNIA - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.vlandia" text="{=str_tor_enchanter_donate_items_1_vlandia}TODO: BRETONNIA - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.vlandia" text="{=str_tor_enchanter_donate_items_1_negative_vlandia}TODO: BRETONNIA - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.vlandia" text="{=str_tor_enchanter_donate_items_hub_p_vlandia}TODO: BRETONNIA - Player offers items"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.vlandia" text="{=str_tor_enchanter_gift_items_hub_return_p_vlandia}TODO: BRETONNIA - Player backs out"/>
-  <string id="tor_enchanter_donate_items_2.vlandia" text="{=str_tor_enchanter_donate_items_2_vlandia}TODO: BRETONNIA - Select items"/>
+  <string id="tor_enchanter_hub_intro.vlandia" text="{=str_tor_enchanter_hub_intro_vlandia}What do you wish to know?"/>
+  <string id="tor_enchanter_hub_reintro.vlandia" text="{=str_tor_enchanter_hub_reintro_vlandia}Was there anything else?"/>
+  <string id="tor_enchanter_hub_info_p.vlandia" text="{=str_tor_enchanter_hub_info_p_vlandia}My lady, I wish to know more of the Lady's teachings."/>
+  <string id="tor_enchanter_hub_blueprints_p.vlandia" text="{=str_tor_enchanter_hub_blueprints_p_vlandia}My lady, I wish to know more about the holy tomes."/>
+  <string id="tor_enchanter_hub_donate_items_p.vlandia" text="{=str_tor_enchanter_hub_donate_items_p_vlandia}My lady, will you accept these artifacts?"/>
+  <string id="tor_enchanter_hub_open_enchanter_p.vlandia" text="{=str_tor_enchanter_hub_open_enchanter_p_vlandia}May I make use of this altar?"/>
+  <string id="tor_enchanter_hub_return_p.vlandia" text="{=str_tor_enchanter_hub_return_p_vlandia}I wish to ask about something else."/>
+  <string id="tor_enchanter_blueprints.vlandia" text="{=str_tor_enchanter_blueprints_vlandia}Very well, let us begin in the name of the Lady."/>
+  <string id="tor_enchanter_blueprints_decline.vlandia" text="{=str_tor_enchanter_blueprints_decline_vlandia}I do not sense the gift of the Lady in you. Nor in your companions for that matter. Return in the company of a Grail Damsel."/>
+  <string id="tor_enchanter_donate_items_1.vlandia" text="{=str_tor_enchanter_donate_items_1_vlandia}I shall gladly take what you no longer need, however, the Lady shan't accept items you have enchanted yourself."/>
+  <string id="tor_enchanter_donate_items_1_negative.vlandia" text="{=str_tor_enchanter_donate_items_1_negative_vlandia}Alas, you carry nothing that would be of use to the realm."/>
+  <string id="tor_enchanter_donate_items_hub_p.vlandia" text="{=str_tor_enchanter_donate_items_hub_p_vlandia}I wish to donate the following items…"/>
+  <string id="tor_enchanter_gift_items_hub_return_p.vlandia" text="{=str_tor_enchanter_gift_items_hub_return_p_vlandia}Forgive me, I need to give this more thought."/>
+  <string id="tor_enchanter_donate_items_2.vlandia" text="{=str_tor_enchanter_donate_items_2_vlandia}What did you have in mind?"/>
   <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.vlandia" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_vlandia}TODO: BRETONNIA - First visit with career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.vlandia" text="{=str_tor_enchanter_info_hub_intro_first_visit_vlandia}TODO: BRETONNIA - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.vlandia" text="{=str_tor_enchanter_info_hub_intro_read_book_vlandia}TODO: BRETONNIA - Already has manual"/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.vlandia" text="{=str_tor_enchanter_info_hub_intro_first_visit_vlandia}Take this tome of knowledge. It should answer all your questions."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.vlandia" text="{=str_tor_enchanter_info_hub_intro_read_book_vlandia}You already carry the tome of the Lady. Study it for the answers you seek."/>
 
   <!-- SYLVANIA (khuzait) - TODO: Complete Vampiric Necromancer dialogs following Empire pattern -->
   <string id="tor_enchanter_start_p.khuzait" text="{=str_tor_enchanter_start_p_khuzait}I wish to know more of magical and cursed items."/>
@@ -635,7 +637,7 @@
   <string id="tor_enchanter_donate_items_1_negative.khuzait" text="{=str_tor_enchanter_donate_items_1_negative_khuzait}These will likely not be of use to me or my master. Return with the treasures and artifacts of this world."/>
   <string id="tor_enchanter_donate_items_hub_p.khuzait" text="{=str_tor_enchanter_donate_items_hub_p_khuzait}Take these relics then."/>
   <string id="tor_enchanter_gift_items_hub_return_p.khuzait" text="{=str_tor_enchanter_gift_items_hub_return_p_khuzait}I think I would rather keep these for now."/>
-  <string id="tor_enchanter_donate_items_2.khuzait" text="{=str_tor_enchanter_donate_items_2_khuzait}TODO: SYLVANIA - Select items"/>
+  <string id="tor_enchanter_donate_items_2.khuzait" text="{=str_tor_enchanter_donate_items_2_khuzait}Is this all? Let us move on then."/>
   <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_khuzait}There are dark energies coiling around you. I shall impart this knowledge to you."/>
   <string id="tor_enchanter_info_hub_intro_first_visit.khuzait" text="{=str_tor_enchanter_info_hub_intro_first_visit_khuzait}This tome holds everything you shall need."/>
   <string id="tor_enchanter_info_hub_intro_read_book.khuzait" text="{=str_tor_enchanter_info_hub_intro_read_book_khuzait}The grimoire I bestowed upon you covers all the required basics."/>
@@ -660,7 +662,7 @@
   <string id="tor_enchanter_donate_items_1_negative.mousillon" text="{=str_tor_enchanter_donate_items_1_negative_mousillon}These will likely not be of use to me or my master. Return with the treasures and artifacts of this world."/>
   <string id="tor_enchanter_donate_items_hub_p.mousillon" text="{=str_tor_enchanter_donate_items_hub_p_mousillon}Take these relics then."/>
   <string id="tor_enchanter_gift_items_hub_return_p.mousillon" text="{=str_tor_enchanter_gift_items_hub_return_p_mousillon}I think I would rather keep these for now."/>
-  <string id="tor_enchanter_donate_items_2.mousillon" text="{=str_tor_enchanter_donate_items_2_mousillon}TODO: MOUSILLON - Select items"/>
+  <string id="tor_enchanter_donate_items_2.mousillon" text="{=str_tor_enchanter_donate_items_2_mousillon}Is this all? Let us move on then."/>
   <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_mousillon}There are dark energies coiling around you. I shall impart this knowledge to you."/>
   <string id="tor_enchanter_info_hub_intro_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_first_visit_mousillon}This tome holds everything you shall need."/>
   <string id="tor_enchanter_info_hub_intro_read_book.mousillon" text="{=str_tor_enchanter_info_hub_intro_read_book_mousillon}The grimoire I bestowed upon you covers all the required basics."/>
@@ -722,54 +724,54 @@
   <!-- Elves use nature-based/arcane enchantment -->
 
   <!-- ASRAI / WOOD ELVES (battania) - TODO: Complete Spellsinger dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.battania" text="{=str_tor_enchanter_start_p_battania}TODO: ASRAI - Player initiates conversation"/>
-  <string id="tor_enchanter_start_enchanter.battania" text="{=str_tor_enchanter_start_enchanter_battania}TODO: ASRAI - Spellsinger greets fellow mage"/>
-  <string id="tor_enchanter_dialog_start.battania" text="{=str_tor_enchanter_dialog_start_battania}TODO: ASRAI - Spellsinger general greeting"/>
-  <string id="tor_enchanter_dialog_start_quit.battania" text="{=str_tor_enchanter_dialog_start_quit_battania}TODO: ASRAI - Wrong culture rejection"/>
+  <string id="tor_enchanter_start_p.battania" text="{=str_tor_enchanter_start_p_battania}I wish to study the artifacts of the forest."/>
+  <string id="tor_enchanter_start_enchanter.battania" text="{=str_tor_enchanter_start_enchanter_battania}A fellow spellsinger? A rare pleasure in these times."/>
+  <string id="tor_enchanter_dialog_start.battania" text="{=str_tor_enchanter_dialog_start_battania}Your contributions to these woods have earnt a measure of tolerance."/>
+  <string id="tor_enchanter_dialog_start_quit.battania" text="{=str_tor_enchanter_dialog_start_quit_battania}You trespass on sacred ground, leave before my patience reaches its end."/>
   <string id="tor_enchanter_dialog_start_1.battania" text="{=str_tor_enchanter_dialog_start_1_battania}TODO: ASRAI - Welcome message"/>
   <string id="tor_enchanter_dialog_start_2.battania" text="{=str_tor_enchanter_dialog_start_2_battania}TODO: ASRAI - Fellow practitioner"/>
-  <string id="tor_enchanter_hub_intro.battania" text="{=str_tor_enchanter_hub_intro_battania}TODO: ASRAI - Hub intro"/>
-  <string id="tor_enchanter_hub_reintro.battania" text="{=str_tor_enchanter_hub_reintro_battania}TODO: ASRAI - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.battania" text="{=str_tor_enchanter_hub_info_p_battania}TODO: ASRAI - Ask about forest magic"/>
-  <string id="tor_enchanter_hub_blueprints_p.battania" text="{=str_tor_enchanter_hub_blueprints_p_battania}TODO: ASRAI - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.battania" text="{=str_tor_enchanter_hub_donate_items_p_battania}TODO: ASRAI - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.battania" text="{=str_tor_enchanter_hub_open_enchanter_p_battania}TODO: ASRAI - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.battania" text="{=str_tor_enchanter_hub_return_p_battania}TODO: ASRAI - Leave"/>
-  <string id="tor_enchanter_blueprints.battania" text="{=str_tor_enchanter_blueprints_battania}TODO: ASRAI - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.battania" text="{=str_tor_enchanter_blueprints_decline_battania}TODO: ASRAI - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.battania" text="{=str_tor_enchanter_donate_items_1_battania}TODO: ASRAI - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.battania" text="{=str_tor_enchanter_donate_items_1_negative_battania}TODO: ASRAI - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.battania" text="{=str_tor_enchanter_donate_items_hub_p_battania}TODO: ASRAI - Player offers"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.battania" text="{=str_tor_enchanter_gift_items_hub_return_p_battania}TODO: ASRAI - Player backs out"/>
-  <string id="tor_enchanter_donate_items_2.battania" text="{=str_tor_enchanter_donate_items_2_battania}TODO: ASRAI - Select items"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.battania" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_battania}TODO: ASRAI - First visit career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.battania" text="{=str_tor_enchanter_info_hub_intro_first_visit_battania}TODO: ASRAI - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.battania" text="{=str_tor_enchanter_info_hub_intro_read_book_battania}TODO: ASRAI - Has manual"/>
+  <string id="tor_enchanter_hub_intro.battania" text="{=str_tor_enchanter_hub_intro_battania}What purpose carries you here?"/>
+  <string id="tor_enchanter_hub_reintro.battania" text="{=str_tor_enchanter_hub_reintro_battania}What purpose carries you here?"/>
+  <string id="tor_enchanter_hub_info_p.battania" text="{=str_tor_enchanter_hub_info_p_battania}I seek the wisdom of the forest and your knowledge of magical items."/>
+  <string id="tor_enchanter_hub_blueprints_p.battania" text="{=str_tor_enchanter_hub_blueprints_p_battania}May I impose on you for methods of enchanting?"/>
+  <string id="tor_enchanter_hub_donate_items_p.battania" text="{=str_tor_enchanter_hub_donate_items_p_battania}Please take these gifts, that you may use them to guard Athel Loren."/>
+  <string id="tor_enchanter_hub_open_enchanter_p.battania" text="{=str_tor_enchanter_hub_open_enchanter_p_battania}May I make use of your ritual spaces for my own works?"/>
+  <string id="tor_enchanter_hub_return_p.battania" text="{=str_tor_enchanter_hub_return_p_battania}This thread has reached its natural end."/>
+  <string id="tor_enchanter_blueprints.battania" text="{=str_tor_enchanter_blueprints_battania}Very well, let us study together for the betterment of Athel Loren."/>
+  <string id="tor_enchanter_blueprints_decline.battania" text="{=str_tor_enchanter_blueprints_decline_battania}I sense no gift of magic within you or your companions. Return in the company of a Spellsinger."/>
+  <string id="tor_enchanter_donate_items_1.battania" text="{=str_tor_enchanter_donate_items_1_battania}What is it that you wish to relinquish?"/>
+  <string id="tor_enchanter_donate_items_1_negative.battania" text="{=str_tor_enchanter_donate_items_1_negative_battania}The Forest can't make use of what you offer. Return when you find more artifacts."/>
+  <string id="tor_enchanter_donate_items_hub_p.battania" text="{=str_tor_enchanter_donate_items_hub_p_battania}Let me see…"/>
+  <string id="tor_enchanter_gift_items_hub_return_p.battania" text="{=str_tor_enchanter_gift_items_hub_return_p_battania}Please give me more time to think of this."/>
+  <string id="tor_enchanter_donate_items_2.battania" text="{=str_tor_enchanter_donate_items_2_battania}Will that be all? Very well."/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.battania" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_battania}Of course. I have not the time to impart the knowledge myself, take these scrolls from Argwylon, and my own addition that I'm sure you shall appreciate."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.battania" text="{=str_tor_enchanter_info_hub_intro_first_visit_battania}This scroll hails from Argwylon's libraries, take it and study it in detail."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.battania" text="{=str_tor_enchanter_info_hub_intro_read_book_battania}You already carry the scroll of Argwylon, do you not?"/>
 
   <!-- EONIR / HIGH ELVES (eonir) - TODO: Complete Eonir Spellsinger dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.eonir" text="{=str_tor_enchanter_start_p_eonir}TODO: EONIR - Player initiates conversation"/>
-  <string id="tor_enchanter_start_enchanter.eonir" text="{=str_tor_enchanter_start_enchanter_eonir}TODO: EONIR - Spellsinger greets fellow mage"/>
-  <string id="tor_enchanter_dialog_start.eonir" text="{=str_tor_enchanter_dialog_start_eonir}TODO: EONIR - Spellsinger general greeting"/>
-  <string id="tor_enchanter_dialog_start_quit.eonir" text="{=str_tor_enchanter_dialog_start_quit_eonir}TODO: EONIR - Wrong culture rejection"/>
+  <string id="tor_enchanter_start_p.eonir" text="{=str_tor_enchanter_start_p_eonir}Can you tell me more about enchantments?"/>
+  <string id="tor_enchanter_start_enchanter.eonir" text="{=str_tor_enchanter_start_enchanter_eonir}Welcome to Laurelorn kindred; I hope your time outside our borders was fruitful."/>
+  <string id="tor_enchanter_dialog_start.eonir" text="{=str_tor_enchanter_dialog_start_eonir}Your deeds in these woods have earnt my ear, for a time."/>
+  <string id="tor_enchanter_dialog_start_quit.eonir" text="{=str_tor_enchanter_dialog_start_quit_eonir}You are not one of us. Leave before I call the guards."/>
   <string id="tor_enchanter_dialog_start_1.eonir" text="{=str_tor_enchanter_dialog_start_1_eonir}TODO: EONIR - Welcome message"/>
   <string id="tor_enchanter_dialog_start_2.eonir" text="{=str_tor_enchanter_dialog_start_2_eonir}TODO: EONIR - Fellow practitioner"/>
-  <string id="tor_enchanter_hub_intro.eonir" text="{=str_tor_enchanter_hub_intro_eonir}TODO: EONIR - Hub intro"/>
-  <string id="tor_enchanter_hub_reintro.eonir" text="{=str_tor_enchanter_hub_reintro_eonir}TODO: EONIR - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.eonir" text="{=str_tor_enchanter_hub_info_p_eonir}TODO: EONIR - Ask about elven magic"/>
-  <string id="tor_enchanter_hub_blueprints_p.eonir" text="{=str_tor_enchanter_hub_blueprints_p_eonir}TODO: EONIR - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.eonir" text="{=str_tor_enchanter_hub_donate_items_p_eonir}TODO: EONIR - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.eonir" text="{=str_tor_enchanter_hub_open_enchanter_p_eonir}TODO: EONIR - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.eonir" text="{=str_tor_enchanter_hub_return_p_eonir}TODO: EONIR - Leave"/>
-  <string id="tor_enchanter_blueprints.eonir" text="{=str_tor_enchanter_blueprints_eonir}TODO: EONIR - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.eonir" text="{=str_tor_enchanter_blueprints_decline_eonir}TODO: EONIR - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.eonir" text="{=str_tor_enchanter_donate_items_1_eonir}TODO: EONIR - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.eonir" text="{=str_tor_enchanter_donate_items_1_negative_eonir}TODO: EONIR - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.eonir" text="{=str_tor_enchanter_donate_items_hub_p_eonir}TODO: EONIR - Player offers"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.eonir" text="{=str_tor_enchanter_gift_items_hub_return_p_eonir}TODO: EONIR - Player backs out"/>
-  <string id="tor_enchanter_donate_items_2.eonir" text="{=str_tor_enchanter_donate_items_2_eonir}TODO: EONIR - Select items"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.eonir" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_eonir}TODO: EONIR - First visit career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.eonir" text="{=str_tor_enchanter_info_hub_intro_first_visit_eonir}TODO: EONIR - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.eonir" text="{=str_tor_enchanter_info_hub_intro_read_book_eonir}TODO: EONIR - Has manual"/>
+  <string id="tor_enchanter_hub_intro.eonir" text="{=str_tor_enchanter_hub_intro_eonir}Blessings of Isha upon you, what aid can I bestow?"/>
+  <string id="tor_enchanter_hub_reintro.eonir" text="{=str_tor_enchanter_hub_reintro_eonir}Blessings of Isha upon you, what aid can I bestow?"/>
+  <string id="tor_enchanter_hub_info_p.eonir" text="{=str_tor_enchanter_hub_info_p_eonir}Can you help me learn the basics of enchanting?"/>
+  <string id="tor_enchanter_hub_blueprints_p.eonir" text="{=str_tor_enchanter_hub_blueprints_p_eonir}I come in search of new enchanting techniques."/>
+  <string id="tor_enchanter_hub_donate_items_p.eonir" text="{=str_tor_enchanter_hub_donate_items_p_eonir}I bring great grifts of arcane power for you and our kin."/>
+  <string id="tor_enchanter_hub_open_enchanter_p.eonir" text="{=str_tor_enchanter_hub_open_enchanter_p_eonir}May I make use of your enchanting equipment?"/>
+  <string id="tor_enchanter_hub_return_p.eonir" text="{=str_tor_enchanter_hub_return_p_eonir}I wish to discuss the matters of diplomacy."/>
+  <string id="tor_enchanter_blueprints.eonir" text="{=str_tor_enchanter_blueprints_eonir}So be it, let us unravel these mysteries together."/>
+  <string id="tor_enchanter_blueprints_decline.eonir" text="{=str_tor_enchanter_blueprints_decline_eonir}I sense no gift of magic within you or your companions. Return in the company of a spellcaster."/>
+  <string id="tor_enchanter_donate_items_1.eonir" text="{=str_tor_enchanter_donate_items_1_eonir}What is it that you wish to relinquish?"/>
+  <string id="tor_enchanter_donate_items_1_negative.eonir" text="{=str_tor_enchanter_donate_items_1_negative_eonir}I'm afraid nothing you carry is of any true value to us."/>
+  <string id="tor_enchanter_donate_items_hub_p.eonir" text="{=str_tor_enchanter_donate_items_hub_p_eonir}I was considering…"/>
+  <string id="tor_enchanter_gift_items_hub_return_p.eonir" text="{=str_tor_enchanter_gift_items_hub_return_p_eonir}Forgive me, I need more time to consider my options."/>
+  <string id="tor_enchanter_donate_items_2.eonir" text="{=str_tor_enchanter_donate_items_2_eonir}Will that be all? Very well."/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.eonir" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_eonir}Take this scroll with instructions, it includes some of my own notations. May you live a thousand years, kin."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.eonir" text="{=str_tor_enchanter_info_hub_intro_first_visit_eonir}Take this scroll with instructions. May you live a thousand years, kin."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.eonir" text="{=str_tor_enchanter_info_hub_intro_read_book_eonir}I do hope you kept the scroll I parted with…"/>
 
 
   <!-- oath gold mechanic-->
@@ -4816,12 +4818,12 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_prophetesse_damselsecond_lore" text="{=str_tor_spelltrainer_prophetesse_damselsecond_lore}My Fay Enchantress, I feel that {DAMSELNAME} has reached  a new level of magical potential, is there anything you can teach her?"/>
 
 	<!--Spell Trainer Spellsinger Dialogs-->
-	<string id="tor_spelltrainer_spellsinger_start" text="{=str_tor_spelltrainer_spellsinger_start}I welcome you child of Athel Loren."/>
+	<string id="tor_spelltrainer_spellsinger_start" text="{=str_tor_spelltrainer_spellsinger_start}I welcome you, child of Athel Loren."/>
 	<string id="tor_spelltrainer_spellsinger_open_book" text="{=str_tor_spelltrainer_spellsinger_open_book}I seek further knowledge of Athel Loren's Magic."/>
 	<string id="tor_spelltrainer_spellsinger_close_book" text="{=str_tor_spelltrainer_spellsinger_close_book}A new facet of Ariel's infinite knowledge."/>
 	<string id="tor_spelltrainer_spellsinger_choices" text="{=str_tor_spelltrainer_spellsinger_choices}Is there more you seek? Speak your desires."/>
-	<string id="tor_spelltrainer_spellsinger_player_goodbye" text="{=str_tor_spelltrainer_spellsinger_player_goodbye}Ariel with you."/>
-	<string id="tor_spelltrainer_spellsinger_goodbye" text="{=str_tor_spelltrainer_spellsinger_goodbye}May Ariel guide you on all your paths through her garden."/>
+	<string id="tor_spelltrainer_spellsinger_player_goodbye" text="{=str_tor_spelltrainer_spellsinger_player_goodbye}Ariel be with you."/>
+	<string id="tor_spelltrainer_spellsinger_goodbye" text="{=str_tor_spelltrainer_spellsinger_goodbye}May She guide you on all your paths through her garden."/>
 	<string id="tor_spelltrainer_spellsinger_learnmagic" text="{=str_tor_spelltrainer_spellsinger_learnmagic}Greetings wise Spellsinger. I am seeking the capabilities of performing magic."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden}Greetings wise Spellsinger. I am seeking the capabilities of performing magic."/>
 	<string id="tor_spelltrainer_spellsinger_learn_magic_warden_answer" text="{=str_tor_spelltrainer_spellsinger_learn_magic_warden_answer}Hm. You are not a spellsinger, yet I see your potential. If you are willing to show me how much you are bound to the forest. I am willing to teach you the first steps of the path of Ariel"/>
@@ -5118,7 +5120,7 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="eonir_envoy_foreign_text" text="{=str_eonir_envoy_foreign_text}You are not part of these people, begone."/>
 	<string id="eonir_envoy_low_clan_tier_text" text="{=str_eonir_envoy_low_clan_tier_text}You do not have the privilege to serve the council. You are of no use. (Low Clan Tier)."/>
 	<string id="eonir_envoy_why_are_you_here_text" text="{=str_eonir_envoy_why_are_you_here_text}Why are you here?"/>
-	<string id="eonir_envoy_close_text" text="{=str_eonir_envoy_close_text}That is all thank you."/>
+	<string id="eonir_envoy_close_text" text="{=str_eonir_envoy_close_text}That will be all, thank you."/>
 	<string id="eonir_envoy_understood_text" text="{=str_eonir_envoy_understood_text}Understood."/>
 	<string id="eonir_envoy_lets_do_this_text" text="{=str_eonir_envoy_lets_do_this_text}Let us do this. (Exchange 50 {FAVOR_ICON} for 30 {PRESTIGE_ICON})"/>
 	<string id="eonir_envoy_need_to_think_text" text="{=str_eonir_envoy_need_to_think_text}I need to think about this."/>
@@ -5187,19 +5189,19 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="eonir_empire_anything_else_text" text="{=str_eonir_empire_anything_else_text}Is there anything else I can help with?"/>
 
 	<!-- Eonir Spellsinger Envoy Texts -->
-	<string id="eonir_spellsinger_intro_text" text="{=str_eonir_spellsinger_intro_text}The forest told of me your coming, yet not why. What have you come to ask of me?"/>
-	<string id="eonir_spellsinger_world_roots_ask_text" text="{=str_eonir_spellsinger_world_roots_ask_text}I want to travel along the roots of the Asrai, can you be my guide?"/>
+	<string id="eonir_spellsinger_intro_text" text="{=str_eonir_spellsinger_intro_text}Blessings of Isha upon you, what aid can I bestow?"/>
+	<string id="eonir_spellsinger_world_roots_ask_text" text="{=str_eonir_spellsinger_world_roots_ask_text}I wish to travel along the roots of the Asrai, can you be my guide?"/>
 	<string id="eonir_spellsinger_troop_refill_ask_text" text="{=str_eonir_spellsinger_troop_refill_ask_text}We need the Forestborn, are there any who can come to our aid?"/>
-	<string id="tor_spellsinger_envoy_main_hub_spellsinger_magic" text="{=str_tor_spellsinger_envoy_main_hub_spellsinger_magic}I wish to learn magic from you."/>
+	<string id="tor_spellsinger_envoy_main_hub_spellsinger_magic" text="{=str_tor_spellsinger_envoy_main_hub_spellsinger_magic}I wish to study magic our of kin."/>
 	<string id="spellsinger_envoy_main_hub_spellsinger_lores" text="{=str_spellsinger_envoy_main_hub_spellsinger_lores}Teach me about the lores of magic."/>
-	<string id="eonir_spellsinger_world_roots_price_text" text="{=str_eonir_spellsinger_world_roots_price_text}I can, but for a price. Help our people, they need more power and then I will allow you to travel the worldroot."/>
+	<string id="eonir_spellsinger_world_roots_price_text" text="{=str_eonir_spellsinger_world_roots_price_text}I can, but there is a price. Help our people, and then I will allow you to travel the Worldroots."/>
 	<string id="eonir_spellsinger_world_roots_accept_text" text="{=str_eonir_spellsinger_world_roots_accept_text}Of course, I am willing to help. Now as my guide, please tell me how I can travel along these ancient pathways?"/>
 	<string id="eonir_spellsinger_world_roots_explain_text" text="{=str_eonir_spellsinger_world_roots_explain_text}There is an entranceway to the Worldroots here in Laurelorn."/>
-	<string id="eonir_spellsinger_troop_refill_offer_text" text="{=str_eonir_spellsinger_troop_refill_offer_text}There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messages to reach them but it can be done. Is this what you desire?"/>
-	<string id="eonir_spellsinger_troop_refill_cooldown_text" text="{=str_eonir_spellsinger_troop_refill_cooldown_text}We recently called for the forestborn aid. We should wait longer for another call"/>
-	<string id="eonir_spellsinger_troop_refill_accept_text" text="{=str_eonir_spellsinger_troop_refill_accept_text}That would be kind. I am sure we will be able to pay that favor back one day. I will decide in favor of the forestborn"/>
-	<string id="eonir_spellsinger_learn_lore_offer_text" text="{=str_eonir_spellsinger_learn_lore_offer_text}I can teach you, but as much as you are ready to do so, I need your word in the Council."/>
-	<string id="eonir_spellsinger_learn_lore_accept_text" text="{=str_eonir_spellsinger_learn_lore_accept_text}It should not be for your disadvantage"/>
+	<string id="eonir_spellsinger_troop_refill_offer_text" text="{=str_eonir_spellsinger_troop_refill_offer_text}There are many who live as nomads, far from our villages and deep within the woods. It will take time for any messenger to reach them but it can be done. Is this what you desire?"/>
+	<string id="eonir_spellsinger_troop_refill_cooldown_text" text="{=str_eonir_spellsinger_troop_refill_cooldown_text}We recently called for the forestborn aid. We should wait longer for another call."/>
+	<string id="eonir_spellsinger_troop_refill_accept_text" text="{=str_eonir_spellsinger_troop_refill_accept_text}That would be kind. I am sure we will be able to return the favour  one day. I will decide in favor of the Forestborn."/>
+	<string id="eonir_spellsinger_learn_lore_offer_text" text="{=str_eonir_spellsinger_learn_lore_offer_text}I can teach you, but as much as you are ready to do so, I need your word on the Council."/>
+	<string id="eonir_spellsinger_learn_lore_accept_text" text="{=str_eonir_spellsinger_learn_lore_accept_text}It should not be to your disadvantage."/>
 	<string id="eonir_spellsinger_why_here_intro_text" text="{=str_eonir_spellsinger_why_here_intro_text}I am representing a coven of Spellsingers dedicated to the defense of Laurelorn."/>
 	<string id="eonir_spellsinger_why_here_displeased_text" text="{=str_eonir_spellsinger_why_here_displeased_text}The forest is beset by destructive beasts and men alike, what then, are you protecting?"/>
 	<string id="eonir_spellsinger_why_here_undecided_text" text="{=str_eonir_spellsinger_why_here_undecided_text}What matters can the Council solve for you? What can you give me in turn?"/>
@@ -5229,10 +5231,10 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_engineer_upgrade_decline_response" text="{=str_tor_engineer_upgrade_decline_response}What a shame. Is there anything else I can do?"/>
 
 	<!-- Spelltrainer Texts -->
-	<string id="tor_spelltrainer_spellsinger_reintro" text="{=str_tor_spelltrainer_spellsinger_reintro}Is there more you seek? Speak your desires"/>
+	<string id="tor_spelltrainer_spellsinger_reintro" text="{=str_tor_spelltrainer_spellsinger_reintro}Is there more you seek? Speak your desires."/>
 	<string id="tor_spelltrainer_spellsinger_learnlore" text="{=str_tor_spelltrainer_spellsinger_learnlore}Teach me one of Ariel's many pathways."/>
-	<string id="tor_spelltrainer_spellsinger_weaver_choice" text="{=str_tor_spelltrainer_spellsinger_weaver_choice}A spellsinger, can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely"/>
-	<string id="tor_spelltrainer_spellsinger_companion_choice" text="{=str_tor_spelltrainer_spellsinger_companion_choice}A Highweaver, or Darkweaver... tough choice"/>
+	<string id="tor_spelltrainer_spellsinger_weaver_choice" text="{=str_tor_spelltrainer_spellsinger_weaver_choice}A spellsinger can pick either the pathway of the Darkweaver or the one of the Highweaver. Choose wisely."/>
+	<string id="tor_spelltrainer_spellsinger_companion_choice" text="{=str_tor_spelltrainer_spellsinger_companion_choice}A Highweaver, or Darkweaver... a tough choice"/>
 	<string id="tor_spelltrainer_spellsinger_companion_choose" text="{=str_tor_spelltrainer_spellsinger_companion_choose}Let me choose."/>
 	<string id="tor_spelltrainer_vampire_dark_energy_request" text="{=str_tor_spelltrainer_vampire_dark_energy_request}Even if you have the everliving-gift, the access to forbidden knowledge is restricted by my master. Provide us a gift and I am not speaking of gold, I need you to pay with the essence of Life. Then my masters can give you access... ({DARK_ENERGY_COST}{DARKENERGYICON})"/>
 	<string id="tor_spelltrainer_vampire_agree_price" text="{=str_tor_spelltrainer_vampire_agree_price}Take my gift. Now give me what I demand! (Pay {DARK_ENERGY_COST}{DARKENERGYICON})"/>
