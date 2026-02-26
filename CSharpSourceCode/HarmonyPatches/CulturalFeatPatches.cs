@@ -48,8 +48,14 @@ namespace TOR_Core.HarmonyPatches
 
         private static readonly Dictionary<string, HearthScalingSettings> ScalingByCultureId = new()
         {
-            // empire: 300,600 to 900,1800 and 4,1.2,0.2 to 12,3.6,0.6
-            [TORConstants.Cultures.EMPIRE] = new HearthScalingSettings(tierMultiplier: 3f, valueMultiplier: 3f),
+            // x2: empire + bretonnia
+            [TORConstants.Cultures.EMPIRE] = new HearthScalingSettings(tierMultiplier: 2f, valueMultiplier: 2f),
+            [TORConstants.Cultures.BRETONNIA] = new HearthScalingSettings(tierMultiplier: 2f, valueMultiplier: 2f),
+
+            // x3: dwarfs + elves
+            [TORConstants.Cultures.DAWI] = new HearthScalingSettings(tierMultiplier: 3f, valueMultiplier: 3f),
+            [TORConstants.Cultures.ASRAI] = new HearthScalingSettings(tierMultiplier: 3f, valueMultiplier: 3f),
+            [TORConstants.Cultures.EONIR] = new HearthScalingSettings(tierMultiplier: 3f, valueMultiplier: 3f),
         };
 
         [HarmonyPrefix]
