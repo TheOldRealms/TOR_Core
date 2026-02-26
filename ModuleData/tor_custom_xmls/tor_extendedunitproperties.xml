@@ -10220,6 +10220,10 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
+  <CharacterExtendedInfo id="tor_troll_lord_0">
+    <Abilities />
+    <Attributes />
+  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_br_bergerac_lord">
     <Abilities />
     <Attributes />
@@ -10486,6 +10490,7 @@
   <CharacterExtendedInfo id="tor_priest_trainer_empire_ulric_0">
     <Abilities />
     <Attributes>
+      <string>UlricTrain</string>
       <string>PriestTrainer</string>
       <string>SkillTrainer</string>
     </Attributes>

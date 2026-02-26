@@ -458,10 +458,8 @@
   	<string id="tor_teach_skills_dialog_p.EngineerEmpire" text="{=str_tor_teach_skills_dialog_p_EngineerEmpire}Can you teach my companion more about Engineering?"/>
 	<string id="tor_skill_teacher_train_1.EngineerEmpire" text="{=str_tor_skill_teacher_train_1_EngineerEmpire}Sure. I can teach your companions. They will stay here. But I can tell this will cost you dearly "/>
 	<string id="tor_skill_teacher_train_2.EngineerEmpire" text="{=str_tor_skill_teacher_train_2_EngineerEmpire}So how should we proceed?"/>
-	
 	<string id="tor_skill_train_hub_select_companion_p.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_p_EngineerEmpire}Yes I agree. Let me tell you who to teach"/>
 	<string id="tor_priest_train_hub_quit_p.EngineerEmpire" text="{=str_tor_priest_train_hub_quit_p_EngineerEmpire}There is something else"/>
-	
 	<string id="tor_skill_train_hub_select_companion.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_EngineerEmpire}Choose a companion you want to teach."/>
 	<string id="tor_skill_train_hub_select_companion_decline.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_decline_EngineerEmpire}Your companions are not ready yet."/>
 	
@@ -473,6 +471,21 @@
 	<string id="tor_skill_train_hub_select_companion_decline.EmpireMagister" text="{=str_tor_skill_train_hub_select_companion_decline_EmpireMagister}There is nobody worth teaching in your party."/>	
 	<string id="tor_priest_train_hub_quit_p.EmpireMagister" text="{=str_tor_priest_train_hub_quit_p_EmpireMagister}Forgive me, I've changed my mind."/>
 	
+	<string id="tor_teach_skills_dialog_p.SigmarTrain" text="{=str_tor_teach_skills_dialog_p_SigmarPriest}My companion wishes to deepen his faith, can you guide them?"/>
+    <string id="tor_skill_teacher_train_1.SigmarTrain" text="{=str_tor_skill_teacher_train_1_SigmarPriest}It would be remiss of me not to pass on Sigmar's holy word. However; your companion must stay and train here."/>
+    <string id="tor_skill_teacher_train_2.SigmarTrain" text="{=str_tor_skill_teacher_train_2_SigmarPriest}Who among your companions shall learn the ways of our Lord Sigmar?"/>
+    <string id="tor_skill_train_hub_select_companion_p.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_p_SigmarPriest}Yes, please guide one of my companions in Sigmar's teachings."/>
+    <string id="tor_skill_train_hub_select_companion.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_SigmarPriest}Very well, they shall learn under Sigmar's guidance. Your companion will return when the training is complete."/>
+    <string id="tor_skill_train_hub_select_companion_decline.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_decline_SigmarPriest}None of your companions are worthy of Sigmar's teachings."/>
+	<string id="tor_priest_train_hub_quit_p.SigmarTrain" text="{=str_tor_priest_train_hub_quit_p_SigmarPriest}Sigmar guide you, I must take my leave."/>
+	
+	<string id="tor_skill_teacher_train_1.UlricTrain" text="{=str_tor_skill_teacher_train_1_EmpireMagister}I can teach your companion magic. if you allow him to stay at the college"/>
+	<string id="tor_skill_teacher_train_2.UlricTrain" text="{=str_tor_skill_teacher_train_2_EmpireMagister}Who should join the college and learn the art of the arkane?"/>
+	<string id="tor_teach_skills_dialog_p.UlricTrain" text="{=str_tor_teach_skills_dialog_p_EmpireMagister}Can you teach my wizard companion the sacred arts of the runes?"/>
+	<string id="tor_skill_train_hub_select_companion_p.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_p_EmpireMagister}Yes, please guide one of my companions."/>
+	<string id="tor_skill_train_hub_select_companion.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_EmpireMagister}Very well, I will pass down my teachings. Your friend will be sent back when his training is finished."/>	
+	<string id="tor_skill_train_hub_select_companion_decline.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_decline_EmpireMagister}There is nobody worth teaching in your party."/>	
+	<string id="tor_priest_train_hub_quit_p.UlricTrain" text="{=str_tor_priest_train_hub_quit_p_EmpireMagister}Forgive me, I've changed my mind."/>
 	
 	<string id="tor_skill_training_prompt.title" text="{=str_tor_skill_training_prompt_title}Teach a companion {SKILL_NAME}"/>
 	<string id="tor_skill_training_prompt.skill_value" text="{=str_tor_skill_training_prompt_skill_value}Current Skill value: {SKILL_VALUE}"/>
@@ -483,28 +496,22 @@
 	<string id="tor_skill_training_hover.Costs" text="{=str_tor_skill_training_hover_Costs}Requires {GOLD_COST}{GOLD_ICON}, {CR_COST}{CUSTOMRESOURCE}"/>
 	<string id="tor_skill_training_hover.Full" text="{=str_tor_skill_training_hover_Full}{SKILLTRAINING_REASON} {SKILL_TRAINING_COSTS}"/>
 	
-	
-	<string id="tor_teach_skills_dialog_p.ShallyaTrainRE" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainRE}Can you teach my companions more about Medicine?"/>
-	<string id="tor_teach_skills_dialog_p.ShallyaTrainCO" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainCO}My companions wish to learn more of Shallya's mercy."/>
+<string id="tor_teach_skills_dialog_p.ShallyaTrainRE" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainRE}Can you teach my companions more about Medicine?"/>
   <string id="tor_skill_teacher_train_1.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_1_ShallyaTrainRE}The Dove's mercy guides our hands in healing. I can teach your companion the ways of the merciful."/>
   <string id="tor_skill_teacher_train_2.ShallyaTrainRE" text="{=str_tor_skill_teacher_train_2_ShallyaTrainRE}Who among your companions shall learn the healing arts?"/>
   <string id="tor_skill_train_hub_select_companion_p.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_p_ShallyaTrainRE}Yes, please guide one of my companions in the healing arts."/>
   <string id="tor_skill_train_hub_select_companion.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainRE}We will return them in time, they are in good hands."/>
   <string id="tor_skill_train_hub_select_companion_decline.ShallyaTrainRE" text="{=str_tor_skill_train_hub_select_companion_decline_ShallyaTrainRE}None of your companions are suited for learning the healing arts."/>
   <string id="tor_priest_train_hub_quit_p.ShallyaTrainRE" text="{=str_tor_priest_train_hub_quit_p_ShallyaTrainRE}Perhaps another time, sister."/>
+  
+  <string id="tor_teach_skills_dialog_p.ShallyaTrainCO" text="{=str_tor_teach_skills_dialog_p_ShallyaTrainCO}My companions wish to learn more of Shallya's mercy."/>
   <string id="tor_skill_teacher_train_1.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_1_ShallyaTrainCO}The path of faith requires dedication and compassion. I can guide your companion in Shallya's ways."/>
   <string id="tor_skill_teacher_train_2.ShallyaTrainCO" text="{=str_tor_skill_teacher_train_2_ShallyaTrainCO}There is much on both mercy and compassion that we can teach."/>
   <string id="tor_skill_train_hub_select_companion_p.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_p_ShallyaTrainCO}Yes, please guide one of my companions in the ways of faith."/>
   <string id="tor_skill_train_hub_select_companion.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainCO}We will return them in time, they are in good hands."/>
   <string id="tor_skill_train_hub_select_companion_decline.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_decline_ShallyaTrainCO}None of your companions are suited for learning the ways of faith."/>
   <string id="tor_priest_train_hub_quit_p.ShallyaTrainCO" text="{=str_tor_priest_train_hub_quit_p_ShallyaTrainCO}Perhaps another time, sister."/>
-  <string id="tor_teach_skills_dialog_p.SigmarPriest" text="{=str_tor_teach_skills_dialog_p_SigmarPriest}My companion wishes to deepen his faith, can you guide them?"/>
-  <string id="tor_skill_teacher_train_1.SigmarPriest" text="{=str_tor_skill_teacher_train_1_SigmarPriest}It would be remiss of me not to pass on Sigmar's holy word. However; your companion must stay and train here."/>
-  <string id="tor_skill_teacher_train_2.SigmarPriest" text="{=str_tor_skill_teacher_train_2_SigmarPriest}Who among your companions shall learn the ways of our Lord Sigmar?"/>
-  <string id="tor_skill_train_hub_select_companion_p.SigmarPriest" text="{=str_tor_skill_train_hub_select_companion_p_SigmarPriest}Yes, please guide one of my companions in Sigmar's teachings."/>
-  <string id="tor_skill_train_hub_select_companion.SigmarPriest" text="{=str_tor_skill_train_hub_select_companion_SigmarPriest}Very well, they shall learn under Sigmar's guidance. Your companion will return when the training is complete."/>
-  <string id="tor_skill_train_hub_select_companion_decline.SigmarPriest" text="{=str_tor_skill_train_hub_select_companion_decline_SigmarPriest}None of your companions are worthy of Sigmar's teachings."/>
-  <string id="tor_priest_train_hub_quit_p.SigmarPriest" text="{=str_tor_priest_train_hub_quit_p_SigmarPriest}Sigmar guide you, I must take my leave."/>
+  
   <string id="tor_teach_skills_dialog_p.Necromancer" text="{=str_tor_teach_skills_dialog_p_Necromancer}Can you teach my companion the dark arts?"/>
   <string id="tor_skill_teacher_train_1.Necromancer" text="{=str_tor_skill_teacher_train_1_Necromancer}The secrets of death are not given freely. Your companion must remain here to study the forbidden knowledge."/>
   <string id="tor_skill_teacher_train_2.Necromancer" text="{=str_tor_skill_teacher_train_2_Necromancer}Who among your followers dares to walk the path of the undead?"/>

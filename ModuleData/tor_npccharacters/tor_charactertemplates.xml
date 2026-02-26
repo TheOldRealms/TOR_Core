@@ -2183,7 +2183,7 @@
       <EquipmentSet id="tor_qnpc_masterengineer_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
-  <NPCCharacter id="tor_prestige_noble_empire" default_group="infantry" name="{=str_tor_prestige_noble_empire}{SHORTTITLE}{FIRSTNAME} {LASTNAME}{TITLE}" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
+  <NPCCharacter id="tor_prestige_noble_empire" default_group="infantry" name="{=str_tor_prestige_noble_empire}{SHORTTITLE} {FIRSTNAME} {LASTNAME}{TITLE}" occupation="Special" culture="Culture.empire" voice="ironic" age="30" skill_template="SkillSet.tor_skills_wanderer_commander" is_template="true" is_hero="false">
     <face>
       <face_key_template value="BodyProperty.fighter_empire" />
     </face>
