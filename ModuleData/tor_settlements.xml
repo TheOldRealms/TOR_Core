@@ -2247,7 +2247,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="village_WI1_3" name="{=Settlements.Settlement.name.village_WI1_3}Maselhof" posX="1336.25" posY="928.922" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WI1_3}A bunch of galleries too small for orcs, which serves to prevent goblins from taking a beating from their larger kin.">
+  <Settlement id="village_WI1_3" name="{=Settlements.Settlement.name.village_WI1_3}Maselhof" posX="1336.25" posY="928.922" culture="Culture.empire" text="{=Settlements.Settlement.text.village_WI1_3}Nestled beneath the cliffs on which Wissenburg is situated, the stud farm of Maselhof lies. Despite its proximity to the official capital of Wissenland, the stud farm owes direct allegiance to Nuln. Its main export is horses, both draft horses to limber the artillery, as well as war horses for outriders and knights alike.">
     <Components>
       <Village id="village_comp_WI1_3" village_type="VillageType.europe_horse_ranch" hearth="250" bound="Settlement.town_WI1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>
@@ -13627,7 +13627,7 @@
       <Area type="Bog" name="{=iXA5SttU}Bog" />
     </CommonAreas>
   </Settlement>
-  <Settlement id="castle_village_SM1_2" name="{=Settlements.Settlement.name.castle_village_SM1_2}Goblin Caves" posX="1178.919" posY="1061.407" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_SM3_1}">
+  <Settlement id="castle_village_SM1_2" name="{=Settlements.Settlement.name.castle_village_SM1_2}Goblin Caves" posX="1178.919" posY="1061.407" culture="Culture.aserai" text="{=Settlements.Settlement.text.castle_village_SM3_1}A bunch of galleries too small for orcs, which serves to prevent goblins from taking a beating from their larger kin.">
     <Components>
       <Village id="castle_village_comp_SM1_2" village_type="VillageType.clay_mine" hearth="200" bound="Settlement.castle_SM1" background_crop_position="0.0" background_mesh="gui_bg_village_vlanda" wait_mesh="empire_village_background" castle_background_mesh="gui_bg_castle_vlanda" />
     </Components>

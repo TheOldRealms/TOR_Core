@@ -383,7 +383,7 @@
   <string id="tor_priest_hub_blessings_p.cult_of_ulric" text="{=str_tor_priest_hub_blessings_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>
   <string id="tor_priest_hub_quit_p.cult_of_ulric" text="{=str_tor_priest_hub_quit_p_cult_of_ulric}Have a great day Mr Wolf man - Sir."/>
 
-  <string id="tor_priest_blessings_1.cult_of_ulric" text="{=str_tor_priest_blessings_1_cult_of_ulric}Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
+  <string id="tor_priest_blessings_1.cult_of_ulric" text="{=str_tor_priest_blessings_1_cult_of_ulric}For a donation in Sigmar's name, I can grant you access to our holy tomes."/>
   <string id="tor_priest_blessings_decline.cult_of_ulric" text="{=str_tor_priest_blessings_decline_cult_of_ulric}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
 <string id="tor_priest_start_accept.cult_of_ulric" text="{=str_tor_priest_start_accept_cult_of_ulric}Welcome, follower of the White Wolf."/>  <string id="tor_priest_start_decline.cult_of_ulric" text="{=str_tor_priest_start_decline_cult_of_ulric}You need a follower of Ulric in your party if you wish to speak to me, stranger."/>  <string id="tor_priest_start_decline_hard.cult_of_ulric" text="{=str_tor_priest_start_decline_hard_cult_of_ulric}Begone from my sight, coward!"/>  <string id="tor_priest_hub_blessingshop_p.cult_of_ulric" text="{=str_tor_priest_hub_blessingshop_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>  <string id="tor_priest_hub_party_blessing_p.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_p_cult_of_ulric}Can my party receive Ulric's blessing?"/>  <string id="tor_priest_blessingshop_1.cult_of_ulric" text="{=str_tor_priest_blessingshop_1_cult_of_ulric}Against a small donation, I will show you the sacred rites of the Winter Wolf."/>  <string id="tor_priest_blessing_party_1.cult_of_ulric" text="{=str_tor_priest_blessing_party_1_cult_of_ulric}In the name of Ulric, may his fury guide your strikes!"/>  <string id="tor_priest_hub_party_blessing_decline.cult_of_ulric" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_ulric}You have been blessed by Ulric recently, there is no need for another blessing."/>  <string id="tor_priest_hub_quit.cult_of_ulric" text="{=str_tor_priest_hub_quit_cult_of_ulric}May the White Wolf watch over you."/>
   
@@ -400,15 +400,15 @@
 
   <string id="tor_priest_hub_blessings_p.cult_of_sigmar" text="{=str_tor_priest_hub_blessings_p_cult_of_sigmar}Can you show me how to bless weapons in the name of Sigmar?"/>
   <string id="tor_priest_hub_blessingshop_p.cult_of_sigmar" text="{=str_tor_priest_hub_blessingshop_p_cult_of_sigmar}Tell me more about blessing items in the name of Sigmar."/>
-<string id="tor_priest_hub_party_blessing_p.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_p_cult_of_sigmar}Can my party receive Sigmar's blessing?"/>
+<string id="tor_priest_hub_party_blessing_p.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_p_cult_of_sigmar}Can we receive the Heldenhammer's Blessing?"/>
   <string id="tor_priest_hub_quit_p.cult_of_sigmar" text="{=str_tor_priest_hub_quit_p_cult_of_sigmar}I must leave."/>
 
   <string id="tor_priest_blessingshop_1.cult_of_sigmar" text="{=str_tor_priest_blessingshop_1_cult_of_sigmar}Sure, against a small donation I will show you scribes that allow a priest to bless your weapons."/>
   <string id="tor_priest_blessingshop_decline.cult_of_sigmar" text="{=str_tor_priest_blessingshop_decline_cult_of_sigmar}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
 
 
-    <string id="tor_priest_blessing_party_1.cult_of_sigmar" text="{=str_tor_priest_blessing_party_1_cult_of_sigmar}In the name of Sigmar, I bless you."/>
-  <string id="tor_priest_blessings_decline.cult_of_sigmar" text="{=str_tor_priest_blessings_decline_cult_of_sigmar}You have been blessed recently, there is no need of giving you the blessing of a god."/>
+    <string id="tor_priest_blessing_party_1.cult_of_sigmar" text="{=str_tor_priest_blessing_party_1_cult_of_sigmar}By Sigmar Heldenhammer and Ghal Maraz, may your righteous wrath smite the unclean. Suffer not the foul, the mutant, the heretic for Sigmar walks with thee…"/>
+  <string id="tor_priest_blessings_decline.cult_of_sigmar" text="{=str_tor_priest_blessings_decline_cult_of_sigmar}You have been blessed recently, there is no need of giving you the blessing."/>
   <string id="tor_priest_hub_party_blessing_decline.cult_of_sigmar" text="{=str_tor_priest_hub_party_blessing_decline_cult_of_sigmar}You have been blessed by Sigmar recently, there is no need for another blessing."/>
   <string id="tor_priest_hub_quit.cult_of_sigmar" text="{=str_tor_priest_hub_quit_cult_of_sigmar}Sigmar guide your path."/>
   
@@ -496,8 +496,8 @@
   <string id="tor_skill_train_hub_select_companion.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_ShallyaTrainCO}Very well, they shall learn the sacred ways. Your companion will return when the training is complete."/>
   <string id="tor_skill_train_hub_select_companion_decline.ShallyaTrainCO" text="{=str_tor_skill_train_hub_select_companion_decline_ShallyaTrainCO}None of your companions are suited for learning the ways of faith."/>
   <string id="tor_priest_train_hub_quit_p.ShallyaTrainCO" text="{=str_tor_priest_train_hub_quit_p_ShallyaTrainCO}Perhaps another time, sister."/>
-  <string id="tor_teach_skills_dialog_p.SigmarPriest" text="{=str_tor_teach_skills_dialog_p_SigmarPriest}Can you teach my companion the ways of Sigmar?"/>
-  <string id="tor_skill_teacher_train_1.SigmarPriest" text="{=str_tor_skill_teacher_train_1_SigmarPriest}Sigmar's wisdom can be shared with those who are worthy. Your companion must stay and train here."/>
+  <string id="tor_teach_skills_dialog_p.SigmarPriest" text="{=str_tor_teach_skills_dialog_p_SigmarPriest}My companion wishes to deepen his faith, can you guide them?"/>
+  <string id="tor_skill_teacher_train_1.SigmarPriest" text="{=str_tor_skill_teacher_train_1_SigmarPriest}It would be remiss of me not to pass on Sigmar's holy word. However; your companion must stay and train here."/>
   <string id="tor_skill_teacher_train_2.SigmarPriest" text="{=str_tor_skill_teacher_train_2_SigmarPriest}Who among your companions shall learn the ways of our Lord Sigmar?"/>
   <string id="tor_skill_train_hub_select_companion_p.SigmarPriest" text="{=str_tor_skill_train_hub_select_companion_p_SigmarPriest}Yes, please guide one of my companions in Sigmar's teachings."/>
   <string id="tor_skill_train_hub_select_companion.SigmarPriest" text="{=str_tor_skill_train_hub_select_companion_SigmarPriest}Very well, they shall learn under Sigmar's guidance. Your companion will return when the training is complete."/>
@@ -641,38 +641,38 @@
   <string id="tor_enchanter_info_hub_intro_read_book.khuzait" text="{=str_tor_enchanter_info_hub_intro_read_book_khuzait}The grimoire I bestowed upon you covers all the required basics."/>
 
   <!-- MOUSILLON (mousillon) - TODO: Complete Mousillon Necromancer dialogs following Empire pattern -->
-  <string id="tor_enchanter_start_p.mousillon" text="{=str_tor_enchanter_start_p_mousillon}TODO: MOUSILLON - Player initiates conversation"/>
-  <string id="tor_enchanter_start_enchanter.mousillon" text="{=str_tor_enchanter_start_enchanter_mousillon}TODO: MOUSILLON - Dark practitioner greeting"/>
-  <string id="tor_enchanter_dialog_start.mousillon" text="{=str_tor_enchanter_dialog_start_mousillon}TODO: MOUSILLON - General greeting"/>
-  <string id="tor_enchanter_dialog_start_quit.mousillon" text="{=str_tor_enchanter_dialog_start_quit_mousillon}TODO: MOUSILLON - Wrong culture rejection"/>
-  <string id="tor_enchanter_dialog_start_1.mousillon" text="{=str_tor_enchanter_dialog_start_1_mousillon}TODO: MOUSILLON - Welcome message"/>
-  <string id="tor_enchanter_dialog_start_2.mousillon" text="{=str_tor_enchanter_dialog_start_2_mousillon}TODO: MOUSILLON - Fellow practitioner"/>
-  <string id="tor_enchanter_hub_intro.mousillon" text="{=str_tor_enchanter_hub_intro_mousillon}TODO: MOUSILLON - Hub intro"/>
-  <string id="tor_enchanter_hub_reintro.mousillon" text="{=str_tor_enchanter_hub_reintro_mousillon}TODO: MOUSILLON - Hub return"/>
-  <string id="tor_enchanter_hub_info_p.mousillon" text="{=str_tor_enchanter_hub_info_p_mousillon}TODO: MOUSILLON - Ask about dark arts"/>
-  <string id="tor_enchanter_hub_blueprints_p.mousillon" text="{=str_tor_enchanter_hub_blueprints_p_mousillon}TODO: MOUSILLON - Request blueprints"/>
-  <string id="tor_enchanter_hub_donate_items_p.mousillon" text="{=str_tor_enchanter_hub_donate_items_p_mousillon}TODO: MOUSILLON - Offer items"/>
-  <string id="tor_enchanter_hub_open_enchanter_p.mousillon" text="{=str_tor_enchanter_hub_open_enchanter_p_mousillon}TODO: MOUSILLON - Open enchanter"/>
-  <string id="tor_enchanter_hub_return_p.mousillon" text="{=str_tor_enchanter_hub_return_p_mousillon}TODO: MOUSILLON - Leave"/>
-  <string id="tor_enchanter_blueprints.mousillon" text="{=str_tor_enchanter_blueprints_mousillon}TODO: MOUSILLON - Opens blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.mousillon" text="{=str_tor_enchanter_blueprints_decline_mousillon}TODO: MOUSILLON - No eligible character"/>
-  <string id="tor_enchanter_donate_items_1.mousillon" text="{=str_tor_enchanter_donate_items_1_mousillon}TODO: MOUSILLON - Accepts donation"/>
-  <string id="tor_enchanter_donate_items_1_negative.mousillon" text="{=str_tor_enchanter_donate_items_1_negative_mousillon}TODO: MOUSILLON - Rejects donation"/>
-  <string id="tor_enchanter_donate_items_hub_p.mousillon" text="{=str_tor_enchanter_donate_items_hub_p_mousillon}TODO: MOUSILLON - Player offers"/>
-  <string id="tor_enchanter_gift_items_hub_return_p.mousillon" text="{=str_tor_enchanter_gift_items_hub_return_p_mousillon}TODO: MOUSILLON - Player backs out"/>
+  <string id="tor_enchanter_start_p.mousillon" text="{=str_tor_enchanter_start_p_mousillon}I wish to know more of magical and cursed items."/>
+  <string id="tor_enchanter_start_enchanter.mousillon" text="{=str_tor_enchanter_start_enchanter_mousillon}Greetings, fellow practitioner of dark arts, shall we convene together?"/>
+  <string id="tor_enchanter_dialog_start.mousillon" text="{=str_tor_enchanter_dialog_start_mousillon}What do you require?"/>
+  <string id="tor_enchanter_dialog_start_quit.mousillon" text="{=str_tor_enchanter_dialog_start_quit_mousillon}I know you not, stranger; best be gone before a great misfortune falls upon you."/>
+  <string id="tor_enchanter_dialog_start_1.mousillon" text="{=str_tor_enchanter_dialog_start_1_mousillon}Greetings stranger, I sense the darkness within you."/>
+  <string id="tor_enchanter_dialog_start_2.mousillon" text="{=str_tor_enchanter_dialog_start_2_mousillon}Fellow practitioner of dark arts, shall we convene together?"/>
+  <string id="tor_enchanter_hub_intro.mousillon" text="{=str_tor_enchanter_hub_intro_mousillon}What do you require?"/>
+  <string id="tor_enchanter_hub_reintro.mousillon" text="{=str_tor_enchanter_hub_reintro_mousillon}What is it that you need?"/>
+  <string id="tor_enchanter_hub_info_p.mousillon" text="{=str_tor_enchanter_hub_info_p_mousillon}Part with me your knowledge of enchantments and curses."/>
+  <string id="tor_enchanter_hub_blueprints_p.mousillon" text="{=str_tor_enchanter_hub_blueprints_p_mousillon}Show me what magic formulas you possess."/>
+  <string id="tor_enchanter_hub_donate_items_p.mousillon" text="{=str_tor_enchanter_hub_donate_items_p_mousillon}Take these baubles, they are unfit for my retinue."/>
+  <string id="tor_enchanter_hub_open_enchanter_p.mousillon" text="{=str_tor_enchanter_hub_open_enchanter_p_mousillon}Show me the way to your dark altar."/>
+  <string id="tor_enchanter_hub_return_p.mousillon" text="{=str_tor_enchanter_hub_return_p_mousillon}We are finished."/>
+  <string id="tor_enchanter_blueprints.mousillon" text="{=str_tor_enchanter_blueprints_mousillon}Let us delve into grimoires and cursed tomes."/>
+  <string id="tor_enchanter_blueprints_decline.mousillon" text="{=str_tor_enchanter_blueprints_decline_mousillon}I sense no darkness within you, nor does it reside within your retinue. Return to me in the company of a wizard."/>
+  <string id="tor_enchanter_donate_items_1.mousillon" text="{=str_tor_enchanter_donate_items_1_mousillon}Very well, I shall take these and put them to good use."/>
+  <string id="tor_enchanter_donate_items_1_negative.mousillon" text="{=str_tor_enchanter_donate_items_1_negative_mousillon}These will likely not be of use to me or my master. Return with the treasures and artifacts of this world."/>
+  <string id="tor_enchanter_donate_items_hub_p.mousillon" text="{=str_tor_enchanter_donate_items_hub_p_mousillon}Take these relics then."/>
+  <string id="tor_enchanter_gift_items_hub_return_p.mousillon" text="{=str_tor_enchanter_gift_items_hub_return_p_mousillon}I think I would rather keep these for now."/>
   <string id="tor_enchanter_donate_items_2.mousillon" text="{=str_tor_enchanter_donate_items_2_mousillon}TODO: MOUSILLON - Select items"/>
-  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_mousillon}TODO: MOUSILLON - First visit career"/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_first_visit_mousillon}TODO: MOUSILLON - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.mousillon" text="{=str_tor_enchanter_info_hub_intro_read_book_mousillon}TODO: MOUSILLON - Has manual"/>
+  <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_mousillon}There are dark energies coiling around you. I shall impart this knowledge to you."/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.mousillon" text="{=str_tor_enchanter_info_hub_intro_first_visit_mousillon}This tome holds everything you shall need."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.mousillon" text="{=str_tor_enchanter_info_hub_intro_read_book_mousillon}The grimoire I bestowed upon you covers all the required basics."/>
 
   <!-- DWARF CULTURE: Sturgia (Dawi)         -->
 
   <string id="tor_enchanter_start_p.sturgia" text="{=str_tor_enchanter_start_p_sturgia}I wish to know more about the art of runecraft."/>
   <string id="tor_enchanter_start_enchanter.sturgia" text="{=str_tor_enchanter_start_enchanter_sturgia}Ah, a fellow Rhunki, you are most welcome in the Grongaz."/>
-  <string id="tor_enchanter_dialog_start.sturgia" text="{=str_tor_enchanter_dialog_start_sturgia}TODO: STURGIA - Runelord greets visitor"/>
-  <string id="tor_enchanter_dialog_start_quit.sturgia" text="{=str_tor_enchanter_dialog_start_quit_sturgia}TODO: STURGIA - Wrong culture rejection"/>
-  <string id="tor_enchanter_dialog_start_1.sturgia" text="{=str_tor_enchanter_dialog_start_1_sturgia}TODO: STURGIA - Runelord welcomes loyal Dawi"/>
-  <string id="tor_enchanter_dialog_start_2.sturgia" text="{=str_tor_enchanter_dialog_start_2_sturgia}TODO: STURGIA - Runelord greets Runesmith"/>
+  <string id="tor_enchanter_dialog_start.sturgia" text="{=str_tor_enchanter_dialog_start_sturgia}A fellow Dawi! Welcome to the Grongaz."/>
+  <string id="tor_enchanter_dialog_start_quit.sturgia" text="{=str_tor_enchanter_dialog_start_quit_sturgia}To share the secrets of the Rhunki would shame my whole clan, outsider. The answer is nei."/>
+  <string id="tor_enchanter_dialog_start_1.sturgia" text="{=str_tor_enchanter_dialog_start_1_sturgia}{Player_Clan}, Dawongr! Do you have any business with the Rhunki?"/>
+  <string id="tor_enchanter_dialog_start_2.sturgia" text="{=str_tor_enchanter_dialog_start_2_sturgia}Trusted {Player_Clan}! Know the Rhunki consider our partnership a great honour!"/>
   <string id="tor_enchanter_hub_intro.sturgia" text="{=str_tor_enchanter_hub_intro_sturgia}So, what is it that you need?"/>
   <string id="tor_enchanter_hub_reintro.sturgia" text="{=str_tor_enchanter_hub_reintro_sturgia}Was there something else?"/>
   <string id="tor_enchanter_hub_info_p.sturgia" text="{=str_tor_enchanter_hub_info_p_sturgia}Can you teach me the fundamentals of runecraft?"/>
@@ -680,16 +680,16 @@
   <string id="tor_enchanter_hub_donate_items_p.sturgia" text="{=str_tor_enchanter_hub_donate_items_p_sturgia}I have magical items I no longer need, can you put them to good use?"/>
   <string id="tor_enchanter_hub_open_enchanter_p.sturgia" text="{=str_tor_enchanter_hub_open_enchanter_p_sturgia}I wish to use your forge, Master Smith."/>
   <string id="tor_enchanter_hub_return_p.sturgia" text="{=str_tor_enchanter_hub_return_p_sturgia}Let us discuss other matters."/>
-  <string id="tor_enchanter_blueprints.sturgia" text="{=str_tor_enchanter_blueprints_sturgia}TODO: STURGIA - Opens rune blueprint shop"/>
-  <string id="tor_enchanter_blueprints_decline.sturgia" text="{=str_tor_enchanter_blueprints_decline_sturgia}TODO: STURGIA - No eligible runesmith"/>
+  <string id="tor_enchanter_blueprints.sturgia" text="{=str_tor_enchanter_blueprints_sturgia}I wish to learn new Rhun carvings."/>
+  <string id="tor_enchanter_blueprints_decline.sturgia" text="{=str_tor_enchanter_blueprints_decline_sturgia}Judging by your mental capacities, you're too doh to grasp even the most basic runes. It is best to stick to using our weapons instead of making them. Return in a company of a Runesmith."/>
   <string id="tor_enchanter_donate_items_1.sturgia" text="{=str_tor_enchanter_donate_items_1_sturgia}I would be happy to receive and look over any magical gear you have collected. What do you have to offer?"/>
   <string id="tor_enchanter_donate_items_1_negative.sturgia" text="{=str_tor_enchanter_donate_items_1_negative_sturgia}You dont have anything of interest for me. Remember, will not accept items you have made yourself, as all that you know, we already know."/>
   <string id="tor_enchanter_donate_items_hub_p.sturgia" text="{=str_tor_enchanter_donate_items_hub_p_sturgia}Let me provide you these items…"/>
   <string id="tor_enchanter_gift_items_hub_return_p.sturgia" text="{=str_tor_enchanter_gift_items_hub_return_p_sturgia}I need to think about this."/>
   <string id="tor_enchanter_donate_items_2.sturgia" text="{=str_tor_enchanter_donate_items_2_sturgia}Which items do you want to donate?"/>
   <string id="tor_enchanter_info_hub_intro_enchanter_first_visit.sturgia" text="{=str_tor_enchanter_info_hub_intro_enchanter_first_visit_sturgia}Take this Klinkarhun, upon which you can build the foundations of your own Rhunki future."/>
-  <string id="tor_enchanter_info_hub_intro_first_visit.sturgia" text="{=str_tor_enchanter_info_hub_intro_first_visit_sturgia}TODO: STURGIA - First visit general"/>
-  <string id="tor_enchanter_info_hub_intro_read_book.sturgia" text="{=str_tor_enchanter_info_hub_intro_read_book_sturgia}TODO: STURGIA - Already has runecraft manual"/>
+  <string id="tor_enchanter_info_hub_intro_first_visit.sturgia" text="{=str_tor_enchanter_info_hub_intro_first_visit_sturgia}I can give you a Klinkarhun, upon which you can build the foundations of your own Rhunki future."/>
+  <string id="tor_enchanter_info_hub_intro_read_book.sturgia" text="{=str_tor_enchanter_info_hub_intro_read_book_sturgia}The Klinkarhun I gave you has everything you need to get started."/>
 
   <!-- GREENSKIN CULTURE: Aserai              -->
   <!-- Greenskins use shamanic totems and tribal enchantment -->
