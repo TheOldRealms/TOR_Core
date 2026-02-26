@@ -380,11 +380,11 @@
   <string id="tor_priest_hub_intro.cult_of_ulric" text="{=str_tor_priest_hub_intro_cult_of_ulric}In the name of Ulric, how can I help you?"/>
   <string id="tor_priest_hub_reintro.cult_of_ulric" text="{=str_tor_priest_hub_reintro_cult_of_ulric}Did you need something else?"/>
   
-  <string id="tor_priest_hub_blessings_p.cult_of_ulric" text="{=str_tor_priest_hub_blessings_p_cult_of_ulric}Can you show me how to bless weapons in the name of Ulric?"/>
-  <string id="tor_priest_hub_quit_p.cult_of_ulric" text="{=str_tor_priest_hub_quit_p_cult_of_ulric}Have a great day Mr Wolf man - Sir."/>
+  <string id="tor_priest_hub_blessings_p.cult_of_ulric" text="{=str_tor_priest_hub_blessings_p_cult_of_ulric}I wish to learn more about the Great Wolf."/>
+  <string id="tor_priest_hub_quit_p.cult_of_ulric" text="{=str_tor_priest_hub_quit_p_cult_of_ulric}I must leave, may Ulric guide your blade."/>
 
-  <string id="tor_priest_blessings_1.cult_of_ulric" text="{=str_tor_priest_blessings_1_cult_of_ulric}For a donation in Sigmar's name, I can grant you access to our holy tomes."/>
-  <string id="tor_priest_blessings_decline.cult_of_ulric" text="{=str_tor_priest_blessings_decline_cult_of_ulric}You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
+  <string id="tor_priest_blessings_1.cult_of_ulric" text="{=str_tor_priest_blessings_1_cult_of_ulric}PLEASE REPORT WHERE YOU SEE THIS For a donation in Sigmar's name, I can grant you access to our holy tomes."/>
+  <string id="tor_priest_blessings_decline.cult_of_ulric" text="{=str_tor_priest_blessings_decline_cult_of_ulric}PLEASE REPORT WHERE YOU SEE THIS You should talk to an Alchemist first. There is much more to learn before I can show you how you can bless your equipment."/>
   <string id="tor_priest_start_accept.cult_of_ulric" text="{=str_tor_priest_start_accept_cult_of_ulric}Children of the Wolf, welcome!"/>
   <string id="tor_priest_start_decline.cult_of_ulric" text="{=str_tor_priest_start_decline_cult_of_ulric}You need a follower of Ulric in your party if you wish to speak to me, stranger."/>
   <string id="tor_priest_start_decline_hard.cult_of_ulric" text="{=str_tor_priest_start_decline_hard_cult_of_ulric}Leave, before I bare my fangs, outsider!"/>
@@ -463,9 +463,9 @@
 	<string id="tor_skill_train_hub_select_companion.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_EngineerEmpire}Choose a companion you want to teach."/>
 	<string id="tor_skill_train_hub_select_companion_decline.EngineerEmpire" text="{=str_tor_skill_train_hub_select_companion_decline_EngineerEmpire}Your companions are not ready yet."/>
 	
-	<string id="tor_skill_teacher_train_1.EmpireMagister" text="{=str_tor_skill_teacher_train_1_EmpireMagister}I can teach your companion magic. if you allow him to stay at the college"/>
+	<string id="tor_skill_teacher_train_1.EmpireMagister" text="{=str_tor_skill_teacher_train_1_EmpireMagister}I can teach your companion magic, if you allow them to stay at the colleges."/>
 	<string id="tor_skill_teacher_train_2.EmpireMagister" text="{=str_tor_skill_teacher_train_2_EmpireMagister}Who should join the college and learn the art of the arkane?"/>
-	<string id="tor_teach_skills_dialog_p.EmpireMagister" text="{=str_tor_teach_skills_dialog_p_EmpireMagister}Can you teach my wizard companion the sacred arts of the runes?"/>
+	<string id="tor_teach_skills_dialog_p.EmpireMagister" text="{=str_tor_teach_skills_dialog_p_EmpireMagister}Can you teach my wizard companion the secrets of magic?"/>
 	<string id="tor_skill_train_hub_select_companion_p.EmpireMagister" text="{=str_tor_skill_train_hub_select_companion_p_EmpireMagister}Yes, please guide one of my companions."/>
 	<string id="tor_skill_train_hub_select_companion.EmpireMagister" text="{=str_tor_skill_train_hub_select_companion_EmpireMagister}Very well, I will pass down my teachings. Your friend will be sent back when his training is finished."/>	
 	<string id="tor_skill_train_hub_select_companion_decline.EmpireMagister" text="{=str_tor_skill_train_hub_select_companion_decline_EmpireMagister}There is nobody worth teaching in your party."/>	
@@ -479,13 +479,13 @@
     <string id="tor_skill_train_hub_select_companion_decline.SigmarTrain" text="{=str_tor_skill_train_hub_select_companion_decline_SigmarPriest}None of your companions are worthy of Sigmar's teachings."/>
 	<string id="tor_priest_train_hub_quit_p.SigmarTrain" text="{=str_tor_priest_train_hub_quit_p_SigmarPriest}Sigmar guide you, I must take my leave."/>
 	
-	<string id="tor_skill_teacher_train_1.UlricTrain" text="{=str_tor_skill_teacher_train_1_EmpireMagister}I can teach your companion magic. if you allow him to stay at the college"/>
-	<string id="tor_skill_teacher_train_2.UlricTrain" text="{=str_tor_skill_teacher_train_2_EmpireMagister}Who should join the college and learn the art of the arkane?"/>
-	<string id="tor_teach_skills_dialog_p.UlricTrain" text="{=str_tor_teach_skills_dialog_p_EmpireMagister}Can you teach my wizard companion the sacred arts of the runes?"/>
-	<string id="tor_skill_train_hub_select_companion_p.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_p_EmpireMagister}Yes, please guide one of my companions."/>
-	<string id="tor_skill_train_hub_select_companion.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_EmpireMagister}Very well, I will pass down my teachings. Your friend will be sent back when his training is finished."/>	
-	<string id="tor_skill_train_hub_select_companion_decline.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_decline_EmpireMagister}There is nobody worth teaching in your party."/>	
-	<string id="tor_priest_train_hub_quit_p.UlricTrain" text="{=str_tor_priest_train_hub_quit_p_EmpireMagister}Forgive me, I've changed my mind."/>
+	<string id="tor_skill_teacher_train_1.UlricTrain" text="{=str_tor_skill_teacher_train_1_UlricPriest}If Ulric deems them worthy, they may learn. Leave them with me."/>
+	<string id="tor_skill_teacher_train_2.UlricTrain" text="{=str_tor_skill_teacher_train_2_UlricPriest}Who shall learn of the Winter-Father's ways?"/>
+	<string id="tor_teach_skills_dialog_p.UlricTrain" text="{=str_tor_teach_skills_dialog_p_UlricPriest}My companion wishes to deepen his faith, can you guide them?"/>
+	<string id="tor_skill_train_hub_select_companion_p.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_p_UlricPriest}Yes, please guide one of my companions."/>
+	<string id="tor_skill_train_hub_select_companion.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_UlricPriest}Very well, they shall return with sharpened fangs."/>	
+	<string id="tor_skill_train_hub_select_companion_decline.UlricTrain" text="{=str_tor_skill_train_hub_select_companion_decline_UlricPriest}There is no one in your party worth teaching."/>	
+	<string id="tor_priest_train_hub_quit_p.UlricTrain" text="{=str_tor_priest_train_hub_quit_p_UlricPriest}Forgive me, I've changed my mind."/>
 	
 	<string id="tor_skill_training_prompt.title" text="{=str_tor_skill_training_prompt_title}Teach a companion {SKILL_NAME}"/>
 	<string id="tor_skill_training_prompt.skill_value" text="{=str_tor_skill_training_prompt_skill_value}Current Skill value: {SKILL_VALUE}"/>
