@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <EquipmentRosters>
   <EquipmentRoster id="tor_empire_villager_template" culture="Culture.empire">
     <EquipmentSet>
@@ -6861,6 +6861,54 @@
     </EquipmentSet>
   </EquipmentRoster>
   <EquipmentRoster id="tor_gs_goblin_template" culture="Culture.aserai">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_gs_goblin_stikka_template" culture="Culture.aserai">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_gs_goblin_nasty_skulker_template" culture="Culture.aserai">
+    <EquipmentSet>
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
+    </EquipmentSet>
+    <EquipmentSet civilian="true">
+      <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
+      <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
+      <Equipment slot="Cape" id="Item.tor_greenskin_shoulderpads_goblin_002" />
+      <Equipment slot="Gloves" id="Item.tor_greenskin_bracers_goblin_002" />
+      <Equipment slot="Leg" id="Item.tor_greenskin_leg_boots_goblin_001" />
+    </EquipmentSet>
+  </EquipmentRoster>
+  <EquipmentRoster id="tor_gs_goblin_boss_template" culture="Culture.aserai">
     <EquipmentSet>
       <Equipment slot="Item0" id="Item.tor_vc_weapon_spear_skeleton_001" />
       <Equipment slot="Body" id="Item.tor_greenskin_body_armour_goblin_002" />
