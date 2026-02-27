@@ -5885,7 +5885,7 @@
                      Offset="0.5"
                      CrosshairType="Missile"
                      AbilityTargetType="WorldPosition"
-                     SpellTier="1"
+                     SpellTier="2"
                      BelongsToLoreID="BigWaaagh"
                      TooltipDescription="{=gaze_uv_mork_description_str}Mork looks froo da Shaman's eyez as he blasts da gits wiv a proppa killy green fire.">
         <LightColorRGB x="50"
@@ -5933,7 +5933,7 @@
                      CrosshairType="TargetedAOE"
                      MaxDistance="0.5"
                      TargetCapturingRadius="10"
-                     SpellTier="1"
+                     SpellTier="2"
                      BelongsToLoreID="BigWaaagh"
                      TooltipDescription="{=ard_as_nails_description_str}As da Shaman is surrounded by fightin' ladz, da Waaagh! ju-ju covers da boys, makin' em ded tuff.">
         <LightColorRGB x="50"
@@ -5982,7 +5982,7 @@
                      MinDistance="5"
                      MaxDistance="25"
                      TargetCapturingRadius="3"
-                     SpellTier="2"
+                     SpellTier="3"
                      BelongsToLoreID="BigWaaagh"
                      TooltipDescription="{=brain_bursta_description_str}As da fightin' goes on, da Shaman builds up too much Waaagh! ju-ju, an' releases it in a BIG BOOM that throws gits to da ground.">
         <LightColorRGB x="50"
@@ -6031,7 +6031,7 @@
                      MinDistance="1"
                      MaxDistance="50"
                      TargetCapturingRadius="5"
-                     SpellTier="2"
+                     SpellTier="3"
                      BelongsToLoreID="BigWaaagh"
                      TooltipDescription="{=da_hand_uv_gork_description_str}If da bashin' is too far away, wiv da help of Gork da Shaman can bring da boyz from ova' 'ere to ova' dere.">
         <LightColorRGB x="50"
@@ -6079,7 +6079,7 @@
                      CrosshairType="TargetedAOE"
                      MaxDistance="0.5"
                      TargetCapturingRadius="15"
-                     SpellTier="3"
+                     SpellTier="4"
                      BelongsToLoreID="BigWaaagh"
                      TooltipDescription="{=ere_we_go_description_str}Da Shaman is goin' absolute mental an' is lost in trance. Big Waaagh! ju-ju washes over da boys, makin' 'em fasta', stronga', an' a lot more killy.">
         <LightColorRGB x="50"
@@ -6128,7 +6128,7 @@
                      MinDistance="10"
                      MaxDistance="30"
                      TargetCapturingRadius="6"
-                     SpellTier="3"
+                     SpellTier="4"
                      BelongsToLoreID="BigWaaagh"
                      TooltipDescription="{=foot_uv_gork_description_str}Da Shaman loses himself in a da dance, an' on da beat, Gork's own foot strikes da ground to stomp everyfing below to dust.">
         <LightColorRGB x="50"

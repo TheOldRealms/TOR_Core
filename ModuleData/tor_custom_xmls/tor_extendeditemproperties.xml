@@ -5219,6 +5219,9 @@
   <ExtendedItemObjectProperties ItemStringId="tor_he_weapon_shield_002">
     <ItemTraits />
   </ExtendedItemObjectProperties>
+  <ExtendedItemObjectProperties ItemStringId="tor_he_weapon_shield_003">
+    <ItemTraits />
+  </ExtendedItemObjectProperties>
   <ExtendedItemObjectProperties ItemStringId="tor_de_weapon_shield_001">
     <ItemTraits />
   </ExtendedItemObjectProperties>
