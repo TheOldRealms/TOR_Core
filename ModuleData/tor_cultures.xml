@@ -1310,7 +1310,6 @@
 		<cultural_feats>
 			<feat id="empire_decreased_garrison_wage" />
 			<feat id="empire_army_influence" />
-			<feat id="empire_hearth_production" />
 		</cultural_feats>
 		<possible_clan_banner_icon_ids>
 			<icon id="100" />
