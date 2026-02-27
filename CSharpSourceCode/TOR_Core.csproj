@@ -699,7 +699,6 @@
     <Compile Include="GameManagers\TORKeyInputManager.cs" />
     <Compile Include="GameManagers\TORShaderGameManager.cs" />
     <Compile Include="HarmonyPatches\AgentPatches.cs" />
-    <Compile Include="HarmonyPatches\CulturalFeatPatches.cs" />
     <Compile Include="HarmonyPatches\RetreatPatches.cs" />
     <Compile Include="HarmonyPatches\BaseGameDebugPatches.cs" />
     <Compile Include="HarmonyPatches\CharacterCreationPatches.cs" />
@@ -735,7 +734,6 @@
     <Compile Include="HarmonyPatches\RaceFixPatches.cs" />
     <Compile Include="HarmonyPatches\SettlementPatches.cs" />
     <Compile Include="HarmonyPatches\TableauRenderPatches.cs" />
-    <Compile Include="HarmonyPatches\TradeSkillPatch.cs" />
     <Compile Include="HarmonyPatches\VeterinarianPatch.cs" />
     <Compile Include="HarmonyPatches\ViewModelPatches.cs" />
     <Compile Include="HarmonyPatches\ViewModelRefreshPatch.cs" />
@@ -777,6 +775,7 @@
     <Compile Include="Missions\TrollCaveMissionController.cs" />
     <Compile Include="Missions\TORMissionAgentHandler.cs" />
     <Compile Include="Missions\TORMissionManager.cs" />
+    <Compile Include="Models\TORTradeItemPriceFactorModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleAgentStatCalculateModel.cs" />
     <Compile Include="Models\CustomBattleModels\TORCustomBattleMoraleModel.cs" />
     <Compile Include="Models\TORAbilityModel.cs" />
@@ -803,6 +802,7 @@
     <Compile Include="Models\DiplomacyHelpers.cs" />
     <Compile Include="Models\TORDiplomacyModel.cs" />
     <Compile Include="Models\TORAllianceModel.cs" />
+    <Compile Include="Models\TORSettlementProsperityModel.cs" />
     <Compile Include="Models\TORTradeAgreementModel.cs" />
     <Compile Include="Models\TOREnchantmentCraftingModel.cs" />
     <Compile Include="Models\TOREnchantmentIngredientsModel.cs" />

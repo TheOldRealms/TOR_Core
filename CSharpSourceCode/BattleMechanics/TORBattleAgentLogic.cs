@@ -56,9 +56,9 @@ namespace TOR_Core.BattleMechanics
                     out bool hasIncomingMountedCharge,
                     out bool isIncomingMountedChargeTooCloseToSwapToLance);
 
-                bool allowLanceOnFoot = !hasCloseFootEnemy && hasIncomingMountedCharge;
+                bool shouldWieldLanceOnFoot = !hasCloseFootEnemy && hasIncomingMountedCharge;
 
-                if (allowLanceOnFoot)
+                if (shouldWieldLanceOnFoot)
                 {
                     if (!isIncomingMountedChargeTooCloseToSwapToLance)
                     {

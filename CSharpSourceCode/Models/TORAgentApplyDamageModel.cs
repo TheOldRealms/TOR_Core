@@ -23,6 +23,21 @@ namespace TOR_Core.Models
 {
     public class TORAgentApplyDamageModel : SandboxAgentApplyDamageModel
     {
+        // Crush through block (ctb)
+        // extra crush through chance for high energy swings when attacker outskills the defender
+        private const int EXTRA_CTB_SKILL_DEAD_ZONE = 30; //skill diff over 30 doesn't do ctb
+
+        private const int EXTRA_CTB_TARGET_SKILL_DIFF = 200; //max skill diff contribution
+        private const float EXTRA_CTB_TARGET_OVERHEAD_CHANCE_AT_TARGET_DIFF = 0.50f; // ^^ it's effect
+
+        private const float EXTRA_CTB_NON_OVERHEAD_CHANCE_MULTIPLIER = 0.5f; // non overhead swings are twice as less likely
+        private const float EXTRA_CTB_SKILL_GROWTH_RATE = 0.008097f; // 30 energy, 50 diff 50% ctb, 200 diff 50% ctb
+
+        // how quickly extra ctb reaches full effect after passing the base energy threshold
+        // reduce this number if you want momentum to matter less on ctb
+        private const float EXTRA_CTB_ENERGY_MARGIN_FOR_FULL_EFFECT = 0.27f;
+
+        private static readonly float ExtraCtbSkillGrowthRate = EXTRA_CTB_SKILL_GROWTH_RATE;
         public override void DecideMissileWeaponFlags(Agent attackerAgent, in MissionWeapon missileWeapon, ref WeaponFlags missileWeaponFlags)
         {
             base.DecideMissileWeaponFlags(attackerAgent, missileWeapon, ref missileWeaponFlags);
@@ -980,20 +995,7 @@ namespace TOR_Core.Models
             return newMomentum;
         }
 
-        private const int EXTRA_CTB_SKILL_DEAD_ZONE = 30; //skill diff over 30 doesn't do ctb
-
-        private const int EXTRA_CTB_TARGET_SKILL_DIFF = 200; //max skill diff contribution
-        private const float EXTRA_CTB_TARGET_OVERHEAD_CHANCE_AT_TARGET_DIFF = 0.50f; // ^^ it's effect
-
-        private const float EXTRA_CTB_NON_OVERHEAD_CHANCE_MULTIPLIER = 0.5f; // non overhead swings are twice as less likely
-        private const float EXTRA_CTB_SKILL_GROWTH_RATE = 0.008097f; // 30 energy, 50 diff 50% ctb, 200 diff 50% ctb
-
-        // how quickly extra ctb reaches full effect after passing the base energy threshold
-        // reduce this number if you want momentum to matter less on ctb
-        private const float EXTRA_CTB_ENERGY_MARGIN_FOR_FULL_EFFECT = 0.27f;
-
-        private static readonly float ExtraCtbSkillGrowthRate = EXTRA_CTB_SKILL_GROWTH_RATE;
-
+        // for crush through blocks converts the target overhead chance at skill diff into an exponential growth rate
         private static float CalculateExtraCtbSkillGrowthRate()
         {
             int delta = EXTRA_CTB_TARGET_SKILL_DIFF - EXTRA_CTB_SKILL_DEAD_ZONE;
@@ -1006,6 +1008,7 @@ namespace TOR_Core.Models
             return (float)(-Math.Log(1.0 - targetChance) / delta);
         }
 
+        // for crush through blocks returns the overhead swing base chance coming purely from skill diff and ramps up with a exponential curve
         private static float CalculateExtraCtbOverheadChanceFromSkillDiff(int attackerSkillValue, int defenderSkillValue)
         {
             int skillDiff = attackerSkillValue - defenderSkillValue;
@@ -1035,6 +1038,7 @@ namespace TOR_Core.Models
         }
 
 
+        // for crush through blocks scales chance based on how far the attack is past the energy threshold. 0 at threshold, 1 at full effect
         private static float CalculateExtraCtbEnergyFactor(float totalAttackEnergy, float threshold)
         {
             float fullEffectMargin = threshold * EXTRA_CTB_ENERGY_MARGIN_FOR_FULL_EFFECT;
@@ -1105,8 +1109,11 @@ namespace TOR_Core.Models
                 return true;
             }
 
-            // custom ctb
             // only attempt extra ctb for valid swing attacks with enough energy
+            // skill diff over deadzone increases the chance
+            // extra energy past threshold pushes it toward full effect
+            // non overhand swings take a penalty
+            // custom ctb
             const float threshold = 25f;
 
             if (attackerUsageItem == null || isPassiveUsage || strikeType != 0 || totalAttackEnergy <= threshold)

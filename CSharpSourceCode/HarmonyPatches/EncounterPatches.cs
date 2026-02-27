@@ -118,37 +118,4 @@ namespace TOR_Core.HarmonyPatches
                 PendingLootedTroopManager.ApplyPrisonerModifications(__result);
         }
     }
-
-    [HarmonyPatch(typeof(DefaultEncounterModel), nameof(DefaultEncounterModel.GetSurrenderChance))] // villager parties and caravans will no longer surrender if there's a lord helping them
-    internal static class CaravanSurrenderPatches
-    {
-        [HarmonyPrefix]
-        private static bool Prefix(MobileParty defenderParty, MobileParty attackerParty, ref float __result)
-        {
-            if (defenderParty == null || (!defenderParty.IsCaravan && !defenderParty.IsVillager))
-            {
-                return true;
-            }
-
-            var mapEvent = defenderParty.MapEvent;
-            if (mapEvent == null)
-            {
-                return true;
-            }
-
-            var defenderSide = mapEvent.DefenderSide;
-
-            foreach (var mapEventParty in defenderSide.Parties)
-            {
-                var mobileParty = mapEventParty.Party?.MobileParty;
-                if (mobileParty != null && mobileParty != defenderParty && mobileParty.IsLordParty)
-                {
-                    __result = 0f;
-                    return false;
-                }
-            }
-
-            return true;
-        }
-    }
 }

@@ -249,7 +249,9 @@ namespace TOR_Core
                 gameStarterObject.AddModel(new TORDiplomacyModel());
                 gameStarterObject.AddModel(new TORAllianceModel());
                 gameStarterObject.AddModel(new TORTradeAgreementModel());
+                gameStarterObject.AddModel(new TORTradeItemPriceFactorModel());
                 gameStarterObject.AddModel(new TORSettlementLoyaltyModel());
+                gameStarterObject.AddModel(new TORSettlementProsperityModel());
                 gameStarterObject.AddModel(new TORBattleRewardModel());
                 gameStarterObject.AddModel(new TORTroopSupplierModel());
                 gameStarterObject.AddModel(new TORSettlementFoodModel());
