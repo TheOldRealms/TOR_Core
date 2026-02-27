@@ -16,6 +16,7 @@ namespace TOR_Core.CampaignMechanics
         {
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
             CampaignEvents.OnNewGameCreatedPartialFollowUpEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter, int>(this.SpawnAiHeroParties));
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
 
         /// <summary>
@@ -78,6 +79,12 @@ namespace TOR_Core.CampaignMechanics
             // Example: Empire provinces that should be allied
             // var reikland = Kingdom.All.Find(k => k.StringId == "reikland");
             // var middenland = Kingdom.All.Find(k => k.StringId == "middenland");
+        }
+
+        // late init, override TradePenaltyReduction description once effects are initialized
+        private void OnSessionLaunched(CampaignGameStarter starter)
+        {
+            TOR_Core.Models.TORTradeItemPriceFactorModel.ApplyTradePenaltyReductionDescriptionOverride();
         }
     }
 }

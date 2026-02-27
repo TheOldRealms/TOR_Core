@@ -18,10 +18,6 @@ namespace TOR_Core.Models
         private const string TRADE_PENALTY_REDUCTION_DESCRIPTION =
             "{=str_tor_trade_skill_description}Trade penalty Reduction +0.2% per level for trade goods and animals.\n" +
             "Equipment sell price starts at 50% and increases by +0.73% per Trade level.";
-        public TORTradeItemPriceFactorModel()
-        {
-            ApplyTradePenaltyReductionDescriptionOverride();
-        }
         public static void ApplyTradePenaltyReductionDescriptionOverride()
         {
             var tradePenaltyReductionEffect = DefaultSkillEffects.TradePenaltyReduction;
