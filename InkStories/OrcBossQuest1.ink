@@ -2,7 +2,7 @@
 # title: Da Boss Awakens
 # frequency: Special
 # development: false
-# illustration: campfirenight
+# illustration: orc_boss_career_2
 
 INCLUDE include.ink
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <NPCCharacters>
   <!-- URBAN CHARACTERS OF dwarves -->
-  <NPCCharacter id="taverngamehost_dawi" default_group="Infantry" is_hero="false" name="{=str_taverngamehost_dawi}Game Host" occupation="TavernGameHost" culture="Culture.sturgia" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
+  <NPCCharacter id="taverngamehost_dawi" default_group="Infantry" is_hero="false" name="{=str_taverngamehost_dawi}Game Host" occupation="TavernGameHost" culture="Culture.sturgia" race ="dwarf" skill_template="SkillSet.infantry_heavyinfantry_level1_template_skills">
     <face>
       <face_key_template value="BodyProperty.dwarf_low_tier"/>
     </face>

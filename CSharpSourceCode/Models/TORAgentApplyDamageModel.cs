@@ -717,6 +717,15 @@ namespace TOR_Core.Models
                     {
                         resistances[(int)DamageType.Physical] += (TORPerks.Faith.Imperturbable.SecondaryBonus);
                     }
+
+                    // Brewers Guild Level III bonus: +15% physical resistance for ranger units
+                    if (agent.BelongsToMainParty() && agentLeader != null && agentLeader.HasAttribute("DwarfBrewersIII"))
+                    {
+                        if (agentCharacter.StringId.Contains("tor_dw_ranger"))
+                        {
+                            resistances[(int)DamageType.Physical] += 0.15f;
+                        }
+                    }
                 }
             }
 

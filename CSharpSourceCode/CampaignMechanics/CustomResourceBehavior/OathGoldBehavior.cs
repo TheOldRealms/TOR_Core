@@ -50,6 +50,8 @@ public class OathGoldBehavior : CampaignBehaviorBase
     private const int WheatToOathGoldGain = 2;
     private const int ArtilleryCrewOathGoldCost = 50;
     private const int ArtilleryCrewGoldCost = 500;
+    private const int RangerOathGoldCost = 20;
+    private const int RangerGoldCost = 500;
     private Dictionary<string, int> _guildValues;
     private double _lastTimeVistedTown;
     private int _expeditionMaximum;
@@ -1097,6 +1099,9 @@ public class OathGoldBehavior : CampaignBehaviorBase
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_spend_food_p", hub, "tor_dw_guildmaster_brewer_hub_spend_food", GameTexts.FindText("tor_dw_guildmaster_brewer_hub_spend_food_p").ToString(),
             null, null, 200);
 
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_recruit_rangers_p", hub, "tor_dw_guildmaster_brewer_recruit_rangers", TORTextHelper.GetText("tor_dw_brewer_recruit_rangers_text", "I need some rangers for scouting."),
+            () => Hero.MainHero.HasAttribute("DwarfBrewersI"), null, 200);
+
         campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_hub_quit_p", hub, "close_window", GameTexts.FindText("tor_dw_guildmaster_brewer_hub_quit_p").ToString(),
             null, null, 200);
 
@@ -1112,6 +1117,23 @@ public class OathGoldBehavior : CampaignBehaviorBase
             null, null, 200);
 
         campaignGameStarter.AddDialogLine("tor_dw_guildmaster_brewer_hub_spend_food_end", "tor_dw_guildmaster_brewer_hub_spend_food_end", reintro, GameTexts.FindText("tor_dw_guildmaster_brewer_hub_spend_food_end").ToString(),
+            null, null, 200);
+
+        //recruit rangers
+        campaignGameStarter.AddDialogLine("tor_dw_guildmaster_brewer_recruit_rangers", "tor_dw_guildmaster_brewer_recruit_rangers", "tor_dw_guildmaster_brewer_recruit_rangers_options",
+            TORTextHelper.GetText("tor_dw_brewer_recruit_rangers_offer_text", "Aye, we have some skilled rangers eager to serve. It'll cost ye {RANGER_GOLD_PRICE}{GOLD_ICON} and {RANGER_OATHGOLD_PRICE} Oathgold."),
+            UpdateRangerRecruitmentPrices, null, 200);
+
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_recruit_rangers_accept_p", "tor_dw_guildmaster_brewer_recruit_rangers_options", reintro,
+            TORTextHelper.GetText("tor_dw_brewer_recruit_rangers_accept_text", "They'll serve the holds well."),
+            HasEnoughForRangerRecruitment, RecruitRangerCrew, 200);
+
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_recruit_rangers_decline_funds_p", "tor_dw_guildmaster_brewer_recruit_rangers_options", reintro,
+            TORTextHelper.GetText("tor_dw_brewer_recruit_rangers_no_funds_text", "I don't have enough coin or Oathgold right now."),
+            () => !HasEnoughForRangerRecruitment(), null, 200);
+
+        campaignGameStarter.AddPlayerLine("tor_dw_guildmaster_brewer_recruit_rangers_decline_p", "tor_dw_guildmaster_brewer_recruit_rangers_options", reintro,
+            TORTextHelper.GetText("tor_dw_brewer_recruit_rangers_decline_text", "Maybe another time."),
             null, null, 200);
 
 
@@ -1193,6 +1215,43 @@ public class OathGoldBehavior : CampaignBehaviorBase
             }
 
             MBInformationManager.ShowMultiSelectionInquiry(inquirydata, true);
+        }
+
+        bool UpdateRangerRecruitmentPrices()
+        {
+            MBTextManager.SetTextVariable("RANGER_GOLD_PRICE", RangerGoldCost.ToString());
+            MBTextManager.SetTextVariable("RANGER_OATHGOLD_PRICE", RangerOathGoldCost.ToString());
+            return true;
+        }
+
+        bool HasEnoughForRangerRecruitment()
+        {
+            return Hero.MainHero.Gold >= RangerGoldCost && Hero.MainHero.GetCustomResourceValue("OathGold") >= RangerOathGoldCost;
+        }
+
+        void RecruitRangerCrew()
+        {
+            var basicRanger = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_ranger");
+            var veteranRanger = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_ranger_veteran");
+            if (basicRanger == null) return;
+
+            GiveGoldAction.ApplyBetweenCharacters(Hero.MainHero, null, RangerGoldCost);
+            Hero.MainHero.AddCustomResource("OathGold", -RangerOathGoldCost);
+
+            // Recruit 4 rangers
+            for (int i = 0; i < 4; i++)
+            {
+                // Level II and III have 30% chance for veteran rangers
+                if ((Hero.MainHero.HasAttribute("DwarfBrewersII") || Hero.MainHero.HasAttribute("DwarfBrewersIII")) && veteranRanger != null)
+                {
+                    var ranger = MBRandom.RandomFloat < 0.3f ? veteranRanger : basicRanger;
+                    MobileParty.MainParty.MemberRoster.AddToCounts(ranger, 1);
+                }
+                else
+                {
+                    MobileParty.MainParty.MemberRoster.AddToCounts(basicRanger, 1);
+                }
+            }
         }
 
     }
