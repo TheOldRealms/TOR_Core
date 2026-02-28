@@ -122,16 +122,23 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             // CheckSideRunAway same round being called multiple times
             public int LastProcessedWonRoundCountForAttacker;
             public int LastProcessedWonRoundCountForDefender;
+
+            // reuse buffers
+            public readonly HashSet<UniqueTroopDescriptor> SimulationTroopsSet = new HashSet<UniqueTroopDescriptor>();
+
+            public readonly List<RoutableTroopCandidate> CandidateBuffer = new List<RoutableTroopCandidate>(64);
+            public readonly List<RoutableTroopCandidate> SelectedCandidateBuffer = new List<RoutableTroopCandidate>(64);
+            public readonly Dictionary<CharacterObject, float> WoundedRatiosByTroop = new Dictionary<CharacterObject, float>(64);
         }
 
         private readonly struct PendingRetreatCooldown
         {
-            public readonly MobileParty RetreatingParty;
+            public readonly List<MobileParty> RetreatingParties;
             public readonly MobileParty AttackerParty;
 
-            public PendingRetreatCooldown(MobileParty retreatingParty, MobileParty attackerParty)
+            public PendingRetreatCooldown(List<MobileParty> retreatingParties, MobileParty attackerParty)
             {
-                RetreatingParty = retreatingParty;
+                RetreatingParties = retreatingParties;
                 AttackerParty = attackerParty;
             }
         }
@@ -293,9 +300,9 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             return Math.Min(attemptCount, eligibleCandidateCount);
         }
 
-        private static Dictionary<CharacterObject, float> BuildWoundedRatioByTroop(PartyBase troopParty)
+        private static void BuildWoundedRatioByTroop(PartyBase troopParty, Dictionary<CharacterObject, float> woundedRatiosByTroop)
         {
-            var woundedRatiosByTroop = new Dictionary<CharacterObject, float>();
+            woundedRatiosByTroop.Clear();
 
             var troopRoster = troopParty.MemberRoster.GetTroopRoster();
             for (var i = 0; i < troopRoster.Count; i++)
@@ -306,8 +313,6 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
 
                 woundedRatiosByTroop[element.Character] = element.WoundedNumber / (float)element.Number;
             }
-
-            return woundedRatiosByTroop;
         }
 
         private static void SelectWeightedCandidatesWithoutReplacement(
@@ -536,7 +541,7 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             }
         }
 
-        private static bool ApplyPartialRouting(MapEventSide retreatingSide)
+        private static bool ApplyPartialRouting(MapEventSide retreatingSide, RetreatRoutingState routingState)
         {
             var mapEvent = retreatingSide.MapEvent;
             if (mapEvent == null)
@@ -545,8 +550,6 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             var simulationTroopList = SimulationTroopList(retreatingSide);
             if (simulationTroopList == null || simulationTroopList.Count <= 0)
                 return false;
-
-            var simulationTroopsSet = new HashSet<UniqueTroopDescriptor>(simulationTroopList);
 
             var terrainModifier = GetTerrainRetreatModifier(mapEvent.EventTerrainType);
             var enemyCompositionModifier = GetCompositionModifier(
@@ -563,16 +566,27 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             if (maxTroopTier < 1)
                 maxTroopTier = 1;
 
-            var candidates = new List<RoutableTroopCandidate>();
-            var selectedCandidates = new List<RoutableTroopCandidate>();
+            var simulationTroopsSet = routingState.SimulationTroopsSet;
+            simulationTroopsSet.Clear();
+            for (var i = 0; i < simulationTroopList.Count; i++)
+            {
+                simulationTroopsSet.Add(simulationTroopList[i]);
+            }
+
+            var candidates = routingState.CandidateBuffer;
+            candidates.Clear();
+
+            var selectedCandidates = routingState.SelectedCandidateBuffer;
+            selectedCandidates.Clear();
+
+            var woundedRatiosByTroop = routingState.WoundedRatiosByTroop;
 
             for (var partyIndex = 0; partyIndex < retreatingSide.Parties.Count; partyIndex++)
             {
                 var mapEventParty = retreatingSide.Parties[partyIndex];
                 var troopParty = mapEventParty.Party;
 
-                var woundedRatiosByTroop = BuildWoundedRatioByTroop(troopParty);
-
+                BuildWoundedRatioByTroop(troopParty, woundedRatiosByTroop);
                 foreach (var element in mapEventParty.Troops)
                 {
                     if (element.State != RosterTroopState.Active)
@@ -695,13 +709,28 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                 if (!ShouldAttemptRoutingAfterThisRoundLoss(__instance, mapEventSide, routingState))
                     return false;
 
-                var didRouteAnyTroops = ApplyPartialRouting(mapEventSide);
+                var didRouteAnyTroops = ApplyPartialRouting(mapEventSide, routingState);
                 if (!didRouteAnyTroops)
                     return false;
 
+                var retreatingMobileParties = new List<MobileParty>();
+
+                for (var i = 0; i < mapEventSide.Parties.Count; i++)
+                {
+                    var party = mapEventSide.Parties[i].Party;
+                    if (party == null || !party.IsMobile)
+                        continue;
+
+                    var mobileParty = party.MobileParty;
+                    if (!retreatingMobileParties.Contains(mobileParty))
+                    {
+                        retreatingMobileParties.Add(mobileParty);
+                    }
+                }
+
                 PendingRetreatCooldownByMapEvent[__instance] = new PendingRetreatCooldown(
-                    mapEventSide.LeaderParty.MobileParty,
-                    mapEventSide.OtherSide.LeaderParty.MobileParty);
+                    retreatingMobileParties,
+                    attackerLeaderParty.MobileParty);
 
                 return false;
             }
@@ -726,8 +755,14 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
             {
                 if (PendingRetreatCooldownByMapEvent.TryGetValue(__instance, out var pendingCooldown))
                 {
-                    RecentRetreatInfoByParty[pendingCooldown.RetreatingParty] =
-                        new RecentRetreatInfo(pendingCooldown.AttackerParty, CampaignTime.HoursFromNow(RECENT_RETREAT_COOLDOWN_HOURS));
+                    var cooldownUntilTime = CampaignTime.HoursFromNow(RECENT_RETREAT_COOLDOWN_HOURS);
+
+                    for (var i = 0; i < pendingCooldown.RetreatingParties.Count; i++)
+                    {
+                        var retreatingParty = pendingCooldown.RetreatingParties[i];
+                        RecentRetreatInfoByParty[retreatingParty] =
+                            new RecentRetreatInfo(pendingCooldown.AttackerParty, cooldownUntilTime);
+                    }
                 }
 
                 PendingRetreatCooldownByMapEvent.Remove(__instance);
@@ -840,7 +875,6 @@ namespace TOR_Core.HarmonyPatches.AutoResolve
                         {
                             partyBase.MemberRoster.AddToCounts(kvp.Key, kvp.Value, insertAtFront: false, woundedCount: 0);
                         }
-
                         AdjustMobilePartyMoraleToTarget(partyBase.MobileParty, POST_RETREAT_TARGET_MORALE);
                         SetDisorganizedForHours(partyBase.MobileParty, POST_RETREAT_DISORGANIZED_HOURS);
                         PostRetreatPartiesNeedingFinalOverrides.Add(partyBase.MobileParty);

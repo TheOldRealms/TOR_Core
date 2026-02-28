@@ -5977,7 +5977,7 @@
                      CastType="WindUp"
                      CastTime="0.7"
                      AnimationActionName="act_release_heavy_thrown"
-                     Offset="10"
+                     Offset="0"
                      AbilityTargetType="GroundAtPosition"
                      CrosshairType="TargetedAOE"
                      MinDistance="5"
