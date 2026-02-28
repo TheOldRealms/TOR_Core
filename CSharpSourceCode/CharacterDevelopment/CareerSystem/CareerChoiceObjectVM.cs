@@ -16,12 +16,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         private string _name;
         private bool _isTaken;
         private bool _isFreeToTake;
+        private string _iconSprite;
 
         public CareerChoiceObjectVM(CareerChoiceObject choice)
         {
             _choice = choice;
             _name = _choice.Name.ToString();
             _description = _choice.Description.ToString();
+            _iconSprite = _choice.IconSprite;
             RefreshValues();
         }
 
@@ -105,6 +107,23 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
                 {
                     _description = value;
                     OnPropertyChangedWithValue(value, "Description");
+                }
+            }
+        }
+
+        [DataSourceProperty]
+        public string IconSprite
+        {
+            get
+            {
+                return _iconSprite;
+            }
+            set
+            {
+                if (value != _iconSprite)
+                {
+                    _iconSprite = value;
+                    OnPropertyChangedWithValue(value, "IconSprite");
                 }
             }
         }

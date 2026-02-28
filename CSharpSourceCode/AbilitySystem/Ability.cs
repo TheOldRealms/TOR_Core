@@ -597,8 +597,11 @@ namespace TOR_Core.AbilitySystem
             {
                 var mass = 1;
                 entity.AddSphereAsBody(Vec3.Zero, Template.Radius, BodyFlags.Moveable | BodyFlags.DoNotCollideWithRaycast);
-                entity.AddPhysics(mass, entity.CenterOfMass, entity.GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("missile"), false, -1);
-                //entity.SetPhysicsState(true, false);
+
+                if (Template.UseGravity)
+                {
+                    entity.AddPhysics(mass, entity.CenterOfMass, entity.GetBodyShape(), Vec3.Zero, Vec3.Zero, PhysicsMaterial.GetFromName("missile"), false, -1);
+                }
             }
         }
 

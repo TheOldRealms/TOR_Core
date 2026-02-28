@@ -29,9 +29,14 @@ namespace TOR_Core.CharacterDevelopment.CareerSystem
         public CareerChoiceObject(string stringId) : base(stringId) { }
         public override string ToString() => Name.ToString();
         public PassiveEffect Passive { get; private set; }
+        public ChoiceType Type { get; private set; }
+        public string IconSprite => Type == ChoiceType.Keystone
+            ? "CareerSystem\\keystone_icon"
+            : "CareerSystem\\skull_icon";
 
         public void Initialize(CareerObject ownerCareer, string description, string belongsToGroup, bool isRootNode, ChoiceType type, List<MutationObject> mutations = null, PassiveEffect passiveEffect = null)
         {
+            Type = type;
             Passive = passiveEffect;
             TextObject text = TORTextHelper.GetTextObject("tor_careerchoice_description", StringId, description);
             if (Passive != null)

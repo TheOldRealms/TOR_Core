@@ -106,6 +106,8 @@ namespace TOR_Core.AbilitySystem
         public bool ShouldRotateVisuals { get; set; } = false;
         [XmlAttribute]
         public bool DoNotAlignParticleEffectPrefab { get; set; } = false;
+        [XmlAttribute]
+        public bool UseGravity { get; set; } = false;
         [XmlElement]
         public SeekerParameters SeekerParameters { get; set; } = null;
         [XmlIgnore]
@@ -225,7 +227,8 @@ namespace TOR_Core.AbilitySystem
                 MaxRandomDeviation = MaxRandomDeviation,
                 ShouldRotateVisuals = ShouldRotateVisuals,
                 VisualsRotationVelocity = VisualsRotationVelocity,
-                ScaleVariable1 = ScaleVariable1
+                ScaleVariable1 = ScaleVariable1,
+                UseGravity = UseGravity
             };
         }
     }
