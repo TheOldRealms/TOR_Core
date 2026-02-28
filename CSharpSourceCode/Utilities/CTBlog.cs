@@ -7,7 +7,7 @@ namespace TOR_Core.Utilities
 {
     internal static class CrushThroughDecisionTrace
     {
-        private const bool ENABLED = true;
+        private const bool ENABLED = false;
 
         private const bool WRITE_TO_HUD = true;
         private const bool WRITE_TO_LOG = true;
