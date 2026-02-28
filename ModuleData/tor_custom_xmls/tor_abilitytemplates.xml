@@ -5881,6 +5881,7 @@
                      ShouldSoundLoopOverDuration="true"
                      CastType="WindUp"
                      CastTime="0.5"
+					 MaxDistance="100"
                      AnimationActionName="act_release_stone"
                      Offset="0.5"
                      CrosshairType="Missile"
@@ -6050,7 +6051,7 @@
     <!-- 'Ere We Go! - Master Buff -->
     <AbilityTemplate StringID="EreWeGo"
                      Name="{=ere_we_go_label_str}'Ere We Go!"
-                     SpriteName="waaagh_symbol"
+                     SpriteName="erewego_icon"
                      CoolDown="90"
                      WindsOfMagicCost="16"
                      BaseMisCastChance="0.10"
