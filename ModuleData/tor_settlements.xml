@@ -346,7 +346,7 @@
       <Shrine id="mork_shrine_03" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="mork_shrine_04" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1284.803" posY="877.619" culture="Culture.aserai" text="{=!}Shrine of Mork">
+  <Settlement id="mork_shrine_04" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.deff_grindaz_clan_1" posX="1284.803" posY="877.619" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
       <Shrine id="mork_shrine_04" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
