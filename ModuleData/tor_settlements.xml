@@ -146,27 +146,27 @@
       <Shrine id="grimnir_shrine_04" religion="cult_of_grimnir" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="grungni_shrine_01" name="{=str_tor_settlements_grimnir_shrine01}Shrine of Grugni" owner="Faction.karak_kadrin_clan_1" posX="1204.403" posY="676.666" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
+  <Settlement id="grungni_shrine_01" name="{=str_tor_settlements_grimnir_shrine01}Shrine of Grugni" owner="Faction.karak_kaferkammaz_clan_1" posX="1204.403" posY="676.666" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
     <Components>
       <Shrine id="grungni_shrine_01" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="grungni_shrine_02" name="{=str_tor_settlements_grugni_shrine02}Shrine of Grugni" owner="Faction.karak_kadrin_clan_1" posX="1710.184" posY="887.722" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
+  <Settlement id="grungni_shrine_02" name="{=str_tor_settlements_grugni_shrine02}Shrine of Grugni" owner="Faction.karak_zhubar_clan_1" posX="1710.184" posY="887.722" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
     <Components>
       <Shrine id="grungni_shrine_02" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="grungni_shrine_03" name="{=str_tor_settlements_grugni_shrine03}Shrine of Grugni" owner="Faction.karak_kadrin_clan_1" posX="1512.274" posY="810.563" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
+  <Settlement id="grungni_shrine_03" name="{=str_tor_settlements_grugni_shrine03}Shrine of Grugni" owner="Faction.karak_angazhar_clan_1" posX="1512.274" posY="810.563" culture="Culture.sturgia" text="{=!}Shrine of Grugni">
     <Components>
       <Shrine id="grungni_shrine_03" religion="cult_of_grungni" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="valaya_shrine_01" name="{=str_tor_settlements_valaya_shrine01}Shrine of Valaya" owner="Faction.karak_kadrin_clan_1" posX="1223.375" posY="686.964" culture="Culture.sturgia" text="{=!}Shrine of Valaya">
+  <Settlement id="valaya_shrine_01" name="{=str_tor_settlements_valaya_shrine01}Shrine of Valaya" owner="Faction.karak_izor_clan_1" posX="1223.375" posY="686.964" culture="Culture.sturgia" text="{=!}Shrine of Valaya">
     <Components>
       <Shrine id="valaya_shrine_01" religion="cult_of_valaya" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="valaya_shrine_02" name="{=str_tor_settlements_valaya_shrine02}Shrine of Valaya" owner="Faction.karak_kadrin_clan_1" posX="1457.496" posY="783.512" culture="Culture.sturgia" text="{=!}Shrine of Valaya">
+  <Settlement id="valaya_shrine_02" name="{=str_tor_settlements_valaya_shrine02}Shrine of Valaya" owner="Faction.karak_gantuk_clan_1" posX="1457.496" posY="783.512" culture="Culture.sturgia" text="{=!}Shrine of Valaya">
     <Components>
       <Shrine id="valaya_shrine_02" religion="cult_of_valaya" background_crop_position="0.0" background_mesh="shrine_of_grimnir" wait_mesh="wait_empire_village" gate_rotation="0.0" />
     </Components>
@@ -326,7 +326,7 @@
       <Shrine id="gork_shrine_03" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="gork_shrine_04" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.crooked_eye_clan_1" posX="1037.916" posY="1194.657" culture="Culture.aserai" text="{=!}Shrine of Gork">
+  <Settlement id="gork_shrine_04" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Gork" owner="Faction.black_sunz_clan_1" posX="1037.916" posY="1194.657" culture="Culture.aserai" text="{=!}Shrine of Gork">
     <Components>
       <Shrine id="gork_shrine_04" religion="cult_of_gork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
@@ -341,7 +341,7 @@
       <Shrine id="mork_shrine_02" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
   </Settlement>
-  <Settlement id="mork_shrine_03" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.crooked_eye_clan_1" posX="1104.753" posY="1182.195" culture="Culture.aserai" text="{=!}Shrine of Mork">
+  <Settlement id="mork_shrine_03" name="{=str_tor_settlements_shrine_kurnous1}Shrine of Mork" owner="Faction.bad_axes_clan_1" posX="1104.753" posY="1182.195" culture="Culture.aserai" text="{=!}Shrine of Mork">
     <Components>
       <Shrine id="mork_shrine_03" religion="cult_of_mork" background_crop_position="0.0" background_mesh="shrine_of_kurnous" wait_mesh="shrine_of_kurnous" gate_rotation="0.0" />
     </Components>
