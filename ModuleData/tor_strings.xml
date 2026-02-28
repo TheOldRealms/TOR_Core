@@ -4356,6 +4356,18 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
   <string id="tor_hirelingactivity3.Warden" text="{=str_tor_hirelingactivity3_Warden}Scout the perimeter together with your hawk" />
   <string id="tor_hirelingactivity4.Warden" text="{=str_tor_hirelingactivity4_Warden}Discuss army movements with other nobles" />
   
+  <string id="tor_hirelingactivity0.Runelord" text="{=str_tor_hirelingactivity0_Warden}Practice with a great az" />
+  <string id="tor_hirelingactivity1.Runelord" text="{=str_tor_hirelingactivity1_Warden}Pray to the Ancestor gods" />
+  <string id="tor_hirelingactivity2.Runelord" text="{=str_tor_hirelingactivity2_Warden}Help out crafting the armies armors" />
+  <string id="tor_hirelingactivity3.Runelord" text="{=str_tor_hirelingactivity3_Warden}Train with an az" />
+  <string id="tor_hirelingactivity4.Runelord" text="{=str_tor_hirelingactivity4_Warden}Barter on some runic improvments" />
+  
+  <string id="tor_hirelingactivity0.OrcBoss" text="{=str_tor_hirelingactivity0_OrcBoss}Smash fings wiv a smaller choppa" />
+  <string id="tor_hirelingactivity1.OrcBoss" text="{=str_tor_hirelingactivity1_OrcBoss}Smash fings wiv da biggest choppa" />
+  <string id="tor_hirelingactivity2.OrcBoss" text="{=str_tor_hirelingactivity2_OrcBoss}Smash fings wiv a long choppa" />
+  <string id="tor_hirelingactivity3.OrcBoss" text="{=str_tor_hirelingactivity3_OrcBoss}Yell rude names at da Arrer Boys" />
+  <string id="tor_hirelingactivity4.OrcBoss" text="{=str_tor_hirelingactivity4_OrcBoss}Explain Gork an' Mork to sum Trolls" />
+  
   
   <string id="tor_hireling_wage" text="{=str_tor_hireling_wage}Hireling Wage" />
 
