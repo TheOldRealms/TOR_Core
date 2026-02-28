@@ -490,7 +490,7 @@ namespace TOR_Core.Models
 
             if (baseCharacter.Culture.StringId == TORConstants.Cultures.GREENSKIN && hero != Hero.MainHero)
             {
-                return 2f; // very low recharge rate for greenskins. 
+                return 0.2f; // very low recharge rate for greenskins. 
             }
             if (hero.PartyBelongedTo != MobileParty.MainParty) return 2f;//equiv to 267 spellcraft
 
