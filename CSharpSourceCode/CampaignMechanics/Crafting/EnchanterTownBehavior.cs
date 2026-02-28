@@ -564,7 +564,7 @@ public class EnchanterTownBehavior : CampaignBehaviorBase
 
                         if (!item.IsCraftedByPlayer)
                         {
-                            var adjusted = item.Value / 100;
+                            var adjusted = item.Value / 200; // used to be 100. now buying and recycling 1 trait wizard staves is at least somewhere close to buying prestige from altdorf noble, still higher though.
                             customResourceElem += MBMath.ClampIndex(adjusted, 50, 500);
                         }
 

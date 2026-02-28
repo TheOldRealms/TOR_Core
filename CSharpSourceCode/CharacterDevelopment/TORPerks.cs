@@ -283,8 +283,8 @@ namespace TOR_Core.CharacterDevelopment
                 PartyRole.PartyMember, 0.1f, EffectIncrementType.AddFactor, TroopUsageFlags.None, TroopUsageFlags.None);
 
             _revival.Initialize("{=str_tor_perk_revival_label}Revival", TORSkills.Faith, 250, _spirit,
-                "{=str_tor_perk_revival_1}After all medicine/healing related skills fail, gain a second 50% chance for characters and units that would be killed to be wounded instead.",
-                PartyRole.PartyLeader, 0.5f, EffectIncrementType.AddFactor); //Sly : that's wildly inaccurate for what it's doing - it's setting a minimum chance of 50% using the primary value
+                "{=str_tor_perk_revival_1}After all medicine/healing related skills fail, gain a second 30% chance for characters and units that would be killed to be wounded instead.",
+                PartyRole.PartyLeader, 0.3f, EffectIncrementType.AddFactor);
             _spirit.Initialize("{=str_tor_perk_spirit_label}Spirit", TORSkills.Faith, 250, _revival,
                 "{=str_tor_perk_spirit_1}Whenever a tier 6 or higher unit dies, distribute their experience among the rest of the troops in the party.",
                 PartyRole.PartyLeader, 1f, EffectIncrementType.Add);

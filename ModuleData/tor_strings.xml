@@ -4900,9 +4900,9 @@ If a Rune ability is available to cast, the next Rune cast in 5 seconds shall be
 	<string id="tor_spelltrainer_greenskin_player_goodbye_str" text="{=str_tor_spelltrainer_greenskin_player_goodbye_str}I'z outta 'ere." />
 	<string id="tor_spelltrainer_greenskin_goodbye_str" text="{=str_tor_spelltrainer_greenskin_goodbye_str}Get outta 'ere! You'z lettin' out da smoke!" />
 	
-	<!--Vanilla Perk Changes-->
+	<!--Vanilla Perks and Skills-->
 	<string id="tor_veterinarian_description" text="{=str_tor_veterinarian_description}A variable chance to recover a mount from lost cavalry after battles." />
-
+	<string id="tor_trade_skill_description" text="{=str_tor_trade_skill_description}Trade penalty Reduction +0.2% per level for trade goods and animals.\nTrade penalty Reduction +0.7% per level for equipment."/>
 
 	<!-- Powerstone Texts - Lesser -->
 	<string id="tor_powerstone_fire_dmg_10_name" text="{=str_tor_powerstone_fire_dmg_10_name}Lesser Sparkling Fire Ruby"/>
