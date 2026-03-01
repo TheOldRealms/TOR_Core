@@ -12791,7 +12791,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -12866,7 +12866,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13029,7 +13029,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13078,7 +13078,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13267,7 +13267,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13329,7 +13329,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13416,7 +13416,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13478,7 +13478,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13540,7 +13540,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13716,7 +13716,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13778,7 +13778,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -13941,7 +13941,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -14041,7 +14041,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -14116,7 +14116,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -14279,7 +14279,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -14341,7 +14341,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -14554,7 +14554,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -14629,7 +14629,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -14755,7 +14755,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -14817,7 +14817,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
@@ -14879,7 +14879,7 @@
       <Location id="tavern" scene_name="TOR_POI_greenskin_tavern_001_atmo_w_night" />
       <Location id="lordshall" scene_name_1="TOR_empire_keep_l1" scene_name_2="TOR_empire_keep_l2" scene_name_3="TOR_empire_keep_l2" />
       <Location id="prison" scene_name="vlandia_dungeon_a" />
-      <Location id="house_1" scene_name="TOR_wizard_hall_001_atmo_w_night" />
+      <Location id="house_1" scene_name="TOR_greenskin_shaman_lair_001" />
       <Location id="house_2" scene_name="empire_house_d_interior_house" />
       <Location id="house_3" scene_name="empire_house_d_interior_house" />
       <Location id="alley" />
