@@ -194,11 +194,11 @@ public class ServeAsAHirelingActivities
             },
             {
                 TORCareers.Runelord, [
-                    DefaultSkills.TwoHanded,     // TODO: Add activity string
-                    TORSkills.Faith,          // TODO: Add activity string
-                    DefaultSkills.Crafting,   // TODO: Add activity string
-                    DefaultSkills.OneHanded,  // TODO: Add activity string
-                    DefaultSkills.Trade       // TODO: Add activity string
+                    DefaultSkills.TwoHanded,   
+                    TORSkills.Faith,          
+                    DefaultSkills.Crafting,
+                    DefaultSkills.OneHanded, 
+                    DefaultSkills.Trade
                 ]
             },
 
