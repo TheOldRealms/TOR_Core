@@ -7430,8 +7430,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_first_3}Daemon Slayer Ulfar Stonebane" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_slayer_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7448,8 +7448,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_first_4}Daemon Slayer Skaldi Doomshard" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_slayer_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7466,8 +7466,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_first_5}Runelord Thori Runescorch" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7502,8 +7502,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_first_7}Daemon Slayer Rurik Earthshaker" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_slayer_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7520,8 +7520,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_first_8}Daemon Slayer Urist Ironbane" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_slayer_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7538,8 +7538,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_first_9}Thane Bolli Vorgrun" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7575,7 +7575,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_second_1" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_second_1}King Dorin Silverfoot" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7628,8 +7628,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" />
+      <EquipmentSet id="tor_dw_slayer_lord_template" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_second_4" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_second_4}Lord Vragni the Silent" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7665,7 +7665,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_second_6" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_second_6}Lord Haming the Rock" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7682,8 +7682,8 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kadrin_second_7" default_group="infantry" name="{=str_tor_dw_lord_karak_kadrin_second_7}Lord Norgrim the Lost" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
@@ -7754,13 +7754,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_3}Lord Harek Grimbeard" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="1" build="0.2545" key="000BC000142C030276C53B4A7621D77747568777C492C6B6C8C172456DBD4B9A00B4F6030B6E7995360000000000000000000000000000070000000015840002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7773,12 +7773,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_4}Lord Drong Steelpick" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4104" build="0.6551" key="0000480D802C11C68825978C65E95617296C966879E85788723ED6797959A9A800BA66030B8BA967360000000000000000000000000000070000000045641002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7796,7 +7796,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_5}Lord Alf Thomsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4919" build="0.6867" key="0005CC04007000C22D516486947C427947563DB4A84934AA9DCA85468376989600BA76030B26986C3600000000000000000000000000000700000000196C0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7808,13 +7808,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_6}Runelord Garil Grundstok" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6474" build="0.5633" key="0011940FC98812404B64D77857813D9688398714CB75A7C8BD5C689F74A8A3C700D8A6030DA1C96636000000000000000000000000000007000000004FBC2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7832,7 +7832,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_7}Elder Sven Whitemane" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.7894" build="0.5914" key="001C3004CEB402C08B659AD956A67CAA57886813AA55A7C79A679C997A5A9CC80089C6030886C78436000000000000000000000000000007000000005B142002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7850,7 +7850,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_8}Lord Kallon Silverbreaker" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5817" build="0.376" key="0016340AD04401C078B2583776483DB849BA95B44B38397AC784C82A98C69A7D00869603085DA7B836000000000000000000000000000007000000004B141002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7862,13 +7862,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_9}Lord Logan Hammerfist" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5922" build="0.383" key="0033C0020D70104278B93C35764954C9AB627A79759A9E8526AD86743DC5CB8400B696030B6B278436000000000000000000000000000007000000001D6C0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7881,12 +7881,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_angazhar_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_angazhar_first_10}Lord Durgin Galazbar" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5732" build="0.4758" key="002DB4098AE40382A8BA76974DB68AC95987875DA9A46E139D96266B8A2334A900879603086487A936000000000000000000000000000007000000001D0C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7899,12 +7899,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_factionleader}King Thuringar Orc-Hewer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5732" build="0.766" key="003FC40D04581347BA4E47E696B5988877E2A8942C598A89D8708C5A777C5498009B960309898A94360000000000000000000000000000070000000047341002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7916,13 +7916,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_2}Lord Ganmar Oakheart" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6501" build="0.2729" key="0016400148A00307C6BA8494BA74A772659955C858577BEC95B5DE66273769B300B4A6030BB3389E360000000000000000000000000000070000000065643002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7940,7 +7940,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_3}Lord Harok Steelcrag" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3573" build="0.5007" key="0028400352CC0386BC95999ACB0545B7358BB4C671C88883D858191B78DA558700D856030D54767D36000000000000000000000000000007000000005DBC1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7958,7 +7958,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_4}Lord Morek Flintbeard" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.8927" build="0.6882" key="0005C80F10E40307C6EA72A84AA5625987768C57493BA28D5B68772B5D731B2400AAD6030A54278136000000000000000000000000000007000000001B4C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7970,13 +7970,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_5}Lord Kazrik Cragtooth" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4731" build="0.7039" key="00009400894410C063E683A65CB3499968C76DA97DA9C75E9CB6666975D8465600BB76030BD378A6360000000000000000000000000000070000000015641002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -7994,7 +7994,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_6}Lord Ketil Ironarm" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4222" build="0.3683" key="00003C020C58034334374A793A886B78B4A6D66A4D5BB9344C9A67B47852898400A666030A9AB87336000000000000000000000000000007000000005B5C2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8007,12 +8007,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_7}Lord Durak Irebeard" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.402" build="0.8633" key="0033D80F00FC01C73C636449E6765B8756AF57766796755983C7BD46A96889B600AD66030A818B8736000000000000000000000000000007000000003D5C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8024,13 +8024,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_8}Lord Skalf Grimhelm" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6136" build="0.4679" key="000B480D13441200D5759D88A492688D86277BB4597AD83BAA39852B439CC6390097960309987DD93600000000000000000000000000000700000000473C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8043,12 +8043,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_9}Lord Kallon Falconshield" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.1626" build="0.4584" key="000B400E524411C7E1268277A9C39834E469D488F7A4C837C94B7324195B944E00B726030BC8C7B236000000000000000000000000000007000000002B743002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8060,13 +8060,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_azgaraz_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_azgaraz_first_10}Runelord Grundi Thunder-Stone" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.8443" build="0.3463" key="00008004C0E400C2557B4AB575658D75858BB24B6E456A4BC7A85BB478BA787600C5D6030C5B6585360000000000000000000000000000070000000019A42002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8084,7 +8084,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_factionleader}King Hergar Steelclad" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4803" build="0.3672" key="0000600288B403401BD47768CD7EA7BB118A76A7679A94657D3B845679C3A79900A676030A8669883600000000000000000000000000000700000000095C0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8102,7 +8102,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_2}Runelord Durmin Ironscribe" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.7728" build="0.4983" key="000B580AC7A012423282D4488685659F53A38AE49A6755893678997C637B581A0077C60307A178D9360000000000000000000000000000070000000050DC2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8120,7 +8120,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_3}Lord Durnik Stonefist" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3704" build="0.7918" key="0005E80FC07000C3A243476B7C92A9785D38356AD69741468977C7B7682B2A6900CC66030C8924943600000000000000000000000000000700000000499C1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8138,7 +8138,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_4}Lord Finn Deepdelver" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.553" build="0.1427" key="000BBC08C01412C69242717553949859389AAB3238C9C7C4586D56E2B365478400528603057C14B736000000000000000000000000000007000000000A9C1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8156,7 +8156,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_5}Lord Brogg Ironthane" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5094" build="0.4734" key="00006C020AB40345A53C5D926A49985395A98B5516D946A7A6D9C3A2893AE3CA00C786030C9459523600000000000000000000000000000700000000379C2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8168,13 +8168,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_6}Lord Dwinbar Underforge" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.8591" build="0.3077" key="001694054B4411C0A58ABCF236545AD573E367A4595866974865637AECD7568C0075D6030788BD9936000000000000000000000000000007000000004ADC2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8192,7 +8192,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_7}Lord Fimbur Frostbeard" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5185" build="0.8186" key="0011940A4D581283A68B56B587A358456C427B2496E9358867949579C7347367008C860308525B45360000000000000000000000000000070000000059141002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8205,12 +8205,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_8}Lord Grimbold Stonecleaver" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.8386" build="0.5845" key="00167C0C49141286AB67C5376786DCC578756A897D781B68B288D8B285B6AAD60099D603096A46813600000000000000000000000000000700000000453C0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8222,13 +8222,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_9}Lord Guttri Ironsunder" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6623" build="0.6109" key="0016800205E41282C4A75B2858966DA95985C85A7CD8A6DC795369B649C5A3D500F9A6030FBC63C436000000000000000000000000000007000000004DEC0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8241,12 +8241,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_eksfilaz_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_eksfilaz_first_10}Lord Thungi Stonehammer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5002" build="0.4014" key="001CF006007000C5878B25637BA586958BC7B33185BCAA4673D14354B8AB69770096860309F79DAA36000000000000000000000000000007000000006F341002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8259,12 +8259,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_factionleader}King Skag Hammerfist" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4795" build="0.3454" key="0000600E4C2C02C5C775D4AB696884B9672788DC85844BB8EA5987479A8466C100B576030B77ABB13600000000000000000000000000000700000000277C2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8282,7 +8282,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_2}Runelord Thrandin Stoneforge" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5035" build="0.4569" key="0000E00980440282969A8149B385D477C9B87179AC575CCA8253CB8BAB8B457B00B786030BA6A9F83600000000000000000000000000000700000000397C2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8300,7 +8300,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_3}Lord Brond Deepstone" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6233" build="0.5747" key="0000AC0C50140345A78548289CD97A797B575A59444B38E34938A9A686DC7A9800A996030A62798736000000000000000000000000000007000000003B542002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8313,12 +8313,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_4}Lord Durn Wavebreaker" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="1" build="0.6322" key="0016600793001302996998D5756C4577799E88A3FE687A6A979AC356996699A100B9F6030B81BB9836000000000000000000000000000007000000003B7C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8330,13 +8330,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_5}Lord Harrin Goldbeard" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6698" build="0.453" key="00007C04007001C2A848BC57B2B96CC5296A616892854C73C654775A86E549860087A60308D7A17B360000000000000000000000000000070000000044FC2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8348,13 +8348,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_6}Lord Kargan Ironheart" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3533" build="0.6819" key="0022300B8D580044774BA695878457AB7777459B8B53DA5A89A8B3C6A8675A7400AA56030A3A5CA9360000000000000000000000000000070000000021541002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8367,12 +8367,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_7}Lord Garin Thunderhammer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5236" build="0.5056" key="0000B406C0001207495878C879368A385859677AB5DC9A99ABB5A7795786225900B886030B4BAE77360000000000000000000000000000070000000037642002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8390,7 +8390,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_8}Lord Throngrim Anvilborn" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.7671" build="0.4098" key="0022740FC07011C29229547789A3A6A8765C8884D7577E66B463567985D9A76900B6C6030BC7E83D36000000000000000000000000000007000000001F642002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8408,7 +8408,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_9}Lord Dorrin Stonehearth" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5896" build="0.3791" key="00116809884411864B85298831A357A89A4A87CDC86C295BB68A9588D94E858800B696030B5A444A3600000000000000000000000000000700000000476C2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8421,12 +8421,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_gantuk_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_gantuk_first_10}Lord Varrik Dúmdrengi" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3257" build="0.6155" key="000BE00F14E41245644622CC4AA969A5AAA77AA9498858565877D6374A68A87C0069560306687689360000000000000000000000000000070000000040D43002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8438,13 +8438,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_runelord_template_001" />
+      <EquipmentSet id="tor_dw_runelord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_factionleader}King Alrik Ranulfsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6296" build="0.5642" key="0000C00FD34403421655563B88467C64733C54A3996453482E63CA883E689D6A00A896030ACDA7CC360000000000000000000000000000070000000023442002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8462,7 +8462,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_2}Prince Gorrin Alriksson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6663" build="0.6569" key="00007C0280441284BAD929A8348BA6B396C6A443A322A48BC627E7876529CB94009AA6030987771736000000000000000000000000000007000000003F342002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8474,13 +8474,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_3}Lord Hamnir Ranulfsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.7043" build="0.6104" key="0000C801494413809BC957B575DA6173C677656A7983AD271A6EA746D52D798700A9B6030AF7C536360000000000000000000000000000070000000053442002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8493,12 +8493,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_4}Lord Skalf Ironpeak" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4093" build="0.0767" key="0000580ACA4403453459C6836969725CAB6494773B76AD3C247B79A787A65B9700B166030B23247C360000000000000000000000000000070000000063741002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8516,7 +8516,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_5}Runelord Drumin Stonecarver" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.2592" build="0.1898" key="0016480C40CC02407A78388A74888453978C396968789CB65589B27489B7558200B346030B967AC936000000000000000000000000000007000000003D6C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8534,7 +8534,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_6}Lord Durrin Granitefist" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5843" build="0.5674" key="000BA80E404413863C5938A83A9D96555924382DC9C785A8899C9A6A743748B600A996030A8A78393600000000000000000000000000000700000000375C0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8552,7 +8552,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_7}Daemon Slayer Vikram Grimflame" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3842" build="0.4202" key="0005A8008744128687376BC8D95C7975D592B9BAC76E8B734EA5EDB6789ABAAC00A666030AA54F813600000000000000000000000000000700000000475C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8570,7 +8570,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_8}Lord Manrak Ironspike" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.704" build="0.7089" key="00008406C24400478B299C97ACB11377A78B4E76B57A4843745BC3699A5AAA5600ABB6030AA36A8B36000000000000000000000000000007000000001F541002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8583,12 +8583,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_9}Lord Thormar Rockhewer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.136" build="0.5905" key="002254020F00138558148845776A89975666789973C9664448A493EE6367A58400A926030AD3A7C93600000000000000000000000000000700000000674C2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8606,7 +8606,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_hirn_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_hirn_first_10}Lord Goddi Stormpeak" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5257" build="0.5272" key="00169C0800000044787986BED798AB956899B96997475436592A799513498C7600D886030D9B5B96360000000000000000000000000000070000000023C43002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8618,13 +8618,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_factionleader}King Kazran Grimbrow" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.1625" build="0.3385" key="0000A00980B40385AA83A7358144898C5B97996392CD8D5D879B786635BB75D20075260307795B9D360000000000000000000000000000070000000034F42002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8636,13 +8636,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_2}Lord Thori Goldhammer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.8147" build="0.2965" key="00008004D42C1380EAB4ACC912958AAC86C8C8A45EAB7C43B5556C575B7925680074C603076799DB360000000000000000000000000000070000000058EC0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8660,7 +8660,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_3}Runelord Brokk Silverwright" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4457" build="0.4012" key="0005400080CC02C0CBC39C86878985C7B7B9576217776978C79C4BAA6974888700A676030A4324CB36000000000000000000000000000007000000003F542002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8678,7 +8678,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_4}Daemon Slayer Hugnir Firemane" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6638" build="0.8726" key="00005C0E527013078958978992784666B8AB7B38C2579859934D8D7B866A98B400ADA6030A8368793600000000000000000000000000000700000000534C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8696,7 +8696,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_5}Lord Drakk Gunmarsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3545" build="0.9923" key="00112000087011C6AD5438DC549CD8BB35665448D398A44586D374AA69BB458400CF56030C74A6A2360000000000000000000000000000070000000009843002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8708,13 +8708,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_6}Lord Gorrik Flintshield" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6867" build="0.7718" key="00113C078014130793A8486151C8C876DBBD6933A94B75547A77D49E58A9663500BCA6030BB39997360000000000000000000000000000070000000035742002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8727,12 +8727,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_7}Lord Barik Stonehelm" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5415" build="0.6763" key="0000CC0D00FC134273D639955D887281BB56B75958BC75B8EA7987794E148D5800BA86030BA6E9D836000000000000000000000000000007000000003B741002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8744,13 +8744,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_8}Lord Thorik Stonebrow" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.7176" build="0.7731" key="0000900B821411828AC3A7577599667A67833877568A6B486E69D88F5A687DB700ACB6030ABA49BA3600000000000000000000000000000700000000275C0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8768,7 +8768,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_9}Lord Skorri Ironvein" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.8169" build="0.6498" key="00113806C04402823E93718AB5AE3CC58B868759566B9A2AD47654A399A4436800DAC6030D86DB6936000000000000000000000000000007000000004DB41002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8786,7 +8786,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_izor_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_izor_first_10}Lord Borri Gembeard" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6034" build="0.6216" key="0000480ACC2C0040B867CB2655C3375ABB492A5BB9D87C3325759B977857795700799603078B3899360000000000000000000000000000070000000058FC1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8804,7 +8804,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_factionleader}King Skalf Redbeard" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5037" build="0.5186" key="00163801402C024698A76E49564A68C326487958B9D98899A6B15AA87DAA656C00B886030B75A9983600000000000000000000000000000700000000316C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8822,7 +8822,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_2}Prince Elmador Skalfsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5689" build="0.4103" key="000020020F7010C617A8A4AABACA676757BC5AD3562C939698C4683C97EA39AA00A696030A766764360000000000000000000000000000070000000051440002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8835,12 +8835,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_3}Lord Kazran Firebrand" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5306" build="0.4913" key="001CF000808800C2A977A939A8573969CA58BB8CDBB5977B75849A345996776900C786030C845374360000000000000000000000000000070000000019940002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8853,12 +8853,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_4}Runelord Grumli Runesoul" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3927" build="0.7765" key="001148080070004288631C65DE6E35AF8E9D4A4D5679A85D745C4818ACC4E4AA00BC66030BBCA7583600000000000000000000000000000700000000677C1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8876,7 +8876,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_5}Lord Borri Ironfist" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.7687" build="0.6377" key="0011F806D0B411C0DC5766988E97777876E437B6A769BCDB949B98966CE8DB72009AC603093D87573600000000000000000000000000000700000000313C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8894,7 +8894,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_6}Lord Ulfar Stonevein" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4466" build="0.6611" key="00228C02905801C24CA6B3778371765627B14392C3E753A99D7375587377AB4500AA76030AB7064736000000000000000000000000000007000000002F441002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8912,7 +8912,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_7}Lord Hargin Emberfist" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.2372" build="0.4394" key="00168C0AC0FC03428888AB8E76D96A64798D984AB454D94889265572A9445BC700B776030B4FC2A7360000000000000000000000000000070000000047640002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8930,7 +8930,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_8}Lord Brokk Stonemantle" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3843" build="0.5941" key="0000600D07E4134674C84AA9E9286A7C4839D64B898662A487B778A2C955A5A000E966030EA9BD9836000000000000000000000000000007000000006DDC2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8942,13 +8942,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_9}Lord Kargun Stoneheart" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3812" build="0.7184" key="001C900AC02C1280588968B96968BCD56780DE652396865B776C5BC96895C83900BB66030B447AB736000000000000000000000000000007000000001D643002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8966,7 +8966,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_kaferkammaz_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_kaferkammaz_first_10}Lord Hugnir Stoutshield" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5255" build="0.5516" key="000BD00E40FC1387E678D77A589848D88784B8889D48240AA4BA355C8476E63800988603094BAE85360000000000000000000000000000070000000027343002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -8978,13 +8978,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_factionleader}King Brokk Ironpick" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.7938" build="0.6255" key="00059C0400141306B2759BC72894A99AA7A6789DBBD67E8649D4A7AA887BCBC60069C60306D775A536000000000000000000000000000007000000004EC41002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9002,7 +9002,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_2}Lord Thingrim Stonefury" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.7152" build="0.5588" key="0005AC0F00880302C88A46BAC8892AD3481AD7647D6B47EC85A75785BA9B838400B8B6030BEA68CB3600000000000000000000000000000700000000236C1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9014,13 +9014,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_3}Runelord Hakon Emberforge" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5509" build="0.3644" key="001C940800440285646A8C9963337AD96C992769789734A55B76445A8464966800B586030BA6969C36000000000000000000000000000007000000002B641002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9038,7 +9038,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_4}Lord Mardin Grum" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5509" build="0.4189" key="000B940152FC01C7BB7374774789782D2984935AC9917D8938886772C6A465A800B686030BC4EC2636000000000000000000000000000007000000005F641002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9056,7 +9056,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_5}Lord Dorrik Griefwielder" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4991" build="0.4521" key="0016100804E401C6B98AEB97A7AB8A49883B6559FAA6955688D9654269D858E600B776030B79699936000000000000000000000000000007000000003B740002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9069,12 +9069,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_miner_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_6}Lord Varnik Hammerdeep" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4222" build="0.5188" key="000BCC0605140287769997BC88C77B7A46452858B8776A882D497A898A3BB7ED00E866030E9579D936000000000000000000000000000007000000005BCC1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9086,13 +9086,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_7}Lord Kazrik Grimtone" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.1311" build="0.4319" key="0022A40992FC12C097696A4769A8574636A2772979AAED5A7B74460AD699787D00B626030B2874943600000000000000000000000000000700000000536C0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9104,13 +9104,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_8}Lord Dengeir Flintmantle" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6382" build="0.3604" key="000B74020CB4030377556A9B7A58DA317667CA5832169567598C36C38644A3AC00C5A6030C889A933600000000000000000000000000000700000000198C2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9128,7 +9128,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_9}Lord Dori Yngvarsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.8843" build="0.6281" key="001C5C0200A0020679BBD789C57B6B4A9CAE7B78B97D8E49476BC62EC9687A2A00C9D6030CC9C6953600000000000000000000000000000700000000598C1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9140,13 +9140,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_norn_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_norn_first_10}Lord Bardek Stonesong" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.8469" build="0.7001" key="0000A803404410477916D52B855A577888C38257B766869539286C957992D45B00BBD6030B89C64836000000000000000000000000000007000000002D7C1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9158,13 +9158,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
+      <EquipmentSet id="tor_dw_lord_template_002" />
       <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_factionleader}King Morgrim Ironforge" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.8379" build="0.4725" key="0000E40AC08813849742A7977D57AEB28178A398E197C4D7AB98878AD8B6E76800D7D6030D558769360000000000000000000000000000070000000033A40002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9177,12 +9177,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_2}Master Engineer Grimm Burloksson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfengineer_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.513" build="0.2476" key="001C680340E411C4EB75B92B89832C988C8619A8A27473546B2EDA696789B77800A486030A698C483600000000000000000000000000000700000000394C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9194,13 +9194,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_engineer_lord_template_001" />
+      <EquipmentSet id="tor_dw_engineer_lord_template_001" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_3}Guildmaster Burlok Damminsonn" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfengineer_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6806" build="0.2405" key="00056C0000A001C66846ADA3BC8A659BA8B664D4536838651BCC767385D787FA0094A6030977CAB8360000000000000000000000000000070000000043241002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9212,13 +9212,13 @@
       <Trait id="Generosity" value="0" />
     </Traits>
     <Equipments>
-      <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_engineer_lord_template_002" />
+      <EquipmentSet id="tor_dw_engineer_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_4}Lord Grom Barakundi" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.46" build="0.7354" key="00007408CAFC028438953CA75996A38A6A95A56A1C4866537A6A78E6525D274800BB76030BD8B37A36000000000000000000000000000007000000002D743002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9236,7 +9236,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_5}Lord Drammar Azrilbak" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3465" build="0.7648" key="000014000E2C12C092B8414C567995646BD7CC6683779EBA12A684B7995B6A2200BB56030BD7994436000000000000000000000000000007000000003B741002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9249,12 +9249,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_6}Lord Rungni Ulfarsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4404" build="0.671" key="00004C0280A0130291777A1D369258069425564896AB9B496BE298BAD6849797005A7603056A8C2D360000000000000000000000000000070000000026B43002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9272,7 +9272,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_7}Lord Thazzrick Grundmane" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.2781" build="0.1482" key="00163407898812C093783CC8C52787958A77184B9B73CEC879857ADA93246DB500B246030BA368AA36000000000000000000000000000007000000005B7C1002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9290,7 +9290,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_8}Lord Thrain Dronrifsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.3216" build="0.4892" key="00117C04C5701240978A9D9DD6C3886B3D7856689894DE6277288958748846BA00A756030A89C195360000000000000000000000000000070000000031542002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9303,12 +9303,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_9}Elder Hruunor the Grumbler" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.239" build="0.2726" key="0000D80FC02C13856793AA2C96C3A476639D72D3B567ABABBB85658865C9377500B446030B77259C360000000000000000000000000000070000000013643002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9321,12 +9321,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_zhufbar_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_zhufbar_first_10}Lord Snorri of Karak Varn" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6746" build="0.3936" key="0011B80C4ACC02839089894C643667194CA6A87283A6B9C89A5ACA5B8A5588C300B6A6030BADA845360000000000000000000000000000070000000059743002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9344,7 +9344,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_factionleader" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_factionleader}King Rorek Granitehand" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4832" build="0.5557" key="0000AC06101413479A8AB72859EB99A4D38A9B997A139919C89B85433A27B55800D876030D3A9826360000000000000000000000000000070000000063C40002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9362,7 +9362,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_2" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_2}Lord Drorindal Granitehand" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.646" build="0.3459" key="000034054A141303C74D74997837572A4D6BD974D18786565518DB59BA4B6B330095A603095D7982360000000000000000000000000000070000000045343002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9380,7 +9380,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_3" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_3}Lord Beleran the Elf Slayer" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4" build="0.3459" key="0000700F00E401C379B84897A58629282A377868A9499A795599366A7AA7476B00A566030A3DC93B360000000000000000000000000000070000000057541002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9393,12 +9393,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_002" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_4" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_4}Lord Garatrik Mountainhelm" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.2469" build="0.4277" key="0005780B941401C2C3A86637CB32B25B68C7B6CB5D8B43D874AA5669B979896B00F646030F76A9F6360000000000000000000000000000070000000025F43002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9411,12 +9411,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_5" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_5}Lord Drognir Gruumspit" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4664" build="0.8284" key="00052C0D8DA0004538DD588992966DA49A6D668ABEA774556897AE466B74778400DC76030D878A8B36000000000000000000000000000007000000004BA42002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9434,7 +9434,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_6" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_6}Lord Snodrik the Ranger" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5246" build="0.49" key="001C380F00000386975628469B33252347234B3635A2A9496329849A7B9B3D8D00B786030B58894736000000000000000000000000000007000000005F6C0002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9447,12 +9447,12 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_7" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_7}Lord Marek the Elderpick" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.6292" build="0.7278" key="001C6809804412868BAC7C8B7694B71CC77B57E7B659AB86D47557B6579B846A008B96030889989636000000000000000000000000000007000000004B0C2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9470,7 +9470,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_8" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_8}Lord Byrnnoth Enlagsson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.69" build="0.5848" key="000B800552B402826CD97A54377B6887A8382329EA593A77795546716D4396560099A603098A79C436000000000000000000000000000007000000004B3C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9488,7 +9488,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_9" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_9}Runelord Gottri Logansson" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarfrune_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.5797" build="0.4738" key="0005C40FC9A00240B5966B693844A9677C85C7BC3AE772267D970A878944B74A00A796030A85A7B636000000000000000000000000000007000000004D3C2002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9506,7 +9506,7 @@
   </NPCCharacter>
   <NPCCharacter id="tor_dw_lord_karak_ziflin_first_10" default_group="infantry" name="{=str_tor_dw_lord_karak_ziflin_first_10}Lord Norr A-Bolg" occupation="Lord" culture="Culture.sturgia" voice="curt" age="50" skill_template="SkillSet.tor_skills_dwarf_lord" is_female="false" race="dwarf" is_hero="true">
     <face>
-      <BodyProperties version="4" age="22" weight="0.2372" build="0.607" key="0002940B800001C29ACB77728188777384B72636A7665694945BD76A753C94481C76660307791D76948D56A5677A905400000000000000070000000032FC0002" />
+      <BodyProperties version="4" age="22" weight="0.4919" build="0.6523" key="00112C0B81141302952B6835A587C89388D844586785698A47869BBC58786743009A760309A4AB853600000000000000000000000000000700000000453C3002" />
     </face>
     <Traits>
       <Trait id="BalancedFightingSkills" value="7" />
@@ -9519,7 +9519,7 @@
     </Traits>
     <Equipments>
       <EquipmentSet id="tor_dw_lord_template_001" />
-      <EquipmentSet id="tor_dw_lord_template_001" civilian="true" />
+      <EquipmentSet id="tor_dw_lord_template_003" civilian="true" />
     </Equipments>
   </NPCCharacter>
   <NPCCharacter id="tor_greenskin_lord_bad_axes_factionleader" default_group="infantry" name="{=str_tor_greenskin_lord_bad_axes_factionleader}Warlord Gromodrak Hoofslasha" occupation="Lord" culture="Culture.aserai" voice="curt" age="50" skill_template="SkillSet.tor_skills_orc_lord" is_female="false" race="orc" is_hero="true">

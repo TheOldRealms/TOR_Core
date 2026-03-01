@@ -7621,24 +7621,29 @@
     <Attributes>
       <string>LegendaryLord</string>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
+      <string>SlayerLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_2">
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>SlayerLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_3">
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>SlayerLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_4">
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>SlayerLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_5">
@@ -7651,18 +7656,21 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>SlayerLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_7">
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>SlayerLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_8">
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>SlayerLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_first_9">
@@ -7681,6 +7689,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_second_2">
@@ -7693,6 +7702,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>SlayerLord</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kadrin_second_4">
@@ -7729,6 +7739,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_angazhar_first_2">
@@ -7789,6 +7800,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_azgaraz_first_2">
@@ -7849,6 +7861,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_eksfilaz_first_2">
@@ -7909,6 +7922,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_gantuk_first_2">
@@ -7969,6 +7983,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_hirn_first_2">
@@ -8029,6 +8044,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_izor_first_2">
@@ -8089,6 +8105,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_kaferkammaz_first_2">
@@ -8149,6 +8166,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_norn_first_2">
@@ -8209,6 +8227,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_zhufbar_first_2">
@@ -8216,6 +8235,7 @@
     <Attributes>
       <string>LegendaryLord</string>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_zhufbar_first_3">
@@ -8223,6 +8243,7 @@
     <Attributes>
       <string>LegendaryLord</string>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_zhufbar_first_4">
@@ -8271,6 +8292,7 @@
     <Abilities />
     <Attributes>
       <string>Tough</string>
+      <string>CanPlaceArtillery</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_dw_lord_karak_ziflin_first_2">
@@ -9994,17 +10016,6 @@
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_wanderer_mousillon_4">
-    <Abilities>
-      <string>StrengthOfCombat</string>
-      <string>Chillwind</string>
-    </Abilities>
-    <Attributes>
-      <string>AbilityUser</string>
-      <string>SpellCaster</string>
-      <string>Unbreakable</string>
-    </Attributes>
-  </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_vampire_0">
     <Abilities>
       <string>FoetidCloud</string>
@@ -10100,12 +10111,6 @@
       <string>AbilityUser</string>
       <string>Runesmith</string>
       <string>Tough</string>
-    </Attributes>
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_wanderer_dawi_2">
-    <Abilities />
-    <Attributes>
-      <string>EngineerCompanion</string>
     </Attributes>
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_wanderer_greenskins_0">
@@ -10238,10 +10243,6 @@
     <Attributes />
   </CharacterExtendedInfo>
   <CharacterExtendedInfo id="tor_greenskin_rogue_lord_2">
-    <Abilities />
-    <Attributes />
-  </CharacterExtendedInfo>
-  <CharacterExtendedInfo id="tor_troll_lord_0">
     <Abilities />
     <Attributes />
   </CharacterExtendedInfo>
@@ -10511,7 +10512,6 @@
   <CharacterExtendedInfo id="tor_priest_trainer_empire_ulric_0">
     <Abilities />
     <Attributes>
-      <string>UlricTrain</string>
       <string>PriestTrainer</string>
       <string>SkillTrainer</string>
     </Attributes>
