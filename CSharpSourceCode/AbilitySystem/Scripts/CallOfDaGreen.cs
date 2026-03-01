@@ -78,7 +78,10 @@ namespace TOR_Core.AbilitySystem.Scripts
                 {
                     // Apply both WindsLink (for kill bonus) and WindsDeathLink (for death penalty)
                     agent.ApplyStatusEffect(WINDS_LINK_EFFECT, CasterAgent, duration, false);
-                    agent.ApplyStatusEffect(WINDS_DEATH_LINK_EFFECT, CasterAgent, duration, false);
+                    if (!(agent.Character as CharacterObject).IsGoblin())
+                    {
+                        agent.ApplyStatusEffect(WINDS_DEATH_LINK_EFFECT, CasterAgent, duration, false);
+                    }
                     
                     // BrutalCunninKeystone: 10% physical resistance for Greenskins
                     if (Hero.MainHero.HasCareerChoice("BrutalCunninKeystone"))
