@@ -22,6 +22,7 @@ namespace TOR_Core.CampaignMechanics
         private CharacterObject _raider;
         private CharacterObject _wraith;
         private CharacterObject _artilleryCrew;
+        private CharacterObject _dwarfArtilleryCrew;
         private CharacterObject _troll;
 
         private const int UndeadCountVillages = 5;
@@ -48,7 +49,8 @@ namespace TOR_Core.CampaignMechanics
                 !party.IsDisbanding &&
                 party.LeaderHero != null &&
                 party.LeaderHero.CanPlaceArtillery() &&
-                party.LeaderHero.Culture.StringId == TORConstants.Cultures.EMPIRE &&
+                (party.LeaderHero.Culture.StringId == TORConstants.Cultures.EMPIRE ||
+                 party.LeaderHero.Culture.StringId == TORConstants.Cultures.DAWI) &&
                 !party.Party.IsStarving &&
                 party.MapFaction.IsKingdomFaction &&
                 party.Party.NumberOfAllMembers + recruitmentNumber < party.Party.PartySizeLimit &&
@@ -56,16 +58,31 @@ namespace TOR_Core.CampaignMechanics
                 party.LeaderHero.Gold > HeroHelper.StartRecruitingMoneyLimit(party.LeaderHero) &&
                 (party.LeaderHero == party.LeaderHero.Clan.Leader || party.LeaderHero.Clan.Gold > HeroHelper.StartRecruitingMoneyLimitForClanLeader(party.LeaderHero)))
             {
-                if (_artilleryCrew == null) return;
-                var crewInPartySum = party.MemberRoster.GetTroopRoster().Where(x => x.Character.GetAttributes().Contains("ArtilleryCrew")).Sum(x => x.Number);
-                if (crewInPartySum > 10) { return; } //2 crew per gun, max 3 guns for certain ai parties
-                var cost = Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(_artilleryCrew, party.LeaderHero).ResultNumber * recruitmentNumber;
-                if (party.LeaderHero.Gold > cost)
-                {
-                    GiveGoldAction.ApplyBetweenCharacters(party.LeaderHero, null, (int)cost);
-                    party.AddElementToMemberRoster(_artilleryCrew, recruitmentNumber);
-                    CampaignEventDispatcher.Instance.OnTroopRecruited(party.LeaderHero, settlement, settlement.Notables.FirstOrDefault(), _artilleryCrew, recruitmentNumber);
-                }
+                // Determine which crew type to recruit based on culture
+                CharacterObject crewToRecruit = party.LeaderHero.Culture.StringId == TORConstants.Cultures.EMPIRE
+                    ? _artilleryCrew
+                    : _dwarfArtilleryCrew;
+
+                RecruitArtilleryCrew(party, settlement, crewToRecruit, recruitmentNumber);
+            }
+        }
+
+        private void RecruitArtilleryCrew(MobileParty party, Settlement settlement, CharacterObject artilleryCrew, int recruitmentNumber)
+        {
+            if (artilleryCrew == null) return;
+
+            var crewInPartySum = party.MemberRoster.GetTroopRoster()
+                .Where(x => x.Character.GetAttributes().Contains("ArtilleryCrew"))
+                .Sum(x => x.Number);
+
+            if (crewInPartySum > 10) { return; } //2 crew per gun, max 3 guns for certain ai parties
+
+            var cost = Campaign.Current.Models.PartyWageModel.GetTroopRecruitmentCost(artilleryCrew, party.LeaderHero).ResultNumber * recruitmentNumber;
+            if (party.LeaderHero.Gold > cost)
+            {
+                GiveGoldAction.ApplyBetweenCharacters(party.LeaderHero, null, (int)cost);
+                party.AddElementToMemberRoster(artilleryCrew, recruitmentNumber);
+                CampaignEventDispatcher.Instance.OnTroopRecruited(party.LeaderHero, settlement, settlement.Notables.FirstOrDefault(), artilleryCrew, recruitmentNumber);
             }
         }
 
@@ -118,6 +135,7 @@ namespace TOR_Core.CampaignMechanics
             _dryad = MBObjectManager.Instance.GetObject<CharacterObject>("tor_we_dryad");
             _treeman = MBObjectManager.Instance.GetObject<CharacterObject>("tor_we_treeman");
             _artilleryCrew = MBObjectManager.Instance.GetObject<CharacterObject>("tor_empire_veteran_artillery_crew");
+            _dwarfArtilleryCrew = MBObjectManager.Instance.GetObject<CharacterObject>("tor_dw_artillery_crew");
             _troll = MBObjectManager.Instance.GetObject<CharacterObject>("tor_gs_trolls");
         }
 
